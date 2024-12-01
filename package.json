@@ -1,0 +1,43 @@
+{
+  "name": "releases.jetpack.love",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "sync-releases": "node --import=tsimp/import src/scraper/index.ts releases",
+    "sync-changelogs": "node --import=tsimp/import src/scraper/index.ts changelogs"
+  },
+  "dependencies": {
+    "@tailwindcss/typography": "^0.5.15",
+    "semver": "^7.6.3"
+  },
+  "devDependencies": {
+    "@opentf/cli-pbar": "^0.7.2",
+    "@sveltejs/adapter-auto": "^3.0.0",
+    "@sveltejs/adapter-static": "^3.0.6",
+    "@sveltejs/kit": "^2.0.0",
+    "@sveltejs/vite-plugin-svelte": "^4.0.0",
+    "@types/debug": "^4.1.12",
+    "@types/node": "^22.10.1",
+    "@types/semver": "^7.5.8",
+    "autoprefixer": "^10.4.20",
+    "axios": "^1.7.8",
+    "cheerio": "^1.0.0",
+    "date-fns": "^4.1.0",
+    "debug": "^4.3.7",
+    "domhandler": "^5.0.3",
+    "svelte": "^5.0.0",
+    "svelte-check": "^4.0.0",
+    "tailwindcss": "^3.4.9",
+    "ts-node": "^10.9.2",
+    "tsimp": "^2.0.12",
+    "typescript": "^5.7.2",
+    "vite": "^5.0.3"
+  },
+  "private": true
+}
