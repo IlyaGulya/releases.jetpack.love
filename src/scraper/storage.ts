@@ -1,16 +1,15 @@
 import fs from 'fs/promises';
 import path from 'path';
-import type {ReleaseDate, LibraryRelease, LibraryChangelog} from './types';
+import type {LibraryChangelog, LibraryRelease, ReleaseDate} from './types';
 
 export class FsStorage {
-  private dataDir: string;
-
-  constructor(baseDir: string = 'data') {
-    this.dataDir = baseDir;
+  constructor(
+    private readonly dataDir: string = 'data',
+  ) {
   }
 
   private async ensureDir(dir: string) {
-    await fs.mkdir(dir, { recursive: true });
+    await fs.mkdir(dir, {recursive: true});
   }
 
   async init() {
@@ -22,7 +21,7 @@ export class FsStorage {
   async saveRelease(date: string, releases: LibraryRelease[]) {
     const releaseDate: ReleaseDate = {
       releaseDate: date,
-      releases
+      releases,
     };
 
     const filePath = path.join(this.dataDir, 'releases', `${date}.json`);
@@ -82,7 +81,7 @@ export class FsStorage {
       releaseDate.releases = releaseDate.releases.map(release => {
         if (release.libraryId === libraryId && release.version === version) {
           modified = true;
-          return { ...release, processed: true };
+          return {...release, processed: true};
         }
         return release;
       });
@@ -90,6 +89,21 @@ export class FsStorage {
       if (modified) {
         await fs.writeFile(filePath, JSON.stringify(releaseDate, null, 2));
       }
+    }
+  }
+
+  async saveUrlToGroupMapping(mapping: Record<string, string>) {
+    const filePath = path.join(this.dataDir, 'url-groups.json');
+    await fs.writeFile(filePath, JSON.stringify(mapping, null, 2));
+  }
+
+  async getUrlToGroupMapping(): Promise<Record<string, string>> {
+    try {
+      const filePath = path.join(this.dataDir, 'url-groups.json');
+      const content = await fs.readFile(filePath, 'utf-8');
+      return JSON.parse(content);
+    } catch (error) {
+      return {};
     }
   }
 }

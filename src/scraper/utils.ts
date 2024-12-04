@@ -3,6 +3,17 @@ import debug from 'debug';
 
 const log = debug('jetpack:parser');
 
+export const normalizeDate = (dateText: string): string => {
+  // Remove ordinal indicators and clean up text
+  const cleaned = dateText
+    .replace(/(\d+)(st|nd|rd|th)/, '$1')  // Remove ordinal indicators
+    .split('\n')[0]  // Take only first line
+    .replace(/\s+is released.*$/, '')  // Remove "is released" and following text
+    .trim();
+
+  return cleaned;
+};
+
 export const parseDate = (dateString: string): Date => {
   const date = new Date(dateString);
   if (isNaN(date.getTime())) {
@@ -14,6 +25,7 @@ export const parseDate = (dateString: string): Date => {
 interface ParsedUrlInfo {
   libraryId: string;
   version: string;
+  variants: string[];
 }
 
 export const parseLibraryFromUrl = (url: string): ParsedUrlInfo | null => {
@@ -31,10 +43,11 @@ export const parseLibraryFromUrl = (url: string): ParsedUrlInfo | null => {
     return {
       libraryId: baseLibrary,
       version: fragment,
+      variants: [baseLibrary]
     };
   }
 
-  // Otherwise, parse the full fragment (like "core-ktx-1.0.1" or "compose-material3-1.2.0")
+  // Parse the full fragment (like "core-ktx-1.0.1" or "compose-material3-1.2.0")
   const parts = fragment.split('-');
   const versionIndex = parts.findIndex(part => /^\d/.test(part));
 
@@ -43,9 +56,30 @@ export const parseLibraryFromUrl = (url: string): ParsedUrlInfo | null => {
   const version = parts.slice(versionIndex).join('-');
   const libraryId = parts.slice(0, versionIndex).join('-');
 
+  // Generate variants
+  const variants = [libraryId];
+
+  // Handle camera variants
+  if (baseLibrary === 'camera') {
+    variants.push(`camera-${libraryId}`);
+  }
+
+  // Handle experimental variant
+  if (libraryId === 'experimental') {
+    variants.push(baseLibrary);
+    variants.push(`${baseLibrary}-${libraryId}`);
+  }
+
+  // Handle extension variants
+  if (libraryId === 'ext') {
+    variants.push(baseLibrary);
+    variants.push(`${baseLibrary}-${libraryId}`);
+  }
+
   return {
     libraryId,
     version,
+    variants
   };
 };
 
@@ -61,5 +95,6 @@ export const parseLibraryInfo = (text: string, href: string): LibraryInfo | null
     libraryId: urlInfo.libraryId,
     version: urlInfo.version,
     changelogUrl: `https://developer.android.com${href}`,
+    variants: urlInfo.variants
   };
 };
