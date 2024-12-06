@@ -8,6 +8,7 @@ import {FsStorage} from "./storage";
 import type {LibraryChangelog} from "./types";
 import type {PageCache} from "./cache";
 import {normalizeDate} from "./utils";
+import exp from "node:constants";
 
 const log = debug('jetpack:changelog');
 
@@ -17,6 +18,17 @@ interface VersionInfo {
   content: string;
   commitsUrl?: string;
 }
+
+const expectedMissingChangelogs = new Set<string>([
+  "car",
+  "cardview",
+  "compose", // umbrella page
+  "contentpager",
+  "credentials.registry",
+  "cursoradapter",
+  "databinding",
+  // "input",
+]);
 
 export class ChangelogScraper {
   private progressBar: ProgressBar;
@@ -55,13 +67,31 @@ export class ChangelogScraper {
     return cheerio.load(content);
   }
 
-  private extractVersionInfo($: CheerioAPI, versionSection: Element, majorVersionPrefix: string, libraryId: string): VersionInfo | null {
+  private getVersionFromSection($: CheerioAPI, $section: cheerio.Cheerio<Element>): string | null {
+    // Try button pattern first
+    const $versionButton = $section.find('button.devsite-heading-link');
+    const buttonVersion = $versionButton.attr('data-id');
+    if (buttonVersion) {
+      return buttonVersion;
+    }
+
+    // Try direct id pattern
+    const sectionId = $section.attr('id');
+    if (sectionId && /^\d/.test(sectionId)) {
+      return sectionId;
+    }
+
+    return null;
+  }
+
+  private extractVersionInfo($: CheerioAPI, versionSection: Element, libraryId: string): VersionInfo | null {
     const $section = $(versionSection);
-    const versionText = $section.attr('id')?.replace(`${majorVersionPrefix}.`, '') || '';
+    const versionText = this.getVersionFromSection($, $section);
+
     if (!versionText) {
       this.warnings.push({
         library: libraryId,
-        message: `Version section found without ID attribute: "${$section.text().trim()}"`,
+        message: `Version section found without valid version identifier: "${$section.text().trim()}"`,
       });
       return null;
     }
@@ -78,7 +108,7 @@ export class ChangelogScraper {
       const datePatterns = [
         /\w+ \d{1,2}(?:st|nd|rd|th)?,? \d{4}/,  // March 13th, 2019
         /\d{4}-\d{2}-\d{2}/,                     // 2024-02-07
-        /\w+ \d{1,2},? \d{4}/,                    // March 13, 2019
+        /\w+ \d{1,2},? \d{4}/,                   // March 13, 2019
       ];
 
       for (const pattern of datePatterns) {
@@ -116,22 +146,15 @@ export class ChangelogScraper {
     const content: string[] = [];
     $current = $section.next();
 
-    // Keep track of empty sections to handle changelog structure variations
-    let emptyContentCount = 0;
-    const MAX_EMPTY_SECTIONS = 3;
-
+    // Find next version section (checking both patterns)
     while ($current.length &&
-    !$current.is('h2, h3') &&
-    emptyContentCount < MAX_EMPTY_SECTIONS) {
+    !this.getVersionFromSection($, $current)) {
 
       const html = $current.toString();
       const text = $current.text().trim();
 
       if (text) {
         content.push(html);
-        emptyContentCount = 0;  // Reset counter when content found
-      } else {
-        emptyContentCount++;
       }
 
       // Check for commits link
@@ -165,73 +188,100 @@ export class ChangelogScraper {
     };
   }
 
+  private getLibraryIdFromUrl(url: string): string {
+    // Parse URL to get path segments
+    try {
+      const urlObj = new URL(url);
+      const pathParts = urlObj.pathname.split('/');
+
+      // Find the position after 'releases' in the path
+      const releasesIndex = pathParts.indexOf('releases');
+      if (releasesIndex === -1) {
+        throw new Error(`Invalid changelog URL format: ${url}`);
+      }
+
+      // Get all parts after 'releases'
+      const libraryParts = pathParts.slice(releasesIndex + 1);
+
+      // Join parts with dots to form proper libraryId
+      return libraryParts.join('.');
+    } catch (error) {
+      // Fallback to simple parsing if URL is malformed
+      const matches = url.match(/releases\/(.+?)(?:\/|$)/);
+      return matches?.[1] || '';
+    }
+  }
+
   private async processChangelog(url: string, groupId: string): Promise<void> {
-    const libraryId = url.split('/').pop() || '';
+    const libraryId = this.getLibraryIdFromUrl(url);
+    if (!libraryId) {
+      log(`Failed to parse library ID from URL: ${url}`);
+      this.warnings.push({
+        library: url,  // Use URL as identifier since we couldn't parse libraryId
+        message: `Could not determine library ID from URL`,
+      });
+      return;
+    }
+
     log(`Processing changelog for ${libraryId}`);
 
     try {
       const $ = await this.fetchPage(url);
 
-      // Check if any version info exists in the page
-      const hasVersionTable = $('table:contains("Latest Update")').length > 0;
-      if (!hasVersionTable) {
-        this.warnings.push({
-          library: libraryId,
-          message: "No version information table found",
-        });
-      }
-
-      let versionsFound = 0;
-      let versionsProcessed = 0;
-
-      // Get version header sections
-      $('h2').each((_, versionHeader) => {
-        const $header = $(versionHeader);
-        const headerText = $header.text().trim();
-        const versionMatch = headerText.match(/^Version (\d+\.\d+)/);
-
-        if (versionMatch) {
-          const majorVersion = versionMatch[1];
-          const versionPrefix = majorVersion.replace('.', '_');
-
-          // Find all version subsections under this major version
-          const versionSections = $header.nextUntil('h2', 'h3');
-          versionsFound += versionSections.length;
-
-          versionSections.each((_, section) => {
-            const versionInfo = this.extractVersionInfo($, section, versionPrefix, libraryId);
-            if (versionInfo) {
-              const changelog: LibraryChangelog = {
-                libraryId,
-                groupId,
-                version: versionInfo.version,
-                releaseDate: format(versionInfo.date, 'yyyy-MM-dd'),
-                changelogHtml: versionInfo.content,
-                commitsUrl: versionInfo.commitsUrl,
-              };
-
-              this.storage.saveChangelog(changelog).catch(error => {
-                console.error(`Error saving changelog for ${libraryId} ${versionInfo.version}:`, error);
-              });
-
-              versionsProcessed++;
-              log(`Saved changelog for ${libraryId} version ${versionInfo.version}`);
-            }
-          });
-        }
+      // Find all version sections using both patterns
+      const versionSections = $('h3').filter((_, el) => {
+        const $section = $(el);
+        return this.getVersionFromSection($, $section) !== null;
       });
 
-      if (versionsFound === 0) {
+      if (versionSections.length === 0) {
+        if (!expectedMissingChangelogs.has(libraryId)) {
+          this.warnings.push({
+            library: libraryId,
+            message: "No version sections found in changelog. The page might have a different structure or might be empty.",
+          });
+          log(`Warning: No versions found for ${libraryId}`);
+        }
+        return;
+      }
+
+      log(`Found ${versionSections.length} version sections for ${libraryId}`);
+      let processedVersions = 0;
+
+      // Process each version section
+      for (const section of versionSections.toArray()) {
+        const versionInfo = this.extractVersionInfo($, section, libraryId);
+
+        if (versionInfo) {
+          const changelog: LibraryChangelog = {
+            libraryId,
+            groupId,
+            version: versionInfo.version,
+            releaseDate: format(versionInfo.date, 'yyyy-MM-dd'),
+            changelogHtml: versionInfo.content,
+            commitsUrl: versionInfo.commitsUrl,
+          };
+
+          await this.storage.saveChangelog(changelog);
+          processedVersions++;
+          log(`Saved changelog for ${libraryId} version ${versionInfo.version}`);
+        }
+      }
+
+      // Log processing summary
+      if (processedVersions === 0) {
         this.warnings.push({
           library: libraryId,
-          message: "No version sections found in changelog",
+          message: "Found version sections but failed to process any versions successfully",
         });
-      } else if (versionsProcessed < versionsFound) {
+      } else if (processedVersions < versionSections.length) {
         this.warnings.push({
           library: libraryId,
-          message: `Only processed ${versionsProcessed} out of ${versionsFound} versions`,
+          message: `Only processed ${processedVersions} out of ${versionSections.length} versions successfully`,
         });
       }
+
+      log(`Completed processing ${libraryId}: ${processedVersions}/${versionSections.length} versions processed`);
 
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Unknown error';
@@ -239,6 +289,7 @@ export class ChangelogScraper {
         library: libraryId,
         message: `Failed to process changelog: ${message}`,
       });
+      log(`Error processing ${libraryId}: ${message}`);
     }
   }
 
@@ -246,6 +297,11 @@ export class ChangelogScraper {
     this.warnings = [];
     const urlToGroup = await this.storage.getUrlToGroupMapping();
     const urls = Object.keys(urlToGroup);
+
+    if (urls.length === 0) {
+      console.log('No changelog URLs found. Please run sync-groups first.');
+      return;
+    }
 
     console.log(`Found ${urls.length} changelogs to process\n`);
 
