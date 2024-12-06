@@ -1,5 +1,4 @@
 import {ChangelogScraper} from "./changelog";
-import {ReleaseScraper} from "./release";
 import path from 'path';
 import {FsStorage} from "./storage";
 import {fileURLToPath} from "node:url";
@@ -9,18 +8,7 @@ import {LibraryGroupParser} from "./groups";
 const baseDir = path.join(process.cwd(), 'data');
 const storage = new FsStorage(baseDir);
 const pageCache = new PageCache(baseDir);
-const releaseScraper = new ReleaseScraper(storage);
 const changelogScraper = new ChangelogScraper(storage, pageCache);
-
-async function syncReleases() {
-  try {
-    await releaseScraper.scrapeReleases();
-    console.log('Release sync completed successfully.');
-  } catch (error) {
-    console.error('Error in release sync:', error);
-    throw error;
-  }
-}
 
 async function syncGroups() {
   try {
@@ -54,10 +42,6 @@ async function main() {
     const command = process.argv[2];
 
     switch (command) {
-      case 'releases':
-        await syncReleases();
-        break;
-
       case 'changelogs':
         await changelogScraper.syncChangelogs();
         break;
@@ -78,7 +62,6 @@ async function main() {
 
       case 'all':
         await syncGroups();  // Add this line
-        await syncReleases();
         await changelogScraper.syncChangelogs();
         break;
 
