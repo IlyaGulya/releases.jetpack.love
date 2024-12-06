@@ -8,7 +8,6 @@ import {FsStorage} from "./storage";
 import type {LibraryChangelog} from "./types";
 import type {PageCache} from "./cache";
 import {normalizeDate} from "./utils";
-import exp from "node:constants";
 
 const log = debug('jetpack:changelog');
 
@@ -27,6 +26,11 @@ const expectedMissingChangelogs = new Set<string>([
   "credentials.registry",
   "cursoradapter",
   "databinding",
+  "interpolator",
+  "legacy",
+  "palette",
+  "percentlayout",
+  "recommendation",
 ]);
 
 export class ChangelogScraper {
@@ -69,12 +73,14 @@ export class ChangelogScraper {
   private extractVersionFromId(id: string): string | null {
     // Try various version patterns from most specific to least
     const patterns = [
-      // Pattern for prefixed versions like "input-motionprediction-1.0.0-beta05"
-      /[-.](\d+\.\d+\.\d+(?:[-+].+)?)$/,
-      // Pattern for simple versions like "1.0.0-beta05"
+      // Pattern for prefixed versions like "camera-view-1.0.0-alpha09"
+      /-(\d+\.\d+\.\d+(?:[-+].+)?)$/,
+      // Pattern for versions in the text like "Version 1.0.0-alpha09"
+      /Version\s+(\d+\.\d+\.\d+(?:[-+].+)?)/i,
+      // Pattern for simple versions like "1.0.0-alpha09"
       /^(\d+\.\d+\.\d+(?:[-+].+)?)$/,
       // Pattern for version numbers anywhere
-      /(\d+\.\d+\.\d+(?:[-+][a-zA-Z0-9.-]+)?)/
+      /(\d+\.\d+\.\d+(?:[-+][a-zA-Z0-9.-]+)?)/,
     ];
 
     for (const pattern of patterns) {
@@ -116,11 +122,10 @@ export class ChangelogScraper {
     const versionText = this.getVersionFromSection($, $section);
 
     if (!versionText) {
-      // Log more details about the failed section
       const sectionInfo = {
         id: $section.attr('id'),
         buttonId: $section.find('button.devsite-heading-link').attr('data-id'),
-        text: $section.text().trim()
+        text: $section.text().trim(),
       };
 
       log(`Failed to extract version from section:`, sectionInfo);
@@ -132,80 +137,63 @@ export class ChangelogScraper {
       return null;
     }
 
-    // Enhanced date extraction
+    // Enhanced date parsing
     let dateText = '';
     let $current = $section.next();
 
-    // Look for date in multiple possible locations
+    // Look for date in the first paragraph or element
     while ($current.length && !dateText) {
       const text = $current.text().trim();
-
-      // Common date patterns
-      const datePatterns = [
-        /\w+ \d{1,2}(?:st|nd|rd|th)?,? \d{4}/,  // March 13th, 2019
-        /\d{4}-\d{2}-\d{2}/,                     // 2024-02-07
-        /\w+ \d{1,2},? \d{4}/,                   // March 13, 2019
-      ];
-
-      for (const pattern of datePatterns) {
-        const match = text.match(pattern);
-        if (match) {
-          dateText = match[0];
-          break;
-        }
+      // Match date pattern and extract just the date part
+      const dateMatch = text.match(/(\w+ \d{1,2},? \d{4})/);
+      if (dateMatch) {
+        dateText = dateMatch[1];
+        break;
       }
-
       $current = $current.next();
     }
 
     if (!dateText) {
-      // Check if date might be in the header itself
-      const headerText = $section.text().trim();
-      const match = headerText.match(/\(([^)]+)\)/);  // Look for date in parentheses
-      if (match) {
-        dateText = match[1];
-      }
+      this.warnings.push({
+        library: libraryId,
+        message: `No date found for version ${versionText}`,
+      });
+      return null;
     }
 
     // Parse the normalized date
     const normalizedDate = normalizeDate(dateText);
     const parsedDate = new Date(normalizedDate);
+
     if (isNaN(parsedDate.getTime())) {
       this.warnings.push({
         library: libraryId,
-        message: `Invalid or missing date for version ${versionText}: "${dateText}"`,
+        message: `Invalid date for version ${versionText}: "${dateText}"`,
       });
       return null;
     }
 
-    // Improved content collection
+    // Collect content until next version section or end
     const content: string[] = [];
     $current = $section.next();
 
-    // Find next version section (checking both patterns)
-    while ($current.length &&
-    !this.getVersionFromSection($, $current)) {
+    while ($current.length) {
+      // Check if we've hit the next version section
+      const isNextVersion = $current.is('h3') && this.getVersionFromSection($, $current);
+      if (isNextVersion) {
+        break;
+      }
 
       const html = $current.toString();
-      const text = $current.text().trim();
-
-      if (text) {
+      if (html.trim()) {
         content.push(html);
       }
 
-      // Check for commits link
-      const $links = $current.find('a');
-      $links.each((_, link) => {
-        const href = $(link).attr('href');
-        const text = $(link).text();
-        if (href?.includes('android.googlesource.com') &&
-          text.includes('contains these commits')) {
-          content.push(`<p><a href="${href}">${text}</a></p>`);
-        }
-      });
-
       $current = $current.next();
     }
+
+    // Include version header in content
+    content.unshift($section.toString());
 
     if (content.length === 0) {
       this.warnings.push({
@@ -215,12 +203,14 @@ export class ChangelogScraper {
       return null;
     }
 
+    // Find commits URL if present
+    const commitsUrl = content.join('\n').match(/href="([^"]+(?:contains these commits|googlesource)[^"]*)"/)?.[1];
+
     return {
       version: versionText,
       date: parsedDate,
       content: content.join('\n'),
-      commitsUrl: content.find(html => html.includes('android.googlesource.com'))
-        ?.match(/href="([^"]+)"/)?.[1],
+      commitsUrl,
     };
   }
 
