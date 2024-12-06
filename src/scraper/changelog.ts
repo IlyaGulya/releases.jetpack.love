@@ -27,7 +27,6 @@ const expectedMissingChangelogs = new Set<string>([
   "credentials.registry",
   "cursoradapter",
   "databinding",
-  // "input",
 ]);
 
 export class ChangelogScraper {
@@ -67,19 +66,47 @@ export class ChangelogScraper {
     return cheerio.load(content);
   }
 
+  private extractVersionFromId(id: string): string | null {
+    // Try various version patterns from most specific to least
+    const patterns = [
+      // Pattern for prefixed versions like "input-motionprediction-1.0.0-beta05"
+      /[-.](\d+\.\d+\.\d+(?:[-+].+)?)$/,
+      // Pattern for simple versions like "1.0.0-beta05"
+      /^(\d+\.\d+\.\d+(?:[-+].+)?)$/,
+      // Pattern for version numbers anywhere
+      /(\d+\.\d+\.\d+(?:[-+][a-zA-Z0-9.-]+)?)/
+    ];
+
+    for (const pattern of patterns) {
+      const match = id.match(pattern);
+      if (match && match[1]) {
+        return match[1];
+      }
+    }
+
+    return null;
+  }
+
   private getVersionFromSection($: CheerioAPI, $section: cheerio.Cheerio<Element>): string | null {
     // Try button pattern first
     const $versionButton = $section.find('button.devsite-heading-link');
-    const buttonVersion = $versionButton.attr('data-id');
-    if (buttonVersion) {
-      return buttonVersion;
+    const buttonId = $versionButton.attr('data-id');
+    if (buttonId) {
+      const version = this.extractVersionFromId(buttonId);
+      if (version) return version;
     }
 
     // Try direct id pattern
     const sectionId = $section.attr('id');
-    if (sectionId && /^\d/.test(sectionId)) {
-      return sectionId;
+    if (sectionId) {
+      const version = this.extractVersionFromId(sectionId);
+      if (version) return version;
     }
+
+    // Try extracting from text content as last resort
+    const headerText = $section.text().trim();
+    const version = this.extractVersionFromId(headerText);
+    if (version) return version;
 
     return null;
   }
@@ -89,9 +116,18 @@ export class ChangelogScraper {
     const versionText = this.getVersionFromSection($, $section);
 
     if (!versionText) {
+      // Log more details about the failed section
+      const sectionInfo = {
+        id: $section.attr('id'),
+        buttonId: $section.find('button.devsite-heading-link').attr('data-id'),
+        text: $section.text().trim()
+      };
+
+      log(`Failed to extract version from section:`, sectionInfo);
+
       this.warnings.push({
         library: libraryId,
-        message: `Version section found without valid version identifier: "${$section.text().trim()}"`,
+        message: `Version section found but couldn't extract version number. Section ID: "${sectionInfo.id}", Button ID: "${sectionInfo.buttonId}", Text: "${sectionInfo.text}"`,
       });
       return null;
     }
