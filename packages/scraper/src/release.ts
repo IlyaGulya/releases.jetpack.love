@@ -1,10 +1,10 @@
 import * as cheerio from 'cheerio';
 import type {CheerioAPI} from 'cheerio';
-import type {LibraryRelease} from './types';
 import {parseDate, parseLibraryInfo} from './utils';
 import {Element} from "domhandler";
 import {format} from 'date-fns';
 import {FsStorage} from "./storage";
+import {LibraryRelease} from "@jetpack.love/common";
 
 const BASE_URL = 'https://developer.android.com/jetpack/androidx/versions/all-channel';
 

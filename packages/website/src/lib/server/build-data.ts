@@ -1,13 +1,14 @@
-import { readdir, readFile, writeFile, mkdir } from 'fs/promises';
+import {mkdir, readdir, readFile, writeFile} from 'fs/promises';
 import path from 'path';
-import type { LibraryChangelog, LibraryInfo } from '../../scraper/types';
+import type {LibraryChangelog, LibraryInfo} from "@jetpack.love/common";
+import {pnpmWorkspaceRootSync} from "@node-kit/pnpm-workspace-root";
 
 async function ensureDir(dir: string) {
-  await mkdir(dir, { recursive: true });
+  await mkdir(dir, {recursive: true});
 }
 
 export async function buildStaticData(outDir: string) {
-  const sourceDir = path.join(process.cwd(), 'data');
+  const sourceDir = path.join(pnpmWorkspaceRootSync()!, 'data');
   const outputDir = path.join(outDir, 'data');
 
   // Ensure output directories exist
@@ -27,7 +28,7 @@ export async function buildStaticData(outDir: string) {
     for (const version of versions) {
       const content = await readFile(
         path.join(sourceDir, 'changelogs', library, version),
-        'utf-8'
+        'utf-8',
       );
       const changelog: LibraryChangelog = JSON.parse(content);
 
@@ -45,7 +46,7 @@ export async function buildStaticData(outDir: string) {
           date: changelog.releaseDate,
           changelogHtml: changelog.changelogHtml,
           commitsUrl: changelog.commitsUrl,
-        })
+        }),
       );
     }
 
@@ -54,7 +55,7 @@ export async function buildStaticData(outDir: string) {
       id: library,
       groupId: versionInfos[0]?.groupId,
       versions: versionInfos.sort((a, b) =>
-        new Date(b.date).getTime() - new Date(a.date).getTime()
+        new Date(b.date).getTime() - new Date(a.date).getTime(),
       ),
     };
   }
@@ -62,7 +63,7 @@ export async function buildStaticData(outDir: string) {
   // Write library index
   await writeFile(
     path.join(outputDir, 'libraries', 'index.json'),
-    JSON.stringify(libraryIndex)
+    JSON.stringify(libraryIndex),
   );
 
   return libraryIndex;

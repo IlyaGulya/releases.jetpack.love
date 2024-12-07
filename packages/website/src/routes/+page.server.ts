@@ -1,11 +1,11 @@
-import { buildStaticData } from '$lib/server/build-data';
-import { dev } from '$app/environment';
-import { error } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
+import {dev} from '$app/environment';
+import {error} from '@sveltejs/kit';
+import {PageServerLoad} from "$types";
+import {buildStaticData} from "$lib/server/build-data";
 
 export const prerender = true;
 
-export const load: PageServerLoad = async ({ fetch }) => {
+export const load: PageServerLoad = async ({fetch}) => {
   try {
     // During development, build data on each request
     // In production, this will use pre-built data
@@ -17,7 +17,7 @@ export const load: PageServerLoad = async ({ fetch }) => {
     const libraries = await librariesRes.json();
 
     return {
-      libraries: Object.values(libraries)
+      libraries: Object.values(libraries),
     };
   } catch (e) {
     console.error('Failed to load library data:', e);

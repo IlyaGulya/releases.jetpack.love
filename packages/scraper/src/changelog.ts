@@ -5,9 +5,9 @@ import {ProgressBar} from '@opentf/cli-pbar';
 import debug from "debug";
 import {format} from 'date-fns';
 import {FsStorage} from "./storage";
-import type {LibraryChangelog} from "./types";
 import type {PageCache} from "./cache";
 import {cleanVersionString, normalizeDate} from "./utils";
+import {LibraryChangelog} from "@jetpack.love/common";
 
 const log = debug('jetpack:changelog');
 

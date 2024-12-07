@@ -1,4 +1,4 @@
-import type {LibraryInfo} from "./types";
+import type {LibraryInfo} from "@jetpack.love/common";
 import debug from 'debug';
 
 const log = debug('jetpack:parser');
@@ -17,13 +17,13 @@ export const cleanVersionString = (version: string): string | null => {
 
 export const normalizeDate = (dateText: string): string => {
   // Remove ordinal indicators and clean up text
-  const cleaned = dateText
-    .replace(/(\d+)(st|nd|rd|th)/, '$1')  // Remove ordinal indicators
-    .split('\n')[0]  // Take only first line
-    .replace(/\s+is released.*$/, '')  // Remove "is released" and following text
-    .trim();
-
-  return cleaned;
+  return (
+    dateText
+      .replace(/(\d+)(st|nd|rd|th)/, '$1')  // Remove ordinal indicators
+      .split('\n')[0]  // Take only first line
+      .replace(/\s+is released.*$/, '')  // Remove "is released" and following text
+      .trim()
+  );
 };
 
 export const parseDate = (dateString: string): Date => {
@@ -55,7 +55,7 @@ export const parseLibraryFromUrl = (url: string): ParsedUrlInfo | null => {
     return {
       libraryId: baseLibrary,
       version: fragment,
-      variants: [baseLibrary]
+      variants: [baseLibrary],
     };
   }
 
@@ -91,7 +91,7 @@ export const parseLibraryFromUrl = (url: string): ParsedUrlInfo | null => {
   return {
     libraryId,
     version,
-    variants
+    variants,
   };
 };
 
@@ -107,6 +107,6 @@ export const parseLibraryInfo = (text: string, href: string): LibraryInfo | null
     libraryId: urlInfo.libraryId,
     version: urlInfo.version,
     changelogUrl: `https://developer.android.com${href}`,
-    variants: urlInfo.variants
+    variants: urlInfo.variants,
   };
 };

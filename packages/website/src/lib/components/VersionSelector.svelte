@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import Fuse from 'fuse.js';
-  import { Input } from '$lib/components/ui/input';
+  import { Input } from './ui/input';
   import semver from 'semver';
   import { ArrowUpDown } from 'lucide-svelte';
 
