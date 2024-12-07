@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
-import {LibraryChangelog, LibraryRelease, ReleaseDate} from "@jetpack.love/common";
+import {LibraryChangelog} from "@jetpack.love/common";
 
 export class FsStorage {
   constructor(
@@ -18,32 +18,12 @@ export class FsStorage {
     await this.ensureDir(path.join(this.dataDir, 'changelogs'));
   }
 
-  async saveRelease(date: string, releases: LibraryRelease[]) {
-    const releaseDate: ReleaseDate = {
-      releaseDate: date,
-      releases,
-    };
-
-    const filePath = path.join(this.dataDir, 'releases', `${date}.json`);
-    await fs.writeFile(filePath, JSON.stringify(releaseDate, null, 2));
-  }
-
   async saveChangelog(changelog: LibraryChangelog) {
     const dir = path.join(this.dataDir, 'changelogs', changelog.libraryId);
     await this.ensureDir(dir);
 
     const filePath = path.join(dir, `${changelog.version}.json`);
     await fs.writeFile(filePath, JSON.stringify(changelog, null, 2));
-  }
-
-  async getReleasesByDate(date: string): Promise<ReleaseDate | null> {
-    try {
-      const filePath = path.join(this.dataDir, 'releases', `${date}.json`);
-      const content = await fs.readFile(filePath, 'utf-8');
-      return JSON.parse(content);
-    } catch (error) {
-      return null;
-    }
   }
 
   async saveUrlToGroupMapping(mapping: Record<string, string>) {
