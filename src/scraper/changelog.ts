@@ -7,7 +7,7 @@ import {format} from 'date-fns';
 import {FsStorage} from "./storage";
 import type {LibraryChangelog} from "./types";
 import type {PageCache} from "./cache";
-import {normalizeDate} from "./utils";
+import {cleanVersionString, normalizeDate} from "./utils";
 
 const log = debug('jetpack:changelog');
 
@@ -86,7 +86,11 @@ export class ChangelogScraper {
     for (const pattern of patterns) {
       const match = id.match(pattern);
       if (match && match[1]) {
-        return match[1];
+        // Clean the extracted version
+        const cleanVersion = cleanVersionString(match[1]);
+        if (cleanVersion) {
+          return cleanVersion;
+        }
       }
     }
 
