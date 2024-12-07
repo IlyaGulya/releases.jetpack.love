@@ -1,6 +1,6 @@
 <script lang="ts">
-  import LibrarySearch from '../lib/components/LibrarySearch.svelte';
-  import VersionSelector from '../lib/components/VersionSelector.svelte';
+  import LibrarySearch from '$lib/components/LibrarySearch.svelte';
+  import VersionSelector from '$lib/components/VersionSelector.svelte';
 
   export let data;
 

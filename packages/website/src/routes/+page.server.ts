@@ -1,6 +1,6 @@
 import {dev} from '$app/environment';
 import {error} from '@sveltejs/kit';
-import {PageServerLoad} from "$types";
+import type {PageServerLoad} from "./$types";
 import {buildStaticData} from "$lib/server/build-data";
 
 export const prerender = true;
