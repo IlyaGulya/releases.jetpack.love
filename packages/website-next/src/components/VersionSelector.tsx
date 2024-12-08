@@ -1,7 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, ChangeEvent, useCallback } from 'react';
 import { Library } from '@/lib/types';
+import { Input } from './ui/input';
+import Fuse from 'fuse.js';
+import { ArrowUpDown } from 'lucide-react';
+import semver from 'semver';
 
 interface Version {
   version: string;
@@ -15,80 +19,163 @@ interface VersionSelectorProps {
 }
 
 export default function VersionSelector({ library }: VersionSelectorProps) {
-  const [fromVersion, setFromVersion] = useState('');
-  const [toVersion, setToVersion] = useState('');
-  const [ascending, setAscending] = useState(true);
+  const [search, setSearch] = useState('');
+  const [fuse, setFuse] = useState<Fuse<typeof library.versions[0]>>();
+  const [results, setResults] = useState(library.versions);
+  const [ascending, setAscending] = useState(false);
+  const [selected, setSelected] = useState<{
+    from: typeof library.versions[0] | null;
+    to: typeof library.versions[0] | null;
+  }>({ from: null, to: null });
   const [loading, setLoading] = useState(false);
   const [changelogData, setChangelogData] = useState<Version[]>([]);
 
-  const versions = library.versions.map(v => v.version);
+  useEffect(() => {
+    setFuse(new Fuse(library.versions, {
+      keys: ['version'],
+      threshold: 0.2
+    }));
+  }, [library.versions]);
+
+  const sortVersions = useCallback((vers: typeof library.versions, asc: boolean) => {
+    return [...vers].sort((a, b) => {
+      const comparison = semver.compare(a.version, b.version);
+      return asc ? comparison : -comparison;
+    });
+  }, []);
+
+  useEffect(() => {
+    if (search.trim() && fuse) {
+      const searchResults = fuse.search(search);
+      setResults(sortVersions(searchResults.map(result => result.item), ascending));
+    } else {
+      setResults(sortVersions(library.versions, ascending));
+    }
+  }, [search, fuse, library.versions, ascending, sortVersions]);
+
+  const getVersionsInRange = (fromVersion: string, toVersion: string) => {
+    const sortedVersions = library.versions
+      .map(v => v.version)
+      .filter(v => semver.valid(v))
+      .sort((a, b) => semver.compare(a, b));
+
+    const fromIndex = sortedVersions.indexOf(fromVersion);
+    const toIndex = sortedVersions.indexOf(toVersion);
+
+    if (fromIndex === -1 || toIndex === -1) return [];
+
+    const start = Math.min(fromIndex, toIndex);
+    const end = Math.max(fromIndex, toIndex);
+
+    return sortedVersions.slice(start, end + 1);
+  };
+
+  const isVersionInRange = (version: string) => {
+    if (!selected.from || !selected.to) return false;
+    const range = getVersionsInRange(selected.from.version, selected.to.version);
+    return range.includes(version);
+  };
 
   const loadVersionChangelog = async (version: string) => {
     const response = await fetch(`/data/versions/${library.id}-${version}.json`);
     return await response.json();
   };
 
-  const handleCompare = async () => {
-    if (!fromVersion || !toVersion) return;
-
-    setLoading(true);
-    try {
-      const fromIndex = versions.indexOf(fromVersion);
-      const toIndex = versions.indexOf(toVersion);
-      const [start, end] = fromIndex < toIndex ? [fromIndex, toIndex] : [toIndex, fromIndex];
-      
-      const versionsToLoad = versions.slice(start, end + 1);
-      const changelogs = await Promise.all(
-        versionsToLoad.map(version => loadVersionChangelog(version))
-      );
-
-      setChangelogData(ascending ? changelogs : changelogs.reverse());
-    } catch (error) {
-      console.error('Error loading changelogs:', error);
-    } finally {
-      setLoading(false);
+  const handleVersionSelect = async (version: typeof library.versions[0]) => {
+    if (!selected.from) {
+      setSelected({ from: version, to: null });
+    } else if (!selected.to) {
+      setSelected(prev => ({ ...prev, to: version }));
+      setLoading(true);
+      try {
+        const versionsInRange = getVersionsInRange(selected.from.version, version.version);
+        const changelogs = await Promise.all(
+          versionsInRange.map(v => loadVersionChangelog(v))
+        );
+        setChangelogData(ascending ? changelogs : changelogs.reverse());
+      } catch (error) {
+        console.error('Error loading changelogs:', error);
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      setSelected({ from: version, to: null });
+      setChangelogData([]);
     }
   };
 
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
+
+  const clearSelection = () => {
+    setSelected({ from: null, to: null });
+    setChangelogData([]);
+  };
+
   return (
-    <div className="space-y-8">
-      <div className="flex flex-col md:flex-row gap-4">
-        <select
-          value={fromVersion}
-          onChange={(e) => setFromVersion(e.target.value)}
-          className="flex-1 px-4 py-2 border rounded-md"
-        >
-          <option value="">Select from version</option>
-          {versions.map(version => (
-            <option key={version} value={version}>{version}</option>
-          ))}
-        </select>
-
-        <select
-          value={toVersion}
-          onChange={(e) => setToVersion(e.target.value)}
-          className="flex-1 px-4 py-2 border rounded-md"
-        >
-          <option value="">Select to version</option>
-          {versions.map(version => (
-            <option key={version} value={version}>{version}</option>
-          ))}
-        </select>
-
+    <div className="space-y-4">
+      <div className="flex gap-2">
+        <Input
+          type="search"
+          placeholder="Search versions..."
+          value={search}
+          onChange={handleSearchChange}
+          className="flex-1"
+        />
         <button
+          className="px-3 py-2 border rounded-md hover:bg-accent transition-colors flex items-center gap-2"
           onClick={() => setAscending(!ascending)}
-          className="px-4 py-2 border rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+          title={ascending ? "Newest Last" : "Newest First"}
         >
-          {ascending ? '↑ Ascending' : '↓ Descending'}
+          <ArrowUpDown
+            className="w-4 h-4"
+            style={{ transform: ascending ? 'rotate(180deg)' : '' }}
+          />
+          {ascending ? "Oldest First" : "Newest First"}
         </button>
+      </div>
 
-        <button
-          onClick={handleCompare}
-          disabled={!fromVersion || !toVersion}
-          className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 disabled:opacity-50"
-        >
-          Compare
-        </button>
+      <div className="flex gap-2 items-center">
+        <div className="text-sm">
+          From: {selected.from?.version || 'Select version'}
+        </div>
+        <div className="text-sm">
+          To: {selected.to?.version || 'Select version'}
+        </div>
+        {selected.from && (
+          <button
+            className="text-sm text-blue-500 hover:text-blue-700"
+            onClick={clearSelection}
+          >
+            Clear
+          </button>
+        )}
+      </div>
+
+      <div className="h-[40vh] overflow-y-auto">
+        <div className="space-y-1">
+          {results.map((version) => {
+            const isSelectedVersion = selected.from?.version === version.version || selected.to?.version === version.version;
+            const isInRange = isVersionInRange(version.version);
+            return (
+              <button
+                key={version.version}
+                onClick={() => handleVersionSelect(version)}
+                className={`w-full p-2 text-left rounded-md transition-colors
+                  ${selected.from?.version === version.version ? 'bg-primary text-primary-foreground' : ''}
+                  ${selected.to?.version === version.version ? 'bg-secondary text-secondary-foreground' : ''}
+                  ${isInRange && !isSelectedVersion ? 'bg-accent text-accent-foreground' : ''}
+                  ${!isSelectedVersion && !isInRange ? 'hover:bg-accent' : ''}`}
+              >
+                <div className="font-medium">{version.version}</div>
+                <div className="text-sm text-muted-foreground">
+                  {version.date}
+                </div>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {loading ? (

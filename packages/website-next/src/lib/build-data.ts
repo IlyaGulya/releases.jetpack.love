@@ -1,4 +1,4 @@
-import { mkdir, readdir, readFile, writeFile } from 'fs/promises';
+import { mkdir, readdir, readFile, writeFile, stat } from 'fs/promises';
 import path from 'path';
 import { pnpmWorkspaceRootSync } from "@node-kit/pnpm-workspace-root";
 import { Library, LibraryChangelog } from './types';
@@ -9,9 +9,10 @@ async function ensureDir(dir: string) {
 
 async function fileExists(filePath: string): Promise<boolean> {
   try {
-    await readFile(filePath);
+    await stat(filePath);
     return true;
-  } catch {
+  } catch(error) {
+    console.error(error);
     return false;
   }
 }
@@ -27,7 +28,7 @@ function normalizeOutDir(outDir: string): string {
 
 export async function buildStaticData(outDir: string): Promise<Record<string, Library>> {
   outDir = normalizeOutDir(outDir);
-  const outputDir = path.join(outDir, 'public', 'data');
+  const outputDir = path.join(outDir, '.next', 'server', 'app', 'data');
   
   // Always try to get the workspace root first
   const workspaceRoot = pnpmWorkspaceRootSync();

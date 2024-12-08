@@ -1,53 +1,68 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-
-interface Library {
-  id: string;
-  name?: string;
-  versions: Array<{
-    version: string;
-    date: string;
-  }>;
-}
+import { useState, useEffect, ChangeEvent } from 'react';
+import Fuse from 'fuse.js';
+import { Input } from './ui/input';
+import { Library } from '@/lib/types';
 
 interface LibrarySearchProps {
   libraries: Library[];
+  onSelect: (library: Library) => void;
 }
 
-export default function LibrarySearch({ libraries = [] }: LibrarySearchProps) {
-  const [searchTerm, setSearchTerm] = useState('');
-  const router = useRouter();
+export default function LibrarySearch({ libraries, onSelect }: LibrarySearchProps) {
+  const [search, setSearch] = useState('');
+  const [fuse, setFuse] = useState<Fuse<Library>>();
+  const [results, setResults] = useState(libraries);
 
-  const filteredLibraries = libraries.filter(library =>
-    library.id.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  useEffect(() => {
+    setFuse(new Fuse(libraries, {
+      keys: ['id', 'groupId'],
+      threshold: 0.3,
+      includeScore: true
+    }));
+  }, [libraries]);
 
-  const handleLibrarySelect = (library: Library) => {
-    router.push(`/library/${library.id}`);
+  useEffect(() => {
+    if (search.trim() && fuse) {
+      const searchResults = fuse.search(search);
+      setResults(searchResults.map(result => result.item));
+    } else {
+      setResults(libraries);
+    }
+  }, [search, fuse, libraries]);
+
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
   };
 
   return (
-    <div className="space-y-4">
-      <input
-        type="text"
+    <div className="w-full space-y-2">
+      <Input
+        type="search"
         placeholder="Search libraries..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+        value={search}
+        onChange={handleSearchChange}
+        className="w-full"
       />
-      
-      <div className="space-y-2">
-        {filteredLibraries.map(library => (
-          <button
-            key={library.id}
-            onClick={() => handleLibrarySelect(library)}
-            className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"
-          >
-            {library.id}
-          </button>
-        ))}
+
+      <div className="h-[60vh] overflow-y-auto">
+        <div className="space-y-1">
+          {results.map((library) => (
+            <button
+              key={library.id}
+              onClick={() => onSelect(library)}
+              className="w-full p-2 text-left hover:bg-accent rounded-md transition-colors"
+            >
+              <div className="font-medium">{library.id}</div>
+              {library.groupId && (
+                <div className="text-sm text-muted-foreground">
+                  {library.groupId}
+                </div>
+              )}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
