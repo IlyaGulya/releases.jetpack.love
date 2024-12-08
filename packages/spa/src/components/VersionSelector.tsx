@@ -7,7 +7,6 @@ import {Button} from '@/components/ui/button';
 import Fuse from 'fuse.js';
 import {ArrowUpDown} from 'lucide-react';
 import semver from 'semver';
-import {useVersionDetails} from '../lib/api.ts';
 import {useQueries} from '@tanstack/react-query';
 
 interface Version {
