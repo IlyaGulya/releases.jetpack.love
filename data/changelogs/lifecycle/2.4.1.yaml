@@ -1,0 +1,44 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.4.1
+releaseDate: 2022-02-09
+#language=html
+changelogHtml: |
+  <h3 id="2.4.1" data-text="Version 2.4.1" tabindex="-1">Version 2.4.1</h3>
+  <p>February 9, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.4.1</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/03e82488323f4f6d9999228d07c0336a54f4798e..4908527c90073e330885a24394601f337e93abd9/lifecycle">Version 2.4.1 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Backported from
+      <a href="#2.5.0-alpha01">
+        Lifecycle
+        <code translate="no" dir="ltr">2.5.0-alpha01</code>
+      </a>
+      : Fixed an issue where the default value provided to a
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      would re-appear after process death and recreation, even if it was specifically removed from the
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      . As a consequence of this,
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      will no longer merge default values and restored values together, instead only using the restored values as the source of truth. (
+      <a href="https://android-review.googlesource.com/#/q/I53a4bbffc6990f8dea902584daf47e780ae9abdb">I53a4b</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">lifecycle-process</code>
+      now depends on
+      <a href="/jetpack/androidx/releases/startup#1.1.1">Androidx Startup 1.1.1</a>
+      which fixed a regression in where using
+      <code translate="no" dir="ltr">ProcessLifecycleInitializer</code>
+      would cause an
+      <code translate="no" dir="ltr">StartupException</code>
+      . (
+      <a href="https://issuetracker.google.com/216490724">b/216490724</a>
+      )
+    </li>
+  </ul>

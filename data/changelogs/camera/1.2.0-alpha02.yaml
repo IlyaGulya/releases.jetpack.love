@@ -1,0 +1,65 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.2.0-alpha02
+releaseDate: 2022-06-01
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha02" data-text="Version 1.2.0-alpha02" tabindex="-1">Version 1.2.0-alpha02</h3>
+  <p>June 1, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.2.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7529bbe53a1c354c3787cfd67a666e1c8c341be0..cf759a67ed7e4305c6e6cecac2070a5759bcf0cc/camera">Version 1.2.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>Expose CameraX Zero-Shutter Lag API as experimental.</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add new capture mode
+      <code translate="no" dir="ltr">CAPTURE_MODE_ZERO_SHUTTER_LAG</code>
+      in
+      <code translate="no" dir="ltr">ImageCapture</code>
+      and add
+      <code translate="no" dir="ltr">isZslSupported</code>
+      in
+      <code translate="no" dir="ltr">CameraInfo</code>
+      to query the device capability.
+      <code translate="no" dir="ltr">CAPTURE_MODE_ZERO_SHUTTER_LAG</code>
+      mode is aiming to provide the minimum latency for instant capture. It is implemented based on a ring buffer, which caches intermediate capture results for later reprocessing when the user presses buttons to take pictures. If {@link VideoCapture} is bound or flash mode is not OFF or OEM Extension is ON, this mode will be disabled automatically. (
+      <a href="https://android-review.googlesource.com/#/q/I9ae74de91ce38e607af4d6b7b65bc4f7e88217c9">I9ae74</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">ImageAnalysis.getBackgroundExecutor()</code>
+      method (
+      <a href="https://android-review.googlesource.com/#/q/Icc94540065c82f97bbc2cd9699b543b01a8e0f06">Icc945</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">ImageCapture</code>
+      takePicture method turns torch off on the reported devices. (
+      <a href="https://android-review.googlesource.com/#/q/Ib5eb52dd4d54dc193013f0296ae62121f5480fcd">Ib5eb5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/228272227">b/228272227</a>
+      )
+    </li>
+    <li>
+      Fixed a bug where
+      <code translate="no" dir="ltr">AssertionError</code>
+      not being handled when getting the
+      <code translate="no" dir="ltr">CONTROL_ZOOM_RATIO_RANGE</code>
+      characteristic.(
+      <a href="https://android-review.googlesource.com/#/q/Ia248ae5580b9d4a0949f4448ccbafcedd1ba7b9b">/Ia248a</a>
+      ,
+      <a href="https://issuetracker.google.com/231701345">b/231701345</a>
+      )
+    </li>
+  </ul>

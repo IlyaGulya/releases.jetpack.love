@@ -1,0 +1,158 @@
+libraryId: compose-animation
+groupId: androidx.compose
+version: 1.0.0-alpha08
+releaseDate: 2020-12-02
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha08" data-text="Version 1.0.0-alpha08" tabindex="-1">Version 1.0.0-alpha08</h3>
+  <p>December 2, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.animation:animation:1.0.0-alpha08</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.animation:animation-core:1.0.0-alpha08</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/358bdaf3c3c4a917883408e9f747da521fdf9e65..10b5e9fd366c1c413d5576aed50a305d300938e1/compose/animation">Version 1.0.0-alpha08 contains these commits.</a>
+  </p>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      This release is only compatible with Kotlin
+      <code translate="no" dir="ltr">1.4.20</code>
+      , so you will need to update your Kotlin version.
+    </span>
+  </aside>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added lint check for composable lambda parameter naming and position, to check for consistency with Compose guidelines. Also migrated some APIs using
+      <code translate="no" dir="ltr">children</code>
+      as the name for their trailing lambda to
+      <code translate="no" dir="ltr">content</code>
+      , according to the lint check and guidance. (
+      <a href="https://android-review.googlesource.com/#/q/Iec48e38a2896785b521814d95c9fb624d2807315">Iec48e</a>
+      )
+    </li>
+    <li>
+      Previously Deprecated APIs were removed:
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">Modifier.onPositioned</code>
+          was removed, use
+          <code translate="no" dir="ltr">Modifier.onGloballyPositioned</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">Modifier.onDraw</code>
+          was removed, use
+          <code translate="no" dir="ltr">Modifier.onDrawBehind</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">Modifier.plus</code>
+          was removed, use
+          <code translate="no" dir="ltr">Modifier.then</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">Color.Unset</code>
+          was removed, use
+          <code translate="no" dir="ltr">Color.Unspecified</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">PxBounds</code>
+          class was removed, use
+          <code translate="no" dir="ltr">Rect</code>
+          instead.
+        </li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/Ie9d0239f96922f1db769c38f6f970532a8f54ff3">Ie9d02</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/172562222">b/172562222</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Temporarily added option to let the TestAnimationClock be driven by the MonotonicFrameClock (
+      <a href="https://android-review.googlesource.com/#/q/I1403ba3d82adc530d885192aa696c4363456a4c1">I1403b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173402197">b/173402197</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Renamed Modifier.drawLayer to Modifier.graphicsLayer Also updated related classes to GraphicsLayer as per API council feedback. (
+      <a href="https://android-review.googlesource.com/#/q/I0bd297065427d19715e4e33480f7be87e51ff48a">I0bd29</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173834241">b/173834241</a>
+      )
+    </li>
+    <li>
+      Added Modifier.scale/rotate APIs as conveniences for drawLayer.
+      <ul>
+        <li>Renamed Modifier.drawOpacity to Modifier.alpha</li>
+        <li>
+          Renamed Modifier.drawShadow to Modifier.shadow (
+          <a href="https://android-review.googlesource.com/#/q/I264ca72b36ea62fd615436849203895ed742fa1e">I264ca</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/173208140">b/173208140</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Made PointerInputData's uptime and position fields non-nullable. (
+      <a href="https://android-review.googlesource.com/#/q/Id468a0ef7c00c30a89114ea8dc95fa019961e189">Id468a</a>
+      )
+    </li>
+    <li>
+      offsetPx modifiers were renamed to offset. They are now taking lambda parameters instead of State. (
+      <a href="https://android-review.googlesource.com/#/q/Ic302174ef9cffa7ef806d1668f81cb89159363f2">Ic3021</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173594846">b/173594846</a>
+      )
+    </li>
+    <li>
+      New APIs for running animations in coroutines (
+      <a href="https://android-review.googlesource.com/#/q/Ied662fbc4c4c373fba7877c1421ee76c49fd69b1">Ied662</a>
+      )
+    </li>
+    <li>
+      Deprecated Ambients named with
+      <code translate="no" dir="ltr">Ambient</code>
+      as their suffix, and replaced them with new properties prefixed with Ambient, following other Ambients and Compose API guidelines. (
+      <a href="https://android-review.googlesource.com/#/q/I334403cc490ea913b8980d29e2cbe08e98ad7945">I33440</a>
+      )
+    </li>
+    <li>
+      Time control in tests (TestAnimationClock and its usages) is now experimental (
+      <a href="https://android-review.googlesource.com/#/q/I6ef86c5f530422c7c751bdb086a691cbc2e837f3">I6ef86</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171378521">b/171378521</a>
+      )
+    </li>
+    <li>
+      Remove old ui-test module and its stubs (
+      <a href="https://android-review.googlesource.com/#/q/I3a7cbbe376d0542955983fb09afd2dc37be7647e">I3a7cb</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">RestorableStateHolder.withRestorableState</code>
+      function was renamed to
+      <code translate="no" dir="ltr">RestorableStateProvider</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I66640dac2f299f5d85d270f2aa1c5d6fc8ab7128">I66640</a>
+      )
+    </li>
+    <li>
+      The Alignment interface was updated and made functional. (
+      <a href="https://android-review.googlesource.com/#/q/I46a0791e261b6f305804797cdda7fdd2ef405305">I46a07</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172311734">b/172311734</a>
+      )
+    </li>
+  </ul>

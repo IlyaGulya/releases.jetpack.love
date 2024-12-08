@@ -1,0 +1,96 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.5.0-alpha07
+releaseDate: 2024-12-11
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha07" data-text="Version 1.5.0-alpha07" tabindex="-1">Version 1.5.0-alpha07</h3>
+  <p>December 11, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.5.0-alpha07</code>
+    is released. Version 1.5.0-alpha07 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6f09cf2ae979e48fdb19485f757a033e4a34bb82..46295bc0b75a16f452e8e0090e8de41073d4dbb6/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">TransformingLazyColumnState</code>
+      now provides a way to observe the current scroll progress based on anchor item indices. (
+      <a href="https://android-review.googlesource.com/#/q/I72b0145ee6f41146f2f0a29747f0274c1a7bc729">I72b01</a>
+      )
+    </li>
+    <li>
+      We have added animations to
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      when adding, removing and moving items, if they have the new
+      <code translate="no" dir="ltr">Modifier.animateItem</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iecb9cb2cc65e36ebca3378c459ed1db5f9714ff0">Iecb9c</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      now exposes values for
+      <code translate="no" dir="ltr">beforeContentPadding</code>
+      and
+      <code translate="no" dir="ltr">afterContentPadding</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iccd5f33678875101820e999782e2cc6178feccb0">Iccd5f</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      now provides the composition local
+      <code translate="no" dir="ltr">LocalTransformingLazyColumnItemScope</code>
+      which components (such as
+      <code translate="no" dir="ltr">Card</code>
+      s and
+      <code translate="no" dir="ltr">Button</code>
+      s in Material3) can use to automatically morph when placed inside a
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      . Callers can disable automatic morphing using the new
+      <code translate="no" dir="ltr">TransformExclusion</code>
+      wrapper. (
+      <a href="https://android-review.googlesource.com/#/q/I1652f87699096f3de1cef247d714099a105647a2">I1652f</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We have updated min and max fling velocities for rotary on devices targeting U onwards. (
+      <a href="https://android-review.googlesource.com/#/q/I33559a1b3b8c37ebac3f7f363b3323ea14e2cc94">I33559</a>
+      )
+    </li>
+    <li>
+      We have fixed a crash that occurred if an item in
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      did not contain any composables (
+      <a href="https://android-review.googlesource.com/#/q/Idb99d23985eb1c967930eb2426b1119121f4a0ae">Idb99d</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">ScrollFeedbackProvider</code>
+      support for rotary haptics on Android Vanilla ice cream. (
+      <a href="https://android-review.googlesource.com/#/q/Ibc553fa30c3b061586db76345c341df54491edfb">Ibc553</a>
+      )
+    </li>
+    <li>
+      We have applied an increased touch slop when using
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      in order to reduce the chances of accidentally triggering a swipe when vertically scrolling. (
+      <a href="https://android-review.googlesource.com/#/q/Ic0672b13fa481c05bff4017065813f89eeb666b7">Ic0672</a>
+      )
+    </li>
+    <li>
+      We have updated
+      <code translate="no" dir="ltr">SwipeDismissableNavHost</code>
+      to use
+      <code translate="no" dir="ltr">PredictiveBackHandler</code>
+      when available with API 35 onwards. In that case, new animations will be applied. (
+      <a href="https://android-review.googlesource.com/#/q/I08c119056e5ed164a4b0eec73cd5e802f858a3f1">I08c11</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,100 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 1.7.0-alpha03
+releaseDate: 2024-02-21
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha03" data-text="Version 1.7.0-alpha03" tabindex="-1">Version 1.7.0-alpha03</h3>
+  <p>February 21, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material-*:1.7.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ca2a8cf8da3a3502fccc593974f8085653e38261..e1b82c49c59d8e976ce558aba5586f6c61bc9054/compose/material">Version 1.7.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">BottomDrawer</code>
+      has been promoted from experimental to stable.
+      <code translate="no" dir="ltr">BottomDrawerState</code>
+      now exposes the progress as a function, allowing to query progress between specific targets.
+      <code translate="no" dir="ltr">BottomDrawerState</code>
+      now allows customizing the animation spec, and
+      <code translate="no" dir="ltr">confirmStateChange</code>
+      is not a trailing lambda anymore. (
+      <a href="https://android-review.googlesource.com/#/q/I9c029340ea69a755ad0cd8f46b8fcdc76422c41c">I9c029</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261423850">b/261423850</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BackdropScaffold</code>
+      has been promoted from experimental to stable. The animation spec is now a
+      <code translate="no" dir="ltr">tween</code>
+      spec in accordance with guidelines. The
+      <code translate="no" dir="ltr">snackbarHost</code>
+      parameter of
+      <code translate="no" dir="ltr">BackdropScaffold</code>
+      is no longer the last parameter to avoid confusion with trailing lambdas.
+      <code translate="no" dir="ltr">BackdropScaffoldState</code>
+      exposes a
+      <code translate="no" dir="ltr">progress(from, to)</code>
+      API to query progress between anchors. (
+      <a href="https://android-review.googlesource.com/#/q/I73f48dd7d1aab0a57d728f562f22bda5020ccd4b">I73f48</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261423218">b/261423218</a>
+      )
+    </li>
+    <li>
+      Standard bottom sheets have been promoted from experimental to stable. Deprecated constructors have been removed. The animation spec is now a tween spec in accordance with guidelines. (
+      <a href="https://android-review.googlesource.com/#/q/I3c1a892338d183db35ecf3c023255682b4e785bd">I3c1a8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/278692145">b/278692145</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261409034">b/261409034</a>
+      )
+    </li>
+    <li>
+      Modal bottom sheets have been promoted from experimental to stable. Deprecated constructors have been removed. The animation spec is now a
+      <code translate="no" dir="ltr">tween</code>
+      spec in accordance with guidelines. (
+      <a href="https://android-review.googlesource.com/#/q/Ic53f4fe7c7183569cb7322c8f56f571be5316be0">Ic53f4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/278692145">b/278692145</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/266780235">b/266780235</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261409034">b/261409034</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">BackdropScaffold</code>
+      could crash in specific scenarios in combination with
+      <code translate="no" dir="ltr">LookaheadScope</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I5139666a03c031ae50528e493aa415a9cf00c7d1">I51396</a>
+      )
+    </li>
+    <li>
+      Removed subcomposition inside
+      <code translate="no" dir="ltr">BottomSheetScaffold</code>
+      to improve performance. Fixed an issue where
+      <code translate="no" dir="ltr">BottomSheetScaffold</code>
+      would crash in specific scenarios in combination with
+      <code translate="no" dir="ltr">LookaheadScope</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2f90cfec6dde3d7c9d351ab3e7d8917b13adb126">I2f90c</a>
+      )
+    </li>
+    <li>
+      Removed subcomposition inside
+      <code translate="no" dir="ltr">ModalBottomSheetLayout</code>
+      , improving performance. (
+      <a href="https://android-review.googlesource.com/#/q/I7a0255c0ad99a0be553f95c13f9fa2eda38b2aeb">I7a025</a>
+      )
+    </li>
+  </ul>

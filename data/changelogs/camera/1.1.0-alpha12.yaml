@@ -1,0 +1,126 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.1.0-alpha12
+releaseDate: 2021-12-15
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha12" data-text="Version 1.1.0-alpha12" tabindex="-1">Version 1.1.0-alpha12</h3>
+  <p>December 15, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.1.0-alpha12</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/85f6fde74bd9e34dee843bce6a5acfba9b82c38e..f06551837636599d191fd581d56b68225440ed82/camera">Version 1.1.0-alpha12 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removed unnecessary
+      <code translate="no" dir="ltr">@RequiresApi(21)</code>
+      annotations from the inner classes/interfaces. (
+      <a href="https://android-review.googlesource.com/#/q/I8e28678667e2f8a5e982d64674abe4c19b5e9155">I8e286</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/204917951">b/204917951</a>
+      )
+    </li>
+    <li>
+      The quality constants and fallback strategy constants of
+      <code translate="no" dir="ltr">QualitySelector</code>
+      have been changed to be represented by class objects. For example,
+      <code translate="no" dir="ltr">QualitySelector.QUALITY_HD</code>
+      is changed to
+      <code translate="no" dir="ltr">Quality.HD</code>
+      , and
+      <code translate="no" dir="ltr">QualitySelector.FALLBACK_STRATEGY_LOWER</code>
+      is changed to the instance returned by
+      <code translate="no" dir="ltr">FallbackStrategy.lowerQualityOrHigherThan(Quality)</code>
+      . The API used to create
+      <code translate="no" dir="ltr">QualitySelector</code>
+      has been changed to a list-based API. The new API
+      <code translate="no" dir="ltr">QualitySelector.fromOrderedList(List&lt;Quality&gt;)</code>
+      will refer to the order of the input quality list instead of the order created by
+      <code translate="no" dir="ltr">QualitySelector.Procedure</code>
+      .
+      <code translate="no" dir="ltr">QualitySelector.Procedure</code>
+      class has been removed. (
+      <a href="https://android-review.googlesource.com/#/q/I4334316b03343c325c458cb37bc0db20267d87a9">I43343</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PendingRecording.withEventListener()</code>
+      was removed and the event listener must now be passed to
+      <code translate="no" dir="ltr">PendingRecording.start()</code>
+      . This event listener requirement is meant to encourage handling of asynchronous errors that are reported in the
+      <code translate="no" dir="ltr">VideoRecordEvent.Finalize</code>
+      event. (
+      <a href="https://android-review.googlesource.com/#/q/I1e71d3fdc43a27a63434467ec40f5fe2a9b7a284">I1e71d</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ActiveRecording</code>
+      has been renamed to
+      <code translate="no" dir="ltr">Recording</code>
+      to reduce verbosity. (
+      <a href="https://android-review.googlesource.com/#/q/I77ceb5c25a268e8b7687f6a3578102e162fd8661">I77ceb</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed the issue that captured photos in
+      <code translate="no" dir="ltr">FLASH_AUTO</code>
+      mode is underexposed in dark conditions on Pixel 3a and Pixel 3a XL (
+      <a href="https://android-review.googlesource.com/#/q/I13f19d787a770b4757ce6f80783aadf586d5c5b7">I13f19</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/205373142">b/205373142</a>
+      )
+    </li>
+    <li>
+      Always use latest display size to determine the preview
+      <code translate="no" dir="ltr">Resolution</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4a694498d55c220f501756d97c01634f340bc3c4">I4a694</a>
+      )
+    </li>
+    <li>
+      Filtered out cameras which do not have
+      <code translate="no" dir="ltr">REQUEST_AVAILABLE_CAPABILITIES_BACKWARD_COMPATIBLE</code>
+      . Cameras with
+      <code translate="no" dir="ltr">REQUEST_AVAILABLE_CAPABILITIES_BACKWARD_COMPATIBLE</code>
+      have the minimal set of capabilities that every camera device supports. Camera without
+      <code translate="no" dir="ltr">REQUEST_AVAILABLE_CAPABILITIES_BACKWARD_COMPATIBLE</code>
+      might be a camera to support special functionality and does not support standard color output.
+      <code translate="no" dir="ltr">CameraX</code>
+      can't support the
+      <code translate="no" dir="ltr">Preview</code>
+      ,
+      <code translate="no" dir="ltr">ImageCapture</code>
+      ,
+      <code translate="no" dir="ltr">ImageAnalysis</code>
+      or
+      <code translate="no" dir="ltr">VideoCapture</code>
+      use cases for those cameras. Therefore, those cameras should be filtered out to prevent incorrect usage. (
+      <a href="https://android-review.googlesource.com/#/q/Ib8cda657a8903e1cc0d0fc7ed4419984482835a2">Ib8cda</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">CameraSelector#filter</code>
+      no longer throws an
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      when the result set is empty. (
+      <a href="https://android-review.googlesource.com/#/q/I27804168a78b11d74051d7b407762ed46c9f0f50">I27804</a>
+      )
+    </li>
+    <li>
+      Smarter heuristics are now used to select encoder settings based on OEM specified profiles. (
+      <a href="https://android-review.googlesource.com/#/q/Iaeef0bdf8252b5830c9a370718141b5c50316223">Iaeef0</a>
+      )
+    </li>
+    <li>
+      Fixed Preview will have interlaced color lines after start UHD video recording on Pixel1. (
+      <a href="https://android-review.googlesource.com/#/q/I833c65d48e5a050742b4d1b4f2c4a851563c87c4">I833c6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/205340278">b/205340278</a>
+      )
+    </li>
+  </ul>

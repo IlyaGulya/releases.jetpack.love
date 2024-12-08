@@ -1,0 +1,73 @@
+libraryId: work
+groupId: androidx.work
+version: 2.10.0-alpha03
+releaseDate: 2024-09-04
+#language=html
+changelogHtml: |
+  <h3 id="2.10.0-alpha03" data-text="Version 2.10.0-alpha03" tabindex="-1">Version 2.10.0-alpha03</h3>
+  <p>September 4, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.10.0-alpha03</code>
+    is released. Version 2.10.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4584e40d8375770d35077900321f49bce0bd10c7..80f82d37cb9b40250ee9eb15d9cbe9e93849355e/work">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added trace tags to Jobs from
+      <code translate="no" dir="ltr">WorkManager</code>
+      which makes ‘adb shell dumpsys jobscheduler’ a lot simpler to understand since it will contain the name of the Worker being executed. Trace sections are also added around key areas of
+      <code translate="no" dir="ltr">WorkManager</code>
+      .
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>WorkManager 2.10.0 is now compiled with SDK 35.</li>
+    <li>
+      Fix foreground workers of type ‘short service’ and ‘data sync’ timing out and causing an ANR when
+      <code translate="no" dir="ltr">WorkManager</code>
+      didn’t call
+      <code translate="no" dir="ltr">stopSelf()</code>
+      . This fix only applies to devices with API 34 and 35 where foreground service types were introduced. (
+      <a href="https://android-review.googlesource.com/#/q/Ibd046586fe2851467948fdd6f70f98be4dca06b2">ca06b2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/364508145">b/364508145</a>
+      )
+    </li>
+    <li>
+      New
+      <code translate="no" dir="ltr">WorkerParameters</code>
+      APIs that make it possible to switch the remote process that the
+      <code translate="no" dir="ltr">Worker</code>
+      binds to when using a
+      <code translate="no" dir="ltr">WorkerFactory</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ibdc8abb7966e8d3af41d0d93354d699a0426f303">Ibdc8a</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ie8a908627ca30ccc711ebbdaf8df4f8fa24e662f">Ie8a90</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I7373f2fa1db38f5649cb6091bb69d58999b2ddba">I7373f</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix a crash caused by
+      <code translate="no" dir="ltr">WorkManager</code>
+      attempting to restart a long-running worker (i.e. a foreground worker) when the foreground type of the work had Android 14 prerequisite permissions that were revoked. (
+      <a href="https://issuetracker.google.com/issues/333957914">b/333957914</a>
+      )
+    </li>
+    <li>
+      Removed manual outlining of access to new platform APIs since this happens automatically via API modeling when using R8 with AGP 7.3 or later (e.g. R8 version 3.3) and for all builds when using AGP 8.1 or later (e.g. D8 version 8.1). Clients who are not using AGP are advised to update to D8 version 8.1 or later. See
+      <a href="https://medium.com/androiddevelopers/mitigating-soft-verification-issues-in-r8-and-d8-7e9e06827dfd">this article</a>
+      for more details. (
+      <a href="https://android-review.googlesource.com/#/q/Ia60e0ab9f0fd613883a772c8aa34e27cc986cae8">Ia60e0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/345472586">b/345472586</a>
+      )
+    </li>
+  </ul>

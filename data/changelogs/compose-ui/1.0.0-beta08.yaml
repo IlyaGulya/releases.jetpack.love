@@ -1,0 +1,163 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.0.0-beta08
+releaseDate: 2021-06-02
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta08" data-text="Version 1.0.0-beta08" tabindex="-1">Version 1.0.0-beta08</h3>
+  <p>June 2, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.0.0-beta08</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b648147c5fdfc5ecbad57e40e2dc0c69aa23bf12..86ff5b4bb956431ec884586ce0aea0127e189ec4/compose/ui">Version 1.0.0-beta08 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">NestedScrollSource</code>
+      enum is replaced by an inline class. (
+      <a href="https://android-review.googlesource.com/#/q/Ie321b5864dc617b2d6382ba5d632e8037dd5c1d5">Ie321b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187055290">b/187055290</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FocusManager.clearFocus(forcedClear = true)</code>
+      is renamed to
+      <code translate="no" dir="ltr">FocusManager.clearFocus(force = true)</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ia0c4194d4a70037d6d288a6edd307e033198d98e">Ia0c41</a>
+      )
+    </li>
+    <li>
+      Refactored enum usages to inline classes to avoid issues with exhaustive when statements when new enum values are added. (
+      <a href="https://android-review.googlesource.com/#/q/I2b5eb2f04d64d1eccf38557d80e3eef06869c310">I2b5eb</a>
+      )
+    </li>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">@ExperimentalComposeUiApi</code>
+      from
+      <code translate="no" dir="ltr">PopupProperties</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I01fa6aaf14729bd4bc4d04cc627e2bae87b89a82">I01fa6</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PointerType</code>
+      was changed from an enum to an inline class (
+      <a href="https://android-review.googlesource.com/#/q/If50588eb1ea4ed4bafbcbd00689e57c09b021232">If5058</a>
+      )
+    </li>
+    <li>
+      ContentDescription and Text semantics properties are no longer single values but lists. This enables to merge them as they are instead of concatenations. Also provided better testing APIs to utilize these changes (
+      <a href="https://android-review.googlesource.com/#/q/Ica6bf4236d05b97357c18fb306a6305877a349f7">Ica6bf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/184825850">b/184825850</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Modifier.focusModifier()</code>
+      is deprecated and replaced by
+      <code translate="no" dir="ltr">Modifier.focusTarget()</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I6c860991217cc0c4e7cb35be73207f94669ce607">I6c860</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Modifier.onSizeChanged()</code>
+      and
+      <code translate="no" dir="ltr">Modifier.onGloballyPositioned()</code>
+      are not inlined functions anymore (
+      <a href="https://android-review.googlesource.com/#/q/I727f6622174806efb68b63808b322e6bc86e1cf5">I727f6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/186109675">b/186109675</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">KeyboardType</code>
+      enum is replaced by an inline class. (
+      <a href="https://android-review.googlesource.com/#/q/I73045de306c082ca8f6b11d44d252d0a63a407d3">I73045</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187055290">b/187055290</a>
+      )
+    </li>
+    <li>
+      Replaced
+      <code translate="no" dir="ltr">FocusState</code>
+      enum with a
+      <code translate="no" dir="ltr">FocusState</code>
+      interface (
+      <a href="https://android-review.googlesource.com/#/q/Iccc1a7306fe886969b3a5c74359f53250b3901d9">Iccc1a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187055290">b/187055290</a>
+      )
+    </li>
+    <li>
+      ImeAction enum is replaced by an inline class. (
+      <a href="https://android-review.googlesource.com/#/q/I18be51ba64f20257859ae634720b367ae7510e33">I18be5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187055290">b/187055290</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PlaceholderVerticalAlign</code>
+      is converted into an inline class. (
+      <a href="https://android-review.googlesource.com/#/q/If6290471c9b2704b746dc5688a08d7492e929570">If6290</a>
+      )
+    </li>
+    <li>
+      TextUnitType is an inline class now. (
+      <a href="https://android-review.googlesource.com/#/q/I4cba981dfafbd433f157e384ad4e9f3e818e2f87">I4cba9</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AnnotatedString.withAnnotation</code>
+      functions are now ExperimentalTextApi instead of ExperimentalComposeApi. (
+      <a href="https://android-review.googlesource.com/#/q/I0cd0a64f5e0bf4cd082d479711c014162f27c763">I0cd0a</a>
+      )
+      <ul>
+        <li>TextUnit constructor with TextUnitType is now ExperimentalTextApi instead of ExperimentalComposeApi.</li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed the bug introduced in beta07 where LazyColumn/Row items were displayed partially after the scroll (
+      <a href="https://android-review.googlesource.com/#/q/I8c9ac2df59f3183bf6067dd20092a127f16c9e80">I8c9ac</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/188566058">b/188566058</a>
+      )
+    </li>
+    <li>
+      Now
+      <code translate="no" dir="ltr">detectDragGesures</code>
+      ,
+      <code translate="no" dir="ltr">detectVerticalGestures</code>
+      , and
+      <code translate="no" dir="ltr">detectHorizontalGestures</code>
+      will consume the position change automatically, no need to call change.consumePositionChange in the onDrag callbacks (
+      <a href="https://android-review.googlesource.com/#/q/I42fc4a6529f73db228ae671097d10a0cda0d834b">I42fc4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/185096350">b/185096350</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187320697">b/187320697</a>
+      )
+    </li>
+    <li>
+      LayoutModifiers providing alignment lines was fixed. A bug causing the parent not being remeasured when the alignment lines of the children were changing was fixed. (
+      <a href="https://android-review.googlesource.com/#/q/I4401f5f8a86934c935564e88b7446940d8a42c23">I4401f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/174315652">b/174315652</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Modifier.onGloballyPositioned()</code>
+      was changed to report the coordinates of this modifier in the modifier chain, not the layout coordinates after applying all the modifiers. This means that now the ordering of modifiers is affecting what coordinates would be reported. (
+      <a href="https://android-review.googlesource.com/#/q/Ieb67da0c327c9dc323a4b0a8bf33dbb66f0611e3">Ieb67d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177926591">b/177926591</a>
+      )
+    </li>
+  </ul>

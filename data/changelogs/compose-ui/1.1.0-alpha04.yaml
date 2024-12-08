@@ -1,0 +1,149 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.1.0-alpha04
+releaseDate: 2021-09-15
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha04" data-text="Version 1.1.0-alpha04" tabindex="-1">Version 1.1.0-alpha04</h3>
+  <p>September 15, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.1.0-alpha04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/bf63d633b292368932b7ea1994e4116f95a94b5c..1a3dcfb231517d6104969f17063fcc6c97ba6eeb/compose/ui">Version 1.1.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">PointerEvent</code>
+      now has a
+      <code translate="no" dir="ltr">PointerEventType</code>
+      to support hover events. (
+      <a href="https://android-review.googlesource.com/#/q/I091fa991d1680d69a2532e73a894913c2865663d">I091fa</a>
+      )
+    </li>
+    <li>
+      Allow children to accept pointer input outside of parent's pointer input bounds. Parents may intercept those calls with a property PointerInputScope.alwaysInterceptChildEvents (
+      <a href="https://android-review.googlesource.com/#/q/I9eae3ce577012e26c3532266ac63db8e84ce5c7f">I9eae3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/192479655">b/192479655</a>
+      )
+    </li>
+    <li>
+      Deprecated
+      <code translate="no" dir="ltr">performGesture</code>
+      and
+      <code translate="no" dir="ltr">GestureScope</code>
+      , which have been replaced by
+      <code translate="no" dir="ltr">performTouchInput</code>
+      and
+      <code translate="no" dir="ltr">TouchInjectionScope</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia5f3f740c51a1add60fa82189d583d8a5192dd31">Ia5f3f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/190493367">b/190493367</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">touchBoundsInRoot</code>
+      to
+      <code translate="no" dir="ltr">SemanticsNode</code>
+      that includes the minimum touch target size so that developers can ensure that touch targets meet accessibility minimums. (
+      <a href="https://android-review.googlesource.com/#/q/I2e14bf1bab7a745aa2421353f44c734540d2489c">I2e14b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/197751214">b/197751214</a>
+      )
+    </li>
+    <li>
+      Redo implementation of inspectable (
+      <a href="https://android-review.googlesource.com/#/q/I927bc731712d81f47aefdf946f778047c7645b26">I927bc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/191017532">b/191017532</a>
+      )
+    </li>
+    <li>
+      Changed parameter name of inspectable to match composed (
+      <a href="https://android-review.googlesource.com/#/q/I3a482c9f64ef0f7cc5a5a59cecaec010ca001e3f">I3a482</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/191017532">b/191017532</a>
+      )
+    </li>
+    <li>
+      <p>
+        Introduced
+        <code translate="no" dir="ltr">performTouchInput</code>
+        and
+        <code translate="no" dir="ltr">TouchInjectionScope</code>
+        as a replacement for
+        <code translate="no" dir="ltr">performTouchInput</code>
+        and
+        <code translate="no" dir="ltr">TouchInjectionScope</code>
+        , paving the way for other modalities (like mouse).
+      </p>
+
+      <p>
+        <code translate="no" dir="ltr">TouchInjectionScope</code>
+        has the same methods as
+        <code translate="no" dir="ltr">GestureScope</code>
+        , with the exception of
+        <code translate="no" dir="ltr">movePointerTo</code>
+        and
+        <code translate="no" dir="ltr">movePointerBy</code>
+        , which have been renamed to
+        <code translate="no" dir="ltr">updatePointerTo</code>
+        and
+        <code translate="no" dir="ltr">updatePointerBy</code>
+        . All other methods are the same.
+      </p>
+
+      <p>
+        The behavior of
+        <code translate="no" dir="ltr">TouchInjectionScope</code>
+        is almost identical to
+        <code translate="no" dir="ltr">GestureScope</code>
+        , with two small details:
+      </p>
+
+      <ol>
+        <li>
+          When sending a down event while pointers had been moved without sending a move event (in other words,
+          <code translate="no" dir="ltr">updatePointerTo()</code>
+          has been used, but not
+          <code translate="no" dir="ltr">move()</code>
+          , and then
+          <code translate="no" dir="ltr">down()</code>
+          is called), the previous implementation would advance the event time and send a move event before sending the down event. The new implementation still sends the move event, but doesn't advance the event time in this specific scenario.
+        </li>
+        <li>When sending an up event while pointers had been moved without sending a move event (similar as above), the previous implementation would advance the event time and send a move event before sending the up event. The new implementation does neither: the new positions of the pointers will only be reflected through the up event.</li>
+      </ol>
+
+      <p>
+        Finally,
+        <code translate="no" dir="ltr">TouchInjectionScope</code>
+        introduces a new method
+        <code translate="no" dir="ltr">currentPosition(pointerId: Int)</code>
+        to get the current position of the given pointer. (
+        <a href="https://android-review.googlesource.com/#/q/If11912d1d85da53b0f675f874be29ecde1b8c7cd">If1191</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/190493367">b/190493367</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Allow clip to extend touch target bounds beyond the clip region for minimum touch target purposes. (
+      <a href="https://android-review.googlesource.com/#/q/I43e10218f7a20b5a8190ea838cef8eb8440928d1">I43e10</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171509422">b/171509422</a>
+      )
+    </li>
+    <li>
+      Support for stretch overscroll has been added on Android 12 devices. (
+      <a href="https://android-review.googlesource.com/#/q/Iccf3c3830a01469940828e21bc32b569951c187e">Iccf3c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171682480">b/171682480</a>
+      )
+    </li>
+  </ul>

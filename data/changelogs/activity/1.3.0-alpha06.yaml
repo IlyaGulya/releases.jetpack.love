@@ -1,0 +1,84 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.3.0-alpha06
+releaseDate: 2021-04-07
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha06" data-text="Version 1.3.0-alpha06" tabindex="-1">Version 1.3.0-alpha06</h3>
+  <p>April 7, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.3.0-alpha06</code>
+    ,
+    <code translate="no" dir="ltr">androidx.activity:activity-compose:1.3.0-alpha06</code>
+    , and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.3.0-alpha06</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5c42896eb6591b09e3952030fb7ea8d9b8c42713..0e6e72e136ada934db74265667417524ba0ba04f/activity">Version 1.3.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">registerForActivityResult()</code>
+      API has been renamed to
+      <code translate="no" dir="ltr">rememberLauncherForActivityResult()</code>
+      to better indicate that the returned
+      <code translate="no" dir="ltr">ActivityResultLauncher</code>
+      is a managed object that is remembered on your behalf. Attempting to call
+      <code translate="no" dir="ltr">unregister</code>
+      the returned
+      <code translate="no" dir="ltr">ActivityResultLauncher</code>
+      will now throw an error. (
+      <a href="https://android-review.googlesource.com/#/q/I2bb6db90e9e936cba23fd48ea318e80e618ca8d5">I2bb6d</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LocalOnBackPressedDispatcherOwner.current</code>
+      and
+      <code translate="no" dir="ltr">LocalActivityResultRegistryOwner.current</code>
+      now return a nullable value to better determine whether it is available in the current composition. APIs that requires those APIs, such as
+      <code translate="no" dir="ltr">BackHandler</code>
+      and
+      <code translate="no" dir="ltr">rememberLauncherForActivityResult()</code>
+      , respectively, will now throw a more descriptive error if the underlying owner is not found.
+      <code translate="no" dir="ltr">NavHost</code>
+      now works even when an
+      <code translate="no" dir="ltr">OnBackPressedDispatcherOwner</code>
+      is not found, such is the case when previewing the
+      <code translate="no" dir="ltr">NavHost</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7d8b4662b2d30515a4536e212bf6631357a5357f">I7d8b4</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">BackHandler</code>
+      will now properly intercept back presses in the event that the Activity is
+      <code translate="no" dir="ltr">STOPPED</code>
+      , then
+      <code translate="no" dir="ltr">STARTED</code>
+      again, and other callbacks were added with a LifecycleOwner. (
+      <a href="https://android-review.googlesource.com/#/q/I71de6184ba73f56b34de9dcddaf138d98c46417f">I71de6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/182284739">b/182284739</a>
+      )
+    </li>
+    <li>
+      Using the
+      <code translate="no" dir="ltr">launch()</code>
+      method extension with a custom
+      <code translate="no" dir="ltr">ActivityResultContract</code>
+      that has a
+      <code translate="no" dir="ltr">Unit</code>
+      input will no longer cause a
+      <code translate="no" dir="ltr">NullPointerException</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I76282e17d47d25e3ff859f0b646e6063a381a510">I76282</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/183837954">b/183837954</a>
+      )
+    </li>
+  </ul>

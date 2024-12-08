@@ -1,0 +1,76 @@
+libraryId: window
+groupId: androidx.window
+version: 1.0.0-alpha10
+releaseDate: 2021-08-04
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha10" data-text="Version 1.0.0-alpha10" tabindex="-1">Version 1.0.0-alpha10</h3>
+  <p>August 4, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.window:window-*:1.0.0-alpha10</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/19ae3a88ff0824d615355b492cb56049e16991f2..d725303accfa9be6d5c3d61c7603ed1b9a780cbd/window">Version 1.0.0-alpha10 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>Rename WindowInfoRepo to WindowInfoRepository and adjust corresponding classes / files.</li>
+    <li>Convert current window metrics to a Flow in WindowInfoRepository since the value changes over time.</li>
+    <li>Rename WindowInfoRepoJavaAdapter to WindowInfoRepoCallbackAdapter</li>
+    <li>Add helper method to create test FoldingFeature objects</li>
+    <li>Update packages to group classes based on the feature they are supporting.</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Rename ActivityExt to ActivityExtensions Change from Repo to Repository. (
+      <a href="https://android-review.googlesource.com/#/q/I61a16da6f3ad5afdfb3171aaf6232d77b07e2466">I61a16</a>
+      )
+    </li>
+    <li>
+      Update packages for classes. (
+      <a href="https://android-review.googlesource.com/#/q/I23ae25660737c35c61685a4b3078282dd23fd0cf">I23ae2</a>
+      )
+    </li>
+    <li>
+      Remove WindowMetrics from WindowInfoRepo (
+      <a href="https://android-review.googlesource.com/#/q/I24663dd37f91f2402b88ab2a90803d8f91da9aca">I24663</a>
+      )
+    </li>
+    <li>
+      Remove WindowManager and use WindowInfoRepo
+      <ul>
+        <li>
+          Make WindowBackend internal. (
+          <a href="https://android-review.googlesource.com/#/q/I06d9a0047401fe2426b78f30f7a8e25bee7d9b1a">I06d9a</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Convert window metrics to Flow.
+      <ul>
+        <li>Rename java adapter to WindowInfoRepoCallbackAdapter</li>
+        <li>
+          Remove callbackFlow so no more experimental APIs are in use. (
+          <a href="https://android-review.googlesource.com/#/q/Ia4d152c3cc21ef8c3f90255e65721702cad40585">Ia4d15</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Add helper method to create test display features.
+      <ul>
+        <li>
+          Change from occlusionMode to occlusionType (
+          <a href="https://android-review.googlesource.com/#/q/If4cff35f63b253d14abf92f7cd70b69a0858ead5">If4cff</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>Fix proguard error where core library was being removed.</li>
+    <li>Fix error where WindowLayoutInfo was not being delivered to additional subscribers.</li>
+    <li>Fix error where config changes would not trigger folding feature updates.</li>
+  </ul>

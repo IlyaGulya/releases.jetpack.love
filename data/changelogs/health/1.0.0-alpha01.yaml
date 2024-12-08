@@ -1,0 +1,58 @@
+libraryId: health
+groupId: androidx.health
+version: 1.0.0-alpha01
+releaseDate: 2021-05-18
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha01" data-text="Version 1.0.0-alpha01" tabindex="-1">Version 1.0.0-alpha01</h3>
+  <p>May 18, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.health:health-services-client:1.0.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9b26835518d143ca5c7cc6f70c596aba6e527456/health/health-services-client">Version 1.0.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>Features of initial release</strong></p>
+  <p>
+    The Health Services library provides a uniform set of APIs for developers to integrate with device-specific sensor implementations. It will work out of the box with Wear OS 3 emulators and upcoming devices, with additional platforms supported in the future. Three top level API surfaces are included in this initial release: The
+    <code translate="no" dir="ltr">ExerciseClient</code>
+    ,
+    <code translate="no" dir="ltr">PassiveMonitoringClient</code>
+    , and
+    <code translate="no" dir="ltr">MeasureClient</code>
+    .
+  </p>
+  <p><strong>ExerciseClient</strong></p>
+  <p>
+    The
+    <code translate="no" dir="ltr">ExerciseClient</code>
+    is made for applications tracking active workouts, with up to 82 different
+    <code translate="no" dir="ltr">ExerciseType</code>
+    s from walking and running to dancing and water polo. While tracking these exercises, there’s a selection of 50 different
+    <code translate="no" dir="ltr">DataType</code>
+    s available depending on the exercise type and hardware available on the device. To get started, just specify the relevant information in your
+    <code translate="no" dir="ltr">ExerciseConfig</code>
+    , call
+    <code translate="no" dir="ltr">exerciseClient.startExercise</code>
+    and listen for progress on the update listener.
+  </p>
+  <p><strong>PassiveMonitoringClient</strong></p>
+  <p>
+    The
+    <code translate="no" dir="ltr">PassiveMonitoringClient</code>
+    is a great choice if your application tracks the user’s activity throughout the day. You can register a
+    <code translate="no" dir="ltr">PendingIntent</code>
+    with a set of
+    <code translate="no" dir="ltr">DataType</code>
+    s and be woken up to handle batched changes. Alternatively, you can specify an
+    <code translate="no" dir="ltr">Event</code>
+    such as reaching a certain number of steps.
+  </p>
+  <p><strong>MeasureClient</strong></p>
+  <p>
+    Sometimes the user needs to measure e.g. their heart rate in the moment, not during an exercise and not throughout the day. In those moments the
+    <code translate="no" dir="ltr">MeasureClient</code>
+    is the perfect choice.You just register your callback with supported
+    <code translate="no" dir="ltr">DataType</code>
+    s to receive a stream of data, unregistering your callback when it’s no longer needed.
+  </p>
+  <devsite-hats-survey class="nocontent" hats-id="VxqvKSur40kxBYCLVTd0SSGykbno" listnr-id="5207477"></devsite-hats-survey>

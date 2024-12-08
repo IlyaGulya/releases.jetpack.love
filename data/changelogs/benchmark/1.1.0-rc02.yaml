@@ -1,0 +1,84 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.1.0-rc02
+releaseDate: 2022-05-11
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-rc02" data-text="Version 1.1.0-rc02" tabindex="-1">Version 1.1.0-rc02</h3>
+  <p>May 11, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.1.0-rc02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c132bd2ce9a7b1cae3d8035d59d3dde892d6a121..7b763db64a7c0867291eb3b155da3b7fe1f7af5a/benchmark">Version 1.1.0-rc02 contains these commits.</a>
+  </p>
+  <ul>
+    <li>Note that this release includes a behavior change, as apps are now fully reinstalled in between each benchmark to ensure accurate measurements.</li>
+  </ul>
+  <p><strong>Bug Fixes/Behavior Changes</strong></p>
+  <ul>
+    <li>
+      <p>
+        Fixed an issue where app compilation was not correctly reset between macrobenchmarks, and not reset at all on unrooted builds. This fixes many cases where running multiple tests would result in
+        <code translate="no" dir="ltr">CompilationMode</code>
+        having little to no effect on measurements. To workaround this problem, the target app is now fully reinstalling each test method, which will clear application data between each macrobenchmark. (
+        <a href="https://android-review.googlesource.com/#/q/I31c740019640da0d0913066bb9ac59ab5c2a9627">I31c74</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/230665435">b/230665435</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        As this prevents apps from setting up state before tests, it is now possible to skip compilation / reinstallation to enable working around this. You can for example fully compile the target with a shell command
+        <code translate="no" dir="ltr">cmd package compile -f -m speed &lt;package&gt;</code>
+        , and then bypass macrobenchmark's compilation step.
+      </p>
+
+      <p>E.g. in Your macrobenchmark's build.gradle:</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Text only"><code translate="no" dir="ltr">android {
+      defaultConfig {
+          testInstrumentationRunnerArgument 'androidx.benchmark.compilation.enabled, 'false'
+      }
+  }
+  </code></pre>
+      </devsite-code>
+      <p>Or from the Gradle command line:</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Bash"><code translate="no" dir="ltr">./gradlew<span class="devsite-syntax-w"> </span>macrobenchmark:cC<span class="devsite-syntax-w"> </span>-P<span class="devsite-syntax-w"> </span>android.testInstrumentationRunnerArguments.androidx.benchmark.compilation.enabled<span class="devsite-syntax-o">=</span><span class="devsite-syntax-nb">false</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        Made it possible to share a module between macrobenchmarks and baseline profile generating tests by adding
+        <code translate="no" dir="ltr">androidx.benchmark.enabledRules</code>
+        instrumentation argument. Pass in 'Macrobenchmark', or 'BaselineProfile' to just run one type of test, e.g. when generating
+        <code translate="no" dir="ltr">BaselineProfiles</code>
+        on an emulator. (
+        <a href="https://android-review.googlesource.com/#/q/I756b7695adba25f31ca31a6408b14c8aeedfdf6a">I756b7</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/230371561">b/230371561</a>
+        )
+      </p>
+
+      <p>E.g. in Your macrobenchmark's build.gradle:</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Text only"><code translate="no" dir="ltr">android {
+      defaultConfig {
+          testInstrumentationRunnerArgument 'androidx.benchmark.enabledRules', 'BaselineProfile'
+      }
+  }
+  </code></pre>
+      </devsite-code>
+      <p>Or from the Gradle command line:</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Bash"><code translate="no" dir="ltr">./gradlew<span class="devsite-syntax-w"> </span>macrobenchmark:cC<span class="devsite-syntax-w"> </span>-P<span class="devsite-syntax-w"> </span>android.testInstrumentationRunnerArguments.androidx.benchmark.enabledRules<span class="devsite-syntax-o">=</span>BaselineProfile
+  </code></pre>
+      </devsite-code>
+    </li>
+  </ul>

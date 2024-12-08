@@ -1,0 +1,247 @@
+libraryId: work
+groupId: androidx.work
+version: 1.0.0-alpha11
+releaseDate: 2018-11-08
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha11" data-text="Version 1.0.0-alpha11" tabindex="-1">Version 1.0.0-alpha11</h3>
+  <p>November 8, 2018</p>
+  <p>
+    This release contains many changes that will become stable API at
+    <code translate="no" dir="ltr">beta</code>
+    . There are breaking API changes in this release; please see the
+    <em>Breaking API Changes</em>
+    section below.
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">work-runtime-ktx</code>
+      introduces a new
+      <code translate="no" dir="ltr">CoroutineWorker</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">WorkStatus</code>
+      has been renamed to
+      <code translate="no" dir="ltr">WorkInfo</code>
+      . All corresponding
+      <code translate="no" dir="ltr">getStatus</code>
+      method variants have been renamed to the corresponding
+      <code translate="no" dir="ltr">getWorkInfo</code>
+      variants.
+      <em>This is a breaking change.</em>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ListenableWorker.onStopped()</code>
+      no longer accepts has a boolean argument representing if the
+      <code translate="no" dir="ltr">WorkRequest</code>
+      was cancelled.
+      <code translate="no" dir="ltr">WorkManager</code>
+      no longer makes this distinction.
+      <em>This is a breaking change.</em>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">androidx.work.test</code>
+      package has been renamed to
+      <code translate="no" dir="ltr">androidx.work.testing</code>
+      package.
+      <em>This is a breaking change.</em>
+    </li>
+    <li>
+      Setters on
+      <code translate="no" dir="ltr">Constraints</code>
+      are no longer a part of the public API.
+      <em>This is a breaking change.</em>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">WorkerParameters.getTriggeredContentUris()</code>
+      and
+      <code translate="no" dir="ltr">WorkerParameters.getTriggeredContentAuthorities()</code>
+      previously returned arrays. Now these methods return Collections.
+      <em>This is a breaking change.</em>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ListenableWorker.onStartWork()</code>
+      is renamed to
+      <code translate="no" dir="ltr">ListenableWorker.startWork()</code>
+      .
+      <em>This is a breaking change.</em>
+    </li>
+    <li>
+      The constructor for
+      <code translate="no" dir="ltr">WorkStatus</code>
+      is no longer a part of the public API.
+      <em>This is a breaking change.</em>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Configuration.getMaxJobSchedulerID()</code>
+      and
+      <code translate="no" dir="ltr">Configuration.getMinJobSchedulerID()</code>
+      are renamed to
+      <code translate="no" dir="ltr">Configuration.getMinJobSchedulerId()</code>
+      and
+      <code translate="no" dir="ltr">Configuration.getMaxJobSchedulerId()</code>
+      respectively.
+      <em>This is a breaking change.</em>
+    </li>
+    <li>
+      Added a lot of
+      <code translate="no" dir="ltr">@NonNull</code>
+      annotations to the public API to improve ergonomics of the API.
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">WorkManager.enqueueUniqueWork()</code>
+      API to enqueue unique
+      <code translate="no" dir="ltr">OneTimeWorkRequest</code>
+      s without having to create a
+      <code translate="no" dir="ltr">WorkContinuation</code>
+      .
+    </li>
+    <li>
+      All variants of
+      <code translate="no" dir="ltr">enqueue</code>
+      and
+      <code translate="no" dir="ltr">cancel</code>
+      methods on
+      <code translate="no" dir="ltr">WorkManager</code>
+      now return a new
+      <code translate="no" dir="ltr">Operation</code>
+      type.
+      <em>This is a breaking change.</em>
+    </li>
+    <li>
+      All variants of
+      <code translate="no" dir="ltr">enqueue</code>
+      no longer accept varargs for
+      <code translate="no" dir="ltr">WorkRequest</code>
+      s.
+      <em>This is a breaking change.</em>
+      Use Collections instead. You can use
+      <code translate="no" dir="ltr">Arrays.asList()</code>
+      to modify existing code. We did this to reduce the API surface and method count.
+    </li>
+    <li>
+      Attempting to
+      <code translate="no" dir="ltr">initialize</code>
+      <code translate="no" dir="ltr">WorkManager</code>
+      more than once per process will now result in an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      .
+      <em>This is a breaking change.</em>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">WorkRequest.Builder</code>
+      s in the
+      <code translate="no" dir="ltr">work-runtime-ktx</code>
+      artifact now use
+      <code translate="no" dir="ltr">ListenableWorker</code>
+      s. Fixes
+      <a href="https://issuetracker.google.com/issues/117666259">b/117666259</a>
+    </li>
+    <li>
+      Ensure the next run time for
+      <code translate="no" dir="ltr">PeriodicWork</code>
+      is in the future. Fixes
+      <a href="https://issuetracker.google.com/issues/118204399">b/118204399</a>
+    </li>
+    <li>
+      Remove potential disk I/O when using WorkManager on app startup. Fixes
+      <a href="https://issuetracker.google.com/issues/117796731">b/117796731</a>
+    </li>
+    <li>
+      Fix a race condition in
+      <code translate="no" dir="ltr">WorkConstraintsTracker</code>
+      . Fixes
+      <a href="https://github.com/googlecodelabs/android-workmanager/issues/56">android-workmanager/issues/56</a>
+    </li>
+  </ul>
+  <p><strong>Breaking API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">WorkStatus</code>
+      has been renamed to
+      <code translate="no" dir="ltr">WorkInfo</code>
+      . All corresponding
+      <code translate="no" dir="ltr">getStatus</code>
+      method variants have been renamed to the corresponding
+      <code translate="no" dir="ltr">getWorkInfo</code>
+      variants.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ListenableWorker.onStopped()</code>
+      no longer accepts has a boolean argument representing if the
+      <code translate="no" dir="ltr">WorkRequest</code>
+      was cancelled.
+      <code translate="no" dir="ltr">WorkManager</code>
+      no longer makes this distinction.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">androidx.work.test</code>
+      package has been renamed to
+      <code translate="no" dir="ltr">androidx.work.testing</code>
+      package.
+    </li>
+    <li>
+      Setters on
+      <code translate="no" dir="ltr">Constraints</code>
+      are no longer a part of the public API.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">WorkerParameters.getTriggeredContentUris()</code>
+      and
+      <code translate="no" dir="ltr">WorkerParameters.getTriggeredContentAuthorities()</code>
+      previously returned arrays. Now these methods return Collections.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ListenableWorker.onStartWork()</code>
+      is renamed to
+      <code translate="no" dir="ltr">ListenableWorker.startWork()</code>
+      .
+    </li>
+    <li>
+      The constructor for
+      <code translate="no" dir="ltr">WorkStatus</code>
+      is no longer a part of the public API.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Configuration.getMaxJobSchedulerID()</code>
+      and
+      <code translate="no" dir="ltr">Configuration.getMinJobSchedulerID()</code>
+      are renamed to
+      <code translate="no" dir="ltr">Configuration.getMinJobSchedulerId()</code>
+      and
+      <code translate="no" dir="ltr">Configuration.getMaxJobSchedulerId()</code>
+      respectively.
+    </li>
+    <li>
+      All variants of
+      <code translate="no" dir="ltr">enqueue</code>
+      and
+      <code translate="no" dir="ltr">cancel</code>
+      methods on
+      <code translate="no" dir="ltr">WorkManager</code>
+      now return a new
+      <code translate="no" dir="ltr">Operation</code>
+      type.
+    </li>
+    <li>
+      All variants of
+      <code translate="no" dir="ltr">enqueue</code>
+      no longer accept varargs for
+      <code translate="no" dir="ltr">WorkRequest</code>
+      s.
+    </li>
+    <li>
+      Attempting to
+      <code translate="no" dir="ltr">initialize</code>
+      <code translate="no" dir="ltr">WorkManager</code>
+      more than once per process will now result in an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      .
+    </li>
+  </ul>

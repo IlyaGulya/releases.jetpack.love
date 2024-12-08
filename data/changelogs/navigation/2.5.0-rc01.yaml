@@ -1,0 +1,67 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.5.0-rc01
+releaseDate: 2022-05-11
+#language=html
+changelogHtml: |
+  <h3 id="2.5.0-rc01" data-text="Version 2.5.0-rc01" tabindex="-1">Version 2.5.0-rc01</h3>
+  <p>May 11, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.5.0-rc01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c0a89ec374961b3015097ab307ebb8196dbe3888..c5a5a93e0561b4cdac8767f117afae230c0a3a8f/navigation">Version 2.5.0-rc01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added a new lint rule to warn against placing
+      <code translate="no" dir="ltr">&lt;deeplink&gt;</code>
+      elements inside
+      <code translate="no" dir="ltr">&lt;activity&gt;</code>
+      elements in your
+      <code translate="no" dir="ltr">navigation.xml</code>
+      file.(
+      <a href="https://android-review.googlesource.com/#/q/Ic15a5ec165620b7ef5b3f03538cc83b5576add8d">Ic15a5</a>
+      ,
+      <a href="https://issuetracker.google.com/178403185">b/178403185</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Composable scopes in
+      <code translate="no" dir="ltr">NavHost</code>
+      and
+      <code translate="no" dir="ltr">DialogHost</code>
+      are now disposed in the expected order, i.e. inner composabled are disposed before outer composables. (
+      <a href="https://android-review.googlesource.com/#/q/I157e609fb0609265eef381f729285bf769b56a7c">I157e6</a>
+      )
+    </li>
+    <li>
+      Navigation SafeArgs now uses
+      <code translate="no" dir="ltr">PathSensitivity.RELATIVE</code>
+      in the
+      <code translate="no" dir="ltr">ArgumentsGenerationTask</code>
+      to allow for cache relocatability. This means the cache entry can now be re-used from a CI build to a local build. (
+      <a href="https://android-review.googlesource.com/#/q/I5f67ced6e860f301678ba9f6e77683f1061ebf59">I5f67c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173420454">b/173420454</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">UnrememberedGetBackStackEntryDetector</code>
+      lint rule has been updated to ensure that the
+      <code translate="no" dir="ltr">remember</code>
+      call surrounding the call to
+      <code translate="no" dir="ltr">getBackStackEntry()</code>
+      also passes in a
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      object as a key.(
+      <a href="https://android-review.googlesource.com/#/q/Ib708126a32c865f758d5967ea177cc9d2c7692d5">Ib7081</a>
+      ,
+      <a href="https://issuetracker.google.com/227382831">b/227382831</a>
+      )
+    </li>
+  </ul>

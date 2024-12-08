@@ -1,0 +1,58 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.8.0-beta03
+releaseDate: 2024-06-12
+#language=html
+changelogHtml: |
+  <h3 id="2.8.0-beta03" data-text="Version 2.8.0-beta03" tabindex="-1">Version 2.8.0-beta03</h3>
+  <p>June 12, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.8.0-beta03</code>
+    is released. Version 2.8.0-beta03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/473554f275109d78164adca6b6cea539aed8b68b..9de5bf61f1fad1fd6da2b64fe350d3aa39dc5de1/navigation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">CollectionNavType</code>
+      has a new abstract
+      <code translate="no" dir="ltr">emptyCollection()</code>
+      method. Override this to handle an empty collection passed in as an argument. (
+      <a href="https://android-review.googlesource.com/#/q/Ie4d8464050a7164176c2aee55518b03a5db704ad">Ie4d84</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/341723133">b/341723133</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Added documentation on
+      <code translate="no" dir="ltr">NavType.serializeAsValue</code>
+      and
+      <code translate="no" dir="ltr">serializeAsValues</code>
+      to highlight that the final outputs should be Uri encoded. (
+      <a href="https://android-review.googlesource.com/#/q/Ida6bd848fb1e3d8e26277eff0f214e1d40907063">Ida6bd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/344943214">b/344943214</a>
+      )
+    </li>
+    <li>
+      Fixed crash when calling
+      <code translate="no" dir="ltr">toRoute&lt;T&gt;</code>
+      with a null
+      <code translate="no" dir="ltr">CollectionNavType</code>
+      argument. When navigating with a null
+      <code translate="no" dir="ltr">CollectionNavType</code>
+      , the output argument will be the default value declared on your Serializable class, or the return value of
+      <code translate="no" dir="ltr">emptyCollection()</code>
+      if there is no default value. (
+      <a href="https://android-review.googlesource.com/#/q/I84158320503bc04052de8f80022f83d86e23cc15">I84158</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Id630fb148782fbb34d3c236f5d8bb363fba7ef91">Id630f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/342672856">b/342672856</a>
+      )
+    </li>
+  </ul>

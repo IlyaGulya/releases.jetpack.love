@@ -1,0 +1,163 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.4.0-alpha01
+releaseDate: 2024-09-18
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha01" data-text="Version 1.4.0-alpha01" tabindex="-1">Version 1.4.0-alpha01</h3>
+  <p>September 18, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.4.0-alpha01</code>
+    is released. Version 1.4.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ae6231161ff1106af46ae79c4a49f16376287132/benchmark">these commits</a>
+    .
+  </p>
+  <p><strong>New Feature - App Startup Insights</strong></p>
+  <ul>
+    <li>
+      Initial version of app startup insights can be enabled in Macrobenchmark. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/09fae383d2acafcbf326a5e5e9dbb1fba0ba163c">09fae38</a>
+      )
+    </li>
+  </ul>
+  <p>To enable in a startup benchmark:</p>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-w">  </span><span class="devsite-syntax-nd">@Test</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">startup</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-n">macrobenchmarkRule</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">measureRepeated</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-err">…</span>
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-n">packageName</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"com.example.my.application.id"</span>
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-n">metrics</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">listOf</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">StartupTimingMetric</span><span class="devsite-syntax-p">()),</span>
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-n">iterations</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-m">5</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-n">startupMode</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">StartupMode</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">COLD</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-n">compilationMode</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">CompilationMode</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">None</span><span class="devsite-syntax-p">(),</span>
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-n">experimentalConfig</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">ExperimentalConfig</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">startupInsightsConfig</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">StartupInsightsConfig</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">isEnabled</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kc">true</span><span class="devsite-syntax-p">))</span>
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-n">scope</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">startActivityAndWait</span><span class="devsite-syntax-p">(...)</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+  </code></pre>
+  </devsite-code>
+  <p>Then running your startup benchmark will analyze the trace to look for common problems, and print them after metrics to Studio test output in the benchmark tab, e.g.:</p>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="scdoc"><code translate="no" dir="ltr">StartupBenchmark_startup[startup=COLD,compilationMode=None]
+  ├── Metrics
+  │   ├──   timeToFullDisplayMs                min  1,147.2,   median  1,208.8,   max  1,307.4
+  │   └──   timeToInitialDisplayMs             min  1,147.2,   median  1,208.8,   max  1,307.4
+  ├── App Startup Insights
+  │   ├── App in debuggable mode (expected: false)
+  │   │   └── seen in iterations: 0(true) 1(true) 2(true) 3(true) 4(true) 5(true) 6(true) 7(true) 8(true) 9(true)
+  │   ├── Potential CPU contention with another process (expected: &lt; 100000000ns)
+  │   │   └── seen in iterations: 4(105022546ns)
+  │   └── Main Thread - Binder transactions blocked (expected: false)
+  │       └── seen in iterations: 7(true)
+  └── Traces
+      └── Iteration 0 1 2 3 4 5 6 7 8 9
+  </code></pre>
+  </devsite-code>
+  <p>This feature is still a work-in-progress, with improvements to documentation and extensibility to follow, but feedback is welcome.</p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added gradle property
+      <code translate="no" dir="ltr">androidx.baselineprofile.suppressWarnings</code>
+      to suppress all baseline profile warnings. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/314153ac0c604e8b7bde1cf191c1dda920416717">314153a</a>
+      )
+    </li>
+    <li>
+      Microbench metrics are now displayed in Perfetto traces as counters. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/3214854e6ee4cebe4b6776a6f8d02df6addb6bd2">3214854</a>
+      )
+    </li>
+    <li>
+      Add experimental scripts for disabling jit (requires root / runtime restart), and resetting device perf/test state. These are not currently published as gradle tasks. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/7c3732b4f6ac3ac6a2aac93621b0b7fbbefd1202">7c3732b</a>
+      )
+    </li>
+    <li>
+      Added benchmark argument to skip tests when running on emulator. When
+      <code translate="no" dir="ltr">automaticGenerationDuring</code>
+      build is enabled, benchmarks will also trigger baseline profile generation. This will fail, if emulators are used. With the new argument
+      <code translate="no" dir="ltr">skipBenchmarksOnEmulator</code>
+      we can instead skip the test. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/0c2ddcd70f6090ccc660e49c03048e1de85c2073">0c2ddcd</a>
+      )
+    </li>
+    <li>
+      Change perf event enable logic to run on API 23+ (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/2550048909d02279f8a0e759e7c21dabab35f93a">2550048</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Existing experimental
+      <code translate="no" dir="ltr">PerfettoConfig</code>
+      argument to
+      <code translate="no" dir="ltr">MacrobenchmarkRule.measureRepeated()</code>
+      moved to the new
+      <code translate="no" dir="ltr">ExperimentalConfig</code>
+      object.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Increase
+      <code translate="no" dir="ltr">lockClocks.sh</code>
+      retry count (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/99e9dac2528133a2f7a9bbcf0fb55bac35c95483">99e9dac</a>
+      )
+    </li>
+    <li>
+      Don't create
+      <code translate="no" dir="ltr">nonMinified</code>
+      and benchmark build types if existing. Due to a bug, even if
+      <code translate="no" dir="ltr">nonMinified</code>
+      and benchmark build types existed, they were going to be recreated. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/e75f0a518d11e27d4862ef903a9b29e64c0d6625">e75f0a5</a>
+      )
+    </li>
+    <li>
+      Ignore non-terminating slices from
+      <code translate="no" dir="ltr">TraceSectionMetric</code>
+      results. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/a927d2035c0c4eed2b3a2484164f9f48a0393445">a927d20</a>
+      )
+    </li>
+    <li>
+      Improved emulator check to consider
+      <code translate="no" dir="ltr">sdk_</code>
+      prefix. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/1587de845dc66a5dd7a2fc016f4653d6691a6bf2">1587de8</a>
+      )
+    </li>
+    <li>
+      Treat non-running packages as cleared in
+      <code translate="no" dir="ltr">FrameTimingGfxInfoMetric</code>
+      . (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/35cc79ca5e14ac6f05772b1ec29de94d214b847e">35cc79c</a>
+      )
+    </li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">androidx.benchmark.cpuEventCounter</code>
+      producing corrupt values for non-Instruction events. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/06edd596b9ced3114159059ba176c7ec173fc51d">06edd59</a>
+      )
+    </li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">resumeTiming/runWithTimingDisabled</code>
+      to respect metric priority order, and significantly reduce impact of lower priority metric pause/resume on higher priority metric results. For example, if using cpu perf counters via
+      <code translate="no" dir="ltr">cpuEventCounter.enable</code>
+      instrumentation argument, timeNs is no longer significantly reduced when pause/resume occur. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/5de09686debf78730da51df37c78f91e77d3dbc5">5de0968</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_13_2" data-text="Version 1.3" tabindex="-1">Version 1.3</h2>

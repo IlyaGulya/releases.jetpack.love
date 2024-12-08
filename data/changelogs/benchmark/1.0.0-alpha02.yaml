@@ -1,0 +1,77 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.0.0-alpha02
+releaseDate: 2019-06-06
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha02" data-text="Version 1.0.0-alpha02" tabindex="-1">Version 1.0.0-alpha02</h3>
+  <p>June 6, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:1.0.0-alpha02</code>
+    and
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-gradle-plugin:1.0.0-alpha02</code>
+    are released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a04120000a63645245f046b0aa7773cb2c6d9768..a1664e857bbcb746318a95abefa845edd9c88bf8/benchmark">here</a>
+    .
+  </p>
+  <p>Note that we are treating the JSON schema as an API. We plan to follow the same stability constraints as other APIs: stable (with very rare exceptions) once in beta, and fixed in final release, with only additions in minor releases and changes/removals in major releases.</p>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      <p>Overhauled JSON schema. Further changes to the JSON schema are likely to be limited to additions:</p>
+
+      <ul>
+        <li>
+          Reorganized the result object structure to support additional metric groups in the future (
+          <a href="https://issuetracker.google.com/issues/132713021">b/132713021</a>
+          )
+        </li>
+        <li>
+          Added test run context information, such as device and build info and whether clocks are locked, to the top-level object (
+          <a href="https://issuetracker.google.com/issues/132711920">b/132711920</a>
+          )
+        </li>
+        <li>
+          Time metric names now have ‘ns’ in their name (
+          <a href="https://issuetracker.google.com/issues/132714527">b/132714527</a>
+          )
+        </li>
+        <li>
+          Additional stats added per reported metric (maximum, median, minimum), and removed simplified 'nanos' summary stat (
+          <a href="https://issuetracker.google.com/issues/132713851">b/132713851</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        Removed XML output (
+        <a href="https://issuetracker.google.com/issues/132714414">b/132714414</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Thermal throttle detection removed from
+        <code translate="no" dir="ltr">BenchmarkState.reportData</code>
+        API (
+        <a href="https://issuetracker.google.com/issues/132887006">b/132887006</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">./gradlew lockClocks</code>
+      not sticking on some recent OS devices (
+      <a href="https://issuetracker.google.com/issues/133424037">b/133424037</a>
+      )
+    </li>
+    <li>
+      Throttling detection disabled for emulator (
+      <a href="https://issuetracker.google.com/issues/132880807">b/132880807</a>
+      )
+    </li>
+  </ul>

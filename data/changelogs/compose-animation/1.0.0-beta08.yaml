@@ -1,0 +1,41 @@
+libraryId: compose-animation
+groupId: androidx.compose
+version: 1.0.0-beta08
+releaseDate: 2021-06-02
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta08" data-text="Version 1.0.0-beta08" tabindex="-1">Version 1.0.0-beta08</h3>
+  <p>June 2, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.animation:animation:1.0.0-beta08</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.animation:animation-core:1.0.0-beta08</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b648147c5fdfc5ecbad57e40e2dc0c69aa23bf12..86ff5b4bb956431ec884586ce0aea0127e189ec4/compose/animation">Version 1.0.0-beta08 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Now
+      <code translate="no" dir="ltr">detectDragGesures</code>
+      ,
+      <code translate="no" dir="ltr">detectVerticalGestures</code>
+      , and
+      <code translate="no" dir="ltr">detectHorizontalGestures</code>
+      will consume the position change automatically, no need to call change.consumePositionChange in the onDrag callbacks (
+      <a href="https://android-review.googlesource.com/#/q/I42fc4a6529f73db228ae671097d10a0cda0d834b">I42fc4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/185096350">b/185096350</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187320697">b/187320697</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Modifier.onGloballyPositioned()</code>
+      was changed to report the coordinates of this modifier in the modifier chain, not the layout coordinates after applying all the modifiers. This means that now the ordering of modifiers is affecting what coordinates would be reported. (
+      <a href="https://android-review.googlesource.com/#/q/Ieb67da0c327c9dc323a4b0a8bf33dbb66f0611e3">Ieb67d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177926591">b/177926591</a>
+      )
+    </li>
+  </ul>

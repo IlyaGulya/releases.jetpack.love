@@ -1,0 +1,74 @@
+libraryId: work
+groupId: androidx.work
+version: 2.10.0-alpha02
+releaseDate: 2024-04-17
+#language=html
+changelogHtml: |
+  <h3 id="2.10.0-alpha02" data-text="Version 2.10.0-alpha02" tabindex="-1">Version 2.10.0-alpha02</h3>
+  <p>April 17, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.10.0-alpha02</code>
+    is released. Version 2.10.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/51191bc12f96f233fc08995e1b4e8ff8b88bc7ce..4584e40d8375770d35077900321f49bce0bd10c7/work">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added the ability to emit trace spans via a configurable
+      <code translate="no" dir="ltr">@RestrictTo</code>
+      <code translate="no" dir="ltr">Tracer</code>
+      in
+      <code translate="no" dir="ltr">WorkManager</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I17d7f0ec2b1947d09d568ca1f69ea6fee64c713c">I17d7f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/260214125">b/260214125</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Configuration.workerCoroutineContext</code>
+      was added to for control of dispatcher where
+      <code translate="no" dir="ltr">CoroutineWorker</code>
+      is executed. It helps to completely avoid usage of
+      <code translate="no" dir="ltr">Dispatchers.Default</code>
+      in
+      <code translate="no" dir="ltr">WorkManager</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Icd1b7755fc90ea71ac2e8509c0f21d3e60ca8d53">Icd1b7</a>
+      )
+    </li>
+    <li>
+      Add custom exception handlers for Workers (
+      <a href="https://android-review.googlesource.com/#/q/Ib1b740f0503757bcc2baa90482a4e7b8d6002ffb">Ib1b74</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261190695">b/261190695</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">OneTimeWorkRequest.Builder</code>
+      and
+      <code translate="no" dir="ltr">PeriodicWorkRequest.Builder</code>
+      can now be constructed with
+      <code translate="no" dir="ltr">KClass</code>
+      instead of
+      <code translate="no" dir="ltr">Class</code>
+      :
+      <code translate="no" dir="ltr">val request = OneTimeWorkRequest.Builder(Worker::class).setConstraints(...).build()</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ib55f6bb22dd629b4b3bfd94fb2480a6cfe222dc6">Ib55f6</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">WorkManager</code>
+      class was migrated to Kotlin. Now methods that return
+      <code translate="no" dir="ltr">LiveData</code>
+      ,
+      <code translate="no" dir="ltr">ListenableFuture</code>
+      or
+      <code translate="no" dir="ltr">Flow</code>
+      provides correct nullability information. It could require changes in clients' source code, if nullability assumptions in that code were incorrect. (
+      <a href="https://android-review.googlesource.com/#/q/If6757e6713968ebe46b37ad1605d0db430c23e38">If6757</a>
+      )
+    </li>
+  </ul>

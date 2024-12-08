@@ -1,0 +1,36 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.0.0-beta03
+releaseDate: 2021-03-24
+#language=html
+changelogHtml: |
+  <h3 id="3.0.0-beta03" data-text="Version 3.0.0-beta03" tabindex="-1">Version 3.0.0-beta03</h3>
+  <p>March 24, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.0.0-beta03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/52fbd7ed5b07ca4431fa828325a1f8da45b02e51..5c42896eb6591b09e3952030fb7ea8d9b8c42713/paging">Version 3.0.0-beta03 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We've revamped how placeholders are handled when list is reloaded to prevent unexpected jumps in RecyclerView. See
+      <a href="https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:paging/runtime/src/main/java/androidx/paging/NullPaddedDiffing.md">NullPaddedDiffing.md</a>
+      for details. (
+      <a href="https://android-review.googlesource.com/#/q/If1490f5bc833a61793d27eeaae9b37b26153df87">If1490</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170027529">b/170027529</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177338149">b/177338149</a>
+      )
+    </li>
+    <li>
+      The various PagedList builders (old compatibility path) no longer incorrectly synchronously call
+      <code translate="no" dir="ltr">DataSource.Factory.create()</code>
+      on Main thread when
+      <code translate="no" dir="ltr">.build()</code>
+      is called. (
+      <a href="https://issuetracker.google.com/182798948">b/182798948</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,92 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.8.0-alpha07
+releaseDate: 2023-08-23
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0-alpha07" data-text="Version 1.8.0-alpha07" tabindex="-1">Version 1.8.0-alpha07</h3>
+  <p>August 23, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.8.0-alpha07</code>
+    ,
+    <code translate="no" dir="ltr">androidx.activity:activity-compose:1.8.0-alpha07</code>
+    , and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.8.0-alpha07</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a83d3b232cf53ff8483130686a9d19ae65b7919f..3315f1ef094c312203fe26841287902916fbedf5/activity">Version 1.8.0-alpha07 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>
+        Activity Compose has added a new
+        <code translate="no" dir="ltr">PredictiveBackHandler</code>
+        Composable to handle predictive back gesture events. It provides a
+        <code translate="no" dir="ltr">Flow</code>
+        of
+        <code translate="no" dir="ltr">BackEventCompat</code>
+        objects that must be collected in the suspending lamba you provide:
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Text only"><code translate="no" dir="ltr">PredictiveBackHandler { progress: Flow&lt;BackEventCompat&gt; -&gt;
+    // code for gesture back started
+    try {
+      progress.collect { backEvent -&gt;
+      // code for progress
+    }
+    // code for completion
+    } catch (e: CancellationException) {
+      // code for cancellation
+    }
+  }
+  </code></pre>
+      </devsite-code>
+      <p>
+        It also comes with a compile time warning via lint rule to ensure the
+        <code translate="no" dir="ltr">Flow</code>
+        calls
+        <code translate="no" dir="ltr">collect()</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/Id27732d3729a866399eea48c188995275c0f5255">Id2773</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/294884345">b/294884345</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        The
+        <code translate="no" dir="ltr">onBackPressedDispatcher</code>
+        in
+        <code translate="no" dir="ltr">ComponentActivity</code>
+        is now initialized lazily so that it is only created when required. (
+        <a href="https://android-review.googlesource.com/#/q/I0bf8e1b37c55bbd0dbc2b69ff7e224fb2409daa8">I0bf8e</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      will no longer show a NPE on Android 13 when it gets an
+      <code translate="no" dir="ltr">onBackPressed()</code>
+      callback and the Activity has already been
+      <code translate="no" dir="ltr">DESTROYED</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Idb0555c76dd63173a1fa93e34b8bc622500b9176">Idb055</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/291869278">b/291869278</a>
+      )
+    </li>
+    <li>
+      Removed usages of experimental
+      <code translate="no" dir="ltr">isAtLeastU()</code>
+      API (
+      <a href="https://android-review.googlesource.com/#/q/Ie9117598f70e8873011f98ebbe0e6cd502772c87">Ie9117</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/289269026">b/289269026</a>
+      )
+    </li>
+  </ul>

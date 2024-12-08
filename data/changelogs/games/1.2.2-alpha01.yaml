@@ -1,0 +1,49 @@
+libraryId: games
+groupId: androidx.games
+version: 1.2.2-alpha01
+releaseDate: 2022-11-09
+#language=html
+changelogHtml: |
+  <h3 id="games-activity-1.2.2-alpha01" data-text="Version 1.2.2-alpha01" tabindex="-1">Version 1.2.2-alpha01</h3>
+  <p>November 9, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.games:games-activity:1.2.2-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/opt/gamesdk/+log/df59ba84ac245cfd9db805acc925afd4b19c5566..c1b2d4ff92af5ccfa4d345a21f67f1690fba1eaf/game-activity">Version 1.2.2-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      API now also contains version information in the form of
+      <code translate="no" dir="ltr">GAMEACTIVITY_PACKED_VERSION</code>
+      . (
+      <a href="https://android-review.googlesource.com/q/I287e67f9069524ddf09ca3c83e2326d28ea6e5ba">I287e6</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">onContentRectChanged</code>
+      callback which is called when the rectangle in the window where the content should be placed has changed. (
+      <a href="https://android-review.googlesource.com/q/I81396a966a723ad0ed9280313490aa8cd97a4d82">I81396</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed events buffer overflow. Both
+      <code translate="no" dir="ltr">inputBuffer</code>
+      -&gt;
+      <code translate="no" dir="ltr">keyEvents</code>
+      and
+      <code translate="no" dir="ltr">motionEvents</code>
+      are now dynamically-allocated buffers. (
+      <a href="https://android-review.googlesource.com/#/q/Ic00f68043e72b80ed3a6aee80fac04b9e20aaac1">Ic00f6</a>
+      )
+    </li>
+    <li>
+      Fails gracefully if out of memory. Added handling of
+      <code translate="no" dir="ltr">realloc()</code>
+      errors during buffers resizing.
+    </li>
+  </ul>

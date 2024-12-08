@@ -1,0 +1,66 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.8.0-beta04
+releaseDate: 2024-06-26
+#language=html
+changelogHtml: |
+  <h3 id="2.8.0-beta04" data-text="Version 2.8.0-beta04" tabindex="-1">Version 2.8.0-beta04</h3>
+  <p>June 26, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.8.0-beta04</code>
+    is released. Version 2.8.0-beta04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9de5bf61f1fad1fd6da2b64fe350d3aa39dc5de1..5299742c3cf8497f1690c2399056af490673d29e/navigation">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Navigation now supports navigating with empty strings in path arguments. (
+      <a href="https://android-review.googlesource.com/#/q/Ic5dbdd3b4786f62f4544a70b6786a269da8a37cc">Ic5dbd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/339481310">b/339481310</a>
+      )
+    </li>
+    <li>
+      Improve error message for custom serializers declared directly on class fields via
+      <code translate="no" dir="ltr">@Serializable(with =...)</code>
+      to clarify that this is currently an unsupported feature. (
+      <a href="https://android-review.googlesource.com/#/q/I052b0e6a34c7e38520723e7c00a920dc7abe4eb7">I052b0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/341319151">b/341319151</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SavedStateHandleFactory</code>
+      test api can now be used in non-android tests but will require Robolectric to support argument parsing with Bundles. (
+      <a href="https://android-review.googlesource.com/#/q/I76cdc4b40474680dbdb58e6b8a6451f0e228f9b1">I76cdc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/340966212">b/340966212</a>
+      )
+    </li>
+    <li>
+      Fixed crash from restoring state when resuming the app after process death with using Type-Safe Navigation in Compose. (
+      <a href="https://android-review.googlesource.com/#/q/Ia8f38fc59b8e4dac1910c5a593e1ec0585e59456">Ia8f38</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/341801005">b/341801005</a>
+      )
+    </li>
+    <li>
+      Fixed an issue in Navigation Compose where after canceling the Predictive Back Gesture, the
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      that the user returns to never returns back to the
+      <code translate="no" dir="ltr">RESUMED</code>
+      Lifecycle State. This also ensures the returning destination correctly animates back in instead of snapping into place after a fling. (
+      <a href="https://android-review.googlesource.com/#/q/I97a0c5fe7fe661a2fadfbb01346676482d426028">I97a0c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/346608857">b/346608857</a>
+      )
+    </li>
+    <li>
+      When using Predictive back with Navigation Compose, the destination being popped will now have the proper z-order, correctly animating on top of the incoming destination. (
+      <a href="https://android-review.googlesource.com/#/q/I2077b399fc9bc9a846da6ed17d63d002c8e8122f">I2077b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/345993681">b/345993681</a>
+      )
+    </li>
+  </ul>

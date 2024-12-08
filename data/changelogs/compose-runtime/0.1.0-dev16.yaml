@@ -1,0 +1,182 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 0.1.0-dev16
+releaseDate: 2020-08-05
+#language=html
+changelogHtml: |
+  <h3 id="0.1.0-dev16" data-text="Version 0.1.0-dev16" tabindex="-1">Version 0.1.0-dev16</h3>
+  <p>August 5, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:0.1.0-dev16</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9c74ed7b07d1c18da576f179d55e568ca12973df..316f882e649c600372170f013a18515f590f490d/compose">Version 0.1.0-dev16 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <p>
+        The default mutation policy of
+        <code translate="no" dir="ltr">mutableStateOf()</code>
+        ,
+        <code translate="no" dir="ltr">ambientOf()</code>
+        and
+        <code translate="no" dir="ltr">savedInstanceStateOf()</code>
+        has changed to be
+        <code translate="no" dir="ltr">structuralEqualityPolicy()</code>
+        instead of
+        <code translate="no" dir="ltr">referentialEqualityPolicy()</code>
+        .
+      </p>
+
+      <p>
+        The default for deciding if a new value assigned to a
+        <code translate="no" dir="ltr">mutableStateOf()</code>
+        instance is considered a change now defaults to using
+        <code translate="no" dir="ltr">==</code>
+        instead of using
+        <code translate="no" dir="ltr">===</code>
+        .
+      </p>
+
+      <p>See https://kotlinlang.org/docs/reference/equality.html</p>
+
+      <p>
+        <code translate="no" dir="ltr">ambientOf()</code>
+        and
+        <code translate="no" dir="ltr">savedInstanceStateOf()</code>
+        use
+        <code translate="no" dir="ltr">mutableStateOf()</code>
+        in their implementations so they were changed to be consistent with
+        <code translate="no" dir="ltr">mutableStateOf()</code>
+        .
+      </p>
+
+      <p>Using structural equality more closely matches developer expectations.</p>
+
+      <p>For example,</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">state</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">mutableStateOf</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-m">1f</span><span class="devsite-syntax-p">)</span>
+  </code></pre>
+      </devsite-code>
+      <p>followed by,</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-n">state</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">value</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-m">1f</span>
+  </code></pre>
+      </devsite-code>
+      <p>
+        will no longer be consider a change to
+        <code translate="no" dir="ltr">state</code>
+        and uses of
+        <code translate="no" dir="ltr">state</code>
+        during composition will no longer need to be recomposed.
+      </p>
+
+      <p>
+        This is a breaking change but, in most cases (such when using classes that do not override
+        <code translate="no" dir="ltr">equals()</code>
+        ), this will not have a noticeable effect on an application.
+      </p>
+
+      <p>
+        Classes that do override
+        <code translate="no" dir="ltr">equals()</code>
+        , such as
+        <code translate="no" dir="ltr">data</code>
+        classes, might see a performance degradation as their
+        <code translate="no" dir="ltr">equals()</code>
+        methods are now, by default, called when assigned to a
+        <code translate="no" dir="ltr">mutableStateOf()</code>
+        .
+      </p>
+
+      <p>
+        The previous behavior can be restored by adding the policy parameter
+        <code translate="no" dir="ltr">policy = referentialEqualityPolicy()</code>
+        to calls to
+        <code translate="no" dir="ltr">mutableStateOf()</code>
+        ,
+        <code translate="no" dir="ltr">ambientOf()</code>
+        and
+        <code translate="no" dir="ltr">savedInstanceStateOf()</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/Ic21a772051c4f891c655c9bd816ebb360ce19a81">Ic21a7</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">Row</code>
+        and
+        <code translate="no" dir="ltr">Column</code>
+        are now inline function significantly reducing the overhead of using them. (
+        <a href="https://android-review.googlesource.com/#/q/I75c10e663b74ffc250a3293df7583fcd86ea891a">I75c10</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      setViewContent was deprecated. setContent should be used instead. (
+      <a href="https://android-review.googlesource.com/#/q/I7e49740d26f42e9326cb5582a4522d74957b90fe">I7e497</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/160335130">b/160335130</a>
+      )
+    </li>
+    <li>
+      <p>Added MonotonicFrameAnimationClock that enables you to use a MonotonicFrameClock as an AnimationClockObservable to bridge the gap between the new coroutines based clocks and APIs that still use the old callback based clocks.</p>
+
+      <p>
+        The MonotonicFrameClock equivalent of ManualAnimationClock is now ManualFrameClock. (
+        <a href="https://android-review.googlesource.com/#/q/I111c7b7182a1495f95eab1bb808d3acd6af82447">I111c7</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/161247083">b/161247083</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Modifier.stateDraggable was completely reworked and renamed to Modifier.swipeable. A new SwipeableState class was introduced, and DrawerState and BottomDrawerState were refactored to inherit from it. [Modal/Bottom]DrawerLayout no longer take an onStateChange parameter. (
+        <a href="https://android-review.googlesource.com/#/q/I7233229dfc9c04a4615f4c1cc29e604b97edd1df">I72332</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/148023068">b/148023068</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Modifier.plus has been deprecated, use Modifier.then instead. 'Then' has a stronger signal of ordering, while also prohibits to type
+        <code translate="no" dir="ltr">Modifier.padding().background() + anotherModifier</code>
+        , which breaks the chain and harder to read (
+        <a href="https://android-review.googlesource.com/#/q/Iedd587edbed0ba964ef203a66b98be7297147bd7">Iedd58</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/161529964">b/161529964</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        SubcomposeLayout is added. It is a low level primitive which allows to compose the children during the measuring if we want to use some values available only later during the measure for the subtree composition. For example WithConstraints is not implemented using SubcomposeLayout. (
+        <a href="https://android-review.googlesource.com/#/q/I25cc8cfe8382db1ef61e93866ba08f4668cbc734">I25cc8</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Material FilledTextField was renamed to TextField and foundational TextField was renamed to BaseTextField to make simplest desired API easy to discover and use (
+        <a href="https://android-review.googlesource.com/#/q/Ia62420a7a2231c02b6874a9a2867bf786a397ed3">Ia6242</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/155482676">b/155482676</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Modifier.drawBackground has been renamed to Modifier.background (
+        <a href="https://android-review.googlesource.com/#/q/I1367723fce0e07418ed4ab391fe20c69aa092f53">I13677</a>
+        )
+      </p>
+    </li>
+  </ul>

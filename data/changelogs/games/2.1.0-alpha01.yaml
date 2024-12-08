@@ -1,0 +1,38 @@
+libraryId: games
+groupId: androidx.games
+version: 2.1.0-alpha01
+releaseDate: 2023-04-05
+#language=html
+changelogHtml: |
+  <h3 id="games-frame-pacing-2.1.0-alpha01" data-text="Version 2.1.0-alpha01" tabindex="-1">Version 2.1.0-alpha01</h3>
+  <p>April 5, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.games:games-frame-pacing:2.1.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/opt/gamesdk/+log/6bd669c3efdee9b9c81e185d81ee21c8366b8b7d..5262617d2206673e2e8548596331ead5c0ec41a8/games-frame-pacing">Version 2.1.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>New API to reset the frame-pacing state.</li>
+    <li>New API to disable swappy’s frame-pacing impact while still observing the CPU &amp; GPU times.</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">SwappyGL_resetFramePacing/SwappyVk_resetFramePacing</code>
+      can now be used to reset the internal frame-pacing state. The frame pacing will now only consider data from the point when the reset API is called.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SwappyGL_enableFramePacing/SwappyVk_enableFramePacing</code>
+      can now be used to enable/disable swappy’s frame pacing. When disabled,
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SwappyGL_enableBlockingWait/SwappyVk_enableBlockingWait</code>
+      can be used to control whether a blocking wait of the last frame’s GPU work happens when frame-pacing is disabled.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>Performance improvements are made for GPU bound cases when using Swappy GL API.</li>
+  </ul>
+  <h2 id="games_frame_pacing_version_20_2" data-text="Games Frame Pacing Version 2.0" tabindex="-1">Games Frame Pacing Version 2.0</h2>

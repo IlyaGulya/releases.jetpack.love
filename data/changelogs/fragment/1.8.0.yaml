@@ -1,0 +1,40 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.8.0
+releaseDate: 2024-06-12
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0" data-text="Version 1.8.0" tabindex="-1">Version 1.8.0</h3>
+  <p>June 12, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment-*:1.8.0</code>
+    is released. Version 1.8.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b9b27a2972eeb4612cbea0f230f514ffb142a5ee..4cb33e7274271da73c61e9231b4d372300cecec4/fragment">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.7.0</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">fragment-compose</code>
+      artifact now contains an
+      <code translate="no" dir="ltr">AndroidFragment</code>
+      <code translate="no" dir="ltr">Composable</code>
+      that allows adding fragments into the Compose hierarchy via the fragment class name. It automatically handles the saving and restoring of the Fragment’s state. This should be used as a direct replacement for the previously recommended approach of using
+      <code translate="no" dir="ltr">AndroidViewBinding</code>
+      to inflate a Fragment.
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">onBackStackChangeCancelled</code>
+      callback on the
+      <code translate="no" dir="ltr">FragmentManager</code>
+      ’s
+      <code translate="no" dir="ltr">OnBackStackChangedListener</code>
+      interface now fires as part of executing operations in
+      <code translate="no" dir="ltr">FragmentManager</code>
+      , moving it closer in line with the timing of the
+      <code translate="no" dir="ltr">onBackStackChangeCommitted</code>
+      callback.
+    </li>
+  </ul>

@@ -12,7 +12,6 @@ export interface LibraryChangelog {
   version: string;
   releaseDate: string;
   changelogHtml: string;
-  commitsUrl?: string | null;
 }
 
 // Website-specific types

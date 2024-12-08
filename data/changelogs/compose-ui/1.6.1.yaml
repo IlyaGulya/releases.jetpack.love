@@ -1,0 +1,34 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.6.1
+releaseDate: 2024-02-07
+#language=html
+changelogHtml: |
+  <h3 id="1.6.1" data-text="Version 1.6.1" tabindex="-1">Version 1.6.1</h3>
+  <p>
+    February 7, 2024
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.6.1</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4c61c4d68d2bf0ccc61e316bc2a03754bb6979cf..f639ccf09a84fa5af4a9016fa239539aeed40b94/compose/ui">Version 1.6.1 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a backwards compatibility issue with
+      <code translate="no" dir="ltr">SemanticsPropertyReceiver.performImeAction</code>
+      and
+      <code translate="no" dir="ltr">SemanticsActions.PerformImeAction</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie0bb2b112bb585f051db7348e6eaaac859d8660c">Ie0bb2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/322269946">b/322269946</a>
+      )
+    </li>
+    <li>
+      Layouts now issue an error while measuring when one returns an abnormally large size. This kind of error normally happens when the measurement uses maximum constraints directly without checking for
+      <code translate="no" dir="ltr">Constraints.Infinity</code>
+      . The check will help developers find problems with the layout having the wrong size rather than in a layout that contains it. (
+      <a href="https://android-review.googlesource.com/q/I339a906701f382f7e043be65de57af6b9838e695">I339a9</a>
+      )
+    </li>
+  </ul>

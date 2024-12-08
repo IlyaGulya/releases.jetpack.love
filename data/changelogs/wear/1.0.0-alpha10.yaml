@@ -1,0 +1,93 @@
+libraryId: wear
+groupId: androidx.wear
+version: 1.0.0-alpha10
+releaseDate: 2021-03-24
+#language=html
+changelogHtml: |
+  <h3 id="complications-watchface-1.0.0-alpha10" data-text="Version 1.0.0-alpha10" tabindex="-1">Version 1.0.0-alpha10</h3>
+  <p>March 24, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear:wear-*:1.0.0-alpha10</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/52fbd7ed5b07ca4431fa828325a1f8da45b02e51..5c42896eb6591b09e3952030fb7ea8d9b8c42713/wear">Version 1.0.0-alpha10 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>It’s now possible to create open gl objects (e.g. textures) during WatchFaceService.createWatchFace because GlesRenderer now requires an explicit call to initOpenGLContext which can be done inside createWatchFace.</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">IdAndComplicationData</code>
+      was a bit awkward and has been removed from the public API. Classes &amp; interfaces that used it have been refactored. (
+      <a href="https://android-review.googlesource.com/#/q/I4c92843bda1adcaeab5b1db692ae71b9ebc1353f">I4c928</a>
+      )
+    </li>
+    <li>
+      We've replaced
+      <code translate="no" dir="ltr">ReferenceTime</code>
+      with
+      <code translate="no" dir="ltr">CountUpTimeReference</code>
+      and
+      <code translate="no" dir="ltr">CountDownTimeReference</code>
+      which are more self explanatory. (
+      <a href="https://android-review.googlesource.com/#/q/Ib66c634425f70816b3762ab1f64a993cfe633581">Ib66c6</a>
+      )
+    </li>
+    <li>
+      Added some missing
+      <code translate="no" dir="ltr">@Px</code>
+      and
+      <code translate="no" dir="ltr">@ColorInt</code>
+      annotations. (
+      <a href="https://android-review.googlesource.com/#/q/I9bbc3031af93f9bb09ffd5aad4751bb5d487aa3e">I9bbc3</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Complication.complicationConfigExtras</code>
+      is now non-nullable and defaults to
+      <code translate="no" dir="ltr">Bundle.EMPTY</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iad04f911e5e612373bda6ab10f2c7874800e92d4">Iad04f</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">GlesRenderer</code>
+      now requires you to call
+      <code translate="no" dir="ltr">initOpenGLContext</code>
+      after construction. This function was an internal detail but is now on the public API to allow GL calls earlier inside createWatchFace. (
+      <a href="https://android-review.googlesource.com/#/q/I726c279f6e7ae6185b1a446c0e314c4286673d1f">I726c2</a>
+      )
+    </li>
+    <li>
+      We've removed
+      <code translate="no" dir="ltr">Complication.setRenderer</code>
+      as it should not be needed. (
+      <a href="https://android-review.googlesource.com/#/q/Ie992fabad06e17527b17a3b9a258615d6404849e">Ie992f</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Complicaiton.setComplicationBounds</code>
+      is no longer part of the public API. If you need to adjust the position of a complication, this can be done via
+      <code translate="no" dir="ltr">ComplicationsUserStyleSetting</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ibd9e5f1f8d44f5ab4c8842e5117fa5aebb2fef7e">Ibd9e5</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ComplicationsManager.TapCallback.onComplicationSingleTapped</code>
+      has been renamed to
+      <code translate="no" dir="ltr">onComplicationTapped</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3a55cf884e7c4f7899774975ff02811a8fd1c967">I3a55c</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ComplicationOutlineRenderer.drawComplicationSelectOutline</code>
+      has been renamed to
+      <code translate="no" dir="ltr">drawComplicationOutline</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I14b8857a5903560b22379f2e383368b0b00d0830">I14b88</a>
+      )
+    </li>
+  </ul>

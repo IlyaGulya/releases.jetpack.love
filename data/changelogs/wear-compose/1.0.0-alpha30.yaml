@@ -1,0 +1,261 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.0.0-alpha30
+releaseDate: 2024-12-11
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha30" data-text="Version 1.0.0-alpha30" tabindex="-1">Version 1.0.0-alpha30</h3>
+  <p>December 11, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material3:1.0.0-alpha30</code>
+    is released. Version 1.0.0-alpha30 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6f09cf2ae979e48fdb19485f757a033e4a34bb82..46295bc0b75a16f452e8e0090e8de41073d4dbb6/wear/compose/compose-material3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">scrollTransform</code>
+      modifier for
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      was refactored which triggered an API change. (
+      <a href="https://android-review.googlesource.com/#/q/I0c6dc9a7ab2a12a3ebf33f822179145a9ba4c7d9">I0c6dc</a>
+      )
+    </li>
+    <li>
+      We have updated
+      <code translate="no" dir="ltr">IconToggleButtonShapes</code>
+      and
+      <code translate="no" dir="ltr">TextToggleButtonShapes</code>
+      to have two different shape parameters
+      <code translate="no" dir="ltr">uncheckedPressed</code>
+      and
+      <code translate="no" dir="ltr">checkedPressed</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I85dbd069e3de01b50deac5d923bebfc2d081e6fd">I85dbd</a>
+      )
+    </li>
+    <li>
+      Invalid month/day options are now visible in the
+      <code translate="no" dir="ltr">DatePicker</code>
+      , with a new
+      <code translate="no" dir="ltr">invalidPickerContentColor</code>
+      , when using
+      <code translate="no" dir="ltr">minDate</code>
+      or
+      <code translate="no" dir="ltr">maxDate</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If4541e0c2d64ab0a94e11a1bda6efa1277f8ddbc">If4541</a>
+      )
+    </li>
+    <li>
+      We have updated the
+      <code translate="no" dir="ltr">Stepper</code>
+      API to provide
+      <code translate="no" dir="ltr">increaseIcon</code>
+      and
+      <code translate="no" dir="ltr">decreaseIcon</code>
+      slots - the content for these can be built as usual from the Icon composable. (
+      <a href="https://android-review.googlesource.com/#/q/Id35dad8eb3829a80c6acf46d7a7ae9650bcbfbac">Id35da</a>
+      )
+    </li>
+    <li>
+      We have updated
+      <code translate="no" dir="ltr">dynamicColorScheme</code>
+      by removing the optional
+      <code translate="no" dir="ltr">defaultColorScheme</code>
+      parameter and now returning nullable
+      <code translate="no" dir="ltr">ColorScheme</code>
+      . This means that the caller must explicitly handle the fallback case when a dynamic color scheme is not provided. (
+      <a href="https://android-review.googlesource.com/#/q/I6d62ea8d01175b2a95772b771a469bed96071231">I6d62e</a>
+      )
+    </li>
+    <li>
+      We have updated the icon sizes in
+      <code translate="no" dir="ltr">ButtonDefaults</code>
+      for use with
+      <code translate="no" dir="ltr">CompactButton</code>
+      . A
+      <code translate="no" dir="ltr">CompactButton</code>
+      containing only an icon should use
+      <code translate="no" dir="ltr">ButtonDefaults.SmallIconSize = 24.dp</code>
+      , whereas a
+      <code translate="no" dir="ltr">CompactButton</code>
+      containing both icon and text should use
+      <code translate="no" dir="ltr">ButtonDefaults.ExtraSmallIconSize = 20.dp</code>
+      . It is recommended that
+      <code translate="no" dir="ltr">CompactButton</code>
+      wrap its content (rather than filling the max width) and samples have been updated to show that. (
+      <a href="https://android-review.googlesource.com/#/q/I0582cad17c66743a1df5d87adbe2cf89b6fda8fb">I0582c</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">EdgeButtonDefaults</code>
+      with recommended icon sizes for the 4 different
+      <code translate="no" dir="ltr">EdgeButtonSizes</code>
+      . Also, updated the
+      <code translate="no" dir="ltr">EdgeButton</code>
+      layout so that it has slightly larger bottom padding than top padding, which improves appearance for both Icon and Text content. (
+      <a href="https://android-review.googlesource.com/#/q/Id772a6ba9f0259c50daad54a8a701fcfd3d3d68f">Id772a</a>
+      )
+    </li>
+    <li>
+      We have added motion to
+      <code translate="no" dir="ltr">LinearProgressIndicator</code>
+      and exposed
+      <code translate="no" dir="ltr">LinearProgressIndicatorContent</code>
+      which provides the visual content without animations. (
+      <a href="https://android-review.googlesource.com/#/q/Idee9941c34444a2a695a0ab2171306085b7d5abd">Idee99</a>
+      )
+    </li>
+    <li>
+      We have added a new
+      <code translate="no" dir="ltr">CircularProgressIndicatorContent</code>
+      composable to display the visual content of
+      <code translate="no" dir="ltr">CircularProgressIndicator</code>
+      without animations. (
+      <a href="https://android-review.googlesource.com/#/q/Ie33d4492d0d1f15dac976716760d6e118c5f5e8e">Ie33d4</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      newly provides the composition local
+      <code translate="no" dir="ltr">LocalTransformingLazyColumnItemScope</code>
+      which
+      <code translate="no" dir="ltr">Card</code>
+      s,
+      <code translate="no" dir="ltr">Button</code>
+      s and
+      <code translate="no" dir="ltr">ListHeader</code>
+      s now use to automatically morph when placed inside a
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      . Callers can disable automatic morphing using the new
+      <code translate="no" dir="ltr">TransformExclusion</code>
+      wrapper. (
+      <a href="https://android-review.googlesource.com/#/q/I1652f87699096f3de1cef247d714099a105647a2">I1652f</a>
+      )
+    </li>
+    <li>
+      We have updated the type of
+      <code translate="no" dir="ltr">ButtonDefaults.shape</code>
+      to
+      <code translate="no" dir="ltr">RoundedCornerShape</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Iccdf254dc1f3eb838d7098638666fcbf1ebdfb85">Iccdf2</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We have fixed a bug to respect existing alpha on background for
+      <code translate="no" dir="ltr">TimeText</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I1eb60d1ba1b165c5cb65c2c2400ac860cb8b884c">I1eb60</a>
+      )
+    </li>
+    <li>
+      We have set
+      <code translate="no" dir="ltr">TextMotion</code>
+      to
+      <code translate="no" dir="ltr">Animated</code>
+      by default in our typography, to avoid text jitter due to snapping letter glyphs to pixel boundaries during scaling operations. (
+      <a href="https://android-review.googlesource.com/#/q/I626fa13dd827e62311e51e7ccd49eda3e53e06f7">I626fa</a>
+      )
+    </li>
+    <li>
+      We have updated the appearance of the
+      <code translate="no" dir="ltr">ScrollIndicator</code>
+      by increasing width and gap size, to improve visibility. (
+      <a href="https://android-review.googlesource.com/#/q/Ied7cbcd23d60b53b57d338ad5033b8de8208e688">Ied7cb</a>
+      )
+    </li>
+    <li>
+      We have fixed a bug on
+      <code translate="no" dir="ltr">Modifier.scrollTransform</code>
+      when adding/removing/moving items. (
+      <a href="https://android-review.googlesource.com/#/q/I6830fe9d9df3645a822eb3e1b352aad1a1def2d6">I6830f</a>
+      )
+    </li>
+    <li>
+      We have fixed a round button animation issue for short taps (previously, the minimum animation duration was not always observed). (
+      <a href="https://android-review.googlesource.com/#/q/I757a7bd0f4c8b07572b8a5d24d5660cde6648ff6">I757a7</a>
+      )
+    </li>
+    <li>
+      We have updated the sweep angle for
+      <code translate="no" dir="ltr">LevelIndicator</code>
+      to 20% (i.e. 72 degrees). (
+      <a href="https://android-review.googlesource.com/#/q/Idde5c5cfcda06eab99079a285eb8132ff4f13751">Idde5c</a>
+      )
+    </li>
+    <li>
+      We have fixed
+      <code translate="no" dir="ltr">ScrollIndicator</code>
+      positioning when
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      was used with
+      <code translate="no" dir="ltr">AutoCenteringParams</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I387dd3de162e485d0c5658dbb383a888dc9ed05c">I387dd</a>
+      )
+    </li>
+    <li>
+      We have updated the colors and typography for
+      <code translate="no" dir="ltr">ListHeader</code>
+      and
+      <code translate="no" dir="ltr">ListSubHeader</code>
+      . Also the colors for the toggle controls on
+      <code translate="no" dir="ltr">CheckboxButton</code>
+      and
+      <code translate="no" dir="ltr">SwitchButton</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3981715cfd1073a43a574d61ed7249c6a02221e3">I39817</a>
+      )
+    </li>
+    <li>
+      We have fixed
+      <code translate="no" dir="ltr">ScrollIndicator</code>
+      positioning in
+      <code translate="no" dir="ltr">LazyColumn</code>
+      and
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      with
+      <code translate="no" dir="ltr">ContentPadding</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2bc51a0d5b12916e3d560bf9b2e9119601fb21a9">I2bc51</a>
+      )
+    </li>
+    <li>
+      We have fixed a bug seen in
+      <code translate="no" dir="ltr">OpenOnPhoneDialog</code>
+      progress animation by using the new
+      <code translate="no" dir="ltr">CircularProgressIndicatorContent</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3e44325b2c452fd2f86b26affcd727ed416e2973">I3e443</a>
+      )
+    </li>
+    <li>
+      We have updated the
+      <code translate="no" dir="ltr">HorizontalPagerScaffold</code>
+      and
+      <code translate="no" dir="ltr">VerticalPagerScaffold</code>
+      to disable animations when reduce motion is enabled (
+      <a href="https://android-review.googlesource.com/#/q/Iaaf681ea58b2869a5911a6878af82061bc939b64">Iaaf68</a>
+      )
+    </li>
+    <li>
+      We have implemented a separate animation for circular progress indicators when progress reaches over 100%. (
+      <a href="https://android-review.googlesource.com/#/q/I4713589deb69b42502b799d921ef38a2ffc04ec0">I47135</a>
+      )
+    </li>
+    <li>
+      We have fixed a bug where
+      <code translate="no" dir="ltr">EdgeButton</code>
+      could be drawn with an incorrect shape in Pager components (
+      <a href="https://android-review.googlesource.com/#/q/I91db9e462a13e348e4b3a7ca1a6610fcbb4c9898">I91db9</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,53 @@
+libraryId: datastore
+groupId: androidx.datastore
+version: 1.1.0-alpha05
+releaseDate: 2023-09-06
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha05" data-text="Version 1.1.0-alpha05" tabindex="-1">Version 1.1.0-alpha05</h3>
+  <p>September 6, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.datastore:datastore-*:1.1.0-alpha05</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a200cb82769634cecdb118ec4f0bfdf0b086e597..9ce75ea1baa2af10dda8f787f69c40c6654bcac1/datastore">Version 1.1.0-alpha05 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Datastore
+      <code translate="no" dir="ltr">FileStorage</code>
+      is publicly available now, so clients can provide custom params. (
+      <a href="https://android-review.googlesource.com/#/q/Icb98587682dd309b6a80eb352c76126cbd3b3740">Icb985</a>
+      )
+    </li>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">OkioStorage</code>
+      constructor to accept an
+      <code translate="no" dir="ltr">InterProcessCoordinator</code>
+      so that it can be used on Android with
+      <code translate="no" dir="ltr">MultiProcessCoordinator</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iecea30cb3ce9677d5a9e9011fa3100d9672e2d1f">Iecea3</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">MultiProcessCoordinator</code>
+      unable to monitor multiple files in the same directory.
+    </li>
+    <li>Fix unable to detect duplicate files if file paths are not normalized.</li>
+    <li>
+      Fix wrong values returned from
+      <code translate="no" dir="ltr">RxDataStore#isDisposed</code>
+      .
+    </li>
+    <li>
+      Fix missing proguard configuration for
+      <code translate="no" dir="ltr">datstore-preferences-core</code>
+      artifact.
+    </li>
+  </ul>

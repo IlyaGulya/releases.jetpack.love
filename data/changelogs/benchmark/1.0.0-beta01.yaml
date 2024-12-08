@@ -1,0 +1,46 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.0.0-beta01
+releaseDate: 2019-10-09
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta01" data-text="Version 1.0.0-beta01" tabindex="-1">Version 1.0.0-beta01</h3>
+  <p>October 9, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-common:1.0.0-beta01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-gradle-plugin:1.0.0-beta01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-junit4:1.0.0-beta01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7ccc99ac1b0e06dbae4c0f30bbc06a6bae1889f6..1c249aa2bda2320b9d136bfa1f5c9ca95e856efc/benchmark">Version 1.0.0-beta01 contains these commits</a>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      Run garbage collection before each warmup to reduce memory pressure from one benchmark to leak to the next (
+      <a href="https://issuetracker.google.com/issues/140895105">b/140895105</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">androidx.annotation:android-experimental-lint</code>
+      dependency, so that Java code will correctly produce lint errors when experimental API is not used, similar to what is provided by the Kotlin experimental annotation for Kotlin callers.
+    </li>
+    <li>
+      Now correctly detects usage of
+      <code translate="no" dir="ltr">additionalTestOutputDir</code>
+      instrumentation argument for output in Android Gradle Plugin 3.6, to know when AGP will handle data copy.
+    </li>
+    <li>
+      Fix undetected clock frequency in JSON to correctly print
+      <code translate="no" dir="ltr">-1</code>
+      (
+      <a href="https://issuetracker.google.com/issues/141945670">b/141945670</a>
+      ).
+    </li>
+  </ul>

@@ -1,0 +1,70 @@
+libraryId: room
+groupId: androidx.room
+version: 2.4.0
+releaseDate: 2021-12-15
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0" data-text="Version 2.4.0" tabindex="-1">Version 2.4.0</h3>
+  <p>December 15, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.4.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/2c190565e1d506313ad852188959a8fa46f80e97..11c93b38ca49928eecf09ce48d7e6909a7264e05/room">Version 2.4.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 2.3.0</strong></p>
+  <ul>
+    <li>
+      <strong>Auto Migrations</strong>
+      : Room now offers an API for automatically generating migrations as long as schemas are exported. To let Room know that it should generate an auto-migration a new property
+      <code translate="no" dir="ltr">@Database#autoMigrations</code>
+      can be used to declare the versions to auto-migrate from and to. When Room needs additional information regarding tables and column renames or deletes, then the
+      <code translate="no" dir="ltr">@AutoMigration</code>
+      annotation can declare a specification class containing such inputs. See the
+      <code translate="no" dir="ltr">@AutoMigration</code>
+      documentation for more details.
+    </li>
+    <li>
+      <strong>Dependency Injection in Auto Migrations</strong>
+      :
+      <code translate="no" dir="ltr">@ProvidedAutoMigrationSpec</code>
+      is a new API for declaring that an
+      <code translate="no" dir="ltr">AutoMigrationSpec</code>
+      will be provided at runtime via
+      <code translate="no" dir="ltr">RoomDatabase.Builder#addAutoMigrationSpec()</code>
+      . This allows for a dependency injection framework to provide such specs when they need complex dependencies.
+    </li>
+    <li>
+      <strong>Migration Test Helper Support for Auto Migrations</strong>
+      : Room’s
+      <code translate="no" dir="ltr">MigrationTestHelper</code>
+      was updated to support auto migrations by providing a new constructor API that receives the database class under test. This allows the helper to automatically add auto migrations the same way during
+      <code translate="no" dir="ltr">runMigrationsAndValidate</code>
+      .
+    </li>
+    <li>
+      <strong>Room-Paging Support</strong>
+      :
+      <code translate="no" dir="ltr">androidx.room:room-paging</code>
+      is released, providing native Paging 3.0 support for Room queries returning
+      <code translate="no" dir="ltr">androidx.paging.PagingSource</code>
+      .
+    </li>
+    <li>
+      <strong>Relational Query Methods</strong>
+      : Room now supports multimap return types
+      <code translate="no" dir="ltr">@Dao</code>
+      methods, useful for JOIN statements. The supported types of multimaps are
+      <code translate="no" dir="ltr">Map</code>
+      ,
+      <code translate="no" dir="ltr">SparseArray</code>
+      ,
+      <code translate="no" dir="ltr">LongSparseArray</code>
+      , along with Guava's
+      <code translate="no" dir="ltr">ImmutableMap</code>
+      ,
+      <code translate="no" dir="ltr">ImmutableSetMultimap</code>
+      and
+      <code translate="no" dir="ltr">ImmutableListMultimap</code>
+      .
+    </li>
+  </ul>

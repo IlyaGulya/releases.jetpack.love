@@ -1,0 +1,100 @@
+libraryId: privacysandbox-ads
+groupId: androidx.privacysandbox
+version: 1.1.0-beta04
+releaseDate: 2024-01-24
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-beta04" data-text="Version 1.1.0-beta04" tabindex="-1">Version 1.1.0-beta04</h3>
+  <p>January 24, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.privacysandbox.ads:ads-adservices:1.1.0-beta04</code>
+    and
+    <code translate="no" dir="ltr">androidx.privacysandbox.ads:ads-adservices-java:1.1.0-beta04</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/15b45436d846a1cbb8f82f449405f97a8a19839a..fbeccfb9423a7b810c9d248da7ddae2860bcffdc/privacysandbox/ads">Version 1.1.0-beta04 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>New API to support post-auction user event reporting</li>
+    <li>Added support for Frequency cap filtering for remarketing ads</li>
+    <li>Supporting Join Custom Audience delegation</li>
+    <li>Waterfall mediation chain truncation support</li>
+    <li>Support for Protected Auctions on Bidding and Auction Servers</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">AdSelectionManager::selectAds(AdSelectionFromOutcomesConfig)</code>
+      experimental API (
+      <a href="https://android-review.googlesource.com/#/q/I86cd2b0124d0b7702629a738672f0772472f0755">I86cd2</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">ReportEventRequest::inputEvent</code>
+      experimental API (
+      <a href="https://android-review.googlesource.com/#/q/Ib94f3c25c2be855eb2491d158de442516ab3a8d1">Ib94f3</a>
+      )
+    </li>
+    <li>
+      Make
+      <code translate="no" dir="ltr">ReportImpressionRequest::adSelectionConfig</code>
+      optional (
+      <a href="https://android-review.googlesource.com/#/q/Ief280f27af7c7dc591f4e5c5a7cab9f0363be248">Ief280</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">AdSelectionManager::getAdSelectionData</code>
+      and
+      <code translate="no" dir="ltr">AdSelectionManager::persistAdSelectionResultUnified</code>
+      experimental APIs (
+      <a href="https://android-review.googlesource.com/#/q/Ie4d0e1e8aee708527be9a40594953d48ae737805">Ie4d0e</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">CustomAudienceManager::fetchAndJoinCustomAudience</code>
+      experimental API (
+      <a href="https://android-review.googlesource.com/#/q/I09152828d72b3eaef8e32854d7d0398d9daaca37">I09152</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">AdSelectionManager::reportEvent</code>
+      experimental API (
+      <a href="https://android-review.googlesource.com/#/q/I0d7dca4f20cb1f8fcb0f090d8c609af645c7eebd">I0d7dc</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">AdSelectionManager::updateAdCounterHistogram</code>
+      experimental API and altered
+      <code translate="no" dir="ltr">AdData</code>
+      to indicate a series of
+      <code translate="no" dir="ltr">AdFilters</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I87b83101d35af061615dd3c2dc56ef637d6ad8e6">I87b83</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>Input URIs are now matched on a shared site/origin instead of requiring an exact host name match.</li>
+    <li>
+      Fix test failing due to missing HTTPS scheme (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/d5730580dc99b73564afe2ab7de1ca378e07dcaa">d573058</a>
+      )
+    </li>
+    <li>
+      Fix missing HTTPS scheme from web URLs (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/cecdcb80bbb238b41b218083cc4d6f836918f335">cecdcb8</a>
+      )
+    </li>
+    <li>
+      Add throws annotation to the measurement APIs (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/2dba359ce37ce3db7670a1324d81d5b3f5aacb65">2dba359</a>
+      )
+    </li>
+  </ul>

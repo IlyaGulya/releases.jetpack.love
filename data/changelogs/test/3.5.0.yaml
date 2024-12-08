@@ -1,0 +1,70 @@
+libraryId: test
+groupId: androidx.test
+version: 3.5.0
+releaseDate: 2022-11-08
+#language=html
+changelogHtml: |
+  <h3 id="espresso-3.5.0" data-text="Espresso 3.5.0" tabindex="-1">Espresso 3.5.0</h3>
+  <p>November 8, 2022</p>
+  <p>The following artifacts were released:</p>
+  <ul>
+    <li><code translate="no" dir="ltr">androidx.test.espresso:espresso-accessibility:3.5.0</code></li>
+    <li><code translate="no" dir="ltr">androidx.test.espresso:espresso-core:3.5.0</code></li>
+    <li><code translate="no" dir="ltr">androidx.test.espresso:espresso-contrib:3.5.0</code></li>
+    <li><code translate="no" dir="ltr">androidx.test.espresso:espresso-idling-resource:3.5.0</code></li>
+    <li><code translate="no" dir="ltr">androidx.test.espresso:espresso-intents:3.5.0</code></li>
+    <li><code translate="no" dir="ltr">androidx.test.espresso:espresso-remote:3.5.0</code></li>
+    <li><code translate="no" dir="ltr">androidx.test.espresso:espresso-web:3.5.0</code></li>
+    <li><code translate="no" dir="ltr">androidx.test.espresso.idling:idling-concurrent:3.5.0</code></li>
+    <li><code translate="no" dir="ltr">androidx.test.espresso.idling:idling-net:3.5.0</code></li>
+  </ul>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>Record android Trace spans for Espresso actions</li>
+    <li>Espresso's DefaultFailureHandler now saves a screenshot on test failures to TestStorage</li>
+    <li>Add experimental ViewInteraction.captureToBitmap extension function</li>
+    <li>Save view hierarchy to a file on failures</li>
+  </ul>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>Promote ViewMatchers hasTextColor and hasBackground as stable APIs</li>
+    <li>Add IntentsRule</li>
+    <li>Add inverted matchers for IntentMatchers.hasExtraWithKey() and BundleMatchers.hasKey()</li>
+    <li>Add a ViewAction that scrolls to the last position in a RecyclerView.</li>
+    <li>Add IntentMatcher.hasExtra API</li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>Preserve tool type on up event</li>
+    <li>Make IdlingRegistry more thread-safe.</li>
+    <li>Support other views for scrollTo()</li>
+    <li>
+      Remove unnecessary
+      <code translate="no" dir="ltr">interruptEspressoTasks</code>
+      warning logs for each Espresso interaction on Robolectric.
+    </li>
+    <li>Remove timeout in CloseKeyboardAction when running under Robolectric</li>
+    <li>Use consistent InputDevice source for input gesture injection</li>
+    <li>Support simulating ActivityNotFoundExceptions in Espresso Intents.</li>
+    <li>Truncate view hierarchy in exception messages when it gets too large.</li>
+    <li>Display number and list of ambiguously matched views.</li>
+    <li>Validate that onView.check/perform() is invoked on the UI thread</li>
+  </ul>
+  <p><strong>Dependency changes</strong></p>
+  <ul>
+    <li>
+      Update to
+      <ul>
+        <li>kotlin stdlib 1.7.10</li>
+        <li>jsr305:2.0.2</li>
+        <li>tagsoup:1.2.1</li>
+        <li>androidx.annotation:1.2.0</li>
+      </ul>
+    </li>
+    <li>
+      contrib:
+      <ul>
+        <li>update to drawer 1.1.1, recycler view 1.2.1, material 1.4.0</li>
+      </ul>
+    </li>
+  </ul>

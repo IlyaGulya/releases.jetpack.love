@@ -1,0 +1,205 @@
+libraryId: work
+groupId: androidx.work
+version: 2.4.0
+releaseDate: 2020-07-22
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0" data-text="Version 2.4.0" tabindex="-1">Version 2.4.0</h3>
+  <p>July 22, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.4.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/098521464a5be8f6d5fb14a9772d859a8e6d3638..1fe9950a2c96b1046e15091cd832dbecd8a2d9cf/work">Version 2.4.0 contains these commits.</a>
+  </p>
+  <p><strong>Major changes since 2.3.0</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">WorkManager</code>
+      s in-process scheduler is now more capable. Previously, the in-process
+      <code translate="no" dir="ltr">Scheduler</code>
+      would only consider executing work that was not delayed and whose constraints were met. Now, the in-process scheduler tracks
+      <code translate="no" dir="ltr">WorkRequest</code>
+      s which might be executed in the future, including PeriodicWorkRequests. The in-process
+      <code translate="no" dir="ltr">Scheduler</code>
+      also does not observe scheduling limits (but is still restricted to the size of the
+      <code translate="no" dir="ltr">Executor</code>
+      being used by WorkManager). This means that the application can now execute a lot more WorkRequests when the app is in the foreground. To manage execution of delayed work in the foreground,
+      <code translate="no" dir="ltr">WorkManager</code>
+      also introduces a new configurable
+      <a href="/reference/kotlin/androidx/work/RunnableScheduler"><code translate="no" dir="ltr">RunnableScheduler</code></a>
+      . (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1185778">aosp/1185778</a>
+      )
+    </li>
+    <li>
+      WorkManager now supports RxJava 3. To use RxJava 3, you should include the following dependency:
+      <code translate="no" dir="ltr">implementation "androidx.work:work-rxjava3:2.4.0"</code>
+      . (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1277904">aosp/1277904</a>
+      )
+    </li>
+    <li>
+      Added the ability to query for
+      <code translate="no" dir="ltr">WorkInfo</code>
+      s by using a
+      <code translate="no" dir="ltr">WorkQuery</code>
+      . This is useful when developers want to query
+      <code translate="no" dir="ltr">WorkInfo</code>
+      s by a combination of multiple attributes. For more information look at
+      <code translate="no" dir="ltr">WorkQuery.Builder.fromStates(...)</code>
+      ,
+      <code translate="no" dir="ltr">WorkQuery.Builder. fromTags(...)</code>
+      or
+      <code translate="no" dir="ltr">WorkQuery.Builder.fromUniqueWorkNames(...)</code>
+      . (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1253230">aosp/1253230</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/143847546">b/143847546</a>
+      )
+    </li>
+    <li>
+      <p>
+        Add the ability to request diagnostic information from
+        <code translate="no" dir="ltr">WorkManager</code>
+        using:
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Bash"><code translate="no" dir="ltr">adb<span class="devsite-syntax-w"> </span>shell<span class="devsite-syntax-w"> </span>am<span class="devsite-syntax-w"> </span>broadcast<span class="devsite-syntax-w"> </span>-a<span class="devsite-syntax-w"> </span><span class="devsite-syntax-s2">"androidx.work.diagnostics.REQUEST_DIAGNOSTICS"</span><span class="devsite-syntax-w"> </span>-p<span class="devsite-syntax-w"> </span><span class="devsite-syntax-s2">"&lt;your_app_package_name&gt;"</span>
+  </code></pre>
+      </devsite-code>
+      <p>This provides a lot of useful information including:</p>
+
+      <ul>
+        <li>WorkRequests that were completed in the last 24 hours.</li>
+        <li>WorkRequests that are currently RUNNING.</li>
+        <li>
+          Scheduled WorkRequests. (
+          <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1235501">aosp/1235501</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        Add
+        <code translate="no" dir="ltr">ExistingWorkPolicy.APPEND_OR_REPLACE</code>
+        which is similar to
+        <code translate="no" dir="ltr">APPEND</code>
+        , but replaces a chain that has cancelled or failed prerequisites. (
+        <a href="https://issuetracker.google.com/issues/134613984">b/134613984</a>
+        ,
+        <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1199640">aosp/1199640</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Provide the ability to add a custom
+        <code translate="no" dir="ltr">RunnableScheduler</code>
+        to track WorkRequests that need to be executed in the future. This is used by the in-process Scheduler. (
+        <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1203944">aosp/1203944</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Add support for dynamically adding factories to delegate to, when using a
+        <code translate="no" dir="ltr">DelegatingWorkerFactory</code>
+        . (
+        <a href="https://issuetracker.google.com/issues/156289105">b/156289105</a>
+        ,
+        <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1309745">aosp/1309745</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Align tracking for
+        <code translate="no" dir="ltr">BATTERY_NOT_LOW</code>
+        constraints more closely with the platform. (
+        <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1312583">aosp/1312583</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        The in-process scheduler now uses better APIs to determine the name of the process. This is useful to better support apps that use multiple-processes. (
+        <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1324732">aosp/1324732</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>New Lint rules which enforce:</p>
+
+      <ul>
+        <li>
+          Use of the right
+          <code translate="no" dir="ltr">foregroundServiceType</code>
+          when using
+          <code translate="no" dir="ltr">setForegroundAsync()</code>
+          APIs. (
+          <a href="https://issuetracker.google.com/issues/147873061">b/147873061</a>
+          ,
+          <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1215915">aosp/1215915</a>
+          )
+        </li>
+        <li>
+          Specifying JobScheduler ids that WorkManager should use when using JobService APIs directly.
+          <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1223567">aosp/1223567</a>
+        </li>
+        <li>
+          Added a new lint rule that ensures that
+          <code translate="no" dir="ltr">ListenableWorker</code>
+          implementations are now
+          <code translate="no" dir="ltr">public</code>
+          when using the default
+          <code translate="no" dir="ltr">WorkerFactory</code>
+          . (
+          <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1291262">aosp/1291262</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        Calls to
+        <code translate="no" dir="ltr">setForegroundAsync()</code>
+        that do not complete before completion of a
+        <code translate="no" dir="ltr">ListenableWorker</code>
+        will now be signalled via an
+        <code translate="no" dir="ltr">IllegalStateException</code>
+        on the returned
+        <code translate="no" dir="ltr">ListenableFuture</code>
+        . (
+        <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1262743">aosp/1262743</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Fix a bug where the
+        <code translate="no" dir="ltr">ForegroundService</code>
+        is not stopped after a foreground
+        <code translate="no" dir="ltr">Worker</code>
+        is interrupted. (
+        <a href="https://issuetracker.google.com/issues/155579898">b/155579898</a>
+        ,
+        <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1302153">aosp/1302153</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Fix a bug where
+        <code translate="no" dir="ltr">WorkManager</code>
+        attempts to execute multiple instances of a
+        <code translate="no" dir="ltr">Worker</code>
+        bound to a Foreground Service (
+        <a href="https://issuetracker.google.com/issues/156310133">b/156310133</a>
+        ,
+        <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1309853">aosp/1309853</a>
+        )
+      </p>
+    </li>
+  </ul>

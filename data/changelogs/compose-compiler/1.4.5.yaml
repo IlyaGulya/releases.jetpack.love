@@ -1,0 +1,58 @@
+libraryId: compose-compiler
+groupId: androidx.compose
+version: 1.4.5
+releaseDate: 2023-04-12
+#language=html
+changelogHtml: |
+  <h3 id="1.4.5" data-text="Version 1.4.5" tabindex="-1">Version 1.4.5</h3>
+  <p>April 12, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.compiler:compiler:1.4.5</code>
+    ,
+    <code translate="no" dir="ltr">androidx.compose.compiler:compiler-daemon:1.4.5</code>
+    , and
+    <code translate="no" dir="ltr">androidx.compose.compiler:compiler-hosted:1.4.5</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b503ebce2f56c805dbbb22c3f88cd6c633a2e102..3cde0d90f0756a2f75099eb822fba35ceb9dc06c/compose/compiler">Version 1.4.5 contains these commits.</a>
+  </p>
+  <p>
+    <strong>NOTE</strong>
+    This build of Compose Compiler requires your build environment to use Java 17+. Based on user feedback, we will drop this requirement back to Java 11 and follow-up with another release (1.4.6) to better support users who are using older Java versions.
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>Support for Kotlin 1.8.20</p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Propagate requirement of composable invoke operator override to classes and interfaces that are extending lambda interfaces with corresponding annotations.
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/f8f2f78a1a769c2373201027f12700e772e4e97e">f8f2f78a1a769c2373201027f12700e772e4e97e</a>
+    </li>
+    <li>
+      Allows usage of
+      <code translate="no" dir="ltr">@Composable</code>
+      annotation on
+      <code translate="no" dir="ltr">getValue</code>
+      operator and marks generated getter for delegate as composable in IR to ensure it is correctly transformed later.
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/f174f6ee60ca957d5cb6d19a5bd02a88267cdf40">f174f6ee60ca957d5cb6d19a5bd02a88267cdf40</a>
+    </li>
+    <li>
+      Fix internal compose runtime error (Expected
+      <code translate="no" dir="ltr">applyChanges()</code>
+      to have been called) for inline functions.
+      <a href="https://issuetracker.google.com/issues/274786923">b/274786923</a>
+    </li>
+    <li>
+      Avoid capturing
+      <code translate="no" dir="ltr">ProcessCancelledException</code>
+      as it has a special meaning in the IDE.
+      <a href="https://issuetracker.google.com/issues/274725600">b/274725600</a>
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Improved support for Composable functions in Kotlin/Native.
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/f52b6aeed22400dd4f4a4f05559a9aa42642402c">f52b6aeed22400dd4f4a4f05559a9aa42642402c</a>
+    </li>
+  </ul>
+  <h2 id="version_144_3" data-text="Version 1.4.4" tabindex="-1">Version 1.4.4</h2>

@@ -1,0 +1,69 @@
+libraryId: work
+groupId: androidx.work
+version: 2.0.0-rc01
+releaseDate: 2019-03-07
+#language=html
+changelogHtml: |
+  <h3 id="2.0.0-rc01" data-text="Version 2.0.0-rc01" tabindex="-1">Version 2.0.0-rc01</h3>
+  <p>March 7, 2019</p>
+  <p>WorkManager 2.0.0-rc01 is released. This version is identical to 1.0.0 stable but has AndroidX dependencies. Once this reaches 2.0.0 stable, you should include this version and the legacy 1.x versions will only receive some critical bug fixes. All active development will target 2.x.</p>
+  <h2 id="pre-androidx-deps" data-text="Pre-AndroidX Dependencies" tabindex="-1">Pre-AndroidX Dependencies</h2>
+  <div>
+    For information on using Kotlin extensions, see the
+    <a href="/kotlin/ktx">KTX documentation</a>
+    .
+    <br />
+    Reference docs:
+    <a href="/reference/androidx/work/package-summary">Java</a>
+
+    <div>
+      <div class="ds-selector-tabs">
+        <section>
+          <h3 id="groovy" data-text="Groovy" tabindex="-1">Groovy</h3>
+          <div></div>
+          <devsite-code>
+            <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Groovy"><span class="devsite-syntax-n">dependencies</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kt">def</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">work_version</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s2">"1.0.1"</span>
+
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// (Java only)</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">implementation</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s2">"android.arch.work:work-runtime:$work_version"</span>
+
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// Kotlin + coroutines</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">implementation</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s2">"android.arch.work:work-runtime-ktx:$work_version"</span>
+
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// optional - RxJava2 support</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">implementation</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s2">"android.arch.work:work-rxjava2:$work_version"</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// optional - Test helpers</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">androidTestImplementation</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s2">"android.arch.work:work-testing:$work_version"</span>
+  <span class="devsite-syntax-o">}</span></pre>
+          </devsite-code>
+        </section>
+        <section>
+          <h3 id="kts" data-text="Kotlin" tabindex="-1">Kotlin</h3>
+          <div></div>
+          <devsite-code>
+            <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><span class="devsite-syntax-n">dependencies</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">work_version</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"1.0.1"</span>
+
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// (Java only)</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">implementation</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"android.arch.work:work-runtime:</span><span class="devsite-syntax-si">$</span><span class="devsite-syntax-n">work_version</span><span class="devsite-syntax-s">"</span><span class="devsite-syntax-p">)</span>
+
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// Kotlin + coroutines</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">implementation</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"android.arch.work:work-runtime-ktx:</span><span class="devsite-syntax-si">$</span><span class="devsite-syntax-n">work_version</span><span class="devsite-syntax-s">"</span><span class="devsite-syntax-p">)</span>
+
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// optional - RxJava2 support</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">implementation</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"android.arch.work:work-rxjava2:</span><span class="devsite-syntax-si">$</span><span class="devsite-syntax-n">work_version</span><span class="devsite-syntax-s">"</span><span class="devsite-syntax-p">)</span>
+
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// optional - Test helpers</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">androidTestImplementation</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"android.arch.work:work-testing:</span><span class="devsite-syntax-si">$</span><span class="devsite-syntax-n">work_version</span><span class="devsite-syntax-s">"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-p">}</span></pre>
+          </devsite-code>
+        </section>
+      </div>
+    </div>
+  </div>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>WorkManager classes are already in the androidx.work package, but currently depend on non-AndroidX dependencies including the Support Library 27.1 and associated Arch component versions. A version of WorkManager with AndroidX dependencies will be released in the future.</span>
+  </aside>
+  <h2 id="version_101_3" data-text="Version 1.0.1" tabindex="-1">Version 1.0.1</h2>

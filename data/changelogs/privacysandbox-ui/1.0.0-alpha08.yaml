@@ -1,0 +1,85 @@
+libraryId: privacysandbox-ui
+groupId: androidx.privacysandbox
+version: 1.0.0-alpha08
+releaseDate: 2024-05-14
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha08" data-text="Version 1.0.0-alpha08" tabindex="-1">Version 1.0.0-alpha08</h3>
+  <p>May 14, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.privacysandbox.ui:ui-client:1.0.0-alpha08</code>
+    ,
+    <code translate="no" dir="ltr">androidx.privacysandbox.ui:ui-core:1.0.0-alpha08</code>
+    , and
+    <code translate="no" dir="ltr">androidx.privacysandbox.ui:ui-provider:1.0.0-alpha08</code>
+    are released. Version 1.0.0-alpha08 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/465c5c5b7a0d79793bddb26a695f67aba8ea2f7e..6a69101fd0edc8d02aa316df1f43e0552fd2d7c4/privacysandbox/ui">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added support for using
+      <code translate="no" dir="ltr">SandboxedSdkView</code>
+      inside a
+      <code translate="no" dir="ltr">PoolingContainer</code>
+      such as a
+      <code translate="no" dir="ltr">RecyclerView</code>
+      . When a
+      <code translate="no" dir="ltr">SandboxedSdkView</code>
+      has a parent that is a
+      <code translate="no" dir="ltr">PoolingContainer</code>
+      , the lifecycle of its UI sessions will be aligned with that of the
+      <code translate="no" dir="ltr">PoolingContainer</code>
+      to ensure that the session can persist through window detachment.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Deprecated Privacy Sandbox Activity APIs. These APIs can now be found in the dedicated Activity library
+      <code translate="no" dir="ltr">androidx.privacysandbox.activity</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/I68beb04e2ec882bbf13b87d5b29e5885bc74ddce">I68beb</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed rendering bug when displaying remote content inside pooling containers. (
+      <a href="https://android-review.googlesource.com/#/q/I804dfd4ab8736593ed310df2f72e5ae37b73b381">I804df</a>
+      )
+    </li>
+    <li>
+      Fixed a bug that caused rendering issues for
+      <code translate="no" dir="ltr">ViewGroups</code>
+      in backwards compatibility mode. (
+      <a href="https://android-review.googlesource.com/#/q/I8de92044eee18d7aee96cb04e62e7d1ca89b2a12">I8de92</a>
+      )
+    </li>
+    <li>
+      When one of
+      <code translate="no" dir="ltr">SandboxedSdkView</code>
+      's parents is a
+      <code translate="no" dir="ltr">PoolingContainer</code>
+      , close the UI Session when the
+      <code translate="no" dir="ltr">PoolingContainer</code>
+      indicates resources can be released, instead of on window detachment. (
+      <a href="https://android-review.googlesource.com/#/q/I2046b6630cb57fd6ffd47fb0e5a75301ced0a260">I2046b</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">GestureDetectorCompat</code>
+      is now deprecated as
+      <code translate="no" dir="ltr">GestureDetector</code>
+      is available from the
+      <code translate="no" dir="ltr">minSdk</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Icc4cd9df0b358863ac36d059dc6b997775321be6">Icc4cd</a>
+      )
+    </li>
+  </ul>

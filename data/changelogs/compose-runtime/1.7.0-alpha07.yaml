@@ -1,0 +1,76 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.7.0-alpha07
+releaseDate: 2024-04-17
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha07" data-text="Version 1.7.0-alpha07" tabindex="-1">Version 1.7.0-alpha07</h3>
+  <p>April 17, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.7.0-alpha07</code>
+    is released. Version 1.7.0-alpha07 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/02b55f664eba38e42e362e1af3913be1df552d55..67004410fdbff19f90caa4cc43965ab21dca1943/compose/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added the ability to provide a composition local that is computed based on the values of other composition locals either by default, using
+      <code translate="no" dir="ltr">compositionLocalWithComputedDefault()</code>
+      or by supplying a lambda to use to compute the value by using
+      <code translate="no" dir="ltr">providesComputed</code>
+      instead of
+      <code translate="no" dir="ltr">provides</code>
+      .
+    </li>
+    <li>
+      The value of a composition local can be obtained by using the
+      <code translate="no" dir="ltr">currentValue</code>
+      property of the composition local accessible from within the lambda computing the value. This is used instead of
+      <code translate="no" dir="ltr">current</code>
+      which is only accessible in
+      <code translate="no" dir="ltr">@Composable</code>
+      functions. (
+      <a href="https://android-review.googlesource.com/#/q/Iadbc05f5ce04aeb1b67b53cff265b9017958947a">Iadbc0</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>Newly created state objects are immediately accessible from other snapshots, including the global snapshot, with their initial state. Any subsequent modifications are not visible until the snapshot in which the object was created is applied.</li>
+    <li>
+      The initial state of
+      <code translate="no" dir="ltr">mutableStateOf()</code>
+      , as well as their primitive versions, is the value passed in as a parameter to
+      <code translate="no" dir="ltr">mutableStateOf()</code>
+      . The initial state of
+      <code translate="no" dir="ltr">mutableStateListOf()</code>
+      and
+      <code translate="no" dir="ltr">mutableStateMapOf()</code>
+      is empty.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Snapshot.isInSnapshot</code>
+      and
+      <code translate="no" dir="ltr">Snapshot.PreexistingSnapshotId</code>
+      that are used to enable a state object to support being immediately accessible from the global snapshot upon its creation.
+    </li>
+    <li>
+      Custom state objects can support being immediately accessible by following the pattern of changes made to the built-in snapshot objects. (
+      <a href="https://android-review.googlesource.com/#/q/I84a17f3cb84c7335a93b759b9eff908c487e83a8">I84a17</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed merging of
+      <code translate="no" dir="ltr">readObserver</code>
+      in nested snapshots. This caused nested derived states to under-invalidate when used inside a
+      <code translate="no" dir="ltr">snapshotFlow</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Idf1380c80ff9d651a930391c833ef3e403765afa">Idf138</a>
+      )
+    </li>
+  </ul>

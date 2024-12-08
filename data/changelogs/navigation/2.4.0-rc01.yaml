@@ -1,0 +1,117 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.4.0-rc01
+releaseDate: 2021-12-15
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0-rc01" data-text="Version 2.4.0-rc01" tabindex="-1">Version 2.4.0-rc01</h3>
+  <p>December 15, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.4.0-rc01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f07d12061370a603549747200c79b60239706330..ee27dabb830fecc2bb6899cb460d977a31d90612/navigation">Version 2.4.0-rc01 contains these commits.</a>
+  </p>
+  <p><strong>Behavior changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">NavDeepLink</code>
+      parsed arguments now consider pound signs in the same way as question marks as a separator between arguments. (
+      <a href="https://android-review.googlesource.com/#/q/I213095f3a5a34962657feb0e8631589765b0a1ca">I21309</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/180042703">b/180042703</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Deeplinks will no longer ignore arguments with values that are the same as the name of the placeholder. (
+      <a href="https://android-review.googlesource.com/#/q/If8017489c9f36da2f20876313356f42ae8bfc208">If8017</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/207389470">b/207389470</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavController</code>
+      will no longer crash when popping a nested destination using transitions after the
+      <code translate="no" dir="ltr">NavController</code>
+      has been restored. (
+      <a href="https://android-review.googlesource.com/#/q/I0f7c990620f9e16cb96e2076ce0104916a47e0f0">I0f7c9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/205021623">b/205021623</a>
+      )
+    </li>
+    <li>
+      The error message when using an invalid
+      <code translate="no" dir="ltr">startDestination</code>
+      will now default to the start destination's route if one is available. (
+      <a href="https://android-review.googlesource.com/#/q/I86b9d0aff3e758729e83b08f7aa538d4547782e7">I86b9d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/208041894">b/208041894</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Navigation Compose Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed potential crash caused by fast switching between the start destination and another destination using bottom nav menu items. (
+      <a href="https://android-review.googlesource.com/#/q/Ic89766e6f0527af0cd3e793643c38ea9e1f2a272">Ic8976</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/208887901">b/208887901</a>
+      )
+    </li>
+    <li>
+      Dialog destination are now properly restored on top of the screen after config changes or process death. (
+      <a href="https://android-review.googlesource.com/#/q/I4c0dce39bbbe26d05d0cb60c65c6e5fcfbbc62b2">I4c0dc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/207386169">b/207386169</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where attempting to retrieve a
+      <code translate="no" dir="ltr">ViewModel</code>
+      from a dialog’s
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      would fail when the dialog was dismissed. (
+      <a href="https://android-review.googlesource.com/#/q/I6b96d1ce4bcd703340c1d20968d2416c56b9fe46">I6b96d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/206465487">b/206465487</a>
+      )
+    </li>
+    <li>
+      Fixed an issue when using
+      <code translate="no" dir="ltr">activity</code>
+      destinations with Navigation Compose's
+      <code translate="no" dir="ltr">NavHost</code>
+      that would result in infinite recompositions. (
+      <a href="https://android-review.googlesource.com/#/q/I8f64c2edbd87f77662f8b92a6101c179a1eee585">I8f64c</a>
+      )
+    </li>
+    <li>
+      Fixed a leak in Navigation Compose where it was holding on to a reference of the old activity after a config change or process death. (
+      <a href="https://android-review.googlesource.com/#/q/I4efcb0709b3864dde243d011548d801fcef24159">I4efcb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/204905432">b/204905432</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Safe Args Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">SafeArgs</code>
+      no longer crashes when attempting to restore custom parcelable arrays after process death. (
+      <a href="https://android-review.googlesource.com/#/q/I618e8b5027ef6c8b95c1696eddf3bdf7dd15ac4d">I618e8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/207315994">b/207315994</a>
+      )
+    </li>
+    <li>
+      Fixed a bug in safe args that would not allow boolean arrays to have a
+      <code translate="no" dir="ltr">null</code>
+      value. (
+      <a href="https://android-review.googlesource.com/#/q/I8c396c8f174d5924bb5ee147261de158256fba94">I8c396</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/174787525">b/174787525</a>
+      )
+    </li>
+  </ul>

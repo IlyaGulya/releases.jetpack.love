@@ -1,0 +1,68 @@
+libraryId: health-connect
+groupId: androidx.health
+version: 1.1.0-alpha01
+releaseDate: 2023-06-07
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha01" data-text="Version 1.1.0-alpha01" tabindex="-1">Version 1.1.0-alpha01</h3>
+  <p>June 7, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.health.connect:connect-client:1.1.0-alpha01</code>
+    is released. This version is developed in an internal branch.
+  </p>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>This version will only compile against the Android 14 (Upside Down Cake) Beta 1 SDK or higher.</span>
+  </aside>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>Support for the Android 14 framework version of Health Connect. This SDK is a prerequisite for Android 14. Apps will not be able to integrate with Health Connect on Android 14 without it.</li>
+    <li>Added recording method to record metadata.</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Session API changes:
+      <ul>
+        <li>
+          Added various sleep stages into
+          <code translate="no" dir="ltr">SleepSessionRecord</code>
+          and removed
+          <code translate="no" dir="ltr">SleepStageRecord</code>
+          .
+        </li>
+        <li>
+          Added
+          <code translate="no" dir="ltr">ExerciseLap</code>
+          and
+          <code translate="no" dir="ltr">ExerciseSegment</code>
+          into
+          <code translate="no" dir="ltr">ExerciseSessionRecord</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>Periodic and daily rate limits (including memory limits), for read, changelog, insertion and deletion operations.</li>
+    <li>
+      Added validation for all
+      <code translate="no" dir="ltr">NutritionRecord</code>
+      fields.
+    </li>
+    <li>
+      Added validation for
+      <code translate="no" dir="ltr">HeartRateVariabilityRmssdRecord</code>
+      .
+    </li>
+    <li>
+      Removed two deprecated APIs:
+      <code translate="no" dir="ltr">HealthConnectClient#isProviderAvailable</code>
+      and
+      <code translate="no" dir="ltr">HealthConnectClient#isApiSupported</code>
+      .
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>Fixed units equality for all unit types, equality no longer depends on type used for unit initialization. E.g. Mass.grams(1000) is now equal to Mass.kilograms(1).</li>
+  </ul>
+  <h2 id="version_10_2" data-text="Version 1.0" tabindex="-1">Version 1.0</h2>

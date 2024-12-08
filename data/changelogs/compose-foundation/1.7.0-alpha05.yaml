@@ -1,0 +1,112 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.7.0-alpha05
+releaseDate: 2024-03-20
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha05" data-text="Version 1.7.0-alpha05" tabindex="-1">Version 1.7.0-alpha05</h3>
+  <p>March 20, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.7.0-alpha05</code>
+    is released. Version 1.7.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/638a8d3a474af45f6ad5fdc3d6d1836ea42d1778..a57d7d17753695012b58c9ce7ad55a8d39157e62/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removed experimental
+      <code translate="no" dir="ltr">LocalTextLinkStyle</code>
+      composition local for styling hyperlinks. (
+      <a href="https://android-review.googlesource.com/#/q/Iebfa7af5ec45e276de9b57191400e37638e2997f">Iebfa7</a>
+      )
+    </li>
+    <li>
+      Removed experimental override of
+      <code translate="no" dir="ltr">BasicText</code>
+      with
+      <code translate="no" dir="ltr">onLinkClicked</code>
+      argument. A replacement API for hyperlinks support will follow in the future. (
+      <a href="https://android-review.googlesource.com/#/q/I107d5d08153db444fac816ad7c9c65057d931a81">I107d5</a>
+      )
+    </li>
+    <li>
+      Removed Codepoints related methods and properties under
+      <code translate="no" dir="ltr">TextFieldState</code>
+      and
+      <code translate="no" dir="ltr">TextFieldBuffer</code>
+      . Also removed the
+      <code translate="no" dir="ltr">inChars</code>
+      suffixes from the remaining selection and composition related APIs. (
+      <a href="https://android-review.googlesource.com/#/q/Ief7ce54a84a9276d79b1e5bed50801b7d9b9b524">Ief7ce</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AnchoredDraggable</code>
+      's
+      <code translate="no" dir="ltr">currentValue</code>
+      will now update when passing through an anchor point. Use
+      <code translate="no" dir="ltr">settledValue</code>
+      to receive the previous
+      <code translate="no" dir="ltr">currentValue</code>
+      semantics, only updating when settling at an anchor. The progress is now exposed as a function (requiring a starting and end point) instead of a property. (
+      <a href="https://android-review.googlesource.com/#/q/Ibe6e88f172b099e8f1f841722946471e4641f999">Ibe6e8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/318707189">b/318707189</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/298271489">b/298271489</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/294991954">b/294991954</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BasicTextField(state)</code>
+      ,
+      <code translate="no" dir="ltr">TextFieldState</code>
+      ,
+      <code translate="no" dir="ltr">InputTransformation</code>
+      ,
+      <code translate="no" dir="ltr">OutputTransformation</code>
+      ,
+      <code translate="no" dir="ltr">TextFieldLineLimits</code>
+      ,
+      <code translate="no" dir="ltr">TextFieldDecorator</code>
+      are graduated to stable. (
+      <a href="https://android-review.googlesource.com/#/q/I9582b7fab87b79a08f617122ed7bd1d2c5b61b9a">I9582b</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">InterceptPlatformTextInput</code>
+      for helping write low-level IME-related tests and other low-level IME use cases.
+      <code translate="no" dir="ltr">PlatformTextInputTestOverride</code>
+      has been deprecated. (
+      <a href="https://android-review.googlesource.com/#/q/I862ed2e997d6a98e33a25da2ff536a2779ae173d">I862ed</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/322680547">b/322680547</a>
+      )
+    </li>
+    <li>
+      Split
+      <code translate="no" dir="ltr">restrictedConstraints()</code>
+      to two methods:
+      <code translate="no" dir="ltr">fitPrioritizingWidth()</code>
+      and
+      <code translate="no" dir="ltr">fitPrioritizingHeight()</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I6d7fd3811fffff13b3343c5365290e73cb151bcb">I6d7fd</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Added 2 new API
+      <code translate="no" dir="ltr">isLastScrollForward</code>
+      /
+      <code translate="no" dir="ltr">isLastScrollBackward</code>
+      to check scroll direction for latest scroll action, return false if no scroll action yet. (
+      <a href="https://android-review.googlesource.com/#/q/I63a0e2181d19fdbb945ff1f71781b44559923537">I63a0e</a>
+      )
+    </li>
+  </ul>

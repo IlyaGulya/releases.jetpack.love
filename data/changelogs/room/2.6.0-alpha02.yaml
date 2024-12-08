@@ -1,0 +1,54 @@
+libraryId: room
+groupId: androidx.room
+version: 2.6.0-alpha02
+releaseDate: 2023-06-21
+#language=html
+changelogHtml: |
+  <h3 id="2.6.0-alpha02" data-text="Version 2.6.0-alpha02" tabindex="-1">Version 2.6.0-alpha02</h3>
+  <p>June 21, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.6.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5e7d256f82fbafb6d059ab7b18fddd87c7531553..3b5b931546a48163444a9eddc533489fcddd7494/room">Version 2.6.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>Room Gradle Plugin</strong></p>
+  <p>
+    This new release contains a new artifact for the Room Gradle Plugin with id
+    <code translate="no" dir="ltr">androidx.room</code>
+    , which solves various existing issues in Room regarding having inputs and outputs of schemas via Gradle annotation processor options. The Room Gradle Plugin configures the project such that generated schemas that are consumed for auto-migrations and are output of the compile tasks are correctly configured to have reproducible and cacheable builds. The plugin offers a DSL to configure the base schema location:
+  </p>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Text only"><code translate="no" dir="ltr">room {
+      schemaDirectory("$projectDir/schemas/")
+  }
+  </code></pre>
+  </devsite-code>
+  <p>
+    The plugin will then configure the Room compiler and the various compile tasks and its backends (javac, KAPT, KSP) to output schema files into flavored folders, i.e.
+    <code translate="no" dir="ltr">schemas/flavorOneDebug/com.package.MyDatabase/1.json</code>
+    . As usual these files are checks-in into the repository to be used for validation and auto-migrations. Upon migrating to using the plugin instead of the annotation processor options the existing schema files must be copied to the generated flavor directories created by the plugin, this is a one-time migration operation that must be done manually. The schema documentation in
+    <a href="https://developer.android.com/">developers.android.com</a>
+    will be updated in the future once feedback is addressed and the plugin reaches stable, so please give it a try.
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">RoomDatabase.QueryCallback</code>
+      has been defined as a functional interface to allow SAM conversion usages. (
+      <a href="https://android-review.googlesource.com/#/q/Iab8eafa11bf7f6fde9d6c0a7ce7e2933cd248841">Iab8ea</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/281008549">b/281008549</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Resolving issue arising when instantiating the database in Robolectric after the migration of Room sources from Java to Kotlin. (
+      <a href="https://android-review.git.corp.google.com/c/platform/frameworks/support/+/2507218">Ic053c</a>
+      ,
+      <a href="https://b.corp.google.com/issues/274924903">b/274924903</a>
+      )
+    </li>
+  </ul>

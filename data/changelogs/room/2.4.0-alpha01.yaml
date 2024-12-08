@@ -1,0 +1,36 @@
+libraryId: room
+groupId: androidx.room
+version: 2.4.0-alpha01
+releaseDate: 2021-04-21
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0-alpha01" data-text="Version 2.4.0-alpha01" tabindex="-1">Version 2.4.0-alpha01</h3>
+  <p>April 21, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.4.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/29ce56e372f451c2dbf8036b1b9754733a15f32e..4ddfc1583c09aaa878d34437fbfee1b995b60d3a/room">Version 2.4.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <strong>Auto Migrations</strong>
+      : Room now offers an API for automatically generating migrations as long as schemas are exported. To let Room know that it should generate an auto-migration a new property
+      <code translate="no" dir="ltr">@Database#autoMigrations</code>
+      can be used to declare the versions to auto-migrate from and to. When Room needs additional information regarding tables and column renames or deletes, then the
+      <code translate="no" dir="ltr">@AutoMigration</code>
+      annotation can declare a specification class containing such inputs. See the
+      <a href="https://developer.android.com/reference/androidx/room/AutoMigration"><code translate="no" dir="ltr">@AutoMigration</code></a>
+      documentation for more details.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix an issue where
+      <code translate="no" dir="ltr">defaultValue</code>
+      with extra parenthesis were being incorrectly validated by Room’s schema validation.
+      <a href="https://issuetracker.google.com/182284899">b/182284899</a>
+    </li>
+  </ul>
+  <h2 id="version_230_3" data-text="Version 2.3.0" tabindex="-1">Version 2.3.0</h2>

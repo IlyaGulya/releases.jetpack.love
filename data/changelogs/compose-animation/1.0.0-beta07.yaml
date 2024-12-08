@@ -1,0 +1,60 @@
+libraryId: compose-animation
+groupId: androidx.compose
+version: 1.0.0-beta07
+releaseDate: 2021-05-18
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta07" data-text="Version 1.0.0-beta07" tabindex="-1">Version 1.0.0-beta07</h3>
+  <p>May 18, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.animation:animation:1.0.0-beta07</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.animation:animation-core:1.0.0-beta07</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4c1927601bfcaaaf049d0fc7a4e5801ff5cf9729..b648147c5fdfc5ecbad57e40e2dc0c69aa23bf12/compose/animation">Version 1.0.0-beta07 contains these commits.</a>
+  </p>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      Libraries dependent on Compose will need to recompile with version
+      <code translate="no" dir="ltr">1.0.0</code>
+      ‑
+      <code translate="no" dir="ltr">beta07</code>
+      . Otherwise, libraries may encounter a
+      <code translate="no" dir="ltr">NoSuchMethodError</code>
+      , such as:
+      <br />
+      <code translate="no" dir="ltr">java.lang.NoSuchMethodError: No interface method startReplaceableGroup(ILjava/lang/String;)V in class Landroidx/compose/runtime/Composer; or its super classes</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia34e699fdbeaeb86b74e9da27d79d186e6e71757">Ia34e6</a>
+      )
+    </span>
+  </aside>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      New
+      <code translate="no" dir="ltr">AnimatedVisibility</code>
+      API that support visibility to be specified in a
+      <code translate="no" dir="ltr">MutableTransitionState</code>
+      . This also allows the animation states to be observed external to
+      <code translate="no" dir="ltr">AnimatedVisibility</code>
+      via
+      <code translate="no" dir="ltr">currentState</code>
+      and
+      <code translate="no" dir="ltr">isIdle</code>
+      .
+      <ul>
+        <li>New child transition support in Transition</li>
+        <li>Support custom exit/enter transition animation in AnimatedVisibility using AnimationScope.transition</li>
+        <li>New animateEnterExit modifier accessible for all children of AnimatedVisibility</li>
+        <li>
+          Deprecated the AnimatedVisibility APIs that take an
+          <code translate="no" dir="ltr">initiallyVisible</code>
+          parameter (
+          <a href="https://android-review.googlesource.com/#/q/I702f3a6d948938130701e6ab91b77f0b6fe000c2">I702f3</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>

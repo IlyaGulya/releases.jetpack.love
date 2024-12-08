@@ -1,0 +1,97 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.1.0
+releaseDate: 2019-09-05
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0" data-text="Version 1.1.0" tabindex="-1">Version 1.1.0</h3>
+  <p>September 5, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.1.0</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.1.0</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.1.0</code>
+    are released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f8b89aff336c926d3e9a661f497fa07db93e4283..0a0b85c233fab9c76d9bb2cd9e9b59bc0ffbe6c5/fragment">here</a>
+    .
+  </p>
+  <p><strong>Important Changes since 1.0.0</strong></p>
+  <ul>
+    <li>
+      <strong>fragment-testing</strong>
+      : The
+      <code translate="no" dir="ltr">fragment-testing</code>
+      artifact provides a
+      <code translate="no" dir="ltr">FragmentScenario</code>
+      class for testing a fragment in isolation. See
+      <a href="/training/basics/fragments/testing">Test your app’s fragments documentation</a>
+      for more details.
+    </li>
+    <li>
+      <strong>FragmentFactory</strong>
+      : You can now set a
+      <code translate="no" dir="ltr">FragmentFactory</code>
+      on a
+      <code translate="no" dir="ltr">FragmentManager</code>
+      to manage the creation of fragment instances, removing the strict requirement to have a no-argument constructor.
+    </li>
+    <li>
+      <strong>Kotlin Property Delegates for ViewModels</strong>
+      : The
+      <code translate="no" dir="ltr">fragment-ktx</code>
+      artifact now contains two Kotlin property delegates:
+      <code translate="no" dir="ltr">by viewModels()</code>
+      for accessing ViewModels associated with the individual fragment and
+      <code translate="no" dir="ltr">by activityViewModels()</code>
+      for accessing ViewModels scoped to the activity.
+    </li>
+    <li>
+      <strong>Max Lifecycle</strong>
+      : You can now set a max Lifecycle state for a Fragment by calling
+      <code translate="no" dir="ltr">setMaxLifecycle()</code>
+      on a
+      <code translate="no" dir="ltr">FragmentTransaction</code>
+      . This replaces the now deprecated
+      <code translate="no" dir="ltr">setUserVisibleHint()</code>
+      .
+      <code translate="no" dir="ltr">FragmentPagerAdapter</code>
+      and
+      <code translate="no" dir="ltr">FragmentStatePagerAdapter</code>
+      have a new constructor that allows you to switch to the new behavior.
+    </li>
+    <li>
+      <strong>FragmentActivity LayoutId constructor</strong>
+      : Subclasses of
+      <code translate="no" dir="ltr">FragmentActivity</code>
+      can now optionally call into a constructor on
+      <code translate="no" dir="ltr">FragmentActivity</code>
+      that takes an
+      <code translate="no" dir="ltr">R.layout</code>
+      ID, indicating the layout that should be set as the content view as an alternative to calling
+      <code translate="no" dir="ltr">setContentView()</code>
+      in
+      <code translate="no" dir="ltr">onCreate()</code>
+      . This does not change the requirement that your subclass have a no-argument constructor.
+    </li>
+    <li>
+      <strong>Fragment LayoutId constructor</strong>
+      : Subclasses of
+      <code translate="no" dir="ltr">Fragment</code>
+      can now optionally call into a constructor on
+      <code translate="no" dir="ltr">Fragment</code>
+      that takes an
+      <code translate="no" dir="ltr">R.layout</code>
+      ID, indicating the layout that should be used for this fragment as an alternative to overriding
+      <code translate="no" dir="ltr">onCreateView()</code>
+      . The inflated layout can be configured in
+      <code translate="no" dir="ltr">onViewCreated()</code>
+      .
+    </li>
+    <li>
+      <strong>Postpone with a timeout</strong>
+      : A new overload of
+      <code translate="no" dir="ltr">postponeEnterTransition()</code>
+      has been added that takes a timeout.
+    </li>
+  </ul>

@@ -1,0 +1,81 @@
+libraryId: transition
+groupId: androidx.transition
+version: 1.5.0-alpha02
+releaseDate: 2023-09-06
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha02" data-text="Version 1.5.0-alpha02" tabindex="-1">Version 1.5.0-alpha02</h3>
+  <p>September 6, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.transition:transition:1.5.0-alpha02</code>
+    and
+    <code translate="no" dir="ltr">androidx.transition:transition-ktx:1.5.0-alpha02</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/91433b3e27791405abd397d20a416c486691ae6e..9446fd1f176bf11de2e1a6a638e2a3f86d0dcc6e/transition">Version 1.5.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">TransitionSeekController</code>
+      now allows you to set the progress as a fraction of the total duration via
+      <code translate="no" dir="ltr">setCurrentFragment()</code>
+      . (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/2647607">aosp/2647607</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TransitionSeekController</code>
+      now allows observing progress when using
+      <code translate="no" dir="ltr">animateToStart()</code>
+      and
+      <code translate="no" dir="ltr">animateToEnd()</code>
+      by calling
+      <code translate="no" dir="ltr">addOnProgressChangedListener</code>
+      . (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/2647607">aosp/2647607</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">TransitionManager.seekTo()</code>
+      to allow using Scenes for seeking Transitions. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/2647607">aosp/2647607</a>
+      )
+    </li>
+    <li>
+      Added physics-based animations to seeking transitions. It uses a 1-D velocity tracker to track the progress change with
+      <code translate="no" dir="ltr">setCurrentFraction()</code>
+      or
+      <code translate="no" dir="ltr">setCurrentPlayTimeMillis()</code>
+      and uses it for the initial velocity of
+      <code translate="no" dir="ltr">animateToStart</code>
+      and
+      <code translate="no" dir="ltr">animateToEnd</code>
+      . (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/2647607">aosp/2647607</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a flicker when seeking an
+      <code translate="no" dir="ltr">AutoTransition</code>
+      . (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/2643369">aosp/2643369</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where a
+      <code translate="no" dir="ltr">Slide</code>
+      transition would jump to the wrong starting position when interrupted. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/2733729">aosp/2733729</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/297427333">b/297427333</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Update</strong></p>
+  <ul>
+    <li>Transition now compiles with API 34.</li>
+  </ul>

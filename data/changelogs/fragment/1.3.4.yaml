@@ -1,0 +1,73 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.3.4
+releaseDate: 2021-05-18
+#language=html
+changelogHtml: |
+  <h3 id="1.3.4" data-text="Version 1.3.4" tabindex="-1">Version 1.3.4</h3>
+  <p>May 18, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.3.4</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.3.4</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.3.4</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a12bda4096b6d81e46ecf935fe7140fb80dc61e0..3d5122ff6f757cd8287879fdb2712ce745d3c7eb/fragment">Version 1.3.4 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a regression introduced in
+      <a href="#1.3.3">
+        Fragment
+        <code translate="no" dir="ltr">1.3.3</code>
+      </a>
+      when using the
+      <code translate="no" dir="ltr">ViewTreeViewModelStoreOwner.get()</code>
+      API with
+      <code translate="no" dir="ltr">ViewModelProvider</code>
+      or the Jetpack Compose method of
+      <code translate="no" dir="ltr">viewModel()</code>
+      inside a Fragment when using Hilt. These use cases now correctly use the
+      <code translate="no" dir="ltr">ViewModelProvider.Factory</code>
+      provided by your Fragment if it overrides
+      <code translate="no" dir="ltr">getDefaultViewModelProviderFactory()</code>
+      (as
+      <code translate="no" dir="ltr">@AndroidEntryPoint</code>
+      annotated Fragments do). If you do not override that method, a
+      <code translate="no" dir="ltr">SavedStateViewModelFactory</code>
+      that saves and restores its state alongside the Fragment’s view is created as the default factory. (
+      <a href="https://android-review.googlesource.com/#/q/I5cbfacde2479fb270c0c344c478260f20b3207d5">I5cbfa</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/186097368">b/186097368</a>
+      )
+    </li>
+    <li>
+      When using
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      on API 29, insets will no longer dispatch indefinitely, fixing issues with
+      <code translate="no" dir="ltr">BottomNavigationBar</code>
+      and
+      <code translate="no" dir="ltr">FloatingActionButton</code>
+      instances. (
+      <a href="https://android-review.googlesource.com/#/q/I1bb780dffcbbcb6a78fbfb74d288a3c0620a3a40">I1bb78</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/186012452">b/186012452</a>
+      )
+    </li>
+    <li>
+      You can now retrieve your Parcelable from the fragment result bundle after process death. (
+      <a href="https://android-review.googlesource.com/#/q/I6593233191347d9595f81268951d6f8dbb627273">I65932</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187443158">b/187443158</a>
+      )
+    </li>
+    <li>
+      When doing a shared element transition on a ViewGroup, if the ViewGroup has
+      <code translate="no" dir="ltr">transitionGroup</code>
+      set to false, it will now properly transition. (
+      <a href="https://android-review.googlesource.com/#/q/I99675eac030325415789be0762aa666355f27dd8">I99675</a>
+      )
+    </li>
+  </ul>

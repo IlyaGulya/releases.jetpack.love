@@ -1,0 +1,81 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.4.0-alpha10
+releaseDate: 2021-09-29
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha10" data-text="Version 1.4.0-alpha10" tabindex="-1">Version 1.4.0-alpha10</h3>
+  <p>September 29, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.4.0-alpha10</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.4.0-alpha10</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.4.0-alpha10</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1a3dcfb231517d6104969f17063fcc6c97ba6eeb..da9716386798fc4e39075f54e5bd3317384a63e6/fragment">Version 1.4.0-alpha10 contains these commits.</a>
+  </p>
+  <p><strong>Lint</strong></p>
+  <ul>
+    <li>
+      Added the
+      <code translate="no" dir="ltr">DetachAndAttachFragmentInSameFragmentTransaction</code>
+      lint warning for detecting calling both
+      <code translate="no" dir="ltr">detach()</code>
+      and
+      <code translate="no" dir="ltr">attach()</code>
+      on the same
+      <code translate="no" dir="ltr">Fragment</code>
+      in the same
+      <code translate="no" dir="ltr">FragmentTransaction</code>
+      - as these complementary operations cancel each other out when done in the same transaction, they must be split into separate transactions to actually do anything. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1832956/">aosp/1832956</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/200867930">b/200867930</a>
+      )
+    </li>
+    <li>
+      Added the
+      <code translate="no" dir="ltr">FragmentAddMenuProvider</code>
+      lint error for correcting usages of the Fragment Lifecycle to the Fragment view Lifecycle when using the
+      <code translate="no" dir="ltr">addMenuProvider</code>
+      API of
+      <code translate="no" dir="ltr">MenuHost</code>
+      . (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1830457/">aosp/1830457</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/200326272">b/200326272</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Documentation Updates</strong></p>
+  <ul>
+    <li>
+      The deprecation message for APIs now handled by the
+      <a href="https://developer.android.com/training/basics/intents/result">Activity Result APIs</a>
+      , namely
+      <code translate="no" dir="ltr">startActivityForResult</code>
+      ,
+      <code translate="no" dir="ltr">startIntentSenderForResult</code>
+      ,
+      <code translate="no" dir="ltr">onActivityResult</code>
+      ,
+      <code translate="no" dir="ltr">requestPermissions</code>
+      , and
+      <code translate="no" dir="ltr">onRequestPermissionsResult</code>
+      , have all been expanded with more details. (
+      <a href="https://android-review.googlesource.com/#/q/cce80f6e9e1ae0f5b3390b59c5cf1321443ab81f">cce80f</a>
+      )
+    </li>
+    <li>
+      The deprecation message for
+      <code translate="no" dir="ltr">onActivityCreated()</code>
+      for both
+      <code translate="no" dir="ltr">Fragment</code>
+      and
+      <code translate="no" dir="ltr">DialogFragment</code>
+      has all been expanded with more details. (
+      <a href="https://android-review.googlesource.com/#/q/244db49af2b0fa925892da5860462631d32c114d">224db4</a>
+      )
+    </li>
+  </ul>

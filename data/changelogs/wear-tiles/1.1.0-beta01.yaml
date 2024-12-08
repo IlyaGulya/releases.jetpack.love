@@ -1,0 +1,119 @@
+libraryId: wear-tiles
+groupId: androidx.wear
+version: 1.1.0-beta01
+releaseDate: 2022-07-27
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-beta01" data-text="Version 1.1.0-beta01" tabindex="-1">Version 1.1.0-beta01</h3>
+  <p>July 27, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.tiles:tiles-*:1.1.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/8094b683499b4098092c01028b55a38b49e357f2..a7f0710ad21f556f0dde9bf7bdab6d2135170fd4/wear/tiles">Version 1.1.0-beta01 contains these commits.</a>
+  </p>
+  <p>The 1.0.0-beta01 release of Tiles Material library contains components and layouts that are in-line with Material guidelines and easy to build.</p>
+  <p>The included components are:</p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">Button</code>
+      - clickable, circular-shaped object, with either icon, text or image with 3 predefined sizes.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Chip</code>
+      - clickable, stadium-shaped object that can contain an icon, primary and secondary labels, and has fixed height and customizable width.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">CompactChip</code>
+      &amp;
+      <code translate="no" dir="ltr">TitleChip</code>
+      - two variations of the standard Chip that have smaller and larger heights, respectively, and can contain one line of text.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">CircularProgressIndicator</code>
+      - colored arc around the edge of the screen with the given start and end angles, which can describe a full or partial circle with the full progress arc behind it.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Text</code>
+      - styled text which uses the recommended Wear Material typography styles
+    </li>
+  </ul>
+  <p>
+    All these components have their own colors object that can be built with the main
+    <code translate="no" dir="ltr">Colors</code>
+    class to easily apply the same theme over all components. In addition to colors, there is a
+    <code translate="no" dir="ltr">Typography</code>
+    class to easily get
+    <code translate="no" dir="ltr">FontStyle</code>
+    objects using the typography name.
+  </p>
+  <p>In addition to components, there are recommended tiles layouts:</p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">PrimaryLayout</code>
+      - A layout which can be customized by adding primary or secondary labels, content in the middle, and a primary chip at the bottom. The main content within this layout could be added as a
+      <code translate="no" dir="ltr">MultiSlotLayout</code>
+      or
+      <code translate="no" dir="ltr">MultiButtonLayout</code>
+      object.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">EdgeContentLayout</code>
+      - A layout for hosting
+      <code translate="no" dir="ltr">CircularProgressIndicator</code>
+      around the edge with main content inside and primary or secondary label around it.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">MultiButtonLayout</code>
+      - A layout that can contain 1 - 7 buttons, arranged in line with the Material guidelines depending on their number.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">MultiSlotLayout</code>
+      - A row-like style layout with horizontally aligned and spaced slots (for icons or other small content).
+    </li>
+  </ul>
+  <p>All layouts have recommended padding and styles applied that are within Material guidelines.</p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Major refactor to the Chip components that includes separating setters in Builder so that each part of the content is passed in separately with renaming to match guidelines (primary label, secondary label, image resource id). Additionally, content description will be auto generated if not set. (
+      <a href="https://android-review.googlesource.com/#/q/I57622f5db7b3af9494d37094fef8b4fdd83ab9ec">I57622</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ProgressIndicatorLayout</code>
+      has been renamed to
+      <code translate="no" dir="ltr">EdgeContentLayout</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic1aa681ded084b53febdb3337a65809da9931734">Ic1aa6</a>
+      )
+    </li>
+    <li>
+      Button size contents have been renamed to names
+      <code translate="no" dir="ltr">without _BUTTON</code>
+      suffix in it with additional Javadocs clarification across
+      <code translate="no" dir="ltr">Button</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1dfe2b3f43e3d9e873b10ce238a79351ff02dd38">I1dfe2</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>Margins, padding and overall arrangement in Material Layouts has been updated to accommodate all types of recommended layouts and screen sizes and shapes.</li>
+    <li>
+      Improvements to Material Layouts. In
+      <code translate="no" dir="ltr">MultiSlotLayout</code>
+      slots are now flexible in width where they’ll wrap content instead of being fixed size.(
+      <a href="https://android-review.googlesource.com/#/q/I52919d51f3be4f47bbcc8fbb54792fb5fc2763b0">I52919</a>
+      ),(
+      <a href="https://android-review.googlesource.com/#/q/If18b40e810cb5b6f7e1b6fa4a1cb970c5c269dce">If18b4</a>
+      )
+    </li>
+    <li>
+      Area that can be tapped on
+      <code translate="no" dir="ltr">CompactChip</code>
+      has been increased to follow accessibility guidelines. (
+      <a href="https://android-review.googlesource.com/#/q/Ie8264d424026e16f999b2c69a53c68b1d41b8345">Ie8264</a>
+      )
+    </li>
+  </ul>

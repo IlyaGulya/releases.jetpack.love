@@ -1,0 +1,42 @@
+libraryId: annotation
+groupId: androidx.annotation
+version: 1.1.0-beta01
+releaseDate: 2019-03-13
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-beta01" data-text="Version  1.1.0-beta01" tabindex="-1">Version 1.1.0-beta01</h3>
+  <p>April 3rd, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.annotation:annotation:1.1.0-beta01</code>
+    is released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/091eca9ac5e20c1346e4c1fdace7b63721f9ce43..2f634eec2143acd6a4ea19a375a6e3877cdcc2ed/annotations">here</a>
+    .
+  </p>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>this version of Annotation is incompatible with Activity 1.0.0-alpha04 and 1.0.0-alpha05 as well as Fragment 1.1.0-alpha04 and 1.1.0-alpha05. Please upgrade to Activity 1.0.0-alpha06 and Fragment 1.1.0-alpha06, respectively.</span>
+  </aside>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      New
+      <code translate="no" dir="ltr">@InspectableProperty</code>
+      annotation to support the new view inspection APIs added in Android 10. This annotation can be applied to getters on views or other UI elements. Code generation tools may use it to create companion objects that map property names and attribute IDs to property values without the overhead of reflection.
+    </li>
+  </ul>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      Breaking change:
+      <code translate="no" dir="ltr">@ContentView</code>
+      has been changed to a constructor annotation and the
+      <code translate="no" dir="ltr">@LayoutRes</code>
+      value has been removed. Classes wishing to support
+      <code translate="no" dir="ltr">@ContentView</code>
+      annotations should add this annotation to a constructor that takes a
+      <code translate="no" dir="ltr">@LayoutRes int</code>
+      parameter. This fixes an issue when using this annotation in library modules. (
+      <a href="https://issuetracker.google.com/issues/128352521">b/128352521</a>
+      )
+    </li>
+  </ul>

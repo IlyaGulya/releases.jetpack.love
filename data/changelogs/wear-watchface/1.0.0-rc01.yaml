@@ -1,0 +1,50 @@
+libraryId: wear-watchface
+groupId: androidx.wear
+version: 1.0.0-rc01
+releaseDate: 2021-11-03
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-rc01" data-text="Version 1.0.0-rc01" tabindex="-1">Version 1.0.0-rc01</h3>
+  <p>November 3, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.watchface:watchface-*:1.0.0-rc01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ca6054a5e12fcf05ba5e20bf93403afdab093986..e90bbb5c9ce1de64d619166e2d548e79f7a9bdf4/wear/watchface">Version 1.0.0-rc01 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <p>
+        Fix dump() (called by adb shell dumpsys) which got broken by flow migrations. (
+        <a href="https://android.googlesource.com/platform/frameworks/support/+/087cf9e9cd0e8a22ce606fe609523b302a6fe2df">087cf9e</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Ensure proper ordering of writeDirectBootPrefs. We want writeDirectBootPrefs to always run after initStyleAndComplications or we risk delaying UI thread init.(
+        <a href="https://android.googlesource.com/platform/frameworks/support/+/37650ac346629f446d7780b68fda5188a1f7a245">37650ac</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Ensure Renderer.onDestroy is called. In the scenario where the renderer has been created but WF init has not completed and Engine.onDestroy is called, we need to call Renderer.onDestroy. (
+        <a href="https://android.googlesource.com/platform/frameworks/support/+/f9952dc62e10a23846123e4ecd166272784a178c">f9952dc</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Optimization/fix to isBatteryLowAndNotCharging. This patch moves the initial setup of isBatteryLowAndNotCharging earlier which means it can be done in parallel with createWatchFace. In addition we now listen to ACTION_POWER_DISCONNECTED. (
+        <a href="https://android.googlesource.com/platform/frameworks/support/+/ddffd80227ea2c84abc0d00eb3aba2e5a7c64dab">ddffd80</a>
+      </p>
+    </li>
+    <li>
+      <p>
+        InteractiveWatchFaceClientImpl.isConnectionAlive to be false after close (
+        <a href="https://android.googlesource.com/platform/frameworks/support/+/ab9774ee2c38e62152a8fb0b65d367884984813f">ab9774e</a>
+        )
+      </p>
+    </li>
+  </ul>

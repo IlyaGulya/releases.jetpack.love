@@ -1,0 +1,44 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.2.0-alpha10
+releaseDate: 2023-02-22
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha10" data-text="Version 1.2.0-alpha10" tabindex="-1">Version 1.2.0-alpha10</h3>
+  <p>February 22, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.2.0-alpha10</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/adf1c279a86ab3886e1666c08e2c3efba783367b..87533b4ff06971ed59028936cd9b6da988cd4522/benchmark">Version 1.2.0-alpha10 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      On Android 14+, Macrobenchmark no longer reinstalls target applications to reset compilation state, thanks to a new platform feature. Previously it was necessary to have a rooted device, or to deal with all application state (e.g. user login) being removed before each benchmark runs. (
+      <a href="https://android-review.googlesource.com/#/q/I9b08cfecc36735d057b388e75d1c9b50b53ed083">I9b08c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/249143766">b/249143766</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">DryRunMode</code>
+      to no longer crash with empty profile, due to compilation skipping. Instead, it runs a single iteration and extracts the profile to ensure something is captured. (
+      <a href="https://android-review.googlesource.com/#/q/I2f05dcb4b21b7bc1e3fc6262ab6106d383f885dc">I2f05d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/266403227">b/266403227</a>
+      )
+    </li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">PowerMetric</code>
+      crash when checking for powerstats presence on old API levels. (
+      <a href="https://android-review.googlesource.com/#/q/306948d9069d67c4df87f863042d33ebbf5faaf9">5faaf9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/268253898">b/268253898</a>
+      )
+    </li>
+  </ul>

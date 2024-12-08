@@ -1,0 +1,81 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.4.1
+releaseDate: 2022-02-09
+#language=html
+changelogHtml: |
+  <h3 id="2.4.1" data-text="Version 2.4.1" tabindex="-1">Version 2.4.1</h3>
+  <p>February 9, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.4.1</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/06c50aeb46902c0559e3fdaf3bb0ea031f910e78..74c6bf00f1309f5066b20ceb18fe9493896f0eac/navigation">Version 2.4.1 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">NavHostFragment</code>
+      will now properly set the
+      <code translate="no" dir="ltr">OnBackPressedDispatcher</code>
+      when using viewbinding with nested graphs. (
+      <a href="https://android-review.googlesource.com/#/q/Ifbb512720e49b4cd49b1ba337f5aa6bcebd1a303">Ifbb51</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/214577959">b/214577959</a>
+      )
+    </li>
+    <li>
+      When deep linking through multiple nested
+      <code translate="no" dir="ltr">NavGraph</code>
+      s the back stack will now properly include intermediate start destinations. (
+      <a href="https://android-review.googlesource.com/#/q/I504c04d2cc4381af22405266192ea0f5094f9c16">I504c0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/214383060">b/214383060</a>
+      )
+    </li>
+    <li>
+      Backported from
+      <a href="#2.5.0-alpha01">
+        Navigation
+        <code translate="no" dir="ltr">2.5.0-alpha01</code>
+      </a>
+      : Fixed an issue where accessing a ViewModel created via
+      <code translate="no" dir="ltr">by navGraphViewModels()</code>
+      from a Fragment's
+      <code translate="no" dir="ltr">onCreate()</code>
+      would fail with an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I8a14dd596195d4ddfa8199c8023a7aedcd286113">I8a14d</a>
+      )
+    </li>
+    <li>
+      Backported from
+      <a href="#2.5.0-alpha01">
+        Navigation
+        <code translate="no" dir="ltr">2.5.0-alpha01</code>
+      </a>
+      :
+      <code translate="no" dir="ltr">NavDeepLink</code>
+      s no longer unnecessarily decode args twice, meaning that the properly decoded args are now passed to your final destination. (
+      <a href="https://android-review.googlesource.com/#/q/I31b0aa2e770650f483a3f75257c57035af298d9f">I31b0a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/210711399">b/210711399</a>
+      )
+    </li>
+    <li>
+      Backported from
+      <a href="#2.5.0-alpha01">
+        Navigation
+        <code translate="no" dir="ltr">2.5.0-alpha01</code>
+      </a>
+      : Safe Args now depends on Android Gradle Plugin version 7.0.4. This means that Navigation Safe Args will no longer be compatible with Android Studio versions prior to 7.0, but is now compatible with Android Gradle Plugin 7.1.0 and higher. (
+      <a href="https://android-review.googlesource.com/#/q/I41c88ee06ad827c61cb1bbdc5ba58b3d56155caf">I41c88</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/213086135">b/213086135</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/207670704">b/207670704</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_240_3" data-text="Version 2.4.0" tabindex="-1">Version 2.4.0</h2>

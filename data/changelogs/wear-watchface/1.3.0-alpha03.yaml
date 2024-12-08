@@ -1,0 +1,40 @@
+libraryId: wear-watchface
+groupId: androidx.wear
+version: 1.3.0-alpha03
+releaseDate: 2024-04-17
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha03" data-text="Version 1.3.0-alpha03" tabindex="-1">Version 1.3.0-alpha03</h3>
+  <p>April 17, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.watchface:watchface-*:1.3.0-alpha03</code>
+    is released. Version 1.3.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/02b55f664eba38e42e362e1af3913be1df552d55..67004410fdbff19f90caa4cc43965ab21dca1943/wear/watchface">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We've added
+      <code translate="no" dir="ltr">EditorSession#setOverrideComplications</code>
+      which temporarily sets the underlying watchface instance's
+      <code translate="no" dir="ltr">ComplicationData</code>
+      while editing. If complications change infrequently, this is more efficient than passing overrides in via
+      <code translate="no" dir="ltr">EditorSession#renderWatchFaceToBitmap</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1938467eb317da3e52e11e4492dd87e50b8edb19">I19384</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Previously
+      <code translate="no" dir="ltr">selectComplicationDataForInstant</code>
+      was calling
+      <code translate="no" dir="ltr">toApiComplicationData</code>
+      for any timelines, meaning the subsequent === reference equality test would always fail. This meant complications were getting reloaded every frame leading to battery drain. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/7174060e4e6b92d0c3fea121a841281258793750">717406</a>
+      )
+    </li>
+  </ul>

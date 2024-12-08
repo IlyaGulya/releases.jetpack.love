@@ -1,0 +1,57 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.1.0-beta01
+releaseDate: 2019-06-05
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-beta01" data-text="Version 1.1.0-beta01" tabindex="-1">Version 1.1.0-beta01</h3>
+  <p>June 5, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.1.0-beta01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.1.0-beta01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.1.0-beta01</code>
+    are released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ff4d74c16caf828426d4e6dd8e2d22db9f1be303..b74c465a858f50f5733ec376b2817d240e619b16/fragment">here</a>
+    .
+  </p>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">androidx.lifecycle.Lifecycle</code>
+      callbacks (specifically related to
+      <code translate="no" dir="ltr">STARTED</code>
+      ,
+      <code translate="no" dir="ltr">RESUMED</code>
+      ,
+      <code translate="no" dir="ltr">PAUSED</code>
+      ,
+      <code translate="no" dir="ltr">STOPPED</code>
+      , and
+      <code translate="no" dir="ltr">DESTROYED</code>
+      ) for nested Fragments are now properly nested. (
+      <a href="https://issuetracker.google.com/issues/133497591">b/133497591</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">OnBackPressedCallback</code>
+      instances registered in a Fragment’s
+      <code translate="no" dir="ltr">onCreate()</code>
+      now properly take precedence over the child FragmentManager. (
+      <a href="https://issuetracker.google.com/issues/133175997">b/133175997</a>
+      )
+    </li>
+    <li>
+      Child fragments are no longer animated when their parent fragment is being replaced. (
+      <a href="https://issuetracker.google.com/issues/121017790">b/121017790</a>
+      )
+    </li>
+    <li>
+      Fragments animations and transitions are now ignored when using
+      <code translate="no" dir="ltr">animateLayoutChanges="true"</code>
+      , fixing an issue where Fragments were not properly destroyed. (
+      <a href="https://issuetracker.google.com/issues/116257087">b/116257087</a>
+      )
+    </li>
+  </ul>

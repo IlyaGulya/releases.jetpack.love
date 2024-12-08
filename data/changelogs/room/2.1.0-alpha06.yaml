@@ -1,0 +1,32 @@
+libraryId: room
+groupId: androidx.room
+version: 2.1.0-alpha06
+releaseDate: 2019-03-22
+#language=html
+changelogHtml: |
+  <h3 id="2.1.0-alpha06" data-text="Version 2.1.0-alpha06" tabindex="-1">Version 2.1.0-alpha06</h3>
+  <p>March 22, 2019</p>
+  <p><strong>API / Behavior Changes</strong></p>
+  <ul>
+    <li>
+      Async transaction queries are now serialized such that Room will not use more than one thread for executing database transactions.
+      <code translate="no" dir="ltr">RoomDatabase.Builder.setTransactionExecutor(Executor)</code>
+      was added to allow configuring the executor to be used for transactions.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">RoomDatabase.runInTransaction(Callable)</code>
+      will no longer wrap checked exceptions into RuntimeExceptions.
+      <a href="https://issuetracker.google.com/issues/128623748">b/128623748</a>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a bug where the invalidation tracker would stop observing a content table if observers for both the content table and an external content FTS table were added.
+      <a href="https://issuetracker.google.com/issues/128508917">b/128508917</a>
+    </li>
+    <li>
+      Updated Room's SQLite grammar to match SQLite 3.24.0.
+      <a href="https://issuetracker.google.com/issues/110883668">b/110883668</a>
+    </li>
+  </ul>

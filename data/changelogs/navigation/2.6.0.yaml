@@ -1,0 +1,192 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.6.0
+releaseDate: 2023-06-07
+#language=html
+changelogHtml: |
+  <h3 id="2.6.0" data-text="Version 2.6.0" tabindex="-1">Version 2.6.0</h3>
+  <p>June 7, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.6.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/40ef6498a60cb43bab0aaed607cbff5d4d6156cb..e6702c06ff2c1c7fa8c3aee245f93921d2b50af7/navigation">Version 2.6.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes to Navigation since 2.5.0</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      's
+      <code translate="no" dir="ltr">arguments</code>
+      and the
+      <code translate="no" dir="ltr">arguments</code>
+      passed to an
+      <code translate="no" dir="ltr">OnDestinationChangedListener</code>
+      are now only a copy of the immutable arguments that were created when you navigated to the destination. This means any changes made to those Bundles will not be reflected in subsequent accesses to the
+      <code translate="no" dir="ltr">arguments</code>
+      or other
+      <code translate="no" dir="ltr">OnDestinationChangedListener</code>
+      instances.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavDeepLink</code>
+      now supports default values for arrays, which allows support for repeated query params that will map to the argument's array type.
+      <code translate="no" dir="ltr">NavType</code>
+      also now includes a default method which can be overridden to combine two parsed values.
+    </li>
+    <li>
+      Custom subclasses of
+      <code translate="no" dir="ltr">NavType</code>
+      can now override
+      <code translate="no" dir="ltr">serializeAsValue</code>
+      to serialize a value into a String, allowing both serialization and deserialization (via
+      <code translate="no" dir="ltr">parseValue</code>
+      ) to be entirely encapsulated in the
+      <code translate="no" dir="ltr">NavType</code>
+      class.
+      <code translate="no" dir="ltr">StringType</code>
+      now overrides this method to call
+      <code translate="no" dir="ltr">Uri.encode</code>
+      on the given
+      <code translate="no" dir="ltr">String</code>
+      .
+    </li>
+  </ul>
+  <p><strong>Important changes to Navigation Compose since 2.5.0</strong></p>
+  <ul>
+    <li>
+      When previewing a composable with
+      <code translate="no" dir="ltr">NavHost</code>
+      , it will now show the NavGraph's
+      <code translate="no" dir="ltr">startDestination</code>
+      by default.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavController.popBackStack(route)</code>
+      ,
+      <code translate="no" dir="ltr">NavController.getBackStackEntry(route)</code>
+      ,
+      <code translate="no" dir="ltr">NavController.clearBackStack(route)</code>
+      now all support routes with arguments partially or fully filled in. Note that the arguments have to be an exact match with the entry's arguments.
+    </li>
+    <li>
+      Attempting to create an empty
+      <code translate="no" dir="ltr">NavDeepLink</code>
+      using the
+      <code translate="no" dir="ltr">navDeepLink</code>
+      Kotlin DSL will now result in a lint warning indicating that a deep link needs an uri, action, and/or mimetype to be valid.
+    </li>
+  </ul>
+  <p><strong>Important changes to Navigation with Fragments since 2.5.0</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">NavHostFragment</code>
+      no longer intercepts the system back button itself. This allows the underlying
+      <code translate="no" dir="ltr">FragmentManager</code>
+      to handle system back. This allows
+      <a href="/jetpack/androidx/releases/fragment#1.7.0-alpha01">
+        Fragment
+        <code translate="no" dir="ltr">1.7.0-alpha01</code>
+      </a>
+      and higher to provide an In-App Predictive Back animation on Android U devices.
+    </li>
+    <li>
+      When using Navigation with Fragments, attempting to manually do a
+      <code translate="no" dir="ltr">FragmentTransaction</code>
+      that adds a fragment to the
+      <code translate="no" dir="ltr">FragmentManager</code>
+      's back stack will now throw an
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      . You should always add fragments via the
+      <code translate="no" dir="ltr">navigate()</code>
+      API.
+    </li>
+    <li>
+      When using the exact string
+      <code translate="no" dir="ltr">${applicationId}</code>
+      as the placeholder in the
+      <code translate="no" dir="ltr">app:data</code>
+      and
+      <code translate="no" dir="ltr">app:dataPattern</code>
+      attributes in the activity element of a navigation XML file, the placeholder will be automatically filled in with the
+      <code translate="no" dir="ltr">packageName</code>
+      of the context upon inflation.
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">FragmentNavigator</code>
+      now uses the transition APIs when navigating and popping
+      <code translate="no" dir="ltr">NavBackStackEntries</code>
+      . This means that the
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      <code translate="no" dir="ltr">Lifecycle</code>
+      will now wait for the entering and exiting fragment special effects to complete before moving their final
+      <code translate="no" dir="ltr">Lifecycle.State</code>
+      .
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">DialogFragmentNavigator</code>
+      now uses the transition APIs when navigating and popping
+      <code translate="no" dir="ltr">NavBackStackEntries</code>
+      . This means that the
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      <code translate="no" dir="ltr">Lifecycle</code>
+      will now wait for the
+      <code translate="no" dir="ltr">DialogFragment</code>
+      <code translate="no" dir="ltr">Lifecycle</code>
+      to move to
+      <code translate="no" dir="ltr">DESTROYED</code>
+      before moving to
+      <code translate="no" dir="ltr">DESTROYED</code>
+      itself.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavHostFragment</code>
+      now allows you to retrieve the
+      <code translate="no" dir="ltr">NavController</code>
+      as soon as the
+      <code translate="no" dir="ltr">NavHostFragment</code>
+      is attached to the
+      <code translate="no" dir="ltr">FragmentManager</code>
+      , rather than only after
+      <code translate="no" dir="ltr">onCreate()</code>
+      .
+    </li>
+    <li>Navigation's support for Dynamic Feature Modules now depend on the granular Play Feature Delivery Library.</li>
+    <li>Navigation Safe Args now depends on Android Gradle Plugin version 7.3.0. This means it is now only compatible with versions 7.3.0+.</li>
+  </ul>
+  <p><strong>Important changes to NavigationUI since 2.5.0</strong></p>
+  <ul>
+    <li>
+      When passing the ID of a navigation graph to
+      <code translate="no" dir="ltr">AppBarConfiguration</code>
+      (such as via a
+      <code translate="no" dir="ltr">Menu</code>
+      ),
+      <code translate="no" dir="ltr">NavigationUI</code>
+      now only considers the start destination of that navigation graph as a top level destination, rather than incorrectly marking every destination within the graph as a top level destination. The behavior of passing the ID of an individual destination is unchanged. This same functionality is available to your own code via the new
+      <code translate="no" dir="ltr">isTopLevelDestination</code>
+      function on
+      <code translate="no" dir="ltr">AppBarConfiguration</code>
+      .
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">setupWithNavController</code>
+      integrations in
+      <code translate="no" dir="ltr">NavigationUI</code>
+      for working with the top app bar will now parse
+      <code translate="no" dir="ltr">R.string</code>
+      values for
+      <code translate="no" dir="ltr">ReferenceType</code>
+      arguments found in your
+      <code translate="no" dir="ltr">android:label</code>
+      into their String values instead of outputting the auto-generated resource integer.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavigationUI</code>
+      now provides logs when it fails to navigate via a selected
+      <code translate="no" dir="ltr">MenuItem</code>
+      .
+    </li>
+  </ul>

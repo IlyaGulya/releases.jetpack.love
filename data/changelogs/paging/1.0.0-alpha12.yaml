@@ -1,0 +1,39 @@
+libraryId: paging
+groupId: androidx.paging
+version: 1.0.0-alpha12
+releaseDate: 2021-07-21
+#language=html
+changelogHtml: |
+  <h3 id="paging-compose-1.0.0-alpha12" data-text="Version 1.0.0-alpha12" tabindex="-1">Version 1.0.0-alpha12</h3>
+  <p>July 21, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-compose:1.0.0-alpha12</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/19ae3a88ff0824d615355b492cb56049e16991f2..97264aa4532db7f7db1ffb3f42f3a9204971dbfc/paging/paging-compose">Version 1.0.0-alpha12 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">items(lazyPagingItems)</code>
+      and
+      <code translate="no" dir="ltr">itemsIndexed(lazyPagingItems)</code>
+      used to connect Paging with
+      <code translate="no" dir="ltr">LazyColumn/Row</code>
+      now accept the option key param which allows you to specify a stable key representing the item. You can read more about keys
+      <a href="https://developer.android.com/jetpack/compose/lists#item-keys">here.</a>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I7986d308b9588a43bb11fe7ac4f3b420bbafda70">I7986d</a>
+      )
+    </li>
+    <li>
+      Function
+      <code translate="no" dir="ltr">lazyPagingItems.getAsState(index)</code>
+      is now deprecated. Use
+      <code translate="no" dir="ltr">lazyPagingItems[index]</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/I086cbb113a0c4ddcc333c78fa1346612e4496a5b">I086cb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187339372">b/187339372</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,162 @@
+libraryId: browser
+groupId: androidx.browser
+version: 1.2.0-alpha09
+releaseDate: 2019-10-23
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha09" data-text="Version 1.2.0-alpha09" tabindex="-1">Version 1.2.0-alpha09</h3>
+  <p>October 23, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.browser:browser:1.2.0-alpha09</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5859e2fea48acda3c5a0216e2973e71a7ce75538..5ce6d3ab9df61dc34670503ed762053d336a09c0/browser">Version 1.2.0-alpha09 contains these commits</a>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">Token</code>
+      class can be used to represent the identity of a package, it contains both the package name and the signature of the package’s signing certificate.
+      <ul>
+        <li>It is designed to be serialized to a byte[] for persistence.</li>
+        <li>
+          It is used by the
+          <code translate="no" dir="ltr">TrustedWebActivityService</code>
+          to determine what TWA provider is allowed to connect to it.
+        </li>
+        <li>
+          It is used by the
+          <code translate="no" dir="ltr">TrustedWebActivityConnectionPool</code>
+          by the TWA provider to determine which packages are valid to connect to.
+        </li>
+      </ul>
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">TokenStore</code>
+      interface is now used by the
+      <code translate="no" dir="ltr">TrustedWebActivityService</code>
+      to determine which app is allowed to connect to it.
+      <ul>
+        <li>
+          It is up to the client to call
+          <code translate="no" dir="ltr">TokenStore#store</code>
+          ,
+          <code translate="no" dir="ltr">TrustedWebActivityService</code>
+          only loads the Tokens.
+        </li>
+      </ul>
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">TrustedWebActivityServiceConnectionPool</code>
+      (previously TrustedWebActivityServiceConnectionManager) no longer stores the set of verified packages:
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">registerClient</code>
+          and
+          <code translate="no" dir="ltr">getVerifiedPackages</code>
+          have now been removed.
+        </li>
+        <li>
+          The collection of verified packages is now provided manually to
+          <code translate="no" dir="ltr">execute</code>
+          (previously
+          <code translate="no" dir="ltr">connect</code>
+          ) and
+          <code translate="no" dir="ltr">serviceExistsForScope</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">TrustedWebActivityService</code>
+      delegates to the overriding class to store the verified provider.
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">setVerifiedProvider</code>
+          has been removed.
+        </li>
+        <li>
+          The client must implement
+          <code translate="no" dir="ltr">getTokenStore</code>
+          which returns a
+          <code translate="no" dir="ltr">TokenStore</code>
+          that can be used to store and retrieve a
+          <code translate="no" dir="ltr">Token</code>
+          .
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">TrustedWebActivityServiceConnectionManager</code>
+      class:
+      <ul>
+        <li>
+          Is now called
+          <code translate="no" dir="ltr">TrustedWebActivityServiceConnectionPool</code>
+          .
+        </li>
+        <li>Is now final.</li>
+        <li>
+          Is constructed by the static
+          <code translate="no" dir="ltr">create</code>
+          method instead of a public constructor.
+        </li>
+      </ul>
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">TrustedWebActivityService</code>
+      class:
+      <ul>
+        <li>Has thread annotations on overridable methods.</li>
+      </ul>
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">TrustedWebActivityServiceWrapper</code>
+      class:
+      <ul>
+        <li>
+          Is now called
+          <code translate="no" dir="ltr">TrustedWebActivityServiceConnection</code>
+          .
+        </li>
+        <li>Is now final.</li>
+        <li>Now throws raw RemoteExceptions instead of wrapping them in RuntimeExceptions.</li>
+      </ul>
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">ShareTarget#FileFormField</code>
+      class is now final.
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">TrustedWebUtils#splashScreensAreSupported</code>
+      method has been renamed to
+      <code translate="no" dir="ltr">areSplashScreensSupported</code>
+      .
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">TrustedWebActivityIntentBuilder#getUrl</code>
+      method has been renamed to
+      <code translate="no" dir="ltr">TrustedWebActivityIntentBuilder#getUri</code>
+      .
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">SplashScreenParamKey</code>
+      static fields have been prefixed with
+      <code translate="no" dir="ltr">KEY_</code>
+      .
+    </li>
+  </ul>

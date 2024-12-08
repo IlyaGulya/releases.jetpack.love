@@ -1,0 +1,82 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.2.0-alpha03
+releaseDate: 2022-10-24
+#language=html
+changelogHtml: |
+  <h3 id="3.2.0-alpha03" data-text="Version 3.2.0-alpha03" tabindex="-1">Version 3.2.0-alpha03</h3>
+  <p>October 24, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.2.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/bea814b246f89ff7244e3c6b0648f0b57e47897c..548c8ac2570ae6cf15798fea1380491f7d93796b/paging">Version 3.2.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>Paging Testing</strong></p>
+  <p>
+    This release contains a new artifact:
+    <code translate="no" dir="ltr">paging-testing</code>
+    . This artifact provides APIs designed around unit testing each layer of your app and its integration with Paging in isolation.
+  </p>
+  <p>
+    For example, this first release includes a
+    <code translate="no" dir="ltr">TestPager</code>
+    class that allows you to validate the behavior of your own custom
+    <code translate="no" dir="ltr">PagingSource</code>
+    implementation independently from the
+    <code translate="no" dir="ltr">Pager</code>
+    and real UI you would normally need to simulate the end-to-end Paging integration.
+  </p>
+  <p>
+    <code translate="no" dir="ltr">TestPager</code>
+    should be considered a
+    <strong>fake</strong>
+    - a
+    <a href="//training/testing/fundamentals/test-doubles">test double</a>
+    that mirrors the real implementation of
+    <code translate="no" dir="ltr">Pager</code>
+    while providing a simplified API surface for testing a
+    <code translate="no" dir="ltr">PagingSource</code>
+    . These APIs are
+    <code translate="no" dir="ltr">suspend</code>
+    APIs and should be run within
+    <code translate="no" dir="ltr">runTest</code>
+    as outlined in the guide for
+    <a href="https://developer.android.com/kotlin/coroutines/test">Testing Kotlin coroutines on Android</a>
+    .
+  </p>
+  <p>
+    An example of these APIs in use can be found in the
+    <a href="https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:room/room-paging/src/androidTest/kotlin/androidx/room/paging/LimitOffsetPagingSourceTest.kt">
+      <code translate="no" dir="ltr">room-paging</code>
+      tests
+    </a>
+    , which were refactored to use
+    <code translate="no" dir="ltr">TestPager</code>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Enables convenient iteration over
+      <code translate="no" dir="ltr">LoadResult.Page.data</code>
+      through
+      <code translate="no" dir="ltr">LoadResult.Page.iterator()</code>
+      . This indirectly allows the usage of the
+      <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/flatten.html">
+        Kotlin standard library
+        <code translate="no" dir="ltr">flatten</code>
+        method
+      </a>
+      when given a
+      <code translate="no" dir="ltr">List&lt;LoadResult.Page&gt;</code>
+      such as with the
+      <code translate="no" dir="ltr">pages</code>
+      property of
+      <code translate="no" dir="ltr">PagingState</code>
+      that is passed to the
+      <code translate="no" dir="ltr">PagingSource.getRefreshKey</code>
+      method. (
+      <a href="https://android-review.googlesource.com/#/q/Ie0718ec7179434d2ec2466374cb33cf1c4aec92f">Ie0718</a>
+      )
+    </li>
+  </ul>

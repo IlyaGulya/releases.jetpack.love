@@ -1,0 +1,78 @@
+libraryId: wear-watchface
+groupId: androidx.wear
+version: 1.1.0-rc01
+releaseDate: 2022-05-18
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-rc01" data-text="Version 1.1.0-rc01" tabindex="-1">Version 1.1.0-rc01</h3>
+  <p>May 18, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.watchface:watchface-*:1.1.0-rc01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b18424ac8b7d47a65751381a4f8ad4777f537107..947b9ceb775ff5ace7ed32e57bb398c964bf5db3/wear/watchface">Version 1.1.0-rc01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      We’ve made some usability tweaks to watchface XML support, making it easier to specify
+      <code translate="no" dir="ltr">ComplicationSlotBounds</code>
+      and supporting references. Experimentation with edge complication
+      <code translate="no" dir="ltr">BoundingArc</code>
+      continues, plumbing it through to
+      <code translate="no" dir="ltr">drawHighlight</code>
+      although it’s not recommended for use at that time.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We've added an experimental overload of
+      <code translate="no" dir="ltr">drawHighlight</code>
+      which accepts a
+      <code translate="no" dir="ltr">BoundingArc</code>
+      parameter. (
+      <a href="https://android-review.googlesource.com/#/q/I705f8f92e4b133a3d76038c6520789a747c667ee">I705f8</a>
+      )
+    </li>
+    <li>
+      Watch face XML now supports resource references. It lets you use the same constants both in XML and your code. (
+      <a href="https://android-review.googlesource.com/#/q/I3ef61ab93d8e3a6a0d314a8a0425b31164a9c63f">I3ef61</a>
+      )
+    </li>
+    <li>
+      We've added the ability to define
+      <code translate="no" dir="ltr">ComplicationSlotBounds</code>
+      in
+      <code translate="no" dir="ltr">center_x</code>
+      ,
+      <code translate="no" dir="ltr">center_y</code>
+      ,
+      <code translate="no" dir="ltr">size_x</code>
+      ,
+      <code translate="no" dir="ltr">size_y</code>
+      form. Now it is also possible to use different units (i.e. dp) using resource references. (
+      <a href="https://android-review.googlesource.com/#/q/Iace98fc80f978037b1ae42307f2cbb278c4a8129">Iace98</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">runBlockingWithTracing</code>
+      which was running tasks on the wrong context.(
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/4f595fe139661c42d56fb829d085a384bf832c6b">4f595fe</a>
+      )
+    </li>
+    <li>
+      Make
+      <code translate="no" dir="ltr">BaseEditorSession.close</code>
+      synchronous. The problem with
+      <code translate="no" dir="ltr">BaseEditorSession.close</code>
+      being asynchronous is that we release the
+      <code translate="no" dir="ltr">ComplicationDataSourceInfoRetriever</code>
+      too late leading to warning spam in logcat. This was probably harmless but logcat spam is distracting and should be avoided.(
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/35a5308a631f3db7bba4a9b186fec8b85df74659">35a5308</a>
+      )
+    </li>
+  </ul>

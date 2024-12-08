@@ -1,0 +1,125 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.0.0-alpha11
+releaseDate: 2020-12-16
+#language=html
+changelogHtml: |
+  <h3 id="3.0.0-alpha11" data-text="Version 3.0.0-alpha11" tabindex="-1">Version 3.0.0-alpha11</h3>
+  <p>December 16, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.0.0-alpha11</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/38a668d3ef95f40ad28d6e735a2c3eb95ae4cf63..dd3c8e9c2424b78e44f55db599251891fd1cadb4/paging">Version 3.0.0-alpha11 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Saved state support added for the following basic use cases (full support, especially in the layered source case is still a work in progress):
+      <ul>
+        <li>flow is cached and application is not killed (e.g. flow is cached in a view model and activity is recreated in process)</li>
+        <li>paging source is counted, placeholders are enabled and the layout is not staggered.</li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">PagingSource.getRefreshKey()</code>
+      is now stable API (
+      <a href="https://android-review.googlesource.com/#/q/I22f6fb44ec84b33f4ed14fc7d4a3783795832c52">I22f6f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173530980">b/173530980</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PagingSource.invalidate</code>
+      is no longer an open function. If you need to get notified when invalidation happens, consider calling the registerInvalidatedCallback method instead of overriding invalidate. (
+      <a href="https://android-review.googlesource.com/#/q/I628d9893a4ac55409aa24e49de1e2d2c35beda4f">I628d9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173029013">b/173029013</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/137971356">b/137971356</a>
+      )
+    </li>
+    <li>
+      Pager now has a single experimental constructor alongside its regular constructors, rather than leaking experimental APIs into non-experimental public API via the opt-in annotation. (
+      <a href="https://android-review.googlesource.com/#/q/I9dc614204842258a72be000c6e37846fb85470c1">I9dc61</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/174531520">b/174531520</a>
+      )
+    </li>
+    <li>
+      Updated the convenience properties,
+      <code translate="no" dir="ltr">CombinedLoadStates.refresh</code>
+      ,
+      <code translate="no" dir="ltr">CombinedLoadStates.prepend</code>
+      ,
+      <code translate="no" dir="ltr">CombinedLoadStates.append</code>
+      to only transition from
+      <code translate="no" dir="ltr">Loading</code>
+      to
+      <code translate="no" dir="ltr">NotLoading</code>
+      after both mediator and source load states are
+      <code translate="no" dir="ltr">NotLoading</code>
+      to ensure the remote update has been applied. (
+      <a href="https://android-review.googlesource.com/#/q/I656192632c4ce073ac8e54a3f1c597bbbae77002">I65619</a>
+      )
+    </li>
+    <li>
+      <p>
+        LoadParams.pageSize has been removed (it was already deprecated). The recommendation is to use
+        <code translate="no" dir="ltr">LoadParams.loadSize</code>
+        in your PagingSource.
+      </p>
+
+      <p>
+        <code translate="no" dir="ltr">LoadParams.loadSize</code>
+        is always equal to the
+        <code translate="no" dir="ltr">PagingConfig.pageSize</code>
+        except for the initial load call where it is equal to the
+        <code translate="no" dir="ltr">PagingConfig.initialLoadSize</code>
+        .
+      </p>
+
+      <p>
+        If you are testing your Paging2 DataSource without using a Pager or PagedList,
+        <code translate="no" dir="ltr">pageSize</code>
+        may not match the
+        <code translate="no" dir="ltr">PagingConfig.pageSize</code>
+        if you are also setting
+        <code translate="no" dir="ltr">initialLoadSize</code>
+        . If it is important for your tests, try using a Pager/PagedList instead which will internally set the correct PageSize for your DataSource load methods. (
+        <a href="https://android-review.googlesource.com/#/q/I98ac735090f65919282c4afbd005bbd27b9af0f3">I98ac7</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/149157296">b/149157296</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a crash due to IllegalStateException when using separators with PagingConfig.maxSize set. (
+      <a href="https://android-review.googlesource.com/#/q/I0ed33e86d3a09e1fb5f157c841331238d7ff83b4">I0ed33</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/174787528">b/174787528</a>
+      )
+    </li>
+    <li>
+      Fixed a bug where load state for PREPEND / APPEND would not update to
+      <code translate="no" dir="ltr">NotLoading(endOfPaginationReached = true)</code>
+      immediately after initial load if RemoteMediator was set (
+      <a href="https://android-review.googlesource.com/#/q/I8cf5aec7d1b8499758d4445e3c2ede65a2447df5">I8cf5a</a>
+      )
+    </li>
+    <li>Fixed a bug where presenter-side APIs such as .snapshot(), .peek(), etc., would return the previous (out-of-date) list within ListUpdateCallback updates.</li>
+    <li>Fixed a bug where Separators operators would not add headers or footers when used with RemoteMediator</li>
+    <li>Fixed a bug where LoadState updates to NotLoading for RemoteMediator would get stuck in the Loading state</li>
+    <li>
+      Fixed a bug where the Paging2.0 compatibility API,
+      <code translate="no" dir="ltr">.asPagingSourceFactory()</code>
+      , could cause the backing
+      <code translate="no" dir="ltr">DataSource</code>
+      to be initialized on the incorrect CoroutineDispatcher. This resolves a crash and possible ANR cases, especially when using Room’s current implementation of PagingSource, which uses this compatibility path.
+    </li>
+  </ul>

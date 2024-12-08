@@ -1,0 +1,160 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.8.0-alpha06
+releaseDate: 2024-11-13
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0-alpha06" data-text="Version 1.8.0-alpha06" tabindex="-1">Version 1.8.0-alpha06</h3>
+  <p>November 13, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.8.0-alpha06</code>
+    is released. Version 1.8.0-alpha06 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ccd90a76bd7c4acf4f4f01eca76350e383bc441e..6f09cf2ae979e48fdb19485f757a033e4a34bb82/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">stylusHoverIcon</code>
+      modifier. (
+      <a href="https://android-review.googlesource.com/#/q/Iff20af03b451228bc44c4356d4b4e89956cc3b45">Iff20a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/331289114">b/331289114</a>
+      )
+    </li>
+    <li>
+      Changes Autofill manager to be an interface. (
+      <a href="https://android-review.googlesource.com/#/q/I8491407de5699bf7273b9f88bda11cc438e2fd62">I84914</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/376080755">b/376080755</a>
+      )
+    </li>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">requestFocus(FocusDirection)</code>
+      to both
+      <code translate="no" dir="ltr">focusRequester</code>
+      and
+      <code translate="no" dir="ltr">FocusTargetModifierNode</code>
+      to allow focusing with a specific direction. (
+      <a href="https://android-review.googlesource.com/#/q/I5d9eca3a2cd283c1b84ad6b77d929ef9a49ce4cc">I5d9ec</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/245755256">b/245755256</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FocusProperties.enter</code>
+      and
+      <code translate="no" dir="ltr">FocusProperties.exit</code>
+      have been replaced with
+      <code translate="no" dir="ltr">onEnter</code>
+      and
+      <code translate="no" dir="ltr">onExit</code>
+      , using a receiver scope instead of
+      <code translate="no" dir="ltr">FocusDirection</code>
+      parameter. (
+      <a href="https://android-review.googlesource.com/#/q/I6e667ad84b51a525531f4902c1a0ac6ab8b4fba8">I6e667</a>
+      )
+    </li>
+    <li>
+      Adding autofill support in text toolbar. (
+      <a href="https://android-review.googlesource.com/#/q/Ie6a4c0542737d76d603a925f85c389c81eb49747">Ie6a4c</a>
+      )
+    </li>
+    <li>
+      API changes to
+      <code translate="no" dir="ltr">Modifier.focusRestorer()</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I99c038bcc996de64b5fa3219192e37752e7243bc">I99c03</a>
+      ):
+      <ul>
+        <li>parameter name changed to 'fallback'</li>
+        <li>
+          parameter is now a
+          <code translate="no" dir="ltr">FocusRequester</code>
+          and not a lambda
+        </li>
+        <li>parameter is now non-NULL with Default as the default value</li>
+      </ul>
+    </li>
+    <li>
+      Removing
+      <code translate="no" dir="ltr">@Experimental</code>
+      annotation from autofill manager interface. The feature is still WIP targeting this release but we do not want to introduce @Expemiental API (
+      <a href="https://android-review.googlesource.com/#/q/Id83983b6de73b1fe7a958d7fcc12914f8d896081">Id8398</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LocalHapticFeedback</code>
+      now provides a default
+      <code translate="no" dir="ltr">HapticFeedback</code>
+      implementation when the Vibrator API indicates that haptics are supported. The following have been added to the
+      <code translate="no" dir="ltr">HapticFeedbackType</code>
+      -
+      <code translate="no" dir="ltr">Confirm</code>
+      ,
+      <code translate="no" dir="ltr">ContextClick</code>
+      ,
+      <code translate="no" dir="ltr">GestureEnd</code>
+      ,
+      <code translate="no" dir="ltr">GestureThresholdActivate</code>
+      ,
+      <code translate="no" dir="ltr">Reject</code>
+      ,
+      <code translate="no" dir="ltr">SegmentFrequentTick</code>
+      ,
+      <code translate="no" dir="ltr">SegmentTick</code>
+      ,
+      <code translate="no" dir="ltr">ToggleOn</code>
+      ,
+      <code translate="no" dir="ltr">ToggleOff</code>
+      ,
+      <code translate="no" dir="ltr">VirtualKey</code>
+      . Wear Compose long-clickable components such as
+      <code translate="no" dir="ltr">Button</code>
+      ,
+      <code translate="no" dir="ltr">IconButton</code>
+      ,
+      <code translate="no" dir="ltr">TextButton</code>
+      , and
+      <code translate="no" dir="ltr">Card</code>
+      now perform the
+      <code translate="no" dir="ltr">LONG_PRESS</code>
+      haptic when a long-click handler has been supplied. (
+      <a href="https://android-review.googlesource.com/#/q/I5083db2ce3619189c0a3793de9f535d996029c75">I5083d</a>
+      )
+    </li>
+    <li>
+      Removes
+      <code translate="no" dir="ltr">OverscrollConfiguration</code>
+      and
+      <code translate="no" dir="ltr">LocalOverscrollConfiguration</code>
+      , and adds
+      <code translate="no" dir="ltr">rememberPlatformOverscrollFactory</code>
+      to create an instance of / customize parameters of the default overscroll implementation. To disable overscroll, instead of
+      <code translate="no" dir="ltr">LocalOverscrollConfiguration provides null</code>
+      , use
+      <code translate="no" dir="ltr">LocalOverscrollFactory provides null</code>
+      . To change the glow color / padding, instead of
+      <code translate="no" dir="ltr">LocalOverscrollConfiguration provides OverscrollConfiguration(myColor, myPadding)</code>
+      , use
+      <code translate="no" dir="ltr">LocalOverscrollFactory provides rememberPlatformOverscrollFactory(myColor, myPadding)</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie71f9a016face13262f4fe16ac56c40a0d6f9712">Ie71f9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/255554340">b/255554340</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/234451516">b/234451516</a>
+      )
+    </li>
+    <li>
+      Removed the experimental
+      <code translate="no" dir="ltr">GlobalAssertions</code>
+      API. It's intended use was to run accessibility checks, see
+      <code translate="no" dir="ltr">enableAccessibilityChecks()</code>
+      for that purpose instead. (
+      <a href="https://android-review.googlesource.com/#/q/I5932296f2aca4c3daa30a013dd00e876ecebb077">I59322</a>
+      )
+    </li>
+  </ul>

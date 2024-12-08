@@ -1,0 +1,56 @@
+libraryId: sqlite
+groupId: androidx.sqlite
+version: 2.3.0-beta01
+releaseDate: 2022-10-05
+#language=html
+changelogHtml: |
+  <h3 id="2.3.0-beta01" data-text="Version 2.3.0-beta01" tabindex="-1">Version 2.3.0-beta01</h3>
+  <p>October 5, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.sqlite:sqlite:2.3.0-beta01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.sqlite:sqlite-framework:2.3.0-beta01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.sqlite:sqlite-ktx:2.3.0-beta01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/dd1e45e8550560087f6447a34a9145048b5766f4..4586cf6e518f0c59410ef2b291e34ff9fdcff4e1/sqlite">Version 2.3.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      All of android.sqlite sources have been converted from Java to Kotlin.
+      <a href="https://issuetracker.google.com/240707042">b/240707042</a>
+    </li>
+    <li>
+      One notable change of the conversion is that the following getter functions have become properties:
+      <ul>
+        <li>
+          In
+          <code translate="no" dir="ltr">SupportSQLiteDatabase</code>
+          :
+        </li>
+        <li><code translate="no" dir="ltr">attachedDbs</code></li>
+        <li><code translate="no" dir="ltr">isDatabaseIntegrityOk</code></li>
+        <li><code translate="no" dir="ltr">isDbLockedByCurrentThread</code></li>
+        <li><code translate="no" dir="ltr">isOpen</code></li>
+        <li><code translate="no" dir="ltr">isReadOnly</code></li>
+        <li><code translate="no" dir="ltr">isWriteAheadLoggingEnabled</code></li>
+        <li><code translate="no" dir="ltr">maximumSize</code></li>
+        <li><code translate="no" dir="ltr">pageSize</code></li>
+        <li><code translate="no" dir="ltr">path</code></li>
+        <li><code translate="no" dir="ltr">version</code></li>
+        <li>
+          In
+          <code translate="no" dir="ltr">SupportSQLiteOpenHelper</code>
+          :
+        </li>
+        <li><code translate="no" dir="ltr">databaseName</code></li>
+        <li><code translate="no" dir="ltr">readableDatabase</code></li>
+        <li><code translate="no" dir="ltr">writableDatabase</code></li>
+      </ul>
+    </li>
+  </ul>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>You may experience source incompatibility issues due to the library conversion to Kotlin. If your code is in Kotlin and is using certain APIs, then updating to this new version might require changes in your code. Specifically if you had implementations with overrides with any of the getter functions mentioned above then you need to override them as property getters and not functions.</span>
+  </aside>

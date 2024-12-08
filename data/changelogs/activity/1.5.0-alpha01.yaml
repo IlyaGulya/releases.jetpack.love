@@ -1,0 +1,118 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.5.0-alpha01
+releaseDate: 2022-01-26
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha01" data-text="Version 1.5.0-alpha01" tabindex="-1">Version 1.5.0-alpha01</h3>
+  <p>January 26, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.5.0-alpha01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.activity:activity-compose:1.5.0-alpha01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.5.0-alpha01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/12bdbc07b7e7e6ea8c70d50af20301310931d415..9dceceb54300ed028a7e8fc7a3454f270337ffde/activity">Version 1.5.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      now integrates with ViewModel CreationExtras, introduced as part of
+      <a href="/jetpack/androidx/releases/lifecycle#2.5.0-alpha01">
+        Lifecycle
+        <code translate="no" dir="ltr">2.5.0-alpha01</code>
+      </a>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie7e00cf560026d19de728920f8c233a128ec24f3">Ie7e00</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/207012584">b/207012584</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ComponentDialog</code>
+      , a subclass of
+      <code translate="no" dir="ltr">Dialog</code>
+      that includes an
+      <code translate="no" dir="ltr">OnBackPressedDispatcher</code>
+      that will be called when the system back button is pressed when the dialog is visible. Importantly, this subclass also sets the
+      <code translate="no" dir="ltr">ViewTreeOnBackPressedDispatcherOwner</code>
+      , allowing views a generic way to retrieve the correct dispatcher whether it exists in a
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      or a
+      <code translate="no" dir="ltr">ComponentDialog</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I8a1bcd3c4e2b4544d4b4460e2e7fd7424af34452">I8a1bc</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      now implements the new
+      <code translate="no" dir="ltr">OnNewIntentProvider</code>
+      interface to allow any component to receive these events. (
+      <a href="https://android-review.googlesource.com/#/q/If1f8baabb64aa4aa776303bab33322969776b10d">If1f8b</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      now implements the new
+      <code translate="no" dir="ltr">OnConfigurationChangedProvider</code>
+      interface to allow any component to receive these events. (
+      <a href="https://android-review.googlesource.com/#/q/If623b1764a9fda903ae308bae13de86d09d3cfd6">If623b</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      now implements the new
+      <code translate="no" dir="ltr">OnTrimMemoryProvider</code>
+      interface to allow any component to receive these events. (
+      <a href="https://android-review.googlesource.com/#/q/Ia9295c9a47293e6a768fb590fe00b6fe7a3092a5">Ia9295</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The no parameter constructor for
+      <code translate="no" dir="ltr">ActivityResultContracts.CreateDocument</code>
+      has been deprecated and replaced with a new constructor that takes a concrete mime type (e.g.,
+      <code translate="no" dir="ltr">"image/png"</code>
+      ) as is required by
+      <code translate="no" dir="ltr">Intent.ACTION_CREATE_DOCUMENT</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2bec6d0db33a7cacd468df5c4af3eedf1102f3f4">I2bec6</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">OnBackPressedDispatcherOwner</code>
+      associated with a View can now be retrieved via the
+      <code translate="no" dir="ltr">ViewTreeOnBackPressedDispatcherOwner</code>
+      , rather than relying on casting the
+      <code translate="no" dir="ltr">Context</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I74685aabe026659f649eea1b803f499a4def979e">I74685</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a crash when accessing a
+      <code translate="no" dir="ltr">ViewModel</code>
+      for the very first time from a
+      <code translate="no" dir="ltr">registerForActivityResult()</code>
+      callback or the callbacks to a
+      <code translate="no" dir="ltr">LifecycleObserver</code>
+      added as part of
+      <code translate="no" dir="ltr">init</code>
+      of a
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ife83f26bedddb2b843a2ce977d0e9526f070ac07">Ife83f</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_140_3" data-text="Version 1.4.0" tabindex="-1">Version 1.4.0</h2>

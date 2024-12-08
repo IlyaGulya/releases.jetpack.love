@@ -1,0 +1,75 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.6.0-alpha04
+releaseDate: 2022-11-09
+#language=html
+changelogHtml: |
+  <h3 id="2.6.0-alpha04" data-text="Version 2.6.0-alpha04" tabindex="-1">Version 2.6.0-alpha04</h3>
+  <p>November 9, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.6.0-alpha04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/548c8ac2570ae6cf15798fea1380491f7d93796b..a1e318590b217ecfce1b2de17eed2f18b6a680bb/navigation">Version 2.6.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Custom subclasses of
+      <code translate="no" dir="ltr">NavType</code>
+      can now override
+      <code translate="no" dir="ltr">serializeAsValue</code>
+      to serialize a value into a String, allowing both serialization and deserialization (via
+      <code translate="no" dir="ltr">parseValue</code>
+      ) to be entirely encapsulated in the
+      <code translate="no" dir="ltr">NavType</code>
+      class.
+      <code translate="no" dir="ltr">StringType</code>
+      now overrides this method to call
+      <code translate="no" dir="ltr">Uri.encode</code>
+      on the given
+      <code translate="no" dir="ltr">String</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie52134e58058b8b33b9b0810fab2b342dffb6ec9">Ie5213</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/247637434">b/247637434</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavigationUI</code>
+      now provides logs when it fails to navigate via a selected
+      <code translate="no" dir="ltr">MenuItem</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2af5a295550cb72c05b7e1308be8db325234bd22">I2af5a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/247730357">b/247730357</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Navigation deep links are now parsed lazily instead of on graph initialization which could improve app performance at start up. (
+      <a href="https://android-review.googlesource.com/#/q/Iab0abc79fcc65dc435327f199df6b469d4bcee86">Iab0ab</a>
+      )
+    </li>
+    <li>
+      Fixed crash caused by navigating up after deep linking to a destination with null default arguments. (
+      <a href="https://android-review.googlesource.com/#/q/I51c240a957f6fb6a9f91c5564551e1ee23af374f">I51c24</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/243183636">b/243183636</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Update</strong></p>
+  <ul>
+    <li>
+      Navigation's support for Dynamic Feature Modules now depend on the granular Play Feature Delivery Library. (
+      <a href="https://android-review.googlesource.com/#/q/Ib4ddca6bdd26012bffc5426e50869338faa40d22">Ib4ddc</a>
+      )
+    </li>
+    <li>
+      Navigation Safe Args now depends on Android Gradle Plugin version 7.3.0. This means it is now only compatible with versions 7.3.0+. (
+      <a href="https://android-review.googlesource.com/#/q/I47e49a258f82d072eb3559c97ac0937cf3f1b14b">I47e49</a>
+      )
+    </li>
+  </ul>

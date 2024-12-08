@@ -1,0 +1,52 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.0.0-alpha26
+releaseDate: 2021-06-30
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha26" data-text="Version 1.0.0-alpha26" tabindex="-1">Version 1.0.0-alpha26</h3>
+  <p>June 30, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-extensions:1.0.0-alpha26</code>
+    and
+    <code translate="no" dir="ltr">androidx.camera:camera-view:1.0.0-alpha26</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5065c9982754d7b54b8577d64c4ff830375a4b0e..d042a98877f160baa61a8f88718b6a49b7a15d61/camera">Version 1.0.0-alpha26 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      add a new method
+      <code translate="no" dir="ltr">CameraController#getTapToFocusState()</code>
+      that exposes the latest tap-to-focus result. (
+      <a href="https://android-review.googlesource.com/#/q/Iaccb06143b282c78d78b89c0801f76bc469ed54f">Iaccb0</a>
+      )
+    </li>
+    <li>
+      adding more camera-core features to CameraController: getters/setters for target aspect ratio, target resolution, capture mode, CameraControl and custom executors. (
+      <a href="https://android-review.googlesource.com/#/q/Iea8f2b507fa9783e6b63d42ee5f47ec867c5151a">Iea8f2</a>
+      )
+    </li>
+    <li>
+      add a RotationReceiver class that receives Surface rotation changes. This can be used to set the target rotation when the device is in fixed portrait/landscape mode. (
+      <a href="https://android-review.googlesource.com/#/q/Ib278f5f6050370e6de8a492a22dd39c861155688">Ib278f</a>
+      )
+    </li>
+    <li>
+      Exposed new getEstimatedCaptureLatencyRange public APIs in ExtensionsManager class. (
+      <a href="https://android-review.googlesource.com/#/q/I6a8eccf43124afbec8d12c504b95afb6a60d2009">I6a8ec</a>
+      )
+    </li>
+    <li>
+      Deprecated ExtensionsErrorListener. Currently, this interface is only used to monitor whether a Preview or ImageCapture is lacking when enabling extension modes. CameraX will automatically add an extra Preview or ImageCapture to make the extension functions work well. After that, no error will be reported via this interface. (
+      <a href="https://android-review.googlesource.com/#/q/I47d9ecf70d107273ddfd3fb6b73dc7c64d4b2de9">I47d9e</a>
+      )
+    </li>
+    <li>
+      Exposed new ExtensionsManager getInstance, isExtensionAvailable and getExtensionEnabledCameraSelector public APIs and deprecated old
+      <code translate="no" dir="ltr">&lt;EffectName&gt;&lt;UseCase&gt;Extender</code>
+      classes and related APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I329e64b47382cfe973c35f8a2b098932b5755732">I329e6</a>
+      )
+    </li>
+  </ul>

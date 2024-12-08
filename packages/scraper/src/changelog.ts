@@ -8,6 +8,7 @@ import {FsStorage} from "./storage";
 import type {PageCache} from "./cache";
 import {cleanVersionString, normalizeDate} from "./utils";
 import {LibraryChangelog} from "@jetpack.love/common";
+import * as prettier from 'prettier';
 
 const log = debug('jetpack:changelog');
 
@@ -15,7 +16,6 @@ interface VersionInfo {
   version: string;
   date: Date;
   content: string;
-  commitsUrl?: string;
 }
 
 const expectedMissingChangelogs = new Set<string>([
@@ -121,7 +121,7 @@ export class ChangelogScraper {
     return null;
   }
 
-  private extractVersionInfo($: CheerioAPI, versionSection: Element, libraryId: string): VersionInfo | null {
+  private async extractVersionInfo($: CheerioAPI, versionSection: Element, libraryId: string): Promise<VersionInfo | null> {
     const $section = $(versionSection);
     const versionText = this.getVersionFromSection($, $section);
 
@@ -207,14 +207,10 @@ export class ChangelogScraper {
       return null;
     }
 
-    // Find commits URL if present
-    const commitsUrl = content.join('\n').match(/href="([^"]+(?:contains these commits|googlesource)[^"]*)"/)?.[1];
-
     return {
       version: versionText,
       date: parsedDate,
-      content: content.join('\n'),
-      commitsUrl,
+      content: content.join("\n"),
     };
   }
 
@@ -280,7 +276,7 @@ export class ChangelogScraper {
 
       // Process each version section
       for (const section of versionSections.toArray()) {
-        const versionInfo = this.extractVersionInfo($, section, libraryId);
+        const versionInfo = await this.extractVersionInfo($, section, libraryId);
 
         if (versionInfo) {
           const changelog: LibraryChangelog = {
@@ -289,7 +285,6 @@ export class ChangelogScraper {
             version: versionInfo.version,
             releaseDate: format(versionInfo.date, 'yyyy-MM-dd'),
             changelogHtml: versionInfo.content,
-            commitsUrl: versionInfo.commitsUrl,
           };
 
           await this.storage.saveChangelog(changelog);

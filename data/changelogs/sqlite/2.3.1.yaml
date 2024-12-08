@@ -1,0 +1,42 @@
+libraryId: sqlite
+groupId: androidx.sqlite
+version: 2.3.1
+releaseDate: 2023-03-22
+#language=html
+changelogHtml: |
+  <h3 id="2.3.1" data-text="Version 2.3.1" tabindex="-1">Version 2.3.1</h3>
+  <p>March 22, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.sqlite:sqlite:2.3.1</code>
+    ,
+    <code translate="no" dir="ltr">androidx.sqlite:sqlite-framework:2.3.1</code>
+    , and
+    <code translate="no" dir="ltr">androidx.sqlite:sqlite-ktx:2.3.1</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b06d4b8c52b58338b7e3a9a32bd153c0c464d224..4bfc36b857955ac99fc6ee686456b6e54dd1c545/sqlite">Version 2.3.1 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Avoid a framework issue where SQL queries would not get invalidated after a schema change during migrations.
+      <code translate="no" dir="ltr">FrameworkSupportSQLiteOpenHelper</code>
+      will now set the minimum SQL statement cache during migrations to avoid the problem. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/0ad2a8f5fc6359fba216519a1bc9af30b7804022">0ad2a8f</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where the cache directory might not be available to use for
+      <code translate="no" dir="ltr">SupportSQLiteLock</code>
+      , thus a null File must be gracefully handled. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/9d177dc60d6820ce12e7c3d10d2b5ed9c9a7f8b7">9d177dc</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">attachedDbs</code>
+      was not returning the full list of attached databases. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/5f008e15829528b3d048fbc7e374d8fb4a5ed3fd">5f008e1</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_230_3" data-text="Version 2.3.0" tabindex="-1">Version 2.3.0</h2>

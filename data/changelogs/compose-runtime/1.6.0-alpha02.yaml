@@ -1,0 +1,75 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.6.0-alpha02
+releaseDate: 2023-07-26
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-alpha02" data-text="Version 1.6.0-alpha02" tabindex="-1">Version 1.6.0-alpha02</h3>
+  <p>July 26, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.6.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3b5b931546a48163444a9eddc533489fcddd7494..4aed940027a19667e67d155563fc5fa8b7279313/compose/runtime">Version 1.6.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features &amp; Performance Enhancements</strong></p>
+  <ul>
+    <li>
+      Optimize
+      <code translate="no" dir="ltr">rememberSaveable</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Idb32853a52d502222acdd0c156bf9f8ed30cc352">f01d79</a>
+      )
+    </li>
+    <li>
+      Defer re-reading derived states until changes are recorded (
+      <a href="https://android-review.googlesource.com/#/q/I561cb932a478d3797a1ff8e2e59147ae505d47c1">f38099</a>
+      )
+    </li>
+    <li>
+      Improve providing composition local values (
+      <a href="https://android-review.googlesource.com/#/q/I5486fae04c873dac4947848e536446a97b6e13f9">a337ea</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SideEffect</code>
+      is marked as
+      <code translate="no" dir="ltr">@ExplicitGroupsComposable</code>
+      to avoid generating a group. (
+      <a href="https://android-review.googlesource.com/#/q/I7481512ddcdfa2db575828225e2b81363bdf01ac">I74815</a>
+      )
+    </li>
+    <li>
+      Avoid comparing composition local maps on reuse (
+      <a href="https://android-review.googlesource.com/#/q/I098d5478ae8dadc9c5f0aa50f74ab99f3274a15d">782071</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added a special case overload for
+      <code translate="no" dir="ltr">CompositionLocalProviders</code>
+      that avoids overhead used to make providing multiple values faster but is overhead when providing a single value. (
+      <a href="https://android-review.googlesource.com/#/q/I6d640d97b96c26d9120c396063d84c73d947b852">I6d640</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/288169379">b/288169379</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix slot table memory leak (
+      <a href="https://android-review.googlesource.com/#/q/I21097e85475bc01da5297ca31161d04ecdc7547f">73fcfe</a>
+      )
+    </li>
+    <li>
+      Fix how we restore
+      <code translate="no" dir="ltr">rememberSaveable</code>
+      when
+      <code translate="no" dir="ltr">stateSaver</code>
+      returns null (
+      <a href="https://android-review.googlesource.com/#/q/Ie51f499a7e2996cf509dbb340131f6b5a40fcf9c">90748c</a>
+      )
+    </li>
+  </ul>

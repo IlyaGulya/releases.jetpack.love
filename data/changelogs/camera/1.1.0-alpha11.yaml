@@ -1,0 +1,67 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.1.0-alpha11
+releaseDate: 2021-11-17
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha11" data-text="Version 1.1.0-alpha11" tabindex="-1">Version 1.1.0-alpha11</h3>
+  <p>November 17, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.1.0-alpha11</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d51a5b31d004ef5b808e917260eb704d9e1c6bb2..ab8e6d320bb31b74ef87c504c9c5ac2b61d5ab98/camera">Version 1.1.0-alpha11 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added CameraSelector#filter to the public API to filter a list of CameraInfos based on a CameraSelector. (
+      <a href="https://android-review.googlesource.com/#/q/I105d07cb5a391b45045cbf06a429ab77e04fe040">I105d0</a>
+      )
+    </li>
+    <li><p>Add setOutputImageRotationEnabled API for ImageAnalysis config. User can enable rotation for YUV/RGB image buffer. The rotation degree is a relative rotation calculated based on sensor rotation and target rotation to keep image upfront.</p></li>
+    <li>
+      <p>Add setOutputImageRotationEnabled API for ImageAnalysis config. User can enable rotation for YUV/RGB image buffer. The rotation degree is a relative rotation calculated based on sensor rotation and target rotation to keep image upfront.</p>
+
+      <p>
+        Add
+        <code translate="no" dir="ltr">getSensorToBufferTransformMatrix</code>
+        API in ImageInfo. The returned matrix is a mapping from sensor coordinates to buffer coordinates, which is, from the value of
+        <code translate="no" dir="ltr">CameraCharacteristics.SENSOR_INFO_ACTIVE_ARRAY_SIZE</code>
+        to
+        <code translate="no" dir="ltr">(0, 0, image.getWidth, image.getHeight)</code>
+        . The matrix can be used to map the coordinates from one {UseCase} to another. For example, mapping coordinates of the face detected with ImageAnalysis to Preview. (
+        <a href="https://android-review.googlesource.com/#/q/I9ff1ee7581fff9febe7ccdc952f0bd1d8314dbb6">I9ff1e</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added a new API ImageCapture.Builder#setJpegQuality to allow changing the output JPEG image compression quality when taking picture. (
+        <a href="https://android-review.googlesource.com/#/q/I8dcf4c2b1652e2fec383073c2b86dd52abd0273c">I8dcf4</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Renamed MediaStoreOutputOptions.getCollection to MediaStoreOutputOptions.getCollectionUri. (
+        <a href="https://android-review.googlesource.com/#/q/I1663979876eb6fa27e3adfc56fbb6be0245a54ee">I16639</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed the issue where flash being triggered during tap-to-focus (startFocusAndMetering) when flash mode is auto or always_on in low-light environment. (
+      <a href="https://android-review.googlesource.com/#/q/Id4c1101c8b9b10bc8c64abb2102a2a712951fe41">Id4c11</a>
+      )
+    </li>
+    <li>
+      Disabled HDR+ on Pixel 2 XL / Pixel 3 XL in MINIMIZE_LATENCY mode to reduce latency. (
+      <a href="https://android-review.googlesource.com/#/q/Ib6270375fdae288d34dd182b2d48294bc90d1e49">Ib6270</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/203505523">b/203505523</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>

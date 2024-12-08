@@ -1,0 +1,82 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.0.0-beta02
+releaseDate: 2022-05-18
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta02" data-text="Version 1.0.0-beta02" tabindex="-1">Version 1.0.0-beta02</h3>
+  <p>May 18, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-foundation:1.0.0-beta02</code>
+    ,
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material:1.0.0-beta02</code>
+    , and
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-navigation:1.0.0-beta02</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/53d512be6fd26bc30bffa7cae8e9769ec5c4bfbf..6266a22ad9adaed6fa88fe98aa8adaa46eb96ccc/wear/compose">Version 1.0.0-beta02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Picker now always responds to scroll events even when in read-only mode. This avoids the need for users to first select a Picker by tapping, before they can scroll. In read-only mode, options other than that currently selected are obscured by a shim in
+      <code translate="no" dir="ltr">gradientColor</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I72925a66999fa5ad1ec2307189483484aae4c9fc">I72925</a>
+      )
+    </li>
+    <li>
+      We have changed the UX behavior of
+      <code translate="no" dir="ltr">Chip/ToggleChip/CompactChip/SplitToggleChip</code>
+      to stop them from doing
+      <code translate="no" dir="ltr">fillMaxWidth</code>
+      by default. Instead they will grow to fit their contents. To keep the previous behavior simply add
+      <code translate="no" dir="ltr">modifier = Modifier.fillMaxWidth()</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I60a2cc1d2a7c1d88483ecbb374beae7fe4a688ff">I60a2c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/232206371">b/232206371</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">CurvedTextStyle</code>
+      constructor taking a
+      <code translate="no" dir="ltr">TextStyle</code>
+      now also respects the
+      <code translate="no" dir="ltr">fontWeight</code>
+      (This may be added to the constructor and copy methods in future revisions of the API) (
+      <a href="https://android-review.googlesource.com/#/q/Ieebb94f123e1b7d43b90249520bfaff7f62bb5c7">Ieebb9</a>
+      )
+    </li>
+    <li>
+      Edge swiping improvements. When
+      <code translate="no" dir="ltr">Modifier.edgeSwipeToDismiss</code>
+      is used and a swipe to the left is triggered from the edge area, it no longer triggers swipe-to-dismiss when swipe direction changes to the right. Previously, it was possible to trigger swipe-to-dismiss by swiping to the left and then swiping to the right.(
+      <a href="https://android-review.googlesource.com/#/q/I916eafd9eb308eca15d4925dc0490a93c5bbb830">I916ea</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">HorizontalPageIndicator</code>
+      now shows up to 6 pages on the screen. If there are more than 6 pages in total, it shows a half-size indicator on the left or right, with a smooth transition between pages.(
+      <a href="https://android-review.googlesource.com/#/q/I2ac2920a8f392233d44c6b739ea294fb29d5b80d">I2ac29</a>
+      )
+    </li>
+    <li>
+      Improved default snap behavior on
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      and
+      <code translate="no" dir="ltr">Picker</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I495391b07b2cb92b3adcb6e23ae0153c2f176e78">I49539</a>
+      )
+    </li>
+    <li>
+      Edge swiping improvements. When
+      <code translate="no" dir="ltr">Modifier.edgeSwipeToDismiss</code>
+      is used, swipe-to-dismiss only triggers when first touch lands on the edge and swiped to the right, Previously it was possible to trigger swipe-to-dismiss by swiping from any part of the screen if a scroll reaches the start.(
+      <a href="https://android-review.googlesource.com/#/q/I8ca2a7eb6dd8f73d69de02e0d631c0cd672bfb5b">I8ca2a</a>
+      )
+    </li>
+  </ul>

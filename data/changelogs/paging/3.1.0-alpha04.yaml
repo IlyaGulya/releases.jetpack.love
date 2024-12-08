@@ -1,0 +1,90 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.1.0-alpha04
+releaseDate: 2021-09-29
+#language=html
+changelogHtml: |
+  <h3 id="3.1.0-alpha04" data-text="Version 3.1.0-alpha04" tabindex="-1">Version 3.1.0-alpha04</h3>
+  <p>September 29, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.1.0-alpha04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/97264aa4532db7f7db1ffb3f42f3a9204971dbfc..1f6bc4d47b7be46a5af151ed726e84db0a1cf9f9/paging">Version 3.1.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">Flow&lt;PagingData&gt;.observable</code>
+      and
+      <code translate="no" dir="ltr">Flow&lt;PagingData&gt;.flowable</code>
+      APIs are no longer experimental. (
+      <a href="https://android-review.googlesource.com/#/q/Ie0bdd8c453baa752836a0c53e5ff035fcf8d85c5">Ie0bdd</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      For LoadStates,
+      <code translate="no" dir="ltr">endOfPaginationReached</code>
+      is now always
+      <code translate="no" dir="ltr">false</code>
+      for
+      <code translate="no" dir="ltr">LoadType.REFRESH</code>
+      . Previously, it was possible for endOfPaginationReached to be
+      <code translate="no" dir="ltr">true</code>
+      for RemoteMediator
+      <code translate="no" dir="ltr">REFRESH</code>
+      , but not for PagingSource. This behavior is now consolidated to always return
+      <code translate="no" dir="ltr">false</code>
+      as it never makes sense for REFRESH to be terminal, and is now documented as part of the API contract in LoadStates. When deciding if pagination is terminated, you should always do so with respect to either the APPEND or PREPEND directions. (
+      <a href="https://android-review.googlesource.com/#/q/I047b601726e8cbdb55eb68bd849cba1136dd0e3e">I047b6</a>
+      )
+    </li>
+    <li>
+      <p>LoadStates from Paging now await valid values from both PagingSource and RemoteMediator before emitting downstream between generations. This prevents new generations of PagingData from sending NotLoading in CombinedLoadStates.source.refresh if it was already Loading; new generations of PagingData will now always correctly begin with Loading for refresh state instead of first resetting to NotLoading incorrectly in some cases.</p>
+
+      <p>
+        Cancellation on past generations now happen eagerly on invalidation / new generations. It should no longer be required to use .collectLatest on
+        <code translate="no" dir="ltr">Flow&lt;PagingData&gt;</code>
+        , although it is still highly recommended to do so. (
+        <a href="https://android-review.googlesource.com/#/q/I0b2b5e0120e2e3a677f65d40d3955a9bbbe2e1a9">I0b2b5</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/177351336">b/177351336</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/195028524">b/195028524</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">.loadStateFlow</code>
+        and
+        <code translate="no" dir="ltr">.addLoadStateListener</code>
+        on presenter APIs no longer redundantly send an initial
+        <code translate="no" dir="ltr">CombinedLoadStates</code>
+        that always has mediator states set to
+        <code translate="no" dir="ltr">null</code>
+        and source states set to
+        <code translate="no" dir="ltr">NotLoading(endOfPaginationReached = false)</code>
+        . This means that:
+      </p>
+
+      <ol>
+        <li>mediator states will always be populated if you use RemoteMediator.</li>
+        <li>
+          Registering a new loadState listener or a new collector on
+          <code translate="no" dir="ltr">.loadStateFlow</code>
+          will no longer immediately emit the current value if it hasn't received a real
+          <code translate="no" dir="ltr">CombinedLoadStates</code>
+          from
+          <code translate="no" dir="ltr">PagingData</code>
+          . This can happen if a collector or listener starts before a
+          <code translate="no" dir="ltr">PagingData</code>
+          has been submitted. (
+          <a href="https://android-review.googlesource.com/#/q/I1a7485edd077f1ae08f7d9656cbcdfb6bf9ec99f">I1a748</a>
+          )
+        </li>
+      </ol>
+    </li>
+  </ul>

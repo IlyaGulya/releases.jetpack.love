@@ -1,0 +1,189 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 1.4.0-alpha04
+releaseDate: 2023-01-11
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha04" data-text="Version 1.4.0-alpha04" tabindex="-1">Version 1.4.0-alpha04</h3>
+  <p>January 11, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material-*:1.4.0-alpha04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/047e199bdcb8a5cd744cc7a2f986631bfb350ec7..adf1c279a86ab3886e1666c08e2c3efba783367b/compose/material">Version 1.4.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added in
+      <code translate="no" dir="ltr">IsContainer</code>
+      semantics property on Surfaces. This property will be used in a later change that determines traversal order based on the semantic meaning of elements such as surfaces. (
+      <a href="https://android-review.googlesource.com/#/q/I63379fde102abbee7d5464c50b1c86a59e01e768">I63379</a>
+      )
+    </li>
+    <li>
+      Mark the
+      <code translate="no" dir="ltr">snapTo</code>
+      function in Drawer as non-experimental API. (
+      <a href="https://android-review.googlesource.com/#/q/Ib9c18103d5485a48177a9b57ce40b29656bb4cf1">Ib9c18</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261425368">b/261425368</a>
+      )
+    </li>
+    <li>
+      Added a track color parameter for circular progress indicators, and a stroke cap parameter for both circular and linear progress indicators. (
+      <a href="https://android-review.googlesource.com/#/q/Ie668cc47ce9ce3aa688ad3c3ed9e9e15fdbda5e9">Ie668c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/216325962">b/216325962</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/222964817">b/222964817</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">ModalBottomSheetState</code>
+      ,
+      <code translate="no" dir="ltr">ModalBottomSheetState.Saver</code>
+      and
+      <code translate="no" dir="ltr">rememberModalBottomSheetState</code>
+      's
+      <code translate="no" dir="ltr">confirmStateChange</code>
+      to
+      <code translate="no" dir="ltr">confirmValueChange</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib48d1cbe2671647f5feda1fcde5dee9754c8caa0">Ib48d1</a>
+      )
+    </li>
+    <li>
+      More return type nullability of deprecated-hidden functions (
+      <a href="https://android-review.googlesource.com/#/q/Ibf7b0ada56eb08983e6109d30fad5294f6b841f0">Ibf7b0</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">Modifier.minimumInteractiveComponentSize</code>
+      . It can be used to reserve at least 48.dp in size to disambiguate touch interactions if the element would measure smaller. (
+      <a href="https://android-review.googlesource.com/#/q/I33f58e4c11cf74668e97167b91dad26b64ac554b">I33f58</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/258495559">b/258495559</a>
+      )
+    </li>
+    <li>
+      Incorporated changes in the Swipeable APIs in
+      <code translate="no" dir="ltr">ModalBottomSheetLayout</code>
+      .
+      <code translate="no" dir="ltr">ModalBottomSheetState</code>
+      's
+      <code translate="no" dir="ltr">animateTo</code>
+      does not take an
+      <code translate="no" dir="ltr">animationSpec</code>
+      parameter anymore and the
+      <code translate="no" dir="ltr">offset</code>
+      exposed is now nullable. Use
+      <code translate="no" dir="ltr">requireOffset</code>
+      to require the
+      <code translate="no" dir="ltr">offset</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia2e79162058b143cc40ab6c4b1082126e147a7a2">Ia2e79</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      A
+      <code translate="no" dir="ltr">ModalBottomSheetLayout</code>
+      's sheet now has a maximum width of 640 dp. (
+      <a href="https://android-review.googlesource.com/#/q/I71a4f015f303a2d20c0e8bf5b54ded56533c9701">I71a4f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/234927577">b/234927577</a>
+      )
+    </li>
+    <li>
+      Fixes an issue where
+      <code translate="no" dir="ltr">rememberPullRefreshState</code>
+      was not updating
+      <code translate="no" dir="ltr">refreshThreshold</code>
+      and
+      <code translate="no" dir="ltr">refreshingOffset</code>
+      over time. (
+      <a href="https://android-review.googlesource.com/#/q/Ifed10d3305317f3a46e7e700ce7759746e1cea0e">Ifed10</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/263159832">b/263159832</a>
+      )
+    </li>
+    <li>
+      Progress for progress indicators is now properly bounded to its expected range. (
+      <a href="https://android-review.googlesource.com/#/q/I8a7eb76931af76bac20dbd2879674a60c2899672">I8a7eb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/262262727">b/262262727</a>
+      )
+    </li>
+    <li>
+      When
+      <code translate="no" dir="ltr">ModalBottomSheetState</code>
+      has not received any anchors yet, it will update the
+      <code translate="no" dir="ltr">currentValue</code>
+      without an animation when
+      <code translate="no" dir="ltr">snapTo</code>
+      or
+      <code translate="no" dir="ltr">animateTo</code>
+      are called instead of throwing an exception. (
+      <a href="https://android-review.googlesource.com/#/q/I2c91b5c454882c7288425921e13b20ba3a375351">I2c91b</a>
+      )
+    </li>
+    <li>
+      Fixed the enabled state at the Material 2
+      <code translate="no" dir="ltr">FilterChip</code>
+      implementation. (
+      <a href="https://android-review.googlesource.com/#/q/Id326a2a1749936c585011497bf5bcb3d21a05f9e">Id326a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261329817">b/261329817</a>
+      )
+    </li>
+    <li>
+      Fixed a bug where
+      <code translate="no" dir="ltr">ModalBottomSheetLayout</code>
+      would crash if it was
+      <code translate="no" dir="ltr">HalfExpanded</code>
+      when rotating from portrait to landscape. Please ensure you are passing in the correct
+      <code translate="no" dir="ltr">initialValue</code>
+      , for example by checking the configuration. (
+      <a href="https://android-review.googlesource.com/#/q/Ie8df79fae22ea27329024e0ea3b3f6a240151b87">Ie8df7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/182882364">b/182882364</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">ModalBottomSheetLayout</code>
+      would crash if the sheet content was empty.
+      <code translate="no" dir="ltr">ModalBottomSheetLayout</code>
+      now allows empty sheet content. If the sheet content is empty, it will only have a Hidden state. (
+      <a href="https://android-review.googlesource.com/#/q/Ic2288017e3c5a80a0951cf136064cca5e2fab7cb">Ic2288</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/200980998">b/200980998</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/216693030">b/216693030</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issue</strong></p>
+  <ul>
+    <li>
+      When updating from
+      <code translate="no" dir="ltr">androidx.compose.foundation:1.4.0-alpha03</code>
+      to
+      <code translate="no" dir="ltr">androidx.compose.foundation:1.4.0-alpha04</code>
+      , you might experience a
+      <code translate="no" dir="ltr">java.lang.NoSuchFieldError</code>
+      error.
+      <a href="https://issuetracker.google.com/issues/265172081">Here</a>
+      is where the issue was orginially reported. A fix has been submitted, and will be available on the next Compose update. As a work around, update your
+      <code translate="no" dir="ltr">androidx.compose.material</code>
+      and
+      <code translate="no" dir="ltr">androidx.compose.material3</code>
+      libraries to the latest version(1.1.0-alpha04) or downgrade your
+      <code translate="no" dir="ltr">androidx.compose.foundation</code>
+      to 1.4.0-alpha03.
+    </li>
+  </ul>

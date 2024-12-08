@@ -1,0 +1,103 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.0.0-alpha15
+releaseDate: 2022-01-26
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha15" data-text="Version 1.0.0-alpha15" tabindex="-1">Version 1.0.0-alpha15</h3>
+  <p>January 26, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-foundation:1.0.0-alpha15</code>
+    ,
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material:1.0.0-alpha15</code>
+    , and
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-navigation:1.0.0-alpha15</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f09f3e0f47cacc65a631115deac08ee8cc132ceb..9dceceb54300ed028a7e8fc7a3454f270337ffde/wear/compose">Version 1.0.0-alpha15 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We have added a new property
+      <code translate="no" dir="ltr">autoCentering</code>
+      to the
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      . When true (the default) this will ensure that all items including the first and last can be scrolled so that they are visible in the center of the lists viewport. Note that if using auto-centering you will probably want to set vertical content padding to 0.dp. If both autoCentering and vertical content padding are provided then they will both result in additional space being available before the first and after the last list items allowing them to be scrolled even further. (
+      <a href="https://android-review.googlesource.com/#/q/I2a2827ad79ea6cf1cb5d9a623b600417def9cc2f">I2a282</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/214922490">b/214922490</a>
+      )
+    </li>
+    <li>
+      We have added a
+      <code translate="no" dir="ltr">Dialog</code>
+      component that enables any composable to trigger a full screen dialog that sits on top of other content. When shown, the dialog supports swipe-to-dismiss and will show its parent's content in the background during the swipe gesture. The dialog content is expected to be
+      <code translate="no" dir="ltr">Alert</code>
+      or
+      <code translate="no" dir="ltr">Confirmation</code>
+      (renamed from earlier components
+      <code translate="no" dir="ltr">AlertDialog</code>
+      and
+      <code translate="no" dir="ltr">ConfirmationDialog</code>
+      ) -
+      <code translate="no" dir="ltr">Alert</code>
+      ,
+      <code translate="no" dir="ltr">Confirmation</code>
+      and
+      <code translate="no" dir="ltr">Dialog</code>
+      are all in the
+      <code translate="no" dir="ltr">androidx.wear.compose.material.dialog</code>
+      package. Alert and Confirmation can be used as navigation destinations. Also, added ColumnScope to Alert and Confirmation parameters as necessary. (
+      <a href="https://android-review.googlesource.com/#/q/Ia90143b7a387f4197861e0a1a338970692d4e057">Ia9014</a>
+      )
+    </li>
+    <li>
+      We have removed
+      <code translate="no" dir="ltr">onSurfaceVariant2</code>
+      from the Compose for WearOS Material Theme Colors and replaced uses in the library with
+      <code translate="no" dir="ltr">onSurfaceVariant</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Icd592e345414f0f9d4901578d761a20556777686">Icd592</a>
+      )
+    </li>
+    <li>
+      Added a method to programmatically select an option on the
+      <code translate="no" dir="ltr">PickerState</code>
+      , the initially selected option can now also be specified when creating a
+      <code translate="no" dir="ltr">PickerState</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I92bdf1ba853a6f53ff1264dbdbe6b4d0f6128941">I92bdf</a>
+      )
+    </li>
+    <li>
+      We have added support for customizing the fling behavior of the
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1ad2e27966d6fbd84ce3c226b42729cbe47db1af">I1ad2e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/208842968">b/208842968</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">NavController.currentBackStackEntryAsState()</code>
+      to the
+      <code translate="no" dir="ltr">Wear.Compose.Navigation</code>
+      library. (
+      <a href="https://android-review.googlesource.com/#/q/If90286c7debe623df926a091f15766abf04f2ecc">If9028</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/212739653">b/212739653</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Modifier.onRotaryScrollEvent()</code>
+      and
+      <code translate="no" dir="ltr">Modifier.onPreRotaryScrollEvent()</code>
+      for Wear devices with a rotating side button.(
+      <a href="https://android-review.googlesource.com/#/q/I18bf59262881d9c4a2edea159751164340ac3ed5">I18bf5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/210748686">b/210748686</a>
+      )
+    </li>
+  </ul>

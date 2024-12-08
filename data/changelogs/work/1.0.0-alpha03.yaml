@@ -1,0 +1,191 @@
+libraryId: work
+groupId: androidx.work
+version: 1.0.0-alpha03
+releaseDate: 2018-06-19
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha03" data-text="Version 1.0.0-alpha03" tabindex="-1">Version 1.0.0-alpha03</h3>
+  <p>June 19, 2018</p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <p>
+        Fixed a race condition in the
+        <code translate="no" dir="ltr">AlarmManager</code>
+        based implementation.
+        <a href="https://issuetracker.google.com/issues/80346526">b/80346526</a>
+        .
+      </p>
+    </li>
+    <li>
+      <p>
+        Fixed duplicate jobs when using
+        <code translate="no" dir="ltr">JobScheduler</code>
+        after a device reboot.
+      </p>
+    </li>
+    <li>
+      <p>
+        Jobs with Content URI triggers now persist across reboots.
+        <a href="https://issuetracker.google.com/issues/80234744">b/80234744</a>
+      </p>
+    </li>
+    <li>
+      <p>
+        Documentation updates.
+        <a href="https://issuetracker.google.com/issues/109827628">b/109827628</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/109758949">b/109758949</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/80230748">b/80230748</a>
+      </p>
+    </li>
+    <li>
+      <p>
+        Fixed a crash when re-enqueuing a
+        <code translate="no" dir="ltr">WorkRequest</code>
+        .
+        <a href="https://issuetracker.google.com/issues/109572353">b/109572353</a>
+        .
+      </p>
+    </li>
+    <li>
+      <p>
+        Fixed Kotlin compiler warnings when using the
+        <code translate="no" dir="ltr">work-runtime-ktx</code>
+        dependency.
+      </p>
+    </li>
+    <li>
+      <p>
+        WorkManager now uses
+        <code translate="no" dir="ltr">Room</code>
+        version
+        <code translate="no" dir="ltr">1.1.1-rc1</code>
+        .
+      </p>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">getStatusesSync()</code>
+      , the synchronous version of
+      <code translate="no" dir="ltr">WorkContinuation.getStatuses()</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Worker</code>
+      has the ability to distinguish between user-initiated cancellation and temporary os-requested stopping.
+      <code translate="no" dir="ltr">Worker.isStopped()</code>
+      returns
+      <code translate="no" dir="ltr">true</code>
+      if any kind of stop has been requested.
+      <code translate="no" dir="ltr">Worker.isCancelled()</code>
+      returns
+      <code translate="no" dir="ltr">true</code>
+      when the work has been explicitly cancelled.
+      <a href="https://issuetracker.google.com/issues/79632247">b/79632247</a>
+    </li>
+    <li>
+      Add support for
+      <a href="https://developer.android.com/reference/android/app/job/JobParameters.html#getNetwork()">JobParameters#getNetwork()</a>
+      on API 28. This is exposed via
+      <code translate="no" dir="ltr">Worker.getNetwork()</code>
+      .
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Configuration.Builder.setMaxSchedulerLimit(int maxSchedulerLimit)</code>
+      so you can enforce how many jobs can be sent to
+      <code translate="no" dir="ltr">JobScheduler</code>
+      or
+      <code translate="no" dir="ltr">AlarmManager</code>
+      . This helps prevent
+      <code translate="no" dir="ltr">WorkManager</code>
+      from taking all your available
+      <code translate="no" dir="ltr">JobScheduler</code>
+      slots.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Configuration.setJobSchedulerJobIdRange(int minJobSchedulerId, int maxJobSchedulerId)</code>
+      which helps define a range of
+      <code translate="no" dir="ltr">JobScheduler</code>
+      job ids safe for
+      <code translate="no" dir="ltr">WorkManager</code>
+      to use.
+      <a href="https://issuetracker.google.com/issues/79996760">b/79996760</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Worker.getRunAttemptCount()</code>
+      returns the current run count for a given
+      <code translate="no" dir="ltr">Worker</code>
+      .
+      <a href="https://issuetracker.google.com/issues/79716516">b/79716516</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">WorkManager.enqueueUniquePeriodicWork(String uniqueWorkName, ExistingPeriodicWorkPolicy existingPeriodicWorkPolicy, PeriodicWorkRequest periodicWork)</code>
+      allows you to enqueue a unique
+      <code translate="no" dir="ltr">PeriodicWorkRequest</code>
+      s.
+      <a href="https://issuetracker.google.com/issues/79600647">b/79600647</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">WorkManager.cancelAllWork()</code>
+      cancels all
+      <code translate="no" dir="ltr">Worker</code>
+      s. Libraries that depend on
+      <code translate="no" dir="ltr">WorkManager</code>
+      can query when this method was called last by using
+      <code translate="no" dir="ltr">WorkManager.getLastCancelAllTimeMillis()</code>
+      for additional cleanup of internal state.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">WorkManager.pruneWork()</code>
+      to remove completed jobs from the internal database.
+      <a href="https://issuetracker.google.com/issues/79950952">b/79950952</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/109710758">b/109710758</a>
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      Added an implicit tag for all
+      <code translate="no" dir="ltr">WorkRequest</code>
+      s, which is the fully qualified class name for the
+      <code translate="no" dir="ltr">Worker</code>
+      . This allows the ability to remove
+      <code translate="no" dir="ltr">WorkRequest</code>
+      s without
+      <code translate="no" dir="ltr">tag</code>
+      s or when the
+      <code translate="no" dir="ltr">id</code>
+      is not available.
+      <a href="https://issuetracker.google.com/issues/109572351">b/109572351</a>
+    </li>
+  </ul>
+  <p><strong>Breaking Changes</strong></p>
+  <ul>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">Worker.WorkerResult</code>
+      to
+      <code translate="no" dir="ltr">Worker.Result</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Worker.onStopped</code>
+      now has an
+      <strong>additional</strong>
+      <code translate="no" dir="ltr">isCancelled</code>
+      parameter which is set to
+      <code translate="no" dir="ltr">true</code>
+      when the
+      <code translate="no" dir="ltr">Worker</code>
+      has explicitly been cancelled.
+    </li>
+  </ul>

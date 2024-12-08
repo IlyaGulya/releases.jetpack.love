@@ -1,0 +1,63 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.2.0-alpha02
+releaseDate: 2019-09-05
+#language=html
+changelogHtml: |
+  <h3 id="2.2.0-alpha02" data-text="Version 2.2.0-alpha02" tabindex="-1">Version 2.2.0-alpha02</h3>
+  <p>September 5, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.2.0-alpha02</code>
+    is released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/23fecdb1097a69a528ab6109f661b4e46123aecc..2d0a22f1ddeb3b7e9d0002f0e089a25b7ef64f1c/navigation">here</a>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      Deep links with query parameters now support reordered query parameters; arguments that have a default value or are nullable are now optional when matching deep links. (
+      <a href="https://issuetracker.google.com/issues/133273839">b/133273839</a>
+      )
+    </li>
+    <li>
+      You can now call
+      <code translate="no" dir="ltr">NavController.getBackStackEntry()</code>
+      , passing in the ID of a destination or navigation graph on the back stack. The returned
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      provides a Navigation-driven
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      ,
+      <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+      (the same returned by
+      <code translate="no" dir="ltr">NavController.getViewModelStoreOwner()</code>
+      ), and
+      <code translate="no" dir="ltr">SavedStateRegistryOwner</code>
+      , in addition to providing the arguments used to start that destination. (
+      <a href="https://android-review.googlesource.com/1101691">aosp/1101691</a>
+      ,
+      <a href="https://android-review.googlesource.com/1101710">aosp/1101710</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where adding a
+      <code translate="no" dir="ltr">NavHostFragment</code>
+      to
+      <code translate="no" dir="ltr">ViewPager2</code>
+      failed with an
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/133640271">b/133640271</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavInflater</code>
+      now avoids calling
+      <code translate="no" dir="ltr">getResourceName()</code>
+      unnecessarily, speeding up inflation time by up to 40%. (
+      <a href="https://issuetracker.google.com/issues/139213740">b/139213740</a>
+      )
+    </li>
+  </ul>

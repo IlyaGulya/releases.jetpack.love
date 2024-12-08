@@ -1,0 +1,82 @@
+libraryId: biometric
+groupId: androidx.biometric
+version: 1.2.0-alpha02
+releaseDate: 2021-01-27
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha02" data-text="Version 1.2.0-alpha02" tabindex="-1">Version 1.2.0-alpha02</h3>
+  <p>January 27, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.biometric:biometric:1.2.0-alpha02</code>
+    and
+    <code translate="no" dir="ltr">androidx.biometric:biometric-ktx:1.2.0-alpha02</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/2475d1f697cc729edc0b1b3dbfd991929626c748..aee18b103203a91ee89df91f0af5df2ecff356d6/biometric">Version 1.2.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Refactored some
+      <code translate="no" dir="ltr">AuthPrompt</code>
+      fields that were previously set via a builder into
+      <code translate="no" dir="ltr">startAuthentication(...)</code>
+      method arguments. (
+      <a href="https://android-review.googlesource.com/#/q/I1889656362afd7190adb22d34f047766d312735b">I18896</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/174098373">b/174098373</a>
+      )
+    </li>
+    <li>
+      Added minimum API level requirements for
+      <code translate="no" dir="ltr">AuthPrompt</code>
+      types with limited or no support on older Android versions. (
+      <a href="https://android-review.googlesource.com/#/q/I1889656362afd7190adb22d34f047766d312735b">I18896</a>
+      )
+    </li>
+    <li>
+      Added getter methods for all
+      <code translate="no" dir="ltr">AuthPrompt</code>
+      fields that are set via a builder. (
+      <a href="https://android-review.googlesource.com/#/q/I1889656362afd7190adb22d34f047766d312735b">I18896</a>
+      )
+    </li>
+    <li>
+      Added suspending coroutine Kotlin extensions for biometric authentication via the
+      <code translate="no" dir="ltr">AuthPrompt</code>
+      APIs. These functions will return the
+      <code translate="no" dir="ltr">AuthenticationResult</code>
+      directly on success or throw an exception on error or failure (credential rejection). (
+      <a href="https://android-review.googlesource.com/#/q/Iffc9eeab8f3d866027830acdab09d91dba86e812">Iffc9e</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">BiometricManager.canAuthenticate(int)</code>
+      would sometimes return the wrong status code for a device with a fingerprint sensor on Android 10 (API level 29). (
+      <a href="https://android-review.googlesource.com/#/q/I72420b5721ea41bae8b037f43ab8fbd49250ebf2">I72420</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/176921662">b/176921662</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">BiometricManager.canAuthenticate(int)</code>
+      would return the wrong status code for a device with no biometric hardware and no enrolled PIN, pattern, or password on Android 10 (API level 29) and prior SDK versions. (
+      <a href="https://android-review.googlesource.com/#/q/I79b7dbf009c44582c4693be5d27dd850777ab4d1">I79b7d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/174505824">b/174505824</a>
+      )
+    </li>
+    <li>
+      Fixed a memory leak that would occur when
+      <code translate="no" dir="ltr">BiometricPrompt</code>
+      was hosted in a fragment with a shorter lifecycle than its associated activity. (
+      <a href="https://android-review.googlesource.com/#/q/I7086460fac3921a490f4e2abf0671adec5c146bd">I70864</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/167014923">b/167014923</a>
+      )
+    </li>
+  </ul>

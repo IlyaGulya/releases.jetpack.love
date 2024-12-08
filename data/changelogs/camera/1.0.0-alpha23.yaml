@@ -1,0 +1,54 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.0.0-alpha23
+releaseDate: 2021-03-24
+#language=html
+changelogHtml: |
+  <h3 id="extensions-view-1.0.0-alpha23" data-text="Camera Extensions &amp; View Version 1.0.0-alpha23" tabindex="-1">Camera Extensions &amp; View Version 1.0.0-alpha23</h3>
+  <p>March 24, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-extensions:1.0.0-alpha23</code>
+    and
+    <code translate="no" dir="ltr">androidx.camera:camera-view:1.0.0-alpha23</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5c90131a69042a6a3e13952e1da9e7ffc571c31d..fe710f46552d00a05886b5490e9fc247aaf91529/camera">Version 1.0.0-alpha23 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      CameraView is being deprecated. Please use
+      <code translate="no" dir="ltr">LifecycleCameraController</code>
+      instead. See
+      <a href="https://medium.com/androiddevelopers/camerax-learn-how-to-use-cameracontroller-e3ed10fffecf">the migration guide</a>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Idac2c38fa3a2fcd57814ca9f5f4b48345337a629">Idac2c</a>
+      )
+    </li>
+    <li>
+      Added FloatRange annotation to setLinearZoom() (
+      <a href="https://android-review.googlesource.com/#/q/I699718001b1c9f453d3bf4068717a7aeee4ea35e">I69971</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Pinned camera-view dependencies to rely on 1.0.0 artifacts. Depending on camera-view will not longer cause gradle's dependency resolution to automatically upgrade camera-core, camera-camera2 and camera-lifecycle to the latest 1.1.0 artifacts, though camera-view is still compatible with those artifacts if they are explicitly set to use 1.1.0. (
+      <a href="https://android-review.googlesource.com/#/q/Ic8fa123684e2ab739b4a4b271f004c4d3f631bf5">Ic8fa1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/181599852">b/181599852</a>
+      )
+    </li>
+    <li>
+      Fixed Samsung A3 stretched preview in PreviewView. (
+      <a href="https://android-review.googlesource.com/#/q/Iacb30b0ff035d5a24ac221470a6815d96eca1725">Iacb30</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/180121821">b/180121821</a>
+      )
+    </li>
+    <li>
+      Fixed the issue where if camera selector cannot be set before camera is initialized. (
+      <a href="https://android-review.googlesource.com/#/q/Ic8bd0b78548cd4ee6f77eb0fc82f7459c19a5b1e">Ic8bd0</a>
+      )
+    </li>
+  </ul>

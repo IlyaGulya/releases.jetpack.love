@@ -1,0 +1,146 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.3.0-alpha02
+releaseDate: 2020-03-18
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha02" data-text="Version 1.3.0-alpha02" tabindex="-1">Version 1.3.0-alpha02</h3>
+  <p>March 18, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.3.0-alpha02</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.3.0-alpha02</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.3.0-alpha02</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/666ae665acfcfa2a20eccc18e4494808169742f4..1e0ba6efec9a86f20ddc75c8c2b132e009cfb6b1/fragment">Version 1.3.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added support for the
+      <code translate="no" dir="ltr">ActivityResultRegistry</code>
+      API introduced in
+      <a href="/jetpack/androidx/releases/activity#1.2.0-alpha02">
+        Activity
+        <code translate="no" dir="ltr">1.2.0-alpha02</code>
+      </a>
+      to handle the
+      <code translate="no" dir="ltr">startActivityForResult()</code>
+      +
+      <code translate="no" dir="ltr">onActivityResult()</code>
+      as well as
+      <code translate="no" dir="ltr">requestPermissions()</code>
+      +
+      <code translate="no" dir="ltr">onRequestPermissionsResult()</code>
+      flows without overriding methods in your Fragment in addition to providing hooks for testing these flows. See the updated
+      <a href="/training/basics/intents/result">Getting a Result from an Activity</a>
+      . (
+      <a href="https:///issuetracker.google.com/issues/125158199">b/125158199</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">DialogFragment</code>
+      now provides a constructor that takes a
+      <code translate="no" dir="ltr">@LayoutRes</code>
+      that indicates the layout that
+      <code translate="no" dir="ltr">onCreateView()</code>
+      should inflate by default. (
+      <a href="https://issuetracker.google.com/issues/150327080">b/150327080</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">onActivityCreated()</code>
+      method is now deprecated. Code touching the fragment's view should be done in
+      <code translate="no" dir="ltr">onViewCreated()</code>
+      (which is called immediately before
+      <code translate="no" dir="ltr">onActivityCreated()</code>
+      ) and other initialization code should be in
+      <code translate="no" dir="ltr">onCreate()</code>
+      . To receive a callback specifically when the activity's
+      <code translate="no" dir="ltr">onCreate()</code>
+      is complete, a
+      <code translate="no" dir="ltr">LifeCycleObserver</code>
+      should be registered on the activity's
+      <code translate="no" dir="ltr">Lifecycle</code>
+      in
+      <code translate="no" dir="ltr">onAttach()</code>
+      , and removed once the
+      <code translate="no" dir="ltr">onCreate()</code>
+      callback is received. (
+      <a href="https://issuetracker.google.com/issues/144309266">b/144309266</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      From
+      <a href="#1.2.3">
+        Fragment
+        <code translate="no" dir="ltr">1.2.3</code>
+      </a>
+      : Fixed a bug in
+      <code translate="no" dir="ltr">DialogFragment</code>
+      that caused a
+      <code translate="no" dir="ltr">StackOverflowError</code>
+      when calling
+      <code translate="no" dir="ltr">getLayoutInflater()</code>
+      from within
+      <code translate="no" dir="ltr">onCreateDialog()</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/117894767">b/117894767</a>
+      ,
+      <a href="https://android-review.googlesource.com/1258664">aosp/1258664</a>
+      )
+    </li>
+    <li>
+      From
+      <a href="#1.2.3">
+        Fragment
+        <code translate="no" dir="ltr">1.2.3</code>
+      </a>
+      : Reduced the scope of Fragment’s included ProGuard rules to ensure that unused Fragment classes can be stripped. (
+      <a href="https://issuetracker.google.com/issues/149665169">b/149665169</a>
+      )
+    </li>
+    <li>
+      From
+      <a href="#1.2.3">
+        Fragment
+        <code translate="no" dir="ltr">1.2.3</code>
+      </a>
+      : Fixed false positives in the
+      <code translate="no" dir="ltr">UseRequireInsteadOfGet</code>
+      Lint check when using a local variable name that shadowed the Kotlin property name. (
+      <a href="https://issuetracker.google.com/issues/149891163">b/149891163</a>
+      )
+    </li>
+    <li>
+      From
+      <a href="#1.2.3">
+        Fragment
+        <code translate="no" dir="ltr">1.2.3</code>
+      </a>
+      :
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      no longer throws an
+      <code translate="no" dir="ltr">UnsupportedOperationException</code>
+      for using the incorrect constructor in layout preview. (
+      <a href="https://issuetracker.google.com/issues/149707833">b/149707833</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">BottomSheetDialogFragment</code>
+      no longer properly positions its dialog on the screen. (
+      <a href="https://issuetracker.google.com/issues/151652127">b/151652127</a>
+      )
+    </li>
+  </ul>

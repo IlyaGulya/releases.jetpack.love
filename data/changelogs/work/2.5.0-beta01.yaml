@@ -1,0 +1,44 @@
+libraryId: work
+groupId: androidx.work
+version: 2.5.0-beta01
+releaseDate: 2020-10-28
+#language=html
+changelogHtml: |
+  <h3 id="2.5.0-beta01" data-text="Version 2.5.0-beta01" tabindex="-1">Version 2.5.0-beta01</h3>
+  <p>October 28, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.5.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f413b8be76bfa0a4d109a3afb583188c580a2aa6..67682f4d35e4f57d0fe3727c451a9537f64b0632/work">Version 2.5.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">WorkManager</code>
+      automatically throttles the number of
+      <code translate="no" dir="ltr">WorkRequest</code>
+      s that can be picked up by the in-process scheduler. The requests are still executed in FIFO order. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1455228">aosp/1455228</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">WorkManager</code>
+      attempts to recover when the application’s datastore is in a bad state. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1463103">aosp/1463103</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      When
+      <code translate="no" dir="ltr">ListenableWorker</code>
+      s are interrupted, mark them
+      <code translate="no" dir="ltr">ENQUEUED</code>
+      immediately so they can be subsequently rescheduled. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1455618">aosp/1455618</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170273988">b/170273988</a>
+      )
+    </li>
+  </ul>

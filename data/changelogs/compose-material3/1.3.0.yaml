@@ -1,0 +1,168 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.3.0
+releaseDate: 2024-09-04
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0" data-text="Version 1.3.0" tabindex="-1">Version 1.3.0</h3>
+  <p>September 4, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.3.0</code>
+    is released. Version 1.3.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/677dcf61d60ab5702e37deefb378de88774d0f8e..122e65c91203d7bc66192871c72c08bd149d5777/compose/material3">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.2.0</strong></p>
+  <p>Major features of 1.3.0</p>
+  <p>New Material Design 3 components</p>
+  <ul>
+    <li>
+      <a href="https://m3.material.io/components/carousel/overview">Carousel</a>
+      <ul>
+        <li>
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/carousel/package-summary#HorizontalMultiBrowseCarousel(androidx.compose.material3.carousel.CarouselState,androidx.compose.ui.unit.Dp,androidx.compose.ui.Modifier,androidx.compose.ui.unit.Dp,androidx.compose.foundation.gestures.TargetedFlingBehavior,androidx.compose.ui.unit.Dp,androidx.compose.ui.unit.Dp,androidx.compose.foundation.layout.PaddingValues,kotlin.Function2)"><code translate="no" dir="ltr">HorizontalMultiBrowseCarousel</code></a>
+          and
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/carousel/package-summary#HorizontalUncontainedCarousel(androidx.compose.material3.carousel.CarouselState,androidx.compose.ui.unit.Dp,androidx.compose.ui.Modifier,androidx.compose.ui.unit.Dp,androidx.compose.foundation.gestures.TargetedFlingBehavior,androidx.compose.foundation.layout.PaddingValues,kotlin.Function2)"><code translate="no" dir="ltr">HorizontalUncontainedCarousel</code></a>
+          Enhancements to existing Material Design 3 components.
+        </li>
+      </ul>
+    </li>
+    <li>
+      [
+      <code translate="no" dir="ltr">ModalBottomSheet</code>
+      ] now supports Predictive Back on U+ (
+      <a href="https://android-review.googlesource.com/#/q/Iccf324cb6dfc7f4ea1fe413b69e035658282360d">Iccf32</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/281967264">b/281967264</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/304850357">b/304850357</a>
+      )
+    </li>
+    <li>
+      [
+      <code translate="no" dir="ltr">SearchBar</code>
+      ] now supports Predictive Back on U+ (
+      <a href="https://android-review.googlesource.com/#/q/I657f8859433717fe5e4058bcd7a74649adece529">I657f8</a>
+      )
+    </li>
+    <li>
+      Nav Drawer (
+      <code translate="no" dir="ltr">ModalDrawerSheet</code>
+      and
+      <code translate="no" dir="ltr">DismissibleDrawerSheet</code>
+      ) now supports Predictive Back on U+ as opt-in (
+      <a href="https://android-review.googlesource.com/#/q/Ie5b0b1662087258f4573372df4ff600eb1a5a025">Ie5b0b</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">DropdownMenu</code>
+      now supports custom color, shape, elevation, and border. (
+      <a href="https://android-review.googlesource.com/#/q/I8e9818a88b1aca1f16370c668ae60d19b0c5a89d">I8e981</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/289554448">b/289554448</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/301887035">b/301887035</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/283654243">b/283654243</a>
+      )
+    </li>
+    <li>
+      Updated Slider to improve accessibility by adding a gap and stop indicator. (
+      <a href="https://android-review.googlesource.com/#/q/I3058e77cfa7017a781f70e498889ab11330990af">I3058e</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">ProgressIndicator</code>
+      to improve accessibility by adding a gap and stop indicator. (
+      <a href="https://android-review.googlesource.com/#/q/I2145171a393ef661a91799f4e1d39bdd69">I21451</a>
+      )
+    </li>
+    <li>
+      Added a default caret for rich tooltip, support custom caret to be drawn given anchor
+      <code translate="no" dir="ltr">LayoutCoordinates</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ifd42c2be34f72060cccce6414e28c1b2c01e025a">Ifd42c</a>
+      ) Breaking Changes
+    </li>
+    <li>
+      New pull-to-refresh APIs:
+      <ul>
+        <li>
+          Simplified
+          <code translate="no" dir="ltr">PullToRefreshState</code>
+          to use fractional values instead of Dp units.
+        </li>
+        <li>
+          <code translate="no" dir="ltr">isRefreshing</code>
+          state is controlled by the user instead of
+          <code translate="no" dir="ltr">PullToRefreshState</code>
+          .
+        </li>
+        <li>
+          Separated out the nested scroll connection from
+          <code translate="no" dir="ltr">PullToRefreshState</code>
+          . It is handled by the new
+          <code translate="no" dir="ltr">PullToRefreshBox</code>
+          or
+          <code translate="no" dir="ltr">Modifier.pullToRefresh</code>
+          .
+        </li>
+        <li>
+          This update is a breaking change to previous experimental APIs. (
+          <a href="https://android-review.googlesource.com/#/q/I0adeb950063988d1a05aca7aa135ccd982431423">I0adeb</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/314496282">b/314496282</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/317177684">b/317177684</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/323787138">b/323787138</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/324573502">b/324573502</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/317177683">b/317177683</a>
+          ) Visual Breaking Changes
+        </li>
+      </ul>
+    </li>
+    <li>
+      Update focus state overlay to be 0.1f to ensure sufficient color contrast. (
+      <a href="https://android-review.googlesource.com/#/q/I7ea77012950bc900bc868cce2c2322ab86474508">I7ea77</a>
+      )
+    </li>
+    <li>
+      Small adjustments to surface and background color defaults in
+      <code translate="no" dir="ltr">lightColorScheme</code>
+      and
+      <code translate="no" dir="ltr">darkColorScheme</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I9db5226e26371223bc46f37ddfe226acf7767041">I9db52</a>
+      )
+    </li>
+    <li>
+      Updated Slider and
+      <code translate="no" dir="ltr">ProgressIndicator</code>
+      colors to follow the new Non-Text Contrast specs. (
+      <a href="https://android-review.googlesource.com/#/q/I26807868d150434976e911f0812d3a009aa612ec">I26807</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SurfaceContainer</code>
+      variants are now used by components. Components which formally calculated color with
+      <code translate="no" dir="ltr">Surface</code>
+      and
+      <code translate="no" dir="ltr">TonalElevation</code>
+      now use
+      <code translate="no" dir="ltr">SurfaceContainer</code>
+      roles by default, which are not affected by tonal elevation. (
+      <a href="https://issuetracker.google.com/issues/304584161">b/304584161</a>
+      )
+    </li>
+    <li>
+      Surface and Surface container baseline roles have been slightly adjusted, providing more tint in light and dark themes. (
+      <a href="https://android-review.googlesource.com/#/q/I677a5570757aee5d90e3518bf379a63e3d5fba0d">I677a5</a>
+      )
+    </li>
+    <li>Promoted experimental APIs to stable!</li>
+    <li>Performance improvements</li>
+  </ul>

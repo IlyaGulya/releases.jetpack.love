@@ -1,0 +1,265 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.0.0-alpha09
+releaseDate: 2020-12-16
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha09" data-text="Version 1.0.0-alpha09" tabindex="-1">Version 1.0.0-alpha09</h3>
+  <p>December 16, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation:1.0.0-alpha09</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-layout:1.0.0-alpha09</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/10b5e9fd366c1c413d5576aed50a305d300938e1..72f02c12e4709ab41ae0fea9a8a668d5267a1df8/compose/foundation">Version 1.0.0-alpha09 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <p>Add Scrollable interface</p>
+
+      <p>This allows ScrollState and LazyListState to be treated as a common type, allowing custom scrolling to be implemented across both types.</p>
+
+      <p>
+        This also moves smoothScrollBy to an extension function on Scrollable, taking advantage of this functionality. (
+        <a href="https://android-review.googlesource.com/#/q/I2153bebb540136618210dc0e3980eae788c01392">I2153b</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        LazyVerticalGrid is added. (
+        <a href="https://android-review.googlesource.com/#/q/I172670e5a6648278604e9ad024d3db17c9c6974b">I17267</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/162213211">b/162213211</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Deprecate LazyColumnFor, LazyRowFor, LazyColumnForIndexed and LazyRowForIndexed. Use LazyColumn and LazyRow instead (
+        <a href="https://android-review.googlesource.com/#/q/I5b48c8a3b1fef2f603ab69ded1d19709aa9f87fb">I5b48c</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        For suspending pointer input APIs, renamed HandlePointerInputScope to AwaitPointerEventScope and handlePointerInput() to awaitPointerEventScope(). (
+        <a href="https://android-review.googlesource.com/#/q/Idf0a1b94f065e72b65361cdf616122ed7939c3e7">Idf0a1</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/175142755">b/175142755</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        LazyListState.layoutInfo was added which exposes the list of sizes and offsets of the currently visible items (
+        <a href="https://android-review.googlesource.com/#/q/If86783ac8b127269d4bf8bbc5dd4eba52b3fbb77">If8678</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/170472532">b/170472532</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Removed ExperimentalPointerInput annotation (
+        <a href="https://android-review.googlesource.com/#/q/Ia7a2473869400fc92ce70c802f42df9af7129386">Ia7a24</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        InteractionState support for TextFields has been added. (
+        <a href="https://android-review.googlesource.com/#/q/I61d91b15858fc3914ab9f15409857f0bccf67f34">I61d91</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Add reverseLayout param for LazyColumn/Row. when
+        <code translate="no" dir="ltr">true</code>
+        items will be composed from the bottom to the top and
+        <code translate="no" dir="ltr">LazyListState.firstVisibleItemIndex == 0</code>
+        will mean the first item is located at the bottom. (
+        <a href="https://android-review.googlesource.com/#/q/I552ae9123cfc426cda2bf2e72784bf07c3c15cbf">I552ae</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/166589935">b/166589935</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        verticalArrangement param was added for LazyColumn. horizontalArrangement param was added for LazyRow. Arrangement allows us to add a spacing between items and specify the arrangement of the items when we do not have enough of them to fill the whole minimum size. (
+        <a href="https://android-review.googlesource.com/#/q/Icf79a56204f07903c5f3bd4dd5700568fb6d1343">Icf79a</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/170394300">b/170394300</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        detectMultitouchGestures now uses one callback with combined centroid, pan, zoom and rotate parameters. (
+        <a href="https://android-review.googlesource.com/#/q/Ie6e1c2d7496ed0aabc6a5256f859c91cc39a08dc">Ie6e1c</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Moved ContentDrawScope to ui-graphics module to be with DrawScope. (
+        <a href="https://android-review.googlesource.com/#/q/Iee0437fa587fbe12a3623955f5fe720d5aae551f">Iee043</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/173832789">b/173832789</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Lambdas in offset modifiers now return IntOffset rather than Float. (
+      <a href="https://android-review.googlesource.com/#/q/Ic9ee5c05df4c89993ee19f19ddd327a986f21bc1">Ic9ee5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/174137212">b/174137212</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/174146755">b/174146755</a>
+      )
+    </li>
+    <li>
+      <p>Removed SlotTable, SlotReader and SlotWriter from the public API. These were marked as InternalComposeAPI previously. Now they are internal to the compose module.</p>
+
+      <p>
+        CompositionData and CompositionGroup were added as a replacement for the ui-tooling API to use to extract composition information. These are public but are not intended for use outside the ui-tooling API as they provide the raw information the ui-tooling API interprets (
+        <a href="https://android-review.googlesource.com/#/q/I31a9ca6a7e5bbf162c984394dffd7a25b059315a">I31a9c</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>Refactored ShaderBrush to lazily create a shader instance when sizing information of the drawing environment is available. This is useful to define gradients that occupy the full drawing bounds of a composable at composition time, without having to implement custom DrawModifier implementations.</p>
+
+      <p>
+        Deprecated gradient function constructor APIs in favor of factory methods on a Gradient object. (
+        <a href="https://android-review.googlesource.com/#/q/I511fc09bdeb4b41127de4a6b1e616688b10295f5">I511fc</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/173066799">b/173066799</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Modifier.focusObserver is deprecated. Use Modifier.onFocusChanged or Modifier.onFocusEvent instead (
+        <a href="https://android-review.googlesource.com/#/q/I30f17d06d60fa9b8c510ee0468464258894a467b">I30f17</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/168511863">b/168511863</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/168511484">b/168511484</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Autofill API is now experimental API and requires opt-in (
+        <a href="https://android-review.googlesource.com/#/q/I0a1ecfbf4ddeccaecc3cea8d2223b0a4afa60636">I0a1ec</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Adding destructuring declarations to create FocusRequester instances (
+        <a href="https://android-review.googlesource.com/#/q/I35d84e1320bec5b62bf1fb096aa95f90cfd96e9c">I35d84</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/174817008">b/174817008</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        accessibilityLabel has been renamed to contentDescription. accessibilityValue has been renamed to stateDescription. (
+        <a href="https://android-review.googlesource.com/#/q/I250f2d41e139d4838b0b3706f18b56fcc4f515bd">I250f2</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Introduced several new functions in SelectionRegistrar and also renamed onPositionChange to notifyPositionChange. (
+        <a href="https://android-review.googlesource.com/#/q/Ifbaf754c0ee3f485869115bba8dbcc1a8b7f5b88">Ifbaf7</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        AndroidOwner made internal (
+        <a href="https://android-review.googlesource.com/#/q/Ibcad027dbc1794f5d202be52fe0783c73d249a25">Ibcad0</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/170296980">b/170296980</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        New infiniteRepeatable function for creating an InfiniteRepeatableSpec (
+        <a href="https://android-review.googlesource.com/#/q/I668e501c0c9061aa94b258ec9646617e0f77faf1">I668e5</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        The
+        <code translate="no" dir="ltr">Applier</code>
+        interface has changed to simplify building trees bottom-up instead of top-down.
+      </p>
+
+      <p>
+        The
+        <code translate="no" dir="ltr">insert()</code>
+        method has been renamed to
+        <code translate="no" dir="ltr">insertTopDown()</code>
+        .
+      </p>
+
+      <p>
+        A new method,
+        <code translate="no" dir="ltr">insertBottomUp()</code>
+        , was added.
+      </p>
+
+      <p>
+        An applier either inserts nodes into the tree it is editing using
+        <code translate="no" dir="ltr">insertTopDown()</code>
+        or
+        <code translate="no" dir="ltr">insertBottomUp()</code>
+        depending on which performs better.
+      </p>
+
+      <p>
+        Some trees, such as
+        <code translate="no" dir="ltr">LayoutNode</code>
+        and
+        <code translate="no" dir="ltr">View</code>
+        , are much more efficient to build bottom-up than top-down. Prior to this change, a stack of inserts was required to implement bottom-up which needed to be copied to every applier which needed bottom-up construction for performance. With this change an
+        <code translate="no" dir="ltr">Applier</code>
+        overrides
+        <code translate="no" dir="ltr">insertBottomUp()</code>
+        to build a tree bottom-up and
+        <code translate="no" dir="ltr">insertTopDown()</code>
+        to build the tree top-down. (
+        <a href="https://android-review.googlesource.com/#/q/Icbdc2929ab8fc8fce231d633b062fc80be5c10c9">Icbdc2</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added painterResource API to handle opaquely loading Painter objects from either rasterized asset formats (like PNGs) or VectorDrawables. Consumers no longer have to determine the type of asset in advance and can call this method to get a Painter object to use in Image composables or painter modifiers. (
+        <a href="https://android-review.googlesource.com/#/q/I2c703e31eedbbfcf073d28064496a6e324c2027a">I2c703</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/173818471">b/173818471</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added buildAnnotatedString factory function in order to build an AnnotatedString. Deprecated annotatedString builder function. (
+        <a href="https://android-review.googlesource.com/#/q/Idfe0b133687e7b5f377e997b79bd4463161a6d0b">Idfe0b</a>
+        )
+      </p>
+    </li>
+  </ul>

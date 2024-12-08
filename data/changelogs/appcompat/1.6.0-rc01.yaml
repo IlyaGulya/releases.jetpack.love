@@ -1,0 +1,35 @@
+libraryId: appcompat
+groupId: androidx.appcompat
+version: 1.6.0-rc01
+releaseDate: 2022-09-07
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-rc01" data-text="Version 1.6.0-rc01" tabindex="-1">Version 1.6.0-rc01</h3>
+  <p>September 7, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.appcompat:appcompat:1.6.0-rc01</code>
+    and
+    <code translate="no" dir="ltr">androidx.appcompat:appcompat-resources:1.6.0-rc01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/bea814b246f89ff7244e3c6b0648f0b57e47897c..cb1f3b62a11fbe655951402b7e04cd65b79d4209/appcompat">Version 1.6.0-rc01 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">AppCompatActivity</code>
+      now sets the
+      <code translate="no" dir="ltr">ViewTreeOnBackPressedDispatcherOwner</code>
+      so that it is possible to retrieve the dispatcher from the view. (
+      <a href="https://android-review.googlesource.com/#/q/I1a115d42a68a37bab113927e9e6975f1a83b2b54">I1a115</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/235416503">b/235416503</a>
+      )
+    </li>
+    <li>
+      Reverted a bug fix that overwrote the configuration passed to
+      <code translate="no" dir="ltr">onConfigurationChanged</code>
+      , which had caused issues for tests that injected their own custom configurations through
+      <code translate="no" dir="ltr">onConfigurationChanged</code>
+      .
+    </li>
+  </ul>

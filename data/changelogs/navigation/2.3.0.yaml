@@ -1,0 +1,110 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.3.0
+releaseDate: 2020-06-24
+#language=html
+changelogHtml: |
+  <h3 id="2.3.0" data-text="Version 2.3.0" tabindex="-1">Version 2.3.0</h3>
+  <p>June 24, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.3.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/098293bcdb2b40862b3e287d38dd82ac8a9c6d38..654b8a76ea3c162fc3f9d84f3484ebadda0bbb9f/navigation">Version 2.3.0 contains these commits.</a>
+  </p>
+  <p><strong>Major changes since 2.2.0</strong></p>
+  <ul>
+    <li>
+      <strong>Feature Module integration</strong>
+      : The
+      <code translate="no" dir="ltr">navigation-dynamic-features-runtime</code>
+      and
+      <code translate="no" dir="ltr">navigation-dynamic-features-fragment</code>
+      artifacts allow you to navigate to destinations that are defined in feature modules, automatically handling the installation of the feature modules as needed. See
+      <a href="/guide/navigation/navigation-dynamic">Navigate with feature modules</a>
+      for more information.
+    </li>
+    <li>
+      <strong>Navigation Testing</strong>
+      : The
+      <code translate="no" dir="ltr">navigation-testing</code>
+      artifact provides a
+      <code translate="no" dir="ltr">TestNavHostController</code>
+      that allows you to set the current destination and verify the back stack after navigation operations. See
+      <a href="/guide/navigation/navigation-testing">Test Navigation</a>
+      for more information.
+    </li>
+    <li>
+      <strong>Returning a Result</strong>
+      : The
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      associated with each destination on the Navigation back stack now allows you to access a
+      <a href="/reference/androidx/lifecycle/SavedStateHandle"><code translate="no" dir="ltr">SavedStateHandle</code></a>
+      suitable for storing small amounts of saved state that should be associated with a particular back stack entry. See
+      <a href="/guide/navigation/navigation-programmatic#returning_a_result">Returning a result to the previous Destination</a>
+      for more information.
+    </li>
+    <li>
+      <strong>
+        <code translate="no" dir="ltr">NavigationUI</code>
+        support for
+        <code translate="no" dir="ltr">Openable</code>
+      </strong>
+      : All usages of
+      <code translate="no" dir="ltr">DrawerLayout</code>
+      in
+      <code translate="no" dir="ltr">NavigationUI</code>
+      have been replaced with the more generic
+      <a href="/reference/androidx/customview/widget/Openable"><code translate="no" dir="ltr">Openable</code></a>
+      interface added in
+      <a href="/jetpack/androidx/releases/customview#1.1.0">
+        CustomView
+        <code translate="no" dir="ltr">1.1.0</code>
+      </a>
+      and implemented by
+      <code translate="no" dir="ltr">DrawerLayout</code>
+      in
+      <a href="/jetpack/androidx/releases/drawerlayout#1.1.0">
+        DrawerLayout
+        <code translate="no" dir="ltr">1.1.0</code>
+      </a>
+      .
+    </li>
+    <li>
+      <strong>Action and Mime Type support in deep links</strong>
+      : Deep linking has been expanded to support
+      <code translate="no" dir="ltr">app:action</code>
+      and
+      <code translate="no" dir="ltr">app:mimeType</code>
+      in addition to the
+      <code translate="no" dir="ltr">app:uri</code>
+      previously available.
+      <code translate="no" dir="ltr">NavController</code>
+      now supports navigating by any combination of these fields via the new
+      <code translate="no" dir="ltr">NavDeepLinkRequest</code>
+      class. See
+      <a href="/guide/navigation/navigation-navigate#uri">Navigate using NavDeepLinkRequest</a>
+      for more information.
+    </li>
+  </ul>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>Support for adding an action and mime type in the visual editor is available in Android Studio 4.1 Canary 10 and higher.</span>
+  </aside>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      Support for deep link actions and mime types is not yet available in
+      <a href="https://issuetracker.google.com/issues/154166825">Manifest Merger</a>
+      . Until that work is completed, any generated
+      <code translate="no" dir="ltr">&lt;intent-filter&gt;</code>
+      elements from the
+      <code translate="no" dir="ltr">&lt;nav-graph&gt;</code>
+      element in your manifest won't include your mime type in its
+      <code translate="no" dir="ltr">&lt;data&gt;</code>
+      element or your custom
+      <code translate="no" dir="ltr">&lt;action&gt;</code>
+      . You must manually add an appropriate
+      <code translate="no" dir="ltr">&lt;intent-filter&gt;</code>
+      to your manifest.
+    </li>
+  </ul>

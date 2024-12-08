@@ -1,0 +1,154 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.0.0-alpha12
+releaseDate: 2021-02-10
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha12" data-text="Version 1.0.0-alpha12" tabindex="-1">Version 1.0.0-alpha12</h3>
+  <p>February 10, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.0.0-alpha12</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6950aab50fe6c9f7e9d97cf865161f2d3999eb9e..9ed3262e0dfca1d352bdbf8f8e10253a61ef6218/compose/runtime">Version 1.0.0-alpha12 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Support for ViewGroups was removed from UiApplier. The Deprecated emitView composables were removed. (
+      <a href="https://android-review.googlesource.com/#/q/Ifb2141153189ac4b0fbd748a23c3de38ed155af7">Ifb214</a>
+      )
+    </li>
+    <li>
+      CompositionReference renamed to CompositionContext (
+      <a href="https://android-review.googlesource.com/#/q/I53fcb2d87d57c95c293108bf80e54c7d17064f24">I53fcb</a>
+      )
+    </li>
+    <li>
+      ComponentActivity.setContent has moved to androidx.activity.compose.setContent in the androidx.activity:activity-compose module. (
+      <a href="https://android-review.googlesource.com/#/q/Icf4168e6078b87ce746569a946b2a90274197c72">Icf416</a>
+      )
+    </li>
+    <li>
+      Snapshot API was updated to be more consistent with API guideline as well as hiding internal implementation classes from the public API. (
+      <a href="https://android-review.googlesource.com/#/q/Id9e32c885473f09cd69354a4c87a2c57c5f86533">Id9e32</a>
+      )
+    </li>
+    <li>
+      Renamed Ambients to match the Ambient -&gt; CompositionLocal rename. Ambients used to be named AmbientFoo, now CompositionLocals are named LocalFoo. (
+      <a href="https://android-review.googlesource.com/#/q/I2d55d1c5c38a08b04e72a569d3079db4feca1bf7">I2d55d</a>
+      )
+    </li>
+    <li>
+      Renamed Ambient to CompositionLocal, and ambientOf / staticAmbientOf to compositionLocalOf / staticCompositionLocalOf respectively. This change helps to make the purpose of CompositionLocal more clear: a mechanism for providing / retrieving values local to a composition. CompositionLocal instances should be prefixed with
+      <code translate="no" dir="ltr">Local</code>
+      , such as val LocalFoo = compositionLocalOf { Foo() }. (
+      <a href="https://android-review.googlesource.com/#/q/Ia55b6cb149a659a2738cd1c60540e81ef835b8cc">Ia55b6</a>
+      )
+    </li>
+    <li>
+      takeMutableSnapshot and takeSnapshot have moved to be companion methods of Snapshot. (
+      <a href="https://android-review.googlesource.com/#/q/I91f197a054cd967e69c47fa99c40e0da7e91b83a">I91f19</a>
+      )
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">@ComposableContract</code>
+        has been deprecated in favor of three more specific annotations.
+      </p>
+
+      <p>
+        <code translate="no" dir="ltr">@ComposableContract(restartable = false)</code>
+        has become
+        <code translate="no" dir="ltr">@NonRestartableComposable</code>
+        <code translate="no" dir="ltr">@ComposableContract(readonly = true)</code>
+        has become
+        <code translate="no" dir="ltr">@ReadOnlyComposable</code>
+        <code translate="no" dir="ltr">@ComposableContract(preventCapture = true)</code>
+        has become
+        <code translate="no" dir="ltr">@DisallowComposableCalls</code>
+        <code translate="no" dir="ltr">@ComposableContract(tracked = true)</code>
+        has been removed. (
+        <a href="https://android-review.googlesource.com/#/q/I60a9db0287dc0e03b38e6cf31a7d435026a2ce0f">I60a9d</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        emptyContent() and (@Composable () -&gt; Unit).orEmpty() utilities have been deprecated as they no longer have any positive performance impact or value (
+        <a href="https://android-review.googlesource.com/#/q/I0484d3ef439993d05eea86e53f05997eced590ab">I0484d</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">snapshotFlow</code>
+        and
+        <code translate="no" dir="ltr">withMutableSnapshot</code>
+        are no longer experimental (
+        <a href="https://android-review.googlesource.com/#/q/I6a45fac62267a318481e9a3ba8a3acf3162219f6">I6a45f</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Recomposers can now be closed. Closed recomposers will continue recomposition until composition child coroutines complete. Recomposer.shutDown renamed to cancel to contrast with close. (
+        <a href="https://android-review.googlesource.com/#/q/Ib6d766b91381ee45af41a14b7951c48f794f0a90">Ib6d76</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        The
+        <code translate="no" dir="ltr">compose:runtime-dispatch</code>
+        artifact is now deprecated. MonotonicFrameClock can now be found in compose:runtime and AndroidUiDispatcher can be found in compose:ui. (
+        <a href="https://android-review.googlesource.com/#/q/Ib5c36a427306eceac4b9b16b52a091e864e5b936">Ib5c36</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>The API the Compose compiler plugin targets has been refactored to use an interface instead of a concrete class. The interface also no longer uses a type parameter.</p>
+
+      <p>
+        This is an internal change that should not effect source code compatibility but is a binary breaking change. (
+        <a href="https://android-review.googlesource.com/#/q/I3b9229969aa70138bc57f5e8498602f5b2dba1e6">I3b922</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/169406779">b/169406779</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        SnapshotMutableState was introduced (
+        <a href="https://android-review.googlesource.com/#/q/Icfd03593afd98c2cd1ad94751e590f4eefbc06e5">Icfd03</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        DisposableEffectDisposable was renamed to DisposaleEffectResult (
+        <a href="https://android-review.googlesource.com/#/q/Ica7c6a63e2bc101837cdd0463d827d3a8193d6e0">Ica7c6</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Removed Recomposer.current(). [Abstract]ComposeView now default to lazily created, window-scoped Recomposers driven by the ViewTreeLifecycleOwner for the window. Recomposition and withFrameNanos-based animation ticks are paused while the host Lifecycle is stopped. (
+        <a href="https://android-review.googlesource.com/#/q/I38e11565b2fc776966b6b6984aceafd8a1e6fed1">I38e11</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Recomposer.runningRecomposers now offers a global StateFlow of read-only RecomposerInfo for observing ongoing composition state in the process. Prefer this API to Recomposer.current(), which is now deprecated. (
+        <a href="https://android-review.googlesource.com/#/q/If8ebe3959cfe71682ad372382d3b720035ef1605">If8ebe</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        DisposableEffectDisposable was renamed to DisposaleEffectResult (
+        <a href="https://android-review.googlesource.com/#/q/I3ea68f09bf464edace067212655a85b8d55b679b">I3ea68</a>
+        )
+      </p>
+    </li>
+  </ul>

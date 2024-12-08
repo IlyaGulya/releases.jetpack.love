@@ -1,0 +1,57 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.4.0-beta01
+releaseDate: 2024-05-14
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-beta01" data-text="Version 1.4.0-beta01" tabindex="-1">Version 1.4.0-beta01</h3>
+  <p>May 14, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.4.0-beta01</code>
+    is released. Version 1.4.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7f20a95e69d42bdab1dbae806dd5dee41b86143d..c7d2a9b0f7f27c85a187b05044b5fb8f1281a191/camera">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ZoomGestureDetector.ZoomEvent</code>
+      to encapsulates the states of a zoom gesture. (
+      <a href="https://android-review.googlesource.com/#/q/I84cdfd505443171f9910fb0b3fd40fdaf307796b">I84cdf</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a bug that still capture and tap-to-focus do not use the repeating request FPS/stabilization mode values which may recreate capture session and cause latency issues or Preview freeze in some devices. (
+      <a href="https://android-review.googlesource.com/#/q/I7dc0b1de12c35acbf08a078973a42512ef1f2b45">I7dc0b</a>
+      )
+    </li>
+    <li>
+      Fixed a bug where High Resolutions can not be selected when
+      <code translate="no" dir="ltr">CameraEffect</code>
+      is enabled on some devices. (e.g. 4000x3000 on Samsung A32 5G). (
+      <a href="https://android-review.googlesource.com/#/q/Ie3ed3a802305628e471d73b4741add0d46ac12ad">Ie3ed3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/337336152">b/337336152</a>
+      )
+    </li>
+    <li>
+      Fixed a crash when taking picture with Preview,
+      <code translate="no" dir="ltr">ImageCapture</code>
+      and
+      <code translate="no" dir="ltr">VideoCapture(UHD)</code>
+      are bound on Pixel 4XL API29. (
+      <a href="https://android-review.googlesource.com/#/q/I5b2889572295b1a22d5bc8a98182b7eaf40461d8">I5b288</a>
+      )
+    </li>
+    <li>
+      Support virtual devices: Context passed into
+      <code translate="no" dir="ltr">ProcessCameraProvider</code>
+      will preserve the device ID to ensure the functionality in a virtual device environment. (
+      <a href="https://android-review.googlesource.com/#/q/I5ba48e8b569c11525711a38e5e54906a531e5cae">I5ba48</a>
+      )
+    </li>
+  </ul>

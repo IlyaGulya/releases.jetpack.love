@@ -1,0 +1,79 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.4.0-beta02
+releaseDate: 2021-11-03
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0-beta02" data-text="Version 2.4.0-beta02" tabindex="-1">Version 2.4.0-beta02</h3>
+  <p>November 3, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.4.0-beta02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4414c046f9f3ceed61638de755aac5f976f4d4b7..f07d12061370a603549747200c79b60239706330/navigation">Version 2.4.0-beta02 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The handling of both explicit and implicit deep links now automatically adds the
+      <code translate="no" dir="ltr">saveState</code>
+      flag when navigating to another graph, ensuring that code such as
+      <code translate="no" dir="ltr">NavigationUI.setupWithNavController</code>
+      and code using multiple back stacks works as expected. (
+      <a href="https://android-review.googlesource.com/#/q/Ic8807b65fbcaf8d859f2ac35a45d508d2714231e">Ic8807</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      Deep link patterns are now compiled lazily in NavDeepLink instead of during inflation. This should improve the inflation time of navigation graphs that include deep links. (
+      <a href="https://android-review.googlesource.com/#/q/b8d257d8ea213126b304813c6d70cc5986e97d3e">b8d257</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/184149935">b/184149935</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where NavBackStackEntries were being pushed down to
+      <code translate="no" dir="ltr">Lifecycle.State.CREATED</code>
+      after moving to
+      <code translate="no" dir="ltr">Lifecycle.State.STARTED</code>
+      when the
+      <code translate="no" dir="ltr">NavHost</code>
+      is added directly to the activity's
+      <code translate="no" dir="ltr">setContent()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia5ac1c2c7e83f90780dd85187519c08debaa6eca">Ia5ac1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/203536683">b/203536683</a>
+      )
+    </li>
+    <li>
+      Fixed a race condition where popping a
+      <code translate="no" dir="ltr">DialogFragment</code>
+      destination off of the back stack before the dialog was actually shown would not actually dismiss the dialog, resulting in a crash when the errant dialog was manually dismissed by the user. (
+      <a href="https://android-review.googlesource.com/#/q/I687e5c540686b7eedf96a2c8875e6e456840ca69">I687e5</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where the
+      <code translate="no" dir="ltr">onNavDestinationSelected</code>
+      API on
+      <code translate="no" dir="ltr">NavigationUI</code>
+      would return
+      <code translate="no" dir="ltr">true</code>
+      even if you didn't actually
+      <code translate="no" dir="ltr">navigate()</code>
+      to that navigation graph. It now uses the same logic used internally by
+      <code translate="no" dir="ltr">setupWithNavController</code>
+      to only select the
+      <code translate="no" dir="ltr">MenuItem</code>
+      associated with the current destination using the
+      <code translate="no" dir="ltr">hierarchy</code>
+      of the destination. (
+      <a href="https://android-review.googlesource.com/#/q/I2b053225195ac72ee7e2e6aabebcbb0b97418ec0">I2b053</a>
+      )
+    </li>
+  </ul>

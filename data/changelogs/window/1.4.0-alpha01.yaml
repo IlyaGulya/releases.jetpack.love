@@ -1,0 +1,381 @@
+libraryId: window
+groupId: androidx.window
+version: 1.4.0-alpha01
+releaseDate: 2024-08-07
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha01" data-text="Version 1.4.0-alpha01" tabindex="-1">Version 1.4.0-alpha01</h3>
+  <p>August 7, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.window:window-*:1.4.0-alpha01</code>
+    is released. Version 1.4.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c50bbb6627cd345df69ae3c3e7f4a133dec7fe48..9130b719318a69f2f3eaf82c32b131232fd721cb/window">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <strong>ActivityStack Pinning</strong>
+      allows apps to pin the content in one container and have its navigation isolated from the other container.
+    </li>
+    <li>
+      <strong>Interactive Divider</strong>
+      allows apps to display a fixed or draggable divider between the two activities in a split presentation.
+    </li>
+    <li>
+      <strong>Fullscreen Dialog Dimming</strong>
+      allows apps to specify the dialog dim area, to either dim the entire task window or only dim the container that shows the dialog.
+    </li>
+    <li>
+      <strong>Embedded Activity Window Info Callback</strong>
+      allows apps to continuously receive updates of the embedded activity window.
+    </li>
+    <li>
+      <strong>Embedding Animation Background</strong>
+      allows apps to specify the animation background, improving the transition animation quality when
+      <code translate="no" dir="ltr">ActivityEmbedding</code>
+      is used.
+    </li>
+    <li>
+      <strong>Improved ActivityStack Management</strong>
+      allows apps to have more control over the
+      <code translate="no" dir="ltr">ActivityStacks</code>
+      when
+      <code translate="no" dir="ltr">ActivityEmbedding</code>
+      is used, including:
+    </li>
+    <li>
+      Launching an activity into a specified
+      <code translate="no" dir="ltr">ActivityStack</code>
+    </li>
+    <li>
+      Finishing an
+      <code translate="no" dir="ltr">ActivityStack</code>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <p>
+        A new API
+        <code translate="no" dir="ltr">WindowInfoTracker#supportedPostures</code>
+        :
+      </p>
+
+      <ul>
+        <li>An API to determine if the device supports TableTop mode for foldables. Adds WindowAreaSessionPresenter#getWindow</li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        Add APIs to support
+        <code translate="no" dir="ltr">ActivityStack</code>
+        pinning:
+      </p>
+
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">SplitPinRule</code>
+          class
+        </li>
+        <li><code translate="no" dir="ltr">SplitController#pinTopActivityStack</code></li>
+        <li><code translate="no" dir="ltr">SplitController#unpinTopActivityStack</code></li>
+      </ul>
+    </li>
+    <li>
+      <p>Add APIs to enable and configure the interactive divider</p>
+
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">DividerAttributes</code>
+          class
+        </li>
+        <li><code translate="no" dir="ltr">SplitAttributes.Builder#setDividerAttributes</code></li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        Add APIs to set
+        <code translate="no" dir="ltr">EmbeddingConfiguration</code>
+        and
+        <code translate="no" dir="ltr">DimAreaBehavior</code>
+        for dialogs
+      </p>
+
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">EmbeddingConfiguration</code>
+          class
+        </li>
+        <li>
+          <code translate="no" dir="ltr">DimAreaBehavior</code>
+          class
+        </li>
+        <li><code translate="no" dir="ltr">ActivityEmbeddingController#setEmbeddingConfiguration</code></li>
+      </ul>
+    </li>
+    <li>
+      <p>Add APIs to receive embedded activity window info updates</p>
+
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">EmbeddedActivityWindowInfo</code>
+          class
+        </li>
+        <li><code translate="no" dir="ltr">ActivityEmbeddingController#embeddedActivityWindowInfo</code></li>
+      </ul>
+    </li>
+    <li>
+      <p>Add APIs to set embedding animation background</p>
+
+      <ul>
+        <li><code translate="no" dir="ltr">EmbeddingAnimationBackground</code></li>
+        <li><code translate="no" dir="ltr">SplitAttributes.Builder#setAnimationBackground</code></li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        Add APIs to finish
+        <code translate="no" dir="ltr">ActivityStacks</code>
+      </p>
+
+      <ul>
+        <li><code translate="no" dir="ltr">ActivityEmbeddingController#finishActivityStacks</code></li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        Add APIs to set launching
+        <code translate="no" dir="ltr">ActivityStack</code>
+      </p>
+
+      <ul>
+        <li><code translate="no" dir="ltr">ActivityEmbeddingOptions#setLaunchingActivityStack</code></li>
+      </ul>
+    </li>
+    <li>
+      <p>The following APIs are stable and no longer experimental:</p>
+
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">ActivityEmbeddingController#invalidateVisibleActivityStacks</code>
+          (moved from SplitController#invalidateTopVisibleSplitAttributes)
+        </li>
+        <li><code translate="no" dir="ltr">ActivityEmbeddingController#getActivityStack</code></li>
+        <li><code translate="no" dir="ltr">SplitController#updateSplitAttributes</code></li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        Add APIs for 1.4. (
+        <a href="https://android-review.googlesource.com/#/q/I567747b6a039b2c00183107a301842db3b6d77f4">I56774</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>Fixes bug on certain devices where UNAVAILABLE would be returned instead of ACTIVE when a session is active.</li>
+    <li>
+      Removes support for
+      <code translate="no" dir="ltr">transferActivityToWindowArea</code>
+      on devices with a
+      <code translate="no" dir="ltr">vendorApiLevel</code>
+      of 2 due to unstable API support.
+    </li>
+    <li>
+      Introduce API to enable drag-to-fullscreen for Activity Embedding draggable divider. (
+      <a href="https://android-review.googlesource.com/#/q/I645c92453fed1f59d20a8f2e9bb3df7118576511">I645c9</a>
+      )
+    </li>
+    <li>
+      Allow apps to disable
+      <code translate="no" dir="ltr">ActivityEmbedding</code>
+      animations via animation params for
+      <code translate="no" dir="ltr">SplitAttributes</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Idc01a0d4a13321f8de21806693b67ebdeb283fc2">Idc01a</a>
+      )
+    </li>
+    <li>
+      Removed manual outlining of access to new platform APIs since this happens automatically via API modeling when using R8 with AGP 7.3 or later (e.g. R8 version 3.3) and for all builds when using AGP 8.1 or later (e.g. D8 version 8.1). Clients who are not using AGP are advised to update to D8 version 8.1 or later. See
+      <a href="https://medium.com/androiddevelopers/mitigating-soft-verification-issues-in-r8-and-d8-7e9e06827dfd">this article</a>
+      for more details. (
+      <a href="https://android-review.googlesource.com/#/q/Ia60e0ab9f0fd613883a772c8aa34e27cc986cae8">Ia60e0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/345472586">b/345472586</a>
+      )
+    </li>
+    <li>
+      Allow extensions to take animation params for
+      <code translate="no" dir="ltr">SplitAttributes</code>
+      so that the device can use it for animation transitions. (
+      <a href="https://android-review.googlesource.com/#/q/Iede006641fa40fe036cb1eb3c2a858a194b80f05">Iede00</a>
+      )
+    </li>
+    <li>
+      Hide overlay APIs (
+      <a href="https://android-review.googlesource.com/#/q/Ic4251735cb5869a2152c2389af350288d9f74710">Ic4251</a>
+      )
+    </li>
+    <li>
+      Introduce APIs to configure the fixed or draggable divider for the split (
+      <a href="https://android-review.googlesource.com/#/q/Ia7a78dd767ea32edc4c8971b61bc136c16214c4f">Ia7a78</a>
+      )
+    </li>
+    <li>
+      Added density to
+      <code translate="no" dir="ltr">WindowMetrics</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Id6723149c9ba7f3aa924ef53f0ae9a21e5f8c7c8">Id6723</a>
+      )
+    </li>
+    <li>
+      Add API to get the
+      <code translate="no" dir="ltr">SupportedPostures</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If557a7c17ae8f3473f1ab81520038848c11f775c">If557a</a>
+      )
+    </li>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">setLaunchingActivityStack</code>
+      from experimental API (
+      <a href="https://android-review.googlesource.com/#/q/I191cf1aaa2e94724a9f82bea3d178a2889178319">I191cf</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">ActivityEmbeddingController#embeddedActivityWindowInfo</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I243121796a50d3c96e4852dbf83aa1f5cc1eea6e">I24312</a>
+      )
+    </li>
+    <li>
+      Deprecate
+      <code translate="no" dir="ltr">#getToken</code>
+      and add
+      <code translate="no" dir="ltr">#getActivityStackToken</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ie047116259409389ae6c544929f50a6a8114774a">Ie0471</a>
+      )
+    </li>
+    <li>
+      Introduce callback adapter for
+      <code translate="no" dir="ltr">embeddedActivityWindowInfo</code>
+      flow API (
+      <a href="https://android-review.googlesource.com/#/q/Ida77f3109a0bf624c445162834d7e2019d0bf601">Ida77f</a>
+      )
+    </li>
+    <li>
+      Add callback adapter for overlayInfo flow API (
+      <a href="https://android-review.googlesource.com/#/q/I7264f347c5ceaf44ed65335c573d67fd2300b3d8">I7264f</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">WindowSdkExtensionsRule</code>
+      to override
+      <code translate="no" dir="ltr">extensionsVersion</code>
+      for testing. (
+      <a href="https://android-review.googlesource.com/#/q/Ifb9285d4851195d02895bd510d7a8a32aa91057c">Ifb928</a>
+      )
+    </li>
+    <li>
+      - Migrate
+      <code translate="no" dir="ltr">#setLaunchingActivityStack</code>
+      to Bundle to compat with
+      <code translate="no" dir="ltr">ActivityOptionsCompat</code>
+      usages.
+      <ul>
+        <li>
+          Users should pass
+          <code translate="no" dir="ltr">activityOptions.toBundle</code>
+          instead of
+          <code translate="no" dir="ltr">ActvityOptions</code>
+          itself.
+        </li>
+        <li>
+          Remove
+          <code translate="no" dir="ltr">#setLaunchingActivityStack(Activity)</code>
+          . Users should migrate to use
+          <code translate="no" dir="ltr">ActivityEmbeddingController#getActivityStac(Activity)</code>
+          to get an
+          <code translate="no" dir="ltr">ActivityStack</code>
+          , and pass the
+          <code translate="no" dir="ltr">ActivityStack</code>
+          to
+          <code translate="no" dir="ltr">#setLaunchingActivityStack</code>
+          . (
+          <a href="https://android-review.googlesource.com/#/q/Ie0ccc35e5459c9031d6890185d6472388eb68320">Ie0ccc</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      - Introduce
+      <code translate="no" dir="ltr">ActivityStack.Token</code>
+      and
+      <code translate="no" dir="ltr">SpltInfo.Token</code>
+      as an identifier to communicate between WM Jetpack and extensions.
+      <ul>
+        <li>
+          Deprecate/Replace APIs to take/return Token instead of IBinder. (
+          <a href="https://android-review.googlesource.com/#/q/I12b24006a004e9c361554e21bb9a7564b27da406">I12b24</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      - Introduce
+      <code translate="no" dir="ltr">ActivityEmbeddingController#invalidateVisibleActivityStacks</code>
+      <ul>
+        <li>
+          Remove
+          <code translate="no" dir="ltr">SplitController#invalidateTopVisibleSplitAttributes</code>
+          because the feature is consolidate to
+          <code translate="no" dir="ltr">#invalidateVisibleActivityStacks</code>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I02ef5fed3ab71287e23f5bf5ac2b5a124fd2a0ed">I02ef5</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      - Adding API to set embedding configuration. (
+      <a href="https://android-review.googlesource.com/#/q/I59a4a238e0ec3bb207b8ddf7862ca613c1d1cf58">I59a4a</a>
+      )
+    </li>
+    <li>
+      - Adding pin/unpin top
+      <code translate="no" dir="ltr">ActivityStack</code>
+      <code translate="no" dir="ltr">androidx.Window</code>
+      APIs
+      <ul>
+        <li>
+          Updating demo app to allow pin/unpin top
+          <code translate="no" dir="ltr">ActivityStack</code>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I24dd34679d9540d9f2b0d6d7fa87635ef9d43155">I24dd3</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Re-add
+      <code translate="no" dir="ltr">#finishActivityStacks</code>
+      and
+      <code translate="no" dir="ltr">ActivityEmbeddingOptions</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ic1ab39e9c5a3f9833f8112e847cac7bdf2b27cd8">Ic1ab3</a>
+      )
+    </li>
+    <li>
+      Remove unstable APIs. (
+      <a href="https://android-review.googlesource.com/#/q/Ibc534a8ba5f81f0fdcde569335a581e605d1c69e">Ibc534</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/302380585">b/302380585</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_13_2" data-text="Version 1.3" tabindex="-1">Version 1.3</h2>

@@ -1,0 +1,56 @@
+libraryId: privacysandbox-ui
+groupId: androidx.privacysandbox
+version: 1.0.0-alpha10
+releaseDate: 2024-09-18
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha10" data-text="Version 1.0.0-alpha10" tabindex="-1">Version 1.0.0-alpha10</h3>
+  <p>September 18, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.privacysandbox.ui:ui-client:1.0.0-alpha10</code>
+    ,
+    <code translate="no" dir="ltr">androidx.privacysandbox.ui:ui-core:1.0.0-alpha10</code>
+    , and
+    <code translate="no" dir="ltr">androidx.privacysandbox.ui:ui-provider:1.0.0-alpha10</code>
+    are released. Version 1.0.0-alpha10 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/948119be341fa4affc055418e695d8c4c7e5e2e4..0431b84980e97d6bafdfda7c9038bc4d9529564f/privacysandbox/ui">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Updated session opening logic to only open a session inside a
+      <code translate="no" dir="ltr">SandboxedSdkView</code>
+      if the window containing the
+      <code translate="no" dir="ltr">SandboxedSdkView</code>
+      is visible.
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">SessionObserver</code>
+      logic to send
+      <code translate="no" dir="ltr">onUiContainerChanged</code>
+      when the visibility of the window containing the
+      <code translate="no" dir="ltr">SandboxedSdkView</code>
+      changes.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Invoke
+      <code translate="no" dir="ltr">onUiContainerChanged</code>
+      when the window visibility changes (
+      <a href="https://android-review.googlesource.com/#/q/I541cfd2fc205a4874f7f9387dd0a85b360b46b78">I541cf</a>
+      )
+    </li>
+    <li>
+      Removed manual outlining of access to new platform APIs since this happens automatically via API modeling when using R8 with AGP 7.3 or later (e.g. R8 version 3.3) and for all builds when using AGP 8.1 or later (e.g. D8 version 8.1). Clients who are not using AGP are advised to update to D8 version 8.1 or later. See
+      <a href="https://medium.com/androiddevelopers/mitigating-soft-verification-issues-in-r8-and-d8-7e9e06827dfd">this article</a>
+      for more details. (
+      <a href="https://android-review.googlesource.com/#/q/If6b4ccfca0a943b45971a422b58949b13a10bada">If6b4c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/345472586">b/345472586</a>
+      )
+    </li>
+  </ul>

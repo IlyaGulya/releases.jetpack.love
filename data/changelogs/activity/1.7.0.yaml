@@ -1,0 +1,163 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.7.0
+releaseDate: 2023-03-22
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0" data-text="Version 1.7.0" tabindex="-1">Version 1.7.0</h3>
+  <p>March 22, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.7.0</code>
+    ,
+    <code translate="no" dir="ltr">androidx.activity:activity-compose:1.7.0</code>
+    , and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.7.0</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/78f788418108373b512284fd2b9e6fc91fdf50ca..83d3b196775ea26547854fb88000b4ef5c2649fd/activity">Version 1.7.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 1.6.0</strong></p>
+  <ul>
+    <li>
+      The Photo Picker activity contracts in
+      <code translate="no" dir="ltr">PickVisualMedia</code>
+      and
+      <code translate="no" dir="ltr">PickMultipleVisualMedia</code>
+      have been updated to contain an additional fallback for when
+      <code translate="no" dir="ltr">MediaStore.ACTION_PICK_IMAGES</code>
+      is unavailable that allows OEMs and system apps, such as Google Play services, to provide a consistent Photo Picker experience on a wider range of Android devices and API levels by implementing the
+      <a href="/reference/androidx/activity/result/contract/ActivityResultContracts.PickVisualMedia#ACTION_SYSTEM_FALLBACK_PICK_IMAGES()">fallback action</a>
+      . The Photo Picker will use this fallback if it is available before falling back to using
+      <code translate="no" dir="ltr">Intent.ACTION_OPEN_DOCUMENT</code>
+      , which remains to support all API 19 and higher devices.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ComponentDialog</code>
+      now implements
+      <code translate="no" dir="ltr">SavedStateRegistryOwner</code>
+      and has access to its own
+      <code translate="no" dir="ltr">SavedStateRegistry</code>
+      and sets the
+      <code translate="no" dir="ltr">SavedStateRegistryOwner</code>
+      for its
+      <code translate="no" dir="ltr">ViewTree</code>
+      . It is now possible to use Jetpack Compose within a
+      <code translate="no" dir="ltr">ComponentDialog</code>
+      as it meets both the
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      and
+      <code translate="no" dir="ltr">SavedStateRegistryOwner</code>
+      attached to the Window via the
+      <code translate="no" dir="ltr">ViewTree</code>
+      APIs requirements.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">IntentSenderRequest.Builder.setFlags()</code>
+      now allows you to set multiple flags from
+      <code translate="no" dir="ltr">Intent</code>
+      , rather than only a single flag.
+    </li>
+  </ul>
+  <p><strong>Kotlin Conversion</strong></p>
+  <p>
+    A number of Activity classes have been converted to Kotlin. All converted classes still retain their binary compatibility with previous versions. The following classes have
+    <strong>source incompatible</strong>
+    changes for classes written in Kotlin:
+    <code translate="no" dir="ltr">ActivityResultRegistryOwner</code>
+    ,
+    <code translate="no" dir="ltr">OnBackPressedDispatcherOwner</code>
+    .
+  </p>
+  <p>The table below provides the source conversions for the new version of Activity:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Activity 1.5</th>
+        <th>Activity 1.6</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td><code translate="no" dir="ltr">override fun getActivityResultRegistry() = activityResultRegistry</code></td>
+        <td><code translate="no" dir="ltr">override val activityResultRegistry = activityResultRegistry</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">override fun getOnBackPressedDispatcher() = onBackPressedDispatcher</code></td>
+        <td><code translate="no" dir="ltr">override val onBackPressedDispatcher = onBackPressedDispatcher</code></td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    These classes were also converted to Kotlin, but remain source compatible:
+    <code translate="no" dir="ltr">ContextAware</code>
+    ,
+    <code translate="no" dir="ltr">ContextAwareHelper</code>
+    ,
+    <code translate="no" dir="ltr">OnContextAvailableListener</code>
+    ,
+    <code translate="no" dir="ltr">IntentSenderRequest</code>
+    , and
+    <code translate="no" dir="ltr">OnBackPressedDispatcher</code>
+  </p>
+  <p><strong>FullyDrawnReporter APIs</strong></p>
+  <p>
+    <code translate="no" dir="ltr">ComponentActivity</code>
+    now provides a
+    <code translate="no" dir="ltr">FullyDrawnReporter</code>
+    instance that allows multiple components to report when they are ready for interaction.
+    <code translate="no" dir="ltr">ComponentActivity</code>
+    will wait for all components to complete before calling
+    <code translate="no" dir="ltr">reportFullyDrawn()</code>
+    on your behalf. These APIs take care of the timing requirements for you and do not need to be called as part of an
+    <code translate="no" dir="ltr">onDraw</code>
+    call.
+  </p>
+  <p>These APIs are encouraged to enable:</p>
+  <ul>
+    <li>Signaling the Android Runtime when startup completes, to ensure all of the code run during a multi-frame startup sequence is included and prioritized for background compilation.</li>
+    <li>Signaling Macrobenchmark and Play Vitals when your application should be considered fully drawn for startup metrics, so you can track performance.</li>
+  </ul>
+  <p>
+    Three Activity Compose APIs have been added to make it more convenient to use the
+    <code translate="no" dir="ltr">FullyDrawnReporter</code>
+    from individual composables:
+  </p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ReportDrawn</code>
+      indicates that your composable is immediately ready for interaction.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ReportDrawnWhen</code>
+      takes a predicate (i.e.,
+      <code translate="no" dir="ltr">list.count &gt; 0</code>
+      ) to indicate when your composable is ready for interaction.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ReportDrawnAfter</code>
+      takes a suspending method that, when it completes, indicates that you are ready for interaction.
+    </li>
+  </ul>
+  <p><strong>Dependency Updates</strong></p>
+  <ul>
+    <li>
+      Activity now depends on
+      <a href="/jetpack/androidx/releases/lifecycle#2.6.1">
+        Lifecycle
+        <code translate="no" dir="ltr">2.6.1</code>
+      </a>
+      . (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/8fc31d13a3a01210139e014d127f9aa0aa3479ed">8fc31d</a>
+      )
+    </li>
+    <li>
+      Activity now depends on
+      <a href="/jetpack/androidx/releases/profileinstaller#1.3.0">
+        ProfileInstaller
+        <code translate="no" dir="ltr">1.3.0</code>
+      </a>
+      . (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/83d3b196775ea26547854fb88000b4ef5c2649fd">83d3b1</a>
+      )
+    </li>
+  </ul>

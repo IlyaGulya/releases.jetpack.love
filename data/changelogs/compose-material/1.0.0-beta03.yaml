@@ -1,0 +1,57 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 1.0.0-beta03
+releaseDate: 2021-03-24
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta03" data-text="Version 1.0.0-beta03" tabindex="-1">Version 1.0.0-beta03</h3>
+  <p>March 24, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material-*:1.0.0-beta03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/52fbd7ed5b07ca4431fa828325a1f8da45b02e51..5c42896eb6591b09e3952030fb7ea8d9b8c42713/compose/material">Version 1.0.0-beta03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">DefaultMonotonicFrameClock</code>
+      is deprecated. Calling
+      <code translate="no" dir="ltr">withFrameNanos</code>
+      or
+      <code translate="no" dir="ltr">Recomposer.runRecomposeAndApplyChanges</code>
+      with no
+      <code translate="no" dir="ltr">MonotonicFrameClock</code>
+      will now throw
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4eb0d7a8ebae7497735d25bc35e9f94c66ce2232">I4eb0d</a>
+      )
+    </li>
+    <li>
+      Added a new API
+      <code translate="no" dir="ltr">LeadingIconTab</code>
+      to support displaying an icon and inline text in a tab. (
+      <a href="https://android-review.googlesource.com/#/q/I2326771eb8d8f8716a8a13bdd8b6e6682912be35">I23267</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      [by Jossi Wolf]
+      <code translate="no" dir="ltr">BottomDrawer</code>
+      now wraps the content of the drawer slot.
+      <code translate="no" dir="ltr">BottomDrawer</code>
+      doesn't throw an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      when the parent has infinite height. The bottom drawer will now open to an expanded state if it is smaller than 50% of its parent. Docs around
+      <code translate="no" dir="ltr">BottomDrawerState</code>
+      and
+      <code translate="no" dir="ltr">ModalBottomSheetLayoutState</code>
+      have been updated.
+      <code translate="no" dir="ltr">BottomDrawerState#isOpen</code>
+      returns true now if it is in either open or expanded state. (
+      <a href="https://android-review.googlesource.com/#/q/I8724160d0a593e4f8611f33a7da231b9450debba">I87241</a>
+      )
+    </li>
+  </ul>

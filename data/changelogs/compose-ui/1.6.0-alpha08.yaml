@@ -1,0 +1,114 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.6.0-alpha08
+releaseDate: 2023-10-18
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-alpha08" data-text="Version 1.6.0-alpha08" tabindex="-1">Version 1.6.0-alpha08</h3>
+  <p>October 18, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.6.0-alpha08</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1f7407d4293384a1b91bc142880e3525048b3443..465c5c5b7a0d79793bddb26a695f67aba8ea2f7e/compose/ui">Version 1.6.0-alpha08 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">Modifier.dragAndDrawSource</code>
+      has had the
+      <code translate="no" dir="ltr">onDrawDragShadow</code>
+      lambda renamed to
+      <code translate="no" dir="ltr">drawDragDecoration</code>
+      and
+      <code translate="no" dir="ltr">DragAndDropInfo</code>
+      has had the size parameter renamed to
+      <code translate="no" dir="ltr">dragDecorationSize</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id0e3037697efad03dcf74c2c9393a733e6ab0489">Id0e30</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/303904810">b/303904810</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">SemanticsNodeInteraction.isDisplayed()</code>
+      and
+      <code translate="no" dir="ltr">SemanticsNodeInteraction.isNotDisplayed()</code>
+      to check if a matched node is visible or not without also asserting on it. (
+      <a href="https://android-review.googlesource.com/#/q/I2c1967befd4ae5dc2fbe324371c3039eecd5d89c">I2c196</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/302100809">b/302100809</a>
+      )
+    </li>
+    <li>
+      Introduced a special
+      <code translate="no" dir="ltr">Unspecified</code>
+      value for
+      <code translate="no" dir="ltr">TextAlign</code>
+      ,
+      <code translate="no" dir="ltr">TextDirection</code>
+      ,
+      <code translate="no" dir="ltr">Hyphens</code>
+      and
+      <code translate="no" dir="ltr">LineBreak</code>
+      fields of the
+      <code translate="no" dir="ltr">ParagraphTextStyle</code>
+      to replace
+      <code translate="no" dir="ltr">null</code>
+      . Because these classes are inline classes, by replacing nullable with the Unspecified, we avoid primitive type boxing. Constructors, getters and other methods in
+      <code translate="no" dir="ltr">TextStyle</code>
+      and Paragraph style were updated to accept the mentioned parameters as non-null types. (
+      <a href="https://android-review.googlesource.com/#/q/I4197ea85db556846ecad27ca8f561955e2370951">I4197e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/299490814">b/299490814</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">GoogleFont</code>
+      overload for reading a
+      <code translate="no" dir="ltr">GoogleFont</code>
+      from XML. (
+      <a href="https://android-review.googlesource.com/#/q/If8f5911dde550e78bded1a8ea6a72b9e5977bac7">If8f59</a>
+      )
+    </li>
+    <li>
+      Made
+      <code translate="no" dir="ltr">LoremIpsum</code>
+      <code translate="no" dir="ltr">PreviewParameterProvider</code>
+      an open class. (
+      <a href="https://android-review.googlesource.com/#/q/I41bf5f4e880867aea3603b3c4ea9a37c456e428d">I41bf5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/266918816">b/266918816</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/300116360">b/300116360</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">FontFamilyResolver</code>
+      now uses
+      <code translate="no" dir="ltr">Dispatchers.Main</code>
+      for cache management coroutines. (
+      <a href="https://android-review.googlesource.com/#/q/Ie8dd912e671a4ee49990c76f4d72adad16cc4f53">Ie8dd9</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AndroidViewBinding</code>
+      now synchronously removes
+      <code translate="no" dir="ltr">Fragment</code>
+      instances inflated by including a
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      in your layout as part of its
+      <code translate="no" dir="ltr">onRelease</code>
+      by using
+      <code translate="no" dir="ltr">commitNow</code>
+      (instead of the
+      <code translate="no" dir="ltr">commit</code>
+      it was using previously), thus fixing issues with Live Edit's method with replacing the composition upon changes. (
+      <a href="https://android-review.googlesource.com/#/q/I58fbffefb19ed896ffedc835185718a24a86949e">I58fbf</a>
+      )
+    </li>
+  </ul>

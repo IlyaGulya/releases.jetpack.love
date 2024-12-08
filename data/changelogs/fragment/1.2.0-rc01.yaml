@@ -1,0 +1,118 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.2.0-rc01
+releaseDate: 2019-10-23
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-rc01" data-text="Version 1.2.0-rc01" tabindex="-1">Version 1.2.0-rc01</h3>
+  <p>October 23, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.2.0-rc01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.2.0-rc01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.2.0-rc01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/50959249335066aab14331fa93c0fa132cc00deb..b36efec9f0fbc815605584732e6e2b59b7fd0575/fragment">Version 1.2.0-rc01 contains these commits</a>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      now supports the
+      <code translate="no" dir="ltr">class</code>
+      attribute in addition to
+      <code translate="no" dir="ltr">android:name</code>
+      , mirroring the functionality of the
+      <code translate="no" dir="ltr">&lt;fragment&gt;</code>
+      tag. (
+      <a href="https://issuetracker.google.com/issues/142722242">b/142722242</a>
+      )
+    </li>
+    <li>
+      Added a new Lint check that ensures you are using
+      <code translate="no" dir="ltr">getViewLifecycleOwner()</code>
+      when observing
+      <code translate="no" dir="ltr">LiveData</code>
+      from
+      <code translate="no" dir="ltr">onCreateView()</code>
+      ,
+      <code translate="no" dir="ltr">onViewCreated()</code>
+      , or
+      <code translate="no" dir="ltr">onActivityCreated()</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/137122478">b/137122478</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">onDismiss</code>
+      and
+      <code translate="no" dir="ltr">onCancel</code>
+      callbacks on
+      <code translate="no" dir="ltr">DialogFragment</code>
+      now guarantee that the
+      <code translate="no" dir="ltr">DialogInterface</code>
+      passed to them is non-null and that
+      <code translate="no" dir="ltr">getDialog()</code>
+      returns non-null when they are executed. (
+      <a href="https://issuetracker.google.com/issues/141974033">b/141974033</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      now adds the Fragment defined by
+      <code translate="no" dir="ltr">class</code>
+      or
+      <code translate="no" dir="ltr">android:name</code>
+      as part of inflation, ensuring that
+      <code translate="no" dir="ltr">findFragmentById()</code>
+      and
+      <code translate="no" dir="ltr">findFragmentByTag()</code>
+      work immediately afterwards. (
+      <a href="https://issuetracker.google.com/issues/142520327">b/142520327</a>
+      )
+    </li>
+    <li>
+      Fixed an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      in
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      due to the state being saved. (
+      <a href="https://issuetracker.google.com/issues/142580713">b/142580713</a>
+      )
+    </li>
+    <li>
+      Fixed an
+      <code translate="no" dir="ltr">UnsupportedOperationException</code>
+      in
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      when the
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      class is obfuscated. (
+      <a href="https://issuetracker.google.com/issues/142657034">b/142657034</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known issues</strong></p>
+  <ul>
+    <li>
+      Fragments referenced only via the
+      <code translate="no" dir="ltr">class</code>
+      or
+      <code translate="no" dir="ltr">android:name</code>
+      attribute on a
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      are not kept by ProGuard automatically, requiring that you manually add a keep rule for each fragment class. We have disabled the Lint rule suggesting moving to
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      until this is fixed via
+      <code translate="no" dir="ltr">aapt2</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/142601969">b/142601969</a>
+      )
+    </li>
+  </ul>

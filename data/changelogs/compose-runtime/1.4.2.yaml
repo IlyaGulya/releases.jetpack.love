@@ -1,0 +1,34 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.4.2
+releaseDate: 2023-04-19
+#language=html
+changelogHtml: |
+  <h3 id="1.4.2" data-text="Version 1.4.2" tabindex="-1">Version 1.4.2</h3>
+  <p>April 19, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.4.2</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5dcb085369a3574f1b09eaaf2a58ee0ea01c22d5..0872f930da585f7fbf6e17c74b1dc42045e8b2c6/compose/runtime">Version 1.4.2 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <p>
+        Fix potential deadlock in snapshot list and map
+        <a href="https://android.googlesource.com/platform/frameworks/support/+/2eb65706778b66e205a414e96365b9e267f5c3ce">2eb6570</a>
+      </p>
+    </li>
+    <li>
+      <p>
+        Adding content to a
+        <code translate="no" dir="ltr">SnapshotStateList</code>
+        or
+        <code translate="no" dir="ltr">SnapshotStateMap</code>
+        can encounter a deadlock if the modification is concurrent with a direct write to the state record. This was made significantly more likely to be encountered with the changes introduced by
+        <a href="https://android-review.googlesource.com/#/q/I9e793b3285b5102392cea30f72ed1583e798b810">93fcae828b</a>
+        that uses direct writes to release unused records.
+      </p>
+    </li>
+    <li><p>The locks are now ordered in that a snapshot lock is never attempted to be taken when a map or list lock is held.</p></li>
+  </ul>

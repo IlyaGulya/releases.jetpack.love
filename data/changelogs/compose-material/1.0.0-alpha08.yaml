@@ -1,0 +1,224 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 1.0.0-alpha08
+releaseDate: 2020-12-02
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha08" data-text="Version 1.0.0-alpha08" tabindex="-1">Version 1.0.0-alpha08</h3>
+  <p>December 2, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material:1.0.0-alpha08</code>
+    ,
+    <code translate="no" dir="ltr">androidx.compose.material:material-icons-core:1.0.0-alpha08</code>
+    , and
+    <code translate="no" dir="ltr">androidx.compose.material:material-icons-extended:1.0.0-alpha08</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/358bdaf3c3c4a917883408e9f747da521fdf9e65..10b5e9fd366c1c413d5576aed50a305d300938e1/compose/material">Version 1.0.0-alpha08 contains these commits.</a>
+  </p>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      This release is only compatible with Kotlin
+      <code translate="no" dir="ltr">1.4.20</code>
+      , so you will need to update your Kotlin version.
+    </span>
+  </aside>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      MaterialTheme now sets the correct colors for selection handles and selection background. Non-Material apps can manually use AmbientTextSelectionColors to customize the colors used for selection. (
+      <a href="https://android-review.googlesource.com/#/q/I1e6f4b495bdc713e162759a08ecf0a7311b26e33">I1e6f4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/139320372">b/139320372</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/139320907">b/139320907</a>
+      )
+    </li>
+    <li>
+      Added lint check for composable lambda parameter naming and position, to check for consistency with Compose guidelines. Also migrated some APIs using
+      <code translate="no" dir="ltr">children</code>
+      as the name for their trailing lambda to
+      <code translate="no" dir="ltr">content</code>
+      , according to the lint check and guidance. (
+      <a href="https://android-review.googlesource.com/#/q/Iec48e38a2896785b521814d95c9fb624d2807315">Iec48e</a>
+      )
+    </li>
+    <li>
+      Renamed VectorAsset to ImageVector Moved and renamed VectorAsset to Builder to be an inner class of ImageVector as per API council guidelines. Added typealias of VectorAssetBuilder to link to ImageVector.Builder for compat. (
+      <a href="https://android-review.googlesource.com/#/q/Icfdc85391feb2bd0edabebeba84f31bace10883a">Icfdc8</a>
+      )
+    </li>
+    <li>
+      Renamed ImageAsset and related methods to ImageBitmap. (
+      <a href="https://android-review.googlesource.com/#/q/Ia2d9941a6e0b8c29867cb3fbafb629fa4db10684">Ia2d99</a>
+      )
+    </li>
+    <li>
+      Moved foundation semantics properties to ui (
+      <a href="https://android-review.googlesource.com/#/q/I6f05cc7c0bdf1e5344440cd6e492fbc0545011e7">I6f05c</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">fun RippleIndication()</code>
+      has been deprecated and replaced with
+      <code translate="no" dir="ltr">rememberRippleIndication()</code>
+      for consistency with other APIs. (
+      <a href="https://android-review.googlesource.com/#/q/Id8e2c54e8a15091aa27a014e1cc06886578dbe89">Id8e2c</a>
+      )
+    </li>
+    <li>
+      Added a singeLine parameter into BasicTextField, TextField and OutlinedTextField. Set this parameter to true to make the text field a single horizontally scrollable line. (
+      <a href="https://android-review.googlesource.com/#/q/I57004dff8b341f08f6673235e28e958c9fbf63c6">I57004</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/168187755">b/168187755</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Add semantics action Dismiss (
+      <a href="https://android-review.googlesource.com/#/q/I2b70641450760f3056a53e283cf04b004ea1db2c">I2b706</a>
+      )
+    </li>
+    <li>
+      Moved DrawModifier APIs from the androidx.compose.ui package to the androidx.compose.ui.draw package. Created DrawModifierDeprecated.kt file to include typealiases/helper methods to assist with the migration from the deprecated to the current APIs. (
+      <a href="https://android-review.googlesource.com/#/q/Id6044c7119aeaf40a3ff21006fe39b03f5f1b18a">Id6044</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173834241">b/173834241</a>
+      )
+    </li>
+    <li>
+      Renamed Modifier.drawLayer to Modifier.graphicsLayer Also updated related classes to GraphicsLayer as per API feedback. (
+      <a href="https://android-review.googlesource.com/#/q/I0bd297065427d19715e4e33480f7be87e51ff48a">I0bd29</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173834241">b/173834241</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">&lt;T&gt;</code>
+      was removed from SubcomposeLayout declaration. You can use it without specifying a type now. (
+      <a href="https://android-review.googlesource.com/#/q/Ib60c850964b308ebee32beca6db78d76af67fbf1">Ib60c8</a>
+      )
+    </li>
+    <li>
+      Added Modifier.scale/rotate APIs as conveniences for drawLayer.
+      <ul>
+        <li>
+          Renamed
+          <code translate="no" dir="ltr">Modifier.drawOpacity</code>
+          to
+          <code translate="no" dir="ltr">Modifier.alpha</code>
+        </li>
+        <li>
+          Renamed
+          <code translate="no" dir="ltr">Modifier.drawShadow</code>
+          to
+          <code translate="no" dir="ltr">Modifier.shadow</code>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I264ca72b36ea62fd615436849203895ed742fa1e">I264ca</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/173208140">b/173208140</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      The alignment parameter of Box was renamed to contentAlignment. (
+      <a href="https://android-review.googlesource.com/#/q/I2c95727d9ec49f056fffb3a73dce95a9d3be5b53">I2c957</a>
+      )
+    </li>
+    <li>
+      offsetPx modifiers were renamed to offset. They are now taking lambda parameters instead of State. (
+      <a href="https://android-review.googlesource.com/#/q/Ic302174ef9cffa7ef806d1668f81cb89159363f2">Ic3021</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173594846">b/173594846</a>
+      )
+    </li>
+    <li>
+      Introduced SweepGradientShader and SweepGradientBrush APIs. (
+      <a href="https://android-review.googlesource.com/#/q/Ia22c1593bad5a63dbc66f4b012617087b30d2f77">Ia22c1</a>
+      )
+    </li>
+    <li>
+      Added lint check for Modifier parameters in Composable functions. This lint check checks the naming, return type, default value, and order of the parameter for consistency with Compose guidelines. (
+      <a href="https://android-review.googlesource.com/#/q/If493bd2e3c236cae95744e1fab138f87f5844daa">If493b</a>
+      )
+    </li>
+    <li>
+      Updated TextFieldValue API
+      <ul>
+        <li>made TextFieldValue.composition readonly</li>
+        <li>
+          removed exception thrown for invalid selection range (
+          <a href="https://android-review.googlesource.com/#/q/I4a67592c05ab384ad5614cccf50ad6e79be52b55">I4a675</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/172239032">b/172239032</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">Modifier.drawLayer()</code>
+      overload. It takes a lambda block on a new GraphicsLayerScope where you define the layer parameters in a way which allows to skip recomposition and relayout when the state change happens. DrawLayerModifier is now internal in preparation to migrating its logic into
+      <code translate="no" dir="ltr">placeable.placeWithLayer()</code>
+      method of LayoutModifier (
+      <a href="https://android-review.googlesource.com/#/q/I15e9f41e3c93245529bf798e4a9617ca49d5e509">I15e9f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173030831">b/173030831</a>
+      )
+    </li>
+    <li>
+      Deprecated Ambients named with
+      <code translate="no" dir="ltr">Ambient</code>
+      as their suffix, and replaced them with new properties prefixed with Ambient, following other Ambients and Compose API guidelines. (
+      <a href="https://android-review.googlesource.com/#/q/I334403cc490ea913b8980d29e2cbe08e98ad7945">I33440</a>
+      )
+    </li>
+    <li>
+      Added lint check to check that Modifier factories use
+      <code translate="no" dir="ltr">androidx.compose.ui.composed {}</code>
+      internally, instead of being marked as
+      <code translate="no" dir="ltr">@Composable</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3c4bcedafbd0bc9846a9c0ba75685a35cb4de371">I3c4bc</a>
+      )
+    </li>
+    <li>
+      Semantics argument mergeAllDescendants was renamed to mergeDescendants. (
+      <a href="https://android-review.googlesource.com/#/q/Ib625016bd3bbe4349c2870ba68ad52d76a0d372a">Ib6250</a>
+      )
+    </li>
+    <li>
+      Time control in tests (TestAnimationClock and its usages) is now experimental (
+      <a href="https://android-review.googlesource.com/#/q/I6ef86c5f530422c7c751bdb086a691cbc2e837f3">I6ef86</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171378521">b/171378521</a>
+      )
+    </li>
+    <li>
+      Remove old ui-test module and its stubs (
+      <a href="https://android-review.googlesource.com/#/q/I3a7cbbe376d0542955983fb09afd2dc37be7647e">I3a7cb</a>
+      )
+    </li>
+    <li>
+      TextUnit.Inherit is renamed to TextUnit.Unspecified for consistency with other units. (
+      <a href="https://android-review.googlesource.com/#/q/Ifce190ac87b01144b2fb0e7f9a8659bceed87f4e">Ifce19</a>
+      )
+    </li>
+    <li>
+      The Alignment interface was updated and made functional. (
+      <a href="https://android-review.googlesource.com/#/q/I46a0791e261b6f305804797cdda7fdd2ef405305">I46a07</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172311734">b/172311734</a>
+      )
+    </li>
+    <li>
+      id was renamed to layoutId for LayoutIdParentData. Measurable.id was renamed to Measurable.layoutId. (
+      <a href="https://android-review.googlesource.com/#/q/Iadbcb8b5588876e0d2a512e476968025b03ada6c">Iadbcb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172449643">b/172449643</a>
+      )
+    </li>
+  </ul>

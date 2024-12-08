@@ -1,0 +1,128 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.3.1
+releaseDate: 2021-03-10
+#language=html
+changelogHtml: |
+  <h3 id="1.3.1" data-text="Version 1.3.1" tabindex="-1">Version 1.3.1</h3>
+  <p>March 10, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.3.1</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.3.1</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.3.1</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b4fe1cc9ec5c6d25591e037e4f84316c36d6825a..587cd19caebfbd63197a766916bf5296b3a6d65e/fragment">Version 1.3.1 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Dialogs within a
+      <code translate="no" dir="ltr">DialogFragment</code>
+      can now get access to ViewTree owners through their DecorView, ensuring that
+      <code translate="no" dir="ltr">DialogFragment</code>
+      can be used with
+      <code translate="no" dir="ltr">ComposeView</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib92905306e16dcaee63c985f22b5e36b6718dd39">Ib9290</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/180691023">b/180691023</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fragments inflated into an already
+      <code translate="no" dir="ltr">RESUMED</code>
+      activity using FragmentContainerView are now properly shown after a configuration change. (
+      <a href="https://android-review.googlesource.com/#/q/Ie14c80467b66186862319469f51bbd4d7ebcbbb9">Ie14c8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/180538371">b/180538371</a>
+      )
+    </li>
+    <li>
+      There is no longer an extra
+      <code translate="no" dir="ltr">}</code>
+      at the end of the fragment
+      <code translate="no" dir="ltr">toString()</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I547053a275afdde0720a63370629af49c1b8cd2e">I54705</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177761088">b/177761088</a>
+      )
+    </li>
+    <li>
+      Overridden methods in FragmentActivity now properly inherit the base method javaDoc (
+      <a href="https://android-review.googlesource.com/#/q/I736ce6ad3c248c093ccb4cdf1f40029451fd1422">I736ce</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/139548782">b/139548782</a>
+      )
+    </li>
+    <li>
+      The docs for
+      <code translate="no" dir="ltr">setFragmentResult</code>
+      and
+      <code translate="no" dir="ltr">setFragmentResultListener</code>
+      have updated their parameters docs to reflect that they no longer accept nullables (
+      <a href="https://android-review.googlesource.com/#/q/I990baa2e1b71a11b11342c366c284903c247e631">I990ba</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/178348386">b/178348386</a>
+      )
+    </li>
+  </ul>
+  <p><strong>New State Manager Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a memory leak in fragments caused by
+      <code translate="no" dir="ltr">mFocusedView</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ib4e9eddfba3ad925471890ff0078d9a65416f7da">Ib4e9e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/179925887">b/179925887</a>
+      )
+    </li>
+    <li>
+      Fragments now properly call
+      <code translate="no" dir="ltr">onCreateOptionsMenu</code>
+      when using show/hide transactions (
+      <a href="https://android-review.googlesource.com/#/q/I8bce888e4b9757b5f5c3200e8d884e16372b6ec6">I8bce8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/180255554">b/180255554</a>
+      )
+    </li>
+    <li>
+      Child fragments with transitions that start prior to the fragment being laid out will now properly reach
+      <code translate="no" dir="ltr">RESUMED</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ic11e655bd4ed206485c2762a1af4e5bc7aa4cf9c">Ic11e6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/180825150">b/180825150</a>
+      )
+    </li>
+    <li>
+      Fragments inflated using the
+      <code translate="no" dir="ltr">&lt;fragment&gt;</code>
+      tag will now always make it to
+      <code translate="no" dir="ltr">RESUMED</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I452acc8016d1be2f4be611cd3affeb33687600ec">I452ac</a>
+      , (
+      <a href="https://android-review.googlesource.com/#/q/I9fa498952456908a11a257cb3fdedcb89fb083a6">I9fa49</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Updates</strong></p>
+  <ul>
+    <li>
+      Fragment 1.3.1 depends on
+      <a href="/jetpack/androidx/releases/activity#1.2.1">
+        Activity
+        <code translate="no" dir="ltr">1.2.1</code>
+      </a>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I557b913b9c31c7856cd508151e3190c6779c191e">I557b9</a>
+      )
+    </li>
+  </ul>

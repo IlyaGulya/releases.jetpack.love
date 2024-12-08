@@ -1,0 +1,77 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.5.0-alpha03
+releaseDate: 2024-10-02
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha03" data-text="Version 1.5.0-alpha03" tabindex="-1">Version 1.5.0-alpha03</h3>
+  <p>October 2, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.5.0-alpha03</code>
+    is released. Version 1.5.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/0431b84980e97d6bafdfda7c9038bc4d9529564f..b6ae8d0a0e8cd803f7b84f30101eda1af4f1d6b6/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We have added support for bi-directional swiping in
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      , for rare cases where the current screen does not support swipe to dismiss. . The default is still to swipe-to-reveal only on right-to-left swipes and it is strongly advised to respect the default behavior to avoid conflict with swipe to dismiss. (
+      <a href="https://android-review.googlesource.com/#/q/Ifac04be22f302315ff1cd2160a44c24c82f29612">Ifac04</a>
+      )
+    </li>
+    <li>
+      We have updated
+      <code translate="no" dir="ltr">LazyColumnState</code>
+      to override
+      <code translate="no" dir="ltr">canScrollForward</code>
+      and
+      <code translate="no" dir="ltr">canScrollBackward</code>
+      - this now stops scrolling when the first or last item is exactly at the center of the screen. (
+      <a href="https://android-review.googlesource.com/#/q/Ia77d796c29fcb353779b940c930465ba12126557">Ia77d7</a>
+      )
+    </li>
+    <li>
+      We have added new
+      <code translate="no" dir="ltr">HorizontalPager</code>
+      and
+      <code translate="no" dir="ltr">VerticalPager</code>
+      components which address common issues, such as focus handling and interacting with system swipe to dismiss that could occur on Wear. (
+      <a href="https://android-review.googlesource.com/#/q/I2902b5f63e513ee5882194ed5fabb71752b5d980">I2902b</a>
+      )
+    </li>
+    <li>
+      We have added support for
+      <code translate="no" dir="ltr">LazyColumn</code>
+      to expose the client's
+      <code translate="no" dir="ltr">key</code>
+      and
+      <code translate="no" dir="ltr">contentType</code>
+      through
+      <code translate="no" dir="ltr">layoutItems</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1bd9c2864b150c7f9432180af4f12181c9fe1914">I1bd9c</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We have updated the curved text animations to be smoother, using paint flags. (
+      <a href="https://android-review.googlesource.com/#/q/I73a1549404b219c99388eb3d1f472a625156c664">I73a15</a>
+      )
+    </li>
+    <li>
+      We have updated the Material Dialog documentation to reflect that
+      <code translate="no" dir="ltr">onDismissRequest</code>
+      is not called after show flag is set to false. (
+      <a href="https://android-review.googlesource.com/#/q/Ifd8d6d17abe8b5316a37b56cf08df4226426a058">Ifd8d6</a>
+      )
+    </li>
+    <li>
+      We have fixed a bug with the vignette animation in the Material Dialog (
+      <a href="https://android-review.googlesource.com/#/q/I126bf30e2fd2d4ca32c736469bb645d21486c024">I126bf</a>
+      )
+    </li>
+  </ul>

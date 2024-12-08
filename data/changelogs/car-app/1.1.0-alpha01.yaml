@@ -1,0 +1,311 @@
+libraryId: car-app
+groupId: androidx.car
+version: 1.1.0-alpha01
+releaseDate: 2021-06-16
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha01" data-text="Version 1.1.0-alpha01" tabindex="-1">Version 1.1.0-alpha01</h3>
+  <p>June 16, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.car.app:app:1.1.0-alpha01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.car.app:app-automotive:1.1.0-alpha01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.car.app:app-testing:1.1.0-alpha01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1c07c69c4d9e26c6ce13e671fad1ae314a4cca5e..cffcc074543c8c27a9fa134f558d332f2f5acf61/car/app">Version 1.1.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      API Level 2: new
+      <code translate="no" dir="ltr">SignInTemplate</code>
+      and
+      <code translate="no" dir="ltr">LongMessageTemplate</code>
+      that can be used for sign-in flows when the vehicle is parked.
+    </li>
+    <li>
+      API Level 2: new map interactivity support within the
+      <code translate="no" dir="ltr">NavigationTemplate</code>
+    </li>
+    <li>API Level 2: new multiple-length text support to allow apps to provide multiple versions of string for display depending on the car screen sizes.</li>
+    <li>
+      Follow the
+      <a href="https://developer.android.com/training/cars/apps">development guide</a>
+      and the library Javadoc for additional details and design guidelines on how to use these features in car hosts that are compatible with API level 2.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Made all
+      <code translate="no" dir="ltr">*Callback</code>
+      interface methods default and renamed
+      <code translate="no" dir="ltr">OnRequestPermissionsCallback</code>
+      -&gt;
+      <code translate="no" dir="ltr">OnRequestPermissionsListener</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ib3ec9dedec7e736755324bba918e47494f5bc018">Ib3ec9</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">androidx.car.app.hardware</code>
+      classes to remove unnecessary builders and parameter classes. (
+      <a href="https://android-review.googlesource.com/#/q/I67bebfc9f418e125d28072171561375095aa518c">I67beb</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">androidx.car.app.hardware</code>
+      classes for access to car specific data such as fuel, battery and speed. (
+      <a href="https://android-review.googlesource.com/#/q/Iff3c92ebca831557ce2e475c5294e2701f6e5a2e">Iff3c9</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ActionStrip</code>
+      support on
+      <code translate="no" dir="ltr">MessageTemplate</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ida657287b4412787c304e000a905a26866e2b248">Ida657</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">setLoading</code>
+      to
+      <code translate="no" dir="ltr">MessageTemplate</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2a4b58208c2239a42a2e0c3c14b19cc285de7cd4">I2a4b5</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">ConnectionToCar</code>
+      to
+      <code translate="no" dir="ltr">CarConnection</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ife9bd6fcf4d6732ab3a3a0ccd2eebad8ab51eb8e">Ife9bd</a>
+      )
+    </li>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">NavigationTemplate</code>
+      to return an explicit
+      <code translate="no" dir="ltr">PanModeDelegate</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I1387739add55e0bccbea10007e24f702640cdb72">I13877</a>
+      )
+    </li>
+    <li>
+      Updated parameter order for
+      <code translate="no" dir="ltr">CarContext.requestPermissions</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ib890ac96c0d884b4a3a2ce9690694c33365697f9">Ib890a</a>
+      )
+    </li>
+    <li>
+      Updated metadata key to define min car api level to
+      <code translate="no" dir="ltr">androidx.car.api.minCarApiLevel</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ib0d4118767db4046f790e49661b3bd9cfb40e994">Ib0d41</a>
+      )
+    </li>
+    <li>
+      Created an API that allows observing car connection state (
+      <a href="https://android-review.googlesource.com/#/q/Ifc935900b9541360961ed871338c4ba7da6c828f">Ifc935</a>
+      )
+    </li>
+    <li>
+      Added support for setting a toggle for an
+      <code translate="no" dir="ltr">Action</code>
+      , and added the pan mode
+      <code translate="no" dir="ltr">Action</code>
+      type (
+      <a href="https://android-review.googlesource.com/#/q/Ica6afbd94a10d2c6d007b6d45d76daeb3a22dfa7">Ica6af</a>
+      )
+    </li>
+    <li>
+      Created
+      <code translate="no" dir="ltr">CarNotificationManager</code>
+      to support sending notification in the car (
+      <a href="https://android-review.googlesource.com/#/q/I10d7a2d36e8c13f1a96c29885257b82ddfce391a">I10d7a</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ConstraintManager</code>
+      for providing list limits from the host (
+      <a href="https://android-review.googlesource.com/#/q/I8690ef57bbb60d2f452412856d663fbc297edf17">I8690e</a>
+      )
+    </li>
+    <li>
+      Added pan mode and map action strip API in
+      <code translate="no" dir="ltr">NavigationTemplate</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I77aa6564c78707d7e11155949bfce68a4b415cf7">I77aa6</a>
+      )
+    </li>
+    <li>
+      Added pan and zoom API in
+      <code translate="no" dir="ltr">SurfaceCallback</code>
+      for navigation apps (
+      <a href="https://android-review.googlesource.com/#/q/Id5e9d408595073b168aa0df1453a9f0c62f28c8b">Id5e9d</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">CarAppApiLevel</code>
+      to 2 (
+      <a href="https://android-review.googlesource.com/#/q/Ic154052d277af26fcb9d33bd267ebf4ba1f55ffe">Ic1540</a>
+      )
+    </li>
+    <li>
+      Added ability to request permissions from a
+      <code translate="no" dir="ltr">CarAppService</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I5421e9c7ec3c3ffed5e343562e93d0d35df3e492">I5421e</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">RequiresCarApi(2)</code>
+      annotation to multi-text API (
+      <a href="https://android-review.googlesource.com/#/q/Iacb62fc4c193189fe6cf5655c077e70ce168e7c3">Iacb62</a>
+      )
+    </li>
+    <li>
+      Allowed multiple text variants in the half-list template title (
+      <a href="https://android-review.googlesource.com/#/q/Ib8df78f07f9a3dda85f809c60ddf88550e33cf05">Ib8df7</a>
+      )
+    </li>
+    <li>
+      Added new
+      <code translate="no" dir="ltr">LongMessageTemplate</code>
+      (requires Car API level 2) (
+      <a href="https://android-review.googlesource.com/#/q/Ic5cee5763339b60c8d4b13f1b741768f25345d6a">Ic5cee</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Updated image size requirements to account for larger car screens (
+      <a href="https://android-review.googlesource.com/#/q/I116dcf33020d600e6d1da1f9da99c97b26c2b5f9">I116dc</a>
+      )
+    </li>
+    <li>
+      Disallowed adding more than 2 actions in template bodies (
+      <a href="https://android-review.googlesource.com/#/q/I32157e7ed8c1d908c7e3360d3b5b5419d733e04e">I32157</a>
+      )
+    </li>
+    <li>
+      Ensured all creation of
+      <code translate="no" dir="ltr">PendingIntent</code>
+      s in the car app library set flags. (
+      <a href="https://android-review.googlesource.com/#/q/If84fe02a5e14d27c6af72b7fd78d5f7ff9a73e8c">If84fe</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/186394900">b/186394900</a>
+      )
+    </li>
+    <li>
+      Updated javadoc to allow
+      <code translate="no" dir="ltr">Row</code>
+      's text changes as refreshes (
+      <a href="https://android-review.googlesource.com/#/q/If3f9c4825e7c92de9c8a873440d9b93f8c1f8688">If3f9c</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">androidx.activity:activity:1.2.0</code>
+      is now an api dependency (
+      <a href="https://android-review.googlesource.com/#/q/Id1cb9178b1343c98f78f36af3d19ed88a6aa5857">Id1cb9</a>
+      )
+    </li>
+    <li>
+      Made
+      <code translate="no" dir="ltr">SignInTemplate</code>
+      and
+      <code translate="no" dir="ltr">LongMessageTemplate</code>
+      to require parked-only actions in their body and update documentation to indicate they will only be shown when the car is parked (
+      <a href="https://android-review.googlesource.com/#/q/Iddaa95a90cba2731e2a52f89738fd9f906a381e5">Iddaa9</a>
+      )
+    </li>
+    <li>
+      Fixed an exception that occurs when popping a
+      <code translate="no" dir="ltr">Screen</code>
+      during start (
+      <a href="https://android-review.googlesource.com/#/q/Ifcf409400e2af8e4aa7920b5fa469fc95ceb3322">Ifcf40</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/184664896">b/184664896</a>
+      )
+    </li>
+    <li>
+      Allowed custom text color in
+      <code translate="no" dir="ltr">ForegroundCarColorSpan</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I69e59837ee60f5768af1e26ba9a9dd6ead0a01af">I69e59</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">ON_DESTROY</code>
+      on a
+      <code translate="no" dir="ltr">Session</code>
+      is observed after a
+      <code translate="no" dir="ltr">Screen</code>
+      's
+      <code translate="no" dir="ltr">ON_DESTROY</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I52e01fe22e4e6dc8130735ebae49a1575928ee5a">I52e01</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/183696617">b/183696617</a>
+      )
+    </li>
+    <li>
+      Updated javadoc on when setting a
+      <code translate="no" dir="ltr">TravelEstimate</code>
+      's remaining time to an unknown time is allowed. (
+      <a href="https://android-review.googlesource.com/#/q/I9961081b996822fae8f8763abe578cb622a3d23d">I99610</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/183632456">b/183632456</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">Action</code>
+      to support
+      <code translate="no" dir="ltr">ForegroundColorSpan</code>
+      in the title and any custom background color (
+      <a href="https://android-review.googlesource.com/#/q/I578e4ad96cfb5def8dc899e5e0ed3ee9975c4574">I578e4</a>
+      )
+    </li>
+    <li>
+      Do not execute
+      <code translate="no" dir="ltr">NavigationManagerCallback#onStopNavigation</code>
+      if the callback is cleared before the executor executes (
+      <a href="https://android-review.googlesource.com/#/q/I7fc5ebe1f371b0530f084f76236ab058f71f2a5c">I7fc5e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/181143772">b/181143772</a>
+      )
+    </li>
+    <li>
+      Fixed an issue that require the app to explicitly take on a dependency on lifecycle-common-java8 (
+      <a href="https://android-review.googlesource.com/#/q/I8b8c831d1fe033a2f8b8e653f373b10539dd0969">I8b8c8</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      In the
+      <code translate="no" dir="ltr">SignInTemplate</code>
+      , the on-screen keyboard shows a “search” icon instead of an “enter” icon when the user wants to confirm the input. As a workaround, users can access the phone keyboard that activates when the input field is in focus.
+    </li>
+    <li>
+      In Android Auto version 6.5, the pan and zoom callbacks in
+      <code translate="no" dir="ltr">SurfaceCallback</code>
+      may be incorrectly invoked for some touch gestures.
+    </li>
+  </ul>
+  <h2 id="car_app_testing_version_100_2" data-text="Car App Testing Version 1.0.0" tabindex="-1">Car App Testing Version 1.0.0</h2>

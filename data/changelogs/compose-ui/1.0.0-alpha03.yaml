@@ -1,0 +1,91 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.0.0-alpha03
+releaseDate: 2020-09-16
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha03" data-text="Version 1.0.0-alpha03" tabindex="-1">Version 1.0.0-alpha03</h3>
+  <p>September 16, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.0.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/31022a2dda22705843be1199c786552a6f9f875d..18a5639262f8504db530176550e338a5d0e2e044/compose/ui">Version 1.0.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Remove scroll forward/backward semantics actions. Added steps in AccessibilityRangeInfo. (
+      <a href="https://android-review.googlesource.com/#/q/Ia47b0be6d058f36b07d2141ec33aca634e63b544">Ia47b0</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">onInvalidate()</code>
+      from
+      <code translate="no" dir="ltr">Owner</code>
+      --
+      <code translate="no" dir="ltr">OwnedLayer</code>
+      handles invalidation. (
+      <a href="https://android-review.googlesource.com/#/q/Ica72b49b10b5f2bd25845cb6c9fc45f085b679e7">Ica72b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/162061312">b/162061312</a>
+      )
+    </li>
+    <li>
+      <p>Removed operator methods on Size API that consume Offset parameters. The result of these operations is unclear and the type of result is unexpected for these. Ex. should size - offset return an offset or a size result with the difference?</p>
+
+      <p>
+        Also removed deprecated methods on Size class. (
+        <a href="https://android-review.googlesource.com/#/q/Iec902c3664d8669534b8d7eca2b572e6a8d2838a">Iec902</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/166514214">b/166514214</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix for items of LazyColumn being incorrectly drawn sometimes, this was also causing crashes in some conditions. (
+      <a href="https://android-review.googlesource.com/#/q/Ibcf1745e40606f6a38d9eb90f915443935d34403">Ibcf17</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/163066980">b/163066980</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/165921895">b/165921895</a>
+      )
+    </li>
+    <li>
+      DpConstraints and APIs using it were deprecated. (
+      <a href="https://android-review.googlesource.com/#/q/I90cdbe407ae8dd69badd26cd02bbb784ba10ba6a">I90cdb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/167389835">b/167389835</a>
+      )
+    </li>
+    <li>
+      Moved
+      <code translate="no" dir="ltr">createAndroidComposeRule</code>
+      and
+      <code translate="no" dir="ltr">AndroidInputDispatcher</code>
+      from
+      <code translate="no" dir="ltr">androidx.ui.test.android</code>
+      to
+      <code translate="no" dir="ltr">androidx.ui.test</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Idef08e5b796ba14140eafd054c8aa898a3d38feb">Idef08</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/164060572">b/164060572</a>
+      )
+    </li>
+    <li>
+      Usages of gravity were consistently renamed to align or alignment in layout APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I2421a4d640a7086079739cd0e569aef70bb48577">I2421a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/164077038">b/164077038</a>
+      )
+    </li>
+    <li>
+      Added onNode and other global methods on ComposeTestRule as the current global ones are going to be deprecated. (
+      <a href="https://android-review.googlesource.com/#/q/Ieae36a4b67a3190759e7284a638f8b755c06c1ec">Ieae36</a>
+      )
+    </li>
+  </ul>

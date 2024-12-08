@@ -1,0 +1,76 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.3.0-alpha05
+releaseDate: 2023-03-22
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha05" data-text="Version 1.3.0-alpha05" tabindex="-1">Version 1.3.0-alpha05</h3>
+  <p>March 22, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.3.0-alpha05</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e29b9d5011a682544cb10226575971c514437eae..5e7d256f82fbafb6d059ab7b18fddd87c7531553/camera">Version 1.3.0-alpha05 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">VideoCapture</code>
+      rotation APIs, including
+      <code translate="no" dir="ltr">VideoCapture.Builder.setTargetRotation(int)</code>
+      ,
+      <code translate="no" dir="ltr">VideoCapture.setTargetRotation(int)</code>
+      ,
+      <code translate="no" dir="ltr">VideoCapture.setTargetRotationDegrees(int)</code>
+      and
+      <code translate="no" dir="ltr">VideoCapture.getTargetRotation()</code>
+      . The APIs are useful for applications that lock the device orientation.
+      <code translate="no" dir="ltr">ImageCapture.setTargetRotationDegrees(int)</code>
+      and
+      <code translate="no" dir="ltr">ImageAnalysis.setTargetRotationDegrees(int)</code>
+      are also added. (
+      <a href="https://android-review.googlesource.com/#/q/Id3ffe7d8e640523b35b7777bbd39ad4fe214ea02">Id3ffe</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/205242781">b/205242781</a>
+      )
+    </li>
+    <li>
+      Allow
+      <code translate="no" dir="ltr">VIDEO_CAPTURE</code>
+      and
+      <code translate="no" dir="ltr">PREVIEW|VIDEO_CAPTURE</code>
+      as effects target. Effects that targets
+      <code translate="no" dir="ltr">VIDEO_CAPTURE</code>
+      will be applied to the
+      <code translate="no" dir="ltr">VideoCapture</code>
+      UseCase; Effects that targets
+      <code translate="no" dir="ltr">PREVIEW|VIDEO_CAPTURE</code>
+      will be applied to a shared stream before copying to Preview and
+      <code translate="no" dir="ltr">VideoCapture</code>
+      stream. (
+      <a href="https://android-review.googlesource.com/#/q/Iee6f318490525a0d0d18c8a5228a315041960abf">Iee6f3</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      From
+      <a href="#1.2.2">
+        Camera
+        <code translate="no" dir="ltr">1.2.2</code>
+      </a>
+      : Fixed the issue where CameraX Extensions don't work properly when proguard is enabled on some devices such as Pixel (
+      <a href="https://android-review.googlesource.com/#/q/I90aa210540cc985c49816d8ae74bda526cccbbbe">I90aa2</a>
+      )
+    </li>
+    <li>
+      Fixed a
+      <code translate="no" dir="ltr">PreviewView</code>
+      bug that if the app handles screen orientation itself. the preview might become distorted upon rotation. This only happens on certain devices. It can be reproduced on Pixel a4, Pixel 5, and Pixel 6a. (
+      <a href="https://android-review.googlesource.com/#/q/I14340cc9790f22c70717217f8f1d9fdfe338dfeb">I14340</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/223488673">b/223488673</a>
+      )
+    </li>
+  </ul>

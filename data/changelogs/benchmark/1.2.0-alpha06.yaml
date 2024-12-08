@@ -1,0 +1,50 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.2.0-alpha06
+releaseDate: 2022-10-24
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha06" data-text="Version 1.2.0-alpha06" tabindex="-1">Version 1.2.0-alpha06</h3>
+  <p>October 24, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.2.0-alpha06</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4586cf6e518f0c59410ef2b291e34ff9fdcff4e1..548c8ac2570ae6cf15798fea1380491f7d93796b/benchmark">Version 1.2.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">BaselineProfileRule</code>
+      no longer requires root on Android 13 (API 33), and is no longer experimental. (
+      <a href="https://android-review.googlesource.com/#/q/Ie0a7d13cbe34476113bad955e47ed771d84e65a4">Ie0a7d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/250083467">b/250083467</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/253094958">b/253094958</a>
+      )
+      <ul>
+        <li>This change also fixes how profiles from an app are flushed to disk on unrooted devices, but requires updating the target app's profileinstaller dependency.</li>
+        <li>
+          To use
+          <code translate="no" dir="ltr">BaselineProfileRule</code>
+          or
+          <code translate="no" dir="ltr">CompilationMode.Partial(warmupIterations)</code>
+          on an unrooted device, you must also update your target app to use
+          <code translate="no" dir="ltr">androidx.profileinstaller.profileinstaller:1.3.0-alpha01</code>
+          . This enables flushing the profile to disk correctly, so that it can be compiled/extracted.
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixes
+      <code translate="no" dir="ltr">SampledProfiling</code>
+      crash on API 33+. (
+      <a href="https://android-review.googlesource.com/#/q/I40743831d240327bbf3d89d09f510d9db09e67c0">I40743</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/236109374">b/236109374</a>
+      )
+    </li>
+  </ul>

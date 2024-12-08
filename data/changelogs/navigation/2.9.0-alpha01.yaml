@@ -1,0 +1,135 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.9.0-alpha01
+releaseDate: 2024-10-16
+#language=html
+changelogHtml: |
+  <h3 id="2.9.0-alpha01" data-text="Version 2.9.0-alpha01" tabindex="-1">Version 2.9.0-alpha01</h3>
+  <p>October 16, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.9.0-alpha01</code>
+    is released. Version 2.9.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/56650b920c78899081a1a16fdb81dab72753b5ef..b8a68b0896897fa158508d73a31998a26161d9a7/navigation">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Custom Navigators can now mark their destinations as implementing the
+      <code translate="no" dir="ltr">SupportingPane</code>
+      interface which indicates to the
+      <code translate="no" dir="ltr">NavController</code>
+      that these destinations will be shown alongside other destinations. By using this interface, multiple destinations can be
+      <code translate="no" dir="ltr">RESUMED</code>
+      at the same time, for instance. (
+      <a href="https://android-review.googlesource.com/#/q/Id5559bdaf3e31fb6d6fb66be0b451627c075d342">Id5559</a>
+      )
+    </li>
+    <li>
+      From
+      <a href="/jetpack/androidx/releases/navigation#2.8.3">
+        Navigation
+        <code translate="no" dir="ltr">2.8.3</code>
+      </a>
+      : Added new lint checks for the
+      <code translate="no" dir="ltr">navigation-common</code>
+      ,
+      <code translate="no" dir="ltr">navigation-runtime</code>
+      , and
+      <code translate="no" dir="ltr">navigation-compose</code>
+      modules to help identify any type-safe routes that are not correctly annotated with
+      <code translate="no" dir="ltr">@Serializable</code>
+      . This check is applied to all
+      <code translate="no" dir="ltr">NavGraphBuilder</code>
+      and
+      <code translate="no" dir="ltr">NavDeepLinkBuilder</code>
+      extension functions. (
+      <a href="https://android-review.googlesource.com/#/q/I4a259b5544e4e4655c4bdee812d64f3b2a1947bd">I4a259</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I954023cd0cb4a5ee7d08647cf9a8139b0c8ae9d9">I95402</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ie601a15449b1561154bd3ae5d990e006a371c7c6">Ie601a</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Id8c6ef1ee0839a43864afac58a5437ad1379e25f">Id8c6e</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I28bda5541ec144f17668302d56ecaef4011becb3">I28bda</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/362725816">b/362725816</a>
+      )
+    </li>
+    <li>
+      From
+      <a href="/jetpack/androidx/releases/navigation#2.8.3">
+        Navigation
+        <code translate="no" dir="ltr">2.8.3</code>
+      </a>
+      : Added new lint checks for the
+      <code translate="no" dir="ltr">navigation-common</code>
+      ,
+      <code translate="no" dir="ltr">navigation-runtime</code>
+      , and
+      <code translate="no" dir="ltr">navigation-compose</code>
+      modules to help identify any type-safe routes with Enum arguments that are not correctly annotated with
+      <code translate="no" dir="ltr">@Keep</code>
+      . This check is applied to all
+      <code translate="no" dir="ltr">NavGraphBuilder</code>
+      and
+      <code translate="no" dir="ltr">NavDeepLinkBuilder</code>
+      extension functions. (
+      <a href="https://android-review.googlesource.com/#/q/I4a259b5544e4e4655c4bdee812d64f3b2a1947bd">I4a259</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I954023cd0cb4a5ee7d08647cf9a8139b0c8ae9d9">I95402</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ie601a15449b1561154bd3ae5d990e006a371c7c6">Ie601a</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Id8c6ef1ee0839a43864afac58a5437ad1379e25f">Id8c6e</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I2b46fbc3b5be6251d89e902e315f50f20c46ce19">I2b46f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/358687142">b/358687142</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      Attempting to use a
+      <code translate="no" dir="ltr">NavController</code>
+      that has been previously
+      <code translate="no" dir="ltr">DESTROYED</code>
+      will now cause an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I520da520adf9f99d887e63c0255afe97ecefdab5">I520da</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/369616172">b/369616172</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Update Enum class not found exception to suggest using
+      <code translate="no" dir="ltr">@Keep</code>
+      annotation in case the Enum class gets erased in minified builds. (
+      <a href="https://android-review.googlesource.com/#/q/I90e79cc476c21ab0ad3b172af65c436817665ef7">I90e79</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/358137294">b/358137294</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      There is an issue with the new lint rules that were added in
+      <code translate="no" dir="ltr">Navigation 2.8.*</code>
+      that cause an
+      <code translate="no" dir="ltr">Obsolete custom lint check</code>
+      error when attempting to run lint with Android Gradle Plugin 8.4+. (
+      <a href="https://issuetracker.google.com/issues/368070326">b/368070326</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/371463741">b/371463741</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_28_2" data-text="Version 2.8" tabindex="-1">Version 2.8</h2>

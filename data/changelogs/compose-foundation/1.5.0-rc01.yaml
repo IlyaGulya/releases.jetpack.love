@@ -1,0 +1,43 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.5.0-rc01
+releaseDate: 2023-07-26
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-rc01" data-text="Version 1.5.0-rc01" tabindex="-1">Version 1.5.0-rc01</h3>
+  <p>July 26, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.5.0-rc01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/81e6706c269471032b283755131d2aa4e8821a89..e423b92ad8e8707ff4031626131f05e33979eac8/compose">Version 1.5.0-rc01 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <p>
+        An optional inspection to recommend migrating
+        <code translate="no" dir="ltr">mutableStateOf()</code>
+        calls to their corresponding specialized types for primitives is available. Its lint ID is
+        <code translate="no" dir="ltr">AutoboxingStateCreation</code>
+        . Previously, this inspection was enabled by default for all projects. To see this warning in Android Studio's editor and your project's lint outputs, change its severity from informational to warning (or higher) by declaring
+        <code translate="no" dir="ltr">warning "AutoboxingStateCreation"</code>
+        inside your module's
+        <code translate="no" dir="ltr">build.gradle</code>
+        or
+        <code translate="no" dir="ltr">build.gradle.kts</code>
+        configuration as shown (
+        <a href="https://android-review.googlesource.com/#/q/I34f7ea540f782ae95630f7f94cab93d842dfdd0f">I34f7e</a>
+        ):
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Groovy"><code translate="no" dir="ltr"><span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">android</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">{</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">lint</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">{</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">warning</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s2">"AutoboxingStateCreation"</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-o">}</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-o">...</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-o">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+  </ul>

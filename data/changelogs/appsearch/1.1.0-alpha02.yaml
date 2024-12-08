@@ -1,0 +1,69 @@
+libraryId: appsearch
+groupId: androidx.appsearch
+version: 1.1.0-alpha02
+releaseDate: 2022-08-24
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha02" data-text="Version 1.1.0-alpha02" tabindex="-1">Version 1.1.0-alpha02</h3>
+  <p>August 24, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.appsearch:appsearch-*:1.1.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c24e9aa02c6f6b97ada475f6d66eab39d72d29ba..dd1e45e8550560087f6447a34a9145048b5766f4/appsearch">Version 1.1.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>Sped up Optimize process using index compaction rather than rebuilding index from scratch</li>
+    <li>Changed native logging tag from "icing" to "AppSearchIcing", log INFO messages by default</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Adds new
+      <code translate="no" dir="ltr">PropertyPath</code>
+      object for working with paths, and new
+      <code translate="no" dir="ltr">addProjection</code>
+      methods to accept
+      <code translate="no" dir="ltr">PropertyPath</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I45588aad8525a9150768089d78541a0f5e4dc767">I45588</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">builtin:Thing</code>
+      to
+      <code translate="no" dir="ltr">AppSearch</code>
+      builtin types (
+      <a href="https://android-review.googlesource.com/#/q/I55427fc371d3a22da578522114766bb9e529286b">I55427</a>
+      )
+    </li>
+    <li>
+      Prevent empty property names in
+      <code translate="no" dir="ltr">GenericDocument</code>
+      sooner – previously they were prevented at indexing time, now they are prevented at
+      <code translate="no" dir="ltr">GenericDocument.Builder.build()</code>
+      time (
+      <a href="https://android-review.googlesource.com/#/q/I9e780218dd4fc8a65092ec76bcac8c0ba0cd4636">I9e780</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>Removed unnecessary string formatting to improve RELEVANCE scoring performance</li>
+    <li>More efficient pagination when encountering unreadable or deleted documents</li>
+    <li>Implemented garbage collection for abandoned queries</li>
+    <li>
+      Fix nested indexing support for Documents. Previously indexNestedProperties was ignored. (
+      <a href="https://android-review.googlesource.com/#/q/Iae9a67a03e8f2d6447578c0c26a53d03290b493f">Iae9a6</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Shea Smith: Fix nested indexing support for Documents. (
+      <a href="https://android-review.googlesource.com/#/q/Iae9a67a03e8f2d6447578c0c26a53d03290b493f">Iae9a6</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,52 @@
+libraryId: slidingpanelayout
+groupId: androidx.slidingpanelayout
+version: 1.2.0
+releaseDate: 2022-01-26
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0" data-text="Version 1.2.0" tabindex="-1">Version 1.2.0</h3>
+  <p>January 26, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.slidingpanelayout:slidingpanelayout:1.2.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/45c977739a46f49c3eab1fe134b54676db023544..16c3853a6d1da7f15bb226b272ce1db44beaf501/slidingpanelayout/slidingpanelayout">Version 1.2.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 1.1.0</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">SlidingPaneLayout</code>
+      is now
+      <strong>fold-aware</strong>
+      . On a foldable device,
+      <code translate="no" dir="ltr">SlidingPaneLayout</code>
+      will automatically adjust the size of the two panes so that the panes are on either side of the fold, hinge, etc.
+    </li>
+    <li>
+      When handling your own configuration changes, -
+      <code translate="no" dir="ltr">SlidingPaneLayout</code>
+      now animates between the single pane and two pane modes when the amount of space provided changes (i.e., when unfolding a foldable device).
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SlidingPaneLayout</code>
+      now has a new UI styling when the two panes overlap. Each pane will now extend from edge to edge, with the detail or secondary pane fully covering the list or primary pane when the
+      <code translate="no" dir="ltr">SlidingPaneLayout</code>
+      is open. APIs specific to the old UI styling, such as the fade color, have been deprecated.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SlidingPaneLayout</code>
+      now defaults to ‘closed’ - i.e., showing the list or primary pane. Calling
+      <code translate="no" dir="ltr">open()</code>
+      or
+      <code translate="no" dir="ltr">openPane()</code>
+      will now show the detail or secondary pane.
+    </li>
+    <li>
+      Improved compatibility with additional measure specs to ensure that
+      <code translate="no" dir="ltr">SlidingPaneLayout</code>
+      can be used in any type of layout without throwing an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      .
+    </li>
+    <li>SlidingPaneLayout now allows registering multiple PanelSlideListeners.</li>
+    <li>Developers can now control whether users can swipe between the list and detail panes by setting a lock mode.</li>
+  </ul>

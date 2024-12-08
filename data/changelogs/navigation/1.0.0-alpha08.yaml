@@ -1,0 +1,202 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 1.0.0-alpha08
+releaseDate: 2018-12-06
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha08" data-text="Version 1.0.0-alpha08" tabindex="-1">Version 1.0.0-alpha08</h3>
+  <p>December 6, 2018</p>
+  <p>
+    This release contains breaking API changes; please see the
+    <em>Breaking Changes</em>
+    section below.
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Destination labels, when used with
+      <code translate="no" dir="ltr">NavigationUI</code>
+      methods, will now automatically replace
+      <code translate="no" dir="ltr">{argName}</code>
+      instances in your
+      <code translate="no" dir="ltr">android:label</code>
+      with the correct argument
+      <a href="https://issuetracker.google.com/80267266">b/80267266</a>
+    </li>
+    <li>
+      Navigation now depends on Support Library 28.0.0
+      <a href="https://issuetracker.google.com/120293333">b/120293333</a>
+    </li>
+  </ul>
+  <p><strong>Breaking Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">OnNavigatedListener</code>
+      has been renamed to
+      <code translate="no" dir="ltr">OnDestinationChangedListener</code>
+      <a href="https://issuetracker.google.com/118670572">b/118670572</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">OnDestinationChangedListener</code>
+      now also passes the
+      <code translate="no" dir="ltr">Bundle</code>
+      of arguments
+      <a href="https://android-review.googlesource.com/837142">aosp/837142</a>
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">app:clearTask</code>
+      and
+      <code translate="no" dir="ltr">app:launchDocument</code>
+      attributes and their associated methods have been removed. Use
+      <code translate="no" dir="ltr">app:popUpTo</code>
+      with the root of your graph to remove all destinations from your back stack.
+      <a href="https://issuetracker.google.com/119628354">b/119628354</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ActivityNavigator.Extras</code>
+      now uses a
+      <code translate="no" dir="ltr">Builder</code>
+      pattern and adds the ability to set any
+      <code translate="no" dir="ltr">Intent.FLAG_ACTIVITY_</code>
+      flags
+      <a href="https://android-review.googlesource.com/828140">aosp/828140</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavController.onHandleDeepLink</code>
+      has been renamed to
+      <code translate="no" dir="ltr">handleDeepLink</code>
+      <a href="https://android-review.googlesource.com/836063">aosp/836063</a>
+    </li>
+    <li>
+      Many classes and methods not meant for subclassing, such as
+      <code translate="no" dir="ltr">NavOptions</code>
+      ,
+      <code translate="no" dir="ltr">NavInflater</code>
+      ,
+      <code translate="no" dir="ltr">NavDeepLinkBuilder</code>
+      , and
+      <code translate="no" dir="ltr">AppBarConfiguration</code>
+      , have been made
+      <code translate="no" dir="ltr">final</code>
+      <a href="https://android-review.googlesource.com/835681">aosp/835681</a>
+    </li>
+    <li>
+      The deprecated
+      <code translate="no" dir="ltr">NavHostFragment.setGraph()</code>
+      method has been removed
+      <a href="https://android-review.googlesource.com/835684">aosp/835684</a>
+    </li>
+    <li>
+      The deprecated
+      <code translate="no" dir="ltr">NavigationUI.navigateUp(DrawerLayout, NavController)</code>
+      method has been removed.
+      <a href="https://android-review.googlesource.com/835684">aosp/835684</a>
+    </li>
+    <li>
+      Fragment creation has been moved to
+      <code translate="no" dir="ltr">FragmentNavigator</code>
+      , making it easier to delegate Fragment creation to a
+      <code translate="no" dir="ltr">FragmentFactory</code>
+      .
+      <a href="https://issuetracker.google.com/119054429">b/119054429</a>
+    </li>
+    <li>
+      The constructor for
+      <code translate="no" dir="ltr">NavGraphNavigator</code>
+      no longer takes a
+      <code translate="no" dir="ltr">Context</code>
+      <a href="https://android-review.googlesource.com/835340">aosp/835340</a>
+    </li>
+    <li>
+      <a href="/reference/androidx/navigation/NavigatorProvider">NavigatorProvider</a>
+      is now a class, rather than an interface. The
+      <code translate="no" dir="ltr">NavigatorProvider</code>
+      returned by
+      <a href="/reference/androidx/navigation/NavController#getNavigatorProvider()"><code translate="no" dir="ltr">getNavigatorProvider()</code></a>
+      has not changed its functionality.
+      <a href="https://android-review.googlesource.com/830660">aosp/830660</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavDestination.navigate()</code>
+      has been removed. Call
+      <code translate="no" dir="ltr">navigate()</code>
+      on the
+      <code translate="no" dir="ltr">Navigator</code>
+      instead.
+      <a href="https://android-review.googlesource.com/830663">aosp/830663</a>
+    </li>
+    <li>
+      Significant refactoring of
+      <code translate="no" dir="ltr">Navigator</code>
+      , removing the need for
+      <code translate="no" dir="ltr">OnNavigatorNavigatedListener</code>
+      and instead having
+      <code translate="no" dir="ltr">navigate</code>
+      return the
+      <code translate="no" dir="ltr">NavDestination</code>
+      that was navigated to.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Navigator</code>
+      instances can no longer send pop events to the
+      <code translate="no" dir="ltr">NavController</code>
+      . Consider using a
+      <a href="/reference/androidx/activity/OnBackPressedCallback"><code translate="no" dir="ltr">OnBackPressedCallback</code></a>
+      to intercept back button presses and call
+      <code translate="no" dir="ltr">navController.popBackStack()</code>
+      .
+      <a href="https://android-review.googlesource.com/833716">aosp/833716</a>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">popUpTo</code>
+      now works consistently when the destination is a
+      <code translate="no" dir="ltr">&lt;navigation&gt;</code>
+      element
+      <a href="https://issuetracker.google.com/116831650">b/116831650</a>
+    </li>
+    <li>
+      Fixed a number of bugs that resulted in an
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      when using nested graphs
+      <a href="https://issuetracker.google.com/118713731">b/118713731</a>
+      <a href="https://issuetracker.google.com/113611083">b/113611083</a>
+      <a href="https://issuetracker.google.com/113346925">b/113346925</a>
+      <a href="https://issuetracker.google.com/113305559">b/113305559</a>
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">dataPattern</code>
+      attribute of
+      <code translate="no" dir="ltr">&lt;activity&gt;</code>
+      destinations will now populate arguments from non-String arguments by calling
+      <code translate="no" dir="ltr">toString()</code>
+      <a href="https://issuetracker.google.com/120161365">b/120161365</a>
+    </li>
+  </ul>
+  <p><strong>Safe Args</strong></p>
+  <ul>
+    <li>
+      Safe Args supports Serializable objects, including Enum values. Enum types can set a default value by using the enum literal without the class name (e.g.
+      <code translate="no" dir="ltr">app:defaultValue="READ"</code>
+      )
+      <a href="https://issuetracker.google.com/111316353">b/111316353</a>
+    </li>
+    <li>
+      Safe Args supports arrays of all supported types
+      <a href="https://issuetracker.google.com/111487504">b/111487504</a>
+    </li>
+    <li>
+      Safe Args now ignores subfolders of resource directories
+      <a href="https://issuetracker.google.com/117893516">b/117893516</a>
+    </li>
+    <li>
+      Safe Args adds
+      <code translate="no" dir="ltr">@Override</code>
+      annotations where appropriate
+      <a href="https://issuetracker.google.com/117145301">b/117145301</a>
+    </li>
+  </ul>

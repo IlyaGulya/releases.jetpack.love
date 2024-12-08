@@ -1,0 +1,94 @@
+libraryId: test-uiautomator
+groupId: androidx.test
+version: 2.3.0-alpha03
+releaseDate: 2023-04-19
+#language=html
+changelogHtml: |
+  <h3 id="2.3.0-alpha03" data-text="Version 2.3.0-alpha03" tabindex="-1">Version 2.3.0-alpha03</h3>
+  <p>April 19, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.test.uiautomator:uiautomator:2.3.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/adf1c279a86ab3886e1666c08e2c3efba783367b..6882a779510068fe72f7ec0b5e5471925b33e9be/test/uiautomator/uiautomator">Version 2.3.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Exposed a
+      <code translate="no" dir="ltr">Condition</code>
+      interface to allow custom wait conditions instead of relying solely on the built-ins in
+      <code translate="no" dir="ltr">Until</code>
+      , and updated
+      <code translate="no" dir="ltr">UiDevice#wait</code>
+      and
+      <code translate="no" dir="ltr">UiObject2#wait</code>
+      methods to accept this interface (
+      <a href="https://android-review.googlesource.com/#/q/27c0ea7b5022a7dc93d9dd48134309e2cfacc982">27c0ea</a>
+      ).
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">UiObject2#scrollUntil</code>
+      to support scrolling until a condition is met and to reach parity with
+      <code translate="no" dir="ltr">UiScrollable</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/099d6e5cd8861faf0bf18c4973ad33c04dacd723">099d6e</a>
+      ).
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">UiDevice#setOrientationPortrait</code>
+      and
+      <code translate="no" dir="ltr">setOrientationLandscape</code>
+      to facilitate rotations across device types (
+      <a href="https://android-review.googlesource.com/#/q/e13cb7f29fbd503a37ec523e60702db6c98893d4">e13cb7</a>
+      ).
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">UiObject2#setGestureMarginPercent</code>
+      to support setting margins relative to the object size. (
+      <a href="https://android-review.googlesource.com/#/q/Ib8c77c47411899f8c5e038c159d043dfc9487648">Ib8c77</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">UiScrollable</code>
+      methods occasionally using invalid coordinates on SDKs 18 to 22 (
+      <a href="https://android-review.googlesource.com/#/q/b53eced73f68d3cfa6a32ef25fba6c57c37371a1">b53ece</a>
+      ).
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">UiObject2#setText</code>
+      and
+      <code translate="no" dir="ltr">clearText</code>
+      failing to modify text on SDKs 18 and 19 (
+      <a href="https://android-review.googlesource.com/#/q/77e41d4f1065cd94855e1cc9c109f7c186b676a2">77e41d</a>
+      ).
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">UiWatcher</code>
+      s not being executed in the right order (
+      <a href="https://android-review.googlesource.com/#/q/c85f92f87646f9c376027b78ad14cf31e596f6c7">c85f92</a>
+      ).
+    </li>
+    <li>
+      Fixed issue where device rotation might not yet be complete after a
+      <code translate="no" dir="ltr">UiDevice</code>
+      orientation change (
+      <a href="https://android-review.googlesource.com/#/q/c6cea022c21c0e6947636fbbd0fa69639b9ebfc4">c6cea0</a>
+      ).
+    </li>
+    <li>
+      Improved reliability of long clicks, drags, and pinches (
+      <a href="https://android-review.googlesource.com/#/q/49572b17ec2dcf5392aa804866f2f028b1d29352">49572b</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/3c619aa35d7dd121e3d0d27fd13bbb5d6f41cc35">3c619a</a>
+      ).
+    </li>
+  </ul>

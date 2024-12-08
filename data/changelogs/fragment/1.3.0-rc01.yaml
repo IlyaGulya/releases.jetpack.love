@@ -1,0 +1,65 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.3.0-rc01
+releaseDate: 2020-12-16
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-rc01" data-text="Version 1.3.0-rc01" tabindex="-1">Version 1.3.0-rc01</h3>
+  <p>December 16, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.3.0-rc01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.3.0-rc01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.3.0-rc01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/38a668d3ef95f40ad28d6e735a2c3eb95ae4cf63..6970bb682fd9f49aa80d74409fd653bad01fe982/fragment">Version 1.3.0-rc01 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">onPrepareOptionsMenu()</code>
+      now follows the same logic as
+      <code translate="no" dir="ltr">onCreateOptionsMenu()</code>
+      and is no longer called when a parent fragment calls
+      <code translate="no" dir="ltr">setMenuVisibility(false)</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id7de8156980c09e6ece0d977950b4844eb10d516">Id7de8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173203654">b/173203654</a>
+      )
+    </li>
+  </ul>
+  <p><strong>New State Manager Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed leak and visual artifact when adding a fragment with an
+      <code translate="no" dir="ltr">Animation</code>
+      to a
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      and then interrupting that addition with a pop operation. (
+      <a href="https://android-review.googlesource.com/#/q/I952d8409bb6afb810fc97b52c14e23f55ba5ab17">I952d8</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where the fragment's view would remain in the view hierarchy if it was replaced during its
+      <code translate="no" dir="ltr">onCreate()</code>
+      or
+      <code translate="no" dir="ltr">onViewCreated()</code>
+      methods. (
+      <a href="https://android-review.googlesource.com/#/q/I8a7d5aed2c5648d3b898bb1cc1469f90cf5f1abd">I8a7d5</a>
+      )
+    </li>
+    <li>
+      Focus is now properly restored to Fragment root views when they are resumed. (
+      <a href="https://android-review.googlesource.com/#/q/Ifc84b33272f17f4be48f603e4826b7c6751fbb2f">Ifc84b</a>
+      )
+    </li>
+    <li>
+      Combining pop and replace operations in the same fragment transaction will now show the proper animations (
+      <a href="https://android-review.googlesource.com/#/q/Ifd4e49cd9874a9ac0673083c27ef3c9765bbfa04">Ifd4e4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170328691">b/170328691</a>
+      )
+    </li>
+  </ul>

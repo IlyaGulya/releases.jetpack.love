@@ -1,0 +1,93 @@
+libraryId: wear
+groupId: androidx.wear
+version: 1.0.0-alpha20
+releaseDate: 2021-08-18
+#language=html
+changelogHtml: |
+  <h3 id="complications-watchface-1.0.0-alpha20" data-text="Version 1.0.0-alpha20" tabindex="-1">Version 1.0.0-alpha20</h3>
+  <p>August 18, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear:wear-*:1.0.0-alpha20</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d725303accfa9be6d5c3d61c7603ed1b9a780cbd..1e0ab9e58c3c2ebe8152b7507938aef7e9c1acdc/wear">Version 1.0.0-alpha20 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We have added createFallbackPreviewData to ComplicationDataSourceInfo which can be used when ComplicationDataSourceInfoRetriever.retrievePreviewComplicationData returns null. (
+      <a href="https://android-review.googlesource.com/#/q/I38c4dc237d114b51234a4b8df6528280513e4843">I38c4d</a>
+      )
+    </li>
+    <li>
+      ComplicationDataSourceUpdateRequester has been turned into an interface to allow mocking in unit tests. You can construct a concrete ComplicationDataSourceUpdateRequester with ComplicationDataSourceUpdateRequester.create(). (
+      <a href="https://android-review.googlesource.com/#/q/I7da226172823e58d1d0c6140f96e39f9e8e7ece9">I7da22</a>
+      )
+    </li>
+    <li>
+      RenderParameters.pressedComplicationSlotIds has been replaced by RenderParameters.lastComplicationTapDownEvents which exposes the new TapEvent class which contains a triple of x, y coordinates of the tap in pixels and a time stamp.
+      <code translate="no" dir="ltr">WatchFace.TapListener.onTap</code>
+      has been replaced by
+      <code translate="no" dir="ltr">onTapEvent(@TapType tapType: Int, tapEvent: TapEvent)</code>
+      . In addition,
+      <code translate="no" dir="ltr">InteractiveWatchFaceClient.displayPressedAnimation</code>
+      has been removed. (
+      <a href="https://android-review.googlesource.com/#/q/Id87d2f42f4e051d400bff931595309fb20dbf489">Id87d2</a>
+      )
+    </li>
+    <li>
+      Added explicit threading annotation for setImportantForAccessibility (
+      <a href="https://android-review.googlesource.com/#/q/I990faac25c6136591f97c8d4cdea0b3372f51af2">I990fa</a>
+      )
+    </li>
+    <li>
+      ComplicationSlotBoundsType has been moved to androidx-wear-watchface.ComplicationSlotBoundsType in wear/wear-watchface. (
+      <a href="https://android-review.googlesource.com/#/q/I09420017bd5d811cc59f428add4c6f3a1fd9353a">I09420</a>
+      )
+    </li>
+    <li>
+      We have added support for passing string resource ids into UserStyleSetting and Options. This is now the recommended way to construct those objects. (
+      <a href="https://android-review.googlesource.com/#/q/I03d5f65e8ad15cfd361778242786f7b9b8830693">I03d5f</a>
+      )
+    </li>
+    <li>
+      Limits have been imposed upon the maximum wire size of a UserStyle Schema. Also Icons in the schema must not be bigger than 400x400 pixels. (
+      <a href="https://android-review.googlesource.com/#/q/I3b65b34f5018b0f28ca86552b91fceefa136f659">I3b65b</a>
+      )
+    </li>
+    <li>
+      We added a MutableUserStyle class to support changes to UserStyle instances (
+      <a href="https://android-review.googlesource.com/#/q/I95a4097e1765c987b87f281c431ef64b2449cff7">I95a40</a>
+      )
+    </li>
+    <li>
+      We have renamed
+      <code translate="no" dir="ltr">ListenableWatchFaceMetadataClient.Companion#listenableCreateWatchFaceMetadataClient</code>
+      to
+      <code translate="no" dir="ltr">ListenableWatchFaceMetadataClient.Companion#createListenableWatchFaceMetadataClient</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I64ce21f528ffcbb1717749b14d27035202987309">I64ce2</a>
+      )
+    </li>
+    <li>
+      We've modified EditorState.previewComplicationsData to only contain data for enabled complications, and we've added
+      <code translate="no" dir="ltr">EditorSession.DEFAULT_PREVIEW_TIME_MILLIS</code>
+      which if passed to
+      <code translate="no" dir="ltr">renderWatchFaceToBitmap</code>
+      or
+      <code translate="no" dir="ltr">PreviewScreenshotParams</code>
+      requests rendering with the watch face's default preview time. (
+      <a href="https://android-review.googlesource.com/#/q/If7b3c08c2fc0bb70a3fb9ab5b2df8c6a86ff30d7">If7b3c</a>
+      )
+    </li>
+    <li>
+      We have removed UserStyleSetting constructors taking CharSequence from the public API. It's recommended to use the constructors that require StringResource IDs instead. (
+      <a href="https://android-review.googlesource.com/#/q/I8537b7c6842e2cdcda0ed9e5c562d35a527bdbc6">I8537b</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">CurrentUserStyleRepository.UserStyleChangeListener</code>
+      now supports SAM conversion. (
+      <a href="https://android-review.googlesource.com/#/q/I8598927b8384af5b03b9b9e189c307d0901a3282">I85989</a>
+      )
+    </li>
+  </ul>

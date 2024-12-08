@@ -1,0 +1,58 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.2.0-alpha07
+releaseDate: 2023-03-22
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha07" data-text="Version 1.2.0-alpha07" tabindex="-1">Version 1.2.0-alpha07</h3>
+  <p>March 22, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.2.0-alpha07</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3f3da5079e3673cd35c9f14ffb59b9d21d6fd1b6..5e7d256f82fbafb6d059ab7b18fddd87c7531553/wear/compose">Version 1.2.0-alpha07 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We have moved the Expandable Item components (added in 1.2.0-alpha06) from material to foundation, since they had no meaningful reference to the
+      <code translate="no" dir="ltr">MaterialTheme</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib052565ab33d190655b6fae6e7a2e44f743313dd">Ib0525</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We have fixed a crash that occurred in a screen using
+      <code translate="no" dir="ltr">PickerGroup</code>
+      , by ensuring that
+      <code translate="no" dir="ltr">PickerGroup</code>
+      handles focus correctly when no Picker has the focus. Also added support for RSB scrolling in our Picker demos. (
+      <a href="https://android-review.googlesource.com/#/q/If8c19c69617d2cad60d8e1897bafa55b632c735e">If8c19</a>
+      )
+    </li>
+    <li>
+      We have improved the dialog transitions - the intro transition is now smoother to match the outro transition. (
+      <a href="https://android-review.googlesource.com/#/q/Ib5af9b7c468543e8fb5988b50bf712bbfb1a340f">Ib5af9</a>
+      )
+    </li>
+    <li>
+      We have added a
+      <code translate="no" dir="ltr">DefaultTextStyle</code>
+      to Wear Compose which defaults the
+      <code translate="no" dir="ltr">PlatformTextStyle.includeFontPadding</code>
+      property to true (this is the current setting). This will allows us to synchronize turning off font padding by default with the Compose libraries in the future - see (
+      <a href="https://medium.com/androiddevelopers/fixing-font-padding-in-compose-text-768cd232425b">Fix font padding in Compose</a>
+      ) for background. (
+      <a href="https://android-review.googlesource.com/#/q/I2aee81620b17057aab192c02e888392f3c0c96f6">I2aee8</a>
+      )
+    </li>
+    <li>
+      Reverted an
+      <code translate="no" dir="ltr">UpsideDownCake</code>
+      preview dependency via activity-compose that blocked publishing apps to the Google Play Store. (
+      <a href="https://android-review.googlesource.com/#/q/I6443d4e7b9b568ad4d7e19d966c23e66e863ddce">I6443d</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,60 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.1.0-beta03
+releaseDate: 2021-11-17
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-beta03" data-text="Version 1.1.0-beta03" tabindex="-1">Version 1.1.0-beta03</h3>
+  <p>November 17, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation:1.1.0-beta03</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-layout:1.1.0-beta03</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f07d12061370a603549747200c79b60239706330..cc1240d00b28657ee0c1a937f60430eaf1b03b09/compose/foundation">Version 1.1.0-beta03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Support for horizontal spans was added to LazyVerticalGrid. (
+      <a href="https://android-review.googlesource.com/#/q/I7e2fa4e915b28aa96980a53c4b9ad79bdb7aeeb2">I7e2fa</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/176758183">b/176758183</a>
+      )
+    </li>
+    <li>
+      <p>
+        Experimental ability to animate Lazy lists item positions was added. There is a new modifier available within LazyItemScope called
+        <code translate="no" dir="ltr">Modifier.animateItemPlacement()</code>
+        . Usage example:
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-w">  </span><span class="devsite-syntax-kd">var</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">list</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">by</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">remember</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">mutableStateOf</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">listOf</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"A"</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"B"</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"C"</span><span class="devsite-syntax-p">))</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">LazyColumn</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-n">item</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-n">Button</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">onClick</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">list</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">list</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">shuffled</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">})</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">              </span><span class="devsite-syntax-n">Text</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"Shuffle"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-n">items</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">list</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">key</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nb">it</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">})</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-n">Text</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"Item </span><span class="devsite-syntax-si">$</span><span class="devsite-syntax-n">it</span><span class="devsite-syntax-s">"</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Modifier</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">animateItemPlacement</span><span class="devsite-syntax-p">())</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+      <ul>
+        <li>
+          When you provide a key via
+          <code translate="no" dir="ltr">LazyListScope.item</code>
+          or
+          <code translate="no" dir="ltr">LazyListScope.items</code>
+          this modifier will enable item reordering animations. Aside from item reordering all other position changes caused by events like arrangement or alignment changes will also be animated. (
+          <a href="https://android-review.googlesource.com/#/q/I59e7b8fd3a4a9eb19a15a4704da150bd187a6f24">I59e7b</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/150812265">b/150812265</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>

@@ -1,0 +1,56 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 1.0.0-alpha01
+releaseDate: 2019-03-13
+#language=html
+changelogHtml: |
+  <h3 id="viewmodel-savedstate-1.0.0-alpha01" data-text="ViewModel-Savedstate Version 1.0.0-alpha01" tabindex="-1">ViewModel-Savedstate Version 1.0.0-alpha01</h3>
+  <p>March 13, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0-alpha01</code>
+    is released. The full commit log for this initial release can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/eced0496fd103512ad396c143917ceafa4d34591/lifecycle/viewmodel-savedstate">here</a>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      Now
+      <code translate="no" dir="ltr">ViewModels</code>
+      can contribute to savedstate. To do that you use newly introduced viewmodel’s factory
+      <code translate="no" dir="ltr">SavedStateVMFactory</code>
+      and your ViewModel should have a constructor that receives
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      object as a parameter.
+    </li>
+  </ul>
+  <h2 id="version_210_3" data-text="Version 2.1.0" tabindex="-1">Version 2.1.0</h2>
+  <p><strong>Important changes since 2.0.0</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">LifecycleEventObserver</code>
+      for the cases when a stream of lifecycle events is needed. It is a public API instead of a hidden
+      <code translate="no" dir="ltr">GenericLifecycleObserver</code>
+      class.
+    </li>
+    <li>
+      Added ktx extensions for
+      <code translate="no" dir="ltr">LiveData.observe</code>
+      methods and
+      <code translate="no" dir="ltr">Transformations.*</code>
+      methods.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Transformations.distinctUntilChanged</code>
+      , which creates a new LiveData object that does not emit a value until the source
+      <code translate="no" dir="ltr">LiveData</code>
+      value has been changed.
+    </li>
+    <li>
+      Added coroutine support in ViewModels by adding the extension property
+      <code translate="no" dir="ltr">ViewModel.viewModelScope</code>
+      .
+    </li>
+  </ul>

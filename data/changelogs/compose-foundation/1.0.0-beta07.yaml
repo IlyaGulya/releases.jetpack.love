@@ -1,0 +1,76 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.0.0-beta07
+releaseDate: 2021-05-18
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta07" data-text="Version 1.0.0-beta07" tabindex="-1">Version 1.0.0-beta07</h3>
+  <p>May 18, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation:1.0.0-beta07</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-layout:1.0.0-beta07</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4c1927601bfcaaaf049d0fc7a4e5801ff5cf9729..b648147c5fdfc5ecbad57e40e2dc0c69aa23bf12/compose/compiler/compiler">Version 1.0.0-beta07 contains these commits.</a>
+  </p>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      Libraries dependent on Compose will need to recompile with version
+      <code translate="no" dir="ltr">1.0.0</code>
+      ‑
+      <code translate="no" dir="ltr">beta07</code>
+      . Otherwise, libraries may encounter a
+      <code translate="no" dir="ltr">NoSuchMethodError</code>
+      , such as:
+      <br />
+      <code translate="no" dir="ltr">java.lang.NoSuchMethodError: No interface method startReplaceableGroup(ILjava/lang/String;)V in class Landroidx/compose/runtime/Composer; or its super classes</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia34e699fdbeaeb86b74e9da27d79d186e6e71757">Ia34e6</a>
+      )
+    </span>
+  </aside>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The next visible item prefetching logic is introduced for LazyColumn/Row (
+      <a href="https://android-review.googlesource.com/#/q/I8a4bc52322a5444e3782274822fa6d07f7c1d402">I8a4bc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/184940225">b/184940225</a>
+      )
+    </li>
+    <li>
+      Added Clip Selection Handle (
+      <a href="https://android-review.googlesource.com/#/q/Iff80d27fbac0e4de5e3e99fac4352cd6ef2cd201">Iff80d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/183408447">b/183408447</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      LazyColumn/Row will now keep up to 2 previously visible items active (not disposed) even when they are scrolled out already. This allows the component to reuse the active subcompositions when we will need to compose a new item which improves the scrolling performance. (
+      <a href="https://android-review.googlesource.com/#/q/Ie5555c9a7031dc9bd31f452a0ed9b28d8a337f5f">Ie5555</a>
+      )
+    </li>
+    <li>
+      Remove paintBackground. (
+      <a href="https://android-review.googlesource.com/#/q/I3866020fa1fe7331604d144dcffc1ed3a0e56f50">I38660</a>
+      )
+    </li>
+    <li>
+      Draw Selection Background using DrawScope. (
+      <a href="https://android-review.googlesource.com/#/q/I73c61bfd553fca38c412d9372e3eaa6336dcd74f">I73c61</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/186674472">b/186674472</a>
+      )
+    </li>
+    <li>
+      A beta06 regression affecting Row/Column using spacedBy arrangements to layout weighted children was fixed. (
+      <a href="https://android-review.googlesource.com/#/q/Ifaf8c6180000d06e1aaa89553ff60e82638e9465">Ifaf8c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187326588">b/187326588</a>
+      )
+    </li>
+  </ul>

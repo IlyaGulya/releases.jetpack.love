@@ -1,0 +1,202 @@
+libraryId: work
+groupId: androidx.work
+version: 1.0.0-alpha10
+releaseDate: 2018-10-11
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha10" data-text="Version 1.0.0-alpha10" tabindex="-1">Version 1.0.0-alpha10</h3>
+  <p>October 11, 2018</p>
+  <p>
+    This release supports developer-controlled asynchronous work. There are breaking API changes in this release; please see the
+    <em>Breaking API Changes</em>
+    section below.
+  </p>
+  <p>We anticipate that WorkManager is entering the final phases of its alpha period. We expect to be API stable in beta, so please take some time to file your feedback on our issue tracker.</p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removed all previously
+      <code translate="no" dir="ltr">deprecated</code>
+      methods and classes, notably the default
+      <code translate="no" dir="ltr">Worker</code>
+      constructor.
+      <em>This is a breaking API change.</em>
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">NonBlockingWorker</code>
+      to
+      <code translate="no" dir="ltr">ListenableWorker</code>
+      , which is now an unhidden public class and ready for usage.
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">ListenableWorker</code>
+          provides access to one abstract method,
+          <code translate="no" dir="ltr">ListenableFuture&lt;Payload&gt; onStartWork()</code>
+          which is called on the main thread. It is up to you to start and process work asynchronously. When finished, you should update the
+          <code translate="no" dir="ltr">ListenableFuture</code>
+          appropriately. Reference implementations of
+          <code translate="no" dir="ltr">ListenableFuture</code>
+          s are provided in the
+          <code translate="no" dir="ltr">Futures</code>
+          package in
+          <code translate="no" dir="ltr">alpha02</code>
+          (see below the
+          <code translate="no" dir="ltr">WorkManager</code>
+          section).
+        </li>
+        <li>
+          <code translate="no" dir="ltr">Worker</code>
+          extends
+          <code translate="no" dir="ltr">ListenableWorker</code>
+          and still operates as before, with an abstract
+          <code translate="no" dir="ltr">Result doWork()</code>
+          method.
+        </li>
+        <li>
+          Shuffled some methods and members from
+          <code translate="no" dir="ltr">Worker</code>
+          to
+          <code translate="no" dir="ltr">ListenableWorker</code>
+          .
+        </li>
+        <li>
+          We shall soon provide reference implementations for
+          <code translate="no" dir="ltr">ListenableWorker</code>
+          s that use Kotlin coroutines (once the stable versions are released) and RxJava2.
+        </li>
+      </ul>
+    </li>
+    <li>
+      The interface
+      <code translate="no" dir="ltr">WorkerFactory</code>
+      and the concrete implementation
+      <code translate="no" dir="ltr">DefaultWorkerFactory</code>
+      have been merged into an abstract class called
+      <code translate="no" dir="ltr">WorkerFactory</code>
+      . The implementation ensures that the default reflection-based behavior is called as a last-ditch effort for any user-created
+      <code translate="no" dir="ltr">WorkerFactory</code>
+      instances.
+      <em>This is a breaking change.</em>
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">WorkManager.synchronous()</code>
+      and
+      <code translate="no" dir="ltr">WorkContinuation.synchronous()</code>
+      and all related methods. Added
+      <code translate="no" dir="ltr">ListenableFuture&lt;Void&gt;</code>
+      as the return type of many methods in the API.
+      <em>This is a breaking API change.</em>
+      <ul>
+        <li>
+          You can now synchronously get and observe by using
+          <code translate="no" dir="ltr">ListenableFuture</code>
+          s. For example,
+          <code translate="no" dir="ltr">WorkManager.enqueue()</code>
+          used to return
+          <code translate="no" dir="ltr">void</code>
+          ; it now returns a
+          <code translate="no" dir="ltr">ListenableFuture&lt;Void&gt;</code>
+          . You can call
+          <code translate="no" dir="ltr">ListenableFuture.addListener(Runnable, Executor)</code>
+          or
+          <code translate="no" dir="ltr">ListenableFuture.get()</code>
+          to run code once the operation is complete.
+        </li>
+        <li>
+          Note that these
+          <code translate="no" dir="ltr">ListenableFuture</code>
+          s do not tell you if the operation succeeded or failed; only that they finished. You will still need to chain WorkManager methods to find out this information.
+        </li>
+        <li>
+          We ignore
+          <code translate="no" dir="ltr">cancel()</code>
+          calls on these objects, as they are confusing and hard to reason about (are you cancelling the operation or the resulting work?). This is within the
+          <code translate="no" dir="ltr">Future</code>
+          s contract.
+        </li>
+        <li>
+          To maintain parity with the synchronous
+          <code translate="no" dir="ltr">getStatus*</code>
+          methods, we have provided
+          <code translate="no" dir="ltr">ListenableFuture</code>
+          variants, and renamed the existing ones that returned
+          <code translate="no" dir="ltr">LiveData</code>
+          to explicitly have "LiveData" as part of the name (for example,
+          <code translate="no" dir="ltr">getStatusesByIdLiveData(UUID)</code>
+          ).
+          <em>This is a breaking API change.</em>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed the known issue from alpha09 regarding duplicate
+      <code translate="no" dir="ltr">androidx-annotations.pro</code>
+      files. You may remove the workaround from the previous release notes by deleting
+      <code translate="no" dir="ltr">exclude 'META-INF/proguard/androidx-annotations.pro'</code>
+      from your gradle file.
+    </li>
+    <li>
+      Added proguard configurations to keep new
+      <code translate="no" dir="ltr">Worker</code>
+      constructor.
+      <a href="https://issuetracker.google.com/116296569">b/116296569</a>
+    </li>
+    <li>
+      Fix potential
+      <code translate="no" dir="ltr">NullPointerException</code>
+      in a race condition where work was
+      <code translate="no" dir="ltr">REPLACE</code>
+      d.
+      <a href="https://issuetracker.google.com/116253486">b/116253486</a>
+      and
+      <a href="https://issuetracker.google.com/116677275">b/116677275</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">WorkContinuation.combine()</code>
+      now accepts one or more
+      <code translate="no" dir="ltr">WorkContinuation</code>
+      s instead of two or more.
+      <a href="https://issuetracker.google.com/117266752">b/117266752</a>
+    </li>
+  </ul>
+  <p><strong>Breaking API Changes</strong></p>
+  <ul>
+    <li>
+      Removed all previously
+      <code translate="no" dir="ltr">deprecated</code>
+      methods and classes, notably the default
+      <code translate="no" dir="ltr">Worker</code>
+      constructor.
+    </li>
+    <li>
+      The interface
+      <code translate="no" dir="ltr">WorkerFactory</code>
+      and the concrete implementation
+      <code translate="no" dir="ltr">DefaultWorkerFactory</code>
+      have been merged into an abstract class called
+      <code translate="no" dir="ltr">WorkerFactory</code>
+      .
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">WorkManager.synchronous()</code>
+      and
+      <code translate="no" dir="ltr">WorkContinuation.synchronous()</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">WorkManager.getStatus*()</code>
+      methods now return
+      <code translate="no" dir="ltr">ListenableFuture</code>
+      s.
+      <code translate="no" dir="ltr">WorkManager.getStatus*LiveData()</code>
+      return
+      <code translate="no" dir="ltr">LiveData</code>
+      s.
+    </li>
+  </ul>

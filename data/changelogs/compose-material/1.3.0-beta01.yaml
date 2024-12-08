@@ -1,0 +1,17 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 1.3.0-beta01
+releaseDate: 2022-08-24
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-beta01" data-text="Version 1.3.0-beta01" tabindex="-1">Version 1.3.0-beta01</h3>
+  <p>August 24, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material-*:1.3.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/bea814b246f89ff7244e3c6b0648f0b57e47897c..d9910e143f859716fd850a1f0036147622d6089b/compose/material">Version 1.3.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>Behavior breaking change</strong></p>
+  <p>Maximum supported elevation in dialogs and popups has been reduced to 8dp.</p>
+  <p>The maximum supported elevation for Compose dialogs and popups has been reduced from 30dp to 8dp. This change affects both material and ui custom dialogs and popups. This change is made to mitigate an accessibility bug on Android versions below S, and to ensure that accessibility services within those windows are able to interact with the content inside the dialog or popup.</p>
+  <p>You will only be impacted by this change if you are creating a custom dialog or popup implementation with an elevation set to levels higher than 8dp. Consider lowering the elevation of your dialog or popup. If you need to opt-out from this new behavior, consider forking your own dialog or popup with the desired elevation set. This is not recommended, as accessibility might be negatively impacted and it is on the developer to ensure the bottom part of the dialog or popup is interactable and readable by accessibility services.</p>

@@ -1,0 +1,72 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.3.0-alpha01
+releaseDate: 2021-02-10
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha01" data-text="Version 1.3.0-alpha01" tabindex="-1">Version 1.3.0-alpha01</h3>
+  <p>February 10, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.3.0-alpha01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.activity:activity-compose:1.3.0-alpha01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.3.0-alpha01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/0c05672ea464c9788ec7c07e723361f2a23b3439..3c96bbfa4cd323a18c5db328a5234ec27377906c/activity">Version 1.3.0-alpha01 contains these commits.</a>
+  </p>
+  <aside class="caution">
+    <strong>Caution:</strong>
+    <span>
+      Please use version
+      <code translate="no" dir="ltr">1.3.0-alpha02</code>
+      instead. A critical issue was found in
+      <code translate="no" dir="ltr">1.3.0-alpha01</code>
+      that causes Activity Compose and libraries that depend on it to crash with a
+      <code translate="no" dir="ltr">NoSuchMethodError: No static method setContent</code>
+      exception. (
+      <a href="https://issuetracker.google.com/issues/179911234">b/179911234</a>
+      )
+    </span>
+  </aside>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      The new
+      <code translate="no" dir="ltr">activity-compose</code>
+      artifact provides Jetpack Compose specific helpers for
+      <code translate="no" dir="ltr">androidx.activity</code>
+      specific APIs.
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">ComponentActivity.setContent</code>
+          has moved from
+          <code translate="no" dir="ltr">androidx.compose.ui.platform.setContent</code>
+          to
+          <code translate="no" dir="ltr">androidx.activity.compose.setContent</code>
+          . (
+          <a href="https://android-review.googlesource.com/#/q/Icf4168e6078b87ce746569a946b2a90274197c72">Icf416</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>Activity Compose 1.0.0-alpha01 is only compatible with Compose 1.0.0-alpha12.</span>
+  </aside>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      Using Activity Compose
+      <code translate="no" dir="ltr">1.3.0-alpha01</code>
+      and libraries that depend on it, such as
+      <code translate="no" dir="ltr">androidx.compose.ui:ui-test-junit4:1.0.0-alpha12</code>
+      , will result in a
+      <code translate="no" dir="ltr">NoSuchMethodError: No static method setContent</code>
+      exception. (
+      <a href="https://issuetracker.google.com/issues/179911234">b/179911234</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_124_3" data-text="Version 1.2.4" tabindex="-1">Version 1.2.4</h2>

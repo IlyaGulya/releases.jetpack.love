@@ -1,0 +1,103 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.7.0-alpha02
+releaseDate: 2023-09-06
+#language=html
+changelogHtml: |
+  <h3 id="2.7.0-alpha02" data-text="Version 2.7.0-alpha02" tabindex="-1">Version 2.7.0-alpha02</h3>
+  <p>September 6, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.7.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4aed940027a19667e67d155563fc5fa8b7279313..9ce75ea1baa2af10dda8f787f69c40c6654bcac1/lifecycle">Version 2.7.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">TestLifecycleOwner</code>
+      now includes the suspending function
+      <code translate="no" dir="ltr">setCurrentState()</code>
+      to give users the option of using
+      <code translate="no" dir="ltr">TestLifecycleOwner</code>
+      from within a coroutine such as one provided by
+      <code translate="no" dir="ltr">runTest</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I329de3d76bcd7fa5e04077916ff551f9f2f3f864">I329de</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/259344129">b/259344129</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      All files from the
+      <code translate="no" dir="ltr">lifecycle-livedata-ktx</code>
+      modules have been moved into the main
+      <code translate="no" dir="ltr">lifecycle-livedata</code>
+      module. (
+      <a href="https://android-review.googlesource.com/#/q/I10c6f70c82a64e80eec704f548911f42bdd0b56a">I10c6f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/274800183">b/274800183</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">LiveData.map()</code>
+      and
+      <code translate="no" dir="ltr">LiveData.switchMap()</code>
+      extensions now sets the
+      <code translate="no" dir="ltr">value</code>
+      of the returned
+      <code translate="no" dir="ltr">LiveData</code>
+      if the previous
+      <code translate="no" dir="ltr">LiveData</code>
+      has had a value set on it, ensuring that using the resulting LiveData in Jetpack Compose has the right state on the initial composition. (
+      <a href="https://android-review.googlesource.com/#/q/I91d2b286b609976a43b740c45c99975317274b63">I91d2b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/269479952">b/269479952</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ViewModel</code>
+      's
+      <code translate="no" dir="ltr">addCloseable()</code>
+      now immediately closes the
+      <code translate="no" dir="ltr">Closeable</code>
+      if the
+      <code translate="no" dir="ltr">ViewModel</code>
+      has already received a call to
+      <code translate="no" dir="ltr">onCleared()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4712ee3600acbf04506af46e6ac479a617cebd86">I4712e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/280294730">b/280294730</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      From
+      <a href="#2.6.2">
+        Lifecycle
+        <code translate="no" dir="ltr">2.6.2</code>
+      </a>
+      : Fixed an issue where
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      would not correctly be restored after process death if the state was restored,
+      <code translate="no" dir="ltr">save()</code>
+      was called without actually saving the state in the parent
+      <code translate="no" dir="ltr">SavedStateRegistry</code>
+      , and then the state was restored again. This fixes the interaction between
+      <code translate="no" dir="ltr">rememberSaveable</code>
+      and Navigation Compose’s
+      <code translate="no" dir="ltr">NavHost</code>
+      . (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/2729289">aosp/2729289</a>
+      )
+    </li>
+  </ul>

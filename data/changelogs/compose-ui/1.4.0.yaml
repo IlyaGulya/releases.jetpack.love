@@ -1,0 +1,103 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.4.0
+releaseDate: 2023-03-22
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0" data-text="Version 1.4.0" tabindex="-1">Version 1.4.0</h3>
+  <p>March 22, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.4.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/548c8ac2570ae6cf15798fea1380491f7d93796b..c5b142d6ab0494c996b2378d5008ac1cd6da75f3/compose/ui">Version 1.4.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 1.3.0</strong></p>
+  <ul>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">PinnableContainer</code>
+      API that allows lazy list items to be pinned, so that they are not disposed when they are scrolled out of bounds. For example,
+      <code translate="no" dir="ltr">Modifier.focusable()</code>
+      uses this mechanism to pin the currently focused item. (
+      <a href="https://android-review.googlesource.com/#/q/Ib8881191a529c9d9dc5e886570650b1987763207">Ib8881</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/259274257">b/259274257</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/195049010">b/195049010</a>
+      )
+    </li>
+    <li>
+      The focus system is rewritten using the new experimental
+      <code translate="no" dir="ltr">Modifier.Node</code>
+      APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I7f4d7a99aa42f7f3e4f49d034f8358a41ed42d0f">I7f4d7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/247708726">b/247708726</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/255352203">b/255352203</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/253043481">b/253043481</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/247716483">b/247716483</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/254529934">b/254529934</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/251840112">b/251840112</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/251859987">b/251859987</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/257141589">b/257141589</a>
+      )
+    </li>
+    <li>
+      Added in
+      <code translate="no" dir="ltr">IsContainer</code>
+      semantics property on Surfaces. This property will be used in a later change that determines traversal order based on the semantic meaning of elements such as surfaces. (
+      <a href="https://android-review.googlesource.com/#/q/I63379fde102abbee7d5464c50b1c86a59e01e768">I63379</a>
+      )
+    </li>
+    <li>
+      Added a new accessibility role
+      <code translate="no" dir="ltr">DropdownList</code>
+      . This can be used to replicate
+      <code translate="no" dir="ltr">TalkBack</code>
+      's behavior when focusing
+      <code translate="no" dir="ltr">android.widget.Spinner</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I177e52da7f2e3c1f9b3d6848bf08a42995b6fb6e">I177e5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/236159001">b/236159001</a>
+      )
+    </li>
+    <li>
+      You can now use
+      <code translate="no" dir="ltr">PlatformTextStyle(emojiSupportMatch)</code>
+      to optionally disable emoji support processing for a single Paragraph. (
+      <a href="https://android-review.googlesource.com/#/q/Ia710096395ecfe4bbd986326882331e0a7e6a74d">Ia7100</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/139326806">b/139326806</a>
+      )
+    </li>
+    <li>
+      Android Compose UI tests will now run layout passes for each frame when executing frames to get to idle (e.g. via
+      <code translate="no" dir="ltr">waitForIdle</code>
+      ). This may affect tests that assert on individual frames of layout animations. (
+      <a href="https://android-review.googlesource.com/#/q/I8ea08728a395665f9ec7965579797e537b2c35e5">I8ea08</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/222093277">b/222093277</a>
+      )
+    </li>
+    <li>
+      Added experimental
+      <code translate="no" dir="ltr">TextMotion</code>
+      to
+      <code translate="no" dir="ltr">TextStyle</code>
+      to define Text either to be
+      <code translate="no" dir="ltr">Static(default)</code>
+      or Animated. Use
+      <code translate="no" dir="ltr">TextMotion.Animated</code>
+      if Text is going to be scaled, translated, or rotated via animation. (
+      <a href="https://android-review.googlesource.com/#/q/I24dd75e606184220ed3eebc3c80f84d5c977c14c">I24dd7</a>
+      )
+    </li>
+  </ul>

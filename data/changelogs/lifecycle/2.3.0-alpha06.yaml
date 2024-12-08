@@ -1,0 +1,95 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.3.0-alpha06
+releaseDate: 2020-07-22
+#language=html
+changelogHtml: |
+  <h3 id="2.3.0-alpha06" data-text="Version 2.3.0-alpha06" tabindex="-1">Version 2.3.0-alpha06</h3>
+  <p>July 22, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.3.0-alpha06</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b6054a1a7396b962ac2c6d80d21053cf9d2f02db..9f60cc700129e30cee9df020005c317fb39d32ec/lifecycle">Version 2.3.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added static helper methods of
+      <code translate="no" dir="ltr">downFrom(State)</code>
+      ,
+      <code translate="no" dir="ltr">downTo(State)</code>
+      ,
+      <code translate="no" dir="ltr">upFrom(State)</code>
+      ,
+      <code translate="no" dir="ltr">upTo(State)</code>
+      to
+      <code translate="no" dir="ltr">Lifecycle.Event</code>
+      for generating the
+      <code translate="no" dir="ltr">Event</code>
+      given a
+      <code translate="no" dir="ltr">State</code>
+      and transition direction. Added the
+      <code translate="no" dir="ltr">getTargetState()</code>
+      method that provides the
+      <code translate="no" dir="ltr">State</code>
+      that the Lifecycle will transition to directly following the
+      <code translate="no" dir="ltr">Event</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I008870696ecc61e039c35a1dcf4e2dfd3a8fcb24">I00887</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Lifecycle.withStateAtLeast</code>
+      APIs that await a lifecycle state and run a non-suspending block of code synchronously at the point of state change, then resume with the result. These APIs differ from the existing
+      <code translate="no" dir="ltr">when*</code>
+      methods as they do not permit running suspending code and do not employ a custom dispatcher. (
+      <a href="https://android-review.googlesource.com/1326081">aosp/1326081</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      LifecycleRegistry now enforces
+      <code translate="no" dir="ltr">DESTROYED</code>
+      as a terminal state. (
+      <a href="https://android-review.googlesource.com/#/q/I008870696ecc61e039c35a1dcf4e2dfd3a8fcb24">I00887</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LifecycleRegistry</code>
+      now verifies that its methods are called on main thread. It was always a requirement for lifecycles of activities, fragments etc. An addition of observers from non-main threads resulted in hard to catch crashes in runtime. For
+      <code translate="no" dir="ltr">LifecycleRegistry</code>
+      objects that owned by your own components, you can explicitly opt out from checks by using
+      <code translate="no" dir="ltr">LifecycleRegistry.createUnsafe(...)</code>
+      , but then you have to ensure that a proper synchronization is in place when this
+      <code translate="no" dir="ltr">LifecycleRegistry</code>
+      is accessed from different threads (
+      <a href="https://android-review.googlesource.com/#/q/Ie72809b34d4e66c20b9694548359a1209d438f3d">Ie7280</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/137392809">b/137392809</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a crash in
+      <code translate="no" dir="ltr">NullSafeMutableLiveData</code>
+      . (
+      <a href="https://issuetracker.google.com/159987480">b/159987480</a>
+      )
+    </li>
+    <li>
+      Fixed an
+      <code translate="no" dir="ltr">ObsoleteLintCustomCheck</code>
+      for Lint checks bundled with
+      <code translate="no" dir="ltr">lifecycle-livedata-core-ktx</code>
+      (and specifically
+      <code translate="no" dir="ltr">NullSafeMutableLiveData</code>
+      ). (
+      <a href="https://issuetracker.google.com/158699265">b/158699265</a>
+      )
+    </li>
+  </ul>

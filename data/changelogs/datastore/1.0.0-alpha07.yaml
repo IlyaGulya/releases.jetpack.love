@@ -1,0 +1,68 @@
+libraryId: datastore
+groupId: androidx.datastore
+version: 1.0.0-alpha07
+releaseDate: 2021-02-24
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha07" data-text="Version 1.0.0-alpha07" tabindex="-1">Version 1.0.0-alpha07</h3>
+  <p>February 24, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.datastore:datastore-*:1.0.0-alpha07</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d4d3f15273386f887bf6407b11dfa23460ee0164..5c90131a69042a6a3e13952e1da9e7ffc571c31d/datastore">Version 1.0.0-alpha07 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <p>
+        The
+        <code translate="no" dir="ltr">Context.createDataStore</code>
+        extension function has been removed and replaced with globalDataStore property delegate. Call globalDataStore once at the top level in your kotlin file. For example:
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">Context</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">myDataStore</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">by</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">dataStore</span><span class="devsite-syntax-p">(...)</span>
+  </code></pre>
+      </devsite-code>
+      <p>
+        Put this at the top level of your kotlin file so there is only one instance of it. (
+        <a href="https://android-review.googlesource.com/#/q/I5721591268086f2111719fcc48c4144c20b4e129">I57215</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/173726702">b/173726702</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        The RxDataStore functions are now on an RxDataStore class instead of extension functions on DataStore. (
+        <a href="https://android-review.googlesource.com/#/q/Idccdb6086e0fef2a76f0cf7c4577f56dab317107">Idccdb</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/177691248">b/177691248</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        If you want to migrate EncryptedSharedPreferences (or direct boot SharedPreferences) to DataStore you can now do that with the new SharedPreferencesMigration constructor that allows you to inject the SharedPreferences. (
+        <a href="https://android-review.googlesource.com/#/q/I8e04e9f3c62d41ba6bfeffe3e5978be4790b3661">I8e04e</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/177278510">b/177278510</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      DataStore will now throw an exception if there are multiple active DataStores for the same file. If you were not managing your DataStore as a Singleton or were not ensuring that no two instances of DataStore are simultaneously active for a file then you may now see exceptions when reading or writing to DataStore. These can be fixed by managing your DataStore as a Singleton. (
+      <a href="https://android-review.googlesource.com/#/q/Ib43f4495f7741a3d480e0f6256e7bfee512c0d56">Ib43f4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177691248">b/177691248</a>
+      )
+    </li>
+    <li>
+      Fix cancellation behavior when caller scope is cancelled. (
+      <a href="https://android-review.googlesource.com/#/q/I2c7b335c01cc2b59bea4474d676c4343ec90e596">I2c7b3</a>
+      )
+    </li>
+  </ul>

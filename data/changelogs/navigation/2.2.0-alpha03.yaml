@@ -1,0 +1,48 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.2.0-alpha03
+releaseDate: 2019-09-18
+#language=html
+changelogHtml: |
+  <h3 id="2.2.0-alpha03" data-text="Version 2.2.0-alpha03" tabindex="-1">Version 2.2.0-alpha03</h3>
+  <p>September 18, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.2.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/2d0a22f1ddeb3b7e9d0002f0e089a25b7ef64f1c..391dc4bc729d2973a6e6e57916d3008c58026e56/navigation">Version 2.2.0-alpha03 contains these commits</a>
+    .
+  </p>
+  <p><strong>Behavior changes</strong></p>
+  <ul>
+    <li>
+      Calling
+      <code translate="no" dir="ltr">setViewModelStore()</code>
+      after calling
+      <code translate="no" dir="ltr">setGraph</code>
+      now results in an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      . This should always be set by the
+      <code translate="no" dir="ltr">NavHost</code>
+      as part of the initial setup to ensure that all
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      instances have a consistent storage for
+      <code translate="no" dir="ltr">ViewModel</code>
+      instances. (
+      <a href="https://android-review.googlesource.com/1111821">aosp/1111821</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a
+      <code translate="no" dir="ltr">ConcurrentModificationException</code>
+      when using
+      <code translate="no" dir="ltr">ViewModel</code>
+      instances attached to multiple different navigation graph scoped
+      <code translate="no" dir="ltr">ViewModelStore</code>
+      instances. (
+      <a href="https://android-review.googlesource.com/1112257">aosp/1112257</a>
+      )
+    </li>
+  </ul>

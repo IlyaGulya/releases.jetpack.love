@@ -1,0 +1,114 @@
+libraryId: work
+groupId: androidx.work
+version: 2.1.0
+releaseDate: 2019-07-11
+#language=html
+changelogHtml: |
+  <h3 id="2.1.0" data-text="Version 2.1.0" tabindex="-1">Version 2.1.0</h3>
+  <p>July 11, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.1.0</code>
+    is released. This release is identical to
+    <code translate="no" dir="ltr">androidx.work:work-*:2.1.0-rc01</code>
+    .
+  </p>
+  <p><strong>Important changes since 2.0.1</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">work-runtime-ktx</code>
+      now requires Java 8. If you run into any issues, you can add the following to your
+      <code translate="no" dir="ltr">build.gradle</code>
+      :
+      <code translate="no" dir="ltr">kotlinOptions { jvmTarget = "1.8" }</code>
+    </li>
+    <li>
+      Added on-demand initialization for WorkManager, which will create WorkManager only when referenced.
+      <a href="https://issuetracker.google.com/127497100">b/127497100</a>
+      To set up your project for on-demand initialization:
+      <ol>
+        <li>
+          <a href="/topic/libraries/architecture/workmanager/advanced/custom-configuration#remove-default">Disable the automatic initializer</a>
+          .
+        </li>
+        <li>
+          Implement
+          <code translate="no" dir="ltr">Configuration.Provider</code>
+          on your custom
+          <code translate="no" dir="ltr">Application</code>
+          object.
+        </li>
+        <li>
+          Change all references of
+          <code translate="no" dir="ltr">WorkManager.getInstance()</code>
+          to
+          <code translate="no" dir="ltr">WorkManager.getInstance(Context)</code>
+          . As part of this change, we have deprecated
+          <code translate="no" dir="ltr">WorkManager.getInstance()</code>
+          . It is always safer to call the new
+          <code translate="no" dir="ltr">WorkManager.getInstance(Context)</code>
+          replacement, even if you're not doing on-demand initialization.
+        </li>
+      </ol>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PeriodicWorkRequest</code>
+      s now support initial delays. You can use the
+      <code translate="no" dir="ltr">setInitialDelay</code>
+      method on
+      <code translate="no" dir="ltr">PeriodicWorkRequest.Builder</code>
+      to set an initial delay.
+      <a href="https://issuetracker.google.com/111404867">b/111404867</a>
+    </li>
+    <li>
+      Added the ability to delegate to one or more registered
+      <code translate="no" dir="ltr">WorkerFactory</code>
+      s using
+      <code translate="no" dir="ltr">DelegatingWorkerFactory</code>
+      .
+      <a href="https://issuetracker.google.com/131435993">b/131435993</a>
+    </li>
+    <li>
+      Added the ability to customize the
+      <code translate="no" dir="ltr">Executor</code>
+      used by WorkManager for all its internal book-keeping via
+      <code translate="no" dir="ltr">Configuration.Builder.setTaskExecutor</code>
+      .
+    </li>
+    <li>
+      Added the ability to create unit testable
+      <code translate="no" dir="ltr">Worker</code>
+      and
+      <code translate="no" dir="ltr">ListenableWorker</code>
+      classes by using
+      <code translate="no" dir="ltr">TestWorkerBuilder</code>
+      and
+      <code translate="no" dir="ltr">TestListenableWorkerBuilder</code>
+      in the
+      <code translate="no" dir="ltr">work-testing</code>
+      artifact.
+      <ul>
+        <li>
+          Note that
+          <code translate="no" dir="ltr">work-testing</code>
+          now pulls in Kotlin as a dependency and includes several Kotlin extensions by default.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Added run attempt count to
+      <code translate="no" dir="ltr">WorkInfo</code>
+      .
+      <a href="https://issuetracker.google.com/127290461">b/127290461</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Data</code>
+      types can now store and retrieve bytes and byte arrays. This does NOT change the maximum size of
+      <code translate="no" dir="ltr">Data</code>
+      objects.
+    </li>
+    <li>
+      WorkManager now depends on
+      <code translate="no" dir="ltr">Room 2.1.0</code>
+      , which should fix some database issues.
+    </li>
+  </ul>

@@ -1,0 +1,48 @@
+libraryId: graphics
+groupId: androidx.graphics
+version: 1.0.0-alpha02
+releaseDate: 2022-11-09
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha02" data-text="Version 1.0.0-alpha02" tabindex="-1">Version 1.0.0-alpha02</h3>
+  <p>November 9, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.graphics:graphics-core:1.0.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/548c8ac2570ae6cf15798fea1380491f7d93796b..3ab6276ada43455a1f1cd3e8d0b3c77123b42150/graphics/graphics-core">Version 1.0.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Fixed missing
+      <code translate="no" dir="ltr">RequiresApi</code>
+      annotation for
+      <code translate="no" dir="ltr">addTransactionCommitListener</code>
+      which was introduced in Android S (
+      <a href="https://android-review.googlesource.com/#/q/I0a0358dd907c313ba0aa5d284fb360df5fa40d31">I0a035</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">onDraw&lt;Front/Double&gt;</code>
+      Buffer callbacks to provide a transform matrix that consumers can pass to their vertex shaders in addition to the current buffer width/height. Consumers are responsible for using these parameters to properly pre-rotate their OpenGL rendering code. (
+      <a href="https://android-review.googlesource.com/#/q/I82f9e11601c4626696cef9c10fd65a18657b76a5">I82f9e</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Improved graphics latency by pre-rotating buffers before issuing
+      <code translate="no" dir="ltr">SurfaceControl</code>
+      transactions.
+    </li>
+    <li>Fixed issue where error logs would show error 300d (EGL_BAD_SURFACE).</li>
+    <li>
+      Fixed issue where
+      <code translate="no" dir="ltr">GLFrontBufferedRenderer</code>
+      would be invalid after the corresponding Activity it was used within was resumed.
+    </li>
+    <li>Increased support for emulators and ChromeOS devices.</li>
+    <li>Fixed issue where the front buffered layer maybe hidden prematurely.</li>
+  </ul>

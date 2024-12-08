@@ -1,0 +1,61 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.4.0-beta02
+releaseDate: 2023-02-22
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-beta02" data-text="Version 1.4.0-beta02" tabindex="-1">Version 1.4.0-beta02</h3>
+  <p>February 22, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.4.0-beta02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f7337eab774a6ce3b17367d5f31708564b66e677..87533b4ff06971ed59028936cd9b6da988cd4522/compose/ui">Version 1.4.0-beta02 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removed the
+      <code translate="no" dir="ltr">modifierElementOf()</code>
+      API. Please extend from
+      <code translate="no" dir="ltr">ModifierNodeElement</code>
+      directly instead. (
+      <a href="https://android-review.googlesource.com/#/q/I2256b1776e00cbe0b781dbd7fb483e6740cdb7bc">I2256b</a>
+      )
+    </li>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">Modifier.Node.onReset()</code>
+      callback allowing you to reset some local state to properly handle the case when the
+      <code translate="no" dir="ltr">Layout</code>
+      will be reused (for example as an item of
+      <code translate="no" dir="ltr">LazyColumn</code>
+      ). Fixed
+      <code translate="no" dir="ltr">FocusTargetModifierNode</code>
+      to properly reset the focused state. (
+      <a href="https://android-review.googlesource.com/#/q/I65495712cdeafeb3fedc3e4272627c024f952ddb">I65495</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/265201972">b/265201972</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">BlendMode</code>
+      parameter to
+      <code translate="no" dir="ltr">DrawScope.drawText</code>
+      ,
+      <code translate="no" dir="ltr">Paragraph.paint</code>
+      , and
+      <code translate="no" dir="ltr">MultiParagraph.paint</code>
+      methods to support different blending algorithms when drawing text on Canvas. (
+      <a href="https://android-review.googlesource.com/#/q/I57508ab06da481f63b4061ecb8ad72c3a733b0a7">I57508</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Accessibility focus order algorithm improved, for example top/bottom bars are more often read first/last respectively (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/74e9c5f21c148a8c68372c1fae290cd733dd0f46">74e9c5</a>
+      )
+    </li>
+  </ul>

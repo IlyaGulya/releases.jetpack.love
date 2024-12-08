@@ -1,0 +1,443 @@
+libraryId: window
+groupId: androidx.window
+version: 1.1.0
+releaseDate: 2023-06-07
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0" data-text="Version 1.1.0" tabindex="-1">Version 1.1.0</h3>
+  <p>June 7, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.window:window-*:1.1.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/0c26f64947eb47c353adc923210c3d786bcf1931..0dfa2a434822994e57d9d6a84225c31e7b395591/window">Version 1.1.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 1.0.0</strong></p>
+  <p><strong>Activity Embedding</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">PROPERTY_ACTIVITY_EMBEDDING_SPLITS_ENABLED</code>
+      as a boolean property of the
+      <code translate="no" dir="ltr">&lt;application&gt;</code>
+      tag in the app manifest.
+    </li>
+    <li>
+      Deprecated
+      <code translate="no" dir="ltr">isSplitSupported</code>
+      and replaced with
+      <code translate="no" dir="ltr">splitSupportStatus</code>
+      to provide more detailed information about why the split feature is not available.
+    </li>
+    <li>
+      Added the
+      <code translate="no" dir="ltr">SplitController.SplitSupportStatus</code>
+      nested class to provide state constants for the
+      <code translate="no" dir="ltr">splitSupportStatus</code>
+      property.
+    </li>
+    <li>
+      Refactored
+      <code translate="no" dir="ltr">SplitController</code>
+      to several modules:
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">ActivityEmbeddingController</code>
+          module for
+          <code translate="no" dir="ltr">Activity</code>
+          or
+          <code translate="no" dir="ltr">ActivityStack</code>
+          related APIs.
+        </li>
+        <li>
+          Moved
+          <code translate="no" dir="ltr">isActivityEmbedded</code>
+          from
+          <code translate="no" dir="ltr">SplitController</code>
+          to
+          <code translate="no" dir="ltr">ActivityEmbeddingController</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">RuleController</code>
+          module for
+          <code translate="no" dir="ltr">EmbeddingRule</code>
+          related operations:
+        </li>
+        <li>
+          Removed
+          <code translate="no" dir="ltr">SplitController</code>
+          APIs:
+        </li>
+        <li><code translate="no" dir="ltr">clearRegisteredRules()</code></li>
+        <li><code translate="no" dir="ltr">getSplitRules()</code></li>
+        <li><code translate="no" dir="ltr">initialize()</code></li>
+        <li><code translate="no" dir="ltr">registerRule()</code></li>
+        <li><code translate="no" dir="ltr">unregisterRule()</code></li>
+        <li>
+          Added
+          <code translate="no" dir="ltr">RuleController</code>
+          APIs:
+        </li>
+        <li>
+          <code translate="no" dir="ltr">addRule()</code>
+          — Adds a rule or updates the rule that has the same tag.
+        </li>
+        <li>
+          <code translate="no" dir="ltr">removeRule()</code>
+          — Removes a rule from the collection of registered rules.
+        </li>
+        <li>
+          <code translate="no" dir="ltr">setRules()</code>
+          — Establishes a collection of rules.
+        </li>
+        <li>
+          <code translate="no" dir="ltr">clearRules()</code>
+          — Removes all registered rules.
+        </li>
+        <li>
+          <code translate="no" dir="ltr">parseRules()</code>
+          — Parses rules from XML rule definitions.
+        </li>
+      </ul>
+    </li>
+    <li>
+      All modules require a context to be initialized by
+      <code translate="no" dir="ltr">#getInstance()</code>
+      method, including:
+      <ul>
+        <li><code translate="no" dir="ltr">ActivityEmbeddingController#getInstance(Context)</code></li>
+        <li><code translate="no" dir="ltr">SplitController#getInstance(Context)</code></li>
+        <li><code translate="no" dir="ltr">RuleController#getInstance(Context)</code></li>
+      </ul>
+    </li>
+    <li>
+      Added the
+      <code translate="no" dir="ltr">EmbeddingAspectRatio</code>
+      class to define enum-like behavior constants related to display aspect ratio.
+    </li>
+    <li>
+      Added the
+      <code translate="no" dir="ltr">SplitAttributes</code>
+      class to define the split layout.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">SplitAttributes</code>
+      calculator functions to
+      <code translate="no" dir="ltr">SplitController</code>
+      to customize split layouts:
+      <ul>
+        <li><code translate="no" dir="ltr">setSplitAttributesCalculator(Function)</code></li>
+        <li><code translate="no" dir="ltr">clearSplitAttributesCalculator()</code></li>
+        <li>
+          <code translate="no" dir="ltr">isSplitAttributesCalculatorSupported()</code>
+          to check if the
+          <code translate="no" dir="ltr">SplitAttributesCalculator</code>
+          APIs are supported on the device
+        </li>
+      </ul>
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">EmbeddingRule#tag</code>
+      field.
+    </li>
+    <li>
+      API updates in
+      <code translate="no" dir="ltr">SplitRule</code>
+      :
+      <ul>
+        <li>
+          Added
+          <code translate="no" dir="ltr">defaultSplitAttributes</code>
+          — Defines the default split layout of a split; replaces
+          <code translate="no" dir="ltr">splitRatio</code>
+          and
+          <code translate="no" dir="ltr">layoutDirection</code>
+          .
+        </li>
+        <li>
+          Added translation of the XML properties
+          <code translate="no" dir="ltr">splitRatio</code>
+          and
+          <code translate="no" dir="ltr">splitLayoutDirection</code>
+          to
+          <code translate="no" dir="ltr">defaultSplitAttributes</code>
+          .
+        </li>
+        <li>Changed minimum dimension definitions to use density-independent pixels (dp) instead of pixels.</li>
+        <li>
+          Added
+          <code translate="no" dir="ltr">minHeightDp</code>
+          with default value 600dp.
+        </li>
+        <li>
+          Changed
+          <code translate="no" dir="ltr">minWidth</code>
+          to
+          <code translate="no" dir="ltr">minWidthDp</code>
+          with default value 600dp.
+        </li>
+        <li>
+          Changed
+          <code translate="no" dir="ltr">minSmallestWidth</code>
+          to
+          <code translate="no" dir="ltr">minSmallestWidthDp</code>
+          with default value 600dp.
+        </li>
+        <li>
+          Added
+          <code translate="no" dir="ltr">maxAspectRatioInHorizontal</code>
+          with default value
+          <code translate="no" dir="ltr">ALWAYS_ALLOW</code>
+          .
+        </li>
+        <li>
+          Added
+          <code translate="no" dir="ltr">maxAspectRatioInPortrait</code>
+          with default value 1.4.
+        </li>
+        <li>
+          Defined
+          <code translate="no" dir="ltr">FinishBehavior</code>
+          nested class to replace finish behavior constants.
+        </li>
+        <li>
+          Applied the property changes to the Builder nested class of
+          <code translate="no" dir="ltr">SplitPairRule</code>
+          and
+          <code translate="no" dir="ltr">SplitPlaceholderRule</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      Replaced
+      <code translate="no" dir="ltr">SplitInfo#getSplitRatio()</code>
+      with
+      <code translate="no" dir="ltr">SplitInfo#getSplitAttributes()</code>
+      to provide additional split-related information.
+    </li>
+  </ul>
+  <p><strong>WindowLayout</strong></p>
+  <ul>
+    <li>
+      Added experimental non-activity UI context support to
+      <code translate="no" dir="ltr">WindowInfoTracker</code>
+      .
+    </li>
+    <li>
+      Added experimental non-activity UI context to
+      <code translate="no" dir="ltr">WindowMetricsCalculator</code>
+      .
+    </li>
+  </ul>
+  <p><strong>Migration Steps</strong></p>
+  <ul>
+    <li>
+      To enable activity embedding to display activities in splits, apps must add the
+      <code translate="no" dir="ltr">PROPERTY_ACTIVITY_EMBEDDING_SPLITS_ENABLED</code>
+      property to the manifest
+      <code translate="no" dir="ltr">&lt;application&gt;</code>
+      tag:
+      <code translate="no" dir="ltr">xml &lt;property android:name="android.window.PROPERTY_ACTIVITY_EMBEDDING_SPLITS_ENABLED" android:value="true" /&gt;</code>
+      This allows the system to optimize the split behaviors for an application ahead of time.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SplitInfo</code>
+      ratio
+      <ul>
+        <li>
+          Check if the current split is stacked:
+          <code translate="no" dir="ltr">kotlin SplitInfo.splitAttributes.splitType is SplitAttributes.SplitType.ExpandContainersSplitType</code>
+        </li>
+        <li>
+          Check the current ratio:
+          <code translate="no" dir="ltr">kotlin if (SplitInfo.splitAttributes.splitType is SplitAttributes.SplitType.RatioSplitType) { val ratio = splitInfo.splitAttributes.splitType.ratio } else { // Ratio is meaningless for other types. }</code>
+        </li>
+      </ul>
+    </li>
+    <li>
+      SplitController migrations:
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">SplitController.getInstance()</code>
+          changes to
+          <code translate="no" dir="ltr">SplitController.getInstance(Context)</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">SplitController.initialize(Context, @ResId int)</code>
+          changes to
+          <code translate="no" dir="ltr">RuleController.getInstance(Context).setRules(RuleController.parse(Context, @ResId int))</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">SplitController.getInstance().isActivityEmbedded(Activity)</code>
+          changes to
+          <code translate="no" dir="ltr">ActivityEmbeddingController.getInstance(Context).isActivityEmbedded(Activity)</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">SplitController.getInstance().registerRule(rule)</code>
+          changes to
+          <code translate="no" dir="ltr">RuleController.getInstance(Context).addRule(rule)</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">SplitController.getInstance().unregisterRule(rule)</code>
+          changes to
+          <code translate="no" dir="ltr">RuleController.getInstance(Context).removeRule(rule)</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">SplitController.getInstance().clearRegisteredRules()</code>
+          changes to
+          <code translate="no" dir="ltr">RuleController.getInstance(Context).clearRules()</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">SplitController.getInstance().getSplitRules()</code>
+          changes to
+          <code translate="no" dir="ltr">RuleController.getInstance(Context).getRules()</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SplitRule</code>
+      property migrations:
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">minWidth</code>
+          and
+          <code translate="no" dir="ltr">minSmallestWidth</code>
+          now use dp units instead of pixels. Apps can use the following call:
+          <code translate="no" dir="ltr">kotlin TypedValue.applyDimension( COMPLEX_UNIT_DIP, minWidthInPixels, resources.displayMetrics )</code>
+          or simply divide
+          <code translate="no" dir="ltr">minWith</code>
+          in pixels by
+          <code translate="no" dir="ltr">displayMetrics#density</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      Finish behavior constants must be migrated to
+      <code translate="no" dir="ltr">FinishBehavior</code>
+      enum-like class constants:
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">FINISH_NEVER</code>
+          changes to
+          <code translate="no" dir="ltr">FinishBehavior.NEVER</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">FINISH_ALWAYS</code>
+          changes to
+          <code translate="no" dir="ltr">FinishBehavior.ALWAYS</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">FINISH_ADJACENT</code>
+          changes to
+          <code translate="no" dir="ltr">FinishBehavior.ADJACENT</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      Layout direction must be migrated to
+      <code translate="no" dir="ltr">SplitAttributes.LayoutDirection</code>
+      :
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">ltr</code>
+          changes to
+          <code translate="no" dir="ltr">SplitAttributes.LayoutDirection.LEFT_TO_RIGHT</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">rtl</code>
+          changes to
+          <code translate="no" dir="ltr">SplitAttributes.LayoutDirection.RIGHT_TO_LEFT</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">locale</code>
+          changes to
+          <code translate="no" dir="ltr">SplitAttributes.LayoutDirection.LOCALE</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">splitRatio</code>
+          must be migrated to
+          <code translate="no" dir="ltr">SplitAttributes.SplitType.ratio(splitRatio)</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SplitPairRule.Builder</code>
+      migrations:
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">SplitPairRule.Builder(filters, minWidth, minSmallestWidth)</code>
+          changes to
+          <code translate="no" dir="ltr">kotlin SplitPairRule.Builder(filters) .setMinWidthDp(minWidthInDp) // Optional if minWidthInDp is 600. .setMinSmallestWidthDp(minSmallestWidthDp) // Optional if minSmallestWidthInDp is 600.</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">setLayoutDirection(layoutDirection)</code>
+          and
+          <code translate="no" dir="ltr">setSplitRatio(ratio)</code>
+          changes to
+          <code translate="no" dir="ltr">kotlin setDefaultSplitAttributes( SplitAttributes.Builder() .setLayoutDirection(layoutDirection) .setSplitType(SplitAttributes.SplitType.ratio(ratio)) .build() )</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">setFinishPrimaryWithSecondary</code>
+          and
+          <code translate="no" dir="ltr">setFinishSecondaryWithPrimary</code>
+          take the
+          <code translate="no" dir="ltr">FinishBehavior</code>
+          enum-like constants. See “SplitRule migrations” for details.
+        </li>
+        <li>
+          Use
+          <code translate="no" dir="ltr">setMaxAspectRatioInPortrait(EmbeddingAspectRatio.ALWAYS_ALLOW)</code>
+          to show splits on portrait devices.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SplitPlaceholder.Builder</code>
+      migrations:
+      <ul>
+        <li>
+          Has only
+          <code translate="no" dir="ltr">filters</code>
+          and
+          <code translate="no" dir="ltr">placeholderIntent</code>
+          parameters. Other properties move to setters. See “SplitPairRule.Builder migrations” for details.
+        </li>
+        <li>
+          <code translate="no" dir="ltr">setFinishPrimaryWithPlaceholder</code>
+          takes the
+          <code translate="no" dir="ltr">FinishBehavior</code>
+          enum-like constants. See “SplitRule migrations” for details.
+        </li>
+        <li>
+          <code translate="no" dir="ltr">setLayoutDirection(layoutDirection)</code>
+          and
+          <code translate="no" dir="ltr">setSplitRatio(ratio)</code>
+          change to:
+          <code translate="no" dir="ltr">kotlin setDefaultSplitAttributes( SplitAttributes.Builder() .setLayoutDirection(layoutDirection) .setSplitType(SplitAttributes.SplitType.ratio(ratio)) .build() )</code>
+        </li>
+        <li>
+          Use
+          <code translate="no" dir="ltr">setMaxAspectRatioInPortrait(EmbeddingAspectRatio.ALWAYS_ALLOW)</code>
+          to show splits on portrait devices.
+        </li>
+      </ul>
+    </li>
+  </ul>

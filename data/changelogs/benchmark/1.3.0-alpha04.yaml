@@ -1,0 +1,90 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.3.0-alpha04
+releaseDate: 2024-05-01
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha04" data-text="Version 1.3.0-alpha04" tabindex="-1">Version 1.3.0-alpha04</h3>
+  <p>May 1, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.3.0-alpha04</code>
+    is released. Version 1.3.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9ece0ba5451df94f20485ea5647d9221742585a1..1cca2c587b3e9207f9ee45e4c84b96b3512e748f/benchmark">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added experimental
+      <code translate="no" dir="ltr">MacrobenchmarkRule#measureRepeated</code>
+      variant which takes a custom
+      <code translate="no" dir="ltr">PerfettoConfig</code>
+      for fully customized Perfetto trace recording. Note that incorrectly configured configs may cause built in Metric classes to fail. (
+      <a href="https://android-review.googlesource.com/#/q/Idfd3d0c071005f04f8be9975c6379e6095416775">Idfd3d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/309841164">b/309841164</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/304038384">b/304038384</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">PowerMetric.deviceSupportsPowerEnergy</code>
+      to
+      <code translate="no" dir="ltr">PowerMetric.deviceSupportsHighPrecisionTracking</code>
+      for clarity (
+      <a href="https://android-review.googlesource.com/#/q/I5b82f10d03f4e612dda30bd144d4f99548357f80">I5b82f</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">PowerMetric.deviceBatteryHasMinimumCharge()</code>
+      and
+      <code translate="no" dir="ltr">PowerMetric.deviceSupportsPowerEnergy()</code>
+      to enable changing or skipping benchmarks based on device power measurement capability. (
+      <a href="https://android-review.googlesource.com/#/q/I6a591cd0c68e7a9e93069ee7f636fc1772f9a256">I6a591</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/322121218">b/322121218</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Added comparison with previous baseline profile (
+      <a href="https://android-review.googlesource.com/#/q/I824c84553c4c1c0dd5b585f0846093762b938460">I824c8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/269484510">b/269484510</a>
+      )
+    </li>
+    <li>
+      Added DSL to disable warnings (
+      <a href="https://android-review.googlesource.com/#/q/Ic4deb86fc3b91a31854053f19581e9798e43cbd6">Ic4deb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/331237001">b/331237001</a>
+      )
+    </li>
+    <li>
+      Changed exception to info log when benchmark variants are disabled (
+      <a href="https://android-review.googlesource.com/#/q/I8a517fac2e12c761d49259bf30471e66a04b5383">I8a517</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/332772491">b/332772491</a>
+      )
+    </li>
+    <li>
+      Make it simpler to capture method traces for a Macrobenchmark is scoped to the duration of the actual
+      <code translate="no" dir="ltr">measureBlock()</code>
+      . Previously, it started at target process launch and only supported cold starts (
+      <a href="https://android-review.googlesource.com/#/q/Iee85a37d5b03d92a3128c976b41bd145b2921161">Iee85a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/300651094">b/300651094</a>
+      )
+    </li>
+    <li>
+      Avoid crashing when perfetto trace processor is slow to start (
+      <a href="https://android-review.googlesource.com/#/q/I988418daa69ec33343364f7ad7c5fca26a39a5fa">I98841</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/329145808">b/329145808</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,69 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.4.0-alpha07
+releaseDate: 2021-08-18
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0-alpha07" data-text="Version 2.4.0-alpha07" tabindex="-1">Version 2.4.0-alpha07</h3>
+  <p>August 18, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.4.0-alpha07</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/175c082bd7563f6414a75b30d2ce3d167c5e7f3a..1e0ab9e58c3c2ebe8152b7507938aef7e9c1acdc/navigation">Version 2.4.0-alpha07 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Navigation Compose now properly saves state after configuration changes and when changing graphs while using the multiple back stack feature. (
+      <a href="https://android-review.googlesource.com/#/q/If5a3d68c4a610f008ab6823a3982f0d0c312083a">If5a3d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/195141957">b/195141957</a>
+      )
+    </li>
+    <li>
+      Re-selecting the same tab when using navigation compose with multiple back stacks will no longer result in a blank screen. (
+      <a href="https://android-review.googlesource.com/#/q/I860dc9f2cc2516924c03dba491a37aa8ace99bb3">I860dc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/194925622">b/194925622</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavHost</code>
+      now observes for changes in the
+      <code translate="no" dir="ltr">Lifecycle.State</code>
+      of
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      s which means using a
+      <code translate="no" dir="ltr">NavHost</code>
+      in a fragment now will properly be recomposed as the lifecycle changes instead of resulting in a blank screen. (
+      <a href="https://android-review.googlesource.com/#/q/I4eb8586e4db4bebfac63525e9dcdab11b57fcff5">I4eb85</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/195864489">b/195864489</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where dismissing a
+      <code translate="no" dir="ltr">DialogFragment</code>
+      would not correctly update the
+      <code translate="no" dir="ltr">NavController</code>
+      state after recreating your activity (i.e., after a configuration change). (
+      <a href="https://android-review.googlesource.com/#/q/Icd72b58ece54484b576b44fc2fb9dbf68ccb9ab9">Icd72b</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where popping a dialog destination would not update the NavController's system back button handling, potentially causing the NavController to intercept the back button even though it does not have any back stack to pop. (
+      <a href="https://android-review.googlesource.com/#/q/If3b3464fea674b146f071448373afbac49f8cdc5">If3b34</a>
+      )
+    </li>
+    <li>
+      Safe-args now automatically generates a
+      <code translate="no" dir="ltr">toSavedStateHandle</code>
+      method for arguments which can be used to test your
+      <code translate="no" dir="ltr">ViewModel</code>
+      code. (
+      <a href="https://android-review.googlesource.com/#/q/If1e2debe0126482e571cae59bcc89e27db63483d">If1e2d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/193353880">b/193353880</a>
+      )
+    </li>
+  </ul>

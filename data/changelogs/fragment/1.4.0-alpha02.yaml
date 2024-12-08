@@ -1,0 +1,144 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.4.0-alpha02
+releaseDate: 2021-06-02
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha02" data-text="Version 1.4.0-alpha02" tabindex="-1">Version 1.4.0-alpha02</h3>
+  <p>June 2, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.4.0-alpha02</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.4.0-alpha02</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.4.0-alpha02</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/66681ad83c328d0dd821b943bb3d375f02c1db61..86ff5b4bb956431ec884586ce0aea0127e189ec4/fragment">Version 1.4.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">FragmentStrictMode</code>
+      will now always log violations when logging is enabled via the
+      <code translate="no" dir="ltr">FragmentManager</code>
+      , regardless of the current strict mode policy being used. (
+      <a href="https://android-review.googlesource.com/#/q/I02df6361e86124563757d152993aba6468d400f3">I02df6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187872638">b/187872638</a>
+      )
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">FragmentStrictMode</code>
+        now supports exempting particular
+        <code translate="no" dir="ltr">Fragment</code>
+        classes from strict mode
+        <code translate="no" dir="ltr">Violation</code>
+        s allowing that class to bypass any penalties. (
+        <a href="https://android-review.googlesource.com/#/q/Ib4e5d6217110d76bcc9ce2a15b12e350ccbc773b">Ib4e5d</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/184786736">b/184786736</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        The
+        <code translate="no" dir="ltr">FragmentStrictMode</code>
+        <code translate="no" dir="ltr">Violation</code>
+        class has been expanded to add structure information based on each violation. This allows you to verify exactly what caused the violation along with the violating fragment (
+        <a href="https://android-review.googlesource.com/#/q/If5118b1a169e4050620d4aac084d4692393e4e04">If5118</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/187871150">b/187871150</a>
+        ), each
+        <code translate="no" dir="ltr">Violation</code>
+        contains the following:
+      </p>
+
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">WrongFragmentContainerViolation</code>
+          now contains the
+          <code translate="no" dir="ltr">ViewGroup</code>
+          that the
+          <code translate="no" dir="ltr">Fragment</code>
+          was attempting to be added to. (
+          <a href="https://android-review.googlesource.com/#/q/I83c75a2b30f2defef7868e6d1b1d7ea63e576c57">I83c75</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/187871150">b/187871150</a>
+          )
+        </li>
+        <li>
+          <code translate="no" dir="ltr">TargetFragmentUsageViolation</code>
+          has been expanded into,
+          <code translate="no" dir="ltr">SetTargetFragmentUsageViolation</code>
+          ,
+          <code translate="no" dir="ltr">GetTargetFragmentUsageViolation</code>
+          , and
+          <code translate="no" dir="ltr">GetTargetFragmentRequestCodeUsageViolation</code>
+          , with
+          <code translate="no" dir="ltr">SetTargetFragmentUsageViolation</code>
+          containing the target fragment and request code. (
+          <a href="https://android-review.googlesource.com/#/q/I741b4e0b8aff45babe1a453d41149c7972538789">I741b4</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/187871150">b/187871150</a>
+          )
+        </li>
+        <li>
+          <code translate="no" dir="ltr">SetUserVisibleHintViolation</code>
+          now contains the boolean value passed into
+          <code translate="no" dir="ltr">setUserVisibleHint()</code>
+          . (
+          <a href="https://android-review.googlesource.com/#/q/I0058552a0176f3e964ceda122b1eb2540490d1a5">I00585</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/187871150">b/187871150</a>
+          )
+        </li>
+        <li>
+          <code translate="no" dir="ltr">FragmentTagUsageViolation</code>
+          now contains the ViewGroup that the
+          <code translate="no" dir="ltr">&lt;fragment&gt;</code>
+          tag was attempting to inflate a fragment into.(
+          <a href="https://android-review.googlesource.com/#/q/I5dbbc3bc1e318dca326b2d58ad5e9b421e33b072">I5dbbc</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/187871150">b/187871150</a>
+          )
+        </li>
+        <li>
+          <code translate="no" dir="ltr">FragmentReuseViolation</code>
+          now contains the unique ID of the previous instance of the
+          <code translate="no" dir="ltr">Fragment</code>
+          that caused the viotion. (
+          <a href="https://android-review.googlesource.com/#/q/I0544d256d72efc8bfa3e3eaddd5c36189d09e0ae">I0544d</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/187871150">b/187871150</a>
+          )
+        </li>
+        <li>
+          <code translate="no" dir="ltr">RetainInstanceUsageViolation</code>
+          is now abstract and has two subclasses,
+          <code translate="no" dir="ltr">SetRetainInstanceUsageViolation</code>
+          and
+          <code translate="no" dir="ltr">GetRetainInstanceUsageViolation</code>
+          , representing the two cases for the violation type. (
+          <a href="https://android-review.googlesource.com/#/q/Ic81e5ce6a552f47137cf9d101bc6ce81a3f61db3">Ic81e5</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/187871150">b/187871150</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      now throws an exception when attempting to change the
+      <code translate="no" dir="ltr">fitsSystemWindow</code>
+      attribute programmatically or via XML. Insets should be handled by each individual fragment’s view. (
+      <a href="https://android-review.googlesource.com/#/q/Ie6651e5de15e2f99f3a6c9fe1554928f34821782">Ie6651</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187304502">b/187304502</a>
+      )
+    </li>
+  </ul>

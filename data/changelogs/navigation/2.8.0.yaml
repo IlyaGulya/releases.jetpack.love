@@ -1,0 +1,115 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.8.0
+releaseDate: 2024-09-04
+#language=html
+changelogHtml: |
+  <h3 id="2.8.0" data-text="Version 2.8.0" tabindex="-1">Version 2.8.0</h3>
+  <p>September 4, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.8.0</code>
+    is released. Version 2.8.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c19eabc8b1f7d6b3b33ce697447d6c98a4f336dd..89b0ab6acbda86348e82091c6e1909c6ad69cea3/navigation">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 2.7.0</strong></p>
+  <p><strong>Navigation Kotlin DSL Type-Safety</strong></p>
+  <ul>
+    <li>Navigation now provides type-safety for the Kotlin DSL (used by Navigation Compose) using Kotlin Serialization to allow you to define destinations in your navigation graph via type safe objects and data classes:</li>
+  </ul>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Scalate Server Page"><code translate="no" dir="ltr"><span class="devsite-syntax-w">    </span>//<span class="devsite-syntax-w"> </span>Define<span class="devsite-syntax-w"> </span>a<span class="devsite-syntax-w"> </span>home<span class="devsite-syntax-w"> </span>destination<span class="devsite-syntax-w"> </span>that<span class="devsite-syntax-w"> </span>doesn't<span class="devsite-syntax-w"> </span>take<span class="devsite-syntax-w"> </span>any<span class="devsite-syntax-w"> </span>arguments
+  <span class="devsite-syntax-w">    </span>@Serializable
+  <span class="devsite-syntax-w">    </span>object<span class="devsite-syntax-w"> </span>Home
+
+  <span class="devsite-syntax-w">    </span>//<span class="devsite-syntax-w"> </span>Define<span class="devsite-syntax-w"> </span>a<span class="devsite-syntax-w"> </span>profile<span class="devsite-syntax-w"> </span>destination<span class="devsite-syntax-w"> </span>that<span class="devsite-syntax-w"> </span>takes<span class="devsite-syntax-w"> </span>an<span class="devsite-syntax-w"> </span>ID
+  <span class="devsite-syntax-w">    </span>@Serializable
+  <span class="devsite-syntax-w">    </span>data<span class="devsite-syntax-w"> </span>class<span class="devsite-syntax-w"> </span>Profile(val<span class="devsite-syntax-w"> </span>id:<span class="devsite-syntax-w"> </span>String)
+
+  <span class="devsite-syntax-w">    </span>//<span class="devsite-syntax-w"> </span>Now<span class="devsite-syntax-w"> </span>define<span class="devsite-syntax-w"> </span>your<span class="devsite-syntax-w"> </span>NavHost<span class="devsite-syntax-w"> </span>using<span class="devsite-syntax-w"> </span>type<span class="devsite-syntax-w"> </span>safe<span class="devsite-syntax-w"> </span>objects
+  <span class="devsite-syntax-w">    </span>NavHost(navController,<span class="devsite-syntax-w"> </span>startDestination<span class="devsite-syntax-w"> </span>=<span class="devsite-syntax-w"> </span>Home)<span class="devsite-syntax-w"> </span>{
+  <span class="devsite-syntax-w">        </span>composable&lt;Home&gt;<span class="devsite-syntax-w"> </span>{
+  <span class="devsite-syntax-w">            </span>HomeScreen(onNavigateToProfile<span class="devsite-syntax-w"> </span>=<span class="devsite-syntax-w"> </span>{<span class="devsite-syntax-w"> </span>id<span class="devsite-syntax-w"> </span>-&gt;
+  <span class="devsite-syntax-w">                </span>navController.navigate(Profile(id))
+  <span class="devsite-syntax-w">            </span>})
+  <span class="devsite-syntax-w">        </span>}
+  <span class="devsite-syntax-w">        </span>composable&lt;Profile&gt;<span class="devsite-syntax-w"> </span>{<span class="devsite-syntax-w"> </span>backStackEntry<span class="devsite-syntax-w"> </span>-&gt;
+  <span class="devsite-syntax-w">            </span>val<span class="devsite-syntax-w"> </span>profile:<span class="devsite-syntax-w"> </span>Profile<span class="devsite-syntax-w"> </span>=<span class="devsite-syntax-w"> </span>backStackEntry.toRoute()
+  <span class="devsite-syntax-w">            </span>ProfileScreen(profile)
+  <span class="devsite-syntax-w">        </span>}
+  <span class="devsite-syntax-w">    </span>}
+  </code></pre>
+  </devsite-code>
+  <p>
+    See the
+    <a href="https://medium.com/androiddevelopers/navigation-compose-meet-type-safety-e081fb3cf2f8">Navigation Compose meet Type Safety blog post</a>
+    for more information.
+  </p>
+  <p><strong>Navigation Compose Predictive Back</strong></p>
+  <ul>
+    <li>
+      Navigation Compose now provides support for Predictive in-app back via the new
+      <code translate="no" dir="ltr">SeekableTransitionState</code>
+      APIs from compose-animation. This allows you to use the back gesture to see the previous destination with your custom Transition before deciding to either commit the transaction via the completed gesture or cancel.
+    </li>
+  </ul>
+  <p><strong>Navigation Fragment Composable</strong></p>
+  <ul>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">navigation-fragment-compose</code>
+      artifact that includes a
+      <code translate="no" dir="ltr">ComposableNavHostFragment</code>
+      alternative to
+      <code translate="no" dir="ltr">NavHostFragment</code>
+      that allows you to add composable destinations to your Navigation XML files. Each
+      <code translate="no" dir="ltr">composable</code>
+      destination must be expressed as a top-level, no argument
+      <code translate="no" dir="ltr">@Composable</code>
+      method whose fully qualified name is used as the
+      <code translate="no" dir="ltr">android:name</code>
+      attribute on each destination. When navigating to one of these destinations, a containing fragment is created to display the composable content.
+    </li>
+  </ul>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Scilab"><code translate="no" dir="ltr"><span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// In HomeScreen.kt</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">@</span><span class="devsite-syntax-n">Composable</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">HomeScreen</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// Your Composable content here</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// In your navigation.xml</span>
+  <span class="devsite-syntax-w">  </span>&lt;<span class="devsite-syntax-n">composable</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">android</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-n">id</span><span class="devsite-syntax-p">=</span><span class="devsite-syntax-s">"@+id/home_screen"</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">android</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-n">name</span><span class="devsite-syntax-p">=</span><span class="devsite-syntax-s">"com.example.HomeScreenKt\$HomeScreen"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">/</span>&gt;
+  </code></pre>
+  </devsite-code>
+  <p><strong>Other Changes</strong></p>
+  <ul>
+    <li>Navigation Compose now depends on Compose 1.7.0.</li>
+    <li>
+      Navigation now provides a new
+      <code translate="no" dir="ltr">CollectionNavType&lt;T&gt;</code>
+      class, a subclass of
+      <code translate="no" dir="ltr">NavType&lt;T&gt;</code>
+      for collection-based arguments such as list, arrays, maps. All of the default
+      <code translate="no" dir="ltr">NavType</code>
+      arrays (
+      <code translate="no" dir="ltr">IntArrayType</code>
+      ,
+      <code translate="no" dir="ltr">LongArrayType</code>
+      ,
+      <code translate="no" dir="ltr">FloatArrayType</code>
+      ,
+      <code translate="no" dir="ltr">BoolArrayType</code>
+      , and
+      <code translate="no" dir="ltr">StringArrayType</code>
+      ) now inherit from this new class.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavType</code>
+      now has built-in support for Lists of Int, String, Boolean, Float, and Long.
+    </li>
+  </ul>

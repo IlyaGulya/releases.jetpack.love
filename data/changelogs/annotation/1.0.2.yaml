@@ -1,0 +1,34 @@
+libraryId: annotation
+groupId: androidx.annotation
+version: 1.0.2
+releaseDate: 2019-02-25
+#language=html
+changelogHtml: |
+  <h3 id="1.0.2" data-text="Version  1.0.2" tabindex="-1">Version 1.0.2</h3>
+  <p>February 25, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.annotation:annotation 1.0.2</code>
+    is released.
+  </p>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Correct the R8/ProGuard rules which are embedded in the jar. These were incorrectly referencing the old
+      <code translate="no" dir="ltr">android.support.annotation</code>
+      types instead of
+      <code translate="no" dir="ltr">androidx.annotation</code>
+      . Note: This would have only had an impact on your builds if you were not using
+      <code translate="no" dir="ltr">getDefaultProguardFile</code>
+      as those default rules also included correct rules for both packages. (
+      <a href="https://android-review.googlesource.com/891685/">aosp/891685</a>
+      )
+    </li>
+    <li>
+      Add a R8/ProGuard rule which explicitly keeps the @Keep annotation itself. This ensures that ProGuard does not remove the annotation from types prior to actually honoring its semantics. Note: This would have only had an impact on your builds if you were not using
+      <code translate="no" dir="ltr">getDefaultProguardFile</code>
+      as those default rules also included correct rules for both packages. (
+      <a href="https://android-review.googlesource.com/903818/">aosp/903818</a>
+      )
+    </li>
+  </ul>
+  <devsite-hats-survey class="nocontent" hats-id="VxqvKSur40kxBYCLVTd0SSGykbno" listnr-id="5207477"></devsite-hats-survey>

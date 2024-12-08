@@ -1,0 +1,109 @@
+libraryId: wear-tiles
+groupId: androidx.wear
+version: 1.0.0-alpha06
+releaseDate: 2021-06-02
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha06" data-text="Version 1.0.0-alpha06" tabindex="-1">Version 1.0.0-alpha06</h3>
+  <p>June 2, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.tiles:tiles:1.0.0-alpha06</code>
+    ,
+    <code translate="no" dir="ltr">androidx.wear.tiles:tiles-proto:1.0.0-alpha06</code>
+    , and
+    <code translate="no" dir="ltr">androidx.wear.tiles:tiles-renderer:1.0.0-alpha06</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/66681ad83c328d0dd821b943bb3d375f02c1db61..86ff5b4bb956431ec884586ce0aea0127e189ec4/wear/tiles">Version 1.0.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      All Builder classes now contain getters for all properties. Note that these are intended for testing purposes only (
+      <a href="https://android-review.googlesource.com/#/q/I9d1554305b55d2e3c2676084fe8a6f0ef5e51aeb">I9d155</a>
+      )
+    </li>
+    <li>
+      Package change: Classes in
+      <code translate="no" dir="ltr">androidx.wear.tiles.builders</code>
+      have been moved to
+      <code translate="no" dir="ltr">androidx.wear.tiles</code>
+      .
+    </li>
+    <li>
+      Add experimental tint support to Tiles. (
+      <a href="https://android-review.googlesource.com/#/q/I389299a4fb863f72052f96ecb7b75b719196ec1a">I38929</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">LayoutElementBuilders.HALIGN_*</code>
+      to
+      <code translate="no" dir="ltr">LayoutElementBuilders.HORIZONTAL_ALIGN_*</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I67e58029203dcceed3444f7c86a4b04a4dd2a325">I67e58</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">LayoutElementBuilders.VALIGN_*</code>
+      to
+      <code translate="no" dir="ltr">LayoutElementBuilders.VERTICAL_ALIGN_*</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I67e58029203dcceed3444f7c86a4b04a4dd2a325">I67e58</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">LayoutElementBuilders.SPAN_VALIGN_*</code>
+      to
+      <code translate="no" dir="ltr">LayoutElementBuilders.SPAN_VERTICAL_ALIGN_*</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I67e58029203dcceed3444f7c86a4b04a4dd2a325">I67e58</a>
+      )
+    </li>
+    <li>
+      Added builder classes for Requests and Events. (
+      <a href="https://android-review.googlesource.com/#/q/Ib5cf4cf39e98656ac8650207953faaf756a8c1c7">Ib5cf4</a>
+      )
+    </li>
+    <li>
+      Migrated
+      <code translate="no" dir="ltr">TileProviderService</code>
+      to use request and event classes from
+      <code translate="no" dir="ltr">RequestBuilders</code>
+      and
+      <code translate="no" dir="ltr">EventBuilders</code>
+      , rather than
+      <code translate="no" dir="ltr">RequestReaders</code>
+      /
+      <code translate="no" dir="ltr">EventReaders</code>
+      (e.g.
+      <code translate="no" dir="ltr">onTileRequest</code>
+      now provides you with a
+      <code translate="no" dir="ltr">RequestBuilders.TileRequest</code>
+      , rather than
+      <code translate="no" dir="ltr">RequestReaders.TileRequest</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/I46ea19332f3544c936f3e46343d7532ff0513aad">I46ea1</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix bug in async image loading for Tiles renderer. (
+      <a href="https://android-review.googlesource.com/#/q/Iad9b03e39a1a288b0f90cb3a9d471b4041acde4a">Iad9b0</a>
+      )
+    </li>
+    <li>
+      Fixed layout bug when placing an image with width or height set to
+      <code translate="no" dir="ltr">expand()</code>
+      in a
+      <code translate="no" dir="ltr">Box</code>
+      with width or height set to
+      <code translate="no" dir="ltr">wrap()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I33770e987e419a0d03ae95e7ddceb42904ace9f7">I33770</a>
+      )
+    </li>
+  </ul>

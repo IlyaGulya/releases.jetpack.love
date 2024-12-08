@@ -1,0 +1,37 @@
+libraryId: sqlite
+groupId: androidx.sqlite
+version: 2.5.0-alpha04
+releaseDate: 2024-06-12
+#language=html
+changelogHtml: |
+  <h3 id="2.5.0-alpha04" data-text="Version 2.5.0-alpha04" tabindex="-1">Version 2.5.0-alpha04</h3>
+  <p>June 12, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.sqlite:sqlite-*:2.5.0-alpha04</code>
+    is released. Version 2.5.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/473554f275109d78164adca6b6cea539aed8b68b..f5541f29d045c6ba9734689ec67891f8d667412b/sqlite">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added an
+      <code translate="no" dir="ltr">open()</code>
+      overload API to
+      <code translate="no" dir="ltr">BundledSQLiteDriver</code>
+      to pass open flags when opening a database connection. Useful for opening a database in read-only mode or using the serialized thread safe mode instead of the multi-thread mode bundled SQLite is compiled with (
+      <a href="https://issuetracker.google.com/issues/340949940">b/340949940</a>
+      ).
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a linking issue in the Bundled SQLite Driver that would cause
+      <code translate="no" dir="ltr">UnsatisfiedLinkError</code>
+      to be thrown due to missing atomic symbols in Android devices with an ARM32. (
+      <a href="https://issuetracker.google.com/341639198">b/341639198</a>
+      )
+    </li>
+    <li>Fixed an issue in the drivers where binding a zero-length byte array into a column would lead to a null value when reading from it.</li>
+  </ul>

@@ -1,0 +1,44 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.2.1
+releaseDate: 2023-09-06
+#language=html
+changelogHtml: |
+  <h3 id="3.2.1" data-text="Version 3.2.1" tabindex="-1">Version 3.2.1</h3>
+  <p>September 6, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.2.1</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/22c1844d8a4508469b860b1415c1aea9aa46eb78..ebd21c8f3259d88fac4fd6d9769f23a8dc179ab1/paging">Version 3.2.1 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where the
+      <code translate="no" dir="ltr">asSnapshot()</code>
+      API of the Paging Testing artifact would hang when passed a Flow built using
+      <code translate="no" dir="ltr">PagingData.from(List)</code>
+      since
+      <code translate="no" dir="ltr">asSnapshot()</code>
+      would not have any information on when loading has finished (unlike the
+      <code translate="no" dir="ltr">PagingData.from(List, LoadStates)</code>
+      overload). This workaround only works for completable Flows (e.g., a
+      <code translate="no" dir="ltr">flowOf(PagingData.from(...))</code>
+      ). For non-completable Flows (e.g.,
+      <code translate="no" dir="ltr">MutableStateFlow</code>
+      , use the
+      <code translate="no" dir="ltr">PagingData.from</code>
+      overload that provides
+      <code translate="no" dir="ltr">LoadStates</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/I502c3653398feaf1a2dba34072cf89eb58126670">I502c3</a>
+      )
+    </li>
+    <li>
+      Paging Compose now internally uses
+      <code translate="no" dir="ltr">AndroidUiDispatcher.Main</code>
+      to ensure that new data is available in the same frame as loading completes. (
+      <a href="https://android-review.googlesource.com/#/q/Ia55af9ad4aeb366d7a280922563d29424619abf9">Ia55af</a>
+      )
+    </li>
+  </ul>

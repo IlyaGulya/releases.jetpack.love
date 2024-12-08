@@ -1,0 +1,212 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.3.0-alpha06
+releaseDate: 2023-04-19
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha06" data-text="Version 1.3.0-alpha06" tabindex="-1">Version 1.3.0-alpha06</h3>
+  <p>April 19, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.3.0-alpha06</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5e7d256f82fbafb6d059ab7b18fddd87c7531553..e9eaaebb4ca9643ffda665848653708aa7d97ba4/camera">Version 1.3.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Concurrent camera is a new feature introduced from Android 11, which supports simultaneous streaming of camera devices, for example, it allows a device to have both the front and back cameras operating at the same time. CameraX currently only supports dual concurrent cameras, which allows two cameras operating at the same time, with at most two {@link UseCase}s bound for each. The max resolution is 720p or 1440p, more details in the following link, see
+      <a href="https://developer.android.com/reference/android/hardware/camera2/CameraManager#getConcurrentCameraIds()">CameraManager#getConcurrentCameraIds()</a>
+    </li>
+    <li>
+      Introducing the new
+      <code translate="no" dir="ltr">ResolutionSelector</code>
+      API which covers the following features:
+      <ul>
+        <li>Applications can specify aspect ratio and resolution strategies to select the best resolution for their needs.</li>
+        <li>All sizes and aspect ratio parameters are expressed in the coordinates of the camera device sensor.</li>
+        <li>Applications can implement a custom resolution filter to arrange the supported sizes in the desired order.</li>
+        <li>Applications can also enable high resolution capture to obtain higher resolution images. However, please note that using a high resolution may result in slower capture times.</li>
+        <li>
+          Added
+          <code translate="no" dir="ltr">VideoCapture</code>
+          mirroring APIs. Videos recorded by
+          <code translate="no" dir="ltr">VideoCapture</code>
+          are not mirrored by default. However, the camera preview is mirrored on the front camera by default.
+          <code translate="no" dir="ltr">VideoCapture</code>
+          mirroring APIs make it possible to align to the camera preview when using the front camera. There are three
+          <code translate="no" dir="ltr">MirrorMode</code>
+          ,
+          <code translate="no" dir="ltr">OFF</code>
+          ,
+          <code translate="no" dir="ltr">ON</code>
+          and
+          <code translate="no" dir="ltr">ON_FRONT_ONLY</code>
+          . To align to the camera preview, it is recommended to use
+          <code translate="no" dir="ltr">ON_FRONT_ONLY</code>
+          which means that mirroring is not enabled for the rear camera but is enabled for the front camera.
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Exposed new
+      <code translate="no" dir="ltr">ResolutionSelector</code>
+      API. Applications can specify aspect ratio and resolution strategies with fallback rules or a custom resolution filter to get the desired results. Applications can specify a flag to enable high resolution capture. This will allow CameraX to select higher resolutions when taking photos or videos. However, please note that using a high resolution may result in slower capture times. (
+      <a href="https://android-review.googlesource.com/#/q/Ibed95cf9fce530954803d5ab3115fac6711199ab">Ibed95</a>
+      )
+    </li>
+    <li>
+      The FPS ranges supported by the AE algorithm can now be queried via
+      <code translate="no" dir="ltr">CameraInfo#getSupportedFrameRateRanges()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iaa67fb277cc50aa8fef25fc807208a294f20c095">Iaa67f</a>
+      )
+    </li>
+    <li>
+      Consolidate the names of all frame rate methods into using 'FrameRate'. Correct the javadoc mistake in
+      <code translate="no" dir="ltr">VideoCapture#getTargetFrameRate()</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I8330476ec33c05ba85ef10fb127e4fc592bb716d">I83304</a>
+      )
+    </li>
+    <li>
+      Deprecated the legacy
+      <code translate="no" dir="ltr">setTargetAspectRatio</code>
+      and
+      <code translate="no" dir="ltr">setTargetResolution</code>
+      API. Please use the new
+      <code translate="no" dir="ltr">ResolutionSelector</code>
+      API instead. (
+      <a href="https://android-review.googlesource.com/#/q/I542c387ecdfdd96e9c4a2a7610b7d1a2af691b73">I542c3</a>
+      )
+    </li>
+    <li>
+      Added public APIs for concurrent dual camera, including
+      <ol>
+        <li><code translate="no" dir="ltr">List&lt;List&lt;CameraInfo&gt;&gt; getAvailableConcurrentCameraInfos()</code></li>
+        <li><code translate="no" dir="ltr">ConcurrentCamera bindToLifecycle(@NonNull ConcurrentCameraConfig concurrentCameraConfig)</code></li>
+        <li>
+          <code translate="no" dir="ltr">boolean isConcurrentCameraModeOn()</code>
+          and
+          <code translate="no" dir="ltr">ConcurrentCameraConfig</code>
+          ,
+          <code translate="no" dir="ltr">SingleCameraConfig</code>
+          and
+          <code translate="no" dir="ltr">ConcurrentCamera</code>
+          (
+          <a href="https://android-review.googlesource.com/#/q/Iab1c1e3fa5225f4234c007fb70fbe351407f2bcb">Iab1c1</a>
+          )
+        </li>
+      </ol>
+    </li>
+    <li>
+      Make
+      <code translate="no" dir="ltr">ImageProcessor.Response#getOutputImage</code>
+      NonNull (
+      <a href="https://android-review.googlesource.com/#/q/Ib9c600dff44dec65b80e7688313d3bd5f98c74d8">Ib9c60</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">VideoCapture</code>
+      mirroring APIs, including
+      <code translate="no" dir="ltr">VideoCapture.Builder.setMirrorMode(int)</code>
+      and
+      <code translate="no" dir="ltr">VideoCapture.getMirrorMode()</code>
+      . The APIs are useful for applications require the video recording to be consistent with common camera preview behavior, i.e. the rear camera preview is not mirrored but the front camera preview is mirrored. (
+      <a href="https://android-review.googlesource.com/#/q/I713b6afc589947296d5f415694b7022c66ad0d66">I713b6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/194634656">b/194634656</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">setTargetFrameRate()</code>
+      API in the
+      <code translate="no" dir="ltr">VideoCapture.Builder</code>
+      and
+      <code translate="no" dir="ltr">getTargetFramerate()</code>
+      API in
+      <code translate="no" dir="ltr">VideoCapture</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I109d43a5c4ee38abb3c5fe03366166025aef9048">I109d4</a>
+      )
+    </li>
+    <li>
+      Make
+      <code translate="no" dir="ltr">SurfaceOutput</code>
+      extending Closable and hide S
+      <code translate="no" dir="ltr">urfaceOutput.Event</code>
+      's public constructor. (
+      <a href="https://android-review.googlesource.com/#/q/I60ea838610a55f3d142677654f99c4130623811d">I60ea8</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Recording.mute</code>
+      to dynamically mute or unmute an in-processing recording.
+      <code translate="no" dir="ltr">RecordingStats</code>
+      will contain
+      <code translate="no" dir="ltr">AudioStats.AUDIO_STATE_MUTED</code>
+      when the in-processing recording is muted explicitly. (
+      <a href="https://android-review.googlesource.com/#/q/Ie17fce8d0054cb3f33845b0a26f3ea1c2858bc11">Ie17fc</a>
+      )
+    </li>
+    <li>
+      Made
+      <code translate="no" dir="ltr">#setEffects()</code>
+      parameter non-null. Add a
+      <code translate="no" dir="ltr">#clearEffects()</code>
+      API for clearing effects. The app should call
+      <code translate="no" dir="ltr">#clearEffects()</code>
+      to remove effects. (
+      <a href="https://android-review.googlesource.com/#/q/I4b4d9d3b6db48dbc9ad65d464ffe460d2fc5dbf0">I4b4d9</a>
+      )
+    </li>
+    <li>
+      Add a second constructor for
+      <code translate="no" dir="ltr">ViewfinderSurfaceRequest.Builder</code>
+      to take a builder for copy constructor (
+      <a href="https://android-review.googlesource.com/#/q/I621a7551adc879473d4774cf6c2179f373b6987d">I621a7</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed the issue where apps invoking Extensions API could crash when closing the camera (
+      <a href="https://android-review.googlesource.com/#/q/Ib27e5420c0e313f69259960fbe116dd5fb722623">Ib27e5</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">VideoCapture</code>
+      could not work with the front camera on some devices. For example, on Samsung Galaxy S23 and Xiaomi 2107113SG. (
+      <a href="https://android-review.googlesource.com/#/q/Ibec7ea9696314f3f7ba303a2d0053c58762f72a1">Ibec7e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/270656244">b/270656244</a>
+      )
+    </li>
+    <li>
+      Fixed the issue where taking pictures using File in the external storage public folder will always fail in Android 10 or above. Please note that in Android 10, taking pictures using File in the external storage public folder also requires setting
+      <code translate="no" dir="ltr">requestLegacyExternalStorage</code>
+      to true in application tag. (
+      <a href="https://android-review.googlesource.com/#/q/I11b2ce0e3038d7b20a69fc06bdb3f446bc9ad73b">I11b2c</a>
+      )
+    </li>
+    <li>
+      Fixed a
+      <code translate="no" dir="ltr">RejectedExecutionException</code>
+      crash in
+      <code translate="no" dir="ltr">DefaultSurfaceProcessor</code>
+      . The crash could happen when
+      <code translate="no" dir="ltr">VideoCapture</code>
+      is bound and the activity is paused. (
+      <a href="https://android-review.googlesource.com/#/q/Idb46a3791eafb3ca009a04333064d3501de1b2f5">Idb46a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/273713906">b/273713906</a>
+      )
+    </li>
+  </ul>

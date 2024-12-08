@@ -1,0 +1,206 @@
+libraryId: car-app
+groupId: androidx.car
+version: 1.7.0-alpha01
+releaseDate: 2024-04-03
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha01" data-text="Version 1.7.0-alpha01" tabindex="-1">Version 1.7.0-alpha01</h3>
+  <p>April 3, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.car.app:app-*:1.7.0-alpha01</code>
+    is released. We have moved our library versioning scheme to match the active CarApi version. This is to reduce confusion on the naming scheme based on developer feedback. As a result, we will skip versions 1.5 / 1.6 directly moving to 1.7 Version 1.7.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/58b48b8bcb6426d3e53ef28caf8ce6717b694223..02b55f664eba38e42e362e1af3913be1df552d55/car/app">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <em>Map with Content</em>
+      : New template named
+      <code translate="no" dir="ltr">MapWithContent</code>
+      which supports List / Grid / Pane / Message as Content inside a map.
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">RoutePreview</code>
+          ,
+          <code translate="no" dir="ltr">PlaceListNavigation</code>
+          , Map templates are now deprecated.
+        </li>
+        <li>
+          Sample apps have been updated to show functionality of deprecated templates using
+          <code translate="no" dir="ltr">MapWithContent</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      <em>Conversation Item</em>
+      : New APIs for displaying conversations (IM, SMS), and Assistant readout in the car.
+    </li>
+    <li>
+      <em>Vehicle Dimensions</em>
+      : New API to retrieve vehicle measures (data on AAOS at the moment).
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Mark extra small row image type as experimental (
+      <a href="https://android-review.googlesource.com/#/q/I5184be4d7e8767f6b6320fdf2eebcd25ce1d9926">I5184b</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">CarInfo#fetchExteriorDimensions</code>
+      API which allows access to vehicle exterior dimension information such as height, width, etc (
+      <a href="https://android-review.googlesource.com/#/q/Ia40c5384a74cfa9a5b2132d332e1487d239aa19b">Ia40c5</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">ExperimentalAPI</code>
+      tag from
+      <code translate="no" dir="ltr">MapWithContentTemplate</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I66db8377b81c4bc8629f725b0973ef2b042a0938">I66db8</a>
+      )
+    </li>
+    <li>
+      Update
+      <code translate="no" dir="ltr">GridItem#setTitle</code>
+      parameter to be nullable. (
+      <a href="https://android-review.googlesource.com/#/q/I3d6105ff3d2754e076fa95d1a9f3abed1b8c62b9">I3d610</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">GetHeader</code>
+      API does not require API 7 because it is backwards compatible (
+      <a href="https://android-review.googlesource.com/#/q/I8c812f929ada3075d38a7b525b9fa62d6ccf5d73">I8c812</a>
+      )
+    </li>
+    <li>
+      Add support for
+      <code translate="no" dir="ltr">Header</code>
+      in
+      <code translate="no" dir="ltr">ListTemplate</code>
+      , deprecate
+      <code translate="no" dir="ltr">headerAction</code>
+      ,
+      <code translate="no" dir="ltr">headerTitle</code>
+      ,
+      <code translate="no" dir="ltr">actionStrip</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I7ae0197b39ee122d8b609ea7529d034f0fb1d730">I7ae01</a>
+      )
+    </li>
+    <li>
+      Deprecate
+      <code translate="no" dir="ltr">title</code>
+      ,
+      <code translate="no" dir="ltr">headerAction</code>
+      ,
+      <code translate="no" dir="ltr">actionStrip</code>
+      in
+      <code translate="no" dir="ltr">GridTemplate</code>
+      and add support for
+      <code translate="no" dir="ltr">Header</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I41a9c540b65be36d55467e43842cf83ee67b7205">I41a9c</a>
+      )
+    </li>
+    <li>
+      Remove level 7 requirement for experimental APIs: Badge,
+      <code translate="no" dir="ltr">GridTemplate</code>
+      item size and image shape getters/setters,
+      <code translate="no" dir="ltr">GridItem</code>
+      methods for getting/setting Badge. (
+      <a href="https://android-review.googlesource.com/#/q/Id71ebebeb082828a78a2b1672ebc949236c3269d">Id71eb</a>
+      )
+    </li>
+    <li>
+      Deprecate
+      <code translate="no" dir="ltr">title</code>
+      ,
+      <code translate="no" dir="ltr">headerAction</code>
+      ,
+      <code translate="no" dir="ltr">actionStrip</code>
+      in
+      <code translate="no" dir="ltr">PaneTemplate</code>
+      , add new
+      <code translate="no" dir="ltr">Header</code>
+      support (
+      <a href="https://android-review.googlesource.com/#/q/I2315483aeb8176c73e4a24a1c67bb81594d400ca">I23154</a>
+      )
+    </li>
+    <li>
+      Changed Media Center telemetry from
+      <code translate="no" dir="ltr">BroadcastReceiver</code>
+      to Browse Custom Action. (
+      <a href="https://android-review.googlesource.com/#/q/I4185f7cafac42b7c42403e75c2fda8b487431200">I4185f</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Header</code>
+      attribute support in
+      <code translate="no" dir="ltr">MessageTemplate</code>
+      . Deprecated support for
+      <code translate="no" dir="ltr">ActionStrip</code>
+      ,
+      <code translate="no" dir="ltr">headerAction</code>
+      and
+      <code translate="no" dir="ltr">title</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie2de8c2d92ef2dc21e50cbd3e33574d2a75b67db">Ie2de8</a>
+      )
+    </li>
+    <li>
+      Modify alert constant visibility (
+      <a href="https://android-review.googlesource.com/#/q/Icf8a84222bfacfc348e2fd4dc229bc7e9d0b3884">Icf8a8</a>
+      )
+    </li>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">isLoading</code>
+      attribute from the parent template (
+      <a href="https://android-review.googlesource.com/#/q/I651e6f54b145b65b04a709c78bc68f4084fca284">I651e6</a>
+      )
+    </li>
+    <li>
+      Add extras to inform media apps of the main UI parameters (
+      <a href="https://android-review.googlesource.com/#/q/I85ca2b238beecfde7d0831bb69f09c464e2c8f55">I85ca2</a>
+      )
+    </li>
+    <li>
+      Add media center analytics feature to
+      <code translate="no" dir="ltr">MediaExtensions</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I7ce286c278e900c83e0a9e2f0bdd9ab96acdc578">I7ce28</a>
+      )
+    </li>
+    <li>
+      Added option for extra small image on rows. (
+      <a href="https://android-review.googlesource.com/#/q/I72c03bccc23d4b52d1292ae4047b314d9ab637dc">I72c03</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Update javadoc on
+      <code translate="no" dir="ltr">ConversationItem</code>
+      to state that messages should be sorted in order from oldest to newest. (
+      <a href="https://android-review.googlesource.com/#/q/I77a2ab080485b8abf37d431dea8b7d12cb3ee3bd">I77a2a</a>
+      )
+    </li>
+    <li>
+      Update
+      <code translate="no" dir="ltr">ListTemplate</code>
+      truncation logic to remove oldest messages from
+      <code translate="no" dir="ltr">ConversationItem</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ie0a614ec809f08106f38fabd3735bfb1e2d927d7">Ie0a61</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_14_2" data-text="Version 1.4" tabindex="-1">Version 1.4</h2>

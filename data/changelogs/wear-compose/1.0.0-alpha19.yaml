@@ -1,0 +1,146 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.0.0-alpha19
+releaseDate: 2022-03-23
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha19" data-text="Version 1.0.0-alpha19" tabindex="-1">Version 1.0.0-alpha19</h3>
+  <p>March 23, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-foundation:1.0.0-alpha19</code>
+    ,
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material:1.0.0-alpha19</code>
+    , and
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-navigation:1.0.0-alpha19</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/33cb12e8aba043a05b40470a5ef3be1b35114fd5..5ef5671233460b844828e14a816255dbf7904868/wear/compose">Version 1.0.0-alpha19 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">CurvedRow</code>
+      to
+      <code translate="no" dir="ltr">CurvedLayout</code>
+      , and reworked to be a scope with a DSL. Using this DSL, more complex curved layouts can be specified using a series of nested
+      <code translate="no" dir="ltr">curvedRow</code>
+      and
+      <code translate="no" dir="ltr">curvedColumn</code>
+      (Which are the curved layout equivalents of Row and Column). Inside these layout elements, three elements can be used:
+      <code translate="no" dir="ltr">curvedComposable</code>
+      (to add any @Composable),
+      <code translate="no" dir="ltr">basicCurvedText</code>
+      (foundation's curved text) and
+      <code translate="no" dir="ltr">curvedText</code>
+      (wear material aware curved text). (
+      <a href="https://android-review.googlesource.com/#/q/Ib776ab1e37f11a89cb1d1176a6790f3538e19132">Ib776a</a>
+      )
+    </li>
+    <li>
+      Make the side for the
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      configurable. The basic PositionIndicator’s position can now be configured to be End (layout direction-aware), OppositeRsb (takes into account screen rotation, to position itself opposite to the physical RSB), or the absolutes Left &amp; Right. (
+      <a href="https://android-review.googlesource.com/#/q/I2f1f3150c8a80a79491c670779925308d587b3c1">I2f1f3</a>
+      )
+    </li>
+    <li>
+      For
+      <code translate="no" dir="ltr">SwipeToDismissBox</code>
+      , we have renamed
+      <code translate="no" dir="ltr">SwipeDismissTarget</code>
+      .Original to
+      <code translate="no" dir="ltr">SwipeToDismissValue.Default</code>
+      and
+      <code translate="no" dir="ltr">SwipeDismissTarget.Dismissal</code>
+      to
+      <code translate="no" dir="ltr">SwipeToDismissValue.Dismissed</code>
+      . We have also moved
+      <code translate="no" dir="ltr">SwipeToDismissBoxDefaults.BackgroundKey</code>
+      and
+      <code translate="no" dir="ltr">SwipeToDismissBoxDefaults.ContentKey</code>
+      to
+      <code translate="no" dir="ltr">SwipeToDismissKeys.Background</code>
+      ,
+      <code translate="no" dir="ltr">SwipeToDismissKeys.Content</code>
+      respectively. (
+      <a href="https://android-review.googlesource.com/#/q/I47a36f46bd91b01795e99632837b5c3aa1224f39">I47a36</a>
+      )
+    </li>
+    <li>
+      We have added a read-only mode to Picker, for screens with multiple Pickers where only one Picker is editable at a time. When the Picker is read-only, it displays the currently selected option, and a label if one has been provided. (
+      <a href="https://android-review.googlesource.com/#/q/I879de7842a21d000d5a2554922be976899f930d3">I879de</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SwipeToDismissBoxState</code>
+      has been refactored to restrict the scope of
+      <code translate="no" dir="ltr">ExperimentalWearMaterialApi</code>
+      to
+      <code translate="no" dir="ltr">Modifier.swipeable</code>
+      and
+      <code translate="no" dir="ltr">SwipeableState</code>
+      , which are now used internally.
+      <code translate="no" dir="ltr">SwipeToDismissBoxState</code>
+      now has
+      <code translate="no" dir="ltr">currentValue</code>
+      ,
+      <code translate="no" dir="ltr">targetValue</code>
+      ,
+      <code translate="no" dir="ltr">isAnimationRunning</code>
+      and
+      <code translate="no" dir="ltr">snapTo</code>
+      members to support common use cases - please let us know if you require any further properties to be made available. Also fixed the behavior of
+      <code translate="no" dir="ltr">SwipeableState</code>
+      in the case where the swipe offset is within a rounding error of an anchor. (
+      <a href="https://android-review.googlesource.com/#/q/I58302544971da7b904a0b5681c06aae8e3f2ce3f">I58302</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Simplified and fixed code to detect if the content of a
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      can be scrolled (used to decide if we display a scrollbar or not) (
+      <a href="https://android-review.googlesource.com/#/q/I7bce01d7becc03cd6a77ea1a0056002c30e86dde">I7bce0</a>
+      )
+    </li>
+    <li>
+      Fixed a bug on Position Indicator when used with more than one state and switching between them (
+      <a href="https://android-review.googlesource.com/#/q/I320b52abbc7649022385ac33919f6e59f92c4f4b">I320b5</a>
+      )
+    </li>
+    <li>
+      We have updated the default Compose for Wear OS theme typography/fonts to match our latest UX guidance. Of note display1 (40.sp) and display2 (34.sp) are now smaller than their previous values and various other minor updates to line height and line spacing have been made. (
+      <a href="https://android-review.googlesource.com/#/q/Ie3077b2941510a5cff490fb93a3a9e90fffc49ba">Ie3077</a>
+      )
+    </li>
+    <li>
+      We have added resistance to
+      <code translate="no" dir="ltr">SwipeToDismissBox</code>
+      so that motion only happens when swiping to dismiss and not at all in the opposite direction. (
+      <a href="https://android-review.googlesource.com/#/q/Ifdfb90bb5577e5d36dde482eb303e08b9ad7e989">Ifdfb9</a>
+      )
+    </li>
+    <li>
+      We have changed some of the default parameter values for the
+      <code translate="no" dir="ltr">CircularProgressIndicator</code>
+      functions to bring them in-line with Wear Material Design UX guidance. For the Spinner/Indeterminant version the size (40-&gt;24.dp), indicatorColor (primary-&gt;onBackground), trackColor transparency (30%-&gt;10%) and stroke width (4-&gt;3dp) have been updated. For the Progress/Determinate version the trackColor transparency (30%-&gt;10%) has been updated. (
+      <a href="https://android-review.googlesource.com/#/q/I659cc0bc67125d0af3a502ac5fd76d08d99de07c">I659cc</a>
+      )
+    </li>
+    <li>
+      We have updated the default scaling params of the
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      in-line with the latest Wear Material Design UX specifications. Visually this results in list items starting to be scaled closer to the list center, but being less scaled at the list edge than before. (
+      <a href="https://android-review.googlesource.com/#/q/Ica8f35ee3860ef8ab48d71a52fb28383597b2ecb">Ica8f3</a>
+      )
+    </li>
+    <li>
+      Some adjustments to
+      <code translate="no" dir="ltr">ScalingLazyColumnDefaults.snapFlingBehavior</code>
+      to improve the end of the animation (
+      <a href="https://android-review.googlesource.com/#/q/If32603e8effd6429c99021492321063212059b40">If3260</a>
+      )
+    </li>
+  </ul>

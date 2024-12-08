@@ -1,0 +1,59 @@
+libraryId: health
+groupId: androidx.health
+version: 1.0.0-beta03
+releaseDate: 2023-04-05
+#language=html
+changelogHtml: |
+  <h3 id="health-services-client-1.0.0-beta03" data-text="Version 1.0.0-beta03" tabindex="-1">Version 1.0.0-beta03</h3>
+  <p>April 5, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.health:health-services-client:1.0.0-beta03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/adf1c279a86ab3886e1666c08e2c3efba783367b..a200cb82769634cecdb118ec4f0bfdf0b086e597/health/health-services-client">Version 1.0.0-beta03 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>
+    <code translate="no" dir="ltr">BatchingMode</code>
+    can now be configured to deliver batched exercise data at the configured interval instead of the default during an active exercise, either at exercise start via
+    <code translate="no" dir="ltr">ExerciseConfig</code>
+    or during with an override method. Support for this will be enabled by an upcoming Health Services release in the Google Play Store and can be checked via exercise capabilities.
+    <em>Note: batching modes take effect while the device is in a non-interactive power state, and will cause increased power consumption.</em>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Throwing
+      <code translate="no" dir="ltr">HealthServicesException</code>
+      when suspend function
+      <code translate="no" dir="ltr">overrideBatchingModesForActiveExercise</code>
+      fails (
+      <a href="https://android-review.googlesource.com/#/q/Ifd3872c1c354a06952630e11614c5a8e3bf918e3">Ifd387</a>
+      )
+    </li>
+    <li>
+      Introduced suspend functions for async
+      <code translate="no" dir="ltr">overrideBatchingModesForActiveExercise</code>
+      API making them more kotlin friendly (
+      <a href="https://android-review.googlesource.com/#/q/I7dd15d8a09ff48e43b680d6b7c51e436a2c5f63c">I7dd15</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BatchingMode</code>
+      overrides optional in
+      <code translate="no" dir="ltr">ExerciseConfig</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Id22e9c25a70666ba0329189e6c328e075d5d26cd">Id22e9</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">DataType</code>
+      and
+      <code translate="no" dir="ltr">ExerciseUpdate</code>
+      small fixes (
+      <a href="https://android-review.googlesource.com/#/q/a88dc75ff88fdda9d5306287add55842f25e185f">5e185f</a>
+      )
+    </li>
+  </ul>

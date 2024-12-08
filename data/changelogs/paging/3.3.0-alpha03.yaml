@@ -1,0 +1,70 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.3.0-alpha03
+releaseDate: 2024-02-07
+#language=html
+changelogHtml: |
+  <h3 id="3.3.0-alpha03" data-text="Version 3.3.0-alpha03" tabindex="-1">Version 3.3.0-alpha03</h3>
+  <p>February 7, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.3.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/52fcfb71eda8bee777689ca7b4124283b37e287a..ca2a8cf8da3a3502fccc593974f8085653e38261/paging">Version 3.3.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">PagingDataPresenter</code>
+      is now a public class. Multiplatform presenters can now be built on top of
+      <code translate="no" dir="ltr">PagingDataPresenter</code>
+      rather than requiring internal Paging APIs or
+      <code translate="no" dir="ltr">paging-runtime</code>
+      ’s
+      <code translate="no" dir="ltr">AsyncPagingDataDiffer</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id1f748af435e6f5d733bc731ef7e8cd12455845a">Id1f74</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/315214786">b/315214786</a>
+      )
+    </li>
+    <li>
+      Added new
+      <code translate="no" dir="ltr">LoadStates</code>
+      and
+      <code translate="no" dir="ltr">CombinedLoadStates</code>
+      helper methods to check if
+      <code translate="no" dir="ltr">LoadStates</code>
+      is in Error or
+      <code translate="no" dir="ltr">NotLoading</code>
+      state. Also added a new API that awaits on a
+      <code translate="no" dir="ltr">LoadStateFlow</code>
+      until a load has settled into either
+      <code translate="no" dir="ltr">NotLoading</code>
+      or Error state. (
+      <a href="https://android-review.googlesource.com/#/q/Id6c67a6ba3805130d1a08840bad38e179604f786">Id6c67</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Behavior change</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">PagingData.empty()</code>
+      now dispatches
+      <code translate="no" dir="ltr">NotLoading</code>
+      states by default unless custom
+      <code translate="no" dir="ltr">LoadStates</code>
+      are passed to its constructor. This departs from existing behavior where it doesn't dispatch
+      <code translate="no" dir="ltr">LoadStates</code>
+      when submitted to a
+      <code translate="no" dir="ltr">PagingDataAdapter</code>
+      or it dispatches Loading states when collected as
+      <code translate="no" dir="ltr">LazyPagingItems</code>
+      . When collected as
+      <code translate="no" dir="ltr">LazyPagingItems</code>
+      , it will now also display an empty list immediately upon initial composition. (
+      <a href="https://android-review.googlesource.com/#/q/I4d11df131d81fb0234e096581b74440a4b076a76">I4d11d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/301833847">b/301833847</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,59 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.8.0
+releaseDate: 2023-10-04
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0" data-text="Version 1.8.0" tabindex="-1">Version 1.8.0</h3>
+  <p>October 4, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.8.0</code>
+    ,
+    <code translate="no" dir="ltr">androidx.activity:activity-compose:1.8.0</code>
+    , and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.8.0</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d494531b988564d977d4d601c6df5ccf2ac6861a..9ed4ce88fa7e2b68e312ef93f7a97744620a7d03/activity">Version 1.8.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 1.7.0</strong></p>
+  <ul>
+    <li>
+      <strong>Predictive Back</strong>
+      - The
+      <code translate="no" dir="ltr">OnBackPressedCallback</code>
+      now offers new Predictive Back callbacks for handling the back gesture starting, progress throughout the gesture, and the back gesture being canceled in addition to the previous
+      <code translate="no" dir="ltr">handleOnBackPressed()</code>
+      callback for when the back gesture is committed. This also comes with the
+      <code translate="no" dir="ltr">PredictiveBackHandler</code>
+      Composable to handle predictive back gesture events in Activity Compose. It provides a Flow of BackEventCompat objects that must be collected in the suspending lamba you provide:
+    </li>
+  </ul>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Text only"><code translate="no" dir="ltr">  PredictiveBackHandler { progress: Flow&lt;BackEventCompat&gt; -&gt;
+      // code for gesture back started
+      try {
+        progress.collect { backEvent -&gt;
+        // code for progress
+      }
+      // code for completion
+      } catch (e: CancellationException) {
+        // code for cancellation
+      }
+    }
+  </code></pre>
+  </devsite-code>
+  <p>
+    <code translate="no" dir="ltr">ComponentActivity.onBackPressed()</code>
+    has now been deprecated in favor of the APIs for handling back. Developers should now utilize the
+    <code translate="no" dir="ltr">OnBackPressedDispatcher</code>
+    , rather than overriding this method.
+  </p>
+  <ul>
+    <li>
+      <strong>EdgeToEdge</strong>
+      -
+      <code translate="no" dir="ltr">ComponentActivity.enableEdgeToEdge()</code>
+      has been added to easily set up the edge-to-edge display in a backward-compatible manner.
+    </li>
+  </ul>

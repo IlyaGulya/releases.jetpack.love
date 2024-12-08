@@ -1,0 +1,89 @@
+libraryId: core
+groupId: androidx.core
+version: 1.4.0-alpha01
+releaseDate: 2020-05-20
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha01" data-text="Version 1.4.0-alpha01" tabindex="-1">Version 1.4.0-alpha01</h3>
+  <p>May 20, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core:1.4.0-alpha01</code>
+    and
+    <code translate="no" dir="ltr">androidx.core:core-ktx:1.4.0-alpha01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9c19e5fbcdbbc72e70d2f52971009cc17be53abe..cea47c265abad60d93f1ca6605fe0fd21ba970c5/core">Version 1.4.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add common API for inserting rich content (e.g. pasting an image). The new callback provides a single API that apps can implement to support the different ways in which rich content may be inserted. For now the API is only added to
+      <code translate="no" dir="ltr">AppCompatEditText</code>
+      and will be invoked for the following code paths:
+      <ul>
+        <li>paste from the clipboard</li>
+        <li>
+          content insertion from the IME (
+          <code translate="no" dir="ltr">InputConnection.commitContent</code>
+          ) (
+          <a href="https://android-review.googlesource.com/#/q/I22bf76a22b795cb47c7ab12e4f5b529fff8fe5d7">I22bf7</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Backported
+      <code translate="no" dir="ltr">android.os.Process.isApplicationUid(int)</code>
+      to help apps determine whether code is executing in a isolated process (
+      <a href="https://android-review.googlesource.com/#/q/I4c83a3aad2bb791f066a85f9051134510aa4f159">I4c83a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/153014822">b/153014822</a>
+      )
+    </li>
+    <li>
+      Backported
+      <code translate="no" dir="ltr">LocusId</code>
+      to help apps correlate state between different subsystems such as content capture, shortcuts, and notifications. (
+      <a href="https://android-review.googlesource.com/#/q/Ia3129ef8ee75b287c29a78c085cdfdca200875a6">Ia3129</a>
+      )
+    </li>
+    <li>
+      Added ancestry sequences to ViewGroup (
+      <a href="https://android-review.googlesource.com/#/q/I5f75cd25b3c46c99b21634d1f136788bd71ad890">I5f75c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/117976097">b/117976097</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Added permissions validation for
+      <code translate="no" dir="ltr">ActivityCompat.requestPermissions()</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I372cca80d7c0394f4478847ae122acbc29bbb697">I372cc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/122163323">b/122163323</a>
+      )
+    </li>
+    <li>
+      Extracted v28+ calls into a separate static class, which fixes a
+      <code translate="no" dir="ltr">NoClassDefFoundError</code>
+      error for
+      <code translate="no" dir="ltr">View#OnUnhandledKeyEventListener</code>
+      when building an app bundle (
+      <a href="https://android-review.googlesource.com/#/q/Id34194f77b9c7a2f0864e38d17ef6039733dee95">Id3419</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/153695093">b/153695093</a>
+      )
+    </li>
+    <li>
+      Fixed a
+      <code translate="no" dir="ltr">setChronometerCountDown</code>
+      crash bug (
+      <a href="https://android-review.googlesource.com/#/q/I472824f0835988a38186318f2b3b49a00542da89">I47282</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/145770610">b/145770610</a>
+      )
+    </li>
+  </ul>
+  <h2 id="core_and_core-ktx_version_132_2" data-text="Core and Core-ktx Version 1.3.2" tabindex="-1">Core and Core-ktx Version 1.3.2</h2>

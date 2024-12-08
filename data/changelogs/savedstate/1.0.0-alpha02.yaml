@@ -1,0 +1,51 @@
+libraryId: savedstate
+groupId: androidx.savedstate
+version: 1.0.0-alpha02
+releaseDate: 2019-03-13
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha02" data-text="Version 1.0.0-alpha02" tabindex="-1">Version 1.0.0-alpha02</h3>
+  <p>March 13, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.savedstate:savedstate:1.0.0-alpha02</code>
+    is released.
+    <code translate="no" dir="ltr">androidx.savedstate:savedstate</code>
+    combines artifacts
+    <code translate="no" dir="ltr">androidx.savedstate:savedstate-bundle</code>
+    and
+    <code translate="no" dir="ltr">androidx.savedstate:savedstate-common</code>
+    into one artifact, because it was decided to simplify savedstate infrastructure and remove generics from
+    <code translate="no" dir="ltr">SavedStateRegistry</code>
+    . Thus, there is no need for separate modules.
+  </p>
+  <p>
+    The full list of commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/86267e31251cdaf875674004b9937ff3da0c3f24..b22fd6c3be270f4c9fd632c55593568ff21637e0/savedstate">here</a>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">SavedStateRegistry.runOnNextRecreaction(Class&lt;? extends AutoRecreated&gt; clazz )</code>
+      was added. The given class will be instantiated and the method
+      <code translate="no" dir="ltr">AutoRecreated.onRecreated</code>
+      will be run when the owning component restarted.
+    </li>
+  </ul>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      Generics removed from
+      <code translate="no" dir="ltr">SavedStateRegistry&lt;T&gt;</code>
+    </li>
+    <li>
+      AbstractSavedStateRegistry &amp; BundlableSavedStateRegistry are removed, use simple
+      <code translate="no" dir="ltr">SavedStateRegistry</code>
+      instead
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BundleSavedStateRegistryOwner</code>
+      is renamed to
+      <code translate="no" dir="ltr">SavedStateRegistryOwner</code>
+    </li>
+  </ul>

@@ -1,0 +1,59 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.4.0-beta01
+releaseDate: 2021-10-27
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-beta01" data-text="Version 1.4.0-beta01" tabindex="-1">Version 1.4.0-beta01</h3>
+  <p>October 27, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.4.0-beta01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.4.0-beta01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.4.0-beta01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/da9716386798fc4e39075f54e5bd3317384a63e6..ca6054a5e12fcf05ba5e20bf93403afdab093986/fragment">Version 1.4.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Parent fragments will now dispatch
+      <code translate="no" dir="ltr">onHiddenChanged()</code>
+      down their entire hierarchy before launching their own callback. (
+      <a href="https://android-review.googlesource.com/#/q/Iedc201ab435cb963e81bc02d203d4d37ff827e01">Iedc20</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/77504618">b/77504618</a>
+      )
+    </li>
+    <li>
+      The keyboard will now close automatically when going from a fragment with an open keyboard to a fragment with a recycler view. (
+      <a href="https://android-review.googlesource.com/#/q/I8b842dd9a421cfbc9189014b802f5e4b6b9c2a47">I8b842</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/196852211">b/196852211</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">DialogFragment</code>
+      now uses
+      <code translate="no" dir="ltr">setReorderingAllowed(true)</code>
+      for all transactions it creates when you call
+      <code translate="no" dir="ltr">show()</code>
+      ,
+      <code translate="no" dir="ltr">showNow()</code>
+      , or
+      <code translate="no" dir="ltr">dismiss()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie2c14fb6d11b426ea0b2c26b035a962f08ddc586">Ie2c14</a>
+      )
+    </li>
+    <li>
+      The extremely long Lint warning of
+      <code translate="no" dir="ltr">DetachAndAttachFragmentInSameFragmentTransaction</code>
+      has been shortened to
+      <code translate="no" dir="ltr">DetachAndAttachSameFragment</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/e9eca34ab9edfad6e1b8e9c1a6a26dd26e166998">e9eca3</a>
+      )
+    </li>
+  </ul>

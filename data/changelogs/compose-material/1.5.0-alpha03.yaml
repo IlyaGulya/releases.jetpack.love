@@ -1,0 +1,70 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 1.5.0-alpha03
+releaseDate: 2023-04-19
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha03" data-text="Version 1.5.0-alpha03" tabindex="-1">Version 1.5.0-alpha03</h3>
+  <p>April 19, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material-*:1.5.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a200cb82769634cecdb118ec4f0bfdf0b086e597..01bd392d5702480f8bfe61a8f8bbbea64cf362a0/compose/material">Version 1.5.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Update
+      <code translate="no" dir="ltr">BottomDrawer</code>
+      internals to use the new
+      <code translate="no" dir="ltr">SwipeableV2</code>
+      APIs. Because of this
+      <code translate="no" dir="ltr">BottomDrawerState</code>
+      will now only have APIS defined at the class level, it won't inherit methods/properties from
+      <code translate="no" dir="ltr">SwipeableState</code>
+      . We're using composition with an internal
+      <code translate="no" dir="ltr">SwipeableV2State</code>
+      . Offset is now a nullable floating point property, the current value and a swipe target value can still be accessed through currentValue and targetValue properties. The previous class level methods such as open/expand/close and properties such as
+      <code translate="no" dir="ltr">isOpen/isClosed</code>
+      continue to be supported. (
+      <a href="https://android-review.googlesource.com/#/q/Iad40c08ca8f48afbc451191c788e80584e874b98">Iad40c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/178529942">b/178529942</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/220676296">b/220676296</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Updated internals of the Switch component. The switch will now preview the closest (target state) when dragging. (
+      <a href="https://android-review.googlesource.com/#/q/Id90d466b47eb7eb446ee96e234215f3b0d3e5706">Id90d4</a>
+      )
+    </li>
+    <li>
+      Animated sheet content (e.g.
+      <code translate="no" dir="ltr">Modifier.animateContentSize</code>
+      on sheet content) in
+      <code translate="no" dir="ltr">BottomSheetScaffold</code>
+      has been optimized and now works smoothly. (
+      <a href="https://android-review.googlesource.com/#/q/Ia913cf9c75949c25a5cc1a6f6dc2b650c95793b9">Ia913c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/270518202">b/270518202</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/254446195">b/254446195</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BottomSheetScaffold</code>
+      will not participate in nested scroll anymore when
+      <code translate="no" dir="ltr">gesturesEnabled</code>
+      is set to
+      <code translate="no" dir="ltr">false</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I634f33bf0d7e6b4dea5d2225c8e7561b74a42d40">I634f3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/215403277">b/215403277</a>
+      )
+    </li>
+  </ul>

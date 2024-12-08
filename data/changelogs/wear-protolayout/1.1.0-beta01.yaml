@@ -1,0 +1,121 @@
+libraryId: wear-protolayout
+groupId: androidx.wear
+version: 1.1.0-beta01
+releaseDate: 2024-01-10
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-beta01" data-text="Version 1.1.0-beta01" tabindex="-1">Version 1.1.0-beta01</h3>
+  <p>January 10, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.protolayout:protolayout-*:1.1.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9174577f8a57ba4ae4958cc31787ea4db3b2b44a..7a45f0bc9e0a73744b3780a6f92e1b570de58bba/wear/protolayout">Version 1.1.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>The 1.1.0-beta01 release of Wear ProtoLayout indicates that this release of the library is feature complete and the API is locked (except where marked as experimental). Wear ProtoLayout 1.1 includes the following new functionalities and APIs:</p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ArcLine</code>
+      now supports gradient by adding
+      <code translate="no" dir="ltr">Brush</code>
+      with
+      <code translate="no" dir="ltr">SweepGradient</code>
+      and having a shadow on the cap to better represent length larger than 360 degrees by adding
+      <code translate="no" dir="ltr">Shadow</code>
+      on the existing
+      <code translate="no" dir="ltr">StrokeCap</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">DynamicInstant</code>
+      has support for zoned date-time formatting.
+      <code translate="no" dir="ltr">DynamicInstant</code>
+      and
+      <code translate="no" dir="ltr">DynamicDuration</code>
+      can be used as state or platform data types.
+    </li>
+    <li>
+      Autosizing feature for text size that allows setting multiple sizes to
+      <code translate="no" dir="ltr">FontStyle.setSizes</code>
+      where the Text size will automatically scale based on the space it has inside of the parent. Additionally, we improved ellipsizing options for text that overflows by adding
+      <code translate="no" dir="ltr">TEXT_OVERFLOW_ELLIPSIZE</code>
+      and deprecating
+      <code translate="no" dir="ltr">TEXT_OVERFLOW_ELLIPSIZE_END</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Spacer</code>
+      now supports having expanded dimensions with optional weight. For building
+      <code translate="no" dir="ltr">ExpandedDimensionProp</code>
+      we have added a helper method
+      <code translate="no" dir="ltr">DimensionBuilders.weight</code>
+      .
+    </li>
+    <li>
+      Support for dynamically hiding and unhiding layout elements with
+      <code translate="no" dir="ltr">Modifier.visible</code>
+      . This includes having dynamic values in
+      <code translate="no" dir="ltr">BoolProp</code>
+      .
+    </li>
+    <li>
+      All
+      <code translate="no" dir="ltr">ProtoLayout</code>
+      APIs now have schema version requirement annotation and version can be checked before calling a newer API.
+    </li>
+    <li>
+      Every element that has
+      <code translate="no" dir="ltr">Clickable</code>
+      now has its target area extended to at least 48x48 in the renderer to better support accessibility requirements.
+    </li>
+    <li>
+      Following other Material components and Compose initiatives, we have now turned off font padding by default on all
+      <code translate="no" dir="ltr">Text</code>
+      elements. Additionally,
+      <code translate="no" dir="ltr">AndroidTextStyle</code>
+      and related setters have been removed from the public API. with following bug fixes:
+    </li>
+    <li>
+      Added a setter for positioning the edge content in
+      <code translate="no" dir="ltr">EdgeContentLayout</code>
+      so it can be positioned before other content.
+    </li>
+    <li>Consistently throwing an exception when encountering an unrecognized enum value.</li>
+    <li>
+      Invalidate the result of an expression when it yields an invalid numeric value (NaN or infinite) or throws an
+      <code translate="no" dir="ltr">ArithmeticException</code>
+      .
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Updates to
+      <code translate="no" dir="ltr">SweepGradient</code>
+      API to allow accepting either colors or
+      <code translate="no" dir="ltr">ColorStops</code>
+      in the constructor. (
+      <a href="https://android-review.googlesource.com/#/q/I6676fc2767a57f9ed2f88e07acebf929de56ef5e">I6676f</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Adding a restricted API and renderer support for setting a direction in which arc elements are drawn. (
+      <a href="https://android-review.googlesource.com/#/q/Idef5af32d4b85f0d398448142a80507e4f8c10d4">Idef5a</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">RoundMode</code>
+      defaults to
+      <code translate="no" dir="ltr">Floor</code>
+      in
+      <code translate="no" dir="ltr">FloatToInt32Node</code>
+      when unspecified. The node will still throw an exception if the provided
+      <code translate="no" dir="ltr">RoundMode</code>
+      is unrecognized. (
+      <a href="https://android-review.googlesource.com/#/q/I1b2d8c2b8b98fd28fc7062e339e193d88dd80d8f">I1b2d8</a>
+      )
+    </li>
+  </ul>

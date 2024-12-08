@@ -1,0 +1,41 @@
+libraryId: core
+groupId: androidx.core
+version: 1.13.0
+releaseDate: 2024-04-17
+#language=html
+changelogHtml: |
+  <h3 id="1.13.0" data-text="Version 1.13.0" tabindex="-1">Version 1.13.0</h3>
+  <p>April 17, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core:1.13.0</code>
+    ,
+    <code translate="no" dir="ltr">androidx.core:core-ktx:1.13.0</code>
+    , and
+    <code translate="no" dir="ltr">androidx.core:core-testing:1.13.0</code>
+    are released. Version 1.13.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d304505e537b27e0e5da6b0d923c80ce7d85496a..3736d67a292f282220cadaf57500a052fd47ab4f/core">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.12.0</strong></p>
+  <ul>
+    <li>
+      The library’s
+      <code translate="no" dir="ltr">minSdkVersion</code>
+      has been raised to
+      <code translate="no" dir="ltr">19</code>
+      . Many compatibility APIs have been marked deprecated since they were only needed prior to API level 19.
+    </li>
+    <li>Several classes have been rewritten in Kotlin to provide better interoperability with Kotlin consumers while preserving Java compatibility.</li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">FingerprintManagerCompat</code>
+      , which is a no-op starting in Android V and should not be used on earlier platforms. Clients should migrate to
+      <code translate="no" dir="ltr">BiometricPrompt</code>
+      immediately.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">PathParser</code>
+      , which can create a Path instance from SVG path strings.
+    </li>
+  </ul>

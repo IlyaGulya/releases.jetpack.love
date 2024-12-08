@@ -1,0 +1,133 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.8.0-alpha05
+releaseDate: 2024-10-30
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0-alpha05" data-text="Version 1.8.0-alpha05" tabindex="-1">Version 1.8.0-alpha05</h3>
+  <p>October 30, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.8.0-alpha05</code>
+    is released. Version 1.8.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b8a68b0896897fa158508d73a31998a26161d9a7..ccd90a76bd7c4acf4f4f01eca76350e383bc441e/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Support for auto-sizing text. Pass an
+      <code translate="no" dir="ltr">AutoSize</code>
+      instance (e.g.
+      <code translate="no" dir="ltr">AutoSize.StepBased</code>
+      ) to your favorite text composable (like
+      <code translate="no" dir="ltr">BasicText</code>
+      ) and see your text size adapt to the available space! (
+      <a href="https://android-review.googlesource.com/#/q/Ice7e09b9cac7be10ab5e681ec57d994d50102583">Ice7e0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/139320827">b/139320827</a>
+      )
+    </li>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">OverscrollFactory</code>
+      and
+      <code translate="no" dir="ltr">LocalOverscrollFactory</code>
+      APIs to allow configuring overscroll within a hierarchy. The value provided through
+      <code translate="no" dir="ltr">LocalOverscrollFactory</code>
+      will be used by default to create an
+      <code translate="no" dir="ltr">OverscrollEffect</code>
+      . To create and remember an effect from the current provided factory, use
+      <code translate="no" dir="ltr">rememberOverscrollEffect()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I51ca476f3efcf0249640873f74cf7d40beebb788">I51ca4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/255554340">b/255554340</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">CompositionLocal</code>
+      that can be used to modify the hue of Autofill's successful filling highlight. (
+      <a href="https://android-review.googlesource.com/#/q/I320926246d1811c2c974a6793f48941907c33afe">I32092</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">ScrollableDefaults.overscrollEffect</code>
+      - instead you should use
+      <code translate="no" dir="ltr">rememberOverscrollEffect</code>
+      . This will create an instance of the current overscroll implementation provided with
+      <code translate="no" dir="ltr">LocalOverscrollFactory</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1651acbab8ddb4b35399af103e3db76b37361303">I1651a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/255554340">b/255554340</a>
+      ),(
+      <a href="https://issuetracker.google.com/issues/234451516">b/234451516</a>
+      )
+    </li>
+    <li>
+      Introduces new
+      <code translate="no" dir="ltr">AutofillManager</code>
+      interface that can be used to fine-tune users' Autofill journey and a
+      <code translate="no" dir="ltr">isSemanticAutofillEnabled</code>
+      flag to turn on this new version of Autofill. (
+      <a href="https://android-review.googlesource.com/#/q/I9d4842cc35b289158e889f89b7b65346f049e884">I9d484</a>
+      )
+    </li>
+    <li>
+      Removes
+      <code translate="no" dir="ltr">CombinedClickableNode</code>
+      . This experimental API was temporarily exposed to unblock performance work, but is no longer needed. Instead you should directly use
+      <code translate="no" dir="ltr">Modifier.combinedClickable</code>
+      as with other modifier APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I4b658dabfefb13eb5bff42029502486ab89b7a6f">I4b658</a>
+      )
+    </li>
+    <li>
+      Adds overloads to
+      <code translate="no" dir="ltr">horizontalScroll</code>
+      ,
+      <code translate="no" dir="ltr">verticalScroll</code>
+      ,
+      <code translate="no" dir="ltr">LazyColumn</code>
+      ,
+      <code translate="no" dir="ltr">LazyRow</code>
+      ,
+      <code translate="no" dir="ltr">LazyHorizontalGrid</code>
+      ,
+      <code translate="no" dir="ltr">LazyVerticalGrid</code>
+      ,
+      <code translate="no" dir="ltr">LazyHorizontalStaggeredGrid</code>
+      ,
+      <code translate="no" dir="ltr">LazyVerticalStaggeredGrid</code>
+      ,
+      <code translate="no" dir="ltr">HorizontalPager</code>
+      , and
+      <code translate="no" dir="ltr">VerticalPager</code>
+      with support for specifying a custom
+      <code translate="no" dir="ltr">OverscrollEffect</code>
+      . The provided
+      <code translate="no" dir="ltr">OverscrollEffect</code>
+      will receive events, and be rendered within the bounds of these components. Note that drawing the same
+      <code translate="no" dir="ltr">OverscrollEffect</code>
+      twice is unsupported - so you cannot draw the same
+      <code translate="no" dir="ltr">OverscrollEffect</code>
+      provided to one of these components separately with
+      <code translate="no" dir="ltr">Modifier.overscroll</code>
+      . The use case of drawing the overscroll outside of the bounds of these components will be addressed separately in the future. (
+      <a href="https://android-review.googlesource.com/#/q/I2dc42851c824a63e495312246eb5389c33121af8">I2dc42</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/266550551">b/266550551</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/234274772">b/234274772</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/224572538">b/224572538</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/353805117">b/353805117</a>
+      )
+    </li>
+  </ul>

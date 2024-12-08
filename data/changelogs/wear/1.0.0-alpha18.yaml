@@ -1,0 +1,94 @@
+libraryId: wear
+groupId: androidx.wear
+version: 1.0.0-alpha18
+releaseDate: 2021-07-21
+#language=html
+changelogHtml: |
+  <h3 id="complications-watchface-1.0.0-alpha18" data-text="Version 1.0.0-alpha18" tabindex="-1">Version 1.0.0-alpha18</h3>
+  <p>July 21, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear:wear-*:1.0.0-alpha18</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/19ae3a88ff0824d615355b492cb56049e16991f2..97264aa4532db7f7db1ffb3f42f3a9204971dbfc/wear">Version 1.0.0-alpha18 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We moved
+      <code translate="no" dir="ltr">ComplicationHelperActivity</code>
+      to
+      <code translate="no" dir="ltr">androidx.wear:wear-watchface</code>
+      library. (
+      <a href="https://android-review.googlesource.com/#/q/I39e76d0e26e7f56cba741a5a654176e0813ea424">I39e76</a>
+      )
+    </li>
+    <li>
+      For consistency and clarity,
+      <code translate="no" dir="ltr">ComplicationProvider</code>
+      has been renamed to
+      <code translate="no" dir="ltr">ComplicationDataSource</code>
+      and all classes with Provider in their name have been similarly renamed. (
+      <a href="https://android-review.googlesource.com/#/q/Iaef0bf0ebfad43990f4cde8ff89048102a1c97bb">Iaef0b</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">CanvasComplication.isHighlighted</code>
+      has been moved into
+      <code translate="no" dir="ltr">RenderParameters.pressedComplicationSlotIds</code>
+      this is a step towards making
+      <code translate="no" dir="ltr">CanvasComplication</code>
+      stateless. To support this change
+      <code translate="no" dir="ltr">CanvasComplication.render</code>
+      now also takes the
+      <code translate="no" dir="ltr">slotId</code>
+      as a parameter and we now pass the
+      <code translate="no" dir="ltr">ComplicationSlot</code>
+      into
+      <code translate="no" dir="ltr">GlesTextureComplication</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I50e6e600d10f512689b680404eda737595b7a5e8">I50e6e</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">headlessDeviceConfig</code>
+      to
+      <code translate="no" dir="ltr">EditorRequest</code>
+      , if non null this parameter is used to construct a headless instance to back the EditorSession rather than acting on the interactive instance. This allows the editor to be invoked for a watch face that isn't the current one. (
+      <a href="https://android-review.googlesource.com/#/q/I0a8204d7ddd6fa8dac0e082877fc5c741ce1c26a">I0a820</a>
+      )
+    </li>
+    <li>
+      We've added an experimental
+      <code translate="no" dir="ltr">WatchFaceMetadataClient</code>
+      which allows efficient retrieval of static watch face metadata such as the
+      <code translate="no" dir="ltr">UserStyleSchema</code>
+      and fixed details about
+      <code translate="no" dir="ltr">ComplicationSlots</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6bfdf94361b3b84eb5ac7313b44f748b186a3aae">I6bfdf</a>
+      )
+    </li>
+    <li>
+      We have renamed
+      <code translate="no" dir="ltr">CanvasRenderer.uiThreadInit</code>
+      to init. (
+      <a href="https://android-review.googlesource.com/#/q/I6fff94f222fda71b99927fcfa7c8657682ba2868">I6fff9</a>
+      )
+    </li>
+    <li>
+      We've added PreviewScreenshotParams an optional new parameter for EditorRequest which instructs EditorSession to take a preview screenshot on commit with these parameter. The preview image is exposed on
+      <code translate="no" dir="ltr">EditorState.previewImage</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic2c1668f05a5d7fb9c73ea75a44f7499c4a5999c">Ic2c16</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Developers no longer need to add ComplicationHelperActivity to their own manifest. (
+      <a href="https://android-review.googlesource.com/#/q/I6f0c2af08d927095e6bacbad49724fc2c33a282d">I6f0c2</a>
+      )
+    </li>
+  </ul>

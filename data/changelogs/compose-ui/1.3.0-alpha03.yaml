@@ -1,0 +1,154 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.3.0-alpha03
+releaseDate: 2022-08-10
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha03" data-text="Version 1.3.0-alpha03" tabindex="-1">Version 1.3.0-alpha03</h3>
+  <p>August 10, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.3.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a7f0710ad21f556f0dde9bf7bdab6d2135170fd4..bea814b246f89ff7244e3c6b0648f0b57e47897c/compose/ui">Version 1.3.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">LayoutCoordinates.findRootCoordinates()</code>
+      is now public (
+      <a href="https://android-review.googlesource.com/#/q/I7fa371019044fef3c3451c4b628f81425dd01140">I7fa37</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/204723384">b/204723384</a>
+      )
+    </li>
+    <li>
+      Added experimental API to get the
+      <code translate="no" dir="ltr">LayoutCoordinates</code>
+      in the
+      <code translate="no" dir="ltr">PlacementScope</code>
+      . This lets developers know where the current layout is to place children relative to its position. (
+      <a href="https://android-review.googlesource.com/#/q/I5482bf4604e700d9f5a753142fe0db3f306939fd">I5482b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/238632578">b/238632578</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">LayoutCoordinates.transformFrom</code>
+      to get the Matrix transformation from one
+      <code translate="no" dir="ltr">LayoutCoordinates</code>
+      to another. (
+      <a href="https://android-review.googlesource.com/#/q/Ic5ab114e2fb6453c062e1450982081e18d190f9d">Ic5ab1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/238632578">b/238632578</a>
+      )
+    </li>
+    <li>
+      Deprecated
+      <code translate="no" dir="ltr">SemanticsModifier.id</code>
+      and moved the semantics id to
+      <code translate="no" dir="ltr">LayoutInfo.semanticsId</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/Iac808fc0e3ff14f1c1a95ee3f1f24cd436245a0e">Iac808</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/203559524">b/203559524</a>
+      )
+    </li>
+    <li>
+      Resource Fonts now support setting font variation settings (API 26+). (
+      <a href="https://android-review.googlesource.com/#/q/I900dde1f539e580a66db9c14d389ada691377c91">I900dd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/143703328">b/143703328</a>
+      )
+    </li>
+    <li>
+      Variable font support in
+      <code translate="no" dir="ltr">DeviceFontFamilyNameFont</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ic1279b2dcb1c29e75b8037791179853a9f828c02">Ic1279</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/143703328">b/143703328</a>
+      )
+    </li>
+    <li>
+      Font constructors now accept a list of
+      <code translate="no" dir="ltr">FontVariation.Setting</code>
+      for configuring variable fonts on O+ devices. (
+      <a href="https://android-review.googlesource.com/#/q/I11a9d69d73429e9a875fd7096a00981a0cbd8a47">I11a9d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/143703328">b/143703328</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">FontVariation</code>
+      API for defining and using variable fonts. (
+      <a href="https://android-review.googlesource.com/#/q/I3c40c6c8b4cee02cacda9482955ec16587ae62a5">I3c40c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/143703328">b/143703328</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LineHeightStyle.Alignment</code>
+      constructor is now public (experimental) (
+      <a href="https://android-review.googlesource.com/#/q/I4bbbe53b2088b9b211b86919c55bf6be88572baf">I4bbbe</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/235876330">b/235876330</a>
+      )
+    </li>
+    <li>
+      Paragraph is now expect|actual and defined for Android and Desktop. (
+      <a href="https://android-review.googlesource.com/#/q/Id387e52c4509ebcfd78e9b57b09a0ee8cd51b11f">Id387e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/239962983">b/239962983</a>
+      )
+    </li>
+    <li>
+      Interface Paragraph is now sealed interface Paragarph. There is no use case for subclassing paragraph, and we recommend reaching out if this change impacts you. (
+      <a href="https://android-review.googlesource.com/#/q/If52470dbc601b83f41b49a7bd1e28c57b5e353d1">If5247</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/239962983">b/239962983</a>
+      )
+    </li>
+    <li>
+      Removed experimental annotation from
+      <code translate="no" dir="ltr">PlatformTextStyle</code>
+      and
+      <code translate="no" dir="ltr">LineHeightStyle</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I64bef65f524025ac386bf0cf0d362eb7ac9a7352">I64bef</a>
+      )
+    </li>
+    <li>
+      Deprecate
+      <code translate="no" dir="ltr">TextInputService.show|hideSoftwareKeyboard</code>
+      . Please use
+      <code translate="no" dir="ltr">SoftwareKeyboardController</code>
+      instead in app code and
+      <code translate="no" dir="ltr">TextInputSession</code>
+      in IME-management code. (
+      <a href="https://android-review.googlesource.com/#/q/I14e4cb6e685dd9a0a172797d8d3f363446aeb89d">I14e4c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/183448615">b/183448615</a>
+      )
+    </li>
+    <li>
+      Add new API for existing animation types (
+      <a href="https://android-review.googlesource.com/#/q/I261797ae35be7a2199cf1d3412d832570b4618b5">I26179</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">@RequiresPermission</code>
+      to APIs that require granting the
+      <code translate="no" dir="ltr">POST_NOTIFICATIONS</code>
+      permission on SDK 33 and above. (
+      <a href="https://android-review.googlesource.com/#/q/Ie542eb66c9af6e3c3a7c59bb291c7c5879458631">Ie542e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/238790278">b/238790278</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,110 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.4.0-alpha03
+releaseDate: 2024-10-30
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha03" data-text="Version 1.4.0-alpha03" tabindex="-1">Version 1.4.0-alpha03</h3>
+  <p>October 30, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.4.0-alpha03</code>
+    is released. Version 1.4.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/955f3c40a6dc8e5772c53a0edaa2f36f94d43bb0..ccd90a76bd7c4acf4f4f01eca76350e383bc441e/compose/material3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">SheetState</code>
+      constructor with density has been deprecated in favor of positional and velocity thresholds. (
+      <a href="https://android-review.googlesource.com/#/q/Ifd16e81baddd9cd4d45fbef54e69145ad52ab1c6">Ifd16e</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">rememberTooltipPositionProvider</code>
+      that contains an updated positioning logic. Deprecated
+      <code translate="no" dir="ltr">rememberPlainTooltipPositionProvider</code>
+      and
+      <code translate="no" dir="ltr">rememberRichTooltipPositionProvider</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie66e2ec58567cc38fc06bb8e13ef928160db114a">Ie66e2</a>
+      )
+    </li>
+    <li>
+      Additional
+      <code translate="no" dir="ltr">ModalBottomSheetProperties</code>
+      allow for customization of status and navigation bar colors. By default, these update based on content color instead of system dark theme status. (
+      <a href="https://android-review.googlesource.com/#/q/Ib874e2b06477ef077534e5af31c1c7be97a4e134">Ib874e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/362539765">b/362539765</a>
+      )
+    </li>
+    <li>
+      Improved the input experience for date pickers: when in input mode, the date text field will be focused for immediate text entry. The change adds a
+      <code translate="no" dir="ltr">requestFocus</code>
+      parameter to the
+      <code translate="no" dir="ltr">DatePicker</code>
+      and the
+      <code translate="no" dir="ltr">DateRangePicker</code>
+      . You may prevent a focus by passing
+      <code translate="no" dir="ltr">false</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I12d09f5f8d432ea57281466c3a6565987426404a">I12d09</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/286399710">b/286399710</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/340102743">b/340102743</a>
+      )
+    </li>
+    <li>
+      Caching the shape defaults into the Shape object. Making the shape defaults
+      <code translate="no" dir="ltr">@Composable</code>
+      for toggle button. Collapsing the shapes into one shape default since the variants point to the same token file. (
+      <a href="https://android-review.googlesource.com/#/q/Iaa0145dd90586e6f8508c4310c89bbf12f3d0313">Iaa014</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Optimize Scaffold
+      <code translate="no" dir="ltr">contentPadding</code>
+      behavior to avoid always recomposing the body content when the
+      <code translate="no" dir="ltr">contentPadding</code>
+      changes. (
+      <a href="https://android-review.googlesource.com/#/q/I8c8e226666d916662d5f5c22d4b02ca9ad0d6f97">I8c8e2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/373904168">b/373904168</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TextFieldLabelScope</code>
+      <code translate="no" dir="ltr">progress</code>
+      renamed to
+      <code translate="no" dir="ltr">labelMinimizedProgress</code>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TextFieldLabelPosition</code>
+      <code translate="no" dir="ltr">Default</code>
+      renamed to
+      <code translate="no" dir="ltr">Attached</code>
+      . Interface members have been removed. (
+      <a href="https://android-review.googlesource.com/#/q/If75c6603cace4c5942842b47d33544d893177672">If75c6</a>
+      )
+    </li>
+    <li>
+      Fixed an issue with the
+      <code translate="no" dir="ltr">DatePicker</code>
+      in input mode where validation errors could cause the component's height to change. (
+      <a href="https://android-review.googlesource.com/#/q/I2e229559964acd9522e8a696bb0e89698c20bdd9">I2e229</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/280462363">b/280462363</a>
+      )
+    </li>
+    <li>
+      Make the material Slider change its value when control keys are pressed. (
+      <a href="https://android-review.googlesource.com/#/q/I1c442dee1c87e48a2d34c0277d36a9a5d3e14a5b">I1c442</a>
+      )
+    </li>
+  </ul>

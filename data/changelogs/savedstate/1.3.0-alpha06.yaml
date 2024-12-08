@@ -1,0 +1,72 @@
+libraryId: savedstate
+groupId: androidx.savedstate
+version: 1.3.0-alpha06
+releaseDate: 2024-12-11
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha06" data-text="Version 1.3.0-alpha06" tabindex="-1">Version 1.3.0-alpha06</h3>
+  <p>December 11, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.savedstate:savedstate-*:1.3.0-alpha06</code>
+    is released. Version 1.3.0-alpha06 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9f3e1b6fc190040f287dcfe745fbc438cbed93f9..9b7c30efa4b23edcbca29da0d87ef33be7f0e6e2/savedstate">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">SavedState</code>
+      KMP now supports:
+      <code translate="no" dir="ltr">IBinder</code>
+      ,
+      <code translate="no" dir="ltr">Size</code>
+      ,
+      <code translate="no" dir="ltr">SizeF</code>
+      ,
+      <code translate="no" dir="ltr">Array&lt;Parcelable&gt;</code>
+      ,
+      <code translate="no" dir="ltr">SparseArray&lt;Parcelable&gt;</code>
+      and Serializable (Android). (
+      <a href="https://android-review.googlesource.com/#/q/I1ba9446ed4dad6e018cbf17feaef1f5fcdeb6c3f">I1ba94</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/334076622">b/334076622</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">KSerializer</code>
+      instances that can be used to encode/decode Java and Android types supported by Bundle by marking the relevant field in your class with
+      <code translate="no" dir="ltr">@Serializable(with = ParcelableSerializer::class)</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I8c10fdae09e9e10f7699838439d3f3145af32b36">I8c10f</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I28caf279b53cb69311c861e415390da7efd90c40">I28caf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/376026712">b/376026712</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SavedStateRegistryOwner</code>
+      instances retrieved via
+      <code translate="no" dir="ltr">findViewTreeSavedStateRegistryOwner</code>
+      can now be resolved through disjoint parents of a view, such as a
+      <code translate="no" dir="ltr">ViewOverlay</code>
+      . See the release notes of core or the documentation in
+      <code translate="no" dir="ltr">ViewTree.setViewTreeDisjointParent</code>
+      for more information on disjoint view parents. (
+      <a href="https://android-review.googlesource.com/#/q/Iccb332b0306c15259ce223ee70255b04af36c427">Iccb33</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Make the namings and package organization more consistent with
+      <code translate="no" dir="ltr">SavedStateRegistryOwnerDelegate</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I8c1353eedd7299f885ce45b7d85deb4a24c557e4">I8c135</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/376026744">b/376026744</a>
+      )
+    </li>
+  </ul>

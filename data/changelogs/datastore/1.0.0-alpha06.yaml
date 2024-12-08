@@ -1,0 +1,60 @@
+libraryId: datastore
+groupId: androidx.datastore
+version: 1.0.0-alpha06
+releaseDate: 2021-01-13
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha06" data-text="Version 1.0.0-alpha06" tabindex="-1">Version 1.0.0-alpha06</h3>
+  <p>January 13, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.datastore:datastore-*:1.0.0-alpha06</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d4d3f15273386f887bf6407b11dfa23460ee0164/datastore">Version 1.0.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added RxJava wrappers for DataStore. The
+      <code translate="no" dir="ltr">datastore-rxjava2/3</code>
+      artifacts contain the wrappers for the core DataStore APIs (
+      <code translate="no" dir="ltr">RxDataStore</code>
+      ,
+      <code translate="no" dir="ltr">RxDataStoreBuilder</code>
+      , and
+      <code translate="no" dir="ltr">RxDataMigration</code>
+      ). The
+      <code translate="no" dir="ltr">datastore-preferences-rxjava2/3</code>
+      artifacts contain a builder to construct a Preferences DataStore.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Hide the CorruptionHandler interface. There was no reason for it to be public because the DataStore factory only accepts a ReplaceFileCorruptionHandler. (
+      <a href="https://android-review.googlesource.com/#/q/I0b3b3c3aa47c6c7848bc1496371ad331ac571253">I0b3b3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/176032264">b/176032264</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">preferencesKey&lt;T&gt;(name: String): Key&lt;T&gt;</code>
+      method has been removed and replaced with methods specific to each supported type, for example
+      <code translate="no" dir="ltr">preferencesKey&lt;Int&gt;("int")</code>
+      is now
+      <code translate="no" dir="ltr">intPreferencesKey("int")</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ibcfac9cca7c8a3dbf2eaae17bdb8c22a8ce5a9f7">Ibcfac</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170311106">b/170311106</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixes documentation on DataStoreFactory which left out the fact that the datastore file is created in the “datastore/” subdirectory. (
+      <a href="https://android-review.googlesource.com/#/q/Ica222bbedb34f0bfc7169cce222f90c55bb6923c">Ica222</a>
+      )
+    </li>
+  </ul>

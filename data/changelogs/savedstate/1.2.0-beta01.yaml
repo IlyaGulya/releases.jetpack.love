@@ -1,0 +1,41 @@
+libraryId: savedstate
+groupId: androidx.savedstate
+version: 1.2.0-beta01
+releaseDate: 2022-04-20
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-beta01" data-text="Version 1.2.0-beta01" tabindex="-1">Version 1.2.0-beta01</h3>
+  <p>April 20, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.savedstate:savedstate:1.2.0-beta01</code>
+    and
+    <code translate="no" dir="ltr">androidx.savedstate:savedstate-ktx:1.2.0-beta01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7ca43e00a517eaeeedc0a21f482b17f06e3d2181..c0a89ec374961b3015097ab307ebb8196dbe3888/savedstate">Version 1.2.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">SavedStateRegistry</code>
+      and
+      <code translate="no" dir="ltr">ViewTreeSavedStateRegistryOwner</code>
+      classes have been rewritten in Kotlin. For
+      <code translate="no" dir="ltr">ViewTreeSavedStateRegistryOwner</code>
+      , this is a
+      <strong>source incompatible change</strong>
+      for those classes written in Kotlin - you must now directly import and use the Kotlin extension methods on
+      <code translate="no" dir="ltr">View</code>
+      of
+      <code translate="no" dir="ltr">androidx.savedstate.setViewTreeSavedStateRegistryOwner</code>
+      and
+      <code translate="no" dir="ltr">androidx.savedstate.findViewTreeSavedStateRegistryOwner</code>
+      to set and find a previously set owner. This replaces the
+      <code translate="no" dir="ltr">savedstate-ktx</code>
+      API of
+      <code translate="no" dir="ltr">findViewTreeSavedStateRegistryOwner</code>
+      . This is binary compatible and remains source compatible for implementations written in the Java programming language. (
+      <a href="https://issuetracker.google.com/issues/220191285">b/220191285</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,64 @@
+libraryId: compose-animation
+groupId: androidx.compose
+version: 1.6.0-beta01
+releaseDate: 2023-11-15
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-beta01" data-text="Version 1.6.0-beta01" tabindex="-1">Version 1.6.0-beta01</h3>
+  <p>November 15, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.animation:animation-*:1.6.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/465c5c5b7a0d79793bddb26a695f67aba8ea2f7e..1f80a6f0c1cb96288c04124001fa2c9bd29617d6/compose/animation">Version 1.6.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ExitTransition.Hold</code>
+      has been renamed to
+      <code translate="no" dir="ltr">ExitTransition.KeepUntilTransitionsFinished</code>
+      to be more explicit. (
+      <a href="https://android-review.googlesource.com/#/q/I1c4906213f267c9dabae03f15e6d9d9f05622581">I1c490</a>
+      )
+    </li>
+    <li>
+      You may now use
+      <code translate="no" dir="ltr">keyframesWithSpline</code>
+      to interpolate any N-dimensional value using monotonic splines. It's particularly useful to interpolate positional values such as
+      <code translate="no" dir="ltr">Offset</code>
+      ,
+      <code translate="no" dir="ltr">IntOffset</code>
+      ,
+      <code translate="no" dir="ltr">DpOffset</code>
+      . Added as Experimental API.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Add renderer support for Sweep Gradient in
+      <code translate="no" dir="ltr">ArcLine</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4d5bb5948d2216dca2a29d2449fd97519b2b65bb">I4d5bb</a>
+      )
+    </li>
+    <li>
+      Implement equals and hashcode for
+      <code translate="no" dir="ltr">PageSize.Fixed</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie3edea3aafd75068cd57c04aafdd7055ead20ad7">Ie3ede</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/300134276">b/300134276</a>
+      )
+    </li>
+    <li>
+      Fix binary compatibility issue with Window Inset change. (
+      <a href="https://android-review.googlesource.com/#/q/Iee695f0f1b2bf24a820b5a1bccfe550d9c29a5fa">Iee695</a>
+      )
+    </li>
+    <li>
+      Remove material core layer for Material3 Chip/Button as the microbenchmarks show better performance without it. (
+      <a href="https://android-review.googlesource.com/#/q/I5555573520638dd3c7f0d202e048ae6fffde19e5">I55555</a>
+      )
+    </li>
+  </ul>

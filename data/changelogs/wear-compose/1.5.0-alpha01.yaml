@@ -1,0 +1,150 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.5.0-alpha01
+releaseDate: 2024-09-04
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha01" data-text="Version 1.5.0-alpha01" tabindex="-1">Version 1.5.0-alpha01</h3>
+  <p>September 4, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.5.0-alpha01</code>
+    is released. Version 1.5.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cd340f20b7c66762f0fc3710282a91b3e6f94ba9..80f82d37cb9b40250ee9eb15d9cbe9e93849355e/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We have added a new
+      <code translate="no" dir="ltr">LazyColumn</code>
+      into the Wear Compose Foundation library with associated
+      <code translate="no" dir="ltr">LazyColumnState</code>
+      and
+      <code translate="no" dir="ltr">LazyColumnScope</code>
+      APIs. This serves as the foundation for building customisable scaling and morphing effects with Wear Compose. (
+      <a href="https://android-review.googlesource.com/#/q/Ib3b22b3f81d18e074b6de37a3e6ba4e2d60cb548">Ib3b22</a>
+      )
+    </li>
+    <li>
+      We have added an indexed version of
+      <code translate="no" dir="ltr">itemsIndexed</code>
+      into
+      <code translate="no" dir="ltr">LazyColumnScope</code>
+      as part of the new
+      <code translate="no" dir="ltr">LazyColumn</code>
+      API. (
+      <a href="https://android-review.googlesource.com/#/q/Ib4a57f61568d5e210cfc8e6187adf85719ee4b52">Ib4a57</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">LazyColumn</code>
+      modifiers in order to support scaling and morphing behaviors. (
+      <a href="https://android-review.googlesource.com/#/q/Ie229a1aa8b3411881367fbe1f0c1ee3a57c39c91">Ie229a</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">HierarchicalFocusCoordinator</code>
+      has been promoted to stable. (
+      <a href="https://android-review.googlesource.com/#/q/I31035b5d8619074927cb8d80c61d43dbf725f421">I31035</a>
+      )
+    </li>
+    <li>
+      We have added support for letter spacing to curved text. (
+      <a href="https://android-review.googlesource.com/#/q/I3c740555aa285e7663c8ec7cd79b15c785e7d70d">I3c740</a>
+      )
+    </li>
+    <li>
+      Added a
+      <code translate="no" dir="ltr">rotationLocked</code>
+      parameter to
+      <code translate="no" dir="ltr">CurvedLayout.curvedComposable</code>
+      to stop components being rotated. (
+      <a href="https://android-review.googlesource.com/#/q/I668986bc70f5d46873c43e0ca9755ab71fd296b6">I66898</a>
+      )
+    </li>
+    <li>
+      The temporary
+      <code translate="no" dir="ltr">LocalUseFallbackRippleImplementation</code>
+      API from wear material and wear material3 has been removed (
+      <a href="https://android-review.googlesource.com/#/q/I62282046c22960c7421499aef45fd7f7da45cffa">I62282</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">WearDevices.SQUARE</code>
+      from the
+      <code translate="no" dir="ltr">@WearPreviewDevices</code>
+      multi-preview (
+      <a href="https://android-review.googlesource.com/#/q/I11c028c3f2d1a7308df4a164ea962a0bfe90f703">I11c02</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      now positions the revealed items on the visible portion of the screen, this helps when
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      is used within a list, so the items are always interactable and never fall outside the screen. (
+      <a href="https://android-review.googlesource.com/#/q/I38929341a0c1b40d1015f6f03497a1612c50470e">I38929</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      now resets the
+      <code translate="no" dir="ltr">lastActionType</code>
+      to None when
+      <code translate="no" dir="ltr">animatedTo</code>
+      has completed. (
+      <a href="https://android-review.googlesource.com/#/q/I59b03ea31f1dafa18b1faccdcbce1e50623491e4">I59b03</a>
+      )
+    </li>
+    <li>
+      Improved the documentation for the new
+      <code translate="no" dir="ltr">rotationLocked</code>
+      parameter on
+      <code translate="no" dir="ltr">curvedComposable</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ifbd57c96ae03b689bc385f032bec7c6c05a2d518">Ifbd57</a>
+      )
+    </li>
+    <li>
+      Fixed a crash when passing
+      <code translate="no" dir="ltr">NaN</code>
+      into
+      <code translate="no" dir="ltr">ScalingLazyColumnSnapFlingBehavior</code>
+      ’s
+      <code translate="no" dir="ltr">performFling</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic13dacc86918a8483e9d0f4f8aa04fe8ad7a059d">Ic13da</a>
+      )
+    </li>
+    <li>
+      Fixed bug on curved layout size modifier (
+      <a href="https://android-review.googlesource.com/#/q/I0fedfc722a16b04467c04c4f52d6de48da4efd97">I0fedf</a>
+      )
+    </li>
+    <li>
+      We have added support for letter spacing specified in 'sp'. (
+      <a href="https://android-review.googlesource.com/#/q/I9f6e360c45bfdade1dd5366bb8f040c16475703f">I9f6e3</a>
+      )
+    </li>
+    <li>
+      We have fixed a bug in Material2 Dialog where the
+      <code translate="no" dir="ltr">onDismissRequest</code>
+      callback was not being called when the dialog became invisible (
+      <a href="https://android-review.googlesource.com/#/q/I64656df176525ed88fd6f6e997d4a85688bfc2ce">I64656</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">LayoutCoordinates.introducesFrameOfReference</code>
+      to
+      <code translate="no" dir="ltr">LayoutCoordinates.introducesMotionFrameOfReference</code>
+      to better reflect its purpose. Renamed related function to calculate coordinates based on that flag. (
+      <a href="https://android-review.googlesource.com/#/q/I3a3301164ea2c08728b09faed6cf72ae089ead72">I3a330</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_14_2" data-text="Version 1.4" tabindex="-1">Version 1.4</h2>

@@ -1,0 +1,81 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.1.0-alpha08
+releaseDate: 2021-08-18
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha08" data-text="Version 1.1.0-alpha08" tabindex="-1">Version 1.1.0-alpha08</h3>
+  <p>August 18, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-camera2:1.1.0-alpha08</code>
+    ,
+    <code translate="no" dir="ltr">androidx.camera:camera-core:1.1.0-alpha08</code>
+    , and
+    <code translate="no" dir="ltr">androidx.camera:camera-lifecycle:1.1.0-alpha08</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/86548c494687f4a4aadf3ebb2f724e410b378fcb..9e98cbf6f7926e3ccb8a11600bd631b238ed64c9/camera">Version 1.1.0-alpha08 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Add setOutputImageFormat API for image analysis config. User can select ImageAnalysis.OUTPUT_IMAGE_FORMAT_YUV_420_888 or ImageAnalysis.OUTPUT_IMAGE_FORMAT_RGBA_8888. By default, ImageAnalysis.OUTPUT_IMAGE_FORMAT_YUV_420_888 will be selected. (
+      <a href="https://android-review.googlesource.com/#/q/I7902dfe9a05e40e928319ab6e2fae25cf1084623">I7902d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      ExperimentalUseCaseGroupLifecycle annotation is removed now that the APIs are no longer experimental. (
+      <a href="https://android-review.googlesource.com/#/q/I17b85c8bb3cd33f85bff02bcd3abaeeca1a39b15">I17b85</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed Preview screen is too bright on the Huawei P20 Lite. This problem only occurs when certain special Preview resolutions are used together with a large zoom in value. (
+      <a href="https://android-review.googlesource.com/#/q/Idefce5b35d6a2c275b08da127bb7a7f278216e23">Idefce</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/192129158">b/192129158</a>
+      )
+    </li>
+    <li>
+      Fixed an issue that flash is not working on some devices when setting flash mode to FLASH_MODE_ON shortly followed by taking pictures. (
+      <a href="https://android-review.googlesource.com/#/q/Ieb49b78a6b5bc9ea30b0edee91af76359454d9ac">Ieb49b</a>
+      )
+    </li>
+    <li>
+      Fixed the issue where Preview will halt for a while when taking pictures if VideoCapture, ImageCapture and Preview are bound. (
+      <a href="https://android-review.googlesource.com/#/q/I5619740857a7d5b62d64d4811e84fbd5ab959579">I56197</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/193864120">b/193864120</a>
+      )
+    </li>
+    <li>
+      Allows ImageAnalysis to select a resolution larger than 1080p. A LIMITED-level above device can support a RECORD size resolution for ImageAnalysis when it is bound together with Preview and ImageCapture. The trade-off is the selected resolution for the ImageCapture will also need to be a RECORD size resolution. To successfully select a RECORD size resolution for ImageAnalysis, a RECORD size target resolution should be set on both ImageCapture and ImageAnalysis. This indicates that the application clearly understands the trade-off and prefers the ImageAnalysis to have a larger resolution rather than the ImageCapture to have a MAXIMUM resolution. For the definitions of RECORD, MAXIMUM sizes and more details see https://developer.android.com/reference/android/hardware/camera2/CameraDevice#regular-capture. The RECORD size refers to the camera device's maximum supported recording resolution, as determined by CamcorderProfile. The MAXIMUM size refers to the camera device's maximum output resolution for that format or target from StreamConfigurationMap.getOutputSizes(int). (
+      <a href="https://android-review.googlesource.com/#/q/I1ee973a50f9605324f06f406ca2230a464ed2363">I1ee97</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/192911449">b/192911449</a>
+      )
+    </li>
+    <li>
+      Add the Exif info to the captured image. (
+      <a href="https://android-review.googlesource.com/#/q/I01ff0014f5124fc265ead5816789f41047e43cac">I01ff0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/193342619">b/193342619</a>
+      )
+    </li>
+    <li>
+      In ImageCapture, return the URI of the saved image if the saving location is File. (
+      <a href="https://android-review.googlesource.com/#/q/Ib5b49b6b3555503b12f7461f6eca8f4407cab636">Ib5b49</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/149241379">b/149241379</a>
+      )
+    </li>
+    <li>
+      Fixed an issue that captured images with flash is dark on many devices. (
+      <a href="https://android-review.googlesource.com/#/q/I4e51038d54b47955a57c7e80200c506759cf9562">I4e510</a>
+      )
+    </li>
+  </ul>

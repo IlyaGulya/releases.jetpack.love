@@ -1,0 +1,91 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.8.0-beta07
+releaseDate: 2024-08-07
+#language=html
+changelogHtml: |
+  <h3 id="2.8.0-beta07" data-text="Version 2.8.0-beta07" tabindex="-1">Version 2.8.0-beta07</h3>
+  <p>August 7, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.8.0-beta07</code>
+    is released. Version 2.8.0-beta07 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/8b5ab34869fa8731b13a77763ea92989ce4ef70d..9130b719318a69f2f3eaf82c32b131232fd721cb/navigation">these commits</a>
+    .
+  </p>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      Due to
+      <a href="https://issuetracker.google.com/issues/358137294">b/358137294</a>
+      , only Enums nested in another class are supported out of the box. Top level Enums will be supported in the next release.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      When navigating to duplicate or shared destinations, navigation will prioritize going to the closest matching destination from the current location in the graph. (
+      <a href="https://android-review.googlesource.com/#/q/Ic89a41d2a54f36fca6c41f2f7ea948f8c13b2bd5">Ic89a4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/352006850">b/352006850</a>
+      )
+    </li>
+    <li>
+      Navigation in safe args now has added a new
+      <code translate="no" dir="ltr">NavType.EnumType</code>
+      . This means
+      <code translate="no" dir="ltr">Enum</code>
+      types no longer require custom
+      <code translate="no" dir="ltr">NavType</code>
+      s. Note that the
+      <code translate="no" dir="ltr">Enum</code>
+      ’s
+      <code translate="no" dir="ltr">SerialName</code>
+      must be the default fully qualified name. (
+      <a href="https://android-review.googlesource.com/#/q/I66d22e2004a9c996688f082f1732b7f4c4e8ca24">I66d22</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/346475493">b/346475493</a>
+      )
+    </li>
+    <li>
+      Navigation in safe args has added built-in support for nullable argument types including
+      <code translate="no" dir="ltr">Int?</code>
+      ,
+      <code translate="no" dir="ltr">Long?</code>
+      ,
+      <code translate="no" dir="ltr">Float?</code>
+      ,
+      <code translate="no" dir="ltr">Boolean?</code>
+      , and
+      <code translate="no" dir="ltr">Enum&lt;*&gt;?</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I32d131926d08b01151c22d35f7a2d3389d5a1f56">I32d13</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I1c580e271cab940b11378f85bd0a5175c503e2f5">I1c580</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ifba6679f9214b477802567403d8ae97203a30303">Ifba66</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I978b0c52b9847518f77d5f238ef8461da9dc485b">I978b0</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ide076fd4f77daf8373d71e093f833920aba9b911">Ide076</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/351994237">b/351994237</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">NavGraph</code>
+      ’s
+      <code translate="no" dir="ltr">startDestination</code>
+      will now use the default argument values if the
+      <code translate="no" dir="ltr">startDestination</code>
+      route passed to the
+      <code translate="no" dir="ltr">NavGraph</code>
+      is exactly equal to the
+      <code translate="no" dir="ltr">startDestination.route</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I137626c99c62ec57db4a44448dd7cdf61209f264">I13762</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/354046047">b/354046047</a>
+      )
+    </li>
+  </ul>

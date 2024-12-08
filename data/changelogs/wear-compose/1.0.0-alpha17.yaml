@@ -1,0 +1,100 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.0.0-alpha17
+releaseDate: 2022-02-23
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha17" data-text="Version 1.0.0-alpha17" tabindex="-1">Version 1.0.0-alpha17</h3>
+  <p>February 23, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-foundation:1.0.0-alpha17</code>
+    ,
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material:1.0.0-alpha17</code>
+    , and
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-navigation:1.0.0-alpha17</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/db2ecbef194afcddfaede22e1d884a8959a9277c..9b2b3d8efd5f00bd4af903bbaa926f6a712d0bd8/wear/compose">Version 1.0.0-alpha17 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      We have added snap support that can be used with
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      . Set
+      <code translate="no" dir="ltr">flingBehavior = ScalingLazyColumnDefaults.flingWithSnapBehavior(state)</code>
+      to enable snap support. (
+      <a href="https://android-review.googlesource.com/#/q/I068d3131c38b413df242977c708698bb32047394">I068d3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/217377069">b/217377069</a>
+      )
+    </li>
+    <li>
+      We have added demos for Picker used to select a time in either 24 hour or 12 hour clock. (
+      <a href="https://android-review.googlesource.com/#/q/Ie5552f6989293090c99e659823765e224fe589a9">Ie5552</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Fix an issue with
+      <code translate="no" dir="ltr">TimeText</code>
+      custom fonts &amp; styles on square device (
+      <a href="https://android-review.googlesource.com/#/q/Iea76ec7f02d57211b2455abbad36199f483b39b8">Iea76e</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ScalingLazyListLayoutInfo</code>
+      now has
+      <code translate="no" dir="ltr">reverseLayout</code>
+      ,
+      <code translate="no" dir="ltr">viewportSize</code>
+      and orientation properties matching those from
+      <code translate="no" dir="ltr">LazyListLayoutInfo</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I4f2581c8e4c85d3530b428de6ca7d3088de439ca">I4f258</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/217917020">b/217917020</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      now has a
+      <code translate="no" dir="ltr">userScrollEnabled</code>
+      property matching that from
+      <code translate="no" dir="ltr">LazyList</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I164d091a910d47c6a2a1297264b053a32e12b406">I164d0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/217912513">b/217912513</a>
+      )
+    </li>
+    <li>
+      Pickers now have a gradient on the top and bottom by default (
+      <a href="https://android-review.googlesource.com/#/q/Iab92ab2f2776a3cb28938861824a6611ec9298da">Iab92a</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We have modified
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      so that it no longer greedily fills all of the space in its parent. Instead it will take its size from the size of its contents. This makes it consistent with the behaviour of
+      <code translate="no" dir="ltr">LazyColumn</code>
+      . If you want to reinstate the old behaviour then pass
+      <code translate="no" dir="ltr">Modifier.fillMaxWidth()/width()/widthIn()</code>
+      to the
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I51bf811c2e31e8dd797634e3ce42f7ce9805d79c">I51bf8</a>
+      )
+    </li>
+    <li>
+      We have improved the exception message in
+      <code translate="no" dir="ltr">SwipeDismissableNavHost.kt</code>
+      that was triggered if the navigation backstack was empty. (
+      <a href="https://android-review.googlesource.com/#/q/I1b1dc975025dae2e49536a6ab04eb36233592d17">I1b1dc</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,330 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 0.1.0-dev17
+releaseDate: 2020-08-19
+#language=html
+changelogHtml: |
+  <h3 id="0.1.0-dev17" data-text="Version 0.1.0-dev17" tabindex="-1">Version 0.1.0-dev17</h3>
+  <p>August 19, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:0.1.0-dev17</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/316f882e649c600372170f013a18515f590f490d..96eb302ee1740ba656c90c9fb27df3723a1a89c1/ui">Version 0.1.0-dev17 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">emitView</code>
+      was deprecated. Use
+      <code translate="no" dir="ltr">AndroidView</code>
+      instead if possible for emitting Views inside Compose. Note that composing Views and ViewGroups directly will not be supported in the future unless these are leaves in the composition tree, case when this can be achieved using AndroidView. (
+      <a href="https://android-review.googlesource.com/#/q/I29b1e5405077f45e101eacfb26a1ebed85120444">I29b1e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/163871221">b/163871221</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FocusState2</code>
+      is deprecated and replaced by
+      <code translate="no" dir="ltr">FocusState</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ia8b79200f0353a823290a1fb7c2c909f99fd009f">Ia8b79</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/160822876">b/160822876</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/160923332">b/160923332</a>
+      )
+    </li>
+    <li>
+      The deprecated AndroidView overloads were removed. (
+      <a href="https://android-review.googlesource.com/#/q/I946b92952ecfcd9f2211fa713e75f3fbcef2ea71">I946b9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/163802393">b/163802393</a>
+      )
+    </li>
+    <li>
+      Custom emits can now declare that one or more of its setters can be skipped and recomposed independently of the emit. (
+      <a href="https://android-review.googlesource.com/#/q/Ibbd13068440252724db405b26d1f6be179e80411">Ibbd13</a>
+      )
+    </li>
+    <li>
+      <p>Changed Vector classes to no longer be data classes as the same object instance is used for composition.</p>
+
+      <p>Added mutableStateOf flag for VectorPainter to conditionally re-draw if contents of the vector change.</p>
+
+      <p>Refactored VectorComponent instance to be part of VectorPainter as it is re-used across compositions.</p>
+
+      <p>
+        Updated GroupComponent and PathComponent to have their name fields be mutable (
+        <a href="https://android-review.googlesource.com/#/q/Ieae454490e274d51a03433b6506319f692f7d981">Ieae45</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/151378808">b/151378808</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Removed
+        <code translate="no" dir="ltr">onChildPositioned</code>
+        and
+        <code translate="no" dir="ltr">OnChildPositionedModifier</code>
+        . Developers should use
+        <code translate="no" dir="ltr">onPositioned</code>
+        and
+        <code translate="no" dir="ltr">OnPositionedModifier</code>
+        on the child layout instead. (
+        <a href="https://android-review.googlesource.com/#/q/I4522e2cd4a0edb08fd36212eacf19d2895ae87f7">I4522e</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/162109766">b/162109766</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Offset has become an inline class (
+        <a href="https://android-review.googlesource.com/#/q/Iaec70bb466cae8964f03e7484c1e86857c924f82">Iaec70</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added a modifier param to SelectionContainer (
+        <a href="https://android-review.googlesource.com/#/q/I4aadafd87d5705b96f73cd49af84728a463c1cc5">I4aada</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/161487952">b/161487952</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Removed deprecated FocusModifier (
+        <a href="https://android-review.googlesource.com/#/q/I0b4ba5c6f28b683787848042af76ac9ec20c7caf">I0b4ba</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/160922116">b/160922116</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/160821157">b/160821157</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/162441435">b/162441435</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/160822875">b/160822875</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/160921940">b/160921940</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">mergePolicy</code>
+        lambda to
+        <code translate="no" dir="ltr">SemanticsPropertyKey</code>
+        . This can be used to define a custom policy for mergeAllDescendants semantics merging. The default policy is to use the parent value if already present, otherwise the child value. (
+        <a href="https://android-review.googlesource.com/#/q/Iaf6c4cc327017ee492f4d8334c8df5167d33df58">Iaf6c4</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/161979921">b/161979921</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Constraints is now an inline class (
+        <a href="https://android-review.googlesource.com/#/q/I88736be04376359506a2e8b4d599975c4f13aa01">I88736</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added FocusManager that moves common focus logic out of AndroidComposeView (
+        <a href="https://android-review.googlesource.com/#/q/I528ef86e1599baed36b70054b966a47dc016260d">I528ef</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/161487952">b/161487952</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/162206799">b/162206799</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Updated PointerEventPass names for Alpha release. (
+        <a href="https://android-review.googlesource.com/#/q/Ifda6fd7d3b77f1fa4c2bb8781783728d6d15a1e0">Ifda6f</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        IntOffset is now an inline class (
+        <a href="https://android-review.googlesource.com/#/q/Iac0bf89bb95642bf3a77073aead2cbce4c0e2e37">Iac0bf</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        IntSize is now an inline class (
+        <a href="https://android-review.googlesource.com/#/q/I2bf426245b41f4189dead45114e3791bbceb9d13">I2bf42</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">PlacementScope.placeAbsolute()</code>
+        was renamed to
+        <code translate="no" dir="ltr">PlacementScope.place()</code>
+        , and the previous
+        <code translate="no" dir="ltr">PlacementScope.place()</code>
+        was renamed to
+        <code translate="no" dir="ltr">PlacementScope.placeRelative()</code>
+        . As a result, the
+        <code translate="no" dir="ltr">PlacementScope.place()</code>
+        method will not automatically mirror the position in right-to-left contexts anymore. If this is desired, use
+        <code translate="no" dir="ltr">PlacementScope.placeRelative()</code>
+        instead. (
+        <a href="https://android-review.googlesource.com/#/q/I873ac827e6c4d4bf6c85a80b7128174c61602945">I873ac</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/162916675">b/162916675</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        AlertDialog now uses FlowRow for buttons (
+        <a href="https://android-review.googlesource.com/#/q/I00ec1052c1e452380cda3a95bdb3ae5b74c5511e">I00ec1</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/161809319">b/161809319</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/143682374">b/143682374</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Made some test utilities non public because they are not where they belong. Will be made public in the future. (
+        <a href="https://android-review.googlesource.com/#/q/I32ab1fdeff164695b29f95adb0292c3fae1195c4">I32ab1</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Refactored organization of pointer input code. (
+        <a href="https://android-review.googlesource.com/#/q/Ie3f45d957c67adefc00c5150e9c4575acb9bf9c8">Ie3f45</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Deprecated PxBounds in favor of Rect. Updated all usages of PxBounds with rect and added proper deprecate/replace with annotations to assist with the migration. (
+        <a href="https://android-review.googlesource.com/#/q/I370384202fff3e5b147d42086f4350ab7fa830de">I37038</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/162627058">b/162627058</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Removed Deprecated KeyEvent2. Use KeyEvent instead. (
+        <a href="https://android-review.googlesource.com/#/q/Ied2d05dcdca3b213d248ff1979fcc1a5e8d895b9">Ied2d0</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/162097587">b/162097587</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        KeyEvent has a unicode property that can be used to get the unicode character generated by the specified key and meta key state combination (
+        <a href="https://android-review.googlesource.com/#/q/If3afc9df182bf7269a61f9ca4ccffceac5836c38">If3afc</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Made the DelayUp custom event and related classes an opt in API as it is very likely going to be changed. (
+        <a href="https://android-review.googlesource.com/#/q/I56d6f7f6f3cb37a3b530d2256c657530d8b2e976">I56d6f</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Removed 2 PointerEventPasses that are no longer needed. (
+        <a href="https://android-review.googlesource.com/#/q/I3dd9d7871ec6e82b548a4c029d10257e4974bbbc">I3dd9d</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Add parameter color, shadow and TextDecoration to Paragraph.paint This function is useful to avoid unnecessary Paragraph recreation. (
+        <a href="https://android-review.googlesource.com/#/q/I81689d5d928ab10ba6cb567c12a115a0dd9449a5">I81689</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Removed onFocusChanged callbacks from TextField. Use Modifier.focusObserver instead. (
+      <a href="https://android-review.googlesource.com/#/q/I51089bfbc858ea302770f92b13886818cf48ba9c">I51089</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161297615">b/161297615</a>
+      )
+    </li>
+    <li>
+      Modifier.drawBorder has been deprecated. Use Modifier.border instead. Border data class has been replaced by BorderStroke (
+      <a href="https://android-review.googlesource.com/#/q/I4257d62b222e27c9ad67e1b2581b162cc9392c9e">I4257d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/158160576">b/158160576</a>
+      )
+    </li>
+    <li>
+      <p>Removed deprecated FrameManager calls.</p>
+
+      <p>
+        Internal compose APIs have been changed to reduce the amount of overhead to track state objects such as
+        <code translate="no" dir="ltr">mutableStateof()</code>
+        (
+        <a href="https://android-review.googlesource.com/#/q/I80ba67ebf59f9399e673b6218edfca4249158f82">I80ba6</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        VerticalScroller and HorizontalScroller have been removed. Use ScrollableColumn/Row instead. Modifier.drawBackground has been removed. Use Modifier.background (
+        <a href="https://android-review.googlesource.com/#/q/I73b0d940455a0a8e8dd18b5a483b12707f599304">I73b0d</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/163019183">b/163019183</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Crash when something which saves the state was used inside the for loop is fixed. Now having the same key in savedInstanceState() is allowed, api of UiSavedStateRegistry is now adjusted to this new requirement (
+        <a href="https://android-review.googlesource.com/#/q/I4ab7630120ffce145d1bf09d52a475d197030150">I4ab76</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/160042650">b/160042650</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/156853976">b/156853976</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/159026663">b/159026663</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/154920561">b/154920561</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        The
+        <code translate="no" dir="ltr">state { ... }</code>
+        composable is now deprecated in favor of explicit calls to
+        <code translate="no" dir="ltr">remember { mutableStateOf(...) }</code>
+        for clarity. This reduces the overall API surface and number of concepts for state management, and matches the
+        <code translate="no" dir="ltr">by mutableStateOf()</code>
+        pattern for class property delegation. (
+        <a href="https://android-review.googlesource.com/#/q/Ia57278556d4f35ecf2cf5e6e30888b0d1f1f8012">Ia5727</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Renamed RRect to RoundRect to better fit compose naming patterns Created similar function constructors to RRect and deprecated RRect function constructors (
+        <a href="https://android-review.googlesource.com/#/q/I5d32529a133bc2f69ea1de94c2912b2748a0d678">I5d325</a>
+        )
+      </p>
+    </li>
+  </ul>

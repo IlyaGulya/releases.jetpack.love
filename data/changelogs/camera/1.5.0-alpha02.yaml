@@ -1,0 +1,107 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.5.0-alpha02
+releaseDate: 2024-10-02
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha02" data-text="Version 1.5.0-alpha02" tabindex="-1">Version 1.5.0-alpha02</h3>
+  <p>October 2, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.5.0-alpha02</code>
+    is released. Version 1.5.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/445fd4cb2234969b1622d272e143642886cf13eb..c5333e2c7d785dd314479d930f3927d8ea9b7bcf/camera">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      New APIs for querying camera features supported by the device. For example, checking if HDR and 60FPS can be enabled at the same time. It includes 2 artifacts: camera-feature-combination-query and camera-feature-combination-query-play-services. This is a compatible version of camera2's
+      <code translate="no" dir="ltr">CameraManager#getCameraDeviceSetup#isSessionConfigurationSupported</code>
+      API with additional data provided by Google Play Service.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">Preview/VideoCapture</code>
+      target frame rate issue on LEGACY level devices. The target frame rate set via the
+      <code translate="no" dir="ltr">setTargetFrameRate</code>
+      or
+      <code translate="no" dir="ltr">Camera2Interop</code>
+      API was always overwritten to the value provided by the
+      <code translate="no" dir="ltr">AeFpsRangeLegacyQuirk</code>
+      . With this fix, CameraX library will respect the value set via the
+      <code translate="no" dir="ltr">setTargetFrameRate</code>
+      or
+      <code translate="no" dir="ltr">Camera2Interop</code>
+      API. (
+      <a href="https://android-review.googlesource.com/#/q/Ie2d328b78f6b7af70b804758fc79742752e84338">Ie2d32</a>
+      )
+    </li>
+    <li>
+      Added flash/torch/3A functionalities for image captures with
+      <code translate="no" dir="ltr">CameraEffect</code>
+      . The image captures with
+      <code translate="no" dir="ltr">CameraEffect</code>
+      should now have the same pre-capture and post-capture processings (e.g. flash trigger, 3A convergence etc. when applicable) as image capture without any
+      <code translate="no" dir="ltr">CameraEffect</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I5ff30cdc38094de0a97889a9564372652a4b8922">I5ff30</a>
+      )
+    </li>
+    <li>
+      Excluded problematic output sizes for
+      <code translate="no" dir="ltr">ImageAnalysis</code>
+      on Samsung SM-A057G device. When
+      <code translate="no" dir="ltr">ImageAnalysis</code>
+      uses a resolution larger or equal to 1920x1440, it will cause black preview issue. Applied
+      <code translate="no" dir="ltr">ExcludedSupportedSizesQuirk</code>
+      to the SM-A057G device to avoid the issue. (
+      <a href="https://android-review.googlesource.com/#/q/I63dfe9a224f74e6960c8b5bfeace1372cff8b22c">I63dfe</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/365877975">b/365877975</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">Preview/VideoCapture</code>
+      target frame rate issue when stream sharing mechanism is enabled internally to share a stream to
+      <code translate="no" dir="ltr">Preview</code>
+      and
+      <code translate="no" dir="ltr">VideoCapture</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4fdaccbc5601d67d62ce24737b814c717574c047">I4fdac</a>
+      )
+    </li>
+    <li>
+      Enabled the workaround to fix the incorrect JPEG image metadata issue on Samsung S10e and S10+ devices. With the fix, CameraX can successfully save the JPEG image, or correct Bitmap objects can be returned when calling the
+      <code translate="no" dir="ltr">ImageProxy.toBitmap()</code>
+      function on these devices if the incorrect JPEG image metadata issue happens. (
+      <a href="https://android-review.googlesource.com/#/q/Iae493350efac5696dd9c210522015c1d3799a6eb">Iae493</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/356428987">b/356428987</a>
+      )
+    </li>
+    <li>
+      Disabled extensions for Samsung A52s' back camera whose id is 0, because native crashes might happen when capturing HDR images and configuring capture sessions might fail for the BOKEH or FACE_RETOUCH modes. (
+      <a href="https://android-review.googlesource.com/#/q/I03ec9ce16ff100c38eb9286cb391c4e32ee5c728">I03ec9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/364152642">b/364152642</a>
+      )
+    </li>
+    <li>
+      Fixed the
+      <code translate="no" dir="ltr">VideoRecordEvent.Finalize.ERROR_INSUFFICIENT_STORAGE</code>
+      event is not triggered when recording a video and there is insufficient storage space available. (
+      <a href="https://android-review.googlesource.com/#/q/Ia5b4f435e387b690fa4e7bb13e747d636a2d72b0">Ia5b4f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/356399842">b/356399842</a>
+      )
+    </li>
+    <li>
+      Fixed issue where second video recording attempt fails on Oppo A5 (CPH1931). (
+      <a href="https://android-review.googlesource.com/#/q/I181d6208ffafabfadd014ebe8b65c256c698bdd8">I181d6</a>
+      )
+    </li>
+  </ul>

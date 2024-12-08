@@ -1,0 +1,100 @@
+libraryId: test-uiautomator
+groupId: androidx.test
+version: 2.3.0-alpha04
+releaseDate: 2023-07-26
+#language=html
+changelogHtml: |
+  <h3 id="2.3.0-alpha04" data-text="Version 2.3.0-alpha04" tabindex="-1">Version 2.3.0-alpha04</h3>
+  <p>July 26, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.test.uiautomator:uiautomator:2.3.0-alpha04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6882a779510068fe72f7ec0b5e5471925b33e9be..4aed940027a19667e67d155563fc5fa8b7279313/test/uiautomator/uiautomator">Version 2.3.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">By.hasParent</code>
+      and
+      <code translate="no" dir="ltr">By.hasAncestor</code>
+      to support finding objects according to their parents (
+      <a href="https://android-review.googlesource.com/#/q/I93c36cf79aec441046904c3a90c64adf7fe65d09">I93c36</a>
+      ).
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">UiObject2#getHint</code>
+      to retrieve an object's hint text, and
+      <code translate="no" dir="ltr">By.hint</code>
+      methods to select objects according to their hint text (
+      <a href="https://android-review.googlesource.com/#/q/Idd34586e5c596f31d477535df2d442327c18374a">Idd345</a>
+      ).
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">By.displayId</code>
+      to support selecting objects according to the display they are on (
+      <a href="https://android-review.googlesource.com/#/q/I1825b1715755ebd58b58b3fc3bd3a4dba7224970">I1825b</a>
+      ).
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">UiDevice#getDisplayHeight(int)</code>
+      and
+      <code translate="no" dir="ltr">UiDevice#getDisplayWidth(int)</code>
+      methods to find the dimensions of a display by its ID (
+      <a href="https://android-review.googlesource.com/#/q/Ie65445d36be6b771543a30263c66252adf8bed84">Ie6544</a>
+      ).
+    </li>
+    <li>
+      Re-added
+      <code translate="no" dir="ltr">wait(SearchCondition, long)</code>
+      and
+      <code translate="no" dir="ltr">wait(UiObject2Condition, long)</code>
+      methods for backwards compatibility (
+      <a href="https://android-review.googlesource.com/#/q/Iebfdae01df087edd0962c7050c946b1890789224">Iebfda</a>
+      ).
+    </li>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">UiDevice#executeShellCommand</code>
+      to public but discouraged instead of hidden (
+      <a href="https://android-review.googlesource.com/#/q/Ic48a1113c4a3feba516852ea530686bd5b352a73">Ic48a1</a>
+      ).
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">MotionEvent</code>
+      injection to reduce flakiness by prioritizing gesture accuracy over speed (
+      <a href="https://android-review.googlesource.com/#/q/678ca3be0081003ecaf9ff1b64375bb90bab4974">678ca3</a>
+      ).
+    </li>
+    <li>
+      Added tracing to resource heavy methods to identify performance bottlenecks (
+      <a href="https://android-review.googlesource.com/#/q/d17de3c365f196c6049804aad55c8841ce9a8e93">d17de3</a>
+      ).
+    </li>
+    <li>
+      Added a retry mechanism when initiating a UiAutomation connection (
+      <a href="https://android-review.googlesource.com/#/q/048cafd2a99f368c4b1ccd4bc628629a8d988c29">048caf</a>
+      ).
+    </li>
+    <li>
+      Fixed a possible NPE from null nodes in
+      <code translate="no" dir="ltr">UiDevice#dumpWindowHierarchy</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/b725eb65c5bdb9d450bf1383a49eef2b885dfc86">b725eb</a>
+      ).
+    </li>
+    <li>
+      Fixed unexpected errors from querying or operating on private displays (
+      <a href="https://android-review.googlesource.com/#/q/985db6a4df203e07bdd83cfc8585dbb06d78f62a">985db6</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/7053d44e6b5adf57f98624495248831de183b7d3">7053d4</a>
+      ).
+    </li>
+  </ul>

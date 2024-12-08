@@ -1,0 +1,109 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.3.0-alpha03
+releaseDate: 2023-01-25
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha03" data-text="Version 1.3.0-alpha03" tabindex="-1">Version 1.3.0-alpha03</h3>
+  <p>January 25, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.3.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/2c96666b2344cae1cd643af2eba5371be4b576d6..ff35d3c81caf7392850e60f0410a04265fd95b80/camera">Version 1.3.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">CameraInfo.getIntrinsicZoomRatio</code>
+      to provide angle of view information relative to the default camera. (
+      <a href="https://android-review.googlesource.com/#/q/Ib300cedf8ee42577230f84cb21173b280212b025">Ib300c</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">CameraInfo.getLensFacing</code>
+      to provide lens facing information. Added
+      <code translate="no" dir="ltr">CameraSelector#LENS_FACING_EXTERNAL</code>
+      as an experimental feature for selecting external cameras. (
+      <a href="https://android-review.googlesource.com/#/q/Icaf3eb12e2c9a003295fd6ca8bbb10d2e20c7858">Icaf3e</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">#setEffect()</code>
+      to
+      <code translate="no" dir="ltr">CameraController</code>
+      that allows adding effects to camera output. (
+      <a href="https://android-review.googlesource.com/#/q/I1d21f39630a5c334e2605c0b1b4866eaec35a011">I1d21f</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">invalidate()</code>
+      method to
+      <code translate="no" dir="ltr">SurfaceRequest</code>
+      . The Surface provider can notify that the previously provided surface is no longer valid. (
+      <a href="https://android-review.googlesource.com/#/q/Idc649eabf476d7f667d5aa613f6be03f1815d2e8">Idc649</a>
+      )
+    </li>
+    <li>
+      Add a
+      <code translate="no" dir="ltr">ImageProcessor</code>
+      API. This interface is for inject post-processing effects into the
+      <code translate="no" dir="ltr">ImageCapture</code>
+      pipeline. (
+      <a href="https://android-review.googlesource.com/#/q/I575c62c264ff447ba6ffa9988bd0e81014ed45a4">I575c6</a>
+      )
+    </li>
+    <li>
+      Added API
+      <code translate="no" dir="ltr">Recorder.Builder.setAspectRatio()</code>
+      which can be combined with
+      <code translate="no" dir="ltr">QualitySelector</code>
+      to support more video resolutions. (
+      <a href="https://android-review.googlesource.com/#/q/I8a082872c3404068a0cadc8d27692a9f27e35ef6">I8a082</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Recorder.Builder#setTargetVideoEncodingBitRate</code>
+      to set Target Video Encoding
+      <code translate="no" dir="ltr">BitRate</code>
+      and
+      <code translate="no" dir="ltr">Recorder#getTargetVideoEncodingBitRate</code>
+      to get Target Video Encoding BitRate. (
+      <a href="https://android-review.googlesource.com/#/q/I5984de8c85b7ee08ad7422564669ce35fb96cfa7">I5984d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">ImageCapture</code>
+      failed when there is no flash unit and flash mode is on. (
+      <a href="https://android-review.googlesource.com/#/q/I9e8b433c6a2696a363c06d109877a4df2f90ca6a">I9e8b4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/263391112">b/263391112</a>
+      )
+    </li>
+    <li>
+      Fixed JPEG image corruption issue if writing Exif location data on some Samsung Android 12 devices. (
+      <a href="https://android-review.googlesource.com/#/q/Ib70862aa6e654f06b9358e3f92bbb98c86cb9caf">Ib7086</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/263747161">b/263747161</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/263289024">b/263289024</a>
+      )
+    </li>
+    <li>
+      when setting torch/zoom prior before camera initialization compelets, e.g. calling
+      <code translate="no" dir="ltr">CameraController#enableTorch</code>
+      , the pending action is cached and submitted once the initialization compeltes. (
+      <a href="https://android-review.googlesource.com/#/q/I11e926246983a760b0e65652abe89c67f6434cff">I11e92</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/264157663">b/264157663</a>
+      )
+    </li>
+  </ul>

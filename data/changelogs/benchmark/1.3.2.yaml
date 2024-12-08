@@ -1,0 +1,68 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.3.2
+releaseDate: 2024-10-02
+#language=html
+changelogHtml: |
+  <h3 id="1.3.2" data-text="Version 1.3.2" tabindex="-1">Version 1.3.2</h3>
+  <p>October 2, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.3.2</code>
+    is released. Version 1.3.2 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/8b90fce166a020c62a93085f5f104552517472c5..ee1918bf61abcf745cedcdbbb6ebbdf1808da586/benchmark">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed Firebase Test Lab (FTL) being unable to pull Baseline Profile or Macrobenchmark result files from the Baseline Profile Gradle Plugin. (
+      <a href="https://android-review.googlesource.com/#/q/I2f6789d81a32d04df976437c2be426cbe04488ac">I2f678</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/285187547">b/285187547</a>
+      )
+    </li>
+  </ul>
+  <p>To use FTL apply the plugin to the baseline profile module in the plugin block, with:</p>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Text only"><code translate="no" dir="ltr">  plugins {
+        ...
+        id("com.google.firebase.testlab")
+    }
+  </code></pre>
+  </devsite-code>
+  <p>and then configure firebase test lab with:</p>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Genshi"><code translate="no" dir="ltr"><span class="devsite-syntax-w">  </span>firebaseTestLab<span class="devsite-syntax-w"> </span>{
+
+  <span class="devsite-syntax-w">      </span>//<span class="devsite-syntax-w"> </span>Credentials<span class="devsite-syntax-w"> </span>for<span class="devsite-syntax-w"> </span>FTL<span class="devsite-syntax-w"> </span>service
+  <span class="devsite-syntax-w">      </span>serviceAccountCredentials.set(file("credentials.json"))
+
+  <span class="devsite-syntax-w">      </span>//<span class="devsite-syntax-w"> </span>Creates<span class="devsite-syntax-w"> </span>one<span class="devsite-syntax-w"> </span>or<span class="devsite-syntax-w"> </span>more<span class="devsite-syntax-w"> </span>managed<span class="devsite-syntax-w"> </span>devices<span class="devsite-syntax-w"> </span>to<span class="devsite-syntax-w"> </span>run<span class="devsite-syntax-w"> </span>the<span class="devsite-syntax-w"> </span>tests<span class="devsite-syntax-w"> </span>on.
+  <span class="devsite-syntax-w">      </span>managedDevices<span class="devsite-syntax-w"> </span>{
+  <span class="devsite-syntax-w">          </span>"ftlDeviceShiba34"<span class="devsite-syntax-w"> </span>{
+  <span class="devsite-syntax-w">              </span>device<span class="devsite-syntax-w"> </span>=<span class="devsite-syntax-w"> </span>"shiba"
+  <span class="devsite-syntax-w">              </span>apiLevel<span class="devsite-syntax-w"> </span>=<span class="devsite-syntax-w"> </span>34
+  <span class="devsite-syntax-w">          </span>}
+  <span class="devsite-syntax-w">      </span>}
+
+  <span class="devsite-syntax-w">      </span>//<span class="devsite-syntax-w"> </span>Ensures<span class="devsite-syntax-w"> </span>the<span class="devsite-syntax-w"> </span>baseline<span class="devsite-syntax-w"> </span>profile<span class="devsite-syntax-w"> </span>is<span class="devsite-syntax-w"> </span>pulled<span class="devsite-syntax-w"> </span>from<span class="devsite-syntax-w"> </span>the<span class="devsite-syntax-w"> </span>device.
+  <span class="devsite-syntax-w">      </span>//<span class="devsite-syntax-w"> </span>Note<span class="devsite-syntax-w"> </span>that<span class="devsite-syntax-w"> </span>this<span class="devsite-syntax-w"> </span>will<span class="devsite-syntax-w"> </span>be<span class="devsite-syntax-w"> </span>automated<span class="devsite-syntax-w"> </span>as<span class="devsite-syntax-w"> </span>well<span class="devsite-syntax-w"> </span>later<span class="devsite-syntax-w"> </span>with<span class="devsite-syntax-w"> </span>aosp/3272935.
+  <span class="devsite-syntax-w">      </span>testOptions<span class="devsite-syntax-w"> </span>{
+  <span class="devsite-syntax-w">          </span>results<span class="devsite-syntax-w"> </span>{
+  <span class="devsite-syntax-w">              </span>directoriesToPull.addAll("/storage/emulated/0/Android/media/<span class="devsite-syntax-cp">${</span><span class="devsite-syntax-n">android</span><span class="devsite-syntax-o">.</span><span class="devsite-syntax-n">namespace</span><span class="devsite-syntax-cp">}</span>")
+  <span class="devsite-syntax-w">          </span>}
+  <span class="devsite-syntax-w">      </span>}
+  <span class="devsite-syntax-w">  </span>}
+  </code></pre>
+  </devsite-code>
+  <p>Also the created FTL device needs to be added to the baseline profile extension:</p>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Text only"><code translate="no" dir="ltr">  baselineProfile {
+        managedDevices += "ftlDeviceShiba34"
+        useConnectedDevices = false
+    }
+  </code></pre>
+  </devsite-code>

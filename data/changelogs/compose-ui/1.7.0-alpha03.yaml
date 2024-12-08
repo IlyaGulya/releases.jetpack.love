@@ -1,0 +1,191 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.7.0-alpha03
+releaseDate: 2024-02-21
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha03" data-text="Version 1.7.0-alpha03" tabindex="-1">Version 1.7.0-alpha03</h3>
+  <p>February 21, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.7.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ca2a8cf8da3a3502fccc593974f8085653e38261..e1b82c49c59d8e976ce558aba5586f6c61bc9054/compose/ui">Version 1.7.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Introducing
+      <code translate="no" dir="ltr">ContextualFlowRow</code>
+      and Enhanced
+      <code translate="no" dir="ltr">FlowRow</code>
+      /
+      <code translate="no" dir="ltr">Column</code>
+      with MaxLines and Overflow. We are excited to announce enhancements to the experimental
+      <code translate="no" dir="ltr">FlowRow</code>
+      and
+      <code translate="no" dir="ltr">FlowColumn</code>
+      , now featuring maxLines and overflow support, alongside the debut of
+      <code translate="no" dir="ltr">ContextualFlowRow</code>
+      and
+      <code translate="no" dir="ltr">ContextualFlowColumn</code>
+      . This update is designed to provide performance optimal components, where
+      <code translate="no" dir="ltr">ContextualFlow*</code>
+      is perfect for a large number of items making use of a small
+      <code translate="no" dir="ltr">maxLines</code>
+      config and dynamic +N see more buttons, and
+      <code translate="no" dir="ltr">FlowRow</code>
+      and
+      <code translate="no" dir="ltr">FlowColumn</code>
+      is perfect for a small number of items, less than 100 items. Important: To maintain existing behavior in
+      <code translate="no" dir="ltr">FlowRow</code>
+      or
+      <code translate="no" dir="ltr">FlowColumn</code>
+      where all items are composed regardless of if they fit the cross axis max, set
+      <code translate="no" dir="ltr">overflow</code>
+      to
+      <code translate="no" dir="ltr">FlowRowOverflow.Visible</code>
+      or
+      <code translate="no" dir="ltr">FlowColumnOverflow.Visible</code>
+      during initialization. Explore
+      <code translate="no" dir="ltr">ContextualFlowRowSample</code>
+      and
+      <code translate="no" dir="ltr">FlowRowSample</code>
+      for examples of these new features in action. (
+      <a href="https://android-review.googlesource.com/#/q/Ib913509969a79ff002eafb0075e6722a7a118531">Ib9135</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/293577082">b/293577082</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">maxTextLength</code>
+      semantics property that should be set on text fields that filter the maximum allowed number of characters. (
+      <a href="https://android-review.googlesource.com/#/q/I24d9f6b2aa6f1e94b67847464314480dd80e8245">I24d9f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170648072">b/170648072</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">Modifier.inspectable</code>
+      wrapper has been deprecated. This API will create more invalidations of your modifier than necessary, so its use is now discouraged. Developers are encouraged to implement the
+      <code translate="no" dir="ltr">inspectableProperties()</code>
+      method on
+      <code translate="no" dir="ltr">ModifierNodeElement</code>
+      if they would like to expose modifier properties to tooling. (
+      <a href="https://android-review.googlesource.com/#/q/Ib323690cdea8d9d4739496b95c6be7909dce7d2f">Ib3236</a>
+      )
+    </li>
+    <li>
+      New constructor for
+      <code translate="no" dir="ltr">PopupProperties</code>
+      which allows for full control over
+      <code translate="no" dir="ltr">WindowManager.LayoutParams</code>
+      flags. (
+      <a href="https://android-review.googlesource.com/#/q/Ibb33e49304ab4d69c15d61b3d018536a55c342aa">Ibb33e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/312485503">b/312485503</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">DelegatableNode.requireLayoutCoordinates()</code>
+      as a way to get a
+      <code translate="no" dir="ltr">Modifier.Node</code>
+      's current
+      <code translate="no" dir="ltr">LayoutCoordinates</code>
+      without needing to override
+      <code translate="no" dir="ltr">onPlaced</code>
+      and store the coordinates in a property yourself. (
+      <a href="https://android-review.googlesource.com/#/q/Ia86579f48f389b7bc8d8a8be25602edfded6160c">Ia8657</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">DelegatableNode.currentLayoutCoordinates</code>
+      as a way to get a
+      <code translate="no" dir="ltr">Modifier.Node</code>
+      's current
+      <code translate="no" dir="ltr">LayoutCoordinates</code>
+      without needing to override
+      <code translate="no" dir="ltr">onPlaced</code>
+      and store the coordinates in a property yourself. (
+      <a href="https://android-review.googlesource.com/#/q/Iaebaa704ca29bb366bea5f85958fc4ddaae8be2f">Iaebaa</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BasicTextField2</code>
+      and related APIs under
+      <code translate="no" dir="ltr">androidx.compose.foundation.text2</code>
+      package are moved to
+      <code translate="no" dir="ltr">androidx.compose.foundation.text</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I9f6355e98b573d8985af9ec5135634da58bcc597">I9f635</a>
+      )
+    </li>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">ApproachLayoutModifierNode</code>
+      API to support creating custom approach logic in an explicit Modifier Node. Also added a new experimental
+      <code translate="no" dir="ltr">DeferredTargetAnimation</code>
+      API for animations whose target is unknown at instantiation. (
+      <a href="https://android-review.googlesource.com/#/q/I60745501487754b36b0e1986bc2bc7ecbac267e8">I60745</a>
+      )
+    </li>
+    <li>
+      New
+      <code translate="no" dir="ltr">Path</code>
+      APIs to query the direction of a Path and to extract contours from a
+      <code translate="no" dir="ltr">Path</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I63d04394c6b8b395f144ea082fc2cf7810806513">I63d04</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">PathHitTest</code>
+      and
+      <code translate="no" dir="ltr">Path.contains(Offset)</code>
+      to check if a
+      <code translate="no" dir="ltr">Path</code>
+      contains a specific point. (
+      <a href="https://android-review.googlesource.com/#/q/I3b2186d2d3bacc037f56a1d6c2266083b78a6785">I3b218</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">TextLayoutResult</code>
+      now exposes the
+      <code translate="no" dir="ltr">getLineBaseline(lineIndex)</code>
+      method. This allows to read the baseline of an arbitrary line of the text in addition to existing convenience properties
+      <code translate="no" dir="ltr">firstBaseline</code>
+      and
+      <code translate="no" dir="ltr">lastBaseline</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ide4e848470681364cdf7e141154d8fe5b7641eb9">Ide4e8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/237428541">b/237428541</a>
+      )
+    </li>
+    <li>
+      Added method to compare only the annotations of two
+      <code translate="no" dir="ltr">AnnotatedStrings</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3265940a29ab587c50c96bfcbeb35590cad48100">I32659</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a backwards compatibility issue with
+      <code translate="no" dir="ltr">SemanticsPropertyReceiver.performImeAction</code>
+      and
+      <code translate="no" dir="ltr">SemanticsActions.PerformImeAction</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id0528d5c5115ce4a6f703547be943a9740c22860">Id0528</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/322269946">b/322269946</a>
+      )
+    </li>
+  </ul>

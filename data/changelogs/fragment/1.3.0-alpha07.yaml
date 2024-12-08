@@ -1,0 +1,84 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.3.0-alpha07
+releaseDate: 2020-07-22
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha07" data-text="Version 1.3.0-alpha07" tabindex="-1">Version 1.3.0-alpha07</h3>
+  <p>July 22, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.3.0-alpha07</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.3.0-alpha07</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.3.0-alpha07</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/bea4dafe72ba1ec91a105da3128954d5ed7f1cd0..9f60cc700129e30cee9df020005c317fb39d32ec/fragment">Version 1.3.0-alpha07 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">FragmentScenario</code>
+      now supports setting an initial Lifecycle state of
+      <code translate="no" dir="ltr">CREATED</code>
+      ,
+      <code translate="no" dir="ltr">STARTED</code>
+      , or
+      <code translate="no" dir="ltr">RESUMED</code>
+      rather than always moving the Fragment to the
+      <code translate="no" dir="ltr">RESUMED</code>
+      state. (
+      <a href="https://issuetracker.google.com/159662750">b/159662750</a>
+      )
+    </li>
+    <li>
+      Added an alternative to the
+      <code translate="no" dir="ltr">FragmentScenario</code>
+      API of
+      <code translate="no" dir="ltr">onFragment</code>
+      in the form of the Kotlin reified extension method
+      <code translate="no" dir="ltr">withFragment</code>
+      that allows you to return a value. Notably, it rethrows exceptions raised in the given block. (
+      <a href="https://issuetracker.google.com/158697631">b/158697631</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">FragmentScenario</code>
+      now uses
+      <a href="/reference/androidx/fragment/app/FragmentTransaction#setMaxLifecycle(androidx.fragment.app.Fragment,%20androidx.lifecycle.Lifecycle.State)"><code translate="no" dir="ltr">setMaxLifecycle()</code></a>
+      to implement
+      <code translate="no" dir="ltr">moveToState()</code>
+      , ensuring consistent behavior on all API levels and decoupling the Fragment’s state from the underlying Activity. (
+      <a href="https://issuetracker.google.com/156527405">b/156527405</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">SavedStateRegistryOwner</code>
+      returned by
+      <code translate="no" dir="ltr">ViewTreeSavedStateRegistryOwner</code>
+      is now tied to the fragment view’s Lifecycle. This ensures that it has its state saved and restore at the same time as the fragment’s view. (
+      <a href="https://issuetracker.google.com/158503763">b/158503763</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fragments now wait for the fragment’s view to be attached before calling
+      <code translate="no" dir="ltr">ViewCompat.requestApplyInsets()</code>
+      , avoiding cases where the inset request was being dropped. (
+      <a href="https://issuetracker.google.com/158095749">b/158095749</a>
+      )
+    </li>
+    <li>
+      Calling
+      <code translate="no" dir="ltr">clearFragmentResultListener</code>
+      now properly clears the lifecycle observer. (
+      <a href="https://issuetracker.google.com/issues/159274993">b/159274993</a>
+      )
+    </li>
+  </ul>

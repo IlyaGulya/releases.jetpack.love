@@ -1,0 +1,159 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.3.0-alpha05
+releaseDate: 2024-04-17
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha05" data-text="Version 1.3.0-alpha05" tabindex="-1">Version 1.3.0-alpha05</h3>
+  <p>April 17, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.3.0-alpha05</code>
+    is released. Version 1.3.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/02b55f664eba38e42e362e1af3913be1df552d55..67004410fdbff19f90caa4cc43965ab21dca1943/compose/material3">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">SearchBar</code>
+      and
+      <code translate="no" dir="ltr">DockedSearchBar</code>
+      have new overloads that take a text field parameter. This allows styling the text field separately from the rest of the search bar as well as passing in custom text fields. The text field of the current implementation has been made available as
+      <code translate="no" dir="ltr">SearchBarDefaults.InputField</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I50c73509b4a67247df7240207e7ad13d5863a7ff">I50c73</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/275074248">b/275074248</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/278773336">b/278773336</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326627700">b/326627700</a>
+      )
+    </li>
+    <li>
+      the lambda
+      <code translate="no" dir="ltr">drawTick</code>
+      has been added to the public API in order to customize the ticks if needed (
+      <a href="https://android-review.googlesource.com/#/q/I0c048c627d7c5a3a0dfde4b7743cdb6a2802aee9">I0c048</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Text links got pressed state styling option in addition to normal styling, hovered and focused (
+      <a href="https://android-review.googlesource.com/#/q/I5f864b3fd1b1af6ff39dee03e1aa65ede7e16d32">I5f864</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/139312671">b/139312671</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">CarouselItemInfo</code>
+      to expose a mask Rect that the item is being clipped by (
+      <a href="https://android-review.googlesource.com/#/q/I785d821b4d008bd649243c034a4df92077823667">I785d8</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">BasicTooltipState</code>
+      from the Material 3 public API. Its functionality is combined with
+      <code translate="no" dir="ltr">TooltipState</code>
+      until Foundation's
+      <code translate="no" dir="ltr">BasicTooltip</code>
+      is stabilized. (
+      <a href="https://android-review.googlesource.com/#/q/Icda29a4fd0ddd1fb4a7362464916a58ae88ef859">Icda29</a>
+      )
+    </li>
+    <li>
+      Added a
+      <code translate="no" dir="ltr">TextDefaults</code>
+      object that contains methods to construct a
+      <code translate="no" dir="ltr">LinkAnnotation</code>
+      and parse HTML-tagged string which apply
+      <code translate="no" dir="ltr">MaterialTheme</code>
+      to the links (
+      <a href="https://android-review.googlesource.com/#/q/I98532f3512d1930416f66dd195746eeeba884497">I98532</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/139312671">b/139312671</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ExposedDropdownMenuBoxScope</code>
+      no longer permits subclasses. Exposed dropdown menus now have a
+      <code translate="no" dir="ltr">MenuAnchorType</code>
+      which should be passed to
+      <code translate="no" dir="ltr">menuAnchor</code>
+      to support better a11y. This should be used instead of passing
+      <code translate="no" dir="ltr">focusable</code>
+      to
+      <code translate="no" dir="ltr">ExposedDropdownMenu</code>
+      , which is now deprecated.
+      <code translate="no" dir="ltr">menuAnchor</code>
+      has a new parameter to control
+      <code translate="no" dir="ltr">enabled</code>
+      state. (
+      <a href="https://android-review.googlesource.com/#/q/I55ee632daf66ef4df90297350cbff901e26ea446">I55ee6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/257209915">b/257209915</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/308840226">b/308840226</a>
+      )
+    </li>
+    <li>
+      Fixed the border color of
+      <code translate="no" dir="ltr">OutlinedButton</code>
+      when disabled. Added
+      <code translate="no" dir="ltr">ButtonDefaults.outlinedButtonBorder("enabled")</code>
+      overload that takes the enabled state. (
+      <a href="https://android-review.googlesource.com/#/q/Ie650bd6f38d9802f4040c0f1c90688d66446019b">Ie650b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/318461363">b/318461363</a>
+      )
+    </li>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">CarouselItemInfo</code>
+      class to help clients get information about the item sizes. (
+      <a href="https://android-review.googlesource.com/#/q/I9070c8284c49315b5a6d676cc235974bcf7a70c8">I9070c</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ColorScheme</code>
+      constructor without surface containers is now deprecated. Please migrate to the constructor that includes surface containers. (
+      <a href="https://android-review.googlesource.com/#/q/I35c11d8e95b77a5b9c44e5103ccedc55196f65f0">I35c11</a>
+      )
+    </li>
+    <li>
+      [Outlined]
+      <code translate="no" dir="ltr">TextFieldDefaults</code>
+      <code translate="no" dir="ltr">ContainerBox</code>
+      renamed to
+      <code translate="no" dir="ltr">Container</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie8d3bef9cfd4b2b8e1a355e6f167ee98e0605c16">Ie8d3b</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">BottomSheetScaffold</code>
+      will no longer scroll from nested scroll if
+      <code translate="no" dir="ltr">sheetSwipeEnabled</code>
+      is false. (
+      <a href="https://android-review.googlesource.com/#/q/I5e1c1adb83167184f2baa4457cf1b3c70272a72c">I5e1c1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/306464779">b/306464779</a>
+      )
+    </li>
+    <li>
+      Removed some
+      <code translate="no" dir="ltr">ExperimentalMaterial3Api</code>
+      OptIn annotation in
+      <code translate="no" dir="ltr">IconButtonSamples.kt</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I111d1cd1939c1788d5e216d7c09d691bd3bc9473">I111d1</a>
+      )
+    </li>
+  </ul>

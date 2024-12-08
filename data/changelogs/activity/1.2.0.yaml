@@ -1,0 +1,163 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.2.0
+releaseDate: 2021-02-10
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0" data-text="Version 1.2.0" tabindex="-1">Version 1.2.0</h3>
+  <p>February 10, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.2.0</code>
+    and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.2.0</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/0c05672ea464c9788ec7c07e723361f2a23b3439..2b9107d21669925e066ad87d9caa04b7dedf59d4/activity">Version 1.2.0 contains these commits.</a>
+  </p>
+  <p><strong>Major changes since 1.1.0</strong></p>
+  <ul>
+    <li>
+      <strong>Activity Result APIs</strong>
+      :
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      now provides an
+      <code translate="no" dir="ltr">ActivityResultRegistry</code>
+      that lets you handle
+      <code translate="no" dir="ltr">startActivityForResult()</code>
+      +
+      <code translate="no" dir="ltr">onActivityResult()</code>
+      as well as
+      <code translate="no" dir="ltr">requestPermissions()</code>
+      +
+      <code translate="no" dir="ltr">onRequestPermissionsResult()</code>
+      flows without overriding methods in your Activity or Fragment, brings increased type safety via
+      <code translate="no" dir="ltr">ActivityResultContract</code>
+      , and provides hooks for testing these flows. See the updated
+      <a href="/training/basics/intents/result">Getting a Result from an Activity</a>
+      .
+    </li>
+  </ul>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      when upgrading to Activity
+      <code translate="no" dir="ltr">1.2.0</code>
+      , you
+      <strong>must</strong>
+      upgrade to
+      <a href="/jetpack/androidx/releases/fragment#1.3.0">
+        Fragment
+        <code translate="no" dir="ltr">1.3.0</code>
+      </a>
+      to fix issues with invalid request codes and ensure that permission requests are delivered correctly. The
+      <code translate="no" dir="ltr">InvalidFragmentVersionForActivityResult</code>
+      Lint check will warn you if you do not upgrade to an appropriate Fragment version.
+    </span>
+  </aside>
+  <ul>
+    <li>
+      <p>
+        <strong><code translate="no" dir="ltr">ContextAware</code></strong>
+        :
+        <code translate="no" dir="ltr">ComponentActivity</code>
+        now implements
+        <code translate="no" dir="ltr">ContextAware</code>
+        , allowing you to add one or more
+        <code translate="no" dir="ltr">OnContextAvailableListener</code>
+        instances which will receive a callback
+        <em>before</em>
+        the base
+        <code translate="no" dir="ltr">Activity.onCreate()</code>
+        .
+      </p>
+
+      <ul>
+        <li>
+          A suspending Kotlin extension
+          <code translate="no" dir="ltr">withContextAvailable()</code>
+          allows you to run a non-suspending block when the Context becomes available and return a result.
+        </li>
+        <li>
+          This API is used by
+          <code translate="no" dir="ltr">FragmentActivity</code>
+          in
+          <a href="/jetpack/androidx/releases/fragment#1.3.0">Fragment 1.3.0</a>
+          to restore the state of the
+          <code translate="no" dir="ltr">FragmentManager</code>
+          . Any listeners added to subclasses of
+          <code translate="no" dir="ltr">FragmentActivity</code>
+          will run after that listener.
+        </li>
+        <li>
+          This API is used by
+          <code translate="no" dir="ltr">AppCompatActivity</code>
+          in
+          <a href="/jetpack/androidx/releases/appcompat#1.3.0-alpha02">AppCompat 1.3.0-alpha02</a>
+          or higher. Any listeners added to subclasses of
+          <code translate="no" dir="ltr">AppCompatActivity</code>
+          will run after that listener.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        <strong>
+          <code translate="no" dir="ltr">ViewTree</code>
+          Support
+        </strong>
+        :
+        <code translate="no" dir="ltr">ComponentActivity</code>
+        now supports the
+        <code translate="no" dir="ltr">ViewTreeLifecycleOwner.get(View)</code>
+        ,
+        <code translate="no" dir="ltr">ViewTreeViewModelStoreOwner.get(View)</code>
+        , and
+        <code translate="no" dir="ltr">ViewTreeSavedStateRegistryOwner</code>
+        APIs added in
+        <a href="/jetpack/androidx/releases/lifecycle#2.3.0">
+          Lifecycle
+          <code translate="no" dir="ltr">2.3.0</code>
+        </a>
+        and
+        <a href="/jetpack/androidx/releases/savedstate#1.1.0">
+          SavedState
+          <code translate="no" dir="ltr">1.1.0</code>
+        </a>
+        such that it will return the Activity as the
+        <code translate="no" dir="ltr">LifecycleOwner</code>
+        ,
+        <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+        , and
+        <code translate="no" dir="ltr">SavedStateRegistryOwner</code>
+        for any Views directly added to the
+        <code translate="no" dir="ltr">ComponentActivity</code>
+        .
+      </p>
+    </li>
+  </ul>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      When using
+      <code translate="no" dir="ltr">AppCompatActivity</code>
+      , you must use
+      <a href="/jetpack/androidx/releases/appcompat#1.3.0-alpha01">
+        AppCompat
+        <code translate="no" dir="ltr">1.3.0-alpha01</code>
+      </a>
+      or higher to gain
+      <code translate="no" dir="ltr">ViewTree</code>
+      support.
+    </span>
+  </aside>
+  <ul>
+    <li>
+      <strong>reportFullyDrawn() backport</strong>
+      - The
+      <code translate="no" dir="ltr">Activity</code>
+      method of
+      <code translate="no" dir="ltr">reportFullyDrawn()</code>
+      has been backported in
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      to work on all API levels, fixing a crash on API 19 and adding tracing for this method for all API levels.
+    </li>
+  </ul>

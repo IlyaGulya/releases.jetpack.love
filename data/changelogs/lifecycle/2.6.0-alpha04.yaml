@@ -1,0 +1,138 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.6.0-alpha04
+releaseDate: 2023-01-11
+#language=html
+changelogHtml: |
+  <h3 id="2.6.0-alpha04" data-text="Version 2.6.0-alpha04" tabindex="-1">Version 2.6.0-alpha04</h3>
+  <p>January 11, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.6.0-alpha04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/bef0ef1a976b416db5ece6c6da5d388f1cb8cd7b..adf1c279a86ab3886e1666c08e2c3efba783367b/lifecycle">Version 2.6.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">LiveData</code>
+      now includes a new
+      <code translate="no" dir="ltr">isInitialized</code>
+      property that indicates whether an explicit value has ever been set on the
+      <code translate="no" dir="ltr">LiveData</code>
+      , allowing you to distinguish between
+      <code translate="no" dir="ltr">liveData.value</code>
+      returning
+      <code translate="no" dir="ltr">null</code>
+      because no value has ever been set or an explicit
+      <code translate="no" dir="ltr">null</code>
+      value. (
+      <a href="https://android-review.googlesource.com/#/q/Ibd01803e2ee34a7cd4854438e5562fea473afad0">Ibd018</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">collectAsStateWithLifecycle()</code>
+      APIs of
+      <code translate="no" dir="ltr">lifecycle-runtime-compose</code>
+      are no longer in experimental status. (
+      <a href="https://android-review.googlesource.com/#/q/I09d42621a1247ad59b37b478e883a61350bf247c">I09d42</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/258835424">b/258835424</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Lifecycle.launchWhenX</code>
+      methods and
+      <code translate="no" dir="ltr">Lifecycle.whenX</code>
+      methods have been deprecated as the use of a pausing dispatcher can lead to wasted resources in some cases. It is recommended to use
+      <code translate="no" dir="ltr">Lifecycle.repeatOnLifecycle</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iafc54d5078bcb576ba7a326615ce1df6592ef5f1">Iafc54</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/248302832">b/248302832</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Kotlin Conversions</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ViewTreeLifecycleOwner</code>
+      is now written in Kotlin. This is a
+      <strong>source incompatible change</strong>
+      for those classes written in Kotlin - you must now directly import and use the Kotlin extension methods on
+      <code translate="no" dir="ltr">View</code>
+      of
+      <code translate="no" dir="ltr">androidx.lifecycle.setViewTreeLifecycleOwner</code>
+      and
+      <code translate="no" dir="ltr">androidx.lifecycle.findViewTreeLifecycleOwner</code>
+      to set and find a previously set owner. This replaces the previous Kotlin extension in
+      <code translate="no" dir="ltr">lifecycle-runtime-ktx</code>
+      . This is binary compatible and remains source compatible for implementations written in the Java programming language. (
+      <a href="https://android-review.googlesource.com/#/q/I8a77a0b14345639a2bc7c96004017afb54a7f3e0">I8a77a</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I5234e702d384ac8bdbb9b2f45ae98e146cca21cb">I5234e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/240298691">b/240298691</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LiveDataReactiveStreams</code>
+      is now written in Kotlin. The Kotlin extensions previously in
+      <code translate="no" dir="ltr">lifecycle-reactivestreams-ktx</code>
+      have been moved into the
+      <code translate="no" dir="ltr">lifecycle-reactivestreams</code>
+      module and have become the primary surface for code written in Kotlin. This is a
+      <strong>source incompatible change</strong>
+      for code written in Kotlin if you were not already using the Kotlin extension method APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I2b1b9e5dadf2e108e7539ef398e4d252b0ca9043">I2b1b9</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I95d22efa7df46ff8444f207ec015bfc9935a4457">I95d22</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/240298691">b/240298691</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">DefaultLifecycleObserver</code>
+      ,
+      <code translate="no" dir="ltr">LifecycleEventObserver</code>
+      ,
+      <code translate="no" dir="ltr">Lifecycle</code>
+      ,
+      <code translate="no" dir="ltr">LifecycleRegistry</code>
+      ,
+      <code translate="no" dir="ltr">LifecycleObserver</code>
+      , and
+      <code translate="no" dir="ltr">ViewModelStore</code>
+      are now written in Kotlin (
+      <a href="https://android-review.googlesource.com/#/q/Iadffd272fae9862cd5f3a02c46dc3cb36d18517e">Iadffd</a>
+      , (
+      <a href="https://android-review.googlesource.com/#/q/I60034ada57f8a23c65f7bdbecdf2792f59b77733">I60034</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I8c52cdaf8b5546f6505ff93668b84170022ca0a5">I8c52c</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I9593df2393b1399302ade4acc011128fce3277b2">I9593d</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I01fe1cf525fc1f427f18b8c10e45602f3ea04c6f">I01fe1</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I59a23a57833e4034474fb6890d4681d8ffb274ae">I59a23</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/240298691">b/240298691</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      no longer crashes with a
+      <code translate="no" dir="ltr">ClassCastException</code>
+      when calling
+      <code translate="no" dir="ltr">get()</code>
+      with the incorrect class type. (
+      <a href="https://android-review.googlesource.com/#/q/I6ae7c23cd7e2ac1ec35bfc6b38aef973be1040a0">I6ae7c</a>
+      )
+    </li>
+  </ul>

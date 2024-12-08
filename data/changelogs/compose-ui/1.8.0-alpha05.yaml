@@ -1,0 +1,154 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.8.0-alpha05
+releaseDate: 2024-10-30
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0-alpha05" data-text="Version 1.8.0-alpha05" tabindex="-1">Version 1.8.0-alpha05</h3>
+  <p>October 30, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.8.0-alpha05</code>
+    is released. Version 1.8.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b8a68b0896897fa158508d73a31998a26161d9a7..ccd90a76bd7c4acf4f4f01eca76350e383bc441e/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>Autofill is exposed behind a feature flag in this release. We are working on improving performance, and are looking for early feedback on the APIs. The APIs are expected to evolve prior to stable based on feedback.</p>
+  <ul>
+    <li>
+      To enable Autofill, set
+      <code translate="no" dir="ltr">ComposeUiFlags.isSemanticAutofillEnabled</code>
+      to true in
+      <code translate="no" dir="ltr">onCreate</code>
+      and use the latest Compose Snapshot.
+    </li>
+    <li>This version of Autofill supports saving credentials manually, through Suggest Strong Password, and through navigation. It also supports filling when an autofillable field receives focus or when Autofill is triggered via the text toolbar on text components. The component will become highlighted to indicate when autofill has completed.</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Modify Autofill interface to follow
+      <code translate="no" dir="ltr">expect</code>
+      /
+      <code translate="no" dir="ltr">actual</code>
+      structure. (
+      <a href="https://android-review.googlesource.com/#/q/I22dceea9de3ac5a716f059bb763e34e332ab4166">I22dce</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">CompositionLocal</code>
+      that can be used to modify the hue of Autofill's successful filling highlight. (
+      <a href="https://android-review.googlesource.com/#/q/I320926246d1811c2c974a6793f48941907c33afe">I32092</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Modifier.onRectChanged</code>
+      API which is an API that allows one to subscribe to the root/window/screen-relative position and size of a
+      <code translate="no" dir="ltr">LayoutNode</code>
+      . The API solves many use cases that the existing
+      <code translate="no" dir="ltr">onGloballyPositioned</code>
+      modifier does, however it does so with much less overhead and the API comes with facilities to debounce and throttle the callback per what one's use case demands. (
+      <a href="https://android-review.googlesource.com/#/q/Id28c7c6c52ce3b18c9ac8c83cde48111a312cfc9">Id28c7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/372765423">b/372765423</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/372757007">b/372757007</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/372994338">b/372994338</a>
+      )
+    </li>
+    <li>
+      Expands Autofill manager to include
+      <code translate="no" dir="ltr">commit()</code>
+      and
+      <code translate="no" dir="ltr">cancel()</code>
+      APIs that help users save newly entered credentials. (
+      <a href="https://android-review.googlesource.com/#/q/I2da00b7050b12af7b978f2f52fe27dc74a6fd8f2">I2da00</a>
+      )
+    </li>
+    <li>
+      Introduces new
+      <code translate="no" dir="ltr">AutofillManager</code>
+      interface that can be used to fine-tune users' Autofill journey and a
+      <code translate="no" dir="ltr">isSemanticAutofillEnabled</code>
+      flag to turn on this new version of Autofill. (
+      <a href="https://android-review.googlesource.com/#/q/I9d4842cc35b289158e889f89b7b65346f049e884">I9d484</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Modifier.onRectChanged</code>
+      API which is an API that allows one to subscribe to the root/window/screen-relative position and size of a
+      <code translate="no" dir="ltr">LayoutNode</code>
+      . The API solves many use cases that the existing
+      <code translate="no" dir="ltr">onGloballyPositioned</code>
+      modifier does, however it does so with much less overhead and the API comes with facilities to debounce and throttle the callback per what one's use case demands. (
+      <a href="https://android-review.googlesource.com/#/q/I3c8fa250f561bbd846a9044118532ec439240efd">I3c8fa</a>
+      )
+    </li>
+    <li>
+      Add in semantic properties and data types for extended Autofill support. (
+      <a href="https://android-review.googlesource.com/#/q/I52c7dddff216239c3fd51abcaa41304b3219f301">I52c7d</a>
+      )
+    </li>
+    <li>
+      All methods in
+      <code translate="no" dir="ltr">AnnotatedString</code>
+      builder are non-experimental now (
+      <a href="https://android-review.googlesource.com/#/q/Ia89c8c90e0047b9edf89774468d3e5bd00ffee9b">Ia89c8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261561823">b/261561823</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Views embedded in compose can now receive rotary events if they are focused (
+      <a href="https://android-review.googlesource.com/#/q/I4d53a569bdf935d66aa38ce2d7d1fb437b864a6b">I4d53a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/320510084">b/320510084</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where various resource types wouldn't update on configuration changes (
+      <a href="https://android-review.googlesource.com/#/q/Ia9b99f5bd6bdcdcbe2796b83bb2c25b139d0ceef">Ia9b99</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/352336694">b/352336694</a>
+      )
+    </li>
+    <li>
+      Addressed an issue that prevented
+      <code translate="no" dir="ltr">TextField</code>
+      from functioning correctly when using the POBox Japanese Keyboard on certain older Sony devices. (
+      <a href="https://android-review.googlesource.com/#/q/I94e0e598274fb88b255f977f9fbd50dfbbb1ecb1">Ia9b99</a>
+      ,
+      <a href="https://issuetracker.google.com/373743376">b/373743376</a>
+      )
+    </li>
+    <li>
+      Fixed problem with dialogs showing at bottom of the screen instead of centering (
+      <a href="https://android-review/googlesource.com/#/q/Ia2ec9f6edc2705cb8a13201d5e05a859a6bb9571">Ia2ec</a>
+      ,
+      <a href="https://issuetracker.google.com/373093006">b/373093006</a>
+      )
+    </li>
+    <li>
+      Targeting API 35+ no longer forces dialogs to have
+      <code translate="no" dir="ltr">decorFitsSystemWindows</code>
+      set to false. (
+      <a href="https://android-review/googlesource.com/#/q/Ibc94bd0bdfe6645e2e8b92dfbe39c93fece38a2f">Ibc94</a>
+      ,
+      <a href="https://issuetracker.google.com/364492593">b/364492593</a>
+      )
+    </li>
+    <li>
+      Fix crash when layers are moved between windows (e.g. dialog and main content) (
+      <a href="https://android-review/googlesource.com/#/qI675ba974b5a89cd0dab974015ea27c2254c43e98">I675ba</a>
+      ,
+      <a href="https://issuetracker.google.com/330955281">b/330955281</a>
+      )
+    </li>
+  </ul>

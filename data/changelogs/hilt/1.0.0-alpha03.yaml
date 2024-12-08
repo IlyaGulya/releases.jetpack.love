@@ -1,0 +1,87 @@
+libraryId: hilt
+groupId: androidx.hilt
+version: 1.0.0-alpha03
+releaseDate: 2021-01-27
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha03" data-text="Version 1.0.0-alpha03" tabindex="-1">Version 1.0.0-alpha03</h3>
+  <p>January 27, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.hilt:hilt-*:1.0.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9f60cc700129e30cee9df020005c317fb39d32ec..aee18b103203a91ee89df91f0af5df2ecff356d6/hilt">Version 1.0.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Provide APIs for retrieving
+      <code translate="no" dir="ltr">@HiltViewModel</code>
+      annotated ViewModel from a Navigation
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      . The artifact
+      <code translate="no" dir="ltr">hilt-navigation-fragment</code>
+      offers a
+      <code translate="no" dir="ltr">hiltNavGraphViewModels</code>
+      Kotlin extension while
+      <code translate="no" dir="ltr">hilt-navigation</code>
+      exposes a
+      <code translate="no" dir="ltr">HiltViewModelFactory</code>
+      factory method that takes in a
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      as argument and returns a
+      <code translate="no" dir="ltr">ViewModelProvider.Facctory</code>
+      that can be used with
+      <code translate="no" dir="ltr">ViewModelProvider</code>
+      or other View Model retrieving APIs, such as Compose’s
+      <code translate="no" dir="ltr">viewModel()</code>
+      function:
+      <code translate="no" dir="ltr">viewModel(HiltViewModelFactory(AmbientContext.current, backStackEntry))</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I00e675363f5af3922205a30f4670a4c33877a7b3">I00e67</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Replace
+      <code translate="no" dir="ltr">@WorkerInject</code>
+      with
+      <code translate="no" dir="ltr">@HiltWorker</code>
+      .
+      <code translate="no" dir="ltr">@HiltWorker</code>
+      is now a type annotation and requires the usage of @AssistedInject in the constructor. (
+      <a href="https://android-review.googlesource.com/#/q/Ic2f15c63880a02ed082e9205fcad7acdb2b38751">Ic2f15</a>
+      )
+    </li>
+    <li>
+      Deprecate
+      <code translate="no" dir="ltr">@ViewModelInject</code>
+      . Equivalent functionality is now offered by
+      <code translate="no" dir="ltr">@HiltViewModel</code>
+      , which is now part of the core Hilt Android APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I36a41e8fccf38c6e98fff4c00e7bb55cae824fd9">I36a41</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix an issue where AndroidX Hilt extension Modules would not get correctly picked up by Hilt causing Workers to not be available for creation. (
+      <a href="https://android-review.googlesource.com/#/q/I3181c8aad0973d15d82661b48404f2eeeb7ef954">I3181c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/159540434">b/159540434</a>
+      )
+    </li>
+    <li>
+      Migrate AndroidX Hilt extensions to the
+      <code translate="no" dir="ltr">SingletonComponent</code>
+      , removing the deprecated warning of using
+      <code translate="no" dir="ltr">ApplicationCompoonent</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I9c9162e175bad46c56a48c9889ace813550e4f8a">I9c916</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175849092">b/175849092</a>
+      )
+    </li>
+  </ul>

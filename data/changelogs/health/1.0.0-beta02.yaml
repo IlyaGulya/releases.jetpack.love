@@ -1,0 +1,89 @@
+libraryId: health
+groupId: androidx.health
+version: 1.0.0-beta02
+releaseDate: 2023-01-11
+#language=html
+changelogHtml: |
+  <h3 id="health-services-client-1.0.0-beta02" data-text="Version 1.0.0-beta02" tabindex="-1">Version 1.0.0-beta02</h3>
+  <p>January 11, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.health:health-services-client:1.0.0-beta02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/548c8ac2570ae6cf15798fea1380491f7d93796b..adf1c279a86ab3886e1666c08e2c3efba783367b/health/health-services-client">Version 1.0.0-beta02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">suspend</code>
+      extension functions for the existing asynchronous
+      <code translate="no" dir="ltr">ListenableFuture</code>
+      APIs in
+      <code translate="no" dir="ltr">ExerciseClient</code>
+      ,
+      <code translate="no" dir="ltr">PassiveMonitoringClient</code>
+      and
+      <code translate="no" dir="ltr">MeasureClient</code>
+      for better Kotlin support. (
+      <a href="https://android-review.googlesource.com/#/q/Iadea42d6c5a4a7ba510e6400f374c13574c2abfd">Iadea4</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ExerciseTypeConfig</code>
+      API which enables updates during an ongoing exercise. Added
+      <code translate="no" dir="ltr">GolfExerciseTypeConfig</code>
+      to support updating
+      <code translate="no" dir="ltr">ExerciseTypeConfig</code>
+      during golf exercises. (
+      <a href="https://android-review.googlesource.com/#/q/I4c539e1abde8e51e65dcc82e3495f202b10282ea">I4c539</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Throw
+      <code translate="no" dir="ltr">HealthServicesException</code>
+      on suspend functions (
+      <a href="https://android-review.googlesource.com/#/q/I5e509122f25af84a81713eeb2f26e2e62c18978c">I5e509</a>
+      )
+    </li>
+    <li>
+      Add another constructor for backward compatibility (
+      <a href="https://android-review.googlesource.com/#/q/Iddeda8a23e653cf104d8dfacabc5ef8c5e8f83a8">Iddeda</a>
+      )
+    </li>
+    <li>
+      Throw
+      <code translate="no" dir="ltr">RuntimeException</code>
+      on suspend functions (
+      <a href="https://android-review.googlesource.com/#/q/I53bca3e3ea21f16fd8fcd8e0e913edc700266902">I53bca</a>
+      )
+    </li>
+    <li>
+      Remove default implementation of throwing Exception (
+      <a href="https://android-review.googlesource.com/#/q/Id947f2552f3c6e4e9abd981f09f6922db3f4fa7d">Id947f</a>
+      )
+    </li>
+    <li>
+      Adding
+      <code translate="no" dir="ltr">@JvmDefaultWithCompatibility</code>
+      annotation (
+      <a href="https://android-review.googlesource.com/#/q/I8f2067bb0754a5e9dc70c934403366ca8d319c36">I8f206</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Add to kdoc for clarity (
+      <a href="https://android-review.googlesource.com/#/q/Ide2859c52cac07e6c4184ade52b578bdd5a08b73">Ide285</a>
+      )
+    </li>
+    <li>
+      Allow passive monitoring tracking for goals only if the same data types are also tracked (
+      <a href="https://android-review.googlesource.com/#/q/Ibed8da24bafb1786c47e72c069e9cec6ac9ee564">Ibed8d</a>
+      )
+    </li>
+  </ul>

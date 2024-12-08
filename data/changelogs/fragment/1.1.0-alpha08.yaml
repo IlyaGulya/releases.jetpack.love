@@ -1,0 +1,72 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.1.0-alpha08
+releaseDate: 2019-05-07
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha08" data-text="Version 1.1.0-alpha08" tabindex="-1">Version 1.1.0-alpha08</h3>
+  <p>May 7, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.1.0-alpha08</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.1.0-alpha08</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.1.0-alpha08</code>
+    are released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/0fe6b4168055f8da37c439dc82fbc535a9e1987a..948d2294e7ae482dffa9641ec0fb0cbb3412481a/fragment">here</a>
+    .
+  </p>
+  <p>This release is incompatible with Preferences 1.1.0-alpha01 through 1.1.0-alpha04. Please upgrade to Preferences 1.1.0-alpha05 when using this version of Fragments.</p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      Added a new overload of
+      <code translate="no" dir="ltr">postponeEnterTransition()</code>
+      that takes a timeout, after which the Fragment will automatically call
+      <code translate="no" dir="ltr">startPostponedEnterTransition()</code>
+      <a href="https://issuetracker.google.com/issues/120803208">b/120803208</a>
+    </li>
+  </ul>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      Breaking change: the previously deprecated
+      <code translate="no" dir="ltr">FragmentFactory</code>
+      <code translate="no" dir="ltr">instantiate</code>
+      method that took a
+      <code translate="no" dir="ltr">Bundle</code>
+      has been removed.
+      <a href="https://android-review.googlesource.com/953856">aosp/953856</a>
+    </li>
+    <li>
+      Breaking change: The
+      <code translate="no" dir="ltr">RESUME_ONLY_CURRENT_FRAGMENT</code>
+      and
+      <code translate="no" dir="ltr">USE_SET_USER_VISIBLE_HINT</code>
+      constants in
+      <code translate="no" dir="ltr">FragmentPagerAdapter</code>
+      and
+      <code translate="no" dir="ltr">FragmentStatePagerAdapter</code>
+      have been renamed to
+      <code translate="no" dir="ltr">BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT</code>
+      and
+      <code translate="no" dir="ltr">BEHAVIOR_SET_USER_VISIBLE_HINT</code>
+      , respectively.
+      <a href="https://android-review.googlesource.com/954782">aosp/954782</a>
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Fragments that have had their lifecycle capped via
+      <code translate="no" dir="ltr">setMaxLifecycle()</code>
+      no longer get resumed before reaching their final state.
+      <a href="https://issuetracker.google.com/issues/131557151">b/131557151</a>
+    </li>
+    <li>
+      When using
+      <code translate="no" dir="ltr">setMaxLifecycle(Lifecycle.State.CREATED)</code>
+      , Fragments will properly have their view destroyed.
+      <a href="https://android-review.googlesource.com/954180">aosp/954180</a>
+    </li>
+  </ul>

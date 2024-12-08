@@ -1,0 +1,79 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.1.0
+releaseDate: 2022-12-07
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0" data-text="Version 1.1.0" tabindex="-1">Version 1.1.0</h3>
+  <p>December 7, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-foundation:1.1.0</code>
+    ,
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material:1.1.0</code>
+    , and
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-navigation:1.1.0</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f76465e42639496c7a831c4d88e4588b7440bec2..079ef6d6d5921bd986bc5a39c018d4cc92d0c07c/wear/compose">Version 1.1.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 1.0.0</strong></p>
+  <ul>
+    <li>
+      Stable release of Compose for Wear OS 1.1.0 (
+      <a href="https://android-developers.googleblog.com/2022/12/compose-for-wear-os-11-stable.html">read more</a>
+      ).
+    </li>
+    <li>
+      For a list of the key changes in Wear Compose 1.1 see the release notes for (
+      <a href="https://developer.android.com/jetpack/androidx/releases/wear-compose#1.1.0-beta01">Compose for Wear OS 1.1 Beta01</a>
+      ).
+    </li>
+  </ul>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      We’ve updated the experimental Placeholder functionality so that the “Wipe Off” effect is immediately applied when the content is ready rather than waiting for the next animation loop to start. We have also made some updates to the shimmer and wipe off animations. (
+      <a href="https://android-review.googlesource.com/#/q/I5a7f45c0ce6f2262716de3c2c8131de663910d7b">I5a7f4</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We have changed the default border width for an
+      <code translate="no" dir="ltr">OutlinedButton/OutlinedCompactButton</code>
+      from 2.dp to 1.dp to match final UX specs. (
+      <a href="https://android-review.googlesource.com/#/q/Icf84ddb21ab10a8b009632e8e71f428578a70c45">Icf84d</a>
+      )
+    </li>
+    <li>
+      In order to reduce the effect of the first item added to an empty
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      appearing to scroll into place we have added an estimated
+      <code translate="no" dir="ltr">autoCentering topPadding</code>
+      when the contents are empty. This change calculates the amount of top padding needed by assuming an initial item of height 0.dp. For
+      <code translate="no" dir="ltr">ScalingLazyListAnchorType.ItemStart</code>
+      this will calculate the correct top padding, for
+      <code translate="no" dir="ltr">ScalingLazyListAnchorType.ItemCenter</code>
+      this calculation will be incorrect as the height of the items is needed to correctly size the contents resulting in a small scroll into place effect based on the items real height.(
+      <a href="https://android-review.googlesource.com/#/q/I239a415ab2e2427c94d4c23ee74711095b53c309">I239a4</a>
+      )
+    </li>
+    <li>
+      We have updated the background scrim applied to the
+      <code translate="no" dir="ltr">SwipeToDismiss</code>
+      animation to match the Wear platform.(
+      <a href="https://android-review.googlesource.com/#/q/I9003e7d6989497f11983b181378f73d998ffeeb6">I9003e</a>
+      )
+    </li>
+    <li>
+      We have fixed
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      handling of
+      <code translate="no" dir="ltr">LazyListState</code>
+      and
+      <code translate="no" dir="ltr">ScalingLazyListState</code>
+      for list items of size 0 to avoid divide by zero errors.(
+      <a href="https://android-review.googlesource.com/#/q/Ic28dd4452db5b6e0a5e64c3eef48a34641df22cf">Ic28dd</a>
+      )
+    </li>
+  </ul>

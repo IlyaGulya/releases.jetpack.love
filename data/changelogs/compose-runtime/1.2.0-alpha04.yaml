@@ -1,0 +1,57 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.2.0-alpha04
+releaseDate: 2022-02-23
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha04" data-text="Version 1.2.0-alpha04" tabindex="-1">Version 1.2.0-alpha04</h3>
+  <p>February 23, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.2.0-alpha04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/db2ecbef194afcddfaede22e1d884a8959a9277c..9b2b3d8efd5f00bd4af903bbaa926f6a712d0bd8/compose/runtime">Version 1.2.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">ComposableTarget</code>
+        ,
+        <code translate="no" dir="ltr">ComposableTargetMarker</code>
+        and
+        <code translate="no" dir="ltr">ComposableOpenTarget</code>
+        that allows compile time reporting of when a composable function is called targeting an applier it was not designed to use.
+      </p>
+
+      <p>
+        In most cases the annotations can be inferred by the compose compiler plugin so using these annotation directly should be rare . The cases that cannot be inferred include creating and using a custom applier, abstract composable functions (such as interface methods), fields or global variables that are composable lambdas (local variables and parameters are inferred), or when using
+        <code translate="no" dir="ltr">ComposeNode</code>
+        or a related composable functions.
+      </p>
+
+      <p>
+        For custom appliers the composable functions that calls
+        <code translate="no" dir="ltr">ComposeNode</code>
+        or
+        <code translate="no" dir="ltr">ReusableComposeNode</code>
+        need to add a
+        <code translate="no" dir="ltr">CompoableTarget</code>
+        annotation for the function and any composable lambda parameter types. It is recommended, however, to create an annotation that is annotated with
+        <code translate="no" dir="ltr">ComposableTargetMarker</code>
+        and then the marked annotation be used instead of
+        <code translate="no" dir="ltr">ComposableTarget</code>
+        directly. A composable annotation marked with
+        <code translate="no" dir="ltr">ComposableTargetMarker</code>
+        is equivalent to a
+        <code translate="no" dir="ltr">ComposbleTarget</code>
+        with the fully qualified name of the attribute class as the applier parameter. For an example of using
+        <code translate="no" dir="ltr">ComposableTargetMarker</code>
+        see
+        <code translate="no" dir="ltr">anroidx.compose.ui.UiComposable</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/I38f11b789291db89fc0bb92fc14ac5b3fcba0283">I38f11</a>
+        )
+      </p>
+    </li>
+  </ul>

@@ -1,0 +1,51 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.1.0-alpha02
+releaseDate: 2019-04-03
+#language=html
+changelogHtml: |
+  <h3 id="2.1.0-alpha02" data-text="Version 2.1.0-alpha02" tabindex="-1">Version 2.1.0-alpha02</h3>
+  <p>April 3, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:*:2.1.0-alpha02</code>
+    is released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d0b1a77198af283997fb25e6ca3f083fbf535179..3cc9b77742508c095f3268b60956967bce46f0ed/navigation">here</a>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      You can now create ViewModels that are scoped at a navigation graph level via the
+      <code translate="no" dir="ltr">by navGraphViewModels()</code>
+      property delegate for Kotlin users or by using the
+      <code translate="no" dir="ltr">getViewModelStore()</code>
+      API added to
+      <code translate="no" dir="ltr">NavController</code>
+      .
+      <a href="https://issuetracker.google.com/issues/111614463">b/111614463</a>
+    </li>
+  </ul>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      You can now add an
+      <code translate="no" dir="ltr">app:targetPackage</code>
+      to an
+      <code translate="no" dir="ltr">&lt;activity&gt;</code>
+      destination to limit the matching package name. It supports
+      <code translate="no" dir="ltr">app:targetPackage="${applicationId}"</code>
+      for restricting the package to your own application id.
+      <a href="https://issuetracker.google.com/issues/110975456">b/110975456</a>
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">android:name</code>
+      for
+      <code translate="no" dir="ltr">&lt;activity&gt;</code>
+      destinations is no longer parsed into a Class at inflation time, preventing ClassNotFoundExceptions when using dynamic features.
+      <a href="https://issuetracker.google.com/issues/124538597">b/124538597</a>
+    </li>
+  </ul>

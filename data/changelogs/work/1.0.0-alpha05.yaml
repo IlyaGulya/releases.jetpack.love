@@ -1,0 +1,118 @@
+libraryId: work
+groupId: androidx.work
+version: 1.0.0-alpha05
+releaseDate: 2018-07-24
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha05" data-text="Version 1.0.0-alpha05" tabindex="-1">Version 1.0.0-alpha05</h3>
+  <p>July 24, 2018</p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">WorkManager.getInstance()</code>
+      is now annotated with
+      <code translate="no" dir="ltr">@NonNull</code>
+      instead of
+      <code translate="no" dir="ltr">@Nullable</code>
+      . Instead, if the singleton isn't properly initialized in cases of manual initialization, the method will throw an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      .
+      <strong>This is a breaking API change.</strong>
+    </li>
+    <li>
+      Added a new API,
+      <code translate="no" dir="ltr">Configuration.Builder.setMinimumLoggingLevel(int)</code>
+      , which can control WorkManager verbosity. By default, WorkManager logs
+      <code translate="no" dir="ltr">Log.INFO</code>
+      and above.
+    </li>
+    <li>
+      Changed signature of
+      <code translate="no" dir="ltr">Data.getString()</code>
+      so it no longer takes a default value (it is implicitly
+      <code translate="no" dir="ltr">null</code>
+      ).
+      <strong>This is a breaking API change.</strong>
+    </li>
+    <li>
+      Marked some methods needed only for internal usage as
+      <code translate="no" dir="ltr">@hide</code>
+      . This includes the
+      <code translate="no" dir="ltr">Constraints</code>
+      constructor,
+      <code translate="no" dir="ltr">Data.toByteArray()</code>
+      , and
+      <code translate="no" dir="ltr">Data.fromByteArray(byte[])</code>
+      .
+      <strong>This is a breaking API change.</strong>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      WorkManager no longer executes work during known cases of auto-backup. This could have resulted in a crash.
+      <a href="https://issuetracker.google.com/issues/110564377">b/110564377</a>
+    </li>
+    <li>
+      Fixed double-scheduling of
+      <code translate="no" dir="ltr">PeriodicWorkRequest</code>
+      s when using
+      <code translate="no" dir="ltr">JobScheduler</code>
+      .
+      <a href="https://issuetracker.google.com/issues/110798652">b/110798652</a>
+    </li>
+    <li>
+      Fixed an issue with
+      <code translate="no" dir="ltr">PeriodicWorkRequest</code>
+      s not executing correctly after device doze.
+      <a href="https://issuetracker.google.com/issues/111469837">b/111469837</a>
+    </li>
+    <li>
+      Fixed an issue with initial delays when using Firebase JobDispatcher.
+      <a href="https://issuetracker.google.com/issues/111141023">b/111141023</a>
+    </li>
+    <li>Fixed some potential race conditions and timing issues.</li>
+    <li>
+      Correctly freed up
+      <code translate="no" dir="ltr">BroadcastReceiver</code>
+      s that were no longer needed.
+    </li>
+    <li>Optimized rescheduling performance when apps restart after being force closed.</li>
+    <li>
+      Allowed
+      <code translate="no" dir="ltr">TestScheduler.setAllConstraintsMet(UUID)</code>
+      to be called before or after enqueuing the given
+      <code translate="no" dir="ltr">WorkRequest</code>
+      .
+      <a href="https://issuetracker.google.com/issues/111238024">b/111238024</a>
+    </li>
+  </ul>
+  <p><strong>Breaking Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">WorkManager.getInstance()</code>
+      is now annotated with
+      <code translate="no" dir="ltr">@NonNull</code>
+      instead of
+      <code translate="no" dir="ltr">@Nullable</code>
+      .
+    </li>
+    <li>
+      Changed signature of
+      <code translate="no" dir="ltr">Data.getString()</code>
+      so it no longer takes a default value (it is implicitly
+      <code translate="no" dir="ltr">null</code>
+      ).
+    </li>
+    <li>
+      Marked some methods needed only for internal usage as
+      <code translate="no" dir="ltr">@hide</code>
+      . This includes the
+      <code translate="no" dir="ltr">Constraints</code>
+      constructor,
+      <code translate="no" dir="ltr">Data.toByteArray()</code>
+      , and
+      <code translate="no" dir="ltr">Data.fromByteArray(byte[])</code>
+      .
+    </li>
+  </ul>

@@ -1,0 +1,42 @@
+libraryId: localbroadcastmanager
+groupId: androidx.localbroadcastmanager
+version: 1.1.0-alpha01
+releaseDate: 2018-12-17
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha01" data-text="Version 1.1.0-alpha01" tabindex="-1">Version 1.1.0-alpha01</h3>
+  <p>December 17, 2018</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.localbroadcastmanager</code>
+    is being deprecated in version
+    <code translate="no" dir="ltr">1.1.0-alpha01</code>
+    .
+  </p>
+  <p><strong>Reason</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">LocalBroadcastManager</code>
+      is an application-wide event bus and embraces layer violations in your app; any component may listen to events from any other component.
+    </li>
+    <li>
+      It inherits unnecessary use-case limitations of system
+      <code translate="no" dir="ltr">BroadcastManager</code>
+      ; developers have to use
+      <code translate="no" dir="ltr">Intent</code>
+      even though objects live in only one process and never leave it. For this same reason, it doesn’t follow feature-wise
+      <code translate="no" dir="ltr">BroadcastManager</code>
+      .
+    </li>
+  </ul>
+  <p>These add up to a confusing developer experience.</p>
+  <p><strong>Replacement</strong></p>
+  <ul>
+    <li>
+      You can replace usage of
+      <code translate="no" dir="ltr">LocalBroadcastManager</code>
+      with other implementations of the observable pattern. Depending on your use case, suitable options may be
+      <code translate="no" dir="ltr">LiveData</code>
+      or reactive streams.
+    </li>
+  </ul>
+  <devsite-hats-survey class="nocontent" hats-id="VxqvKSur40kxBYCLVTd0SSGykbno" listnr-id="5207477"></devsite-hats-survey>

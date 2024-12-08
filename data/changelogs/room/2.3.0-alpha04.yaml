@@ -1,0 +1,71 @@
+libraryId: room
+groupId: androidx.room
+version: 2.3.0-alpha04
+releaseDate: 2020-12-16
+#language=html
+changelogHtml: |
+  <h3 id="2.3.0-alpha04" data-text="Version 2.3.0-alpha04" tabindex="-1">Version 2.3.0-alpha04</h3>
+  <p>December 16, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.3.0-alpha04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f413b8be76bfa0a4d109a3afb583188c580a2aa6..dd3c8e9c2424b78e44f55db599251891fd1cadb4/room">Version 2.3.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Room now offers a general callback API
+      <code translate="no" dir="ltr">RoomDatabase.QueryCallback</code>
+      , for when queries are about to execute, which can be useful for logging in debug builds. The callback can be set via
+      <code translate="no" dir="ltr">RoomDatabase.Builder#setQueryCallback()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iaa513e39115f0c9c68359774fa70e1d3dd022c39">Iaa513</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/174478034">b/174478034</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/74877608">b/74877608</a>
+      )
+    </li>
+    <li>
+      Room will now default to using an Enum to String and vice versa type converter if none is provided. If a type converter for an enum already exists, Room will prioritize using it over the default one. (
+      <a href="https://issuetracker.google.com/issues/174478034">b/73132006</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issue</strong></p>
+  <ul>
+    <li>
+      If a one-way type converter for reading already exists for the Enum, Room might accidentally use the built-in String to Enum converter which might not be desired. This is a known issue and can be fixed by making it a two-way converter. See:
+      <a href="https://issuetracker.google.com/issues/175707691">b/175707691</a>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where Room would incorrectly disabled incremental annotation processing in newer JDK versions. (
+      <a href="https://issuetracker.google.com/issues/74877608">b/171387388</a>
+      )
+    </li>
+    <li>
+      Fixed an issue with Room finding the generated class when multiple class loaders are used. Thanks for the fix ‘Serendipity | 892449346@qq.com’! (
+      <a href="https://issuetracker.google.com/issues/174478034">b/170141113</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where Room would generate incorrect code when a Kotlin
+      <code translate="no" dir="ltr">@Dao</code>
+      had a base class whose generics are primitives in the JVM. (
+      <a href="https://issuetracker.google.com/issues/174478034">b/160258066</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Room will now default to using
+      <code translate="no" dir="ltr">beginTransactionNonExclusive</code>
+      if WAL mode is enabled and API is 16 or more. Thanks to ‘Ahmed I. Khalil | ahmedibrahimkhali@gmail.com’! (
+      <a href="https://issuetracker.google.com/issues/174478034">b/126258791</a>
+      )
+    </li>
+  </ul>

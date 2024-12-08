@@ -1,0 +1,33 @@
+libraryId: room
+groupId: androidx.room
+version: 1.1.0-beta2
+releaseDate: 2018-04-05
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-beta2" data-text="Version 1.1.0-beta2" tabindex="-1">Version 1.1.0-beta2</h3>
+  <p>April 5, 2018</p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <p>
+        Fixed a critical bug in Room's Rx
+        <code translate="no" dir="ltr">Single</code>
+        and
+        <code translate="no" dir="ltr">Maybe</code>
+        implementations where it would recycle the query ahead of time, causing problems if you add more than 1 observer to the returned
+        <code translate="no" dir="ltr">Single</code>
+        or
+        <code translate="no" dir="ltr">Maybe</code>
+        instancces.
+        <a href="https://issuetracker.google.com/issues/76031240">b/76031240</a>
+      </p>
+    </li>
+    <li>
+      <p>
+        [RoomDatabase.clearAllTables][ref-clearAllTables] will not
+        <code translate="no" dir="ltr">VACUUM</code>
+        the database if it is called inside a transaction.
+        <a href="https://issuetracker.google.com/issues/77235565">b/77235565</a>
+      </p>
+    </li>
+  </ul>

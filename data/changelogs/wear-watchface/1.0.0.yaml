@@ -1,0 +1,55 @@
+libraryId: wear-watchface
+groupId: androidx.wear
+version: 1.0.0
+releaseDate: 2021-12-01
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0" data-text="Version 1.0.0" tabindex="-1">Version 1.0.0</h3>
+  <p>December 1, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.watchface:watchface-*:1.0.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e90bbb5c9ce1de64d619166e2d548e79f7a9bdf4..a0b94773cb4f134522ad5fb19f641b5fec937975/wear/watchface">Version 1.0.0 contains these commits.</a>
+  </p>
+  <p><strong>Major Features of 1.0.0</strong></p>
+  <p>
+    The
+    <code translate="no" dir="ltr">androidx.wear.watchface</code>
+    package is the new recommended library for developing WearOS watch faces. It has a number of new features over the old Wearable Support Library.
+  </p>
+  <ul>
+    <li>
+      User styling (e.g. to change the color palette, the style of the watch hands, the look of the hour marks etc) is directly supported by the library (see
+      <code translate="no" dir="ltr">androidx.wear.watchface.style</code>
+      ). It’s now much easier to develop an on watch face editor using androidx.wear.watchface.editor and your watch face can be edited from the system companion app without you needing to write any extra code.
+    </li>
+    <li>Best practices baked in. The library automatically generated screen reader content labels for complications (you can also add your own ones), and the framerate automatically drops when the battery is low and not charging to improve battery life.</li>
+    <li>Less code is needed to develop a watch face, especially for complications where a lot of the boilerplate has moved into the library.</li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">EditorSession.userStyle.compareAndSet</code>
+      (
+      <a href="https://android-review.googlesource.com/q/I6f676876b91bbcdbed3a270fda61ab1567c3ce89">I6f676</a>
+      )
+    </li>
+    <li>
+      Fix very short watch face delays (
+      <a href="https://android-review.googlesource.com/q/Iffb9725767a97a911d1794904b6aa7aee2246d38">Iffb97</a>
+      )
+    </li>
+    <li>
+      Dispatch
+      <code translate="no" dir="ltr">InteractiveWatchFaceImpl.onDestroy</code>
+      on the UI thread (
+      <a href="https://android-review.googlesource.com/q/I8334083557fea6eb8944a66ddd9059f588aad190">I83340</a>
+      )
+    </li>
+    <li>
+      Fix several problems with broadcast receivers (
+      <a href="https://android-review.googlesource.com/q/I7d25f091f48422a1135bd74b7092142501265303">I7d25f</a>
+      )
+    </li>
+  </ul>

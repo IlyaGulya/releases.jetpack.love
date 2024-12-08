@@ -1,0 +1,100 @@
+libraryId: wear-watchface
+groupId: androidx.wear
+version: 1.3.0-alpha01
+releaseDate: 2024-02-07
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha01" data-text="Version 1.3.0-alpha01" tabindex="-1">Version 1.3.0-alpha01</h3>
+  <p>February 7, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.watchface:watchface-*:1.3.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/264b14bca26ab6294c17da770ce57440099d1e4a..ca2a8cf8da3a3502fccc593974f8085653e38261/wear/watchface">Version 1.3.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">WatchFaceServices</code>
+      can be initialized concurrently and as such they should be stateless, to support this we’ve added
+      <code translate="no" dir="ltr">StatefulWatchFaceService</code>
+      in which a user defined extra created by
+      <code translate="no" dir="ltr">createExtra()</code>
+      is passed into all the overrides called during initialization.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">GlesRenderer2</code>
+      now has a constructor overload which lets you specify a list of attributes to try in turn with
+      <code translate="no" dir="ltr">eglChooseConfig</code>
+      .
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">StatefulWatchFaceService</code>
+      now supports an override of
+      <code translate="no" dir="ltr">getComplicationSlotInflationFactory</code>
+      into which the user-defined extra created by
+      <code translate="no" dir="ltr">createExtra()</code>
+      is passed. (
+      <a href="https://android-review.googlesource.com/#/q/I82d9f7d994b6a4a59ebee5eb6f749c701ccbad72">I82d9f</a>
+      )
+    </li>
+    <li>
+      Some watch faces need to share auxiliary data created during
+      <code translate="no" dir="ltr">createUserStyleSchema</code>
+      with the other initialisation methods. Because there wasn't a better alternative, developers typically made their
+      <code translate="no" dir="ltr">WatchFaceServices</code>
+      stateful. This is dangerous because multiple instances can be created concurrently which can lead to bugs. To resolve this we've introduced
+      <code translate="no" dir="ltr">StatefulWatchFaceService</code>
+      and
+      <code translate="no" dir="ltr">StatefulWatchFaceRuntimeService</code>
+      where a user defined type is created by
+      <code translate="no" dir="ltr">createExtra()</code>
+      and is passed to the various create methods as a parameter. (
+      <a href="https://android-review.googlesource.com/#/q/If8a99fe4191237c14cf1e61bf326272295d2252a">If8a99</a>
+      )
+    </li>
+    <li>
+      We've added
+      <code translate="no" dir="ltr">getUserStyleFlavors</code>
+      to
+      <code translate="no" dir="ltr">InteractiveWatchFaceClient</code>
+      , which is of interest primarily for OEMs. (
+      <a href="https://android-review.googlesource.com/#/q/I0f5d832b593c47769ea1c8680db7ac6248027d54">I0f5d8</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">GlesRenderer2</code>
+      now has a constructor overload which lets you specify a list of attributes to try in turn with
+      <code translate="no" dir="ltr">eglChooseConfig</code>
+      . This for example allows you to first try a config with anti-aliasing and to fallback to one without if needed. (
+      <a href="https://android-review.googlesource.com/#/q/I1ba74980b959ff3d598f2a36ff55025b507cc3da">I1ba74</a>
+      )
+    </li>
+    <li>
+      From Android U, support for
+      <code translate="no" dir="ltr">SystemDataSources.DATA_SOURCE_HEART_RATE</code>
+      will be added to WearOS. This complication is only guaranteed to support
+      <code translate="no" dir="ltr">SHORT_TEXT</code>
+      complications, but it's recommended for the
+      <code translate="no" dir="ltr">ComplicationSlot</code>
+      to accept
+      <code translate="no" dir="ltr">SMALL_IMAGE</code>
+      too because OEMs may choose to serve a shortcut to their health app instead of the live value. (
+      <a href="https://android-review.googlesource.com/#/q/I3422313b7d1d8e7f9683ab6ddc9eed59fc96c01b">I34223</a>
+      )
+    </li>
+    <li>
+      We've added
+      <code translate="no" dir="ltr">METADATA_KEY_CONFIG_RESTORE_SUPPORTED</code>
+      which from Android U onwards, controls what happens when the system is restored from a backup for complication data source with
+      <code translate="no" dir="ltr">METADATA_KEY_DATA_SOURCE_CONFIG_ACTION</code>
+      . By default the system assumes that the complication data source service supports backup of any configuration data, but if it does not then it can add metadata setting
+      <code translate="no" dir="ltr">METADATA_KEY_DATA_SOURCE_CONFIG_ACTION</code>
+      to false which will mark the complication slot as not configured. (
+      <a href="https://android-review.googlesource.com/#/q/I6c50542be562741c0cafd30b36ac515e4c0702da">I6c505</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_12_2" data-text="Version 1.2" tabindex="-1">Version 1.2</h2>

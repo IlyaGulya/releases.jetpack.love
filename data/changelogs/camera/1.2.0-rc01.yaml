@@ -1,0 +1,57 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.2.0-rc01
+releaseDate: 2022-10-24
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-rc01" data-text="Version 1.2.0-rc01" tabindex="-1">Version 1.2.0-rc01</h3>
+  <p>October 24, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.2.0-rc01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/52096c49378ea748c1b11b54c04c19c8d1e571c6..4492a75904152396b00e333181677981b0e28fd0/camera">Version 1.2.0-rc01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">setStreamUseCase</code>
+      API for
+      <code translate="no" dir="ltr">OutputConfiguration</code>
+      . User can specify the Stream Use Case for the stream session, overrding CameraX's internal logics to choose Stream Use Case in order to optimize according to their need. (
+      <a href="https://android-review.googlesource.com/#/q/Ib1a95b50619e5e710370d2d3fde4fe8a7761fb68">Ib1a95</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed Samsung J7 Prime (SM-G610M) and J7 (SM-J710MN)
+      <code translate="no" dir="ltr">Preview/VideoCapture</code>
+      stretched issue on API level 27 devices. Resolution 1920x1080 causes the
+      <code translate="no" dir="ltr">Preview/VideoCapture</code>
+      images to be stretched. Added workaround to not select the 1920x1080 resolution for Preview or
+      <code translate="no" dir="ltr">VideoCapture</code>
+      to avoid the image stretched problem. (
+      <a href="https://android-review.googlesource.com/#/q/I0e04ea85b3aea9962f6befa25b8fd5297e764b1f">I0e04e</a>
+      )
+    </li>
+    <li>
+      Fixed low framerate when using
+      <code translate="no" dir="ltr">VideoCapture</code>
+      and Preview use cases with 16:9 aspect ratio on some Huawei devices. (
+      <a href="https://android-review.googlesource.com/#/q/If8c8824d923cefd368d24bf27cedc58b0ecccebb">If8c88</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/223643510">b/223643510</a>
+      )
+    </li>
+    <li>
+      Fixed camera open failure when Preview's
+      <code translate="no" dir="ltr">SurfaceProvider</code>
+      is not set. As part of the fix, Preview with no
+      <code translate="no" dir="ltr">SurfaceProvider</code>
+      set will now not be configured into the camera capture session. (
+      <a href="https://android-review.googlesource.com/#/q/I9968195c104b6de86a51a11288bf891b299f9aea">I99681</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,113 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.0.0-alpha09
+releaseDate: 2020-12-16
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha09" data-text="Version 1.0.0-alpha09" tabindex="-1">Version 1.0.0-alpha09</h3>
+  <p>December 16, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.0.0-alpha09</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/10b5e9fd366c1c413d5576aed50a305d300938e1..72f02c12e4709ab41ae0fea9a8a668d5267a1df8/compose/runtime">Version 1.0.0-alpha09 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <p>Removed SlotTable, SlotReader and SlotWriter from the public API. These were marked as InternalComposeAPI previously. Now they are internal to the compose module.</p>
+
+      <p>
+        CompositionData and CompositionGroup were added as a replacement for the ui-tooling API to use to extract composition information. These are public but are not intended for use outside the ui-tooling API as they provide the raw information the ui-tooling API interprets (
+        <a href="https://android-review.googlesource.com/#/q/I31a9ca6a7e5bbf162c984394dffd7a25b059315a">I31a9c</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        The Applier class is no longer considered an (
+        <a href="https://android-review.googlesource.com/#/q/Id85b061f677b509bfc62d1fd797531520ac8e09d">Id85b0</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        The
+        <code translate="no" dir="ltr">Applier</code>
+        interface has changed to simplify building trees bottom-up instead of top-down.
+      </p>
+
+      <p>
+        The
+        <code translate="no" dir="ltr">insert()</code>
+        method has been renamed to
+        <code translate="no" dir="ltr">insertTopDown()</code>
+        .
+      </p>
+
+      <p>
+        A new method,
+        <code translate="no" dir="ltr">insertBottomUp()</code>
+        , was added.
+      </p>
+
+      <p>
+        An applier either inserts nodes into the tree it is editing using
+        <code translate="no" dir="ltr">insertTopDown()</code>
+        or
+        <code translate="no" dir="ltr">insertBottomUp()</code>
+        depending on which performs better.
+      </p>
+
+      <p>
+        Some trees, such as
+        <code translate="no" dir="ltr">LayoutNode</code>
+        and
+        <code translate="no" dir="ltr">View</code>
+        , are much more efficient to build bottom-up than top-down. Prior to this change, a stack of inserts was required to implement bottom-up which needed to be copied to every applier which needed bottom-up construction for performance. With this change an
+        <code translate="no" dir="ltr">Applier</code>
+        overrides
+        <code translate="no" dir="ltr">insertBottomUp()</code>
+        to build a tree bottom-up and
+        <code translate="no" dir="ltr">insertTopDown()</code>
+        to build the tree top-down. (
+        <a href="https://android-review.googlesource.com/#/q/Icbdc2929ab8fc8fce231d633b062fc80be5c10c9">Icbdc2</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>Compose supports property getters that can make composable invocations. Support for this is not going away, but the syntax for declaring a property getter as being @Composable is changing.</p>
+
+      <p>The now-deprecated syntax for doing this was by annotating the property itself:</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-w">    </span><span class="devsite-syntax-nd">@Composable</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">someProperty</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">Int</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">get</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">...</span>
+  </code></pre>
+      </devsite-code>
+      <p>The now-correct syntax for doing this is by annotating the getter of the property:</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-w">   </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">someProperty</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">Int</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nd">@Composable</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">get</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">...</span>
+  </code></pre>
+      </devsite-code>
+      <p>
+        Both syntaxes will work for some time, but the former deprecated syntax will eventually become a compile error. (
+        <a href="https://android-review.googlesource.com/#/q/Id91977f2583b81d3e4e51bbf120cfaf943be25d5">Id9197</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      AndroidOwner made internal (
+      <a href="https://android-review.googlesource.com/#/q/Ibcad027dbc1794f5d202be52fe0783c73d249a25">Ibcad0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170296980">b/170296980</a>
+      )
+    </li>
+    <li>
+      subcomposeInto(LayoutNode) was made internal (
+      <a href="https://android-review.googlesource.com/#/q/Id724aebef104f6404884f1a45bee9958583b7229">Id724a</a>
+      )
+    </li>
+  </ul>

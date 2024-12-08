@@ -1,0 +1,48 @@
+libraryId: work
+groupId: androidx.work
+version: 2.7.0-alpha04
+releaseDate: 2021-06-02
+#language=html
+changelogHtml: |
+  <h3 id="2.7.0-alpha04" data-text="Version 2.7.0-alpha04" tabindex="-1">Version 2.7.0-alpha04</h3>
+  <p>June 2, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.7.0-alpha04</code>
+    is released.
+  </p>
+  <p>
+    This release also contains the changes from the
+    <a href="/jetpack/androidx/releases/work#2.6.0-beta01">2.6.0-beta01</a>
+    release.
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ListenableWorker.setForegroundAsync()</code>
+      is no longer deprecated.
+    </li>
+    <li>
+      We recommend using
+      <code translate="no" dir="ltr">WorkRequest.Builder.setExpedited(...)</code>
+      API when possible. To better support situations when the
+      <a href="https://developer.android.com/about/versions/12/foreground-services#cases-fgs-background-starts-allowed">app is not subject to foreground service restrictions</a>
+      , developers can use the
+      <code translate="no" dir="ltr">ListenableWorker.setForegroundAsync()</code>
+      API.
+    </li>
+    <li>
+      If
+      <code translate="no" dir="ltr">ListenableWorker.setForegroundAsync()</code>
+      is called, when the app is subject to foreground service restrictions, this will throw the
+      <a href="https://developer.android.com/reference/android/app/ForegroundServiceStartNotAllowedException">ForegroundServiceStartNotAllowedException</a>
+      .
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      When expedited jobs are rescheduled, they are no longer expedited. They become
+      <em>regular</em>
+      jobs.
+    </li>
+  </ul>

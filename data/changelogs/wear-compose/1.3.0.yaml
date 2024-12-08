@@ -1,0 +1,106 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.3.0
+releaseDate: 2024-01-24
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0" data-text="Version 1.3.0" tabindex="-1">Version 1.3.0</h3>
+  <p>January 24, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.3.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/692193fadb173ae728edb0fb3945d5d727129dfb..95bee6d8e62992e7b34e2e9181f811fbbe8f00c6/wear/compose">Version 1.3.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 1.2.0</strong></p>
+  <ul>
+    <li>
+      The
+      <a href="https://developer.android.com/reference/kotlin/androidx/wear/compose/foundation/SwipeToDismissBoxState"><code translate="no" dir="ltr">SwipeToDismissBoxState</code></a>
+      class,
+      <a href="https://developer.android.com/reference/kotlin/androidx/wear/compose/foundation/SwipeToDismissValue"><code translate="no" dir="ltr">SwipeToDismissValue</code></a>
+      enumeration, and
+      <a href="https://developer.android.com/reference/kotlin/androidx/wear/compose/foundation/package-summary#(androidx.compose.ui.Modifier).edgeSwipeToDismiss(androidx.wear.compose.foundation.SwipeToDismissBoxState,androidx.compose.ui.unit.Dp)"><code translate="no" dir="ltr">Modifier.edgeSwipeToDismiss</code></a>
+      extension function are now each part of the
+      <code translate="no" dir="ltr">androidx.wear.compose.foundation</code>
+      package, instead of the
+      <code translate="no" dir="ltr">androidx.wear.compose.material</code>
+      package. This updated architecture allows you to implement gesture handling independently from other design considerations. Material Design workflows, such as applying colors from a configured theme, are handled separately.
+    </li>
+    <li>
+      The
+      <a href="https://developer.android.com/reference/kotlin/androidx/wear/compose/material/package-summary#SwipeToRevealCard(kotlin.Function1,androidx.wear.compose.foundation.RevealState,kotlin.Function0,androidx.compose.ui.Modifier,kotlin.Function1,kotlin.Function1,kotlin.Function1,androidx.wear.compose.material.SwipeToRevealActionColors,androidx.compose.ui.graphics.Shape,kotlin.Function0)"><code translate="no" dir="ltr">SwipeToRevealCard</code></a>
+      and
+      <a href="https://developer.android.com/reference/kotlin/androidx/wear/compose/material/package-summary#SwipeToRevealChip(kotlin.Function1,androidx.wear.compose.foundation.RevealState,kotlin.Function0,androidx.compose.ui.Modifier,kotlin.Function1,kotlin.Function1,kotlin.Function1,androidx.wear.compose.material.SwipeToRevealActionColors,androidx.compose.ui.graphics.Shape,kotlin.Function0)"><code translate="no" dir="ltr">SwipeToRevealChip</code></a>
+      classes help you implement the
+      <a href="https://developer.android.com/design/ui/wear/guides/components/swipe-to-reveal"><code translate="no" dir="ltr">recommended swipe-to-reveal guidance</code></a>
+      . The
+      <a href="https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:wear/compose/compose-material/samples/src/main/java/androidx/wear/compose/material/samples/SwipeToRevealSample.kt"><code translate="no" dir="ltr">SwipeToRevealSample</code></a>
+      class demonstrates how to use these components.
+    </li>
+    <li>
+      <p>
+        Our 1.3.0-alpha02 release introduced a change that causes
+        <a href="https://developer.android.com/reference/kotlin/androidx/wear/compose/material/package-summary#Chip(kotlin.Function1,kotlin.Function0,androidx.compose.ui.Modifier,kotlin.Function1,kotlin.Function1,androidx.wear.compose.material.ChipColors,kotlin.Boolean,androidx.compose.foundation.interaction.MutableInteractionSource,androidx.compose.foundation.layout.PaddingValues,androidx.compose.ui.graphics.Shape,androidx.wear.compose.material.ChipBorder)"><code translate="no" dir="ltr">Chip</code></a>
+        and
+        <a href="https://developer.android.com/reference/kotlin/androidx/wear/compose/material/package-summary#ToggleChip(kotlin.Boolean,kotlin.Function1,kotlin.Function1,kotlin.Function0,androidx.compose.ui.Modifier,kotlin.Function1,kotlin.Function1,androidx.wear.compose.material.ToggleChipColors,kotlin.Boolean,androidx.compose.foundation.interaction.MutableInteractionSource,androidx.compose.foundation.layout.PaddingValues,androidx.compose.ui.graphics.Shape)"><code translate="no" dir="ltr">ToggleChip</code></a>
+        objects to grow in height to better support user-selected font scaling. This can cause some clipping to occur. To fix this issue, the
+        <code translate="no" dir="ltr">large</code>
+        shape for
+        <code translate="no" dir="ltr">MaterialTheme</code>
+        now uses a larger corner radius (26 dp instead of 24 dp).
+        <code translate="no" dir="ltr">Chip</code>
+        and
+        <code translate="no" dir="ltr">ToggleChip</code>
+        objects use this new corner radius to avoid clipping content on the corners of Chip and
+        <code translate="no" dir="ltr">ToggleChip</code>
+        .
+      </p>
+
+      <ul>
+        <li>
+          Most
+          <code translate="no" dir="ltr">Chips</code>
+          and
+          <code translate="no" dir="ltr">ToggleChips</code>
+          are unchanged, given their default 52 dp height. However,
+          <code translate="no" dir="ltr">Chip</code>
+          and
+          <code translate="no" dir="ltr">ToggleChip</code>
+          objects that contain multiple lines of primary or secondary label text, or for which the height has been overridden, could cause screenshot tests to break.
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Additional changes</strong></p>
+  <p>
+    For a more complete set of the changes introduced in version 1.3.0, see the
+    <a href="#1.3.0-beta01">beta01 release notes</a>
+    .
+  </p>
+  <p><strong>Recommendations for implementation</strong></p>
+  <ul>
+    <li>
+      If your app allows users to pan around the screen's content, such as in a map-based app, turn off swipe handling by setting
+      <code translate="no" dir="ltr">userSwipeEnabled</code>
+      to
+      <code translate="no" dir="ltr">false</code>
+      in the
+      <a href="https://developer.android.com/reference/kotlin/androidx/wear/compose/navigation/package-summary#SwipeDismissableNavHost(androidx.navigation.NavHostController,androidx.navigation.NavGraph,androidx.compose.ui.Modifier,kotlin.Boolean,androidx.wear.compose.navigation.SwipeDismissableNavHostState)"><code translate="no" dir="ltr">SwipeDismissableNavHost</code></a>
+      composable, and include a button that allows users to go to the previous screen.
+    </li>
+    <li>
+      To turn off animations for a position indicator during fade-in and position-change animations within a scrolling list, use a
+      <a href="https://developer.android.com/reference/kotlin/androidx/compose/animation/core/SnapSpec"><code translate="no" dir="ltr">SnapSpec</code></a>
+      object.
+    </li>
+    <li>
+      While waiting for a media app to load content for playback, show a blank
+      <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/Placeholder"><code translate="no" dir="ltr">Placeholder</code></a>
+      composable.
+    </li>
+    <li>
+      To create a collection of expandable items on demand, consider using the experimental
+      <a href="https://developer.android.com/reference/kotlin/androidx/wear/compose/foundation/ExpandableStateMapping"><code translate="no" dir="ltr">ExpandableStateMapping</code></a>
+      class.
+    </li>
+  </ul>

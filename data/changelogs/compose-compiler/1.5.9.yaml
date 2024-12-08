@@ -1,0 +1,53 @@
+libraryId: compose-compiler
+groupId: androidx.compose
+version: 1.5.9
+releaseDate: 2024-02-07
+#language=html
+changelogHtml: |
+  <h3 id="1.5.9" data-text="Version 1.5.9" tabindex="-1">Version 1.5.9</h3>
+  <p>February 7, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.compiler:compiler:1.5.9</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.compiler:compiler-hosted:1.5.9</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/eb8970d76d3965442bd4c5375a036598585080cc..876ebcfc9227cb4d4f4bc6a3563ad90f82066609/compose/compiler">Version 1.5.9 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix composable calls in anonymous object initializer. (
+      <a href="https://issuetracker.google.com/issues/320261458">b/320261458</a>
+      ,
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/96315cb808d0cbccbf70ab760c0ab5b70f729e9b">96315c</a>
+      )
+    </li>
+    <li>
+      Count recursive local declarations as captures. (
+      <a href="https://issuetracker.google.com/issues/318745941">b/318745941</a>
+      ,
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/e7b4b06e67951ab47157d06ff314a5c8b2e8fdc6">e7b4b0</a>
+      )
+    </li>
+    <li>
+      Fix Intrinsic remember changes behavior related to Java method refs by forceing .changed for function types with intrinsic remember. (
+      <a href="https://issuetracker.google.com/issues/319810819">b/319810819</a>
+      ,
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/77128e08f24eba21d3a0e416ac238917a235dd8c">77128e</a>
+      )
+    </li>
+    <li>
+      Added an experimental optimization that will remove the groups around functions that are not skippable such as explicitly marked as
+      <code translate="no" dir="ltr">@NonSkippableComposable</code>
+      and functions that are implicitly not skippable such inline functions and functions that return a non-Unit value such as
+      <code translate="no" dir="ltr">remember</code>
+      .
+    </li>
+    <li>
+      This optimization can be enabled by passing plugin option,
+      <code translate="no" dir="ltr">-P plugin:androidx.compose.compiler.plugins.kotlin:nonSkippingGroupOptimization=true</code>
+      to the Kotlin compiler. (
+      <a href="https://android-review.googlesource.com/#/q/I1688f5dbf178696231c9c375c1299cd4a45a9fcd">I1688f</a>
+      )
+    </li>
+  </ul>

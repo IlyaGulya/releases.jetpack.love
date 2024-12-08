@@ -1,0 +1,69 @@
+libraryId: room
+groupId: androidx.room
+version: 2.3.0-alpha01
+releaseDate: 2020-06-10
+#language=html
+changelogHtml: |
+  <h3 id="2.3.0-alpha01" data-text="Version 2.3.0-alpha01" tabindex="-1">Version 2.3.0-alpha01</h3>
+  <p>June 10, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.3.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6880f4a443ed0d4e88e15c18044fbfc644c766e2..945594abd75f83bd14daf4fbcd8621796161281e/room">Version 2.3.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>
+        <strong>Paging 3.0 Support</strong>
+        : Room will now support generating implementations for
+        <code translate="no" dir="ltr">@Query</code>
+        annotated methods whose return type is
+        <code translate="no" dir="ltr">androidx.paging.PagingSource</code>
+        .
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@Dao</span>
+  <span class="devsite-syntax-kd">interface</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">UserDao</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-nd">@Query</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"SELECT * FROM users ORDER BY id ASC"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">pagingSource</span><span class="devsite-syntax-p">():</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">PagingSource&lt;Int</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">User</span>&gt;
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">@RewriteQueriesToDropUnusedColumns</code>
+      is a new convenient annotation that makes Room rewrite the ‘*’ projection in a query such that unused columns in the result are removed.
+    </li>
+    <li>
+      The processor option
+      <code translate="no" dir="ltr">room.expandProjection</code>
+      is now deprecated. Use
+      <code translate="no" dir="ltr">@RewriteQueriesToDropUnusedColumns</code>
+      as a replacement for Room optimizing queries with star projections. Note that
+      <code translate="no" dir="ltr">@RewriteQueriesToDropUnusedColumns</code>
+      does not replace the column conflict solution
+      <code translate="no" dir="ltr">room.expandProjection</code>
+      offered with regards to return types that contained
+      <code translate="no" dir="ltr">@Embedded</code>
+      fields.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a bug where Room would not correctly detect the JDK version used to enable incremental annotation processor. Thanks to Blaz Solar (me@blaz.solar) (
+      <a href="https://issuetracker.google.com/155215201">b/155215201</a>
+      )
+    </li>
+    <li>
+      Room now embeds its ANTLR dependency with the annotation processor to avoid version conflicts with other processors that also use ANTLR. (
+      <a href="https://issuetracker.google.com/150106190">b/150106190</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_226_3" data-text="Version 2.2.6" tabindex="-1">Version 2.2.6</h2>

@@ -1,0 +1,96 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.3.0-alpha01
+releaseDate: 2020-03-04
+#language=html
+changelogHtml: |
+  <h3 id="2.3.0-alpha01" data-text="Version 2.3.0-alpha01" tabindex="-1">Version 2.3.0-alpha01</h3>
+  <p>March 4, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.3.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/fc7c16e8d04b669a38ca27b96646e13d3ae5e733..666ae665acfcfa2a20eccc18e4494808169742f4/lifecycle">Version 2.3.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      A new
+      <code translate="no" dir="ltr">ViewTreeLifecycleOwner.get(View)</code>
+      API allows you to retrieve the containing
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      given a
+      <code translate="no" dir="ltr">View</code>
+      instance. You must upgrade to
+      <a href="/jetpack/androidx/releases/activity#1.2.0-alpha01">
+        Activity
+        <code translate="no" dir="ltr">1.2.0-alpha01</code>
+      </a>
+      and
+      <a href="/jetpack/androidx/releases/fragment#1.3.0-alpha01">
+        Fragment
+        <code translate="no" dir="ltr">1.3.0-alpha01</code>
+      </a>
+      to populate this correctly. A
+      <code translate="no" dir="ltr">findViewTreeLifecycleOwner</code>
+      Kotlin extension is available in
+      <code translate="no" dir="ltr">lifecycle-runtime-ktx</code>
+      . (
+      <a href="https://android-review.googlesource.com/1182361">aosp/1182361</a>
+      ,
+      <a href="https://android-review.googlesource.com/1182956">aosp/1182956</a>
+      )
+    </li>
+    <li>
+      Added a new Lint check that warns you when setting a
+      <code translate="no" dir="ltr">null</code>
+      value on a
+      <code translate="no" dir="ltr">MutableLiveData</code>
+      that has been defined in Kotlin as non-null. This is available when using the
+      <code translate="no" dir="ltr">livedata-core-ktx</code>
+      or
+      <code translate="no" dir="ltr">livedata-ktx</code>
+      artifacts. (
+      <a href="https://android-review.googlesource.com/1154723">aosp/1154723</a>
+      ,
+      <a href="https://android-review.googlesource.com/1159092">aosp/1159092</a>
+      )
+    </li>
+    <li>
+      A new
+      <code translate="no" dir="ltr">lifecycle-runtime-testing</code>
+      artifact is available that provides a
+      <code translate="no" dir="ltr">TestLifecycleOwner</code>
+      that implements
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      and provides a thread safe mutable
+      <code translate="no" dir="ltr">Lifecycle</code>
+      . (
+      <a href="https://android-review.googlesource.com/1242438">aosp/1242438</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">lifecycle-runtime</code>
+      artifact now has a unique package name. (
+      <a href="https://android-review.googlesource.com/1187196">aosp/1187196</a>
+      )
+    </li>
+  </ul>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      as per the
+      <a href="/jetpack/androidx/releases/lifecycle#2.2.0">
+        Lifecycle
+        <code translate="no" dir="ltr">2.2.0</code>
+        release notes
+      </a>
+      , the
+      <code translate="no" dir="ltr">lifecycle-extensions</code>
+      artifact is no longer published.
+    </span>
+  </aside>
+  <h2 id="version_220_3" data-text="Version 2.2.0" tabindex="-1">Version 2.2.0</h2>

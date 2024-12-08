@@ -1,0 +1,158 @@
+libraryId: appsearch
+groupId: androidx.appsearch
+version: 1.1.0-alpha04
+releaseDate: 2024-08-07
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha04" data-text="Version 1.1.0-alpha04" tabindex="-1">Version 1.1.0-alpha04</h3>
+  <p>August 7, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.appsearch:appsearch-*:1.1.0-alpha04</code>
+    is released. Version 1.1.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/67687dad8bd1314c67bac1e4aba4c9891177b0e1/appsearch">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Support for new
+      <code translate="no" dir="ltr">PlayServicesStorage</code>
+      implementation, which allows using
+      <code translate="no" dir="ltr">AppSearch</code>
+      on older devices without incurring the significant apk size cost of
+      <code translate="no" dir="ltr">LocalStorage</code>
+      . This storage implementation works by storing app data within the Play Services app.
+    </li>
+    <li>Support for new APIs on devices running Android 15.</li>
+    <li>
+      Support searching the database by embedding vectors, allowing for fuzzy matching. (
+      <a href="https://android-review.googlesource.com/#/q/I2b41b0c5b1fa7b80e9eced8a53f7f642c025cacf">I2b41b</a>
+      )
+    </li>
+    <li>
+      Support parent types and polymorphism within the
+      <code translate="no" dir="ltr">AppSearch</code>
+      schema model. (
+      <a href="https://android-review.googlesource.com/#/q/I0611822dac1c59abd2b0a1612f230483707fa7f4">I06118</a>
+      )
+    </li>
+    <li>
+      Support the
+      <code translate="no" dir="ltr">TakenAction</code>
+      API which allows apps to report when results were clicked or abandoned, for quality boosting during subsequent searches. (
+      <a href="https://android-review.googlesource.com/#/q/I5409187483287d0bc450c457e37e757c5f8378ba">I54091</a>
+      )
+    </li>
+    <li>
+      Support classes with builders in the annotation processor by introducing the new
+      <code translate="no" dir="ltr">@Document.BuilderProducer</code>
+      annotation. (
+      <a href="https://android-review.googlesource.com/#/q/Iec30a82e04c57f230021f0472146de026ef64ead">Iec30a</a>
+      )
+    </li>
+    <li>
+      Support finer-grained control over which properties of a nested document get indexed. (
+      <a href="https://android-review.googlesource.com/#/q/Iec30a82e04c57f230021f0472146de026ef64ead">Iec30a</a>
+      )
+    </li>
+    <li>
+      Support for filtering searches to certain document properties. (
+      <a href="https://android-review.googlesource.com/#/q/Ib2659afc81845eeab388ada820b7f3ea7344d363">Ib2659</a>
+      )
+    </li>
+    <li>
+      Support finer-grained visibility settings by allowing OR and AND of visibility settings. (
+      <a href="https://android-review.googlesource.com/#/q/I0274b77408deea1bc9fb53386518e0d37bda4f77">I0274b</a>
+      )
+    </li>
+    <li>
+      Support for granting visibility of data to all apps that can see the existence of the owning app (public visibility). (
+      <a href="https://android-review.googlesource.com/#/q/I992e4a7845477e176776c4d78a2e45c0b75245dc">I992e4</a>
+      )
+    </li>
+    <li>
+      Support for retrieving only results that have data populated in a certain property. (
+      <a href="https://android-review.googlesource.com/#/q/I7d94f11a2c15d737df00c62baa6dcc000f34f508">I7d94f</a>
+      )
+    </li>
+    <li>
+      Support for retrieving enterprise contacts in the personal profile. (
+      <a href="https://android-review.googlesource.com/#/q/Idd5879214c6b30778802597b7281a2d27862a740">Idd587</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">indexableNestedPropertiesList</code>
+      and
+      <code translate="no" dir="ltr">inheritIndexableNestedPropertiesFromSuperclass</code>
+      annotation parameters to AppSearch's
+      <code translate="no" dir="ltr">Document.DocumentProperty</code>
+      annotation to allow indexing specific nested property paths. (
+      <a href="https://android-review.googlesource.com/#/q/Iec30a82e04c57f230021f0472146de026ef64ead">Iec30a</a>
+      )
+    </li>
+    <li>
+      Support builder constructor to create builder instances in
+      <code translate="no" dir="ltr">AppSearch</code>
+      annotation processor (
+      <a href="https://android-review.googlesource.com/#/q/I265c9bbe77a4c2d9c078eb0103574b56328a0069">I265c9</a>
+      )
+    </li>
+    <li>
+      Update
+      <code translate="no" dir="ltr">AppSearch</code>
+      annotation processor to support setting parent types for polymorphism (
+      <a href="https://android-review.googlesource.com/#/q/I0611822dac1c59abd2b0a1612f230483707fa7f4">I06118</a>
+      )
+    </li>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">GetSchemaRequest</code>
+      method for clearing visibility settings (
+      <a href="https://android-review.googlesource.com/#/q/I383799476dc7550e54f9b569e4ff149db72b81bf">I38379</a>
+      )
+    </li>
+    <li>
+      Support
+      <code translate="no" dir="ltr">addParentType</code>
+      in AppSearch for polymorphism (
+      <a href="https://android-review.googlesource.com/#/q/Ida14a3157ceab552778b757f8ab8f9c28784ad28">Ida14a</a>
+      )
+    </li>
+    <li>
+      Add APIs for additional ranking expressions (
+      <a href="https://android-review.googlesource.com/#/q/I5d9f4eac2ba39b1a962616634cc4d7b73dda8a28">I5d9f4</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">SearchAction</code>
+      API (
+      <a href="https://android-review.googlesource.com/#/q/I5409187483287d0bc450c457e37e757c5f8378ba">I54091</a>
+      )
+    </li>
+    <li>
+      Adds description field for
+      <code translate="no" dir="ltr">AppSearch</code>
+      types (
+      <a href="https://android-review.googlesource.com/#/q/I847620d214f887908e0016cc8a8580fcf4413d6c">I84762</a>
+      )
+    </li>
+    <li>
+      Onboard embedding search query and ranking APIs to
+      <code translate="no" dir="ltr">AppSearch</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I0f6c3a8b7cf14986c58a896728c2c35401b25808">I0f6c3</a>
+      )
+    </li>
+    <li>
+      Removes
+      <code translate="no" dir="ltr">getDeletionPropagation</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I21192849a6ac7e44086c0ffcaf464545c1ced8ad">I21192</a>
+      )
+    </li>
+  </ul>

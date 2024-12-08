@@ -1,0 +1,79 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.8.0-alpha03
+releaseDate: 2024-10-02
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0-alpha03" data-text="Version 1.8.0-alpha03" tabindex="-1">Version 1.8.0-alpha03</h3>
+  <p>October 2, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.8.0-alpha03</code>
+    is released. Version 1.8.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/0431b84980e97d6bafdfda7c9038bc4d9529564f..b6ae8d0a0e8cd803f7b84f30101eda1af4f1d6b6/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Kotlin version update to 1.9 (
+      <a href="https://android-review.googlesource.com/#/q/I1a14ce236e70bdc55f94afd42ead44587018c097">I1a14c</a>
+      )
+    </li>
+    <li>
+      Introduced a new Semantics Role called Carousel to emulate the list behavior in Pagers for a11y services. (
+      <a href="https://android-review.googlesource.com/#/q/Id354b132da03348aaa68da0dd8459d4528438018">Id354b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/354109776">b/354109776</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/239672673">b/239672673</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">invisibleToUser()</code>
+      to
+      <code translate="no" dir="ltr">hideFromAccessibility</code>
+      . Its function remains the same. See documentation for more details. (
+      <a href="https://android-review.googlesource.com/#/q/Ib43a30cc748b503b4e70551cdfe55c30118870b1">Ib43a3</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Updating docs for
+      <code translate="no" dir="ltr">SensitiveContent</code>
+      modifier (
+      <a href="https://android-review.googlesource.com/#/q/Ib0442a40b4d009efe3eff6d3c26eede5093645e5">Ib0442</a>
+      )
+    </li>
+    <li>Fixed issue where certain generic outline clips would be ignored in combination with elevation shadows on some Android versions</li>
+    <li>Fixed issue where empty clips would be applied when a generic outline clips was specified on certain Android versions.</li>
+    <li>
+      Fixed exception thrown when the IME is active on an external View and the Next action is used to enter focus on the
+      <code translate="no" dir="ltr">ComposeView</code>
+      . The
+      <code translate="no" dir="ltr">clearFocus()</code>
+      behavior aligns with View behavior on API &lt; 28, where
+      <code translate="no" dir="ltr">clearFocus()</code>
+      can cause the default View to be focused.
+    </li>
+    <li>
+      Fixed an issue where placement happened on detached nodes in
+      <code translate="no" dir="ltr">LazyList</code>
+      by separating the management of subcomposition for different layout passes.
+    </li>
+    <li>
+      Fixed a problem where the Software Keyboard flickers when focus switches from a
+      <code translate="no" dir="ltr">TextField</code>
+      to an
+      <code translate="no" dir="ltr">EditText</code>
+      or any other View based editor.
+    </li>
+    <li>
+      Nested Scroll nodes will now dispatch
+      <code translate="no" dir="ltr">onPostFling</code>
+      events correctly after they get detached.
+    </li>
+    <li>General performance improvements</li>
+  </ul>

@@ -1,0 +1,149 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.0.0-beta08
+releaseDate: 2021-06-02
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta08" data-text="Version 1.0.0-beta08" tabindex="-1">Version 1.0.0-beta08</h3>
+  <p>June 2, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation:1.0.0-beta08</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-layout:1.0.0-beta08</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b648147c5fdfc5ecbad57e40e2dc0c69aa23bf12..86ff5b4bb956431ec884586ce0aea0127e189ec4/compose/foundation">Version 1.0.0-beta08 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      NestedScrollSource enum is replaced by an inline class. (
+      <a href="https://android-review.googlesource.com/#/q/Ie321b5864dc617b2d6382ba5d632e8037dd5c1d5">Ie321b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187055290">b/187055290</a>
+      )
+    </li>
+    <li>
+      Refactored enum usages to inline classes to avoid issues with exhaustive when statements when new enum values are added. (
+      <a href="https://android-review.googlesource.com/#/q/I2b5eb2f04d64d1eccf38557d80e3eef06869c310">I2b5eb</a>
+      )
+    </li>
+    <li>
+      Adds a tap timeout to clickable / toggleable to prevent showing a ripple during a scroll / drag (
+      <a href="https://android-review.googlesource.com/#/q/Ia27044999597dd9411344119a7b77180943d9a25">Ia2704</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/168524931">b/168524931</a>
+      )
+    </li>
+    <li>
+      ContentDescription and Text semantics properties are no longer single values but lists. This enables to merge them as they are instead of concatenations. Also provided better testing APIs to utilize these changes (
+      <a href="https://android-review.googlesource.com/#/q/Ica6bf4236d05b97357c18fb306a6305877a349f7">Ica6bf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/184825850">b/184825850</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Modifier.focusModifier()</code>
+      is deprecated and replaced by
+      <code translate="no" dir="ltr">Modifier.focusTarget()</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I6c860991217cc0c4e7cb35be73207f94669ce607">I6c860</a>
+      )
+    </li>
+    <li>
+      KeyboardType enum is replaced by an inline class. (
+      <a href="https://android-review.googlesource.com/#/q/I73045de306c082ca8f6b11d44d252d0a63a407d3">I73045</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187055290">b/187055290</a>
+      )
+    </li>
+    <li>
+      Replaced
+      <code translate="no" dir="ltr">FocusState</code>
+      enum with a
+      <code translate="no" dir="ltr">FocusState</code>
+      interface (
+      <a href="https://android-review.googlesource.com/#/q/Iccc1a7306fe886969b3a5c74359f53250b3901d9">Iccc1a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187055290">b/187055290</a>
+      )
+    </li>
+    <li>
+      ImeAction enum is replaced by an inline class. (
+      <a href="https://android-review.googlesource.com/#/q/I18be51ba64f20257859ae634720b367ae7510e33">I18be5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187055290">b/187055290</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AnnotatedString.withAnnotation</code>
+      functions are now ExperimentalTextApi instead of ExperimentalComposeApi. (
+      <a href="https://android-review.googlesource.com/#/q/I0cd0a64f5e0bf4cd082d479711c014162f27c763">I0cd0a</a>
+      )
+      <ul>
+        <li>TextUnit constructor with TextUnitType is now ExperimentalTextApi instead of ExperimentalComposeApi.</li>
+      </ul>
+    </li>
+    <li>
+      PaddingValues is now
+      <code translate="no" dir="ltr">@Stable</code>
+      rather than
+      <code translate="no" dir="ltr">@Immutable</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I88c506cf737fdb19d99fc495ab343395c3b23e01">I88c50</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix crashes of long press the blank area in non-empty text. (
+      <a href="https://android-review.googlesource.com/#/q/I33ab5d732fc3564ec4fe99b16234a980f51684a8">I33ab5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187437299">b/187437299</a>
+      )
+    </li>
+    <li>
+      Show Toolbar after SelectAll (
+      <a href="https://android-review.googlesource.com/#/q/I495d9fdb7c7e01cfd6085748cb5116e106906bb8">I495d9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/185919613">b/185919613</a>
+      )
+    </li>
+    <li>
+      Fix for scrollable containers clipping its children on the cross axis. It was easily reproducible if you have a LazyRow with Card items. now the shadow will not be clipped. (
+      <a href="https://android-review.googlesource.com/#/q/Icb6356d8dac24720981caa6afe8785546a2e7847">Icb635</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/186318448">b/186318448</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where ripples / other indication would sometimes get stuck on a long click when using Modifier.combinedClickable (
+      <a href="https://android-review.googlesource.com/#/q/I2298ce564e3940875c3f3525255424da25dc9414">I2298c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/186223077">b/186223077</a>
+      )
+    </li>
+    <li>
+      Now
+      <code translate="no" dir="ltr">detectDragGesures</code>
+      ,
+      <code translate="no" dir="ltr">detectVerticalGestures</code>
+      , and
+      <code translate="no" dir="ltr">detectHorizontalGestures</code>
+      will consume the position change automatically, no need to call change.consumePositionChange in the onDrag callbacks (
+      <a href="https://android-review.googlesource.com/#/q/I42fc4a6529f73db228ae671097d10a0cda0d834b">I42fc4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/185096350">b/185096350</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187320697">b/187320697</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Modifier.onGloballyPositioned()</code>
+      was changed to report the coordinates of this modifier in the modifier chain, not the layout coordinates after applying all the modifiers. This means that now the ordering of modifiers is affecting what coordinates would be reported. (
+      <a href="https://android-review.googlesource.com/#/q/Ieb67da0c327c9dc323a4b0a8bf33dbb66f0611e3">Ieb67d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177926591">b/177926591</a>
+      )
+    </li>
+  </ul>

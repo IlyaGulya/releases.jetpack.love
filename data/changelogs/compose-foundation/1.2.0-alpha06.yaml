@@ -1,0 +1,89 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.2.0-alpha06
+releaseDate: 2022-03-23
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha06" data-text="Version 1.2.0-alpha06" tabindex="-1">Version 1.2.0-alpha06</h3>
+  <p>March 23, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation:1.2.0-alpha06</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-layout:1.2.0-alpha06</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/33cb12e8aba043a05b40470a5ef3be1b35114fd5..5ef5671233460b844828e14a816255dbf7904868/compose/foundation">Version 1.2.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">RequestFocus</code>
+      semantics action to request focus on the focusable target. (
+      <a href="https://android-review.googlesource.com/#/q/I17b71a13ca810f3ead1b7b87245b31b8e5b28f91">I17b71</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FocusOrder</code>
+      has now been merged into
+      <code translate="no" dir="ltr">FocusProperties</code>
+      and
+      <code translate="no" dir="ltr">focusProperties()</code>
+      now has all the capabilities of
+      <code translate="no" dir="ltr">focusOrder()</code>
+      .
+      <code translate="no" dir="ltr">FocusOrder</code>
+      and
+      <code translate="no" dir="ltr">focusOrder()</code>
+      have been deprecated.
+      <code translate="no" dir="ltr">focusOrder()</code>
+      that accepts a
+      <code translate="no" dir="ltr">focusRequester</code>
+      should be replaced with a
+      <code translate="no" dir="ltr">focusRequester()</code>
+      modifier in combination with
+      <code translate="no" dir="ltr">focusProperties()</code>
+      . This allows the modifiers to have a stronger separation of concerns. (
+      <a href="https://android-review.googlesource.com/#/q/I601b751755bcfefd849c8a0c0d019e3eaf5d459c">I601b7</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">WindowInsets.asPaddingValues(Density)</code>
+      was added to allow developers to do the conversion without needing to be in composition. (
+      <a href="https://android-review.googlesource.com/#/q/I94c353356d8550e56ca297be5c44a26b3a99b34a">I94c35</a>
+      )
+    </li>
+    <li>
+      Updated parsing of vector drawables to support auto mirroring to flip the content of a
+      <code translate="no" dir="ltr">VectorPainter</code>
+      if the current layout direction is RTL. (
+      <a href="https://android-review.googlesource.com/#/q/I79cd946811e9b06ff4186180c4f8eaa0dcdbc879">I79cd9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/185760237">b/185760237</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Scroll modifiers (
+      <code translate="no" dir="ltr">Modifier.verticalScroll()</code>
+      ,
+      <code translate="no" dir="ltr">Modifier.horizontalScroll()</code>
+      , and
+      <code translate="no" dir="ltr">Modifier.scrollable()</code>
+      ) will now scroll to keep the focused composable visible if the scroll area is resized and the focused composable was previously visible.
+    </li>
+    <li>
+      TextFields will now be kept above the keyboard when they are focused and the keyboard is shown, when inside a non-lazy scrollable and the soft input mode is
+      <code translate="no" dir="ltr">ADJUST_RESIZE</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4a485a1c80aa2d500dcd55e916006903ff45da95">I4a485</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/190539358">b/190539358</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/192043120">b/192043120</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/216842427">b/216842427</a>
+      )
+    </li>
+  </ul>

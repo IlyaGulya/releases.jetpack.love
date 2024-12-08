@@ -1,0 +1,120 @@
+libraryId: glance
+groupId: androidx.glance
+version: 1.0.0-alpha01
+releaseDate: 2021-12-15
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha01" data-text="Version 1.0.0-alpha01" tabindex="-1">Version 1.0.0-alpha01</h3>
+  <p>December 15, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.glance:glance:1.0.0-alpha01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.glance:glance-appwidget:1.0.0-alpha01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.glance:glance-appwidget-proto:1.0.0-alpha01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/301586664b5aad60548f21866cad502d524dbf9f/glance">Version 1.0.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>Features in initial release</strong></p>
+  <ul>
+    <li>The first release of Glance includes the first set of APIs to build AppWidget using Compose Runtime with a set of new Composables optimized for “Glanceables”.</li>
+  </ul>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      Glance uses its own set of Composables. Do not combine
+      <code translate="no" dir="ltr">androidx.compose</code>
+      and
+      <code translate="no" dir="ltr">androidx.glance</code>
+      composables.
+    </span>
+  </aside>
+  <p><strong>Features</strong></p>
+  <ul>
+    <li>
+      Declare your app widgets with
+      <a href="https://developer.android.com/reference/kotlin/androidx/glance/appwidget/GlanceAppWidget">GlanceAppWidget</a>
+      and
+      <a href="https://developer.android.com/reference/kotlin/androidx/glance/appwidget/GlanceAppWidgetReceiver">GlanceAppWidgetReceiver</a>
+      .
+    </li>
+    <li>
+      Compose your UI with the initial set of Glance Composables:
+      <a href="https://developer.android.com/reference/kotlin/androidx/glance/layout/package-summary#box">Box</a>
+      ,
+      <a href="https://developer.android.com/reference/kotlin/androidx/glance/layout/package-summary#row">Row</a>
+      ,
+      <a href="https://developer.android.com/reference/kotlin/androidx/glance/layout/package-summary#column">Column</a>
+      ,
+      <a href="https://developer.android.com/reference/kotlin/androidx/glance/text/package-summary#text">Text</a>
+      ,
+      <a href="https://developer.android.com/reference/kotlin/androidx/glance/package-summary#button">Button</a>
+      ,
+      <a href="https://developer.android.com/reference/kotlin/androidx/glance/appwidget/lazy/package-summary#lazycolumn">LazyColumn</a>
+      ,
+      <a href="https://developer.android.com/reference/kotlin/androidx/glance/package-summary#image">Image</a>
+      ,
+      <a href="https://developer.android.com/reference/kotlin/androidx/glance/layout/package-summary#spacer">Spacer</a>
+      .
+    </li>
+    <li>
+      Apply modifiers to the composables using
+      <a href="https://developer.android.com/reference/kotlin/androidx/glance/GlanceModifier.html">GlanceModifier</a>
+      methods.
+    </li>
+    <li>
+      Handle user interaction with predefined
+      <a href="https://developer.android.com/reference/kotlin/androidx/glance/action/package-summary">Action</a>
+      s.
+      <ul>
+        <li><a href="https://developer.android.com/reference/kotlin/androidx/glance/appwidget/action/package-summary#actionstartactivity">actionStartActivity</a></li>
+        <li><a href="https://developer.android.com/reference/kotlin/androidx/glance/appwidget/action/package-summary#actionruncallback">actionRunCallback</a></li>
+        <li><a href="https://developer.android.com/reference/kotlin/androidx/glance/appwidget/action/package-summary#actionstartservice">actionStartService</a></li>
+        <li><a href="https://developer.android.com/reference/kotlin/androidx/glance/appwidget/action/package-summary#actionstartbroadcastreceiver">actionStartBroadcastReceiver</a></li>
+      </ul>
+    </li>
+    <li>
+      Provide parameters to
+      <a href="https://developer.android.com/reference/kotlin/androidx/glance/action/package-summary">Action</a>
+      with
+      <a href="https://developer.android.com/reference/kotlin/androidx/glance/action/ActionParameters">ActionParameters</a>
+      .
+    </li>
+    <li>
+      Handle
+      <a href="https://developer.android.com/guide/topics/appwidgets/layouts">different size modes</a>
+      by defining
+      <a href="https://developer.android.com/reference/kotlin/androidx/glance/appwidget/SizeMode.Single">SizeMode.Single</a>
+      ,
+      <a href="https://developer.android.com/reference/kotlin/androidx/glance/appwidget/SizeMode.Exact">SizeMode.Exact</a>
+      or
+      <a href="https://developer.android.com/reference/kotlin/androidx/glance/appwidget/SizeMode.Responsive">SizeMode.Responsive</a>
+      .
+    </li>
+    <li>
+      Persist
+      <a href="https://developer.android.com/reference/kotlin/androidx/glance/appwidget/state/package-summary">GlanceAppWidget state</a>
+      by providing a
+      <a href="https://developer.android.com/reference/kotlin/androidx/glance/state/GlanceStateDefinition.html">GlanceStateDefinition</a>
+      .
+    </li>
+    <li>
+      Local compositions like
+      <a href="https://developer.android.com/reference/kotlin/androidx/glance/package-summary#localcontext">LocalContext</a>
+      ,
+      <a href="https://developer.android.com/reference/kotlin/androidx/glance/package-summary#localstate">LocalState</a>
+      ,
+      <a href="https://developer.android.com/reference/kotlin/androidx/glance/package-summary#localglanceid">LocalGlanceId</a>
+      ,
+      <a href="https://developer.android.com/reference/kotlin/androidx/glance/package-summary#localsize">LocalSize</a>
+      .
+    </li>
+    <li>
+      Interop with your existing
+      <a href="https://developer.android.com/reference/android/widget/RemoteViews.html">RemoteViews</a>
+      with the
+      <a href="https://developer.android.com/reference/kotlin/androidx/glance/appwidget/package-summary#androidremoteviews">AndroidRemoteViews</a>
+      Composable.
+    </li>
+  </ul>
+  <devsite-hats-survey class="nocontent" hats-id="VxqvKSur40kxBYCLVTd0SSGykbno" listnr-id="5207477"></devsite-hats-survey>

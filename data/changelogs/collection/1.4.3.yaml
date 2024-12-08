@@ -1,0 +1,47 @@
+libraryId: collection
+groupId: androidx.collection
+version: 1.4.3
+releaseDate: 2024-08-07
+#language=html
+changelogHtml: |
+  <h3 id="1.4.3" data-text="Version 1.4.3" tabindex="-1">Version 1.4.3</h3>
+  <p>August 7, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.collection:collection-*:1.4.3</code>
+    is released. Version 1.4.3 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/62eff04974cadb45eee848ddb67ecd76c5fda38e..e3e748755ae0a4bd350b5e1f1f06ea40170528c0/collection">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a corruption that could happen in
+      <code translate="no" dir="ltr">ScatterMap</code>
+      ,
+      <code translate="no" dir="ltr">ScatterSet</code>
+      , and their primitive variants. (
+      <a href="https://android-review.googlesource.com/#/q/I38a4afee75595958594310a0ad14cca486997163">I38a4a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/352560465">b/352560465</a>
+      )
+    </li>
+    <li>
+      Performance optimizations. In particular:
+      <ul>
+        <li>
+          Replace calls to
+          <code translate="no" dir="ltr">check()</code>
+          and
+          <code translate="no" dir="ltr">required()</code>
+          with variants that don't inline exception throws. This reduces the final binary size and more importantly relieves i-cache pressure a little bit.
+        </li>
+        <li>
+          Improved
+          <code translate="no" dir="ltr">removeDeletedMarkers()</code>
+          in the "scatter" family of collections. The new version clears deleted markers 8 markers at a time and skips more expensive writes in the process. (
+          <a href="https://android-review.googlesource.com/#/q/Ic0566fa291904feec9cd8e0fa2fd45ff13e61c32">Ic0566</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>

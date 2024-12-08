@@ -1,0 +1,42 @@
+libraryId: preference
+groupId: androidx.preference
+version: 1.2.0-alpha01
+releaseDate: 2021-10-27
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha01" data-text="Version 1.2.0-alpha01" tabindex="-1">Version 1.2.0-alpha01</h3>
+  <p>October 27, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.preference:preference:1.2.0-alpha01</code>
+    and
+    <code translate="no" dir="ltr">androidx.preference:preference-ktx:1.2.0-alpha01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ca6054a5e12fcf05ba5e20bf93403afdab093986/preference">Version 1.2.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">PreferenceHeaderFragmentCompat</code>
+      for two-pane preference (
+      <a href="https://android-review.googlesource.com/#/q/I9a2d87178737bb0dd2df8e4f6173f8cc690eb20c">I9a2d8</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li><p>Preference callbacks for OnPreferenceDisplayDialogCallback, OnPreferenceStartScreenCallback, and OnPreferenceStartFragmentCallback can now be implemented in a non-Activity Context. getContext() is checked to see if it implements these callbacks before checking getActivity(). If getContext() returns an Activity (the common case), then there is no behavior change.</p></li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">PreferenceFragmentCompat</code>
+        ’s call to
+        <code translate="no" dir="ltr">onPreferenceTreeClick</code>
+        now looks for implementations of the
+        <code translate="no" dir="ltr">OnPreferenceStartFragmentCallback</code>
+        interface on parent fragments before considering the Activity’s implementation. (
+        <a href="https://android-review.googlesource.com/#/q/c64eed7505e6ec59172a0b2c98e7d69430d63f12">c64eed</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <h2 id="version_11_2" data-text="Version 1.1" tabindex="-1">Version 1.1</h2>

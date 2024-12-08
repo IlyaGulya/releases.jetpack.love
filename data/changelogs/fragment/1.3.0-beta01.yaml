@@ -1,0 +1,160 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.3.0-beta01
+releaseDate: 2020-10-01
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-beta01" data-text="Version 1.3.0-beta01" tabindex="-1">Version 1.3.0-beta01</h3>
+  <p>October 1, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.3.0-beta01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.3.0-beta01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.3.0-beta01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/96eb302ee1740ba656c90c9fb27df3723a1a89c1..f5a2c7477391539d8bc9f65a8f0db1e8a7bf2cf5/fragment">Version 1.3.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">setMaxLifecycle()</code>
+      now supports setting the
+      <code translate="no" dir="ltr">Lifecycle</code>
+      state to
+      <code translate="no" dir="ltr">INITIALIZING</code>
+      as long as the fragment has not been moved to
+      <code translate="no" dir="ltr">CREATED</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/159662173">b/159662173</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Upgrade androidx to use Kotlin 1.4 (
+      <a href="https://android-review.googlesource.com/#/q/Id647100407925c16d734c8c43392b4e2d108d0e3">Id6471</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/165307851">b/165307851</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/165300826">b/165300826</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      Fragment resource files have been correctly made private. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1425237">aosp/1425237</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fragments inflated using the
+      <code translate="no" dir="ltr">&lt;fragment&gt;</code>
+      tag will now properly wait until their views are added to a container before moving to STARTED (
+      <a href="https://android-review.googlesource.com/#/q/I02f4c2b910a182c580e514765062a649745161fb">I02f4c</a>
+      )
+    </li>
+    <li>
+      Fragments that are visible and then
+      <code translate="no" dir="ltr">setMaxLifecycle()</code>
+      to
+      <code translate="no" dir="ltr">CREATED</code>
+      now properly run their exit effects. (
+      <a href="https://issuetracker.google.com/issues/165822335">b/165822335</a>
+      )
+    </li>
+    <li>
+      Removing a detached fragment that is not added to the back stack no longer causes a memory leak. Courtesy of Nicklas Ansman Giertz! (
+      <a href="https://issuetracker.google.com/issues/166489383">b/166489383</a>
+      )
+    </li>
+    <li>
+      Active fragments will now always have a non-null
+      <code translate="no" dir="ltr">FragmentManager</code>
+      and fragments with a non-null
+      <code translate="no" dir="ltr">FragmentManager</code>
+      will always be considered active. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1422346">aosp/1422346</a>
+      )
+    </li>
+    <li>
+      The fragment default effects,
+      <code translate="no" dir="ltr">TRANSIT_FRAGMENT_OPEN</code>
+      ,
+      <code translate="no" dir="ltr">TRANSIT_FRAGMENT_CLOSE</code>
+      , and
+      <code translate="no" dir="ltr">TRANSIT_FRAGMENT_FADE</code>
+      , now use
+      <a href="/reference/android/animation/Animator"><code translate="no" dir="ltr">Animator</code></a>
+      instead of
+      <a href="/reference/kotlin/android/view/animation/Animation"><code translate="no" dir="ltr">Animation</code></a>
+      . (
+      <a href="https://issuetracker.google.com/issues/1661550343">b/166155034</a>
+      )
+    </li>
+  </ul>
+  <p><strong>New State Manager Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fragments now properly restore their view focus state from right before they start their animation. (
+      <a href="https://android-review.googlesource.com/#/q/Icc2561fb3dc413250153e5e0fcb2d10846791d53">Icc256</a>
+      )
+    </li>
+    <li>
+      Fragments that only have a shared element transition now properly complete their special effects meaning they actually move to their final state (
+      <a href="https://android-review.googlesource.com/#/q/Iaebc76914b9c24968a2943c18911b183f9dd8a4f">Iaebc7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/166658128">b/166658128</a>
+      )
+    </li>
+    <li>
+      Fragment views are now always removed from the container before being destroyed. (
+      <a href="https://android-review.googlesource.com/#/q/Id587699a6ae9dd696f568f8e0a5304156be1cd82">Id5876</a>
+      )
+    </li>
+    <li>
+      The new state manager now consistently removes the exiting fragment view before adding the entering one. (
+      <a href="https://android-review.googlesource.com/#/q/I41a6ee1a0bc135c0443d8152a8106498241d3862">I41a6e</a>
+      )
+    </li>
+    <li>
+      Explicit changes to a fragment view’s visibility are now respected by the new state manager. This means that if you set an entering fragment’s view to
+      <code translate="no" dir="ltr">INVISIBLE</code>
+      before the animation begins, it will actually stay invisible. (
+      <a href="https://issuetracker.google.com/issues/164481490">b/164481490</a>
+      )
+    </li>
+    <li>
+      Fragments now prioritize
+      <code translate="no" dir="ltr">Animators</code>
+      over
+      <code translate="no" dir="ltr">Animations</code>
+      , meaning a fragment with both will only run the
+      <code translate="no" dir="ltr">Animator</code>
+      and ignore the
+      <code translate="no" dir="ltr">Animation</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/167579557">b/167579557</a>
+      )
+    </li>
+    <li>
+      The new state manager no longer causes fragments to flash when using entering animations. (
+      <a href="https://issuetracker.google.com/issues/163084315">b/163084315</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issue</strong></p>
+  <p>
+    When using the new state manager, if you press back during an entering special effect instead of returning to the previous fragment, the old fragment is never re-added, resulting in a blank screen. (
+    <a href="https://issuetracker.google.com/issues/167259187">b/167259187</a>
+    ,
+    <a href="https://issuetracker.google.com/issues/167092035">b/167092035</a>
+    ,
+    <a href="https://issuetracker.google.com/issues/168442830">b/168442830</a>
+    )
+  </p>

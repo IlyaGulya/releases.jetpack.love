@@ -1,0 +1,154 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.6.0-alpha05
+releaseDate: 2023-02-08
+#language=html
+changelogHtml: |
+  <h3 id="2.6.0-alpha05" data-text="Version 2.6.0-alpha05" tabindex="-1">Version 2.6.0-alpha05</h3>
+  <p>February 8, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.6.0-alpha05</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a1e318590b217ecfce1b2de17eed2f18b6a680bb..2ea70540638fa56f90e00b5a8b84781a400a49a1/navigation">Version 2.6.0-alpha05 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">NavController.popBackStack(route)</code>
+      ,
+      <code translate="no" dir="ltr">NavController.getBackStackEntry(route)</code>
+      ,
+      <code translate="no" dir="ltr">NavController.clearBackStack(route)</code>
+      now all support routes with arguments partially or fully filled in. Note that the arguments have to be an exact match with the entry's arguments. (
+      <a href="https://android-review.googlesource.com/#/q/Iebd2816e5a0a10b324bc03d51a25b4cf58922864">Iebd28</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ic678cf67db0f47f7b2778b039242773767735f2c">Ic678c</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I3b37b5d2dd9423bf095cce5632f5208abfe49d70">I3b37b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/257514373">b/257514373</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">FragmentNavigator</code>
+      now uses the transition APIs when navigating and popping
+      <code translate="no" dir="ltr">NavBackStackEntries</code>
+      . This means that the
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      <code translate="no" dir="ltr">Lifecycle</code>
+      will now wait for the entering and exiting fragment special effects to complete before moving their final
+      <code translate="no" dir="ltr">Lifecycle.State</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3cb193646619c371ce4024b19d709fbbfada32be">I3cb19</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/238686802">b/238686802</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">DialogFragmentNavigator</code>
+      now uses the transition APIs when navigating and popping
+      <code translate="no" dir="ltr">NavBackStackEntries</code>
+      . This means that the
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      <code translate="no" dir="ltr">Lifecycle</code>
+      will now wait for the
+      <code translate="no" dir="ltr">DialogFragment</code>
+      <code translate="no" dir="ltr">Lifecycle</code>
+      to move to
+      <code translate="no" dir="ltr">DESTROYED</code>
+      before moving to
+      <code translate="no" dir="ltr">DESTROYED</code>
+      itself. (
+      <a href="https://android-review.googlesource.com/#/q/I53ee5ff20ea8dd04dfffbce10015504a9bdca135">I53ee5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261213893">b/261213893</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">NavigatorState</code>
+      now provides the
+      <code translate="no" dir="ltr">prepareForTransition</code>
+      API to allow
+      <code translate="no" dir="ltr">Navigator</code>
+      s to move
+      <code translate="no" dir="ltr">NavBackStackEntries</code>
+      to intermediate
+      <code translate="no" dir="ltr">Lifecycle.State</code>
+      s. (
+      <a href="https://android-review.googlesource.com/#/q/I42c214311d1ab67f589f5749a62133ec564044f4">I42c21</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/238686802">b/238686802</a>
+      )
+    </li>
+    <li>
+      You can now access the back stack associated with a
+      <code translate="no" dir="ltr">NavGraphNavigator</code>
+      or a
+      <code translate="no" dir="ltr">ComposeNavigator</code>
+      via a
+      <code translate="no" dir="ltr">backstack</code>
+      property.
+      <code translate="no" dir="ltr">ComposeNavigator</code>
+      also now exposes the
+      <code translate="no" dir="ltr">onTransitionComplete()</code>
+      callback to mark a
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      that has executed a navigate or
+      <code translate="no" dir="ltr">popBackStack</code>
+      operation as complete. (
+      <a href="https://android-review.googlesource.com/#/q/I02062bf587450aad6d99fd2bbca19dd3c178d4fe">I02062</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I718dbcf2549d755b283292002cdfd9df9dc4bf26">I718db</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/257519195">b/257519195</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Navigator state will now no-op when using the
+      <code translate="no" dir="ltr">push/popWithTransition</code>
+      APIs and the entry is already being handled. (
+      <a href="https://android-review.googlesource.com/#/q/Iadbfaef1a0d6269bcc974058e09aed30de3611a7">Iadbfa</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261213893">b/261213893</a>
+      )
+    </li>
+    <li>
+      When using
+      <code translate="no" dir="ltr">launchSingleTop</code>
+      with a nested
+      <code translate="no" dir="ltr">NavGraph</code>
+      all destinations starting from original destination to its
+      <code translate="no" dir="ltr">startDestination</code>
+      will only be properly added to the top of the backstack. (
+      <a href="https://android-review.googlesource.com/#/q/Id4bea16aff3dd776826fc6d746475e293eb64b0e">Id4bea</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/253256629">b/253256629</a>
+      )
+    </li>
+    <li>
+      Navigation will now properly replace the
+      <code translate="no" dir="ltr">DialogFragment</code>
+      instance when navigating to the same destination with the
+      <code translate="no" dir="ltr">launchSingleTop</code>
+      flag set to true. (
+      <a href="https://android-review.googlesource.com/#/q/I45b5a3bd6f538c1b97573f269414ecf6e06e4d81">I45b5a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/149572817">b/149572817</a>
+      )
+    </li>
+    <li>
+      Navigation SafeArgs will no longer cause a compilation error when using arguments that are exactly 19 characters long. (
+      <a href="https://android-review.googlesource.com/#/q/Id60bcbd017753261a97b002d76960e1e2b1d18ed">Id60bc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/257110095">b/257110095</a>
+      )
+    </li>
+  </ul>

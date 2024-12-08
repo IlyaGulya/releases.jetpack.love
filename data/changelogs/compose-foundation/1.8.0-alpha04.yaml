@@ -1,0 +1,80 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.8.0-alpha04
+releaseDate: 2024-10-16
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0-alpha04" data-text="Version 1.8.0-alpha04" tabindex="-1">Version 1.8.0-alpha04</h3>
+  <p>October 16, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.8.0-alpha04</code>
+    is released. Version 1.8.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b6ae8d0a0e8cd803f7b84f30101eda1af4f1d6b6..b8a68b0896897fa158508d73a31998a26161d9a7/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">DelegatableNode#onDensityChange</code>
+      and
+      <code translate="no" dir="ltr">DelegatableNode#onLayoutDirectionChange</code>
+      callbacks to allow updating node state when these change. (
+      <a href="https://android-review.googlesource.com/#/q/I04f3e3afea5aabdc6225b1afb197df18133eb018">I04f3e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/340662451">b/340662451</a>
+      )
+    </li>
+    <li>
+      Paragraph and
+      <code translate="no" dir="ltr">ParagraphIntrinsics</code>
+      now takes a list of all annotations applied to the
+      <code translate="no" dir="ltr">AnnotatedString</code>
+      , previously it only had a list of
+      <code translate="no" dir="ltr">SpanStyles</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I12f8071e3bb8ed7871bb659e256569182680d49e">I12f80</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">PointerInputModifierNode#touchBoundsExpansion</code>
+      , which can be used to enlarge the touch bounds of a single pointer input modifier. (
+      <a href="https://android-review.googlesource.com/#/q/Iccf028b886639d3b24e7a257a023320362399389">Iccf02</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/335339283">b/335339283</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a bug where positional thresholds passed to
+      <code translate="no" dir="ltr">AnchoredDraggableDefaults.flingBehavior</code>
+      were not considered correctly in some scenarios. (
+      <a href="https://android-review.googlesource.com/#/q/Ifdf0dfcf3d7ff8288affee56e7092bbed473d6ab">Ifdf0d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/367660226">b/367660226</a>
+      )
+    </li>
+    <li>
+      Introduce a fix for nested scrollables that are removed from the node tree during an ongoing fling. Now these nodes will cancel the fling and correctly send the
+      <code translate="no" dir="ltr">onPostFling</code>
+      event with the remaining velocity. We're also introducing the flag
+      <code translate="no" dir="ltr">NewNestedScrollFlingDispatchingEnabled</code>
+      to control the behavior in case of regressions. The flag will be removed before beta. (
+      <a href="https://android-review.googlesource.com/#/q/I05c37b5d0ae42d8ed97c014383fe9df3282d61d6">I05c37</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/371168883">b/371168883</a>
+      )
+    </li>
+    <li>
+      Fixed a bug where
+      <code translate="no" dir="ltr">OverscrollEffects</code>
+      passed to
+      <code translate="no" dir="ltr">Modifier.anchoredDraggable</code>
+      would receive 2D deltas instead of 1D. (
+      <a href="https://android-review.googlesource.com/#/q/Ie52c0db5e85eef359cf82b2f88713a31cf6802f4">Ie52c0</a>
+      )
+    </li>
+  </ul>

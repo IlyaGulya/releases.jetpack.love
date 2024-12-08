@@ -1,0 +1,82 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.3.0-alpha01
+releaseDate: 2022-11-09
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha01" data-text="Version 1.3.0-alpha01" tabindex="-1">Version 1.3.0-alpha01</h3>
+  <p>November 9, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.3.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3296a1dd8beca331583a4f3c2550d7aed2d306a4/camera">Version 1.3.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">Camera-viewfinder</code>
+      has been published officially.
+      <code translate="no" dir="ltr">Camera-viewfinder</code>
+      provides a base viewfinder widget that can display the camera feed for Camera2. Please check the
+      <a href="https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:camera/integration-tests/viewfindertestapp/src/main/java/androidx/camera/integration/viewfinder/CameraViewfinderFoldableFragment.kt;l=97?q=CameraViewfinder">sample code</a>
+      for an example.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">OutputOptions.setDurationLimit</code>
+      to allow setting of video duration limit. The recording will be automatically finalized when exceeding the specified duration limit. (
+      <a href="https://android-review.googlesource.com/#/q/I902a049293775b7cda22c794163c1e4465863375">I902a0</a>
+      )
+    </li>
+    <li>
+      Add video recording audio error state
+      <code translate="no" dir="ltr">AudioStats.AUDIO_STATE_SOURCE_ERROR</code>
+      . Sent when audio source setup fails or some error occurs. (
+      <a href="https://android-review.googlesource.com/#/q/I37410c5834d9b0084cf8410f2456502860013307">I37410</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Add quirk to allow some problematic devices to retry capture once when encountering capture failures. (
+      <a href="https://android-review.googlesource.com/#/q/Id4795aa8c42f475b10257716adf267636809ee57">Id4795</a>
+      )
+    </li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">PreviewView</code>
+      <code translate="no" dir="ltr">SurfaceView</code>
+      implementation black screen issue on
+      <code translate="no" dir="ltr">ViewPager2</code>
+      . As part of the fix,
+      <code translate="no" dir="ltr">PreviewView</code>
+      will reuse its
+      <code translate="no" dir="ltr">SurfaceView</code>
+      if the requested resolution is not changed. (
+      <a href="https://android-review.googlesource.com/#/q/Ib3f27c45c8ad1f9fc837454961a27087fe2f38ff">Ib3f27</a>
+      )
+    </li>
+    <li>
+      Support video cropping (WYSIWYG feature) when
+      <code translate="no" dir="ltr">ViewPort</code>
+      or
+      <code translate="no" dir="ltr">CameraController</code>
+      API is used. (
+      <a href="https://android-review.googlesource.com/#/q/Ifbba8358a6cdf8562621e67eb96360cc1b567e3f">Ifbba8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/201085351">b/201085351</a>
+      )
+    </li>
+    <li>
+      Fixed video captured with front camera fails to record on Huawei P40 lite. (
+      <a href="https://android-review.googlesource.com/#/q/I87c578a04e7a0318046da9a3a44bab5792007c88">I87c57</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/250807400">b/250807400</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_12_2" data-text="Version 1.2" tabindex="-1">Version 1.2</h2>

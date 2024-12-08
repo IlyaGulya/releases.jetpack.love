@@ -1,0 +1,149 @@
+libraryId: core
+groupId: androidx.core
+version: 1.7.0-alpha02
+releaseDate: 2021-09-01
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha02" data-text="Version 1.7.0-alpha02" tabindex="-1">Version 1.7.0-alpha02</h3>
+  <p>September 1, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core:1.7.0-alpha02</code>
+    and
+    <code translate="no" dir="ltr">androidx.core:core-ktx:1.7.0-alpha02</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/19ae3a88ff0824d615355b492cb56049e16991f2..47e81d1c497b8a57534a460c277855db1b0257ae/core">Version 1.7.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>Streamlining and unification of how lifecycle-aware menus are managed, see MenuProvider for more details.</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">MenuHost</code>
+      interface for components that manage
+      <code translate="no" dir="ltr">MenuProvider</code>
+      s. (
+      <a href="https://android-review.googlesource.com/#/q/I83f23a17b112d2bdc85d1732fa6efcf32eb67ddd">I83f23</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">MenuProvider</code>
+      interface that can be used to indicate that a component is supplying menu items. (
+      <a href="https://android-review.googlesource.com/#/q/If8a40bc3edd37897cfaa1eed78c1c288b80c13c3">If8a40</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">MenuHostHelper</code>
+      to simplify implementing
+      <code translate="no" dir="ltr">MenuHost</code>
+      in a component. (
+      <a href="https://android-review.googlesource.com/#/q/I74f4ae6ab5ef63c51b4f982b6a334bba5bb0dfc2">I74f4a</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">LocationRequestCompat.toLocationRequest()</code>
+      for converting to platform class. (
+      <a href="https://android-review.googlesource.com/#/q/I71e7543c4d764487fe362df5d605097d3a295b33">I71e75</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">DocumentsContractCompat</code>
+      class for parity with platform APIs. (
+      <a href="https://android-review.googlesource.com/#/q/Ia9e913676b58653492ca6897473d1a74d1fb4e5e">Ia9e91</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">NotificationCompat.BigPictureStyle.showBigPictureWhenCollapsed(boolean)</code>
+      for parity with platform APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I8cd88f42564e08fbad3bf8ae0c194ef872e62cbd">I8cd88</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">checkSelfPermission</code>
+      from
+      <code translate="no" dir="ltr">PermissionChecker</code>
+      would show mic/cam indicators. (
+      <a href="https://android-review.googlesource.com/#/q/I572a9c6e2c86d435ba22b42db888c021abcd888f">I572a9</a>
+      )
+    </li>
+    <li>
+      Added explicit threading annotation for
+      <code translate="no" dir="ltr">setImportantForAccessibility</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I990faac25c6136591f97c8d4cdea0b3372f51af2">I990fa</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">getUnusedAppRestrictionsStatus</code>
+      to conform to API guidelines. (
+      <a href="https://android-review.googlesource.com/#/q/I28a1880547ccc73f04d1bb255b5e15bc841cd239">I28a18</a>
+      )
+    </li>
+    <li>
+      Completed functionality for
+      <code translate="no" dir="ltr">getUnusedAppRestrictionsStatus</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7c2d63bb73588c8db98fdde4b13be652df699b4a">I7c2d6</a>
+      )
+    </li>
+    <li>
+      Added support to
+      <code translate="no" dir="ltr">LocationCompat</code>
+      for vertical accuracy, speed accuracy, and bearing accuracy. (
+      <a href="https://android-review.googlesource.com/#/q/I1d3e9ee37addf2c51fad17afb13c35fc46c4402e">I1d3e9</a>
+      )
+    </li>
+    <li>
+      Added math compat functions to
+      <code translate="no" dir="ltr">MathUtils</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Idb590f4b897a3cdeadbc6e84b3386d0c6031bdf6">Idb590</a>
+      )
+    </li>
+    <li>
+      Integrated
+      <code translate="no" dir="ltr">OnReceiveContentListener</code>
+      into compat APIs. (
+      <a href="https://android-review.googlesource.com/#/q/Ic6914c23688b4165c81ffa19a7dbce89d52bffcd">Ic6914</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173814913">b/173814913</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ActivityCompat#isLaunchedFromBubble</code>
+      for platform parity. (
+      <a href="https://android-review.googlesource.com/#/q/I6961ad810fdaf5b656647198f3026dffeee84de5">I6961a</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">LocationRequest</code>
+      and
+      <code translate="no" dir="ltr">LocationManager.hasProvider()</code>
+      for platform parity. (
+      <a href="https://android-review.googlesource.com/#/q/I4f3e488fa561d8182485a264829e55f088a0b02b">I4f3e4</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Removed the use of lambdas in
+      <code translate="no" dir="ltr">PackageManagerCompat</code>
+      to avoid
+      <code translate="no" dir="ltr">LambdaDesugaring</code>
+      bug. (
+      <a href="https://android-review.googlesource.com/#/q/I36c875108090468d2e66cc4d8a54402eb0d905f9">I36c87</a>
+      )
+    </li>
+  </ul>

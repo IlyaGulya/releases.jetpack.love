@@ -1,0 +1,88 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.0.0-alpha07
+releaseDate: 2021-09-29
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha07" data-text="Version 1.0.0-alpha07" tabindex="-1">Version 1.0.0-alpha07</h3>
+  <p>September 29, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-foundation:1.0.0-alpha07</code>
+    ,
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material:1.0.0-alpha07</code>
+    , and
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-navigation:1.0.0-alpha07</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1a3dcfb231517d6104969f17063fcc6c97ba6eeb..1f6bc4d47b7be46a5af151ed726e84db0a1cf9f9/wear/compose">Version 1.0.0-alpha07 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added a CurvedText component in material, a component allowing developers to easily write curved text following the curvature of a circle (usually at the edge of a circular screen). (
+      <a href="https://android-review.googlesource.com/#/q/I19593cf0f2b84d7b9f5f212a43ba61592604d696">I19593</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added tests for TimeText (
+      <a href="https://android-review.googlesource.com/#/q/Idfead382f43fa40bcfffbe4cda4226260a61ca70">Idfead</a>
+      )
+    </li>
+    <li>
+      Transform ArcPaddingValues into an interface. (
+      <a href="https://android-review.googlesource.com/#/q/Iecd4c7061fc380b4d4b089d12c982be70d9ec59f">Iecd4c</a>
+      )
+    </li>
+    <li>
+      Added animation to SwipeToDismissBox (
+      <a href="https://android-review.googlesource.com/#/q/I9ad1b2d18112932681cc05a0daaf6a5cf5682e60">I9ad1b</a>
+      )
+    </li>
+    <li>
+      Added hasBackground parameter to the SwipeToDismissBox API so that the swipe gesture can be disabled when there is no background content to display. (
+      <a href="https://android-review.googlesource.com/#/q/I313d86797efcef05eaf9d5ef4d86ae1b0c761a17">I313d8</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">rememberNavController()</code>
+      now takes a optional set of
+      <code translate="no" dir="ltr">Navigator</code>
+      instances that will be added to the returned
+      <code translate="no" dir="ltr">NavController</code>
+      to better support optional Navigators such as those from
+      <a href="https://google.github.io/accompanist/navigation-material/">Accompanist Navigation Material</a>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4619e6c4b47fc76c45a64c68085519fd8d18f699">I4619e</a>
+      )
+    </li>
+    <li>
+      Reference NamedNavArgument from navigation-common and remove copy from wear.compose.navigation. (
+      <a href="https://android-review.googlesource.com/#/q/I43af6b58f3d508619fd55cc6615f7edba8d3e1c8">I43af6</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed CurvedRow test flakiness on smaller devices. (
+      <a href="https://android-review.googlesource.com/#/q/If7941323c02917d3cf5355bc41c893d16639c92f">If7941</a>
+      )
+    </li>
+    <li>
+      Fixed possible flickering on CurvedRow when the content updates, and ensures the curved row is remeasured (
+      <a href="https://android-review.googlesource.com/#/q/Ie4e06fa0f9a7cc74b5c5a22cdc133091a6591990">Ie4e06</a>
+      )
+    </li>
+    <li>
+      ChipDefaults.gradientBackgroundChipColors() has been updated in line with UX Spec changes. The gradient now starts with MaterialTheme.colors.primary with alpha 32.5% and ends with MaterialTheme.colors.surface with alpha @ 0% over a background of MaterialTheme.colors.surface @ 75% alpha. (
+      <a href="https://android-review.googlesource.com/#/q/Id1548a3032807886b9ae5d8ff2f50a3ccc07e658">Id1548</a>
+      )
+    </li>
+    <li>
+      We have updated the colors for ToggleChips when in the selected state to match the latest Wear Material Design UX Spec guidance. When selected ToggleChips now have a gradient background from MaterialTheme.color.surface @ 0% alpha, top left, to MaterialTheme.color.primary @ 32% alpha, bottom right, over a background of MaterialTheme.color.surface @ 75% alpha. This results in a more subtle difference between checked and unchecked for the ToggleChip. (
+      <a href="https://android-review.googlesource.com/#/q/Idd40b198511486abe037773008c23a731f055779">Idd40b</a>
+      )
+    </li>
+  </ul>

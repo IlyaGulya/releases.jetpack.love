@@ -1,0 +1,50 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.8.0-alpha03
+releaseDate: 2024-02-21
+#language=html
+changelogHtml: |
+  <h3 id="2.8.0-alpha03" data-text="Version 2.8.0-alpha03" tabindex="-1">Version 2.8.0-alpha03</h3>
+  <p>February 21, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.8.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ca2a8cf8da3a3502fccc593974f8085653e38261..e1b82c49c59d8e976ce558aba5586f6c61bc9054/navigation">Version 2.8.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">NavBackStackEntry.savedStateHandle</code>
+      is now marked as
+      <code translate="no" dir="ltr">@MainThread</code>
+      as it uses code that is required to be on the main thread anyway. (
+      <a href="https://android-review.googlesource.com/#/q/Ibb98890fa424cb8193f7be2e98e74fbd124eef88">Ibb988</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/299523245">b/299523245</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue in Navigation that caused
+      <code translate="no" dir="ltr">NavGraph</code>
+      ViewModels to be
+      <code translate="no" dir="ltr">DESTROYED</code>
+      too soon because the associated entry’s
+      <code translate="no" dir="ltr">ViewModel</code>
+      was not part of the saved state. (
+      <a href="https://android-review.googlesource.com/#/q/Ib6bb7d1d2f1af928a23a2647b1800eb4bb37d39d">Ib6bb7</a>
+      ,
+      <a href="https://issuetracker.google.com/317581849">b/317581849</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Update</strong></p>
+  <ul>
+    <li>
+      Navigation Compose now depends on
+      <a href="/releases/compose-animation#1.7.0-alpha03">Compose 1.7.0-alpha03</a>
+      .
+    </li>
+  </ul>

@@ -1,0 +1,61 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.0.0-alpha13
+releaseDate: 2021-01-27
+#language=html
+changelogHtml: |
+  <h3 id="3.0.0-alpha13" data-text="Version 3.0.0-alpha13" tabindex="-1">Version 3.0.0-alpha13</h3>
+  <p>January 27, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.0.0-alpha13</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6207afb1646d302c5d29c2c67d332b48db87fb27..aee18b103203a91ee89df91f0af5df2ecff356d6/paging">Version 3.0.0-alpha13 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">PagingSource.getRefreshKey</code>
+      is no longer optional to implement, it is now an abstract function without a default implementation. Migrating users can either continue returning the default implementation, which simply returns
+      <code translate="no" dir="ltr">null</code>
+      , but
+      <code translate="no" dir="ltr">getRefreshKey()</code>
+      should have a real implementation returning a key based on user's current scroll position that allows Paging to continue loading centered around the viewport via
+      <code translate="no" dir="ltr">PagingState.anchorPosition</code>
+      if possible. (
+      <a href="https://android-review.googlesource.com/#/q/I4339a1a2962b6883451511439012d084ada84651">I4339a</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">InvalidatingPagingSourceFactory</code>
+      is now a final class (
+      <a href="https://android-review.googlesource.com/#/q/Ia3b0a3540f14606f120708c542071fa72030afed">Ia3b0a</a>
+      )
+    </li>
+    <li>
+      Allow configuration of terminal separator (header / footer) behavior with an additional optional SeparatorType parameter. The two options are:
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">FULLY_COMPLETE</code>
+          - existing behavior; wait for both PagingSource and RemoteMediator to mark endOfPaginationReached before adding terminal separators. If RemoteMediator is not used, remote loadState is ignored. This is primarily useful if you only want to show section separators when the section is fully loaded, including fetching from remote source e.g., network.
+        </li>
+        <li>
+          <code translate="no" dir="ltr">SOURCE_COMPLETE</code>
+          - only wait for PagingSource to mark endOfPaginationReached even if RemoteMediator is used. This allows headers and footers to be presented synchronously with the initial load, which prevents users from needing to scroll to see terminal separators. (
+          <a href="https://android-review.googlesource.com/#/q/Ibe9938d069e66d0deae806dc44684f3a05e651a0">Ibe993</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/174700218">b/174700218</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a rare memory leak which happens when a PagingSource is invalidated before PageFetcher can even begin to start loading from it. (
+      <a href="https://android-review.googlesource.com/#/q/I9606bc3c393a40d732bf633b721b13b23c46db02">I9606b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/174625633">b/174625633</a>
+      )
+    </li>
+  </ul>

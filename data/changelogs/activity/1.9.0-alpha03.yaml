@@ -1,0 +1,60 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.9.0-alpha03
+releaseDate: 2024-02-07
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0-alpha03" data-text="Version 1.9.0-alpha03" tabindex="-1">Version 1.9.0-alpha03</h3>
+  <p>February 7, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.9.0-alpha03</code>
+    ,
+    <code translate="no" dir="ltr">androidx.activity:activity-compose:1.9.0-alpha03</code>
+    , and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.9.0-alpha03</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/51191bc12f96f233fc08995e1b4e8ff8b88bc7ce..ca2a8cf8da3a3502fccc593974f8085653e38261/activity">Version 1.9.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>Lint Warning</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">OnBackPressedCallback</code>
+      ,
+      <code translate="no" dir="ltr">BackHandler</code>
+      , and
+      <code translate="no" dir="ltr">PredictiveBackHandler</code>
+      APIs now warn when calling
+      <code translate="no" dir="ltr">onBackPressedDispatcher.onBackPressed()</code>
+      when handling back as that will always break the
+      <a href="https://developer.android.com/guide/navigation/custom-back/predictive-back-gesture">Predictive Back Animation</a>
+      . See the
+      <a href="https://developer.android.com/guide/navigation/custom-back/predictive-back-gesture#ui-logic">best practices guide</a>
+      for more details. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/1e4222b878bd2a990871d75fa744995d09acedb9">1e4222</a>
+      ,
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/2c950d0cfc22551a989265c4ffde9f69d5c69235">2c950d</a>
+      ,
+      <a href="https://issuetracker.google.com/287505200">b/287505200</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      If a back event is sent from the system started during an already running Predictive Back Gesture, the currently running Predictive Back Gesture is canceled and the new back event takes over to begin a new Predictive Back Gesture. (
+      <a href="https://android-review.googlesource.com/#/q/I3482edb367c56c3feba833c7ba8cedf3293467bb">I3482e</a>
+      )
+    </li>
+    <li>
+      Fixed a crash when accessing the
+      <code translate="no" dir="ltr">onBackPressedDispatcher</code>
+      from a
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      for the first time from a background thread. It is now safe to access the
+      <code translate="no" dir="ltr">onBackPressedDispatcher</code>
+      on any thread. (
+      <a href="https://android-review.googlesource.com/#/q/I7995575573270fec6f01c4b87e40a86cd713327b">I79955</a>
+      )
+    </li>
+  </ul>

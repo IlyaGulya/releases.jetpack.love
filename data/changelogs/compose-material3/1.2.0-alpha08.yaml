@@ -1,0 +1,85 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.2.0-alpha08
+releaseDate: 2023-09-20
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha08" data-text="Version 1.2.0-alpha08" tabindex="-1">Version 1.2.0-alpha08</h3>
+  <p>September 20, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.2.0-alpha08</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9ce75ea1baa2af10dda8f787f69c40c6654bcac1..91bb8c1f81dcb031bda00fcd8e55f1e890b56f06/compose/material3">Version 1.2.0-alpha08 contains these commits.</a>
+  </p>
+  <p><strong>Behavior Breaking Change</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ColorScheme</code>
+      is now Immutable, making individual color updates less efficient, but making more common usage of colors more efficient. The reasoning behind this change is that the majority of apps wouldn't have updating individual colors as a main use case. This is still possible but it will recompose more than before, in turn we significantly decrease the amount of state subscriptions through all of Material code and will impact initialization and runtime cost of more standard use cases. (
+      <a href="https://android-review.googlesource.com/#/q/Ic447d95734c3399733c49f4b6d018ec296fc251a">Ic447d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/297212873">b/297212873</a>
+      )
+    </li>
+    <li>
+      Tonal Elevation no longer animates in different interaction states to match spec. (
+      <a href="https://android-review.googlesource.com/#/q/Icdd12f4e11256ea166b3f4808f05228c28442ae7">Icdd12</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">BottomAppBar</code>
+      that takes as parameter a
+      <code translate="no" dir="ltr">BottomAppBarScrollBehavior</code>
+      in order to auto-hide it when content is scrolled. Also added
+      <code translate="no" dir="ltr">FabPosition.EndOverlay</code>
+      allowing the FAB to overlay the bottom app bar in the scaffold instead of being anchored above it. (
+      <a href="https://android-review.googlesource.com/#/q/Iecb47accb59cbf44a49d0099289ef89736a84f2b">Iecb47</a>
+      )
+    </li>
+    <li>
+      Added a simple Label component that builds on top of
+      <code translate="no" dir="ltr">BasicTooltipBox</code>
+      that won't dismiss when tapping outside of the bounds of the label. (
+      <a href="https://android-review.googlesource.com/#/q/I821f9f124e3d1933f3fc629c106d48d157929079">I821f9</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Removed the use of
+      <code translate="no" dir="ltr">rememberSaveable</code>
+      for tooltips. (
+      <a href="https://android-review.googlesource.com/#/q/Icc131c852cc3b3c722954aecb0a002711e13ca96">Icc131</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/299500338">b/299500338</a>
+      )
+    </li>
+    <li>
+      Introduced a temporary flag to control whether Scaffold should measure its children during measurement or during placement. By default, this will measure in measurement. If you are facing issues with the new behavior, please file an issue. (
+      <a href="https://android-review.googlesource.com/#/q/I0b354a595fa56d96c4d48cfae5b394c7203bd23c">I0b354</a>
+      )
+    </li>
+    <li>
+      Fixed horizontal Edge to Edge in
+      <code translate="no" dir="ltr">BottomSheet</code>
+      by using the correct measurement for device screen width. (
+      <a href="https://android-review.googlesource.com/#/q/I1df0cdf2ec735c17b914aee04ed20d54a1896573">I1df0c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/299058752">b/299058752</a>
+      )
+    </li>
+    <li>
+      Fixed a bug where
+      <code translate="no" dir="ltr">ModalBottomSheet</code>
+      was not calling
+      <code translate="no" dir="ltr">onDismissedRequest</code>
+      when dismissing it by swiping down on the sheet. (
+      <a href="https://android-review.googlesource.com/#/q/Idfdd8b490caed6486292ae244ba9e4e9fb813f96">Idfdd8</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,65 @@
+libraryId: appcompat
+groupId: androidx.appcompat
+version: 1.2.0-beta01
+releaseDate: 2020-04-01
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-beta01" data-text="Version 1.2.0-beta01" tabindex="-1">Version 1.2.0-beta01</h3>
+  <p>April 1, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.appcompat:appcompat:1.2.0-beta01</code>
+    and
+    <code translate="no" dir="ltr">androidx.appcompat:appcompat-resources:1.2.0-beta01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/666ae665acfcfa2a20eccc18e4494808169742f4..6c98d66b901be2eecdf89477ccd70d2490ca6fc2/appcompat">Version 1.2.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added the following new lint rules that will flag incorrect usages of AppCompat in the following scenarios:
+      <ul>
+        <li>
+          Loading color state lists: suggests using
+          <code translate="no" dir="ltr">ContextCompat</code>
+          and
+          <code translate="no" dir="ltr">AppCompatResources</code>
+          APIs for backward compatibility
+        </li>
+        <li>
+          Loading drawables: suggests using
+          <code translate="no" dir="ltr">ContextCompat</code>
+          and
+          <code translate="no" dir="ltr">ResourcesCompat</code>
+          APIs for backward compatibility
+        </li>
+        <li>
+          Using color state lists with alpha attribute: flags missing
+          <code translate="no" dir="ltr">android:alpha</code>
+          attribute that will lead to incorrect appearance on some platform versions
+        </li>
+        <li>
+          Tinting image views: flags not using
+          <code translate="no" dir="ltr">app:tint</code>
+          that will lead to incorrect appearance on older platform versions
+        </li>
+        <li>Using compound drawables and tinting on text views: suggests using compat attributes and APIs for backward compatibility</li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">ActionBarOverlayLayout</code>
+      (window decor action) was not dispatching WindowInsets correctly.
+    </li>
+    <li>Fixed issues in tinting drawables and text appearance on older versions of the platform</li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">androidx.appcompat:appcompat:1.1.0</code>
+      crashes webview when webview is long pressed (
+      <a href="https://issuetracker.google.com/issues/141351441">b/141351441</a>
+      )
+    </li>
+    <li>Implemented fixes for issues with base context manipulation and retrieving system services during activity start up</li>
+  </ul>

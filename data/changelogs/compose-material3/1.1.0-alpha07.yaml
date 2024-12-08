@@ -1,0 +1,153 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.1.0-alpha07
+releaseDate: 2023-02-22
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha07" data-text="Version 1.1.0-alpha07" tabindex="-1">Version 1.1.0-alpha07</h3>
+  <p>February 22, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3:1.1.0-alpha07</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-window-size-class:1.1.0-alpha07</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f7337eab774a6ce3b17367d5f31708564b66e677..87533b4ff06971ed59028936cd9b6da988cd4522/compose/material3">Version 1.1.0-alpha07 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Add a Time Input composable that works with
+      <code translate="no" dir="ltr">rememberTimePickerState()</code>
+      , it follows the M3 spec for time input (
+      <a href="https://android-review.googlesource.com/#/q/Ia4fab49a74980251b5dee8d9dacacf2012811c7d">Ia4fab</a>
+      )
+    </li>
+    <li>
+      Added a Material 3
+      <code translate="no" dir="ltr">DateRangePicker</code>
+      API for selecting a range of dates. (
+      <a href="https://android-review.googlesource.com/#/q/I7a6c3bd20c0330eec911786619dcc7b86c3dad04">I7a6c3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/267194809">b/267194809</a>
+      )
+    </li>
+    <li>
+      Added a Material 3 input mode support for selecting date ranges via the
+      <code translate="no" dir="ltr">DateRangePicker</code>
+      API. (
+      <a href="https://android-review.googlesource.com/#/q/Ifdbc4d78f6e5029ae68c6d30d80a843f30843309">Ifdbc4</a>
+      )
+    </li>
+    <li>
+      Text field colors now allow customizing:
+      <ul>
+        <li>
+          The input field and placeholder text colors based on focus and error state. The
+          <code translate="no" dir="ltr">textColor</code>
+          parameter has been renamed to
+          <code translate="no" dir="ltr">unfocusedTextColor</code>
+          , and
+          <code translate="no" dir="ltr">placeholderColor</code>
+          has been renamed to
+          <code translate="no" dir="ltr">unfocusedPlaceholderColor</code>
+          .
+        </li>
+        <li>
+          The container color for filled text fields based on error state with the new
+          <code translate="no" dir="ltr">errorContainerColor</code>
+          param.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Exposed dropdown menu text field colors have been updated with parameters to support the new prefix and suffix API. (
+      <a href="https://android-review.googlesource.com/#/q/I9c8b4f070921d64f8a7a3ac74074c12d7773348b">I9c8b4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/254284181">b/254284181</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/264766350">b/264766350</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Reverting some Slider API versions and removing redundant Slider overloads that are covered by the new experimental Slider with custom thumb and track. Promoting
+      <code translate="no" dir="ltr">RangeSlider</code>
+      to be stable. (
+      <a href="https://android-review.googlesource.com/#/q/Ie8fbdf564fa3e2a83ff891a79bc0baa5c12e586d">Ie8fbd</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">defaultElevation</code>
+      to
+      <code translate="no" dir="ltr">elevation</code>
+      in chip's elevation functions. (
+      <a href="https://android-review.googlesource.com/#/q/I0f87254cdb91bec8c6ace6fd3883342733755ad9">I0f872</a>
+      )
+    </li>
+    <li>
+      The following Material 3 text field APIs are no longer experimental:
+      <code translate="no" dir="ltr">TextField</code>
+      ,
+      <code translate="no" dir="ltr">OutlinedTextField</code>
+      ,
+      <code translate="no" dir="ltr">textFieldWithLabelPadding</code>
+      ,
+      <code translate="no" dir="ltr">textFieldWithoutLabelPadding</code>
+      ,
+      <code translate="no" dir="ltr">outlinedTextFieldPadding</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ieb5c0ab1f3270ee3fd45265f143f49a5cdaa2d08">Ieb5c0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261561819">b/261561819</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TimePickers</code>
+      <code translate="no" dir="ltr">is24Hour</code>
+      uses system setting (
+      <a href="https://android-review.googlesource.com/#/q/I18856a395db9ce7e4dbd099299ded52407fd2873">I18856</a>
+      )
+    </li>
+    <li>
+      Removed experimental annotation from scaffold apis. (
+      <a href="https://android-review.googlesource.com/#/q/Ibb51eaf53f07ec6407de4acd4a3174137b171d1e">Ibb51e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261565765">b/261565765</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261436953">b/261436953</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ModalBottomSheet</code>
+      default shape is now always
+      <code translate="no" dir="ltr">SheetDefaults.ExpandedShape</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0dfcaa455e676e5280abb399db53e31a61870679">I0dfca</a>
+      )
+    </li>
+    <li>
+      Accessibility improvements for Material 3
+      <code translate="no" dir="ltr">DatePicker</code>
+      and
+      <code translate="no" dir="ltr">DateRangePicker</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I5087ec38bd740387f9b42197f72511d0eda4b0c7">I5087e</a>
+      )
+    </li>
+    <li>
+      Fix bug where max height constraint is propagated and may crash. (
+      <a href="https://android-review.googlesource.com/#/q/I30d8c5eb63c4c9a5078cb10e5a591d6ac2c8a065">I30d8c</a>
+      )
+    </li>
+    <li>
+      Removed semantic roles from clickable and selectable surfaces, updated components that used them to set roles using modifier.semantics (
+      <a href="https://android-review.googlesource.com/#/q/I793d92a6d882bb8d0cae537a365709f9483e950d">I793d9</a>
+      )
+    </li>
+  </ul>

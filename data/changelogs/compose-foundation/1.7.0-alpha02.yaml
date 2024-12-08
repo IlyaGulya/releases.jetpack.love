@@ -1,0 +1,92 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.7.0-alpha02
+releaseDate: 2024-02-07
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha02" data-text="Version 1.7.0-alpha02" tabindex="-1">Version 1.7.0-alpha02</h3>
+  <p>February 7, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.7.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/2b3fea6e026942389e9db59a4d68f2bb32c94e8f..ca2a8cf8da3a3502fccc593974f8085653e38261/compose/foundation">Version 1.7.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">HorizontalPager</code>
+      ,
+      <code translate="no" dir="ltr">VerticalPager</code>
+      and
+      <code translate="no" dir="ltr">PagerState</code>
+      are promoted to stable. (
+      <a href="https://android-review.googlesource.com/#/q/I67660aa3cc1d44ae3dae5b002bae4459a1b25ae3">I67660</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/316966909">b/316966909</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">LocalTextLinkStyle</code>
+      composition local that allows to change the style of the links in Text across the app. If you're using your own theme in the app, you should be setting this composition local according to your theming. When using Material theme the color of the link by default will be set to Material's primary color. (
+      <a href="https://android-review.googlesource.com/#/q/I7eb10b55fcec1b268c60744de700058eb11a385a">I7eb10</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">receiveContent</code>
+      modifier that provides developers with a way to
+      <a href="/develop/ui/views/receive-rich-content">receive rich content</a>
+      in Jetpack Compose.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">receiveContent</code>
+      integrates with
+      <code translate="no" dir="ltr">BasicTextField2</code>
+      to accept rich content provided by the software keyboard, or via Clipboard paste action. (
+      <a href="https://android-review.googlesource.com/#/q/I81b72a6f0e851618fdd7346d9b1b7a8cf4e3ec3e">I81b72</a>
+      )
+    </li>
+    <li>
+      In this change we're replacing
+      <code translate="no" dir="ltr">SnapFlingBehavior</code>
+      with
+      <code translate="no" dir="ltr">TargetedFlingBehavior</code>
+      in pager to unlock other use cases and provide greater flexibility. (
+      <a href="https://android-review.googlesource.com/#/q/I762eac32d9f1f1545efa8d8eb79ceb97833a77ed">I762ea</a>
+      )
+    </li>
+    <li>
+      In this change we're making Snapping APIs Stable. We're also cleaning up some of the testing code and adding more samples to Snapping. (
+      <a href="https://android-review.googlesource.com/#/q/Id8da9bf3d268eae6a5a7372170c6122d7adaea1e">Id8da9</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">TargetedFlingBehavior</code>
+      , a
+      <code translate="no" dir="ltr">FlingBehavior</code>
+      that allows propagating information about the state of the ongoing animation and it's target scroll offset. (
+      <a href="https://android-review.googlesource.com/#/q/I6a2070d346b92d9cfa6e9bb5d2315c4a521dbb79">I6a207</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">BasicTextField2</code>
+      now keeps the cursor in view while typing when it has been scrolled out of view or would move out of view due to input. (
+      <a href="https://android-review.googlesource.com/#/q/Ieb85691dd1a7cf98ab5fc188721d4e4475aec762">Ieb856</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/237190748">b/237190748</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Adds an experimental API for configuring prefetch behavior of LazyLists. (
+      <a href="https://android-review.googlesource.com/#/q/I022a469c6d89d8742511cf10715afeced732d27e">I022a4</a>
+      )
+    </li>
+  </ul>

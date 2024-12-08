@@ -1,0 +1,53 @@
+libraryId: wear-tiles
+groupId: androidx.wear
+version: 1.2.0-rc01
+releaseDate: 2023-07-26
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-rc01" data-text="Version 1.2.0-rc01" tabindex="-1">Version 1.2.0-rc01</h3>
+  <p>July 26, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.tiles:tiles-*:1.2.0-rc01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3b5b931546a48163444a9eddc533489fcddd7494..07457ca20d6ae00c8e2ca5fb141efd40de8ac6ee/wear/tiles">Version 1.2.0-rc01 contains these commits.</a>
+  </p>
+  <ul>
+    <li>
+      <p>
+        With the v1.2 release, Tiles library has been refactored and the majority of the features and APIs are moved into new
+        <a href="https://developer.android.com/jetpack/androidx/releases/wear-protolayout">ProtoLayout library</a>
+        (package
+        <code translate="no" dir="ltr">androidx.wear.protolayout</code>
+        ) with a small subset remaining in Tiles (
+        <code translate="no" dir="ltr">androidx.wear.tiles</code>
+        ):
+      </p>
+
+      <ul>
+        <li>All classes names have stayed the same, there are only additions to the v1.1</li>
+        <li>The majority of the APIs have stayed the same and the only change is package name.</li>
+        <li>
+          Some of the methods in
+          <code translate="no" dir="ltr">TileService/TileBuilder</code>
+          have been deprecated and now have renamed versions that accept new
+          <code translate="no" dir="ltr">ProtoLayout</code>
+          types instead of deprecated Tiles one.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        To make this migration easier, we have put together a small instructions and script that does this renaming, see
+        <a href="https://gist.github.com/NedaTop/68c6e708f5584061a3daf8a9e7321cfd">here</a>
+        .
+      </p>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We have limited the maximum depth that a layout can have to 30 nested elements in tile. If that depth is exceeded, the tile renderer will show a previously inflated layout. (
+      <a href="https://android-review.googlesource.com/#/q/I8a74b20b153652f324aa31ef9595edfaa72266c4">I8a74b</a>
+      )
+    </li>
+  </ul>

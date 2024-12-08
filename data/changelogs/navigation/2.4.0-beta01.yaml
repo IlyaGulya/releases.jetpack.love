@@ -1,0 +1,99 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.4.0-beta01
+releaseDate: 2021-10-27
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0-beta01" data-text="Version 2.4.0-beta01" tabindex="-1">Version 2.4.0-beta01</h3>
+  <p>October 27, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.4.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/418e77ded6b319212f986a3d211532a4b89f2468..4414c046f9f3ceed61638de755aac5f976f4d4b7/navigation">Version 2.4.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      You can now use
+      <code translate="no" dir="ltr">by navGraphViewModel</code>
+      with a route as an alternative to using an ID so as to better support using the Navigation Kotlin DSL with Fragments. (
+      <a href="https://android-review.googlesource.com/#/q/I901e3832099e6e2a698e41af1e5e5d9bef7634d5">I901e3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/201446416">b/201446416</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">visibleEntries</code>
+      API is now experimental. (
+      <a href="https://android-review.googlesource.com/#/q/I93f6fce8ecad6a57aad12aa042c1b1a5e5f9f004">I93f6f</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      ViewModels will no longer be destroyed when transitions are interrupted by navigating back and forth between the same screens (
+      <a href="https://android-review.googlesource.com/#/q/Id52d8102f24b4b7d62ca2dd4c36c74c1ab7c11e5">Id52d8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/200817333">b/200817333</a>
+      )
+    </li>
+    <li>
+      Nullable
+      <code translate="no" dir="ltr">NavDeepLink</code>
+      arguments no longer require a default value when adding deep links to
+      <code translate="no" dir="ltr">NavDestination</code>
+      s. (
+      <a href="https://android-review.googlesource.com/#/q/I5aad4e1e7cc53857d050d328d099f813bc0dd0d9">I5aad4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/201320030">b/201320030</a>
+      )
+    </li>
+    <li>
+      NavBackStackEntries now with different Lifecycles are not longer considered equal. This means NavHost will properly recompose all destinations when doing navigation with singleTop and when reselecting bottom menu items. (
+      <a href="https://android-review.googlesource.com/#/q/I1b3510b238d3c4e6ed5cc86a6fddf795bd9acb02">I1b351</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/196997433">b/196997433</a>
+      )
+    </li>
+    <li>
+      Fixed an issue with
+      <code translate="no" dir="ltr">AbstractListDetailFragment</code>
+      that caused the
+      <code translate="no" dir="ltr">layout_width</code>
+      and
+      <code translate="no" dir="ltr">layout_weight</code>
+      attributes on the list pane returned by
+      <code translate="no" dir="ltr">onCreateListPaneView()</code>
+      to be incorrectly handled or ignored. (
+      <a href="https://android-review.googlesource.com/#/q/f5fbf3227a0d9111f8d284398ad58554429046cb">f5fbf3</a>
+      )
+    </li>
+    <li>
+      The visual state of dialog destinations now correctly stays in sync with the
+      <code translate="no" dir="ltr">DialogFragmentNavigator</code>
+      's state. This means that manually calling the asynchronous
+      <code translate="no" dir="ltr">dismiss()</code>
+      API for
+      <code translate="no" dir="ltr">DialogFragment</code>
+      now properly clears all dialog destinations above the now dismissed dialog. This does not affect cases where you use
+      <code translate="no" dir="ltr">popUpTo</code>
+      or
+      <code translate="no" dir="ltr">popBackStack()</code>
+      to dismiss your dialog. (
+      <a href="https://android-review.googlesource.com/#/q/I77ba23fb7a816fc555d0c383213cac01cbafee43">I77ba2</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AbstractAppBarOnDestinationChangedListener</code>
+      now has clearer error messaging for
+      <code translate="no" dir="ltr">onDestinationChanged()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie742de2163740a4050d4c80f3f">Ie742d</a>
+      )
+    </li>
+  </ul>

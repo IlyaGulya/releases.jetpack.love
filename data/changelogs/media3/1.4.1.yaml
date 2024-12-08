@@ -1,0 +1,131 @@
+libraryId: media3
+groupId: androidx.media3
+version: 1.4.1
+releaseDate: 2024-08-27
+#language=html
+changelogHtml: |
+  <h3 id="1.4.1" data-text="Version 1.4.1" tabindex="-1">Version 1.4.1</h3>
+  <p>August 27, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.media3:media3-*:1.4.1</code>
+    is released. Version 1.4.1 contains
+    <a href="https://github.com/androidx/media/commits/1.4.1">these commits</a>
+    .
+  </p>
+  <ul>
+    <li>
+      ExoPlayer:
+      <ul>
+        <li>
+          Handle preload callbacks asynchronously in
+          <code translate="no" dir="ltr">PreloadMediaSource</code>
+          (
+          <a href="https://github.com/androidx/media/issues/1568">#1568</a>
+          ).
+        </li>
+        <li>
+          Allow playback regardless of buffered duration when loading fails (
+          <a href="https://github.com/androidx/media/issues/1571">#1571</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Extractors:
+      <ul>
+        <li>
+          MP3: Fix
+          <code translate="no" dir="ltr">Searched too many bytes</code>
+          error by correctly ignoring trailing non-MP3 data based on the length field in an
+          <code translate="no" dir="ltr">Info</code>
+          frame (
+          <a href="https://github.com/androidx/media/issues/1480">#1480</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Text:
+      <ul>
+        <li>
+          TTML: Fix handling of percentage
+          <code translate="no" dir="ltr">tts:fontSize</code>
+          values to ensure they are correctly inherited from parent nodes with percentage
+          <code translate="no" dir="ltr">tts:fontSize</code>
+          values.
+        </li>
+        <li>
+          Fix
+          <code translate="no" dir="ltr">IndexOutOfBoundsException</code>
+          in
+          <code translate="no" dir="ltr">LegacySubtitleUtil</code>
+          due to incorrectly handling the case of the requested output start time being greater than or equal to the final event time in the
+          <code translate="no" dir="ltr">Subtitle</code>
+          (
+          <a href="https://github.com/androidx/media/issues/1516">#1516</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      DRM:
+      <ul>
+        <li>
+          Fix
+          <code translate="no" dir="ltr">android.media.MediaCodec$CryptoException: Operation not supported in this configuration: ERROR_DRM_CANNOT_HANDLE</code>
+          error on API 31+ devices playing L1 Widevine content. This error is caused by an incomplete implementation of the framework
+          <a href="https://developer.android.com/reference/android/media/MediaDrm#requiresSecureDecoder(java.lang.String)"><code translate="no" dir="ltr">MediaDrm.requiresSecureDecoder</code></a>
+          method (
+          <a href="https://github.com/androidx/media/issues/1603">#1603</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Effect:
+      <ul>
+        <li>
+          Add a
+          <code translate="no" dir="ltr">release()</code>
+          method to
+          <code translate="no" dir="ltr">GlObjectsProvider</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      Session:
+      <ul>
+        <li>
+          Transform a double-tap of
+          <code translate="no" dir="ltr">KEYCODE_HEADSETHOOK</code>
+          into a 'seek to next' action, as
+          <a href="https://developer.android.com/reference/androidx/media3/session/MediaSession#media-key-events-mapping">documented</a>
+          (
+          <a href="https://github.com/androidx/media/issues/1493">#1493</a>
+          ).
+        </li>
+        <li>
+          Handle
+          <code translate="no" dir="ltr">KEYCODE_HEADSETHOOK</code>
+          as a 'play' command in
+          <code translate="no" dir="ltr">MediaButtonReceiver</code>
+          when deciding whether to ignore it to avoid a
+          <code translate="no" dir="ltr">ForegroundServiceDidNotStartInTimeException</code>
+          (
+          <a href="https://github.com/androidx/media/issues/1581">#1581</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      RTSP Extension:
+      <ul>
+        <li>
+          Skip invalid Media Descriptions in SDP parsing (
+          <a href="https://github.com/androidx/media/issues/1472">#1087</a>
+          ).
+        </li>
+      </ul>
+    </li>
+  </ul>

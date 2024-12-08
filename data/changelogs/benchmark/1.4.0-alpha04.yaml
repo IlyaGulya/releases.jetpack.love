@@ -1,0 +1,59 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.4.0-alpha04
+releaseDate: 2024-10-30
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha04" data-text="Version 1.4.0-alpha04" tabindex="-1">Version 1.4.0-alpha04</h3>
+  <p>October 30, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.4.0-alpha04</code>
+    is released. Version 1.4.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b8a68b0896897fa158508d73a31998a26161d9a7..ccd90a76bd7c4acf4f4f01eca76350e383bc441e/benchmark">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      (Experimental) Enable Baseline Profile generation, and benchmarking on apps installed to a secondary user, for example any app on headless Android Auto devices. This support has been tested in some scenarios, but let us know with a bug if it doesn't work for you. (
+      <a href="https://android-review.googlesource.com/#/q/I9fcbecf2a9c9075d161de69118c443d7a37102c0">I9fcbe</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/356684617">b/356684617</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/373641155">b/373641155</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">isProfileable</code>
+      is now always overridden in benchmark builds, and
+      <code translate="no" dir="ltr">isDebuggable</code>
+      is also now always overridden in both benchmark and
+      <code translate="no" dir="ltr">nonMinified</code>
+      (baseline profile capture) builds. (
+      <a href="https://android-review.googlesource.com/#/q/I487fa71083921682173f04fcbb477be5baf165f8">I487fa</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/369213505">b/369213505</a>
+      )
+    </li>
+    <li>
+      Fixes compilation detection on some physical devices prior to API 28 - affects json
+      <code translate="no" dir="ltr">context.compilationMode</code>
+      , as well as behavior of
+      <code translate="no" dir="ltr">androidx.benchmark.requireAot=true</code>
+      (which no longer incorrectly throws) (
+      <a href="https://android-review.googlesource.com/#/q/Ic3e0899e6ea3558d9662788aecd7f8742fd2dee1">Ic3e08</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/374362482">b/374362482</a>
+      )
+    </li>
+    <li>
+      In
+      <code translate="no" dir="ltr">CpuEventCounter</code>
+      metrics, throw if invalid measurements are observed (e.g. instructions/cpucycles==0) (
+      <a href="https://android-review.googlesource.com/#/q/I8c5034be932bd09b6d3292015806d8721d292df2">I8c503</a>
+      )
+    </li>
+  </ul>

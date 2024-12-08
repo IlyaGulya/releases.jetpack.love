@@ -1,0 +1,157 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.0.0-alpha06
+releaseDate: 2021-09-15
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha06" data-text="Version 1.0.0-alpha06" tabindex="-1">Version 1.0.0-alpha06</h3>
+  <p>September 15, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-foundation:1.0.0-alpha06</code>
+    ,
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material:1.0.0-alpha06</code>
+    , and
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-navigation:1.0.0-alpha06</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1a3dcfb231517d6104969f17063fcc6c97ba6eeb/wear/compose">Version 1.0.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      We have added Scaffold a top level application composable that provides a structure for handling PositionIndicators (like Scroll or Volume) position, an area at the top of the screen for displaying the time and application status, and also supports a Vignette to blur the screen top and bottom edge for scrollable content. The main area of the Scaffold is where the application contents are placed. (
+      <a href="https://android-review.googlesource.com/#/q/I5e0bf5d3b7fe6ebc247a8b9ba255b00167fe35c4">I5e0bf</a>
+      )
+    </li>
+    <li>
+      Added TimeText implementation for Wear Compose (
+      <a href="https://android-review.googlesource.com/#/q/I5654cc5c2e02a3eff5fd48317b5a8600d3b17644">I5654c</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Wear Compose Navigation Library</strong></p>
+  <ul>
+    <li><p>We have added the first release of the Wear Compose Navigation library, which provides integration between the Wear Compose and Androidx Navigation libraries. It provides a simple means to navigate between @Composable functions as the destinations in your application.</p></li>
+    <li>
+      <p>This initial release provides:</p>
+
+      <ul>
+        <li>
+          A
+          <code translate="no" dir="ltr">SwipeDismissableNavHost</code>
+          composable that hosts a navigation graph and provides backwards navigation via swipe gestures
+        </li>
+        <li>
+          <code translate="no" dir="ltr">NavGraphBuilder.composable</code>
+          extension to assist with constructing navigation graphs
+        </li>
+        <li>
+          <code translate="no" dir="ltr">rememberSwipeDismissableNavController()</code>
+          to allow hoisting state
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>Example usage where we create two screens and navigate between them:</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">navController</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">rememberSwipeDismissableNavController</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-n">SwipeDismissableNavHost</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">navController</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">navController</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">startDestination</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"start"</span>
+  <span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">composable</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"start"</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">Column</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">horizontalAlignment</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Alignment</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">CenterHorizontally</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">verticalArrangement</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Arrangement</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">Center</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">modifier</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Modifier</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">fillMaxSize</span><span class="devsite-syntax-p">(),</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">Button</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">onClick</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">navController</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">navigate</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"next"</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">})</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-n">Text</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"Go"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">composable</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"next"</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">Column</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">horizontalAlignment</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Alignment</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">CenterHorizontally</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">verticalArrangement</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Arrangement</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">Center</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">modifier</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Modifier</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">fillMaxSize</span><span class="devsite-syntax-p">(),</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">Text</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"Swipe to go back"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li><p>Wear Compose Navigation is packaged as a separate library so that simple WearCompose applications that implement their own hand-rolled navigation are not required to depend on the Androidx Navigation library.</p></li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">SwipeDismissableNavHost</code>
+      to support
+      <code translate="no" dir="ltr">rememberSaveable</code>
+      by setting the key identity for background and content (
+      <a href="https://android-review.googlesource.com/#/q/I746fd6214b2f58bee625a86fd3f422122a0528ed">I746fd</a>
+      )
+    </li>
+    <li>
+      We have added a PositionIndicator adapter that can handle LazyListState (
+      <a href="https://android-review.googlesource.com/#/q/I21b88fee904f4e63dfb8d9dcf305547c1e148f2b">I21b88</a>
+      )
+    </li>
+    <li>
+      Updated SwipeToDismissBox to support rememberSaveable (
+      <a href="https://android-review.googlesource.com/#/q/Ie728bdfcb0d77b1098188009b57b7e0c21218ab5">Ie728b</a>
+      )
+    </li>
+    <li>
+      We have added reverseLayout support to the ScalingLazyColumn. This allows for the reversing of the direction of scrolling and layout (
+      <a href="https://android-review.googlesource.com/#/q/I9e2fcb9d90e498d199224b9abad55dcf4bdf3068">I9e2fc</a>
+      )
+    </li>
+    <li>
+      Deprecated
+      <code translate="no" dir="ltr">performGesture</code>
+      and
+      <code translate="no" dir="ltr">GestureScope</code>
+      , which have been replaced by
+      <code translate="no" dir="ltr">performTouchInput</code>
+      and
+      <code translate="no" dir="ltr">TouchInjectionScope</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia5f3f740c51a1add60fa82189d583d8a5192dd31">Ia5f3f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/190493367">b/190493367</a>
+      )
+    </li>
+    <li>
+      We have renamed VignetteValue to VignettePosition and renamed VignetteValue.Both renamed to VignettePosition.TopAndBottom. (
+      <a href="https://android-review.googlesource.com/#/q/I57ad7bca7ceaaf0ff3f0341a691f78b94630dcbc">I57ad7</a>
+      )
+    </li>
+    <li>
+      We have renamed ScalingLazyColumnState to ScalingLazyListState, ScalingLazyColumnItemInfo to ScalingLazyListItemInfo, ScalingLazyColumnLayoutInfo to ScalingLazyListLayoutInfo and ScalingLazyColumnScope to ScalingLazyListScope in case we decide to add a ScalingLazyRow implementation in the future. (
+      <a href="https://android-review.googlesource.com/#/q/I22734a2d2e5068935c7281007612e3fc088b4a88">I22734</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Updated CompactChip documentation to describe what happens if neither an icon nor a label is provided. (
+      <a href="https://android-review.googlesource.com/#/q/I4ba881d111185c316f39840f626d6f37f931b520">I4ba88</a>
+      )
+    </li>
+    <li>
+      We have made some adjustments to the Wear card components. (
+      <a href="https://android-review.googlesource.com/#/q/I6b3d039916cae8f8dcda9306090ac127b771f0a8">I6b3d0</a>
+      )
+      <ol>
+        <li>TitleCard spacing between Title and Body reduced from 8.dp to 2.dp.</li>
+        <li>TitleCard header font changed from body to title3.</li>
+        <li>Card background gradient changed to make the background appear darker.</li>
+      </ol>
+    </li>
+  </ul>

@@ -1,0 +1,147 @@
+libraryId: media3
+groupId: androidx.media3
+version: 1.0.0-beta02
+releaseDate: 2022-07-21
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta02" data-text="Version 1.0.0-beta02" tabindex="-1">Version 1.0.0-beta02</h3>
+  <p>July 21, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.media3:media3-*:1.0.0-beta02</code>
+    is released.
+    <a href="https://github.com/androidx/media/commits/1.0.0-beta02">Version 1.0.0-beta02 contains these commits.</a>
+  </p>
+  <p>
+    This release corresponds to the
+    <a href="https://github.com/google/ExoPlayer/releases/tag/r2.18.1">ExoPlayer 2.18.1 release</a>
+    .
+  </p>
+  <ul>
+    <li>
+      Core library:
+      <ul>
+        <li>
+          Ensure that changing the
+          <code translate="no" dir="ltr">ShuffleOrder</code>
+          with
+          <code translate="no" dir="ltr">ExoPlayer.setShuffleOrder</code>
+          results in a call to
+          <code translate="no" dir="ltr">Player.Listener#onTimelineChanged</code>
+          with
+          <code translate="no" dir="ltr">reason=Player.TIMELINE_CHANGE_REASON_PLAYLIST_CHANGED</code>
+          (
+          <a href="https://github.com/google/ExoPlayer/issues/9889">#9889</a>
+          ).
+        </li>
+        <li>
+          For progressive media, only include selected tracks in buffered position (
+          <a href="https://github.com/google/ExoPlayer/issues/10361">#10361</a>
+          ).
+        </li>
+        <li>
+          Allow custom logger for all ExoPlayer log output (
+          <a href="https://github.com/google/ExoPlayer/issues/9752">#9752</a>
+          ).
+        </li>
+        <li>
+          Fix implementation of
+          <code translate="no" dir="ltr">setDataSourceFactory</code>
+          in
+          <code translate="no" dir="ltr">DefaultMediaSourceFactory</code>
+          , which was non-functional in some cases (
+          <a href="https://github.com/androidx/media/issues/116">#116</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Extractors:
+      <ul>
+        <li>
+          Fix parsing of H265 short term reference picture sets (
+          <a href="https://github.com/google/ExoPlayer/issues/10316">#10316</a>
+          ).
+        </li>
+        <li>
+          Fix parsing of bitrates from
+          <code translate="no" dir="ltr">esds</code>
+          boxes (
+          <a href="https://github.com/google/ExoPlayer/issues/10381">#10381</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      DASH:
+      <ul>
+        <li>
+          Parse ClearKey license URL from manifests (
+          <a href="https://github.com/google/ExoPlayer/issues/10246">#10246</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      UI:
+      <ul>
+        <li>
+          Ensure TalkBack announces the currently active speed option in the playback controls menu (
+          <a href="https://github.com/google/ExoPlayer/issues/10298">#10298</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      RTSP:
+      <ul>
+        <li>
+          Add VP8 fragmented packet handling (
+          <a href="https://github.com/androidx/media/pull/110">#110</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Leanback extension:
+      <ul>
+        <li>
+          Listen to
+          <code translate="no" dir="ltr">playWhenReady</code>
+          changes in
+          <code translate="no" dir="ltr">LeanbackAdapter</code>
+          (
+          <a href="https://github.com/google/ExoPlayer/issues/10420">10420</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Cast:
+      <ul>
+        <li>
+          Use the
+          <code translate="no" dir="ltr">MediaItem</code>
+          that has been passed to the playlist methods as
+          <code translate="no" dir="ltr">Window.mediaItem</code>
+          in
+          <code translate="no" dir="ltr">CastTimeline</code>
+          (
+          <a href="https://github.com/androidx/media/issues/25">#25</a>
+          ,
+          <a href="https://github.com/google/ExoPlayer/issues/8212">#8212</a>
+          ).
+        </li>
+        <li>
+          Support
+          <code translate="no" dir="ltr">Player.getMetadata()</code>
+          and
+          <code translate="no" dir="ltr">Listener.onMediaMetadataChanged()</code>
+          with
+          <code translate="no" dir="ltr">CastPlayer</code>
+          (
+          <a href="https://github.com/androidx/media/issues/25">#25</a>
+          ).
+        </li>
+      </ul>
+    </li>
+  </ul>

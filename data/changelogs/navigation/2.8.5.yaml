@@ -1,0 +1,60 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.8.5
+releaseDate: 2024-12-11
+#language=html
+changelogHtml: |
+  <h3 id="2.8.5" data-text="Version 2.8.5" tabindex="-1">Version 2.8.5</h3>
+  <p>December 11, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.8.5</code>
+    is released. Version 2.8.5 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6754f1118fa8ad573c67255da26c0eecf2531589..31321b807270f38175045861a586853dba5cb96b/navigation">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">NavHost</code>
+      could throw an exception inside of the
+      <code translate="no" dir="ltr">PredictiveBackHandler</code>
+      if the back stack is popped down to 1 entry and a system back are triggered in the same frame. (
+      <a href="https://android-review.googlesource.com/#/q/I1a4297a10f2d0da8c8477644b9250c61e4792923">I1a429</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/375343407">b/375343407</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">NavDestination</code>
+      <code translate="no" dir="ltr">NullPointerException</code>
+      when updating a graph's
+      <code translate="no" dir="ltr">startDestination</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I99421bf1e4aef9802873d9d78fbc6fafc15a21ba">I99421</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/361560785">b/361560785</a>
+      )
+    </li>
+    <li>
+      Fixed an issue that caused an unexpected scale animation when using Navigation Compose and calling navigate in the same frame that the current animation is ending. (
+      <a href="https://android-review.googlesource.com/#/q/I26cb142affb046e94b34b9501e5405ddcf276fcf">I26cb1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/353294030">b/353294030</a>
+      )
+    </li>
+    <li>
+      Fixed a
+      <code translate="no" dir="ltr">ConcurrentModificationException</code>
+      that could occur when a
+      <code translate="no" dir="ltr">LifecycleObserver</code>
+      attached to a
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      triggers a change to the back stack when the host
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      such as the containing Activity or Fragment changes its lifecycle state. (
+      <a href="https://android-review.googlesource.com/#/q/Ia9494e9967aa45a7613c49d7530f524f5400d1ca">Ia9494</a>
+      )
+    </li>
+  </ul>

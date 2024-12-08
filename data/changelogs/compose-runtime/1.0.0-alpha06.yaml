@@ -1,0 +1,59 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.0.0-alpha06
+releaseDate: 2020-10-28
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha06" data-text="Version 1.0.0-alpha06" tabindex="-1">Version 1.0.0-alpha06</h3>
+  <p>October 28, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.0.0-alpha06</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/dd84d35abd1bc13fe53a4632d4b3889f6062ac81..234e23e470a5e7f81291f6acd12d538146dc010b/compose/runtime">Version 1.0.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Recomposer is now a CompositionReference and a valid composition parent. Explicit Recomposer is now required in fewer places. (
+      <a href="https://android-review.googlesource.com/#/q/I4036ff66dff4759bd40127a9af0ca59cbaa37041">I4036f</a>
+      )
+    </li>
+    <li>
+      Added DisposableEffect counterpart API to SideEffect, filling the role of onCommit-with-params but with a required onDispose.
+      <ul>
+        <li>Added rememberUpdatedState API to publish data from recomposition to ongoing or long-lived processes such as DisposableEffects or LaunchedTasks.</li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/Id50b9b85d2303166e5abe10aea47d6934d2c8597">Id50b9</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      MutableVector now implements RandomAccess (
+      <a href="https://android-review.googlesource.com/#/q/I85d73f55b19cce31ba70770dbd0dc98cb3a6957a">I85d73</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170461551">b/170461551</a>
+      )
+    </li>
+    <li>
+      Added SideEffect composable for applying side effects of composition to objects managed by the composition. SideEffect is intended to replace the onCommit composable. (
+      <a href="https://android-review.googlesource.com/#/q/Ia77c2060e10aa8011052e18ece011297fc28831c">Ia77c2</a>
+      )
+    </li>
+    <li>
+      New experimental api RestorableStateHolder. It allows to save the state defined with [savedInstanceState] and [rememberSavedInstanceState] for the subtree before disposing it to make it possible to compose it back next time with the restored state. (
+      <a href="https://android-review.googlesource.com/#/q/I66884b1e65f716de7936c4fe9e573efc6539b80f">I66884</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/166586419">b/166586419</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Enable transitions in ComposeTestRule; remove option to enable the blinking cursor from ComposeTestRule. (
+      <a href="https://android-review.googlesource.com/#/q/If0de36db743b7f57b161b0fe6324565750436866">If0de3</a>
+      )
+    </li>
+  </ul>

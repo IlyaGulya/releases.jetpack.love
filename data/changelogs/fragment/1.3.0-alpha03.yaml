@@ -1,0 +1,107 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.3.0-alpha03
+releaseDate: 2020-04-01
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha03" data-text="Version 1.3.0-alpha03" tabindex="-1">Version 1.3.0-alpha03</h3>
+  <p>April 1, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.3.0-alpha03</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.3.0-alpha03</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.3.0-alpha03</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1e0ba6efec9a86f20ddc75c8c2b132e009cfb6b1..6c98d66b901be2eecdf89477ccd70d2490ca6fc2/fragment">Version 1.3.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">prepareCall</code>
+      methods on
+      <code translate="no" dir="ltr">Fragment</code>
+      are now
+      <code translate="no" dir="ltr">final</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/152439361">b/152439361</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a regression introduced in
+      <a href="#1.3.0-alpha02">
+        Fragment
+        <code translate="no" dir="ltr">1.3.0-alpha02</code>
+      </a>
+      when using
+      <code translate="no" dir="ltr">BottomSheetDialogFragment</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/151652127">b/151652127</a>
+      ,
+      <a href="https://android-review.googlesource.com/1263328">aosp/1263328</a>
+      ,
+      <a href="https://android-review.googlesource.com/1265163">aosp/1265163</a>
+      )
+    </li>
+    <li>
+      Fixed a crash when using
+      <code translate="no" dir="ltr">prepareCall</code>
+      from a fragment after a configuration change. (
+      <a href="https://issuetracker.google.com/issues/152137004">b/152137004</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where shared element and exit transitions are ignored when using
+      <code translate="no" dir="ltr">setTargetFragment()</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/152023196">b/152023196</a>
+      )
+    </li>
+    <li>
+      From
+      <a href="#1.2.4">
+        Fragment
+        <code translate="no" dir="ltr">1.2.4</code>
+      </a>
+      : Updated the Fragment ProGuard rules to allow obfuscation of kept fragments. (
+      <a href="https://issuetracker.google.com/issues/151605338">b/151605338</a>
+      )
+    </li>
+    <li>
+      From
+      <a href="#1.2.4">
+        Fragment
+        <code translate="no" dir="ltr">1.2.4</code>
+      </a>
+      : Disabled the
+      <code translate="no" dir="ltr">FragmentLiveDataObserve</code>
+      Lint rule on
+      <code translate="no" dir="ltr">DialogFragment</code>
+      classes as their lifecycle and view lifecycle are always in sync, making it safe to use either
+      <code translate="no" dir="ltr">this</code>
+      or
+      <code translate="no" dir="ltr">viewLifecycleOwner</code>
+      when calling
+      <code translate="no" dir="ltr">observe</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/151765086">b/151765086</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Changes</strong></p>
+  <ul>
+    <li>
+      Fragments depend on
+      <a href="/jetpack/androidx/releases/activity#1.2.0-alpha03">
+        Activity
+        <code translate="no" dir="ltr">1.2.0-alpha03</code>
+      </a>
+      , which had significant improvements to the Activity Result API introduced in Activity
+      <code translate="no" dir="ltr">1.2.0-alpha02</code>
+      .
+    </li>
+  </ul>

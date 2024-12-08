@@ -1,0 +1,100 @@
+libraryId: room
+groupId: androidx.room
+version: 2.2.0-alpha02
+releaseDate: 2019-08-07
+#language=html
+changelogHtml: |
+  <h3 id="2.2.0-alpha02" data-text="Version 2.2.0-alpha02" tabindex="-1">Version 2.2.0-alpha02</h3>
+  <p>August 7, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.2.0-alpha02</code>
+    is released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform%2Fframeworks%2Fsupport/+log/f3fa99365aa7db9e882cb3f91fc486b1d9445814..45e343f257a0efd3f0f69546ee9923a9ceb0a8cb/room">here</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <strong>Coroutines Flow</strong>
+      :
+      <code translate="no" dir="ltr">@Query</code>
+      DAO methods can now be of return type
+      <code translate="no" dir="ltr">Flow&lt;T&gt;</code>
+      . The returned Flow will re-emit a new set of values if the observing tables in the query are invalidated. Declaring a DAO function with a
+      <code translate="no" dir="ltr">Channel&lt;T&gt;</code>
+      return type is an error, Room instead encourages you to use
+      <code translate="no" dir="ltr">Flow</code>
+      and then use the neighboring functions to convert the
+      <code translate="no" dir="ltr">Flow</code>
+      into a
+      <code translate="no" dir="ltr">Channel</code>
+      .
+      <a href="https://issuetracker.google.com/issues/130428884">b/130428884</a>
+    </li>
+    <li>
+      <strong>Expanding Projections</strong>
+      : A new experimental compiler option
+      <code translate="no" dir="ltr">room.expandProjection</code>
+      was added that causes Room to rewrite a query with a star projection to only contain the columns in the returning type POJO. For example, for a DAO method with
+      <code translate="no" dir="ltr">@Query("SELECT * FROM Song")</code>
+      that returns a POJO named
+      <code translate="no" dir="ltr">SongIdAndTitle</code>
+      with only two fields. Then Room will rewrite the query to
+      <code translate="no" dir="ltr">SELECT id, title FROM Song</code>
+      such that the minimum set of columns to satisfy the return type are fetched. This essentially eliminates the
+      <code translate="no" dir="ltr">CURSOR_MISMATCH</code>
+      warning that is presented when the query returns extra columns that do not match any field in the returning POJO type.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">onDestructiveMigrate</code>
+      is a new callback API added to
+      <code translate="no" dir="ltr">RoomDatabase.Callback</code>
+      for when Room destructively migrates a database.
+      <a href="https://issuetracker.google.com/issues/79962330">b/79962330</a>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a bug where Room would generate incorrect code using a method as field setter when the field is protected.
+      <a href="https://issuetracker.google.com/issues/136194628">b/136194628</a>
+    </li>
+    <li>
+      Fixed a bug that caused the InvalidationTracker to throw a NPE in a second process when multi-instance invalidation was enabled and the invalidation Service was killed.
+      <a href="https://issuetracker.google.com/issues/137454915">b/137454915</a>
+    </li>
+    <li>
+      Fixed a bug where Room would not correctly identify the return type of an inherited suspend function annotated with
+      <code translate="no" dir="ltr">@RawQuery</code>
+      .
+      <a href="https://issuetracker.google.com/issues/137878827">b/137878827</a>
+    </li>
+    <li>
+      Updated the generated code for
+      <code translate="no" dir="ltr">@Relation</code>
+      when the relating key is of type BLOB to use a
+      <code translate="no" dir="ltr">ByteBuffer</code>
+      that is comparable.
+      <a href="https://issuetracker.google.com/issues/137881998">b/137881998</a>
+    </li>
+    <li>
+      Fixed a bug where Room would complain about missing setters on POJOs used as partial entity parameters of
+      <code translate="no" dir="ltr">@Insert</code>
+      ,
+      <code translate="no" dir="ltr">@Update</code>
+      and
+      <code translate="no" dir="ltr">@Delete</code>
+      .
+      <a href="https://issuetracker.google.com/issues/138664463">b/138664463</a>
+    </li>
+    <li>
+      Fixed a bug where Room would complain about missing getters &amp; setters for an ignored column via
+      <code translate="no" dir="ltr">@Entity</code>
+      when the entity class was used in certain DAO methods.
+      <a href="https://issuetracker.google.com/issues/138238182">b/138238182</a>
+    </li>
+    <li>
+      Fixed a bug where Room would not correctly convert named binding args to positional args causing a runtime exception when executing a query with re-used parameters.
+      <a href="https://issuetracker.google.com/issues/137254857">b/137254857</a>
+    </li>
+  </ul>

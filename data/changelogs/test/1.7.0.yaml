@@ -1,0 +1,39 @@
+libraryId: test
+groupId: androidx.test
+version: 1.7.0
+releaseDate: 2024-06-24
+#language=html
+changelogHtml: |
+  <h3 id="monitor-1.7.0" data-text="monitor 1.7.0" tabindex="-1">monitor 1.7.0</h3>
+  <p>June 24, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.test:monitor:1.7.0</code>
+    is released.
+  </p>
+  <p>Changes since last stable release 1.6.1 include:</p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>Make DeviceController a public API</li>
+    <li>Move PlatformTestStorage to a public API</li>
+    <li>Add internal ControlledLooper#isDrawCallbacksSupported.</li>
+    <li>Remove all support for Android SDKs &lt; 19. Minimum is API 19 (Android Kit Kat 4.4)</li>
+    <li>minSdkVersion is now 19, targetSdkVersion is now 34</li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>Remove unused androidx.test.annotation dependency</li>
+    <li>Fix synchronization in IntentMonitorImpl callbacks</li>
+  </ul>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Artifacts are now signed. See
+      <a href="https://developer.android.com/jetpack/getting-started#verify_dependencies">verify dependencies</a>
+      for more details.
+    </li>
+    <li>Major release toolchain update: now compiled to java8 bytecode</li>
+  </ul>
+  <p><strong>Known issues</strong></p>
+  <ul>
+    <li>monitor has a dependency on androidx.tracing:1.1.0. Depending on configuration, gradle may downgrade this to 1.0.0 at runtime causing 'No static method forceEnableAppTracing' errors. As a workaround, add an explicit 'implementation androidx.tracing:1.1.0' dependency. See https://github.com/android/android-test/issues/1755</li>
+  </ul>

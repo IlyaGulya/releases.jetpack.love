@@ -1,0 +1,78 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.0.0-rc01
+releaseDate: 2022-06-15
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-rc01" data-text="Version 1.0.0-rc01" tabindex="-1">Version 1.0.0-rc01</h3>
+  <p>June 15, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-foundation:1.0.0-rc01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material:1.0.0-rc01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-navigation:1.0.0-rc01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7cbb37cc779160b89644d03e042c129d0ce025d2..aa660d501ab7cf1ffb63464e855e86e650838fb6/wear/compose">Version 1.0.0-rc01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Interfaces in compose libraries are now built using jdk8 default interface methods (
+      <a href="https://android-review.googlesource.com/#/q/I5bcf197603f66ec66177c98c01c3fe4868d60997">I5bcf1</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We have removed the explicit call to
+      <code translate="no" dir="ltr">fillMaxWidth()</code>
+      on list header as it is not needed and can result in problems if a
+      <code translate="no" dir="ltr">ScalinglazyColumn</code>
+      has a mixture of
+      <code translate="no" dir="ltr">ListHeader()</code>
+      and
+      <code translate="no" dir="ltr">Chip()</code>
+      components as the width will tend to grow/shrink as
+      <code translate="no" dir="ltr">ListHeader</code>
+      items are scrolled in/out of view. (
+      <a href="https://android-review.googlesource.com/#/q/I3714408eac2c75cd8168162ec94a600b0b87f024">I37144</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/235074035">b/235074035</a>
+      )
+    </li>
+    <li>
+      We have fixed a bug in the
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      that could result in the list items not drawing correctly until scrolled if the 0th list item was large enough (including padding) (
+      <a href="https://android-review.googlesource.com/#/q/Ic6159b18937d97f9bb580cf59810880288ad6d4e">Ic6159</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/234328517">b/234328517</a>
+      )
+    </li>
+    <li>
+      We have made a small adjustment in the
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      easing as items reach the edge of the screen to match UX spec updates. Old values
+      <code translate="no" dir="ltr">CubicBezierEasing(0.25f, 0.00f, 0.75f, 1.00f)</code>
+      -&gt; new values
+      <code translate="no" dir="ltr">CubicBezierEasing(0.3f, 0f, 0.7f, 1f)</code>
+      . To keep the old behavior you can override the
+      <code translate="no" dir="ltr">scalingParams</code>
+      of
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ie375ca83655ae09293b6565174787eac1e6b2e3e">Ie375c</a>
+      )
+    </li>
+    <li>
+      We have added padding to the
+      <code translate="no" dir="ltr">CompactChip</code>
+      in order to ensure that its tap target size is at least 48.dp high to meet the Material accessibility guidelines. This might impact any layouts you have using
+      <code translate="no" dir="ltr">CompactChips</code>
+      as they will be taking up additional space. (
+      <a href="https://android-review.googlesource.com/#/q/I3d57caebc66e5d4c867f2ce19b4d0d9b5ebc9998">I3d57c</a>
+      )
+    </li>
+  </ul>

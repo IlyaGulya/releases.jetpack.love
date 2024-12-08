@@ -1,0 +1,57 @@
+libraryId: room
+groupId: androidx.room
+version: 2.4.0-beta02
+releaseDate: 2021-11-17
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0-beta02" data-text="Version 2.4.0-beta02" tabindex="-1">Version 2.4.0-beta02</h3>
+  <p>November 17, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.4.0-beta02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/db0888af4fa9a8eaeaf55cc1f120724bc67bdb20..cc1240d00b28657ee0c1a937f60430eaf1b03b09/room">Version 2.4.0-beta02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      We’ve added support for SparseArray and LongSparseArray in @MapInfo. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1809044">Ic91a2</a>
+      <a href="https://issuetracker.google.com/138910317">b/138910317</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We've added a new TypeConverter analyzer that takes nullability information in types into account. As this information is only available in KSP, it is turned on by default only in KSP. If it causes any issues, you can turn it off by passing room.useNullAwareTypeAnalysis=false to the annotation processor. If that happens, please a file bug as this flag will be removed in the future. With this new TypeConverter analyzer, it is suggested to only provide non-null receiving TypeConverters as the new analyzer has the ability to wrap them with a null check. Note that this has no impact for users using KAPT or Java as the annotation processors (unlike KSP), don't have nullability information in types. (
+      <a href="https://android-review.googlesource.com/#/q/Ia88f916de3c15424ac8cc275d23223c6b5e47a6d">Ia88f9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/193437407">b/193437407</a>
+      )
+    </li>
+    <li>
+      Fix a bug where Room would fail to compile with a SQL error when an FTS entity declared to use the ICU tokenizer. (
+      <a href="https://android-review.googlesource.com/#/q/I00db9e36315f69a872a1498b4f5360ec6b576645">I00db9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/201753224">b/201753224</a>
+      )
+    </li>
+    <li>
+      Resolved issue in auto migrations regarding a new column added to an embedded Entity between versions. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1771292">I5fcb1</a>
+      <a href="https://issuetracker.google.com/193798291">b/193798291</a>
+      )
+    </li>
+    <li>
+      We have resolved an issue regarding the relational query method return types in LEFT JOIN queries. With these changes, in the case where a 1-many mapping is present, the collection returned for a key will not include the invalid value object if it is not found in the cursor. If no valid values are found, then a key will be mapped to an empty collection. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1874056">Id5552</a>
+      <a href="https://issuetracker.google.com/201946438">b/201946438</a>
+      )
+    </li>
+    <li>
+      Resolved the auto migration issue where SQLite keywords failed to be escaped in column names. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1870037">Idbed4</a>
+      <a href="https://issuetracker.google.com/197133152">b/197133152</a>
+      )
+    </li>
+  </ul>

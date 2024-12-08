@@ -1,0 +1,158 @@
+libraryId: graphics
+groupId: androidx.graphics
+version: 1.0.0-alpha03
+releaseDate: 2023-03-22
+#language=html
+changelogHtml: |
+  <h3 id="graphics-core-1.0.0-alpha03" data-text="Version 1.0.0-alpha03" tabindex="-1">Version 1.0.0-alpha03</h3>
+  <p>March 22, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.graphics:graphics-core:1.0.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3ab6276ada43455a1f1cd3e8d0b3c77123b42150..5e7d256f82fbafb6d059ab7b18fddd87c7531553/graphics/graphics-core">Version 1.0.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">GLFrontBufferedRenderer</code>
+      callback implementation to provide
+      <code translate="no" dir="ltr">BufferInfo</code>
+      object that contains buffer width/height along with a frame buffer identifier that can be used to re-target the original destination after rendering to an intermediate scratch buffer. (
+      <a href="https://android-review.googlesource.com/#/q/I7fe20bf29d5321ef00e5bb7fce6a60cab09b7633">I7fe20</a>
+      )
+    </li>
+    <li>
+      Consolidated
+      <code translate="no" dir="ltr">SyncFence</code>
+      creation to static factory method on
+      <code translate="no" dir="ltr">SyncFenceCompat</code>
+      .
+    </li>
+    <li>
+      Removed public compatibility method for
+      <code translate="no" dir="ltr">eglDupNativeFenceFDANDROID</code>
+      in favor of
+      <code translate="no" dir="ltr">SyncFenceCompat</code>
+      factory method for SyncFence creation. This is to ensure all API surfaces receive the correct
+      <code translate="no" dir="ltr">SyncFence</code>
+      implementation regardless of API level. (
+      <a href="https://android-review.googlesource.com/#/q/I849bb702ab07ff3e3f154d80ca950e198a362981">I849bb</a>
+      )
+    </li>
+    <li>
+      Added documentation for
+      <code translate="no" dir="ltr">FrameBufferRenderer</code>
+      and
+      <code translate="no" dir="ltr">SyncStrategy</code>
+      .
+      <ul>
+        <li>
+          Moved
+          <code translate="no" dir="ltr">FrameBufferRenderer</code>
+          +
+          <code translate="no" dir="ltr">FrameBuffer</code>
+          +
+          <code translate="no" dir="ltr">FrameBufferPool</code>
+          to
+          <code translate="no" dir="ltr">androidx.graphics.opengl</code>
+          package
+        </li>
+        <li>
+          Moved
+          <code translate="no" dir="ltr">SyncStrategy</code>
+          to
+          <code translate="no" dir="ltr">androidx.graphics.opengl</code>
+          package
+        </li>
+        <li>
+          Updated
+          <code translate="no" dir="ltr">RenderCallback#onDraw</code>
+          docs
+        </li>
+        <li>
+          Updated documentation of
+          <code translate="no" dir="ltr">RenderCallback#obtainFrameBuffer</code>
+          that implementor of API is responsible for calling
+          <code translate="no" dir="ltr">FrameBuffer.close</code>
+        </li>
+        <li>
+          Updated
+          <code translate="no" dir="ltr">onDrawComplete</code>
+          to indicate consumers are responsible for dispatching contents to display
+        </li>
+        <li>
+          Moved
+          <code translate="no" dir="ltr">SyncFence</code>
+          compatibility interfaces/classes to
+          <code translate="no" dir="ltr">androidx.hardware</code>
+          package to mirror the framework
+        </li>
+        <li>
+          Renamed
+          <code translate="no" dir="ltr">SyncFence</code>
+          API to
+          <code translate="no" dir="ltr">SyncFenceV19</code>
+          and made private to consolidate usages to
+          <code translate="no" dir="ltr">SyncFenceCompat</code>
+          which leverages the framework's
+          <code translate="no" dir="ltr">SyncFence</code>
+          API wherever possible. (
+          <a href="https://android-review.googlesource.com/#/q/I5149cdaed6c12822c898dde02ca3d1f12cb64d45">I5149c</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">GLFrontBufferedRenderer#cancel</code>
+      and
+      <code translate="no" dir="ltr">GLFrontBufferedRenderer#execute</code>
+      methods. The former is useful in palm rejection scenarios where rendering to the front buffer should be cancelled and hide the front buffer. The latter is useful in scenarios to manipulate objects on the GL thread without having to schedule a render. (
+      <a href="https://android-review.googlesource.com/#/q/If0b7f1674765f18ed0af9474a35567b16232858c">If0b7f</a>
+      )
+    </li>
+    <li>
+      Add API to render directly to the double buffered layer. This assists with re-rendering a scene after resume as well as giving an opportunity to consumers to selectively determine when to leverage front buffered rendering dynamically based on the desired scene to render. (
+      <a href="https://android-review.googlesource.com/#/q/Ied56c2e057ef00b756d05a8b5f588a2341cd59f1">Ied56c</a>
+      )
+    </li>
+    <li>
+      Added new API to
+      <code translate="no" dir="ltr">SurfaceControlCompat.Builder</code>
+      to support configuring the parent
+      <code translate="no" dir="ltr">SurfaceControl</code>
+      from another
+      <code translate="no" dir="ltr">SurfaceControl</code>
+      instance in addition to the existing mechanism from a
+      <code translate="no" dir="ltr">SurfaceView</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1d1b654352d2dd6964da3e75007cd6f346092ab5">I1d1b6</a>
+      )
+    </li>
+    <li>
+      More return type nullability of deprecated-hidden functions (
+      <a href="https://android-review.googlesource.com/#/q/Ibf7b0ada56eb08983e6109d30fad5294f6b841f0">Ibf7b0</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">EGL_ANDROID_get_native_client_buffer</code>
+      extension constant to query whether the Android device supports importing of
+      <code translate="no" dir="ltr">HardwareBuffer</code>
+      instances into
+      <code translate="no" dir="ltr">EGLClientBuffer</code>
+      objects that can be consumed as an
+      <code translate="no" dir="ltr">EGLImage</code>
+      instance. (
+      <a href="https://android-review.googlesource.com/#/q/Iad767d0af10b10b2ce6b9d3c4bcced4345d0d5be">Iad767</a>
+      )
+    </li>
+    <li>
+      Adding
+      <code translate="no" dir="ltr">@JvmDefaultWithCompatibility</code>
+      annotation (
+      <a href="https://android-review.googlesource.com/#/q/I8f2067bb0754a5e9dc70c934403366ca8d319c36">I8f206</a>
+      )
+    </li>
+  </ul>

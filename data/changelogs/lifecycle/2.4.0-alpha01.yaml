@@ -1,0 +1,93 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.4.0-alpha01
+releaseDate: 2021-03-24
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0-alpha01" data-text="Version 2.4.0-alpha01" tabindex="-1">Version 2.4.0-alpha01</h3>
+  <p>March 24, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.4.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ab69093e69997058cb4a9e61203401169b6ee2a8..5c42896eb6591b09e3952030fb7ea8d9b8c42713/lifecycle">Version 2.4.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">lifecycle-process</code>
+        now uses
+        <code translate="no" dir="ltr">androidx.startup</code>
+        to initialize the
+        <code translate="no" dir="ltr">ProcessLifecycleOwner</code>
+        .
+      </p>
+
+      <p>
+        Previously, this was being done by
+        <code translate="no" dir="ltr">androidx.lifecycle.ProcessLifecycleOwnerInitializer</code>
+        .
+      </p>
+
+      <p>
+        If you used
+        <code translate="no" dir="ltr">tools:node="remove"</code>
+        the
+        <code translate="no" dir="ltr">ContentProvider</code>
+        being used to initialize process lifecycle in the past, then you need to do the following instead.
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="XML"><code translate="no" dir="ltr"><span class="devsite-syntax-w"> </span>&lt;provider
+  <span class="devsite-syntax-w">    </span>android:name="androidx.startup.InitializationProvider"
+  <span class="devsite-syntax-w">    </span>android:authorities=\"${applicationId}.androidx-startup"
+  <span class="devsite-syntax-w">    </span>android:exported="false"
+  <span class="devsite-syntax-w">    </span>tools:node=\"merge"&gt;
+  <span class="devsite-syntax-w">    </span>&lt;!--<span class="devsite-syntax-w"> </span>If<span class="devsite-syntax-w"> </span>you<span class="devsite-syntax-w"> </span>are<span class="devsite-syntax-w"> </span>using<span class="devsite-syntax-w"> </span>androidx.startup<span class="devsite-syntax-w"> </span>to<span class="devsite-syntax-w"> </span>initialize<span class="devsite-syntax-w"> </span>other<span class="devsite-syntax-w"> </span>components<span class="devsite-syntax-w"> </span>--&gt;
+  <span class="devsite-syntax-w">    </span>&lt;meta-data
+  <span class="devsite-syntax-w">        </span>android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+  <span class="devsite-syntax-w">        </span>android:value="androidx.startup"
+  <span class="devsite-syntax-w">        </span>tools:node="remove"<span class="devsite-syntax-w"> </span>/&gt;
+  <span class="devsite-syntax-w"> </span>&lt;/provider&gt;
+  </code></pre>
+      </devsite-code>
+      <p>(or)</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="XML"><code translate="no" dir="ltr"><span class="devsite-syntax-w"> </span>&lt;!--<span class="devsite-syntax-w"> </span>If<span class="devsite-syntax-w"> </span>you<span class="devsite-syntax-w"> </span>want<span class="devsite-syntax-w"> </span>to<span class="devsite-syntax-w"> </span>disable<span class="devsite-syntax-w"> </span>androidx.startup<span class="devsite-syntax-w"> </span>completely.<span class="devsite-syntax-w"> </span>--&gt;
+  <span class="devsite-syntax-w"> </span>&lt;provider
+  <span class="devsite-syntax-w">    </span>android:name="androidx.startup.InitializationProvider"
+  <span class="devsite-syntax-w">    </span>android:authorities="${applicationId}.androidx-startup"
+  <span class="devsite-syntax-w">    </span>tools:node="remove"&gt;
+  <span class="devsite-syntax-w"> </span>&lt;/provider&gt;
+  </code></pre>
+      </devsite-code>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added a
+      <code translate="no" dir="ltr">Flow.flowWithLifecycle</code>
+      API that emits values from the upstream Flow when the lifecycle is at least in a certain state using the
+      <code translate="no" dir="ltr">Lifecycle.repeatOnLifecycle</code>
+      API. This is an alternative to the also new
+      <code translate="no" dir="ltr">LifecycleOwner.addRepeatinJob</code>
+      API. (
+      <a href="https://android-review.googlesource.com/#/q/I0f4cdfd2579b2dae2990f30ec67dc4fd97c46bfc">I0f4cd</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      From
+      <a href="#2.3.1">Lifecycle 2.3.1</a>
+      : The
+      <code translate="no" dir="ltr">NonNullableMutableLiveData</code>
+      lint rule can now properly differentiate between field variables with different nullability. (
+      <a href="https://issuetracker.google.com/issues/169249668">b/169249668</a>
+      )
+    </li>
+  </ul>
+  <h2 id="lifecycle_viewmodel_compose_version_100_2" data-text="Lifecycle Viewmodel Compose Version 1.0.0" tabindex="-1">Lifecycle Viewmodel Compose Version 1.0.0</h2>

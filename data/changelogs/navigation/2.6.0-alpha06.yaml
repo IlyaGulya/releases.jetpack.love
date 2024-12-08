@@ -1,0 +1,92 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.6.0-alpha06
+releaseDate: 2023-02-22
+#language=html
+changelogHtml: |
+  <h3 id="2.6.0-alpha06" data-text="Version 2.6.0-alpha06" tabindex="-1">Version 2.6.0-alpha06</h3>
+  <p>February 22, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.6.0-alpha06</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/2ea70540638fa56f90e00b5a8b84781a400a49a1..87533b4ff06971ed59028936cd9b6da988cd4522/navigation">Version 2.6.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      When previewing a composable with
+      <code translate="no" dir="ltr">NavHost</code>
+      , it will now show the NavGraph's
+      <code translate="no" dir="ltr">startDestination</code>
+      by default. (
+      <a href="https://android-review.googlesource.com/#/q/I2b89f0e3957f9727912b94e20efdfb6b115b97e9">I2b89f</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      All
+      <code translate="no" dir="ltr">NavController</code>
+      <code translate="no" dir="ltr">navigate</code>
+      overloads are now annotated with
+      <code translate="no" dir="ltr">@MainThread</code>
+      to ensure that they are called on the main thread. (
+      <a href="https://android-review.googlesource.com/#/q/I2c0b03cf115708fd40d0eee6359bae7302141105">I2c0b0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/263427111">b/263427111</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a crash when attempting to navigate while using Dynamic Fragment Navigation. (
+      <a href="https://android-review.googlesource.com/#/q/I3ee29ea33f2cc7f7221b79d4d17399c725a6a4df">I3ee29</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/268360479">b/268360479</a>
+      )
+    </li>
+    <li>
+      Fixed bug where navigating to another fragment via system back button does not update bottom bar to the correct selected item (
+      <a href="https://android-review.googlesource.com/#/q/If559faaccdf57f49f637eafe7be8a069d217db81">If559f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/269044426">b/269044426</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      When using Navigation with Fragments, the
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      's Lifecycle fails to reach
+      <code translate="no" dir="ltr">RESUMED</code>
+      when using
+      <a href="/reference/android/view/animation/Animation"><code translate="no" dir="ltr">Animation</code></a>
+      APIs. (
+      <a href="https://issuetracker.google.com/269646882">b/269646882</a>
+      )
+    </li>
+    <li>
+      When using Navigation with Fragments, and navigating with
+      <code translate="no" dir="ltr">BottomNavigation</code>
+      , if you attempt to restore a back stack with multiple entries, the
+      <code translate="no" dir="ltr">BottomMenuItem</code>
+      is not correctly updated. (
+      <a href="https://issuetracker.google.com/270447657">b/270447657</a>
+      )
+    </li>
+    <li>
+      When using Navigation with Fragments, after restoring the state the
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      <code translate="no" dir="ltr">Lifecycle</code>
+      does not get
+      <code translate="no" dir="ltr">DESTROYED</code>
+      when its fragment is
+      <code translate="no" dir="ltr">DESTROYED</code>
+      . (
+      <a href="https://issuetracker.google.com/270610768">b/270610768</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,148 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.0.0-alpha18
+releaseDate: 2022-03-09
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha18" data-text="Version 1.0.0-alpha18" tabindex="-1">Version 1.0.0-alpha18</h3>
+  <p>March 9, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-foundation:1.0.0-alpha18</code>
+    ,
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material:1.0.0-alpha18</code>
+    , and
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-navigation:1.0.0-alpha18</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9b2b3d8efd5f00bd4af903bbaa926f6a712d0bd8..33cb12e8aba043a05b40470a5ef3be1b35114fd5/wear/compose">Version 1.0.0-alpha18 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Several improvements to PositionIndicator: ShowResult renamed PositionIndicatorVisibility. Some performance improvements to avoid recomputations when not needed (
+      <a href="https://android-review.googlesource.com/#/q/Iaed9d031fd5e881936abf420f77708e8c34efa66">Iaed9d</a>
+      )
+    </li>
+    <li>
+      The recommended coloring for the
+      <code translate="no" dir="ltr">SplitToggleChip</code>
+      has been updated. SplitToggleChip's now have a solid colored background when checked or unchecked with the coloring of the ToggleControl being the primary indication of whether the component is checked or not. We have added a new
+      <code translate="no" dir="ltr">ToggleDefaults.splitToggleChipColors()</code>
+      to support the new color scheme. We have also simplified the
+      <code translate="no" dir="ltr">toggleChipColors()</code>
+      methods removing the splitBackgroundOverlayColor (
+      <a href="https://android-review.googlesource.com/#/q/I7e66e3c9a7c74b588edd7db9bca22f807aca68fc">I7e66e</a>
+      )
+    </li>
+    <li>
+      We have added unadjustedSize to the
+      <code translate="no" dir="ltr">ScalingLazyListItemInfo</code>
+      as it is not safe to calculate the original item size using the scaled size and scaling factor due to float maths precision. (
+      <a href="https://android-review.googlesource.com/#/q/I54657254014989469bed08b6ef3859cab814b826">I54657</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/221079441">b/221079441</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">HorizontalPageIndicator</code>
+      . It represents a total number of pages and a selected page. Might be linear or curved, depending on the shape of the device. It also supports custom indicator shape, which defines how each indicator is visually represented. (
+      <a href="https://android-review.googlesource.com/#/q/Iac8984eb938e64816850c494ffcaa7988e724cc8">Iac898</a>
+      )
+    </li>
+    <li>
+      We have updated
+      <code translate="no" dir="ltr">PickerState</code>
+      so that the numberOfOptions can be updated. This supports use-cases such as a
+      <code translate="no" dir="ltr">DatePicker</code>
+      , when the number of days in the month changes depending on the month selected. The constructor parameter for PickerState has changed to initialNumberOfOptions accordingly. (
+      <a href="https://android-review.googlesource.com/#/q/Iad066cbe48265179e09cf17401e4a42344e09f5d">Iad066</a>
+      )
+    </li>
+    <li>
+      Hide the
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      when is a scrollbar and can't scroll. (
+      <a href="https://android-review.googlesource.com/#/q/Id0a7f131164666f81a95ca4ac1c98a68ec4f7b0f">Id0a7f</a>
+      )
+    </li>
+    <li>
+      For consistency with Scaffold, our full-screen Dialog component now displays a
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      and a
+      <code translate="no" dir="ltr">Vignette</code>
+      . We are also now using
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      instead of
+      <code translate="no" dir="ltr">Column</code>
+      , which means that the Dialog contents are now in
+      <code translate="no" dir="ltr">ScalingLazyListScope</code>
+      (and typically need to be enclosed by item { /* content */ }). Dialog supports the verticalArrangement parameter accordingly. (
+      <a href="https://android-review.googlesource.com/#/q/Idea13159860bce107a0bf2bd492fabfc575038fb">Idea13</a>
+      )
+    </li>
+    <li>
+      We have changed the name of
+      <code translate="no" dir="ltr">ToggleChip</code>
+      and
+      <code translate="no" dir="ltr">SplitToggleChip</code>
+      toggleIcon property to toggleControl to better align with Material Design in order to help designers and developers navigate the API. (
+      <a href="https://android-review.googlesource.com/#/q/If59219f736c95c54c253f52217335204648364fa">If5921</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/220129803">b/220129803</a>
+      )
+    </li>
+    <li>
+      We have added a new entry caption3 to the Wear Material Theme Typology.Caption3 is a small font used for the extra long-form writing like legal texts. (
+      <a href="https://android-review.googlesource.com/#/q/I74b133e3dbb660adf576893cfedf7bec95042c9b">I74b13</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/220128356">b/220128356</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Stop the snapping animation when we are there. (
+      <a href="https://android-review.googlesource.com/#/q/Idb69dab09b454f70e59c00492da5db90706f9198">Idb69d</a>
+      )
+    </li>
+    <li>
+      Animate changes in PositionIndicator. (
+      <a href="https://android-review.googlesource.com/#/q/I94cb921143f659c44dd166fe0882805ee5e809c5">I94cb9</a>
+      )
+    </li>
+    <li>
+      Based on UI/UX feedback we have changed the
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      autoCentering so that it will provide only enough space to make sure the items with index
+      <code translate="no" dir="ltr">ScalingLazyListState.initialCenterItemIndex</code>
+      or higher will be able to be fully scrolled to the center of the viewport. This allows developers to place one or two items about the item initially in the center which are not scrollable into the middle. This will mean that an autoCenter'ing
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      will not be able to scroll above the
+      <code translate="no" dir="ltr">initialCenterItemIndex/initialCenterItemScrollOffset</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I22ee2c5d2218cb89b3abfcc474386c26a424430f">I22ee2</a>
+      )
+    </li>
+    <li>
+      We have added a demo for a Date Picker and fixed a bug in
+      <code translate="no" dir="ltr">PickerState</code>
+      where the initiallySelectedOption was not applied until the Picker had been displayed. (
+      <a href="https://android-review.googlesource.com/#/q/Id0d7efdace5625690e444432de7bc2416fce551b">Id0d7e</a>
+      )
+    </li>
+    <li>
+      In order to reduce the clipping of wider
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      items on circular screens we have increased the default horizontal content padding from 8 to 10 dp. (
+      <a href="https://android-review.googlesource.com/#/q/I0d6098cb6bb07ea9b0a1c3e1eac4348543ca24ab">I0d609</a>
+      )
+    </li>
+    <li>
+      Ensure the
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      is shown when scrolling. (
+      <a href="https://android-review.googlesource.com/#/q/Ied9a23dfb565cefc46486ca3cd16bf0c5984a32e">Ied9a2</a>
+      )
+    </li>
+  </ul>

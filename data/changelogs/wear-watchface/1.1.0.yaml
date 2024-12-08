@@ -1,0 +1,59 @@
+libraryId: wear-watchface
+groupId: androidx.wear
+version: 1.1.0
+releaseDate: 2022-06-15
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0" data-text="Version 1.1.0" tabindex="-1">Version 1.1.0</h3>
+  <p>June 15, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.watchface:watchface-*:1.1.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/947b9ceb775ff5ace7ed32e57bb398c964bf5db3..0412edaeb003a9619a2239e48e5b208f0398221b/wear/watchface">Version 1.1.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 1.0.0</strong></p>
+  <p>Improved Editing:</p>
+  <ul>
+    <li>We added support for hierarchical schemas, which allows a hierarchy of styles to be scribed by editor UIs. You can now specify separate icons for use by on watch face and companion editors.</li>
+    <li>There is opt-in support for multiple instances of a watch face, each instance has a unique ID available across all API surfaces.</li>
+    <li>
+      You can now specify human readable names for
+      <code translate="no" dir="ltr">ComplicationSlots</code>
+      for use in editors.
+    </li>
+    <li>Experimental support for styling “flavors”, a curated selection of styles which will be visible from the companion editor.</li>
+    <li>When editing two instances of the watchface are loaded, it’s now possible for watchface instances to share resources, saving memory</li>
+    <li>When picking a complication in the on watch face editor, the current provider is now preselected.</li>
+  </ul>
+  <p>Improved Complications:</p>
+  <ul>
+    <li>
+      You can now specify the
+      <code translate="no" dir="ltr">ComplicationType</code>
+      for the primary and secondary data sources, giving developers more flexibility for the out of box experience.
+    </li>
+    <li>
+      We added
+      <code translate="no" dir="ltr">ComplicationDataTimeline</code>
+      which provides a sequence of time-gated data to be delivered to the watch face which can be cached and updated automatically. For example, today's weather forecast at various times or multiple upcoming calendar events.
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">ComponentName</code>
+      of the complication provider is part of the
+      <code translate="no" dir="ltr">ComplicationData</code>
+      .
+    </li>
+    <li>Complications are now cached which provides a better experience when switching between watch faces.</li>
+  </ul>
+  <p>Other changes:</p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">UserStyleSchema</code>
+      and
+      <code translate="no" dir="ltr">ComplicationSlots</code>
+      can now be defined in XML. This simplifies watch face construction and allows for faster metadata queries from the system.
+    </li>
+    <li>Watch faces can now influence the colors used for rendering the system overlay.</li>
+  </ul>

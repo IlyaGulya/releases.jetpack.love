@@ -1,0 +1,59 @@
+libraryId: appcompat
+groupId: androidx.appcompat
+version: 1.1.0
+releaseDate: 2019-09-05
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0" data-text="Version 1.1.0" tabindex="-1">Version 1.1.0</h3>
+  <p>September 5, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.appcompat:appcompat:1.1.0</code>
+    and
+    <code translate="no" dir="ltr">androidx.appcompat:appcompat-resources:1.1.0</code>
+    are released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/16509068d2009cdd24134b48887e3d8abd6b7109..f48ce15dc1716809f45fa761daa26ba7a838ca55/appcompat">here</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.0.0</strong></p>
+  <ul>
+    <li>
+      <strong>Dark Mode Improvements</strong>
+      :
+      <code translate="no" dir="ltr">MODE_NIGHT_AUTO</code>
+      and switching of dark/light based on the current time is now deprecated. Considering using an explicit setting, or
+      <code translate="no" dir="ltr">MODE_NIGHT_AUTO_BATTERY</code>
+      .
+    </li>
+    <li>
+      <strong>Activity 1.0</strong>
+      :
+      <code translate="no" dir="ltr">AppCompatActivity</code>
+      now transitively extends from
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      from
+      <a href="/jetpack/androidx/releases/activity#1.0.0">
+        Activity
+        <code translate="no" dir="ltr">1.0.0</code>
+      </a>
+      via
+      <a href="/jetpack/androidx/releases/fragment#1.1.0">
+        Fragment
+        <code translate="no" dir="ltr">1.1.0</code>
+      </a>
+      . See the associated release notes for information on the changes in each library.
+    </li>
+    <li>
+      <strong>AppCompatActivity LayoutId constructor</strong>
+      : Subclasses of
+      <code translate="no" dir="ltr">AppCompatActivity</code>
+      can now optionally call into a constructor on
+      <code translate="no" dir="ltr">AppCompatActivity</code>
+      that takes an
+      <code translate="no" dir="ltr">R.layout</code>
+      ID, indicating the layout that should be set as the content view as an alternative to calling
+      <code translate="no" dir="ltr">setContentView()</code>
+      in
+      <code translate="no" dir="ltr">onCreate()</code>
+      . This does not change the requirement that your subclass have a no-argument constructor.
+    </li>
+  </ul>

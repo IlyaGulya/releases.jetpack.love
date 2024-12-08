@@ -1,0 +1,235 @@
+libraryId: wear-protolayout
+groupId: androidx.wear
+version: 1.0.0-alpha10
+releaseDate: 2023-05-24
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha10" data-text="Version 1.0.0-alpha10" tabindex="-1">Version 1.0.0-alpha10</h3>
+  <p>May 24, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.protolayout:protolayout-*:1.0.0-alpha10</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6f3ac2bd197d5e61ab2708125b57d6ae4003ad68..c5bf9bc40dd5d9f0b3f34e7273ac0d4e4f05c41d/wear/protolayout">Version 1.0.0-alpha10 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">AppDataKey</code>
+      for accessing app pushed state; Add
+      <code translate="no" dir="ltr">PlatformDataKey</code>
+      for accessing platform data; Add namespace support in
+      <code translate="no" dir="ltr">StateStore</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7985e7716a77b46a2ea3cee5f9009eead48b96d1">I7985e</a>
+      )
+    </li>
+    <li>
+      Support
+      <code translate="no" dir="ltr">Equal</code>
+      and
+      <code translate="no" dir="ltr">NotEqual</code>
+      operations for
+      <code translate="no" dir="ltr">DynamicBool</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6a0c1b592c5387781acbf9d550aeda936ffbf0bd">I6a0c1</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">FontStyles</code>
+      class is now final (
+      <a href="https://android-review.googlesource.com/#/q/Iaa2eacde5352fd55c3a6ddcbce34e3fc69a45290">Iaa2ea</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LayoutElementBuilders#FontStyles</code>
+      has been deprecated. Please use
+      <code translate="no" dir="ltr">androidx.wear.protolayout.Typography</code>
+      or create your own
+      <code translate="no" dir="ltr">FontStyle</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic929b0d8210631ba4e02a79caa1e00a2db51289e">Ic929b</a>
+      )
+    </li>
+    <li>
+      Hide
+      <code translate="no" dir="ltr">Action#Builder</code>
+      nested interface from
+      <code translate="no" dir="ltr">Action</code>
+      interface. Implementations of Builder are already provided by
+      <code translate="no" dir="ltr">LoadAction</code>
+      and
+      <code translate="no" dir="ltr">LaunchAction</code>
+      classes. (
+      <a href="https://android-review.googlesource.com/#/q/I1d70c15ccebf6b5a2d71d412b333e000b7d12b4a">I1d70c</a>
+      )
+    </li>
+    <li>
+      Allow using
+      <code translate="no" dir="ltr">DynamicFloat</code>
+      with
+      <code translate="no" dir="ltr">FloatProp</code>
+      . Note that
+      <code translate="no" dir="ltr">FloatProp</code>
+      do no require layout constraints as it's not used as a layout changing prop. (
+      <a href="https://android-review.googlesource.com/#/q/I286acc231277d13265430b34903a79f3132c798b">I286ac</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">LoalAction</code>
+      and
+      <code translate="no" dir="ltr">SetStateAction</code>
+      actions are removed as they were not really supported yet. (
+      <a href="https://android-review.googlesource.com/#/q/I5d6a6472a235179c790d454234faf90972579e84">I5d6a6</a>
+      )
+    </li>
+    <li>
+      Added support for ARGB_8888 format for inline image resources. (
+      <a href="https://android-review.googlesource.com/#/q/I8a07cd77c4e2e3b850eb5d781a9777df0971271b">I8a07c</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">StateEntryValue</code>
+      to
+      <code translate="no" dir="ltr">DynamicDataValue</code>
+      , and update the state APIS to use the
+      <code translate="no" dir="ltr">DynamicDataKey</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/If1c01335804c5dd98dd2c326ec560e1816ec4c77">If1c01</a>
+      )
+    </li>
+    <li>
+      We are limiting the number of entries that are allowed in the
+      <code translate="no" dir="ltr">StateStore</code>
+      in order to ensure that memory usage and state update time are well contained and controlled for each instance of the
+      <code translate="no" dir="ltr">StateStore</code>
+      . As a result, the developer needs to ensure that they do not have more than
+      <code translate="no" dir="ltr">MAX_STATE_ENTRY_COUNT</code>
+      entries in the map otherwise they will get an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      when creating or updating the
+      <code translate="no" dir="ltr">StateStore</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ibadb3c422ade12c5d77cfedac1a806e8d7b0c756">Ibadb3</a>
+      )
+    </li>
+    <li>
+      Hide
+      <code translate="no" dir="ltr">OnLoadTrigger</code>
+      and
+      <code translate="no" dir="ltr">OnConditionMetTrigger</code>
+      classes, and rename
+      <code translate="no" dir="ltr">setTrigger</code>
+      to
+      <code translate="no" dir="ltr">setCondition</code>
+      for
+      <code translate="no" dir="ltr">OnConditionMetTrigger</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ibf62995413059ef51f24400b5483053bf0642af8">Ibf629</a>
+      )
+    </li>
+    <li>
+      For performance and compatibility reasons, the
+      <code translate="no" dir="ltr">ProtoLayout</code>
+      renderers won't support the full set of features in
+      <code translate="no" dir="ltr">AnimatedVectorDrawable</code>
+      resources. We're marking those APIs as experimental until we can define the supported set. (
+      <a href="https://android-review.googlesource.com/#/q/Ic6daff3d74e67ca273a353f13cd89ffb412560bb">Ic6daf</a>
+      )
+    </li>
+    <li>
+      Added dynamic types for daily distance, daily calories and daily floors. Keys for platform health sources are now under
+      <code translate="no" dir="ltr">PlatformHealthSources.Keys</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ib76376c44708ba49e4ad2253199db176f89972bf">Ib7637</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">Easing.cubicBezier</code>
+      method replaces the
+      <code translate="no" dir="ltr">CubicBezierEasing.Builder</code>
+      . With that the
+      <code translate="no" dir="ltr">EasingFunction</code>
+      class is removed and the easing constants from that class are now directly accessible from the
+      <code translate="no" dir="ltr">Easing</code>
+      interface. In addition
+      <code translate="no" dir="ltr">setInfiniteRepeatable</code>
+      is replaced by
+      <code translate="no" dir="ltr">INFINITE_REPEATABLE_WITH_RESTART</code>
+      and
+      <code translate="no" dir="ltr">INFINITE_REPEATABLE_WITH_REVERSE</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ib41e7d7be686700b87ab1658b05fce4353c5bc54">Ib41e7</a>
+      )
+    </li>
+    <li>
+      Implement
+      <code translate="no" dir="ltr">PlatformDataProvider</code>
+      to provide heart rate and daily steps.
+      <code translate="no" dir="ltr">SensorGateway</code>
+      interface is removed from public API. (
+      <a href="https://android-review.googlesource.com/#/q/I55b84b6b9bffc5f0a6b812307f1bd4ad61750d65">I55b84</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">PlatformDataProvider</code>
+      , and update
+      <code translate="no" dir="ltr">StateStore</code>
+      to register to
+      <code translate="no" dir="ltr">PlatformDataProvider</code>
+      when the provider's supported key is required by node from expression pipeline. (
+      <a href="https://android-review.googlesource.com/#/q/Ib616a971f2e6180f7910e17986658f5c5ff7ffde">Ib616a</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SensorGateway</code>
+      is no longer
+      <code translate="no" dir="ltr">Closeable</code>
+      as it no longer maintains any state. (
+      <a href="https://android-review.googlesource.com/#/q/I6b4f7c2708e03b2b5fd6ca88f3d2fa1b87ef85ce">I6b4f7</a>
+      )
+    </li>
+    <li>
+      Allow using
+      <code translate="no" dir="ltr">FloatProp</code>
+      with
+      <code translate="no" dir="ltr">DynamicFloat</code>
+      for progress in
+      <code translate="no" dir="ltr">CircularProgressIndicator</code>
+      . This is supported for renderers supporting version 1.2. Old renderers will fallback to the
+      <code translate="no" dir="ltr">staticValue</code>
+      if provided, otherwise to 0 (
+      <a href="https://android-review.googlesource.com/#/q/I0d91bf75cbfb83ff24f6aac1998cb5f0e84841d0">I0d91b</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">MultiButtonLayout</code>
+      constants have been refactored into
+      <code translate="no" dir="ltr">LayoutDefaults.MultiButtonLayoutDefaults</code>
+      class which now contains those for button sizes depending on a number of buttons in the layout. (
+      <a href="https://android-review.googlesource.com/#/q/I139736fe7d393a2de24a38eda667f7d4da324880">I13973</a>
+      )
+    </li>
+    <li>
+      Support using
+      <code translate="no" dir="ltr">StringProp</code>
+      with
+      <code translate="no" dir="ltr">DynamicString</code>
+      in Material Text. This is supported for renderers supporting version 1.2. Old renderers will fallback to the provided static value. Update
+      <code translate="no" dir="ltr">Text#getText</code>
+      return type from
+      <code translate="no" dir="ltr">String</code>
+      to
+      <code translate="no" dir="ltr">StringProp</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7275becaaadab803a6a56c5a59185bcfc009a0de">I7275b</a>
+      )
+    </li>
+  </ul>

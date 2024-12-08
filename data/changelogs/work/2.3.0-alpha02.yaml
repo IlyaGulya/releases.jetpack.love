@@ -1,0 +1,91 @@
+libraryId: work
+groupId: androidx.work
+version: 2.3.0-alpha02
+releaseDate: 2019-10-09
+#language=html
+changelogHtml: |
+  <h3 id="2.3.0-alpha02" data-text="Version 2.3.0-alpha02" tabindex="-1">Version 2.3.0-alpha02</h3>
+  <p>October 9, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.3.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/2114e28ad291adc12d4ea9bd4038a211daec16b8..3ceb16dfb202e267249a5a5f14e9159ff0f95d9e/work">Version 2.3.0-alpha02 contains these commits</a>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      WorkManager now supports running long running or important work that should be kept alive by the OS. For more information look at
+      <code translate="no" dir="ltr">ListenableWorker#setForegroundAsync()</code>
+      (or
+      <code translate="no" dir="ltr">CoroutineWorker#setForeground()</code>
+      for Kotlin). (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1133636">aosp/1133636</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">containsKey</code>
+      API in
+      <code translate="no" dir="ltr">Data</code>
+      is renamed to
+      <code translate="no" dir="ltr">hasKeyWithValueOfType</code>
+      . The corresponding extension method in the
+      <code translate="no" dir="ltr">ktx</code>
+      library has also been renamed. (
+      <a href="https://issuetracker.google.com/issues/141916545">b/141916545</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      WorkManager schedules work fairly when the number of
+      <code translate="no" dir="ltr">WorkRequest</code>
+      s enqueued approach
+      <a href="/reference/androidx/work/Configuration.Builder#setMaxSchedulerLimit(int)">scheduling limits</a>
+      . (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1105766">aosp/1105766</a>
+      )
+    </li>
+    <li>
+      WorkManager calls
+      <code translate="no" dir="ltr">ListenableWorker#onStopped()</code>
+      only if the work is not already completed. (
+      <a href="https://issuetracker.google.com/issues/140055777">b/140055777</a>
+      )
+    </li>
+    <li>
+      WorkManager now removes progress information when a worker gets interrupted or reaches its terminal state. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1114572">aosp/1114572</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Data</code>
+      now has a much more useful
+      <code translate="no" dir="ltr">toString()</code>
+      representation. (
+      <a href="https://issuetracker.google.com/issues/140945323">b/140945323</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Data</code>
+      now has a better
+      <code translate="no" dir="ltr">equals()</code>
+      method. It also supports
+      <code translate="no" dir="ltr">deepEquals</code>
+      for
+      <code translate="no" dir="ltr">Array</code>
+      types. (
+      <a href="https://issuetracker.google.com/issues/140922528">b/140922528</a>
+      )
+    </li>
+    <li>
+      WorkManager now stores its internal database and preference files in a no backup directory. (
+      <a href="https://issuetracker.google.com/issues/114808216">b/114808216</a>
+      )
+    </li>
+  </ul>

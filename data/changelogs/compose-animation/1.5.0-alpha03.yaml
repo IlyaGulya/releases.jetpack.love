@@ -1,0 +1,58 @@
+libraryId: compose-animation
+groupId: androidx.compose
+version: 1.5.0-alpha03
+releaseDate: 2023-04-19
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha03" data-text="Version 1.5.0-alpha03" tabindex="-1">Version 1.5.0-alpha03</h3>
+  <p>April 19, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.animation:animation-*:1.5.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a200cb82769634cecdb118ec4f0bfdf0b086e597..01bd392d5702480f8bfe61a8f8bbbea64cf362a0/compose/animation">Version 1.5.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      New default behavior for
+      <code translate="no" dir="ltr">SubcomposeLayout</code>
+      in
+      <code translate="no" dir="ltr">LookaheadScope</code>
+      . It allows
+      <code translate="no" dir="ltr">SubcomposeLayouts</code>
+      that don’t have conditional slots (e.g.
+      <code translate="no" dir="ltr">TabRow</code>
+      ,
+      <code translate="no" dir="ltr">Scaffold</code>
+      ,
+      <code translate="no" dir="ltr">BoxWithConstraints</code>
+      , etc) to work nicely with lookahead animations.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      New default
+      <code translate="no" dir="ltr">intermediateMeasurePolicy</code>
+      that reuses measure policy from lookahead pass allows
+      <code translate="no" dir="ltr">SubcomposeLayout</code>
+      subtypes without conditional slots such as
+      <code translate="no" dir="ltr">Scaffold</code>
+      ,
+      <code translate="no" dir="ltr">TabRow</code>
+      , and
+      <code translate="no" dir="ltr">BoxWithConstraints</code>
+      to work with lookahead by default. (
+      <a href="https://android-review.googlesource.com/#/q/Id84c8357e63905ea09b07acee91094489eb04402">Id84c8</a>
+      )
+    </li>
+    <li>
+      Rename infix fun with to
+      <code translate="no" dir="ltr">togetherWith</code>
+      for combining enter and exit transitions. New
+      <code translate="no" dir="ltr">AnimatedContentScope</code>
+      as receiver for the content lambda. (
+      <a href="https://android-review.googlesource.com/#/q/Ic39aee09d77a905e538a101264dc352e1fecbfc0">Ic39ae</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,53 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.2.0-beta01
+releaseDate: 2022-08-24
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-beta01" data-text="Version 1.2.0-beta01" tabindex="-1">Version 1.2.0-beta01</h3>
+  <p>August 24, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.2.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/fe372724601dcfca420a9ce428d4fbae39a07264..7646e249f2982cf69f134e6b007af38eb7214158/camera">Version 1.2.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      New library
+      <code translate="no" dir="ltr">camera-mlkit-vision</code>
+      . Easily integrate CameraX with many MLKit features, including barcode scanning, face detection, text detection, etc. Please find the sample code
+      <a href="https://github.com/androidx/androidx/blob/androidx-main/camera/integration-tests/viewtestapp/src/main/java/androidx/camera/integration/view/MlKitFragment.kt">here</a>
+      .
+    </li>
+    <li>
+      New experimental
+      <a href="https://developer.android.com/reference/androidx/camera/core/ImageCapture#CAPTURE_MODE_ZERO_SHUTTER_LAG">Zero-Shutter Lag API</a>
+      . Optimizes capture pipeline to have better latency while keeping good image quality. When the capture mode is set to CAPTURE_MODE_ZERO_SHUTTER_LAG, the latency between the shutter button is clicked and the picture is taken is expected to be minimized, compared with other capture modes. On devices that don’t support ZERO_SHUTTER_LAG, it’ll fallback to CAPTURE_MODE_MINIMIZE_LATENCY.
+    </li>
+    <li>
+      Made
+      <code translate="no" dir="ltr">ImageAnalysis.Analyzer</code>
+      and
+      <code translate="no" dir="ltr">MLKitAnalyzer</code>
+      as official APIs.
+    </li>
+    <li>Exposed API for setting location metadata to the saved video.</li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">ImageAnalysis.Analyzer#getTargetResolutionOverride()</code>
+      to
+      <code translate="no" dir="ltr">ImageAnalysis.Analyzer#getDefaultTargetResolution()</code>
+      .
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed Alps k61v1_basic_ref image capture issue. The captured JPEG images from HAL have incorrect Exif metadata. The Exif metadata doesn't have the 0xffd9 or 0xffda tag to make
+      <code translate="no" dir="ltr">ExifInterface</code>
+      correctly parse the attributes. Capturing the images in YUV format and then compressing them to JPEG output images to workaround this issue. (
+      <a href="https://android-review.googlesource.com/#/q/I45abb731dc2408db0bb5df7f466e946f7325fc6f">I45abb</a>
+      )
+    </li>
+  </ul>

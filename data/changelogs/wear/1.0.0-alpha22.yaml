@@ -1,0 +1,54 @@
+libraryId: wear
+groupId: androidx.wear
+version: 1.0.0-alpha22
+releaseDate: 2021-09-15
+#language=html
+changelogHtml: |
+  <h3 id="complications-watchface-1.0.0-alpha22" data-text="Version 1.0.0-alpha22" tabindex="-1">Version 1.0.0-alpha22</h3>
+  <p>September 15, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear:wear-*:1.0.0-alpha22</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/47e81d1c497b8a57534a460c277855db1b0257ae..1a3dcfb231517d6104969f17063fcc6c97ba6eeb/wear">Version 1.0.0-alpha22 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>The EditorSession now subscribes to lifecycle observers so you no longer have to explicitly close it when your activity goes away.</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      EditorSession and ListenableEditorSession now use kotlin StateFlows for complicationSlotsState, ComplicationsPreviewData and ComplicationsDataSourceInfo. (
+      <a href="https://android-review.googlesource.com/#/q/I761d9a3c1990281e9235bcea79dc80f6fa5b7d0c">I761d9</a>
+      )
+    </li>
+    <li>
+      EditorSession#userStyle is now a
+      <code translate="no" dir="ltr">MutableStateFlow&lt;UserStyle&gt;</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I32ca96636efc1e79152d456dd263dd6c1cd00f5f">I32ca9</a>
+      )
+    </li>
+    <li>
+      EditorSession.createOnWatchEditorSession now uses a lifecycle observer and it automatically closes when it observes onDestroy. In addition
+      <code translate="no" dir="ltr">createOnWatchEditorSession</code>
+      now only requires the activity to be passed in. Identical changes have also been applied to ListenableEditorSession. (
+      <a href="https://android-review.googlesource.com/#/q/Ic6b7f48691a97bd8ef9a417dc692febf3e318eb1">Ic6b7f</a>
+      )
+    </li>
+    <li>
+      CustomValueUserStyleSetting's constructor has been reinstated as part of the public API. (
+      <a href="https://android-review.googlesource.com/#/q/I2e69a3f307a969435296ee9e649b13b174054dcc">I2e69a</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">UserStyle</code>
+      now inherits from
+      <code translate="no" dir="ltr">Map&lt;UserStyleSetting, UserStyleSetting.Option&gt;</code>
+      and
+      <code translate="no" dir="ltr">MutableUserStyleSetting#put</code>
+      throws IllegalArgumentException if the setting is not in the schema or if the option doesn't match the setting. (
+      <a href="https://android-review.googlesource.com/#/q/Iba40fe5b1906a0ae1b6f36f37939f5e498ea8e71">Iba40f</a>
+      )
+    </li>
+  </ul>

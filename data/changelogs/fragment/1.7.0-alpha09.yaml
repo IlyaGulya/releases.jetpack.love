@@ -1,0 +1,81 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.7.0-alpha09
+releaseDate: 2024-01-24
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha09" data-text="Version 1.7.0-alpha09" tabindex="-1">Version 1.7.0-alpha09</h3>
+  <p>January 24, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment-*:1.7.0-alpha09</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7a45f0bc9e0a73744b3780a6f92e1b570de58bba..06772614ed2238bb66df7df4d1e239ad0564ba1a/fragment">Version 1.7.0-alpha09 contains these commits.</a>
+  </p>
+  <p><strong>Fragment Compose Artifact</strong></p>
+  <p>
+    A new
+    <code translate="no" dir="ltr">fragment-compose</code>
+    artifact has been created that focuses on supporting apps that are in the process of moving from a Fragment based architecture to a fully Compose based architecture.
+  </p>
+  <p>
+    The first feature available in this new artifact is a
+    <code translate="no" dir="ltr">content</code>
+    extension method on
+    <code translate="no" dir="ltr">Fragment</code>
+    that seeks to make it easier to use Compose for the UI of an individual Fragment by creating a
+    <code translate="no" dir="ltr">ComposeView</code>
+    for you and setting the correct
+    <code translate="no" dir="ltr">ViewCompositionStrategy</code>
+    . (
+    <a href="https://android.googlesource.com/platform/frameworks/support/+/561cb75bdf7e971f0ba2dec3cdc3286e1b415ecf">561cb7</a>
+    ,
+    <a href="https://issuetracker.google.com/258046948">b/258046948</a>
+    )
+  </p>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">ExampleFragment</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Fragment</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kd">override</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">onCreateView</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">inflater</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">LayoutInflater</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">container</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">ViewGroup?,</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">savedInstanceState</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Bundle?</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">content</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-c1">// Write your @Composable content here</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">viewModel</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">ExampleViewModel</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">viewModel</span><span class="devsite-syntax-p">()</span>
+
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-c1">// or extract it into a separate, testable method</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">ExampleComposable</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">viewModel</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+  </devsite-code>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">FragmentManager.OnBackStackChangedListener()</code>
+      now provides the
+      <code translate="no" dir="ltr">onBackStackChangeProgressed()</code>
+      and
+      <code translate="no" dir="ltr">onBackStackChangeCancelled()</code>
+      for receiving predictive back progress and canceled events respectively. (
+      <a href="https://android.googlesource.com/platform%2Fframeworks%2Fsupport/+/214b87117035d255d195dc300e95f4f2f5409711">214b87</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issue</strong></p>
+  <ul>
+    <li>
+      When using Fragment's Predictive Back support for
+      <code translate="no" dir="ltr">Animator</code>
+      or AndroidX Transition, Fragments will throw a
+      <code translate="no" dir="ltr">NullPointerException</code>
+      from
+      <code translate="no" dir="ltr">handleOnBackProgressed</code>
+      if no
+      <code translate="no" dir="ltr">FragmentManager.OnBackStackChangedListener</code>
+      has ever been added via
+      <a href="/reference/androidx/fragment/app/FragmentManager#addOnBackStackChangedListener(androidx.fragment.app.FragmentManager.OnBackStackChangedListener)"><code translate="no" dir="ltr">addOnBackStackChangedListener</code></a>
+      . Manually adding a listener will work around the crash. A fix will be available for this in the next release of Fragments.
+    </li>
+  </ul>

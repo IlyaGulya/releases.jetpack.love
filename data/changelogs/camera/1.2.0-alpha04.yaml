@@ -1,0 +1,55 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.2.0-alpha04
+releaseDate: 2022-07-27
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha04" data-text="Version 1.2.0-alpha04" tabindex="-1">Version 1.2.0-alpha04</h3>
+  <p>July 27, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.2.0-alpha04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b4d156f56a79b410967a0d3c33aa4f6de430f770..fe372724601dcfca420a9ce428d4fbae39a07264/camera">Version 1.2.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">ImageAnalysis.Analyzer#getTargetResolutionOverride()</code>
+      to
+      <code translate="no" dir="ltr">ImageAnalysis.Analyzer#getDefaultTargetResolution()</code>
+      . The behavior is also changed so that the value returned by this method can be overridden by the value of
+      <code translate="no" dir="ltr">ImageAnalysis#setTargetResolution()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If1d36af8df968d06c0192ca985c8764c9fb25231">If1d36</a>
+      )
+    </li>
+    <li>
+      Exposed API for setting location metadata to the saved video. An
+      <code translate="no" dir="ltr">android.location.Location</code>
+      object can be set via new API
+      <code translate="no" dir="ltr">androidx.camera.video.OutputOptions.Builder.setLocation(Location)</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I313a013445776ed730d6f98f57113e4998306e86">I313a0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/204197544">b/204197544</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix the issue to take picture with unbind preview (
+      <a href="https://android-review.googlesource.com/#/q/Ie70b6c269a1142e664eab5166acbb0f1788271c1">Ie70b6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/235119898">b/235119898</a>
+      )
+    </li>
+    <li>
+      Fixed crash in
+      <code translate="no" dir="ltr">Recorder</code>
+      when attempting to record while audio source is unavailable. (
+      <a href="https://android-review.googlesource.com/#/q/I9f65246918979299458759a45e290a3dc44904fe">I9f652</a>
+      )
+    </li>
+  </ul>

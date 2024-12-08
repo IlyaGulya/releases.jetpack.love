@@ -1,0 +1,148 @@
+libraryId: compose-animation
+groupId: androidx.compose
+version: 1.0.0-alpha12
+releaseDate: 2021-02-10
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha12" data-text="Version 1.0.0-alpha12" tabindex="-1">Version 1.0.0-alpha12</h3>
+  <p>February 10, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.animation:animation:1.0.0-alpha12</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.animation:animation-core:1.0.0-alpha12</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6950aab50fe6c9f7e9d97cf865161f2d3999eb9e..9ed3262e0dfca1d352bdbf8f8e10253a61ef6218/compose/animation">Version 1.0.0-alpha12 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">Modifier.pointerInput</code>
+      now requires remember keys to indicate when the pointer input detection coroutine should restart for new dependencies. (
+      <a href="https://android-review.googlesource.com/#/q/I849cd63912b2d4c86ebe0dd24a7d0e2eb7a4e6d1">I849cd</a>
+      )
+    </li>
+    <li>
+      Bounds has been renamed to DpRect (
+      <a href="https://android-review.googlesource.com/#/q/I4b32a75caa8a5e8a1b5a0051f9041855411876e4">I4b32a</a>
+      )
+    </li>
+    <li>
+      Unified the param name for AnimationSpec to animationSpec across the animation system. Also constrain the Enter/ExitTransition to accept FiniteAnimationSpec. (
+      <a href="https://android-review.googlesource.com/#/q/Ie47c54ef91d1a4330e4d6f0f18ec3cde78d903ad">Ie47c5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177457083">b/177457083</a>
+      )
+    </li>
+    <li>
+      Animatable.snapTo and Animatable.stop are now suspend functions (
+      <a href="https://android-review.googlesource.com/#/q/If42887504caa0a07a0d89477805b68ca51c9b3b4">If4288</a>
+      )
+    </li>
+    <li>
+      Similarly to how we previously removed
+      <code translate="no" dir="ltr">state { 0 }</code>
+      composable and now promote usage like
+      <code translate="no" dir="ltr">remember { mutableStateOf(0) }</code>
+      we are going to remove
+      <code translate="no" dir="ltr">savedInstanceState { 0 }</code>
+      composable. You should use
+      <code translate="no" dir="ltr">rememberSaveable { mutableStateOf(0) }</code>
+      instead and it will save and restore automatically if the type used inside the MutableState can be stored in the Bundle. If previously you were passing a custom saver object now you need to use a new overload of rememberSaveable which has
+      <code translate="no" dir="ltr">stateSaver</code>
+      parameter. The usage will look like this:
+      <code translate="no" dir="ltr">val holder = rememberSaveable(stateSaver = HolderSaver) { mutableStateOf(Holder(0)) }</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ib4c266902d166f119ea1770cccbc78ac25a54ff7">Ib4c26</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177338004">b/177338004</a>
+      )
+    </li>
+    <li>
+      Updated Crossfade's method signature to be more consistent with the rest of the animation system. (
+      <a href="https://android-review.googlesource.com/#/q/Ib05ed5405bd4a781d2d78c84b7c06c0d153e8dc2">Ib05ed</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177457083">b/177457083</a>
+      )
+    </li>
+    <li>
+      rememberSavedInstanceState() was renamed to rememberSaveable() and moved to androidx.compose.runtime.saveable package. (
+      <a href="https://android-review.googlesource.com/#/q/I1366e7fef0a5a56a43d6eeb3770967a9bf683380">I1366e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177338004">b/177338004</a>
+      )
+    </li>
+    <li>
+      RestorableStateHolder was renamed to SaveableStateHolder and moved to androidx.compose.runtime.saveable package. Inner method RestorableStateProvider was renamed to SaveableStateProvider. Generic type was removed so you can just pass Any as a key. Experimental annotation is not needed anymore. (
+      <a href="https://android-review.googlesource.com/#/q/I0902eb1618d36d08ade37be7b6a9453d85b1af62">I0902e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/174598702">b/174598702</a>
+      )
+    </li>
+    <li>
+      Updated Modifier.animateContentSize API to be consistent with the rest of the animation system. (
+      <a href="https://android-review.googlesource.com/#/q/I0bf752ff98bd11094a834099cbd1b42c600ebcaf">I0bf75</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177457083">b/177457083</a>
+      )
+    </li>
+    <li>
+      AnimatedValue/Float is now deprecated. Please use Animatable instead. (
+      <a href="https://android-review.googlesource.com/#/q/I713457f88b04e50fbc5deb70a5bb7bbcf777e630">I71345</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177457083">b/177457083</a>
+      )
+    </li>
+    <li>
+      tapGestureFilter, doubleTapGestureFilter, longPressGestureFilter and pressIndicaitonGestureFilter have been deprecated. Use Modifier.clickable or Modifier.pointerInput with detectTapGestures function instead. (
+      <a href="https://android-review.googlesource.com/#/q/I6baf95f881b6fa6890ca1d065d49fef3e27bce83">I6baf9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175294473">b/175294473</a>
+      )
+    </li>
+    <li>
+      Introduced an
+      <code translate="no" dir="ltr">InfiniteAnimationPolicy</code>
+      coroutine context element that will be applied in infinite animations. By default no policy is installed, except when running tests with
+      <code translate="no" dir="ltr">ComposeTestRule</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I50ec421d7db495459a61c9282dbc2bfbc1f1ad02">I50ec4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/151940543">b/151940543</a>
+      )
+    </li>
+    <li>
+      Destructuring and copy() methods have been removed from several classes where they were rarely used. (
+      <a href="https://android-review.googlesource.com/#/q/I267021d3a45314acc9a169f6bbdfbfb4295a448c">I26702</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/178659281">b/178659281</a>
+      )
+    </li>
+    <li>
+      Playtime in animation is now unfiied to nanoseconds (
+      <a href="https://android-review.googlesource.com/#/q/If776ab3406909ddf6d841dc2e71fc0889db77047">If776a</a>
+      )
+    </li>
+    <li>
+      The compose:runtime-dispatch artifact is now deprecated. MonotonicFrameClock can now be found in compose:runtime and AndroidUiDispatcher can be found in compose:ui. (
+      <a href="https://android-review.googlesource.com/#/q/Ib5c36a427306eceac4b9b16b52a091e864e5b936">Ib5c36</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Animation.isInfinite</code>
+      and
+      <code translate="no" dir="ltr">VectorizedAnimationSpec.isInfinite</code>
+      that signal if an animation is infinite or not. This can be used in implementations of animations to have special handling of such animations. For example, a special "time remaining" message can be shown, or during tests the animation can be cancelled to prevent waiting for idleness indefinitely. (
+      <a href="https://android-review.googlesource.com/#/q/Iebb05e9d158b4fe81d037ab28e113da4926c50cd">Iebb05</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/151940543">b/151940543</a>
+      )
+    </li>
+    <li>
+      Use Long instead of Uptime as animation time type (
+      <a href="https://android-review.googlesource.com/#/q/Ie3aa71cd8bf9ff66e74daa482b6ca5a6af9d15e2">Ie3aa7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177420019">b/177420019</a>
+      )
+    </li>
+  </ul>

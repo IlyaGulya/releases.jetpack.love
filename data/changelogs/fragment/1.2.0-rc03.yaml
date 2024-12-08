@@ -1,0 +1,84 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.2.0-rc03
+releaseDate: 2019-12-04
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-rc03" data-text="Version 1.2.0-rc03" tabindex="-1">Version 1.2.0-rc03</h3>
+  <p>December 4, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.2.0-rc03</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.2.0-rc03</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.2.0-rc03</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/daa892ee7bce89afe2ab151da444916753225de8..0754f64b25856c50be34974ca8081be31c1b8b2f/fragment">Version 1.2.0-rc03 contains these commits</a>
+    .
+  </p>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an unintentional behavior change where Fragments who have been removed are still returned by
+      <code translate="no" dir="ltr">findFragmentById()</code>
+      /
+      <code translate="no" dir="ltr">findFragmentByTag()</code>
+      while their exit animations/transitions run. (
+      <a href="https://issuetracker.google.com/issues/143982969">b/143982969</a>
+      ,
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1167585">aosp/1167585</a>
+      )
+    </li>
+    <li>
+      Child fragments are now correctly stopped before their parents when the containing activity calls
+      <code translate="no" dir="ltr">onSaveInstanceState()</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/144380645">b/144380645</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where Views were incorrectly marked
+      <code translate="no" dir="ltr">INVISIBLE</code>
+      after popping a hidden Fragment. (
+      <a href="https://issuetracker.google.com/issues/70793925">b/70793925</a>
+      )
+    </li>
+    <li>
+      Fragment shared element transitions now handle Views that have been rotated, scaled, etc. (
+      <a href="https://issuetracker.google.com/issues/142835261">b/142835261</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Documentation Updates</strong></p>
+  <ul>
+    <li>
+      Clarified the deprecation documentation around
+      <code translate="no" dir="ltr">setUserVisibleHint()</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/143897055">b/143897055</a>
+      )
+    </li>
+    <li>
+      Improved the documentation on
+      <code translate="no" dir="ltr">setFragmentFactory()</code>
+      and
+      <code translate="no" dir="ltr">getFragmentFactory()</code>
+      to better indicate that setting a
+      <code translate="no" dir="ltr">FragmentFactory</code>
+      will also affect child FragmentManagers. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1170095">aosp/1170095</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency changes</strong></p>
+  <ul>
+    <li>
+      Fragments now depends on Lifecycle
+      <code translate="no" dir="ltr">2.2.0-rc03</code>
+      , Lifecycle ViewModel SavedState
+      <code translate="no" dir="ltr">1.0.0-rc03</code>
+      , and Activity
+      <code translate="no" dir="ltr">1.1.0-rc03</code>
+      .
+    </li>
+  </ul>

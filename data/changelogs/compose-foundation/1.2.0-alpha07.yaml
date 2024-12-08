@@ -1,0 +1,104 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.2.0-alpha07
+releaseDate: 2022-04-06
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha07" data-text="Version 1.2.0-alpha07" tabindex="-1">Version 1.2.0-alpha07</h3>
+  <p>April 6, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation:1.2.0-alpha07</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-layout:1.2.0-alpha07</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5ef5671233460b844828e14a816255dbf7904868..7ca43e00a517eaeeedc0a21f482b17f06e3d2181/compose/foundation">Version 1.2.0-alpha07 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added a
+      <code translate="no" dir="ltr">PinnableParent</code>
+      API that allows children of lazy layouts to prevent the currently composed items from being disposed (
+      <a href="https://android-review.googlesource.com/#/q/Ibbdd02b0d25db2e0de343d5d2278287ab1991831">Ibbdd0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/184670295">b/184670295</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LazyListLayoutInfo</code>
+      and
+      <code translate="no" dir="ltr">LazyGridLayoutInfo</code>
+      now have
+      <code translate="no" dir="ltr">beforeContentPadding</code>
+      and
+      <code translate="no" dir="ltr">afterContentPadding</code>
+      fields (
+      <a href="https://android-review.googlesource.com/#/q/I3b628e4f4fdfc27b7629c3ac1cd2b47375ff31f2">I3b628</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/200920410">b/200920410</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">KeyboardType.Decimal</code>
+      as an alternative to
+      <code translate="no" dir="ltr">Keyboard.Number</code>
+      for specifically including decimal separator in IME. (
+      <a href="https://android-review.googlesource.com/#/q/Iec4c84be81e72f8eaf136f2df23f9d12567cc3dc">Iec4c8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/209835363">b/209835363</a>
+      )
+    </li>
+    <li>
+      Add new font descriptor Font(DeviceFontFamilyName) to optionally lookup system-installed fonts during font fallback chains. (
+      <a href="https://android-review.googlesource.com/#/q/I30468e48564fb9891e17cbee8bdb4026df0daf89">I30468</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/219754572">b/219754572</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PointerEventType.Scroll</code>
+      and
+      <code translate="no" dir="ltr">PointerEvent.scrollDelta</code>
+      are stable APIs now (
+      <a href="https://android-review.googlesource.com/#/q/I574c579abec9e26dfc16ae00014faab8627bd688">I574c5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/225669674">b/225669674</a>
+      )
+    </li>
+    <li>
+      Added temporary compatibility configuration for
+      <code translate="no" dir="ltr">includeFontPadding</code>
+      in
+      <code translate="no" dir="ltr">TextStyle/ParagraphStyle. includeFontPadding</code>
+      can be changed via
+      <code translate="no" dir="ltr">TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = true/false))</code>
+      . This is a temporary configuration option to enable migration and will be removed. (
+      <a href="https://android-review.googlesource.com/#/q/If47be074f53de9ccf12af114648b21e25722d166">If47be</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171394808">b/171394808</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">FontFamily.Resolver</code>
+      to integrate System-wide bold text accessibility setting (
+      <a href="https://android-review.googlesource.com/#/q/I6c1e77e9cc8d1ce353d129d8a233271db0139a07">I6c1e7</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">consumeWindowInsets</code>
+      extension property of
+      <code translate="no" dir="ltr">ComposeView</code>
+      allows developers to disable consumption of Android WindowInsets. This allows separate
+      <code translate="no" dir="ltr">ComposeViews</code>
+      in the hierarchy to each apply
+      <code translate="no" dir="ltr">WindowInsets</code>
+      without interfering with each other. (
+      <a href="https://android-review.googlesource.com/#/q/I0ef08ca81d808408edb932f9326125f99da25bd0">I0ef08</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/220943142">b/220943142</a>
+      )
+    </li>
+  </ul>

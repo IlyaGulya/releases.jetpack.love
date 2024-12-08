@@ -1,0 +1,39 @@
+libraryId: media2
+groupId: androidx.media2
+version: 1.0.0-rc01
+releaseDate: 2019-06-18
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-rc01" data-text="Version 1.0.0-rc01" tabindex="-1">Version 1.0.0-rc01</h3>
+  <p>June 18, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.media2:media2-common:1.0.0-rc01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.media2:media2-player:1.0.0-rc01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.media2:media2-session:1.0.0-rc01</code>
+    is released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f61d6465caef8a544158191034a5716e3f7ee886..583d4a73e224b965b882cb71003e9561f2aa074d/media2">here</a>
+    .
+  </p>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      <p>
+        Dependencies on
+        <code translate="no" dir="ltr">ListenableFuture</code>
+        have been migrated back to Guava’s standalone implementation.
+      </p>
+    </li>
+    <li>
+      <p>
+        Note that if you have test targets that depend on the full Guava artifact, you may encounter a dependency resolution conflict when using certain versions of Android Gradle Plugin. If you encounter a
+        <code translate="no" dir="ltr">Could not resolve all artifacts</code>
+        error involving
+        <code translate="no" dir="ltr">ListenableFuture</code>
+        , you may temporarily work around the issue by adding
+        <code translate="no" dir="ltr">android.dependency.useConstraints=false</code>
+        to your project’s build configuration. We are currently working on a permanent fix within Android Gradle Plugin to be released at a later date.
+      </p>
+    </li>
+  </ul>

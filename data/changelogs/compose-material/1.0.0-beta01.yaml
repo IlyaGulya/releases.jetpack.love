@@ -1,0 +1,458 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 1.0.0-beta01
+releaseDate: 2021-02-24
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta01" data-text="Version 1.0.0-beta01" tabindex="-1">Version 1.0.0-beta01</h3>
+  <p>February 24, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material-*:1.0.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9ed3262e0dfca1d352bdbf8f8e10253a61ef6218..4b6cff92e45f1d4467086aa2c6aa0248b4883950/compose/material">Version 1.0.0-beta01 contains these commits.</a>
+  </p>
+  <p>This is the first release of Compose 1.0.0 Beta.</p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Size modifiers were renamed. Modifier.width/height/size were renamed to requiredWidth/requiredHeight/requiredSize. Modifier.preferredWidth/preferredHeight/preferredSize were renamed to width/height/size. (
+      <a href="https://android-review.googlesource.com/#/q/I5b4145953d360b1fb851c0056fc9a7875bb34088">I5b414</a>
+      )
+    </li>
+    <li>
+      imageResource and vectorResource are now extension functions on ImageBitmap and ImageVector companions respectively. load{Image,Vector,Font}Resource functions have been deleted. (
+      <a href="https://android-review.googlesource.com/#/q/I89130cd429dfcbe54995d667d3501e3363851bce">I89130</a>
+      )
+    </li>
+    <li>
+      Modifiers for sizing to intrinsics are no longer experimental. (
+      <a href="https://android-review.googlesource.com/#/q/I15744bc96d9c9a94747901e47100fdea25e28742">I15744</a>
+      )
+    </li>
+    <li>
+      Removed dp assertions (
+      <a href="https://android-review.googlesource.com/#/q/I798d2f7dbd5e687d8e1fb059f153cdc8150d8d27">I798d2</a>
+      )
+    </li>
+    <li>
+      Removed SoftwareKeyboardController callback from all text fields to be replaced by a new API shortly. (
+      <a href="https://android-review.googlesource.com/#/q/Iae869e91c48300f4ab926dac2578d2d759f5fd89">Iae869</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/168778053">b/168778053</a>
+      )
+    </li>
+    <li>
+      Switch, Checkbox and RadioButton action lambdas are now nullable. Checkbox-in-clickable-row samples updated to use this feature. (
+      <a href="https://android-review.googlesource.com/#/q/If601b88cf4622111bca5f4927cbb86c7d300ebbf">If601b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171819073">b/171819073</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">InteractionState</code>
+      has been replaced with
+      <code translate="no" dir="ltr">[Mutable]InteractionSource</code>
+      <ul>
+        <li>Interfaces are responsible for emitting / collecting Interaction events.</li>
+        <li>
+          Instead of passing
+          <code translate="no" dir="ltr">interactionState = remember { InteractionState() }</code>
+          to components such as
+          <code translate="no" dir="ltr">Button</code>
+          and
+          <code translate="no" dir="ltr">Modifier.clickable()</code>
+          , use
+          <code translate="no" dir="ltr">interactionSource = remember { MutableInteractionSource() }</code>
+          .
+        </li>
+        <li>
+          Instead of:
+          <code translate="no" dir="ltr">Interaction.Pressed in interactionState</code>
+          you should instead use the extension functions on InteractionSource, such as InteractionSource.collectIsPressedAsState().
+        </li>
+        <li>For complex use cases you can use InteractionSource.interactions to observe the stream of Interactions. See the InteractionSource documentation and samples for more information.</li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I85965d0dba39d1740c097915d1d1a367eea2a78c">I85965</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/152525426">b/152525426</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/171913923">b/171913923</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/171710801">b/171710801</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/174852378">b/174852378</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Add AccessibilityMananger interface and LocalAccessibilityMananger in CompositionLocals (
+      <a href="https://android-review.googlesource.com/#/q/I5352073036978c367161e5c2f7cb3402dd502a65">I53520</a>
+      )
+    </li>
+    <li>
+      Removed deprecated LayoutCoordinates methods, use function instead of the property for positionInParent and boundsInParent (
+      <a href="https://android-review.googlesource.com/#/q/I580edba74283600c3aafba6130a7af806df7d6c5">I580ed</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/169874631">b/169874631</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175142755">b/175142755</a>
+      )
+    </li>
+    <li>
+      Slider now supports enabled/disabled state (
+      <a href="https://android-review.googlesource.com/#/q/I6d56b992042f54b63daf4936ef6f6c27319b0498">I6d56b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/179793072">b/179793072</a>
+      )
+    </li>
+    <li>
+      Created new TextInputSession for input sessions from low level text components such as CoreTextField. (
+      <a href="https://android-review.googlesource.com/#/q/I8817f81e7c1b0066795ecb4af3674e99413362d0">I8817f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177662148">b/177662148</a>
+      )
+    </li>
+    <li>
+      AnimationEndReason.Interrupted is removed. CancellationException will be throws if animation is interrupted. (
+      <a href="https://android-review.googlesource.com/#/q/I2cbbc6112cef6e750c10843846ee46cb9d077b03">I2cbbc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/179695417">b/179695417</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">@ExperimentalRippleApi</code>
+      and changed
+      <code translate="no" dir="ltr">RippleAlpha</code>
+      to be a class with properties instead of an interface. (
+      <a href="https://android-review.googlesource.com/#/q/I6df7c2fd5fdf528bb245c13d9eb4fcecdb438eed">I6df7c</a>
+      )
+    </li>
+    <li>
+      Added TextFieldColors interface to represent different colors used in TextField and OutlinedTextField in different states. For defaut implementation see TextFieldDefaults.textFieldColors and TextFieldDefaults.outlinedTextFieldColors.
+      <ul>
+        <li>
+          Renamed isErrorValue parameter inside TextField and OutlinedTextField into isError. (
+          <a href="https://android-review.googlesource.com/#/q/I831f90c3be79452bcaa6dff41d1777298a23ca09">I831f9</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/171305338">b/171305338</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/168004067">b/168004067</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Add selectionGroup modifier that allows to mark collection of Tabs or RadioButtons for accessibility purposes (
+      <a href="https://android-review.googlesource.com/#/q/Ie5c29bc1cc0630f4f3a68ff57ebd94464c89ffd7">Ie5c29</a>
+      )
+    </li>
+    <li>
+      <p>Add LazyListState.animateScrollToItem</p>
+
+      <p>
+        This method smooth scrolls to a specific item in the list. (
+        <a href="https://android-review.googlesource.com/#/q/I4bfd722f76c600483b41d27164eae10e24cc1454">I4bfd7</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">ScrollableState.smoothScrollBy()</code>
+        was renamed to
+        <code translate="no" dir="ltr">animateScrollBy()</code>
+        <code translate="no" dir="ltr">LazyListState.snapToItemIndex()</code>
+        was renamed to
+        <code translate="no" dir="ltr">scrollToItem()</code>
+        <code translate="no" dir="ltr">ScrollState.smoothScrollTo()</code>
+        was renamed to
+        <code translate="no" dir="ltr">animateScrollTo()</code>
+        (
+        <a href="https://android-review.googlesource.com/#/q/I35deda2585dafb47c8b4d68fc0063d289f5c78d6">I35ded</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Any composables marked with
+        <code translate="no" dir="ltr">@ReadOnlyComposable</code>
+        are now compile-time validated to ensure that they only make calls to other
+        <code translate="no" dir="ltr">@ReadOnlyComposables</code>
+        (
+        <a href="https://android-review.googlesource.com/#/q/I58961d2946c80a6a2d9e8e0cca35fd61f41ee703">I58961</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        TargetAnimation API has been removed. (
+        <a href="https://android-review.googlesource.com/#/q/If47d1f88096955c131af20c1660a5c450d5b7ed9">If47d1</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/177457083">b/177457083</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Scroll position in Modifier.verticalScroll()/horizontalScroll() is represented with Ints now (
+        <a href="https://android-review.googlesource.com/#/q/I81298a8767a421293ca7d5ab33ce8373e63f383c">I81298</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        smoothScrollBy and scrollBy methods' packages changed to
+        <code translate="no" dir="ltr">androidx.compose.foundation.gestures.*</code>
+        (
+        <a href="https://android-review.googlesource.com/#/q/I3f7c18be72b1b4e8d7958194b10d63d749f7d948">I3f7c1</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/175294473">b/175294473</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        FlingConfig has been renamed to FlingBehavior now allows for customization of suspend animation rather than predefined Decays. (
+        <a href="https://android-review.googlesource.com/#/q/I02b8639c646d24fd19ef7ac504ef6660b8906d54">I02b86</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/175294473">b/175294473</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Size modifiers were renamed. Modifier.width/height/size were renamed to requiredWidth/requiredHeight/requiredSize. Modifier.preferredWidth/preferredHeight/preferredSize were renamed to width/height/size. (
+        <a href="https://android-review.googlesource.com/#/q/I5b4145953d360b1fb851c0056fc9a7875bb34088">I5b414</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        defaultMinSizeConstraints was renamed to defaultMinSize. (
+        <a href="https://android-review.googlesource.com/#/q/I4eaaec7cb1fffdb530744c7b7e42f23a26e96493">I4eaae</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Orientation has been moved to foundation package. VelocirtTracker moved from ui.gesture to ui.input.pointer. (
+        <a href="https://android-review.googlesource.com/#/q/Iff4a887648735c4850dca0d8d95fd99d782d04bb">Iff4a8</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/175294473">b/175294473</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        drawerState.open() and drawerState.close() are now suspending functions. Use rememberCoroutineScope() to get the scope of the composition to call them (
+        <a href="https://android-review.googlesource.com/#/q/I16f608d016fa82a59e3e68b96cb4931dcebb57a6">I16f60</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/175294473">b/175294473</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>Providers has been renamed to CompositionLocalProvider</p>
+
+      <ul>
+        <li>The Composition constructor no longer accepts a key parameter, and has been deprecated.</li>
+        <li>currentCompositeKeyHash has been turned into a composable top level property instead of a composable top level function.</li>
+        <li>CompositionData and CompositionGroup have been moved to the androidx.compose.runtime.tooling namespace</li>
+        <li>ComposableLambda has been made an interface instead of a concrete class, and no longer has type parameters.</li>
+        <li>ComposableLambdaN has been made an interface instead of a concrete class, and no longer has type parameters.</li>
+        <li>The snapshotFlow function has been moved to the androidx.compose.runtime namespace</li>
+        <li>the merge method of SnapshotMutationPolicy is no longer experimental</li>
+        <li>
+          The
+          <code translate="no" dir="ltr">@TestOnly</code>
+          top level clearRoots function has been removed. It is no longer necessary.
+        </li>
+        <li>keySourceInfoOf and resetSourceInfo functions have been removed. They are no longer necessary.</li>
+        <li>Composer.collectKeySourceInformation has been removed. It is no longer necessary.</li>
+        <li>isJoinedKey, joinedKeyLeft, and joinedKeyRight methods have been removed. They are no longer necessary.</li>
+        <li>Various top level APIs have been moved and reorganized into different files. Due to Kotlin’s file class semantics, this will break binary compatibility but not source compatibility, so should not be an issue for most users.</li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I99b7de8ea0fb5d73a0ee4667a65e35d976383831">I99b7d</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/177245490">b/177245490</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        Modifier.scrollable has been reworked. Now it uses Scrollable interface instead of ScrollableController class (
+        <a href="https://android-review.googlesource.com/#/q/I4f5a5189b90cdff631ffb7166ce2e847b92db205">I4f5a5</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/174485541">b/174485541</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/175294473">b/175294473</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Modifier.draggable now accepts DraggableState instead of a simple lambda. you can create state via
+        <code translate="no" dir="ltr">rememberDraggableState { delta -&gt; }</code>
+        to get the same behaviour as before (
+        <a href="https://android-review.googlesource.com/#/q/Ica70f33e73b6691375c9bdf07d008bae7546d48a">Ica70f</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/175294473">b/175294473</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        ZoomableController.smoothScaleBy and ZoomableController.stopAnimation are now suspend functions. (
+        <a href="https://android-review.googlesource.com/#/q/I7f970ebd60086d3fbe4d805ac115de749bbd4240">I7f970</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/177457083">b/177457083</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Deleted some previously deprecated APIs (
+        <a href="https://android-review.googlesource.com/#/q/Ice5dae36591015a9d905b84b26cc02662385d831">Ice5da</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/178633932">b/178633932</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>Made the following Material API changes:</p>
+
+      <ul>
+        <li>Added contentPadding parameter to Top/BottomAppBar to allow customizing the default padding.</li>
+        <li>Reordered parameters in BackdropScaffold to follow API guidelines for required parameters being before optional parameters.</li>
+        <li>
+          Moved
+          <code translate="no" dir="ltr">icon</code>
+          parameter in BottomNavigationItem to be after
+          <code translate="no" dir="ltr">selected</code>
+          and
+          <code translate="no" dir="ltr">onClick</code>
+          .
+        </li>
+        <li>
+          Renamed
+          <code translate="no" dir="ltr">alwaysShowLabels</code>
+          parameter in BottomNavigationItem to
+          <code translate="no" dir="ltr">alwaysShowLabel</code>
+          .
+        </li>
+        <li>
+          Renamed
+          <code translate="no" dir="ltr">bodyContent</code>
+          parameters in a few components to just
+          <code translate="no" dir="ltr">content</code>
+          .
+        </li>
+        <li>
+          Reordered parameters in
+          <code translate="no" dir="ltr">ButtonDefaults.buttonColors()</code>
+          . Please note that because the type of the parameters have not changed, this will not cause an error in your code - please ensure you are either using named parameters or update the ordering manually, otherwise your code will not work the same as previously.
+        </li>
+        <li>
+          Added
+          <code translate="no" dir="ltr">secondaryVariant</code>
+          parameter to
+          <code translate="no" dir="ltr">darkColors()</code>
+          . This color is typically the same as
+          <code translate="no" dir="ltr">secondary</code>
+          in dark theme, but adding for consistency and further customization.
+        </li>
+        <li>Removed ElevationDefaults and animateElevation() from the public API surface since they were not commonly used / useful.</li>
+        <li>
+          Renamed
+          <code translate="no" dir="ltr">onValueChangeEnd</code>
+          in
+          <code translate="no" dir="ltr">Slider</code>
+          to
+          <code translate="no" dir="ltr">onValueChangeFinished</code>
+          and made it nullable.
+        </li>
+        <li>
+          Renamed
+          <code translate="no" dir="ltr">text</code>
+          parameter in
+          <code translate="no" dir="ltr">Snackbar</code>
+          to
+          <code translate="no" dir="ltr">content</code>
+          for consistency.
+        </li>
+        <li>
+          Added
+          <code translate="no" dir="ltr">contentPadding</code>
+          parameter to
+          <code translate="no" dir="ltr">DropdownMenuItem</code>
+          to allow customizing the default padding and made
+          <code translate="no" dir="ltr">content</code>
+          be an extension on
+          <code translate="no" dir="ltr">RowScope</code>
+          .
+        </li>
+        <li>
+          Renamed
+          <code translate="no" dir="ltr">ModalDrawerLayout</code>
+          to
+          <code translate="no" dir="ltr">ModalDrawer</code>
+          .
+        </li>
+        <li>
+          Renamed
+          <code translate="no" dir="ltr">BottomDrawerLayout</code>
+          to
+          <code translate="no" dir="ltr">BottomDrawer</code>
+          .
+        </li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I1cc669dfec6194e13843879823bfdc97f98a7d20">I1cc66</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        BasicTextField now accepts Brush instead of Color for better customization (
+        <a href="https://android-review.googlesource.com/#/q/I83a36a7e21f7a4fa796fc61904ca3324a44a4bdd">I83a36</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        imageResource and vectorResource are now extension functions on ImageBitmap and ImageVector companions respectively. load{Image,Vector,Font}Resource functions have been deleted. (
+        <a href="https://android-review.googlesource.com/#/q/I89130cd429dfcbe54995d667d3501e3363851bce">I89130</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Changed Indication#createIndication() to Indication#rememberUpdatedIndication(InteractionState) and removes InteractionState parameter from IndicationInstance#drawIndication(). IndicationInstance should only be responsible for drawing visual effects, and not launching animations / writing state in response to InteractionState changes. These animations and state writes should happen within
+        <code translate="no" dir="ltr">rememberUpdatedIndication()</code>
+        instead. The
+        <code translate="no" dir="ltr">indication</code>
+        parameter in
+        <code translate="no" dir="ltr">Modifier.indication</code>
+        was also changed to be a required parameter. (
+        <a href="https://android-review.googlesource.com/#/q/Ic1764c0417b25cd0a0dbb96ed3e1b0974618c4ca">Ic1764</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/152525426">b/152525426</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Added new LocalSoftwareKeyboardController composition local API to replace previous SoftwareKeyboardController interface on TextField. (
+      <a href="https://android-review.googlesource.com/#/q/I658b6bfc5c917db486c631312e3456469a615831">I658b6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/168778053">b/168778053</a>
+      )
+    </li>
+  </ul>

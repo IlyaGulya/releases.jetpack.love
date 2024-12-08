@@ -1,0 +1,305 @@
+libraryId: compose-animation
+groupId: androidx.compose
+version: 0.1.0-dev15
+releaseDate: 2020-07-22
+#language=html
+changelogHtml: |
+  <h3 id="0.1.0-dev15" data-text="Version 0.1.0-dev15" tabindex="-1">Version 0.1.0-dev15</h3>
+  <p>July 22, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.animation:animation:0.1.0-dev15</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.animation:animation-core:0.1.0-dev15</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9f60cc700129e30cee9df020005c317fb39d32ec/ui">Version 0.1.0-dev15 contains these commits.</a>
+  </p>
+  <h4 id="dependencies_update_2" data-text="Dependencies Update" tabindex="-1">Dependencies Update</h4>
+  <ul>
+    <li>
+      To use the
+      <code translate="no" dir="ltr">0.1.0-dev15</code>
+      version of Compose, you will need to update your dependencies according to the new code snippets shown above in
+      <a href="#declaring_dependencies">Declaring dependencies</a>
+      .
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Transition API has been changed to return a TransitionState instead of passing the TransitionState to children. This makes the API more consistent with animate() APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I24e38fea3bf299e47d87dc5d2b42991e03d6786c">I24e38</a>
+      )
+    </li>
+    <li>
+      Modifier parameter added for Crossfade (
+      <a href="https://android-review.googlesource.com/#/q/I87cfe587dd58ee662d8e589274978aef44bbdf99">I87cfe</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/159706180">b/159706180</a>
+      )
+    </li>
+    <li>
+      Use AnimationSpec instead of AnimationBuilder in the top level APIs to clarify the concept of static animation specification
+      <ul>
+        <li>Improve the transition DSL by removing the lambda requirement for creating AnimationSpecs such as tween, spring. They instead take constructor params directly.</li>
+        <li>Improve the overall ease of use of AnimationSpec opening up constructors instead of relying on builders</li>
+        <li>
+          Change the duration and delay for KeyFrames and Tween to Int. This eliminates unnecessary type casts and method overloading (for supporting both Long and Int). (
+          <a href="https://android-review.googlesource.com/#/q/Ica0b4cb42996d3d30f9b6dacdbe149c75af77341">Ica0b4</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Replaced usage of IntPx with Int. Replaced IntPxPosition with IntOffset. Replaced IntPxSize with IntSize. (
+      <a href="https://android-review.googlesource.com/#/q/Ib7b44d92ce3aff86c606753f0ac5c3122b71041d">Ib7b44</a>
+      )
+    </li>
+    <li>
+      In order to consolidate the number of classes used to represent sizing information, standardize on usage of the Size class instead of PxSize. This provides the benefits of an inline class to leverage a long to pack 2 float values to represent width and height represented as floats. (
+      <a href="https://android-review.googlesource.com/#/q/Ic019171b52d2f24d262d9c47ac964728cdc1ee8b">Ic0191</a>
+      )
+    </li>
+    <li>
+      In order to consolidate the number of classes used to represent positioning information, standardize on usage of the Offset class instead of PxPosition. This provides the benefits of an inline class to leverage a long to pack 2 float values to represent x and y offsets represented as floats. (
+      <a href="https://android-review.googlesource.com/#/q/I3ad983207bc37af20afac03e2cd09b4240777687">I3ad98</a>
+      )
+    </li>
+    <li>
+      Replaced usage of Px class in various compose classes as part of the large refactoring effort to only rely on Dp and primitive types for pixel parameters (
+      <a href="https://android-review.googlesource.com/#/q/I086f4744d1eb51f0f31356e36991c2a8d4433059">I086f4</a>
+      )
+    </li>
+    <li>
+      Added animate() support for Dp, Px, Size, Position, Bounds, PxPosition, PxSize, PxBounds, IntPx, IntPxSize, IntPxPosition, IntPxBounds, and AnimationVector (
+      <a href="https://android-review.googlesource.com/#/q/Ib75184a2dc31986f8eb3698a428cbd8483104f61">Ib7518</a>
+      )
+    </li>
+    <li>
+      Crossfade now accepts optional AnimationBuilder param to allow configuring the animation (
+      <a href="https://android-review.googlesource.com/#/q/I6d6e03ec54221b740d7c88bdb8a8c93a662280a4">I6d6e0</a>
+      )
+    </li>
+    <li>
+      Replaced all nullable Color uses in API with non-nullable and use Color.Unset instead of null (
+      <a href="https://android-review.googlesource.com/#/q/Iabaa7c6334857833cdb0d5958f062e2e576bd240">Iabaa7</a>
+      )
+    </li>
+    <li>
+      Removed ValueHolder class. Restructured AnimatedValue, AnimatedFloat classes to make the animation value field abstract so that subclasses can watch the value update.
+      <ul>
+        <li>Added model classes for AnimatedValue, AnimatedFloat, etc.</li>
+        <li>
+          Added a new set of light-weight @Composable API for animating between values. (
+          <a href="https://android-review.googlesource.com/#/q/I79530e117cfa893a52542f85a55528eaa0f11b93">I79530</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Breaking changes to the ambients API. See log and
+      <code translate="no" dir="ltr">Ambient&lt;T&gt;</code>
+      documentation for details (
+      <a href="https://android-review.googlesource.com/#/q/I4c7eea45f2b7bf41f8a8ba75fd667c06010469a9">I4c7ee</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/143769776">b/143769776</a>
+      )
+    </li>
+    <li>
+      New repeat mode: Reverse. This mode reverses the previous iteration as the animation repeats in RepeatableSpec or VectorizedRepeatableSpec. (
+      <a href="https://android-review.googlesource.com/#/q/Ibe0f50b12223911f87f4541c683f55bc25ad0a3f">Ibe0f5</a>
+      )
+    </li>
+    <li>
+      API additions to ManualAnimationClock:
+      <code translate="no" dir="ltr">hasObservers: Boolean</code>
+      and constructor parameter
+      <code translate="no" dir="ltr">dispatchOnSubscribe: Boolean</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Iaa1346a80d6c0ff3b3a4a1ff01cccadbca3407bc">Iaa134</a>
+      )
+    </li>
+    <li>
+      Added APIs for getting min/max bounds in AnimatedFloat (
+      <a href="https://android-review.googlesource.com/#/q/Icd9ccde2e7d163b28d3a7a7d9193bcb4a0c05f9e">Icd9cc</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">runOnIdleCompose</code>
+      renamed to
+      <code translate="no" dir="ltr">runOnIdle</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I836071f1c3c63d21417a531f336f8a93ca13f9ed">I83607</a>
+      )
+    </li>
+    <li>
+      Several testing APIs were renamed to be more intuitive. All findXYZ APIs were renamed to onNodeXYZ. All doXYZ APIs were renamed to performXYZ. (
+      <a href="https://android-review.googlesource.com/#/q/I7f164b42b04196f023c4a2153d66825487998de4">I7f164</a>
+      )
+    </li>
+    <li>
+      Introduced low level stateless animation APIs. These APIs (
+      <a href="https://android-review.googlesource.com/#/q/I63bf7d28d5ac5e5ca2caaa427ee7643828c848a5">I63bf7</a>
+      )
+    </li>
+    <li>
+      The Recompose composable is no longer a useful abstraction. Most recomposition should happen as a result of MutableState assignments. For anything beyond that, it is recommended that you use the
+      <code translate="no" dir="ltr">invalidate</code>
+      function to trigger a recomposition of the current scope. (
+      <a href="https://android-review.googlesource.com/#/q/Ifc9926013c51c1db1e27e702a707bc1050f82fa6">Ifc992</a>
+      )
+    </li>
+    <li>
+      Replaced usage of Px class in various compose classes as part of the large refactoring effort to only rely on Dp and primitive types for pixel parameters. Deleted Px class in its entirety (
+      <a href="https://android-review.googlesource.com/#/q/I3ff339371abd6fb622172d060a70d12dda4822e0">I3ff33</a>
+      )
+    </li>
+    <li>
+      Replaced usage of Px class in various compose classes as part of the large refactoring effort to only rely on Dp and primitive types for pixel parameters (
+      <a href="https://android-review.googlesource.com/#/q/Id343458210b56a9a4cdae4ef3d0f97ea79004942">Id3434</a>
+      )
+    </li>
+    <li>
+      Crossfade can now work with null as initial value (
+      <a href="https://android-review.googlesource.com/#/q/Iad6a45933469434110ffdf5a55dd2e8eda37035a">Iad6a4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/155947711">b/155947711</a>
+      )
+    </li>
+    <li>
+      Replaced usage of Px class in various compose classes as part of the large refactoring effort to only rely on Dp and primitive types for pixel parameters (
+      <a href="https://android-review.googlesource.com/#/q/I19d02beca10c30e9b6b444be0c2dd21227e30e9c">I19d02</a>
+      )
+    </li>
+    <li>
+      Consolidated CanvasScope implementations so there is now just DrawScope and ContentDrawScope Renamed CanvasScope to DrawScope. Updated DrawScope to implement Density interface and provide LayoutDirection Deleted DrawScope subclass in ContentDrawScope Painter and PainterModifier have been updated to no longer maintain an RTL property themselves as DrawScope provides this already without manually providing it (
+      <a href="https://android-review.googlesource.com/#/q/I1798e4b2b325297c3b5394aa99be3db935e369b7">I1798e</a>
+      )
+    </li>
+    <li>
+      Updated higher level compose APIs that expose a Canvas to expose CanvasScope instead. This removes the need for consumers to maintain their own Paint objects. For consumers that still require access to a Canvas they can use the drawCanvas extension method which provides a callback to issue drawing commands with the underlying Canvas. (
+      <a href="https://android-review.googlesource.com/#/q/I80afdf4c0a648962aa6ef1efc05b1d3b65757094">I80afd</a>
+      )
+    </li>
+    <li>
+      Added verticalGravity and horizontalGravity parameters to Row and Column, respectively. (
+      <a href="https://android-review.googlesource.com/#/q/I7dc5a4e757370075657be68e6eda68e7498228fa">I7dc5a</a>
+      )
+    </li>
+    <li>
+      ui-text module is renamed as ui-text-core (
+      <a href="https://android-review.googlesource.com/#/q/I57dec72ca50e7288e37c9272ef6ce8bcc485a83e">I57dec</a>
+      )
+    </li>
+    <li>
+      Improve DrawModifier API:
+      <ul>
+        <li>Made the receiver scope for draw() ContentDrawScope</li>
+        <li>Removed all parameters on draw()</li>
+        <li>DrawScope has same interface as former CanvasScope</li>
+        <li>
+          ContentDrawScope has drawContent() method (
+          <a href="https://android-review.googlesource.com/#/q/Ibaced5feb8778510b8fe78e96f4fd3da1a6fda50">Ibaced</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/152919067">b/152919067</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">runOnIdleCompose</code>
+      and
+      <code translate="no" dir="ltr">runOnUiThread</code>
+      are now global functions instead of methods on ComposeTestRule. (
+      <a href="https://android-review.googlesource.com/#/q/Icbe8fd71d52144e855ccb4ce06a4677337be731a">Icbe8f</a>
+      )
+    </li>
+    <li>
+      [Mutable]State property delegate operators moved to extensions to support Kotlin 1.4 property delegate optimizations. Callers must add imports to continue using
+      <code translate="no" dir="ltr">by state { ... }</code>
+      or
+      <code translate="no" dir="ltr">by mutableStateOf(...)</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I5312cf7bdfa072cadc1be2de5d5f45ec53200f41">I5312c</a>
+      )
+    </li>
+    <li>
+      ColoredRect has been deprecated. Use
+      <code translate="no" dir="ltr">Box(Modifier.preferredSize(width, height).drawBackground(color))</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/I499fa26b66b128943500fbdf9ba490d754adf561">I499fa</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/152753731">b/152753731</a>
+      )
+    </li>
+    <li>
+      Replaced Modifier plus operator with factory extension functions (
+      <a href="https://android-review.googlesource.com/#/q/I225e444f50956d84e15ca4f1378b7f805d54e0ca">I225e4</a>
+      )
+    </li>
+    <li>
+      Deprecated Center composable. It should be replaced either with the LayoutSize.Fill + LayoutAlign.Center modifier, or with one of the Box or Stack composables with suitable modifiers applied (
+      <a href="https://android-review.googlesource.com/#/q/Idf5e0d25a2a8764489d738f6fcf242eeb667e124">Idf5e0</a>
+      )
+    </li>
+    <li>
+      Renamed LayoutFlexible to LayoutWeight. Renamed tight parameter to fill. (
+      <a href="https://android-review.googlesource.com/#/q/If4738c70c381e149ded400d657b5efd888ae5891">If4738</a>
+      )
+    </li>
+    <li>
+      The Opacity composable function has been replaced with the drawOpacity modifier. (
+      <a href="https://android-review.googlesource.com/#/q/I5fb62404e20e3f2a0fa94ad0fb121f35d05bbb1c">I5fb62</a>
+      )
+    </li>
+    <li>
+      Tests using AndroidComposeTestRule now provide an animation clock at the root of the composition that allows it to be paused, resumed and advanced manually. (
+      <a href="https://android-review.googlesource.com/#/q/Id54c51482f554cdb512e4eb53c78930408778f94">Id54c5</a>
+      )
+    </li>
+    <li>
+      Support right-to-left direction in LayoutPadding modifier (
+      <a href="https://android-review.googlesource.com/#/q/I9e8da0bfbb135ff7f34b0dc49b905f634ad7d18c">I9e8da</a>
+      )
+    </li>
+    <li>
+      Density and DensityScope were merged into one interface. Instead of ambientDensity() you can now use DensityAmbient.current. Instead of withDensity(density) just with(density) (
+      <a href="https://android-review.googlesource.com/#/q/I11cb1f069a95f32f4ecab631f49d38dc1c071a42">I11cb1</a>
+      )
+    </li>
+    <li>
+      Added copy methods to various inline class types including:
+      <ul>
+        <li>Offset</li>
+        <li>Size</li>
+        <li>Radius</li>
+        <li>Motion</li>
+        <li>TransformOrigin</li>
+        <li>
+          Deprecated Size.copy companion object method favor of instance copy method (
+          <a href="https://android-review.googlesource.com/#/q/Ife2903a0277e051188884cb5d5feefcae8875dd1">Ife290</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/159905651">b/159905651</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      androidx.compose.ViewComposer has been moved to androidx.ui.node.UiComposer androidx.compose.Emittable has been removed. It was redundant with ComponentNode. androidx.compose.ViewAdapters has been removed. They are no longer a supported use case. Compose.composeInto has been deprecated. Use
+      <code translate="no" dir="ltr">setContent</code>
+      or
+      <code translate="no" dir="ltr">setViewContent</code>
+      instead. Compose.disposeComposition has been deprecated. Use the
+      <code translate="no" dir="ltr">dispose</code>
+      method on the
+      <code translate="no" dir="ltr">Composition</code>
+      returned by
+      <code translate="no" dir="ltr">setContent</code>
+      instead. androidx.compose.Compose.subcomposeInto has moved to androidx.ui.core.subcomposeInto ComponentNode#emitInsertAt has been renamed to ComponentNode#insertAt ComponentNode#emitRemoveAt has been renamed to ComponentNode#removeAt ComponentNode#emitMode has been renamed to ComponentNode#move (
+      <a href="https://android-review.googlesource.com/#/q/Idef00fba3a2e67d7034e31d580d69192e9018b5f">Idef00</a>
+      )
+    </li>
+  </ul>
+  <devsite-hats-survey class="nocontent" hats-id="VxqvKSur40kxBYCLVTd0SSGykbno" listnr-id="5207477"></devsite-hats-survey>

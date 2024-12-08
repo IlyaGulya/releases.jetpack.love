@@ -1,0 +1,68 @@
+libraryId: work
+groupId: androidx.work
+version: 2.7.0-alpha01
+releaseDate: 2021-02-18
+#language=html
+changelogHtml: |
+  <h3 id="2.7.0-alpha01" data-text="Version 2.7.0-alpha01" tabindex="-1">Version 2.7.0-alpha01</h3>
+  <p>February 18, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.7.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b32e1d4efc3b6976da585fb8783f913e92108428..51b9293137916801ce8564a523a6ae77398694c1/work">Version 2.7.0-alpha01 contains these commits.</a>
+  </p>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      WorkManager Version 2.7.0-alpha01 is
+      <strong>only compatible</strong>
+      with the Android 12 Developer Preview 1 SDK.
+    </span>
+  </aside>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>
+        WorkManager introduces a new
+        <code translate="no" dir="ltr">WorkRequest.Builder.setExpedited(...)</code>
+        API to take into account the
+        <a href="/about/versions/12/behavior-changes-12#foreground-service-launch-restrictions">foreground Service restrictions</a>
+        in Android 12.
+      </p>
+
+      <p>
+        Applications can no longer launch a foreground service when they are in the background. Therefore, to better support long running work which was previously bound to the lifecycle of a foreground service, applications can mark
+        <code translate="no" dir="ltr">WorkRequest</code>
+        s as
+        <a href="/reference/android/app/job/JobInfo.Builder#setExpedited(boolean)"><em>expedited</em></a>
+        .
+      </p>
+
+      <p>
+        This API is a replacement for the
+        <code translate="no" dir="ltr">setForegroundAsync(...)</code>
+        /
+        <code translate="no" dir="ltr">setForeground(...)</code>
+        APIs which are now
+        <strong>deprecated</strong>
+        .
+      </p>
+
+      <p>
+        When using
+        <code translate="no" dir="ltr">setExpedited(...)</code>
+        , WorkManager delegates to expedited jobs in
+        <code translate="no" dir="ltr">JobScheduler</code>
+        starting Android 12, while providing backwards compatibility on prior versions of Android by delegating to foreground services,
+      </p>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add support for expedited
+      <code translate="no" dir="ltr">WorkRequest</code>
+      s.
+    </li>
+  </ul>
+  <h2 id="version_260_3" data-text="Version 2.6.0" tabindex="-1">Version 2.6.0</h2>

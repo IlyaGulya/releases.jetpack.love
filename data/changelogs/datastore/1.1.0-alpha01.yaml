@@ -1,0 +1,55 @@
+libraryId: datastore
+groupId: androidx.datastore
+version: 1.1.0-alpha01
+releaseDate: 2022-11-09
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha01" data-text="Version 1.1.0-alpha01" tabindex="-1">Version 1.1.0-alpha01</h3>
+  <p>November 9, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.datastore:datastore-*:1.1.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d2c1a0a27fe7c836c532f8eeae4c514c6f7ea2b4..a1e318590b217ecfce1b2de17eed2f18b6a680bb/datastore">Version 1.1.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Support multi-process use cases where data consistency is guaranteed among
+      <code translate="no" dir="ltr">DataStore</code>
+      instances across processes. Add
+      <code translate="no" dir="ltr">MultiProcessDataStoreFactory#create</code>
+      to create such
+      <code translate="no" dir="ltr">DataStore</code>
+      instances.
+    </li>
+    <li>
+      New Storage interface which allows the underlying storage mechanism for
+      <code translate="no" dir="ltr">Datastore</code>
+      to be switched out. Implementations for java.io and okio are provided.
+      <code translate="no" dir="ltr">DataStore</code>
+      factories have new methods which accept this Storage object.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Change APIs in datastore-core
+      <code translate="no" dir="ltr">MultiProcessDataStoreFactory</code>
+      to use Storage. (
+      <a href="https://android-review.googlesource.com/#/q/Iac02f50e9334d4fb384238f9447208598441b8ab">Iac02f</a>
+      )
+    </li>
+    <li>
+      Move public APIs in datastore-multiprocess to datastore-core (
+      <a href="https://android-review.googlesource.com/#/q/I76d7cc8b230fc408511fe8799de9a0236c1bde43">I76d7c</a>
+      )
+    </li>
+    <li>
+      Exposed
+      <code translate="no" dir="ltr">PreferencesSerializer</code>
+      from datastore-preferences-core (
+      <a href="https://android-review.googlesource.com/#/q/I4b78858d19f5000c6cc9bb293b1a055bf25293a2">I4b788</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_100_3" data-text="Version 1.0.0" tabindex="-1">Version 1.0.0</h2>

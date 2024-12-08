@@ -1,0 +1,47 @@
+libraryId: transition
+groupId: androidx.transition
+version: 1.5.0
+releaseDate: 2024-05-01
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0" data-text="Version 1.5.0" tabindex="-1">Version 1.5.0</h3>
+  <p>May 1, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.transition:transition:1.5.0</code>
+    and
+    <code translate="no" dir="ltr">androidx.transition:transition-ktx:1.5.0</code>
+    are released. Version 1.5.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/725dc97d601fc303e9e87ed447ed24f0bdf7670f..997511f658e698f2cc9bfbb485bacdefc476ba19/transition">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.4.0</strong></p>
+  <ul>
+    <li>
+      Transitions support seeking on API 34 and above. A new API was added to
+      <code translate="no" dir="ltr">TransitionManager</code>
+      ,
+      <code translate="no" dir="ltr">controlDelayedTransition()</code>
+      , which returns a
+      <code translate="no" dir="ltr">TransitionSeekController</code>
+      that allows seeking the
+      <code translate="no" dir="ltr">Transition</code>
+      . This functionality is used by
+      <a href="/jetpack/androidx/releases/fragment#1.7.0">Fragment 1.7.0</a>
+      to automatically seek transitions when using the Predictive Back Gesture.
+    </li>
+    <li>
+      Transitions have a new method,
+      <code translate="no" dir="ltr">getRootTransition()</code>
+      , that returns the Transition containing the current Transition or the current Transition if it isn't contained by any other Transition. This can be useful if the developer needs to have listeners for when the entire Transition starts or ends.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TransitionListeners</code>
+      now have new
+      <code translate="no" dir="ltr">onTransitionStart()</code>
+      and
+      <code translate="no" dir="ltr">onTransitionEnd()</code>
+      listeners that allow the developer to know whether the transition is starting or ending going in reverse or not. This can be important for developing seekable transitions that have
+      <code translate="no" dir="ltr">TransitionListeners</code>
+      .
+    </li>
+  </ul>

@@ -1,0 +1,330 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.5.0-beta01
+releaseDate: 2023-05-24
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-beta01" data-text="Version 1.5.0-beta01" tabindex="-1">Version 1.5.0-beta01</h3>
+  <p>May 24, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.5.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6f3ac2bd197d5e61ab2708125b57d6ae4003ad68..d26ca4055c940126ae1663ad0d54aafd23205ea4/compose/ui">Version 1.5.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removed allocations in recomposition, color animations, and
+      <code translate="no" dir="ltr">AndroidComposeView</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ib2bfaf0af40bc0970424f86141ae24607a2b1223">Ib2bfa</a>
+      )
+    </li>
+    <li>
+      Adds helper fun
+      <code translate="no" dir="ltr">CacheDrawModifierNode()</code>
+      to allow delegation (
+      <a href="https://android-review.googlesource.com/#/q/Icf8f9ff2800d38cd27b7bc894e8c0b26f32daf53">Icf8f9</a>
+      )
+    </li>
+    <li>
+      Introducing
+      <code translate="no" dir="ltr">isLookingAhead</code>
+      property, accessible from
+      <code translate="no" dir="ltr">MeasureScope</code>
+      , to observe lookahead results and influence main pass if desired. (
+      <a href="https://android-review.googlesource.com/#/q/Ibf4c31d6ecb2a7424c4d3aace7de6ea133d11e42">Ibf4c3</a>
+      )
+    </li>
+    <li>
+      New semantics property
+      <code translate="no" dir="ltr">traversalIndex</code>
+      , a float used to reorder nodes in
+      <code translate="no" dir="ltr">TalkBack</code>
+      traversal (lower values come before). (
+      <a href="https://android-review.googlesource.com/#/q/I9a81b4acf33c355c1142e28e6fd94788f7937cec">I9a81b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/186443263">b/186443263</a>
+      )
+    </li>
+    <li>
+      Renaming the Semantics property
+      <code translate="no" dir="ltr">isContainer</code>
+      to
+      <code translate="no" dir="ltr">isTraversalGroup</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I121f64d7e7be332c41a1fbf10a70ef1ec14ce0dc">I121f6</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ColorProducer</code>
+      now has an
+      <code translate="no" dir="ltr">operator fun invoke</code>
+      instead of
+      <code translate="no" dir="ltr">produce</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I4a9a254d77fcb19dce8913e8a28ceb0fdf5d9f2a">I4a9a2</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">Path</code>
+      transform API to apply translation/scale/rotation transformations to path objects. (
+      <a href="https://android-review.googlesource.com/#/q/I2343476dc71e36001febac2bcb7052fe3632dfbe">I23434</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/233772232">b/233772232</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ColorProducer</code>
+      's method is called
+      <code translate="no" dir="ltr">produce</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I78bdeea086159c81a7d8a13b6f1458b01b26624d">I78bde</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">toFrameworkColorSpace</code>
+      to
+      <code translate="no" dir="ltr">toAndroidColorSpace</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I4f5470019d81c71afeb00a27249443efbb451aba">I4f547</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">ColorLambda</code>
+      to
+      <code translate="no" dir="ltr">ColorProducer</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I73b1aa7f45542e90ff5bebe866b7d673455741ef">I73b1a</a>
+      )
+    </li>
+    <li>
+      Introduce APIs to convert between Android and Compose colorspace types. (
+      <a href="https://android-review.googlesource.com/#/q/Ie7db48f49a2233dfe4d53c65084ae068076ae648">Ie7db4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/279979665">b/279979665</a>
+      )
+    </li>
+    <li>
+      Added a color parameter to
+      <code translate="no" dir="ltr">BasicText</code>
+      to allow efficiently animating or setting text color. (
+      <a href="https://android-review.googlesource.com/#/q/Iffd88c4c2de7f6922add66b1fc46bdff8853c3f6">Iffd88</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/246961787">b/246961787</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">TextRange.constrain</code>
+      to
+      <code translate="no" dir="ltr">TextRange.coerceIn</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I31be27760f5d7b51533c5b74d2c1c337f750f4e7">I31be2</a>
+      )
+    </li>
+    <li>
+      Added optimized
+      <code translate="no" dir="ltr">TextStyle.merge(...)</code>
+      with full parameter list. (
+      <a href="https://android-review.googlesource.com/#/q/Iad23419809af1c7405ba9a9d42569521e7647034">Iad234</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/246961787">b/246961787</a>
+      )
+    </li>
+    <li>
+      Stabilized many Text APIs that include
+      <code translate="no" dir="ltr">Brush</code>
+      ,
+      <code translate="no" dir="ltr">DrawStyle</code>
+      ,
+      <code translate="no" dir="ltr">TextMotion</code>
+      ,
+      <code translate="no" dir="ltr">DrawScope.drawText</code>
+      ,
+      <code translate="no" dir="ltr">Paragraph.paint(Brush)</code>
+      ,
+      <code translate="no" dir="ltr">MultiParagraph.paint(Brush)</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2f7409cb64ade53b1ebc3385293456b126314b14">I2f740</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261581564">b/261581564</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261581931">b/261581931</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261561245">b/261561245</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PlatformTextStyle.includeFontPadding</code>
+      is undeprecated. Our original intent was to remove the field, however the feedback shows that developers need this configuration option. Therefore removing deprecation from the field (
+      <a href="https://android-review.googlesource.com/#/q/I98e96222691d8e5d023cd22b899f0dfbae2a1e1d">I98e96</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/277703184">b/277703184</a>
+      )
+    </li>
+    <li>
+      Added public
+      <code translate="no" dir="ltr">TextRange.constrain</code>
+      method. (
+      <a href="https://android-review.googlesource.com/#/q/I97912f1c1492f877bdeb9e0369e7be6f7f6a1420">I97912</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">UrlAnnotation</code>
+      s in
+      <code translate="no" dir="ltr">AnnotatedString</code>
+      s can now be opened via accessibility services like
+      <code translate="no" dir="ltr">TalkBack</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If4d82999d8c62aa3718e1e681eeeaac12a9b0f55">If4d82</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/253292081">b/253292081</a>
+      )
+    </li>
+    <li>
+      Added the
+      <code translate="no" dir="ltr">InsertTextAtCursor</code>
+      semantics action for text fields. (
+      <a href="https://android-review.googlesource.com/#/q/I11ed573be29737b234a114863c3c8f81e0fd65b1">I11ed5</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LineHeightStyle.Alignment(topRatio)</code>
+      constructor is promoted to stable API. (
+      <a href="https://android-review.googlesource.com/#/q/I79c3266507757bbb77c238567774ed91761c148d">I79c32</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261565383">b/261565383</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TextMeasurer</code>
+      and related APIs are no longer experimental. (
+      <a href="https://android-review.googlesource.com/#/q/I74647908ae270be731ffa12d1599f6c9199fd904">I74647</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261581753">b/261581753</a>
+      )
+    </li>
+    <li>
+      Added the
+      <code translate="no" dir="ltr">PerformImeAction</code>
+      semantics action to invoke the IME action on text editor nodes. (
+      <a href="https://android-review.googlesource.com/#/q/Ic606f69ba8860017a6d11f0f50dc0da063af0512">Ic606f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/269633506">b/269633506</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PlatformTextInput</code>
+      APIs are no longer experimental for Android. (
+      <a href="https://android-review.googlesource.com/#/q/I668eba08bb7d2b384ab05f1ef26d490f00ae1bf8">I668eb</a>
+      )
+    </li>
+    <li>
+      value parameter name for
+      <code translate="no" dir="ltr">Enum.valueOf</code>
+      changed (
+      <a href="https://android-review.googlesource.com/#/q/Ia9b89b3c1bd0407c9beac825c49477cdfc9c1f2a">Ia9b89</a>
+      )
+    </li>
+    <li>
+      more thrown exceptions from enum valueOf (
+      <a href="https://android-review.googlesource.com/#/q/I818fed80f3a1af1a97b5b0de7882fb2e1b99ae62">I818fe</a>
+      )
+    </li>
+    <li>
+      Introduced new low-level
+      <code translate="no" dir="ltr">PlatformTextInputAdapter</code>
+      API for building custom text input implementations that talk directly to platform APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I58df46daa7a88f9761dcd711519c6eddf8524b6d">I58df4</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">BlendMode</code>
+      parameter to
+      <code translate="no" dir="ltr">DrawScope.drawText</code>
+      ,
+      <code translate="no" dir="ltr">Paragraph.paint</code>
+      , and
+      <code translate="no" dir="ltr">MultiParagraph.paint</code>
+      methods to support different blending algorithms when drawing text on Canvas. (
+      <a href="https://android-review.googlesource.com/#/q/I57508ab06da481f63b4061ecb8ad72c3a733b0a7">I57508</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">Font.MaximumAsyncTimeout</code>
+      to
+      <code translate="no" dir="ltr">Font.MaximumAsyncTimeoutMillis</code>
+      . Rename only. (
+      <a href="https://android-review.googlesource.com/#/q/I07af50c23dc2c2a640c6297b34b339be79e1a728">I07af5</a>
+      )
+    </li>
+    <li>
+      Updated DPI values of
+      <code translate="no" dir="ltr">@Preview</code>
+      reference devices (
+      <a href="https://android-review.googlesource.com/#/q/Id6151d0c71d471824fb86734e5f52f286fa72334">Id6151</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/254528382">b/254528382</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">brush</code>
+      ,
+      <code translate="no" dir="ltr">alpha</code>
+      parameters to
+      <code translate="no" dir="ltr">BasicText</code>
+      to allow efficiently animating or setting text brush.
+    </li>
+    <li>
+      Define box-free lambda types for Float, Double, Long, Int, Short in :ui:ui-unit (
+      <a href="https://android-review.googlesource.com/#/q/I6f18d24248b890d7c1fd4d0a2fac1c49918b2f2b">I6f18d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/246961787">b/246961787</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Removed multiple allocations in pointer velocity tracking (
+      <a href="https://android-review.googlesource.com/#/q/I26baee3d57a0ea73292c03d73479078b47f39a75">I26bae</a>
+      )
+    </li>
+    <li>
+      Reduced allocations in layout and pointer input management (
+      <a href="https://android-review.googlesource.com/#/q/I5333ad0e39e5aa457e569d69672b0f3d4f2a5c40">I5333a</a>
+      )
+    </li>
+    <li>
+      Optimize Vector memory usage and first-frames rendering (
+      <a href="https://android-review.googlesource.com/#/q/I2f3c67bf8ea1cd09c6d782f19a2dae5de73b3889">I2f3c6</a>
+      )
+    </li>
+    <li>
+      Removed allocations when drawing lines and points with Canvas (
+      <a href="https://android-review.googlesource.com/#/q/I9f535e80238674f56bde04537c21d054b603a6b9">I9f535</a>
+      )
+    </li>
+    <li>
+      Add docs for
+      <code translate="no" dir="ltr">AndroidFont.fontVariationSettings</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I7d9e2384d5840416d6d664d6a231bd0404619cea">I7d9e2</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Improved performance and reduce allocations in Vector APIs (
+      <a href="https://android-review.googlesource.com/#/q/I906cb6e7d7a950b11c27f414385aa7f9c9f514aa">I906cb</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,112 @@
+libraryId: test-uiautomator
+groupId: androidx.test
+version: 2.3.0-alpha02
+releaseDate: 2023-01-11
+#language=html
+changelogHtml: |
+  <h3 id="2.3.0-alpha02" data-text="Version 2.3.0-alpha02" tabindex="-1">Version 2.3.0-alpha02</h3>
+  <p>January 11, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.test.uiautomator:uiautomator:2.3.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cce7b70f6a5ebf955cf748a73c18b63228b22c74..adf1c279a86ab3886e1666c08e2c3efba783367b/test/uiautomator/uiautomator">Version 2.3.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>Reworked logging throughout the library to provide more information, warn about possible issues, and improve consistency.</li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">UiDevice#pressKeyCodes</code>
+      to support pressing multiple keys simultaneously, e.g. pressing POWER and VOLUME_DOWN to take a screenshot (
+      <a href="https://android-review.googlesource.com/#/q/22e52585b69be2c6c124881fbf3ae4ad8afee955">22e525</a>
+      ).
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">UiDevice#setCompressedLayoutHierarchy</code>
+      and deprecated
+      <code translate="no" dir="ltr">UiDevice#setCompressedLayoutHeirarchy</code>
+      to fix a typo in the method name (
+      <a href="https://android-review.googlesource.com/#/q/4e2f65a802478583785fd429cadeb6d224cc0d8c">4e2f65</a>
+      ).
+    </li>
+    <li>
+      Marked
+      <code translate="no" dir="ltr">UiAutomatorInstrumentationTestRunner</code>
+      as deprecated as it handles deprecated
+      <code translate="no" dir="ltr">UiAutomatorTestCase</code>
+      s and is no longer necessary (
+      <a href="https://android-review.googlesource.com/#/q/be6c85d618040a475492c9e5e56c29726afc3007">be6c85</a>
+      ).
+    </li>
+    <li>
+      Updated delay between
+      <code translate="no" dir="ltr">UiObject2</code>
+      <code translate="no" dir="ltr">MotionEvent</code>
+      s to twice the display refresh rate to better emulate user gestures (
+      <a href="https://android-review.googlesource.com/#/q/45445069f33284e8e135c9023c69fd58ce0835c8">454450</a>
+      ).
+    </li>
+    <li>
+      Added support for multiline text and description matching (
+      <a href="https://android-review.googlesource.com/#/q/1625e615b9aed44323029da2726a57390956e4ab">1625e6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/255787130">b/255787130</a>
+      ).
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">StaleObjectException</code>
+      s occasionally being thrown while querying or waiting for objects (
+      <a href="https://android-review.googlesource.com/#/q/4cbcc08ac347605cf8d0f868738d504147d443bf">4cbcc0</a>
+      ).
+    </li>
+    <li>
+      Fixed the return values of
+      <code translate="no" dir="ltr">UiScrollable#scrollToBeginning</code>
+      ,
+      <code translate="no" dir="ltr">scrollToEnd</code>
+      ,
+      <code translate="no" dir="ltr">flingToBeginning</code>
+      , and
+      <code translate="no" dir="ltr">flingToEnd</code>
+      not denoting whether the beginning/end was reached (
+      <a href="https://android-review.googlesource.com/#/q/d33e06a5b39fd68dc2e83a51e9b4de9c9210dba4">d33e06</a>
+      ).
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">UiScrollable#scrollForward</code>
+      and
+      <code translate="no" dir="ltr">scrollBackward</code>
+      methods ignoring the configured timeout (
+      <a href="https://android-review.googlesource.com/#/q/29e4f311bbc7a3ef045177c137b2dce0c34a4ea8">29e4f3</a>
+      ).
+    </li>
+    <li>
+      Fixed the
+      <code translate="no" dir="ltr">BySelector</code>
+      copy constructor not handling depth selectors (
+      <a href="https://android-review.googlesource.com/#/q/6c7b91d2b375f344d7d3051c428d06a7862674f5">6c7b91</a>
+      ).
+    </li>
+    <li>
+      Fixed the handling of invalid percent values in
+      <code translate="no" dir="ltr">UiObject#pinchIn</code>
+      and
+      <code translate="no" dir="ltr">pinchOut</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/01b9732dc0d5c5d2cd446189700a0c0d8af63800">01b973</a>
+      ).
+    </li>
+    <li>
+      Fixed a rare issue where multi-window support was lost if the underlying
+      <code translate="no" dir="ltr">UiAutomation</code>
+      connection was reset (
+      <a href="https://android-review.googlesource.com/#/q/1bb956d848661061e7f5aadf95659b869315f187">1bb956</a>
+      ).
+    </li>
+  </ul>

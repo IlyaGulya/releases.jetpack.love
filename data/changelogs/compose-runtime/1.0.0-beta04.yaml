@@ -1,0 +1,52 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.0.0-beta04
+releaseDate: 2021-04-07
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta04" data-text="Version 1.0.0-beta04" tabindex="-1">Version 1.0.0-beta04</h3>
+  <p>April 7, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.0.0-beta04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5c42896eb6591b09e3952030fb7ea8d9b8c42713..0e6e72e136ada934db74265667417524ba0ba04f/compose/runtime">Version 1.0.0-beta04 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <p>Prior to this change, local composable functions were skippable based on their parameters. After this change, no local composable functions will skip. This change is done because it is common and expected for local functions to capture parameters from the parent and them skipping is a common source of bugs.</p>
+
+      <p>To summarize, consider the example:</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@Composable</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">Counter</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">count</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">Int</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">onCountChange</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-kt">Int</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;<span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">Unit</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-nd">@Composable</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">ShowCount</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Text</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"Count: </span><span class="devsite-syntax-si">$</span><span class="devsite-syntax-n">count</span><span class="devsite-syntax-s">"</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">ShowCount</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">Button</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">onClick</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">onCountChange</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">count</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">+</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-m">1</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">})</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">Text</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"Increment"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+      <p>
+        Prior to this change, the
+        <code translate="no" dir="ltr">ShowCount</code>
+        composable function would always skip, even after the
+        <code translate="no" dir="ltr">count</code>
+        parameter was updated. This is no longer the case. (
+        <a href="https://android-review.googlesource.com/#/q/I5648a5f11c89e71c6b8c748f111c47bcafee9178">I5648a</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Fixed the issue when
+        <code translate="no" dir="ltr">rememberSaveable()</code>
+        was restoring the old value when used with input params (
+        <a href="https://android-review.googlesource.com/#/q/I1b1108e2d8f141887a46e781d4fe04a0d84cd09c">I1b110</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/182403380">b/182403380</a>
+        )
+      </p>
+    </li>
+  </ul>

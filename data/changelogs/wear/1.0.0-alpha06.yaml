@@ -1,0 +1,70 @@
+libraryId: wear
+groupId: androidx.wear
+version: 1.0.0-alpha06
+releaseDate: 2021-01-27
+#language=html
+changelogHtml: |
+  <h3 id="complications-watchface-1.0.0-alpha06" data-text="Version 1.0.0-alpha06" tabindex="-1">Version 1.0.0-alpha06</h3>
+  <p>January 27, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear:wear-*:1.0.0-alpha06</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6207afb1646d302c5d29c2c67d332b48db87fb27..aee18b103203a91ee89df91f0af5df2ecff356d6/wear">Version 1.0.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>We’ve introduced a new library wear/wear-watchface-editor which allows watch face developers and potentially OEMs to build a style and complication editor. SysUI will send an Intent to the watch face which will use the new EditorSession class to access WatchFace details and record the result via Activity.setWatchRequestResult. To support this we’ve added ProviderInfoRetriever.requestPreviewComplicationData which allows watch face editors to request preview ComplicationData. The advantage of preview ComplicationData is unlike live data you don’t have to worry about showing permission dialogs when rendering your editor (note if a user selects a provider with a permission they will still be prompted to grant the permission).</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      ComplicationProviderInfo now has a field for the provider's ComponentName, support for this field will be added to WearOS at a later date and in the meantime, it will be null. (
+      <a href="https://android-review.googlesource.com/#/q/Id8fc4130844dab52c7398354398a5267d6dbfea2">Id8fc4</a>
+      )
+    </li>
+    <li>
+      We've added ProviderInfoRetriever.requestPreviewComplicationData which allows watch face editors to request preview ComplicationData. This is useful because live complications may require permissions and you can now display preview data for complications that are not active. (
+      <a href="https://android-review.googlesource.com/#/q/I2e1df39373278a35db757823ddf1533ccb3623e2">I2e1df</a>
+      )
+    </li>
+    <li>
+      ComplicationManager is now an optional parameter of WatchFace constructor and the arguments have been reordered to allow this. (
+      <a href="https://android-review.googlesource.com/#/q/I66c76f8cd44b5766e6ad980746ed9ab9401e6982">I66c76</a>
+      )
+    </li>
+    <li>
+      We've added an optional Bundle to Complications which if set gets merged in with the intent sent to launch the provider chooser activity. (
+      <a href="https://android-review.googlesource.com/#/q/Ifd4adf79afbdaed2f505e7fcdd07d1d443752bfe">Ifd4ad</a>
+      )
+    </li>
+    <li>
+      We've added a new
+      <code translate="no" dir="ltr">wear-watchface-editor</code>
+      library to support on watch face and SysUi hosted editors. SysUI will launch these editors by sending an intent. The watch face activity service can use the new EditorSession class to access WatchFace details and record the result via Activity.setWatchRequestResult. (
+      <a href="https://android-review.googlesource.com/#/q/I2110d1b0e714c563c0f076c7814b838511c2e3bc">I2110d</a>
+      )
+    </li>
+    <li>
+      LayerMode.DRAW_HIGHLIGHTED is now called LayerMode.DRAW_OUTLINED and RenderParameters.highlightComplicationId is now called RenderParameters.selectedComplicationId which draws a highlight on the specified complication in addition to an outline. (
+      <a href="https://android-review.googlesource.com/#/q/I90a405d73c4d3a647c8ed21729655609050e2246">I90a40</a>
+      )
+    </li>
+    <li>
+      WatchFaceControlClient.getOrCreateWallpaperServiceBackedInteractiveWatchFaceWcsClient's future can now resolve with a ServiceStartFailureException if the service dies while waiting for the watchface to be created. (
+      <a href="https://android-review.googlesource.com/#/q/I0f509426f8e43822c6bdd0721857b385eb753848">I0f509</a>
+      )
+    </li>
+    <li>
+      EditorSession.complicationPreviewData is now a ListenableFuture because fetching this data is an asynchronous process. (
+      <a href="https://android-review.googlesource.com/#/q/Iead9d686587392e6be2db31b3010fe257a73eb8c">Iead9d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We're removing unused fields from ComplicationOverlay leaving enabled and complicationBounds. (
+      <a href="https://android-review.googlesource.com/#/q/I17b71448a1875e66e3a209a4133dc079b4f223ea">I17b71</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,43 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.1.0-alpha10
+releaseDate: 2021-10-13
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha10" data-text="Version 1.1.0-alpha10" tabindex="-1">Version 1.1.0-alpha10</h3>
+  <p>October 13, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.1.0-alpha10</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d51a5b31d004ef5b808e917260eb704d9e1c6bb2/camera">Version 1.1.0-alpha10 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Released
+      <code translate="no" dir="ltr">androidx.camera:camera-video:1.1.0-alpha10</code>
+      as the first alpha version for Video officially. There are
+      <a href="https://issuetracker.google.com/issues?q=hotlistid:3493084%20status:open">several known issues</a>
+      to be fixed in the later releases.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">@RequiresApi(21)</code>
+      annotation to all CameraX classes and dropped minSdkVersion from AndroidManifest.xml. This will allow camera-core to be easily integrated into applications that have a minSdkVersion less than 21, but want to conditionally use code paths that rely on API 21 and higher. For any application with minSdkVersion 21 or higher, this change requires no action. (
+      <a href="https://android-review.googlesource.com/#/q/Ie7f2e23fa25ea401df4cddbe4d99651397cc0263">Ie7f2e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/200599470">b/200599470</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Throw an InitializationException to make the app be able to gracefully handle the AssertionError happened when creating CameraCharacteristics. (
+      <a href="https://android-review.googlesource.com/#/q/Ibec79fc0034482c47c25c41fa6d76a6a0c10d02c">Ibec79</a>
+      )
+    </li>
+  </ul>

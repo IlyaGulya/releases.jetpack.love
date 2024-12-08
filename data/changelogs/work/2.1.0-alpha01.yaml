@@ -1,0 +1,89 @@
+libraryId: work
+groupId: androidx.work
+version: 2.1.0-alpha01
+releaseDate: 2019-04-24
+#language=html
+changelogHtml: |
+  <h3 id="2.1.0-alpha01" data-text="Version 2.1.0-alpha01" tabindex="-1">Version 2.1.0-alpha01</h3>
+  <p>April 24, 2019</p>
+  <p>WorkManager 2.1.0-alpha01 is released. This version contains several new APIs. Please note that starting with this version, there will be new features that won't get backported to the 1.x release. We recommend switching to 2.x.</p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added on-demand initialization for WorkManager, which will create WorkManager only when referenced.
+      <a href="https://issuetracker.google.com/127497100">b/127497100</a>
+      To set up your project for on-demand initialization:
+      <ol>
+        <li>
+          <a href="/topic/libraries/architecture/workmanager/advanced/custom-configuration#removing_the_default_initializer">Disable the automatic initializer</a>
+          .
+        </li>
+        <li>
+          Implement
+          <code translate="no" dir="ltr">Configuration.Provider</code>
+          on your custom
+          <code translate="no" dir="ltr">Application</code>
+          object.
+        </li>
+        <li>
+          Change all references of
+          <code translate="no" dir="ltr">WorkManager.getInstance()</code>
+          to
+          <code translate="no" dir="ltr">WorkManager.getInstance(Context)</code>
+          . As part of this change, we have deprecated
+          <code translate="no" dir="ltr">WorkManager.getInstance()</code>
+          . It is always safer to call the new
+          <code translate="no" dir="ltr">WorkManager.getInstance(Context)</code>
+          replacement, even if you're not doing on-demand initialization.
+        </li>
+      </ol>
+    </li>
+    <li>
+      Added the ability to create unit testable
+      <code translate="no" dir="ltr">Worker</code>
+      and
+      <code translate="no" dir="ltr">ListenableWorker</code>
+      classes by using
+      <code translate="no" dir="ltr">TestWorkerBuilder</code>
+      and
+      <code translate="no" dir="ltr">TestListenableWorkerBuilder</code>
+      in the
+      <code translate="no" dir="ltr">work-testing</code>
+      artifact.
+      <ul>
+        <li>
+          Note that
+          <code translate="no" dir="ltr">work-testing</code>
+          now pulls in Kotlin as a dependency, but also includes several Kotlin extensions by default.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Added run attempt count to
+      <code translate="no" dir="ltr">WorkInfo</code>
+      .
+      <a href="https://issuetracker.google.com/127290461">b/127290461</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Data</code>
+      types can now store and retrieve bytes and byte arrays. This does NOT change the maximum size of
+      <code translate="no" dir="ltr">Data</code>
+      objects.
+    </li>
+    <li>
+      Deprecated
+      <code translate="no" dir="ltr">CoroutineWorker.coroutineContext</code>
+      . This field was incorrectly typed as a
+      <code translate="no" dir="ltr">CoroutineDispatcher</code>
+      ; you should no longer need it as you can go to the desired coroutineContext yourself in the body of the suspending function.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">RxWorker.createWork()</code>
+      and
+      <code translate="no" dir="ltr">RxWorker.getBackgroundScheduler()</code>
+      are now annotated with
+      <code translate="no" dir="ltr">@NonNull</code>
+      return types.
+    </li>
+  </ul>
+  <h2 id="version_201_3" data-text="Version 2.0.1" tabindex="-1">Version 2.0.1</h2>

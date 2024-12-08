@@ -1,0 +1,99 @@
+libraryId: webkit
+groupId: androidx.webkit
+version: 1.9.0
+releaseDate: 2023-11-29
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0" data-text="Version 1.9.0" tabindex="-1">Version 1.9.0</h3>
+  <p>November 29, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.webkit:webkit:1.9.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/40bb8c8db91df80e03503485d4964664f87cde66..d905464a8027b0af72851565b52e77892405085d/webkit/webkit">Version 1.9.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 1.8.0</strong></p>
+  <ul>
+    <li>
+      <strong>Added a new multi-profile API for WebViews.</strong>
+      <ul>
+        <li>
+          The
+          <a href="https://developer.android.com/reference/androidx/webkit/Profile">Profile</a>
+          interface has different APIs to use to get associated data with this profile such as its name,
+          <a href="https://developer.android.com/reference/android/webkit/GeolocationPermissions">GeoLocationPermissions</a>
+          ,
+          <a href="https://developer.android.com/reference/android/webkit/ServiceWorkerController">ServiceWorkerController</a>
+          ,
+          <a href="https://developer.android.com/reference/android/webkit/CookieManager">CookieManager</a>
+          and
+          <a href="https://developer.android.com/reference/android/webkit/WebStorage">WebStorage</a>
+          . These objects are specific to the profile, and information is not shared between different profiles in the application.
+        </li>
+        <li>
+          The profile used by a
+          <code translate="no" dir="ltr">WebView</code>
+          instance can be changed using the
+          <a href="https://developer.android.com/reference/androidx/webkit/WebViewCompat#setProfile(android.webkit.WebView,java.lang.String)">WebViewCompat#setProfile</a>
+          method and retrieved using
+          <a href="https://developer.android.com/reference/androidx/webkit/WebViewCompat#getProfile(android.webkit.WebView)">WebViewCompat#getProfile</a>
+        </li>
+        <li>
+          The newly introduced
+          <a href="https://developer.android.com/reference/androidx/webkit/ProfileStore">ProfileStore</a>
+          let you manage the available profiles in your application, including the default profile.
+        </li>
+        <li>
+          Existing WebView APIs such as
+          <a href="https://developer.android.com/reference/android/webkit/CookieManager#getInstance()">CookieManager#getInstance</a>
+          will continue to operate on the Default profile.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Added an API to inject and run Javascript before page load.</strong>
+      <ul>
+        <li>
+          The
+          <a href="https://developer.android.com/reference/androidx/webkit/WebViewCompat#addDocumentStartJavaScript(android.webkit.WebView,java.lang.String,java.util.Set%3Cjava.lang.String%3E)">WebViewCompat#addDocumentStartJavascript</a>
+          API allows apps to inject scripts into a
+          <code translate="no" dir="ltr">WebView</code>
+          which are guaranteed to run before any page scripts are executed. The API allows the app to specify a target list of origins for the script to be enabled on, ensuring that it only runs on intended pages. Unlike
+          <a href="https://developer.android.com/reference/android/webkit/WebView#evaluateJavascript(java.lang.String,%20android.webkit.ValueCallback%3Cjava.lang.String%3E)">WebView#evaluateJavascript</a>
+          , this API will allow execution of scripts in embedded Iframes when they load. Apps can use this new API in combination with
+          <a href="https://developer.android.com/reference/androidx/webkit/WebViewCompat#addWebMessageListener(android.webkit.WebView,java.lang.String,java.util.Set%3Cjava.lang.String%3E,androidx.webkit.WebViewCompat.WebMessageListener)">WebViewCompat#addWebMessageListener</a>
+          to set up two-way communication with JavaScript in the page in a reliable way.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Added APIs to modify how Privacy Sandbox Attribution Reporting events are registered.</strong>
+      <ul>
+        <li>
+          We introduced a new API
+          <a href="https://developer.android.com/reference/androidx/webkit/WebSettingsCompat#setAttributionRegistrationBehavior(android.webkit.WebSettings,int)">WebSettingsCompat#setAttributionRegistrationBehavior</a>
+          which allows developers to configure whether attribution sources and triggers are registered as coming from the app itself or coming from the web content in the WebView. This method can also be used to disable Attribution Reporting in WebView. Additionally we added a new API
+          <code translate="no" dir="ltr">WebSettingsCompat#getAttributionRegistrationBehavior</code>
+          to get the current behavior.
+        </li>
+        <li>
+          For more information see the
+          <a href="https://developer.android.com/design-for-safety/privacy-sandbox/attribution-app-to-web#attribution_source_and_trigger_registration_from_webview">Privacy Sandbox documentation</a>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Added APIs to override user-agent metadata for client hints.</strong>
+      <ul>
+        <li>
+          We introduced a new API,
+          <a href="https://developer.android.com/reference/androidx/webkit/WebSettingsCompat#setUserAgentMetadata(android.webkit.WebSettings,androidx.webkit.UserAgentMetadata)">WebSettingsCompat#setUserAgentMetadata</a>
+          to override the user-agent metadata for WebView used to populate the user-agent client hints, and we also added another new API
+          <a href="https://developer.android.com/reference/androidx/webkit/WebSettingsCompat#getUserAgentMetadata(android.webkit.WebSettings)">WebSettingsCompat#getUserAgentMetadata</a>
+          to get current user-agent overrides. We encourage apps to use the new API to set the right override values whenever the app changes the default user agent string using
+          <a href="https://developer.android.com/reference/android/webkit/WebSettings#setUserAgentString(java.lang.String)">WebSettings.setUserAgentString</a>
+          to ensure the correct values are being used in all situations.
+        </li>
+      </ul>
+    </li>
+  </ul>

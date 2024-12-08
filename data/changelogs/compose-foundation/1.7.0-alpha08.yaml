@@ -1,0 +1,151 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.7.0-alpha08
+releaseDate: 2024-05-01
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha08" data-text="Version 1.7.0-alpha08" tabindex="-1">Version 1.7.0-alpha08</h3>
+  <p>May 1, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.7.0-alpha08</code>
+    is released. Version 1.7.0-alpha08 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/67004410fdbff19f90caa4cc43965ab21dca1943..06bfcd36801b67b9fe9b9bcae0d16a55e7d40fd7/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added right-click context menu to
+      <code translate="no" dir="ltr">BasicTextField</code>
+      and
+      <code translate="no" dir="ltr">SelectionContainer</code>
+      with items for cut, copy, paste, and select-all actions. (
+      <a href="https://android-review.googlesource.com/#/q/If8c9399d197d8c3c436ccca436e3ddfed3bc959e">If8c93</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ia2b4973e4535ff4c083a7ab39258bfcf9c6ae81e">Ia2b49</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I6f268a534acee4fa8732b1058bc636a9ce6b1108">I6f268</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">LazyLayout</code>
+      prefetch requests can be marked as urgent now, meaning that we expect this item to be needed in the next frame and want to ignore frame budget to make sure to do more work in advance (
+      <a href="https://android-review.googlesource.com/#/q/Id513f17517aa1b240e91afb3468837b12ed54da8">Id513f</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">isPositionedByParentWithDirectManipulation</code>
+      to
+      <code translate="no" dir="ltr">introducesFrameOfReference</code>
+      . Note that it now has the reverse effect, meaning that by default, most
+      <code translate="no" dir="ltr">LayoutCoordinates</code>
+      introduce a frame of reference, and, only when placed under direct manipulation the property will be false. To query position with only those that introduce a frame of reference, use
+      <code translate="no" dir="ltr">positionInLocalFrameOfReference(...)</code>
+      . Or
+      <code translate="no" dir="ltr">positionInLocalLookaheadFrameOfReference</code>
+      from a
+      <code translate="no" dir="ltr">LookaheadScope</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ifc5f78c683543035e13ff727edf14a79075b1a84">Ifc5f7</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">onClicked</code>
+      to
+      <code translate="no" dir="ltr">onClick</code>
+      inside
+      <code translate="no" dir="ltr">LinkInteractionListener</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Iaa35cd1c54bdea113071a2eaf1e7d700e0eb5f19">Iaa35c</a>
+      )
+    </li>
+    <li>
+      Change action lambda for
+      <code translate="no" dir="ltr">getScrollViewportLength</code>
+      as per API council feedback. (
+      <a href="https://android-review.googlesource.com/#/q/Ibc74abf76a2d5d88f97b9c5853a3d3b2d58585b9">Ibc74a</a>
+      )
+    </li>
+    <li>
+      Renamed stylus handwriting delegation APIs. (
+      <a href="https://android-review.googlesource.com/#/q/Ica45f13c23a7bc0472bf10c99195e924ba3a32d7">Ica45f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/327271923">b/327271923</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">TextInclusionStrategy.isInside</code>
+      to
+      <code translate="no" dir="ltr">isIncluded</code>
+      . Make
+      <code translate="no" dir="ltr">Paragraph/MultiParagraph#getRangeForRect()</code>
+      return type non nullable. (
+      <a href="https://android-review.googlesource.com/#/q/I51f269566495a3781946c8a72e6b615af2da57b9">I51f26</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Added "Select all" to all text contextual menus in
+      <code translate="no" dir="ltr">SelectionContainer</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib750e9580a290c68356c02cc83bab4cc048e4cc8">Ib750e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/240143283">b/240143283</a>
+      )
+    </li>
+    <li>
+      Fixed long screenshot capture for scrolling containers with
+      <code translate="no" dir="ltr">reverseScrolling=true</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7c59cd9f43ca6968f3eefadbcfc7582c1aec51c7">I7c59c</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">AnchoredDraggableState</code>
+      's
+      <code translate="no" dir="ltr">currentValue</code>
+      would change when approaching the state's bounds. (
+      <a href="https://android-review.googlesource.com/#/q/Iea30b4ea0764f2cd817f4406011ab7b18b5e575a">Iea30b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/333846848">b/333846848</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">PrefetchExecutor</code>
+      -&gt;
+      <code translate="no" dir="ltr">PrefetchScheduler</code>
+      to better reflect its responsibilities. (
+      <a href="https://android-review.googlesource.com/#/q/Ib915439b1f029adfcfff0ee716b1ad5759f4a35d">Ib9154</a>
+      )
+    </li>
+    <li>
+      Added support for prefetching items in nested
+      <code translate="no" dir="ltr">LazyLists</code>
+      (e.g. a
+      <code translate="no" dir="ltr">LazyColumn</code>
+      that renders nested
+      <code translate="no" dir="ltr">LazyRows</code>
+      ). This change is expected to reduce frame drops during scrolling for these
+      <code translate="no" dir="ltr">LazyLists</code>
+      . The implementation default is to prefetch the first 2 nested items, however this behavior can be controlled by the new
+      <code translate="no" dir="ltr">LazyLayoutPrefetchStrategy(nestedPrefetchItemCount)</code>
+      and
+      <code translate="no" dir="ltr">LazyListPrefetchStrategy#onNestedPrefetch</code>
+      APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I519526a694d8e9a89a1a040cd179d0416fa2d6d9">I51952</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,56 @@
+libraryId: preference
+groupId: androidx.preference
+version: 1.1.0-alpha04
+releaseDate: 2019-03-13
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha04" data-text="Version 1.1.0-alpha04" tabindex="-1">Version 1.1.0-alpha04</h3>
+  <p>March 13, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.preference:preference:1.1.0-alpha04</code>
+    and
+    <code translate="no" dir="ltr">androidx.preference:preference-ktx:1.1.0-alpha04</code>
+    are released. The full list of commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/eb8080404ca0086bdb1ad89235f849e25e6a6997..968f440307eb94a35ed10a2d281749b2312b6e40/preference">here</a>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <p>
+    The
+    <code translate="no" dir="ltr">SeekBarPreference</code>
+    update!
+  </p>
+  <ul>
+    <li>
+      Styling updated to match Material Specifications
+      <ul>
+        <li>
+          The value label is now hidden by default although it can still be shown with
+          <code translate="no" dir="ltr">app:showSeekBarValue="true"</code>
+          or
+          <code translate="no" dir="ltr">setShowSeekBarValue(true)</code>
+          . This label is not part of Material spec, but we understand that it is heavily used so we will continue to support it - even though we don’t recommend using it.
+        </li>
+        <li>The value label now updates while the SeekBar is being dragged, instead of when it is released. Note that this does not mean that the value internally is updated, see below for a new API that enables that functionality.</li>
+        <li>Note: Although it is supported, you should avoid setting a summary on a SeekBarPreference, as it is not intended and not part of the Material spec.</li>
+      </ul>
+    </li>
+    <li>
+      Adds support for continuous updates, allowing the SeekBar to update its saved value while the SeekBar is being dragged. This can be enabled from XML or programmatically, with
+      <code translate="no" dir="ltr">app:updatesContinuously="true"</code>
+      or
+      <code translate="no" dir="ltr">setUpdatesContinuously(true)</code>
+      . This will fire whenever the SeekBar’s position on screen changes.
+    </li>
+  </ul>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      Adds missing nullability annotations to
+      <code translate="no" dir="ltr">findPreference()</code>
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>Fixed a bug where context menu listeners were not being correctly removed if copying is not enabled</li>
+  </ul>

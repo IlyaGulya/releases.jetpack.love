@@ -1,0 +1,88 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.5.0-alpha03
+releaseDate: 2023-04-19
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha03" data-text="Version 1.5.0-alpha03" tabindex="-1">Version 1.5.0-alpha03</h3>
+  <p>April 19, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.5.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a200cb82769634cecdb118ec4f0bfdf0b086e597..01bd392d5702480f8bfe61a8f8bbbea64cf362a0/compose/ui">Version 1.5.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      New default behavior for
+      <code translate="no" dir="ltr">SubcomposeLayout</code>
+      in
+      <code translate="no" dir="ltr">LookaheadScope</code>
+      :
+      <code translate="no" dir="ltr">SubcomposeLayouts</code>
+      that don’t have conditional slots (e.g.
+      <code translate="no" dir="ltr">TabRow</code>
+      ,
+      <code translate="no" dir="ltr">Scaffold</code>
+      ,
+      <code translate="no" dir="ltr">BoxWithConstraints</code>
+      , etc) now work nicely with lookahead animations.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      New default
+      <code translate="no" dir="ltr">intermediateMeasurePolicy</code>
+      that reuses measure policy from lookahead pass allows
+      <code translate="no" dir="ltr">SubcomposeLayout</code>
+      subtypes without conditional slots such as
+      <code translate="no" dir="ltr">Scaffold</code>
+      ,
+      <code translate="no" dir="ltr">TabRow</code>
+      , and
+      <code translate="no" dir="ltr">BoxWithConstraints</code>
+      to work with lookahead by default. (
+      <a href="https://android-review.googlesource.com/#/q/Id84c8357e63905ea09b07acee91094489eb04402">Id84c8</a>
+      )
+    </li>
+    <li>
+      The recomposer created for an Android window will now only block calls to
+      <code translate="no" dir="ltr">withFrameNanos</code>
+      instead of all composition when it receives an
+      <code translate="no" dir="ltr">ON_STOP</code>
+      notification. This means windows associated with stopped activites will continue to recompose for data changes but the animations, or any other caller of
+      <code translate="no" dir="ltr">withFrameNanos</code>
+      , will block. (
+      <a href="https://android-review.googlesource.com/#/q/Id9e7fe262710544a48c2e4fc5fcbf1d27bfaa1ba">Id9e7f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/240975572">b/240975572</a>
+      )
+    </li>
+    <li>
+      Changes
+      <code translate="no" dir="ltr">motionEventSpy</code>
+      to stable. (
+      <a href="https://android-review.googlesource.com/#/q/Ic5ec4ef446908ae7fca45c5d3c6c816b61a8029f">Ic5ec4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261560988">b/261560988</a>
+      )
+    </li>
+    <li>
+      Added public
+      <code translate="no" dir="ltr">TextRange.constrain</code>
+      method. (
+      <a href="https://android-review.googlesource.com/#/q/I97912f1c1492f877bdeb9e0369e7be6f7f6a1420">I97912</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PlatformTextStyle.includeFontPadding</code>
+      is no longer deprecated to encourage developers to use this compatibility API to switch and test setting
+      <code translate="no" dir="ltr">includeFontPadding</code>
+      false. (
+      <a href="https://android-review.googlesource.com/#/q/I98e96222691d8e5d023cd22b899f0dfbae2a1e1d">I98e96</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/277703184">b/277703184</a>
+      )
+    </li>
+  </ul>

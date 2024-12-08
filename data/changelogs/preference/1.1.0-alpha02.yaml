@@ -1,0 +1,51 @@
+libraryId: preference
+groupId: androidx.preference
+version: 1.1.0-alpha02
+releaseDate: 2018-12-17
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha02" data-text="Version 1.1.0-alpha02" tabindex="-1">Version 1.1.0-alpha02</h3>
+  <p>December 17, 2018</p>
+  <p>
+    Please also check out the recently updated
+    <a href="/guide/topics/ui/settings">Settings guide</a>
+    and
+    <a href="https://github.com/android/user-interface-samples/tree/main/Preferences">sample app</a>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">EditTextPreference.OnBindEditTextListener</code>
+        interface This allows customizing the EditText displayed in the corresponding dialog after the dialog has been bound. For example, setting a custom input type / length or adding a TextWatcher.
+      </p>
+    </li>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">Preference.setCopyingEnabled()</code>
+        When set, long pressing on the Preference will show a context menu that allows copying the summary of the Preference. This can be used to allow copying of static information such as user-specific IDs / application version information.
+      </p>
+    </li>
+    <li>
+      <p>
+        preferenceTheme is now applied to the activity theme This means that when creating a Preference from code, you no longer need to use the context from
+        <code translate="no" dir="ltr">PreferenceManager#getContext()</code>
+        - you can just use your Fragment/Activity context.
+      </p>
+    </li>
+  </ul>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      Refactored
+      <code translate="no" dir="ltr">findPreference()</code>
+      to return
+      <code translate="no" dir="ltr">&lt;T extends Preference&gt;</code>
+      This means that you do not need to explicitly cast Preferences when using findPreference(). For example,
+      <code translate="no" dir="ltr">EditTextPreference preference = findPreference(“edit_text”)</code>
+      is now valid code.
+    </li>
+  </ul>

@@ -1,0 +1,112 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.0.0-alpha25
+releaseDate: 2024-09-18
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha25" data-text="Version 1.0.0-alpha25" tabindex="-1">Version 1.0.0-alpha25</h3>
+  <p>September 18, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material3:1.0.0-alpha25</code>
+    is released. Version 1.0.0-alpha25 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/80f82d37cb9b40250ee9eb15d9cbe9e93849355e..0431b84980e97d6bafdfda7c9038bc4d9529564f/wear/compose/compose-material3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We have added an Indeterminate circular progress indicator. (
+      <a href="https://android-review.googlesource.com/#/q/I427a7af6d8e9f7de6465e18f010f4b6880ef0b5a">I427a7</a>
+      )
+    </li>
+    <li>
+      We have added support for progress overflow (&gt;100% progress) for both the
+      <code translate="no" dir="ltr">CircularProgressIndicator</code>
+      and the
+      <code translate="no" dir="ltr">SegmentedCircularProgressIndicator</code>
+      . When the progress exceeds 1.0, this will be indicated by the new
+      <code translate="no" dir="ltr">overflowTrack</code>
+      color. (
+      <a href="https://android-review.googlesource.com/#/q/Iaaa3d4da94307062cd92916be09130bae63afe6a">Iaaa3d</a>
+      )
+    </li>
+    <li>
+      The round
+      <code translate="no" dir="ltr">IconToggleButton</code>
+      and
+      <code translate="no" dir="ltr">TextToggleButton</code>
+      now support a new shape animation variation, in which different shapes represent checked, unchecked and pressed states. The earlier animated shape variation for the just pressed state continues to be supported. (
+      <a href="https://android-review.googlesource.com/#/q/I29f033f2f3601c03972252865b8e2da24fb1d630">I29f03</a>
+      )
+    </li>
+    <li>
+      We have removed support for using
+      <code translate="no" dir="ltr">EdgeButton</code>
+      with
+      <code translate="no" dir="ltr">Column</code>
+      , due to the need to specify the
+      <code translate="no" dir="ltr">EdgeButton</code>
+      height explicitly in
+      <code translate="no" dir="ltr">ScreenScaffold</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie353de35ca447165e315638190a30bfb533436ce">Ie353d</a>
+      )
+    </li>
+    <li>
+      We have added support for the Wear Compose
+      <code translate="no" dir="ltr">LazyColumn</code>
+      with our
+      <code translate="no" dir="ltr">ScreenScaffold</code>
+      (and added an implementation of
+      <code translate="no" dir="ltr">ScrollInfoProvider</code>
+      for
+      <code translate="no" dir="ltr">LazyColumnState</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/Ib8d2946c22fe8279d08b0f8fc9029cdf5b8e0423">Ib8d29</a>
+      )
+    </li>
+    <li>
+      We have combined
+      <code translate="no" dir="ltr">LocalTextMaxLines</code>
+      ,
+      <code translate="no" dir="ltr">LocalTextAlign</code>
+      ,
+      <code translate="no" dir="ltr">LocalTextOverflow</code>
+      into a single
+      <code translate="no" dir="ltr">LocalTextConfiguration</code>
+      composition local to provide a more scalable solution going forwards. (
+      <a href="https://android-review.googlesource.com/#/q/I5edbc2caf74415a7a40b69c8710e059e7d168324">I5edbc</a>
+      )
+    </li>
+    <li>
+      We have added arc-large as an additional typescale, reserved for short header text strings at the very top or bottom of the screen, like in Confirmation overlays. (
+      <a href="https://android-review.googlesource.com/#/q/I60e3e7a03658230a4f075df55b0e2d2ff0263dc4">I60e3e</a>
+      )
+    </li>
+    <li>
+      We have added defaults to Button for recommended large and extra large icon sizes and content padding. (
+      <a href="https://android-review.googlesource.com/#/q/I846759e195384b56656feb0244a86ca3bdc7248c">I84675</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We have updated the colors for
+      <code translate="no" dir="ltr">IconButton</code>
+      and
+      <code translate="no" dir="ltr">TextButton</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I483249cc4f80973e2587dac253f4ae93b6c8d078">I48324</a>
+      )
+    </li>
+    <li>
+      We have changed the base Button overloads to be vertically center-aligned for consistency with other overloads. To restore the previous behavior, use
+      <code translate="no" dir="ltr">Modifier.align</code>
+      from the
+      <code translate="no" dir="ltr">RowScope</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I66e572d7a2c0f41343cb94276f5bcab1b194b18b">I66e57</a>
+      )
+    </li>
+  </ul>

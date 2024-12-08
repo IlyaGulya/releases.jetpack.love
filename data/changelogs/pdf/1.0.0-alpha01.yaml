@@ -1,0 +1,115 @@
+libraryId: pdf
+groupId: androidx.pdf
+version: 1.0.0-alpha01
+releaseDate: 2024-08-07
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha01" data-text="Version 1.0.0-alpha01" tabindex="-1">Version 1.0.0-alpha01</h3>
+  <p>August 7, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.pdf:pdf-viewer:1.0.0-alpha01</code>
+    and
+    <code translate="no" dir="ltr">androidx.pdf:pdf-viewer-fragment:1.0.0-alpha01</code>
+    are released. Version 1.0.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/79adf4553982866e6de98b7c68615fe53ad85c6d/pdf">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>
+    The initial alpha release of
+    <code translate="no" dir="ltr">PDFViewer</code>
+    includes early preview implementations that enable core PDF reading scenarios. Please note that the
+    <code translate="no" dir="ltr">PdfViewerFragment</code>
+    is currently supported only on Android V (SDK 35) versions. Support for older Android versions will be added in upcoming releases.
+  </p>
+  <ul>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">PdfViewerFragment</code>
+      which your app can use to render a PDF document.
+      <code translate="no" dir="ltr">PdfViewerFragment</code>
+      simplifies integrating a PDF viewer in your Activity and lets the users interact in the following ways:
+      <ul>
+        <li>Zooming: Pinch in and out to adjust zoom levels for a comfortable reading experience as well as double tap for a quick zoom in/out to the default state.</li>
+        <li>
+          Navigation: Scroll in the default/zoomed state.
+          <code translate="no" dir="ltr">PdfViewerFragment</code>
+          provides a quick scrubber for fast scrolling between pages.
+        </li>
+        <li>Text actions: Long tapping on text selects it, allowing users to use options like Copy and Select all on the current page.</li>
+        <li>
+          Password-protected documents:
+          <code translate="no" dir="ltr">PdfViewerFragment</code>
+          provides a dialog box for the user to enter the password and open the document.
+        </li>
+        <li>Navigable hyperlinks: Users can navigate to Web URLs or bookmarks by tapping on hyperlinks within the PDF.</li>
+        <li>
+          Shortcut to annotations mode: Edit mode is not yet supported in
+          <code translate="no" dir="ltr">PdfViewerFragment</code>
+          . Instead,
+          <code translate="no" dir="ltr">PdfViewerFragment</code>
+          displays a
+          <code translate="no" dir="ltr">FloatingActionButton</code>
+          that fires an implicit
+          <code translate="no" dir="ltr">android.intent.action.ANNOTATE</code>
+          intent with the document URI.
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">PdfViewerFragment.documentUri</code>
+      property to set a file or content URI for the document and initiate the document loading.
+      <code translate="no" dir="ltr">PdfViewerFragment</code>
+      displays a loading spinner when the URI is set indicating the background processing of the document.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">PdfViewerFragment.isTextSearchActive</code>
+      to toggle the visibility of the find in file menu.
+      <code translate="no" dir="ltr">PdfViewerFragment</code>
+      handles the entire flow - allowing input, displaying total number of matches, enabling navigation between results and exiting it.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">onDocumentLoadSuccess</code>
+      and
+      <code translate="no" dir="ltr">onDocumentLoadError</code>
+      callbacks which are invoked after successful rendering of the document or after an error is thrown before the rendering.
+    </li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      Find in file bar overlaps with the
+      <code translate="no" dir="ltr">FloatingActionButton</code>
+      in some cases.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FloatingActionButton</code>
+      icon isn’t visible for single page PDFs.
+    </li>
+    <li>Result count is not preserved on configuration change in the find in file menu.</li>
+    <li>Flickering is observed while closing the find in file menu</li>
+    <li>3D images in PDF documents are not rendered in the viewer.</li>
+    <li>Accessibility features will be enabled in the following releases.</li>
+    <li>PDF image gets blurry on rotating from portrait to landscape.</li>
+    <li>No support for text/highlight annotation.</li>
+    <li>
+      <code translate="no" dir="ltr">PdfViewerFragment</code>
+      has some performance issues on very large PDF documents (&gt; 250 MB)
+    </li>
+  </ul>
+  <p><strong>Note</strong></p>
+  <ul>
+    <li>
+      Update
+      <code translate="no" dir="ltr">compileSdk</code>
+      to 35
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/5dc41be792a8fa6b2488df3e780da1c0805b202f">5dc41be</a>
+    </li>
+  </ul>
+  <devsite-hats-survey class="nocontent" hats-id="VxqvKSur40kxBYCLVTd0SSGykbno" listnr-id="5207477"></devsite-hats-survey>

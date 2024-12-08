@@ -1,0 +1,102 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.0.0-beta07
+releaseDate: 2021-05-18
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta07" data-text="Version 1.0.0-beta07" tabindex="-1">Version 1.0.0-beta07</h3>
+  <p>May 18, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.0.0-beta07</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4c1927601bfcaaaf049d0fc7a4e5801ff5cf9729..b648147c5fdfc5ecbad57e40e2dc0c69aa23bf12/compose/ui">Version 1.0.0-beta07 contains these commits.</a>
+  </p>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      Libraries dependent on Compose will need to recompile with version
+      <code translate="no" dir="ltr">1.0.0</code>
+      ‑
+      <code translate="no" dir="ltr">beta07</code>
+      . Otherwise, libraries may encounter a
+      <code translate="no" dir="ltr">NoSuchMethodError</code>
+      , such as:
+      <br />
+      <code translate="no" dir="ltr">java.lang.NoSuchMethodError: No interface method startReplaceableGroup(ILjava/lang/String;)V in class Landroidx/compose/runtime/Composer; or its super classes</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia34e699fdbeaeb86b74e9da27d79d186e6e71757">Ia34e6</a>
+      )
+    </span>
+  </aside>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ViewRootForInspector</code>
+      interface for use in inspector (
+      <a href="https://android-review.googlesource.com/#/q/Ib70df2eb3dfe0f205daecfd139e56514d3a2cd28">Ib70df</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SubcomposeLayoutState</code>
+      now supports setting count of reusable slots. The layout will keep up to this count slots active instead of disposing them in order to reuse the slot next time we need a new one (
+      <a href="https://android-review.googlesource.com/#/q/Ieb9817249f5fa77ca12d32fcec2747e79c12565e">Ieb981</a>
+      )
+    </li>
+    <li>
+      KeyEventType enum is replaced by an inline class. (
+      <a href="https://android-review.googlesource.com/#/q/Id670a0f006c4219bbedef9e4f1b01e703b89cb2d">Id670a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187055290">b/187055290</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FocusDirection</code>
+      enum is replaced by an inline class. (
+      <a href="https://android-review.googlesource.com/#/q/Ib6d03c672268e89eb67b5f3de7c29763872f5686">Ib6d03</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187055290">b/187055290</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/184086802">b/184086802</a>
+      )
+    </li>
+    <li>
+      Introduces ability to hoist the SubcomposeLayout state which allows you to precompose the content into a requires slotId which would make the next measure pass faster as once we try to subcompose with the given slotId next time there will be no composition needed. (
+      <a href="https://android-review.googlesource.com/#/q/I425806be5ec3e36337e04558e6621fbe515b7cd8">I42580</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/184940225">b/184940225</a>
+      )
+    </li>
+    <li>
+      Added Clip Selection Handle (
+      <a href="https://android-review.googlesource.com/#/q/Iff80d27fbac0e4de5e3e99fac4352cd6ef2cd201">Iff80d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/183408447">b/183408447</a>
+      )
+    </li>
+    <li>
+      Removed unused APIs related to LayoutInspector support. (
+      <a href="https://android-review.googlesource.com/#/q/I2ac78567834a4f6f33066aa52c834da5c9b4e1ff">I2ac78</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      LazyColumn/Row will now keep up to 2 previously visible items active (not disposed) even when they are scrolled out already. This allows the component to reuse the active subcompositions when we will need to compose a new item which improves the scrolling performance. (
+      <a href="https://android-review.googlesource.com/#/q/Ie5555c9a7031dc9bd31f452a0ed9b28d8a337f5f">Ie5555</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TextGeomerticTransform</code>
+      and
+      <code translate="no" dir="ltr">TextDecoration</code>
+      on
+      <code translate="no" dir="ltr">AnnotatedString</code>
+      will be applied as given. (
+      <a href="https://android-review.googlesource.com/#/q/I61900b749deafc1570dc329a64d1050fd52b20a2">I61900</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/184760917">b/184760917</a>
+      )
+    </li>
+  </ul>

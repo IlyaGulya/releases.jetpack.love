@@ -1,0 +1,57 @@
+libraryId: webkit
+groupId: androidx.webkit
+version: 1.6.0
+releaseDate: 2023-01-25
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0" data-text="Version 1.6.0" tabindex="-1">Version 1.6.0</h3>
+  <p>January 25, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.webkit:webkit:1.6.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f2cd44abc5d159809c80d203e887a24884dff186..092d2470b0d71065d37c4ed9d6b46ee88b5fe8f2/webkit/webkit">Version 1.6.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 1.5.0</strong></p>
+  <ul>
+    <li>
+      A new
+      <a href="https://developer.android.com/reference/androidx/webkit/ProcessGlobalConfig">ProcessGlobalConfig</a>
+      API has been added to allow apps to provide configuration settings that need to be set before loading WebView, such as the WebView data directory suffix. The configuration should be set up and applied as early as possible during application startup, to ensure that it happens before any other thread can call a method that loads
+      <code translate="no" dir="ltr">WebView</code>
+      into the process.
+    </li>
+    <li>
+      A new
+      <a href="https://developer.android.com/reference/androidx/webkit/CookieManagerCompat">CookieManagerCompat</a>
+      API has been added to expand
+      <a href="https://developer.android.com/reference/android/webkit/CookieManager">android.webkit.CookieManager</a>
+      with a new
+      <code translate="no" dir="ltr">getCookieInfo</code>
+      method, which retrieves all attributes for all cookies set on a specific URL. This differs from the existing getCookie API in
+      <code translate="no" dir="ltr">CookieManager</code>
+      which returns only the name and value attributes of the cookies.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">WebSettingsCompat</code>
+      has new methods to
+      <a href="https://developer.android.com/reference/androidx/webkit/WebSettingsCompat#setEnterpriseAuthenticationAppLinkPolicyEnabled(android.webkit.WebSettings,boolean)">enable/disable</a>
+      the effect of
+      <code translate="no" dir="ltr">EnterpriseAuthenticationAppLinkPolicy</code>
+      if set by admin in
+      <code translate="no" dir="ltr">WebView</code>
+      , and to
+      <a href="https://developer.android.com/reference/androidx/webkit/WebSettingsCompat#getEnterpriseAuthenticationAppLinkPolicyEnabled(android.webkit.WebSettings)">get the current setting</a>
+      . This feature lets WebView open an Authentication app instead of opening the authentication URL. This feature has no effect on devices that are not managed by an enterprise policy.
+    </li>
+    <li>
+      Adding
+      <a href="https://developer.android.com/reference/androidx/webkit/WebSettingsCompat#setRequestedWithHeaderOriginAllowList(android.webkit.WebSettings,java.util.Set%3Cjava.lang.String%3E)">a new API</a>
+      to
+      <code translate="no" dir="ltr">WebSettingsCompat</code>
+      to let applications explicitly send the app package name in the
+      <code translate="no" dir="ltr">X-Requested-With</code>
+      header to allowlisted origins. The header has traditionally been sent on every request from
+      <code translate="no" dir="ltr">WebView</code>
+      .
+    </li>
+  </ul>

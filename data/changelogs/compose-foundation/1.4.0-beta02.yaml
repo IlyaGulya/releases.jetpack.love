@@ -1,0 +1,72 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.4.0-beta02
+releaseDate: 2023-02-22
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-beta02" data-text="Version 1.4.0-beta02" tabindex="-1">Version 1.4.0-beta02</h3>
+  <p>February 22, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation:1.4.0-beta02</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-layout:1.4.0-beta02</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f7337eab774a6ce3b17367d5f31708564b66e677..87533b4ff06971ed59028936cd9b6da988cd4522/compose/foundation">Version 1.4.0-beta02 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">Modifier.Node.onReset()</code>
+      callback allowing you to reset some local state to properly handle the case when the
+      <code translate="no" dir="ltr">Layout</code>
+      will be reused (for example as an item of
+      <code translate="no" dir="ltr">LazyColumn</code>
+      ). Fixed
+      <code translate="no" dir="ltr">FocusTargetModifierNode</code>
+      to properly reset the focused state. (
+      <a href="https://android-review.googlesource.com/#/q/I65495712cdeafeb3fedc3e4272627c024f952ddb">I65495</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/265201972">b/265201972</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">BlendMode</code>
+      parameter to
+      <code translate="no" dir="ltr">DrawScope.drawText</code>
+      ,
+      <code translate="no" dir="ltr">Paragraph.paint</code>
+      , and
+      <code translate="no" dir="ltr">MultiParagraph.paint</code>
+      methods to support different blending algorithms when drawing text on Canvas. (
+      <a href="https://android-review.googlesource.com/#/q/I57508ab06da481f63b4061ecb8ad72c3a733b0a7">I57508</a>
+      )
+    </li>
+    <li>
+      Removed the
+      <code translate="no" dir="ltr">modifierElementOf()</code>
+      API. Please extend from
+      <code translate="no" dir="ltr">ModifierNodeElement</code>
+      directly instead. (
+      <a href="https://android-review.googlesource.com/#/q/Ie6d218280e3f9cdcd130f6abce2c5e549b12b765">Ie6d21</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Adjusting selection handles can no longer select a partial character. (
+      <a href="https://android-review.googlesource.com/#/q/Idedd1679a5d1a2f2a8c93405b8d2f0450e793feb">Idedd1</a>
+      )
+    </li>
+    <li>
+      Fix crash when ctrl+backspace on empty
+      <code translate="no" dir="ltr">TextField</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I0427f936ddc519955d4b8092a86e10e0825c8696">I0427f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/244185537">b/244185537</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,67 @@
+libraryId: profileinstaller
+groupId: androidx.profileinstaller
+version: 1.3.0
+releaseDate: 2023-03-22
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0" data-text="Version 1.3.0" tabindex="-1">Version 1.3.0</h3>
+  <p>March 22, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.profileinstaller:profileinstaller:1.3.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1e0793130863c72dc4a2d02bc975128f3ef0158b..96686b86417177a6743d87bead947ab48e8a5b7a/profileinstaller/profileinstaller">Version 1.3.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 1.2.0</strong></p>
+  <ul>
+    <li>
+      Fixed a
+      <code translate="no" dir="ltr">NullPointerException</code>
+      in
+      <code translate="no" dir="ltr">ProfileInstallReceiver</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/243851384">b/243851384</a>
+      )
+    </li>
+    <li>
+      Added
+      <a href="https://developer.android.com/reference/androidx/profileinstaller/ProfileVerifier"><code translate="no" dir="ltr">ProfileVerifier</code></a>
+      api to check from within the app if a baseline profile has been compiled, scheduled, or is missing (
+      <a href="https://android-review.googlesource.com/#/q/I263a45582743afce0c3d9aefe629c07dfde77a72">I263a4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/246653809">b/246653809</a>
+      )
+    </li>
+    <li>
+      Adds a new shell broadcast that enables Macrobenchmark to fully flush in-memory profile data to disk, to be included in baseline profile generation. This is required to use the macrobenchmark library to capture baseline profiles with
+      <code translate="no" dir="ltr">BaselineProfileRule</code>
+      , and evaluate profile performance using
+      <code translate="no" dir="ltr">CompilationMode.Partial(warmupIterations)</code>
+      .
+    </li>
+    <li>
+      Added
+      <a href="https://developer.android.com/reference/kotlin/androidx/profileinstaller/ProfileInstaller#DIAGNOSTIC_PROFILE_IS_COMPRESSED()">a diagnostic code</a>
+      to detect compressed baseline profiles. Compressed baseline profiles cannot be installed by Profileinstaller in Macrobenchmarks or in production due to CPU overhead, and should be avoided when building your app by updating either to Studio/AGP Electric Eel or
+      <code translate="no" dir="ltr">bundletool</code>
+      version
+      <code translate="no" dir="ltr">1.13.1</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I8641387ad6073dde588d0d764da4a3b24b1c8ee4">I86413</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261998144">b/261998144</a>
+      )
+    </li>
+    <li>
+      Added hooks for macrobenchmark to capture profiles and drop shader cache, which are required for generating Baseline Profiles or macrobenchmarking on unrooted devices (
+      <a href="https://android-review.googlesource.com/#/q/Ie0a7d13cbe34476113bad955e47ed771d84e65a4">Ie0a7d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/250083467">b/250083467</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/253094958">b/253094958</a>
+      ) (
+      <a href="https://android-review.googlesource.com/#/q/Ia5171b0f40dd8ce6f64f5ccf0a33281a4d8b121e">Ia5171</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/231455742">b/231455742</a>
+      )
+    </li>
+  </ul>

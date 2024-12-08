@@ -1,0 +1,68 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.2.0-alpha04
+releaseDate: 2019-09-18
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha04" data-text="Version 1.2.0-alpha04" tabindex="-1">Version 1.2.0-alpha04</h3>
+  <p>September 18, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.2.0-alpha04</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment-ktx:example:1.2.0-alpha04</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.2.0-alpha04</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/8e4aaeee0302e90400b8aa995dbbc220aa5dfe21..6e3bf267861f1dffb15c0ceff82f553a658c9972/fragment">Version 1.2.0-alpha04 contains these commits</a>
+    .
+  </p>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">getFragmentManager()</code>
+      and
+      <code translate="no" dir="ltr">requireFragmentManager()</code>
+      methods on
+      <code translate="no" dir="ltr">Fragment</code>
+      have been deprecated and replaced with a single
+      <code translate="no" dir="ltr">getParentFragmentManager()</code>
+      method, which returns the non-null
+      <code translate="no" dir="ltr">FragmentManager</code>
+      the Fragment is added to (you can use
+      <code translate="no" dir="ltr">isAdded()</code>
+      to determine if it is safe to call). (
+      <a href="https://issuetracker.google.com/issues/140574496">b/140574496</a>
+      )
+    </li>
+    <li>
+      The static
+      <code translate="no" dir="ltr">FragmentManager.enableDebugLogging</code>
+      method has been deprecated. FragmentManager now respects
+      <a href="/reference/android/util/Log#isLoggable(java.lang.String,%20int)"><code translate="no" dir="ltr">Log.isLoggable()</code></a>
+      for the tag
+      <code translate="no" dir="ltr">FragmentManager</code>
+      , allowing you to enable either
+      <code translate="no" dir="ltr">DEBUG</code>
+      or
+      <code translate="no" dir="ltr">VERBOSE</code>
+      logging without re-compiling your app. (
+      <a href="https://android-review.googlesource.com/1116591">aosp/1116591</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Fragments are now properly destroyed while exit animations on other fragments are running. (
+      <a href="https://issuetracker.google.com/issues/140574199">b/140574199</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where Fragments would call
+      <code translate="no" dir="ltr">Activity.findViewById()</code>
+      where before it did not. (
+      <a href="https://android-review.googlesource.com/1116431">aosp/1116431</a>
+      )
+    </li>
+  </ul>

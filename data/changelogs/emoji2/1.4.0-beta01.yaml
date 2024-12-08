@@ -1,0 +1,241 @@
+libraryId: emoji2
+groupId: androidx.emoji2
+version: 1.4.0-beta01
+releaseDate: 2023-04-05
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-beta01" data-text="Version 1.4.0-beta01" tabindex="-1">Version 1.4.0-beta01</h3>
+  <p>April 5, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.emoji2:emoji2-*:1.4.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5e7d256f82fbafb6d059ab7b18fddd87c7531553..a200cb82769634cecdb118ec4f0bfdf0b086e597/emoji2">Version 1.4.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <p><code translate="no" dir="ltr">androidx.emoji2:emoji2-emojipicker</code></p>
+  <p>The Emoji Picker is a UI solution that offers a modern look and feel, up-to-date emojis, and ease of use. Users can browse and select emojis and their variants, or choose from their recently used emojis. With this library, apps across different OEMs can provide an inclusive and unified emoji experience to their users without the developers having to build and maintain their own emoji picker from scratch.</p>
+  <p><strong>Up-to-date Emojis</strong></p>
+  <p>New emojis are released every year, and we will selectively include them in the Emoji Picker. To ensure backward compatibility, we perform an accurate emoji renderability check internally to eliminate tofu. This will ensure that the library is compatible across multiple Android versions and devices.</p>
+  <p><strong>Sticky variants</strong></p>
+  <p>Long-pressing an emoji will display a menu of variants, such as different genders or skin tones. The variant you choose will be saved in the emoji picker, and the last selected variant will be used in the main panel. With this feature, users can send their preferred emoji variants with just one tap.</p>
+  <p><strong>Recent emoji</strong></p>
+  <p>
+    The
+    <code translate="no" dir="ltr">RecentEmojiProvider</code>
+    is responsible for providing emojis in the “Recently Used” category. The library has a default recent emoji provider that satisfies the most common use case:
+  </p>
+  <ul>
+    <li>All selected emojis are saved per-app level in shared preferences.</li>
+    <li>The picker displays at most 3 rows of selected emojis, deduped, in reverse chronological order.</li>
+  </ul>
+  <p>
+    If this default behavior is sufficient, then you don't need to set the
+    <code translate="no" dir="ltr">setRecentEmojiProvider()</code>
+    method.
+  </p>
+  <p><strong>Work with EmojiCompat</strong></p>
+  <p>
+    If the app has an
+    <code translate="no" dir="ltr">EmojiCompat</code>
+    instance, it will be used in the emoji picker to render as many emojis as possible. If
+    <code translate="no" dir="ltr">EmojiCompat</code>
+    is disabled, the emoji picker will still work fine.
+  </p>
+  <p><strong>How to use the library</strong></p>
+  <p>To use the library, an app developer should</p>
+  <ol>
+    <li>
+      <p>
+        Import
+        <code translate="no" dir="ltr">androidx.emoji2:emojipicker:$version</code>
+        in
+        <code translate="no" dir="ltr">build.gradle</code>
+        .
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Carbon"><code translate="no" dir="ltr"><span class="devsite-syntax-nx">dependencies</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-nx">implementation</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"androidx.emoji2:emojipicker:$version"</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        Inflate the emoji picker view and optionally set
+        <code translate="no" dir="ltr">emojiGridRows</code>
+        and
+        <code translate="no" dir="ltr">emojiGridColumns</code>
+        based on the desired size of each emoji cell
+      </p>
+
+      <ul>
+        <li>
+          You could leave them unset, the default is 9
+          <code translate="no" dir="ltr">emojiGridColumns</code>
+          , rows will be calculated based on the parent view height and
+          <code translate="no" dir="ltr">emojiGridColumns</code>
+        </li>
+        <li>
+          You could set
+          <code translate="no" dir="ltr">emojiGridRows</code>
+          as a float to indicate there’s more emojis if scroll down in XML
+        </li>
+      </ul>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="scdoc"><code translate="no" dir="ltr"> &lt;androidx.emoji2.emojipicker.EmojiPickerView
+    android:id="@+id/emoji_picker"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:emojiGridColumns="9" /&gt;
+  </code></pre>
+      </devsite-code>
+    </li>
+  </ol>
+  <p>in code</p>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="scdoc"><code translate="no" dir="ltr">    val emojiPickerView = EmojiPickerView(context).apply {
+          emojiGridColumns = 15
+          layoutParams = ViewGroup.LayoutParams(
+              ViewGroup.LayoutParams.MATCH_PARENT,
+              ViewGroup.LayoutParams.MATCH_PARENT
+          )
+      }
+      findViewById&lt;ViewGroup&gt;(R.id.emoji_picker_layout).addView(emojiPickerView)
+  </code></pre>
+  </devsite-code>
+  <ol>
+    <li>
+      <p>
+        Assuming you would like to append the selected emojis to a EditText, use
+        <code translate="no" dir="ltr">setOnEmojiPickedListener()</code>
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="scdoc"><code translate="no" dir="ltr">  emojiPickerView.setOnEmojiPickedListener {
+        findViewById&lt;EditText&gt;(R.id.edit_text).append(it.emoji)
+    }
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        Optionally set
+        <code translate="no" dir="ltr">RecentEmojiProvider</code>
+        , see sample app for an example implementation.
+      </p>
+    </li>
+    <li>
+      <p>
+        Optionally customize styles. Create your own style to override common theme attributes and apply the style to the
+        <code translate="no" dir="ltr">EmojiPickerView</code>
+        . For example, overriding
+        <code translate="no" dir="ltr">colorControlNormal</code>
+        will change the category icon color.
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Transact-SQL"><code translate="no" dir="ltr"><span class="devsite-syntax-w">  </span>&lt;<span class="devsite-syntax-n">style</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">name</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-ss">"CustomStyle"</span><span class="devsite-syntax-w"> </span>&gt;
+  <span class="devsite-syntax-w">      </span>&lt;<span class="devsite-syntax-n">item</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">name</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-ss">"colorControlNormal"</span>&gt;<span class="devsite-syntax-n">#FFC0CB</span>&lt;<span class="devsite-syntax-o">/</span><span class="devsite-syntax-n">item</span>&gt;
+  <span class="devsite-syntax-w">  </span>&lt;<span class="devsite-syntax-o">/</span><span class="devsite-syntax-n">style</span>&gt;
+  <span class="devsite-syntax-w">  </span>&lt;<span class="devsite-syntax-n">androidx</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-n">emoji2</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-n">emojipicker</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-n">EmojiPickerView</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-nl">android</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-n">id</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-ss">"@+id/emoji_picker"</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-nl">android</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-n">layout_width</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-ss">"match_parent"</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-nl">android</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-n">layout_height</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-ss">"match_parent"</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-nl">android</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-n">theme</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-ss">"@style/CustomStyle"</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-nl">app</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-n">emojiGridColumns</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-ss">"9"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">/</span>&gt;
+  </code></pre>
+      </devsite-code>
+    </li>
+  </ol>
+  <p>See sample app for an example implementation.</p>
+  <p>
+    A full API surface can be found
+    <a href="https://github.com/androidx/androidx/blob/androidx-main/emoji2/emoji2-emojipicker/api/current.txt">here</a>
+    .
+  </p>
+  <p><strong>Sample App</strong></p>
+  <p>
+    This
+    <a href="https://android.googlesource.com/platform/frameworks/support/+/refs/heads/androidx-main/emoji2/emoji2-emojipicker/samples">sample</a>
+    app demonstrate basic use cases plus the following additional scenarios:
+  </p>
+  <ul>
+    <li>
+      The view re-layouted because
+      <code translate="no" dir="ltr">emojiGridRows</code>
+      and
+      <code translate="no" dir="ltr">emojiGridColumns</code>
+      were reseted.
+    </li>
+    <li>The recent emoji provider is overridden to sort by frequency.</li>
+    <li>Style customization.</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <p>The Emoji Picker library has been updated with the following new APIs:</p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">EmojiPickerView</code>
+      class, which provides up-to-date emojis in a vertical scrollable view with a clickable horizontal header.
+    </li>
+    <li>
+      The ability to set the number of columns and rows in the emoji picker grid via XML attributes
+      <code translate="no" dir="ltr">emojiGridColumns</code>
+      and
+      <code translate="no" dir="ltr">emojiGridRows</code>
+      or the
+      <code translate="no" dir="ltr">setEmojiGridColumns()</code>
+      and
+      <code translate="no" dir="ltr">setEmojiGridRows()</code>
+      methods.
+    </li>
+    <li>
+      The ability to set an emoji picked listener via the
+      <code translate="no" dir="ltr">setOnEmojiPickedListener()</code>
+      method. The listener will be notified whenever the user clicks any emoji.
+    </li>
+    <li>
+      The ability to provide a recent emoji provider via the
+      <code translate="no" dir="ltr">setRecentEmojiProvider()</code>
+      method. This is an optional function. If the recent emoji provider is not set, a default recent emoji provider will be used by the library. The default behavior is defined as follows:
+      <ul>
+        <li>All selected emojis will be saved per-app level in shared preferences.</li>
+        <li>The picker will display at most 3 rows of selected emojis, deduped, in reverse chronological order.</li>
+      </ul>
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">EmojiViewItem</code>
+      class, which holds the displayed emoji and its emoji variants.
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">RecentEmojiProvider</code>
+      interface, which can be implemented to provide a recent emoji list. The
+      <code translate="no" dir="ltr">recentEmojiProvider</code>
+      is responsible for providing emojis in the “Recently Used” category.
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">RecentEmojiAsyncProvider</code>
+      interface, which can be implemented to provide a recent emoji list. The
+      <code translate="no" dir="ltr">RecentEmojiAsyncProvider</code>
+      is responsible for providing emojis in the “Recently Used” category. This interface is equivalent to
+      <code translate="no" dir="ltr">RecentEmojiProvider</code>
+      that allows clients to override the
+      <code translate="no" dir="ltr">getRecentEmojiListAsync()</code>
+      method to provide recent emojis.
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">RecentEmojiProviderAdapter</code>
+      class, which is an adapter for the
+      <code translate="no" dir="ltr">RecentEmojiAsyncProvider</code>
+      and implements
+      <code translate="no" dir="ltr">RecentEmojiProvider</code>
+      .
+    </li>
+  </ul>

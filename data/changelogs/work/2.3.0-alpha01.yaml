@@ -1,0 +1,124 @@
+libraryId: work
+groupId: androidx.work
+version: 2.3.0-alpha01
+releaseDate: 2019-08-22
+#language=html
+changelogHtml: |
+  <h3 id="2.3.0-alpha01" data-text="Version 2.3.0-alpha01" tabindex="-1">Version 2.3.0-alpha01</h3>
+  <p>August 22, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.3.September 5, 20190-alpha01</code>
+    is released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/57828f2feae3e65ae15c1cd8acd4f56af451ce5e..2114e28ad291adc12d4ea9bd4038a211daec16b8/work">here</a>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ListenableWorker</code>
+      s can now set progress via the
+      <code translate="no" dir="ltr">setProgressAsync()</code>
+      API. Also added a corresponding
+      <code translate="no" dir="ltr">suspend</code>
+      -ing
+      <code translate="no" dir="ltr">setProgress</code>
+      API in
+      <code translate="no" dir="ltr">CoroutineWorker</code>
+      and a
+      <code translate="no" dir="ltr">setProgress</code>
+      in
+      <code translate="no" dir="ltr">RxWorker</code>
+      which returns a
+      <code translate="no" dir="ltr">Single&lt;Void&gt;</code>
+      . With these new APIs Workers can convey progress information via
+      <code translate="no" dir="ltr">WorkInfo</code>
+      which has a corresponding
+      <code translate="no" dir="ltr">getProgress</code>
+      API. (
+      <a href="https://issuetracker.google.com/issues/79481554">b/79481554</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Data</code>
+      has a
+      <code translate="no" dir="ltr">containsKey()</code>
+      API which can be used to validate that input data to
+      <code translate="no" dir="ltr">Worker</code>
+      s has keys with the expected type. (
+      <a href="https://issuetracker.google.com/issues/117136838">b/117136838</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Data</code>
+      can now be serialized using
+      <code translate="no" dir="ltr">Data.toByteArray()</code>
+      and
+      <code translate="no" dir="ltr">Data.fromByteArray()</code>
+      . Note that there are no versioning guarantees with
+      <code translate="no" dir="ltr">Data</code>
+      so you should
+      <em>not</em>
+      persist it or use it for IPC between applications. They are only safe to be used between multiple processes of the
+      <em>same</em>
+      application.
+    </li>
+    <li>
+      Added the ability to specify an
+      <code translate="no" dir="ltr">InputMergerFactory</code>
+      via
+      <code translate="no" dir="ltr">Configuration.setInputMergerFactory</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/133273159">b/133273159</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      WorkManager will throw an instance of
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      if a
+      <code translate="no" dir="ltr">WorkerFactory</code>
+      returns an instance of
+      <code translate="no" dir="ltr">ListenableWorker</code>
+      which has been previously invoked. (
+      <a href="https://issuetracker.google.com/issues/139554406">b/139554406</a>
+      )
+    </li>
+    <li>
+      Documentation updates around
+      <code translate="no" dir="ltr">ListenableFuture</code>
+      cancellation and the
+      <code translate="no" dir="ltr">onStopped()</code>
+      callback in
+      <code translate="no" dir="ltr">ListenableWorker</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/138413671">b/138413671</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      The in-process Scheduler now ignores
+      <code translate="no" dir="ltr">WorkRequest</code>
+      s with the
+      <code translate="no" dir="ltr">idle</code>
+      constraint. These requests are now only picked up by
+      <code translate="no" dir="ltr">JobScheduler</code>
+      when the device is actually
+      <code translate="no" dir="ltr">idle</code>
+      . (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1089779">aosp/1089779</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TestScheduler</code>
+      now correctly uses the specified
+      <code translate="no" dir="ltr">Executor</code>
+      for its internal task executor in tests. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1090749">aosp/1090749</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_220_3" data-text="Version 2.2.0" tabindex="-1">Version 2.2.0</h2>

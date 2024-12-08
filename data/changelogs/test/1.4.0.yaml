@@ -1,0 +1,71 @@
+libraryId: test
+groupId: androidx.test
+version: 1.4.0
+releaseDate: 2021-06-30
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0" data-text="Version 1.4.0" tabindex="-1">Version 1.4.0</h3>
+  <p>June 30, 2021</p>
+  <p>This is the stable release of AndroidX Test 1.4.0 + Espresso 3.4.0. It contains updates to the following libraries:</p>
+  <ul>
+    <li>Core 1.4.0</li>
+    <li>Espresso 3.4.0</li>
+    <li>Intents 3.4.0</li>
+    <li>JUnit 1.1.3</li>
+    <li>Monitor 1.4.0</li>
+    <li>Orchestrator 1.4.0</li>
+    <li>Runner 1.4.0</li>
+    <li>Rules 1.4.0</li>
+    <li>Truth 1.4.0</li>
+    <li>Test Services 1.4.0</li>
+  </ul>
+  <p>There are no changes since 1.4.0-rc01. Here is a summary of the changes since the 1.3.0 release:</p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>Add Espresso ViewMatcher APIs for negative conditions</li>
+    <li>Allow unregistering Loopers from Espresso IdlingRegistry</li>
+    <li>Support specifying junit RunListeners via java.util.ServiceLoader</li>
+    <li>Introduce Espresso BoundedDiagnosingMatcher base class API that offers better error messaging, and apply it to various Espresso matchers</li>
+    <li>Support using UIThreadTest at the class level</li>
+    <li>Several utility methods added to ext.truth's LocationSubject</li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">SparseBooleanArraySubject</code>
+      Truth
+      <code translate="no" dir="ltr">Subject</code>
+      for making assertions about
+      <code translate="no" dir="ltr">SparseBooleanArray</code>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Improve handling for large stack traces on test failures [#729, #269]
+      <ul>
+        <li>Remove test runner framework related stack frames</li>
+        <li>Truncate stack traces to a max limit of 64KB, to avoid binder limit transaction errors</li>
+      </ul>
+    </li>
+    <li>Add support for classpath scanning test discovery for multidex instrumentation apks on android APIs &lt; 21.</li>
+    <li>Espresso: Improve error messaging when no activity is present</li>
+    <li>Improve Instrumentation#runOnMainSync exception error handling</li>
+    <li>Improve documentation for -e timeout_msec and AndroidJUnit4.</li>
+    <li>Send ActivityOptions to BootstrapActivity [#685]</li>
+    <li>Improve ViewMatchers#assertThat error messaging by enabling it to use Matcher.describeMismatch</li>
+    <li>Fix the missing desugar ThrowableExtension errors when using espresso remote [issuetracker.google.com/170228109]</li>
+    <li>Fix espresso web on &lt; Android API 19 by including the androidx.test.espresso.web.bridge classes</li>
+    <li>Unregister ActivityResultWaiter in InstrumentationActivityInvoker if it wasn't already unregistered</li>
+    <li>Runner: Reduce TestEventClient 'not primary instr' log message to a warning, as its an expected condition in multi process tests</li>
+    <li>Espresso: Update HasSiblingMatcher to only check siblings (not self)</li>
+    <li>Fix artifact name for espresso.idling.resource [#809]</li>
+    <li>Expose setMasterPolicyTimeoutWhenDebuggerAttached functionality [#814]</li>
+    <li>Remove overly verbose ActivityLifecycleMonitorImpl callback logging.</li>
+  </ul>
+  <p><strong>Dependency Changes</strong></p>
+  <ul>
+    <li>Update espresso.accessibility and espresso.contrib to depend on the androidx-compatible com.google.android.apps.common.testing.accessibility.framework:accessibility-test-framework:3.1. This release will thus require java8 source/target compatiblity. [#492]</li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>Using orchestrator on APIS 30+ requires Studio/AGP 4.2+</li>
+  </ul>

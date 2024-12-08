@@ -1,0 +1,92 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.0.0-beta04
+releaseDate: 2021-04-07
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta04" data-text="Version 1.0.0-beta04" tabindex="-1">Version 1.0.0-beta04</h3>
+  <p>April 7, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation:1.0.0-beta04</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-layout:1.0.0-beta04</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5c42896eb6591b09e3952030fb7ea8d9b8c42713..0e6e72e136ada934db74265667417524ba0ba04f/compose/foundation">Version 1.0.0-beta04 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Rename hideSoftwareKeyboard and showSoftwareKeyboard on SoftwareKeyboardController to
+      <code translate="no" dir="ltr">hide()</code>
+      and
+      <code translate="no" dir="ltr">show()</code>
+      respectively.
+      <ul>
+        <li>
+          Provide the full CompositionLocal interface for LocalSoftwareKeyboardController, allowing it to be set (especially useful in tests) (
+          <a href="https://android-review.googlesource.com/#/q/I579a6e311d1cc96e4ea398465cad3a402a633b8d">I579a6</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TextOverflow.Visible</code>
+      is introduced. (
+      <a href="https://android-review.googlesource.com/#/q/Ic8f898df15fa7cfa3fadf5a47d5b0e34a68f52f6">Ic8f89</a>
+      )
+    </li>
+    <li>
+      Public instances of
+      <code translate="no" dir="ltr">RowScope</code>
+      ,
+      <code translate="no" dir="ltr">ColumnScope</code>
+      ,
+      <code translate="no" dir="ltr">BoxScope</code>
+      ,
+      <code translate="no" dir="ltr">BoxWithConstraintsScope</code>
+      were removed. (
+      <a href="https://android-review.googlesource.com/#/q/I4e83e38b3bb85be593288720e6b9cdbe0032bceb">I4e83e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/181869067">b/181869067</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed the issue when items of
+      <code translate="no" dir="ltr">LazyColumn</code>
+      /
+      <code translate="no" dir="ltr">LazyRow</code>
+      located on the edges were incorrectly positioned after fast fling (
+      <a href="https://android-review.googlesource.com/#/q/Ie4d13def7dc4b12d4f52b4c5edbb0abb5150f698">Ie4d13</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/183877420">b/183877420</a>
+      )
+    </li>
+    <li>
+      <p>Prior to this change, local composable functions were skippable based on their parameters. After this change, no local composable functions will skip. This change is done because it is common and expected for local functions to capture parameters from the parent and them skipping is a common source of bugs.</p>
+
+      <p>To summarize, consider the example:</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@Composable</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">Counter</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">count</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">Int</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">onCountChange</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-kt">Int</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;<span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">Unit</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-nd">@Composable</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">ShowCount</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Text</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"Count: </span><span class="devsite-syntax-si">$</span><span class="devsite-syntax-n">count</span><span class="devsite-syntax-s">"</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">ShowCount</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">Button</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">onClick</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">onCountChange</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">count</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">+</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-m">1</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">})</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">Text</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"Increment"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+      <p>
+        Prior to this change, the
+        <code translate="no" dir="ltr">ShowCount</code>
+        composable function would always skip, even after the
+        <code translate="no" dir="ltr">count</code>
+        parameter was updated. This is no longer the case. (
+        <a href="https://android-review.googlesource.com/#/q/I5648a5f11c89e71c6b8c748f111c47bcafee9178">I5648a</a>
+        )
+      </p>
+    </li>
+  </ul>

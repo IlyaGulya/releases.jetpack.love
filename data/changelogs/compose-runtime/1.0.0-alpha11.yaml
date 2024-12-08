@@ -1,0 +1,106 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.0.0-alpha11
+releaseDate: 2021-01-28
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha11" data-text="Version 1.0.0-alpha11" tabindex="-1">Version 1.0.0-alpha11</h3>
+  <p>January 28, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.0.0-alpha11</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6207afb1646d302c5d29c2c67d332b48db87fb27..6950aab50fe6c9f7e9d97cf865161f2d3999eb9e/compose/runtime">Version 1.0.0-alpha11 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      onCommit, onDispose, and onActive have been deprecated in favor of SideEffect and DisposableEffect APIs (
+      <a href="https://android-review.googlesource.com/#/q/If760ec2a190c4121a35006695d953010ac22a43a">If760e</a>
+      )
+    </li>
+    <li>
+      The emit() API and all overloads have been deprecated and renamed to ComposeNode. The APIs are identical, just a different name in order to follow the naming conventions of Compose (
+      <a href="https://android-review.googlesource.com/#/q/I4137beb6f23fb43350bf7badcbe790f59fa85e2c">I4137b</a>
+      )
+    </li>
+    <li>
+      invalidate and compositionReference() are now deprecated in favor of currentRecomposeScope and rememberCompositionReference respectively. (
+      <a href="https://android-review.googlesource.com/#/q/I583a8efa6e3d3bc303792b825b948b3722ada103">I583a8</a>
+      )
+    </li>
+    <li>
+      <p>RememberObserver replaces CompositionLifecycleObserver and CompositionLifecycleObserver is now deprecated.</p>
+
+      <p>
+        <code translate="no" dir="ltr">RememberObserver</code>
+        is a replacement for
+        <code translate="no" dir="ltr">CompositionLifecycleObserver</code>
+        with modified semantics and renamed methods. Changing to the new API can be done mechanically for objects that are only remembered once which is, and continues to be, the recommended practice. However, if a reference was remembered more than once in a composition
+        <code translate="no" dir="ltr">onRemembered</code>
+        is called for each reference where
+        <code translate="no" dir="ltr">onEnter</code>
+        is only called once.
+        <code translate="no" dir="ltr">onEnter</code>
+        was called multiple time if the object was used in subcompositions, such as
+        <code translate="no" dir="ltr">WithConstraints</code>
+        and
+        <code translate="no" dir="ltr">Scaffold</code>
+        making the single
+        <code translate="no" dir="ltr">onEnter</code>
+        call guarantee unreliable and it was removed for
+        <code translate="no" dir="ltr">RememberObserver</code>
+        .
+      </p>
+
+      <p>
+        <code translate="no" dir="ltr">RememberObserver</code>
+        adds
+        <code translate="no" dir="ltr">onAbandoned</code>
+        which is called if the
+        <code translate="no" dir="ltr">RememberObserver</code>
+        instance is returned from the callback passed to
+        <code translate="no" dir="ltr">remember</code>
+        but was not remembered in the composition state and, therefore, will never have
+        <code translate="no" dir="ltr">onRemembered</code>
+        called. This can occur if an exception terminates composition before completing or the composition is discarded because the state is was producing a composition for is no longer current or otherwise is no longer needed. If the instance of
+        <code translate="no" dir="ltr">RememberObserver</code>
+        following the single reference recommendation above is tracking an external resource both
+        <code translate="no" dir="ltr">onForgotten</code>
+        and
+        <code translate="no" dir="ltr">onAbandoned</code>
+        each indicate that the resource is no longer needed. If the object is tracking work started or resources allocated in
+        <code translate="no" dir="ltr">onRemembered</code>
+        ,
+        <code translate="no" dir="ltr">onAbandoned</code>
+        can be ignored as it will not be called if
+        <code translate="no" dir="ltr">onRemembered</code>
+        is called. (
+        <a href="https://android-review.googlesource.com/#/q/I02c364f517507abd6a5c071fb527192ad1d77239">I02c36</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Do not mark
+        <code translate="no" dir="ltr">collectAsState()</code>
+        functions as inline (
+        <a href="https://android-review.googlesource.com/#/q/Ia73e40c20f0bd5eea3b2fa870aae90ba02237cfc">Ia73e4</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      WithConstraints was reworked as BoxWithConstraints and moved to foundation.layout. (
+      <a href="https://android-review.googlesource.com/#/q/I9420b9e0fbea7ee048b23a6ef328165bbb11e8a8">I9420b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173387208">b/173387208</a>
+      )
+    </li>
+    <li>
+      Leverage TestCoroutineDispatcher in testing (
+      <a href="https://android-review.googlesource.com/#/q/I532b68e37ea6f72964fdcc267e397d285cffd9ad">I532b6</a>
+      )
+    </li>
+  </ul>

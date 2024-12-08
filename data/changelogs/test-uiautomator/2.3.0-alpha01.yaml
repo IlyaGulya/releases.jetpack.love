@@ -1,0 +1,80 @@
+libraryId: test-uiautomator
+groupId: androidx.test
+version: 2.3.0-alpha01
+releaseDate: 2022-09-07
+#language=html
+changelogHtml: |
+  <h3 id="2.3.0-alpha01" data-text="Version 2.3.0-alpha01" tabindex="-1">Version 2.3.0-alpha01</h3>
+  <p>September 7, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.test.uiautomator:uiautomator:2.3.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cce7b70f6a5ebf955cf748a73c18b63228b22c74/test/uiautomator/uiautomator">Version 2.3.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>Annotated the nullness of all public methods.</li>
+    <li>
+      Switched
+      <code translate="no" dir="ltr">MotionEvent</code>
+      injection to asynchronous with a short delay for smoother
+      <code translate="no" dir="ltr">UiObject2</code>
+      gestures.
+    </li>
+    <li>Reduced the polling interval while waiting from 1000ms to 100ms.</li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">UiDevice#wakeUp</code>
+      and
+      <code translate="no" dir="ltr">UiDevice#sleep</code>
+      to use
+      <code translate="no" dir="ltr">KEYCODE_WAKEUP</code>
+      and
+      <code translate="no" dir="ltr">KEYCODE_SLEEP</code>
+      to support devices that override the power button.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">UiObject2#getDisplayId</code>
+      and support for finding and managing objects across multiple displays.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">UiObject#click</code>
+      and
+      <code translate="no" dir="ltr">UiObject2#clickAndWait</code>
+      methods for clicking on a point using its coordinates.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where the display size calculations were occasionally incorrect and might ignore portions of the screen, especially in multi-window mode (
+      <a href="https://android-review.googlesource.com/#/q/Ifc016cd4bd6929705100129fac92d6d355be563d">Ifc016c</a>
+      ).
+    </li>
+    <li>
+      Fixed the scaling of screenshots in
+      <code translate="no" dir="ltr">UiDevice#takeScreenshot</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Id80ad6e1d6a05fca8c8158bc5420f7f2af025103">Id80ad6</a>
+      ).
+    </li>
+    <li>
+      Improved the reliability of
+      <code translate="no" dir="ltr">Until.scrollFinished</code>
+      and
+      <code translate="no" dir="ltr">UiObject2#scroll</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I7b0595c5c55168af434a2957dc4f29df41e3e124">I7b0595</a>
+      ).
+    </li>
+    <li>
+      Fixed strict mode
+      <code translate="no" dir="ltr">IncorrectContextUseViolation</code>
+      warnings (
+      <a href="https://android-review.googlesource.com/#/q/Iffa6a076b96fd78f47dc30a38d12b10a927933a9">Iffa6a0</a>
+      ).
+    </li>
+  </ul>
+  <devsite-hats-survey class="nocontent" hats-id="VxqvKSur40kxBYCLVTd0SSGykbno" listnr-id="5207477"></devsite-hats-survey>

@@ -1,0 +1,86 @@
+libraryId: wear-watchface
+groupId: androidx.wear
+version: 1.1.1
+releaseDate: 2022-08-10
+#language=html
+changelogHtml: |
+  <h3 id="1.1.1" data-text="Version 1.1.1" tabindex="-1">Version 1.1.1</h3>
+  <p>August 10, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.watchface:watchface-*:1.1.1</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/0412edaeb003a9619a2239e48e5b208f0398221b..a92c948fa16dd63ba561e3368cc85f605a1e26e2/wear/watchface">Version 1.1.1 contains these commits.</a>
+  </p>
+  <ul>
+    <li>This is a bug fix release and users of version 1.1.0 are strongly encouraged to upgrade.</li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <p>
+        Watch face initialization is asynchronous and if a complication is received before the watch face is ready it gets put on the
+        <code translate="no" dir="ltr">pendingInitialComplications</code>
+        list and is applied later. Unfortunately
+        <code translate="no" dir="ltr">pendingInitialComplications</code>
+        was applied too soon which meant there was a window of time during watch face initialization where complications would still get put on
+        <code translate="no" dir="ltr">pendingInitialComplications</code>
+        and be ignored. This has now been fixed. In addition This patch fixes a bug where
+        <code translate="no" dir="ltr">ComplicationRenderer</code>
+        was wrongly trying to load placeholders asynchronously, which failed leading to the compilation graphic never updating. Finally this patch fixes a hopefully theoretical bug where multiple
+        <code translate="no" dir="ltr">pendingInitialComplications</code>
+        need to be merged. (
+        <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/2170325">0d03ba3</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Fix potential deadlock in
+        <code translate="no" dir="ltr">InteractiveInstanceManager</code>
+        where
+        <code translate="no" dir="ltr">getExistingInstanceOrSetPendingWallpaperInteractiveWatchFaceInstance</code>
+        was holding the lock longer than necessary. Usually we'd expect
+        <code translate="no" dir="ltr">engine.setUserStyle</code>
+        to be quick but if for some reason it's not then we could end up with a deadlock/ANR. This patch moves unnecessary work out of the lock, removing the potential for a deadlock.(
+        <a href="https://android.googlesource.com/platform/frameworks/support/+/5a2adcabf92d17285654d3579edae9d87b854cf5">5a2adca</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Fix several issues that retained
+        <code translate="no" dir="ltr">WatchFaceService</code>
+        . The WakeLock can sometimes retain the
+        <code translate="no" dir="ltr">WatchFaceService</code>
+        , adding a
+        <code translate="no" dir="ltr">release()</code>
+        call fixes this. Also the
+        <code translate="no" dir="ltr">StateFlows</code>
+        can retain
+        <code translate="no" dir="ltr">WatchFaceService</code>
+        , canceling the underlying
+        <code translate="no" dir="ltr">CoroutineScopes</code>
+        fixes that.(
+        <a href="https://android.googlesource.com/platform/frameworks/support/+/fd4813820c762aa44db8ac634a1c0f26be04a0b7">fd48138</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Add timeouts to
+        <code translate="no" dir="ltr">awaitDeferredWatchFace</code>
+        * and fix
+        <code translate="no" dir="ltr">watchfaceOverlayStyle</code>
+        <code translate="no" dir="ltr">NullPointerException</code>
+        . In normal circumstances this shouldn't timeout including after fresh install and
+        <code translate="no" dir="ltr">DirectBoot</code>
+        scenarios where the CPU load is high. We've also fixed a NPE if
+        <code translate="no" dir="ltr">getWatchfaceOverlayStyle</code>
+        is called after
+        <code translate="no" dir="ltr">close()</code>
+        .(
+        <a href="https://android.googlesource.com/platform/frameworks/support/+/a4c3a5a8f6cb18f3a2884787f9942d8c85f4d64c">a4c3a5a</a>
+        )
+      </p>
+    </li>
+  </ul>

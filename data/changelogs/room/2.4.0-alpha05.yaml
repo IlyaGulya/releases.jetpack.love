@@ -1,0 +1,86 @@
+libraryId: room
+groupId: androidx.room
+version: 2.4.0-alpha05
+releaseDate: 2021-09-29
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0-alpha05" data-text="Version 2.4.0-alpha05" tabindex="-1">Version 2.4.0-alpha05</h3>
+  <p>September 29, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.4.0-alpha05</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/97264aa4532db7f7db1ffb3f42f3a9204971dbfc..1f6bc4d47b7be46a5af151ed726e84db0a1cf9f9/room">Version 2.4.0-alpha05 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added a built-in type converter for
+      <a href="https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html">UUID</a>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I671e8b1a8eb71d3309da04feaf6f9b18719489fc">I671e8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/73132006">b/73132006</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <p>
+        Added a new property to the TypeConverters annotation to let developers disable built-in Enum and UUID converters. By default, these converters are on but you can disable them for a certain scope, or for the whole database. See TypeConverters documentation for details. (
+        <a href="https://android-review.googlesource.com/#/q/36ae9ec7a21c7a4fd43da5a250494c6196da1ca9">36ae9e</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/195413406">b/195413406</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Supporting non-POJO keys/values for Multimap return types in DAOs via the
+        <code translate="no" dir="ltr">@MapInfo</code>
+        annotation. (
+        <a href="https://android-review.googlesource.com/#/q/I4d7048542b73b963fdb0b901dcab76f19ef3b5b8">I4d704</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p>
+    <code translate="no" dir="ltr">@MapInfo</code>
+    will be required when the key or value column of the map are from a single column. See example:
+  </p>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@MapInfo</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">valueColumn</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"songCount"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-nd">@Query</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"""</span>
+  <span class="devsite-syntax-s">       SELECT *, COUNT(mSongId) as songCount</span>
+  <span class="devsite-syntax-s">       FROM Artist JOIN Song ON Artist.artistName = Song.artist</span>
+  <span class="devsite-syntax-s">       GROUP BY artistName</span>
+  <span class="devsite-syntax-s">       """</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">getArtistAndSongCounts</span><span class="devsite-syntax-p">():</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Map&lt;Artist</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Integer</span>&gt;
+  </code></pre>
+  </devsite-code>
+  <ul>
+    <li>
+      Make
+      <code translate="no" dir="ltr">room-paging</code>
+      a required artifact when using Paging3 with Room. (
+      <a href="https://android-review.googlesource.com/#/q/Ieaffeb61c176fae19663544d7f891e2c328172ca">Ieaffe</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix an issue where multimap queries results were not correctly ordered when the query contained an ORDER BY clause of a column from the map's key. (
+      <a href="https://android-review.googlesource.com/#/q/I6b887d3a5d96b0c7dbe9aa525a33090066cd07f4">I6b887</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Added new API to specify index order in @Index. Thanks to Nikita Zhelonkin. (
+      <a href="https://android-review.googlesource.com/#/q/I033fc476e5dba9cd01fbee985704e7fbdd0c0f6d">I033fc</a>
+      )
+    </li>
+  </ul>

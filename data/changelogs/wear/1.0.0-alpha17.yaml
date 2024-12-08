@@ -1,0 +1,145 @@
+libraryId: wear
+groupId: androidx.wear
+version: 1.0.0-alpha17
+releaseDate: 2021-06-30
+#language=html
+changelogHtml: |
+  <h3 id="complications-watchface-1.0.0-alpha17" data-text="Version 1.0.0-alpha17" tabindex="-1">Version 1.0.0-alpha17</h3>
+  <p>June 30, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear:wear-*:1.0.0-alpha17</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ccf79f53033e665475116a4e78ff124df2a52c4b..19ae3a88ff0824d615355b492cb56049e16991f2/wear">Version 1.0.0-alpha17 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>
+        In
+        <code translate="no" dir="ltr">GlesRenderer</code>
+        ,
+        <code translate="no" dir="ltr">makeUiThreadContextCurrent</code>
+        and
+        <code translate="no" dir="ltr">makeBackgroundThreadContextCurrent</code>
+        have been replaced by
+        <code translate="no" dir="ltr">runUiThreadGlCommands</code>
+        and
+        <code translate="no" dir="ltr">runBackgroundThreadGlCommands</code>
+        which both accept a
+        <code translate="no" dir="ltr">Runnable</code>
+        . The library ensures that only one GL command runnable is executing at any given time.
+      </p>
+    </li>
+    <li>
+      <p>
+        To make UiThread initialziaion easier we’ve added
+        <code translate="no" dir="ltr">CanvasRenderer.uiThreadInit</code>
+        which is called once on the UiThread before any calls to render. We’ve also added
+        <code translate="no" dir="ltr">onRendererCreated</code>
+        to
+        <code translate="no" dir="ltr">CanvasComplication</code>
+        which makes it easier for
+        <code translate="no" dir="ltr">Renderer</code>
+        and
+        <code translate="no" dir="ltr">CanvasComplication</code>
+        to share state.
+      </p>
+    </li>
+    <li>
+      <p>
+        For clarity we have renamed
+        <code translate="no" dir="ltr">Complication</code>
+        to
+        <code translate="no" dir="ltr">ComplicationSlot</code>
+        and
+        <code translate="no" dir="ltr">complicationId</code>
+        to either
+        <code translate="no" dir="ltr">complicationSlotId</code>
+        or
+        <code translate="no" dir="ltr">complicationInstanceId</code>
+        depending on usage
+      </p>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      For clarity we have renamed
+      <code translate="no" dir="ltr">Complication</code>
+      to
+      <code translate="no" dir="ltr">ComplicationSlot</code>
+      and
+      <code translate="no" dir="ltr">complicationId</code>
+      to either
+      <code translate="no" dir="ltr">complicationSlotId</code>
+      or
+      <code translate="no" dir="ltr">complicationInstanceId</code>
+      depending on usage. Classes using Complication have similarly been renamed e.g. ComplicationsManager is now called ComplicationSlotsManager. (
+      <a href="https://android-review.googlesource.com/#/q/I4da44b7a9bf2d720ad241770f2b677a025d7a70e">I4da44</a>
+      )
+    </li>
+    <li>
+      In GlesRenderer
+      <code translate="no" dir="ltr">makeUiThreadContextCurrent</code>
+      and
+      <code translate="no" dir="ltr">makeBackgroundThreadContextCurrent</code>
+      have been replaced by
+      <code translate="no" dir="ltr">runUiThreadGlCommands</code>
+      and
+      <code translate="no" dir="ltr">runBackgroundThreadGlCommands</code>
+      which both accept a
+      <code translate="no" dir="ltr">Runnable</code>
+      . These functions are only needed if you need to make GL calls outside of render,
+      <code translate="no" dir="ltr">runBackgroundThreadGlCommands</code>
+      and
+      <code translate="no" dir="ltr">onUiThreadGlSurfaceCreated</code>
+      . This is required because there can be multiple GlesRenderers each with their own contexts in the same process, potentially from different watch faces. In addition access to the shared current GL context is now synchronized. (
+      <a href="https://android-review.googlesource.com/#/q/I04d5982e80126be3e3dc26423cdf0a5006a79cd2">I04d59</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">CanvasRenderer.uiThreadInit</code>
+      which is called once on the UiThread before any calls to render. Also for clarity in GlesRenderer we have renamed
+      <code translate="no" dir="ltr">onGlContextCreated</code>
+      to
+      <code translate="no" dir="ltr">onBackgroundThreadGlContextCreated</code>
+      , and
+      <code translate="no" dir="ltr">onGlSurfaceCreated</code>
+      to
+      <code translate="no" dir="ltr">onUiThreadGlSurfaceCreated</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If86d04e0a7faadb7f177716d3b18a8b8c640642f">If86d0</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">HeadlessWatchFaceClient</code>
+      &amp;
+      <code translate="no" dir="ltr">InteractiveWatchFaceClient</code>
+      <code translate="no" dir="ltr">getComplicationsSlotState</code>
+      has been renamed to
+      <code translate="no" dir="ltr">getComplicationSlotsState</code>
+      . In
+      <code translate="no" dir="ltr">ComplicationSlot</code>
+      :
+      <code translate="no" dir="ltr">createRoundRectComplicationBuilder</code>
+      ,
+      <code translate="no" dir="ltr">createBackgroundComplicationBuilder</code>
+      , and
+      <code translate="no" dir="ltr">createEdgeComplicationBuilder</code>
+      have been renamed to
+      <code translate="no" dir="ltr">createRoundRectComplicationSlotBuilder</code>
+      ,
+      <code translate="no" dir="ltr">createBackgroundComplicationSlotBuilder</code>
+      , and
+      <code translate="no" dir="ltr">createEdgeComplicationSlotBuilder</code>
+      respectively. (
+      <a href="https://android-review.googlesource.com/#/q/Ib9adca0b03b4f27684eb55cd4e8328e98350bd66">Ib9adc</a>
+      )
+    </li>
+    <li>
+      We have added onRendererCreated to CanvasComplication which makes it easier for Renderer and CanvasComplication to share state. (
+      <a href="https://android-review.googlesource.com/#/q/I5e1ac34833d9fab1eb54caa8f8f51f49c4d856e3">I5e1ac</a>
+      )
+    </li>
+  </ul>

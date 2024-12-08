@@ -1,0 +1,102 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.2.0-alpha07
+releaseDate: 2022-11-09
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha07" data-text="Version 1.2.0-alpha07" tabindex="-1">Version 1.2.0-alpha07</h3>
+  <p>November 9, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.2.0-alpha07</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/548c8ac2570ae6cf15798fea1380491f7d93796b..a1e318590b217ecfce1b2de17eed2f18b6a680bb/benchmark">Version 1.2.0-alpha07 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">PowerMetric</code>
+      API for measuring energy and power in Macrobenchmarks. (
+      <a href="https://android-review.googlesource.com/#/q/Ife60176ae827bef14c86b1604b146e7b1208c439">Ife601</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/220183779">b/220183779</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">MacrobenchmarkScope.dropShaderCache()</code>
+      to actually drop the shader cache. This removes roughly 20ms of noise from
+      <code translate="no" dir="ltr">StartupMode.COLD</code>
+      benchmarks, as shaders are now consistently cleared each iteration. Previously,
+      <code translate="no" dir="ltr">Partial</code>
+      compilation using warmup iterations would report incorrectly fast numbers, as shader caching was more likely to happen during warmup. This fix requires either a rooted device, or using
+      <code translate="no" dir="ltr">profileinstaller:1.3.0-alpha02</code>
+      in the target app. For
+      <code translate="no" dir="ltr">ProfileInstaller</code>
+      library’s API changes, please refer to
+      <a href="/jetpack/androidx/releases/profileinstaller#1.3.0-alpha02">ProfileInstaller 1.30-alpha02</a>
+      page. (
+      <a href="https://android-review.googlesource.com/#/q/Ia5171b0f40dd8ce6f64f5ccf0a33281a4d8b121e">Ia5171</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/231455742">b/231455742</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">TraceSectionMode("label", Mode.Sum)</code>
+      , allowing measurement of total time spent on multiple trace sections with the same label. For instance,
+      <code translate="no" dir="ltr">TraceSectionMetric("inflate", Mode.Sum)</code>
+      will report a metric
+      <code translate="no" dir="ltr">inflateMs</code>
+      for the total time in a macrobenchmark spent on inflation. Also removed API 29 requirement, as
+      <code translate="no" dir="ltr">TraceSectionMetric</code>
+      works together with
+      <code translate="no" dir="ltr">androidx.tracing.Trace</code>
+      back to lower API levels, with the use of
+      <a href="/reference/androidx/tracing/Trace#forceEnableAppTracing()"><code translate="no" dir="ltr">forceEnableAppTracing</code></a>
+      within the target app. (
+      <a href="https://android-review.googlesource.com/#/q/Id7b68e23f5ded4d20ab21771dbf9eb96d9dcfdb7">Id7b68</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/231455742">b/231455742</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Improved safety of all internal shell commands by validating all output/errors. (
+      <a href="https://android-review.googlesource.com/#/q/I5984d1f7f176e47445264998250add7c27c5418c">I5984d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/255402908">b/255402908</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/253094958">b/253094958</a>
+      )
+    </li>
+    <li>
+      Specify device in baseline profile
+      <code translate="no" dir="ltr">adb pull</code>
+      command, so the pull command can be simply copied if multiple devices are connected (up to one emulator) (
+      <a href="https://android-review.googlesource.com/#/q/I6ac6c7d2bbd9888dd889b1b790ba21795464f4fa">I6ac6c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/223359380">b/223359380</a>
+      )
+    </li>
+    <li>
+      Add error if macrobenchmark test apk isn't set up as self-instrumenting. This error prevents macrobenchmarking from within the target app's process. In process, macrobench wouldn't be able to compile/kill/cold start the app, or control its own permissions (
+      <a href="https://android-review.googlesource.com/#/q/I4279be0297389eb2602651d0ac9bdaaf1cb65705">I4279b</a>
+      )
+    </li>
+    <li>
+      Fixed an issue in
+      <code translate="no" dir="ltr">measureRepeated()</code>
+      where
+      <code translate="no" dir="ltr">StartupMode.COLD</code>
+      wouldn't kill the target process after
+      <code translate="no" dir="ltr">setupBlock</code>
+      . Now
+      <code translate="no" dir="ltr">setupBlock</code>
+      interacting with the app will not leave the app process running, and an invalid cold start measurement. (
+      <a href="https://android-review.googlesource.com/#/q/I8ebb7eecb507a247a17947e6886eb816f1f92040">I8ebb7</a>
+      )
+    </li>
+  </ul>

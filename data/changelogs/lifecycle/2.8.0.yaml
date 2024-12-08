@@ -1,0 +1,283 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.8.0
+releaseDate: 2024-05-14
+#language=html
+changelogHtml: |
+  <h3 id="2.8.0" data-text="Version 2.8.0" tabindex="-1">Version 2.8.0</h3>
+  <p>May 14, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.8.0</code>
+    is released. Version 2.8.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c8b86ee34b2e32889913843be8f20bd7b718132d..7ad6b8bbf8fa3d5a3c97feca6c52a1a2bf98a622/lifecycle">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 2.7.0</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">LocalLifecycleOwner</code>
+      has been moved from Compose UI to
+      <code translate="no" dir="ltr">lifecycle-runtime-compose</code>
+      so that its Compose-based helper APIs can be used outside of Compose UI.
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">lifecycle-runtime-compose</code>
+      artifact now contains the
+      <code translate="no" dir="ltr">dropUnlessResumed</code>
+      and
+      <code translate="no" dir="ltr">dropUnlessStarted</code>
+      APIs which allow you to drop click or other events that occur even after the
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      has dropped below the given
+      <code translate="no" dir="ltr">Lifecycle.State</code>
+      . For example, this can be used with Navigation Compose to avoid handling click events after a transition to another screen has already begun:
+      <code translate="no" dir="ltr">onClick: () -&gt; Unit = dropUnlessResumed { navController.navigate(NEW_SCREEN) }</code>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">ViewModel.viewModelScope</code>
+        is now an overridable constructor parameter, allowing you to inject your own dispatcher and
+        <code translate="no" dir="ltr">SupervisorJob()</code>
+        or to override the default by using the
+        <code translate="no" dir="ltr">backgroundScope</code>
+        available within
+        <code translate="no" dir="ltr">runTest</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/I2817ca223e31fb3e66b1b87b470b2eb26c2fac55">I2817c</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/264598574">b/264598574</a>
+        )
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">MyViewModel</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// Make Dispatchers.Main the default, rather than Dispatchers.Main.immediate</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">viewModelScope</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">CoroutineScope</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Dispatchers</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">Main</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">+</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">SupervisorJob</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">ViewModel</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">viewModelScope</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// Use viewModelScope as before, without any code changes</span>
+  <span class="devsite-syntax-p">}</span>
+
+  <span class="devsite-syntax-c1">// Allows overriding the viewModelScope in a test</span>
+  <span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">Test</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">runTest</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">viewModel</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">MyViewModel</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">backgroundScope</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">ViewModel</code>
+        has been rewritten in Kotlin and now uses
+        <code translate="no" dir="ltr">AutoClosable</code>
+        instead of
+        <code translate="no" dir="ltr">Closeable</code>
+        . It now supports adding
+        <code translate="no" dir="ltr">AutoCloseable</code>
+        objects with a
+        <code translate="no" dir="ltr">key</code>
+        that allows retrieving them via
+        <code translate="no" dir="ltr">getCloseable()</code>
+        .
+      </p>
+    </li>
+    <li>
+      <p>
+        Calling
+        <code translate="no" dir="ltr">LifecycleStartEffect</code>
+        and
+        <code translate="no" dir="ltr">LifecycleResumeEffect</code>
+        without a key is now an error, following the same convention as the
+        <code translate="no" dir="ltr">DisposableEffect</code>
+        API that these APIs mirror.
+      </p>
+    </li>
+    <li>
+      <p>
+        Deprecated
+        <code translate="no" dir="ltr">LiveDataReactiveStreams.toPublisher(lifecycleOwner, liveData)</code>
+        in favor of
+        <code translate="no" dir="ltr">LiveData.toPublisher(lifecycleOwner)</code>
+        .
+      </p>
+    </li>
+    <li>
+      <p>
+        The
+        <code translate="no" dir="ltr">lifecycle-livedata-core-ktx</code>
+        kotlin extensions have now been moved to the
+        <code translate="no" dir="ltr">lifecycle-livedata-core</code>
+        module.
+      </p>
+    </li>
+    <li>
+      <p>
+        The
+        <code translate="no" dir="ltr">NullSafeMutableLiveData</code>
+        has been refactored to avoid many false positives.
+      </p>
+    </li>
+  </ul>
+  <p><strong>Lifecycle Kotlin Multiplatform Compatibility</strong></p>
+  <p>
+    The core Lifecycle APIs in
+    <code translate="no" dir="ltr">Lifecycle</code>
+    ,
+    <code translate="no" dir="ltr">LifecycleOwner</code>
+    ,
+    <code translate="no" dir="ltr">LifecycleObserver</code>
+    ,
+    <code translate="no" dir="ltr">Lifecycle.State</code>
+    ,
+    <code translate="no" dir="ltr">Lifecycle.Event</code>
+    , and
+    <code translate="no" dir="ltr">LifecycleRegistry</code>
+    are now shipped in artifacts compatible with Kotlin Multiplatform.
+  </p>
+  <p>Artifacts impacted:</p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">lifecycle-common</code>
+      moves most APIs to
+      <code translate="no" dir="ltr">common</code>
+      and supports jvm and iOS in addition to Android.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">lifecycle-runtime</code>
+      moves most APIs to
+      <code translate="no" dir="ltr">common</code>
+      and supports jvm and iOS in addition to Android.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">lifecycle-runtime-ktx</code>
+      is now empty, with all APIs being moved into
+      <code translate="no" dir="ltr">lifecycle-runtime</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">lifecycle-runtime-compose</code>
+      moves all APIs to
+      <code translate="no" dir="ltr">common</code>
+      and ships an Android artifact, matching the multiplatform support of
+      <code translate="no" dir="ltr">androidx.compose</code>
+      .
+    </li>
+  </ul>
+  <p><strong>ViewModel Kotlin Multiplatform Compatibility</strong></p>
+  <p>
+    The
+    <code translate="no" dir="ltr">lifecycle-viewmodel</code>
+    artifact and APIs like
+    <code translate="no" dir="ltr">ViewModel</code>
+    ,
+    <code translate="no" dir="ltr">ViewModelStore</code>
+    ,
+    <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+    , and
+    <code translate="no" dir="ltr">ViewModelProvider</code>
+    are now shipped in artifacts compatible with Kotlin Multiplatform.
+  </p>
+  <p>
+    To accommodate this change, methods such as those on
+    <code translate="no" dir="ltr">ViewModelProvider</code>
+    that took a
+    <code translate="no" dir="ltr">java.lang.Class&lt;T&gt;</code>
+    now have an equivalent method that takes a
+    <code translate="no" dir="ltr">kotlin.reflect.KClass&lt;T&gt;</code>
+    .
+  </p>
+  <p>Binary compatibility on Android has been maintained, but there are a few notable changes when comparing the Android API surface to the common API surface:</p>
+  <ul>
+    <li>
+      Constructing a
+      <code translate="no" dir="ltr">ViewModelProvider</code>
+      instance is now done through the
+      <code translate="no" dir="ltr">ViewModelProvider.create()</code>
+      methods rather than directly calling its constructor.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ViewModelProvider.NewInstanceFactory</code>
+      and
+      <code translate="no" dir="ltr">ViewModelProvider.AndroidViewModelFactory</code>
+      are only available on Android.
+      <ul>
+        <li>
+          Custom Factories are recommended to extend from
+          <code translate="no" dir="ltr">ViewModelProvider.Factory</code>
+          and use the
+          <code translate="no" dir="ltr">create</code>
+          method that takes a
+          <code translate="no" dir="ltr">CreationExtras</code>
+          or use the
+          <code translate="no" dir="ltr">viewModelFactory</code>
+          Kotlin DSL.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Using
+      <code translate="no" dir="ltr">ViewModelProvider</code>
+      without a custom factory on non-JVM platforms will result in an
+      <code translate="no" dir="ltr">UnsupportedOperationException</code>
+      . On JVM platforms, compatibility is preserved by using the no-args ViewModel constructor if a custom factory is not provided.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">viewModelScope</code>
+      will fallback to an
+      <code translate="no" dir="ltr">EmptyCoroutineContext</code>
+      in platforms where
+      <code translate="no" dir="ltr">Dispatchers.Main</code>
+      is not available (e.g., Linux).
+    </li>
+  </ul>
+  <p>Artifacts impacted:</p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">lifecycle-viewmodel</code>
+      moves most APIs to
+      <code translate="no" dir="ltr">common</code>
+      and supports jvm and iOS in addition to Android.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">lifecycle-viewmodel-ktx</code>
+      is now empty, with all APIs being moved into
+      <code translate="no" dir="ltr">lifecycle-viewmodel</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">lifecycle-viewmodel-compose</code>
+      moves all APIs to
+      <code translate="no" dir="ltr">common</code>
+      and ships an Android artifact, matching the multiplatform support of
+      <code translate="no" dir="ltr">androidx.compose</code>
+      .
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">InitializerViewModelFactory</code>
+      (including
+      <code translate="no" dir="ltr">viewModelFactory</code>
+      builder function) will now throw an
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      if a
+      <code translate="no" dir="ltr">initializer</code>
+      with the same
+      <code translate="no" dir="ltr">clazz: KClass&lt;VM : ViewModel&gt;</code>
+      has already been added. (
+      <a href="https://android-review.googlesource.com/#/q/Ic3a36b87c170bd886e60fc264a352096be003c02">Ic3a36</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">lifecycle-*:2.8.0</code>
+      requires a minimum Compose version of
+      <a href="/jetpack/androidx/releases/compose-ui#1.7.0-alpha05">1.7.0-alpha05</a>
+      (
+      <a href="https://issuetracker.google.com/issues/336842920">b/336842920</a>
+      ).
+    </li>
+  </ul>

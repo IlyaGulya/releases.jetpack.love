@@ -1,0 +1,132 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.3.0-beta02
+releaseDate: 2020-12-02
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-beta02" data-text="Version 1.3.0-beta02" tabindex="-1">Version 1.3.0-beta02</h3>
+  <p>December 2, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.3.0-beta02</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.3.0-beta02</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.3.0-beta02</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f5a2c7477391539d8bc9f65a8f0db1e8a7bf2cf5..38a668d3ef95f40ad28d6e735a2c3eb95ae4cf63/fragment">Version 1.3.0-beta02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">FragmentScenario</code>
+      has been fully converted to Kotlin while maintaining source and binary compatibility via usage of Kotlin 1.4's functional interfaces for
+      <code translate="no" dir="ltr">FragmentAction</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I19d3175b0d7f1adb0ceaa9c1e907b7f608f86b55">I19d31</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      FragmentContainerViews that do not inflate a fragment using the
+      <code translate="no" dir="ltr">class</code>
+      or
+      <code translate="no" dir="ltr">android:name</code>
+      attribute can now be used outside of a
+      <code translate="no" dir="ltr">FragmentActivity</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id4397edf815e6603016e0a7798232c8e9f9f065f">Id4397</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172266337">b/172266337</a>
+      )
+    </li>
+    <li>
+      Attempting to set the max lifecycle of a fragment to
+      <code translate="no" dir="ltr">DESTROYED</code>
+      will now throw an
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ie765188cbaf8473b2aac8f171e869c8fec84e212">Ie7651</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170765622">b/170765622</a>
+      )
+    </li>
+    <li>
+      Initializing a FragmentScenario with a
+      <code translate="no" dir="ltr">DESTROYED</code>
+      state will now throw an
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I7359000183f73a7b2f01eb637655ca8c655e371e">I73590</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170765622">b/170765622</a>
+      )
+    </li>
+  </ul>
+  <p><strong>New State Manager Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where the view would not reach its final state if you interrupt a fragment transition that was using an
+      <code translate="no" dir="ltr">Animator</code>
+      or one of the
+      <code translate="no" dir="ltr">TRANSIT_FRAGMENT_</code>
+      options. (
+      <a href="https://android-review.googlesource.com/#/q/I92426d8572f9ca71c053945ecc2afd839efbc058">I92426</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/169874632">b/169874632</a>
+      )
+    </li>
+    <li>
+      Fixed an issue that prevented fragments with an exiting
+      <code translate="no" dir="ltr">Animation</code>
+      from being properly destroyed. (
+      <a href="https://android-review.googlesource.com/#/q/I83d6584916bb3425f552d73a17e1ab938f00190d">I83d65</a>
+      )
+    </li>
+    <li>
+      Exiting fragments that have their effects reversed now correctly cancel and restart with the proper entering effect. (
+      <a href="https://android-review.googlesource.com/#/q/I622265e9b4ebb210657aac2a5b97dd47061bfd5c">I62226</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/167092035">b/167092035</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where the exit
+      <code translate="no" dir="ltr">Animator</code>
+      of a
+      <code translate="no" dir="ltr">hide()</code>
+      would not run. (
+      <a href="https://android-review.googlesource.com/#/q/Id7ffe54e883d9bd22d0759edd190a9d68aba3390">Id7ffe</a>
+      )
+    </li>
+    <li>
+      Fragments now properly appear when postponed and then immediately started. (
+      <a href="https://android-review.googlesource.com/#/q/Ie713bb4f44c5d2432680f2efbb8cdb38a9d26bf2">Ie713b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170022857">b/170022857</a>
+      )
+    </li>
+    <li>
+      Fragments that remove their focused view during an animation will no longer attempt to restore the focus on the detached view once they reach
+      <code translate="no" dir="ltr">RESUMED</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I38c65f834e9b85c365952fdb1e84e03a82863063">I38c65</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172925703">b/172925703</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">FragmentFactory</code>
+      now caches fragment classes separately for different
+      <code translate="no" dir="ltr">ClassLoader</code>
+      instances. Thanks Simon Schiller! (
+      <a href="https://github.com/androidx/androidx/pull/87">#87</a>
+      ,
+      <a href="https://issuetracker.google.com/113886460">b/113886460</a>
+      )
+    </li>
+  </ul>

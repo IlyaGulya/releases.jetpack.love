@@ -1,0 +1,73 @@
+libraryId: preference
+groupId: androidx.preference
+version: 1.1.0
+releaseDate: 2019-09-05
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0" data-text="Version 1.1.0" tabindex="-1">Version 1.1.0</h3>
+  <p>September 5, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.preference:preference:1.1.0</code>
+    and
+    <code translate="no" dir="ltr">androidx.preference:preference-ktx:1.1.0</code>
+    are released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9dfdadc6f6c3d72afe18252007bf44b9c6535386..41ca691cb0eed48244912c1a1f7e9a253174e48b/preference">here</a>
+    .
+  </p>
+  <p>
+    If this is the first
+    <code translate="no" dir="ltr">1.1.*</code>
+    release you are updating to, here is a concise list of larger changes since the last stable release,
+    <code translate="no" dir="ltr">1.0.0</code>
+    . You may also find the
+    <a href="/guide/topics/ui/settings">Settings guide</a>
+    ,
+    <a href="https://github.com/android/user-interface-samples/tree/main/Preferences">sample app</a>
+    , and
+    <a href="https://www.youtube.com/watch?v=PS9jhuHECEQ">Android Dev Summit talk</a>
+    useful.
+  </p>
+  <p><strong>Important changes since 1.0.0</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">PreferenceFragment</code>
+      and other classes using framework Fragments have been deprecated; you should use
+      <code translate="no" dir="ltr">PreferenceFragmentCompat</code>
+      and other *compat classes instead.
+    </li>
+    <li>
+      You can now set a
+      <code translate="no" dir="ltr">SummaryProvider</code>
+      on a Preference to dynamically configure its summary whenever the Preference is updated, or becomes visible to the user. See the
+      <a href="/guide/topics/ui/settings/customize-your-settings#dynamically_update_summaries">guide</a>
+      for more information.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">EditTextPreference.OnBindEditTextListener</code>
+      interface. This allows customizing the
+      <code translate="no" dir="ltr">EditText</code>
+      displayed in the corresponding dialog after the dialog has been bound. This is a direct replacement for using attributes such as
+      <code translate="no" dir="ltr">android:inputType</code>
+      directly on the
+      <code translate="no" dir="ltr">EditTextPreference</code>
+      , which is not supported in the AndroidX library. See the
+      <a href="/guide/topics/ui/settings/customize-your-settings#customize_an_edittextpreference_dialog">guide</a>
+      for more information.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Preference.setCopyingEnabled()</code>
+      When set, long pressing on the Preference will show a context menu that allows copying the summary of the Preference.
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">SeekBarPreference</code>
+      styling to match Material specifications. See the detailed
+      <a href="/jetpack/androidx/releases/preference#1.1.0-alpha04">changelog</a>
+      for other changes to
+      <code translate="no" dir="ltr">SeekBarPreference</code>
+      .
+    </li>
+    <li>A large amount of bug fixes, style updates, API level compatibility fixes, and general QOL improvements.</li>
+  </ul>

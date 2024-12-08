@@ -1,0 +1,244 @@
+libraryId: window
+groupId: androidx.window
+version: 1.1.0-alpha06
+releaseDate: 2023-02-22
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha06" data-text="Version 1.1.0-alpha06" tabindex="-1">Version 1.1.0-alpha06</h3>
+  <p>February 22, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.window:window-*:1.1.0-alpha06</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a1e318590b217ecfce1b2de17eed2f18b6a680bb..87533b4ff06971ed59028936cd9b6da988cd4522/window">Version 1.1.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Expose experimental version of getting the
+      <code translate="no" dir="ltr">WindowLayoutInfo</code>
+      from a UI context.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">splitSupportStatus</code>
+      to indicate if Activity embedding is available. (
+      <a href="https://android-review.googlesource.com/#/q/I100240855cb3213d42b38ee1dace73fc0e595843">I10024</a>
+      )
+    </li>
+    <li>
+      Make UI Context
+      <code translate="no" dir="ltr">WindowLayoutInfo</code>
+      API as experimental. (
+      <a href="https://android-review.googlesource.com/#/q/I58ee049cac8cc74c61f222cc44375f266bbca027">I58ee0</a>
+      )
+    </li>
+    <li>
+      Introduces the
+      <code translate="no" dir="ltr">WindowAreaController</code>
+      and API's to enable
+      <code translate="no" dir="ltr">RearDisplay</code>
+      Mode to move the current window to the display that is aligned with the rear camera. (
+      <a href="https://android-review.googlesource.com/#/q/Iffcbf39a129e84d825f2b3796e377ef54987b7c2">Iffcbf</a>
+      )
+    </li>
+    <li>
+      Update default background color. (
+      <a href="https://android-review.googlesource.com/#/q/I1ac1b4e54e06a9ccb31781c9d3a7d35f811d0687">I1ac1b</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">SplitAttributes</code>
+      params. (
+      <a href="https://android-review.googlesource.com/#/q/I18bdd66483bafb868ea33ed3f5e7eea79bdfcdb7">I18bdd</a>
+      )
+    </li>
+    <li>
+      Add APIs for
+      <code translate="no" dir="ltr">SplitRule</code>
+      ,
+      <code translate="no" dir="ltr">SplitAttributes</code>
+      ,
+      <code translate="no" dir="ltr">SplitAttributesCalculator</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I92d234efb38620fcefc85adb4cc9ef79e0a515fc">I92d23</a>
+      )
+    </li>
+    <li>
+      Improve the APIs around
+      <code translate="no" dir="ltr">maxAspectRatio</code>
+      :
+      <ol>
+        <li>
+          Replace
+          <code translate="no" dir="ltr">alwaysAllow()</code>
+          and
+          <code translate="no" dir="ltr">alwaysDisallow()</code>
+          with
+          <code translate="no" dir="ltr">ALWAYS_ALLOW</code>
+          and
+          <code translate="no" dir="ltr">ALWAYS_DISALLOW</code>
+          .
+        </li>
+        <li>
+          Update API documentation of @see with standalone documentation. (
+          <a href="https://android-review.googlesource.com/#/q/I3057bfd575704c75010470cc6b31733747ac9c39">I3057b</a>
+          )
+        </li>
+      </ol>
+    </li>
+    <li>
+      The following constructors are removed from public APIs because they are not supposed to be called by apps.
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">SplitInfo</code>
+          constructor
+        </li>
+        <li>
+          <code translate="no" dir="ltr">ActivityStack</code>
+          constructor (
+          <a href="https://android-review.googlesource.com/#/q/Ide5342d450a1cedb51d7c6593e3e5e2f5cfc2537">Ide534</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SplitRule</code>
+      now takes
+      <code translate="no" dir="ltr">maxAspectRatioInPortrait/Landscape</code>
+      . It only allows activities split when the aspect ratio of the parent bounds is smaller or equal to the requested
+      <code translate="no" dir="ltr">maxAspectRatio</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia5990b64c87987a9328c228753e792bd293e139a">Ia5990</a>
+      )
+    </li>
+    <li>
+      Change
+      <code translate="no" dir="ltr">RuleController#parseRules</code>
+      to be static (
+      <a href="https://android-review.googlesource.com/#/q/I785df661ce66a6fdb21842ad2569b2051995c2a0">I785df</a>
+      )
+    </li>
+    <li>
+      Improve the APIs around ActivityEmbedding
+      <ol>
+        <li>Align the API naming - Use add/remove for multiple instances:</li>
+        <li>
+          <code translate="no" dir="ltr">registerRule</code>
+          changes to
+          <code translate="no" dir="ltr">addRule</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">unregisterRule</code>
+          changes to
+          <code translate="no" dir="ltr">removeRule</code>
+        </li>
+        <li>
+          Replace
+          <code translate="no" dir="ltr">getSplitRules</code>
+          with
+          <code translate="no" dir="ltr">getRules</code>
+          since
+          <code translate="no" dir="ltr">ActivityRule</code>
+          is not a split rule
+        </li>
+        <li>
+          Add
+          <code translate="no" dir="ltr">RuleController#setRules</code>
+          to set a bunch of rules
+        </li>
+        <li>
+          Extract rule related APIs from
+          <code translate="no" dir="ltr">SplitController</code>
+          to singleton
+          <code translate="no" dir="ltr">RuleController</code>
+          . They are:
+        </li>
+        <li><code translate="no" dir="ltr">addRule</code></li>
+        <li><code translate="no" dir="ltr">removeRule</code></li>
+        <li><code translate="no" dir="ltr">getRules</code></li>
+        <li><code translate="no" dir="ltr">setRules</code></li>
+        <li><code translate="no" dir="ltr">clearRules</code></li>
+        <li><code translate="no" dir="ltr">parseRules</code></li>
+        <li>
+          Extract
+          <code translate="no" dir="ltr">#isActivityEmbedded</code>
+          from
+          <code translate="no" dir="ltr">SplitController</code>
+          to singleton
+          <code translate="no" dir="ltr">ActivityEmbeddingController</code>
+          . They are:
+        </li>
+        <li><code translate="no" dir="ltr">isActivityEmbedded</code></li>
+        <li>
+          Remove
+          <code translate="no" dir="ltr">SplitController#initialize</code>
+          . To set rules from XML file, please use
+          <code translate="no" dir="ltr">RuleController#parseRules</code>
+          and
+          <code translate="no" dir="ltr">#setRules</code>
+          . Before this change:
+          <code translate="no" dir="ltr">SplitController.initialize(context, R.xml.static_rules)</code>
+          After this change:
+          <code translate="no" dir="ltr">val ruleController = RuleController.getInstance(context) val rules = ruleController.parseRules(R.xml.static_rules) ruleController.setRules(rules)</code>
+        </li>
+        <li>
+          We don't distinguish static rules with runtime rules anymore. That said, calling
+          <code translate="no" dir="ltr">#clearRules</code>
+          results to clear all rules no matter they are registered with static XML rule definitions or at runtime. To hav the legacy behavior of
+          <code translate="no" dir="ltr">SplitController#clearRegisteredRules</code>
+          , please call
+          <code translate="no" dir="ltr">RuleController#parseRules</code>
+          with the XML resources id and call
+          <code translate="no" dir="ltr">RuleController#setRules</code>
+          to set back the rules again. Before this change:
+          <code translate="no" dir="ltr">SplitController.getInstance(context).clearRegisteredRules()</code>
+          After this change:
+          <code translate="no" dir="ltr">val ruleController = RuleController.getInstance(context) val rules = ruleController.parseRules(R.xml.static_rules) ruleController.setRules(rules)</code>
+          (
+          <a href="https://android-review.googlesource.com/#/q/Ib39671fb22a9ccef3b0aa8967ee18c3168c54c63">Ib3967</a>
+          )
+        </li>
+      </ol>
+    </li>
+    <li>
+      Improve the SplitRule APIs:
+      <ol>
+        <li>
+          Take min dimensions in DP instead of pixels for
+          <code translate="no" dir="ltr">SplitRule</code>
+          .
+        </li>
+        <li>
+          Refactor for
+          <code translate="no" dir="ltr">SplitRule</code>
+          Builder to take min dimensions as optional. (
+          <a href="https://android-review.googlesource.com/#/q/I95f17ce89844d18708e6fb03924d38a00af115ac">I95f17</a>
+          )
+        </li>
+      </ol>
+    </li>
+    <li>
+      Pass a Context to initialize
+      <code translate="no" dir="ltr">SplitController</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I42549aeb1b5df27093dc6c7de73a2c4d7c97e75f">I42549</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">SplitRule#layoutDir</code>
+      to
+      <code translate="no" dir="ltr">#layoutDirection</code>
+      and
+      <code translate="no" dir="ltr">SplitRule Builder#setLayoutDir</code>
+      to
+      <code translate="no" dir="ltr">Builder#setLayoutDirection</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3f6d1bea1d82e104c31c5458fe1f715927061cd8">I3f6d1</a>
+      )
+    </li>
+  </ul>

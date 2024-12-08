@@ -1,0 +1,41 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.7.0-rc01
+releaseDate: 2023-07-26
+#language=html
+changelogHtml: |
+  <h3 id="2.7.0-rc01" data-text="Version 2.7.0-rc01" tabindex="-1">Version 2.7.0-rc01</h3>
+  <p>July 26, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.7.0-rc01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5ec99c7e5f3bc9f81382e788f9ff4151dcb73bc1..a554ff273c1449c2dc482c764272981cef7496f1/navigation">Version 2.7.0-rc01 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where the
+      <code translate="no" dir="ltr">EnterTransition</code>
+      and
+      <code translate="no" dir="ltr">ExitTransition</code>
+      lambdas created as part of the
+      <code translate="no" dir="ltr">NavHost</code>
+      could potentially remain in memory even after the
+      <code translate="no" dir="ltr">NavHost</code>
+      is removed from composition. (
+      <a href="https://android-review.googlesource.com/#/q/I893d0a0e36b512afe60a5af892cd84995af02015">I893d0</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      There is an issue from Navigation 2.6.x that when navigating with popUpTo it is possible to cause an
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      . It is possible that this exception can be avoided by restructuring your graph, similar to the advice suggested
+      <a href="https://issuetracker.google.com/287133013#comment4">here</a>
+      . (
+      <a href="https://issuetracker.google.com/287133013">b/287133013</a>
+      )
+    </li>
+  </ul>

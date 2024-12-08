@@ -1,0 +1,115 @@
+libraryId: compose-animation
+groupId: androidx.compose
+version: 1.0.0-beta01
+releaseDate: 2021-02-24
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta01" data-text="Version 1.0.0-beta01" tabindex="-1">Version 1.0.0-beta01</h3>
+  <p>February 24, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.animation:animation:1.0.0-beta01</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.animation:animation-core:1.0.0-beta01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9ed3262e0dfca1d352bdbf8f8e10253a61ef6218..4b6cff92e45f1d4467086aa2c6aa0248b4883950/compose/animation">Version 1.0.0-beta01 contains these commits.</a>
+  </p>
+  <p>This is the first release of Compose 1.0.0 Beta.</p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">InteractionState</code>
+      has been replaced with
+      <code translate="no" dir="ltr">[Mutable]InteractionSource</code>
+      <ul>
+        <li>Interfaces are responsible for emitting / collecting Interaction events.</li>
+        <li>
+          Instead of passing
+          <code translate="no" dir="ltr">interactionState = remember { InteractionState() }</code>
+          to components such as
+          <code translate="no" dir="ltr">Button</code>
+          and
+          <code translate="no" dir="ltr">Modifier.clickable()</code>
+          , use
+          <code translate="no" dir="ltr">interactionSource = remember { MutableInteractionSource() }</code>
+          .
+        </li>
+        <li>
+          Instead of:
+          <code translate="no" dir="ltr">Interaction.Pressed in interactionState</code>
+          you should instead use the extension functions on InteractionSource, such as InteractionSource.collectIsPressedAsState().
+        </li>
+        <li>For complex use cases you can use InteractionSource.interactions to observe the stream of Interactions. See the InteractionSource documentation and samples for more information.</li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I85965d0dba39d1740c097915d1d1a367eea2a78c">I85965</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/152525426">b/152525426</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/171913923">b/171913923</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/171710801">b/171710801</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/174852378">b/174852378</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      smoothScrollBy and scrollBy methods' packages changed to
+      <code translate="no" dir="ltr">androidx.compose.foundation.gestures.*</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I3f7c18be72b1b4e8d7958194b10d63d749f7d948">I3f7c1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175294473">b/175294473</a>
+      )
+    </li>
+    <li>
+      Size modifiers were renamed. Modifier.width/height/size were renamed to requiredWidth/requiredHeight/requiredSize. Modifier.preferredWidth/preferredHeight/preferredSize were renamed to width/height/size. (
+      <a href="https://android-review.googlesource.com/#/q/I5b4145953d360b1fb851c0056fc9a7875bb34088">I5b414</a>
+      )
+    </li>
+    <li>
+      Orientation has been moved to foundation package. VelocirtTracker moved from ui.gesture to ui.input.pointer. (
+      <a href="https://android-review.googlesource.com/#/q/Iff4a887648735c4850dca0d8d95fd99d782d04bb">Iff4a8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175294473">b/175294473</a>
+      )
+    </li>
+    <li>
+      AnimationClockObservable and subclasses have been removed. AnimatedFloat has been removed. (
+      <a href="https://android-review.googlesource.com/#/q/Icde5248072620b741bdf4d8cf59291e7b2994e6a">Icde52</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177457083">b/177457083</a>
+      )
+    </li>
+    <li>
+      Modifier.draggable now accepts DraggableState instead of a simple lambda. you can create state via
+      <code translate="no" dir="ltr">rememberDraggableState { delta -&gt; }</code>
+      to get the same behaviour as before (
+      <a href="https://android-review.googlesource.com/#/q/Ica70f33e73b6691375c9bdf07d008bae7546d48a">Ica70f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175294473">b/175294473</a>
+      )
+    </li>
+    <li>
+      animate, animatedValue, AnimatedValue APIs have been removed (
+      <a href="https://android-review.googlesource.com/#/q/If27bc4f86851a978239709a6f7ddab8ec94070ca">If27bc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177457083">b/177457083</a>
+      )
+    </li>
+    <li>
+      AnimationEndReason.Interrupted is removed. CancellationException will be throws if animation is interrupted. (
+      <a href="https://android-review.googlesource.com/#/q/I2cbbc6112cef6e750c10843846ee46cb9d077b03">I2cbbc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/179695417">b/179695417</a>
+      )
+    </li>
+    <li>
+      TargetAnimation API has been removed. (
+      <a href="https://android-review.googlesource.com/#/q/If47d1f88096955c131af20c1660a5c450d5b7ed9">If47d1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177457083">b/177457083</a>
+      )
+    </li>
+  </ul>

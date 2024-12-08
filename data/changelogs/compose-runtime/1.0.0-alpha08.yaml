@@ -1,0 +1,58 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.0.0-alpha08
+releaseDate: 2020-12-02
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha08" data-text="Version 1.0.0-alpha08" tabindex="-1">Version 1.0.0-alpha08</h3>
+  <p>December 2, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.0.0-alpha08</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/358bdaf3c3c4a917883408e9f747da521fdf9e65..10b5e9fd366c1c413d5576aed50a305d300938e1/compose/runtime">Version 1.0.0-alpha08 contains these commits.</a>
+  </p>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      This release is only compatible with Kotlin
+      <code translate="no" dir="ltr">1.4.20</code>
+      , so you will need to update your Kotlin version.
+    </span>
+  </aside>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added lint check for composable lambda parameter naming and position, to check for consistency with Compose guidelines. Also migrated some APIs using
+      <code translate="no" dir="ltr">children</code>
+      as the name for their trailing lambda to
+      <code translate="no" dir="ltr">content</code>
+      , according to the lint check and guidance. (
+      <a href="https://android-review.googlesource.com/#/q/Iec48e38a2896785b521814d95c9fb624d2807315">Iec48e</a>
+      )
+    </li>
+    <li>
+      Recomposer no longer accepts an EmbeddingContext; required scheduling dependencies are obtained from the effectCoroutineContext. FrameManager is deprecated; platform integrations should initialize their own global snapshot handling. (
+      <a href="https://android-review.googlesource.com/#/q/I02369db94b92e6ace0a7273d9d74ad44cc8cebe5">I02369</a>
+      )
+    </li>
+    <li>
+      RestorableStateHolder.withRestorableState function was renamed to RestorableStateProvider (
+      <a href="https://android-review.googlesource.com/#/q/I66640dac2f299f5d85d270f2aa1c5d6fc8ab7128">I66640</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Deprecated Ambients named with
+      <code translate="no" dir="ltr">Ambient</code>
+      as their suffix, and replaced them with new properties prefixed with Ambient, following other Ambients and Compose API guidelines. (
+      <a href="https://android-review.googlesource.com/#/q/I334403cc490ea913b8980d29e2cbe08e98ad7945">I33440</a>
+      )
+    </li>
+    <li>
+      Remove old ui-test module and its stubs (
+      <a href="https://android-review.googlesource.com/#/q/I3a7cbbe376d0542955983fb09afd2dc37be7647e">I3a7cb</a>
+      )
+    </li>
+  </ul>

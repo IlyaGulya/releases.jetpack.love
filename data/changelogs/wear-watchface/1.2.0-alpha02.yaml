@@ -1,0 +1,174 @@
+libraryId: wear-watchface
+groupId: androidx.wear
+version: 1.2.0-alpha02
+releaseDate: 2022-09-21
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha02" data-text="Version 1.2.0-alpha02" tabindex="-1">Version 1.2.0-alpha02</h3>
+  <p>September 21, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.watchface:watchface-*:1.2.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/bea814b246f89ff7244e3c6b0648f0b57e47897c..bdce26bd7556b92d2d4d2af3de881dd8e2c51459/wear/watchface">Version 1.2.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>
+        Some watch faces have configuration outside of the
+        <code translate="no" dir="ltr">UserStyle</code>
+        that affects it visually, (e.g. selecting a background photo). We’ve added
+        <code translate="no" dir="ltr">Renderer.sendPreviewImageNeedsUpdateRequest</code>
+        which allows the watch face to request an updated preview image. Note this requires a corresponding system up date to work.
+      </p>
+    </li>
+    <li>
+      <p>
+        We’ve also added an API for watch faces to expose their colors to the system which may choose its color palette based on this.
+        <strong>Note</strong>
+        that this has been made experimental in a follow on patch.
+      </p>
+    </li>
+    <li>
+      <p>
+        Just about every type of
+        <code translate="no" dir="ltr">ComplicationData</code>
+        now supports
+        <code translate="no" dir="ltr">SmallImages</code>
+        .
+      </p>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Wallpaper manager can sometimes detach from an engine and make another. We've added a
+      <code translate="no" dir="ltr">DisconnectReason</code>
+      int def and extended
+      <code translate="no" dir="ltr">ClientDisconnectListener</code>
+      with a new method which includes a
+      <code translate="no" dir="ltr">DisconnectReason</code>
+      , allowing the listener to observe engine detaches. (
+      <a href="https://android-review.googlesource.com/#/q/I45cce0becc240f9f4f270439a74ae6120394b225">I45cce</a>
+      )
+    </li>
+    <li>
+      Added two optional parameters
+      <code translate="no" dir="ltr">nameResourceId</code>
+      and
+      <code translate="no" dir="ltr">screenReaderResourceId</code>
+      to
+      <code translate="no" dir="ltr">ComplicationSlotOverlay</code>
+      constructor (
+      <a href="https://android-review.googlesource.com/#/q/I157e82bfb62ee0624731f09f5a6ecccf47c2cdeb">I157e8</a>
+      )
+    </li>
+    <li>
+      We've added a guava wrapper for the new overload of
+      <code translate="no" dir="ltr">getOrCreateInteractiveWatchFaceClient</code>
+      with a
+      <code translate="no" dir="ltr">PreviewImageUpdateRequestedListener</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic31f0c4d2775f9639a642c120b82f56804877a1e">Ic31f0</a>
+      )
+    </li>
+    <li>
+      We've added
+      <code translate="no" dir="ltr">Renderer.sendPreviewImageNeedsUpdateRequest</code>
+      which is useful for watch faces that have state outside of the
+      <code translate="no" dir="ltr">UserStyleSchema</code>
+      which affects the way they look (e.g. a watch face with a selectable background image). On the client side we've added
+      <code translate="no" dir="ltr">PreviewImageUpdateRequestedListener</code>
+      as an optional parameter to
+      <code translate="no" dir="ltr">getOrCreateInteractiveWatchFaceClient</code>
+      to observe these requests. (
+      <a href="https://android-review.googlesource.com/#/q/Iff44af72ef6d22973fd63137dcc6e4d02f6bff12">Iff44a</a>
+      )
+    </li>
+    <li>
+      We've simplified the API for exposing
+      <code translate="no" dir="ltr">WatchFaceColors</code>
+      , now there's a simple property called
+      <code translate="no" dir="ltr">watchFaceColors</code>
+      on the Renderer which the watch face can set, this should be updated as necessary in response to any style changes. Instead of using
+      <code translate="no" dir="ltr">WallpaperManager</code>
+      to observe color changes, we've added
+      <code translate="no" dir="ltr">OnWatchFaceColorsListener</code>
+      to
+      <code translate="no" dir="ltr">InteractiveWatchFaceClient</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I490bc09b380728aabb3ce38ef9f3e78b79673b24">I490bc</a>
+      )
+    </li>
+    <li>
+      We've added a
+      <code translate="no" dir="ltr">WatchFaceColors</code>
+      class which holds the three most prominent watch face colors and added open methods
+      <code translate="no" dir="ltr">watchfaceColors</code>
+      &amp;
+      <code translate="no" dir="ltr">notifyWatchFaceColorsChanged</code>
+      to the Renderer, these allow the system to obtain the colors of the watch face via
+      <code translate="no" dir="ltr">WallpaperManager.getWallpaperColors</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3d6117493efa23eadab4b6dc1dd7f4286edb5168">I3d611</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ShortTextComplicationData</code>
+      ,
+      <code translate="no" dir="ltr">RangedValueComplicationData</code>
+      ,
+      <code translate="no" dir="ltr">NoPermissionComplicationData</code>
+      (and experimental
+      <code translate="no" dir="ltr">DiscreteRangedValueComplicationData</code>
+      ,
+      <code translate="no" dir="ltr">GoalProgressComplicationData</code>
+      and
+      <code translate="no" dir="ltr">WeightedElementsComplicationData</code>
+      ) now all support
+      <code translate="no" dir="ltr">SmallImages</code>
+      . If a watch face chooses to render a complication with multiple colors, it now has the option to use a multi-colored
+      <code translate="no" dir="ltr">SmallImage</code>
+      where previously it would have had to use a monochromatic image. (
+      <a href="https://android-review.googlesource.com/#/q/I257dfd7a9400ceb0db9c9851ffd88a2d24ffbe45">I257df</a>
+      )
+    </li>
+    <li>
+      Refactor
+      <code translate="no" dir="ltr">PreviewImageUpdateRequestedListener</code>
+      to be a
+      <code translate="no" dir="ltr">Consumer&lt;&gt;</code>
+      instead (
+      <a href="https://android-review.googlesource.com/#/q/Ia875da3b0b379964240cde4ec0d1c5fb6a69a84d">Ia875d</a>
+      )
+    </li>
+    <li>
+      Replace custom Single Abstract Method (SAM) type
+      <code translate="no" dir="ltr">OnWatchfaceColorsListener</code>
+      with generic Java SAM type (Consumer) (
+      <a href="https://android-review.googlesource.com/#/q/I0c4896c21c9fd07cbb2089a5dc86e0bf18dfaa72">I0c489</a>
+      )
+    </li>
+    <li>
+      We've deprecated the old
+      <code translate="no" dir="ltr">getOrCreateInteractiveWatchFaceClient</code>
+      and
+      <code translate="no" dir="ltr">listenableGetOrCreateInteractiveWatchFaceClient</code>
+      methods that don't specify a
+      <code translate="no" dir="ltr">PreviewImageUpdateRequestedListener</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iec50236d0feb9df431eab0aafa17a06d7c0fb5af">Iec502</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">DisconnectReason.BINDER_DIED</code>
+      has been renamed to
+      <code translate="no" dir="ltr">DisconnectReason.ENGINE_DIED</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4eb0e93b77f853f692bb0cd1999482d8a3742252">I4eb0e</a>
+      )
+    </li>
+  </ul>

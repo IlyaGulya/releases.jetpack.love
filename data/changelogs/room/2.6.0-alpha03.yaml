@@ -1,0 +1,84 @@
+libraryId: room
+groupId: androidx.room
+version: 2.6.0-alpha03
+releaseDate: 2023-08-09
+#language=html
+changelogHtml: |
+  <h3 id="2.6.0-alpha03" data-text="Version 2.6.0-alpha03" tabindex="-1">Version 2.6.0-alpha03</h3>
+  <p>August 9, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.6.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3b5b931546a48163444a9eddc533489fcddd7494..5d7dd999525725bd038a00ca4e89e0fef624a6da/room">Version 2.6.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Nested Map return types in DAO functions are now supported in Room. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/3c46fef7382077611c9d9b4cb330bc52373ccc6d">I13f48</a>
+      ,
+      <a href="https://b.corp.google.com/issues/203008711">203008711</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      A new type annotation called
+      <code translate="no" dir="ltr">@MapColumn</code>
+      has been created to replace
+      <code translate="no" dir="ltr">@MapInfo</code>
+      , which is now deprecated. For each column name (
+      <code translate="no" dir="ltr">keyColumnName</code>
+      ,
+      <code translate="no" dir="ltr">valueColumnName</code>
+      , or both) provided in a
+      <code translate="no" dir="ltr">@MapInfo</code>
+      annotation, you will need to declare a
+      <code translate="no" dir="ltr">@MapColumn</code>
+      annotation with just the
+      <code translate="no" dir="ltr">columnName</code>
+      and use the annotation on the specific type argument that is being referenced (the key or value of the Map) in the return type of the DAO function. This is because the
+      <code translate="no" dir="ltr">@MapColumn</code>
+      annotation is used directly on the type argument within the return type of a DAO function, instead of on the function itself like
+      <code translate="no" dir="ltr">@MapInfo</code>
+      . For more information, please refer to the
+      <code translate="no" dir="ltr">@MapColumn</code>
+      documentation. (
+      <a href="https://android-review.googlesource.com/#/q/Ib0305c9ba7c0bd73fd885f22b5fac4f6c90f0b24">Ib0305</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/203008711">b/203008711</a>
+      )
+    </li>
+    <li>
+      Updated API files to annotate compatibility suppression (
+      <a href="https://android-review.googlesource.com/#/q/I8e87ae292b38fac1886001f5317acda1592f174b">I8e87a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/287516207">b/287516207</a>
+      )
+    </li>
+    <li>
+      The Room Gradle plugin APIs have been updated to not always require per-variant configurations. This means that the plugin can accept a global location for all variants without creating multiple directories, enabling smoother migrations that but is also flexible enough to manually configure flavors or build type schemas while still retaining the benefits of the plugin (reproducible and cacheable builds). (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/ef1265ecca338a7bb3929def8085236d45ace500.">I09d6f</a>
+      ,
+      <a href="https://issuetracker.google.com/278266663">b/278266663</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed potential memory leak vulnerability in
+      <code translate="no" dir="ltr">QueryInterceptorStatement</code>
+      . (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/22935cee019fb17ba23ddbf3768700552940d205">I193d1</a>
+      )
+    </li>
+    <li>
+      Fixed incorrect behavior in the
+      <code translate="no" dir="ltr">QueryInterceptorDatabase execSQL()</code>
+      function. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/80d2aff497f0becfcda53b3e6195bb0ca3e79c9f">Iefdc8</a>
+      )
+    </li>
+  </ul>

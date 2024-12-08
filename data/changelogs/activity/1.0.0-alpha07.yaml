@@ -1,0 +1,89 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.0.0-alpha07
+releaseDate: 2019-01-30
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha07" data-text="Version 1.0.0-alpha07" tabindex="-1">Version 1.0.0-alpha07</h3>
+  <p>April 25th, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.0.0-alpha07</code>
+    and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.0.0-alpha07</code>
+    are released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/00d1b79bfaa97c1a00793e5e80769f094316a6b0..1d1a928881b4a7a75a85ab5b723cc81c829f1c83/activity">here</a>
+    .
+  </p>
+  <p><strong>API changes</strong></p>
+  <p>
+    This release makes significant changes to the handling of the
+    <code translate="no" dir="ltr">onBackPressed()</code>
+    . See the
+    <a href="/guide/navigation/navigation-custom-back">updated custom back documentation</a>
+    for more details.
+  </p>
+  <ul>
+    <li>
+      The methods for
+      <code translate="no" dir="ltr">OnBackPressedCallback</code>
+      and
+      <code translate="no" dir="ltr">OnBackPressedDispatcher</code>
+      have been marked as
+      <code translate="no" dir="ltr">@MainThread</code>
+      . (
+      <a href="https://android-review.googlesource.com/943813">aosp/943813</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">handleOnBackPressed()</code>
+      method no longer returns a
+      <code translate="no" dir="ltr">boolean</code>
+      . Instead,
+      <code translate="no" dir="ltr">OnBackPressedCallback</code>
+      is now an abstract class that can be enabled or disabled - only when the new
+      <code translate="no" dir="ltr">isEnabled()</code>
+      method returns true will
+      <code translate="no" dir="ltr">handleOnBackPressed()</code>
+      be called, in which you
+      <strong>must</strong>
+      handle the back button. (
+      <a href="https://android-review.googlesource.com/944518">aosp/944518</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">addCallback</code>
+      methods of
+      <code translate="no" dir="ltr">OnBackPressedDispatcher</code>
+      no longer return a
+      <code translate="no" dir="ltr">Cancellable</code>
+      instance.
+      <code translate="no" dir="ltr">OnBackPressedCallback</code>
+      now contain a
+      <code translate="no" dir="ltr">remove()</code>
+      method that fulfill this functionality, allowing you to call
+      <code translate="no" dir="ltr">remove()</code>
+      during
+      <code translate="no" dir="ltr">handleOnBackPressed()</code>
+      . (
+      <a href="https://android-review.googlesource.com/944519">aosp/944519</a>
+      ) (
+      <a href="https://android-review.googlesource.com/946316">aosp/946316</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">activity-ktx</code>
+      now contains a receiver scoped callback for
+      <code translate="no" dir="ltr">addCallback</code>
+      that accepts a lamdba that implements
+      <code translate="no" dir="ltr">handleOnBackPressed()</code>
+      and has access to
+      <code translate="no" dir="ltr">isEnabled</code>
+      and
+      <code translate="no" dir="ltr">remove()</code>
+      (
+      <a href="https://android-review.googlesource.com/944520">aosp/944520</a>
+      )
+    </li>
+  </ul>

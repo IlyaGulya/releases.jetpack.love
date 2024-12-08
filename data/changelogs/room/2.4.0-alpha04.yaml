@@ -1,0 +1,112 @@
+libraryId: room
+groupId: androidx.room
+version: 2.4.0-alpha04
+releaseDate: 2021-07-21
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0-alpha04" data-text="Version 2.4.0-alpha04" tabindex="-1">Version 2.4.0-alpha04</h3>
+  <p>July 21, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.4.0-alpha04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ccf79f53033e665475116a4e78ff124df2a52c4b..97264aa4532db7f7db1ffb3f42f3a9204971dbfc/room">Version 2.4.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>
+        Room now supports multimap return types
+        <code translate="no" dir="ltr">@Dao</code>
+        methods, useful for JOIN statements. The supported types of multimaps are
+        <code translate="no" dir="ltr">Map</code>
+        along with Guava's
+        <code translate="no" dir="ltr">ImmutableMap</code>
+        ,
+        <code translate="no" dir="ltr">ImmutableSetMultimap</code>
+        and
+        <code translate="no" dir="ltr">ImmutableListMultimap</code>
+        .
+      </p>
+
+      <p>The following are examples of multimap queries:</p>
+
+      <p><em>One-to-One Relation Map</em></p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@Query</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"SELECT * FROM Song JOIN Artist ON Song.artistId = Artist.artistId"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">getSongAndArtist</span><span class="devsite-syntax-p">():</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Map&lt;Song</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Artist</span>&gt;
+  </code></pre>
+      </devsite-code>
+      <p><em>One-to-Many Relation Map (Standard multimap)</em></p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@Query</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"SELECT * FROM Artist JOIN Album ON Artist.id = Album.artistId"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">getArtistAndAlbums</span><span class="devsite-syntax-p">():</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Map&lt;Artist</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">List&lt;Album&gt;</span>&gt;
+  </code></pre>
+      </devsite-code>
+      <p>
+        The multimap result can also be wrapped in the supported async return types, such as
+        <code translate="no" dir="ltr">LiveData</code>
+        , Rx’s
+        <code translate="no" dir="ltr">Observable</code>
+        , or coroutines
+        <code translate="no" dir="ltr">Flow</code>
+        .
+      </p>
+      <aside class="note">
+        <strong>Note:</strong>
+        <span>In version 2.4.0-alpha04, only multimaps with POJOs as type parameters are supported, but in a future version String and primitives will also be supported.</span>
+      </aside>
+    </li>
+  </ul>
+  <p><strong>Room-Paging</strong></p>
+  <ul>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">androidx.room:room-paging</code>
+        is released, providing native Paging 3.0 support for Room queries returning
+        <code translate="no" dir="ltr">androidx.paging.PagingSource</code>
+        .
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@Dao</span>
+  <span class="devsite-syntax-kd">interface</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">UserDao</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-nd">@Query</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"SELECT * FROM users ORDER BY id ASC"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">loadUsers</span><span class="devsite-syntax-p">():</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">PagingSource&lt;Int</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">User</span>&gt;
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        This artifact replaces the
+        <code translate="no" dir="ltr">androidx.paging.PagingSource</code>
+        implementation generated by Room with one built on top of Paging 3.0 APIs. The new PagingSource implementation parses keys differently, so any key manually supplied to Room’s PagingSource would need to account for this behavior change, including the initialKey passed via Pager’s constructor. Pages will start loading from the
+        <code translate="no" dir="ltr">Key</code>
+        with
+        <code translate="no" dir="ltr">Key</code>
+        being the first loaded item. This deviates from existing behavior where
+        <code translate="no" dir="ltr">LoadParams.Refresh.Key</code>
+        is treated as the user's scroll position and items are loaded both before and after the key.
+      </p>
+    </li>
+    <li>
+      <p>The artifact is optional and opting out will fallback to existing support for Paging 3.0 that was introduced in Room 2.3. However, this artifact will become non-optional in future release for those using Room with Paging 3.0. To opt-in, add the new room-paging artifact to your classpath. If you are using Gradle, you can add the following snippet to your build.gradle:</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-n">dependency</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">implementation</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"androidx.room:room-paging:2.4.0-alpha04"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix an issue in auto migrations regarding handling foreign key violations. (
+      <a href="https://issuetracker.google.com/190113935">b/190113935</a>
+      )
+    </li>
+  </ul>

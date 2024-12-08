@@ -1,0 +1,81 @@
+libraryId: wear-tiles
+groupId: androidx.wear
+version: 1.4.0-alpha02
+releaseDate: 2024-05-01
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha02" data-text="Version 1.4.0-alpha02" tabindex="-1">Version 1.4.0-alpha02</h3>
+  <p>May 1, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.tiles:tiles-*:1.4.0-alpha02</code>
+    is released. Version 1.4.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/638a8d3a474af45f6ad5fdc3d6d1836ea42d1778..fbd1ac175922f44c69a13545d194066ee428b342/wear/tiles">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Move
+      <code translate="no" dir="ltr">tileId</code>
+      to Builder constructor param as a mandatory field and document default timestamp value in the getter. (
+      <a href="https://android-review.googlesource.com/#/q/I98c2b4643f384ea0a5f6e0528d742bdadc5f7349">I98c2b</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">TileInteractionEvent</code>
+      ,
+      <code translate="no" dir="ltr">TileEnter</code>
+      , and
+      <code translate="no" dir="ltr">TileLeave</code>
+      proto messages and Java Wrappers needed for batching tile enter/leave events. (
+      <a href="https://android-review.googlesource.com/#/q/I112b03ed1efa2d3042e2796943834068be7358de">I112b0</a>
+      )
+    </li>
+    <li>
+      Refactor
+      <code translate="no" dir="ltr">TileRenderer</code>
+      to use a Builder instead of a
+      <code translate="no" dir="ltr">TileRenderer.Config</code>
+      object. (
+      <a href="https://android-review.googlesource.com/#/q/Ib66f91213411ff5fd73be2f3ab8b4bc37aa37da4">Ib66f9</a>
+      )
+    </li>
+    <li>
+      Add a
+      <code translate="no" dir="ltr">platformDataProviders</code>
+      attribute to
+      <code translate="no" dir="ltr">TileRenderer.Config</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6030dd90442d574adfff0e366bd6b698685aec85">I6030d</a>
+      )
+    </li>
+    <li>
+      Add a new constructor to
+      <code translate="no" dir="ltr">TileRenderer</code>
+      that supports a new
+      <code translate="no" dir="ltr">TileRenderer.Config</code>
+      class. Other constructors are deprecated. (
+      <a href="https://android-review.googlesource.com/#/q/Iae7ff371c15610156f4757e76db818274cfed335">Iae7ff</a>
+      )
+    </li>
+    <li>
+      Add a
+      <code translate="no" dir="ltr">platformDataValues</code>
+      field to
+      <code translate="no" dir="ltr">TilePreviewData</code>
+      to allow overriding platform data values. (
+      <a href="https://android-review.googlesource.com/#/q/If437a11bbd2e92407aea6315d0fb1204c199faa1">If437a</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Document that the default value for
+      <code translate="no" dir="ltr">TileRenderer.Config.Builder#setTilesTheme</code>
+      is zero. (
+      <a href="https://android-review.googlesource.com/#/q/Iced18d8f3dee7b441ba3f089c36bd8a60aacb770">Iced18</a>
+      )
+    </li>
+  </ul>

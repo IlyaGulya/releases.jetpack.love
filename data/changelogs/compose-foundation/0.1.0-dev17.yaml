@@ -1,0 +1,172 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 0.1.0-dev17
+releaseDate: 2020-08-19
+#language=html
+changelogHtml: |
+  <h3 id="0.1.0-dev17" data-text="Version 0.1.0-dev17" tabindex="-1">Version 0.1.0-dev17</h3>
+  <p>August 19, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation:0.1.0-dev17</code>
+    ,
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-layout:0.1.0-dev17</code>
+    , and
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-text:0.1.0-dev17</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/316f882e649c600372170f013a18515f590f490d..96eb302ee1740ba656c90c9fb27df3723a1a89c1/ui">Version 0.1.0-dev17 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The spacedBy Arrangement was added for Row and Column, to enable positioning layout children with a fixed spacing. The aligned Arrangment was also added, to enable positioning layout children one next to the other and aligned in the Row/Column according to an Alignment. The previous Arrangement.Vertical#arrange and Arrangement.Horizontal#arrange methods were deprecated, and writing custom Arrangements will not be supported in the future. (
+      <a href="https://android-review.googlesource.com/#/q/I6733d4a76e4abd5713bfacf95da696bdd6153932">I6733d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161985975">b/161985975</a>
+      )
+    </li>
+    <li>
+      Offset has become an inline class (
+      <a href="https://android-review.googlesource.com/#/q/Iaec70bb466cae8964f03e7484c1e86857c924f82">Iaec70</a>
+      )
+    </li>
+    <li>
+      Removed onFocusChanged callbacks from TextField. Use Modifier.focusObserver instead. (
+      <a href="https://android-review.googlesource.com/#/q/I51089bfbc858ea302770f92b13886818cf48ba9c">I51089</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161297615">b/161297615</a>
+      )
+    </li>
+    <li>
+      Modifier.drawBorder has been deprecated. Use Modifier.border instead. Border data class has been replaced by BorderStroke (
+      <a href="https://android-review.googlesource.com/#/q/I4257d62b222e27c9ad67e1b2581b162cc9392c9e">I4257d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/158160576">b/158160576</a>
+      )
+    </li>
+    <li>
+      VerticalScroller and HorizontalScroller have been removed. Use ScrollableColumn/Row instead. Modifier.drawBackground has been removed. Use Modifier.background (
+      <a href="https://android-review.googlesource.com/#/q/I73b0d940455a0a8e8dd18b5a483b12707f599304">I73b0d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/163019183">b/163019183</a>
+      )
+    </li>
+    <li>
+      Remove marked as deprecated fillMax* modifiers from LazyItemScope as they are making it harder to add such modifiers correctly for items which are not direct children of LazyColumnFor (
+      <a href="https://android-review.googlesource.com/#/q/Ifa78d7d5956e7f1d903c03aac4fa34b8bef5c425">Ifa78d</a>
+      )
+    </li>
+    <li>
+      added LazyColumn/LazyRow implementation as DSL (
+      <a href="https://android-review.googlesource.com/#/q/I93cc6fbf6ba4b46561677bda17a0b16108b2bd63">I93cc6</a>
+      )
+    </li>
+    <li>
+      Constraints is now an inline class (
+      <a href="https://android-review.googlesource.com/#/q/I88736be04376359506a2e8b4d599975c4f13aa01">I88736</a>
+      )
+    </li>
+    <li>
+      Added the ability to size a layout to a fraction of the available space, using the fillMaxWidth, fillMaxHeight and fillMaxSize modifiers. (
+      <a href="https://android-review.googlesource.com/#/q/I945bbae02b59241d993fc93c31aa81b6e3fee3c8">I945bb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161562591">b/161562591</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Added a modifier param to SelectionContainer (
+      <a href="https://android-review.googlesource.com/#/q/I4aadafd87d5705b96f73cd49af84728a463c1cc5">I4aada</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161487952">b/161487952</a>
+      )
+    </li>
+    <li>
+      Added mergePolicy lambda to SemanticsPropertyKey. This can be used to define a custom policy for mergeAllDescendants semantics merging. The default policy is to use the parent value if already present, otherwise the child value. (
+      <a href="https://android-review.googlesource.com/#/q/Iaf6c4cc327017ee492f4d8334c8df5167d33df58">Iaf6c4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161979921">b/161979921</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PlacementScope.placeAbsolute()</code>
+      was renamed to
+      <code translate="no" dir="ltr">PlacementScope.place()</code>
+      , and the previous
+      <code translate="no" dir="ltr">PlacementScope.place()</code>
+      was renamed to
+      <code translate="no" dir="ltr">PlacementScope.placeRelative()</code>
+      . As a result, the
+      <code translate="no" dir="ltr">PlacementScope.place()</code>
+      method will not automatically mirror the position in right-to-left contexts anymore. If this is desired, use
+      <code translate="no" dir="ltr">PlacementScope.placeRelative()</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/I873ac827e6c4d4bf6c85a80b7128174c61602945">I873ac</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/162916675">b/162916675</a>
+      )
+    </li>
+    <li>
+      Removed deprecated FilledTextField component. Please use TextField instead to get the Material Design implementation of the Filled text field. (
+      <a href="https://android-review.googlesource.com/#/q/I5e88900375ee81067f24d39f82f4022bf85b3d9c">I5e889</a>
+      )
+    </li>
+    <li>
+      Added backgroundColor parameter to LinearProgressIndicator and removed internal padding from CircularProgressIndicator. Added new ProgressIndicatorConstants.DefaultProgressAnimationSpec which can be used as the default AnimationSpec when animating progress between values (
+      <a href="https://android-review.googlesource.com/#/q/If38b5dd58d052b75c1974031e0974f22808d9776">If38b5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161809914">b/161809914</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161804677">b/161804677</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">state { ... }</code>
+      composable is now deprecated in favor of explicit calls to
+      <code translate="no" dir="ltr">remember { mutableStateOf(...) }</code>
+      for clarity. This reduces the overall API surface and number of concepts for state management, and matches the
+      <code translate="no" dir="ltr">by mutableStateOf()</code>
+      pattern for class property delegation. (
+      <a href="https://android-review.googlesource.com/#/q/Ia57278556d4f35ecf2cf5e6e30888b0d1f1f8012">Ia5727</a>
+      )
+    </li>
+    <li>
+      Renamed RRect to RoundRect to better fit compose naming patterns Created similar function constructors to RRect and deprecated RRect function constructors (
+      <a href="https://android-review.googlesource.com/#/q/I5d32529a133bc2f69ea1de94c2912b2748a0d678">I5d325</a>
+      )
+    </li>
+    <li>
+      Removed onChildPositioned and OnChildPositionedModifier. Developers should use onPositioned and OnPositionedModifier on the child layout instead. (
+      <a href="https://android-review.googlesource.com/#/q/I4522e2cd4a0edb08fd36212eacf19d2895ae87f7">I4522e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/162109766">b/162109766</a>
+      )
+    </li>
+    <li>
+      IntSize is now an inline class (
+      <a href="https://android-review.googlesource.com/#/q/I2bf426245b41f4189dead45114e3791bbceb9d13">I2bf42</a>
+      )
+    </li>
+    <li>
+      LongPress the Blank Area to Edit. (
+      <a href="https://android-review.googlesource.com/#/q/Ib1e5b6da49a1b25f4539af29c505f173c7bb6e6e">Ib1e5b</a>
+      )
+    </li>
+    <li>
+      Hide FloatingToolbar After Tapping on the Text. (
+      <a href="https://android-review.googlesource.com/#/q/If452579ab2b744624c517332919dda25b1e32bd6">If4525</a>
+      )
+    </li>
+    <li>
+      Hide FloatingToolbar When Updating the Selection. (
+      <a href="https://android-review.googlesource.com/#/q/I8444c88f72e19554625cfe3fdbddc693df73c647">I8444c</a>
+      )
+    </li>
+    <li>
+      Deselect When Blur. (
+      <a href="https://android-review.googlesource.com/#/q/I781a2627786bb5938f13dcd7b5e48373f5a655d0">I781a2</a>
+      )
+    </li>
+  </ul>

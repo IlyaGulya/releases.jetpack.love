@@ -1,0 +1,221 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.0.0-alpha07
+releaseDate: 2020-11-11
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha07" data-text="Version 1.0.0-alpha07" tabindex="-1">Version 1.0.0-alpha07</h3>
+  <p>November 11, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation:1.0.0-alpha07</code>
+    ,
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-layout:1.0.0-alpha07</code>
+    , and
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-text:1.0.0-alpha07</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/234e23e470a5e7f81291f6acd12d538146dc010b..358bdaf3c3c4a917883408e9f747da521fdf9e65/compose/foundation">Version 1.0.0-alpha07 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Similarly to
+      <code translate="no" dir="ltr">Modifier.fillMaxSize[Width|Height]</code>
+      we now support fractions in
+      <code translate="no" dir="ltr">Modifier.fillParentMaxSize[Width|Height]</code>
+      inside the scope of
+      <code translate="no" dir="ltr">LazyColumn/Row</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I797e279db98215aa6f7c3e705f90442b5bf31f99">I797e2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/166586426">b/166586426</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">KeyboardOptions.toImeOptions</code>
+      from public API. (
+      <a href="https://android-review.googlesource.com/#/q/Ic2e4500be7841ad3815bc576356ab67e616db534">Ic2e45</a>
+      )
+    </li>
+    <li>
+      The foundation AmbientTextStyle, ProvideTextStyle, and AmbientContentColor have been deprecated. Instead use the new versions available in the Material library. For non-Material applications, you should instead create your own design system specific theming ambients that can be consumed in your own components. (
+      <a href="https://android-review.googlesource.com/#/q/I74accf7166eaca28e9e2d14402ed08d80f8625ab">I74acc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172067770">b/172067770</a>
+      )
+    </li>
+    <li>
+      foundation.Text has been deprecated and replaced with material.Text. For a basic, unopinionated text API that does not consume values from a theme, see androidx.compose.foundation.BasicText. (
+      <a href="https://android-review.googlesource.com/#/q/If64cbdd89497f171edfd1b4de907123f73279e8d">If64cb</a>
+      )
+    </li>
+    <li>
+      Added maxLines to TextFields (
+      <a href="https://android-review.googlesource.com/#/q/Ib2a5bb1c0ec8782b6a05fc48033fd4b05622820e">Ib2a5b</a>
+      )
+    </li>
+    <li>
+      Update TextFields to accept KeyboardOptions (
+      <a href="https://android-review.googlesource.com/#/q/Ida7f3c71647dc9fff8acdd50fc5604a15957ccec">Ida7f3</a>
+      )
+    </li>
+    <li>
+      Added KeyboardOptions for use in TextFields (
+      <a href="https://android-review.googlesource.com/#/q/I9ca329336d80be07e6a0c1e6d7a2f84902774898">I9ca32</a>
+      )
+    </li>
+    <li>
+      Adds BasicText as a design-unopinionated API for text, parallel to BasicTextField. (
+      <a href="https://android-review.googlesource.com/#/q/I28268e2eff13261410ea88ced1dd1b3dca509a20">I28268</a>
+      )
+    </li>
+    <li>
+      ExperimentalLazyDsl annotation was removed. LazyColumn/LazyRow can now be used without adding @OptIn (
+      <a href="https://android-review.googlesource.com/#/q/Idab7ad1ce0d14659e5e7f54076d4c207b9449215">Idab7a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/166584730">b/166584730</a>
+      )
+    </li>
+    <li>
+      BaseTextField has been deprecated. Use BasicTextField instead. (
+      <a href="https://android-review.googlesource.com/#/q/I896eb0eb21e73bda5f269e1ffae4357201acb219">I896eb</a>
+      )
+    </li>
+    <li>
+      BasicTextField has been added as a replacement for both CoreTextField and BaseTextField (
+      <a href="https://android-review.googlesource.com/#/q/Id4cea88b13c50145a6ffd8a52318bc8e2f83edb8">Id4cea</a>
+      )
+    </li>
+    <li>
+      Remove deprecated LazyColumnItems/LazyRowItems (
+      <a href="https://android-review.googlesource.com/#/q/I1d8a809dfb424b9f066dc030d148c3b0572c4345">I1d8a8</a>
+      )
+    </li>
+    <li>
+      The deprecated composables for sizing to intrinsic measurements were removed. (
+      <a href="https://android-review.googlesource.com/#/q/I18537b5628f76eecb30f9a163d2fde3cd5984609">I18537</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171811496">b/171811496</a>
+      )
+    </li>
+    <li>
+      relativePaddingFrom was renamed to paddingFrom. The paddingFromBaseline modifier was added, as convenience for specifying distances from layout bounds to text baselines. (
+      <a href="https://android-review.googlesource.com/#/q/I0440af2aea41e020cb581b9030522b7586fe952e">I0440a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170633813">b/170633813</a>
+      )
+    </li>
+    <li>
+      The matchHeightConstraintsFirst parameter was added to the aspectRatio modifier, which can be used to specify the modifier to size to height constraints before trying the width correspondents. (
+      <a href="https://android-review.googlesource.com/#/q/Ie7c433d0f51d33c1df45a4b63d110e34ae0bd360">Ie7c43</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/155290593">b/155290593</a>
+      )
+    </li>
+    <li>
+      The deprecated DpConstraints was removed. (
+      <a href="https://android-review.googlesource.com/#/q/I87884131131503fe08e78f67898cf233b2818832">I87884</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171702471">b/171702471</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Introduced ScaleFactor inline class to represent scale factors for the horizontal and vertical axes independent of one another in order to support non-uniform scaling use cases.
+      <ul>
+        <li>Added computeScaleFactor method to ContentScale</li>
+        <li>Added ContentScale.FillBounds to perform non-uniform scaling to stretch the src bounds to fully occupy the destination.</li>
+        <li>Added operator methods to compute ScaleFactor parameters with Size parameters.</li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/Ic96a6eb421cda5550c817ceca23ab50fde337778">Ic96a6</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/172291582">b/172291582</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      captureToBitmap moved to captureToImage. (
+      <a href="https://android-review.googlesource.com/#/q/I86385454625b533b83c87e48d82e143dd1bcb88e">I86385</a>
+      )
+    </li>
+    <li>
+      Marks CoreText as @InternalTextApi. Use BasicText instead. (
+      <a href="https://android-review.googlesource.com/#/q/I6aaeb3c571bc716f920409a255e07d0d03cf78d8">I6aaeb</a>
+      )
+    </li>
+    <li>
+      Rename KeyboardOptions as ImeOptions (
+      <a href="https://android-review.googlesource.com/#/q/I82f364ca1ede4bfea9430fcc9fd227d729b39fd9">I82f36</a>
+      )
+    </li>
+    <li>
+      Moved KeyboardType and ImeAction into KeyboardOptions (
+      <a href="https://android-review.googlesource.com/#/q/I910cea6ec0ef3568b9a94f7b193e8cb7e8b776ed">I910ce</a>
+      )
+    </li>
+    <li>
+      CoreTextField has been marked as @InternalTextApi. Use BasicTextField instead (
+      <a href="https://android-review.googlesource.com/#/q/Ie2469cf4af3a476e8015999f45e439ea619dab23">Ie2469</a>
+      )
+    </li>
+    <li>
+      ExperimentalSubcomposeLayoutApi annotation was removed. SubcomposeLayout can now be used without adding @OptIn (
+      <a href="https://android-review.googlesource.com/#/q/I708adafbc3c10cc6c23fe5a236f66e73146e4f56">I708ad</a>
+      )
+    </li>
+    <li>
+      Introduce ui-test-junit4 module (
+      <a href="https://android-review.googlesource.com/#/q/Ib91f8a6792d8852427cc0dff99a40086c00b8ce4">Ib91f8</a>
+      )
+    </li>
+    <li>
+      Updated Icon API to take in Color.Unspecified as a possible tint color which will draw the provided asset or painter without a ColorFilter. Previously attempts to ignore tinting with Color.Unspecified would tint with a transparent color ending up with nothing rendered at all. (
+      <a href="https://android-review.googlesource.com/#/q/I049e2b7464204f1fd8965d31d6dfba811b30a2bb">I049e2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171624632">b/171624632</a>
+      )
+    </li>
+    <li>
+      MeasureResult was moved out of MeasureScope. (
+      <a href="https://android-review.googlesource.com/#/q/Ibf96ddadae8115015066dcda2026a57b87c2ead6">Ibf96d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171184002">b/171184002</a>
+      )
+    </li>
+    <li>
+      Several layout related symbols were moved from androidx.compose.ui to androidx.compose.layout.ui. (
+      <a href="https://android-review.googlesource.com/#/q/I0fa982d87929e5ca9e3a32762fe9cf1fa8b8cfef">I0fa98</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170475424">b/170475424</a>
+      )
+    </li>
+    <li>
+      androidx.ui.test moved to androidx.compose.ui.test (
+      <a href="https://android-review.googlesource.com/#/q/I9ffdb165d49e8d136b58cc4e32599a4a1d5b169e">I9ffdb</a>
+      )
+    </li>
+    <li>
+      FirstBaseline and LastBaseline were moved to androidx.compose.ui.layout package (
+      <a href="https://android-review.googlesource.com/#/q/Ied2e7ff4c8d8a45072439d719ea5c75270c28c97">Ied2e7</a>
+      )
+    </li>
+    <li>
+      Added SelectionContainer without the callback (
+      <a href="https://android-review.googlesource.com/#/q/Ibfadba5a9f66101c5746c5b842dadf840617e1a6">Ibfadb</a>
+      )
+    </li>
+    <li>
+      Add Tests for SelectionHandles' Positions in SelectionContainer. (
+      <a href="https://android-review.googlesource.com/#/q/Ie93dbdbebcdc55d63bc8185fdf2faa0262778c15">Ie93db</a>
+      )
+    </li>
+    <li>
+      Added Keyboard auto correct IME Option (
+      <a href="https://android-review.googlesource.com/#/q/I57b8d4b3c65630763e198c31c7d116fcbe461c51">I57b8d</a>
+      )
+    </li>
+  </ul>

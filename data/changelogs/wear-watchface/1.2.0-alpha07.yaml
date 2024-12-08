@@ -1,0 +1,104 @@
+libraryId: wear-watchface
+groupId: androidx.wear
+version: 1.2.0-alpha07
+releaseDate: 2023-02-22
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha07" data-text="Version 1.2.0-alpha07" tabindex="-1">Version 1.2.0-alpha07</h3>
+  <p>February 22, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.watchface:watchface-*:1.2.0-alpha07</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e5dad1e7d1c225f89f7c2d5a39a7a0de8d637d7b..87533b4ff06971ed59028936cd9b6da988cd4522/wear/watchface">Version 1.2.0-alpha07 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>
+        From Android T, OEMs will be able to determine if a complication request is from a watch face in the list defined by the
+        <code translate="no" dir="ltr">android.support.wearable.complications.SAFE_WATCH_FACES</code>
+        metadata in their provider’s manifest by
+        <code translate="no" dir="ltr">ComplicationRequest#isForSafeWatchFace</code>
+        . The provider will need the
+        <code translate="no" dir="ltr">com.google.wear.permission.GET_IS_FOR_SAFE_WATCH_FACE</code>
+        permission to receive anything other than
+        <code translate="no" dir="ltr">TargetWatchFaceSafety.UNKNOWN</code>
+        .
+      </p>
+    </li>
+    <li>
+      <p>
+        Also from Android T
+        <code translate="no" dir="ltr">CustomValueUserStyleSetting2</code>
+        is available for use which can hold up to 12.5kb. The previous limit for
+        <code translate="no" dir="ltr">CustomValueUserStyleSetting</code>
+        was 1kb. Despite the increased size limits, watch face developers are encouraged to keep the data small because the settings get sent over bluetooth during editing and bluetooth bandwidth is limited.
+      </p>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We've added an optional parameter
+      <code translate="no" dir="ltr">eglContextAttribList</code>
+      to
+      <code translate="no" dir="ltr">GlesRenderer</code>
+      &amp;
+      <code translate="no" dir="ltr">GlesRenderer2</code>
+      which allows you to set the
+      <code translate="no" dir="ltr">EGL14.EGL_CONTEXT_CLIENT_VERSION</code>
+      passed to
+      <code translate="no" dir="ltr">EGL14.eglCreateContext</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2a83e7d00b07dcfbb7f17598bf9830136dfd5495">I2a83e</a>
+      )
+    </li>
+    <li>
+      We've migrated watch face libs over to
+      <code translate="no" dir="ltr">androidx.core.util.Consumer</code>
+      instead of
+      <code translate="no" dir="ltr">java.util.function.Consumer</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I273f5eb562aaef9d37d585e8b6c793b06de6e309">I273f5</a>
+      )
+    </li>
+    <li>
+      More thrown exceptions from KT property accessors (
+      <a href="https://android-review.googlesource.com/#/q/Iff9d9d0a4dd67d3f89d1a1c480595152357c2a3c">Iff9d9</a>
+      )
+    </li>
+    <li>
+      We've added
+      <code translate="no" dir="ltr">InteractiveWatchFaceClient.isComplicationDisplayPolicySupported</code>
+      so that the client can determine if it has to emulate support or not on behalf of old watch faces. (
+      <a href="https://android-review.googlesource.com/#/q/I24c891bdde9ae97041d21bdc8f45fd0a5eff71ab">I24c89</a>
+      )
+    </li>
+    <li>
+      We've decided that
+      <code translate="no" dir="ltr">isForSafeWatchFace</code>
+      should be a tri-state
+      <code translate="no" dir="ltr">IntDef</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ief2f7f793bad4013bc68a2707d554e20199ce2a7">Ief2f7</a>
+      )
+    </li>
+    <li>
+      For android T we've introduced
+      <code translate="no" dir="ltr">ComplicationRequest.isForSafeWatchFace</code>
+      which is intended for OEM use and it requires
+      <code translate="no" dir="ltr">com.google.wear.permission.GET_IS_FOR_SAFE_WATCH_FACE</code>
+      . For data sources in the system image, this will return true if the requesting watch face is inside the list of safe watchfaces specified by the data source in it's manifest. (
+      <a href="https://android-review.googlesource.com/#/q/I0cbb640fad087345f5eb0f68fe65b269de70c0c4">I0cbb6</a>
+      )
+    </li>
+    <li>
+      For android T we've added
+      <code translate="no" dir="ltr">CustomValueUserStyleSetting2</code>
+      which can hold up to 12.5kb. The previous limit for
+      <code translate="no" dir="ltr">CustomValueUserStyleSetting</code>
+      was 1kb. (
+      <a href="https://android-review.googlesource.com/#/q/I0b100d3713bbe715a5a09be2dc46d85efaaf83e5">I0b100</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,178 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.4.0-alpha02
+releaseDate: 2021-06-02
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0-alpha02" data-text="Version 2.4.0-alpha02" tabindex="-1">Version 2.4.0-alpha02</h3>
+  <p>June 2, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.4.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/66681ad83c328d0dd821b943bb3d375f02c1db61..86ff5b4bb956431ec884586ce0aea0127e189ec4/navigation">Version 2.4.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Routes are now supported for Activity, Fragment and Dialog destinations, as well as throughout the DynamicNavigation Kotlin DSL. (
+      <a href="https://android-review.googlesource.com/#/q/Ib5544bd128a17f0dc681e105a1ce4a8a28945bc3">Ib5544</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ia617ba47da5c4995fd21ce2becdf527ac6ade4e9">Ia617b</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I22f963d5b533066670384c1af7fc7556f57b4163">I22f96</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/188914648">b/188914648</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/188901565">b/188901565</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavigationUI</code>
+      has temporarily added experimental APIs to allow opting out of saving your state. While always saving the state is the correct behavior, there are still uses of deprecated libraries (i.e. retained fragments), that cannot be supported when saving the state so this gives an opportunity for apps to slowly convert away from any unsupported APIs. (
+      <a href="https://android-review.googlesource.com/#/q/Idf93c093c0f3729148c78c1de9d36a0f10fbb31f">Idf93c</a>
+      )
+    </li>
+    <li>
+      <p>
+        Navigation now provides
+        <code translate="no" dir="ltr">findDestination()</code>
+        and
+        <code translate="no" dir="ltr">getHierarchy()</code>
+        APIs that can be used to help implement custom NavigationUI.
+        <code translate="no" dir="ltr">findDestination()</code>
+        is an extension function on
+        <code translate="no" dir="ltr">NavGraph</code>
+        that will locate a destination within the graph.
+        <code translate="no" dir="ltr">getHierarchy()</code>
+        is a function on
+        <code translate="no" dir="ltr">NavDestination</code>
+        that can be used to verify if a given destination is within the hierarchy of another.(
+        <a href="https://android-review.googlesource.com/#/q/I2932fc4ddba6f381e5e353ee30d2233140e5a674">I2932f</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/188183365">b/188183365</a>
+        )
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">matchingRoute</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">Boolean</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">destination</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">hierarchy</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">any</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nb">it</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">route</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">==</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">routeToFind</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        NavigationUI methods that took a
+        <code translate="no" dir="ltr">BottomNavigationView</code>
+        have been updated to instead take its superclass introduced in Material
+        <code translate="no" dir="ltr">1.4.0</code>
+        ,
+        <code translate="no" dir="ltr">NavigationBarView</code>
+        . This allows these methods to be used with the
+        <code translate="no" dir="ltr">NavigationRailView</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/Ib0b36d933571daab2e94a79d524388c282a8c23c">Ib0b36</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/182938895">b/182938895</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        When inflating an
+        <code translate="no" dir="ltr">&lt;action&gt;</code>
+        element via XML, animation attributes can use attributes pulled from your theme using the
+        <code translate="no" dir="ltr">app:enterAnim="?attr/transitionEnter"</code>
+        syntax. (
+        <a href="https://android-review.googlesource.com/#/q/I07bc1fbfd65e0c36c0cd8f1210efc1e82810f3dd">I07bc1</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/178291654">b/178291654</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Kotlin DSL builders that use an ID have been deprecated and should be replaced with builders that use routes (
+      <a href="https://android-review.googlesource.com/#/q/I85b42c2dff5f5eddffd67f37b51c45b03f24c87a">I85b42</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/188816479">b/188816479</a>
+      ) (
+      <a href="https://android-review.googlesource.com/#/q/I9f58f08400e8d7990784bdf27481c0ac2f34dedf">I9f58f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/188816479">b/188816479</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">DialogFragmentNavigator</code>
+      now uses the
+      <code translate="no" dir="ltr">NavigatorState.pop()</code>
+      API to inform the
+      <code translate="no" dir="ltr">NavController</code>
+      when a dialog is dismissed by hitting the system back button or clicking outside of it, ensuring that the
+      <code translate="no" dir="ltr">NavController</code>
+      state is always in sync with the Navigator's state. (
+      <a href="https://android-review.googlesource.com/#/q/I2ead97ae3d392d40e9312f3212e6bea02bf3343e">I2ead9</a>
+      )
+    </li>
+    <li>
+      <p>
+        Navigation no longer gives a
+        <code translate="no" dir="ltr">ConcurrentModificationException</code>
+        when using manipulating the list of
+        <code translate="no" dir="ltr">OnDestinationChangedListeners</code>
+        from with an
+        <code translate="no" dir="ltr">onDestinationChanged</code>
+        callback. (
+        <a href="https://android-review.googlesource.com/#/q/Ib17074c773ed9462c6a69ad384c23e28fa8abaf6">Ib1707</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/188860458">b/188860458</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Safe Args no longer crashes when attempting to generate direction properties in Kotlin. (
+        <a href="https://android-review.googlesource.com/#/q/Id2416d7d7c52888fb9ec9bdbb80afcc7d2a1bf3e">Id2416</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/188564435">b/188564435</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        The setId method on NavDestination is now properly annotated with
+        <code translate="no" dir="ltr">@IdRes</code>
+        , so it only accepts resource ids. (
+        <a href="https://android-review.googlesource.com/#/q/I69b80a6a63c4db257385c96bd07ad21f7665dcb8">I69b80</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        The int parameter of
+        <code translate="no" dir="ltr">findNode</code>
+        is now
+        <code translate="no" dir="ltr">resId</code>
+        instead of
+        <code translate="no" dir="ltr">resid</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/I7711dafc332d1b06dfe48295bdf1cc05b23cf040">I7711d</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Dependency Update</strong></p>
+  <ul>
+    <li>
+      Safe-Args now depends on Android Gradle Plugin 4.2.0. This means you should no longer get the using
+      <code translate="no" dir="ltr">applicationIdTextResource</code>
+      warning. (
+      <a href="https://android-review.googlesource.com/#/q/I6d67ba2067b42b57463efe5872f345058379ab40">I6d67b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172824579">b/172824579</a>
+      )
+    </li>
+  </ul>

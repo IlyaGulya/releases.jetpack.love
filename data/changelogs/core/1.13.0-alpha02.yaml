@@ -1,0 +1,93 @@
+libraryId: core
+groupId: androidx.core
+version: 1.13.0-alpha02
+releaseDate: 2023-11-29
+#language=html
+changelogHtml: |
+  <h3 id="1.13.0-alpha02" data-text="Version 1.13.0-alpha02" tabindex="-1">Version 1.13.0-alpha02</h3>
+  <p>November 29, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core:1.13.0-alpha02</code>
+    ,
+    <code translate="no" dir="ltr">androidx.core:core-ktx:1.13.0-alpha02</code>
+    , and
+    <code translate="no" dir="ltr">androidx.core:core-testing:1.13.0-alpha02</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/465c5c5b7a0d79793bddb26a695f67aba8ea2f7e..b5166f9a1e9c047162d1215884c3e2cd41a4a74a/core">Version 1.13.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Adds the
+      <code translate="no" dir="ltr">OnUserLeaveHintProvider</code>
+      interface to allow any component to receive
+      <code translate="no" dir="ltr">onUserLeaveHint</code>
+      events necessary for implementing picture-in-picture. This is implemented by
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      in
+      <a href="/jetpack/androidx/releases/activity#1.9.0-alpha01">
+        Activity
+        <code translate="no" dir="ltr">1.9.0-alpha01</code>
+      </a>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I54892c9ab5a8a002164b9f98cd31e02d56d73da7">I54892</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Deprecated
+      <code translate="no" dir="ltr">androidx.core.os.CancellationSignal</code>
+      . Usages should be replaced with the platform-provided
+      <code translate="no" dir="ltr">android.os.CancellationSignal</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id45f69a0b9cee7515d3f5b35dde3b3b037f8bd3a">Id45f6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/309499026">b/309499026</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/309054079">b/309054079</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">OnMultiWindowModeChangedProvider</code>
+      ,
+      <code translate="no" dir="ltr">OnNewIntentProvider</code>
+      ,
+      <code translate="no" dir="ltr">OnPictureInPictureModeChangedProvider</code>
+      ,
+      <code translate="no" dir="ltr">OnConfigurationChangedProvider</code>
+      , and
+      <code translate="no" dir="ltr">OnTrimMemoryProvider</code>
+      interfaces have been converted to Kotlin to ensure that the generic parameters on the
+      <code translate="no" dir="ltr">Consumer</code>
+      that their listener methods take have the correct nullability (they are all non-null). (
+      <a href="https://android-review.googlesource.com/#/q/Ib62377a0f6002806074a05126cf6a9ca8c78dcbf">Ib6237</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">MultiWindowModeChangedInfo</code>
+      and
+      <code translate="no" dir="ltr">PictureInPictureModeChangedInfo</code>
+      classes that are sent to the
+      <code translate="no" dir="ltr">Consumer</code>
+      added to their respective Provider interfaces are now written in Kotlin. (
+      <a href="https://android-review.googlesource.com/#/q/Ie08e292c77dc66634a0b474a63df0ac31f34f87e">Ie08e2</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Update</strong></p>
+  <ul>
+    <li>
+      Core now depends on
+      <a href="/jetpack/androidx/releases/lifecycle#2.6.2">
+        Lifecycle
+        <code translate="no" dir="ltr">2.6.2</code>
+      </a>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2d94c8b7fc3fb3bb59547d56a5d2f06584f1b5a4">I2d94c</a>
+      )
+    </li>
+  </ul>

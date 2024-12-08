@@ -1,0 +1,235 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.2.0
+releaseDate: 2023-10-18
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0" data-text="Version 1.2.0" tabindex="-1">Version 1.2.0</h3>
+  <p>October 18, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.2.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c65e8e30c0edf5bb898c705ceab72d04ffbc0de7..02ee67f42727c99060859cf146f7a61c8db1fe96/benchmark">Version 1.2.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 1.1.0</strong></p>
+  <p><strong>Baseline Profiles</strong></p>
+  <ul>
+    <li>
+      New
+      <a href="/topic/performance/baselineprofiles/create-baselineprofile#android%20studio%20hedgehot">Baseline Profile Gradle Plugin</a>
+      automates capturing and including baseline profiles in your test and build workflow.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BaselineProfileRule.collect</code>
+      now stable, a streamlined and simplified version of the previous experimental
+      <code translate="no" dir="ltr">BaselineProfileRule.collectBaselineProfile</code>
+      API
+      <ul>
+        <li>
+          Just specify
+          <code translate="no" dir="ltr">packageName</code>
+          , and drive your app
+        </li>
+      </ul>
+    </li>
+    <li>
+      For libraries generating baseline profiles, you can now filter the rules generated either in code (
+      <code translate="no" dir="ltr">BaselineProfileRule.collect</code>
+      argument), or even more simply in the gradle plugin
+    </li>
+    <li>
+      Fixes
+      <ul>
+        <li>
+          Fixed baseline profile collection on Android U+ (
+          <a href="https://android-review.googlesource.com/#/q/Id1392207ec545dc4b095c4b435a92bb2a1ff0c66">Id1392</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/277645214">b/277645214</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Macrobenchmark</strong></p>
+  <ul>
+    <li>
+      Compilation
+      <ul>
+        <li>Macrobenchmark now correctly fully resets compilation state for each compile - this requires reinstalling the APK prior to Android 14, so benchmarking on Android 14+ is strongly recommended if you want to persist state (like user login) in what's being measured.</li>
+        <li>
+          You can also work around this by controlling app compilation separately, and skipping compilation with
+          <a href="/reference/androidx/benchmark/macro/CompilationMode.Ignore"><code translate="no" dir="ltr">CompilationMode.Ignore()</code></a>
+          or
+          <a href="/topic/performance/benchmarking/macrobenchmark-instrumentation-args#compilation-enabled">instrumentation argument</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>Instrumentation Arguments</p>
+
+      <ul>
+        <li>
+          Support for
+          <a href="/topic/performance/benchmarking/macrobenchmark-instrumentation-args#dryrunmode-enable"><code translate="no" dir="ltr">androidx.benchmark.dryRunMode.enable</code></a>
+          instrumentation argument, (already available in microbenchmark) for quicker validation runs (e.g. when creating the benchmark, or in presubmit)
+        </li>
+        <li>
+          Support for
+          <code translate="no" dir="ltr">androidx.benchmark.profiling.mode=StackSampling</code>
+          and
+          <code translate="no" dir="ltr">MethodTracing</code>
+          .
+        </li>
+        <li>
+          Added
+          <a href="/topic/performance/benchmarking/macrobenchmark-instrumentation-args#enabled-rules"><code translate="no" dir="ltr">androidx.benchmark.enabledRules</code></a>
+          to allow runtime filtering baseline profile vs macrobenchmark rule tests
+        </li>
+        <li>
+          Added
+          <a href="/topic/performance/benchmarking/macrobenchmark-instrumentation-args#perfettoSdkTracing"><code translate="no" dir="ltr">androidx.benchmark.perfettoSdkTracing.enable</code></a>
+          argument to enable tracing with tracing-perfetto, e.g. Compose recomposition tracing. Note that when used with
+          <code translate="no" dir="ltr">StartupMode.COLD</code>
+          , timing will be significantly affected as the tracing library is loaded and enabled during app startup.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>Requirements</p>
+
+      <ul>
+        <li>
+          Macrobenchmark now requires
+          <code translate="no" dir="ltr">ProfileInstaller</code>
+          1.3.0 or greater in the target app, to enable profile capture / reset, and shader cache clearing.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        New Experimental
+        <a href="/topic/performance/benchmarking/macrobenchmark-metrics">Metric APIs</a>
+      </p>
+
+      <ul>
+        <li>
+          Added experimental
+          <a href="/reference/kotlin/androidx/benchmark/macro/TraceSectionMetric"><code translate="no" dir="ltr">TraceSectionMetric</code></a>
+          , which allows for extracting simple timing from
+          <a href="/topic/performance/tracing/custom-events"><code translate="no" dir="ltr">trace("") {}</code></a>
+          blocks in your app, or
+          <a href="/reference/androidx/benchmark/macro/TraceMetric">TraceMetric</a>
+          for leveraging the full query capability of Perfetto
+          <code translate="no" dir="ltr">TraceProcessor</code>
+          .
+        </li>
+        <li>
+          Added experimental
+          <a href="/reference/androidx/benchmark/macro/PowerMetric"><code translate="no" dir="ltr">PowerMetric</code></a>
+          to capture power usage information
+        </li>
+        <li>
+          Added experimental
+          <a href="/reference/androidx/benchmark/macro/MemoryCountersMetric"><code translate="no" dir="ltr">MemoryCountersMetric</code></a>
+          to count page faults
+        </li>
+        <li>
+          Added experimental
+          <a href="/reference/androidx/benchmark/perfetto/PerfettoTraceProcessor"><code translate="no" dir="ltr">PerfettoTraceProcessor</code></a>
+          API, which is used internally to extract metrics from System traces (aka Perfetto traces)
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>Fixes</p>
+
+      <ul>
+        <li>Fixed crashes when installing or extracting profiles from an app installed from multiple APKs (e.g. from app bundle).</li>
+        <li>
+          Fixed
+          <code translate="no" dir="ltr">FrameTimingMetric</code>
+          ignoring frames with inconsistent frame IDs (generally, frames during ripples on API 31+) (
+          <a href="https://android-review.googlesource.com/#/q/I747d23e6f5f38eda2c51ee3d26929fa4130e297c">I747d2</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/279088460">b/279088460</a>
+          )
+        </li>
+        <li>
+          Fixed parsing errors on traces &gt; 64MB (
+          <a href="https://android-review.googlesource.com/#/q/Ief831b2c58ebfeac3ae5cb2bfcb8623b920ad356">Ief831</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/269949822">b/269949822</a>
+          )
+        </li>
+        <li>Clarified errors when device (especially emulator) OS image not correctly configured for tracing, or compilation</li>
+        <li>Skip battery level check for devices without battery (micro and macro)</li>
+        <li>Improved file output, with more clear errors for invalid output directories, and safer defaults</li>
+        <li>
+          Improved stability of
+          <code translate="no" dir="ltr">StartupMode.COLD</code>
+          by consistently dropping the shader cache (also exposed via
+          <code translate="no" dir="ltr">MacrobenchmarkScope.dropShaderCache</code>
+          )
+        </li>
+        <li>
+          Fixed leanback fallback for
+          <code translate="no" dir="ltr">startActivityAndWait</code>
+          .
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Microbenchmark</strong></p>
+  <ul>
+    <li>
+      Features
+      <ul>
+        <li>
+          Profiling was moved to a separate phase, after other metrics, so one test run can display both accurate timing
+          <em>and</em>
+          profiling results.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Experimental APIs
+      <ul>
+        <li>
+          Added experimental
+          <a href="/reference/kotlin/androidx/benchmark/MicrobenchmarkConfig"><code translate="no" dir="ltr">MicrobenchmarkConfig</code></a>
+          API for defining custom metrics and configuring tracing and profiling. Can be used to capture method traces, or capture tracepoints (but be aware of tracing overhead).
+        </li>
+        <li>
+          Added experimental APIs for controlling
+          <a href="/reference/kotlin/androidx/benchmark/BenchmarkState"><code translate="no" dir="ltr">BenchmarkState</code></a>
+          separately from
+          <code translate="no" dir="ltr">BenchmarkRule</code>
+          , without JUnit
+        </li>
+        <li>
+          Added experimental
+          <a href="/reference/androidx/benchmark/perfetto/PerfettoTrace"><code translate="no" dir="ltr">PerfettoTrace</code></a>
+          record to enable capturing Perfetto traces, with custom configuration, separate from benchmark APIs.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Fixes
+      <ul>
+        <li>Workaround missing leading whitespaces in Android Studio benchmark output.</li>
+        <li>Fix issue where warnings could fail to print in Android Studio benchmark output.</li>
+        <li>
+          Fixed
+          <code translate="no" dir="ltr">SampledProfiling</code>
+          crash on Android 13 (API 33) and higher.
+        </li>
+        <li>
+          Massively improved performance of
+          <code translate="no" dir="ltr">dryRunMode</code>
+          by skipping
+          <code translate="no" dir="ltr">IsolationActivity</code>
+          and Perfetto tracing (Up to 10x faster dry run mode on older OS versions).
+        </li>
+      </ul>
+    </li>
+  </ul>

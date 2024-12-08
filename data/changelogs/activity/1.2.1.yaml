@@ -1,0 +1,51 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.2.1
+releaseDate: 2021-03-10
+#language=html
+changelogHtml: |
+  <h3 id="1.2.1" data-text="Version 1.2.1" tabindex="-1">Version 1.2.1</h3>
+  <p>March 10, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.2.1</code>
+    and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.2.1</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/2b9107d21669925e066ad87d9caa04b7dedf59d4..48102953c701f63f9237bdd6133a70d6eac30a78/activity">Version 1.2.1 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">RequestMultiplePermissions</code>
+      now always returns results for all requested permissions instead of only permissions that weren’t previously granted. (
+      <a href="https://android-review.googlesource.com/#/q/I50bc3db9c59c7a3e3ca8afc7c3fe1b1318c26067">I50bc3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/180884668">b/180884668</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ActivityResultRegistry</code>
+      now ensures that in progress
+      <code translate="no" dir="ltr">launch()</code>
+      requests will return their results even if you
+      <code translate="no" dir="ltr">unregister()</code>
+      , then
+      <code translate="no" dir="ltr">register()</code>
+      again with the same key. (
+      <a href="https://android-review.googlesource.com/#/q/I9ef34256a1e0f93fd1fd8983e867b9dd5e8e2441">I9ef34</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/181267562">b/181267562</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_120_3" data-text="Version 1.2.0" tabindex="-1">Version 1.2.0</h2>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      The Kotlin dependant libraries of this version (
+      <code translate="no" dir="ltr">activity-ktx</code>
+      ) target Java 8 programming language bytecode. Please read
+      <a href="/studio/write/java8-support">Use Java 8 language features</a>
+      to learn how to use it in your project.
+    </span>
+  </aside>

@@ -1,0 +1,49 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.2.0-beta01
+releaseDate: 2022-05-11
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-beta01" data-text="Version 1.2.0-beta01" tabindex="-1">Version 1.2.0-beta01</h3>
+  <p>May 11, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.2.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/41a4e31408842caa2b58db5e4ee6ec708464425f..eea19c54f6d94f1c234c4305c1329f7f1427867a/compose/runtime">Version 1.2.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>This is the first beta release of 1.2!</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added experimental
+      <code translate="no" dir="ltr">Snapshot.unsafeEnter/unsafeLeave</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I108f3f633fdeed300c1260d62effd2749e38bbb3">I108f3</a>
+      )
+    </li>
+    <li>
+      Added experimental
+      <code translate="no" dir="ltr">Snapshot.asContextElement()</code>
+      API (
+      <a href="https://android-review.googlesource.com/#/q/Iff072daba13e2d202e1895114cf62bb0290d10ea">Iff072</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">@ComposableTarget</code>
+      annotation and annotations marked by
+      <code translate="no" dir="ltr">@ComposableTargetMarker</code>
+      can now be used at the file scope using the
+      <code translate="no" dir="ltr">@file</code>
+      prefix. Using a target annotation at the file scope will cause the compiler to assume all composable functions in the file are intended to be target the associated applier. For example, using
+      <code translate="no" dir="ltr">@file:UiComposable</code>
+      declares that all
+      <code translate="no" dir="ltr">@Composable</code>
+      functions target the Compose UI applier. A function that needs to target another applier must explicitly supply the target marker annotation for the desired applier. (
+      <a href="https://android-review.googlesource.com/#/q/I40804e71dcc931b788c101a0be90ae1d6fc7eba1">I40804</a>
+      )
+    </li>
+  </ul>

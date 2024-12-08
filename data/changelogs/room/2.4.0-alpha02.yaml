@@ -1,0 +1,46 @@
+libraryId: room
+groupId: androidx.room
+version: 2.4.0-alpha02
+releaseDate: 2021-05-05
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0-alpha02" data-text="Version 2.4.0-alpha02" tabindex="-1">Version 2.4.0-alpha02</h3>
+  <p>May 5, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.4.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ab8f8cb3fbe8e7409d54bb7251e636d8a92226e2..3d6f168394d1dd14e1d6f5b6dc4a0d405cb1a26a/room">Version 2.4.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">@ProvidedAutoMigrationSpec</code>
+      is a new API for declaring that an
+      <code translate="no" dir="ltr">AutoMigrationSpec</code>
+      will be provided at runtime via
+      <code translate="no" dir="ltr">RoomDatabase.Builder#addAutoMigrationSpec()</code>
+      . This allows for a dependency injection framework to provide such specs when they need complex dependencies.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix an issue with auto migrations where
+      <code translate="no" dir="ltr">@DatabaseView</code>
+      s where not being properly re-created.
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Fix an issue in Room’s
+      <code translate="no" dir="ltr">JournalMode.TRUNCATE</code>
+      where the
+      <code translate="no" dir="ltr">InvalidationTracker</code>
+      callback was sometimes being invoked invalidly, too late, or not at all. Thanks to
+      <code translate="no" dir="ltr">Uli Bubenheimer | bubenheimer@users.noreply.github.com</code>
+      (
+      <a href="https://issuetracker.google.com/154040286">b/154040286</a>
+      )
+    </li>
+  </ul>

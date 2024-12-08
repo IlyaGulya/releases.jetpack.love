@@ -1,0 +1,73 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.1.0
+releaseDate: 2019-09-05
+#language=html
+changelogHtml: |
+  <h3 id="2.1.0" data-text="Version 2.1.0" tabindex="-1">Version 2.1.0</h3>
+  <p>September 5, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.1.0</code>
+    is released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d86f26b9b2b958f75b4f23161344cec32237c9ca..73f368c10e67f70c624a53d53828686746bf51bf/navigation">here</a>
+    .
+  </p>
+  <p><strong>Important changes since 2.0.0</strong></p>
+  <ul>
+    <li>
+      <strong>Scoping ViewModels to a navigation graph</strong>
+      : You can now create ViewModels that are scoped at the navigation graph level using the
+      <code translate="no" dir="ltr">by navGraphViewModels()</code>
+      property delegate for Kotlin users using the
+      <code translate="no" dir="ltr">-ktx</code>
+      libraries or by using the
+      <code translate="no" dir="ltr">getViewModelStoreOwner()</code>
+      API added to
+      <code translate="no" dir="ltr">NavController</code>
+      . See
+      <a href="/guide/navigation/navigation-programmatic#share_ui-related_data_between_destinations_with_viewmodel">Share UI-related data between destinations</a>
+      for more information.
+    </li>
+    <li>
+      <strong>Dialog destinations</strong>
+      : You can now create
+      <code translate="no" dir="ltr">&lt;dialog&gt;</code>
+      destinations that will show a
+      <code translate="no" dir="ltr">DialogFragment</code>
+      when you
+      <code translate="no" dir="ltr">navigate</code>
+      to them.
+      <code translate="no" dir="ltr">NavHostFragment</code>
+      supports dialog destinations by default. See
+      <a href="/guide/navigation/navigation-create-destinations#create-dialog">Create a destination from a DialogFragment</a>
+      for more information.
+    </li>
+    <li>
+      <strong>Navigating by Uri</strong>
+      : You can now
+      <code translate="no" dir="ltr">navigate</code>
+      using a
+      <code translate="no" dir="ltr">Uri</code>
+      , which uses the
+      <code translate="no" dir="ltr">&lt;deepLink&gt;</code>
+      you’ve added to a destination to navigate there. See
+      <a href="/guide/navigation/navigation-navigate#uri">Navigate using Uri</a>
+      for more information.
+    </li>
+    <li>
+      <strong>NavHostController</strong>
+      : APIs used specifically for constructing a custom
+      <code translate="no" dir="ltr">NavHost</code>
+      have been moved to
+      <code translate="no" dir="ltr">NavHostController</code>
+      , allowing implementations to connect their
+      <code translate="no" dir="ltr">NavController</code>
+      to the hosting
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      ,
+      <code translate="no" dir="ltr">OnBackPressedDispatcher</code>
+      , and
+      <code translate="no" dir="ltr">ViewModelStore</code>
+      .
+    </li>
+  </ul>

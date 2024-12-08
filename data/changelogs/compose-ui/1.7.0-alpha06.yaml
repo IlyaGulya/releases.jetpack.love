@@ -1,0 +1,135 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.7.0-alpha06
+releaseDate: 2024-04-03
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha06" data-text="Version 1.7.0-alpha06" tabindex="-1">Version 1.7.0-alpha06</h3>
+  <p>April 3, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.7.0-alpha06</code>
+    is released. Version 1.7.0-alpha06 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a57d7d17753695012b58c9ce7ad55a8d39157e62..02b55f664eba38e42e362e1af3913be1df552d55/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">parseAsHtml</code>
+      method for styled strings: it allows to convert a string marked with HTML tags into
+      <code translate="no" dir="ltr">AnnotatedString</code>
+      . Note that not all tags are supported, for example you won't be able to display bullet lists yet. (
+      <a href="https://android-review.googlesource.com/#/q/I84d3d1881805e964cea940eb1c68a5bba16f6416">I84d3d</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I306261acf030feb96e8b8198f88b25375ed9356b">I30626</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/139326648">b/139326648</a>
+      )
+    </li>
+    <li>
+      Implemented experimental support for long screenshots in Compose scroll containers using the official Android API (
+      <code translate="no" dir="ltr">ScrollCaptureCallback</code>
+      ). This feature is experimental and may not currently handle all cases correctly. For that reason it is currently disabled by default. To opt-in, set the
+      <code translate="no" dir="ltr">ComposeFeatureFlag_LongScreenshotsEnabled</code>
+      flag to true. (
+      <a href="https://android-review.googlesource.com/#/q/I2b0552d34c530b127d64ac58f48a0fa399b3edde">I2b055</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/329296471">b/329296471</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">fun ClipEntry.getMetadata()</code>
+      is changed to
+      <code translate="no" dir="ltr">val ClipEntry.clipMetadata</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I50155cef29574f74be45e850d210d0c405aa69f5">I50155</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">ClipboardManager.getClipMetadata</code>
+      and
+      <code translate="no" dir="ltr">ClipboardManager.hasClip</code>
+      functions. Please use
+      <code translate="no" dir="ltr">clipEntry.getMetadata()</code>
+      to read the current clip entry's metadata. Also check
+      <code translate="no" dir="ltr">ClipboardManager.getClip</code>
+      's result if it's null or not to understand whether Clipboard has a current clip. (
+      <a href="https://android-review.googlesource.com/#/q/I504988d835b71009609c01919b387239a1e2bee0">I50498</a>
+      )
+    </li>
+    <li>
+      Now you can pass
+      <code translate="no" dir="ltr">GraphicsLayer</code>
+      objects into
+      <code translate="no" dir="ltr">placeable.placeWithLayer()</code>
+      functions (
+      <a href="https://android-review.googlesource.com/#/q/I1b22f3bcddefb2124f32d63aa34780026eae2475">I1b22f</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ClipboardManager.setClip</code>
+      now accepts null to be able to clear the Clipboard. (
+      <a href="https://android-review.googlesource.com/#/q/I7d2e957005fb2efecc64b7273d8209161016b36a">I7d2e9</a>
+      )
+    </li>
+    <li>
+      Added resource ids for assist with hiding Views used as implementation details within build tooling (
+      <a href="https://android-review.googlesource.com/#/q/I99531f701d07e95a28aeafd720ec7e999e2254c2">I99531</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">GraphicsLayer#toImageBitmap</code>
+      suspend method to support rendering contents of a bitmap into a
+      <code translate="no" dir="ltr">GraphicsLayer</code>
+      . This is a hardware accelerated rendering operation on API level 22+ (inclusive) which supports over 99% of all Android devices. On Android API level 21 this falls back onto software rendering. (
+      <a href="https://android-review.googlesource.com/#/q/I9e1147c069aa609e96f80b92c41d076d097be962">I9e114</a>
+      )
+    </li>
+    <li>
+      Helper method to convert an Android
+      <code translate="no" dir="ltr">RectF</code>
+      to
+      <code translate="no" dir="ltr">ComposeRect</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I399254fb5d0f0c250a1c55b7418613fa88f655d0">I39925</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/325660505">b/325660505</a>
+      )
+    </li>
+    <li>
+      All
+      <code translate="no" dir="ltr">KeyboardOptions</code>
+      parameters now have an unspecified value by default. Added
+      <code translate="no" dir="ltr">KeyboardOptions.merge</code>
+      method.
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">KeyboardOptions.autoCorrect</code>
+      to
+      <code translate="no" dir="ltr">autoCorrectEnabled</code>
+      and made it nullable, where null indicates no value was specified. (
+      <a href="https://android-review.googlesource.com/#/q/Ia8ba0fb1235a7a1c6c42d140119ddcb40b65892d">Ia8ba0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/295951492">b/295951492</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BasicTextField(state)</code>
+      variant and
+      <code translate="no" dir="ltr">BasicSecureTextField</code>
+      now use
+      <code translate="no" dir="ltr">KeyboardActionHandler</code>
+      instead of
+      <code translate="no" dir="ltr">KeyboardActions</code>
+      to process actions taken by the software keyboard. (
+      <a href="https://android-review.googlesource.com/#/q/I58dda71cd89a62a1fa34df44a40f7bc0e7384991">I58dda</a>
+      )
+    </li>
+  </ul>

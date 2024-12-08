@@ -1,0 +1,145 @@
+libraryId: paging
+groupId: androidx.paging
+version: 1.0.0-alpha19
+releaseDate: 2023-05-03
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha19" data-text="Version 1.0.0-alpha19" tabindex="-1">Version 1.0.0-alpha19</h3>
+  <p>May 3, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-compose:1.0.0-alpha19</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7d3ac1ab1206c01fae3ebb500b5b942636070155..6f3ac2bd197d5e61ab2708125b57d6ae4003ad68/paging/paging-compose">Version 1.0.0-alpha19 contains these commits.</a>
+  </p>
+  <p><strong>Supporting all lazy layouts</strong></p>
+  <p>
+    Previously, Paging Compose provided custom
+    <code translate="no" dir="ltr">items</code>
+    and
+    <code translate="no" dir="ltr">itemsIndexed</code>
+    extensions on
+    <code translate="no" dir="ltr">LazyListScope</code>
+    , which meant that you could not use Paging Compose with other lazy layouts like
+    <code translate="no" dir="ltr">LazyVerticalGrid</code>
+    ,
+    <code translate="no" dir="ltr">HorizontalPager</code>
+    , or other custom lazy components provided by the Wear and TV libraries. Addressing this inflexibility is the primary update for this release.
+  </p>
+  <p>
+    To support more lazy layouts, we needed to build out APIs at a different layer - rather than providing a custom
+    <code translate="no" dir="ltr">items</code>
+    API for each lazy layout, Paging Compose now provides slightly lower level extension methods on
+    <code translate="no" dir="ltr">LazyPagingItems</code>
+    in
+    <code translate="no" dir="ltr">itemKey</code>
+    and
+    <code translate="no" dir="ltr">itemContentType</code>
+    . These APIs focus on helping you implement the
+    <code translate="no" dir="ltr">key</code>
+    and
+    <code translate="no" dir="ltr">contentType</code>
+    parameters to the standard
+    <code translate="no" dir="ltr">items</code>
+    APIs that already exist for
+    <code translate="no" dir="ltr">LazyColumn</code>
+    ,
+    <code translate="no" dir="ltr">LazyVerticalGrid</code>
+    as well as their equivalents in APIs like
+    <code translate="no" dir="ltr">HorizontalPager</code>
+    . (
+    <a href="https://android-review.googlesource.com/q/Ifa13b3d764203422645cac8bfc3d09278d508874">Ifa13b</a>
+    ,
+    <a href="https://android-review.googlesource.com/q/Ib04f099111605af368c5b025d84a085ab4251fb6">Ib04f0</a>
+    ,
+    <a href="https://issuetracker.google.com/issues/259385813">b/259385813</a>
+    )
+  </p>
+  <p>
+    This means that supporting a
+    <code translate="no" dir="ltr">LazyVerticalGrid</code>
+    would look like:
+  </p>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-c1">// This part is unchanged</span>
+  <span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">lazyPagingItems</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">pager</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">collectAsLazyPagingItems</span><span class="devsite-syntax-p">()</span>
+
+  <span class="devsite-syntax-n">LazyVerticalGrid</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">columns</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">GridCells</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">Fixed</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-m">2</span><span class="devsite-syntax-p">))</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// Here we use the standard items API</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">items</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">count</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">lazyPagingItems</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">itemCount</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// Here we use the new itemKey extension on LazyPagingItems to</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// handle placeholders automatically, ensuring you only need to provide</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// keys for real items</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">key</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">lazyPagingItems</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">itemKey</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nb">it</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">uniqueId</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">},</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// Similarly, itemContentType lets you set a custom content type for each item</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">contentType</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">lazyPagingItems</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">itemContentType</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"contentType"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">index</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// As the standard items call provides only the index, we get the item</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// directly from our lazyPagingItems</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">item</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">lazyPagingItems</span><span class="devsite-syntax-o">[</span><span class="devsite-syntax-n">index</span><span class="devsite-syntax-o">]</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">PagingItem</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">item</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">item</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+  </devsite-code>
+  <p>
+    For more examples of using these new APIs, please see
+    <a href="https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:paging/paging-compose/samples/src/main/java/androidx/paging/compose/samples/PagingFoundationSample.kt?q=PagingFoundationSample">our samples</a>
+    .
+  </p>
+  <p>
+    While these changes do make the
+    <code translate="no" dir="ltr">LazyColumn</code>
+    and
+    <code translate="no" dir="ltr">LazyRow</code>
+    examples a few lines longer, we felt that consistency across all lazy layouts was an important factor for those using Paging Compose going forward. For that reason, the existing extensions to
+    <code translate="no" dir="ltr">LazyListScope</code>
+    have now been deprecated. (
+    <a href="https://android-review.googlesource.com/#/q/I0c45926ecf7fbaa7b68fba7bb1201cdf6f13105d">I0c459</a>
+    ,
+    <a href="https://android-review.googlesource.com/#/q/I92c8ffc330fd98f9fb31fe14db2da7a3f7a3b547">I92c8f</a>
+    ,
+    <a href="https://issuetracker.google.com/issues/276989796">b/276989796</a>
+    )
+  </p>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      while the deprecated
+      <code translate="no" dir="ltr">items</code>
+      API has a clear equivalent, the quick fix for
+      <code translate="no" dir="ltr">itemsIndexed</code>
+      may still leave your code in a state where it does not compile immediately as generating keys and content types based on indices is no longer possible or recommended as this pattern is susceptible to errors when item indices shift due to prepends (i.e., item 0 actually becomes item 20 due to prepending 20 additional items). It is always recommended to use
+      <code translate="no" dir="ltr">items</code>
+      when using Paging Compose.
+    </span>
+  </aside>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      To ease the migration to the new APIs, the
+      <code translate="no" dir="ltr">items</code>
+      and
+      <code translate="no" dir="ltr">itemsIndexed</code>
+      extension functions on
+      <code translate="no" dir="ltr">LazyListScope</code>
+      now support a
+      <code translate="no" dir="ltr">contentType</code>
+      parameter, mirroring the support in the new APIs. (
+      <a href="https://android-review.googlesource.com/#/q/Ib19181ac9cfd734c940c015a605c03440bbdfda6">Ib1918</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/255283378">b/255283378</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Updates</strong></p>
+  <ul>
+    <li>
+      Paging Compose has updated its dependency from Compose 1.0.5 to Compose 1.2.1. (
+      <a href="https://android-review.googlesource.com/#/q/Ib19181ac9cfd734c940c015a605c03440bbdfda6">Ib1918</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/255283378">b/255283378</a>
+      )
+    </li>
+  </ul>

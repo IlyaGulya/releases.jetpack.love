@@ -1,0 +1,78 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.4.0-alpha04
+releaseDate: 2021-06-30
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha04" data-text="Version 1.4.0-alpha04" tabindex="-1">Version 1.4.0-alpha04</h3>
+  <p>June 30, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.4.0-alpha04</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.4.0-alpha04</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.4.0-alpha04</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ccf79f53033e665475116a4e78ff124df2a52c4b..19ae3a88ff0824d615355b492cb56049e16991f2/fragment">Version 1.4.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">FragmentManager</code>
+      now uses
+      <code translate="no" dir="ltr">SavedStateRegistry</code>
+      under the hood to save its state. The
+      <code translate="no" dir="ltr">saveAllState()</code>
+      and
+      <code translate="no" dir="ltr">restoreSavedState()</code>
+      methods have also been deprecated in
+      <code translate="no" dir="ltr">FragmentController</code>
+      . If you are using
+      <code translate="no" dir="ltr">FragmentController</code>
+      to host fragments outside of
+      <code translate="no" dir="ltr">FragmentActivity</code>
+      , you should have your
+      <code translate="no" dir="ltr">FragmentHostCallbacks</code>
+      implement
+      <code translate="no" dir="ltr">SavedStateRegistryOwner</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iba68e71ee9ec0befa79a565a476d25534e86d0e3">Iba68e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/188734238">b/188734238</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where the call to
+      <code translate="no" dir="ltr">saveBackStack()</code>
+      as part of supporting multiple back stacks would fail when done at the same time as running a
+      <code translate="no" dir="ltr">FragmentTransaction</code>
+      that used
+      <code translate="no" dir="ltr">replace()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I731372db582f00dc3da4fb05a4f2892378945618">I73137</a>
+      )
+    </li>
+    <li>
+      Fixed a
+      <code translate="no" dir="ltr">NullPointerException</code>
+      that would occur after manually restoring a saved back stack that contained multiple transactions when using the
+      <code translate="no" dir="ltr">restoreBackStack()</code>
+      API for multiple back stack support. This also fixed an issue where
+      <code translate="no" dir="ltr">setReorderingAllowed(true)</code>
+      was not being checked for all transactions. (
+      <a href="https://android-review.googlesource.com/#/q/I8c59355e8899ed86c4e54cccc18af5475a78b319">I8c593</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">FragmentManager</code>
+      would incorrectly continue to restore previously saved state of fragments even after those fragments were removed from the
+      <code translate="no" dir="ltr">FragmentManager</code>
+      , thus causing the saved state to continuously grow over time. (
+      <a href="https://android-review.googlesource.com/#/q/I1fb8eb6942bc385794308bc2056f365472e5a47c">I1fb8e</a>
+      )
+    </li>
+  </ul>

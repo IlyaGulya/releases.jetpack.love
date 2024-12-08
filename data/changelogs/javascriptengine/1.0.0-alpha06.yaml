@@ -1,0 +1,66 @@
+libraryId: javascriptengine
+groupId: androidx.javascriptengine
+version: 1.0.0-alpha06
+releaseDate: 2023-10-04
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha06" data-text="Version 1.0.0-alpha06" tabindex="-1">Version 1.0.0-alpha06</h3>
+  <p>October 4, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.javascriptengine:javascriptengine:1.0.0-alpha06</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a200cb82769634cecdb118ec4f0bfdf0b086e597..1f7407d4293384a1b91bc142880e3525048b3443/javascriptengine/javascriptengine">Version 1.0.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      New API introduced to evaluate JavaScript from a
+      <code translate="no" dir="ltr">ParcelFileDescriptor/AssetFileDescriptor</code>
+      without the need to convert the source into a String.
+      <code translate="no" dir="ltr">JavaScriptIsolate</code>
+      class is made thread-safe.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Change
+      <code translate="no" dir="ltr">provideNamedData</code>
+      to throw exception instead of returning false. (
+      <a href="https://android-review.googlesource.com/#/q/I8909ad16dd777c5458855a86e817360d6a7f81d1">I8909a</a>
+      )
+    </li>
+    <li>
+      Adding APIs for evaluating JavaScript through Afds and Pfds (
+      <a href="https://android-review.googlesource.com/#/q/I03e3a8e00a990e1205853e8d8e825f605c4ebbd4">I03e3a</a>
+      )
+    </li>
+    <li>
+      Make
+      <code translate="no" dir="ltr">MemoryLimitExceededException</code>
+      and
+      <code translate="no" dir="ltr">SandboxDeadException</code>
+      subclass
+      <code translate="no" dir="ltr">IsolateTerminatedException</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Icf359de9cc83d63b376bf77b31c7873b04ba59dc">Icf359</a>
+      )
+    </li>
+    <li>
+      Removing public facing API
+      <code translate="no" dir="ltr">evaluateJavaScriptAsync(@NonNull byte[] code)</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I4b3ac9406ada38bb5845ec3e230e3d42013ae4f9">I4b3ac</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Make
+      <code translate="no" dir="ltr">JavaScriptIsolate</code>
+      thread safe. (
+      <a href="https://android-review.googlesource.com/#/q/Ib28e00f5b7744bb4557786246d588b9273a30596">Ib28e0</a>
+      )
+    </li>
+  </ul>

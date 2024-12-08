@@ -1,0 +1,51 @@
+libraryId: paging
+groupId: androidx.paging
+version: 1.0.0-alpha20
+releaseDate: 2023-05-24
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha20" data-text="Version 1.0.0-alpha20" tabindex="-1">Version 1.0.0-alpha20</h3>
+  <p>May 24, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-compose:1.0.0-alpha20</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6f3ac2bd197d5e61ab2708125b57d6ae4003ad68..c5bf9bc40dd5d9f0b3f34e7273ac0d4e4f05c41d/paging/paging-compose">Version 1.0.0-alpha20 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Paging Compose now supports previewing a list of fake data by creating a
+      <code translate="no" dir="ltr">PagingData.from(fakeData)</code>
+      and wrapping that
+      <code translate="no" dir="ltr">PagingData</code>
+      in a
+      <code translate="no" dir="ltr">MutableStateFlow</code>
+      (e.g.,
+      <code translate="no" dir="ltr">MutableStateFlow(PagingData.from(listOf(1, 2, 3)))</code>
+      ). By using that data as the input into your
+      <code translate="no" dir="ltr">@Preview</code>
+      , calls to
+      <code translate="no" dir="ltr">collectAsLazyPagingItems()</code>
+      will provide previewable
+      <code translate="no" dir="ltr">LazyPagingItems</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I8a78db059776190b833773986825579e96e042d5">I8a78d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/194544557">b/194544557</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Cached data from
+      <code translate="no" dir="ltr">pager.flow.cachedIn</code>
+      that has been collected in
+      <code translate="no" dir="ltr">LazyPagingItems</code>
+      will now be immediately available after state restoration without requiring asynchronous collection. This means the cached data will be ready for presentation immediately upon initial composition after state is restored. (
+      <a href="https://android-review.googlesource.com/#/q/I97a6078c0563f8017af24448c32e59b86a987465">I97a60</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177245496">b/177245496</a>
+      )
+    </li>
+  </ul>

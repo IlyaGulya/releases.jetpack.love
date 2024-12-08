@@ -1,0 +1,46 @@
+libraryId: media2
+groupId: androidx.media2
+version: 1.1.0-rc01
+releaseDate: 2020-10-28
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-rc01" data-text="Version 1.1.0-rc01" tabindex="-1">Version 1.1.0-rc01</h3>
+  <p>October 28, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.media2:media2-*:1.1.0-rc01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/18a5639262f8504db530176550e338a5d0e2e044..84157f591fc370be6f91c5f3fb63c367bf839cf9/media2">Version 1.1.0-rc01 contains these commits.</a>
+  </p>
+  <ul>
+    <li>
+      Fixed an issue where MediaController notified callbacks while holding a lock, leading to potential deadlocks (
+      <a href="https://android-review.googlesource.com/#/q/I76c5699444260435329d3a95213a4b5546be89a3">I76c56</a>
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">MediaSessionImplBase#isClosed()</code>
+      could crash when calling
+      <code translate="no" dir="ltr">getCurrentControllerInfo()</code>
+      on a released
+      <code translate="no" dir="ltr">MediaSessionCompat</code>
+      . (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1423291">aosp/1423291</a>
+      ]
+    </li>
+    <li>
+      Fixed an issue where media2
+      <code translate="no" dir="ltr">MediaSession</code>
+      did not set the active queue item id to
+      <code translate="no" dir="ltr">PlaybackStateCompat</code>
+      (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1421652/">aosp/1421652</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">BIND_INCLUDE_CAPABILITIES</code>
+      flag when binding to the service, which allows headless media applications to access the location if they have the permission. This is useful for Android Auto apps in particular. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1440731">aosp/1440731</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,227 @@
+libraryId: glance
+groupId: androidx.glance
+version: 1.0.0-beta01
+releaseDate: 2023-05-10
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta01" data-text="Version 1.0.0-beta01" tabindex="-1">Version 1.0.0-beta01</h3>
+  <p>May 10, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.glance:glance-*:1.0.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/fe1a67aea083dbab61c2e05ffe23a1fadf7b40fd/glance">Version 1.0.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>Moves the library into beta.</li>
+    <li>
+      Support for themeing using
+      <code translate="no" dir="ltr">GlanceTheme</code>
+      , adds glance-material and glance-material3 modules to support material 2 and material 3 style themes in Glance.
+    </li>
+    <li>
+      Support for
+      <code translate="no" dir="ltr">FontFamily</code>
+      added to text apis.
+    </li>
+    <li>
+      Moved
+      <code translate="no" dir="ltr">GlanceAppWidget</code>
+      to a
+      <code translate="no" dir="ltr">WorkManager</code>
+      session based update mechanism. Users of Glance for
+      <code translate="no" dir="ltr">AppWidgets</code>
+      should now override
+      <code translate="no" dir="ltr">GlanceAppWidget.provideGlance</code>
+      instead of the old
+      <code translate="no" dir="ltr">Content</code>
+      method. As this now happens in a worker, this is now a good place to load resources, database or network items without having to have a separate worker.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">*Defaults</code>
+      API for
+      <code translate="no" dir="ltr">Button</code>
+      ,
+      <code translate="no" dir="ltr">Checkbox</code>
+      ,
+      <code translate="no" dir="ltr">RadioButton</code>
+      and
+      <code translate="no" dir="ltr">Switch</code>
+      . It brings glance closer in line with the patterns of Jetpack Compose. (
+      <a href="https://android-review.googlesource.com/#/q/I94828ffb4f1452ea70b4e6703c375b518844f810">I94828</a>
+      )
+    </li>
+    <li>
+      New Glance templates module (
+      <a href="https://android-review.googlesource.com/#/q/I944599e5a6c93f2015bb7d15255cd45c6dfe6f63">I94459</a>
+      )
+    </li>
+    <li>
+      Making
+      <code translate="no" dir="ltr">ResourceColorProvider</code>
+      internal to module. Breaking change. Needed because
+      <code translate="no" dir="ltr">ResourceColorProvider</code>
+      should only be used for dynamic theming to avoid situations where some colors are dynamic resources and some are fully resolved. (
+      <a href="https://android-review.googlesource.com/#/q/Ib0db71fb5dbc4cd15d36652f2362624f8e92fc7a">Ib0db7</a>
+      )
+    </li>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">FontFamily</code>
+      as an option for
+      <code translate="no" dir="ltr">TextStyle</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic19ba264e49a5c985baed0debb5faedda6c17711">Ic19ba</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/274179837">b/274179837</a>
+      )
+    </li>
+    <li>
+      Value parameter name for
+      <code translate="no" dir="ltr">Enum.valueOf</code>
+      changed (
+      <a href="https://android-review.googlesource.com/#/q/Ia9b89b3c1bd0407c9beac825c49477cdfc9c1f2a">Ia9b89</a>
+      )
+    </li>
+    <li>
+      More thrown exceptions from enum
+      <code translate="no" dir="ltr">valueOf</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I818fed80f3a1af1a97b5b0de7882fb2e1b99ae62">I818fe</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">GlanceAppWidget</code>
+      to use
+      <code translate="no" dir="ltr">provideGlance</code>
+      as the main entrypoint.
+      <code translate="no" dir="ltr">GlanceAppWidget.Content</code>
+      is now deprecated. (
+      <a href="https://android-review.googlesource.com/#/q/I202b5a19c818bed3da0c7bd85f1cf2fa51a38fde">I202b5</a>
+      )
+    </li>
+    <li>
+      Adds an option to supply tint color for images (
+      <a href="https://android-review.googlesource.com/#/q/I26192fa891c91e373dc25a51005416f08a593205">I26192</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/212418562">b/212418562</a>
+      )
+    </li>
+    <li>
+      More return type nullability of deprecated-hidden functions. (
+      <a href="https://android-review.googlesource.com/#/q/Ibf7b0ada56eb08983e6109d30fad5294f6b841f0">Ibf7b0</a>
+      )
+    </li>
+    <li>
+      Adding
+      <code translate="no" dir="ltr">@JvmDefaultWithCompatibility</code>
+      annotation (
+      <a href="https://android-review.googlesource.com/#/q/I8f2067bb0754a5e9dc70c934403366ca8d319c36">I8f206</a>
+      )
+    </li>
+    <li>
+      Removed the unused
+      <code translate="no" dir="ltr">SingleEntityTemplateData.displayHeader</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7f094742309c86bfdbe0cf368886378260f58c0b">I7f094</a>
+      )
+    </li>
+    <li>
+      Added support for using lambdas as callbacks (
+      <a href="https://android-review.googlesource.com/#/q/Ia0bbd2d85366b4931c53cce98d58fe716fd9662b">Ia0bbd</a>
+      )
+    </li>
+    <li>
+      Moved
+      <code translate="no" dir="ltr">DayNightColorProvider</code>
+      to glance module (
+      <a href="https://android-review.googlesource.com/#/q/I1842c292997b94b7a63239741b8cd9afe20d1c49">I1842c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/256934779">b/256934779</a>
+      )
+    </li>
+    <li>
+      Removes
+      <code translate="no" dir="ltr">LocalColorProvider</code>
+      from Templates. Templates will now use
+      <code translate="no" dir="ltr">GlanceTheme.colors</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ic15e2c35f3d7922ae806860f5fa324586d02ffa6">Ic15e2</a>
+      )
+    </li>
+    <li>
+      Removed nullability from
+      <code translate="no" dir="ltr">Text(style: TextStyle)</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I7123b0342ac50051847f3b88de905839593ad5db">I7123b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/237012816">b/237012816</a>
+      )
+    </li>
+    <li>
+      Default text color to black. remove nullability (
+      <a href="https://android-review.googlesource.com/#/q/I3072ce2d5d6fcf98a6323e5d7f018bbf6bbac27e">I3072c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/237012816">b/237012816</a>
+      )
+    </li>
+    <li>
+      Making dynamic theme
+      <code translate="no" dir="ltr">ColorProviders</code>
+      its own object. Making
+      <code translate="no" dir="ltr">ResourceColorProvider</code>
+      internal to the module. (
+      <a href="https://android-review.googlesource.com/#/q/Id0e2db07ff278b7e4e64b23f8870b1ab6ea80391">Id0e2d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/237012816">b/237012816</a>
+      )
+    </li>
+    <li>
+      Add the Undefined category to
+      <code translate="no" dir="ltr">ImageSize</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2fa39a9987a4675733003fb5ccee8b0e93f917cf">I2fa39</a>
+      )
+    </li>
+    <li>
+      Remove deprecated
+      <code translate="no" dir="ltr">GlanceAppWidget.Content</code>
+      function (
+      <a href="https://android-review.googlesource.com/#/q/Ib05f6bb39ede221592c10e73a7769f63d7f7a7ea">Ib05f6</a>
+      )
+    </li>
+    <li>
+      Adds modifier as a parameter to
+      <code translate="no" dir="ltr">AndroidRemoteViews</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I515d4b17438146f6d4be4577275e3bf6018163bc">I515d4</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">GlanceAppWidget.compose</code>
+      to make unit testing easier (
+      <a href="https://android-review.googlesource.com/#/q/Ie9b28492b5f8e863ddd4613c93e370c3edf89c59">Ie9b28</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Added a demo widget for Glance text fonts (
+      <a href="https://android-review.googlesource.com/#/q/I5c3d7aca18f55e379f8188db7b6dff04c416b0ca">I5c3d7</a>
+      )
+    </li>
+    <li>
+      Makes
+      <code translate="no" dir="ltr">AndroidRemoteViews</code>
+      sizable with Modifier.
+    </li>
+    <li>Issues with inconsistent theme colors resolved</li>
+    <li>All resources now prefixed to avoid collisions</li>
+  </ul>

@@ -1,0 +1,92 @@
+libraryId: compose-compiler
+groupId: androidx.compose
+version: 1.5.11
+releaseDate: 2024-03-20
+#language=html
+changelogHtml: |
+  <h3 id="1.5.11" data-text="Version 1.5.11" tabindex="-1">Version 1.5.11</h3>
+  <p>March 20, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.compiler:compiler:1.5.11</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.compiler:compiler-hosted:1.5.11</code>
+    are released. Version 1.5.11 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/20b0ae439b314dda07878d2777ee5d4851dec7e6..f6e363daac4aaf96476850f7f1e834f58be9044b/compose/compiler">these commits</a>
+    .
+  </p>
+  <p><strong>Notes</strong></p>
+  <ul>
+    <li>
+      <p>
+        Starting with this version, the compiler will now call
+        <a href="https://android-review.googlesource.com/#/q/Iad90f02440e8f7c258ff493afa6cad1c6369be7a"><code translate="no" dir="ltr">startReplaceGroup</code></a>
+        instead of
+        <code translate="no" dir="ltr">startReplacableGroup</code>
+        when a module is compiled with a runtime that contains this method.
+        <code translate="no" dir="ltr">startReplaceGroup</code>
+        was introduced in the runtime in
+        <a href="/jetpack/androidx/releases/compose-runtime#1.7.0-alpha03">
+          Compose Runtime
+          <code translate="no" dir="ltr">1.7.0-alpha03</code>
+        </a>
+        . Calls to
+        <code translate="no" dir="ltr">startRestartGroup</code>
+        are only generated when targeting 1.7.0-alpha03 or later versions of the runtime.
+      </p>
+    </li>
+    <li>
+      <p>
+        Calling
+        <code translate="no" dir="ltr">startReplaceGroup</code>
+        instead of
+        <code translate="no" dir="ltr">startReplaceableGroup</code>
+        allows the runtime to detect changes more efficiently but may affect the order in which changes are detected by the
+        <code translate="no" dir="ltr">Composer</code>
+        and sent to the
+        <code translate="no" dir="ltr">Applier</code>
+        . This may result in subtle changes in behavior if an
+        <code translate="no" dir="ltr">Applier</code>
+        relies on the order these operations are detected.
+      </p>
+    </li>
+  </ul>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>Support for Kotlin 1.9.23</li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix nested external generic types being inferred Unstable. (
+      <a href="https://android-review.googlesource.com/q/I3437fad769ba3eee58a299584ac4e352a3173b0f">I3437f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/327643787">b/327643787</a>
+      )
+    </li>
+    <li>
+      Support multiple stability configuration files. (
+      <a href="https://android-review.googlesource.com/#/q/I8db1452cf033d493255ae54d0a708be636a47eea">I8db14</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/325326744">b/325326744</a>
+      )
+    </li>
+    <li>
+      Compose Compiler now correctly transforms overridden functions by recursively walking through base classes/overrides. (
+      <a href="/jetpack/androidx/releases/android-review.googlesource.com/q/I2c9f96f279736034e968bd20032c50e6de39f096">I2c9f9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/316196500">b/316196500</a>
+      )
+    </li>
+    <li>
+      Ensure that function reference memoization doesn't try to capture implicit parents of local declarations when they are not used directly. (
+      <a href="https://android-review.googlesource.com/q/Ib12675dcc8d38ec1ecb2a8ccf9e4d1ed6f7065b1">Ib1267</a>
+      )
+    </li>
+    <li>
+      Fix code generation for composable crossinline lambda (hard to encounter this bug without "nonSkippingGroupOptimization" enabled). (
+      <a href="https://android-review.googlesource.com/q/Icb2fd2f5a946144cc105737c4a4051f02a901b78">Icb2fd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/325502738">b/325502738</a>
+      )
+    </li>
+  </ul>

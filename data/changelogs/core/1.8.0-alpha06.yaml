@@ -1,0 +1,92 @@
+libraryId: core
+groupId: androidx.core
+version: 1.8.0-alpha06
+releaseDate: 2022-03-23
+#language=html
+changelogHtml: |
+  <h3 id="core-1.8.0-alpha06" data-text="Version 1.8.0-alpha06" tabindex="-1">Version 1.8.0-alpha06</h3>
+  <p>March 23, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core:1.8.0-alpha06</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9b2b3d8efd5f00bd4af903bbaa926f6a712d0bd8..5ef5671233460b844828e14a816255dbf7904868/core/core">Version 1.8.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">MenuProvider</code>
+      interface now includes the
+      <code translate="no" dir="ltr">onPrepareMenu()</code>
+      callback, which is called when a menu is dynamically modified and should be shown. (
+      <a href="https://android-review.googlesource.com/#/q/Ie85f9b6c42fa8b76d960d167aa1943e1190bf4d2">Ie85f9</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">MenuProvider</code>
+      interface now includes the
+      <code translate="no" dir="ltr">onMenuClosed()</code>
+      method to be used whenever a menu should be closed. (
+      <a href="https://android-review.googlesource.com/#/q/If5a16197b81d38aa3d0dc9ab4f0c089709e478b4">If5a16</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">IconCompat#getResId</code>
+      to have the proper resource annotation type to match the corresponding method in the framework in
+      <code translate="no" dir="ltr">Icon#getResId</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I497001954360a30666dc69b257f02aa5c9d85ed9">I49700</a>
+      )
+    </li>
+    <li>
+      Reverted previous change of relying solely on a View for
+      <code translate="no" dir="ltr">WindowInsetsControllerCompat</code>
+      , and again require a Window which is required for managing some window flags. Deprecated
+      <code translate="no" dir="ltr">ViewCompat.getWindowInsetsController</code>
+      in favor of
+      <code translate="no" dir="ltr">WindowCompat.getInsetsController</code>
+      to ensure that the correct Window is used (such as if the View is in a dialog). (
+      <a href="https://android-review.googlesource.com/#/q/I660aee32108b59516232b41e05b3f05ae2538554">I660ae</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/219572936">b/219572936</a>
+      )
+    </li>
+    <li>
+      Updated nullability in core and appcompat to match Tiramisu DP2 (
+      <a href="https://android-review.googlesource.com/#/q/I0cbb7f22651e725a4bb36d20388a949a72cc5903">I0cbb7</a>
+      )
+    </li>
+    <li>
+      Adds a method to
+      <code translate="no" dir="ltr">BitmapCompat</code>
+      for smoother downscaling of bitmaps. (
+      <a href="https://android-review.googlesource.com/#/q/Ib706ce8bd6045811fb87e32277b5239be8c8e772">Ib706c</a>
+      )
+    </li>
+    <li>
+      Added nullability annotations to
+      <code translate="no" dir="ltr">ActivityCompat.requestDragAndDropPermissions</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I0f2b080bdff589ed22e8bf75789ed2e268f9b3c1">I0f2b0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/206113378">b/206113378</a>
+      )
+    </li>
+    <li>
+      Added a work-around to
+      <code translate="no" dir="ltr">FileProvider</code>
+      for OEMs stripping meta-data from manifests. (
+      <a href="https://android-review.googlesource.com/#/q/I82f63ccc3d95c4b82c5c42db8cad4d09cd152017">I82f63</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Consider parent visibility changes for a11y pane visibility status for &lt;P (
+      <a href="https://android-review.googlesource.com/#/q/I8e04f145be0cb440695d988408703f9a723f5b84">I8e04f</a>
+      )
+    </li>
+  </ul>

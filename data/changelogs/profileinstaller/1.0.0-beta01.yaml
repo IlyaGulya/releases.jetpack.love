@@ -1,0 +1,168 @@
+libraryId: profileinstaller
+groupId: androidx.profileinstaller
+version: 1.0.0-beta01
+releaseDate: 2021-06-16
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta01" data-text="Version 1.0.0-beta01" tabindex="-1">Version 1.0.0-beta01</h3>
+  <p>June 16, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.profileinstaller:profileinstaller:1.0.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f434dccf3dc4d4e82d8d965da3746615870537b4/profileinstaller/profileinstaller">Version 1.0.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>Library Purpose</strong></p>
+  <p>Profile installer is a new library that allows libraries and applications to define “Profile Rules” and bundle ART profile information with an APK, and this library will install those profiles after application launch. This can be utilized to improve application performance.</p>
+  <p>This profile installation is done with the androidx.startup library. If for any reason one would like to disable profile installation, they can modify the manifest to remove it:</p>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="XML"><code translate="no" dir="ltr">
+  <span class="devsite-syntax-w">       </span>&lt;provider
+  <span class="devsite-syntax-w">           </span>android:name="androidx.startup.InitializationProvider"
+  <span class="devsite-syntax-w">           </span>android:authorities="${applicationId}.androidx-startup"
+  <span class="devsite-syntax-w">           </span>android:exported="false"
+  <span class="devsite-syntax-w">           </span>tools:node="merge"&gt;
+  <span class="devsite-syntax-w">           </span>&lt;meta-data<span class="devsite-syntax-w"> </span>android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+  <span class="devsite-syntax-w">                     </span>tools:node="remove"<span class="devsite-syntax-w"> </span>/&gt;
+  <span class="devsite-syntax-w">       </span>&lt;/provider&gt;
+  </code></pre>
+  </devsite-code>
+  <p>
+    This is especially useful if your app has nontrivial startup requirements and you would like to trigger the profile installation manually using the
+    <code translate="no" dir="ltr">ProfileInstaller.writeProfile</code>
+    API.
+  </p>
+  <p><strong>What are profile rules?</strong></p>
+  <ul>
+    <li>
+      <p>
+        Profile rules for a library are specified in a text file
+        <code translate="no" dir="ltr">baseline-prof.txt</code>
+        located in the
+        <code translate="no" dir="ltr">src/main</code>
+        or equivalent directory. The file specifies a rule per line, where a rule in this case is a pattern for matching to methods or classes in the library. The syntax for these rules is a superset of the human-readable ART profile format that is used when using
+        <code translate="no" dir="ltr">adb shell profman --dump-classes-and-methods ...</code>
+        . These rules take one of two forms to target either methods or classes.
+      </p>
+    </li>
+    <li>
+      <p>A method rule will have the following pattern:</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr">&lt;<span class="devsite-syntax-n">FLAGS&gt;&lt;CLASS_DESCRIPTOR&gt;</span><span class="devsite-syntax-o">-</span>&gt;&lt;<span class="devsite-syntax-n">METHOD_SIGNATURE</span>&gt;
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>And a class rule will have the following pattern:</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr">&lt;<span class="devsite-syntax-n">CLASS_DESCRIPTOR</span>&gt;
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        Here
+        <code translate="no" dir="ltr">&lt;FLAGS&gt;</code>
+        is one or more of the characters
+        <code translate="no" dir="ltr">H</code>
+        ,
+        <code translate="no" dir="ltr">S</code>
+        , and
+        <code translate="no" dir="ltr">P</code>
+        to indicate whether or not this method should be flagged as "Hot", "Startup", or "Post Startup".
+      </p>
+    </li>
+    <li>
+      <p>
+        The
+        <code translate="no" dir="ltr">&lt;CLASS_DESCRIPTOR&gt;</code>
+        is the descriptor for the class that the targeted method belongs to. For example, the class
+        <code translate="no" dir="ltr">androidx.compose.runtime.SlotTable</code>
+        would have a descriptor of
+        <code translate="no" dir="ltr">Landroidx/compose/runtime/SlotTable;</code>
+        .
+      </p>
+    </li>
+    <li>
+      <p>
+        The
+        <code translate="no" dir="ltr">&lt;METHOD_SIGNATURE&gt;</code>
+        is the signature of the method, and includes the name, parameter types, and return types of the method. For example, the method
+        <code translate="no" dir="ltr">fun isPlaced(): Boolean</code>
+        on
+        <code translate="no" dir="ltr">LayoutNode</code>
+        has the signature
+        <code translate="no" dir="ltr">isPlaced()Z</code>
+        .
+      </p>
+    </li>
+    <li>
+      <p>
+        These patterns can have wildcards (
+        <code translate="no" dir="ltr">**</code>
+        ,
+        <code translate="no" dir="ltr">*</code>
+        , and
+        <code translate="no" dir="ltr">?</code>
+        ) in order to have a single rule encompass multiple methods or classes.
+      </p>
+    </li>
+  </ul>
+  <p><strong>What do the rules do?</strong></p>
+  <ul>
+    <li>
+      <p>
+        A method that has the flag
+        <code translate="no" dir="ltr">H</code>
+        indicates that this method is a "hot" method, and should be compiled ahead of time.
+      </p>
+    </li>
+    <li>
+      <p>
+        A method that has the flag
+        <code translate="no" dir="ltr">S</code>
+        indicates that it is a method which is called at startup, and should be compiled ahead of time to avoid the cost of compilation and interpreting the method at startup time.
+      </p>
+    </li>
+    <li>
+      <p>
+        A method that has the flag
+        <code translate="no" dir="ltr">P</code>
+        indicates that it is a method which is called after startup.
+      </p>
+    </li>
+    <li><p>A class that is present in this file indicates that it is used during startup and should be pre-allocated in the heap to avoid the cost of class loading.</p></li>
+  </ul>
+  <p><strong>How does this work?</strong></p>
+  <ul>
+    <li><p>Libraries can define these rules which will be packaged in AAR artifacts. When an APK is then built which includes these artifacts, these rules are merged together and the merged rules are used to build a compact binary ART profile that is specific to the APK. ART can then leverage this profile when the APK is installed on devices in order to ahead-of-time compile a specific subset of the application to improve the performance of the application, especially the first run. Note that this will have no effect on debuggable applications.</p></li>
+    <li>
+      <p>
+        Rule files should be named
+        <code translate="no" dir="ltr">baseline-prof.txt</code>
+        and placed in the root directory of your main source set (it should be a sibling file to your
+        <code translate="no" dir="ltr">AndroidManifset.xml</code>
+        file)
+      </p>
+    </li>
+    <li>
+      <p>
+        Currently these files will only be utilized if you are using Android Gradle Plugin 7.0+, and is currently only enabled with a flag in your
+        <code translate="no" dir="ltr">gradle.properties</code>
+        :
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Groovy"><code translate="no" dir="ltr"><span class="devsite-syntax-err">#</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Enable</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">adding</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">baseline</span><span class="devsite-syntax-o">-</span><span class="devsite-syntax-n">prof</span><span class="devsite-syntax-o">.</span><span class="devsite-syntax-na">txt</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">files</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">to</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">AAR</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">artifacts</span><span class="devsite-syntax-o">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">and</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">binary</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">profiles</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">to</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">APKs</span>
+  <span class="devsite-syntax-n">android</span><span class="devsite-syntax-o">.</span><span class="devsite-syntax-na">experimental</span><span class="devsite-syntax-o">.</span><span class="devsite-syntax-na">enableArtProfiles</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-kc">true</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+  </ul>
+  <p><strong>Profiles require a balance</strong></p>
+  <ul>
+    <li>Properly crafted profiles which correctly prioritize methods and classes that will be in the startup path and performance critical will yield the best results, however including too many methods or classes in profiles can end up having a net negative effect in terms of memory consumption and disk usage, so it is recommended to start conservatively if defining your own profile rules.</li>
+  </ul>
+  <devsite-hats-survey class="nocontent" hats-id="VxqvKSur40kxBYCLVTd0SSGykbno" listnr-id="5207477"></devsite-hats-survey>

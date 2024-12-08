@@ -1,0 +1,161 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.4.0-alpha03
+releaseDate: 2022-12-07
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha03" data-text="Version 1.4.0-alpha03" tabindex="-1">Version 1.4.0-alpha03</h3>
+  <p>December 7, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.4.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a1e318590b217ecfce1b2de17eed2f18b6a680bb..047e199bdcb8a5cd744cc7a2f986631bfb350ec7/compose/ui">Version 1.4.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removing
+      <code translate="no" dir="ltr">ExperimentalComposeUiApi</code>
+      from
+      <code translate="no" dir="ltr">PointerIcon</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I23af8c12762d9baac9864ba93e34d29709027f2a">I23af8</a>
+      )
+    </li>
+    <li>
+      Introduce Page accessibility actions:
+      <code translate="no" dir="ltr">PageUp</code>
+      ,
+      <code translate="no" dir="ltr">PageDown</code>
+      ,
+      <code translate="no" dir="ltr">PageLeft</code>
+      ,
+      <code translate="no" dir="ltr">PageRight</code>
+      . Note that these are only available from API 29. (
+      <a href="https://android-review.googlesource.com/#/q/Ida4ab069a2c7f8d2fc06bf20555c611f4a360728">Ida4ab</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">rememberNestedScrollConnection</code>
+      parameter view from root view to host view. (
+      <a href="https://android-review.googlesource.com/#/q/Ia520073cedb35bffefd54f05bbac186c48521802">Ia5200</a>
+      )
+    </li>
+    <li>
+      Added an Modifier API to query ancestors scroll info. (
+      <a href="https://android-review.googlesource.com/#/q/I2ba9d6d55f853e5d2775fe9a9f15e7a41d41e359">I2ba9d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/203141462">b/203141462</a>
+      )
+    </li>
+    <li>
+      Used in
+      <code translate="no" dir="ltr">Clickable</code>
+      to correctly delay press interactions, when gestures could become scroll events.
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">Clickables</code>
+      not correctly delaying ripples, when used inside an
+      <code translate="no" dir="ltr">Scrollable ViewGroup</code>
+      .
+    </li>
+    <li>Updated Drawers and Sheets to correctly delay presses in case gestures can become scroll events.</li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">CompositingStrategy.Always</code>
+      to
+      <code translate="no" dir="ltr">Offscreen</code>
+      to indicate that the
+      <code translate="no" dir="ltr">graphicsLayer</code>
+      will always be rendered into an intermediate buffer (
+      <a href="https://android-review.googlesource.com/#/q/I47dc13a167f51d98e9a46ca9bc57209e43a5b18a">I47dc1</a>
+      )
+    </li>
+    <li>
+      Layout overload with multiple content slots is now stable (
+      <a href="https://android-review.googlesource.com/#/q/I105661f5ff4127215110cfb53fa437e444088f79">I10566</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/248294649">b/248294649</a>
+      )
+    </li>
+    <li>
+      Added experimental new APIs
+      <code translate="no" dir="ltr">PerfettoTrace.record {}</code>
+      and
+      <code translate="no" dir="ltr">PerfettoTraceRule</code>
+      to capture Perfetto traces (also known as System Traces) as part of a test, to inspect test behavior and performance. (
+      <a href="https://android-review.googlesource.com/#/q/I3ba165beded0d8aabde791e3ac1b786d415404ed">I3ba16</a>
+      )
+    </li>
+    <li>
+      In UI tests using a Compose rule, continuations resumed during
+      <code translate="no" dir="ltr">withFrameNanos</code>
+      callbacks will not be dispatched until after all frame callbacks have finished running. This matches the behavior of compose when running normally. However, tests that rely on the old behavior may fail. This should only affect code that calls
+      <code translate="no" dir="ltr">withFrameNanos</code>
+      or
+      <code translate="no" dir="ltr">withFrameMillis</code>
+      directly, and has logic outside of callback passed to those functions that may need to be moved inside the callbacks. See the animation test changes in this CL for examples.
+    </li>
+    <li>
+      Added optional
+      <code translate="no" dir="ltr">onPerformTraversals: (Long) -&gt; Unit</code>
+      parameter to
+      <code translate="no" dir="ltr">TestMonotonicFrameClock</code>
+      constructor and factory function to run code after
+      <code translate="no" dir="ltr">withFrameNanos</code>
+      callbacks but before resuming callers' coroutines. (
+      <a href="https://android-review.googlesource.com/#/q/Idb41309445a030c91e8e4ae05daa9642b450505c">Idb413</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/254115946">b/254115946</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/222093277">b/222093277</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/255802670">b/255802670</a>
+      )
+    </li>
+    <li>
+      Added EmojiCompat to Compose (
+      <a href="https://android-review.googlesource.com/#/q/Ibf6f9f9d37c6280fe1b051269b127f0dfb1d6b6a">Ibf6f9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/139326806">b/139326806</a>
+      )
+    </li>
+    <li>
+      Added new wallpaper parameter to
+      <code translate="no" dir="ltr">@Preview</code>
+      for dynamic colour support (
+      <a href="https://android-review.googlesource.com/#/q/I9f512178c957f6a70f92116ce3dd5394f74131dd">I9f512</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Snapshot apply notifications are now sent after the
+      <code translate="no" dir="ltr">Recomposer</code>
+      finishes applying changes. (
+      <a href="https://android-review.googlesource.com/#/q/Iad6c0dcd163a5a8f9c5aec426da3d4f701ca509f">Iad6c0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/222093277">b/222093277</a>
+      )
+    </li>
+    <li>
+      Introduced changes in
+      <code translate="no" dir="ltr">captureToImage</code>
+      to allow for capturing multi window screenshots. This is useful for screenshot tests that use compose PopUps. (
+      <a href="https://android-review.googlesource.com/#/q/I169c594f68e20939c98e8ebe0961625140177754">I169c5</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Updates</strong></p>
+  <ul>
+    <li>
+      Compose UI and Compose Material now depend on Lifecycle 2.5.1. (
+      <a href="https://android-review.googlesource.com/#/q/I05ab08e48f49eee1a1e573d172ba22efc47640a6">I05ab0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/258038814">b/258038814</a>
+      )
+    </li>
+  </ul>

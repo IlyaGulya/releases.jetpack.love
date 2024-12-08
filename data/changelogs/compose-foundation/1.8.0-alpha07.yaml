@@ -1,0 +1,84 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.8.0-alpha07
+releaseDate: 2024-12-11
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0-alpha07" data-text="Version 1.8.0-alpha07" tabindex="-1">Version 1.8.0-alpha07</h3>
+  <p>December 11, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.8.0-alpha07</code>
+    is released. Version 1.8.0-alpha07 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6f09cf2ae979e48fdb19485f757a033e4a34bb82..46295bc0b75a16f452e8e0090e8de41073d4dbb6/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Deleted
+      <code translate="no" dir="ltr">ComposeFoundationFlags.RemoveBasicTextGraphicsLayerEnabled</code>
+      flag that helped revert the removal of internal
+      <code translate="no" dir="ltr">graphicsLayer</code>
+      from
+      <code translate="no" dir="ltr">BasicText</code>
+      . If you were using this flag please let us know of the reasons by filing a bug. Also you can just pass in
+      <code translate="no" dir="ltr">Modifier.graphicsLayer()</code>
+      to your
+      <code translate="no" dir="ltr">BasicText</code>
+      calls to achieve the same behavior as before. (
+      <a href="https://android-review.googlesource.com/#/q/Id9f90910d19dd7bb9e3a43aede83d5bd9188c450">Id9f90</a>
+      )
+    </li>
+    <li>
+      Added default implementation for new
+      <code translate="no" dir="ltr">stickyHeader</code>
+      DSL. (
+      <a href="https://android-review.googlesource.com/#/q/I6898663e2599264a98e6ce2537ef9f0e065db571">I68986</a>
+      )
+    </li>
+    <li>
+      Has
+      <code translate="no" dir="ltr">LocalAutofillHighlightColor</code>
+      composition local use a Color type. (
+      <a href="https://android-review.googlesource.com/#/q/I0e05bc47c50ff04a873169ab69dfc79f9ecc0579">I0e05b</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">OverscrollEffect#withoutDrawing</code>
+      to
+      <code translate="no" dir="ltr">OverscrollEffect#withoutVisualEffect</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1a154f66a48cea170b6f1de3b98aaf451fb1f111">I1a154</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Follow-up fix for an issue in
+      <code translate="no" dir="ltr">AnchoredDraggable</code>
+      's target calculation where it could settle at the wrong anchor for specific swipes. (
+      <a href="https://android-review.googlesource.com/#/q/I23b8773d3a694aa3c8de6a8f34b9d7fb54cfe560">I23b87</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/367660226">b/367660226</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">BringIntoViewResponderModifierNode</code>
+      to UI, which provides a new way to implement Bring Into View functionality as well as allows implementing in on a platform level (
+      <a href="https://android-review.googlesource.com/#/q/Ia6dd89b79c7a4e04fea0d73410b2b76e779b793f">Ia6dd8</a>
+      )
+    </li>
+    <li>
+      We are ever slightly changing the way the cursor is drawn. You can use
+      <code translate="no" dir="ltr">LocalCursorBlinkEnabled</code>
+      to disable the cursor drawing in tests. (
+      <a href="https://android-review.googlesource.com/#/q/I4c6979903bec329287ec25093f55b83668d674ea">I4c697</a>
+      )
+    </li>
+  </ul>

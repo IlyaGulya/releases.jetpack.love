@@ -1,0 +1,89 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.9.0-alpha07
+releaseDate: 2024-11-13
+#language=html
+changelogHtml: |
+  <h3 id="2.9.0-alpha07" data-text="Version 2.9.0-alpha07" tabindex="-1">Version 2.9.0-alpha07</h3>
+  <p>November 13, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.9.0-alpha07</code>
+    is released. Version 2.9.0-alpha07 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ccd90a76bd7c4acf4f4f01eca76350e383bc441e..0aac1878823c58d5a7b1eee060cc79d1b38b4996/lifecycle">these commits</a>
+    .
+  </p>
+  <p><strong>Kotlin Multiplatform Compatibility</strong></p>
+  <ul>
+    <li>
+      Lifecycle
+      <code translate="no" dir="ltr">ViewModel SavedState</code>
+      is now KMP compatible. This allows you to use
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      in common code. (
+      <a href="https://android-review.googlesource.com/#/q/Ib63947f53600724de5ebf6c0e64c17c305592b2f">Ib6394</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/334076622">b/334076622</a>
+      )
+    </li>
+  </ul>
+  <p><strong>KotlinX Serialization Support</strong></p>
+  <ul>
+    <li>
+      <p>
+        With the support of KotlinX Serialization added in
+        <a href="/jetpack/androidx/releases/savedstate#1.3.0-alpha05">
+          SavedState
+          <code translate="no" dir="ltr">1.3.0-alpha05</code>
+        </a>
+        , we have introduced
+        <code translate="no" dir="ltr">saved</code>
+        , a lazy property delegate, to make it easy to store
+        <code translate="no" dir="ltr">@Serializable</code>
+        classes in a
+        <code translate="no" dir="ltr">SavedStateHandle</code>
+        and have those classes automatically be restored across process death and recreation. Please note the
+        <code translate="no" dir="ltr">saved</code>
+        delegate is lazy and will not call the
+        <code translate="no" dir="ltr">init</code>
+        lambda or save anything into the
+        <code translate="no" dir="ltr">SavedStateHandle</code>
+        until it is accessed. (
+        <a href="https://android-review.googlesource.com/#/q/I47a88d7bc335db7e22a9e6c05da38c2a8e012331">I47a88</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/376026744">b/376026744</a>
+        )
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@Serializable</span>
+  <span class="devsite-syntax-kd">data</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">Person</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">firstName</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">String</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">lastName</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">String</span><span class="devsite-syntax-p">)</span>
+
+  <span class="devsite-syntax-kd">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">MyViewModel</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">handle</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">SavedStateHandle</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">ViewModel</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kd">var</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">person</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">by</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">handle</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">saved</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Person</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"John"</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Doe"</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">onPersonChanged</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">person</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Person</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-k">this</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">person</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">person</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">getMutableStateFlow</code>
+      to
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      to return a
+      <code translate="no" dir="ltr">MutableStateFlow</code>
+      . This new function is key-exclusive and cannot be used with
+      <code translate="no" dir="ltr">getLiveData</code>
+      . An exception will be thrown if you try to use both to access the same state. (
+      <a href="https://android-review.googlesource.com/#/q/I04a4f0b470530a8993b467858abc45ecd2b42527">I04a4f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/375408415">b/375408415</a>
+      )
+    </li>
+  </ul>

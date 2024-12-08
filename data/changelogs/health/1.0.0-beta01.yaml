@@ -1,0 +1,214 @@
+libraryId: health
+groupId: androidx.health
+version: 1.0.0-beta01
+releaseDate: 2022-10-24
+#language=html
+changelogHtml: |
+  <h3 id="health-services-client-1.0.0-beta01" data-text="Version 1.0.0-beta01" tabindex="-1">Version 1.0.0-beta01</h3>
+  <p>October 24, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.health:health-services-client:1.0.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f07d12061370a603549747200c79b60239706330..548c8ac2570ae6cf15798fea1380491f7d93796b/health/health-services-client">Version 1.0.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>
+        Added the ability to listen for health events through
+        <code translate="no" dir="ltr">PassiveMonitoringClient</code>
+        with the first event being:
+        <code translate="no" dir="ltr">HealthEvent.FALL_DETECTED</code>
+        .
+      </p>
+    </li>
+    <li>
+      <p>New ExerciseTypes:</p>
+
+      <ul>
+        <li><code translate="no" dir="ltr">ALPINE_SKIING</code></li>
+        <li><code translate="no" dir="ltr">BACKPACKING</code></li>
+        <li><code translate="no" dir="ltr">CROSS_COUNTRY_SKIING</code></li>
+        <li><code translate="no" dir="ltr">HORSE_RIDING</code></li>
+        <li><code translate="no" dir="ltr">INLINE_SKATING</code></li>
+        <li><code translate="no" dir="ltr">MOUNTAIN_BIKING</code></li>
+        <li><code translate="no" dir="ltr">ORIENTEERING</code></li>
+        <li><code translate="no" dir="ltr">ROLLER_SKATING</code></li>
+        <li><code translate="no" dir="ltr">YACHTING</code></li>
+      </ul>
+    </li>
+    <li>
+      <p>New DataTypes:</p>
+
+      <ul>
+        <li><code translate="no" dir="ltr">ELEVATION_LOSS</code></li>
+        <li><code translate="no" dir="ltr">GOLF_SHOT_COUNT</code></li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <a href="https://android-review.googlesource.com/#/q/I287a816075bf721c9cec2471a5032366f70eee4f">Updated how data is modeled</a>
+      : the data model and how
+      <code translate="no" dir="ltr">DataType</code>
+      s,
+      <code translate="no" dir="ltr">DataPoint</code>
+      s, and their underlying values are represented have been overhauled. The top level impact is that APIs are now much more explicit and type safe.
+    </li>
+    <li>
+      Location
+      <code translate="no" dir="ltr">DataPoint</code>
+      s are no longer represented as a
+      <code translate="no" dir="ltr">DoubleArray</code>
+      , but instead as a strongly-typed
+      <code translate="no" dir="ltr">LocationData</code>
+      object.
+    </li>
+    <li>
+      Moved to a new set of passive listener APIs:
+      <ul>
+        <li>
+          The broadcast was replaced by the
+          <code translate="no" dir="ltr">PassiveListenerService</code>
+          .
+        </li>
+        <li>
+          The existing listeners were replaced with a single listener:
+          <code translate="no" dir="ltr">PassiveListenerCallback</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">&lt;queries&gt;</code>
+      tag to Health Services manifest so that applications no longer need to specify this in their own manifest (provided manifest merger is turned on in their build system.)
+    </li>
+    <li>
+      Moved away from many
+      <code translate="no" dir="ltr">ExerciseState</code>
+      s to represent the exercise is ending / ended and added new exercise states
+      <code translate="no" dir="ltr">ENDING</code>
+      and
+      <code translate="no" dir="ltr">ENDED</code>
+      . These are now combined with
+      <code translate="no" dir="ltr">ExerciseEndReason</code>
+      to represent the full gamut of previous states.
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">PassiveListenerConfig</code>
+      <code translate="no" dir="ltr">setPassiveGoals</code>
+      to
+      <code translate="no" dir="ltr">setDailyGoals</code>
+      to better reflect we only support daily passive goals.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PassiveGoal</code>
+      s now always
+      <code translate="no" dir="ltr">REPEATED</code>
+      , passive
+      <code translate="no" dir="ltr">TriggerFrequency</code>
+      removed.
+    </li>
+    <li>
+      Annotated all
+      <code translate="no" dir="ltr">Long</code>
+      and
+      <code translate="no" dir="ltr">Double</code>
+      parameters with
+      <code translate="no" dir="ltr">@FloatRange</code>
+      .
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">swimmingPoolLengthMeters</code>
+      property to
+      <code translate="no" dir="ltr">ExerciseConfig</code>
+      which may be optionally specified to improve distance calculations for pool swims.
+    </li>
+    <li>
+      Deprecated
+      <code translate="no" dir="ltr">ExerciseUpdate.activeDuration</code>
+      . Use
+      <code translate="no" dir="ltr">ExerciseUpdate.activeDurationCheckpoint</code>
+      instead.
+    </li>
+    <li>
+      Renamed the API
+      <code translate="no" dir="ltr">flushExerciseAsync()</code>
+      to
+      <code translate="no" dir="ltr">flushAsync()</code>
+      in
+      <code translate="no" dir="ltr">ExerciseClient</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Measure.registerCallback</code>
+      renamed to
+      <code translate="no" dir="ltr">Measure.registerMeasureCallback</code>
+      .
+    </li>
+    <li>
+      General naming changes:
+      <ul>
+        <li>
+          Distance properties now have
+          <code translate="no" dir="ltr">meters</code>
+          suffix.
+        </li>
+        <li>Callback method names are now past tense.</li>
+        <li>
+          Most abbreviations have been removed (
+          <code translate="no" dir="ltr">HrAccuracy</code>
+          is now
+          <code translate="no" dir="ltr">HeartRateAccuracy</code>
+          .)
+        </li>
+        <li>
+          Properties following the pattern
+          <code translate="no" dir="ltr">enableFoo</code>
+          are now named
+          <code translate="no" dir="ltr">isFooEnabled</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>Migrated away from Enums.</li>
+    <li>
+      Times represented by
+      <code translate="no" dir="ltr">Double</code>
+      are now represented by
+      <code translate="no" dir="ltr">Duration</code>
+      .
+    </li>
+    <li>
+      Functions returning a
+      <code translate="no" dir="ltr">ListenableFuture&lt;Void?&gt;</code>
+      now return a
+      <code translate="no" dir="ltr">ListenableFuture&lt;Void&gt;</code>
+      .
+    </li>
+    <li>Functions that accept a callback now always have the callback appear as the last parameter.</li>
+    <li>Classes with builders now always also have public constructors.</li>
+    <li>
+      Registration functions no longer return a
+      <code translate="no" dir="ltr">ListenableFuture</code>
+      and instead pass registration status to the provided callback.
+    </li>
+    <li>KDocs have now been improved.</li>
+    <li>
+      Public classes no longer extend
+      <code translate="no" dir="ltr">ProtoParcelable</code>
+      .
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      General improvements to IPC reliability (
+      <a href="https://android-review.googlesource.com/#/q/I3b1e2a66a652a0882d06d4353cbf015a6a637004">I3b1e2</a>
+      )
+    </li>
+  </ul>

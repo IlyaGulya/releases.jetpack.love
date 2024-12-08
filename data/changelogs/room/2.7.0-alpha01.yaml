@@ -1,0 +1,107 @@
+libraryId: room
+groupId: androidx.room
+version: 2.7.0-alpha01
+releaseDate: 2024-05-01
+#language=html
+changelogHtml: |
+  <h3 id="2.7.0-alpha01" data-text="Version 2.7.0-alpha01" tabindex="-1">Version 2.7.0-alpha01</h3>
+  <p>May 1, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.7.0-alpha01</code>
+    is released. Version 2.7.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/291c06f46eebb10fbf9d07b9d36e41dd1bd6f980/room">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <strong>Kotlin Multiplatform (KMP) Support</strong>
+      : In this release, Room has been refactored to become a Kotlin Multiplatform (KMP) library. Although there is still some work to be done, this release introduces a new version of Room where the majority of the functionality has been “common-ized” (made to be multiplatform). Current supported platforms are Android, iOS, JVM (Desktop), native Mac and native Linux. Any missing functionality in the newly supported platforms will be made “feature-complete” in upcoming Room releases.
+    </li>
+  </ul>
+  <p>
+    For more information on how to get started using Room KMP, please refer to the
+    <a href="https://developer.android.com/kotlin/multiplatform/room">official Room KMP documentation</a>
+    .
+  </p>
+  <ul>
+    <li>
+      <strong>Kotlin Code Generation on KSP</strong>
+      has been turned ON by default if processing is done via KSP. For KAPT or Java only projects, Room will still generate Java sources.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      An overload of
+      <code translate="no" dir="ltr">Room.databaseBuilder()</code>
+      has been added that takes a lambda parameter that is meant to be used with a Room generated function to avoid using reflection when instantiating the generated
+      <code translate="no" dir="ltr">RoomDatabase</code>
+      implementation. Example usage is:
+    </li>
+  </ul>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-n">Room</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">databaseBuilder&lt;MyDatabase&gt;</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">context</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">appContext</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">name</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">dbFilePath</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">factory</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">MyDatabase</span><span class="devsite-syntax-o">::</span><span class="devsite-syntax-n">class</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">instantiateImpl</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">)</span>
+  </code></pre>
+  </devsite-code>
+  <ul>
+    <li>
+      An API for configuring a Room with a
+      <code translate="no" dir="ltr">CoroutineContext</code>
+      has been added to the builder:
+      <code translate="no" dir="ltr">RoomDatabase.Builder.setQueryCoroutineContext</code>
+      . Note that a
+      <code translate="no" dir="ltr">RoomDatabase</code>
+      can only be configured with either executors using
+      <code translate="no" dir="ltr">setQueryExecutor</code>
+      or with a Coroutine context but not both.
+    </li>
+    <li>
+      An API for configuring Room with a
+      <code translate="no" dir="ltr">SQLite</code>
+      Driver has been added:
+      <code translate="no" dir="ltr">RoomDatabase.Builder.setDriver()</code>
+      . For more information about the
+      <code translate="no" dir="ltr">SQLite</code>
+      Driver API refer to the
+      <a href="https://developer.android.com/kotlin/multiplatform/sqlite">SQLite KMP documentation</a>
+    </li>
+    <li>
+      APIs for accessing the underlying
+      <code translate="no" dir="ltr">SQLiteConnection</code>
+      from driver APIs have been added:
+      <code translate="no" dir="ltr">RoomDatabase.useReaderConnection</code>
+      and
+      <code translate="no" dir="ltr">RoomDatabase.useWriterConnection</code>
+      .
+    </li>
+    <li>
+      Varios Room related callbacks now have an overloaded version that receive
+      <code translate="no" dir="ltr">SQLiteConnection</code>
+      instead of
+      <code translate="no" dir="ltr">SupportSQLiteDatabase</code>
+      . These are intended to be overridden when migrating to a KMP project. For more information about migrating Room usages in an Android app to a common KMP module refer to the
+      <a href="https://developer.android.com/training/data-storage/room/room-kmp-migration">migration guide</a>
+      . The callbacks are:
+      <ul>
+        <li><code translate="no" dir="ltr">Migration.migrate(SQLiteConnection)</code></li>
+        <li><code translate="no" dir="ltr">AutoMigrationSpec.onPostMigrate(SQLiteConnection)</code></li>
+        <li><code translate="no" dir="ltr">RoomDatabase.Callback.onCreate(SQLiteConnection)</code></li>
+        <li><code translate="no" dir="ltr">RoomDatabase.Callback.onDestructiveMigration(SQLiteConnection)</code></li>
+        <li><code translate="no" dir="ltr">RoomDatabase.Callback.onOpen(SQLiteConnection)</code></li>
+      </ul>
+    </li>
+    <li>
+      The KTX artifact
+      <code translate="no" dir="ltr">androidx.room:room-ktx</code>
+      has been merged to
+      <code translate="no" dir="ltr">androidx.room:room-runtime</code>
+      along with all its APIs, the artifact is now blank. Please remove it from your dependency list.
+    </li>
+  </ul>
+  <h2 id="version_26_2" data-text="Version 2.6" tabindex="-1">Version 2.6</h2>

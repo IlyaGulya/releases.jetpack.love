@@ -1,0 +1,47 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.0.0-alpha12
+releaseDate: 2021-01-13
+#language=html
+changelogHtml: |
+  <h3 id="3.0.0-alpha12" data-text="Version 3.0.0-alpha12" tabindex="-1">Version 3.0.0-alpha12</h3>
+  <p>January 13, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.0.0-alpha12</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/dd3c8e9c2424b78e44f55db599251891fd1cadb4..6207afb1646d302c5d29c2c67d332b48db87fb27/paging">Version 3.0.0-alpha12 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      InvalidatingPagingSourceFactory is no longer an abstract class as it never had any abstract methods. (
+      <a href="https://android-review.googlesource.com/#/q/I4a8c48ecf20b539a058f90e8675554a671b4a653">I4a8c4</a>
+      )
+    </li>
+    <li>
+      Added an overload of .cachedIn() that accepts ViewModel instead of Lifecycle or CoroutineScope for Java users. (
+      <a href="https://android-review.googlesource.com/#/q/I97d815a9a2750eaae3445ea9cb222c14f5125a0b">I97d81</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175332619">b/175332619</a>
+      )
+    </li>
+    <li>
+      Allow Java callers to use PagingData transform operations in an async way, by accepting an Executor into transform operator arguments. All of the -Sync transform operators have the -Sync suffix removed now, and Kotlin Coroutine users will need to disambiguate by calling the extension function which accepts a suspending block instead. All PagingData transformation operators have been moved to extensions under the static PagingDataTransforms class. Java users will need to call them via static helpers e.g.,
+      <code translate="no" dir="ltr">PagingDataTransforms.map(pagingData, transform)</code>
+      For Kotlin users, the syntax is the same but you'll need to import the function. (
+      <a href="https://android-review.googlesource.com/#/q/If688562d07d96e943b1abfa3690042132db1c4d0">If6885</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172895919">b/172895919</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a bug where
+      <code translate="no" dir="ltr">RemoteMediator.load()</code>
+      would not be called during
+      <code translate="no" dir="ltr">adapter.refresh()</code>
+      if the end of pagination had already been reached.
+    </li>
+  </ul>

@@ -1,0 +1,192 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.3.0-alpha08
+releaseDate: 2020-08-19
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha08" data-text="Version 1.3.0-alpha08" tabindex="-1">Version 1.3.0-alpha08</h3>
+  <p>August 19, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.3.0-alpha08</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.3.0-alpha08</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.3.0-alpha08</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9f60cc700129e30cee9df020005c317fb39d32ec..96eb302ee1740ba656c90c9fb27df3723a1a89c1/fragment">Version 1.3.0-alpha08 contains these commits.</a>
+  </p>
+  <p><strong>New State Manager</strong></p>
+  <p>
+    This release includes a major refactoring of the internal state management of
+    <code translate="no" dir="ltr">FragmentManager</code>
+    which affects the dispatch of lifecycle methods, animations and transitions, and how postponed transactions are handled. This is enabled by default. See the
+    <a href="https://medium.com/androiddevelopers/fragments-rebuilding-the-internals-61913f8bf48e">Fragments: Rebuilding the Internals blog post</a>
+    for more details. (
+    <a href="https://issuetracker.google.com/139536619">b/139536619</a>
+    ,
+    <a href="https://issuetracker.google.com/147749580">b/147749580</a>
+    )
+  </p>
+  <ul>
+    <li>
+      An
+      <em>experimental</em>
+      API in
+      <code translate="no" dir="ltr">FragmentManager.enableNewStateManager(boolean)</code>
+      can be used to control whether FragmentManager uses the new state manager. (
+      <a href="https://android-review.googlesource.com/#/q/I7b6ee13ea89f3989beafe7c474455e8a04e929a3">I7b6ee</a>
+      )
+    </li>
+  </ul>
+  <p>The following issues are fixed only when using the new state manager:</p>
+  <ul>
+    <li>
+      The previous fragment of a
+      <code translate="no" dir="ltr">replace</code>
+      operation is now correctly stopped before the new fragment is started. (
+      <a href="https://issuetracker.google.com/161654580">b/161654580</a>
+      )
+    </li>
+    <li>
+      Fragments now prevent multiple competing animations on the same fragments, avoiding cases where an
+      <code translate="no" dir="ltr">Animation</code>
+      would override all
+      <code translate="no" dir="ltr">Transition</code>
+      effects or an
+      <code translate="no" dir="ltr">Animator</code>
+      and a
+      <code translate="no" dir="ltr">Transition</code>
+      on an individual fragment would both run. (
+      <a href="https://issuetracker.google.com/149569323">b/149569323</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">enterTransition</code>
+      and
+      <code translate="no" dir="ltr">exitTranstion</code>
+      of
+      <strong>all</strong>
+      fragments entering and exiting are now ran rather than only the last entering fragment and the first exiting fragment. (
+      <a href="https://issuetracker.google.com/149344150">b/149344150</a>
+      )
+    </li>
+    <li>
+      Postponed fragments no longer get stuck at the
+      <code translate="no" dir="ltr">CREATED</code>
+      state but instead move to
+      <code translate="no" dir="ltr">STARTED</code>
+      with other fragments. (
+      <a href="https://issuetracker.google.com/129035555">b/129035555</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">FragmentManager</code>
+      would execute operations out of order when mixing a postponed re-ordered transaction and a non-reordered transaction. (
+      <a href="https://issuetracker.google.com/147297731">b/147297731</a>
+      )
+    </li>
+    <li>
+      Popping multiple fragments simultaneously will no longer result in intermediate fragments being temporarily visible when postponing fragments. (
+      <a href="https://issuetracker.google.com/37140383">b/37140383</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FragmentManager</code>
+      now returns the correct fragments when calling
+      <code translate="no" dir="ltr">findFragmentById()</code>
+      or
+      <code translate="no" dir="ltr">findFragmentByTag()</code>
+      from within the
+      <code translate="no" dir="ltr">onAttachFragment()</code>
+      callback. (
+      <a href="https://issuetracker.google.com/153082833">b/153082833</a>
+      )
+    </li>
+    <li>
+      Fragments no longer call
+      <code translate="no" dir="ltr">onCreateView()</code>
+      on fragments being destroyed when the fragment replacing them is postponed. (
+      <a href="https://issuetracker.google.com/143915710">b/143915710</a>
+      )
+    </li>
+    <li>
+      The error message when attempting to combine framework
+      <code translate="no" dir="ltr">Transition</code>
+      and AndroidX
+      <code translate="no" dir="ltr">Transition</code>
+      instances now mentions the fragment with the invalid transition. (
+      <a href="https://issuetracker.google.com/155574969">b/155574969</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      You can now call
+      <code translate="no" dir="ltr">launch()</code>
+      on an
+      <code translate="no" dir="ltr">ActivityResultLauncher</code>
+      in the
+      <code translate="no" dir="ltr">onCreate()</code>
+      lifecycle method of a fragment. (
+      <a href="https://issuetracker.google.com/issues/161464278">b/161464278</a>
+      )
+    </li>
+    <li>
+      Calling
+      <code translate="no" dir="ltr">registerForActivityResult()</code>
+      after
+      <code translate="no" dir="ltr">onCreate()</code>
+      now throws an exception indicating that this is not allowed rather than silently failing to deliver results after a configuration change. (
+      <a href="https://issuetracker.google.com/162255449">b/162255449</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FragmentActivity</code>
+      now uses the
+      <code translate="no" dir="ltr">OnContextAvailableListener</code>
+      API introduced in
+      <a href="/jetpack/androidx/releases/activity#1.2.0-alpha08">
+        Activity
+        <code translate="no" dir="ltr">1.2.0-alpha08</code>
+      </a>
+      to restore the state of the
+      <code translate="no" dir="ltr">FragmentManager</code>
+      . Any listeners added to subclasses of
+      <code translate="no" dir="ltr">FragmentActivity</code>
+      will run after this listener. (
+      <a href="https://android-review.googlesource.com/#/q/I513da73bc0862b62af4166be35ba353fc7869a09">I513da</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ActivityOptions</code>
+      passed through when using
+      <code translate="no" dir="ltr">startIntentSenderForResult()</code>
+      are now respected. (
+      <a href="https://issuetracker.google.com/162247961">b/162247961</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issue</strong></p>
+  <ul>
+    <li>
+      When using the new state manager, directly setting the visibility of the fragment’s root view after
+      <code translate="no" dir="ltr">onViewCreated()</code>
+      and before
+      <code translate="no" dir="ltr">onResume()</code>
+      results in the visibility you set being overridden by
+      <code translate="no" dir="ltr">FragmentManager</code>
+      , who controls the visibility of the root view. As a workaround, you should always use the
+      <code translate="no" dir="ltr">hide()</code>
+      and
+      <code translate="no" dir="ltr">show()</code>
+      operations to change the visibility of your fragment. (
+      <a href="https://issuetracker.google.com/164481490">b/164481490</a>
+      )
+    </li>
+  </ul>

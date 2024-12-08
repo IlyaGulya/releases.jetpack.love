@@ -1,0 +1,52 @@
+libraryId: constraintlayout
+groupId: androidx.constraintlayout
+version: 1.1.0-alpha09
+releaseDate: 2023-03-22
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha09" data-text="Version 1.1.0-alpha09" tabindex="-1">Version 1.1.0-alpha09</h3>
+  <p>March 22, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha09</code>
+    and
+    <code translate="no" dir="ltr">androidx.constraintlayout:constraintlayout-core:1.1.0-alpha09</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c37bd7a58b465e53962265e5a5991400817fc2e5..5e7d256f82fbafb6d059ab7b18fddd87c7531553/constraintlayout">Version 1.1.0-alpha09 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">Modifier.intermediateLayout</code>
+      now doesn't require an explicit
+      <code translate="no" dir="ltr">LookaheadScope</code>
+      . The measure block in
+      <code translate="no" dir="ltr">intermediateLayout</code>
+      has
+      <code translate="no" dir="ltr">IntermediateMeasureScope</code>
+      as receiver, which provides convenient
+      <code translate="no" dir="ltr">CoroutineScope</code>
+      ,
+      <code translate="no" dir="ltr">LookaheadScope</code>
+      and
+      <code translate="no" dir="ltr">MeasureScope</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LookaheadLayout</code>
+      has been replaced by
+      <code translate="no" dir="ltr">LookaheadScope</code>
+      , which is no longer a Layout. This allows child content in a
+      <code translate="no" dir="ltr">LookaheadScope</code>
+      to be directly controlled by parent's
+      <code translate="no" dir="ltr">MeasurePolicy</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ibe2e5e20a833d3824213e86e5c1e155f65647ad7">Ibe2e5</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Easing.Cubic()</code>
+      can now take overshoot parameters. (
+      <a href="https://android-review.googlesource.com/#/q/I2d826dc9fb5dd65ee340ceaba87825c843b01df5">I2d826</a>
+      )
+    </li>
+  </ul>

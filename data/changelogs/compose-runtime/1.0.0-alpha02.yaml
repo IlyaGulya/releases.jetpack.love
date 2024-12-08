@@ -1,0 +1,52 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.0.0-alpha02
+releaseDate: 2020-09-02
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha02" data-text="Version 1.0.0-alpha02" tabindex="-1">Version 1.0.0-alpha02</h3>
+  <p>September 2, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.0.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/96eb302ee1740ba656c90c9fb27df3723a1a89c1..31022a2dda22705843be1199c786552a6f9f875d/compose/runtime">Version 1.0.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">snapshotFlow</code>
+      and
+      <code translate="no" dir="ltr">withMutableSnapshot</code>
+      APIs for consuming and producing Snapshot data changes. (
+      <a href="https://android-review.googlesource.com/#/q/I3e7226bacc660bdfc9ea4d781a7abfef86f5dfce">I3e722</a>
+      )
+    </li>
+    <li>
+      <p>The calling convention for composable functions has changed. This is a binary breaking change. All libraries must be recompiled to work with this version of the compose compiler plugin.</p>
+
+      <p>
+        This change does not create a source level breaking change as the only APIs that have changed are compiler APIs that have an explicit opt in. (
+        <a href="https://android-review.googlesource.com/#/q/I7afd2d7b19652ec92b8d6d1d1e92f0745968aa66">I7afd2</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/158123185">b/158123185</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Removed scheduling methods from EmbeddingContext (
+        <a href="https://android-review.googlesource.com/#/q/I7b9bea6af71d1b610ce68c89938bbbc793193457">I7b9be</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>onPreCommit is deprecated; onCommit now has onPreCommit's behavior.</p>
+
+      <p>
+        onCommit and onActive now run in the same choreographer frame that the composition changes committed in rather than at the beginning of the next choreographer frame. (
+        <a href="https://android-review.googlesource.com/#/q/I70403eea442a7a003f08e7b1d19e44e0134ea077">I70403</a>
+        )
+      </p>
+    </li>
+  </ul>

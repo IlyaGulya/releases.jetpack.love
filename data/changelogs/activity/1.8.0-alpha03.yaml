@@ -1,0 +1,81 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.8.0-alpha03
+releaseDate: 2023-04-12
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0-alpha03" data-text="Version 1.8.0-alpha03" tabindex="-1">Version 1.8.0-alpha03</h3>
+  <p>April 12, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.8.0-alpha03</code>
+    ,
+    <code translate="no" dir="ltr">androidx.activity:activity-compose:1.8.0-alpha03</code>
+    , and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.8.0-alpha03</code>
+    are released. This was released from an internal branch.
+  </p>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      This version will only compile against the
+      <a href="/about/versions/14#beta-1">Android 14 (Upside Down Cake) Beta 1 SDK</a>
+      .
+    </span>
+  </aside>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ComponentActivity.setUpEdgeToEdge()</code>
+      to easily set up the edge-to-edge display in a backward-compatible manner.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ComponentActivity.onBackPressed()</code>
+      has now been deprecated in favor of the APIs for handling back. Developers should now utilize the
+      <code translate="no" dir="ltr">OnBackPressedDispatcher</code>
+      , rather than overriding this method. (
+      <a href="https://android-review.googlesource.com/#/q/Ibce2f664a8d73cb1df06c20918752fb3dfb44e0c">Ibce2f</a>
+      ,
+      <a href="https://issuetracker.google.com/271596918">b/271596918</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ComponentDialog</code>
+      and
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      now contain public API
+      <code translate="no" dir="ltr">initViewTreeOwners()</code>
+      to be used to initialize all view tree owners before setting the content view. (
+      <a href="https://android-review.googlesource.com/#/q/Ibdce0a994b0daddc090e4ff58583ccba71612870">Ibdce0</a>
+      ,
+      <a href="https://issuetracker.google.com/261314581">b/261314581</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where Fragments were incorrectly invalidating MenuHosts and causing other menus in the Activity to have unexpected behavior. (
+      <a href="https://android-review.googlesource.com/#/q/I9404ee9fcc9ce6b80d70a93bea720fe4ccf583a0">I9404e</a>
+      ,
+      <a href="https://issuetracker.google.com/244336571">b/244336571</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Other Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">ActivityResultRegister</code>
+      now uses Kotlin
+      <code translate="no" dir="ltr">Random</code>
+      instead of Java. (
+      <a href="https://android-review.googlesource.com/#/q/I4d98f4bc5a36b35fea026f716db45efa74078af8">I4d98f</a>
+      ,
+      <a href="https://issuetracker.google.com/272096025">b/272096025</a>
+      )
+    </li>
+  </ul>

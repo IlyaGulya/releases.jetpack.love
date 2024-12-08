@@ -1,0 +1,56 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.4.0-alpha06
+releaseDate: 2024-12-11
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha06" data-text="Version 1.4.0-alpha06" tabindex="-1">Version 1.4.0-alpha06</h3>
+  <p>December 11, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.4.0-alpha06</code>
+    is released. Version 1.4.0-alpha06 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6f09cf2ae979e48fdb19485f757a033e4a34bb82..46295bc0b75a16f452e8e0090e8de41073d4dbb6/benchmark">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removed usage of
+      <code translate="no" dir="ltr">@Language("sql")</code>
+      in
+      <code translate="no" dir="ltr">PerfettoTraceProcessor.Session.query()</code>
+      , as Studio highlighting/parsing is broken. (
+      <a href="https://android-review.googlesource.com/#/q/Idc2fa4a86e2fb4637c2a6de84f7d5320f3677a6a">Idc2fa</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/377733398">b/377733398</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      This library now uses
+      <a href="https://jspecify.dev/">JSpecify nullness annotations</a>
+      , which are type-use. Kotlin developers should use the following compiler arguments to enforce correct usage:
+      <code translate="no" dir="ltr">-Xjspecify-annotations=strict</code>
+      ,
+      <code translate="no" dir="ltr">-Xtype-enhancement-improvements-strict-mode</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I468104b1daa61c3998c5558fed2b2804f0ef85e9">I46810</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326456246">b/326456246</a>
+      )
+    </li>
+    <li>
+      Corrected
+      <code translate="no" dir="ltr">ArtMetric</code>
+      to report class load (not init), and improved docs to clarify runtime behavior. (
+      <a href="https://android-review.googlesource.com/#/q/I9915cf126210f6d886cde0cdd05a731f7c2723a9">I9915c</a>
+      )
+    </li>
+    <li>
+      On Android Multiuser, execute commands as root only on rooted devices. (
+      <a href="https://android-review.googlesource.com/#/q/I88b443366249e2d9c208b8895a4e89cb6839f997">I88b44</a>
+      )
+    </li>
+  </ul>

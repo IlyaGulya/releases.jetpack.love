@@ -1,0 +1,85 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.6.0-alpha02
+releaseDate: 2023-07-26
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-alpha02" data-text="Version 1.6.0-alpha02" tabindex="-1">Version 1.6.0-alpha02</h3>
+  <p>July 26, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.6.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3b5b931546a48163444a9eddc533489fcddd7494..4aed940027a19667e67d155563fc5fa8b7279313/compose/ui">Version 1.6.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added a service locator interface that can be implemented by implementors of Composition that allows an implementation of Composition that delegates to another composition delegate service lookups to the original Composition. This should not be called directy and is used to enable creating experimental APIs in the runtime that can be found from wrapped versions of the composer such as the UI module does. (
+      <a href="https://android-review.googlesource.com/#/q/I296b9deae0c30b70d5e37f7b5fa992d2583ef4f4">I296b9</a>
+      )
+    </li>
+    <li>
+      Completely redesigned
+      <code translate="no" dir="ltr">PlatformTextInput*</code>
+      API. (
+      <a href="https://android-review.googlesource.com/#/q/I6c93a1111561b5cb55c6a34e2fc3738be3c8941d">I6c93a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/274661182">b/274661182</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/267235947">b/267235947</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/277380808">b/277380808</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SoftwareKeyboardController</code>
+      and
+      <code translate="no" dir="ltr">LocalSoftwareKeyboardController</code>
+      are no longer experimental.
+      <code translate="no" dir="ltr">LocalSoftwareKeyboardController</code>
+      is also now a proper
+      <code translate="no" dir="ltr">CompositionLocal</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4c3647f331eacc78f15bd5aa6b19a31ff748b23d">I4c364</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LookaheadLayout</code>
+      and
+      <code translate="no" dir="ltr">LookaheadLayoutScope</code>
+      have been deprecated for a few releases and are now removed. The replacement APIs are
+      <code translate="no" dir="ltr">LookaheadScope</code>
+      that can work with any Layout. (
+      <a href="https://android-review.googlesource.com/#/q/I12ac3827e34339ada08c29713558950abc8db5b8">I12ac3</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">SemanticsNodeInteraction.requestFocus</code>
+      as a more convenient and discoverable way to request focus in tests. (
+      <a href="https://android-review.googlesource.com/#/q/Ie87224a465a60cd462ee0eaf7c2d3797f1d63347">Ie8722</a>
+      )
+    </li>
+    <li>
+      Add experimental APIs for registering global assertions, for use by testing frameworks in the future. (
+      <a href="https://android-review.googlesource.com/#/q/I12d77ee7f84cf2d6395077d6abef1eb4b634f3df">I12d77</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">AndroidView</code>
+      's
+      <code translate="no" dir="ltr">update</code>
+      callback's first invocation will now be defered until the view is attached, instead of running when the composition that introduces the
+      <code translate="no" dir="ltr">AndroidView</code>
+      is applied. This fixes a bug where the
+      <code translate="no" dir="ltr">update</code>
+      callback wouldn't be invalidated if a state it read was changed immediately by an effect. (
+      <a href="https://android-review.googlesource.com/#/q/Ie94381c17c417b4161d1531c9731a3b077ad46fb">Ie9438</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/291094055">b/291094055</a>
+      )
+    </li>
+  </ul>

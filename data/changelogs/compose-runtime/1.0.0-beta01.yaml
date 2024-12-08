@@ -1,0 +1,211 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.0.0-beta01
+releaseDate: 2021-02-24
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta01" data-text="Version 1.0.0-beta01" tabindex="-1">Version 1.0.0-beta01</h3>
+  <p>February 24, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.0.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9ed3262e0dfca1d352bdbf8f8e10253a61ef6218..4b6cff92e45f1d4467086aa2c6aa0248b4883950/compose/runtime">Version 1.0.0-beta01 contains these commits.</a>
+  </p>
+  <p>This is the first release of Compose 1.0.0 Beta.</p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">Recomposer.runRecomposeConcurrentlyAndApplyChanges</code>
+      experimental API for recomposing invalidated compositions off the main frame loop. (
+      <a href="https://android-review.googlesource.com/#/q/I342d03606de9fe04254e620296ad9b57c42da7b4">I342d0</a>
+      )
+    </li>
+    <li>
+      Any composables marked with @ReadOnlyComposable are now compile-time validated to ensure that they only make calls to other @ReadOnlyComposables (
+      <a href="https://android-review.googlesource.com/#/q/I58961d2946c80a6a2d9e8e0cca35fd61f41ee703">I58961</a>
+      )
+    </li>
+    <li>
+      <p>
+        The
+        <code translate="no" dir="ltr">defaultFactory</code>
+        for
+        <code translate="no" dir="ltr">compositionLocalOf</code>
+        and
+        <code translate="no" dir="ltr">staticCompositionLocalOf</code>
+        is now required instead of optional.
+      </p>
+
+      <p>This changes removes a potential type error for non-nullable types where no default factory was provided. Previously this would provide a null reference for a non-nullable type.</p>
+
+      <p>
+        For nullable types consider supplying
+        <code translate="no" dir="ltr">{ null }</code>
+        as the default factory.
+      </p>
+
+      <p>
+        We do not recommend using locals with non-nullable types unless a sensible default can be provided. If no sensible default exists, the
+        <code translate="no" dir="ltr">defaultFactory</code>
+        lambda should throw an exception. However throwing an exception means that consumers of the local will have an implicit dependency on it being provided that is not enforced by the type system. (
+        <a href="https://android-review.googlesource.com/#/q/Ifbd2a8abd2f1fc4578da4b782b570ed9de088beb">Ifbd2a</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Deprecated symbols were removed from the compose runtime (
+        <a href="https://android-review.googlesource.com/#/q/I3252c231cab96abb5b73ffb1d37410c0569490f5">I3252c</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Deprecated
+        <code translate="no" dir="ltr">emptyContent()</code>
+        is removed. Use
+        <code translate="no" dir="ltr">{}</code>
+        instead. (
+        <a href="https://android-review.googlesource.com/#/q/Idb33f22d9a1002f86b42606dd93478ee37924445">Idb33f</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/179432510">b/179432510</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>Providers has been renamed to CompositionLocalProvider</p>
+
+      <ul>
+        <li>The Composition constructor no longer accepts a key parameter, and has been deprecated.</li>
+        <li>currentCompositeKeyHash has been turned into a composable top level property instead of a composable top level function.</li>
+        <li>CompositionData and CompositionGroup have been moved to the androidx.compose.runtime.tooling namespace</li>
+        <li>ComposableLambda has been made an interface instead of a concrete class, and no longer has type parameters.</li>
+        <li>ComposableLambdaN has been made an interface instead of a concrete class, and no longer has type parameters.</li>
+        <li>The snapshotFlow function has been moved to the androidx.compose.runtime namespace</li>
+        <li>the merge method of SnapshotMutationPolicy is no longer experimental</li>
+        <li>The @TestOnly top level clearRoots function has been removed. It is no longer necessary.</li>
+        <li>keySourceInfoOf and resetSourceInfo functions have been removed. They are no longer necessary.</li>
+        <li>Composer.collectKeySourceInformation has been removed. It is no longer necessary.</li>
+        <li>isJoinedKey, joinedKeyLeft, and joinedKeyRight methods have been removed. They are no longer necessary.</li>
+        <li>Various top level APIs have been moved and reorganized into different files. Due to Kotlin’s file class semantics, this will break binary compatibility but not source compatibility, so should not be an issue for most users.</li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I99b7de8ea0fb5d73a0ee4667a65e35d976383831">I99b7d</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/177245490">b/177245490</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        SnapshotStateObserver is not Experimental anymore (
+        <a href="https://android-review.googlesource.com/#/q/Id2e6a2eaac801b2eb9ef3fcacfdadb679ffbffab">Id2e6a</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Deleted some previously deprecated APIs (
+        <a href="https://android-review.googlesource.com/#/q/Ice5dae36591015a9d905b84b26cc02662385d831">Ice5da</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/178633932">b/178633932</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>Made the following Material API changes:</p>
+
+      <ul>
+        <li>Added contentPadding parameter to Top/BottomAppBar to allow customizing the default padding.</li>
+        <li>Reordered parameters in BackdropScaffold to follow API guidelines for required parameters being before optional parameters.</li>
+        <li>
+          Moved
+          <code translate="no" dir="ltr">icon</code>
+          parameter in BottomNavigationItem to be after
+          <code translate="no" dir="ltr">selected</code>
+          and
+          <code translate="no" dir="ltr">onClick</code>
+          .
+        </li>
+        <li>
+          Renamed
+          <code translate="no" dir="ltr">alwaysShowLabels</code>
+          parameter in BottomNavigationItem to
+          <code translate="no" dir="ltr">alwaysShowLabel</code>
+          .
+        </li>
+        <li>
+          Renamed
+          <code translate="no" dir="ltr">bodyContent</code>
+          parameters in a few components to just
+          <code translate="no" dir="ltr">content</code>
+          .
+        </li>
+        <li>
+          Reordered parameters in
+          <code translate="no" dir="ltr">ButtonDefaults.buttonColors()</code>
+          . Please note that because the type of the parameters have not changed, this will not cause an error in your code - please ensure you are either using named parameters or update the ordering manually, otherwise your code will not work the same as previously.
+        </li>
+        <li>
+          Added
+          <code translate="no" dir="ltr">secondaryVariant</code>
+          parameter to
+          <code translate="no" dir="ltr">darkColors()</code>
+          . This color is typically the same as
+          <code translate="no" dir="ltr">secondary</code>
+          in dark theme, but adding for consistency and further customization.
+        </li>
+        <li>Removed ElevationDefaults and animateElevation() from the public API surface since they were not commonly used / useful.</li>
+        <li>
+          Renamed
+          <code translate="no" dir="ltr">onValueChangeEnd</code>
+          in
+          <code translate="no" dir="ltr">Slider</code>
+          to
+          <code translate="no" dir="ltr">onValueChangeFinished</code>
+          and made it nullable.
+        </li>
+        <li>
+          Renamed
+          <code translate="no" dir="ltr">text</code>
+          parameter in
+          <code translate="no" dir="ltr">Snackbar</code>
+          to
+          <code translate="no" dir="ltr">content</code>
+          for consistency.
+        </li>
+        <li>
+          Added
+          <code translate="no" dir="ltr">contentPadding</code>
+          parameter to
+          <code translate="no" dir="ltr">DropdownMenuItem</code>
+          to allow customizing the default padding and made
+          <code translate="no" dir="ltr">content</code>
+          be an extension on
+          <code translate="no" dir="ltr">RowScope</code>
+          .
+        </li>
+        <li>
+          Renamed
+          <code translate="no" dir="ltr">ModalDrawerLayout</code>
+          to
+          <code translate="no" dir="ltr">ModalDrawer</code>
+          .
+        </li>
+        <li>
+          Renamed
+          <code translate="no" dir="ltr">BottomDrawerLayout</code>
+          to
+          <code translate="no" dir="ltr">BottomDrawer</code>
+          .
+        </li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I1cc669dfec6194e13843879823bfdc97f98a7d20">I1cc66</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>

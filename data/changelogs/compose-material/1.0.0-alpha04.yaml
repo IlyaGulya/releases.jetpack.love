@@ -1,0 +1,148 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 1.0.0-alpha04
+releaseDate: 2020-10-01
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha04" data-text="Version 1.0.0-alpha04" tabindex="-1">Version 1.0.0-alpha04</h3>
+  <p>October 1, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material:1.0.0-alpha04</code>
+    ,
+    <code translate="no" dir="ltr">androidx.compose.material:material-icons-core:1.0.0-alpha04</code>
+    , and
+    <code translate="no" dir="ltr">androidx.compose.material:material-icons-extended:1.0.0-alpha04</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/18a5639262f8504db530176550e338a5d0e2e044..f5a2c7477391539d8bc9f65a8f0db1e8a7bf2cf5/compose/material">Version 1.0.0-alpha04 contains these commits.</a>
+  </p>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>Compose Version 1.0.0-alpha04 is only compatible with Android Studio 4.2 Canary 13 and later.</span>
+  </aside>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Exposes InteractionState parameters in stateful Material components, to allow hoisting the state and reading / controlling the state. (
+      <a href="https://android-review.googlesource.com/#/q/Iaca5f65f8132a6f2b45d461001fa740d08b6bacb">Iaca5f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/168025711">b/168025711</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/167164434">b/167164434</a>
+      )
+    </li>
+    <li>
+      Changes the
+      <code translate="no" dir="ltr">*color</code>
+      parameters on RadioButton and TriStateCheckbox to allow fully customizing the colors used in each state, as well as changing how the colors animate between states if desired. See the new animateDefault* color functions in CheckboxConstants and RadioButtonConstants for more information. (
+      <a href="https://android-review.googlesource.com/#/q/I1c5327270119a2934265a342fd4303a476811c65">I1c532</a>
+      )
+    </li>
+    <li>
+      Renamed rememberBackdropState to rememberBackdropScaffoldState and added an additional param for the animation clock. Renamed the param backdropScaffoldState of BackdropScaffold to just scaffoldState. Renamed BackdropConstants to BackdropScaffoldConstants. (
+      <a href="https://android-review.googlesource.com/#/q/Ib644d5364cf8890ef0c637cc2ab1e0479db1eacb">Ib644d</a>
+      )
+    </li>
+    <li>
+      Added experimental BottomSheetScaffold component. (
+      <a href="https://android-review.googlesource.com/#/q/Ie02f03288c910fbfa6702a77342eb00917050ba2">Ie02f0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/148996320">b/148996320</a>
+      )
+    </li>
+    <li>
+      Added experimental ModalBottomSheetLayout component. (
+      <a href="https://android-review.googlesource.com/#/q/Ic209e7e68e14afd3022a11846842cfbaa52a0812">Ic209e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/148996320">b/148996320</a>
+      )
+    </li>
+    <li>
+      Renames ButtonConstants/FloatingActionButtonConstants.defaultAnimatedElevation to defaultElevation, and now returns a Dp value instead of an AnimatedValue. (
+      <a href="https://android-review.googlesource.com/#/q/I5f3ed41681092eb98896533f2f99047e2716cf61">I5f3ed</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Updated many Graphics APIs
+      <ul>
+        <li>Updated scale and rotation transformation APIs to consume a single Offset parameter to represent the pivot coordinate instead of separate float parameters for the x/y coordinates in DrawScope and DrawTransform</li>
+        <li>Removed Rect.expandToInclude and Rect.join methods</li>
+        <li>Updated Radius documentation to say oval in addition to elliptical</li>
+        <li>Added documentation to indicate the public constructor for the inline Radius class is not to be called directly but instead Radius objects should be instantiated through their function constructors</li>
+        <li>Removed RoundRect APIs to query topRight, bottomRight, bottomCenter, etc.</li>
+        <li>Deprecated Rect.shift in favor of Rect.translate</li>
+        <li>Removed RoundRect.grow and Rect.shrink APIs</li>
+        <li>Renamed RoundRect.outerRect to Rect.boundingRect</li>
+        <li>Removed RoundRect.middleRect/tallMiddleRect/wideMiddleRect and Rect.isStadium methods</li>
+        <li>Renamed RoundRect.longestSide to RoundRect.maxDimension</li>
+        <li>Renamed RoundRect.shortestSide to RoundRect.minDimension</li>
+        <li>Changed RoundRect.center to be a property instead of a function</li>
+        <li>Updated RoundRect constructor to consume Radius properties instead of individual parameters for x/y radius values</li>
+        <li>Removed Size APIs that assumed it was a Rectangle with origin at 0,0</li>
+        <li>Added a destructing API to Radius</li>
+        <li>Migrated various RoundRect extension functions to be properties instead</li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I8f5c738d1629b2cabd1b6e9fc8e8241dd06cfe2c">I8f5c7</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/168762961">b/168762961</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      foundation.Box was deprecated. Please use foundation.layout.Box instead. (
+      <a href="https://android-review.googlesource.com/#/q/Ie59501cfd404c6bce53afee2d14dd95f1520d02c">Ie5950</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/167680279">b/167680279</a>
+      )
+    </li>
+    <li>
+      Stack was renamed to Box. The previously existing Box will be deprecated in favor of the new Box in compose.foundation.layout. The behavior of the new Box is to stack children one on top of another when it has multiple children - this is different from the previous Box, which was behaving similar to a Column. (
+      <a href="https://android-review.googlesource.com/#/q/I94893bca003d7826c6a5b3c05ac3878d2f6bf953">I94893</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/167680279">b/167680279</a>
+      )
+    </li>
+    <li>
+      Box decoration parameters have been deprecated. If you want to have decorations/padding on your box, use Modifiers instead (Modifier.background, Modifier.border, Modifier.padding) (
+      <a href="https://android-review.googlesource.com/#/q/Ibae92e99d0dd8984e666ece6cd6ec6f26f6ef672">Ibae92</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/167680279">b/167680279</a>
+      )
+    </li>
+    <li>
+      Updated many Graphics APIs
+      <ul>
+        <li>Updated DrawScope APIs with scoped transformation methods to indicate that the transformation is only applied within the callback and removed after the callback is invoked</li>
+        <li>Updated clipPath documentation to refer to Path instead of rounded rectangle</li>
+        <li>Fixed spacing in documentation for right parameter in clipPath</li>
+        <li>Renamed DrawScope.drawCanvas to drawIntoCanvas and removed size parameter</li>
+        <li>Renamed dx/dy parameters in inset method to horizontal and vertical</li>
+        <li>Added inset overload that provides the same inset value to all 4 bounds</li>
+        <li>Removed documentation on inset method indicating that inset would be applied to all 4 sides</li>
+        <li>Updated documentation for Rect class</li>
+        <li>Updated comments on Rect parameters to match kdoc style</li>
+        <li>Removed Rect.join and Rect.expandToInclude</li>
+        <li>Created overload for Rect.translate(offset) and deprecated Rect.shift</li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/If086a1610e1bff12482897852d45cba075dcb4a1">If086a</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/167737376">b/167737376</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      We prevented static imports of contents of layout scopes (e.g. alignWithSiblings in RowScope). The explicit scope alternative should be used instead:
+      <code translate="no" dir="ltr">with(RowScope) { Modifier.alignWithSiblings(FirstBaseline) }</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I216be6984d82e0a41432ac5b89f7d6240eef1b9d">I216be</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/166760797">b/166760797</a>
+      )
+    </li>
+  </ul>

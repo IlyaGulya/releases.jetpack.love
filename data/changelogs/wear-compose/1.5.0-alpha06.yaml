@@ -1,0 +1,112 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.5.0-alpha06
+releaseDate: 2024-11-13
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha06" data-text="Version 1.5.0-alpha06" tabindex="-1">Version 1.5.0-alpha06</h3>
+  <p>November 13, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.5.0-alpha06</code>
+    is released. Version 1.5.0-alpha06 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ccd90a76bd7c4acf4f4f01eca76350e383bc441e..6f09cf2ae979e48fdb19485f757a033e4a34bb82/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We have simplified the
+      <code translate="no" dir="ltr">ScrollInfoProvider</code>
+      for
+      <code translate="no" dir="ltr">PagerState</code>
+      by removing the
+      <code translate="no" dir="ltr">orientation</code>
+      parameter, which is no longer needed. The new behavior is for
+      <code translate="no" dir="ltr">TimeText</code>
+      to remain in place for both horizontal and vertical paging. (
+      <a href="https://android-review.googlesource.com/#/q/I71767df0f68f4109e8ac79aa37a075ff4b3179a3">I71767</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      was introduced in earlier releases. We are now removing Wear's
+      <code translate="no" dir="ltr">LazyColumn</code>
+      aliases (which were forwarding to
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      ) in favor of the new name
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      . We have also removed
+      <code translate="no" dir="ltr">TransformingLazyColumnVisibleItemInfo</code>
+      's
+      <code translate="no" dir="ltr">height</code>
+      property - please use
+      <code translate="no" dir="ltr">measuredHeight</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/I0ea1ed2751443be3001b93d454c4ad9587956541">I0ea1e</a>
+      )
+    </li>
+    <li>
+      We have changed the
+      <code translate="no" dir="ltr">PagerDefaults.snapFlingBehavior</code>
+      <code translate="no" dir="ltr">snapAnimationSpec</code>
+      from a
+      <code translate="no" dir="ltr">Tween</code>
+      to a
+      <code translate="no" dir="ltr">Spring</code>
+      spec.(
+      <a href="https://android-review.googlesource.com/#/q/I10d0275b7f3b957af279893d2ed52d63e42b8115">I10d02</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/349781047">b/349781047</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/303807950">b/303807950</a>
+      )
+    </li>
+    <li>
+      We have promoted the
+      <code translate="no" dir="ltr">LocalReduceMotion</code>
+      <code translate="no" dir="ltr">CompositionLocal</code>
+      to stable (
+      <a href="https://android-review.googlesource.com/#/q/Ia6f32294df59ee0a6cd74f44784936b024c0af45">Ia6f32</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We have updated
+      <code translate="no" dir="ltr">Modifier.rotaryScrollable</code>
+      to use
+      <code translate="no" dir="ltr">focusTargetWithSemantics</code>
+      for better semantics support in rotary. (
+      <a href="https://android-review.googlesource.com/#/q/Ief0a01182138ba5ce6991a99ccb537e49183d673">Ief0a0</a>
+      )
+    </li>
+    <li>
+      We have updated the minimum API dependency to 1.7.4 for Compose libraries. (
+      <a href="https://android-review.googlesource.com/#/q/I88b4613796d9c9ccccf3f3a1cf0efd3ad6ce2f41">I88b46</a>
+      )
+    </li>
+    <li>
+      We have disabled width morphing in
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      as a workaround to a clipping bug. (
+      <a href="https://android-review.googlesource.com/#/q/I3dfb80e56cea3fbc5fb21081cc2f163c3fb85119">I3dfb8</a>
+      )
+    </li>
+    <li>
+      We have fixed a bug that caused disappearing items after overscroll with
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Id766881e9961d1d0e352dccdb4f62ae91b47a249">Id7668</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">LazyLayoutSemantics</code>
+      for
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia8f56d3967e363a58e3b688258fa884afaa5a83a">Ia8f56</a>
+      )
+    </li>
+  </ul>

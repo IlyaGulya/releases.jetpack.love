@@ -1,0 +1,113 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.0.0-alpha04
+releaseDate: 2019-08-07
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha04" data-text="Version 1.0.0-alpha04" tabindex="-1">Version 1.0.0-alpha04</h3>
+  <p>August 7, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-common:1.0.0-alpha04</code>
+    ,
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-gradle-plugin:1.0.0-alpha04</code>
+    , and
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-junit4:1.0.0-alpha04</code>
+    are released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e648705631f06c43be445aafdccd8f55121dce8d..a94f37182adc928f3f4bba0ffe8836866ecb2f21/benchmark">here</a>
+    .
+  </p>
+  <p>
+    New documentation has also been added for how to use the Benchmark library without Gradle, both for usage with different build systems (such as Bazel or Buck), and when running in CI. For more information, see
+    <a href="/studio/profile/build-benchmarks-without-gradle">Build benchmarks without Gradle</a>
+    and
+    <a href="/studio/profile/run-benchmarks-in-ci">Run benchmarks in Continuous Integration</a>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      Gradle plugin
+      <ul>
+        <li>
+          Now automatically disables test coverage, and sets the
+          <code translate="no" dir="ltr">AndroidBenchmarkRunner</code>
+          by default (
+          <a href="https://issuetracker.google.com/issues/138374050">b/138374050</a>
+          )
+        </li>
+        <li>Added support for new AGP-based data copy, when running benchmarks and when using AGP 3.6+</li>
+      </ul>
+    </li>
+    <li>
+      JSON format additions
+      <ul>
+        <li>
+          Output total benchmark test run time (
+          <a href="https://issuetracker.google.com/issues/133147694">b/133147694</a>
+          )
+        </li>
+        <li>
+          <code translate="no" dir="ltr">@Parameterized</code>
+          benchmarks that use a name string (for example
+          <code translate="no" dir="ltr">@Parameters(name = "size={0},depth={1}")</code>
+          ) now output parameter names and values per benchmark in the JSON output (
+          <a href="https://issuetracker.google.com/issues/132578772">b/132578772</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Dry Run mode (
+      <a href="https://issuetracker.google.com/issues/138785848">b/138785848</a>
+      )
+      <ul>
+        <li>Added a "dry run" mode for running each benchmark loop only once, to check for errors/crashes without capturing measurements. This can be useful e.g. for, for example, quickly running benchmarks in presubmit to check that they're not broken.</li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      Module structure has changed, splitting the library (
+      <a href="https://issuetracker.google.com/issues/138451391">b/138451391</a>
+      )
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">benchmark:benchmark-junit4</code>
+          contains classes with JUnit dependency:
+          <code translate="no" dir="ltr">AndroidBenchmarkRunner</code>
+          , and
+          <code translate="no" dir="ltr">BenchmarkRule</code>
+          , both of which have moved into the
+          <code translate="no" dir="ltr">androidx.benchmark.junit4</code>
+          package
+        </li>
+        <li>
+          <code translate="no" dir="ltr">benchmark:benchmark-common</code>
+          contains the rest of the logic, including the BenchmarkState API
+        </li>
+        <li>This split will allow the library to support benchmarking without JUnit4 APIs in the future</li>
+      </ul>
+    </li>
+    <li>
+      Configuration warnings are now treated as errors, and will crash the test (
+      <a href="https://issuetracker.google.com/issues/137653596">b/137653596</a>
+      )
+      <ul>
+        <li>This is done to further encourage accurate measurements, especially in CI</li>
+        <li>
+          These errors can be reduced back to warnings with an instrumentation argument. For example:
+          <code translate="no" dir="ltr">-e androidx.benchmark.suppressErrors "DEBUGGABLE,LOW_BATTERY"</code>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>Errors when writing to external storage on Q devices provide more-descriptive messages, with suggestions of how to resolve the issue</li>
+    <li>Screens are automatically turned on during benchmark runs, instead of failing when the screen is off</li>
+  </ul>
+  <p><strong>External contributions</strong></p>
+  <ul>
+    <li>Thanks to Sergey Zakharov for contributing JSON output improvements and the fix for screen off issues!</li>
+  </ul>

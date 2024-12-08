@@ -1,0 +1,62 @@
+libraryId: health-connect
+groupId: androidx.health
+version: 1.1.0-alpha08
+releaseDate: 2024-09-04
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha08" data-text="Version 1.1.0-alpha08" tabindex="-1">Version 1.1.0-alpha08</h3>
+  <p>September 4, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.health.connect:connect-client:1.1.0-alpha08</code>
+    ,
+    <code translate="no" dir="ltr">androidx.health.connect:connect-client-external-protobuf:1.1.0-alpha08</code>
+    , and
+    <code translate="no" dir="ltr">androidx.health.connect:connect-client-proto:1.1.0-alpha08</code>
+    are released. Version 1.1.0-alpha08 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e454e4f29db8080452f57057fb04a8121981043b/health">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Set default value for features variable in
+      <code translate="no" dir="ltr">HealthConnectClient</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I788dc0fb412ee0859e6508f5bd3010ef3ccd2c84">I788dc</a>
+      )
+    </li>
+    <li>
+      Add an API to check feature availability. (
+      <a href="https://android-review.googlesource.com/#/q/Iedd43f5e57eab7d3eb0d9c908c8377869ab4b007">Iedd43</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Return
+      <code translate="no" dir="ltr">SDK_UNAVAILABLE</code>
+      in
+      <code translate="no" dir="ltr">HealthConnectClient.getSdkStatus()</code>
+      when
+      <code translate="no" dir="ltr">HealthConnectManager</code>
+      is null in U+
+      <a href="https://android-review.googlesource.com/#/q/5802f95a03a0fb06a453b0890bc87eb52c6631e4">5802f</a>
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">toString</code>
+      overrides to
+      <code translate="no" dir="ltr">RecordClasses</code>
+      <a href="https://android-review.googlesource.com/#/q/aa5dc8885748bcc3ed3f688e806ea52efb6c3aa0">aa5dc</a>
+    </li>
+    <li>
+      Removed manual outlining of access to new platform APIs since this happens automatically via API modeling when using R8 with AGP 7.3 or later (e.g. R8 version 3.3) and for all builds when using AGP 8.1 or later (e.g. D8 version 8.1). Clients who are not using AGP are advised to update to D8 version 8.1 or later. See
+      <a href="https://medium.com/androiddevelopers/mitigating-soft-verification-issues-in-r8-and-d8-7e9e06827dfd">this article</a>
+      for more details. (
+      <a href="https://android-review.googlesource.com/#/q/If6b4ccfca0a943b45971a422b58949b13a10bada">If6b4c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/345472586">b/345472586</a>
+      )
+    </li>
+  </ul>

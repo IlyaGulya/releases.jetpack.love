@@ -1,0 +1,107 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.4.0-alpha08
+releaseDate: 2024-05-01
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha08" data-text="Version 1.4.0-alpha08" tabindex="-1">Version 1.4.0-alpha08</h3>
+  <p>May 1, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.4.0-alpha08</code>
+    is released. Version 1.4.0-alpha08 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/67004410fdbff19f90caa4cc43965ab21dca1943..fbd1ac175922f44c69a13545d194066ee428b342/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We have made the following changes to the new rotary API: renamed
+      <code translate="no" dir="ltr">Modifier.rotary</code>
+      to
+      <code translate="no" dir="ltr">Modifier.rotaryScrollable</code>
+      ; renamed the
+      <code translate="no" dir="ltr">RotaryBehavior</code>
+      interface to
+      <code translate="no" dir="ltr">RotaryScrollableBehavior</code>
+      and its function
+      <code translate="no" dir="ltr">handleScrollEvent</code>
+      to
+      <code translate="no" dir="ltr">performScroll</code>
+      ; renamed
+      <code translate="no" dir="ltr">RotaryScrollableAdapter</code>
+      to
+      <code translate="no" dir="ltr">RotaryScrollableLayoutInfoProvider</code>
+      and removed the
+      <code translate="no" dir="ltr">scrollableState</code>
+      property. (
+      <a href="https://android-review.googlesource.com/#/q/I0c8a6325c2cc2b4d4a8c5ef48fe4204fa91ba969">I0c8a6</a>
+      )
+    </li>
+    <li>
+      We have made additional changes to the rotary API: renamed
+      <code translate="no" dir="ltr">RotaryScrollableLayoutInfoProvider</code>
+      to
+      <code translate="no" dir="ltr">RotarySnapLayoutInfoProvider</code>
+      (because this provider is only needed for rotary with snap); changed the type of the
+      <code translate="no" dir="ltr">snapOffset</code>
+      parameter in
+      <code translate="no" dir="ltr">RotaryScrollableDefaults.snapBehavior snapOffset</code>
+      from Int to Dp. (
+      <a href="https://android-review.googlesource.com/#/q/Iddebe5662dc30bf33f1f59b44abccea9b0185e0e">Iddebe</a>
+      )
+    </li>
+    <li>
+      We have renamed the
+      <code translate="no" dir="ltr">clickInteractionSource</code>
+      parameter on
+      <code translate="no" dir="ltr">SplitSelectableChip</code>
+      to
+      <code translate="no" dir="ltr">containerInteractionSource</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia8f84767410c92572b78acdccafb249286c760ec">Ia8f84</a>
+      )
+    </li>
+    <li>
+      We have updated the click callback parameter names for
+      <code translate="no" dir="ltr">SplitSelectableChip</code>
+      - from
+      <code translate="no" dir="ltr">onClick</code>
+      to
+      <code translate="no" dir="ltr">onSelectionClick</code>
+      and from
+      <code translate="no" dir="ltr">onBodyClick</code>
+      to
+      <code translate="no" dir="ltr">onContainerClick</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I32237caea54f0759c9c4c3cc63056c88a3f26399">I32237</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We have updated the horizontal padding for
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      to 2dp (was 5dp), in order to fix a bug where the
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      (scroll bar) overlaps scrollable content. Please note that this change is expected to break existing screenshots that include the
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      due to the change of padding. (
+      <a href="https://android-review.googlesource.com/#/q/I5747206005bbc1d83d6882cd03ec5d5846f99626">I57472</a>
+      )
+    </li>
+    <li>
+      We have improved the documentation for the new rotary API by describing the differences between low-res and hi-res rotary devices. (
+      <a href="https://android-review.googlesource.com/#/q/I63abece7d34e61e08ffdd4d77f7a098adba47e09">I63abe</a>
+      )
+    </li>
+    <li>
+      We have addressed an out-of-range exception in
+      <code translate="no" dir="ltr">SwipeDismissableNavHost</code>
+      that could be triggered when interpolated alpha values were less than zero. (
+      <a href="https://android-review.googlesource.com/#/q/Ib75a1d5d64111400fc56dad3ed1a23587f9bfc67">Ib75a1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/335782510">b/335782510</a>
+      )
+    </li>
+  </ul>

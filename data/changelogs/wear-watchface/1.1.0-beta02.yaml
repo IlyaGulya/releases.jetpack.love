@@ -1,0 +1,119 @@
+libraryId: wear-watchface
+groupId: androidx.wear
+version: 1.1.0-beta02
+releaseDate: 2022-05-11
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-beta02" data-text="Version 1.1.0-beta02" tabindex="-1">Version 1.1.0-beta02</h3>
+  <p>May 11, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.watchface:watchface-*:1.1.0-beta02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c0a89ec374961b3015097ab307ebb8196dbe3888..b18424ac8b7d47a65751381a4f8ad4777f537107/wear/watchface">Version 1.1.0-beta02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      We’ve added experimental support for new
+      <code translate="no" dir="ltr">ComplicationData</code>
+      types, these are not yet ready for use but watch this space.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We've added
+      <code translate="no" dir="ltr">BoundingArc</code>
+      , an experimental class that describes the geometry of an edge complication slot. This has been added to
+      <code translate="no" dir="ltr">ComplicationSlot</code>
+      and plumbed through to
+      <code translate="no" dir="ltr">ComplicationSlotState</code>
+      and
+      <code translate="no" dir="ltr">WatchFaceMetadataClient</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I61a40ff046d0c4f4194c4c51c3f4b7acca3bb198">I61a40</a>
+      )
+    </li>
+    <li>
+      We've added the ability to inherit settings in
+      <code translate="no" dir="ltr">UserStyleSetting</code>
+      XML. It lets you reduce verbosity and share a setting between watchfaces. (
+      <a href="https://android-review.googlesource.com/#/q/Ief841586eb3a4325b68b1c87a0aa1018e5cd629c">Ief841</a>
+      )
+    </li>
+    <li>
+      We have added two new experimental types of
+      <code translate="no" dir="ltr">ComplicationData</code>
+      :
+      <code translate="no" dir="ltr">ListComplicationData</code>
+      &amp;
+      <code translate="no" dir="ltr">ProtoLayoutComplicationData</code>
+      . Currently there's no rendering support for either of these types and WearOS doesn't currently recognize these types if added to a
+      <code translate="no" dir="ltr">ComplicationDataSource's</code>
+      manifest. (
+      <a href="https://android-review.googlesource.com/#/q/I1811ca12e288f6baa3b5575dbd765b7e23143c0a">I1811c</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix serialization of
+      <code translate="no" dir="ltr">TimeLineEntry</code>
+      type. We were not serializing the
+      <code translate="no" dir="ltr">TimeLineEntry</code>
+      type which meant cached
+      <code translate="no" dir="ltr">TimeLineEntries</code>
+      of type NoData would be incorrectly interpreted as having the parent complication's type leading to NPEs when non-existent required fields were accessed. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/55ffdf527dc6f684d25a91abac04b4a89c726057">55ffdf5</a>
+      )
+    </li>
+    <li>
+      Fix a bug where
+      <code translate="no" dir="ltr">setComplicationData</code>
+      dropped timeline fields(
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/fb392f5a59c50a77e773ba59bbb73aee2bdfd181">fb392f5</a>
+      )
+    </li>
+    <li>
+      Fixes a bug where very occasionally
+      <code translate="no" dir="ltr">runBlockingWithTracing</code>
+      would lead to an NPE(
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/12ca62e82899e9c12a471a5d02905a3c5dd64d0c">12ca62e</a>
+      )
+    </li>
+    <li>
+      Fixes a bug where we sometimes get
+      <code translate="no" dir="ltr">ClassNotFoundException: android.support.wearable.complications.ComplicationText</code>
+      when receiving a complication.(
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/217942d9feab7480e6f55cb06de0f93dc7825bc1">217942d9</a>
+      )
+    </li>
+    <li>
+      Fixes a bug in
+      <code translate="no" dir="ltr">GlesRenderer.backgroundThreadInitInternal</code>
+      where it was only calling
+      <code translate="no" dir="ltr">onBackgroundThreadGlContextCreated</code>
+      if
+      <code translate="no" dir="ltr">EGL14.eglCreateContext</code>
+      was called. Fixes another bug where there was a visual glitch in the screenshot caused by
+      <code translate="no" dir="ltr">verticalFlip</code>
+      .(
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/c674ad27a29cd6d6b3fc14eb7397fe85f0d78ad8">c674ad2</a>
+      )
+    </li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">WatchFaceService</code>
+      XML version check, it was loading from the wrong package.(
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/dfa06f31a347614324d43d6a83fce2b3cc5bfd0d">dfa06f3</a>
+      )
+    </li>
+    <li>
+      Placeholder wire format now uses an inner bundle. We don't want placeholders to break existing watchfaces which might use the hidden inner a.s.w.c.ComplicationData. Previously the wire format of a
+      <code translate="no" dir="ltr">NoDataComplication</code>
+      data stored the placeholder in the usual fields (problematic because old watch faces would render the placeholder string which isn't intended), instead we now use an inner bundle to fully isolate this.(
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/d5e7bd2ddf13f48acf10a4d4933e668a17be2086">d5e7bd2</a>
+      )
+    </li>
+  </ul>

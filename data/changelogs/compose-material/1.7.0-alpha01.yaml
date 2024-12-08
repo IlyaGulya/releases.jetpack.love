@@ -1,0 +1,48 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 1.7.0-alpha01
+releaseDate: 2024-01-24
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha01" data-text="Version 1.7.0-alpha01" tabindex="-1">Version 1.7.0-alpha01</h3>
+  <p>January 24, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material-*:1.7.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4c61c4d68d2bf0ccc61e316bc2a03754bb6979cf..3abba2d2e4a810f1cf9909ba77546cae2258919d/compose/material">Version 1.7.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      Material components have been migrated to use the new ripple APIs, and no longer query
+      <code translate="no" dir="ltr">RippleTheme</code>
+      .
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">rememberRipple</code>
+        and
+        <code translate="no" dir="ltr">RippleTheme</code>
+        have been deprecated from material-ripple, with new ripple and
+        <code translate="no" dir="ltr">RippleConfiguration</code>
+        APIs added to material and other design system libraries.
+      </p>
+    </li>
+    <li>
+      <p>
+        Material components that previously accepted a
+        <code translate="no" dir="ltr">MutableInteractionSource</code>
+        and defaulted to remember
+        <code translate="no" dir="ltr">{ MutableInteractionSource() }</code>
+        now accept a nullable
+        <code translate="no" dir="ltr">MutableInteractionSource</code>
+        and default to null instead. If you are not hoisting and using the
+        <code translate="no" dir="ltr">MutableInteractionSource</code>
+        , you should pass null. This allows for some components to lazily create an instance only when needed, improving performance. It is also recommended that you make similar changes in your own components.
+      </p>
+    </li>
+  </ul>
+  <h2 id="version_16_2" data-text="Version 1.6" tabindex="-1">Version 1.6</h2>

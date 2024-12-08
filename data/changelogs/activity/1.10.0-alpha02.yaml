@@ -1,0 +1,76 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.10.0-alpha02
+releaseDate: 2024-09-04
+#language=html
+changelogHtml: |
+  <h3 id="1.10.0-alpha02" data-text="Version 1.10.0-alpha02" tabindex="-1">Version 1.10.0-alpha02</h3>
+  <p>September 4, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.10.0-alpha02</code>
+    ,
+    <code translate="no" dir="ltr">androidx.activity:activity-compose:1.10.0-alpha02</code>
+    , and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.10.0-alpha02</code>
+    are released. Version 1.10.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/189dc77df5357bfd41bebee4e837cb12f825d2e2..80f82d37cb9b40250ee9eb15d9cbe9e93849355e/activity">these commits</a>
+    .
+  </p>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">PickVisualMedia</code>
+      and
+      <code translate="no" dir="ltr">PickMultipleVisualMedia</code>
+      Activity Result contracts that trigger the Photo Picker no longer directly delegates to Google Play services if the system Photo picker is not available, but uses the public
+      <code translate="no" dir="ltr">ACTION_SYSTEM_FALLBACK_PICK_IMAGES</code>
+      action and related extras to provide a consistent Photo Picker experience to OEMs and system apps as a fallback. This should have no effect on the user experience for devices that have a recent version of Google Play services. (
+      <a href="https://android-review.googlesource.com/#/q/I3513de5543be10405fa77cdaeb200ce94884e95c">I3513d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Removed manual outlining of access to new platform APIs since this happens automatically via API modeling when using R8 with AGP 7.3 or later (e.g. R8 version 3.3) and for all builds when using AGP 8.1 or later (e.g. D8 version 8.1). Clients who are not using AGP are advised to update to D8 version 8.1 or later. See
+      <a href="https://medium.com/androiddevelopers/mitigating-soft-verification-issues-in-r8-and-d8-7e9e06827dfd">this article</a>
+      for more details. (
+      <a href="https://android-review.googlesource.com/#/q/I9496cfaeb50a5c484fbee6521b74a0605fb013dc">I9496c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/345472586">b/345472586</a>
+      )
+    </li>
+    <li>
+      From
+      <a href="#1.9.2">
+        Activity
+        <code translate="no" dir="ltr">1.9.2</code>
+      </a>
+      : Fixed an issue where the Activity Compose
+      <code translate="no" dir="ltr">PredictiveBackHandler</code>
+      API would continue to handle the system back gesture on the frame it was disabled, which could result in libraries like Navigation Compose to handle back even with an empty back stack, resulting in it throwing an
+      <code translate="no" dir="ltr">IndexOutOfBoundsException</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie3301e4a06593101bc48c447f3a9505a1de5d6a3">Ie3301</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/340202286">b/340202286</a>
+      )
+    </li>
+    <li>
+      From
+      <a href="#1.9.1">
+        Activity
+        <code translate="no" dir="ltr">1.9.1</code>
+      </a>
+      : Fixed an issue with
+      <code translate="no" dir="ltr">PredictiveBackHandler</code>
+      where after doing system back, attempting to do
+      <code translate="no" dir="ltr">onBackPressed</code>
+      from the
+      <code translate="no" dir="ltr">OnBackPressedDispatcher</code>
+      would fail. (
+      <a href="https://android-review.googlesource.com/#/q/I5f1f8075fb3abac768761e0e8889254d4c31f81e">I5f1f8</a>
+      )
+    </li>
+  </ul>

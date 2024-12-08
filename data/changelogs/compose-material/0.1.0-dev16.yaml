@@ -1,0 +1,205 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 0.1.0-dev16
+releaseDate: 2020-08-05
+#language=html
+changelogHtml: |
+  <h3 id="0.1.0-dev16" data-text="Version 0.1.0-dev16" tabindex="-1">Version 0.1.0-dev16</h3>
+  <p>August 5, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material:0.1.0-dev16</code>
+    ,
+    <code translate="no" dir="ltr">androidx.compose.material:material-icons-core:0.1.0-dev16</code>
+    , and
+    <code translate="no" dir="ltr">androidx.compose.material:material-icons-extended:0.1.0-dev16</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9c74ed7b07d1c18da576f179d55e568ca12973df..316f882e649c600372170f013a18515f590f490d/ui/ui-material">Version 0.1.0-dev16 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Colors is now a final class instead of an interface. Instead of extending and providing a custom implementation, you should create a new ambient for your custom theme object, and access the theme object through the new ambient in your components, similar to how MaterialTheme works internally. (
+      <a href="https://android-review.googlesource.com/#/q/Ibae84078f839b3193f75b2983d17b585ac0e4719">Ibae84</a>
+      )
+    </li>
+    <li>
+      Renamed ColorPalette to Colors, to better map to the Material color system and remove confusion over ColorPalette being a 'generic' theming object, as opposed to being a specific implementation of the Material color system. Additionally renames lightColorPalette and darkColorPalette to lightColors and darkColors respectively. (
+      <a href="https://android-review.googlesource.com/#/q/I9e97690f51cb9eb0e51ff1a57d08f1911f179232">I9e976</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161812111">b/161812111</a>
+      )
+    </li>
+    <li>
+      Renames BottomNavigationItem's
+      <code translate="no" dir="ltr">text</code>
+      parameter to
+      <code translate="no" dir="ltr">label</code>
+      ,
+      <code translate="no" dir="ltr">onSelected</code>
+      to
+      <code translate="no" dir="ltr">onSelect</code>
+      ,
+      <code translate="no" dir="ltr">activeColor</code>
+      to
+      <code translate="no" dir="ltr">selectedContentColor</code>
+      ,
+      <code translate="no" dir="ltr">inactiveColor</code>
+      to
+      <code translate="no" dir="ltr">unselectedContentColor</code>
+      and updates parameter ordering to match guidelines. (
+      <a href="https://android-review.googlesource.com/#/q/Icb605dac9b76a0204a2a9d675530da8897f817d5">Icb605</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161809324">b/161809324</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Modifier.stateDraggable</code>
+      was completely reworked and renamed to Modifier.swipeable. A new SwipeableState class was introduced, and DrawerState and BottomDrawerState were refactored to inherit from it. [Modal/Bottom]DrawerLayout no longer takes an onStateChange parameter. (
+      <a href="https://android-review.googlesource.com/#/q/I7233229dfc9c04a4615f4c1cc29e604b97edd1df">I72332</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/148023068">b/148023068</a>
+      )
+    </li>
+    <li>
+      foundation.shape.corner package were flatten to foundation.share (
+      <a href="https://android-review.googlesource.com/#/q/I464919cb74f8941c2a02f14dea0aa417febf3691">I46491</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161887429">b/161887429</a>
+      )
+    </li>
+    <li>
+      Added ExperimentalMaterialApi annotation. RippleTheme marked as Experimental (
+      <a href="https://android-review.googlesource.com/#/q/Ic5fa0382a2f4453e46e0793034d865e9182ec6ba">Ic5fa0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161784800">b/161784800</a>
+      )
+    </li>
+    <li>
+      Material FilledTextField was renamed to TextField and foundational TextField was renamed to BaseTextField to make simplest desired API easy to discover and use (
+      <a href="https://android-review.googlesource.com/#/q/Ia62420a7a2231c02b6874a9a2867bf786a397ed3">Ia6242</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/155482676">b/155482676</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      OnChildPositioned has been deprecated. Use OnPositioned on the child instead. (
+      <a href="https://android-review.googlesource.com/#/q/I87f95da597607cbc534647def3b1a39527dcdeaa">I87f95</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/162109766">b/162109766</a>
+      )
+    </li>
+    <li>
+      Address broad API fixes (
+      <a href="https://android-review.googlesource.com/#/q/I077bcdc5c027e5dbe865d56f49420ce4a70a4e44">I077bc</a>
+      )
+      <ol>
+        <li>Remove unused OffsetBase interface</li>
+        <li>Align Offset and IntOffset classes to have a consistent API surface</li>
+        <li>Rename IntOffset.Origin to IntOffset.Zero to be consistent with Offset API</li>
+        <li>Moved nativeCanvas method off of Canvas interface to support consumers to create their own Canvas instances</li>
+        <li>Created stub EmptyCanvas class to refactor DrawScope to be a non-null parameter instead of lateinit and ensure non-nullability of the field</li>
+        <li>Renamed ClipOp enums to be Pascal Case</li>
+        <li>Renamed FilterQuality enums to be Pascal Case</li>
+        <li>Renamed StrokeJoin enums to be Pascal Case</li>
+        <li>Renamed PointMode enums to be Pascal Case</li>
+        <li>Renamed PaintingStyle enums to be Pascal Case</li>
+        <li>Renamed PathFillType enums to be Pascal Case</li>
+        <li>Renamed StrokeCap enums to be Pascal Case</li>
+        <li>Updated DrawCache implementation to no longer use lateinit params</li>
+        <li>Updated DrawScope to no longer use lazy delegation for fillPaint and strokePaint internal parameters</li>
+        <li>Updated Image composable to avoid Box usage for less overhead</li>
+        <li>Updated Outline class to have @Immutable annotations</li>
+        <li>Updated PathNode to have @Immutable annotations for each path instruction</li>
+        <li>Updated Vector subcomposition to remove redundant conditional checks for equality as compose already handles them</li>
+        <li>Deprecated Rect companion constructor methods in favor of function constructors</li>
+        <li>Updated Brush classes and function constructors with @Immutable and @Stable APIs</li>
+        <li>Updated VertexMode enum to be PascalCase</li>
+        <li>Updated DrawScope selectPaint method to conditionally overwrite stroke parameters on the paint if they have changed</li>
+        <li>Updated Size to add destructuring API, rename UnspecifiedSize to Unspecified and removed unused methods</li>
+      </ol>
+    </li>
+    <li>
+      Move dialog to ui (
+      <a href="https://android-review.googlesource.com/#/q/I47fa618a788e598182b782eab755defccaf45ebb">I47fa6</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">SemanticsNodeInteraction.performPartialGesture</code>
+      . Use
+      <code translate="no" dir="ltr">SemanticsNodeInteraction.performGesture</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/Id9b628ebe475c8a067118320b26a7b2461e98129">Id9b62</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">SemanticsNodeInteraction.getBoundsInRoot()</code>
+      to
+      <code translate="no" dir="ltr">SemanticsNodeInteraction.getUnclippedBoundsInRoot()</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Icafdf63b2e2f03f48d5b51371e733917dedcf422">Icafdf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161336532">b/161336532</a>
+      )
+    </li>
+    <li>
+      The APIs for right-to-left support has been updated. LayoutDirectionAmbient has been added, which can be used to read and change the layout direction. Modifier.rtl and Modifier.ltr have been removed. (
+      <a href="https://android-review.googlesource.com/#/q/I080b3cb674dc32af5fbe7e696228ac21f0720d72">I080b3</a>
+      )
+    </li>
+    <li>
+      Modifier.deternimateProgress has been renamed to Modifier.progressSemantics (
+      <a href="https://android-review.googlesource.com/#/q/I9c0b48e0b7969a842a114b50c86d8c37799ede1d">I9c0b4</a>
+      )
+    </li>
+    <li>
+      Updates material-icons-extended with the latest icons added to Material.io/icons (
+      <a href="https://android-review.googlesource.com/#/q/I4b1d3e58c07aacdcd0c700621db51f45232e8031">I4b1d3</a>
+      )
+    </li>
+    <li>
+      Require type T to be explicitly specified for transitionDefinition. (
+      <a href="https://android-review.googlesource.com/#/q/I1adedb34525ebb8c079a77a9af2636f1cb8339f7">I1aded</a>
+      )
+    </li>
+    <li>
+      Modifier.plus has been deprecated, use Modifier.then instead. 'Then' has a stronger signal of ordering, while also prohibits to type
+      <code translate="no" dir="ltr">Modifier.padding().background() + anotherModifier</code>
+      , which breaks the chain and harder to read (
+      <a href="https://android-review.googlesource.com/#/q/Iedd587edbed0ba964ef203a66b98be7297147bd7">Iedd58</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161529964">b/161529964</a>
+      )
+    </li>
+    <li>
+      Renamed AndroidComposeTestRule to createAndroidComposeRule. (
+      <a href="https://android-review.googlesource.com/#/q/I70aaf550e1bff2871b9732cc5abf58e9af1479fe">I70aaf</a>
+      )
+    </li>
+    <li>
+      Add isFocused() and isNotFocused() SemanticsMatcher. (
+      <a href="https://android-review.googlesource.com/#/q/I0b760d316a616ab385fa421b080edefee8e27681">I0b760</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">BaseGestureScope.globalBounds</code>
+      , which shouldn't be used from tests. Use coordinates local to the node with which you're interacting instead. (
+      <a href="https://android-review.googlesource.com/#/q/Ie9b089d62f41b7ffd1ad5a8f8e3f173d68069b7b">Ie9b08</a>
+      )
+    </li>
+    <li>
+      Fixed popup position on cut-out displays. (
+      <a href="https://android-review.googlesource.com/#/q/Idd7ddf5f88728a96fc8ff725a39979fe962e8889">Idd7dd</a>
+      )
+    </li>
+    <li>
+      Modifier.drawBackground has been renamed to Modifier.background (
+      <a href="https://android-review.googlesource.com/#/q/I1367723fce0e07418ed4ab391fe20c69aa092f53">I13677</a>
+      )
+    </li>
+  </ul>

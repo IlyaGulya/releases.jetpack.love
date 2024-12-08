@@ -1,0 +1,79 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.4.0-alpha03
+releaseDate: 2024-10-16
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha03" data-text="Version 1.4.0-alpha03" tabindex="-1">Version 1.4.0-alpha03</h3>
+  <p>October 16, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.4.0-alpha03</code>
+    is released. Version 1.4.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b6ae8d0a0e8cd803f7b84f30101eda1af4f1d6b6..b8a68b0896897fa158508d73a31998a26161d9a7/benchmark">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <strong>Macrobenchmark</strong>
+      : Adds
+      <code translate="no" dir="ltr">ArtMetric</code>
+      , which can be used to inspect profile coverage or general Android RunTime performance. Captures number and total duration of JIT, class init (where available), and class verification. Additionally, changes
+      <code translate="no" dir="ltr">CaptureInfo</code>
+      to include optional ART mainline version with default. (
+      <a href="https://android-review.googlesource.com/#/q/I930f757630862010bcedad124248e995e1540681">I930f7</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">coefficientOfVariation</code>
+      to Benchmark JSON output to show stability within a given benchmark run. (
+      <a href="https://android-review.googlesource.com/#/q/Ib14ea1430ed691e130c3b5e50a4b411c46dd2f4e">Ib14ea</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">CollectBaselineProfileTask</code>
+      when AVD device has spaces in it. (
+      <a href="https://android-review.googlesource.com/#/q/Ia0225358081e895d1be20582f97130fad2f06c84">Ia0225</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/371642809">b/371642809</a>
+      )
+    </li>
+    <li>
+      Speculative fix for errors from
+      <code translate="no" dir="ltr">StartupMode.COLD</code>
+      exceptions:
+      <code translate="no" dir="ltr">Package &lt;packagename&gt; must not be running prior to cold start!</code>
+      . Now,
+      <code translate="no" dir="ltr">MacrobenchmarkScope.killProcess()</code>
+      (including the one run before each iteration, used to implement
+      <code translate="no" dir="ltr">StartupMode.COLD</code>
+      behavior) will wait to verify that the app's processes have all stopped running. (
+      <a href="https://android-review.googlesource.com/#/q/I60aa6669366286e7275c2debcda7221c78165659">I60aa6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/351582215">b/351582215</a>
+      )
+    </li>
+    <li>
+      Fixed issue where UNLOCKED_ error would show up on some rooted emulators. (
+      <a href="https://android-review.googlesource.com/#/q/Ic511753fd82a39f7a2abc87100730e4b1148a661">Ic5117</a>
+      )
+    </li>
+    <li>
+      This library now uses
+      <a href="https://jspecify.dev/">JSpecify nullness annotations</a>
+      , which are type-use. Kotlin developers should use the following compiler arguments to enforce correct usage:
+      <code translate="no" dir="ltr">-Xjspecify-annotations=strict</code>
+      ,
+      <code translate="no" dir="ltr">-Xtype-enhancement-improvements-strict-mode</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I7104f0ca68a72a7e996b79f1609cde685e6c61e6">I7104f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326456246">b/326456246</a>
+      )
+    </li>
+  </ul>

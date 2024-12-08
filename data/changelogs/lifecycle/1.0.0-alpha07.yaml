@@ -1,0 +1,52 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 1.0.0-alpha07
+releaseDate: 2021-06-16
+#language=html
+changelogHtml: |
+  <h3 id="lifecycle-viewmodel-compose-1.0.0-alpha07" data-text="Version 1.0.0-alpha07" tabindex="-1">Version 1.0.0-alpha07</h3>
+  <p>June 16, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/836237c11d7a415f28bb71acab597579be1d5227..f434dccf3dc4d4e82d8d965da3746615870537b4/lifecycle/lifecycle-viewmodel-compose">Version 1.0.0-alpha07 contains these commits.</a>
+  </p>
+  <p><strong>Breaking API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">viewModel()</code>
+      now takes an optional
+      <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+      , making it easier to work with owners other than the
+      <code translate="no" dir="ltr">LocalViewModelStoreOwner</code>
+      . For example, you can now use
+      <code translate="no" dir="ltr">viewModel(navBackStackEntry)</code>
+      to retrieve a ViewModel associated with a particular navigation graph. (
+      <a href="https://android-review.googlesource.com/#/q/I2628d27791bfeb8a0d2f45b0fa8e9e72cb00c34b">I2628d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/188693123">b/188693123</a>
+      )
+    </li>
+  </ul>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      this is a binary breaking change - you must upgrade to
+      <a href="/jetpack/androidx/releases/hilt#hilt-navigation-compose-1.0.0-alpha03">
+        Hilt-Navigation-Compose
+        <code translate="no" dir="ltr">1.0.0-alpha03</code>
+      </a>
+      and
+      <a href="/jetpack/androidx/releases/navigation#2.4.0-alpha03">
+        Navigation Compose
+        <code translate="no" dir="ltr">2.4.0-alpha03</code>
+      </a>
+      . This may be a source breaking change if you were not specifying
+      <code translate="no" dir="ltr">key =</code>
+      when using
+      <code translate="no" dir="ltr">viewModel(key, factory)</code>
+      . You should use named arguments:
+      <code translate="no" dir="ltr">viewModel(key = key, factory = factory)</code>
+      .
+    </span>
+  </aside>

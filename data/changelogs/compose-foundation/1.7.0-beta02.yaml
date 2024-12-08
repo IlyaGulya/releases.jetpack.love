@@ -1,0 +1,150 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.7.0-beta02
+releaseDate: 2024-05-29
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-beta02" data-text="Version 1.7.0-beta02" tabindex="-1">Version 1.7.0-beta02</h3>
+  <p>May 29, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.7.0-beta02</code>
+    is released. Version 1.7.0-beta02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6a69101fd0edc8d02aa316df1f43e0552fd2d7c4..1a123f646cfea1599f9efead6da546b0c26063fa/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Adds an experimental API for configuring prefetch behavior of
+      <code translate="no" dir="ltr">LazyGrids</code>
+      similar to the existing experimental API for
+      <code translate="no" dir="ltr">LazyLists</code>
+      . This includes support for prefetching items in nested
+      <code translate="no" dir="ltr">LazyGrids</code>
+      . Similiar to
+      <code translate="no" dir="ltr">LazyListPrefetchStrategy</code>
+      , the implementation default is to prefetch the first 2 nested items of each grid, but this can be configured by the new
+      <code translate="no" dir="ltr">LazyGridPrefetchStrategy(nestedPrefetchItemCount)</code>
+      and
+      <code translate="no" dir="ltr">LazyListPrefetchStrategy#onNestedPrefetch</code>
+      APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I591c4e8959ba225b9e1817765c6e6bc10b7fac1a">I591c4</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">SemanticsProperties.Editable</code>
+      to
+      <code translate="no" dir="ltr">IsEditable</code>
+      and changes
+      <code translate="no" dir="ltr">SemanticsPropertyReceiver.editable</code>
+      to a val
+      <code translate="no" dir="ltr">isEditable</code>
+      . The property is now a boolean and always specified by text fields. (
+      <a href="https://android-review.googlesource.com/#/q/I8acd87bcdfc80b70de9665ba45708ca529ccdf69">I8acd8</a>
+      )
+    </li>
+    <li>
+      Moved
+      <code translate="no" dir="ltr">basicMarquee</code>
+      default values into
+      <code translate="no" dir="ltr">MarqueeDefaults</code>
+      object. (
+      <a href="https://android-review.googlesource.com/#/q/I12ff617e3c8bddc43c3cc44d8be14926ac20378b">I12ff6</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">basicMarquee</code>
+      <code translate="no" dir="ltr">delayMillis</code>
+      parameter to
+      <code translate="no" dir="ltr">repeatDelayMillis</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I12ff617e3c8bddc43c3cc44d8be14926ac20378b">I12ff6</a>
+      )
+    </li>
+    <li>
+      Update API for styling the links: moved the
+      <code translate="no" dir="ltr">TextLinkStyles</code>
+      to the
+      <code translate="no" dir="ltr">TextStyle</code>
+      and removed the
+      <code translate="no" dir="ltr">TextDefaults</code>
+      from material (
+      <a href="https://android-review.googlesource.com/#/q/I5477bdb498b6b4f33ab3bc998e2be59d8a4ff7e4">I5477b</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">LayoutCoordinates.introducesFrameOfReference</code>
+      to
+      <code translate="no" dir="ltr">LayoutCoordinates.introducesMotionFrameOfReference</code>
+      to better reflect its purpose. Renamed related function to calculate coordinates based on that flag. (
+      <a href="https://android-review.googlesource.com/#/q/I3a3301164ea2c08728b09faed6cf72ae089ead72">I3a330</a>
+      )
+    </li>
+    <li>
+      Removed 'Default' from the
+      <code translate="no" dir="ltr">MarqueeDefaults</code>
+      properties. (
+      <a href="https://android-review.googlesource.com/#/q/I1d8a0a53a7b74aa116a5595013a815a201f16c01">I1d8a0</a>
+      )
+    </li>
+    <li>
+      Removed 'Marquee' from
+      <code translate="no" dir="ltr">MarqueeDefaults</code>
+      properties. (
+      <a href="https://android-review.googlesource.com/#/q/Iad4f44b7803faf57f5a3a1445bfdbe94e4693d80">Iad4f4</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">TextLinkStyles</code>
+      from the
+      <code translate="no" dir="ltr">TextStyle</code>
+      class. Instead,
+      <code translate="no" dir="ltr">TextLinkStyles</code>
+      is part of the
+      <code translate="no" dir="ltr">LinkAnntation</code>
+      constructor and the
+      <code translate="no" dir="ltr">AnnotatedString.fromHtml</code>
+      method (
+      <a href="https://android-review.googlesource.com/#/q/I90b2b73e126d9c1106c223de823dda8babaf6708">I90b2b</a>
+      )
+    </li>
+    <li>
+      Fixed a bug where Pager would snap when flinging towards a bound while already settled at the bound. (
+      <a href="https://android-review.googlesource.com/#/q/I9f3730a6c168c19e077fd4d29325f444f54c1070">I9f373</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/339171222">b/339171222</a>
+      )
+    </li>
+    <li>
+      BTF2 now has correct mouse selection gestures. (
+      <a href="https://android-review.googlesource.com/#/q/Ibe8c678df325fd1cd55962ab023d8d3b40ab4aa3">Ibe8c6</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Resubmit 'Make compose/measure time calculation content-type based in prefetch to improve accuracy' (
+      <a href="https://android-review.googlesource.com/#/q/Iea6227ee19a6ef6ed4d6a09f8c28f3d012c5594c">Iea622</a>
+      )
+    </li>
+    <li>
+      Make compose/measure time calculation content-type based in prefetch to improve accuracy (
+      <a href="https://android-review.googlesource.com/#/q/Ibccb1d3bfcc5c5409eea4ab47904f9f10e1f7fc5">Ibccb1</a>
+      )
+    </li>
+    <li>
+      Make
+      <code translate="no" dir="ltr">WindowInsetsPadding</code>
+      modifiers available from common source set (
+      <a href="https://android-review.googlesource.com/#/q/I070b2fbfc6dcae41be4bc9bf313d5847065d4053">I070b2</a>
+      )
+    </li>
+  </ul>

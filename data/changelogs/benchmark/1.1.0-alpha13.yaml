@@ -1,0 +1,61 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.1.0-alpha13
+releaseDate: 2021-12-15
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha13" data-text="Version 1.1.0-alpha13" tabindex="-1">Version 1.1.0-alpha13</h3>
+  <p>December 15, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.1.0-alpha13</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cc1240d00b28657ee0c1a937f60430eaf1b03b09..301586664b5aad60548f21866cad502d524dbf9f/benchmark">Version 1.1.0-alpha13 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add low-overhead System Tracing to microbench output on Android Q (API 29+). Note that this does not currently capture custom tracing (via
+      <code translate="no" dir="ltr">android.os.Trace</code>
+      or
+      <code translate="no" dir="ltr">androidx.tracing</code>
+      Jetpack APIs) to avoid affecting results. This tracing should be useful in diagnosing instability, especially from sources outside the benchmark. (
+      <a href="https://android-review.googlesource.com/#/q/I298be3c9f9f7ef9ba1d2c63d79c864e8c8b16e04">I298be</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/205636583">b/205636583</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/145598917">b/145598917</a>
+      )
+    </li>
+    <li>
+      Clarify
+      <code translate="no" dir="ltr">CompilationModes</code>
+      into three classes - Full, None, Partial. Previously they were inconsistently named after compilation arguments (which we now treat as implementation details) and features. This makes the tradeoffs, potential combinations, and behavior across platform versions more clear. (
+      <a href="https://android-review.googlesource.com/#/q/I3d7bf0f3ce65ebe2cf464a4d88d3d1a98a014215">I3d7bf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/207132597">b/207132597</a>
+      )
+    </li>
+    <li>
+      Setup and measure are now always in pairs, in order. You can now query the package name and iteration (though the iteration may be
+      <code translate="no" dir="ltr">null</code>
+      in certain warmup scenarios). (
+      <a href="https://android-review.googlesource.com/#/q/Id3b68c2d02163c97614f9cf20beb1dc2b449cd59">Id3b68</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/208357448">b/208357448</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/208369635">b/208369635</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">CompilationMode.Speed</code>
+      incorrectly treated as
+      <code translate="no" dir="ltr">None</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I011378d9c24cba60f15802b38f918d3ce33cf607">I01137</a>
+      )
+    </li>
+  </ul>

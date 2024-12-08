@@ -1,0 +1,72 @@
+libraryId: wear
+groupId: androidx.wear
+version: 1.0.0-alpha09
+releaseDate: 2021-03-10
+#language=html
+changelogHtml: |
+  <h3 id="complications-watchface-1.0.0-alpha09" data-text="Version 1.0.0-alpha09" tabindex="-1">Version 1.0.0-alpha09</h3>
+  <p>March 10, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear:wear-complications-*:1.0.0-alpha09</code>
+    and
+    <code translate="no" dir="ltr">androidx.wear:wear-watchface-*:1.0.0-alpha09</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5c90131a69042a6a3e13952e1da9e7ffc571c31d..52fbd7ed5b07ca4431fa828325a1f8da45b02e51/wear">Version 1.0.0-alpha09 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      The interface between WCS/SysUI host and the on watch face has evolved. It’s now possible for an editor to determine if a style change will enable or disable a complication (enabled = initiallyEnabled plus any override from ComplicationsUserStyleSetting). Also
+      <code translate="no" dir="ltr">EditorService.closeEditor</code>
+      allows SysUI to remotely close an on watch face editor if needed.
+    </li>
+    <li>
+      In addition
+      <code translate="no" dir="ltr">InteractiveWatchFaceWcsClient.setUserStyle</code>
+      with a more powerful command
+      <code translate="no" dir="ltr">updateInstance</code>
+      which: changes the instance ID, sets the style, and clears complications all in one go.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      TraceEvents have been added to the watchface libraries. (
+      <a href="https://android-review.googlesource.com/#/q/I1a1417e576e9c871cab63c4eb6a0fc60e82842a6">I1a141</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ComplicationState</code>
+      now has a new property
+      <code translate="no" dir="ltr">initiallyEnabled</code>
+      which is useful for predicting the consequences of switching styles. (
+      <a href="https://android-review.googlesource.com/#/q/I8c9052560ad5b68d88d3e2b05255017ea7087a2f">I8c905</a>
+      )
+    </li>
+    <li>
+      We've replaced
+      <code translate="no" dir="ltr">InteractiveWatchFaceWcsClient.setUserStyle</code>
+      with a more powerful command
+      <code translate="no" dir="ltr">updateInstance</code>
+      which: changes the instance ID, sets the style, and clears complications. (
+      <a href="https://android-review.googlesource.com/#/q/Ife6f658e8d86d85f986d66d52e00d84d1884cd19">Ife6f6</a>
+      )
+    </li>
+    <li>
+      WatchFaceClient screenshot APIs no longer compress the screenshots because that was slow, instead we leave any post processing up to the caller. (
+      <a href="https://android-review.googlesource.com/#/q/Id35af41e21a27ce412542f8bbb40a66991695d26">Id35af</a>
+      )
+    </li>
+    <li>
+      It's now possible to remotely close an on watchface editor via
+      <code translate="no" dir="ltr">EditorService.closeEditor</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic5aa4a1ac99cff2303a2116007b68dae18a4c579">Ic5aa4</a>
+      )
+    </li>
+    <li>
+      Added nullability annotations (
+      <a href="https://android-review.googlesource.com/#/q/Ic16ed43e46dfd51803d40e6332b0cf34467aaf7c">Ic16ed</a>
+      )
+    </li>
+  </ul>

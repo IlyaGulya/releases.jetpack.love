@@ -1,0 +1,256 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.0.0-alpha07
+releaseDate: 2020-11-11
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha07" data-text="Compose UI Version 1.0.0-alpha07" tabindex="-1">Compose UI Version 1.0.0-alpha07</h3>
+  <p>November 11, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.0.0-alpha07</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/234e23e470a5e7f81291f6acd12d538146dc010b..358bdaf3c3c4a917883408e9f747da521fdf9e65/compose/ui">Version 1.0.0-alpha07 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Introduced ScaleFactor inline class to represent scale factors for the horizontal and vertical axes independent of one another in order to support non-uniform scaling use cases.
+      <ul>
+        <li>Added computeScaleFactor method to ContentScale</li>
+        <li>Added ContentScale.FillBounds to perform non-uniform scaling to stretch the src bounds to fully occupy the destination.</li>
+        <li>Added operator methods to compute ScaleFactor parameters with Size parameters.</li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/Ic96a6eb421cda5550c817ceca23ab50fde337778">Ic96a6</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/172291582">b/172291582</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      The BiasAlignment and BiasAbsoluteAlignment factories for creating Alignments were added. (
+      <a href="https://android-review.googlesource.com/#/q/Iac836deef25843cbec763400d54903fca496d50e">Iac836</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/169406772">b/169406772</a>
+      )
+    </li>
+    <li>
+      Allow a developer to forcefully clear focus. (
+      <a href="https://android-review.googlesource.com/#/q/I9037255fff69d59e9596632c9e63875fdbd9df89">I90372</a>
+      )
+    </li>
+    <li>
+      A bug causing elevation not being drawn for Views inside Compose was fixed. (
+      <a href="https://android-review.googlesource.com/#/q/If778269cb837dbc236b4a340e650a44eef33aca4">If7782</a>
+      )
+    </li>
+    <li>
+      Created onDrawBehind API within ContentDrawScope to match naming convention with Modifier.drawBehind. (
+      <a href="https://android-review.googlesource.com/#/q/I4fc3ae880757f9956c522a03e2ac28ab205946e9">I4fc3a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171955269">b/171955269</a>
+      )
+    </li>
+    <li>
+      Add support for camera distance to complement 3d transformations rotationX/rotationY on layer APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I402132be203b2d62b5c3026e3989877e2fa8f3e1">I40213</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171492100">b/171492100</a>
+      )
+    </li>
+    <li>
+      Added SelectionContainer without the callback (
+      <a href="https://android-review.googlesource.com/#/q/Ibfadba5a9f66101c5746c5b842dadf840617e1a6">Ibfadb</a>
+      )
+    </li>
+    <li>
+      ExperimentalSubcomposeLayoutApi annotation was removed. SubcomposeLayout can now be used without adding @OptIn (
+      <a href="https://android-review.googlesource.com/#/q/I708adafbc3c10cc6c23fe5a236f66e73146e4f56">I708ad</a>
+      )
+    </li>
+    <li>
+      FirstBaseline and LastBaseline were moved to androidx.compose.ui.layout package (
+      <a href="https://android-review.googlesource.com/#/q/Ied2e7ff4c8d8a45072439d719ea5c75270c28c97">Ied2e7</a>
+      )
+    </li>
+    <li>
+      Removed opacity from drawShadow() modifier as it was confusing. (
+      <a href="https://android-review.googlesource.com/#/q/I82c622c9eb42c528667fdaeef53271c502c16fb5">I82c62</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171624638">b/171624638</a>
+      )
+    </li>
+    <li>
+      MeasureResult was moved out of MeasureScope. (
+      <a href="https://android-review.googlesource.com/#/q/Ibf96ddadae8115015066dcda2026a57b87c2ead6">Ibf96d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171184002">b/171184002</a>
+      )
+    </li>
+    <li>
+      Several layout related symbols were moved from androidx.compose.ui to androidx.compose.layout.ui. (
+      <a href="https://android-review.googlesource.com/#/q/I0fa982d87929e5ca9e3a32762fe9cf1fa8b8cfef">I0fa98</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170475424">b/170475424</a>
+      )
+    </li>
+    <li>
+      Removed Deprecated FocusState2 (
+      <a href="https://android-review.googlesource.com/#/q/I686cb828fe0b0182bb31bbe016360d84fc5cbbbb">I686cb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/168686446">b/168686446</a>
+      )
+    </li>
+    <li>
+      ZIndexModifier is now internal (
+      <a href="https://android-review.googlesource.com/#/q/I1808b23b35c21e8f814b39a87b37a8a2088da951">I1808b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171493718">b/171493718</a>
+      )
+    </li>
+    <li>
+      Updated return type of lerp method on Size parameters to return a non-null Size to avoid unnecessary boxing. (
+      <a href="https://android-review.googlesource.com/#/q/Ib00440e033c91e466939bfc9cc700032c00f1ed3">Ib0044</a>
+      )
+    </li>
+    <li>
+      Added TestMonotonicFrameClock for testing code that relies on Compose's MonotonicFrameClock for awaiting composition frame events using kotlinx-coroutines-test's runBlockingTest (
+      <a href="https://android-review.googlesource.com/#/q/I4402fbcf6da2a1541344158cde473141160994da">I4402f</a>
+      )
+    </li>
+    <li>
+      Removed GestureScope.localToGlobal (
+      <a href="https://android-review.googlesource.com/#/q/I15299ffe7f0119020089ca9f2256508f56424b8e">I15299</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171462785">b/171462785</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">onAllNodesWithSubstring</code>
+      finder (
+      <a href="https://android-review.googlesource.com/#/q/I81dd70295d9fd893d5c3489d7a7d5ff71b7e95f3">I81dd7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171462889">b/171462889</a>
+      )
+    </li>
+    <li>
+      androidx.ui.test module deprecated. Please migrate to androidx.compose.ui.test and androidx.compose.ui.test.junit4 (
+      <a href="https://android-review.googlesource.com/#/q/I452e8ca63834f5948dc183ae633feffa5dffdc6e">I452e8</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      captureToBitmap moved to captureToImage. (
+      <a href="https://android-review.googlesource.com/#/q/I86385454625b533b83c87e48d82e143dd1bcb88e">I86385</a>
+      )
+    </li>
+    <li>
+      foundation.Text has been deprecated and replaced with material.Text. For a basic, unopinionated text API that does not consume values from a theme, see androidx.compose.foundation.BasicText. (
+      <a href="https://android-review.googlesource.com/#/q/If64cbdd89497f171edfd1b4de907123f73279e8d">If64cb</a>
+      )
+    </li>
+    <li>
+      Update TextFields to accept KeyboardOptions (
+      <a href="https://android-review.googlesource.com/#/q/Ida7f3c71647dc9fff8acdd50fc5604a15957ccec">Ida7f3</a>
+      )
+    </li>
+    <li>
+      Rename KeyboardOptions as ImeOptions (
+      <a href="https://android-review.googlesource.com/#/q/I82f364ca1ede4bfea9430fcc9fd227d729b39fd9">I82f36</a>
+      )
+    </li>
+    <li>
+      Moved KeyboardType and ImeAction into KeyboardOptions (
+      <a href="https://android-review.googlesource.com/#/q/I910cea6ec0ef3568b9a94f7b193e8cb7e8b776ed">I910ce</a>
+      )
+    </li>
+    <li>
+      provideDefault was added as an alternative for providing ambients, and it can be used to specify ambient values that will only be set when there is no ambient value already provided. (
+      <a href="https://android-review.googlesource.com/#/q/Id663500276ad2ec3e5a5b1310a81efbf3acc0842">Id6635</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171024925">b/171024925</a>
+      )
+    </li>
+    <li>
+      BaseTextField has been deprecated. Use BasicTextField instead. (
+      <a href="https://android-review.googlesource.com/#/q/I896eb0eb21e73bda5f269e1ffae4357201acb219">I896eb</a>
+      )
+    </li>
+    <li>
+      Introduce ui-test-junit4 module (
+      <a href="https://android-review.googlesource.com/#/q/Ib91f8a6792d8852427cc0dff99a40086c00b8ce4">Ib91f8</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">relativePaddingFrom</code>
+      was renamed to
+      <code translate="no" dir="ltr">paddingFrom</code>
+      . The
+      <code translate="no" dir="ltr">paddingFromBaseline</code>
+      modifier was added, as convenience for specifying distances from layout bounds to text baselines. (
+      <a href="https://android-review.googlesource.com/#/q/I0440af2aea41e020cb581b9030522b7586fe952e">I0440a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170633813">b/170633813</a>
+      )
+    </li>
+    <li>
+      LaunchedTask was renamed to LaunchedEffect for consistency with the SideEffect and DisposableEffect APIs. LaunchedEffect with no subject params is not permitted in order to encourage best practices. (
+      <a href="https://android-review.googlesource.com/#/q/Ifd3d4f3b529b3956915c99096eef3fb3108b2b61">Ifd3d4</a>
+      )
+    </li>
+    <li>
+      Introduced resources composable that recomposes when the configuration updates. (
+      <a href="https://android-review.googlesource.com/#/q/I6387c385363ff8231d5eb13b4a97d3ef375453c1">I6387c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/167352819">b/167352819</a>
+      )
+    </li>
+    <li>
+      Recomposer now requires a CoroutineContext at construction (
+      <a href="https://android-review.googlesource.com/#/q/Ic4610c5531ceebafc3c8644a3501a8442d1479d6">Ic4610</a>
+      )
+    </li>
+    <li>
+      Sum
+      <code translate="no" dir="ltr">zIndex</code>
+      values when multiple
+      <code translate="no" dir="ltr">Modifier.zIndex()</code>
+      applied. Previously the first one was winning. (
+      <a href="https://android-review.googlesource.com/#/q/Ic514c8e7640a09fa3f0e224b23bb06bc7868f848">Ic514c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170623936">b/170623936</a>
+      )
+    </li>
+    <li>
+      Changes to the internal SlotTable implementation which should not affect the public API. (
+      <a href="https://android-review.googlesource.com/#/q/If98280439f4965fd05f21dd0362635314176eaf8">If9828</a>
+      )
+    </li>
+    <li>
+      Added Keyboard auto correct IME Option (
+      <a href="https://android-review.googlesource.com/#/q/I57b8d4b3c65630763e198c31c7d116fcbe461c51">I57b8d</a>
+      )
+    </li>
+    <li>
+      androidx.ui.test moved to androidx.compose.ui.test (
+      <a href="https://android-review.googlesource.com/#/q/I9ffdb165d49e8d136b58cc4e32599a4a1d5b169e">I9ffdb</a>
+      )
+    </li>
+    <li>
+      Removed KeyboardOptions.toImeOptions from public API. (
+      <a href="https://android-review.googlesource.com/#/q/Ic2e4500be7841ad3815bc576356ab67e616db534">Ic2e45</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Disabled publication of internal artifact androidx.compose.ui:ui-text-android (
+      <a href="https://android-review.googlesource.com/#/q/Ib93fa3ecad55683c735cfb0bfeed193f24da2fe8">Ib93fa</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,68 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.4.0-alpha07
+releaseDate: 2024-04-17
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha07" data-text="Version 1.4.0-alpha07" tabindex="-1">Version 1.4.0-alpha07</h3>
+  <p>April 17, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.4.0-alpha07</code>
+    is released. Version 1.4.0-alpha07 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/02b55f664eba38e42e362e1af3913be1df552d55..67004410fdbff19f90caa4cc43965ab21dca1943/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">Modifier.rotary</code>
+      , a new modifier that connects rotary events with scrollable containers, allowing users to scroll via a crown or a rotating bezel on their Wear OS device. In addition,
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      and Picker now support rotary input by default, with new overloads that include the
+      <code translate="no" dir="ltr">rotaryBehavior</code>
+      parameter for specifying the configuration of either scroll or snap. If the
+      <code translate="no" dir="ltr">rotaryBehavior</code>
+      parameter is set to snap, then it is recommended to provide snap via the
+      <code translate="no" dir="ltr">flingBehavior</code>
+      parameter as well, for touch scrolling. (
+      <a href="https://android-review.googlesource.com/#/q/I2ef6f6e4c804e8f2b53f5553ab4e34ddd8bbd9fe">I2ef6f</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NestedScroll</code>
+      sources Drag and Fling are being replaced by
+      <code translate="no" dir="ltr">UserInput</code>
+      and
+      <code translate="no" dir="ltr">SideEffect</code>
+      to accommodate for the extended definition of these sources that now include animations (Side Effect) and Mouse Wheel and Keyboard (UserInput). (
+      <a href="https://android-review.googlesource.com/#/q/I40579c9b053d6bcf477191b212c7a72876a588b7">I40579</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">SelectableChip</code>
+      and
+      <code translate="no" dir="ltr">SplitSelectableChip</code>
+      to make the distinction clearer between toggle controls such as
+      <code translate="no" dir="ltr">Switch/Checkbox</code>
+      and selectable controls such as
+      <code translate="no" dir="ltr">RadioButton</code>
+      . This replaces the previously added overloads of
+      <code translate="no" dir="ltr">ToggleChip/SplitToggleChip</code>
+      with
+      <code translate="no" dir="ltr">selectionControl</code>
+      parameters. (
+      <a href="https://android-review.googlesource.com/#/q/Ia0217e0c1c71782921ff3daf02c194a1f05dd6d7">Ia0217</a>
+      )
+    </li>
+    <li>
+      Updated visibility modifier of
+      <code translate="no" dir="ltr">IndeterminateStrokeWidth</code>
+      in
+      <code translate="no" dir="ltr">ProgressIndicatorDefaults</code>
+      to public. (
+      <a href="https://android-review.googlesource.com/#/q/I5b5a4927c39c6f9db22ba0e582205855587be626">I5b5a4</a>
+      )
+    </li>
+  </ul>

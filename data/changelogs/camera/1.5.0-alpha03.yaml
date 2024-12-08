@@ -1,0 +1,64 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.5.0-alpha03
+releaseDate: 2024-10-30
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha03" data-text="Version 1.5.0-alpha03" tabindex="-1">Version 1.5.0-alpha03</h3>
+  <p>October 30, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.5.0-alpha03</code>
+    is released. Version 1.5.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c5333e2c7d785dd314479d930f3927d8ea9b7bcf..fd1d1e576a596e4748da989ef803d52d4e2e772b/camera">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add output format APIs for RAW and RAW + JPEG
+      <code translate="no" dir="ltr">ImageCapture</code>
+      , the device capability check is exposed in
+      <code translate="no" dir="ltr">ImageCaptureCapabilities#getSupportedOutputFormats</code>
+      . The
+      <code translate="no" dir="ltr">OUTPUT_FORMAT_RAW</code>
+      is to capture RAW image, which is Adobe DNG format and
+      <code translate="no" dir="ltr">OUTPUT_FORMAT_RAW_JPEG</code>
+      is to simultaneously capture RAW and JPEG images. The new
+      <code translate="no" dir="ltr">ImageCapture#takePicture</code>
+      API is used for simultaneous image capture, it needs to provide two
+      <code translate="no" dir="ltr">OutputFileOptions</code>
+      , the first one is for RAW image and the second one is for JPEG image. (
+      <a href="https://android-review.googlesource.com/#/q/Ib0f3d6195b59efd878bf6d4b4c8f14d92bb94e6e">Ib0f3d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed preview and video under-exposure issue on TCL devices when
+      <code translate="no" dir="ltr">VideoCapture</code>
+      is enabled. (
+      <a href="https://android-review.googlesource.com/#/q/Id7a64a83ed74ff2f189cd315ede03c090ff818a0">Id7a64</a>
+      )
+    </li>
+    <li>
+      Fixed the issue where invoking
+      <code translate="no" dir="ltr">startFocusMetering</code>
+      with
+      <code translate="no" dir="ltr">PreviewView.getMeteringPointFactory</code>
+      doesn't get the correct sensor coordinates when an effect is enabled or when 4 use cases are bound (stream-sharing). (
+      <a href="https://android-review.googlesource.com/#/q/I916c55d371a2c2e7de798b21080318591f099561">I916c5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/345993685">b/345993685</a>
+      )
+    </li>
+    <li>
+      Fixed the
+      <code translate="no" dir="ltr">VideoRecordEvent.Finalize.ERROR_INSUFFICIENT_STORAGE</code>
+      event is not triggered when recording a video and there is insufficient storage space available. (
+      <a href="https://android-review.googlesource.com/#/q/I35779fd7edbbeaff77cdf917eea1b377dc3e2151">I35779</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/356399842">b/356399842</a>
+      )
+    </li>
+  </ul>

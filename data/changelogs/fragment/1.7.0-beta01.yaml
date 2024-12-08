@@ -1,0 +1,40 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.7.0-beta01
+releaseDate: 2024-03-20
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-beta01" data-text="Version 1.7.0-beta01" tabindex="-1">Version 1.7.0-beta01</h3>
+  <p>March 20, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment-*:1.7.0-beta01</code>
+    is released. Version 1.7.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ca2a8cf8da3a3502fccc593974f8085653e38261..a57d7d17753695012b58c9ce7ad55a8d39157e62/fragment">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">FragmentHostCallback</code>
+      is now written in Kotlin so that the nullability of the generic type of the Host matches the nullability of the return type of
+      <code translate="no" dir="ltr">onGetHost()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I40af54eac4bb30c0b5e16d55626ef8ce9b033ebb">I40af5</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where when committing a Predictive Back gesture on a fragment that is not in a container, that fragment would never be destroyed. The Fragment will now be immediately moved to the final state. (
+      <a href="https://android-review.googlesource.com/#/q/Ida0d901038b60ae42e42942fb16342e443247573">Ida0d9</a>
+      )
+    </li>
+    <li>
+      Fixed an issue in Fragments where interrupting incoming transitions with a Predictive back gesture would destroy the entering view, and leave a blank screen. (
+      <a href="https://android-review.googlesource.com/#/q/Id3f228dd5f53742c68e6cb16b752022e18e00ec9">Id3f22</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/319531491">b/319531491</a>
+      )
+    </li>
+  </ul>

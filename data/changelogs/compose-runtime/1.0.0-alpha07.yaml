@@ -1,0 +1,88 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.0.0-alpha07
+releaseDate: 2020-11-11
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha07" data-text="Version 1.0.0-alpha07" tabindex="-1">Version 1.0.0-alpha07</h3>
+  <p>November 11, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.0.0-alpha07</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/234e23e470a5e7f81291f6acd12d538146dc010b..358bdaf3c3c4a917883408e9f747da521fdf9e65/compose/runtime">Version 1.0.0-alpha07 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">@UnionType</code>
+      annotation has been deprecated (
+      <a href="https://android-review.googlesource.com/#/q/I57cdec8694f46c502f7f6fc2bfe377a0ea0c075b">I57cde</a>
+      )
+    </li>
+    <li>
+      provideDefault was added as an alternative to provide for providing ambients, and it can be used to specify ambient values that will only be set when there is no ambient value already provided. (
+      <a href="https://android-review.googlesource.com/#/q/Id663500276ad2ec3e5a5b1310a81efbf3acc0842">Id6635</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171024925">b/171024925</a>
+      )
+    </li>
+    <li>
+      LaunchedTask was renamed to LaunchedEffect for consistency with the SideEffect and DisposableEffect APIs. LaunchedEffect with no subject params is not permitted in order to encourage best practices. (
+      <a href="https://android-review.googlesource.com/#/q/Ifd3d4f3b529b3956915c99096eef3fb3108b2b61">Ifd3d4</a>
+      )
+    </li>
+    <li>
+      Applier now has onBeginChanges/onEndChanges callbacks that are invoked when a Composer begins/is finished applying changes to the tree. These may be used for batching resource management if needed. (
+      <a href="https://android-review.googlesource.com/#/q/Icf4765f3fd6102d26177aac6f5f259f9b9c0c0de">Icf476</a>
+      )
+    </li>
+    <li>
+      Recomposer now requires a CoroutineContext at construction (
+      <a href="https://android-review.googlesource.com/#/q/Ic4610c5531ceebafc3c8644a3501a8442d1479d6">Ic4610</a>
+      )
+    </li>
+    <li>
+      Changes to the internal SlotTable implementation which should not affect the public API. (
+      <a href="https://android-review.googlesource.com/#/q/If98280439f4965fd05f21dd0362635314176eaf8">If9828</a>
+      )
+    </li>
+    <li>
+      Deprecated rxjava2 adapters which does not take the initial value were removed (
+      <a href="https://android-review.googlesource.com/#/q/Idb72f5d9df0562cdfe1c0e77d89f228e9e01e857">Idb72f</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      foundation.Text has been deprecated and replaced with material.Text. For a basic, unopinionated text API that does not consume values from a theme, see androidx.compose.foundation.BasicText. (
+      <a href="https://android-review.googlesource.com/#/q/If64cbdd89497f171edfd1b4de907123f73279e8d">If64cb</a>
+      )
+    </li>
+    <li>
+      BaseTextField has been deprecated. Use BasicTextField instead. (
+      <a href="https://android-review.googlesource.com/#/q/I896eb0eb21e73bda5f269e1ffae4357201acb219">I896eb</a>
+      )
+    </li>
+    <li>
+      Several layout related symbols were moved from androidx.compose.ui to androidx.compose.layout.ui. (
+      <a href="https://android-review.googlesource.com/#/q/I0fa982d87929e5ca9e3a32762fe9cf1fa8b8cfef">I0fa98</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170475424">b/170475424</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">runtime-rxjava3</code>
+      module for compose. Similar to
+      <code translate="no" dir="ltr">runtime-rxjava2</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I02cbfebc2770cedd58de9d5ecbdcc87c7141a089">I02cbf</a>
+      )
+    </li>
+  </ul>

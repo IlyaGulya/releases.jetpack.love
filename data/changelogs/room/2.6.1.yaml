@@ -1,0 +1,42 @@
+libraryId: room
+groupId: androidx.room
+version: 2.6.1
+releaseDate: 2023-11-29
+#language=html
+changelogHtml: |
+  <h3 id="2.6.1" data-text="Version 2.6.1" tabindex="-1">Version 2.6.1</h3>
+  <p>November 29, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.6.1</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ec9bfe9db962dfb9b86a707c0b84ff1e24ef3c7d..04d99ffb15b386a8708eb883c780d45a3a5cece8/room">Version 2.6.1 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Resolved issue in generated code where the default value for Double columns in
+      <code translate="no" dir="ltr">EntityCursorConverter</code>
+      was being set to 0 instead of 0.0. A potential fix for a similar edge-case for Float type columns has also been included. (
+      <a href="https://android-review.googlesource.com/q/commit:6aa7e7e786298cad202cda711e05d514cf50fe30">Id75f5</a>
+      ,
+      <a href="https://issuetracker.google.com/304584179">b/304584179</a>
+      )
+    </li>
+    <li>
+      Exceptions thrown from
+      <code translate="no" dir="ltr">PagingSource</code>
+      loads will now be propagated as a
+      <code translate="no" dir="ltr">LoadStateUpdate</code>
+      of
+      <code translate="no" dir="ltr">LoadResult.Error</code>
+      containing the Throwable. This error state is observable through
+      <code translate="no" dir="ltr">PagingDataAdapter.loadStateFlow(Views)</code>
+      or
+      <code translate="no" dir="ltr">LazyPagingItems.loadState(Compose)</code>
+      . Note that this marks a behavioral change where in the past load errors will bubble up as an Exception thrown by the dao method that triggered the load. (
+      <a href="https://android-review.googlesource.com/#/q/I93887de62a4fc76d1abe4ade60ed524a41d9d4e8">I93887</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/302708983">b/302708983</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,74 @@
+libraryId: wear
+groupId: androidx.wear
+version: 1.0.0-alpha15
+releaseDate: 2021-06-02
+#language=html
+changelogHtml: |
+  <h3 id="complications-watchface-1.0.0-alpha15" data-text="Version 1.0.0-alpha15" tabindex="-1">Version 1.0.0-alpha15</h3>
+  <p>June 2, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear:wear-*:1.0.0-alpha15</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/66681ad83c328d0dd821b943bb3d375f02c1db61..86ff5b4bb956431ec884586ce0aea0127e189ec4/wear">Version 1.0.0-alpha15 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>The majority of watch face initialization is now done on a background thread, however after loading all watch face rendering etc is done on the UiThread. There is a memory barrier between loading and rendering so most user watch faces don’t need to do anything special. Watch faces using GLES may be an exception since the context is thread specific and we create two linked contexts so it’s possible to upload GL resources (e.g. textures and shaders) on the background thread and use them on the UiThread.</p>
+  <p>
+    We have split the construction of watchfaces into three functions: createUserStyleSchema, createComplicationsManager and createWatchFace. We assume that createUserStyleSchema and createComplicationsManager are fast and createWatchFace may take some time to load assets. Taking advantage of this we have introduced
+    <code translate="no" dir="ltr">WatchFaceControlClient.getDefaultProviderPoliciesAndType</code>
+    which returns a map of Complication Ids to DefaultComplicationProviderPolicies and the default ComplicationType. This is faster than creating a headless instance since it doesn’t need to fully initialize the watch face to perform the query.
+  </p>
+  <p>Finally complications are now constructed with a CanvasComplicationFactory which allows for lazy construction of the CanvasComplication renderers.</p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Replaced
+      <code translate="no" dir="ltr">@TargetApi</code>
+      with
+      <code translate="no" dir="ltr">@RequiresApi</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0184a41bcc214a5033f431f969f36ab5b9c174ae">I0184a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187447093">b/187447093</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187447094">b/187447094</a>
+      )
+    </li>
+    <li>
+      We have introduced
+      <code translate="no" dir="ltr">WatchFaceControlClient.getDefaultProviderPoliciesAndType</code>
+      which returns a map of Complication Ids to DefaultComplicationProviderPolicies and the default ComplicationType. Where possible a fast path is used that avoids fully constructing a watch face. To facilitate this the WatchFaceService API has had to change with two new methods being: createUserStyleSchema and createComplicationsManager the results of which are passed into createWatchFace. In addition Complications are now constructed with a CanvasComplicationFactory which allows for lazy construction of the CanvasComplication renderers. (
+      <a href="https://android-review.googlesource.com/#/q/Iad6c1414c4ff1792abaf2c60334fed74bd5b5686">Iad6c1</a>
+      )
+    </li>
+    <li>
+      We have removed MOST_RECENT_APP from SystemProviders. (
+      <a href="https://android-review.googlesource.com/#/q/I3df00a615950bd4ee3e32bdfc8cb277e48c48b8c">I3df00</a>
+      )
+    </li>
+    <li>
+      ObservableWatchData is now a sealed class. (
+      <a href="https://android-review.googlesource.com/#/q/Ic940ddaaca3f411fdbcf83e701694e4dbf381064">Ic940d</a>
+      )
+    </li>
+    <li>
+      CanvasComplicationFactory.create (which is typically io bound) is now called on a background thread for each complication before ui thread rendering commences. There is a memory barrier between construction and rendering so no special threading primitives are required. (
+      <a href="https://android-review.googlesource.com/#/q/Ia18f25841808e4d6880b0f5187dd1cae85324861">Ia18f2</a>
+      )
+    </li>
+    <li>
+      Watchface construction is now done on a background thread although all rendering is done on the ui thread, GlesRenderer supports two linked contexts to support this. WatchFaceControlClient.createHeadlessWatchFaceClient and WatchFaceControlClient.getOrCreateInteractiveWatchFaceClient may resolve before WatchFaceService.createWatchFace has completed. Subsequent API calls will block until watchFace initialization has completed. (
+      <a href="https://android-review.googlesource.com/#/q/Id9f416e2dc57612386f7361778d47d496dd4a4e2">Id9f41</a>
+      )
+    </li>
+    <li>
+      EXPANSION_DP and STROKE_WIDTH_DP are no longer visible in api.txt. (
+      <a href="https://android-review.googlesource.com/#/q/I54801fdcc7b0c5657568c9cc3508b5da96cb39d9">I54801</a>
+      )
+    </li>
+    <li>
+      We have made EditorSession.createOnWatchEditingSession throw TimeoutCancellationException if there's an error instead of sending a null session. Additionally, the return value of EditorRequest.createFromIntent and EditorSession.createOnWatchEditingSession is now NonNull. (
+      <a href="https://android-review.googlesource.com/#/q/I41eb47cbe25cdc5e945752f20cba0a56f3bbce05">I41eb4</a>
+      )
+    </li>
+  </ul>

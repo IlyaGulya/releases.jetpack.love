@@ -1,0 +1,64 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.3.0-alpha08
+releaseDate: 2021-05-18
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha08" data-text="Version 1.3.0-alpha08" tabindex="-1">Version 1.3.0-alpha08</h3>
+  <p>May 18, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.3.0-alpha08</code>
+    ,
+    <code translate="no" dir="ltr">androidx.activity:activity-compose:1.3.0-alpha08</code>
+    , and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.3.0-alpha08</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b04f2c39ebb45a0480dc0dc04d7fb7406646eb5e..b648147c5fdfc5ecbad57e40e2dc0c69aa23bf12/activity">Version 1.3.0-alpha08 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      The new
+      <code translate="no" dir="ltr">CaptureVideo</code>
+      <code translate="no" dir="ltr">ActivityResultContract</code>
+      returns a boolean to your
+      <code translate="no" dir="ltr">ActivityResultCallback</code>
+      indicating if your video was successfully saved to the given URI. This replaces the now deprecated
+      <code translate="no" dir="ltr">TakeVideo</code>
+      contract as camera apps very rarely supported returning a thumbnail bitmap, making the result unhelpful. (
+      <a href="https://android-review.googlesource.com/#/q/Ie21f23fd680c361242c7ec11aa0684b9a6cdbf1a">Ie21f2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/185938070">b/185938070</a>
+      )
+    </li>
+    <li>
+      Added new API
+      <code translate="no" dir="ltr">Activity#setPipAnimationHintView</code>
+      to update the PipParams' source rect hint whenever the view moves. (
+      <a href="https://android-review.googlesource.com/#/q/I9063de7990e997607b60384ea3f37970b902c39a">I9063d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">rememberLauncherForActivityResult</code>
+      function now returns a launcher that deprecates the
+      <code translate="no" dir="ltr">unregister()</code>
+      function - registration and unregistering the launcher is handled automatically by
+      <code translate="no" dir="ltr">rememberLauncherForActivityResult</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2443e7e3682a015bbef3948400864cff891bf686">I2443e</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Compose Compatibility</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">androidx.activity:activity-compose:1.3.0-alpha08</code>
+      is only compatible with Compose version
+      <code translate="no" dir="ltr">1.0.0-beta07</code>
+      and above.
+    </li>
+  </ul>

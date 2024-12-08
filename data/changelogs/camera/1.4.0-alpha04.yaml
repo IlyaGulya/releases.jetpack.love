@@ -1,0 +1,143 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.4.0-alpha04
+releaseDate: 2024-01-24
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha04" data-text="Version 1.4.0-alpha04" tabindex="-1">Version 1.4.0-alpha04</h3>
+  <p>January 24, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.4.0-alpha04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/354ebb67b2265fff0e9169750bcf7341d723a159..cc8546da2e453883b157aa38bbd034b8ae5bbac8/camera">Version 1.4.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      New artifact: camera-effects: A library for applying real time effects to CameraX output, including
+      <code translate="no" dir="ltr">Preview</code>
+      ,
+      <code translate="no" dir="ltr">VideoCapture</code>
+      and/or
+      <code translate="no" dir="ltr">ImageCapture</code>
+      . This artifact contains OpenGL implementations of the
+      <code translate="no" dir="ltr">CameraEffect</code>
+      API that manipulates the camera output efficiently.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">OverlayEffect</code>
+      : for drawing overlays with Android’s Canvas API. This allows the app to apply a watermark or highlight detected objects on camera outputs.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">DynamicRange</code>
+      APIs for the Preview Use Case: The dynamic range can now be set on the Preview Use Case, independently of the Video Use Case. This allows HDR dynamic ranges such as HLG10 for Preview alone. New APIs are also available in
+      <code translate="no" dir="ltr">CameraInfo</code>
+      to query which dynamic ranges each camera supports.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">ScreenFlashUiCompleter</code>
+      to
+      <code translate="no" dir="ltr">ScreenFlashListener</code>
+      and moved
+      <code translate="no" dir="ltr">ScreenFlashUiCompleter#getExpirationTimeMillis</code>
+      to
+      <code translate="no" dir="ltr">expirationTimeMillis</code>
+      parameter of
+      <code translate="no" dir="ltr">ScreenFlash#apply</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I139446df586160ff4c900bd4dd9dc1ec69efaf19">I13944</a>
+      )
+    </li>
+    <li>
+      New APIs added to allow dynamic range to be set on Preview use case, and to query dynamic ranges supported by each camera. This allows HDR dynamic ranges, such as HLG10, to be used with the Preview use case alone, no longer requiring a
+      <code translate="no" dir="ltr">VideoCapture</code>
+      to be bound at the same time. (
+      <a href="https://android-review.googlesource.com/#/q/If25e3f803ef0bb993ce9270bcc36c5647c42af06">If25e3</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">getMirroring()</code>
+      to
+      <code translate="no" dir="ltr">isMirroring()</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I470630ef430beebcae93ccb32818494358aff337">I47063</a>
+      )
+    </li>
+    <li>
+      Added Realtime still capture latency estimate support in CameraX. Camera extensions enable applications to use an API that provides an estimate of how long a capture will take. The estimate takes into account the current environment conditions, the camera state and includes the time spent processing multi-frame capture requests along with any additional time for encoding processed buffers if necessary. (
+      <a href="https://android-review.googlesource.com/#/q/I05c3a12013008ada3461542c82da43e045f061c2">I05c3a</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">ScreenFlashUiControl</code>
+      to
+      <code translate="no" dir="ltr">ScreenFlash</code>
+      ,
+      <code translate="no" dir="ltr">ScreenFlashUiControl#applyScreenFlashUi</code>
+      to
+      <code translate="no" dir="ltr">ScreenFlash#apply</code>
+      ,
+      <code translate="no" dir="ltr">ScreenFlashUiControl#clearScreenFlashUi</code>
+      to
+      <code translate="no" dir="ltr">ScreenFlash#clear</code>
+      , and added
+      <code translate="no" dir="ltr">getScreenFlashUiApplyTimeoutSeconds</code>
+      method instead of exposing
+      <code translate="no" dir="ltr">SCREEN_FLASH_UI_APPLY_TIMEOUT_SECONDS</code>
+      directly. (
+      <a href="https://android-review.googlesource.com/#/q/Iccdd0f93601b77522ebfa58d05fb399ee61448b3">Iccdd0</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a memory leakage that results in activities or fragments not being released when Extensions are enabled (
+      <a href="https://android-review.googlesource.com/#/q/I142155b2b481007d5a45303e93992459b075d230">I14215</a>
+      )
+    </li>
+    <li>
+      Fixed the issue where
+      <code translate="no" dir="ltr">getZoomRatio</code>
+      incorrectly returned a decreased value when applying an increasing zoom ratio. (
+      <a href="https://android-review.googlesource.com/#/q/I4aa0df75c6b6382e1e3f4b7905459acdbc6b4d3c">I4aa0d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/317543616">b/317543616</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ImageCapture#ScreenFlash#clear</code>
+      event is invoked immediately when
+      <code translate="no" dir="ltr">ImageCapture</code>
+      is unbound or camera is closed, also fixes some bugs where it is never invoked due to captures in these scenarios not completing properly. (
+      <a href="https://android-review.googlesource.com/#/q/If99f98b14712268ec54f1f1f1f9b11d23c68b89f">If99f9</a>
+      )
+    </li>
+    <li>
+      Fixed the crash that happens when lifecycle is stopped before
+      <code translate="no" dir="ltr">takePicture</code>
+      request is completed (
+      <a href="https://android-review.googlesource.com/#/q/Idf017ef3ec1400955066433dd8446f94728b8a1a">Idf017</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/306202751">b/306202751</a>
+      )
+    </li>
+    <li>
+      Fixed the issue where camera preview becomes black when Extensions are enabled on some devices (
+      <a href="https://android-review.googlesource.com/#/q/I1ffd01c1f45052caa5bb2a9f8f3d85d07f182e71">I1ffd0</a>
+      )
+    </li>
+    <li>
+      Fixed incorrect duration of video recording on devices using the Snapdragon 778G SoC. (
+      <a href="https://android-review.googlesource.com/#/q/If6aa766b7438145e957cae1e7b12f800eb84ce87">If6aa7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/316057919">b/316057919</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,227 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.0.0-alpha21
+releaseDate: 2022-04-20
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha21" data-text="Version 1.0.0-alpha21" tabindex="-1">Version 1.0.0-alpha21</h3>
+  <p>April 20, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-foundation:1.0.0-alpha21</code>
+    ,
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material:1.0.0-alpha21</code>
+    , and
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-navigation:1.0.0-alpha21</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7ca43e00a517eaeeedc0a21f482b17f06e3d2181..c0a89ec374961b3015097ab307ebb8196dbe3888/wear/compose">Version 1.0.0-alpha21 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added new curved modifiers to specify the background of a curved element:
+      <code translate="no" dir="ltr">CurvedModifier.background</code>
+      ,
+      <code translate="no" dir="ltr">.radialGradientBackground</code>
+      and
+      <code translate="no" dir="ltr">.angularGradientBackground</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I8f3921a9ac17280467ae8f2166e88fd0b2c5aea4">I8f392</a>
+      )
+    </li>
+    <li>
+      Allow curved text overflow mode (clip/ellipsis/visible) to be specified. (
+      <a href="https://android-review.googlesource.com/#/q/I8e7aa041f072d59eae87c9da0d5aee74a6d9fef1">I8e7aa</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">CurvedModifier.weight</code>
+      modifier, similar to the one in Compose. This can be used on children of curvedRow and CurvedLayout (for width) and children of curvedColumn (for height). (
+      <a href="https://android-review.googlesource.com/#/q/I8abbd06d6b444a4edd2a5c66bc0dd5d2a416978d">I8abbd</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">CurvedModifier.size</code>
+      ,
+      <code translate="no" dir="ltr">.angularSize</code>
+      and
+      <code translate="no" dir="ltr">.radialSize</code>
+      modifiers to specify the size of a curved element. (
+      <a href="https://android-review.googlesource.com/#/q/I623c71a99245a91f8cead2f25674487870d77ae9">I623c7</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Reorder parameters to ensure background is before color consistently across the Wear Compose API (
+      <a href="https://android-review.googlesource.com/#/q/I4320831fdca3c14da7e1e1e290978afa5fcb5a5f">I43208</a>
+      )
+    </li>
+    <li>
+      Removed clockwise &amp;
+      <code translate="no" dir="ltr">insideOut</code>
+      parameters and replaced with more expressive constants on new classes. Curved layout direction can now be
+      <code translate="no" dir="ltr">LayoutDirection</code>
+      aware, and it is inherited when not specified (
+      <a href="https://android-review.googlesource.com/#/q/If0e6af67383a62a9e8135d5350b7f2b72fe79fda">If0e6a</a>
+      )
+    </li>
+    <li>
+      We have replaced
+      <code translate="no" dir="ltr">autoCenter: Boolean</code>
+      with
+      <code translate="no" dir="ltr">autoCenter: AutoCentringParams</code>
+      in order to fix an API issue with the
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia9c90a1af9226e8c1510fd4199043a619554e85e">Ia9c90</a>
+      )
+    </li>
+    <li>
+      We have renamed
+      <code translate="no" dir="ltr">iconTintColor</code>
+      and
+      <code translate="no" dir="ltr">toggleControlTintColor</code>
+      to
+      <code translate="no" dir="ltr">iconColor</code>
+      and
+      <code translate="no" dir="ltr">toggleControlColor</code>
+      throughout the API (Chip/ToggleChip/Dialog/Slider/Stepper/...) as the color is applied to the icon/toggleControl slot. (
+      <a href="https://android-review.googlesource.com/#/q/Ied23864a671b3cfd241cb0f077f111b762525a33">Ied238</a>
+      )
+    </li>
+    <li>
+      Rewrite
+      <code translate="no" dir="ltr">PageIndicatorStyle</code>
+      enum into value class (
+      <a href="https://android-review.googlesource.com/#/q/I2dc72d7428a681586e2bf47a5bb40b449f43725a">I2dc72</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">RowScope/ColumnScope/BoxScope</code>
+      to some of the slots in our Composables to indicate to developers what the layouts assumptions are. This will allow developers to use additional modifiers on some slot content and avoid the need to provide extra layout elements. Additionally we have made some minor updates to the AppCard/TitleCard colors so that
+      <code translate="no" dir="ltr">timeColor</code>
+      and
+      <code translate="no" dir="ltr">appColor</code>
+      default to
+      <code translate="no" dir="ltr">contentColor</code>
+      , these properties can still all be individually overridden if needed. (
+      <a href="https://android-review.googlesource.com/#/q/I26b597bb6b2c9db3d8d3833a2dfa36374c7631a2">I26b59</a>
+      )
+    </li>
+    <li>
+      Made
+      <code translate="no" dir="ltr">SwipeToDismissBoxState.Companion</code>
+      object private (
+      <a href="https://android-review.googlesource.com/#/q/I39e84b8b16e9450f95147b44d4f10d40efa4cb8f">I39e84</a>
+      )
+    </li>
+    <li>
+      Fix parameters order for
+      <code translate="no" dir="ltr">InlineSlider</code>
+      and
+      <code translate="no" dir="ltr">Stepper</code>
+      . A simple change to follow api guidelines (
+      <a href="https://android-review.googlesource.com/#/q/I11fecebf74d60ccf4446e23935ca8e8724d7104a">I11fec</a>
+      )
+    </li>
+    <li>
+      We have removed the Saver object for
+      <code translate="no" dir="ltr">SwipeToDismissBoxState</code>
+      as it was not used. (
+      <a href="https://android-review.googlesource.com/#/q/Ifb54eef912a95beb4b17f53eaf309c09c560bcac">Ifb54e</a>
+      )
+    </li>
+    <li>
+      We have updated
+      <code translate="no" dir="ltr">CompactChip</code>
+      to bring it inline with the latest UX Specification. Padding has been reduced to horizontal = 12.dp and vertical = 0.dp. The font for label has been changed from button to caption1. The recommended icon sizes are 20x20 when both icon and label are present and 24x24 for an icon only compact chip. For the icon only use case we have also ensured that the icon is center aligned. (
+      <a href="https://android-review.googlesource.com/#/q/Iea2bef2ab11f750f9fe459c240354f06214f7930">Iea2be</a>
+      )
+    </li>
+    <li>
+      We have added a number of new fields to
+      <code translate="no" dir="ltr">ScalingLazyListLayoutInfo</code>
+      to enable developers to know the amount of
+      <code translate="no" dir="ltr">contentPadding</code>
+      and
+      <code translate="no" dir="ltr">autoCenteringPadding</code>
+      that has been applied. These can be useful for developers when calculating fling/scroll (
+      <a href="https://android-review.googlesource.com/#/q/I7577bc2830a0a5c2bbbb0d14a691e016c8f9dfc6">I7577b</a>
+      )
+    </li>
+    <li>
+      We have implemented in/out transitions for Dialog. A
+      <code translate="no" dir="ltr">showDialog</code>
+      parameter has been added and the Dialog now controls its own visibility (this enables Dialog to run the intro and outro animations when the Dialog is shown/hidden). Note that the outro animation is not performed when the user leaves the dialog via swipe-to-dismiss. We have also added a default value for state in the recently added
+      <code translate="no" dir="ltr">SwipeToDismissBox</code>
+      overload. (
+      <a href="https://android-review.googlesource.com/#/q/I682a03ea9354ed112f2b5be15634b27c41c6f31a">I682a0</a>
+      )
+    </li>
+    <li>
+      In order to better support i18n and a11y we have changed
+      <code translate="no" dir="ltr">ToggleChip</code>
+      and
+      <code translate="no" dir="ltr">SplitToggleChip</code>
+      so that they no longer have a default for the
+      <code translate="no" dir="ltr">toggleControl</code>
+      slot. We have also changed
+      <code translate="no" dir="ltr">ToggleChipDefaults</code>
+      so that the following methods now return ImageVector rather than Icon (note that as they no longer return @Composables they have changed to start with lower case),
+      <code translate="no" dir="ltr">SwitchIcon()-&gt;switchIcon()</code>
+      ,
+      <code translate="no" dir="ltr">CheckboxIcon-&gt;checkboxIcon()</code>
+      and
+      <code translate="no" dir="ltr">RadioIcon()-&gt;radioIcon()</code>
+      - this allows and encourages developers to create their own
+      <code translate="no" dir="ltr">Icon()</code>
+      composables with an appropriate
+      <code translate="no" dir="ltr">contentDescription</code>
+      set. (
+      <a href="https://android-review.googlesource.com/#/q/I5bb5b4158b2818130c314e4020249d96d4da59fb">I5bb5b</a>
+      )
+    </li>
+    <li>
+      We have added a
+      <code translate="no" dir="ltr">SwipeDismissableNavHostState</code>
+      parameter to
+      <code translate="no" dir="ltr">SwipeDismissableNavHost</code>
+      . This supports use of edge-swiping on screens used as navigation destinations, because
+      <code translate="no" dir="ltr">SwipeToDismissBoxState</code>
+      can now be hoisted and used to initialize both
+      <code translate="no" dir="ltr">SwipeDismissableNavHostState</code>
+      and
+      <code translate="no" dir="ltr">Modifier.edgeSwipeToDismiss</code>
+      on screens that require edge-swiping. (
+      <a href="https://android-review.googlesource.com/#/q/I819f5f6daa7084f7c7b536652937d4d1dbdb7ff8">I819f5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/228336555">b/228336555</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Ensure curved layouts are updated when needed. (
+      <a href="https://android-review.googlesource.com/#/q/Ie8bfa8217d76aea62d587074d1d67e0dfa2929a6">Ie8bfa</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/229079150">b/229079150</a>
+      )
+    </li>
+    <li>
+      Bug fix for https://issuetracker.google.com/issues/226648931 (
+      <a href="https://android-review.googlesource.com/#/q/Ia0a0aa4e2e480814665f0687af41506842f36de6">Ia0a0a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/226648931">b/226648931</a>
+      )
+    </li>
+    <li>
+      Removed unnecessary experimental annotations (
+      <a href="https://android-review.googlesource.com/#/q/I88d7e4224b611bee3400db0d228e5c81dea7dab2">I88d7e</a>
+      )
+    </li>
+  </ul>

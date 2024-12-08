@@ -1,0 +1,49 @@
+libraryId: room
+groupId: androidx.room
+version: 1.1.0-beta1
+releaseDate: 2018-03-21
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-beta1" data-text="Version 1.1.0-beta1" tabindex="-1">Version 1.1.0-beta1</h3>
+  <p>March 21, 2018</p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Based on API Review feedback,
+      <code translate="no" dir="ltr">@RawQuery</code>
+      does not accept passing a
+      <code translate="no" dir="ltr">String</code>
+      as the query parameter anymore. You need to use [SupportSQLiteQuery][ref-SupportSQLiteQuery]. (see [SimpleSQLiteQuery][ref-SimpleSQLiteQuery] to easily create an instance of [SupportSQLiteQuery][ref-SupportSQLiteQuery] with argument support).
+    </li>
+    <li>
+      RoomDatabase.Builder's [fallbackToDestructiveMigrationFrom][ref-fallbackToDestructiveMigrationFrom] method now accepts
+      <code translate="no" dir="ltr">vararg int</code>
+      instead of
+      <code translate="no" dir="ltr">vararg Integer</code>
+      .
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      [RoomDatabase.clearAllTables][ref-clearAllTables] now tries to return space back to the operating system by setting a WAL checkpoint and
+      <code translate="no" dir="ltr">VACUUM</code>
+      ing the database.
+    </li>
+    <li>
+      [
+      <code translate="no" dir="ltr">@RawQuery</code>
+      ][ref-RawQuery] now accepts any Pojo for the
+      <code translate="no" dir="ltr">observedEntities</code>
+      property as long as the Pojo references to one or more entities via its
+      <code translate="no" dir="ltr">Embedded</code>
+      fields or
+      <code translate="no" dir="ltr">Relation</code>
+      s.
+      <a href="https://issuetracker.google.com/issues/74041772">b/74041772</a>
+    </li>
+    <li>
+      Paging: Room’s DataSource implementation now correctly handles multi-table dependencies (such as relations, and joins). Previously these would fail to trigger new results, or could fail to compile.
+      <a href="https://issuetracker.google.com/issues/74128314">b/74128314</a>
+    </li>
+  </ul>

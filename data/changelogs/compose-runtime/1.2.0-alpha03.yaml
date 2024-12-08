@@ -1,0 +1,58 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.2.0-alpha03
+releaseDate: 2022-02-09
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha03" data-text="Version 1.2.0-alpha03" tabindex="-1">Version 1.2.0-alpha03</h3>
+  <p>February 9, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.2.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9dceceb54300ed028a7e8fc7a3454f270337ffde..db2ecbef194afcddfaede22e1d884a8959a9277c/compose/runtime">Version 1.2.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">movableContentOf</code>
+        which converts a composable lambda into a lambda that moves it state, and corresponding nodes, to any new location it is called. When the previous call leaves the composition the state is temporarily preserved and if a new call to the lambda enters the composition then the state, and associated nodes, are moved to the location of the new call. If no new call is added the state is removed permanently and remember observers are notified.
+      </p>
+
+      <p>
+        If a
+        <code translate="no" dir="ltr">movableContentOf</code>
+        lambda is called multiple times in the same composition, new state and nodes are created for each call and, as calls leave the composition and new calls enter, the state is moved from the first leaving calls to the entering calls in the order they are called. All state not claimed by new calls is removed permanently. (
+        <a href="https://android-review.googlesource.com/#/q/Ib4850095f241617a191ea7815fc947adaf867456">Ib4850</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added a tracing API to composition to enable tools to provide more detailed tracing of composable functions. The compiler now generates calls to the tracing API which include source information. (
+        <a href="https://android-review.googlesource.com/#/q/Ib0eb5c1ead489ab8104548f53bf30dcf1ba511ea">Ib0eb5</a>
+        )
+      </p>
+
+      <p>To remove these calls and the associated source information from a release build, add the following Proguard rule:</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Text only"><code translate="no" dir="ltr">  -assumenosideeffects public class androidx.compose.runtime.ComposerKt {
+        boolean isTraceInProgress();
+        void traceEventStart(int,java.lang.String);
+        void traceEventEnd();
+    }
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        Add
+        <code translate="no" dir="ltr">InternalComposeScope</code>
+        which gives tools the ability to identify a composable during recompositions. (
+        <a href="https://android-review.googlesource.com/#/q/I07a3f85a74d2a20e02b55c2bfb2ce6f3c63988b2">I07a3f</a>
+        )
+      </p>
+    </li>
+  </ul>

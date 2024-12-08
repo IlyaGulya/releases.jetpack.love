@@ -1,0 +1,216 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.7.0-alpha07
+releaseDate: 2024-04-17
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha07" data-text="Version 1.7.0-alpha07" tabindex="-1">Version 1.7.0-alpha07</h3>
+  <p>April 17, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.7.0-alpha07</code>
+    is released. Version 1.7.0-alpha07 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/02b55f664eba38e42e362e1af3913be1df552d55..67004410fdbff19f90caa4cc43965ab21dca1943/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ClickableText</code>
+      is marked as deprecated. To add links to the text, create an
+      <code translate="no" dir="ltr">AnnotatedString</code>
+      with a
+      <code translate="no" dir="ltr">LinkAnnotation</code>
+      corresponding to your link and pass this
+      <code translate="no" dir="ltr">AnnotatedString</code>
+      to the Text composable. (
+      <a href="https://android-review.googlesource.com/#/q/I34d4bf29a9386820f8582765e62576a5fcfcd3c6">I34d4b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/323346994">b/323346994</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">ViewConfiguration.HandwritingGestureLineMargin</code>
+      for handwriting gestures. Support
+      <code translate="no" dir="ltr">JoinOrSplit</code>
+      gesture for
+      <code translate="no" dir="ltr">BasicTextField</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ie6e13b41cc82da1fd3c9ecc7ac34c3ff88dfa235">Ie6e13</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/325660505">b/325660505</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FocusProperties.enter</code>
+      and
+      <code translate="no" dir="ltr">FocusProperties.exit</code>
+      are no longer experimental.
+      <code translate="no" dir="ltr">FocusDirection.Enter</code>
+      and
+      <code translate="no" dir="ltr">FocusDirection.Exit</code>
+      are no longer experimental.
+      <code translate="no" dir="ltr">FocusRequester.Cancel</code>
+      is no longer experimental (
+      <a href="https://android-review.googlesource.com/#/q/I461a1335e08f7ec1b944e145d18d5559377a95c8">I461a1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261564106">b/261564106</a>
+      )
+    </li>
+    <li>
+      When querying Layout coordinates, you may now use the
+      <code translate="no" dir="ltr">excludeDirectManipulationOffset</code>
+      argument to exclude the offset set by parent Layouts that placed their children using
+      <code translate="no" dir="ltr">Placeable.PlacementScope.withDirectManipulationPlacement</code>
+      . Likewise, a Layout that changes the position of its children frequently may now place them using
+      <code translate="no" dir="ltr">withDirectManipulationPlacement</code>
+      (such as Scroll, implemented by default). This helps
+      <code translate="no" dir="ltr">approachLayout</code>
+      based animations to be more intuitive, having now the opportunity to differentiate what offset to animate, and what to apply directly when deciding to animate their approach. (
+      <a href="https://android-review.googlesource.com/#/q/I60ec77cec9d448ffdfed8b661ba2e433f3adaa55">I60ec7</a>
+      )
+    </li>
+    <li>
+      The feature flag for long screenshots has been removed. (
+      <a href="https://android-review.googlesource.com/#/q/I28648d10fcd1293913a289ea21e64611248693a6">I28648</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/329128246">b/329128246</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LazyColumn</code>
+      will now render sticky headers correctly in long screenshots. (
+      <a href="https://android-review.googlesource.com/#/q/I8d239dddc5301c16a76b348edfab482adcdd157d">I8d239</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/329296635">b/329296635</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NestedScroll</code>
+      sources Drag and Fling are being replaced by
+      <code translate="no" dir="ltr">UserInput</code>
+      and
+      <code translate="no" dir="ltr">SideEffect</code>
+      to accommodate for the extended definition of these sources that now include animations (Side Effect) and Mouse Wheel and Keyboard (
+      <code translate="no" dir="ltr">UserInput</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/I40579c9b053d6bcf477191b212c7a72876a588b7">I40579</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ApproachLayoutModifierNode</code>
+      and
+      <code translate="no" dir="ltr">Modifier.approachLayout</code>
+      are now stable, with new
+      <code translate="no" dir="ltr">isMeasurementApproachInProgress()</code>
+      and
+      <code translate="no" dir="ltr">isPlacementApproachInProgress()</code>
+      to replace the old
+      <code translate="no" dir="ltr">isMeasurementApproachComplete()</code>
+      and
+      <code translate="no" dir="ltr">isPlacementApproachComplete()</code>
+      respectively.
+    </li>
+    <li>
+      Removed deprecated
+      <code translate="no" dir="ltr">intermediateLayout</code>
+      modifier. (
+      <a href="https://android-review.googlesource.com/#/q/I3e91ca2cfabebde655491f063466d2e5642f055e">I3e91c</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">GraphicsLayer#buildLayer</code>
+      to record to mirror the begin/endRecording methods of Displaylist backed APIs like
+      <code translate="no" dir="ltr">RenderNode</code>
+      and Picture.
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">rememberGraphicsLayer</code>
+      to leverage
+      <code translate="no" dir="ltr">rememberObserver</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I312c1120358d04fccfe8a646001a883017fb0fb3">I312c1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/288494724">b/288494724</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/330758155">b/330758155</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">UrlAnnotation</code>
+      is deprecated, use
+      <code translate="no" dir="ltr">LinkAnnotation.Url</code>
+      instead. If you're using Material theming, then use
+      <code translate="no" dir="ltr">TextDefaults</code>
+      object to create the annotation with Material theming applied to it (
+      <a href="https://android-review.googlesource.com/#/q/I8d18033220b74bb84f74380855ef5efb5e3e92bb">I8d180</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/323346545">b/323346545</a>
+      )
+    </li>
+    <li>
+      Text links got pressed state styling option in addition to normal styling, hovered and focused (
+      <a href="https://android-review.googlesource.com/#/q/I5f864b3fd1b1af6ff39dee03e1aa65ede7e16d32">I5f864</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/139312671">b/139312671</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">String.parseAsHtml</code>
+      renamed to
+      <code translate="no" dir="ltr">AnnotatedString.Companion.fromHtml</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I43dcd5b6f6ddc634879f5747df4b911953f84632">I43dcd</a>
+      )
+    </li>
+    <li>
+      Added styling arguments (
+      <code translate="no" dir="ltr">linkStyle</code>
+      ,
+      <code translate="no" dir="ltr">focusedLinkStyle</code>
+      ,
+      <code translate="no" dir="ltr">hoveredLinkStyle</code>
+      ) and a link interaction listener to the
+      <code translate="no" dir="ltr">parseAsHtml</code>
+      method. When parsing the HTML-tagged string with
+      <code translate="no" dir="ltr">&lt;a&gt;</code>
+      tags, the method will construct a
+      <code translate="no" dir="ltr">LinkAnnotation.Url</code>
+      for each such tag and pass the styling objects and link interaction listener to each annotation. (
+      <a href="https://android-review.googlesource.com/#/q/I7c9777a340e04ccf4dc10258c83d18e69831b3c6">I7c977</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LinkAnnotation</code>
+      now takes the state-based styling arguments and a
+      <code translate="no" dir="ltr">LinkInteractionListener</code>
+      . Add this annotation to the
+      <code translate="no" dir="ltr">AnnotatedString</code>
+      to get a hyperlink. By passing
+      <code translate="no" dir="ltr">focusedState</code>
+      and/or
+      <code translate="no" dir="ltr">hoveredState</code>
+      you can define the visual
+      <code translate="no" dir="ltr">configuration</code>
+      for links when they are focused and/or hovered. (
+      <a href="https://android-review.googlesource.com/#/q/I81ce4350b8a1e37881000fd82f081b7afb8e0f42">I81ce4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/139312671">b/139312671</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ImeOptions.hintLocales</code>
+      is no longer nullable. If you want to pass an empty Locale list, please use
+      <code translate="no" dir="ltr">LocaleList.Empty</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic5bc4e784d61b40ebc69778758515eb240c01e20">Ic5bc4</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>Gracefully handles bad/corrupt historical input event data (ignores bad offset data).</li>
+    <li>Fixes unexpected pointer events when a pointer input modifier is added dynamically before another pointer input modifier during an active pointer input event stream (for example, between a hover enter and hover exit [mouse/stylus]).</li>
+  </ul>

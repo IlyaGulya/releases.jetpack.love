@@ -1,0 +1,75 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.8.0-alpha03
+releaseDate: 2024-10-02
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0-alpha03" data-text="Version 1.8.0-alpha03" tabindex="-1">Version 1.8.0-alpha03</h3>
+  <p>October 2, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.8.0-alpha03</code>
+    is released. Version 1.8.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/0431b84980e97d6bafdfda7c9038bc4d9529564f..b6ae8d0a0e8cd803f7b84f30101eda1af4f1d6b6/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Kotlin version update to 1.9 (
+      <a href="https://android-review.googlesource.com/#/q/I1a14ce236e70bdc55f94afd42ead44587018c097">I1a14c</a>
+      )
+    </li>
+    <li>
+      Introduced flag
+      <code translate="no" dir="ltr">DraggableAddDownEventFixEnabled</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I848d5633a27bdf6c115df486e1cc9d881d4547b7">I848d5</a>
+      )
+    </li>
+    <li>
+      Introduced a new Semantics Role called Carousel to emulate the list behavior in Pagers for a11y services. (
+      <a href="https://android-review.googlesource.com/#/q/Id354b132da03348aaa68da0dd8459d4528438018">Id354b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/354109776">b/354109776</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/239672673">b/239672673</a>
+      )
+    </li>
+    <li>
+      Removed the implicit
+      <code translate="no" dir="ltr">graphicsLayer</code>
+      modifier from
+      <code translate="no" dir="ltr">BasicText</code>
+      composable. Added experimental
+      <code translate="no" dir="ltr">ComposeFoundationFlags.RemoveBasicTextGraphicsLayerEnabled</code>
+      flag to be able to revert to the old behavior. (
+      <a href="https://android-review.googlesource.com/#/q/Ie478db03fec7f5a7ee48b46e03a63c4b718fe69c">Ie478d</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Modifier.recalculateWindowInsets()</code>
+      to allow children in the hierarchy to use
+      <code translate="no" dir="ltr">insetsPadding</code>
+      even when parents aligned them without
+      <code translate="no" dir="ltr">consumeWindowInsets()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7f9e42ad23eb6a8706ab9c04dc60460b3e91695d">I7f9e4</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Implement gesture pick-up in
+      <code translate="no" dir="ltr">detectDragGestures</code>
+      , draggables and scrollables. Now if a child draggable gives up on a gesture, the parent has the opportunity to pick it up. This allows for a more continuous and integrated gesture handling. (
+      <a href="https://android-review.googlesource.com/#/q/Ic88fe7a8d34eb49ae279b922ef570a3464924727">Ic88fe</a>
+      )
+    </li>
+    <li>
+      Update fling cancellation behavior in scrollables. Now if a scrollable flings and hits the bounds it will correctly pass on the fling velocity to the next scrollable in the chain instead of continue to drive the fling. (
+      <a href="https://android-review.googlesource.com/#/q/I9326ad40271d77d6b2f8038c6fb9eb313873d8b6">I9326a</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,80 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 0.1.0-dev17
+releaseDate: 2020-08-19
+#language=html
+changelogHtml: |
+  <h3 id="0.1.0-dev17" data-text="Version 0.1.0-dev17" tabindex="-1">Version 0.1.0-dev17</h3>
+  <p>August 19, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:0.1.0-dev17</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/316f882e649c600372170f013a18515f590f490d..96eb302ee1740ba656c90c9fb27df3723a1a89c1/compose">Version 0.1.0-dev17 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Custom emits can now declare that one or more of its setters can be skipped and recomposed independently of the emit. (
+      <a href="https://android-review.googlesource.com/#/q/Ibbd13068440252724db405b26d1f6be179e80411">Ibbd13</a>
+      )
+    </li>
+    <li>
+      <p>Removed deprecated FrameManager calls.</p>
+
+      <p>
+        Internal compose APIs have been changed to reduce the amount of overhead to track state objects such as
+        <code translate="no" dir="ltr">mutableStateof()</code>
+        (
+        <a href="https://android-review.googlesource.com/#/q/I80ba67ebf59f9399e673b6218edfca4249158f82">I80ba6</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        The
+        <code translate="no" dir="ltr">state { ... }</code>
+        composable is now deprecated in favor of explicit calls to
+        <code translate="no" dir="ltr">remember { mutableStateOf(...) }</code>
+        for clarity. This reduces the overall API surface and number of concepts for state management, and matches the
+        <code translate="no" dir="ltr">by mutableStateOf()</code>
+        pattern for class property delegation. (
+        <a href="https://android-review.googlesource.com/#/q/Ia57278556d4f35ecf2cf5e6e30888b0d1f1f8012">Ia5727</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Flow.collectAsState now determines the default dispatcher from the composition itself rather than defaulting to Dispatchers.Main. (
+        <a href="https://android-review.googlesource.com/#/q/I9c1d9ad9a881492cd74a89e896ddf5b3b8d12777">I9c1d9</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Crash when something which saves the state was used inside the for loop is fixed. Now having the same key in savedInstanceState() is allowed, api of UiSavedStateRegistry is now adjusted to this new requirement (
+        <a href="https://android-review.googlesource.com/#/q/I4ab7630120ffce145d1bf09d52a475d197030150">I4ab76</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/160042650">b/160042650</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/156853976">b/156853976</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/159026663">b/159026663</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/154920561">b/154920561</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">emitView</code>
+      was deprecated. Use
+      <code translate="no" dir="ltr">AndroidView</code>
+      instead if possible for emitting Views inside Compose. Note that composing Views and ViewGroups directly will not be supported in the future unless these are leaves in the composition tree, case when this can be achieved using AndroidView. (
+      <a href="https://android-review.googlesource.com/#/q/I29b1e5405077f45e101eacfb26a1ebed85120444">I29b1e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/163871221">b/163871221</a>
+      )
+    </li>
+  </ul>

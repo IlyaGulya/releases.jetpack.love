@@ -1,0 +1,172 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.4.0-alpha03
+releaseDate: 2023-12-13
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha03" data-text="Version 1.4.0-alpha03" tabindex="-1">Version 1.4.0-alpha03</h3>
+  <p>December 13, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.4.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/354ebb67b2265fff0e9169750bcf7341d723a159/camera">Version 1.4.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">CameraInfo.mustPlayShutterSound</code>
+      to provide the information of whether a shutter sound must be played in accordance to regional restrictions. (
+      <a href="https://android-review.googlesource.com/#/q/Ifda84b6930fd5ab0193140d6f60571f92188d4f1">Ifda84</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">OnImageCapturedCallback.onCaptureStarted</code>
+      and
+      <code translate="no" dir="ltr">OnImageSavedCallback.onCaptureStarted</code>
+      for notifying when the camera has started exposing a frame. It's recommended to play the shutter sound or the shutter animation at this point. (
+      <a href="https://android-review.googlesource.com/#/q/Ic49b3caf6ef91649a48059e0657e017bbe98edaa">Ic49b3</a>
+      )
+    </li>
+    <li>
+      Added Screen Flash feature support in CameraX for front camera image capture. CameraX will take care of the framework-side API handling and sync the timing with application's UI changes as required (e.g. AE precapture trigger after app screen color/brightness change). Apps will only need to add their UI side implementations in the
+      <code translate="no" dir="ltr">ScreenFlashUiControl</code>
+      interface provided to CameraX. (
+      <a href="https://android-review.googlesource.com/#/q/I8ae843fc126c173cb9e2658d72c7a04457264183">I8ae84</a>
+      )
+    </li>
+    <li>
+      Added Screen Flash feature UI-side implementation support in CameraX. Apps will be able to get a basic
+      <code translate="no" dir="ltr">ImageCapture.ScreenFlashUiControl</code>
+      implementation from
+      <code translate="no" dir="ltr">PreviewView</code>
+      or the newly added
+      <code translate="no" dir="ltr">ScreenFlashView</code>
+      which will add a mono-color overlay view and maximize screen brightness during screen flash photo capture. (
+      <a href="https://android-review.googlesource.com/#/q/I1810efc37d35478082e995b2bf4a87b31e56b3fa">I1810e</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Supports new Extensions features(postview and capture process progress): Added
+      <code translate="no" dir="ltr">ImageCapture#getImageCaptureCapabilities()</code>
+      APIs for apps to query the capabilities of the postview and capture process progress callback. Apps can enable the postview using the
+      <code translate="no" dir="ltr">ImageCapture.Builder#setPostviewEnabled()</code>
+      . The postview size can be selected using
+      <code translate="no" dir="ltr">ImageCapture.Builder#setPostviewResolutionSelector()</code>
+      . When invoking
+      <code translate="no" dir="ltr">takePicture()</code>
+      ,
+      <code translate="no" dir="ltr">onPostviewBitmapAvailable</code>
+      and
+      <code translate="no" dir="ltr">onCaptureProcessProgressed</code>
+      can be implemented in
+      <code translate="no" dir="ltr">OnImageSavedCallback</code>
+      or
+      <code translate="no" dir="ltr">OnImageCapturedCallback</code>
+      to get the postview and process progress notification if supported. (
+      <a href="https://android-review.googlesource.com/#/q/I5cd88131d689950ee0d50fa63f9b3e2d2e7b06cb">I5cd88</a>
+      )
+    </li>
+    <li>
+      APIs for calculate coordinates transformation from sensor to the current buffer, with a flag indicating whether the Surface contains the camera orientation info. (
+      <a href="https://android-review.googlesource.com/#/q/I59096cca934ee680dc2d57ac52fe2a1a252a29d1">I59096</a>
+      )
+    </li>
+    <li>
+      Expose the API to query
+      <code translate="no" dir="ltr">PreviewCapabitlity</code>
+      in Preview
+      <code translate="no" dir="ltr">UseCase</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie5b6c6c5c194fd12e0e6ce1a7eff2f80ad8f1c49">Ie5b6c</a>
+      )
+    </li>
+    <li>
+      Added APIs to support more qualities for
+      <code translate="no" dir="ltr">VideoCapture</code>
+      .
+      <code translate="no" dir="ltr">Recorder.Builder#setVideoCapabilitiesSource(int)</code>
+      can be used with
+      <code translate="no" dir="ltr">VIDEO_CAPABILITIES_SOURCE_CODEC_CAPABILITIES</code>
+      to create a
+      <code translate="no" dir="ltr">Recorder</code>
+      instance which supports more qualities than
+      <code translate="no" dir="ltr">VIDEO_CAPABILITIES_SOURCE_CAMCORDER_PROFILE</code>
+      . A common use case is when the application strives to record UHD video whenever feasible, but the device's
+      <code translate="no" dir="ltr">CamcorderProfile</code>
+      does not include a UHD settings, even though the codec is capable of recording UHD video. (
+      <a href="https://android-review.googlesource.com/#/q/Iedbe2ae048c09a978b345b23d37ab989c000fd7a">Iedbe2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/263961771">b/263961771</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">ImageAnalysis</code>
+      output format getter/setter to
+      <code translate="no" dir="ltr">CameraController</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I9a96ce6cba5835d6c08fa93b95579853714a6d55">I9a96c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/308240643">b/308240643</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      From
+      <a href="#1.3.1">
+        Camera
+        <code translate="no" dir="ltr">1.3.1</code>
+      </a>
+      : Improved the
+      <code translate="no" dir="ltr">ProcessCameraProvider#bindToLifecycle()</code>
+      performance. The major change is to optimize the process of identifying the most suitable size combinations for
+      <code translate="no" dir="ltr">UseCases</code>
+      . The optimal results vary based on the specific
+      <code translate="no" dir="ltr">UseCase</code>
+      combinations and the number of supported output sizes for the target devices. (
+      <a href="https://android-review.googlesource.com/#/q/I454f2ca19be1d77ed737a651676834f6e431e0b7">I454f2</a>
+      )
+    </li>
+    <li>
+      Allow the use of
+      <code translate="no" dir="ltr">VideoCapture</code>
+      when Extensions are enabled. (
+      <a href="https://android-review.googlesource.com/#/q/I91f32ebab5ba3d39b851d2c151e823775bdf18b5">I91f32</a>
+      )
+    </li>
+    <li>
+      Fixed large captured JPEG image issue on Samsung A71 and M51 series devices. The captured JPEG images contain redundant 0's padding data in the JFIF compressed data segment. It causes the captured images to have extreme file size. Those redundant 0's padding data will be removed to make the captured images have normal image file sizes. (
+      <a href="https://android-review.googlesource.com/#/q/I01afc7e5001f42788a66388f5a66e0858e4dcfd5">I01afc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/288828159">b/288828159</a>
+      )
+    </li>
+    <li>
+      Disable
+      <code translate="no" dir="ltr">ImageAnalysis</code>
+      support on Pixels to avoid the bug on Pixel that returns the non-empty
+      <code translate="no" dir="ltr">ImageAnalysis</code>
+      supported sizes accidentally. (
+      <a href="https://android-review.googlesource.com/#/q/I7ec313868a7d71a50faad6ca5297850a3cc291e6">I7ec31</a>
+      )
+    </li>
+    <li>
+      Fixed performance issue where CPU loading and power consumption increased when Extensions are enabled. (
+      <a href="https://android-review.googlesource.com/#/q/Ibdccbeeba9351f1cd7ae5cb525dc4d56708b11a0">Ibdccb</a>
+      )
+    </li>
+    <li>
+      Added Snapdragon 480 to the
+      <code translate="no" dir="ltr">CameraUseInconsistentTimebaseQuirk</code>
+      . This fixes an issue on Android 12 for devices using this chipset where the audio in recordings is offset by the amount of time the device is in a suspended state. (
+      <a href="https://android-review.googlesource.com/#/q/I580100cfa2cd3111e687b8d0515f8f02c50205d7">I58010</a>
+      )
+    </li>
+  </ul>

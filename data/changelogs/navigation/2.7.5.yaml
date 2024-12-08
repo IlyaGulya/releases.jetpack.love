@@ -1,0 +1,87 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.7.5
+releaseDate: 2023-11-01
+#language=html
+changelogHtml: |
+  <h3 id="2.7.5" data-text="Version 2.7.5" tabindex="-1">Version 2.7.5</h3>
+  <p>November 1, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.7.5</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ace3a9ea98b0b126ae715bacad4d4e65853b3a83..93793630001ce27b6709c8bb6b73711313cc9d5d/navigation">Version 2.7.5 contains these commits.</a>
+  </p>
+  <p><strong>Performance Improvements</strong></p>
+  <ul>
+    <li>
+      Greatly improved the performance (both in terms of time and number of allocations) of comparing two graphs. This means that calls such as
+      <code translate="no" dir="ltr">setGraph</code>
+      which internally compare the new graph to the existing one are much faster and result in fewer skipped frames. Thank you
+      <a href="https://github.com/mzgreen">Michał Z</a>
+      for the thorough analysis that led to this improvement. (
+      <a href="https://android-review.googlesource.com/#/q/I6ad62bef1fb9bbbe8a91839a6e24e1f85a8982e2">I6ad62</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavHost</code>
+      will now render the start destination on the first composition pass instead of needing to wait for the second pass to read updated state. (
+      <a href="https://android-review.googlesource.com/#/q/I439a7fe894907b1ebee251134113acb08973083c">I439a7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/304852206">b/304852206</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where your back stack would be popped if you called
+      <code translate="no" dir="ltr">setGraph</code>
+      more than once with the exact same graph only if there was a destination in your graph that contained an action linking two destinations. (
+      <a href="https://android-review.googlesource.com/#/q/Ieaed7edf02f70696cd0a3558cfe8d7960d1cddd4">Ieaed7</a>
+      )
+    </li>
+    <li>
+      Dialogs that were navigated to and dismissed in quick succession will no longer leak into the list of
+      <code translate="no" dir="ltr">NavController.visibleEntries</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I67586735d33659e524ca7b2e4ae44b2df3494f3e">I67586</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/287969970">b/287969970</a>
+      )
+    </li>
+    <li>
+      When an entry is popped followed by a configuration change, the entry's
+      <code translate="no" dir="ltr">ViewModel</code>
+      will now be cleared properly if
+      <code translate="no" dir="ltr">saveState</code>
+      is false. (
+      <a href="https://android-review.googlesource.com/#/q/Idf242239ceeb731c3375ef507a2cc854d85743c7">Idf242</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/298164648">b/298164648</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">NavController</code>
+      could handle the same deep link more than once if the back stack was entirely empty before a configuration change or call to
+      <code translate="no" dir="ltr">setGraph</code>
+      only when the incoming Intent had the
+      <code translate="no" dir="ltr">FLAG_ACTIVITY_NEW_TASK</code>
+      flag set. (
+      <a href="https://android-review.googlesource.com/#/q/I73c7f78a55eb283ac4b2fa7b10f6ea05a8fd8db7">I73c7f</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Updates</strong></p>
+  <ul>
+    <li>
+      Navigation with Fragments now depends on
+      <a href="/jetpack/androidx/releases/fragment#1.6.2">Fragment 1.6.2</a>
+      , fixing an issue where the
+      <code translate="no" dir="ltr">ViewModel</code>
+      instances of nested fragments would not be cleared when calling
+      <code translate="no" dir="ltr">clearBackStack</code>
+      .
+    </li>
+  </ul>
+  <h2 id="version_274_3" data-text="Version 2.7.4" tabindex="-1">Version 2.7.4</h2>

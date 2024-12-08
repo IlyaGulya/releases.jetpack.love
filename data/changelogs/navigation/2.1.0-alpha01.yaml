@@ -1,0 +1,58 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.1.0-alpha01
+releaseDate: 2019-03-19
+#language=html
+changelogHtml: |
+  <h3 id="2.1.0-alpha01" data-text="Version 2.1.0-alpha01" tabindex="-1">Version 2.1.0-alpha01</h3>
+  <p>March 19, 2019</p>
+  <p>
+    This is the first alpha release of Navigation
+    <code translate="no" dir="ltr">2.1.0</code>
+    .
+  </p>
+  <p><strong>Dependency changes</strong></p>
+  <ul>
+    <li>
+      Navigation now depends on
+      <code translate="no" dir="ltr">androidx.core:core:1.0.1</code>
+      and
+      <code translate="no" dir="ltr">androidx.fragment:fragment:1.1.0-alpha05</code>
+      . This release also removes the dependency on
+      <code translate="no" dir="ltr">androidx.legacy:legacy-support-core-utils:1.0.0</code>
+      .
+      <a href="https://issuetracker.google.com/128632612">b/128632612</a>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      A new
+      <code translate="no" dir="ltr">Navigation.createNavigateOnClickListener(NavDirections)</code>
+      method has been added as an alternative to creating a click listener with a resource ID and Bundle.
+      <a href="https://issuetracker.google.com/127631752">b/127631752</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FragmentNavigator.instantiateFragment</code>
+      is now deprecated. The default implementation now uses
+      <code translate="no" dir="ltr">FragmentFactory</code>
+      to instantiate Fragments.
+      <a href="https://issuetracker.google.com/119054429">b/119054429</a>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Navigation no longer sends a null
+      <code translate="no" dir="ltr">Bundle</code>
+      when there are arguments attached to a destination, fixing an issue when using
+      <code translate="no" dir="ltr">android:defaultValue="@null"</code>
+      .
+      <a href="https://issuetracker.google.com/128531879">b/128531879</a>
+    </li>
+    <li>
+      Safe Args now depends on KotlinPoet 1.1.0, fixing an issue with extremely long package names.
+      <a href="https://issuetracker.google.com/123654948">b/123654948</a>
+    </li>
+  </ul>
+  <h2 id="version_200_3" data-text="Version 2.0.0" tabindex="-1">Version 2.0.0</h2>

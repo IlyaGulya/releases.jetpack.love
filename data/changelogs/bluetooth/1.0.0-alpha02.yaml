@@ -1,0 +1,147 @@
+libraryId: bluetooth
+groupId: androidx.bluetooth
+version: 1.0.0-alpha02
+releaseDate: 2023-11-29
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha02" data-text="Version 1.0.0-alpha02" tabindex="-1">Version 1.0.0-alpha02</h3>
+  <p>November 29, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.bluetooth:bluetooth:1.0.0-alpha02</code>
+    and
+    <code translate="no" dir="ltr">androidx.bluetooth:bluetooth-testing:1.0.0-alpha02</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/91bb8c1f81dcb031bda00fcd8e55f1e890b56f06..b5166f9a1e9c047162d1215884c3e2cd41a4a74a/bluetooth">Version 1.0.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Lower
+      <code translate="no" dir="ltr">minSdkVersion</code>
+      to 21
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">GattServerConnectFlow#updateServices</code>
+      becomes a suspend function (
+      <a href="https://android-review.googlesource.com/#/q/I0237d90173df024f4052a781ba41dd72a9a54343">I0237d</a>
+      )
+    </li>
+    <li>
+      Change
+      <code translate="no" dir="ltr">AdvertiseParams.durationMillis</code>
+      to Long (
+      <a href="https://android-review.googlesource.com/#/q/If6771fb2a9de564dd194d62bf100420e4b6a16d0">If6771</a>
+      )
+    </li>
+    <li>
+      Convert
+      <code translate="no" dir="ltr">openGattServer</code>
+      to Flow (
+      <a href="https://android-review.googlesource.com/#/q/Icef5495059e5fd5d7db9aa1eed779b798142d2d8">Icef54</a>
+      )
+    </li>
+    <li>
+      Throw
+      <code translate="no" dir="ltr">ScanException</code>
+      on scan fail and set scanner to
+      <code translate="no" dir="ltr">setLegacy(false)</code>
+      by default (
+      <a href="https://android-review.googlesource.com/#/q/Ib337c25327a8c2a9611352b804a8ae6c71a99656">Ib337c</a>
+      )
+    </li>
+    <li>
+      Throw
+      <code translate="no" dir="ltr">AdvertiseException</code>
+      on advertise fail (
+      <a href="https://android-review.googlesource.com/#/q/I0e691b67dfb11f0e67e6c61845f38b5a2bcfd44c">I0e691</a>
+      )
+    </li>
+    <li>
+      Add general bluetooth exception to catch (
+      <a href="https://android-review.googlesource.com/#/q/I0130d754ada8ec78577936ca65bbd56f97feb69c">I0130d</a>
+      )
+    </li>
+    <li>
+      Convert advertise to Flow and change maximum duration (
+      <a href="https://android-review.googlesource.com/#/q/I32fd8522085028d20735749cd9ca2f18fcae9851">I32fd8</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">serviceData</code>
+      and
+      <code translate="no" dir="ltr">serviceSolicitationUuids</code>
+      to
+      <code translate="no" dir="ltr">ScanResult</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I6d7f0a36e15b168a374ad3ea8d28f18bc6b7cb79">I6d7f0</a>
+      )
+    </li>
+    <li>
+      Change
+      <code translate="no" dir="ltr">durationMillis</code>
+      from Long to Duration (
+      <a href="https://android-review.googlesource.com/#/q/I89d4936165a43600862521673605d2e533bc9677">I89d49</a>
+      )
+    </li>
+    <li>
+      Add rssi, and
+      <code translate="no" dir="ltr">periodicAdvertisingInterval</code>
+      to
+      <code translate="no" dir="ltr">ScanResult</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I60b514a7893ec07bcc0eec2a8706e635c4c51c1f">I60b51</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">serviceSolicitationUuid</code>
+      and
+      <code translate="no" dir="ltr">solicitationUuidMask</code>
+      to
+      <code translate="no" dir="ltr">ScanFilter</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ic220683ef400b7d707424b250ef497194fad450d">Ic2206</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">GattServerSessionScope#subscribedCharacteristics</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I0edabd53e1af3dcd64abd42470887a36de236144">I0edab</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">serviceSolicitationUuids</code>
+      to
+      <code translate="no" dir="ltr">AdvertiseParams</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ic9aa78cad8da049ccfabbe48f468e5e193fbaad0">Ic9aa7</a>
+      )
+    </li>
+    <li>
+      Change
+      <code translate="no" dir="ltr">AdvertiseParams.durationMillis</code>
+      from Int to Long (
+      <a href="https://android-review.googlesource.com/#/q/I6873f3b2c222f02ab0f53c04e66c23a6106d86a5">I6873f</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">GattServerSessionScope#notify</code>
+      does not return but throws an exception if it fails (
+      <a href="https://android-review.googlesource.com/#/q/Ifc26fac2a3b8fbd0aa404fb4e6d5d9fa4c59f9d5">Ifc26f</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Extract scan functionality (
+      <a href="https://android-review.googlesource.com/#/q/I4d43f370b201c942bea0eda1230fef7ff6ef8aca">I4d43f</a>
+      )
+    </li>
+  </ul>

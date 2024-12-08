@@ -1,0 +1,79 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.1.0-alpha02
+releaseDate: 2021-02-24
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha02" data-text="Version 1.1.0-alpha02" tabindex="-1">Version 1.1.0-alpha02</h3>
+  <p>February 24, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-camera2:1.1.0-alpha02</code>
+    ,
+    <code translate="no" dir="ltr">androidx.camera:camera-core:1.1.0-alpha02</code>
+    , and
+    <code translate="no" dir="ltr">androidx.camera:camera-lifecycle:1.1.0-alpha02</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5ae5a49a113d2ec1fd217074bf0df7393533a620..5c90131a69042a6a3e13952e1da9e7ffc571c31d/camera">Version 1.1.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added an API
+      <code translate="no" dir="ltr">ProcessCameraProvider.getAvailableCameraInfos()</code>
+      to directly retrieve information about the available cameras, which are either all of the device's cameras, or those selected by the
+      <code translate="no" dir="ltr">CameraSelector</code>
+      provided in
+      <code translate="no" dir="ltr">CameraXConfig.Builder.setAvailableCamerasLimiter(CameraSelector)</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ieac084685b307ee16a52b938d50e7baf5c8d8fd7">Ieac08</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      CameraX now tries to force open a camera on the initial attempt, this may result in CameraX stealing the camera away from other camera clients when its app has a higher priority. (
+      <a href="https://android-review.googlesource.com/#/q/Iab0692e958c0a39d9da61a43fdd534e01d32be79">Iab069</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175820568">b/175820568</a>
+      )
+    </li>
+    <li>
+      Fixed the Robolectric test failure when setAvailableCamerasLimiter is used in CameraXConfig. (
+      <a href="https://android-review.googlesource.com/#/q/Ice307fb4af419d423f83545d26f279b2ee01f797">Ice307</a>
+      )
+    </li>
+    <li>
+      This change catches the exception when the image queue is maxed out in ImageAnalysis. So instead of crashing, you may notice other use cases being frozen or sluggish. e.g. frozen/sluggish preview. (
+      <a href="https://android-review.googlesource.com/#/q/Ic12dafa0b0feed875a07ea1d8c23c52977b15afa">Ic12da</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175851631">b/175851631</a>
+      )
+    </li>
+    <li>
+      Fixed ExtensionsErrorListener to report errors when only Preview or ImageCapture is bound. (
+      <a href="https://android-review.googlesource.com/#/q/I5ae397bd5d04c635828e1604ac7d36dc2643add7">I5ae39</a>
+      )
+    </li>
+    <li>
+      Fixed ImageCapture performance regression by removing the validation of image saved location before taking a picture. After making this change, if the save destination is invalid, it will take longer to get the failure response because it will try to save the image after the photo is taken. (
+      <a href="https://android-review.googlesource.com/#/q/I1fd4ed93d0984668c634c832010901d604cb0dc6">I1fd4e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177061560">b/177061560</a>
+      )
+    </li>
+    <li>
+      Fixed ImageCapture performance regression with "File" type OutputFileOptions. (
+      <a href="https://android-review.googlesource.com/#/q/I5164a91c586df0a8dd90f30eda0ce43c1cbe5cd7">I5164a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177061560">b/177061560</a>
+      )
+    </li>
+    <li>
+      Documentation updated to recommend against using
+      <code translate="no" dir="ltr">ProcessCameraProvider.configureInstance(...)</code>
+      from library code. (
+      <a href="https://android-review.googlesource.com/#/q/Ib8a9f475f705e0125f001755b19813ab0f133cc8">Ib8a9f</a>
+      )
+    </li>
+  </ul>

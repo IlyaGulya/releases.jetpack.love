@@ -1,0 +1,178 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.7.0
+releaseDate: 2024-09-04
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0" data-text="Version 1.7.0" tabindex="-1">Version 1.7.0</h3>
+  <p>September 4, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.7.0</code>
+    is released. Version 1.7.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d8995e2377dd4baad64b39becb6d480cadd05c86..38ffb9c315c3f894412184bda180c1b58b2a8556/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.6.0</strong></p>
+  <ul>
+    <li>
+      Performance of
+      <code translate="no" dir="ltr">Modifier.clickable</code>
+      ,
+      <code translate="no" dir="ltr">Modifier.focusable</code>
+      ,
+      <code translate="no" dir="ltr">Modifier.indication</code>
+      ,
+      <code translate="no" dir="ltr">Modifier.scrollable</code>
+      and
+      <code translate="no" dir="ltr">Modifier.draggable</code>
+      has been significantly improved. As a part of this effort, the following API changes were made in addition to internal changes
+      <ul>
+        <li>
+          Added a new Indication API,
+          <code translate="no" dir="ltr">IndicationNodeFactory</code>
+          . This leads to more performant Indication implementations compared to the previous (now deprecated)
+          <code translate="no" dir="ltr">rememberUpdatedInstance</code>
+          API. For migration information, see
+          <a href="http://developer.android.com/">developer.android.com</a>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">clickable</code>
+          /
+          <code translate="no" dir="ltr">combinedClickable</code>
+          /
+          <code translate="no" dir="ltr">selectable</code>
+          /
+          <code translate="no" dir="ltr">toggleable</code>
+          now accepts a nullable
+          <code translate="no" dir="ltr">MutableInteractionSource</code>
+          parameter. If null, and the provided Indication is an
+          <code translate="no" dir="ltr">IndicationNodeFactory</code>
+          , the Indication can be lazily created only when needed, which improves performance. If you are not hoisting and using the
+          <code translate="no" dir="ltr">MutableInteractionSource</code>
+          , it is recommended to pass null instead of passing
+          <code translate="no" dir="ltr">remember { MutableInteractionSource() }</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">Indication#rememberUpdatedInstance</code>
+          has been deprecated. It has a high unavoidable performance penalty, and prevents other optimizations. Instead, you should use the new
+          <code translate="no" dir="ltr">IndicationNodeFactory</code>
+          API.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BasicTextField</code>
+      using a
+      <a href="https://developer.android.com/reference/kotlin/androidx/compose/foundation/text/input/TextFieldState"><code translate="no" dir="ltr">TextFieldState</code></a>
+      is now stable and we advise all call-sites to begin migration from
+      <code translate="no" dir="ltr">BasicTextField(value, onValueChange)</code>
+      to
+      <code translate="no" dir="ltr">BasicTextField(TextFieldState)</code>
+      .
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">ClickableText</code>
+      has been deprecated. To add clickable links to your text, use
+      <code translate="no" dir="ltr">BasicText</code>
+      with the new
+      <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/LinkAnnotation"><code translate="no" dir="ltr">LinkAnnotation</code></a>
+      annotation in your
+      <code translate="no" dir="ltr">AnnotatedString</code>
+      .
+      <code translate="no" dir="ltr">LinkAnnotation</code>
+      allows for custom styling based on link state (e.g. focused, hovered).
+    </li>
+    <li>
+      Introducing
+      <code translate="no" dir="ltr">ContextualFlowRow</code>
+      and
+      <code translate="no" dir="ltr">Enhanced FlowRow/Column</code>
+      with
+      <code translate="no" dir="ltr">MaxLines</code>
+      and
+      <code translate="no" dir="ltr">Overflow</code>
+      . We are excited to announce enhancements to the experimental
+      <code translate="no" dir="ltr">FlowRow</code>
+      and
+      <code translate="no" dir="ltr">FlowColumn</code>
+      , now featuring
+      <code translate="no" dir="ltr">maxLines</code>
+      and overflow support, alongside the debut of
+      <code translate="no" dir="ltr">ContextualFlowRow</code>
+      and
+      <code translate="no" dir="ltr">ContextualFlowColumn</code>
+      . This update is designed to provide performance optimal components, where
+      <code translate="no" dir="ltr">ContextualFlow*</code>
+      is perfect for a large number of items making use of a small maxLines config and dynamic +N see more buttons, and
+      <code translate="no" dir="ltr">FlowRow</code>
+      and
+      <code translate="no" dir="ltr">FlowColumn</code>
+      is perfect for a small number of items, less than 100 items. Important: To maintain existing behavior in
+      <code translate="no" dir="ltr">FlowRow</code>
+      or
+      <code translate="no" dir="ltr">FlowColumn</code>
+      where all items are composed regardless of if they fit the cross axis max, set overflow to
+      <code translate="no" dir="ltr">FlowRowOverflow.Visible</code>
+      or
+      <code translate="no" dir="ltr">FlowColumnOverflow.Visible</code>
+      during initialization. Explore
+      <code translate="no" dir="ltr">ContextualFlowRowSample</code>
+      and
+      <code translate="no" dir="ltr">FlowRowSample</code>
+      for examples of these new features in action. (
+      <a href="https://android-review.googlesource.com/#/q/Ib913509969a79ff002eafb0075e6722a7a118531">Ib9135</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/293577082">b/293577082</a>
+      )
+    </li>
+    <li>
+      Item appearance and disappearance animation support was added into
+      <code translate="no" dir="ltr">LazyColumn</code>
+      and
+      <code translate="no" dir="ltr">LazyRow</code>
+      . Previously it was possible to add
+      <code translate="no" dir="ltr">Modifier.animateItemPlacement()</code>
+      modifier in order to support placement (reordering) animations. We deprecated this modifier and introduced a new non-experimental modifier called
+      <code translate="no" dir="ltr">Modifier.animateItem()</code>
+      which allows you to support all three animation types: appearance (fade in), disappearance (fade out) and reordering. (
+      <a href="https://android-review.googlesource.com/#/q/I2d7f7a376cea26c0a36a59a4586d2705ab04cab7">I2d7f7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/150812265">b/150812265</a>
+      )
+    </li>
+    <li>
+      Implemented experimental support for long screenshots in Compose scroll containers using the official Android API (
+      <code translate="no" dir="ltr">ScrollCaptureCallback</code>
+      ).
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NestedScroll</code>
+      sources Drag and Fling are being replaced by
+      <code translate="no" dir="ltr">UserInput</code>
+      and
+      <code translate="no" dir="ltr">SideEffect</code>
+      to accommodate for the extended definition of these sources that now include animations (Side Effect) and Mouse Wheel and Keyboard (
+      <code translate="no" dir="ltr">UserInput</code>
+      ).
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LazyLayout</code>
+      prefetch requests can be marked as urgent now, meaning that we expect this item to be needed in the next frame and want to ignore frame budget to make sure to do more work in advance (
+      <a href="https://android-review.googlesource.com/#/q/Id513f17517aa1b240e91afb3468837b12ed54da8">Id513f</a>
+      )
+    </li>
+    <li>
+      Support stylus handwriting feature on devices after Android U. (
+      <a href="https://android-review.googlesource.com/#/q/I002e4f3218bb909833fcb92b8d1ff9b2153931d7">I002e4</a>
+      )
+    </li>
+    <li>
+      Various APIs have been promoted to stable
+      <ul>
+        <li>Pagers, snapping, window insets</li>
+      </ul>
+    </li>
+  </ul>

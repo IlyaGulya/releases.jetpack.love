@@ -1,0 +1,73 @@
+libraryId: window
+groupId: androidx.window
+version: 1.0.0-alpha02
+releaseDate: 2021-01-27
+#language=html
+changelogHtml: |
+  <h3 id="window-1.0.0-alpha02" data-text="Version 1.0.0-alpha02" tabindex="-1">Version 1.0.0-alpha02</h3>
+  <p>January 27, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.window:window:1.0.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/fca183fb525b93d2002528fbafdb042f2bffdf36..aee18b103203a91ee89df91f0af5df2ecff356d6/window/window">Version 1.0.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li><p>We have deprecated some APIs to help streamline the api and reduce mistakes. Some notable examples are removing the synchronous read operations from WindowManager and deprecating DeviceState. Synchronous read operations can lead to race conditions and have incorrect UI.</p></li>
+    <li><p>We have converted DisplayFeature to an interface that other features will implement going forward. Our first feature is FoldingFeature which is now the representation of a screen fold or a hinge. This also contains the state of the hinge replacing DeviceState.</p></li>
+    <li>
+      <p>
+        WindowMetrics was introduced in Android 11 to provide developers with a simple way to query for metrics about a window, for example its position and size on screen and any system insets. We’ve backported the API in this release so that developers can leverage WindowMetrics and continue to support older Android versions. WindowMetrics can be obtained through the
+        <code translate="no" dir="ltr">WindowManager#getCurrentWindowMetrics()</code>
+        and WindowManager#getMaximumWindowMetrics() APIs.
+      </p>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Deprecate APIs that will be removed in the next alpha (
+      <a href="https://android-review.googlesource.com/#/q/Ib7cc4ad14fea8c34ef8b94aaa9366fc8cb235a46">Ib7cc4</a>
+      )
+    </li>
+    <li>
+      Updates
+      <code translate="no" dir="ltr">ExtensionInterface</code>
+      to accept explicit Activity references. (
+      <a href="https://android-review.googlesource.com/#/q/I07ded6e81dd3d1006adc11c8b66dccd9caa3000d">I07ded</a>
+      )
+    </li>
+    <li>
+      Introduces the WindowMetrics API. (
+      <a href="https://android-review.googlesource.com/#/q/I3ccee32e7f1b9121de6ad63bae71a5b3d9fb1330">I3ccee</a>
+      )
+    </li>
+    <li>
+      Remove synchronous read methods from WindowManager (
+      <a href="https://android-review.googlesource.com/#/q/I699831b8f202b7b7f70a030b105be8724bb52da3">I69983</a>
+      )
+    </li>
+    <li>
+      Make ExtensionWindowBackend package protected. (
+      <a href="https://android-review.googlesource.com/#/q/Ied2085250ffeb8ec253d4b5dd742300eb08835bc">Ied208</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Update
+      <code translate="no" dir="ltr">ExtensionInterface</code>
+      APIs to accept visual contexts. (
+      <a href="https://android-review.googlesource.com/#/q/I8e827eb510c0c36d8877ea589408aab9269db9ea">I8e827</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Merge DeviceState and WindowLayoutInfo so it is easier to access data. (
+      <a href="https://android-review.googlesource.com/#/q/Id34f448e9403aa6462a63b574073a6762365ed6f">Id34f4</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,111 @@
+libraryId: privacysandbox-ui
+groupId: androidx.privacysandbox
+version: 1.0.0-alpha09
+releaseDate: 2024-06-26
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha09" data-text="Version 1.0.0-alpha09" tabindex="-1">Version 1.0.0-alpha09</h3>
+  <p>June 26, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.privacysandbox.ui:ui-client:1.0.0-alpha09</code>
+    ,
+    <code translate="no" dir="ltr">androidx.privacysandbox.ui:ui-core:1.0.0-alpha09</code>
+    , and
+    <code translate="no" dir="ltr">androidx.privacysandbox.ui:ui-provider:1.0.0-alpha09</code>
+    are released. Version 1.0.0-alpha09 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6a69101fd0edc8d02aa316df1f43e0552fd2d7c4..948119be341fa4affc055418e695d8c4c7e5e2e4/privacysandbox/ui">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">AbstractSandboxedUiAdapter</code>
+      and
+      <code translate="no" dir="ltr">AbstractSandboxedUiAdapter.AbstractSession</code>
+      abstract classes that can be used by UI providers to avoid implementing the entire
+      <code translate="no" dir="ltr">SandboxedUiAdapter</code>
+      or
+      <code translate="no" dir="ltr">Session</code>
+      interfaces. It is recommended for UI providers to use these abstract classes.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">registerObserverFactory</code>
+      logic that allows a
+      <code translate="no" dir="ltr">SessionObserverFactory</code>
+      to be attached to a
+      <code translate="no" dir="ltr">SandboxedUiAdapter</code>
+      . When a
+      <code translate="no" dir="ltr">SessionObserverFactory</code>
+      is attached to an adapter, a
+      <code translate="no" dir="ltr">SessionObserver</code>
+      will be created for each new UI session created for that adapter. The created
+      <code translate="no" dir="ltr">SessionObserver</code>
+      will receive an
+      <code translate="no" dir="ltr">onSessionOpened</code>
+      callback when the UI session is opened. When the UI presentation of the
+      <code translate="no" dir="ltr">Session</code>
+      ’s view changes,
+      <code translate="no" dir="ltr">SessionObserver.onUiContainerChanged</code>
+      will be called.
+      <code translate="no" dir="ltr">onUiContainerChanged</code>
+      is throttled and will be called at most every 200ms.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">SandboxedSdkViewUiInfo</code>
+      which can be created from the
+      <code translate="no" dir="ltr">Bundle</code>
+      sent in
+      <code translate="no" dir="ltr">SessionObserver.onUiContainerChanged</code>
+      . This object represents the UI state of the
+      <code translate="no" dir="ltr">SandboxedSdkView</code>
+      that is hosting the UI session. It contains height and width information, a
+      <code translate="no" dir="ltr">Rect</code>
+      representing the geometry of the view that is visible on screen, and an opacity hint that represents the opacity of the view.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add opacity hint to
+      <code translate="no" dir="ltr">SandboxedSdkViewUiInfo</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I093acd0cfe7506466497257f2732257274d1e15f">I093ac</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">SessionObserver.onUiContainerChanged</code>
+      and
+      <code translate="no" dir="ltr">SandboxedSdkViewUiInfo</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie98bcf74e46b6b9cb4f3668f664935dd25620e11">Ie98bc</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">SessionObserver</code>
+      interface and registration logic. (
+      <a href="https://android-review.googlesource.com/#/q/I047dc591b385780fb8c8b914832165b48ca8727d">I047dc</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">AbstractSandboxedUiAdapter</code>
+      and
+      <code translate="no" dir="ltr">AbstractSession</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3617af7cec1902062750eaa6d6e3c9cad57ff87d">I3617a</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      When the UI provider is in the same process as the client application,
+      <code translate="no" dir="ltr">SessionObserver.onUiContainerChanged</code>
+      is not sent when the container scrolls.
+    </li>
+  </ul>

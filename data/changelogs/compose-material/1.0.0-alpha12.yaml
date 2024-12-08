@@ -1,0 +1,338 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 1.0.0-alpha12
+releaseDate: 2021-02-10
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha12" data-text="Version 1.0.0-alpha12" tabindex="-1">Version 1.0.0-alpha12</h3>
+  <p>February 10, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material-*:1.0.0-alpha12</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6950aab50fe6c9f7e9d97cf865161f2d3999eb9e..9ed3262e0dfca1d352bdbf8f8e10253a61ef6218/compose/material">Version 1.0.0-alpha12 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Modifier.pointerInput now requires remember keys to indicate when the pointer input detection coroutine should restart for new dependencies. (
+      <a href="https://android-review.googlesource.com/#/q/I849cd63912b2d4c86ebe0dd24a7d0e2eb7a4e6d1">I849cd</a>
+      )
+    </li>
+    <li>
+      BottomDrawerLayout and ListItem have been marked as @ExperimentalMaterialApi (
+      <a href="https://android-review.googlesource.com/#/q/Id766ec28dfebd958298f71f14d2ffc2f03cd162b">Id766e</a>
+      )
+    </li>
+    <li>
+      PaddingValues.Absolute was added and can be used in APIs accepting PaddingValues. (
+      <a href="https://android-review.googlesource.com/#/q/Ia5f30058d0e5e9549132cdad9b1611a20c975359">Ia5f30</a>
+      )
+    </li>
+    <li>
+      onImeActionPerformed is deprecated. use KeyboardActions instead (
+      <a href="https://android-review.googlesource.com/#/q/If0bbda1241018d4c19b5df3cd1811c38cce4a76d">If0bbd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/179071523">b/179071523</a>
+      )
+    </li>
+    <li>
+      In order to better match naming conventions with ImageBitmap and ImageVector, ImagePainter has been renamed to BitmapPainter to parallel VectorPainter. (
+      <a href="https://android-review.googlesource.com/#/q/Iba3810ae5cfd6f57442154c93eec500f35ba4ad5">Iba381</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/174565889">b/174565889</a>
+      )
+    </li>
+    <li>
+      Animatable.snapTo and Animatable.stop are now suspend functions (
+      <a href="https://android-review.googlesource.com/#/q/If42887504caa0a07a0d89477805b68ca51c9b3b4">If4288</a>
+      )
+    </li>
+    <li>
+      ComponentActivity.setContent has moved to androidx.activity.compose.setContent in the androidx.activity:activity-compose module. (
+      <a href="https://android-review.googlesource.com/#/q/Icf4168e6078b87ce746569a946b2a90274197c72">Icf416</a>
+      )
+    </li>
+    <li>
+      Destructuring and copy() methods have been removed from several classes where they were rarely used. (
+      <a href="https://android-review.googlesource.com/#/q/I267021d3a45314acc9a169f6bbdfbfb4295a448c">I26702</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/178659281">b/178659281</a>
+      )
+    </li>
+    <li>
+      Make halfExpand() and expand() in ModalBottomSheetState internal (
+      <a href="https://android-review.googlesource.com/#/q/Ic914e14324ab13ead315f0d545bf675d1e0c71fa">Ic914e</a>
+      )
+    </li>
+    <li>
+      Changed Indication#createInstance to be @Composable, and changed LocalIndication to contain an Indication, not () -&gt; Indication. (
+      <a href="https://android-review.googlesource.com/#/q/I5eeea2424e4deda6116f0b48b690b628f8d545eb">I5eeea</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/157150564">b/157150564</a>
+      )
+    </li>
+    <li>
+      Moved AlertDialog and DropdownMenu to be Android only for now. Added PopupProperties parameter to DropdownMenu for further configuration of the underlying Popup. (
+      <a href="https://android-review.googlesource.com/#/q/I9c4434bdfcc070bb7f3c6b9be7bd7ccb775660b5">I9c443</a>
+      )
+    </li>
+    <li>
+      loadFontResource is deprecated. Use fontResource instead. imageResource, loadImageResource, vectorResource, and loadVectorResource are deprecated. Use painterResource instead. (
+      <a href="https://android-review.googlesource.com/#/q/I6b8096508b2280ca49c70a432c5497f386dc570e">I6b809</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">toggle</code>
+      and
+      <code translate="no" dir="ltr">toggleModifier</code>
+      parameter from DropdownMenu, and renamed
+      <code translate="no" dir="ltr">dropdownModifier</code>
+      ,
+      <code translate="no" dir="ltr">dropdownOffset</code>
+      and
+      <code translate="no" dir="ltr">dropdownContent</code>
+      to
+      <code translate="no" dir="ltr">modifier</code>
+      ,
+      <code translate="no" dir="ltr">offset</code>
+      and
+      <code translate="no" dir="ltr">content</code>
+      respectively. DropdownMenu now behaves consistently to
+      <code translate="no" dir="ltr">Popup</code>
+      , where the parent layout is used for the position of the menu. In most cases you can move
+      <code translate="no" dir="ltr">toggle</code>
+      to be a sibling of
+      <code translate="no" dir="ltr">DropdownMenu</code>
+      and wrap both in a
+      <code translate="no" dir="ltr">Box</code>
+      . See the updated sample in the documentation for more information on usage of this API. (
+      <a href="https://android-review.googlesource.com/#/q/I884fbf5ca080e3afea00146c5a7a869247b3613e">I884fb</a>
+      )
+    </li>
+    <li>
+      toIntPx() was renamed to roundToPx(). (
+      <a href="https://android-review.googlesource.com/#/q/I9b7e460fb4b6e72ba65cdd8f5d1165c306461773">I9b7e4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173502290">b/173502290</a>
+      )
+    </li>
+    <li>
+      IntBounds was renamed to IntRect and the API was improved. (
+      <a href="https://android-review.googlesource.com/#/q/I1f6ff3831e502856f1550ede9c367bf05c5a51b1">I1f6ff</a>
+      )
+    </li>
+    <li>
+      Added expand and collapse semantics actions. Added expand and halfExpand in ModalBottomSheetState (
+      <a href="https://android-review.googlesource.com/#/q/Ib50644cb5d591f9c3a58b4d35da064341ac7253c">Ib5064</a>
+      )
+    </li>
+    <li>
+      Modifier.dragGestureFilter has been deprecated. Use
+      <code translate="no" dir="ltr">Modifier.pointerInput { detectDragGestures (...)}</code>
+      instead. Alternatively, use Modifier.draggable for one axis drags (
+      <a href="https://android-review.googlesource.com/#/q/I0ba93559f565fc2a277f322e53dce9df9855ea46">I0ba93</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175294473">b/175294473</a>
+      )
+    </li>
+    <li>
+      Renamed Ambients to match the Ambient -&gt; CompositionLocal rename. Ambients used to be named AmbientFoo, now CompositionLocals are named LocalFoo. (
+      <a href="https://android-review.googlesource.com/#/q/I2d55d1c5c38a08b04e72a569d3079db4feca1bf7">I2d55d</a>
+      )
+    </li>
+    <li>
+      Selection was moved to foundation. (
+      <a href="https://android-review.googlesource.com/#/q/I7892b8be5d2f91849f8ecc2e1034e0a8277bb61c">I7892b</a>
+      )
+    </li>
+    <li>
+      Similarly to how we previously removed
+      <code translate="no" dir="ltr">state { 0 }</code>
+      composable and now promote usage like
+      <code translate="no" dir="ltr">remember { mutableStateOf(0) }</code>
+      we are going to remove
+      <code translate="no" dir="ltr">savedInstanceState { 0 }</code>
+      composable. You should use
+      <code translate="no" dir="ltr">rememberSaveable { mutableStateOf(0) }</code>
+      instead and it will save and restore automatically if the type used inside the MutableState can be stored in the Bundle. If previously you were passing a custom saver object now you need to use a new overload of rememberSaveable which has
+      <code translate="no" dir="ltr">stateSaver</code>
+      parameter. The usage will look like this:
+      <code translate="no" dir="ltr">val holder = rememberSaveable(stateSaver = HolderSaver) { mutableStateOf(Holder(0)) }</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ib4c266902d166f119ea1770cccbc78ac25a54ff7">Ib4c26</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177338004">b/177338004</a>
+      )
+    </li>
+    <li>
+      Added ProgressBarRangeInfo.Indeterminate to mark indeterminate progress bars for accessibility (
+      <a href="https://android-review.googlesource.com/#/q/I6fe052ba60861d64f31963507ff11e95f3331d89">I6fe05</a>
+      )
+    </li>
+    <li>
+      <p>@ComposableContract has been deprecated in favor of three more specific annotations.</p>
+
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">@ComposableContract(restartable = false)</code>
+          has become
+          <code translate="no" dir="ltr">@NonRestartableComposable</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">@ComposableContract(readonly = true)</code>
+          has become
+          <code translate="no" dir="ltr">@ReadOnlyComposable</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">@ComposableContract(preventCapture = true)</code>
+          has become
+          <code translate="no" dir="ltr">@DisallowComposableCalls</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">@ComposableContract(tracked = true)</code>
+          has been removed.
+        </li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I60a9db0287dc0e03b38e6cf31a7d435026a2ce0f">I60a9d</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">emptyContent()</code>
+        and
+        <code translate="no" dir="ltr">(@Composable () -&gt; Unit).orEmpty()</code>
+        utilities have been deprecated as they no longer have any positive performance impact or value (
+        <a href="https://android-review.googlesource.com/#/q/I0484d3ef439993d05eea86e53f05997eced590ab">I0484d</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        rememberSavedInstanceState() was renamed to rememberSaveable() and moved to androidx.compose.runtime.saveable package. (
+        <a href="https://android-review.googlesource.com/#/q/I1366e7fef0a5a56a43d6eeb3770967a9bf683380">I1366e</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/177338004">b/177338004</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Saver, listSaver(), mapSaver(), autoSaver was moved from androidx.compose.runtime.savedinstancestate to androidx.compose.runtime.saveable (
+        <a href="https://android-review.googlesource.com/#/q/I77fe618aa5e124891b84973d8b8b12735f9f909e">I77fe6</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Parameters on RounderCornerShape, CutCornerShape and CornerBasedShape were renamed from left/right to start/end in order to support the shape's auto mirroring in the rtl direction. AbsoluteRounderCornerShape and AbsoluteCutCornerShape were introduced for the cases when auto-mirroring is not desired. (
+        <a href="https://android-review.googlesource.com/#/q/I61040b7bba950191361af89ff4c736ef6cb56235">I61040</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/152756983">b/152756983</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Changed Tab's
+        <code translate="no" dir="ltr">text</code>
+        and
+        <code translate="no" dir="ltr">icon</code>
+        parameters, and BottomNavigationItem's
+        <code translate="no" dir="ltr">label</code>
+        parameter to be nullable, to better convey the behavior of the component when these parameters are / are not provided, since it affects the size and layout of the component. If you are currently passing
+        <code translate="no" dir="ltr">emptyContent()</code>
+        to represent no text / icon / label, you should use
+        <code translate="no" dir="ltr">null</code>
+        instead. (
+        <a href="https://android-review.googlesource.com/#/q/I57ed4f72c434440068ab17edfa2b5ef791ddbf2f">I57ed4</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Renamed contentColorFor color parameter to backgroundColor (
+        <a href="https://android-review.googlesource.com/#/q/I5bb67382d0d3d1c37c0ea741a902f4f875cdd1d8">I5bb67</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Deprecated TabDefaults and replaced it with TabRowDefaults. (
+        <a href="https://android-review.googlesource.com/#/q/I0f18943cbdff6ab88239d5ab3189ad1440011de0">I0f189</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Introduced ColorMatrix API used to modify rgb values of source content Refactored ColorFilter API to be an interface and match the implementation of PathEffect. (
+        <a href="https://android-review.googlesource.com/#/q/Ica1e88332eb005e185e3da2ec95aff33440aa51d">Ica1e8</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        AnimatedValue/Float is now deprecated. Please use Animatable instead. (
+        <a href="https://android-review.googlesource.com/#/q/I713457f88b04e50fbc5deb70a5bb7bbcf777e630">I71345</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/177457083">b/177457083</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Add SemanticsProperties.PaneTitle API. (
+        <a href="https://android-review.googlesource.com/#/q/I20d5a27adec172993b792a4cfa7df37280aa0425">I20d5a</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added enabled parameters to Tab and BottomNavigationItem, to prevent them from being clickable. Changed BottomNavigationItem to be RowScope.BottomNavigationItem to better express its layout requirements in its API. (
+        <a href="https://android-review.googlesource.com/#/q/Id683dc9a558c8d0704306a1c7f307985a9dbb12f">Id683d</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        tapGestureFilter, doubleTapGestureFilter, longPressGestureFilter and pressIndicaitonGestureFilter have been deprecated. Use Modifier.clickable or Modifier.pointerInput with detectTapGestures function instead. (
+        <a href="https://android-review.googlesource.com/#/q/I6baf95f881b6fa6890ca1d065d49fef3e27bce83">I6baf9</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/175294473">b/175294473</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Add layoutDirection param to Shape's createOutline. This allows to create layout direction aware shapes. (
+        <a href="https://android-review.googlesource.com/#/q/I57c20c45978b5468556159966bd9836653a2e40d">I57c20</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/152756983">b/152756983</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Removed
+        <code translate="no" dir="ltr">Recomposer.current()</code>
+        . [Abstract]ComposeView now default to lazily created, window-scoped Recomposers driven by the ViewTreeLifecycleOwner for the window. Recomposition and withFrameNanos-based animation ticks are paused while the host Lifecycle is stopped. (
+        <a href="https://android-review.googlesource.com/#/q/I38e11565b2fc776966b6b6984aceafd8a1e6fed1">I38e11</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Icon will now scale up to fit its size, respecting size modifiers applied to it. For example
+      <code translate="no" dir="ltr">Icon(.., modifier = Modifier.size(50.dp)</code>
+      will now draw in a 50x50dp space. (
+      <a href="https://android-review.googlesource.com/#/q/Ib2ba987760dbd038d075e720cf705eef99456f15">Ib2ba9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/178796190">b/178796190</a>
+      )
+    </li>
+  </ul>

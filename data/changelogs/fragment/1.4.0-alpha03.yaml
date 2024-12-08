@@ -1,0 +1,131 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.4.0-alpha03
+releaseDate: 2021-06-16
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha03" data-text="Version 1.4.0-alpha03" tabindex="-1">Version 1.4.0-alpha03</h3>
+  <p>June 16, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.4.0-alpha03</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.4.0-alpha03</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.4.0-alpha03</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/86ff5b4bb956431ec884586ce0aea0127e189ec4..ccf79f53033e665475116a4e78ff124df2a52c4b/fragment">Version 1.4.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      All Fragment StrictMode
+      <a href="https://developer.android.com/reference/androidx/fragment/app/strictmode/Violation"><code translate="no" dir="ltr">Violation</code></a>
+      classes have been updated with more detailed error messages that explain the details of the violation. (
+      <a href="https://issuetracker.google.com/issues/187871638">b/187871638</a>
+      )
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">FragmentTagUsageViolation</code>
+          now contains more detailed error message that container the parent container that the fragment would have been added to. (
+          <a href="https://android-review.googlesource.com/#/q/Ic33a7bfc836a8640b04af915268f5bc9e027bde3">Ic33a7</a>
+          )
+        </li>
+        <li>
+          <code translate="no" dir="ltr">WrongFragmentContainerViolation</code>
+          now has more detailed error message that includes the container that the fragment was being added to. (
+          <a href="https://android-review.googlesource.com/#/q/Ib55f8e4c05e8e2ff6c25916df0749d820ade30d3">Ib55f8</a>
+          )
+        </li>
+        <li>
+          The use case classes for
+          <code translate="no" dir="ltr">TargetFragmentUsageViolation</code>
+          now have more detailed error messages to include the fragment causing the violation and any other contained information. (
+          <a href="https://android-review.googlesource.com/#/q/Icc6aceb7a1fd79894fea1837be43a3090c2af4a6">Icc6ac</a>
+          )
+        </li>
+        <li>
+          The classes extending
+          <code translate="no" dir="ltr">RetainInstanceUsageViolation</code>
+          now have more detailed error messages that include the fragment causing the violation. (
+          <a href="https://android-review.googlesource.com/#/q/I6bd559d35f8b4f9aa340efa3f36cb4aab782bc22">I6bd55</a>
+          )
+        </li>
+        <li>
+          <code translate="no" dir="ltr">FragmentReuseViolation</code>
+          now has more detailed error message that includes the previous id of the fragment. (
+          <a href="https://android-review.googlesource.com/#/q/I28ce254ddb61dc3bf4daddfc8cc7eb6985b8b611">I28ce2</a>
+          )
+        </li>
+        <li>
+          <code translate="no" dir="ltr">SetUserVisibleHintViolation</code>
+          now has more detailed error message that includes what the user visible hint was being set to. (
+          <a href="https://android-review.googlesource.com/#/q/Ib2d5f91e4ad0575278c04de7721c6f3ad63e5f48">Ib2d5f</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      Reverted the restriction on calling
+      <code translate="no" dir="ltr">fitsSystemWindows</code>
+      on a
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      - this no longer crashes your app. (
+      <a href="https://android-review.googlesource.com/#/q/6b8ddd6cc0bc6df558c5c0e009708d4fbae10a77">6b8ddd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/190622202">b/190622202</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      From
+      <a href="#1.3.5">
+        Fragment
+        <code translate="no" dir="ltr">1.3.5</code>
+      </a>
+      : Fixed a regression in shared element transitions introduced in
+      <a href="#1.3.4">
+        Fragment
+        <code translate="no" dir="ltr">1.3.4</code>
+      </a>
+      by
+      <a href="https://android-review.googlesource.com/1679887/">aosp/1679887</a>
+      . Fragments now correctly handle transition groups (either set directly via
+      <code translate="no" dir="ltr">transitionGroup="true"</code>
+      or indirectly via a
+      <code translate="no" dir="ltr">transitionName</code>
+      or
+      <code translate="no" dir="ltr">background</code>
+      ) and shared elements will no longer throw
+      <code translate="no" dir="ltr">IndexOutOfBoundsException</code>
+      s. (
+      <a href="https://android-review.googlesource.com/#/q/I164845639cae1f64cf54e4e89b2a24d7eb649beb">I16484</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/188679569">b/188679569</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/188969304">b/188969304</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">FragmentManager</code>
+      will no longer crash when you attempt to hide a removing fragment. (
+      <a href="https://android-review.googlesource.com/#/q/I573ddcfcd1b9c782b5546dd4643e0e4ed042b277">I573dd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/183634730">b/183634730</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">OnCreateDialogIncorrectCallback</code>
+      lint check will no longer crash when evaluating a top level variable. (
+      <a href="https://android-review.googlesource.com/#/q/0a9efa914d322810f8dc8d9ba06e79d164c8892d">0a9efa</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/189967522">b/189967522</a>
+      )
+    </li>
+  </ul>

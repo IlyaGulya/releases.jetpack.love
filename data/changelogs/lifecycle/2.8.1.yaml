@@ -1,0 +1,41 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.8.1
+releaseDate: 2024-05-29
+#language=html
+changelogHtml: |
+  <h3 id="2.8.1" data-text="Version 2.8.1" tabindex="-1">Version 2.8.1</h3>
+  <p>May 29, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.8.1</code>
+    is released. Version 2.8.1 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7ad6b8bbf8fa3d5a3c97feca6c52a1a2bf98a622..b390c8d82bf426c9fb727016dc2423891ecd1735/lifecycle">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">lifecycle-viewmodel-compose</code>
+      now only has a common dependency on
+      <code translate="no" dir="ltr">compose-runtime</code>
+      , removing its common dependency on
+      <code translate="no" dir="ltr">compose-ui</code>
+      . The Android artifact retains its
+      <code translate="no" dir="ltr">compose-ui</code>
+      for compatibility. (
+      <a href="https://android-review.googlesource.com/3079334">aosp/3079334</a>
+      ,
+      <a href="https://issuetracker.google.com/339562627">b/339562627</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ViewModel</code>
+      ’s
+      <code translate="no" dir="ltr">saveable</code>
+      integration using property delegates now uses the class name as part of the auto-generated key, avoiding conflicts if multiple classes use the same
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      . (
+      <a href="https://android-review.googlesource.com/3063463">aosp/3063463</a>
+      )
+    </li>
+  </ul>

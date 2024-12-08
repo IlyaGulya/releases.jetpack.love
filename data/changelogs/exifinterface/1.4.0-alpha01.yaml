@@ -1,0 +1,105 @@
+libraryId: exifinterface
+groupId: androidx.exifinterface
+version: 1.4.0-alpha01
+releaseDate: 2024-11-13
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha01" data-text="Version 1.4.0-alpha01" tabindex="-1">Version 1.4.0-alpha01</h3>
+  <p>November 13, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.exifinterface:exifinterface:1.4.0-alpha01</code>
+    is released. Version 1.4.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/90d685e3591d448bbd5ebdaab90653d87ae3d91e..6f09cf2ae979e48fdb19485f757a033e4a34bb82/exifinterface/exifinterface">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>Add support for reading XMP data from HEIF images.</li>
+    <li>Add support for reading Exif and XMP from AVIF images.</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Indicate that the
+      <code translate="no" dir="ltr">location</code>
+      param for
+      <code translate="no" dir="ltr">setGpsInfo</code>
+      is
+      <code translate="no" dir="ltr">@Nullable</code>
+      and that passing
+      <code translate="no" dir="ltr">null</code>
+      will result in a No-Op. (
+      <a href="https://android-review.googlesource.com/#/q/If924cd23c58f32cbb112db98cdd3d988105c9429">If924c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/236484611">b/236484611</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Continue parsing after encountering an invalid IFD offset (
+      <a href="https://issuetracker.google.com/264729367">b/264729367</a>
+      ).
+    </li>
+    <li>
+      Handle WebP images which incorrectly contain a JPEG APP1 marker before their Exif data (
+      <a href="https://issuetracker.google.com/281638358">b/281638358</a>
+      ).
+    </li>
+    <li>
+      Ensure XMP changes in JPEGs with a separate XMP segment are stored into the same separate XMP segment by
+      <code translate="no" dir="ltr">saveAttributes()</code>
+      , instead of being written to TIFF/Exif tag 700 which is not supported by the XMP spec and where many tools won't find them.
+    </li>
+    <li>
+      Avoid duplicating XMP data from a separate segment into the TIFF preview directory when saving (
+      <a href="https://issuetracker.google.com/309843390">b/309843390</a>
+      ).
+    </li>
+    <li>
+      Improve precision of double to rational conversions. (
+      <a href="https://issuetracker.google.com/312680558">b/312680558</a>
+      ).
+    </li>
+    <li>
+      Accept rational format (x/y) to
+      <code translate="no" dir="ltr">setAttribute</code>
+      for 'legacy' rational tags which are auto-converted to decimal when returned from
+      <code translate="no" dir="ltr">getAttribute</code>
+      (
+      <a href="https://issuetracker.google.com/312680558">b/312680558</a>
+      ).
+    </li>
+    <li>
+      Ensure XMP data added to a JPEG image which doesn't already contain XMP is written to a separate segment, as specified by the XMP spec.
+      <code translate="no" dir="ltr">ExifInterface</code>
+      is documented to prefer the XMP in the Exif 700 tag in JPEG images (violating the spec), so this behavior is preserved when reading/writing images with existing XMP data.
+    </li>
+    <li>
+      Fix corrupted output when writing WebP images with a height or width greater than 8191px (
+      <a href="https://issuetracker.google.com/342697059">b/342697059</a>
+      ).
+    </li>
+    <li>
+      This library now uses
+      <a href="https://jspecify.dev/">JSpecify nullness annotations</a>
+      , which are type-use. Kotlin developers should use the following compiler arguments to enforce correct usage:
+      <code translate="no" dir="ltr">-Xjspecify-annotations=strict, -Xtype-enhancement-improvements-strict-mode</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I5cd0fe313cfeb326ac1b9348f85113af2d5fd676">I5cd0f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326456246">b/326456246</a>
+      )
+    </li>
+    <li>
+      Removed manual outlining of access to new platform APIs since this happens automatically via API modeling when using R8 with AGP 7.3 or later (e.g. R8 version 3.3) and for all builds when using AGP 8.1 or later (e.g. D8 version 8.1). Clients who are not using AGP are advised to update to D8 version 8.1 or later. See
+      <a href="https://medium.com/androiddevelopers/mitigating-soft-verification-issues-in-r8-and-d8-7e9e06827dfd">this article</a>
+      for more details. (
+      <a href="https://android-review.googlesource.com/#/q/If6b4ccfca0a943b45971a422b58949b13a10bada">If6b4c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/345472586">b/345472586</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_137_3" data-text="Version 1.3.7" tabindex="-1">Version 1.3.7</h2>

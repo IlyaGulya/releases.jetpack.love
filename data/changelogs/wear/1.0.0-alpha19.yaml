@@ -1,0 +1,84 @@
+libraryId: wear
+groupId: androidx.wear
+version: 1.0.0-alpha19
+releaseDate: 2021-08-04
+#language=html
+changelogHtml: |
+  <h3 id="complications-watchface-1.0.0-alpha19" data-text="Version 1.0.0-alpha19" tabindex="-1">Version 1.0.0-alpha19</h3>
+  <p>August 4, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear:wear-*:1.0.0-alpha19</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/97264aa4532db7f7db1ffb3f42f3a9204971dbfc..d725303accfa9be6d5c3d61c7603ed1b9a780cbd/wear">Version 1.0.0-alpha19 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We've added
+      <code translate="no" dir="ltr">ListenableWatchFaceMetadataClient.listenableCreateWatchFaceMetadataClient</code>
+      which provides a
+      <code translate="no" dir="ltr">ListenableFuture</code>
+      wrapper for
+      <code translate="no" dir="ltr">WatchFaceMetadataClient.createWatchFaceMetadataClient</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I5fa37e1f8b22279c5900b837a93b2e20f388a1fa">I5fa37</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">UserStyleOption.getOptionForId</code>
+      now accepts
+      <code translate="no" dir="ltr">UserStyleOption.Id</code>
+      instead of a byte array. (
+      <a href="https://android-review.googlesource.com/#/q/I469bed315164f9b8f3c9dc847d426f3798389468">I469be</a>
+      )
+    </li>
+    <li>
+      Provide constants
+      <code translate="no" dir="ltr">BooleanOption.TRUE</code>
+      and
+      <code translate="no" dir="ltr">BooleanOption.FALSE</code>
+      and disallow instance creation (
+      <a href="https://android-review.googlesource.com/#/q/I46e096d6cc1d80a53e01f814ba337d57de8ba41b">I46e09</a>
+      )
+    </li>
+    <li>
+      Methods in wear-watchface-client that can throw RemoteException have now been annotated accordingly. (
+      <a href="https://android-review.googlesource.com/#/q/Ib8438ef3e1bb63051f3ce7a8bff0da5bb58839fe">Ib8438</a>
+      )
+    </li>
+    <li>
+      For consistency we've renamed
+      <code translate="no" dir="ltr">EditorSession.createOnWatchEditingSession</code>
+      to
+      <code translate="no" dir="ltr">createOnWatchEditorSession</code>
+      , similarly
+      <code translate="no" dir="ltr">createHeadlessEditingSession</code>
+      is now
+      <code translate="no" dir="ltr">createHeadlessEditorSession</code>
+      . Their guava wrappers have also been renamed. (
+      <a href="https://android-review.googlesource.com/#/q/I1526b764a598937eb0bc16dab2b32e35ce279cfc">I1526b</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">EditorSession</code>
+      is now an interface and
+      <code translate="no" dir="ltr">ListenableEditorSession.commitChangesOnClose</code>
+      is now properly delegated. (
+      <a href="https://android-review.googlesource.com/#/q/I7dc3ef8eea4ae8f5f11ccef7086d2909763ad411">I7dc3e</a>
+      )
+    </li>
+    <li>
+      We now reject any user style schema that has settings or options with conflicting IDs (
+      <a href="https://android-review.googlesource.com/#/q/Ic27153688978dca2bd801b4d69af6296a2eb3b2c">Ic2715</a>
+      )
+    </li>
+    <li>
+      We have added an overloaded
+      <code translate="no" dir="ltr">UserStyle.get</code>
+      which accepts
+      <code translate="no" dir="ltr">UserStyleSetting.Id</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2aa0ff7c6075a91436fe9b5a87f935a1356862e2">I2aa0f</a>
+      )
+    </li>
+  </ul>

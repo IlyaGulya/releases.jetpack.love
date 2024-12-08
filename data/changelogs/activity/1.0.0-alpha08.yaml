@@ -1,0 +1,77 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.0.0-alpha08
+releaseDate: 2019-05-07
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha08" data-text="Version 1.0.0-alpha08" tabindex="-1">Version 1.0.0-alpha08</h3>
+  <p>May 7, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.0.0-alpha08</code>
+    and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.0.0-alpha08</code>
+    are released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d0c85eb6e595cfd4383ef345e97e1b8d6acd0a44..baca2b5c73982f26b5630b87ff7dbf25622bbafc/activity">here</a>
+    .
+  </p>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      Breaking change: The previously deprecated
+      <code translate="no" dir="ltr">addOnBackPressedCallback</code>
+      and
+      <code translate="no" dir="ltr">removeOnBackPressedCallback</code>
+      methods on
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      have been removed.
+      <a href="https://android-review.googlesource.com/953857">aosp/953857</a>
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">setEnabled()</code>
+      and
+      <code translate="no" dir="ltr">isEnabled()</code>
+      methods of
+      <code translate="no" dir="ltr">OnBackPressedCallback</code>
+      are now final.
+      <a href="https://issuetracker.google.com/issues/131416833">b/131416833</a>
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">remove()</code>
+      method of
+      <code translate="no" dir="ltr">OnBackPressedCallback</code>
+      is now final.
+      <a href="https://android-review.googlesource.com/952720">aosp/952720</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">OnBackPressedDispatcher</code>
+      now has public constructors, allowing you to construct your own instances for testing, etc.
+      <a href="https://android-review.googlesource.com/953431">aosp/953431</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">onBackPressed()</code>
+      for
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      is now explicitly marked as
+      <code translate="no" dir="ltr">@MainThread</code>
+      <a href="https://android-review.googlesource.com/952721">aosp/952721</a>
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a
+      <code translate="no" dir="ltr">ConcurrentModificationException</code>
+      when calling
+      <code translate="no" dir="ltr">remove()</code>
+      from within the
+      <code translate="no" dir="ltr">handleOnBackPressed()</code>
+      method of a
+      <code translate="no" dir="ltr">OnBackPressedCalback</code>
+      that was added with a
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      .
+      <a href="https://issuetracker.google.com/issues/131765095">b/131765095</a>
+    </li>
+  </ul>

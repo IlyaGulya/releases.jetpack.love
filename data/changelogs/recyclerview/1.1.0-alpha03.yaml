@@ -1,0 +1,52 @@
+libraryId: recyclerview
+groupId: androidx.recyclerview
+version: 1.1.0-alpha03
+releaseDate: 2019-01-30
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha03" data-text="Version 1.1.0-alpha03" tabindex="-1">Version 1.1.0-alpha03</h3>
+  <p>March 13th, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.recyclerview:recyclerview:1.1.0-alpha03</code>
+    is released. The full list of commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/871963fd9c70c32aa57a2587530654ac1c7595bb..333a979ce2f308bf7b78f80e684e1d787fb8c6dd/recyclerview">here</a>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">GridLayoutManager</code>
+      : Opt in, higher resolution
+      <code translate="no" dir="ltr">GridLayoutManager</code>
+      scroll bar dimension estimation (
+      <a href="https://android-review.googlesource.com/c/838836/">aosp/838836</a>
+      ):
+      <ul>
+        <li>
+          Uses span information to estimate scroll bar dimensions for a
+          <code translate="no" dir="ltr">GridLayoutManager</code>
+          .
+        </li>
+        <li>
+          To enable, call
+          <code translate="no" dir="ltr">GridLayoutManager#setUsingSpansToEstimateScrollbarDimensions(boolean)</code>
+          passing in true.
+        </li>
+        <li>
+          See the documentation on
+          <code translate="no" dir="ltr">GridLayoutManager#setUsingSpansToEstimateScrollbarDimensions(boolean)</code>
+          for more information.
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Accessibility: There was a bug where once a ViewHolder was recycled and then rebound, the ItemDelegate associated with the RecyclerView’s
+      <code translate="no" dir="ltr">RecyclerViewAccessibilityDelegate</code>
+      was not being associated with the ViewHolder’s itemView, breaking Accessibility. This is now fixed (
+      <a href="https://android-review.googlesource.com/c/917740">aosp/917740</a>
+      ).
+    </li>
+  </ul>

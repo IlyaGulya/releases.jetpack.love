@@ -1,0 +1,226 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.3.0
+releaseDate: 2021-02-10
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0" data-text="Version 1.3.0" tabindex="-1">Version 1.3.0</h3>
+  <p>February 10, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.3.0</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.3.0</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.3.0</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/fff94654610fc0f34aef14c059a073e6cdd80b10..b4fe1cc9ec5c6d25591e037e4f84316c36d6825a/fragment">Version 1.3.0 contains these commits.</a>
+  </p>
+  <p><strong>Major changes since 1.2.0</strong></p>
+  <ul>
+    <li>
+      <strong>New State Manager</strong>
+      : A significant
+      <a href="https://medium.com/androiddevelopers/fragments-rebuilding-the-internals-61913f8bf48e">rewrite of the internals</a>
+      of
+      <code translate="no" dir="ltr">FragmentManager</code>
+      has fixed numerous issues around the dispatch of lifecycle events, animations and transitions, and how postponed fragments are handled.
+    </li>
+    <li>
+      <p>
+        <strong>Activity Result API Integration</strong>
+        : Added support for the
+        <code translate="no" dir="ltr">ActivityResultRegistry</code>
+        API introduced in
+        <a href="/jetpack/androidx/releases/activity#1.2.0">
+          Activity
+          <code translate="no" dir="ltr">1.2.0</code>
+        </a>
+        to handle
+        <code translate="no" dir="ltr">startActivityForResult()</code>
+        +
+        <code translate="no" dir="ltr">onActivityResult()</code>
+        as well as
+        <code translate="no" dir="ltr">requestPermissions()</code>
+        +
+        <code translate="no" dir="ltr">onRequestPermissionsResult()</code>
+        flows without overriding methods in your Fragment in addition to providing hooks for testing these flows. See the updated
+        <a href="/training/basics/intents/result">Getting a Result from an Activity</a>
+        .
+      </p>
+
+      <ul>
+        <li>
+          This release fixes a number of issues around invalid request codes and the dispatch of permission requests that prevent the Activity Result API from working on previous versions of
+          <code translate="no" dir="ltr">FragmentActivity</code>
+          . You must upgrade to Fragment 1.3.0 to use the Activity Result APIs in a
+          <code translate="no" dir="ltr">FragmentActivity</code>
+          or
+          <code translate="no" dir="ltr">AppCompatActivity</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        <strong>Fragment Result API</strong>
+        : Added support for passing results between two Fragments via new APIs on
+        <code translate="no" dir="ltr">FragmentManager</code>
+        . This works for hierarchy fragments (parent/child), DialogFragments, and fragments in Navigation and ensures that results are only sent to your Fragment while it is at least
+        <code translate="no" dir="ltr">STARTED</code>
+        . The target fragment APIs have been deprecated in favor of these new APIs. See
+        <a href="/guide/fragments/communicate#fragment-result">Get Results using the Fragment Result API</a>
+        .
+      </p>
+    </li>
+    <li>
+      <p>
+        <strong><code translate="no" dir="ltr">FragmentOnAttachListener</code></strong>
+        : The
+        <code translate="no" dir="ltr">onAttachFragment()</code>
+        callback on
+        <code translate="no" dir="ltr">FragmentActivity</code>
+        and
+        <code translate="no" dir="ltr">Fragment</code>
+        have been deprecated. A new
+        <code translate="no" dir="ltr">FragmentOnAttachListener</code>
+        has been added to provide a more flexible alternative, allowing delegation of
+        <code translate="no" dir="ltr">onAttachFragment()</code>
+        to separate, testable listeners and support for adding a listener to FragmentManagers other than your direct child FragmentManager.
+      </p>
+    </li>
+    <li>
+      <p>
+        <strong>
+          <code translate="no" dir="ltr">FragmentScenario</code>
+          Improvements
+        </strong>
+        : The
+        <code translate="no" dir="ltr">FragmentScenario</code>
+        class from the
+        <code translate="no" dir="ltr">fragment-testing</code>
+        artifact has been rewritten in Kotlin and has received a number of improvements:
+      </p>
+
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">FragmentScenario</code>
+          now uses
+          <a href="/reference/androidx/fragment/app/FragmentTransaction#setMaxLifecycle(androidx.fragment.app.Fragment,%20androidx.lifecycle.Lifecycle.State)"><code translate="no" dir="ltr">setMaxLifecycle()</code></a>
+          to implement
+          <code translate="no" dir="ltr">moveToState()</code>
+          , ensuring consistent behavior on all API levels and decoupling the Fragment’s state from the underlying Activity.
+        </li>
+        <li>
+          <code translate="no" dir="ltr">FragmentScenario</code>
+          now supports setting an initial
+          <code translate="no" dir="ltr">Lifecycle.State</code>
+          to support asserting the fragment’s state before moving to each
+          <code translate="no" dir="ltr">Lifecycle.State</code>
+          for the first time.
+        </li>
+        <li>
+          There is now an alternative to the
+          <code translate="no" dir="ltr">FragmentScenario</code>
+          API of
+          <code translate="no" dir="ltr">onFragment</code>
+          in the form of the Kotlin reified extension method
+          <code translate="no" dir="ltr">withFragment</code>
+          that allows you to return a value. Notably, it rethrows exceptions raised in the given block.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        <strong>
+          <code translate="no" dir="ltr">ViewTree</code>
+          Support
+        </strong>
+        :
+        <code translate="no" dir="ltr">Fragment</code>
+        now supports the
+        <code translate="no" dir="ltr">ViewTreeLifecycleOwner.get(View)</code>
+        ,
+        <code translate="no" dir="ltr">ViewTreeViewModelStoreOwner.get(View)</code>
+        , and
+        <code translate="no" dir="ltr">ViewTreeSavedStateRegistryOwner</code>
+        APIs added in
+        <a href="/jetpack/androidx/releases/lifecycle#2.3.0">
+          Lifecycle
+          <code translate="no" dir="ltr">2.3.0</code>
+        </a>
+        and
+        <a href="/jetpack/androidx/releases/savedstate#1.1.0">
+          SavedState
+          <code translate="no" dir="ltr">1.1.0</code>
+        </a>
+        such that it will return the Fragment as the
+        <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+        , and a
+        <code translate="no" dir="ltr">SavedStateRegistryOwner</code>
+        and
+        <code translate="no" dir="ltr">LifecycleOwner</code>
+        tied to the fragment’s
+        <a href="/reference/androidx/fragment/app/Fragment#getViewLifecycleOwner()">view Lifecycle</a>
+        when using a
+        <code translate="no" dir="ltr">View</code>
+        within a
+        <code translate="no" dir="ltr">Fragment</code>
+        .
+      </p>
+    </li>
+    <li>
+      <p>
+        <strong>
+          <code translate="no" dir="ltr">TRANSIT_</code>
+          animation changes
+        </strong>
+        : The fragment default effects,
+        <code translate="no" dir="ltr">TRANSIT_FRAGMENT_OPEN</code>
+        ,
+        <code translate="no" dir="ltr">TRANSIT_FRAGMENT_CLOSE</code>
+        , and
+        <code translate="no" dir="ltr">TRANSIT_FRAGMENT_FADE</code>
+        , now use
+        <a href="/reference/android/animation/Animator"><code translate="no" dir="ltr">Animator</code></a>
+        instead of
+        <a href="/reference/kotlin/android/view/animation/Animation"><code translate="no" dir="ltr">Animation</code></a>
+        . The resources used to build these animators are now private.
+      </p>
+    </li>
+    <li>
+      <p>
+        <strong>
+          <code translate="no" dir="ltr">setRetainInstance()</code>
+          deprecation
+        </strong>
+        : The
+        <code translate="no" dir="ltr">setRetainInstance()</code>
+        method on Fragments has been deprecated. With the introduction of
+        <a href="/topic/libraries/architecture/viewmodel">ViewModels</a>
+        , developers have a specific API for retaining state that can be associated with Activities, Fragments, and Navigation graphs. This allows developers to use a normal, not retained Fragment and keep the specific state they want retained separate, avoiding a common source of leaks while maintaining the useful properties of a single creation and destruction of the retained state (namely, the constructor of the
+        <code translate="no" dir="ltr">ViewModel</code>
+        and the
+        <code translate="no" dir="ltr">onCleared()</code>
+        callback it receives).
+      </p>
+    </li>
+    <li>
+      <p>
+        <strong>ViewPager 1 adapter deprecation</strong>
+        : With the release of
+        <a href="/jetpack/androidx/releases/viewpager2#1.0.0">
+          ViewPager2
+          <code translate="no" dir="ltr">1.0.0</code>
+        </a>
+        , the
+        <code translate="no" dir="ltr">FragmentPagerAdapter</code>
+        and
+        <code translate="no" dir="ltr">FragmentStatePagerAdapter</code>
+        classes for interacting with
+        <code translate="no" dir="ltr">ViewPager</code>
+        have been deprecated. See
+        <a href="/training/animation/vp2-migration">Migrate from ViewPager to ViewPager2</a>
+        .
+      </p>
+    </li>
+  </ul>

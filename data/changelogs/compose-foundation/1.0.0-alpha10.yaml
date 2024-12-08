@@ -1,0 +1,184 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.0.0-alpha10
+releaseDate: 2021-01-13
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha10" data-text="Version 1.0.0-alpha10" tabindex="-1">Version 1.0.0-alpha10</h3>
+  <p>January 13, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation:1.0.0-alpha10</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-layout:1.0.0-alpha10</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/72f02c12e4709ab41ae0fea9a8a668d5267a1df8..6207afb1646d302c5d29c2c67d332b48db87fb27/compose/foundation">Version 1.0.0-alpha10 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      ImeOptions and KeyboardOptions are no more a data class (
+      <a href="https://android-review.googlesource.com/#/q/I3c898ecf1f83f64bc9886a088af4fa2a12adcff7">I3c898</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/168684531">b/168684531</a>
+      )
+    </li>
+    <li>
+      VisualTransformation API Changes
+      <ul>
+        <li>Renamed OffsetMap to OffsetMapping</li>
+        <li>Renamed OffsetMapping.identityOffsetMap to OffsetMapping.Identity</li>
+        <li>PasswordTransformation is no longer data-class</li>
+        <li>Moved OffsetMapping to its own file</li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I0bdf3e90ac4a1d8e6e2a3c5762f51016561f2da8">I0bdf3</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      EditOperations API Changes
+      <ul>
+        <li>Renamed EditOperation as EditCommand</li>
+        <li>Added Command suffix for EditOperation concrete implementations</li>
+        <li>EditCommand's are no longer data classes</li>
+        <li>Renamed EditOperation.process function to applyTo</li>
+        <li>Renamed InputEventListener to InputEventCallback</li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I0a366ac29c7a373efc36eb544bb759eba7f79f3d">I0a366</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Modified Velocity to have component parts and mathematical operations. (
+      <a href="https://android-review.googlesource.com/#/q/Ib0447d694d7c5dc82fcef7448faeb0cdda87fced">Ib0447</a>
+      )
+    </li>
+    <li>
+      Renamed @ExperimentalTesting to @ExperimentalTestApi to be consistent with similar experimental api annotations (
+      <a href="https://android-review.googlesource.com/#/q/Ia4502a82d5b66328b6e3e3cd322614939816901e">Ia4502</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171464963">b/171464963</a>
+      )
+    </li>
+    <li>
+      Added experimental stickyHeader method for LazyColumn/LazyRow (
+      <a href="https://android-review.googlesource.com/#/q/I0a81d453bc0d66501a183813af58aef34cfecaf3">I0a81d</a>
+      )
+    </li>
+    <li>
+      Ranamed Color.useOrElse() to Color.takeOrElse() (
+      <a href="https://android-review.googlesource.com/#/q/Ifdcf503101fa33b1eaf729a33ac14d0dc03f66ff">Ifdcf5</a>
+      )
+    </li>
+    <li>
+      Deprecated TestUiDispatcher. Use Dispatchers.Main instead (
+      <a href="https://android-review.googlesource.com/#/q/Ic171f9e9da0d7c8d3688754e0f5eed482a668560">Ic171f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175385255">b/175385255</a>
+      )
+    </li>
+    <li>
+      Add Toggle to foundation Strings.kt (
+      <a href="https://android-review.googlesource.com/#/q/I4a5b74e3ed9bc3b1acd09af221331ef6ab51b9fe">I4a5b7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172366489">b/172366489</a>
+      )
+    </li>
+    <li>
+      Moved nativeClass to ui module and made it internal. Updated usages of nativeClass in equals implementations to use 'is MyClass' instead. (
+      <a href="https://android-review.googlesource.com/#/q/I4f7340266d36552665f0a059ab34e9b886926f0b">I4f734</a>
+      )
+    </li>
+    <li>
+      FlowRow and FlowColumn were deprecated. Please use a custom layout instead. (
+      <a href="https://android-review.googlesource.com/#/q/I0902712b97eed1baecddf605bbac0246938c812d">I09027</a>
+      )
+    </li>
+    <li>
+      Modifier.focus() and Modifier.focusRequester() are deprecated. Use Modifier.focusModifier() and Modifier.focusReference() instead. (
+      <a href="https://android-review.googlesource.com/#/q/I75a483954b69de794c5d7be9efc236b6d6b8fcad">I75a48</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175160751">b/175160751</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175160532">b/175160532</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175077829">b/175077829</a>
+      )
+    </li>
+    <li>
+      Introduced SelectionRegistrar.notifySelectableChange to notify Selectable updates to SelectionManager. (
+      <a href="https://android-review.googlesource.com/#/q/I6ff3055300ca7316ad644a4bcf7872d0d48878b8">I6ff30</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173215242">b/173215242</a>
+      )
+    </li>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">fun Dp.isFinite()</code>
+      to a
+      <code translate="no" dir="ltr">val Dp.isFinite</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I50e0035e772c40d61500f56453cd02bb0d9dee70">I50e00</a>
+      )
+    </li>
+    <li>
+      Constraints#satisfiedBy was renamed to isSatisfiedBy. (
+      <a href="https://android-review.googlesource.com/#/q/I9cf5c5c15c90adaf95d91eef3da4d695733268e9">I9cf5c</a>
+      )
+    </li>
+    <li>
+      Added isSpecified, isUnspecified, and useOrElse for inline classes with an Unspecified constant. (
+      <a href="https://android-review.googlesource.com/#/q/I93f7b4f1b6c3ef08a3fc6d89fa397a122ef41348">I93f7b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/174310811">b/174310811</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      New coroutine-based API
+      <code translate="no" dir="ltr">Animatable</code>
+      that ensures mutual exclusiveness among its animations. New DecayAnimationSpec to support multi-dimensional decay animation (
+      <a href="https://android-review.googlesource.com/#/q/I820f29e24eaa512515c776db971444290dea97e9">I820f2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/168014930">b/168014930</a>
+      )
+    </li>
+    <li>
+      Added support for disabled and read-only text fields (
+      <a href="https://android-review.googlesource.com/#/q/I352791811a7b75189013e1ed73c9834cfa5ce961">I35279</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171040474">b/171040474</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/166478534">b/166478534</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">animate()</code>
+      is now replaced with
+      <code translate="no" dir="ltr">animateAsState()</code>
+      , which returns a
+      <code translate="no" dir="ltr">State&lt;T&gt;</code>
+      instead of
+      <code translate="no" dir="ltr">T</code>
+      . This allows better performance, as the invalidation scope can be narrowed down to where the State value is read. (
+      <a href="https://android-review.googlesource.com/#/q/Ib179e3f5f4bf3b72f7445fc22e73c46af7cf74de">Ib179e</a>
+      )
+    </li>
+    <li>
+      Add Semantics role API and add Role as a parameter to clickable, selectable and toggleable SemanticsModifier. Changed Modifier.progressSemantics so that Slider can also use it. (
+      <a href="https://android-review.googlesource.com/#/q/I216cd5b9118581e569c48a095f009c841ed4418b">I216cd</a>
+      )
+    </li>
+    <li>
+      The native keyEvent can now be accessed through keyEvent.nativeKeyEvent (
+      <a href="https://android-review.googlesource.com/#/q/I87c57d68b76441fe92d2b91f58385832fc40ec8d">I87c57</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173086397">b/173086397</a>
+      )
+    </li>
+  </ul>

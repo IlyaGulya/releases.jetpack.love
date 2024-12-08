@@ -1,0 +1,109 @@
+libraryId: wear
+groupId: androidx.wear
+version: 1.0.0-alpha07
+releaseDate: 2021-02-10
+#language=html
+changelogHtml: |
+  <h3 id="complications-watchface-1.0.0-alpha07" data-text="Version 1.0.0-alpha07" tabindex="-1">Version 1.0.0-alpha07</h3>
+  <p>February 10, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear:wear-*:1.0.0-alpha07</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/aee18b103203a91ee89df91f0af5df2ecff356d6..602cf9bff5e74e4355760aa47d3fc73a2e6d779b/wear">Version 1.0.0-alpha07 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>WatchFaceService.createWatchFace is now a suspend function which means the watchface no longer has to block the ui thread while waiting for IO. Similarly wear-watchface-editor and wear-complications-data</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Remove PhotoImage class and use Icon directly. (
+      <a href="https://android-review.googlesource.com/#/q/I8a70b11af7fbee3a535e32a083749423d2f221da">I8a70b</a>
+      )
+    </li>
+    <li>
+      Expose the validTimeRange of ComplicationData. (
+      <a href="https://android-review.googlesource.com/#/q/I91366d280466c1139b02cae4ed53b32a53ca5446">I91366</a>
+      )
+    </li>
+    <li>
+      Make image-like attributes more explicit. (
+      <a href="https://android-review.googlesource.com/#/q/I81700dba61c3823861d1cca65fa2de69c6b475fd">I81700</a>
+      )
+    </li>
+    <li>
+      wear-watchface-editor and wear-complications-data have been refactored to use suspend functions instead of coroutines. Rx java &amp; Future compat wrappers to follow. (
+      <a href="https://android-review.googlesource.com/#/q/If3c5ffa64e04406c4ebeadbffa8f5bc2a42aaaf2">If3c5f</a>
+      )
+    </li>
+    <li>
+      ProviderInfoRetriever now now throws PreviewNotAvailableException if requestPreviewComplicationData can't return preview data due to connection issues or lack of API support. (
+      <a href="https://android-review.googlesource.com/#/q/I4964df460dce91563e075241cb09843297219463">I4964d</a>
+      )
+    </li>
+    <li>
+      WatchFaceControlService::createWatchFaceControlClient is now a suspended fuction and getOrCreateWallpaperServiceBackedInteractiveWatchFaceWcsClient is now called getOrCreateWallpaperServiceBackedInteractiveWatchFaceWcsClientAsync returning
+      <code translate="no" dir="ltr">Deferred&lt;InteractiveWatchFaceWcsClient&gt;</code>
+      . RX java and Future compat wrappers to follow. (
+      <a href="https://android-review.googlesource.com/#/q/I5d4613786239ad2a15b16eed86fdee56029a0da6">I5d461</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">CATEGORY_PROVIDER_CONFIG_ACTION</code>
+      to
+      <code translate="no" dir="ltr">CATEGORY_PROVIDER_CONFIG</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7c0689956ef6533ed3ac16edcc0487038cc96a55">I7c068</a>
+      )
+    </li>
+    <li>
+      Please note createOnWatchEditingSession is now a suspended function because the watchface sometimes isn't available until shortly after the editor activity has started. (
+      <a href="https://android-review.googlesource.com/#/q/Ida9aa6ee3801b9ff79f64966340fdf485f1af389">Ida9aa</a>
+      )
+    </li>
+    <li>
+      WatchFaceService.createWatchFace is now a suspend function which allows for async initialization, previously you would have had to block the main thread. (
+      <a href="https://android-review.googlesource.com/#/q/If076aca5c94aaf20d8feae835c2833954368c27c">If076a</a>
+      )
+    </li>
+    <li>
+      UserStyle now has an array operator and we've added casting helpers to UserStyle.Option. (
+      <a href="https://android-review.googlesource.com/#/q/I35036a0d62b14cda9e7c12fb55a256ed279af432">I35036</a>
+      )
+    </li>
+    <li>
+      We've fixed a marshalling bug with UserStyle wireformats changing some of the unstable hidden API. (
+      <a href="https://android-review.googlesource.com/#/q/I8be0900af78624868d3d7fbaeac0e7752d5beda1">I8be09</a>
+      )
+    </li>
+    <li>
+      We've added CustomValueUserStyleSetting which lets you store a single application specific string within a UserStyle. The default watch face editors will ignore this value. (
+      <a href="https://android-review.googlesource.com/#/q/Ic04d2d56b0337d87e53926ad58065ca68aaa174f">Ic04d2</a>
+      )
+    </li>
+    <li>
+      InstanceID is not passed in the intent extras for R and older versions of Android WearOS which we can't upgrade. To support this we now allow InstancID to be null. (
+      <a href="https://android-review.googlesource.com/#/q/Id8b787fcdbbef1c26d79c4ea772786fd40eb073e">Id8b78</a>
+      )
+    </li>
+    <li>
+      EditorRequest now includes the editor ComponentName which is set as the component in WatchFaceEditorContract.createIntent (
+      <a href="https://android-review.googlesource.com/#/q/I3cd0643327544771cc3b4278cc153736d4e2fb83">I3cd06</a>
+      )
+    </li>
+    <li>
+      The watchface EditorResult now includes preview ComplicationData to allow the caller to take a screenshot of the watchface after editing. (
+      <a href="https://android-review.googlesource.com/#/q/I2c561066ca91aa08c3450beaf88f18c5e9580fc6">I2c561</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Added toString() overrides to UserStyle, UserStyleSetting and UserStyleSchema which makes working with these classes a bit nicer. (
+      <a href="https://android-review.googlesource.com/#/q/I9f5ec3339dbf6793c2c9c67f96467cc6cc227a04">I9f5ec</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,74 @@
+libraryId: car-app
+groupId: androidx.car
+version: 1.7.0-beta03
+releaseDate: 2024-11-13
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-beta03" data-text="Version 1.7.0-beta03" tabindex="-1">Version 1.7.0-beta03</h3>
+  <p>November 13, 2024</p>
+  <p>
+    Fixed a security vulnerability and other general bug fixes. If you are using a lower version,
+    <strong>please update to use this version</strong>
+    .
+  </p>
+  <p>
+    <code translate="no" dir="ltr">androidx.car.app:app-*:1.7.0-beta03</code>
+    is released. Version 1.7.0-beta03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/0431b84980e97d6bafdfda7c9038bc4d9529564f..6c15cce3eea03b52bcfe2b5921f930096a8929e5/car/app">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Update CAL Serialization / De-serialization code to only handle objects which have the annotation
+      <code translate="no" dir="ltr">@CarProtocol</code>
+      declared on them. (
+      <a href="https://android-review.googlesource.com/#/q/Ic730e341d18c7ec2525ad8d5a4f1123380c251d1">Ic730e</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">CarAppExtender</code>
+      can now be used to extend the framework
+      <code translate="no" dir="ltr">Notification.Builder</code>
+      instead of only
+      <code translate="no" dir="ltr">NotificationCompat.Builder</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id3ad735f9de699c6a6d69bdd2349f4920570c4b4">Id3ad7</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">KEY_EXCLUDE_MEDIA_ITEM_FROM_MIXED_APP_LIST</code>
+      extra. (
+      <a href="https://android-review.googlesource.com/#/q/I201f987a71848357e031af899f145918b56a1c1a">I201f9</a>
+      )
+    </li>
+    <li>
+      Deprecate the empty Builder constructor on
+      <code translate="no" dir="ltr">ConversationItem</code>
+      and replace it with a constructor that takes required parameters. Also adds a check to guard against null messages. (
+      <a href="https://android-review.googlesource.com/#/q/Ic8221e2ad26bf3165cfa985347d7a63bb20fb4b0">Ic8221</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Ensure
+      <code translate="no" dir="ltr">PlaceList</code>
+      map uses string (Text-only) Header title. (
+      <a href="https://android-review.googlesource.com/#/q/Ic992f3574d5e4be1c8c2319472b1d667c3c50ad4">Ic992f</a>
+      )
+    </li>
+    <li>
+      This library now uses
+      <a href="https://jspecify.dev/">JSpecify nullness annotations</a>
+      , which are type-use. Kotlin developers should use the following compiler arguments to enforce correct usage:
+      <code translate="no" dir="ltr">-Xjspecify-annotations=strict, -Xtype-enhancement-improvements-strict-mode</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib5367ca20eb37c80c0f2d51c8682e81eda1f9a2a">Ib5367</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326456246">b/326456246</a>
+      )
+    </li>
+  </ul>

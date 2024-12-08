@@ -1,0 +1,110 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.1.0-alpha03
+releaseDate: 2021-09-01
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha03" data-text="Version 1.1.0-alpha03" tabindex="-1">Version 1.1.0-alpha03</h3>
+  <p>September 1, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.1.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1e0ab9e58c3c2ebe8152b7507938aef7e9c1acdc..bf63d633b292368932b7ea1994e4116f95a94b5c/compose/ui">Version 1.1.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Updated Compose
+      <code translate="no" dir="ltr">1.1.0-alpha03</code>
+      to depend on Kotlin
+      <code translate="no" dir="ltr">1.5.30</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I74545c317093029a2a46707b9024ad3385854ecb">I74545</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Modifier.inspectable</code>
+      for wrapping other modifiers. (
+      <a href="https://android-review.googlesource.com/#/q/I1909b068b72041b8363c04c7ec619fcf26702da4">I1909b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/191017532">b/191017532</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">BlurredEdgeTreatment</code>
+      API to simplify blur use cases into more commonly used combinations of clip flags and TileModes. Most use cases involve either letting blurred content render outside the original content bounds and blurring regions outside these bounds with transparent black, or clipping content to content bounds sampling the closest edge for blur kernels that extend beyond content bounds. (
+      <a href="https://android-review.googlesource.com/#/q/I6b4b7966920855374275ae7ea950b310fa28efd0">I6b4b7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/166927547">b/166927547</a>
+      )
+    </li>
+    <li>
+      Added support for RenderEffect in compose desktop. Introduced OffsetEffect as well as the blur modifier as a simple way to introduce blur visual effects to a portion of the composition hierarchy. (
+      <a href="https://android-review.googlesource.com/#/q/I0f6aa293db2bf34f5ed2aa7499a97332dacf73fc">I0f6aa</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/166927547">b/166927547</a>
+      )
+    </li>
+    <li>
+      Introduced RenderEffect API that can be optionally configured on a
+      <code translate="no" dir="ltr">Modifier.graphicsLayer</code>
+      to alter the contents of the layer itself. This can be used to blur contents of a composable and child composables within a composition hierarchy. (
+      <a href="https://android-review.googlesource.com/#/q/I47c4d5ecc801f35e632d2062e03c756f564a2db5">I47c4d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/166927547">b/166927547</a>
+      )
+    </li>
+    <li>
+      AwaitPointerEventScope now has withTimeout() and withTimeoutOrNull() (
+      <a href="https://android-review.googlesource.com/#/q/I507f0e696311ac0504126681c376f73beaa021fb">I507f0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/179239764">b/179239764</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/182397793">b/182397793</a>
+      )
+    </li>
+    <li>
+      Added minimum touch target size to ViewConfiguration for use in semantics and pointer input to ensure accessibility. (
+      <a href="https://android-review.googlesource.com/#/q/Ie861ca1fcdbfcc9455352fc3a459d5734d5d57cc">Ie861c</a>
+      )
+    </li>
+    <li>
+      Add TileMode.Decal support which is useful in defining edge behavior for blur based RenderEffects. (
+      <a href="https://android-review.googlesource.com/#/q/I7e8ed0c4eb2490ef3cd0032b5952d0962f489354">I7e8ed</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/166927547">b/166927547</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">performScrollToIndex</code>
+      ,
+      <code translate="no" dir="ltr">performScrollToKey</code>
+      ,
+      <code translate="no" dir="ltr">hasScrollToIndexAction</code>
+      and
+      <code translate="no" dir="ltr">hasScrollToKeyAction</code>
+      are now stable API (
+      <a href="https://android-review.googlesource.com/#/q/I142aefdd8455195d30a6b029b76255f1f737939f">I142ae</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/178483889">b/178483889</a>
+      )
+    </li>
+    <li>
+      Added test method to get the clipped bounds. (
+      <a href="https://android-review.googlesource.com/#/q/I6b28e437d6893a63be65c8a451a84bcb21bce906">I6b28e</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Removed isBounded method from BlurredEdgeTreatment in favor of explicitly checking if the shape parameter is null. (
+      <a href="https://android-review.googlesource.com/#/q/I85d687c2591770875dbfcc0fb893a8a377efefc4">I85d68</a>
+      )
+    </li>
+  </ul>

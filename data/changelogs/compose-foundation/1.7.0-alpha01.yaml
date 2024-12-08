@@ -1,0 +1,140 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.7.0-alpha01
+releaseDate: 2024-01-24
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha01" data-text="Version 1.7.0-alpha01" tabindex="-1">Version 1.7.0-alpha01</h3>
+  <p>January 24, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.7.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/2b3fea6e026942389e9db59a4d68f2bb32c94e8f/compose/foundation">Version 1.7.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">Indication API</code>
+      ,
+      <code translate="no" dir="ltr">IndicationNodeFactory</code>
+      . This leads to more performant
+      <code translate="no" dir="ltr">Indication</code>
+      implementations compared to the previous (now deprecated)
+      <code translate="no" dir="ltr">rememberUpdatedInstance</code>
+      API. For migration information, see
+      <a href="http://developer.android.com">developer.android.com</a>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">clickable / combinedClickable / selectable / toggleable</code>
+      now accepts a nullable
+      <code translate="no" dir="ltr">MutableInteractionSource</code>
+      parameter. If null, and the provided
+      <code translate="no" dir="ltr">Indication</code>
+      is an
+      <code translate="no" dir="ltr">IndicationNodeFactory</code>
+      , the
+      <code translate="no" dir="ltr">Indication</code>
+      can be lazily created only when needed, which improves performance. If you are not hoisting and using the
+      <code translate="no" dir="ltr">MutableInteractionSource</code>
+      , it is recommended to pass null.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">DecayAnimation</code>
+      in
+      <code translate="no" dir="ltr">AnchoredDraggable</code>
+      , this change adds a
+      <code translate="no" dir="ltr">decayAnimationSpec</code>
+      parameter to
+      <code translate="no" dir="ltr">AnchoredDraggable</code>
+      allowing to use decay animation when settling to one of the anchors. The change also includes renaming the existing
+      <code translate="no" dir="ltr">animationSpec</code>
+      to
+      <code translate="no" dir="ltr">snapAnimationSpec</code>
+      to help understanding the use case of each spec.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BasicTextField2</code>
+      is available for experimental use. It should be roughly at feature parity with
+      <code translate="no" dir="ltr">BasicTextField</code>
+      , and behavior should be production-ready. However, the API remains experimental for now. Before stabilizing, it will be renamed to
+      <code translate="no" dir="ltr">BasicTextField</code>
+      and moved into the same package.
+    </li>
+    <li>
+      Introduced the first draft of the
+      <code translate="no" dir="ltr">OutputTransformation</code>
+      API for
+      <code translate="no" dir="ltr">BasicTextField2</code>
+      . This API replaces most of the use cases of
+      <code translate="no" dir="ltr">VisualTransformation</code>
+      in the old
+      <code translate="no" dir="ltr">BasicTextField</code>
+      . However it is not complete yet, and some things won't work correctly, but we'd appreciate any feedback on the API usability for your use cases. (
+      <a href="https://r.android.com/2708848">aosp/2708848</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">LinkAnnotation</code>
+      that allows to add links and clickables into text. Links feature is not complete yet and more API changes are coming.
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">receiveContent</code>
+      modifier that provides developers with a way to
+      <a href="https://developer.android.com/develop/ui/views/receive-rich-content">receive rich content</a>
+      in Jetpack Compose.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">receiveContent</code>
+      integrates with
+      <code translate="no" dir="ltr">BasicTextField2</code>
+      to accept rich content provided by the software keyboard, or via paste from Clipboard.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">KeyboardOptions.shouldShowKeyboardOnFocus</code>
+      allows you to disable the default behavior of
+      <code translate="no" dir="ltr">BasicTextField</code>
+      of requesting a software keyboard on focus.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TextInputService</code>
+      and
+      <code translate="no" dir="ltr">LocalTextInputService</code>
+      are now deprecated. Use
+      <code translate="no" dir="ltr">PlatformTextInputModifierNode</code>
+      to integrate directly with platform IME APIs instead. (
+      <a href="https://r.android.com/2862698">aosp/2862698</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Indication#rememberUpdatedInstance</code>
+      has been deprecated. It has a high unavoidable performance penalty, and prevents other optimizations. Instead, you should use the new
+      <code translate="no" dir="ltr">IndicationNodeFactory</code>
+      API.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">BasicTextField</code>
+      will now pre-validate a small selection of offset mappings when
+      <code translate="no" dir="ltr">VisualTransformation</code>
+      is passed. This helps catch common coding errors that lead to unrecoverable exceptions in later measure or draw passes. By throwing during composition, it is more likely developers will see these errors during development helping avoid production crashes. (
+      <a href="https://android.googlesource.com/c/platform/frameworks/support/+/290461">I0fd42</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">VisualTransformation</code>
+      will not throw if you return an invalid index for an invalid index (
+      <a href="http://b/316401857">b/316401857</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_16_2" data-text="Version 1.6" tabindex="-1">Version 1.6</h2>

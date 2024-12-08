@@ -1,0 +1,122 @@
+libraryId: appcompat
+groupId: androidx.appcompat
+version: 1.5.0-alpha01
+releaseDate: 2022-04-06
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha01" data-text="Version 1.5.0-alpha01" tabindex="-1">Version 1.5.0-alpha01</h3>
+  <p>April 6, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.appcompat:appcompat:1.5.0-alpha01</code>
+    and
+    <code translate="no" dir="ltr">androidx.appcompat:appcompat-resources:1.5.0-alpha01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5ee4b677c2e41c7da3fb4de56f3a4457b8ff1145..7ca43e00a517eaeeedc0a21f482b17f06e3d2181/appcompat">Version 1.5.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added a new API to expose switch thumb's position to subclasses (
+      <a href="https://android-review.googlesource.com/#/q/I9bfb4d40249f5f73122417b40669dc1b6a3d4cc2">I9bfb4</a>
+      )
+    </li>
+    <li>
+      Updated nullability to match Tiramisu DP2 (
+      <a href="https://android-review.googlesource.com/#/q/I0cbb7f22651e725a4bb36d20388a949a72cc5903">I0cbb7</a>
+      )
+    </li>
+    <li>
+      Backported compound drawable tinting to TextView-derived widgets (
+      <a href="https://android-review.googlesource.com/#/q/Idf98ced324a724a5cb5b9d5a2f397a3b82fad900">Idf98c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/165822337">b/165822337</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AppCompatDialog</code>
+      now extends
+      <code translate="no" dir="ltr">ComponentDialog</code>
+      for compatibility with
+      <code translate="no" dir="ltr">OnBackPressedDispatcher</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Id9b9103a07564ea6d8ebbd4c0285a41ffae0b6d1">Id9b91</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/217620781">b/217620781</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SearchView.onQueryRefine()</code>
+      is now protected visibility to allow overrides (
+      <a href="https://android-review.googlesource.com/#/q/I6cce0f178402b8952f2510fb2369d5e845bdf9a5">I6cce0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/212882845">b/212882845</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      AppCompat
+      <code translate="no" dir="ltr">Toolbar</code>
+      now calls
+      <code translate="no" dir="ltr">MenuHostHelper</code>
+      's
+      <code translate="no" dir="ltr">onPrepareMenu()</code>
+      API. (
+      <a href="https://android-review.googlesource.com/#/q/I9b9b57a4ffcfb94bc24a881705ec5ea4d42736da">I9b9b5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/227376894">b/227376894</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AppCompatEditText</code>
+      ,
+      <code translate="no" dir="ltr">AppCompatAutoCompleteEditText</code>
+      ,
+      <code translate="no" dir="ltr">AppCompatMultiAutoCompleteEditText</code>
+      will no longer reset clickable or longClickable in the constructor when set in XML (
+      <a href="https://android-review.googlesource.com/#/q/Ic5066da9059eab40e3c2bff7c16edc5037430c12">Ic5066</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/221094907">b/221094907</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AppCompatEditText</code>
+      ,
+      <code translate="no" dir="ltr">AppCompatAutoCompleteTextView</code>
+      , and
+      <code translate="no" dir="ltr">AppCompatMultiAutoCompleteTextView</code>
+      will not call overridden
+      <code translate="no" dir="ltr">setKeyListener</code>
+      during the constructor (
+      <a href="https://android-review.googlesource.com/#/q/I5c13aa13569e9a916a4af097153da40cbcf27366">I5c13a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/208480173">b/208480173</a>
+      )
+    </li>
+    <li>
+      Appcompat will not wrap instances of
+      <code translate="no" dir="ltr">NumberKeyListener</code>
+      passed to
+      <code translate="no" dir="ltr">setKeyListener</code>
+      , allowing
+      <code translate="no" dir="ltr">TextView</code>
+      to correctly configure the locale on
+      <code translate="no" dir="ltr">NumberKeyListeners</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ibf113081112d05c75937eec5bc87904ebf450b26">Ibf113</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/207119921">b/207119921</a>
+      )
+    </li>
+    <li>
+      Fixed issue with all
+      <code translate="no" dir="ltr">NumberKeyListener</code>
+      subclasses introduced in AppCompat 1.4.0 that allowed unexpected characters such as punctuation to be input (
+      <a href="https://android-review.googlesource.com/#/q/Iede7af5e0599d29fd4cee78a798d5bcb07e1ab97">Iede7a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/207119921">b/207119921</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_142_3" data-text="Version 1.4.2" tabindex="-1">Version 1.4.2</h2>

@@ -1,0 +1,100 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.4.0-alpha02
+releaseDate: 2021-06-16
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0-alpha02" data-text="Version 2.4.0-alpha02" tabindex="-1">Version 2.4.0-alpha02</h3>
+  <p>June 16, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.4.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5c42896eb6591b09e3952030fb7ea8d9b8c42713..ccf79f53033e665475116a4e78ff124df2a52c4b/lifecycle">Version 2.4.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">RepeatOnLifecycleWrongUsage</code>
+      lint check to
+      <code translate="no" dir="ltr">lifecycle-runtime-ktx</code>
+      that detects when
+      <code translate="no" dir="ltr">repeateOnLifecycle</code>
+      is incorrectly used in
+      <code translate="no" dir="ltr">onStart()</code>
+      or
+      <code translate="no" dir="ltr">onResume()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/706078c215107f5cde51b66233dd0158bca729dc">706078</a>
+      ,
+      <a href="https://issuetracker.google.com/187887400">b/187887400</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">LifecycleOwner.addRepeatingJob</code>
+      API is removed in favor of
+      <code translate="no" dir="ltr">Lifecycle.repeatOnLifecycle</code>
+      that respects structured concurrency and is easier to reason about. (
+      <a href="https://android-review.googlesource.com/#/q/I4a3a878686a1b2153dc97778f7942bb3624d6915">I4a3a8</a>
+      )
+    </li>
+    <li>
+      Make
+      <code translate="no" dir="ltr">ProcessLifecycleInitializer</code>
+      public so other
+      <code translate="no" dir="ltr">androidx.startup.Initializer</code>
+      s can use these as dependencies. (
+      <a href="https://android-review.googlesource.com/#/q/I94c31cbdff9aa4b1adaa459a10a6ab5f54b953b1">I94c31</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue with the
+      <code translate="no" dir="ltr">NullSafeMutableLiveData</code>
+      lint check when the field has modifiers. (
+      <a href="https://github.com/androidx/androidx/pull/147">#147</a>
+      ,
+      <a href="https://issuetracker.google.com/183696616">b/183696616</a>
+      )
+    </li>
+    <li>
+      Fixed another issue with the
+      <code translate="no" dir="ltr">NullSafeMutableLiveData</code>
+      lint check when using generics. (
+      <a href="https://github.com/androidx/androidx/pull/161">#161</a>
+      ,
+      <a href="https://issuetracker.google.com/184830263">b/184830263</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Thanks
+      <a href="https://github.com/maxsav">maxsav</a>
+      for improving the
+      <code translate="no" dir="ltr">NullSafeMutableLiveData</code>
+      lint check. (
+      <a href="https://github.com/androidx/androidx/pull/147">#147</a>
+      ,
+      <a href="https://issuetracker.google.com/183696616">b/183696616</a>
+      )
+    </li>
+    <li>
+      Thanks
+      <a href="https://github.com/kozaxinan">kozaxinan</a>
+      for improving the
+      <code translate="no" dir="ltr">NullSafeMutableLiveData</code>
+      lint check. (
+      <a href="https://github.com/androidx/androidx/pull/161">#161</a>
+      ,
+      <a href="https://issuetracker.google.com/184830263">b/184830263</a>
+      )
+    </li>
+  </ul>

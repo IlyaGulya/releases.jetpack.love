@@ -1,0 +1,81 @@
+libraryId: room
+groupId: androidx.room
+version: 2.5.0-alpha01
+releaseDate: 2022-02-23
+#language=html
+changelogHtml: |
+  <h3 id="2.5.0-alpha01" data-text="Version 2.5.0-alpha01" tabindex="-1">Version 2.5.0-alpha01</h3>
+  <p>February 23, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.5.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3dda6c958a641fad4196ebc9b2e58a6f381ffdb4..9b2b3d8efd5f00bd4af903bbaa926f6a712d0bd8/room">Version 2.5.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where Room
+      <code translate="no" dir="ltr">@IntDef</code>
+      usage were not being enforced in Kotlin sources. (
+      <a href="https://android-review.googlesource.com/#/q/I75f413c3d66ee4bf0f156f3570705fcfb48f3c6b">I75f41</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/217951311">b/217951311</a>
+      )
+    </li>
+    <li>
+      Fixed a source compatibility issue to re-allow
+      <code translate="no" dir="ltr">@Query</code>
+      in property getters. (
+      <a href="https://android-review.googlesource.com/#/q/I0a09bbf91ba813e3fd5f98633c1f6290861de565">I0a09b</a>
+      )
+    </li>
+    <li>
+      Converted room-common from Java to Kotlin. (
+      <a href="https://android-review.googlesource.com/#/q/I69c4832704c00c17dc989109992d3059261695a9">I69c48</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/206858235">b/206858235</a>
+      )
+      <p class="note">
+        <b>Note:</b>
+        You may encounter source incompatibility issues as some properties have been moved into companion objects during the library conversion to Kotlin. If your code was in Kotlin and calling the old version of Room, the new version will need the ".Companion" suffix when accessing these properties.
+      </p>
+    </li>
+    <li>
+      Converted room-migration from Java to Kotlin. (
+      <a href="https://android-review.googlesource.com/#/q/I2724b688fc6dcd3c632dfe167364924edc5248b9">I2724b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/206858622">b/206858622</a>
+      )
+    </li>
+    <li>
+      Converted
+      <code translate="no" dir="ltr">paging</code>
+      related files in
+      <code translate="no" dir="ltr">room-runtime</code>
+      from Java to Kotlin. (
+      <a href="https://android-review.googlesource.com/#/q/I82fc81469540315dbe4865ccde68396a4339dfd9">I82fc8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/206859668">b/206859668</a>
+      )
+    </li>
+    <li>
+      Added API for multi-process lock and usage at the FrameworkSQLite* level, to protect multi-process 1st time database creation and migrations. (
+      <a href="https://android-review.googlesource.com/#/q/Ied267cd32e3248cec5ebb772778d2e94fd450270">Ied267</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/193182592">b/193182592</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Added support for internal properties in Kotlin sources. This is a slight behavior change in Room where it will use the source name of functions while matching them to properties as getters/setters (previously, it was using JVM name of the function which is different for internal functions/properties). If you are using custom
+      <code translate="no" dir="ltr">@JvmName</code>
+      annotations to match getters/setters to private properties, please double check the generated code after the update (
+      <a href="https://android-review.googlesource.com/#/q/If653164362c49fd00650d9a953f330afdb309c1c">If6531</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/205289020">b/205289020</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_243_3" data-text="Version 2.4.3" tabindex="-1">Version 2.4.3</h2>

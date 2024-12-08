@@ -1,0 +1,82 @@
+libraryId: wear-watchface
+groupId: androidx.wear
+version: 1.2.0-alpha09
+releaseDate: 2023-06-21
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha09" data-text="Version 1.2.0-alpha09" tabindex="-1">Version 1.2.0-alpha09</h3>
+  <p>June 21, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.watchface:watchface-*:1.2.0-alpha09</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/01bd392d5702480f8bfe61a8f8bbbea64cf362a0..3b5b931546a48163444a9eddc533489fcddd7494/wear/watchface">Version 1.2.0-alpha09 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">RangedValueComplicationData.Builder</code>
+      now accepts
+      <code translate="no" dir="ltr">DynamicFloat</code>
+      , and a new
+      <code translate="no" dir="ltr">DynamicComplicationText</code>
+      is available as a subclass of
+      <code translate="no" dir="ltr">ComplicationText</code>
+      , both of which can utilize dynamic expressions as well as platform bindings that are updated at 1hz on supported Wear 4 devices.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added dynamic types for daily distance, daily calories and daily floors. Keys for platform health sources are now under
+      <code translate="no" dir="ltr">PlatformHealthSources.Keys</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ib76376c44708ba49e4ad2253199db176f89972bf">Ib7637</a>
+      )
+    </li>
+    <li>
+      Implement
+      <code translate="no" dir="ltr">PlatformDataProvider</code>
+      to provide heart rate and daily steps.
+      <code translate="no" dir="ltr">SensorGateway</code>
+      interface is removed from public API. (
+      <a href="https://android-review.googlesource.com/#/q/I55b84b6b9bffc5f0a6b812307f1bd4ad61750d65">I55b84</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">StateEntryValue</code>
+      to
+      <code translate="no" dir="ltr">DynamicDataValue</code>
+      , and update the state APIs to use the
+      <code translate="no" dir="ltr">DynamicDataKey</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If1c01335804c5dd98dd2c326ec560e1816ec4c77">If1c01</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">AppDataKey</code>
+      for accessing app pushed state; Add
+      <code translate="no" dir="ltr">PlatformDataKey</code>
+      for accessing platform data; Add namespace support in
+      <code translate="no" dir="ltr">StateStore</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7985e7716a77b46a2ea3cee5f9009eead48b96d1">I7985e</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">enable</code>
+      /
+      <code translate="no" dir="ltr">disablePlatformSource</code>
+      methods have been removed from
+      <code translate="no" dir="ltr">DynamicTypeEvaluator</code>
+      . The caller should be responsible for updates. (
+      <a href="https://android-review.googlesource.com/#/q/I78c6ded36efae049d0143eece16054c050a413c8">I78c6d</a>
+      )
+    </li>
+    <li>
+      Allow capping the size of bound data types. (
+      <a href="https://android-review.googlesource.com/#/q/Ie29669c5e3fd935de8cad63b3a61d79db582d68f">Ie2966</a>
+      )
+    </li>
+  </ul>

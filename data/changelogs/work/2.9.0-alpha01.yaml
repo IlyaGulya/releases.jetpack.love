@@ -1,0 +1,144 @@
+libraryId: work
+groupId: androidx.work
+version: 2.9.0-alpha01
+releaseDate: 2023-06-07
+#language=html
+changelogHtml: |
+  <h3 id="2.9.0-alpha01" data-text="Version 2.9.0-alpha01" tabindex="-1">Version 2.9.0-alpha01</h3>
+  <p>June 7, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.9.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/95d318f1c5a8a858d7224a452f3a9fc802d2caa1..73f902dee011bfe400d8a0330bfd8d4bb632065f/work">Version 2.9.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Observability via
+      <code translate="no" dir="ltr">Flow</code>
+      -s. Instead of
+      <code translate="no" dir="ltr">LiveData</code>
+      , Worker's progress now can be observed via Flow’s via
+      <code translate="no" dir="ltr">WorkManager.getWorkInfosFlow</code>
+      and similar methods.
+    </li>
+    <li>
+      Precise scheduling of periodic workers via
+      <code translate="no" dir="ltr">setNextScheduleTimeOverride</code>
+      . This allows dynamic calculation of the next Periodic work schedule, which can be used to implement advanced features like adaptive refresh times, custom retry behavior, or making a newsfeed worker run before the user wakes up every morning without drift.
+      <code translate="no" dir="ltr">ExistingPeriodicWorkPolicy.UPDATE</code>
+      should be used with these techniques to avoid cancelling a currently-running worker while scheduling the next one.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">WorkManager</code>
+      ’s testing with threading matching production.
+      <code translate="no" dir="ltr">ExecutorsMode.PRESERVE_EXECUTORS</code>
+      can be used to preserve executors set in
+      <code translate="no" dir="ltr">Configuration</code>
+      and to use the real main thread.
+    </li>
+    <li>
+      Coroutines APIs such as
+      <code translate="no" dir="ltr">CoroutineWorker</code>
+      have been moved from additional artifact
+      <code translate="no" dir="ltr">work-runtime-ktx</code>
+      to the main artifact
+      <code translate="no" dir="ltr">work-runtime</code>
+      .
+      <code translate="no" dir="ltr">work-runtime-ktx</code>
+      is now empty.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">WorkInfo</code>
+      's constructor is public now, that can be useful in testing. (
+      <a href="https://android-review.googlesource.com/#/q/Ia00b6beffca0b0b2dff5cdae67020bbd4b068579">Ia00b6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/209145335">b/209145335</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">work-runtime-ktx</code>
+      is now empty,
+      <code translate="no" dir="ltr">CoroutineWorker</code>
+      and other kotlin specific utilities are now available in the main
+      <code translate="no" dir="ltr">work-runtime</code>
+      artifact. (
+      <a href="https://android-review.googlesource.com/#/q/I71a9a873fb3a68b1150ff6a0f9e62774393a17e8">I71a9a</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">setNextScheduleTimeOverride</code>
+      method, which allows accurate setting of periodic work schedules (
+      <a href="https://android-review.googlesource.com/#/q/I3b4da91bab9ffc6da3e305ef7ae814b59f7090fb">I3b4da</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">getEarliestRunTimeMillis</code>
+      to
+      <code translate="no" dir="ltr">getNextScheduleTimeMillis</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2bd7acdd5ee14021fa288aeafe97e48e175073c4">I2bd7a</a>
+      )
+    </li>
+    <li>
+      Next scheduled run time info is added to
+      <code translate="no" dir="ltr">WorkInfo</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I797e4a88d7d96eb14ea4c689f7b64be038d4fbd8">I797e4</a>
+      )
+    </li>
+    <li>
+      Initial delay and periodicity info are added to
+      <code translate="no" dir="ltr">WorkInfo</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I52f2f2f18f30dae132b6db4a11cc4c426e461ba6">I52f2f</a>
+      )
+    </li>
+    <li>
+      Added method observe workers via Flows via methods
+      <code translate="no" dir="ltr">getWorkInfosByTagFlow</code>
+      ,
+      <code translate="no" dir="ltr">getWorkInfoByIdFlow</code>
+      ,
+      <code translate="no" dir="ltr">getWorkInfosForUniqueWorkFlow</code>
+      ,
+      <code translate="no" dir="ltr">getWorkInfosFlow</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/If122a4bcc280e30c3721abec7bea6c7f1bbb4bd0">If122a</a>
+      )
+    </li>
+    <li>
+      Added missing
+      <code translate="no" dir="ltr">@RequiresApi(...)</code>
+      annotations to Constraints' constructors and properties. They are now aligned with corresponding annotations on setters in
+      <code translate="no" dir="ltr">Constraints.Builder</code>
+      that existed from early versions of
+      <code translate="no" dir="ltr">WorkManager</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6d7d23237c06a9cc197b30b054e213e96672a6dc">I6d7d2</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">WorkManager</code>
+      now has a separate limit for content uri workers to give them guaranteed slots in
+      <code translate="no" dir="ltr">JobScheduler</code>
+      to prevent missing content updates under the high load. Limit can be configured via
+      <code translate="no" dir="ltr">Configuration.Builder.setContentUriTriggerWorkersLimit</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic128f0bd0095e17c01a6ed6ed30d5ac00cb9772c">Ic128f</a>
+      )
+    </li>
+    <li>
+      Constraints are added to
+      <code translate="no" dir="ltr">WorkInfo</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I162c0d683dc5066f4f842f4431d25a9750633524">I162c0</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_28_2" data-text="Version 2.8" tabindex="-1">Version 2.8</h2>

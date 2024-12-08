@@ -1,0 +1,55 @@
+libraryId: room
+groupId: androidx.room
+version: 2.0.0-beta01
+releaseDate: 2018-07-02
+#language=html
+changelogHtml: |
+  <h3 id="2.0.0-beta01" data-text="Version 2.0.0-beta01" tabindex="-1">Version 2.0.0-beta01</h3>
+  <p>July 2, 2018</p>
+  <p><strong>API / Behavior Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">RoomDatabase.Builder.setQueryExecutor()</code>
+      to allow customization of where queries are run
+    </li>
+    <li>
+      Added RxJava2
+      <code translate="no" dir="ltr">Observable</code>
+      support
+    </li>
+    <li>Generated DAO and Database implementations are now final</li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Specify class/field name in "cannot find getter for field" error
+      <a href="https://issuetracker.google.com/issues/73334503">b/73334503</a>
+    </li>
+    <li>
+      Fixed RoomOpenHelper backwards compatibility with older versions of Room
+      <a href="https://issuetracker.google.com/issues/110197391">b/110197391</a>
+    </li>
+  </ul>
+  <h2 id="pre-androidx_dependencies_2" data-text="Pre-AndroidX Dependencies" tabindex="-1">Pre-AndroidX Dependencies</h2>
+  <p>For the pre-AndroidX versions of Room, include these dependencies:</p>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Carbon"><code translate="no" dir="ltr"><span class="devsite-syntax-nx">dependencies</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nx">def</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nx">room_version</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"1.1.1"</span>
+
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nx">implementation</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"android.arch.persistence.room:runtime:$room_version"</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nx">annotationProcessor</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"android.arch.persistence.room:compiler:$room_version"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-c1">// For Kotlin use kapt instead of annotationProcessor</span>
+
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// optional - RxJava support for Room</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nx">implementation</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"android.arch.persistence.room:rxjava2:$room_version"</span>
+
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// optional - Guava support for Room, including Optional and ListenableFuture</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nx">implementation</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"android.arch.persistence.room:guava:$room_version"</span>
+
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// Test helpers</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nx">testImplementation</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"android.arch.persistence.room:testing:$room_version"</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+  </devsite-code>
+  <h2 id="version_111_3" data-text="Version 1.1.1" tabindex="-1">Version 1.1.1</h2>

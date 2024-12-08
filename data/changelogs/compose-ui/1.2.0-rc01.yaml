@@ -1,0 +1,69 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.2.0-rc01
+releaseDate: 2022-06-15
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-rc01" data-text="Version 1.2.0-rc01" tabindex="-1">Version 1.2.0-rc01</h3>
+  <p>June 15, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.2.0-rc01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5973fd35e79471563d11a6776b6a1816b1e33409..2d8badfd263991345376562fc0f247bc76ca6312/compose/ui">Version 1.2.0-rc01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Interfaces in compose libraries are now built using jdk8 default interface methods (
+      <a href="https://android-review.googlesource.com/#/q/I5bcf197603f66ec66177c98c01c3fe4868d60997">I5bcf1</a>
+      )
+    </li>
+    <li>
+      Added higher-order functions to
+      <code translate="no" dir="ltr">KeyInjectionScope</code>
+      for injecting key presses while other keys are held down or toggled on. These functions include
+      <code translate="no" dir="ltr">withKeysDown</code>
+      ,
+      <code translate="no" dir="ltr">withKeysToggled</code>
+      etc. Also added properties for checking if a particular meta key is down, for example,
+      <code translate="no" dir="ltr">isCtrlDown</code>
+      to check if either control key is depressed. Refer to
+      <code translate="no" dir="ltr">KeyInjectionScope</code>
+      for documentation on each function. (
+      <a href="https://android-review.googlesource.com/#/q/I9f6cdab059c04f4af089a28f99dd267747c723de">I9f6cd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/229831515">b/229831515</a>
+      )
+    </li>
+    <li>
+      An experimental
+      <code translate="no" dir="ltr">OverscrollEffect</code>
+      has been introduced to allow for custom overscroll effects, alongside the
+      <code translate="no" dir="ltr">Modifier.scrollable</code>
+      overloads that accept it.
+    </li>
+    <li>
+      Experimental
+      <code translate="no" dir="ltr">LocalOverScrollConfiguration</code>
+      has been moved from
+      <code translate="no" dir="ltr">foundation.gesture</code>
+      to foundation package and renamed to
+      <code translate="no" dir="ltr">LocalOverscrollConfiguration</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/If19fb8063922eddf1ffcb020ec6a8fbe48471ccf">If19fb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/204650733">b/204650733</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">runComposeUiTestWithoutActivity {}</code>
+      to
+      <code translate="no" dir="ltr">runEmptyComposeUiTest {}</code>
+      , which aligns it with
+      <code translate="no" dir="ltr">createEmptyComposeRule()</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I6fed7b344350260084cb2776367e68b9112298c4">I6fed7</a>
+      )
+    </li>
+  </ul>

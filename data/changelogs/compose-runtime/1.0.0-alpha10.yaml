@@ -1,0 +1,63 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.0.0-alpha10
+releaseDate: 2021-01-13
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha10" data-text="Version 1.0.0-alpha10" tabindex="-1">Version 1.0.0-alpha10</h3>
+  <p>January 13, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.0.0-alpha10</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/72f02c12e4709ab41ae0fea9a8a668d5267a1df8..6207afb1646d302c5d29c2c67d332b48db87fb27/compose/runtime">Version 1.0.0-alpha10 contains these commits.</a>
+  </p>
+  <p><strong>Breaking Change</strong></p>
+  <ul>
+    <li>
+      <p>
+        Restructuring of the internal compiler API allows batching changes to the nodes generated as a result of composition into the "apply changes" phase of composition, after all
+        <code translate="no" dir="ltr">@Composable</code>
+        functions have completed.
+      </p>
+
+      <p>
+        This is a behavioral breaking change that might affect application code as nodes are no longer available from internal and experimental APIs until after changes have been applied. This can usually be worked around by surrounding code with such dependencies in a
+        <code translate="no" dir="ltr">SideEffect</code>
+        composable to defer execution of the code until after the nodes have been created and initialized. (
+        <a href="https://android-review.googlesource.com/#/q/I018dab05a0486e8db663aea39a7546aa73142c11">I018da</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added a way to track if the recomposer has applied changes. (
+      <a href="https://android-review.googlesource.com/#/q/I1b3e25252119ddf45e1c72af5239cd1a999722ce">I1b3e2</a>
+      )
+    </li>
+    <li>
+      <p>Expand [Abstract]ComposeView APIs to allow recycling Compose-based views, disposing their composition to recreate again later. Add APIs for installing and discovering window-scoped Recomposers and CompositionReferences for creating child compositions.</p>
+
+      <p>
+        Add ViewCompositionStrategy for configuring the composition disposal strategy of [Abstract]ComposeViews; default behavior is dispose on window detach. (
+        <a href="https://android-review.googlesource.com/#/q/I860ab99a2950457157a4d904e0c514d5134fdfd7">I860ab</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Recomposer now exposes a Flow of its current state, allowing monitoring its activity and the activity of associated effects. (
+      <a href="https://android-review.googlesource.com/#/q/Ifb2b901636db4ec2f3ad068d063f5b8f74be82f4">Ifb2b9</a>
+      )
+    </li>
+    <li>
+      The native keyEvent can now be accessed through keyEvent.nativeKeyEvent (
+      <a href="https://android-review.googlesource.com/#/q/I87c57d68b76441fe92d2b91f58385832fc40ec8d">I87c57</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173086397">b/173086397</a>
+      )
+    </li>
+  </ul>

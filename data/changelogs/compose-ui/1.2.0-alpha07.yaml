@@ -1,0 +1,141 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.2.0-alpha07
+releaseDate: 2022-04-06
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha07" data-text="Version 1.2.0-alpha07" tabindex="-1">Version 1.2.0-alpha07</h3>
+  <p>April 6, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.2.0-alpha07</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5ef5671233460b844828e14a816255dbf7904868..7ca43e00a517eaeeedc0a21f482b17f06e3d2181/compose/ui">Version 1.2.0-alpha07 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      New function
+      <code translate="no" dir="ltr">Snapshot.withoutReadObservation { ... }</code>
+      was added. It allows users to run the passed lambda without subscribing to the changes of the state values read during this block. You could find it useful in use cases when you want to benefit from the snapshot based thread safe write/reads, but want to be able to read the value without causing unnecessary recomposition or remeasure. (
+      <a href="https://android-review.googlesource.com/#/q/I9f365d653483310cfda02cfa2c582fdcce8cfe33">I9f365</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/214054486">b/214054486</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">consumeWindowInsets</code>
+      extension property of
+      <code translate="no" dir="ltr">ComposeView</code>
+      allows developers to disable consumption of Android
+      <code translate="no" dir="ltr">WindowInsets</code>
+      . This allows separate
+      <code translate="no" dir="ltr">ComposeViews</code>
+      in the hierarchy to each apply
+      <code translate="no" dir="ltr">WindowInsets</code>
+      without interfering with each other. (
+      <a href="https://android-review.googlesource.com/#/q/I0ef08ca81d808408edb932f9326125f99da25bd0">I0ef08</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/220943142">b/220943142</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">KeyboardType.Decimal</code>
+      as an alternative to
+      <code translate="no" dir="ltr">Keyboard.Number</code>
+      for specifically including decimal separator in IME. (
+      <a href="https://android-review.googlesource.com/#/q/Iec4c84be81e72f8eaf136f2df23f9d12567cc3dc">Iec4c8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/209835363">b/209835363</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PointerEventType.Scroll</code>
+      and
+      <code translate="no" dir="ltr">PointerEvent.scrollDelta</code>
+      are stable APIs now (
+      <a href="https://android-review.googlesource.com/#/q/I574c579abec9e26dfc16ae00014faab8627bd688">I574c5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/225669674">b/225669674</a>
+      )
+    </li>
+    <li>
+      Enable Nested Scroll interop between View and Compose for cooperating View classes. This means compose is now able to dispatch scroll deltas to a (cooperating) View parent. (
+      <a href="https://android-review.googlesource.com/#/q/I5d1ac5fdeced612ac07f0c26ce14284a43369673">I5d1ac</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/174348612">b/174348612</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">FontFamily.Resolver</code>
+      to integrate System-wide bold text accessibility setting (
+      <a href="https://android-review.googlesource.com/#/q/I6c1e77e9cc8d1ce353d129d8a233271db0139a07">I6c1e7</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Font(AssetManager, String, ...)</code>
+      is deprecated, replaced with
+      <code translate="no" dir="ltr">Font(String, AssetManager, ...)</code>
+      . This is an experimental API. (
+      <a href="https://android-review.googlesource.com/#/q/I1c7a4fd5df4c7413a74e594b43f6d6fe296a6c86">I1c7a4</a>
+      )
+    </li>
+    <li>
+      Add new font descriptor
+      <code translate="no" dir="ltr">Font(DeviceFontFamilyName)</code>
+      to optionally lookup system-installed fonts during font fallback chains. (
+      <a href="https://android-review.googlesource.com/#/q/I30468e48564fb9891e17cbee8bdb4026df0daf89">I30468</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/219754572">b/219754572</a>
+      )
+    </li>
+    <li>
+      Added temporary compatibility configuration for
+      <code translate="no" dir="ltr">includeFontPadding</code>
+      in TextStyle/ParagraphStyle.
+      <code translate="no" dir="ltr">includeFontPadding</code>
+      can be changed via
+      <code translate="no" dir="ltr">TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = true/false))</code>
+      . This is a temporary configuration option to enable migration and will be removed. (
+      <a href="https://android-review.googlesource.com/#/q/If47be074f53de9ccf12af114648b21e25722d166">If47be</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171394808">b/171394808</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">GoogleFont.Provider.isAvailableOnDevice</code>
+      extension for debugging help. (
+      <a href="https://android-review.googlesource.com/#/q/I64e31b3b279631ec9561c1039488e09e9780677d">I64e31</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">GoogleFont.Provider</code>
+      constructor for use with
+      <code translate="no" dir="ltr">@ArrayRes</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ic5ee1e3fec3b23447273ac85f378bb50ec9c92d9">Ic5ee1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/225984280">b/225984280</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Compose GoogleFont</code>
+      is now called
+      <code translate="no" dir="ltr">Font(GoogleFont)</code>
+      , API remains stable otherwise. (
+      <a href="https://android-review.googlesource.com/#/q/I125f2c7ce202fd6e524dbc750e63c7bedaaacdd6">I125f2</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Added lint check to material/Scaffold to ensure that the inner padding is being used (
+      <a href="https://android-review.googlesource.com/#/q/Ifb1119e54063ae06ee993e552dcfdcc48de3496b">Ifb111</a>
+      )
+    </li>
+  </ul>

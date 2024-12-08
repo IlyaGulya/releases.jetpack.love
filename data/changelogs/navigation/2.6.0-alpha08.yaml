@@ -1,0 +1,107 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.6.0-alpha08
+releaseDate: 2023-03-22
+#language=html
+changelogHtml: |
+  <h3 id="2.6.0-alpha08" data-text="Version 2.6.0-alpha08" tabindex="-1">Version 2.6.0-alpha08</h3>
+  <p>March 22, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.6.0-alpha08</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/bf83b7ca1e086138c9ffa3ed2a530db3b038c79a..5e7d256f82fbafb6d059ab7b18fddd87c7531553/navigation">Version 2.6.0-alpha08 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">NavHostFragment</code>
+      now allows you to retrieve the
+      <code translate="no" dir="ltr">NavController</code>
+      as soon as the
+      <code translate="no" dir="ltr">NavHostFragment</code>
+      is attached to the
+      <code translate="no" dir="ltr">FragmentManager</code>
+      , rather than only after
+      <code translate="no" dir="ltr">onCreate()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic638294d888c7c2002b6107d248d2d423a5614ee">Ic6382</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/220186282">b/220186282</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a
+      <code translate="no" dir="ltr">NullPointerException</code>
+      when popping a nested graph that includes a non-nullable argument. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/6b358154b794a0456b089ac8e548bfb830dd6c22">6b3581</a>
+      ,
+      <a href="https://issuetracker.google.com/249988437">b/249988437</a>
+      )
+    </li>
+    <li>
+      When using system back after doing a navigate with
+      <code translate="no" dir="ltr">popUpTo</code>
+      , the state of the
+      <code translate="no" dir="ltr">NavController</code>
+      will pop to the correct entry. (
+      <a href="https://android-review.googlesource.com/#/q/I3a8ec072ba6d1655ab054cc081961825909088e6">I3a8ec</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/270447657">b/270447657</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FragmentNavigator</code>
+      will now properly pop entries when the back stack is popped via system back or
+      <code translate="no" dir="ltr">popBackStack()</code>
+      and whether or not the transaction uses effects for the fragment. (
+      <a href="https://android-review.googlesource.com/#/q/I81bdf764c4dfb070b74017f00bbd7ba740f831c4">I81bdf</a>
+      )
+    </li>
+    <li>
+      Adding fragments to the
+      <code translate="no" dir="ltr">FragmentNavigator</code>
+      's
+      <code translate="no" dir="ltr">FragmentManager</code>
+      without using navigation will no longer cause a crash. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/b17204359581a71c427d7519a6cfc1825141ed72">b17204</a>
+      ,
+      <a href="https://issuetracker.google.com/274167493">b/274167493</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Updates</strong></p>
+  <ul>
+    <li>
+      Navigation now depends on
+      <a href="/jetpack/androidx/releases/lifecycle#2.6.1">
+        Lifecycle
+        <code translate="no" dir="ltr">2.6.1</code>
+      </a>
+      . (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/586fe7d84e657d9bbc6d3cb3cbb8954f715df557">586fe7</a>
+      )
+    </li>
+    <li>
+      Navigation now depends on
+      <a href="/jetpack/androidx/releases/savedstate#1.2.1">
+        SavedState
+        <code translate="no" dir="ltr">1.2.1</code>
+      </a>
+      . (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/078e4ef4d6b3475ed3a453ea7ba0d03e6bdc02c3">078e4e</a>
+      )
+    </li>
+    <li>
+      Navigation now depends on
+      <a href="/jetpack/androidx/releases/profileinstaller#1.3.0">
+        ProfileInstaller
+        <code translate="no" dir="ltr">1.3.0</code>
+      </a>
+      . (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/512f0c047e135deb054d7764677f981ffdbb1817">512f0c</a>
+      )
+    </li>
+  </ul>

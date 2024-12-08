@@ -1,0 +1,128 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.0.0-alpha11
+releaseDate: 2020-05-27
+#language=html
+changelogHtml: |
+  <h3 id="camera-view-1.0.0-alpha11" data-text="Camera-View  Version 1.0.0-alpha11" tabindex="-1">Camera-View Version 1.0.0-alpha11</h3>
+  <p>May 27, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-view:1.0.0-alpha11</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4319ecd6ebdd8a9f8600cc5b3d1aada1f716abac..c4d097f4335fe6b0268ee9a6d53df43615da0d90/camera/camera-view">Version 1.0.0-alpha11 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">PreviewView#getPreviewStreamState</code>
+      API which allows apps to observe if preview is streaming or not. When the PreviewView is in TEXTURE_VIEW mode, the STREAMING state also guarantees the preview image is visible. (
+      <a href="https://android-review.googlesource.com/#/q/Ic0906d25aa89b3b1a9abb02ca42e15f676b1c72f">Ic0906</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/154652477">b/154652477</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">PreviewView#setDeviceRotationForRemoteDisplayMode()</code>
+      API to provide device rotation for transform calculations if the application is running in remote display mode. (
+      <a href="https://android-review.googlesource.com/#/q/I59b95cf5c484d110c1a4f4dd925da43d8d79da2b">I59b95</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/153514525">b/153514525</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed the preview distortion issue on
+      <code translate="no" dir="ltr">FULL/LIMITED/LEVEL_3</code>
+      cameras running android 7.0 and below. Forced use
+      <code translate="no" dir="ltr">ImplementationMode#TEXTURE_VIEW</code>
+      mode when the android version is 7.0 or below. (
+      <a href="https://android-review.googlesource.com/#/q/I83e303c1beb899d94a21f04b15008671f45b77ae">I83e30</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/155085307">b/155085307</a>
+      )
+    </li>
+    <li>
+      Removed the
+      <code translate="no" dir="ltr">CameraInfo</code>
+      parameter from
+      <code translate="no" dir="ltr">PreviewView#createSurfaceProvider()</code>
+      ,
+      <code translate="no" dir="ltr">PreviewView</code>
+      now internally retrieves it from the
+      <code translate="no" dir="ltr">SurfaceRequest</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If18f04ff541eb77ec58b216d201e04802ab14785">If18f0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/154652477">b/154652477</a>
+      )
+    </li>
+    <li>
+      Fixed the VideoCapture's default aspect ratio to be 16:9 in CameraView. (
+      <a href="https://android-review.googlesource.com/#/q/Ie6a7bf344e6e08b25e47109557288b07187b3f7a">Ie6a7b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/153237864">b/153237864</a>
+      )
+    </li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">PreviewView</code>
+      black screen issues when swiped out
+      <code translate="no" dir="ltr">Preview</code>
+      fragment and then swiped back in ViewPager2. Also fixed the issue when
+      <code translate="no" dir="ltr">removeView(previewview)</code>
+      and then
+      <code translate="no" dir="ltr">addView(previewView)</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iab5555fa4bbcca4020ba0dc55135c15009d24908">Iab555</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/149877652">b/149877652</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/147354615">b/147354615</a>
+      )
+    </li>
+    <li>
+      Update the
+      <code translate="no" dir="ltr">CameraView#takePicture()</code>
+      API to allow saving images to
+      <code translate="no" dir="ltr">Uri</code>
+      and
+      <code translate="no" dir="ltr">OutputStream</code>
+      . Update the test app to use
+      <code translate="no" dir="ltr">Uri</code>
+      as the canonical example. (
+      <a href="https://android-review.googlesource.com/#/q/Ia2459465f2e960ab46409fceda367e5bc2678963">Ia2459</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/153607583">b/153607583</a>
+      )
+    </li>
+    <li>
+      You can set PreviewView's scale type from a XML layout by setting the
+      <code translate="no" dir="ltr">ScaleType</code>
+      attribute. (
+      <a href="https://android-review.googlesource.com/#/q/I085654addf7436f1da84a4d1851f1d72ab403a86">I08565</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/153015659">b/153015659</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">CameraView.ScaleType</code>
+      has been removed. Instead, use
+      <code translate="no" dir="ltr">PreviewView.ScaleType</code>
+      to set/get a scale type with CameraView. (
+      <a href="https://android-review.googlesource.com/#/q/Ia8974a3c8c271ec1dfd2736c2e02d42b27f531c9">Ia8974</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/153014831">b/153014831</a>
+      )
+    </li>
+    <li>
+      Give
+      <code translate="no" dir="ltr">PreviewView</code>
+      a background color by default if it doesn’t already have one. This prevents content behind it from being visible before the preview stream starts. (
+      <a href="https://android-review.googlesource.com/#/q/I09fadd5ca9e187ff24c8195a6cfc7493ea74aabb">I09fad</a>
+      )
+    </li>
+  </ul>

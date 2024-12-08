@@ -1,0 +1,142 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.8.0-alpha02
+releaseDate: 2024-02-21
+#language=html
+changelogHtml: |
+  <h3 id="2.8.0-alpha02" data-text="Version 2.8.0-alpha02" tabindex="-1">Version 2.8.0-alpha02</h3>
+  <p>February 21, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.8.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/51191bc12f96f233fc08995e1b4e8ff8b88bc7ce..e1b82c49c59d8e976ce558aba5586f6c61bc9054/lifecycle">Version 2.8.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">dropUnlessResumed</code>
+      and
+      <code translate="no" dir="ltr">dropUnlessStarted</code>
+      APIs have been added which allow you to drop click or other events that occur even after the
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      has dropped below the given
+      <code translate="no" dir="ltr">Lifecycle.State</code>
+      . For example, this can be used with Navigation Compose to avoid handling click events after a transition to another screen has already begun:
+      <code translate="no" dir="ltr">onClick: () -&gt; Unit = dropUnlessResumed { navController.navigate(NEW_SCREEN) }</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Icba837aeb90426b00bc5888e663f775284191fe2">Icba83</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/317230685">b/317230685</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Kotlin Conversions</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ViewModel</code>
+      is now written in Kotlin (
+      <a href="https://android-review.googlesource.com/#/q/I16f26813d862c76154739888bb631c214fa1c810">I16f26</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/214568825">b/214568825</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">lifecycle-viewmodel-ktx</code>
+      kotlin extensions have now been moved to the base lifecycle module. (
+      <a href="https://android-review.googlesource.com/#/q/Id787b6db6817e69e4ec50748a07ccdbef074e99d">Id787b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/274800183">b/274800183</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">lifecycle-runtime-ktx</code>
+      kotlin extensions have now been moved to the base lifecycle module. (
+      <a href="https://android-review.googlesource.com/#/q/Ic368640a7e66dd0b748601d61b7aa23d99e5a1d6">Ic3686</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/274800183">b/274800183</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">lifecycle-livedata-core-ktx</code>
+      kotlin extensions have now been moved to the base lifecycle module. (
+      <a href="https://android-review.googlesource.com/#/q/I54a3d4346b4a9c5861f5f3bdb0079dbb27f29668">I54a3d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/274800183">b/274800183</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Kotlin Multiplatform Compatibility</strong></p>
+  <ul>
+    <li>
+      The core Lifecycle APIs in
+      <code translate="no" dir="ltr">Lifecycle</code>
+      ,
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      ,
+      <code translate="no" dir="ltr">LifecycleObserver</code>
+      ,
+      <code translate="no" dir="ltr">Lifecycle.State</code>
+      ,
+      <code translate="no" dir="ltr">Lifecycle.Event</code>
+      , and
+      <code translate="no" dir="ltr">LifecycleRegistry</code>
+      are now shipped in artifacts compatible with Kotlin Multiplatform. (
+      <a href="https://issuetracker.google.com/317249252">b/317249252</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Calling
+      <code translate="no" dir="ltr">LifecycleStartEffect</code>
+      and
+      <code translate="no" dir="ltr">LifecycleResumeEffect</code>
+      without a key is now an error, following the same convention as the
+      <code translate="no" dir="ltr">DisposableEffect</code>
+      API that these APIs mirror. (
+      <a href="https://android-review.googlesource.com/#/q/Ib0e0c3248ce23eb4be10f29d193e152646c1653c">Ib0e0c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/323518079">b/323518079</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ViewModel</code>
+      now uses
+      <code translate="no" dir="ltr">AutoCloseable</code>
+      instead of
+      <code translate="no" dir="ltr">Closeable</code>
+      . That is a backward compatible change. (
+      <a href="https://android-review.googlesource.com/#/q/I27f8e7c85e59aae7c268d66d98f70d717d6f3c83">I27f8e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/214568825">b/214568825</a>
+      )
+    </li>
+    <li>
+      Deprecated
+      <code translate="no" dir="ltr">LiveDataReactiveStreams.toPublisher(lifecycleOwner, liveData)</code>
+      in favor of
+      <code translate="no" dir="ltr">LiveData.toPublisher(lifecycleOwner)</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iabe2986767b85f5b55cdfe6c9a44e3809860a3c6">Iabe29</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/262623005">b/262623005</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Thanks Ivan Matkov from Jetbrains for helping move Lifecycle to Kotlin Multiplatform. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/2926690">aosp/2926690</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I0c5acfde52bd6c4a3cf7f38193c235915b45d549">I0c5ac</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/If445d68e7e85929839ad10347b31b9f11d61c00d">If445d</a>
+      )
+    </li>
+  </ul>

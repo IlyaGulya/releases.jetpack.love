@@ -1,0 +1,45 @@
+libraryId: room
+groupId: androidx.room
+version: 2.3.0-beta02
+releaseDate: 2021-02-18
+#language=html
+changelogHtml: |
+  <h3 id="2.3.0-beta02" data-text="Version 2.3.0-beta02" tabindex="-1">Version 2.3.0-beta02</h3>
+  <p>February 18, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.3.0-beta02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/aee18b103203a91ee89df91f0af5df2ecff356d6..028c82c1173bb9300dd314de4118eb21d92156d1/room">Version 2.3.0-beta02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>
+        Room now has experimental support for Kotlin Symbol Processing
+        <a href="http://github.com/google/ksp">KSP</a>
+        .
+      </p>
+
+      <p>KSP is a replacement for KAPT to run annotation processors natively on the Kotlin compiler, significantly reducing build times.</p>
+
+      <p>
+        To use Room with KSP, you can apply the KSP Gradle plugin and replace the
+        <code translate="no" dir="ltr">kapt</code>
+        configuration in your build file with
+        <code translate="no" dir="ltr">ksp</code>
+        . For example, instead of
+        <code translate="no" dir="ltr">kapt 'androidx.room:room-compiler:2.3.0-beta02'</code>
+        use
+        <code translate="no" dir="ltr">ksp 'androidx.room:room-compiler:2.3.0-beta02'</code>
+        . See the
+        <a href="https://github.com/google/ksp/blob/master/docs/quickstart.md">KSP documentation</a>
+        for more details.
+      </p>
+
+      <p>
+        Note that since KSP is experimental, it is recommended to still use KAPT for production code. The reduction of build times is only applicable if there are no other processors that use KAPT. See
+        <a href="https://issuetracker.google.com/issues/160322705">b/160322705</a>
+        for known issues.
+      </p>
+    </li>
+  </ul>

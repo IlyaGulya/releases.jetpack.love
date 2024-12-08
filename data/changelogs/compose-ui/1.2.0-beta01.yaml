@@ -1,0 +1,320 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.2.0-beta01
+releaseDate: 2022-05-11
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-beta01" data-text="Version 1.2.0-beta01" tabindex="-1">Version 1.2.0-beta01</h3>
+  <p>May 11, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.2.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/41a4e31408842caa2b58db5e4ee6ec708464425f..eea19c54f6d94f1c234c4305c1329f7f1427867a/compose/ui">Version 1.2.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>This is the first beta release of 1.2!</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added experimental
+      <code translate="no" dir="ltr">BeyondBoundsInterval</code>
+      that can be used by custom implementations of
+      <code translate="no" dir="ltr">LazyList</code>
+      when they layout items beyond visible bounds (
+      <a href="https://android-review.googlesource.com/#/q/Ifabfbd95ba53bad23ce73bdb74f816c7854222bf">Ifabfb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/184670295">b/184670295</a>
+      )
+    </li>
+    <li>
+      Keyed versions of
+      <code translate="no" dir="ltr">Modifier.composed</code>
+      are now stable API (
+      <a href="https://android-review.googlesource.com/#/q/Ie65e40306ed029661d0137281de02b0e2ed5fea6">Ie65e4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/229988420">b/229988420</a>
+      )
+    </li>
+    <li>
+      Simplified the
+      <code translate="no" dir="ltr">rememberNestedScrollConnection</code>
+      API to use composition locals to acquire the current view information (
+      <a href="https://android-review.googlesource.com/#/q/I67ca70fdf69493105ec9487fd5f1f44996d9619e">I67ca7</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">@ComposableTarget</code>
+      annotation and annotations marked by
+      <code translate="no" dir="ltr">@ComposableTargetMarker</code>
+      can now be used at the file scope using the
+      <code translate="no" dir="ltr">@file</code>
+      prefix. Using a target annotation at the file scope will cause the compiler to assume all composable functions in the file are intended to be target the associated applier. For example, using
+      <code translate="no" dir="ltr">@file:UiComposable</code>
+      declares that all
+      <code translate="no" dir="ltr">@Composable</code>
+      functions target the Compose UI applier. A function that needs to target another applier must explicitly supply the target marker annotation for the desired applier. (
+      <a href="https://android-review.googlesource.com/#/q/I40804e71dcc931b788c101a0be90ae1d6fc7eba1">I40804</a>
+      )
+    </li>
+    <li>
+      <p>
+        Introduced new experimental, platform independent, test API: an
+        <code translate="no" dir="ltr">interface ComposeUiTest</code>
+        and a
+        <code translate="no" dir="ltr">fun runComposeUiTest(block: ComposeUiTest.() -&gt; Unit)</code>
+        , that can be used to run Compose Ui tests without the need for a
+        <code translate="no" dir="ltr">TestRule</code>
+        . To run a test without a
+        <code translate="no" dir="ltr">ComposeTestRule</code>
+        , pass the test as a lambda to
+        <code translate="no" dir="ltr">runComposeUiTest</code>
+        , and use the methods and members in the receiver scope
+        <code translate="no" dir="ltr">ComposeUiTest</code>
+        , which are the same ones as in
+        <code translate="no" dir="ltr">ComposeContentTestRule</code>
+        .
+      </p>
+
+      <p>
+        The Android specific
+        <code translate="no" dir="ltr">interface AndroidComposeUiTest</code>
+        and
+        <code translate="no" dir="ltr">fun runAndroidComposeUiTest(block: AndroidComposeUiTest.() -&gt; Unit)</code>
+        are added to provide access to the underlying Activity, similar to
+        <code translate="no" dir="ltr">AndroidComposeTestRule</code>
+        . For even more control, you can instantiate a
+        <code translate="no" dir="ltr">class AndroidComposeUiTestEnvironment</code>
+        yourself.
+      </p>
+
+      <p>
+        The Desktop implementation is the
+        <code translate="no" dir="ltr">class DesktopComposeUiTest</code>
+        , but no Desktop specific run functions are offered at the moment.
+      </p>
+
+      <p>
+        Migrating a test from a
+        <code translate="no" dir="ltr">ComposeTestRule</code>
+        to
+        <code translate="no" dir="ltr">ComposeUiTest</code>
+        can be done like this (Android example). From:
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@RunWith</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">AndroidJUnit4</span><span class="devsite-syntax-o">::</span><span class="devsite-syntax-n">class</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-kd">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">MyTest</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nd">@get</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-n">Rule</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">rule</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">createComposeRule</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nd">@Test</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">test</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">rule</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">setContent</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">Text</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"Hello Compose!"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">rule</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">onNodeWithText</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"Hello Compose!"</span><span class="devsite-syntax-p">).</span><span class="devsite-syntax-na">assertExists</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+      <p>To:</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@RunWith</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">AndroidJUnit4</span><span class="devsite-syntax-o">::</span><span class="devsite-syntax-n">class</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-kd">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">MyTest</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nd">@Test</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nd">@OptIn</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">ExperimentalTestApi</span><span class="devsite-syntax-o">::</span><span class="devsite-syntax-n">class</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">test</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">runComposeUiTest</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">setContent</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">Text</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"Hello Compose!"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">onNodeWithText</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"Hello Compose!"</span><span class="devsite-syntax-p">).</span><span class="devsite-syntax-na">assertExists</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        For now,
+        <code translate="no" dir="ltr">ComposeContentTestRule</code>
+        and
+        <code translate="no" dir="ltr">ComposeTestRule</code>
+        don't extend from
+        <code translate="no" dir="ltr">ComposeUiTest</code>
+        , which means extension functions on
+        <code translate="no" dir="ltr">ComposeUiTest</code>
+        can't be called yet on the
+        <code translate="no" dir="ltr">TestRule</code>
+        interface. When
+        <code translate="no" dir="ltr">ComposeUiTest</code>
+        graduates to stable API,
+        <code translate="no" dir="ltr">ComposeContentTestRule</code>
+        and
+        <code translate="no" dir="ltr">ComposeTestRule</code>
+        will be changed to extend from
+        <code translate="no" dir="ltr">ComposeUiTest</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/Ib4e909d5b4f83a9b3942278e8cb7c86854b6ecaa">Ib4e90</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">LineHeightBehavior</code>
+        is renamed as
+        <code translate="no" dir="ltr">LineHeightStyle</code>
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">LineVerticalAlignment</code>
+        is renamed as
+        <code translate="no" dir="ltr">LineHeightStyle.Alignment</code>
+      </p>
+    </li>
+    <li>
+      <p>
+        Renames
+        <code translate="no" dir="ltr">LineHeightTrim</code>
+        is renamed as
+        <code translate="no" dir="ltr">LineHeightStyle.Trim</code>
+      </p>
+    </li>
+    <li>
+      <p>
+        Default constructor values from
+        <code translate="no" dir="ltr">LineHeightStyle</code>
+        is removed (
+        <a href="https://android-review.googlesource.com/#/q/I582bf09152d60b30362b3cce9bd60d57fc488fe7">I582bf</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/181155707">b/181155707</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">Brush</code>
+        to
+        <code translate="no" dir="ltr">TextStyle</code>
+        and
+        <code translate="no" dir="ltr">SpanStyle</code>
+        to provide a way to draw text with gradient coloring. (
+        <a href="https://android-review.googlesource.com/#/q/I538698c22f5a03b57ed811ea733dd1194deaaa6a">I53869</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/187839528">b/187839528</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">trimFirstLineTop</code>
+        ,
+        <code translate="no" dir="ltr">trimLastLineBottom</code>
+        attributes of
+        <code translate="no" dir="ltr">LineHeightBehavior</code>
+        changed into a single enum:
+        <code translate="no" dir="ltr">LineHeightTrim</code>
+        .
+        <code translate="no" dir="ltr">LineHeightTrim</code>
+        have values of 4 states defined by two booleans:
+        <code translate="no" dir="ltr">FirstLineTop</code>
+        ,
+        <code translate="no" dir="ltr">LastLineBottom</code>
+        , Both and None (
+        <a href="https://android-review.googlesource.com/#/q/Ifc6a5912eab7a0e41ae6cd4045ea9cbdf3c0a146">Ifc6a5</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/181155707">b/181155707</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">LineHeightBehavior</code>
+        to the
+        <code translate="no" dir="ltr">TextStyle</code>
+        and
+        <code translate="no" dir="ltr">ParagraphStyle</code>
+        .
+        <code translate="no" dir="ltr">LineHeightBehavior</code>
+        controls whether line height is applied to the top of the first line and to the bottom of the last line. It also defines the alignment of line in the space provided by
+        <code translate="no" dir="ltr">TextStyle(lineHeight)</code>
+        .
+      </p>
+
+      <p>
+        For example it is possible to get a behavior similar to what CSS defines via
+        <code translate="no" dir="ltr">LineHeightBehavior(alignment = LineVerticalAlignment.Center, trimFirstLineTop=false, trimLastLineBottom = false)</code>
+        .
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">trimFirstLineTop</code>
+        ,
+        <code translate="no" dir="ltr">trimLastLineBottom</code>
+        configurations works correctly only when
+        <code translate="no" dir="ltr">includeFontPadding</code>
+        is false. (
+        <a href="https://android-review.googlesource.com/#/q/I973329a540ca9f5a6e225f1e5aaffeaa1ff9cc61">I97332</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/181155707">b/181155707</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">PlatformParagraphStyle.lerp</code>
+        and
+        <code translate="no" dir="ltr">PlatformSpanStyle.lerp</code>
+        functions are changed to be top level functions (
+        <a href="https://android-review.googlesource.com/#/q/I9a268d3012b3e215408b2715a73a153818facc20">I9a268</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">PointerInputChange::copy</code>
+      documentation now correctly states that it is a shallow copy. (
+      <a href="https://android-review.googlesource.com/#/q/I182f5bf7edfce52ac7502b2b77ab9e0fb08fcfe1">I182f5</a>
+      )
+    </li>
+    <li>
+      Support ellipsis when height is limited and doesn't fit all text lines (
+      <a href="https://android-review.googlesource.com/#/q/Ie528c603d4c76c31ea71524a8381000d43d1cf42">Ie528c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/168720622">b/168720622</a>
+      )
+    </li>
+    <li>
+      Turned on default
+      <code translate="no" dir="ltr">includeFontPadding</code>
+      . It is possible to turn off the
+      <code translate="no" dir="ltr">includeFontPadding</code>
+      using
+      <code translate="no" dir="ltr">TextStyle.platformTextStyle</code>
+      attribute. In the near future we will change the default behavior however until that time this allows us to better integrate line height improvements (aosp/2058653) and solve
+      <code translate="no" dir="ltr">TextField</code>
+      clipping issues. (
+      <a href="https://android-review.googlesource.com/#/q/I01423d9a0042a1f3e462236e1fdadb60a20678fc">I01423</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171394808">b/171394808</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">MouseInjectionScope.scroll(delta = someDelta)</code>
+      is now inverted on Android if we scroll vertically (if someDelta is positive, it will scroll downward) (
+      <a href="https://android-review.googlesource.com/#/q/Ifb697a9ae8bc05a2d54d0a6cb4018713e156baf8">Ifb697</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/224992993">b/224992993</a>
+      )
+    </li>
+  </ul>

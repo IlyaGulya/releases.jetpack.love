@@ -1,0 +1,72 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.8.1
+releaseDate: 2024-09-18
+#language=html
+changelogHtml: |
+  <h3 id="2.8.1" data-text="Version 2.8.1" tabindex="-1">Version 2.8.1</h3>
+  <p>September 18, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.8.1</code>
+    is released. Version 2.8.1 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/89b0ab6acbda86348e82091c6e1909c6ad69cea3..e5c636f0655470cfa3dac640d9454331d1197d80/navigation">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added a new lint rule to ensure the use of the
+      <code translate="no" dir="ltr">popBackStack</code>
+      function that takes a reified class type when attempting to
+      <code translate="no" dir="ltr">popBackStack</code>
+      using type-safe APIs. (
+      <a href="https://android-review.googlesource.com/#/q/Ief1614a3ff15937b173536a43ba3f0de3c4d8b8a">Ief161</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/358095343">b/358095343</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Navigation now requires that the route passed to a
+      <code translate="no" dir="ltr">NavGraph</code>
+      's
+      <code translate="no" dir="ltr">startDestination</code>
+      contains the values for all required arguments, which includes arguments that are non-nullable and have no default value. (
+      <a href="https://android-review.googlesource.com/#/q/I18e7401ac7a4d322db2add9b0f2781196d4d3257">I18e74</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/362594265">b/362594265</a>
+      )
+    </li>
+    <li>
+      Navigation safe args has added support for non-nullable strings such that "null" values will be parsed and stored into the bundle as is. This departs from existing behavior where "null" values are parsed into a null object. This change only applies to non-nullable String types. Nullable strings remain unchanged. (
+      <a href="https://android-review.googlesource.com/#/q/I08b4a9ce5e295a1bddb7baaf9b09af6367a2faa9">I08b4a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/348936238">b/348936238</a>
+      )
+    </li>
+    <li>
+      A
+      <code translate="no" dir="ltr">NavDestination</code>
+      can no longer be deeplinked into except through a deep link that was explicitly added to the destination. This also means that you can only navigate to a destination's route with the navigate function overload that takes a string route. This fixes a vulnerability that made it possible to deep link to a potentially protected destination. (
+      <a href="https://android-review.googlesource.com/#/q/Ie30e6c782fc511f1868dfab0d5ab11eab2bf8c4f">Ie30e6</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Update</strong></p>
+  <ul>
+    <li>
+      Navigation Safe Args now depends on Kotlin 1.9.24, rather than Kotlin 2.X, ensuring that developers are not forced to update. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/a4129ad752cb16484a021f26d63126381ffa5392">a4129a</a>
+      )
+    </li>
+    <li>
+      Navigation Compose now depends on
+      <a href="/jetpack/androidx/releases/compose-animation#1.7.2">
+        Compose
+        <code translate="no" dir="ltr">1.7.2</code>
+      </a>
+      .
+    </li>
+  </ul>

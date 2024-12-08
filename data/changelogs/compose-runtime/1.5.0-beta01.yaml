@@ -1,0 +1,129 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.5.0-beta01
+releaseDate: 2023-05-24
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-beta01" data-text="Version 1.5.0-beta01" tabindex="-1">Version 1.5.0-beta01</h3>
+  <p>May 24, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.5.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6f3ac2bd197d5e61ab2708125b57d6ae4003ad68..d26ca4055c940126ae1663ad0d54aafd23205ea4/compose/runtime">Version 1.5.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removed allocations in recomposition, color animations, and
+      <code translate="no" dir="ltr">AndroidComposeView</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ib2bfaf0af40bc0970424f86141ae24607a2b1223">Ib2bfa</a>
+      )
+    </li>
+    <li>
+      Added a
+      <code translate="no" dir="ltr">@StateFactoryMarker</code>
+      annotation, to mark functions that create states and must be wrapped in a
+      <code translate="no" dir="ltr">remember</code>
+      call. (
+      <a href="https://android-review.googlesource.com/#/q/I64550a0cb1647096260f00b75e7d35897878c617">I64550</a>
+      )
+    </li>
+    <li>
+      Add primitive versions of State and
+      <code translate="no" dir="ltr">MutableState</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I48e438d0af15226217b77b2ba9a970c3219580bf">fb3d89</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Snapshot.isApplyObserverNotificationPending</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I672a5c268230bfa1603341dd3327733faca5ca2a">I672a5</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Reduced allocations (
+      <a href="https://android-review.googlesource.com/#/q/I65c09492518269d6605a4731effd164d93be023a">I65c09</a>
+      ,
+      <a href="https://android-review.googlesource.com/q/commit:55a39a86b2af2221eee79db32036cb649bd7ea77">d7ea77</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ifc5a47a41da8c75409d987c84f672f6cc8a82682">727974</a>
+      , and
+      <a href="https://android-review.googlesource.com/#/q/Ib2bfaf0af40bc0970424f86141ae24607a2b1223">445808</a>
+      )
+    </li>
+    <li>
+      Don't retain snapshot reference in
+      <code translate="no" dir="ltr">ComposerImpl</code>
+      (
+      <a href="https://android-review.googlesource.com/q/commit:6f0e3949772ada45e2c376ce67a55380820206f7">0206f7</a>
+      )
+    </li>
+    <li>
+      Quick cancellation of compose
+      <code translate="no" dir="ltr">CoroutineScopes</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I2fbb777cbdab880f062584ae86ce69e89e9a9cf0">a55362</a>
+      and
+      <a href="https://android-review.googlesource.com/#/q/I8fbb9904408dff4dd694f24d8a5effb7d16ed2c4">bd382f</a>
+      )
+    </li>
+    <li>
+      Don’t apply composition twice (
+      <a href="https://android-review.googlesource.com/#/q/Ie64c91900541e39b0397e9c4141be92007291353">f5791b</a>
+      )
+    </li>
+    <li>
+      Ensure invalidation for non-initialized derived state values (
+      <a href="https://android-review.googlesource.com/#/q/I73d7888ac05f4adaa2128e01088288b7cf369fbd">aa2a92</a>
+      )
+    </li>
+    <li>
+      Call
+      <code translate="no" dir="ltr">onEndChanges</code>
+      during composition dispose. (
+      <a href="https://android-review.googlesource.com/#/q/I03ddce4062cbf7fb97f0447484ac46b0aedeab35">62cc8c</a>
+      )
+    </li>
+    <li>
+      Fix moving content into a sub-composition (
+      <a href="https://android-review.googlesource.com/#/q/Ic75f8dcaddc8c784f35f1884d662be04f084b455">4beb41</a>
+      )
+    </li>
+    <li>
+      Fix potential deadlocks (
+      <a href="https://android-review.googlesource.com/#/q/Ie8b87caecabc88f6a6dd610805d964aed3489b85%5D%20and%20%5B8edce0%5D(https://android-review.googlesource.com/#/q/I5cd5b2b3388758fef0826af619c680edce07d349)">c1a425</a>
+    </li>
+    <li>
+      ON_STOP should pause the frame clock broadcasts instead of composition (
+      <a href="https://android-review.googlesource.com/#/q/Id9e7fe262710544a48c2e4fc5fcbf1d27bfaa1ba">f4a2d1</a>
+      )
+    </li>
+    <li>
+      Fix changed flags for restarted lambdas (
+      <a href="https://android-review.googlesource.com/#/q/I203ec51beb7fc8c09eb536fa435ea2f8203f046c">8a03e9</a>
+      )
+    </li>
+    <li>
+      Execute deactivation callbacks for
+      <code translate="no" dir="ltr">LayoutNode</code>
+      before disposing effects (
+      <a href="https://android-review.googlesource.com/#/q/I5957617e9f15af8d581b5cf304f5312bba310169">8b0fa4</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Snapshot.isApplyObserverNotificationPending</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I672a5c268230bfa1603341dd3327733faca5ca2a">I672a5</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,87 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.1.0-alpha05
+releaseDate: 2021-08-04
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha05" data-text="Version 1.1.0-alpha05" tabindex="-1">Version 1.1.0-alpha05</h3>
+  <p>August 4, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.1.0-alpha05</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ccf79f53033e665475116a4e78ff124df2a52c4b..d725303accfa9be6d5c3d61c7603ed1b9a780cbd/benchmark">Version 1.1.0-alpha05 contains these commits.</a>
+  </p>
+  <p>
+    <code translate="no" dir="ltr">1.1.0-alpha04</code>
+    was cancelled before release due to a sporatic crash.
+    <a href="https://issuetracker.google.com/issues/193827052">b/193827052</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Switched
+      <a href="/reference/kotlin/androidx/benchmark/macro/MacrobenchmarkScope#startActivityAndWait(android.content.Intent)">startActivityAndWait</a>
+      to invoke launch via
+      <code translate="no" dir="ltr">am start</code>
+      , which reduces the time of each measurement iteration by approximately 5 seconds, at the cost of no longer supporting intent parcelables. (
+      <a href="https://android-review.googlesource.com/#/q/I5a6f55819fe095da1317b55405a6a5a9fe3cb758">I5a6f5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/192009149">b/192009149</a>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Reduce aggressiveness of thermal throttle detection, and recompute baseline if throttles are detected frequently. (
+      <a href="https://android-review.googlesource.com/#/q/I7327b4f1c15317fad28de1f06a148aad29c7cd4f">I7327b</a>
+      )
+    </li>
+    <li>
+      Fixes FrameTimingMetric to work on Android S beta (
+      <a href="https://android-review.googlesource.com/#/q/Ib60ccf09fb2fa09f128374140c3657015626dd2c">Ib60cc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/193260119">b/193260119</a>
+      )
+    </li>
+    <li>
+      Use an
+      <code translate="no" dir="ltr">EmptyActivity</code>
+      to bring the target app out of a force-stopped state to better support
+      <code translate="no" dir="ltr">CompilationMode.BaselineProfile</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id7cac284a5a42f5aeaf92ba6522061f794afcc96">Id7cac</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/192084204">b/192084204</a>
+      )
+    </li>
+    <li>
+      Changed trace file extension to
+      <code translate="no" dir="ltr">.perfetto-trace</code>
+      to match platform standard. (
+      <a href="https://android-review.googlesource.com/#/q/I4c236a26dfc5494415ee3f4d340329244a22c2b6">I4c236</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/174663039">b/174663039</a>
+      )
+    </li>
+    <li>
+      StartupTimingMetric now outputs the "fullyDrawnMs" metric to measure time until your application has completed rendering. To define this metric for your app, call Activity.reportFullyDrawn when your initial content is ready, such as when your initial list items are loaded from DB or network. (reportFullyDrawn method available without build version checks on ComponentActivity). Note that your test must run long enough to capture the metric (startActivityAndWait doesn't wait for reportFullyDrawn). (
+      <a href="https://android-review.googlesource.com/#/q/If1141474620b0f2d50f59801a1a8e1cac49ae51d">If1141</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/179176560">b/179176560</a>
+      )
+    </li>
+    <li>
+      Reduce cost of appending Ui metadata to traces by 50+ ms (
+      <a href="https://android-review.googlesource.com/#/q/Ic839003ca1a321d56dca7686db29cb3c00c67fc5">Ic8390</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/193923003">b/193923003</a>
+      )
+    </li>
+    <li>
+      Drastically increased polling frequency when stopping tracing, which can reduce e.g. startup benchmark runtime by 30+% (
+      <a href="https://android-review.googlesource.com/#/q/Idfbc18c4c997d2d78292b14a44d405d11fe7b43e">Idfbc1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/193723768">b/193723768</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,56 @@
+libraryId: transition
+groupId: androidx.transition
+version: 1.6.0-alpha01
+releaseDate: 2024-12-11
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-alpha01" data-text="Version 1.6.0-alpha01" tabindex="-1">Version 1.6.0-alpha01</h3>
+  <p>December 11, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.transition:transition:1.6.0-alpha01</code>
+    and
+    <code translate="no" dir="ltr">androidx.transition:transition-ktx:1.6.0-alpha01</code>
+    are released. Version 1.6.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/2d628af7c0127584d10f86a6e0872691a5de4536..46295bc0b75a16f452e8e0090e8de41073d4dbb6/transition">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Transition now sets the disjoint parent for
+      <code translate="no" dir="ltr">ViewOverlays</code>
+      used to animate its transitions. This allows for the resolution of owners through the disjoint parent, which means you can now correctly resolve
+      <code translate="no" dir="ltr">ViewModels</code>
+      , lifecycles, etc. during a transition. (
+      <a href="https://android-review.googlesource.com/#/q/I10a16c84ba1efbf89a503418889ddd56bb711bed">I10a16</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/340894487">b/340894487</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/287484338">b/287484338</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      This library now uses
+      <a href="https://jspecify.dev/">JSpecify nullness annotations</a>
+      , which are type-use. Kotlin developers should use the following compiler arguments to enforce correct usage:
+      <code translate="no" dir="ltr">-Xjspecify-annotations=strict, -Xtype-enhancement-improvements-strict-mode</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I1f54e3f6b2dad0e8bfd2adab7566e1dc4d9d6bc1">I1f54e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326456246">b/326456246</a>
+      )
+    </li>
+    <li>
+      Removed manual outlining of access to new platform APIs since this happens automatically via API modeling when using R8 with AGP 7.3 or later (e.g. R8 version 3.3) and for all builds when using AGP 8.1 or later (e.g. D8 version 8.1). Clients who are not using AGP are advised to update to D8 version 8.1 or later. See
+      <a href="https://medium.com/androiddevelopers/mitigating-soft-verification-issues-in-r8-and-d8-7e9e06827dfd">this article</a>
+      for more details. (
+      <a href="https://android-review.googlesource.com/#/q/Ia60e0ab9f0fd613883a772c8aa34e27cc986cae8">Ia60e0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/345472586">b/345472586</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_15_2" data-text="Version 1.5" tabindex="-1">Version 1.5</h2>

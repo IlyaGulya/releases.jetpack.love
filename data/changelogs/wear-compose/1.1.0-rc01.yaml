@@ -1,0 +1,136 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.1.0-rc01
+releaseDate: 2022-11-09
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-rc01" data-text="Version 1.1.0-rc01" tabindex="-1">Version 1.1.0-rc01</h3>
+  <p>November 9, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-foundation:1.1.0-rc01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material:1.1.0-rc01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-navigation:1.1.0-rc01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/548c8ac2570ae6cf15798fea1380491f7d93796b..f76465e42639496c7a831c4d88e4588b7440bec2/wear/compose">Version 1.1.0-rc01 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We have added baseline profile rules for
+      <code translate="no" dir="ltr">Placeholders</code>
+      ,
+      <code translate="no" dir="ltr">ScrollAway</code>
+      ,
+      <code translate="no" dir="ltr">RadioButton</code>
+      ,
+      <code translate="no" dir="ltr">Switch</code>
+      ,
+      <code translate="no" dir="ltr">Checkbox</code>
+      ,
+      <code translate="no" dir="ltr">OutlinedButton</code>
+      ,
+      <code translate="no" dir="ltr">OutlinedCompactButton</code>
+      ,
+      <code translate="no" dir="ltr">OutlinedChip</code>
+      and
+      <code translate="no" dir="ltr">OutlinedCompactChip</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I8249c85c475cd5e9556be91f5461aea8e4b6d12b">I8249c</a>
+      )
+    </li>
+    <li>
+      We have fixed a bug in
+      <code translate="no" dir="ltr">Modifier.scrollAway</code>
+      so that if the specified
+      <code translate="no" dir="ltr">itemIndex</code>
+      is invalid (for example, if that item index is out of range), then the
+      <code translate="no" dir="ltr">TimeText</code>
+      will now still be displayed. (
+      <a href="https://android-review.googlesource.com/#/q/I2137a92f7ff86380b8a438708f10cfb678ba8352">I2137a</a>
+      )
+    </li>
+    <li>
+      We have updated the
+      <code translate="no" dir="ltr">SwipeToDismissBox</code>
+      animation to match the platform implementation. After the initial squeeze animation, the screen now slides off to the right once the dismissal has been triggered. (
+      <a href="https://android-review.googlesource.com/q/I41d34964b0c93d1fef4d188fce749b0f1f0a0474">I41d34</a>
+      )
+    </li>
+    <li>
+      As an optimization, we have updated
+      <code translate="no" dir="ltr">Modifier.scrollAway</code>
+      to only read the
+      <code translate="no" dir="ltr">scrollState</code>
+      inside the measure block to avoid recomposing the modifier after each remeasure. (
+      <a href="https://android-review.googlesource.com/#/q/I4c6f17238ee294d98dc56b86153333d7fd5a1aa4">I4c6f1</a>
+      )
+    </li>
+    <li>
+      We have added documentation and a sample to placeholders to show the correct ordering for
+      <code translate="no" dir="ltr">Modifier.placeholder</code>
+      and
+      <code translate="no" dir="ltr">Modifier.placeholderShimmer</code>
+      when applied to the same composable. (
+      <a href="https://android-review.googlesource.com/#/q/Ie96f47734d5ffe91cfbd1f92e1b67543534be41f">Ie96f4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/256583229">b/256583229</a>
+      )
+    </li>
+    <li>
+      We have changed the default border width for an
+      <code translate="no" dir="ltr">OutlinedCompactChip/OutlinedChip</code>
+      from 2.dp to 1.dp to match final UX specs. (
+      <a href="https://android-review.googlesource.com/#/q/Ib3d8e51de7706b22f592b218fbc454e4b7b4f7a1">Ib3d8e</a>
+      )
+    </li>
+    <li>
+      We have fixed a bug in
+      <code translate="no" dir="ltr">rememberPickerState</code>
+      where updated inputs were not saved, so that composables were not updated after changes to the inputs. (
+      <a href="https://android-review.googlesource.com/#/q/I49ff67e95da966aecbdc3d9b9cdd93bec9f662ba">I49ff6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/255323197">b/255323197</a>
+      )
+    </li>
+    <li>
+      We have made some UI updates to the placeholders, 1) change the shimmer gradient to 1.5x the screen size, 2) add easing (cubic bezier) of the shimmer progression and 3) speed up the wipe-off animation (250ms). (
+      <a href="https://android-review.googlesource.com/#/q/Id29c1618ef0e680757adc20ba09e483859e56c00">Id29c1</a>
+      )
+    </li>
+    <li>
+      We have corrected a UI bug in the placeholder wipeOff effect where Chip and Card backgrounds were wiping off slightly early due to not taking the component’s position on screen into account. (
+      <a href="https://android-review.googlesource.com/#/q/I2c7cb2ed5d27ec425cca21dca7bf74cab3d3d854">I2c7cb</a>
+      )
+    </li>
+    <li>
+      We have updated the placeholder background drawing to merge colors rather than layer them where possible to reduce the risk of alpha blending of the different cropped layers from allowing underlying colors to bleed through at the placeholder background edges. (
+      <a href="https://android-review.googlesource.com/#/q/I2ea2612412ca1fb3cad61c98cfee71ce85bee99f">I2ea26</a>
+      )
+    </li>
+    <li>
+      We have corrected the calculation of
+      <code translate="no" dir="ltr">ScalingLazyListState.centerItemIndex/centerItemOffset</code>
+      so that if two items sit either side of the viewport center line the one that is closest will be considered as the
+      <code translate="no" dir="ltr">centerItem</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I307091167e04914d1ae29d5324f84ec18ed7b8a8">I30709</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/254257769">b/254257769</a>
+      )
+    </li>
+    <li>
+      We have corrected a bug in the
+      <code translate="no" dir="ltr">ScalingLazyListState.layoutInfo.visibleItemsInfo</code>
+      which was reporting incorrect offsets during
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      initialization. Now an empty list will be returned until all list items are visible and have the correct offsets. Check for
+      <code translate="no" dir="ltr">ScalingLazyListState.layoutInfo.visibleItemsInfo.isNotEmpty()</code>
+      will confirm that the
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      initialization is complete and items are visible. (
+      <a href="https://android-review.googlesource.com/#/q/I3a3b883d3347784a013b655a0a1e8312d0914ba2">I3a3b8</a>
+      )
+    </li>
+  </ul>

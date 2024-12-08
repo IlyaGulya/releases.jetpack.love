@@ -1,0 +1,114 @@
+libraryId: car-app
+groupId: androidx.car
+version: 1.3.0-beta01
+releaseDate: 2022-09-07
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-beta01" data-text="Version 1.3.0-beta01" tabindex="-1">Version 1.3.0-beta01</h3>
+  <p>September 7, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.car.app:app:1.3.0-beta01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.car.app:app-projected:1.3.0-beta01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.car.app:app-automotive:1.3.0-beta01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.car.app:app-testing:1.3.0-beta01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/aedf95b57a697bcad1a8259033140b5291466f2b..cce7b70f6a5ebf955cf748a73c18b63228b22c74/car/app">Version 1.3.0-beta01 contains these commits.</a>
+  </p>
+  <ul>
+    <li>
+      Car apps built using this library can now go to the Play Store using API Level 5 (see our
+      <a href="/training/cars/apps">development guide</a>
+      ). Features annotated with API level 5 and under are compatible with both
+      <a href="https://play.google.com/store/apps/details?id=com.google.android.projection.gearhead">Android Auto 8.1+</a>
+      and the
+      <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.automotive.templates.host">Google Automotive App Host 1.4+</a>
+      .
+    </li>
+  </ul>
+  <p><strong>New Features</strong></p>
+  <p>In addition to capabilities added in Car App Library 1.3.0-alpha01, the following features have been added as part of beta01 (All features here only involve with host side changes without any API changes):</p>
+  <ul>
+    <li>
+      The floating navigation bar will continue to show even when a user is in a map-based selection screen in
+      <code translate="no" dir="ltr">PlaceListNavigationTemplate</code>
+      ,
+      <code translate="no" dir="ltr">RoutePreviewNavigationTemplate</code>
+      , and
+      <code translate="no" dir="ltr">MapTemplate</code>
+      . This can be done by updating navigation info through
+      <a href="/reference/androidx/car/app/navigation/NavigationManager#updateTrip(androidx.car.app.navigation.model.Trip)"><code translate="no" dir="ltr">NavigationManager.updateTrip()</code></a>
+      .
+    </li>
+    <li>
+      Enable the action button with
+      <code translate="no" dir="ltr">FLAG_DEFAULT</code>
+      to have a timeout animation. This button will be clicked by default after the timeout. (
+      <code translate="no" dir="ltr">[API 5 - All Templates]</code>
+      )
+    </li>
+    <li>
+      A
+      <code translate="no" dir="ltr">Row</code>
+      s subtext is not truncated when the car is parked, but truncated to 2 lines while driving. (
+      <code translate="no" dir="ltr">[API 5 - All Templates]</code>
+      )
+    </li>
+    <li>
+      Support disabled state for
+      <code translate="no" dir="ltr">Action</code>
+      ,
+      <code translate="no" dir="ltr">Toggle</code>
+      ,
+      <code translate="no" dir="ltr">Row</code>
+      (
+      <code translate="no" dir="ltr">[API 5 - All Templates]</code>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Relax constraints in
+      <code translate="no" dir="ltr">MapTemplate</code>
+      list to support selectable lists (
+      <a href="https://android-review.googlesource.com/#/q/I961ed1e23955e37ee3713ea2b3b796231bc614c8">I961ed</a>
+      )
+    </li>
+    <li>
+      Remove the constraint for Header Actions to allow for custom icons. (
+      <a href="https://android-review.googlesource.com/#/q/Iad28fc25e466e70eadd0a52d61502509956e61c7">Iad28f</a>
+      )
+    </li>
+    <li>
+      Add a constraint
+      <code translate="no" dir="ltr">setOnClickListenerAllowed()</code>
+      to
+      <code translate="no" dir="ltr">ActionsConstraints</code>
+      . Where it allowed
+      <code translate="no" dir="ltr">Action</code>
+      to set
+      <code translate="no" dir="ltr">OnClickDelegate()</code>
+      to actions except the standard icon types. (
+      <code translate="no" dir="ltr">TYPE_APP_ICON</code>
+      ,
+      <code translate="no" dir="ltr">TYPE_BACK</code>
+      , and
+      <code translate="no" dir="ltr">TYPE_PAN</code>
+      ) (
+      <a href="https://android-review.googlesource.com/#/q/I3c7457accf3322974b002d4510d319616e0d949a">I3c745</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Added compatibility of
+      <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.automotive.templates.host">Android Automotive Template Host 1.4+</a>
+      with curved displays (
+      <code translate="no" dir="ltr">[Host change]</code>
+      )
+    </li>
+  </ul>

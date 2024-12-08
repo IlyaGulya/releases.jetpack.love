@@ -1,0 +1,60 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.0.0-rc03
+releaseDate: 2021-02-24
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-rc03" data-text="Version 1.0.0-rc03" tabindex="-1">Version 1.0.0-rc03</h3>
+  <p>February 24, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-camera2:1.0.0-rc03</code>
+    ,
+    <code translate="no" dir="ltr">androidx.camera:camera-core:1.0.0-rc03</code>
+    , and
+    <code translate="no" dir="ltr">androidx.camera:camera-lifecycle:1.0.0-rc03</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/061e502eeee77b497212dbe85a2a826a9a2c91e8..cbbcaf606229323f6a80e9627683e68773ea249b/camera">Version 1.0.0-rc03 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix format error in the document of
+      <code translate="no" dir="ltr">ProcessCameraProvider#getInstance</code>
+    </li>
+    <li>Fixed the Robolectric test failure when setAvailableCamerasLimiter is used in CameraXConfig.</li>
+    <li>Fixed ImageCapture performance regression by removing the validation of image saved location before taking a picture. After making this change, if the save destination is invalid, it will take longer to get the failure response because it will try to save the image after the photo is taken</li>
+    <li>This change catches the exception when the image queue is maxed out in ImageAnalysis. So instead of crash, you may notice other use cases being frozen or sluggish. e.g. frozen/sluggish preview.</li>
+    <li>
+      Workaround included for intermittent corrupt image data in JPEGs on SM-G930T back-facing camera. (
+      <a href="https://android-review.googlesource.com/#/q/I52001b98b8124fc9a3ee6b8c343225bb21881d12">I52001</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/159831206">b/159831206</a>
+      )
+    </li>
+    <li>
+      This change catches the exception when the image queue is maxed out in ImageAnalysis. So instead of crashing, you may notice other use cases being frozen or sluggish. e.g. frozen/sluggish preview. (
+      <a href="https://android-review.googlesource.com/#/q/Ic12dafa0b0feed875a07ea1d8c23c52977b15afa">Ic12da</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175851631">b/175851631</a>
+      )
+    </li>
+    <li>
+      Fixed the Robolectric test failure when setAvailableCamerasLimiter is used in CameraXConfig. (
+      <a href="https://android-review.googlesource.com/#/q/Ice307fb4af419d423f83545d26f279b2ee01f797">Ice307</a>
+      )
+    </li>
+    <li>
+      Fixed ImageCapture performance regression by removing the validation of image saved location before taking a picture. After making this change, if the save destination is invalid, it will take longer to get the failure response because it will try to save the image after the photo is taken. (
+      <a href="https://android-review.googlesource.com/#/q/I1fd4ed93d0984668c634c832010901d604cb0dc6">I1fd4e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177061560">b/177061560</a>
+      )
+    </li>
+    <li>
+      Fixed ImageCapture performance regression with "File" type OutputFileOptions. (
+      <a href="https://android-review.googlesource.com/#/q/I5164a91c586df0a8dd90f30eda0ce43c1cbe5cd7">I5164a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177061560">b/177061560</a>
+      )
+    </li>
+  </ul>

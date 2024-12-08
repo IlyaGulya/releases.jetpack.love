@@ -1,0 +1,101 @@
+libraryId: test-uiautomator
+groupId: androidx.test
+version: 2.3.0
+releaseDate: 2024-02-21
+#language=html
+changelogHtml: |
+  <h3 id="2.3.0" data-text="Version 2.3.0" tabindex="-1">Version 2.3.0</h3>
+  <p>February 21, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.test.uiautomator:uiautomator:2.3.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6a7f32e3b6350cc12f5fac272e832cc1b445dbb4..4f8d91d904a453dc1b9661cb43ea02b62436a1e6/test/uiautomator/uiautomator">Version 2.3.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 2.2.0</strong></p>
+  <ul>
+    <li>
+      <strong>Multi-display support</strong>
+      : Added support for finding and operating on objects across multiple displays, and
+      <code translate="no" dir="ltr">UiDevice</code>
+      methods to manage secondary displays (
+      <a href="https://android-review.googlesource.com/#/q/Ie65445d36be6b771543a30263c66252adf8bed84">Ie6544</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I912cd814a58f9a53a90a6e4edca66e5dbc31c283">I912cd</a>
+      ).
+    </li>
+    <li>
+      <strong>New selectors</strong>
+      :
+      <ul>
+        <li>
+          Added
+          <code translate="no" dir="ltr">By.displayId</code>
+          to select objects by their display ID (
+          <a href="https://android-review.googlesource.com/#/q/I1825b1715755ebd58b58b3fc3bd3a4dba7224970">I1825b</a>
+          ).
+        </li>
+        <li>
+          Added
+          <code translate="no" dir="ltr">By.hasParent</code>
+          and
+          <code translate="no" dir="ltr">By.hasAncestor</code>
+          to select objects according to their parents (
+          <a href="https://android-review.googlesource.com/#/q/I93c36cf79aec441046904c3a90c64adf7fe65d09">I93c36</a>
+          ).
+        </li>
+        <li>
+          Added
+          <code translate="no" dir="ltr">By.hint</code>
+          methods to select objects by their hint text (
+          <a href="https://android-review.googlesource.com/#/q/Idd34586e5c596f31d477535df2d442327c18374a">Idd345</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Custom conditions</strong>
+      : Exposed a
+      <code translate="no" dir="ltr">Condition</code>
+      interface to support custom wait conditions, and added corresponding
+      <code translate="no" dir="ltr">UiDevice#wait</code>
+      ,
+      <code translate="no" dir="ltr">UiObject2#wait</code>
+      , and
+      <code translate="no" dir="ltr">UiObject2#scrollUntil</code>
+      methods (
+      <a href="https://android-review.googlesource.com/#/q/27c0ea7b5022a7dc93d9dd48134309e2cfacc982">27c0ea</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/099d6e5cd8861faf0bf18c4973ad33c04dacd723">099d6e</a>
+      ).
+    </li>
+    <li>
+      <strong>Bug fixes and reliability</strong>
+      <ul>
+        <li>
+          Fixed an issue where the display size calculations were occasionally incorrect and might ignore portions of the screen (
+          <a href="https://android-review.googlesource.com/#/q/Ifc016cd4bd6929705100129fac92d6d355be563d">Ifc016</a>
+          ). Coordinates and offsets used in tests may need to be adjusted.
+        </li>
+        <li>
+          Updated
+          <code translate="no" dir="ltr">MotionEvent</code>
+          injection to improve accuracy (
+          <a href="https://android-review.googlesource.com/#/q/678ca3be0081003ecaf9ff1b64375bb90bab4974">678ca3</a>
+          ) and better emulate user gestures (
+          <a href="https://android-review.googlesource.com/#/q/45445069f33284e8e135c9023c69fd58ce0835c8">454450</a>
+          ).
+        </li>
+        <li>
+          Improved the reliability of scrolls (
+          <a href="https://android-review.googlesource.com/#/q/I7b0595c5c55168af434a2957dc4f29df41e3e124">I7b059</a>
+          ), rotations (
+          <a href="https://android-review.googlesource.com/#/q/c6cea022c21c0e6947636fbbd0fa69639b9ebfc4">c6cea0</a>
+          ), long clicks (
+          <a href="https://android-review.googlesource.com/#/q/49572b17ec2dcf5392aa804866f2f028b1d29352">49572b</a>
+          ), pinches (
+          <a href="https://android-review.googlesource.com/#/q/3c619aa35d7dd121e3d0d27fd13bbb5d6f41cc35">3c619a</a>
+          ), and more.
+        </li>
+      </ul>
+    </li>
+  </ul>

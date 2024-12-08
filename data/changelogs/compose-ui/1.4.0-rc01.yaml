@@ -1,0 +1,66 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.4.0-rc01
+releaseDate: 2023-03-08
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-rc01" data-text="Version 1.4.0-rc01" tabindex="-1">Version 1.4.0-rc01</h3>
+  <p>March 8, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.4.0-rc01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/87533b4ff06971ed59028936cd9b6da988cd4522..6022301db806601f282c53b8cbb5a981923a1589/compose/ui">Version 1.4.0-rc01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added an overload of
+      <code translate="no" dir="ltr">AndroidView</code>
+      composable function, which accepts the
+      <code translate="no" dir="ltr">onReset</code>
+      param. It allows View instances to be reused when their node in the composition is discarded and reused in a compatible way. This is especially useful for
+      <code translate="no" dir="ltr">LazyRows</code>
+      and
+      <code translate="no" dir="ltr">LazyColumns</code>
+      of Views. (
+      <a href="https://android-review.googlesource.com/#/q/I3f10db5de1b7699964274e0d25f4aad324865dca">I3f10d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/230099236">b/230099236</a>
+      )
+    </li>
+    <li>
+      Introduced new low-level
+      <code translate="no" dir="ltr">PlatformTextInputAdapter</code>
+      API for building custom text input implementations that talk directly to platform APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I58df46daa7a88f9761dcd711519c6eddf8524b6d">I58df4</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">BasicTextField</code>
+      's
+      <code translate="no" dir="ltr">SetText</code>
+      semantics action will now update the text buffer using the same code path as IME updates and the testing functions (e.g.
+      <code translate="no" dir="ltr">performTextReplacement</code>
+      ).
+    </li>
+    <li>
+      Text testing functions
+      <code translate="no" dir="ltr">performTextClearance</code>
+      ,
+      <code translate="no" dir="ltr">performTextReplacement</code>
+      , and
+      <code translate="no" dir="ltr">performTextSelection</code>
+      now use
+      <code translate="no" dir="ltr">SemanticsActions</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0807d73975224ac5bf02fc232c1ab615f76c1c7d">I0807d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/269633168">b/269633168</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/269624358">b/269624358</a>
+      )
+    </li>
+  </ul>

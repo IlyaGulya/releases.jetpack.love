@@ -1,0 +1,79 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.6.0-alpha08
+releaseDate: 2023-03-22
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-alpha08" data-text="Version 1.6.0-alpha08" tabindex="-1">Version 1.6.0-alpha08</h3>
+  <p>March 22, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment-*:1.6.0-alpha08</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/bf83b7ca1e086138c9ffa3ed2a530db3b038c79a..5e7d256f82fbafb6d059ab7b18fddd87c7531553/fragment">Version 1.6.0-alpha08 contains these commits.</a>
+  </p>
+  <p><strong>Behavior Change</strong></p>
+  <ul>
+    <li>
+      The timing of the
+      <code translate="no" dir="ltr">OnBackStackChangedListener.onBackStackChangeCommited</code>
+      callback has been adjusted to execute before fragment operations are executed. This ensures that the callback will never be passed a fragment that is detached. (
+      <a href="https://android-review.googlesource.com/#/q/I66a76810202a9b44b9d4bdffa03be5ed2b28a1e3">I66a76</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/273568280">b/273568280</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      From
+      <a href="#1.5.6">
+        Fragment
+        <code translate="no" dir="ltr">1.5.6</code>
+      </a>
+      : Fixed an issue where calling
+      <code translate="no" dir="ltr">clearFragmentResultListener</code>
+      inside a
+      <code translate="no" dir="ltr">setFragmentResultListener</code>
+      wouldn't work if the
+      <code translate="no" dir="ltr">Lifecycle</code>
+      was already
+      <code translate="no" dir="ltr">STARTED</code>
+      and a result was already available. (
+      <a href="https://android-review.googlesource.com/#/q/If7458be3c43ece5a7ee3b1fe5b89bef2cf8b6131">If7458</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Updates</strong></p>
+  <ul>
+    <li>
+      Fragment now depends on
+      <a href="/jetpack/androidx/releases/lifecycle#2.6.1">
+        Lifecycle
+        <code translate="no" dir="ltr">2.6.1</code>
+      </a>
+      . (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/586fe7d84e657d9bbc6d3cb3cbb8954f715df557">586fe7</a>
+      )
+    </li>
+    <li>
+      Fragment now depends on
+      <a href="/jetpack/androidx/releases/savedstate#1.2.1">
+        SavedState
+        <code translate="no" dir="ltr">1.2.1</code>
+      </a>
+      . (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/078e4ef4d6b3475ed3a453ea7ba0d03e6bdc02c3">078e4e</a>
+      )
+    </li>
+    <li>
+      Fragment now depends on
+      <a href="/jetpack/androidx/releases/profileinstaller#1.3.0">
+        ProfileInstaller
+        <code translate="no" dir="ltr">1.3.0</code>
+      </a>
+      . (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/3fc05b928c858af7bb318cc5f36a97715c6663a8">3fc05b</a>
+      )
+    </li>
+  </ul>

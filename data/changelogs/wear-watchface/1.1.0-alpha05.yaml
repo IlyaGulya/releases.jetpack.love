@@ -1,0 +1,114 @@
+libraryId: wear-watchface
+groupId: androidx.wear
+version: 1.1.0-alpha05
+releaseDate: 2022-04-06
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha05" data-text="Version 1.1.0-alpha05" tabindex="-1">Version 1.1.0-alpha05</h3>
+  <p>April 6, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.watchface:watchface-*:1.1.0-alpha05</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/33cb12e8aba043a05b40470a5ef3be1b35114fd5..7ca43e00a517eaeeedc0a21f482b17f06e3d2181/wear/watchface">Version 1.1.0-alpha05 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      You can now tell which data source sent a
+      <code translate="no" dir="ltr">ComplicationData</code>
+      by inspecting
+      <code translate="no" dir="ltr">ComplicationData.dataSource</code>
+      , some watch faces may use this to customize complication display. (
+      <a href="https://android-review.googlesource.com/#/q/I44a73f1ddc5fa67cf0eecdc61df9ce14886dbf3f">I44a73</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">Renderer.CanvasRenderer</code>
+      and
+      <code translate="no" dir="ltr">Renderer.GlesRenderer</code>
+      have been deprecated in favor of
+      <code translate="no" dir="ltr">Renderer.CanvasRenderer2</code>
+      and
+      <code translate="no" dir="ltr">Renderer.GlesRenderer2</code>
+      which support
+      <code translate="no" dir="ltr">SharedAssets</code>
+      which are passed to the render methods. For java interop we've introduced
+      <code translate="no" dir="ltr">ListenableCanvasRenderer2</code>
+      and
+      <code translate="no" dir="ltr">ListenableGlesRenderer2</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I31ffac1033664bdb1c85eea5389ddb8136d1b59e">I31ffa</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">@WatchFaceFlavorsExperimental</code>
+      ability to define flavors - preconfigured list of styled watchfaces (
+      <a href="https://android-review.googlesource.com/#/q/I04dd04e303e471f92b9e08366b5b0644eb49c9ef">I04dd0</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Renderer.sharedAssets</code>
+      is now a StateFlow and we've removed the unused
+      <code translate="no" dir="ltr">Renderer.SharedAssetsFactory</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I12ac5ebfadffa12088dfbfd21fc076925c8f1195">I12ac5</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">UserStyleSchema.userStyleSettings</code>
+      is not deprecated anymore (
+      <a href="https://android-review.googlesource.com/#/q/Iba7e3cf82d94a58555855118ebf9b2872e743a65">Iba7e3</a>
+      )
+    </li>
+    <li>
+      We've added
+      <code translate="no" dir="ltr">HeadlessWatchFaceClient.getUserStyleSchemaDigestHash</code>
+      which allows a
+      <code translate="no" dir="ltr">HeadlessWatchFaceClient</code>
+      to avoid the relatively low overhead of passing the schema over AIDL before computing the digest hash. (
+      <a href="https://android-review.googlesource.com/#/q/I335977f7767a9a87c3dc99ec61a5ee6c2f312b8d">I33597</a>
+      )
+    </li>
+    <li>
+      We've added
+      <code translate="no" dir="ltr">isUserStyleSchemaStatic</code>
+      to
+      <code translate="no" dir="ltr">WatchFaceMetadataClient</code>
+      which is true if and only if the
+      <code translate="no" dir="ltr">UserStyleSchema</code>
+      can be relied on not to change unless the watch face APK is updated. (
+      <a href="https://android-review.googlesource.com/#/q/I45a3f5e0455e007ed5fdfaaf6f7b9f4e71a29abe">I45a3f</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">getDigestHash</code>
+      to
+      <code translate="no" dir="ltr">UserStyleSchema</code>
+      which computes a digest hash of the schema. This can be used to efficiently determine if the
+      <code translate="no" dir="ltr">UserStyleSchema</code>
+      has changed. (
+      <a href="https://android-review.googlesource.com/#/q/I2063df220cb9fd3a21ab50dac72eb0b13ace18bb">I2063d</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">METADATA_KEY_DATA_SOURCE_DEFAULT_CONFIGURATION_SUPPORTED</code>
+      renamed to
+      <code translate="no" dir="ltr">METADATA_KEY_DATA_SOURCE_DEFAULT_CONFIG_SUPPORTED</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I9ba5d6684d537609a8fda3a32478c120c878e824">I9ba5d</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">UserStyleSetting.OnWatchEditorData</code>
+      has been renamed to
+      <code translate="no" dir="ltr">UserStyleSetting.WatchFaceEditorData</code>
+      , it contains data that's used purely by the on watch face editor. (
+      <a href="https://android-review.googlesource.com/#/q/If3afbf11dc7c3890d703e2fc23c54b1823d5f574">If3afb</a>
+      )
+    </li>
+  </ul>

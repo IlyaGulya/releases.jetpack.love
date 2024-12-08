@@ -1,0 +1,128 @@
+libraryId: wear
+groupId: androidx.wear
+version: 1.0.0-alpha12
+releaseDate: 2021-04-21
+#language=html
+changelogHtml: |
+  <h3 id="complications-watchface-1.0.0-alpha12" data-text="Wear Complications &amp; Watchface Version 1.0.0-alpha12" tabindex="-1">Wear Complications &amp; Watchface Version 1.0.0-alpha12</h3>
+  <p>April 21, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear:wear-*:1.0.0-alpha12</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/24330de8135d689b34a31a701181b20549e8db25..4ddfc1583c09aaa878d34437fbfee1b995b60d3a/wear">Version 1.0.0-alpha12 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>Watch face editors need to highlight parts of the watch face to help convery which aspect of a watch is being configured. We’ve extended RenderParameters to allow styles as well as complications to be highlighted. There’s a new optional HighlightLayer which is intended to be matted on top of the watch face with alpha transparency (the screenshot apis can do this matting for you, or provide the HighlightLayer on its own for maximum flexibility). E.g. suppose you had a style that lets you configure the appearance of the watch hands, your renderer in its renderHighlightLayer can draw an outline around them.</p>
+  <p>To encourage Complication Provider support for accessibility we have made PhotoImageComplicationData.Builder's, MonochromaticImageComplicationData.Builder's and SmallImageComplicationData.Builder's contentDescription field to be a mandatory constructor argument. ComplicationTapFilter and Complication.createEdgeComplicationBuilder have been added to support edge complications (drawn around the edge of the screen). Rendering and hit testing of edge complications is left up to the watch face. Edge hit testing isn't supported from the companion editor.</p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">PROVIDER_</code>
+      prefix to constants in SystemProviders. (
+      <a href="https://android-review.googlesource.com/#/q/I1e77397a99f7d2051dc0a0467c37eeb4ecb38428">I1e773</a>
+      )
+    </li>
+    <li>
+      We have made
+      <code translate="no" dir="ltr">PhotoImageComplicationData.Builder</code>
+      's,
+      <code translate="no" dir="ltr">MonochromaticImageComplicationData.Builder</code>
+      's and
+      <code translate="no" dir="ltr">SmallImageComplicationData.Builder</code>
+      's
+      <code translate="no" dir="ltr">contentDescription</code>
+      field mandatory to be passed in constructor. (
+      <a href="https://android-review.googlesource.com/#/q/I9643a7aa0ce3033716e2221462f8cfbe590ceaf5">I9643a</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ProviderInfoRetriever.requestPreviewComplicationData</code>
+      has been renamed to
+      <code translate="no" dir="ltr">retrievePreviewComplicationData</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I911ee7c3209007628d9ad0536be5b2f3ffc08abb">I911ee</a>
+      )
+    </li>
+    <li>
+      Migrated
+      <code translate="no" dir="ltr">ComplicationProviderService</code>
+      from Java to Koltin. (
+      <a href="https://android-review.googlesource.com/#/q/I849f2d505096682acb71c10d8e28bb991b3d9c0c">I849f2</a>
+      )
+    </li>
+    <li>
+      Method
+      <code translate="no" dir="ltr">ComplicationProviderService.onBind</code>
+      is now final (
+      <a href="https://android-review.googlesource.com/#/q/I39af51b7ab16c4d75314899c72bb805e475131cb">I39af5</a>
+      )
+    </li>
+    <li>
+      We've reinstated interface
+      <code translate="no" dir="ltr">CanvasComplication</code>
+      and moved
+      <code translate="no" dir="ltr">CanvasComplicaitonDrawable</code>
+      ,
+      <code translate="no" dir="ltr">GlesTextureComplication</code>
+      and
+      <code translate="no" dir="ltr">ComplicationHighlightRenderer</code>
+      to
+      <code translate="no" dir="ltr">wear-watchface-complications-rendering</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I8467022e6958f6d1d6aadb6e8edf0cdd948bb1ae">I84670</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">RenderParameters</code>
+      has been refactored to support extended highlight rendering. It's now possible to request rendering of highlights for styles as well as all or a single complication. In addition CanvasRenderer and GlesRenderer how have a new abstract renderHighlightLayer method for rendering any highlighting requested by the editor. Layer has been renamed to WatchFaceLayer. (
+      <a href="https://android-review.googlesource.com/#/q/Ic24444dc23aa6e0ed9075d88ae92f167102a1791">Ic2444</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ComplicationTapFilter</code>
+      and
+      <code translate="no" dir="ltr">Complication.createEdgeComplicationBuilder</code>
+      have been added to support edge complications. Rendering and hit testing of edge complications is left up to the watch face. Hit testing isn't supported from within editors. (
+      <a href="https://android-review.googlesource.com/#/q/Ia6604405b67d1004314b143c7a767a0624a1ff3b">Ia6604</a>
+      )
+    </li>
+    <li>
+      For
+      <code translate="no" dir="ltr">DoubleRangeUserStyleSetting</code>
+      &amp;
+      <code translate="no" dir="ltr">LongRangeUserStyleSetting</code>
+      :
+      <code translate="no" dir="ltr">defaultValue</code>
+      ,
+      <code translate="no" dir="ltr">maximumValue</code>
+      and
+      <code translate="no" dir="ltr">minimumValue</code>
+      are now kotlin properties. In addition,
+      <code translate="no" dir="ltr">UserStyleSetting.Option</code>
+      functions like toBooleanOption, toCoplicationOptions, toListOption and similar have been removed. (
+      <a href="https://android-review.googlesource.com/#/q/I52899a374e0f5c4bf164c3b3a0ccc3d5d69b96e1">I52899</a>
+      )
+    </li>
+    <li>
+      Add chin size to the properties of the device available to the watch face. (
+      <a href="https://android-review.googlesource.com/#/q/I76e1e578f0f32372ba8e540ac0b158b88ff92ba0">I76e1e</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ComplicationHighlightRenderer</code>
+      's constructor now accepts
+      <code translate="no" dir="ltr">outlineExpansion</code>
+      and
+      <code translate="no" dir="ltr">outlineStrokeWidth</code>
+      parameters. (
+      <a href="https://android-review.googlesource.com/#/q/I87009b21512d77fd861999420674f428987df36e">I87009</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ComplicationDrawable.getNoDataText</code>
+      is now part of the public API. (
+      <a href="https://android-review.googlesource.com/#/q/I00598f90e553549698c67ea4b699b7fb54d6f70f">I00598</a>
+      )
+    </li>
+  </ul>

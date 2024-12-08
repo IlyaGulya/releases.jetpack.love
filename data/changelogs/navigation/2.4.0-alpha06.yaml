@@ -1,0 +1,95 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.4.0-alpha06
+releaseDate: 2021-08-04
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0-alpha06" data-text="Version 2.4.0-alpha06" tabindex="-1">Version 2.4.0-alpha06</h3>
+  <p>August 4, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.4.0-alpha06</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/97264aa4532db7f7db1ffb3f42f3a9204971dbfc..d725303accfa9be6d5c3d61c7603ed1b9a780cbd/navigation">Version 2.4.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">requireSlidingPaneLayout()</code>
+      and
+      <code translate="no" dir="ltr">requireDetailPaneNavHostFragment()</code>
+      methods on
+      <code translate="no" dir="ltr">AbstractListDetailFragment</code>
+      have been renamed to
+      <code translate="no" dir="ltr">getSlidingPaneLayout()</code>
+      and
+      <code translate="no" dir="ltr">getDetailPaneNavHostFragment()</code>
+      , respectively. (
+      <a href="https://android-review.googlesource.com/#/q/I34a0844edbccd871c37de5caf9cd4af62a7d0821">I34a08</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      When navigating with animations (like
+      <code translate="no" dir="ltr">Crossfade</code>
+      ), the new destination’s
+      <code translate="no" dir="ltr">Lifecycle</code>
+      will now only reach the
+      <code translate="no" dir="ltr">RESUMED</code>
+      when the animation completes. (
+      <a href="https://android-review.googlesource.com/#/q/If0543dd1c20e7338078115e98b5585623f9b8f1c">If0543</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172112072">b/172112072</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/194301889">b/194301889</a>
+      )
+    </li>
+    <li>
+      Navigation Compose's
+      <code translate="no" dir="ltr">NavHost</code>
+      now sets the graph as part of the first composition. (
+      <a href="https://android-review.googlesource.com/#/q/Ieb7be7689ab5c40cfcc52fefd70a87b406ce8c60">Ieb7be</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Popping the last destination of a navigation graph no longer throws a
+      <code translate="no" dir="ltr">ClassCastException</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If0543dd1c20e7338078115e98b5585623f9b8f1c">If0543</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172112072">b/172112072</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/194301889">b/194301889</a>
+      )
+    </li>
+    <li>
+      Fixed a
+      <code translate="no" dir="ltr">NullPointerException</code>
+      that would occur when adding a deep link without a
+      <code translate="no" dir="ltr">Uri</code>
+      and navigating via a route or deep link. (
+      <a href="https://android-review.googlesource.com/#/q/938a0cc7f71bf0c8c7556ef7fe2f772f9d0ec07c">938a0c</a>
+      ,
+      <a href="https://issuetracker.google.com/193805425">b/193805425</a>
+      )
+    </li>
+    <li>
+      Fixed an issue in Navigation Compose where a deep linked
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      would not reach the
+      <code translate="no" dir="ltr">RESUMED</code>
+      state. (
+      <a href="https://android-review.googlesource.com/#/q/I192c5d5922901f94ea0cf5abe7a922c0a63cc033">I192c5</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where popping a dialog destination would not update the NavController's system back button handling, potentially causing the NavController to intercept the back button even though it does not have any back stack to pop. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1782668">aosp/1782668</a>
+      )
+    </li>
+  </ul>

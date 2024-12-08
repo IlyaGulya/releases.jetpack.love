@@ -1,0 +1,101 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.5.0
+releaseDate: 2022-06-29
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0" data-text="Version 1.5.0" tabindex="-1">Version 1.5.0</h3>
+  <p>June 29, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.5.0</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.5.0</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.5.0</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/218ccafb21e861418ebb20936cad034ed012fb70..d5e5f4d57931a05bfd2dc75c09b3537e4d3ec976/fragment">Version 1.5.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 1.4.0</strong></p>
+  <ul>
+    <li>
+      <strong>CreationExtras Integration</strong>
+      -
+      <code translate="no" dir="ltr">Fragment</code>
+      now has the ability to provide a stateless
+      <code translate="no" dir="ltr">ViewModelProvider.Factory</code>
+      via
+      <a href="/jetpack/androidx/releases/lifecycle#2.5.0">
+        Lifecycle
+        <code translate="no" dir="ltr">2.5.0</code>
+      </a>
+      ’s
+      <code translate="no" dir="ltr">CreationExtras</code>
+      .
+    </li>
+    <li>
+      <strong>Component Dialog Integration</strong>
+      -
+      <code translate="no" dir="ltr">DialogFragment</code>
+      now uses
+      <code translate="no" dir="ltr">ComponentDialog</code>
+      via
+      <a href="/jetpack/androidx/releases/activity#1.5.0">
+        Activity
+        <code translate="no" dir="ltr">1.5.0</code>
+      </a>
+      as the default dialog returned by
+      <code translate="no" dir="ltr">onCreateDialog()</code>
+      .
+    </li>
+    <li>
+      <strong>Saved Instance State Refactoring</strong>
+      - Fragments have begun to change the way they save their instance state. This is an effort to help clearly identify what state has been saved in the fragment and the source of the state. The current changes include the following:
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">FragmentManager</code>
+          now saves its saved instance state into a
+          <code translate="no" dir="ltr">Bundle</code>
+          instead of directly in a custom
+          <code translate="no" dir="ltr">Parcelable</code>
+          .
+        </li>
+        <li>
+          Results set via the
+          <a href="/guide/fragments/communicate#fragment-result"><code translate="no" dir="ltr">Fragment Result APIs</code></a>
+          that have not yet been delivered are now saved separately from the internal state of the
+          <code translate="no" dir="ltr">FragmentManager</code>
+          .
+        </li>
+        <li>
+          The state associated with each individual fragment is now saved separately from the internal state of the
+          <code translate="no" dir="ltr">FragmentManager</code>
+          , thus allowing you to correlate the amount of saved state associated with an individual fragment with the unique IDs present in the
+          <code translate="no" dir="ltr">Fragment</code>
+          debug logging.
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Other Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">FragmentStrictMode</code>
+      now offers the ability for private third-party fragments to bypass specific violation penalties by using
+      <code translate="no" dir="ltr">allowViolation()</code>
+      with the class name.
+    </li>
+    <li>
+      The Fragment APIs for providing a menu to your activity’s
+      <code translate="no" dir="ltr">ActionBar</code>
+      have been deprecated. The
+      <code translate="no" dir="ltr">MenuHost</code>
+      and
+      <code translate="no" dir="ltr">MenuProvider</code>
+      APIs added in
+      <a href="/jetpack/androidx/releases/activity#1.4.0">
+        Activity
+        <code translate="no" dir="ltr">1.4.0</code>
+      </a>
+      provide a testable, lifecycle aware equivalent API surface that fragments should use.
+    </li>
+  </ul>

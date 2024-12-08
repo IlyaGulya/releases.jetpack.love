@@ -1,0 +1,84 @@
+libraryId: wear
+groupId: androidx.wear
+version: 1.0.0-alpha08
+releaseDate: 2021-02-24
+#language=html
+changelogHtml: |
+  <h3 id="complications-watchface-1.0.0-alpha08" data-text="Version 1.0.0-alpha08" tabindex="-1">Version 1.0.0-alpha08</h3>
+  <p>February 24, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear:wear-*:1.0.0-alpha08</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/602cf9bff5e74e4355760aa47d3fc73a2e6d779b..5c90131a69042a6a3e13952e1da9e7ffc571c31d/wear">Version 1.0.0-alpha08 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>Some watch faces are designed around one or more specific complications, to support this we’ve added Complication.Builder#setFixedComplicationProvider which if set to true prevents the user from changing the complication in that slot.</li>
+    <li>The watchface libraries are Kotlin first and use coroutines (e.g. suspend functions). For Java users we’ve provided ListenableFuture wrappers to improve interoperability in the following libraries: wear/wear-watchface-guava, wear/wear-watchface-client-guava &amp; wear/wear-watchface-editor-guava.</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We've removed support for double taps on complications launching the provider chooser, this feature wasn't common in watchfaces and complicated the implementation of SysUI. (
+      <a href="https://android-review.googlesource.com/#/q/I3ef24322bbbb76a6a441954b7c31342966567ed2">I3ef24</a>
+      )
+    </li>
+    <li>
+      ProviderInfoRetriever methods may throw ServiceDisconnectedException if the binder closes unexpectedly. (
+      <a href="https://android-review.googlesource.com/#/q/Ib2cc462394e39b42e28d6e1d0af911d67923563b">Ib2cc4</a>
+      )
+    </li>
+    <li>
+      From Android 11 onwards, there are restrictions on when the ProviderChooser can be run, in addition we'd like editors to be built with the new
+      <code translate="no" dir="ltr">wear-watchface-editor</code>
+      so ComplicationHelperActivity is being removed from the public API. (
+      <a href="https://android-review.googlesource.com/#/q/Ib19c1b175b8927432b834465c0689641d371d6f9">Ib19c1</a>
+      )
+    </li>
+    <li>
+      Remove ComplicationText static methods in favor of builders. (
+      <a href="https://android-review.googlesource.com/#/q/Ibe3992ba05ac2abbc7be71a7c473eec173996d9f">Ibe399</a>
+      )
+    </li>
+    <li>
+      We have introduced guava ListenableFuture wrappers for the various watch face library suspended methods. (
+      <a href="https://android-review.googlesource.com/#/q/I16b2c5ed3c54db97661dd2e94288e0e18e21a443">I16b2c</a>
+      )
+    </li>
+    <li>
+      For API clarity we've added a secondary constructor to RenderParameters which doesn't require a tint, for use with LayerModes other than
+      <code translate="no" dir="ltr">LayerMode.DRAW_OUTLINED</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I497ea29cb4671fd2082eaca66d18ff36068f639c">I497ea</a>
+      )
+    </li>
+    <li>
+      Previously ListUserStyleSetting was different from the other because it had a default argument. Now all the StyleSetting subclass constructors take the default value last. (
+      <a href="https://android-review.googlesource.com/#/q/I9dbfdb05d8dd7fe96c43f870d92843020370c3dd">I9dbfd</a>
+      )
+    </li>
+    <li>
+      CanvasComplication has been refactored to use have a hidden method, which makes it easier to implement a subclass (
+      <a href="https://android-review.googlesource.com/#/q/I5b32176f98042a1b6affda73e492bdd25fa7d774">I5b321</a>
+      )
+    </li>
+    <li>
+      We have refactored away EditorResult in favor of a new EditorService and
+      <code translate="no" dir="ltr">EditorSession.broadcastState()</code>
+      to stream updates to an observer (typically SysUI). (
+      <a href="https://android-review.googlesource.com/#/q/Ic4370d0f48b622a5ecf4c9424ec1fe9f988dcd39">Ic4370</a>
+      )
+    </li>
+    <li>
+      Some watchfaces are built around a particular complication as an integral part of the watch face where the provider is not user configurable. To support this we've added
+      <code translate="no" dir="ltr">Complication.Builder#setFixedComplicationProvider</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4509e9a0fbfe08d6614c9b684c216200fc0d772e">I4509e</a>
+      )
+    </li>
+    <li>
+      EditorRequest now specifies package name rather than ComponentName because it was inconvenient for SysUI to look up the class name of the editor, and we only really need the package name. (
+      <a href="https://android-review.googlesource.com/#/q/Ib68146df783dca74b2944d60fa5e5a762a2348d9">Ib6814</a>
+      )
+    </li>
+  </ul>

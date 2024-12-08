@@ -1,0 +1,112 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.2.2
+releaseDate: 2020-02-19
+#language=html
+changelogHtml: |
+  <h3 id="1.2.2" data-text="Version 1.2.2" tabindex="-1">Version 1.2.2</h3>
+  <p>February 19, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.2.2</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.2.2</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.2.2</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b27fe92ff55203b778e3201a949a85c7c6c1bf76..9598eb9e7eaf8411e0433c8b5fc5a5bc8abc096a/fragment">Version 1.2.2 contains these commits.</a>
+  </p>
+  <p><strong>New Lint checks</strong></p>
+  <ul>
+    <li>
+      Lint suggests using the
+      <code translate="no" dir="ltr">viewLifecycleOwner</code>
+      as the
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      to calls into
+      <code translate="no" dir="ltr">OnBackPressedDispatcher</code>
+      in
+      <code translate="no" dir="ltr">onCreateView()</code>
+      ,
+      <code translate="no" dir="ltr">onViewCreated()</code>
+      , and
+      <code translate="no" dir="ltr">onActivityCreated()</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/142117657">b/142117657</a>
+      )
+    </li>
+    <li>
+      Added a new Lint check that confirms that you are using the correct
+      <code translate="no" dir="ltr">debugImplementation</code>
+      when using the
+      <code translate="no" dir="ltr">fragment-testing</code>
+      artifact. (
+      <a href="https://issuetracker.google.com/issues/141500106">b/141500106</a>
+      )
+    </li>
+    <li>
+      Fragments now suggest using the associated
+      <code translate="no" dir="ltr">require___()</code>
+      methods for more descriptive error messages instead of
+      <code translate="no" dir="ltr">checkNotNull(get___())</code>
+      ,
+      <code translate="no" dir="ltr">requireNonNull(get___())</code>
+      , or
+      <code translate="no" dir="ltr">get___()!!</code>
+      for all of the Fragment APIs that include both a
+      <code translate="no" dir="ltr">get</code>
+      and
+      <code translate="no" dir="ltr">require</code>
+      equivalent. (
+      <a href="https://android-review.googlesource.com/1202883">aosp/1202883</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed the Fragment ProGuard files to avoid R8 warnings (
+      <a href="https://issuetracker.google.com/issues/148963981">b/148963981</a>
+      )
+    </li>
+    <li>
+      Improved the existing Lint check suggesting using
+      <code translate="no" dir="ltr">viewLifecycleOwner</code>
+      when using
+      <code translate="no" dir="ltr">observe</code>
+      to also handle the
+      <code translate="no" dir="ltr">livedata-ktx</code>
+      extension method version of
+      <code translate="no" dir="ltr">observe</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/148996309">b/148996309</a>
+      )
+    </li>
+    <li>
+      Fixed the formatting for many of the Lint checks (
+      <a href="https://android-review.googlesource.com/1157012">aosp/1157012</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External contributions</strong></p>
+  <ul>
+    <li>
+      Thanks to Zac Sweers for contributing the
+      <code translate="no" dir="ltr">require___()</code>
+      Lint checks on behalf of Slack! (
+      <a href="https://android-review.googlesource.com/1202883">aosp/1202883</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_121_3" data-text="Version 1.2.1" tabindex="-1">Version 1.2.1</h2>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      The Kotlin dependant libraries of this version (
+      <code translate="no" dir="ltr">fragment-ktx</code>
+      ,
+      <code translate="no" dir="ltr">fragment-testing</code>
+      ) target Java 8 programming language bytecode. Please read
+      <a href="/studio/write/java8-support">Use Java 8 language features</a>
+      to learn how to use it in your project.
+    </span>
+  </aside>

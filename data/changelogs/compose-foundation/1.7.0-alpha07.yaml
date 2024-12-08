@@ -1,0 +1,341 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.7.0-alpha07
+releaseDate: 2024-04-17
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha07" data-text="Version 1.7.0-alpha07" tabindex="-1">Version 1.7.0-alpha07</h3>
+  <p>April 17, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.7.0-alpha07</code>
+    is released. Version 1.7.0-alpha07 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/02b55f664eba38e42e362e1af3913be1df552d55..67004410fdbff19f90caa4cc43965ab21dca1943/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added a
+      <code translate="no" dir="ltr">TextDefaults</code>
+      object that contains methods to construct a
+      <code translate="no" dir="ltr">LinkAnnotation</code>
+      and parse HTML-tagged string which apply
+      <code translate="no" dir="ltr">MaterialTheme</code>
+      to the links. (
+      <a href="https://android-review.googlesource.com/#/q/I98532f3512d1930416f66dd195746eeeba884497">I98532</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/139312671">b/139312671</a>
+      )
+    </li>
+    <li>
+      Item appearance and disappearance animation support was added into
+      <code translate="no" dir="ltr">LazyVerticalGrid</code>
+      and
+      <code translate="no" dir="ltr">LazyHorizontalGrid</code>
+      . Previously it was possible to add
+      <code translate="no" dir="ltr">Modifier.animateItemPlacement()</code>
+      modifier in order to support placement (reordering) animations. We deprecated this modifier and introduced a new non-experimental modifier called
+      <code translate="no" dir="ltr">Modifier.animateItem()</code>
+      which allows you to support all three animation types: appearance (fade in), disappearance (fade out) and reordering. (
+      <a href="https://android-review.googlesource.com/#/q/Ib7d120e5dfec53dae00dc662e982dafeab1a6b0f">Ib7d12</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/330510929">b/330510929</a>
+      )
+    </li>
+    <li>
+      Item appearance and disappearance animation support was added into
+      <code translate="no" dir="ltr">LazyVerticalStaggeredGrid</code>
+      and
+      <code translate="no" dir="ltr">LazyHorizontalStaggeredGrid</code>
+      . Previously it was possible to add
+      <code translate="no" dir="ltr">Modifier.animateItemPlacement()</code>
+      modifier in order to support placement (reordering) animations. We deprecated this modifier and introduced a new non-experimental modifier called
+      <code translate="no" dir="ltr">Modifier.animateItem()</code>
+      which allows you to support all three animation types: appearance (fade in), disappearance (fade out) and reordering. (
+      <a href="https://android-review.googlesource.com/#/q/I69bc9cc1999c8b166e3ff6bb749bbb73a768bffe">I69bc9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/330511290">b/330511290</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">ContextMenuColors</code>
+      and the associated
+      <code translate="no" dir="ltr">LocalContextMenuTheme</code>
+      <code translate="no" dir="ltr">ProvidableCompositionLocal</code>
+      . The colors of the context menu on text fields and selectable text can be modified by providing the composition local. (
+      <a href="https://android-review.googlesource.com/#/q/Ifa154a761c372822bca1182023b70cb82b2a14b9">Ifa154</a>
+      )
+    </li>
+    <li>
+      Text links got pressed state styling option in addition to normal styling, hovered and focused. (
+      <a href="https://android-review.googlesource.com/#/q/I5f864b3fd1b1af6ff39dee03e1aa65ede7e16d32">I5f864</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/139312671">b/139312671</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">ViewConfiguration.HandwritingGestureLineMargin</code>
+      for handwriting gestures. Support handwriting gesture for
+      <code translate="no" dir="ltr">BasicTextField</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie6e13b41cc82da1fd3c9ecc7ac34c3ff88dfa235">Ie6e13</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/325660505">b/325660505</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">DelegatableNode.scrollIntoView</code>
+      for the 1.7 release since we didn't have time to finish stabilizing the rest of the related API surface. This function will be re-introduced in 1.8 (
+      <a href="https://android-review.googlesource.com/#/q/I6cf6120f4cb0b4fbb4fbaff7bf57793b854da202">I6cf61</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/333421581">b/333421581</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/332900232">b/332900232</a>
+      )
+    </li>
+    <li>
+      When querying Layout coordinates, you may now use the
+      <code translate="no" dir="ltr">excludeDirectManipulationOffset</code>
+      argument to exclude the offset set by parent Layouts that placed their children using
+      <code translate="no" dir="ltr">Placeable.PlacementScope.withDirectManipulationPlacement</code>
+      . Likewise, a Layout that changes the position of its children frequently may now place them using
+      <code translate="no" dir="ltr">withDirectManipulationPlacement</code>
+      (such as Scroll, implemented by default). This helps
+      <code translate="no" dir="ltr">approachLayout</code>
+      based animations to be more intuitive, having now the opportunity to differentiate what offset to animate, and what to apply directly when deciding to animate their approach. (
+      <a href="https://android-review.googlesource.com/#/q/I60ec77cec9d448ffdfed8b661ba2e433f3adaa55">I60ec7</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">requestScrollToItem</code>
+      for
+      <code translate="no" dir="ltr">LazyStaggeredGrid</code>
+      . For each measure-pass, the client may now opt-out of maintaining index based on the key by calling
+      <code translate="no" dir="ltr">requestScrollToItem</code>
+      . This does not change existing behavior in any way unless
+      <code translate="no" dir="ltr">requestScrollToItem</code>
+      is called. (
+      <a href="https://android-review.googlesource.com/#/q/I63983a31730ea445dc4a1839f8a0afa9d2f8ee80">I63983</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">requestScrollToPage</code>
+      in Pager. For each measure-pass, the client may now opt-out of maintaining index based on the key by calling
+      <code translate="no" dir="ltr">requestScrollToPage</code>
+      . This does not change existing behavior in any way unless
+      <code translate="no" dir="ltr">requestScrollToPage</code>
+      is called. (
+      <a href="https://android-review.googlesource.com/#/q/Ic4213b831da197ac47c01ce26260cc147d797787">Ic4213</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">requestScrollToItem</code>
+      for
+      <code translate="no" dir="ltr">LazyGrids</code>
+      . For each measure-pass, the client may now opt-out of maintaining index based on the key by calling
+      <code translate="no" dir="ltr">requestScrollToItem</code>
+      . This does not change existing behavior in any way unless
+      <code translate="no" dir="ltr">requestScrollToItem</code>
+      is called. (
+      <a href="https://android-review.googlesource.com/#/q/I0a7a06d25850d4ff11b782568bc42e6724b3c862">I0a7a0</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ClickableText</code>
+      is marked as deprecated. To add links to the text, create an
+      <code translate="no" dir="ltr">AnnotatedString</code>
+      with a
+      <code translate="no" dir="ltr">LinkAnnotation</code>
+      corresponding to your link and pass this
+      <code translate="no" dir="ltr">AnnotatedString</code>
+      to the
+      <code translate="no" dir="ltr">Text</code>
+      composable (
+      <a href="https://android-review.googlesource.com/#/q/I34d4bf29a9386820f8582765e62576a5fcfcd3c6">I34d4b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/323346994">b/323346994</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">UrlAnnotation</code>
+      is deprecated, use
+      <code translate="no" dir="ltr">LinkAnnotation.Url</code>
+      instead. If you're using Material theming, then use
+      <code translate="no" dir="ltr">TextDefaults</code>
+      object to create the annotation with Material theming applied to it (
+      <a href="https://android-review.googlesource.com/#/q/I8d18033220b74bb84f74380855ef5efb5e3e92bb">I8d180</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/323346545">b/323346545</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">String.parseAsHtml</code>
+      renamed to
+      <code translate="no" dir="ltr">AnnotatedString.Companion.fromHtml</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I43dcd5b6f6ddc634879f5747df4b911953f84632">I43dcd</a>
+      )
+    </li>
+    <li>
+      Added styling arguments (
+      <code translate="no" dir="ltr">linkStyle</code>
+      ,
+      <code translate="no" dir="ltr">focusedLinkStyle</code>
+      ,
+      <code translate="no" dir="ltr">hoveredLinkStyle</code>
+      ) and a link interaction listener to the
+      <code translate="no" dir="ltr">parseAsHtml</code>
+      method. When parsing the HTML-tagged string with
+      <code translate="no" dir="ltr">&lt;a&gt;</code>
+      tags, the method will construct a
+      <code translate="no" dir="ltr">LinkAnnotation.Url</code>
+      for each such tag and pass the styling objects and link interaction listener to each annotation. (
+      <a href="https://android-review.googlesource.com/#/q/I7c9777a340e04ccf4dc10258c83d18e69831b3c6">I7c977</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LinkAnnotation</code>
+      now takes the state-based styling arguments and a
+      <code translate="no" dir="ltr">LinkInteractionListener</code>
+      . Add this annotation to the
+      <code translate="no" dir="ltr">AnnotatedString</code>
+      to get a hyperlink. By passing
+      <code translate="no" dir="ltr">focusedState</code>
+      and/or
+      <code translate="no" dir="ltr">hoveredState</code>
+      you can define the visual configuration for links when they are focused and/or hovered. (
+      <a href="https://android-review.googlesource.com/#/q/I81ce4350b8a1e37881000fd82f081b7afb8e0f42">I81ce4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/139312671">b/139312671</a>
+      )
+    </li>
+    <li>
+      The feature flag for long screenshots has been removed. (
+      <a href="https://android-review.googlesource.com/#/q/I28648d10fcd1293913a289ea21e64611248693a6">I28648</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/329128246">b/329128246</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LazyColumn</code>
+      will now render sticky headers correctly in long screenshots. (
+      <a href="https://android-review.googlesource.com/#/q/I8d239dddc5301c16a76b348edfab482adcdd157d">I8d239</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/329296635">b/329296635</a>
+      )
+    </li>
+    <li>
+      Stabilized majority of the remaining experimental APIs that were introduced with the new
+      <code translate="no" dir="ltr">BasicTextField</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I714e2dec19b189e9b74411fefbd636a8cc8e60d1">I714e2</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">textObfuscationCharacter</code>
+      parameter to
+      <code translate="no" dir="ltr">BasicSecureTextField</code>
+      that controls which character to use while obfuscating the contents. (
+      <a href="https://android-review.googlesource.com/#/q/I0588b5b978e74feb4a473b24bab3792281998114">I0588b</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NestedScroll</code>
+      sources Drag and Fling are being replaced by
+      <code translate="no" dir="ltr">UserInput</code>
+      and
+      <code translate="no" dir="ltr">SideEffect</code>
+      to accommodate for the extended definition of these sources that now include animations (Side Effect) and Mouse Wheel and Keyboard (
+      <code translate="no" dir="ltr">UserInput</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/I40579c9b053d6bcf477191b212c7a72876a588b7">I40579</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">LocalBringIntoViewSpec</code>
+      , a platform dependent focus scrolling behavior that is applied at the Scrollable modifier layer. (
+      <a href="https://android-review.googlesource.com/#/q/I27aa527cf8088eb3295f97da7501c76e4c4456f4">I27aa5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/317453911">b/317453911</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">TextFieldCharSequence</code>
+      .
+      <code translate="no" dir="ltr">TextFieldBuffer.originalValues</code>
+      is replaced with
+      <code translate="no" dir="ltr">TextFieldBuffer.originalText</code>
+      and
+      <code translate="no" dir="ltr">TextFieldBuffer.originalSelection</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2c7d6d00ddd9a6412ed97f4ec893f97b0e2342c9">I2c7d6</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ImeOptions.hintLocales</code>
+      is no longer nullable. If you want to pass an empty Locale list, please use
+      <code translate="no" dir="ltr">LocaleList.Empty</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic5bc4e784d61b40ebc69778758515eb240c01e20">Ic5bc4</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">getOffsetFractionForPage</code>
+      to
+      <code translate="no" dir="ltr">getOffsetDistanceInPages</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia05e2e47d2d1372e099766bbe337d64e9c374b58">Ia05e2</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      When
+      <code translate="no" dir="ltr">InputTransformations</code>
+      are joined with
+      <code translate="no" dir="ltr">next</code>
+      , their
+      <code translate="no" dir="ltr">KeyboardOptions</code>
+      are now properly merged by individual options using the new
+      <code translate="no" dir="ltr">KeyboardOptions.merge</code>
+      method. (
+      <a href="https://android-review.googlesource.com/#/q/Ie530405a5d45080f3907d65345f988108515adb4">Ie5304</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/295951492">b/295951492</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AnchoredDraggableState</code>
+      's
+      <code translate="no" dir="ltr">targetValue</code>
+      now does
+      <em>not</em>
+      consider positional thresholds anymore. It now has an implicit threshold of 50%, meaning that the
+      <code translate="no" dir="ltr">targetValue</code>
+      changes at the midpoint between two anchors. (
+      <a href="https://android-review.googlesource.com/#/q/I82c2c160f078ebdee15c74e0b0016ed60446cc94">I82c2c</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Renamed 2 scroll APIs (
+      <a href="https://android-review.googlesource.com/#/q/I56a75db3b76a9b31b58f66872b5b49ae1d907e69">I56a75</a>
+      )
+    </li>
+  </ul>

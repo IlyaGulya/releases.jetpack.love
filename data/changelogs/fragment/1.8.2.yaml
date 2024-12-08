@@ -1,0 +1,42 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.8.2
+releaseDate: 2024-07-24
+#language=html
+changelogHtml: |
+  <h3 id="1.8.2" data-text="Version 1.8.2" tabindex="-1">Version 1.8.2</h3>
+  <p>July 24, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment-*:1.8.2</code>
+    is released. Version 1.8.2 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c06fe0a3e7c61f31e0734f93bef3899fae9dc0f4..539527ae77b888b02a3b0ca85afcaea30a416b4e/fragment">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">AndroidFragment</code>
+      now properly handles cases where the parent fragment is put on the Fragment back stack, avoiding 'No view found for id' issues when popping back to that fragment. (
+      <a href="https://android-review.googlesource.com/#/q/I94608fed9ada006e5e601ede8adb8be81fae29a0">I94608</a>
+      )
+    </li>
+    <li>
+      Fragments added via the
+      <code translate="no" dir="ltr">FragmentTransaction.add</code>
+      method that takes a
+      <code translate="no" dir="ltr">ViewGroup</code>
+      now wait for
+      <code translate="no" dir="ltr">onContainerAvailable</code>
+      before progressing to
+      <code translate="no" dir="ltr">onStart()</code>
+      . This affects users of that API, such as
+      <code translate="no" dir="ltr">AndroidFragment</code>
+      , which now waits for the
+      <code translate="no" dir="ltr">AndroidFragment</code>
+      to re-enter composition before moving it through
+      <code translate="no" dir="ltr">onStart()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I94608fed9ada006e5e601ede8adb8be81fae29a0">I94608</a>
+      )
+    </li>
+  </ul>

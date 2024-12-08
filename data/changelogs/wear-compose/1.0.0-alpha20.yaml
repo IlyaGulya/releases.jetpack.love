@@ -1,0 +1,125 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.0.0-alpha20
+releaseDate: 2022-04-06
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha20" data-text="Version 1.0.0-alpha20" tabindex="-1">Version 1.0.0-alpha20</h3>
+  <p>April 6, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-foundation:1.0.0-alpha20</code>
+    ,
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material:1.0.0-alpha20</code>
+    , and
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-navigation:1.0.0-alpha20</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5ef5671233460b844828e14a816255dbf7904868..7ca43e00a517eaeeedc0a21f482b17f06e3d2181/wear/compose">Version 1.0.0-alpha20 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">edgeSwipeToDismiss</code>
+      modifier for
+      <code translate="no" dir="ltr">SwipeToDismiss</code>
+      . Allows
+      <code translate="no" dir="ltr">swipeToDismiss</code>
+      to be active only on the left edge of the viewport. Used when the center of the screen needs to be able to handle horizontal paging, such as 2-d scrolling a Map or swiping horizontally between pages.(
+      <a href="https://android-review.googlesource.com/#/q/I3fcec8831b68a87fde85251d0ac9895696b2ca85">I3fcec</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/200699800">b/200699800</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Base implementation of
+      <code translate="no" dir="ltr">CurvedModifiers</code>
+      , this opens the way to introduce ways to customize curved content (but no
+      <code translate="no" dir="ltr">CurvedModifiers</code>
+      are provided yet, and the ability to create custom modifiers may be available later) (
+      <a href="https://android-review.googlesource.com/#/q/I9b8df1a70179af00a2961b5c132bd1121d064b70">I9b8df</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">EdgeSwipe</code>
+      modifier documentation and default values update for better understanding .(
+      <a href="https://android-review.googlesource.com/#/q/I6d00db6be4045798fcc5d33dca336f10d78dcf78">I6d00d</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">PageIndicator</code>
+      slot into Scaffold. By adding
+      <code translate="no" dir="ltr">PageIndicator</code>
+      directly into Scaffold we might assure that it will be correctly shown on circular devices. (
+      <a href="https://android-review.googlesource.com/#/q/Ia6042d3c52ba0e9785102a7a5eb293bca24f8704">Ia6042</a>
+      )
+    </li>
+    <li>
+      Remove default Icons from
+      <code translate="no" dir="ltr">InlineSlider</code>
+      and Stepper parameters. This will help developers to be more attentive to localization and accessibility requirements. Usages of default icons were shown in demos and samples. (
+      <a href="https://android-review.googlesource.com/#/q/I7e6fda508ba23a2f16cd2bb381808711882fe48d">I7e6fd</a>
+      )
+    </li>
+    <li>
+      Replace Trailing and Leading parameter names with Start and End in TimeText (
+      <a href="https://android-review.googlesource.com/#/q/Iaac32655235950c786cc3bb2868434f63d5e2542">Iaac32</a>
+      )
+    </li>
+    <li>
+      We have added a
+      <code translate="no" dir="ltr">SwipeToDismissBox</code>
+      overload with an
+      <code translate="no" dir="ltr">onDismissed</code>
+      parameter to support the common usage of triggering a navigation event when the swipe gesture has completed. (
+      <a href="https://android-review.googlesource.com/#/q/I503534f8d11045c9446e976764134c05e147ea33">I50353</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/226565726">b/226565726</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">ExperimentalWearMaterialApi</code>
+      annotations from
+      <code translate="no" dir="ltr">TimeText</code>
+      usage (
+      <a href="https://android-review.googlesource.com/#/q/Ide5203259e9f1ff6b35074819aff59617e615c63">Ide520</a>
+      )
+    </li>
+    <li>
+      We have marked
+      <code translate="no" dir="ltr">ScalingLazyList/Column</code>
+      scope and info interfaces as sealed as they are not intended for external developers to implement and this will allow us to add new members in them in future without binary breaking changes. (
+      <a href="https://android-review.googlesource.com/#/q/I7d99fb4b2281cf244d495278785d66e2bc1be6b7">I7d99f</a>
+      )
+    </li>
+    <li>
+      We have added a new
+      <code translate="no" dir="ltr">flingBehaviour</code>
+      property to the Picker and a
+      <code translate="no" dir="ltr">PickerDefaults.flingBehaviour()</code>
+      method to enable configuration of the fling behavior such as adding RSB support.
+      <code translate="no" dir="ltr">PickerState</code>
+      now implements the
+      <code translate="no" dir="ltr">ScrollableState</code>
+      interface. (
+      <a href="https://android-review.googlesource.com/#/q/Ib89c7f79787935382ae1bdf3b373f49ee09db29b">Ib89c7</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Update the Android Runtime (ART) baseline profile rules for Wear Compose libraries. ART can leverage profile rules on devices in order to compile ahead-of-time a specific subset of the application to improve the performance of the application. Note that this will have no effect on debuggable applications. (
+      <a href="https://android-review.googlesource.com/#/q/Iaa8efbbef602239ac422244ebb9b448c7eb5f18a">Iaa8ef</a>
+      )
+    </li>
+    <li>
+      Improve documentation (
+      <a href="https://android-review.googlesource.com/#/q/I2c0514c3c40169a96d693a39a98b7d0be8c386bf">I2c051</a>
+      )
+    </li>
+  </ul>

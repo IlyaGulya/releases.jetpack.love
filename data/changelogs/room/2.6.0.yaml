@@ -1,0 +1,58 @@
+libraryId: room
+groupId: androidx.room
+version: 2.6.0
+releaseDate: 2023-10-18
+#language=html
+changelogHtml: |
+  <h3 id="2.6.0" data-text="Version 2.6.0" tabindex="-1">Version 2.6.0</h3>
+  <p>October 18, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.6.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5b7df8b23daa6000a04ba680f5d5979df6fd2560..ec9bfe9db962dfb9b86a707c0b84ff1e24ef3c7d/room">Version 2.6.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 2.5.0</strong></p>
+  <ul>
+    <li>
+      The option to enable Kotlin code generation (or “Kotlin CodeGen”) is now available in Room KSP. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/4297ec00790d6d88f86c6c5d9dfb9a260a7131ad">4297ec0</a>
+      ). To turn on Kotlin CodeGen in Room, add the
+      <code translate="no" dir="ltr">room.generateKotlin</code>
+      option name to your processor options for KSP. For more details on how to pass processor options for KSP, see the
+      <a href="https://kotlinlang.org/docs/ksp-quickstart.html#pass-options-to-processors">KSP documentation</a>
+      .
+    </li>
+  </ul>
+  <p class="note">
+    <b>Note:</b>
+    When using Kotlin CodeGen, it is important to note that there are additional restrictions that have been added. Abstract properties as DAO getters or DAO queries in Kotlin CodeGen are disallowed, and instead expected to be rewritten as functions to avoid the false notion that the property value is immutable and has a fixed stored result. Another restriction that has been added is that Nullable collection return types are no longer allowed in Room for Kotlin CodeGen.
+  </p>
+  <p class="warning">
+    <b>Warning:</b>
+    You may find that your projects are more strict in terms of nullability when using Kotlin CodeGen. In Kotlin CodeGen, the nullability of type arguments is important, wheras in Java this is mostly ignored. For example, let's say you have a `Flow
+    <foo\>
+      ` return type and the table is empty. In Java CodeGen, this will not cause any issues, but in Kotlin CodeGen, you will get an error. To avoid this, you will need to use `Flow
+      <foo?\>`, assuming a null is emitted.</foo?\>
+    </foo\>
+  </p>
+  <ul>
+    <li>
+      The new artifact for the Room Gradle Plugin has been added to Room with the id
+      <code translate="no" dir="ltr">androidx.room</code>
+      , which solves various existing issues in Room regarding having inputs and outputs of schemas via Gradle annotation processor options. For more details, refer to the
+      <a href="https://developer.android.com/jetpack/androidx/releases/room#2.6.0-alpha02">Room Version 2.6.0-alpha02 release notes</a>
+      .
+    </li>
+    <li>
+      Value classes in Room Entities are now supported for KSP. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/4194095366032c1c06d9e472e4e78b822c82cbe6">4194095</a>
+      )
+    </li>
+    <li>
+      Nested Map return types in DAO functions are now supported in Room. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/3c46fef7382077611c9d9b4cb330bc52373ccc6d">I13f48</a>
+      ,
+      <a href="https://b.corp.google.com/issues/203008711">203008711</a>
+      )
+    </li>
+  </ul>

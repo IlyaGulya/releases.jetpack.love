@@ -1,0 +1,68 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.3.0-alpha04
+releaseDate: 2021-03-10
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha04" data-text="Version 1.3.0-alpha04" tabindex="-1">Version 1.3.0-alpha04</h3>
+  <p>March 10, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.3.0-alpha04</code>
+    ,
+    <code translate="no" dir="ltr">androidx.activity:activity-compose:1.3.0-alpha04</code>
+    , and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.3.0-alpha04</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4b6cff92e45f1d4467086aa2c6aa0248b4883950..52fbd7ed5b07ca4431fa828325a1f8da45b02e51/activity">Version 1.3.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      From
+      <a href="#1.2.1">
+        Activity
+        <code translate="no" dir="ltr">1.2.1</code>
+      </a>
+      :
+      <code translate="no" dir="ltr">RequestMultiplePermissions</code>
+      now always returns results for all requested permissions instead of only permissions that weren’t previously granted. (
+      <a href="https://android-review.googlesource.com/#/q/I50bc3db9c59c7a3e3ca8afc7c3fe1b1318c26067">I50bc3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/180884668">b/180884668</a>
+      )
+    </li>
+    <li>
+      From
+      <a href="#1.2.1">
+        Activity
+        <code translate="no" dir="ltr">1.2.1</code>
+      </a>
+      :
+      <code translate="no" dir="ltr">ActivityResultRegistry</code>
+      now ensures that in progress
+      <code translate="no" dir="ltr">launch()</code>
+      requests will return their results even if you
+      <code translate="no" dir="ltr">unregister()</code>
+      , then
+      <code translate="no" dir="ltr">register()</code>
+      again with the same key. (
+      <a href="https://android-review.googlesource.com/#/q/I9ef34256a1e0f93fd1fd8983e867b9dd5e8e2441">I9ef34</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/181267562">b/181267562</a>
+      )
+    </li>
+    <li>
+      Activity Compose no longer adds test dependencies to the runtime classpath. (
+      <a href="https://android-review.googlesource.com/#/q/Ifd8b37d57361e94de7e848f0f6ed91a9f0ee37c0">Ifd8b3</a>
+      )
+    </li>
+    <li>
+      Fixed an issue with
+      <code translate="no" dir="ltr">BackHandler</code>
+      where the previously set
+      <code translate="no" dir="ltr">onBack</code>
+      lambda was still being used after recomposition. (
+      <a href="https://android-review.googlesource.com/#/q/8eb5ebe7c4e0ab803af4c02b1922043c0037a9b4">8eb5eb</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,150 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.1.0-alpha06
+releaseDate: 2021-10-13
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha06" data-text="Version 1.1.0-alpha06" tabindex="-1">Version 1.1.0-alpha06</h3>
+  <p>October 13, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.1.0-alpha06</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/da9716386798fc4e39075f54e5bd3317384a63e6..db0888af4fa9a8eaeaf55cc1f120724bc67bdb20/compose/ui">Version 1.1.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">ExperimentalComposeUiApi</code>
+      from
+      <code translate="no" dir="ltr">ViewRootForInspector</code>
+      and
+      <code translate="no" dir="ltr">LayoutInfo.ownerViewId</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I5c2e3ad58a1baacb7d329eea216dd56eea548efe">I5c2e3</a>
+      )
+    </li>
+    <li>
+      A child-less overload for Layout was added, with improved efficiency (
+      <a href="https://android-review.googlesource.com/#/q/Ib0d9a0f11936c0568d20e26a3c6eaa3f938e0ccd">Ib0d9a</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">InternalCompilerApi</code>
+      from Composer methods that are required to be called cross-module (
+      <a href="https://android-review.googlesource.com/#/q/I1aa0b78dbfb808d352e3a46de2388797548d34a9">I1aa0b</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SemanticsNodeInteraction.performSemanticsAction</code>
+      now returns the
+      <code translate="no" dir="ltr">SemanticsNodeInteraction</code>
+      on which the function was called. (
+      <a href="https://android-review.googlesource.com/#/q/I9e5db630fbc3c254a4cc862c45bae71496e3c99f">I9e5db</a>
+      )
+    </li>
+    <li>
+      Added LocalInputModeManager CompositionLocal to detect TouchMode/NonTouchMode. (
+      <a href="https://android-review.googlesource.com/#/q/I6a83c0c04f4da63ffdf287051a2277cb337d7104">I6a83c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175899786">b/175899786</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">viewConfiguration: ViewConfiguration</code>
+      to
+      <code translate="no" dir="ltr">LayoutInfo</code>
+      to allow consumers get the correct value for things like long press timeout. (
+      <a href="https://android-review.googlesource.com/#/q/I76ca6fd7a1f9f3161e0ceaee75e4d3431da11251">I76ca6</a>
+      )
+      <ul>
+        <li>
+          Added
+          <code translate="no" dir="ltr">viewConfiguration: ViewConfiguration</code>
+          to
+          <code translate="no" dir="ltr">InjectionScope</code>
+          to allow tests to adjust input injection based on things like long press timeout or touch slop.
+        </li>
+        <li>
+          Changed default duration of long press and double tap for both touch and mouse input to be based on the values in
+          <code translate="no" dir="ltr">InjectionScope.viewConfiguration</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      Implementation of ExposedDropdownMenu based on ExposedDropdownMenuBox with TextField and DropdownMenu inside (
+      <a href="https://android-review.googlesource.com/#/q/If60b2e6c7c139d4d4c134c714e2803f531a6c72a">If60b2</a>
+      )
+    </li>
+    <li>
+      dismissOnOutsideClick was added to PopupProperties, replacing dismissOnClickOutside which was deprecated. The new property receives the click position and the anchor bounds, providing finer control over whether onDismissRequest should be invoked or not. For example, this can be useful to prevent anchor dismissal for touches on the anchor.
+      <ul>
+        <li>
+          updateAndroidWindowManagerFlags was added to PopupProperties, offering low-level control over the flags passed by the popup to the Android WindowManager. The parameter of the lambda will be the flags calculated from the PopupProperties values that result in WindowManager flags: e.g. focusable. The result of the lambda will be the final flags which will be passed to the Android WindowManager. By default, updateAndroidWindowManagerFlags will leave the flags calculated from parameters unchanged. This API should be used with caution, only in cases where the popup has very specific behavior requirements. (
+          <a href="https://android-review.googlesource.com/#/q/I6e9f9d393dc12bd1ea7ae294af1761817f154735">I6e9f9</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Recomposer.state</code>
+      has been deprecated and replaced by
+      <code translate="no" dir="ltr">Recomposer.currentState</code>
+      to change its type to a StateFlow (
+      <a href="https://android-review.googlesource.com/#/q/Ic2ab34c19176704fe2f6cd081607dfb92d86ea3c">Ic2ab3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/197773820">b/197773820</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">flush()</code>
+      and
+      <code translate="no" dir="ltr">dispose()</code>
+      to
+      <code translate="no" dir="ltr">InjectionScope</code>
+      . Use them when you want to flush all queued up events immediately and when you want to dispose of the scope, respectively. (
+      <a href="https://android-review.googlesource.com/#/q/Ifb73a2812da448c872ab86fc06be4f8c242960b3">Ifb73a</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">performScrollToNode(matcher: SemanticsMatcher)</code>
+      that scrolls a scrollable container to the content that is matched by the given matcher. (
+      <a href="https://android-review.googlesource.com/#/q/Ic1cb855e351c7bb683962d618d68782628b70f62">Ic1cb8</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">InjectionScope</code>
+      now implements
+      <code translate="no" dir="ltr">Density</code>
+      , allowing you to easily convert between px and dp in
+      <code translate="no" dir="ltr">performTouchInput</code>
+      and friends. (
+      <a href="https://android-review.googlesource.com/#/q/I8fe1f17d53f8a51f9cb8bcce5b6d40de093da66b">I8fe1f</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      AndroidView now propagates LocalLifecycleOwner and LocalSavedStateRegistryOwner to its view via ViewTreeLifecycleOwner and ViewTreeSavedStateRegistryOwner. (
+      <a href="https://android-review.googlesource.com/#/q/I38f966576085db66e35b0106f49275ef5bb31adc">I38f96</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/179708470">b/179708470</a>
+      )
+    </li>
+    <li>
+      Fix WearOS SwipeToDismissBox sometimes not handling swipes. (
+      <a href="https://android-review.googlesource.com/#/q/I9387e6584e9d04d7ffda3a4319e3da2da13788b5">I9387e</a>
+      )
+    </li>
+    <li>
+      The default time between injected input events has been changed from 10ms to 16ms. This potentially changes the outcome of tests that perform input gestures, like a specific swipe. (
+      <a href="https://android-review.googlesource.com/#/q/I829fd33dd4ba14313ac73daf7c2e770955c90df6">I829fd</a>
+      )
+    </li>
+  </ul>

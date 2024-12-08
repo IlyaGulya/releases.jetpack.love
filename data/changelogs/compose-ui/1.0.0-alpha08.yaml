@@ -1,0 +1,397 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.0.0-alpha08
+releaseDate: 2020-12-02
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha08" data-text="Version 1.0.0-alpha08" tabindex="-1">Version 1.0.0-alpha08</h3>
+  <p>December 2, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.0.0-alpha08</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/358bdaf3c3c4a917883408e9f747da521fdf9e65..10b5e9fd366c1c413d5576aed50a305d300938e1/compose/ui">Version 1.0.0-alpha08 contains these commits.</a>
+  </p>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      This release is only compatible with Kotlin
+      <code translate="no" dir="ltr">1.4.20</code>
+      , so you will need to update your Kotlin version.
+    </span>
+  </aside>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add semantics action Dismiss (
+      <a href="https://android-review.googlesource.com/#/q/I2b70641450760f3056a53e283cf04b004ea1db2c">I2b706</a>
+      )
+    </li>
+    <li>
+      Moved DrawModifier APIs from the androidx.compose.ui package to the androidx.compose.ui.draw package. Created DrawModifierDeprecated.kt file to include typealiases/helper methods to assist with the migration from the deprecated to the current APIs. (
+      <a href="https://android-review.googlesource.com/#/q/Id6044c7119aeaf40a3ff21006fe39b03f5f1b18a">Id6044</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173834241">b/173834241</a>
+      )
+    </li>
+    <li>
+      Renamed Modifier.drawLayer to Modifier.graphicsLayer Also updated related classes to GraphicsLayer as per API feedback. (
+      <a href="https://android-review.googlesource.com/#/q/I0bd297065427d19715e4e33480f7be87e51ff48a">I0bd29</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173834241">b/173834241</a>
+      )
+    </li>
+    <li>
+      New methods placeable.placeWithLayer() and placeable.placeRelativeWithLayer() were added which allows custom layouts and layout modifiers to place a child with introducing a graphics layer for their drawing. Having that we can first optimize redrawings, so when we need to move a child we don't have to redraw its content, second we can apply draw transformations for a child (
+      <a href="https://android-review.googlesource.com/#/q/Ibd8f6bb03f391c3f1bbf13f659d79e3b57019a46">Ibd8f6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170296989">b/170296989</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171493718">b/171493718</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173030831">b/173030831</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">&lt;T&gt;</code>
+      was removed from SubcomposeLayout declaration. You can use it without specifying a type now. (
+      <a href="https://android-review.googlesource.com/#/q/Ib60c850964b308ebee32beca6db78d76af67fbf1">Ib60c8</a>
+      )
+    </li>
+    <li>
+      Added Modifier.scale/rotate APIs as conveniences for drawLayer.
+      <ul>
+        <li>
+          Renamed
+          <code translate="no" dir="ltr">Modifier.drawOpacity</code>
+          to
+          <code translate="no" dir="ltr">Modifier.alpha</code>
+        </li>
+        <li>
+          Renamed
+          <code translate="no" dir="ltr">Modifier.drawShadow</code>
+          to
+          <code translate="no" dir="ltr">Modifier.shadow</code>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I264ca72b36ea62fd615436849203895ed742fa1e">I264ca</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/173208140">b/173208140</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Made PointerInputData's uptime and position fields non-nullable. (
+      <a href="https://android-review.googlesource.com/#/q/Id468a0ef7c00c30a89114ea8dc95fa019961e189">Id468a</a>
+      )
+    </li>
+    <li>
+      MaterialTheme now sets the correct colors for selection handles and selection background. Non-Material apps can manually use AmbientTextSelectionColors to customize the colors used for selection. (
+      <a href="https://android-review.googlesource.com/#/q/I1e6f4b495bdc713e162759a08ecf0a7311b26e33">I1e6f4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/139320372">b/139320372</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/139320907">b/139320907</a>
+      )
+    </li>
+    <li>
+      Added WindowManager.isWindowFocused to check if the host window is in focus, and a WindowFocusObserver that provides an onWindowFocusChanged callback. (
+      <a href="https://android-review.googlesource.com/#/q/I53b2a702b81215dc5a5536144a752e1c93ab056e">I53b2a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170932874">b/170932874</a>
+      )
+    </li>
+    <li>
+      Updated TransformOrigin API to have destructuring syntax to return
+      <code translate="no" dir="ltr">pivotFractionX</code>
+      and
+      <code translate="no" dir="ltr">pivotFractionY</code>
+      as
+      <code translate="no" dir="ltr">component1</code>
+      and
+      <code translate="no" dir="ltr">component2</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/If43c4a1019440dfe20a73db23048672c3006131c">If43c4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173586560">b/173586560</a>
+      )
+    </li>
+    <li>
+      Added lint check for composable lambda parameter naming and position, to check for consistency with Compose guidelines. Also migrated some APIs using
+      <code translate="no" dir="ltr">children</code>
+      as the name for their trailing lambda to
+      <code translate="no" dir="ltr">content</code>
+      , according to the lint check and guidance. (
+      <a href="https://android-review.googlesource.com/#/q/Iec48e38a2896785b521814d95c9fb624d2807315">Iec48e</a>
+      )
+    </li>
+    <li>
+      Added API to check if Alt, Ctrl, Meta or Shift modifier keys were pressed when a keyevent was dispatched. (
+      <a href="https://android-review.googlesource.com/#/q/I50ed9c356c69b61a68fffe2b4247fe87cc91e8c4">I50ed9</a>
+      )
+    </li>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">Modifier.drawLayer()</code>
+      overload. It takes a lambda block on a new GraphicsLayerScope where you define the layer parameters in a way which allows to skip recomposition and relayout when the state change happens. DrawLayerModifier is now internal in preparation to migrating its logic into placeable.placeWithLayer() method of LayoutModifier (
+      <a href="https://android-review.googlesource.com/#/q/I15e9f41e3c93245529bf798e4a9617ca49d5e509">I15e9f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173030831">b/173030831</a>
+      )
+    </li>
+    <li>
+      Deprecated Ambients named with
+      <code translate="no" dir="ltr">Ambient</code>
+      as their suffix, and replaced them with new properties prefixed with Ambient, following other Ambients and Compose API guidelines. (
+      <a href="https://android-review.googlesource.com/#/q/I334403cc490ea913b8980d29e2cbe08e98ad7945">I33440</a>
+      )
+    </li>
+    <li>
+      Moved
+      <code translate="no" dir="ltr">androidx.compose.ui.text.Typeface</code>
+      to
+      <code translate="no" dir="ltr">androidx.compose.ui.text.font.Typeface</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ic2b81ae67d3b53224f4771f5b37717a24fafc9d8">Ic2b81</a>
+      )
+    </li>
+    <li>
+      Semantics argument mergeAllDescendants was renamed to mergeDescendants. (
+      <a href="https://android-review.googlesource.com/#/q/Ib625016bd3bbe4349c2870ba68ad52d76a0d372a">Ib6250</a>
+      )
+    </li>
+    <li>
+      New drag gesture detector suspending pointer input API, including orientation locking. (
+      <a href="https://android-review.googlesource.com/#/q/Icef25dbc49fa8786c7631e8b97b0732b871afea6">Icef25</a>
+      )
+    </li>
+    <li>
+      Renamed VectorAsset to ImageVector Moved and renamed VectorAsset to Builder to be an inner class of ImageVector as per API guidelines. Added typealias of VectorAssetBuilder to link to ImageVector.Builder for compat. (
+      <a href="https://android-review.googlesource.com/#/q/Icfdc85391feb2bd0edabebeba84f31bace10883a">Icfdc8</a>
+      )
+    </li>
+    <li>
+      Renamed ImageAsset and related methods to ImageBitmap. (
+      <a href="https://android-review.googlesource.com/#/q/Ia2d9941a6e0b8c29867cb3fbafb629fa4db10684">Ia2d99</a>
+      )
+    </li>
+    <li>
+      Add zIndex param for the PlacementScope's place() so Modifier.zIndex() now works as a LayoutModifier and any custom layout can set zIndexes for their children right in the placement block (
+      <a href="https://android-review.googlesource.com/#/q/I711f7165ad321434c57082f4277c6623219102b0">I711f7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171493718">b/171493718</a>
+      )
+    </li>
+    <li>
+      Moved foundation semantics properties to ui (
+      <a href="https://android-review.googlesource.com/#/q/I6f05cc7c0bdf1e5344440cd6e492fbc0545011e7">I6f05c</a>
+      )
+    </li>
+    <li>
+      Deprecate place(Offset) and placeRelative(Offset). Use overloads with int offsets instead (
+      <a href="https://android-review.googlesource.com/#/q/I4c5e75e6ba7382735acccd44324bb96a59d82490">I4c5e7</a>
+      )
+    </li>
+    <li>
+      Previously Deprecated APIs were removed: Modifier.onPositioned was removed, use Modifier.onGloballyPositioned. Modifier.onDraw was removed, use Modifier.onDrawBehind. Modifier.plus was removed, use Modifier.then. Color.Unset was removed, use Color.Unspecified. PxBounds class was removed, use Rect instead. (
+      <a href="https://android-review.googlesource.com/#/q/Ie9d0239f96922f1db769c38f6f970532a8f54ff3">Ie9d02</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172562222">b/172562222</a>
+      )
+    </li>
+    <li>
+      The Alignment interface was updated and made functional. (
+      <a href="https://android-review.googlesource.com/#/q/I46a0791e261b6f305804797cdda7fdd2ef405305">I46a07</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172311734">b/172311734</a>
+      )
+    </li>
+    <li>
+      Gesture detector for tap, double-tap, long press, and press indication were added using the new suspending pointer input. A few utilities were added as well, making it easier for developers to write their own gesture detectors. (
+      <a href="https://android-review.googlesource.com/#/q/I0080776a5672f63ceb8f4ae0a753d5f4debdc2e8">I00807</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">id</code>
+      was renamed to
+      <code translate="no" dir="ltr">layoutId</code>
+      for
+      <code translate="no" dir="ltr">LayoutIdParentData</code>
+      .
+      <code translate="no" dir="ltr">Measurable.id</code>
+      was renamed to
+      <code translate="no" dir="ltr">Measurable.layoutId</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iadbcb8b5588876e0d2a512e476968025b03ada6c">Iadbcb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172449643">b/172449643</a>
+      )
+    </li>
+    <li>
+      New multitouch gesture detector, including helpers for detecting rotation, zoom, and panning. (
+      <a href="https://android-review.googlesource.com/#/q/Ic459dc4c6b4e4a171dbb16a87ee8dfe780230d16">Ic459d</a>
+      )
+    </li>
+    <li>
+      Introduced SweepGradientShader and SweepGradientBrush APIs. (
+      <a href="https://android-review.googlesource.com/#/q/Ia22c1593bad5a63dbc66f4b012617087b30d2f77">Ia22c1</a>
+      )
+    </li>
+    <li>
+      Time control in tests (TestAnimationClock and its usages) is now experimental (
+      <a href="https://android-review.googlesource.com/#/q/I6ef86c5f530422c7c751bdb086a691cbc2e837f3">I6ef86</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171378521">b/171378521</a>
+      )
+    </li>
+    <li>
+      <p>Add coroutine-based scrolling APIs:</p>
+
+      <p>
+        Adds LazyListState.snapToItem and LazyListState.smoothScrollBy, as well as lower-level APIs for scroll control. These APIs provide a suspend interface to control scrolling that waits until the scroll is finished before returning. (
+        <a href="https://android-review.googlesource.com/#/q/Ie56426c01b3c8ad51afb237cb972a8578d2fefd4">Ie5642</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Modifier.focusable has need added in foundation. Use this to add focusable behavior to a component, with correct semantics and accessibility. (
+        <a href="https://android-review.googlesource.com/#/q/I41eb9d67669e19f8a7c20804c836a8c6dc0b5526">I41eb9</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/152525426">b/152525426</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/162865824">b/162865824</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Provide default implementations of methods and properties in AnimationClockTestRule that can be delegated to its
+        <code translate="no" dir="ltr">clock</code>
+        (
+        <a href="https://android-review.googlesource.com/#/q/I7ea3dadf99f2ab6ccd54850d03a65a41160989a2">I7ea3d</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/173399709">b/173399709</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        AndroidComposeTestRule can now accept custom activity launchers (
+        <a href="https://android-review.googlesource.com/#/q/Ib828876d918f3f091b622bbeb62dd1a31c75badb">Ib8288</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/153623653">b/153623653</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/154135019">b/154135019</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        TextLayoutResult.getLineVisibleEnd is deprecated. As a replacement TextLayoutResult.getLineEnd now has a new parameter visibleEnd. (
+        <a href="https://android-review.googlesource.com/#/q/I732828f8e4ffad3b36e116910e787628a0472c1f">I73282</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>Updated TextFieldValue API</p>
+
+      <ul>
+        <li>made TextFieldValue.composition readonly</li>
+        <li>
+          removed exception thrown for invalid selection range (
+          <a href="https://android-review.googlesource.com/#/q/I4a67592c05ab384ad5614cccf50ad6e79be52b55">I4a675</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/172239032">b/172239032</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        Support TtsAnnotation for text to speech engine. (
+        <a href="https://android-review.googlesource.com/#/q/I54cc61f8e412212c66079a3c97b5575e1336af57">I54cc6</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        New APIs for running animations in coroutines (
+        <a href="https://android-review.googlesource.com/#/q/Ied662fbc4c4c373fba7877c1421ee76c49fd69b1">Ied662</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      The alignment parameter of Box was renamed to contentAlignment. (
+      <a href="https://android-review.googlesource.com/#/q/I2c95727d9ec49f056fffb3a73dce95a9d3be5b53">I2c957</a>
+      )
+    </li>
+    <li>
+      offsetPx modifiers were renamed to offset. They are now taking lambda parameters instead of State. (
+      <a href="https://android-review.googlesource.com/#/q/Ic302174ef9cffa7ef806d1668f81cb89159363f2">Ic3021</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173594846">b/173594846</a>
+      )
+    </li>
+    <li>
+      Added resetInput parameter to TextInputService#onStateUpdated (
+      <a href="https://android-review.googlesource.com/#/q/I3e8f5404553921bd94ae424d2840ca5595b6f90b">I3e8f5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172239032">b/172239032</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171860947">b/171860947</a>
+      )
+    </li>
+    <li>
+      Added lint check for Modifier parameters in Composable functions. This lint check checks the naming, return type, default value, and order of the parameter for consistency with Compose guidelines. (
+      <a href="https://android-review.googlesource.com/#/q/If493bd2e3c236cae95744e1fab138f87f5844daa">If493b</a>
+      )
+    </li>
+    <li>
+      Temporarily added option to let the TestAnimationClock be driven by the MonotonicFrameClock (
+      <a href="https://android-review.googlesource.com/#/q/I1403ba3d82adc530d885192aa696c4363456a4c1">I1403b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173402197">b/173402197</a>
+      )
+    </li>
+    <li>
+      Added Android Typeface wrapper. You can load an Android Typeface via
+      <code translate="no" dir="ltr">typeface</code>
+      function i.e.
+      <code translate="no" dir="ltr">typeface(Typeface.DEFAULT)</code>
+      . Also renamed
+      <code translate="no" dir="ltr">typefaceFromFontFamily()</code>
+      to
+      <code translate="no" dir="ltr">typeface()</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I52ab713f851011796d0a0437e62693a7e762701a">I52ab7</a>
+      )
+    </li>
+    <li>
+      Added lint check to check that Modifier factory functions are defined as extensions on Modifier, so they can be fluently chained together. (
+      <a href="https://android-review.googlesource.com/#/q/I07981617a0e09137b787adbc0219f48af5b86169">I07981</a>
+      )
+    </li>
+    <li>
+      Remove old ui-test module and its stubs (
+      <a href="https://android-review.googlesource.com/#/q/I3a7cbbe376d0542955983fb09afd2dc37be7647e">I3a7cb</a>
+      )
+    </li>
+    <li>
+      Recomposer no longer accepts an EmbeddingContext; required scheduling dependencies are obtained from the effectCoroutineContext. FrameManager is deprecated; platform integrations should initialize their own global snapshot handling. (
+      <a href="https://android-review.googlesource.com/#/q/I02369db94b92e6ace0a7273d9d74ad44cc8cebe5">I02369</a>
+      )
+    </li>
+    <li>
+      Pass style information to accessibility node. (
+      <a href="https://android-review.googlesource.com/#/q/If5e8d28f3d26016115e895d852edd18dab8aed09">If5e8d</a>
+      )
+    </li>
+    <li>
+      TextUnit.Inherit is renamed to TextUnit.Unspecified for consistency with other units. (
+      <a href="https://android-review.googlesource.com/#/q/Ifce190ac87b01144b2fb0e7f9a8659bceed87f4e">Ifce19</a>
+      )
+    </li>
+  </ul>

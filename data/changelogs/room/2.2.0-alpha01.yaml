@@ -1,0 +1,109 @@
+libraryId: room
+groupId: androidx.room
+version: 2.2.0-alpha01
+releaseDate: 2019-07-10
+#language=html
+changelogHtml: |
+  <h3 id="2.2.0-alpha01" data-text="Version 2.2.0-alpha01" tabindex="-1">Version 2.2.0-alpha01</h3>
+  <p>July 10, 2019</p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <strong>Pre-packaged Database</strong>
+      : Two new APIs in
+      <code translate="no" dir="ltr">RoomDatabase.Builder</code>
+      are now available for creating a
+      <code translate="no" dir="ltr">RoomDatabase</code>
+      given an already populated database file.
+      <code translate="no" dir="ltr">createFromAsset()</code>
+      is for when the pre-populated database file is in the assets folder of the APK, while
+      <code translate="no" dir="ltr">createFromFile()</code>
+      is for when the file is in an arbitrary location. The usages of these API change the behaviour of destructive migrations such that during a fallback migration, Room will try to re-copy the pre-populated database if available, otherwise it fallbacks to just dropping and re-creating all tables.
+      <a href="https://issuetracker.google.com/issues/62185732">b/62185732</a>
+    </li>
+    <li>
+      <strong>Schema Default Values</strong>
+      :
+      <code translate="no" dir="ltr">@ColumnInfo</code>
+      now has a new property
+      <code translate="no" dir="ltr">defaultValue</code>
+      that can be used to specify the default value of a column. Default values are part of a database schema and will be validated during migrations if specified.
+      <a href="https://issuetracker.google.com/issues/64088772">b/64088772</a>
+      <p class="note">
+        <b>Note:</b>
+        If your database schema already has default values, such as those added via
+        <code translate="no" dir="ltr">ALTER TABLE x ADD COLUMN y INTEGER NOTNULL DEFAULT z</code>
+        , and you decide to define default values via
+        <code translate="no" dir="ltr">@ColumnInfo</code>
+        to the same columns, then you might need to provide a migration to validate the unaccounted default values. See
+        <a href="/training/data-storage/room/migrating-db-versions#handle-default-values-migrations">Room Migrations</a>
+        for more information.
+      </p>
+    </li>
+    <li>
+      <strong>Many-to-Many Relations</strong>
+      :
+      <code translate="no" dir="ltr">@Relation</code>
+      now has a new property
+      <code translate="no" dir="ltr">associateBy</code>
+      , that takes in a new annotation
+      <code translate="no" dir="ltr">@Junction</code>
+      , used to declare a relation that needs to be satisfied via a junction table (also known as a join table).
+      <a href="https://issuetracker.google.com/issues/69201917">b/69201917</a>
+    </li>
+    <li>
+      <strong>One-to-One Relations</strong>
+      : The restriction in POJO fields annotated with
+      <code translate="no" dir="ltr">@Relation</code>
+      to be of type
+      <code translate="no" dir="ltr">List</code>
+      or
+      <code translate="no" dir="ltr">Set</code>
+      has been lifted, effectively allowing single-value relations to be represented.
+      <a href="https://issuetracker.google.com/issues/69201917">b/62905145</a>
+    </li>
+    <li>
+      <strong>Target Entity</strong>
+      : The DAO annnotations
+      <code translate="no" dir="ltr">@Insert</code>
+      ,
+      <code translate="no" dir="ltr">@Update</code>
+      and
+      <code translate="no" dir="ltr">@Delete</code>
+      now has a new property
+      <code translate="no" dir="ltr">targetEntity</code>
+      , that allows specifying the target table the DAO method is meant to act on. This allows for the parameters of those DAO methods to be arbitrary POJOs which will be interpreted as partial entities. In practice, this allows partial inserts, deletes and updates.
+      <a href="https://issuetracker.google.com/issues/127549506">b/127549506</a>
+    </li>
+    <li>
+      <strong>Gradle Incremental Annotation Processor</strong>
+      : Room is now a Gradle isolating annotation processor and incrementability can be enabled via the processor option
+      <code translate="no" dir="ltr">room.incremental</code>
+      . See
+      <a href="/jetpack/androidx/releases/room#compiler-options">Room Compiler Options</a>
+      for more information. If you encounter any issues please file a bug
+      <a href="https://issuetracker.google.com/issues/new?component=413107&amp;template=1096568">here</a>
+      . We plan to enable incrementability by default in a future, stable version.
+      <a href="https://issuetracker.google.com/issues/112110217">b/112110217</a>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Room will no longer propagate the
+      <code translate="no" dir="ltr">EmptySetResultException</code>
+      to the global error handler when the Rx stream of a query has been disposed before the query is complete.
+      <a href="https://issuetracker.google.com/issues/130257475">b/130257475</a>
+    </li>
+    <li>
+      Fixed a bug where Room would show an incorrect error message when a suspend DAO function annotated with
+      <code translate="no" dir="ltr">@RawQuery</code>
+      didn't have a return type.
+      <a href="https://issuetracker.google.com/issues/134303897">b/134303897</a>
+    </li>
+    <li>
+      Room will no longer generate DAO adapters with raw types.
+      <a href="https://issuetracker.google.com/issues/135747255">b/135747255</a>
+    </li>
+  </ul>
+  <h2 id="version_210_3" data-text="Version 2.1.0" tabindex="-1">Version 2.1.0</h2>

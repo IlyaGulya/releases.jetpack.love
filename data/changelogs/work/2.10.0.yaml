@@ -1,0 +1,41 @@
+libraryId: work
+groupId: androidx.work
+version: 2.10.0
+releaseDate: 2024-10-30
+#language=html
+changelogHtml: |
+  <h3 id="2.10.0" data-text="Version 2.10.0" tabindex="-1">Version 2.10.0</h3>
+  <p>October 30, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.10.0</code>
+    is released. Version 2.10.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/61fffa80db30c92b3f06eb44b8f108dcdb33410e..380219beddae76ab6e6c9d16b8acbf25489d988d/work">these commits</a>
+    .
+  </p>
+  <p>Significant changes since version 2.9.1</p>
+  <ul>
+    <li>
+      Added trace tags to Jobs from
+      <code translate="no" dir="ltr">WorkManager</code>
+      which makes ‘adb shell dumpsys jobscheduler’ a lot simpler to understand since it will contain the name of the Worker being executed. Trace sections are also added around key areas of
+      <code translate="no" dir="ltr">WorkManager</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Configuration.workerCoroutineContext</code>
+      was added to for control of dispatcher where
+      <code translate="no" dir="ltr">CoroutineWorker</code>
+      is executed.
+    </li>
+    <li>
+      Developers can specify
+      <code translate="no" dir="ltr">NetworkRequest</code>
+      as a constraint for a worker via the
+      <code translate="no" dir="ltr">Constraints.setRequiredNetworkRequest</code>
+      method. This enables more granular control over which network this worker should run.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">WorkManager</code>
+      2.10.0 is now compiled with SDK 35 and contain various changes for SDK 35 compatibility.
+    </li>
+  </ul>

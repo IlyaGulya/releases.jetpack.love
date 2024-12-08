@@ -1,0 +1,80 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.0.0-rc01
+releaseDate: 2020-12-16
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-rc01" data-text="Version 1.0.0-rc01" tabindex="-1">Version 1.0.0-rc01</h3>
+  <p>December 16, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-camera2:1.0.0-rc01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.camera:camera-core:1.0.0-rc01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.camera:camera-lifecycle:1.0.0-rc01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/369d39c56a955f4ee612581e26de38eb44ee02a8..6aa34a2b3faad8227b3311a8e372e4ccf7eaf462/camera">Version 1.0.0-rc01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Changed CameraFilter and Camera2Filter to take in CameraInfo. (
+      <a href="https://android-review.googlesource.com/#/q/I6883d80f188ed3be14865a1409274a5c261b3cec">I6883d</a>
+      )
+    </li>
+    <li>
+      Added experimental class Camera2CameraControl to allow interoperating with Camera2 APIs dynamically. (
+      <a href="https://android-review.googlesource.com/#/q/I45cf3d1ff4415b078bfa8efcde39bbe722750897">I45cf3</a>
+      )
+    </li>
+    <li>
+      Renamed Camera2CameraInfo#fromCameraInfo to #from. (
+      <a href="https://android-review.googlesource.com/#/q/Ia2bd6c212d6820b838d17f29a32bda98920018d0">Ia2bd6</a>
+      )
+    </li>
+    <li>
+      Added an experimental setAvailableCamerasLimiter API to CameraXConfig to allow apps to optimize the initialization latency by avoiding initializing unused cameras. (
+      <a href="https://android-review.googlesource.com/#/q/I6cf887bab434dc6c6e0524e8a44d43d0f25de552">I6cf88</a>
+      )
+    </li>
+    <li>
+      Added experimental method
+      <code translate="no" dir="ltr">CameraXConfig.Builder#setMinimumLoggingLevel()</code>
+      to allow setting a minimum logging level for CameraX logs. When not set, it defaults to
+      <code translate="no" dir="ltr">Log#DEBUG</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic32451f2640f1003a4e8dfcc3ffab36a6de58c63">Ic3245</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Workaround included for intermittent corrupt image data in JPEGs on SM-G930V back-facing camera. (
+      <a href="https://android-review.googlesource.com/#/q/I5aca54ce3ce8a5a50bc7b84175b2f0dbb7e706e2">I5aca5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/159831206">b/159831206</a>
+      )
+    </li>
+    <li>
+      Fixed the issue that taking pictures doesn't receive results when flash is always/on and the environment is dark on Samsung SM-A716 devices. (
+      <a href="https://android-review.googlesource.com/#/q/If98b2b45cbf1a7fb7228d4db1885846621644341">If98b2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172036589">b/172036589</a>
+      )
+    </li>
+    <li>
+      Fixed the issue that the Preview cannot be stopped by calling
+      <code translate="no" dir="ltr">Preview.setSurfaceProvider(null)</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3ac188840c60de20e0e891bb168922aa6fb37c1b">I3ac18</a>
+      )
+    </li>
+    <li>
+      Fixed orientation issue when capturing 4:3 images on some devices. (
+      <a href="https://android-review.googlesource.com/#/q/I0e3fb7705daeb5b8caa98e80215a545f8a3ca484">I0e3fb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171492111">b/171492111</a>
+      )
+    </li>
+  </ul>

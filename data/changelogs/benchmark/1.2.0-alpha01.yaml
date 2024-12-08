@@ -1,0 +1,147 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.2.0-alpha01
+releaseDate: 2022-07-27
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha01" data-text="Version 1.2.0-alpha01" tabindex="-1">Version 1.2.0-alpha01</h3>
+  <p>July 27, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.2.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/69956fa74719518e58b93b55aab2f87546412ec4..a7f0710ad21f556f0dde9bf7bdab6d2135170fd4/benchmark">Version 1.2.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      New tracing-perfetto-common component allowing tooling to enable Perfetto SDK tracing in an app that exposes it (
+      <a href="https://android-review.googlesource.com/#/q/I2cc7fa6b77325f2bfb6337d47b8027e5699d7d6a">I2cc7f</a>
+      )
+    </li>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">androidx.benchmark.enabledRules</code>
+        instrumentation argument to enable filtering macrobenchmark runs to just benchmarks, or just baseline profile generation. Pass in 'Macrobenchmark', or 'BaselineProfile' to just run one type of test, e.g. when just generating
+        <code translate="no" dir="ltr">BaselineProfiles</code>
+        on an emulator. Comma-separated list also Supported. (
+        <a href="https://android-review.googlesource.com/#/q/I756b7695adba25f31ca31a6408b14c8aeedfdf6a">I756b7</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/230371561">b/230371561</a>
+        )
+      </p>
+
+      <p>E.g. in Your macrobenchmark's build.gradle:</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Groovy"><code translate="no" dir="ltr"><span class="devsite-syntax-n">android</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">defaultConfig</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">{</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">testInstrumentationRunnerArgument</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s1">'androidx.benchmark.enabledRules'</span><span class="devsite-syntax-o">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s1">'BaselineProfile'</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-o">}</span>
+  <span class="devsite-syntax-o">}</span>
+  </code></pre>
+      </devsite-code>
+      <p>Or from the Gradle command line:</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Bash"><code translate="no" dir="ltr">./gradlew<span class="devsite-syntax-w"> </span>macrobenchmark:cC<span class="devsite-syntax-w"> </span>-P<span class="devsite-syntax-w"> </span>android.testInstrumentationRunnerArguments.androidx.benchmark.enabledRules<span class="devsite-syntax-o">=</span>BaselineProfile
+  </code></pre>
+      </devsite-code>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added new
+      <code translate="no" dir="ltr">PowerMetric</code>
+      for measuring energy and power tasks in benchmarks. (
+      <a href="https://android-review.googlesource.com/#/q/I9f39b285c9758fc63737b9bc0f763004e00ab6b7">I9f39b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/220183779">b/220183779</a>
+      )
+    </li>
+    <li>
+      Added a new compilation mode
+      <code translate="no" dir="ltr">CompilationMode.Ignore</code>
+      to skip profile reset and compilation. (
+      <a href="https://android-review.googlesource.com/#/q/Ibbcf8e8c627d227e0f290bddf464b67d9b6653bc">Ibbcf8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/230453509">b/230453509</a>
+      )
+    </li>
+    <li>
+      Added a new parameter to
+      <code translate="no" dir="ltr">BaselineProfileRule#collectBaselineProfile</code>
+      to filter output file by package names (
+      <a href="https://android-review.googlesource.com/#/q/If7338bff7f7a1bde4daeff1af1f684985103012d">If7338</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/220146561">b/220146561</a>
+      )
+    </li>
+    <li>
+      Enables developer to discharge device to measure power drain. (
+      <a href="https://android-review.googlesource.com/#/q/I6a6cb257c89dfd585fbb3369fe5ef021ffa0dae6">I6a6cb</a>
+      )
+    </li>
+    <li>
+      Added the ability to clear shader cache in
+      <code translate="no" dir="ltr">MacrobenchmarkScope</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3212295da7acc1abba7a85b74d9a79dbc2dac15c">I32122</a>
+      )
+    </li>
+    <li>
+      Enables developer to configure display of metric type and detail desired subsystem categories. (
+      <a href="https://android-review.googlesource.com/#/q/I810c934554d25e107cf01bd90c5c922991b238b2">I810c9</a>
+      )
+    </li>
+    <li>
+      Previously an
+      <code translate="no" dir="ltr">UnsupportedOperationException</code>
+      was thrown in the benchmark if run on an unsupported device. Now UOE only occurs if the metric is used on the unsupported device (ie:
+      <code translate="no" dir="ltr">PowerMetric.configure</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/I5cf2004861662d9a751847ed4457178d36b8980f">I5cf20</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/227229375">b/227229375</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">TotalPowerMetric</code>
+      and
+      <code translate="no" dir="ltr">TotalEnergyMetric</code>
+      for measuring total power and energy in each system category in macrobenchmarks. (
+      <a href="https://android-review.googlesource.com/#/q/I3b26bad74b0607e06435d2443ac616a7975a4d84">I3b26b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/224557371">b/224557371</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where compiled methods were not correctly being reset between each macrobenchmark on unrooted builds. This unfortunately requires reinstalling the apk each iteration, which will clear application data for each macrobenchmark. (
+      <a href="https://android-review.googlesource.com/#/q/I31c740019640da0d0913066bb9ac59ab5c2a9627">I31c74</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/230665435">b/230665435</a>
+      )
+    </li>
+    <li>
+      Fix trace recording crash on API 21/22 (
+      <a href="https://android-review.googlesource.com/#/q/If7fd6d645112295b63411f27e61b7c4ed33a4525">If7fd6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/227509388">b/227509388</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/227510293">b/227510293</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/227512788">b/227512788</a>
+      )
+    </li>
+    <li>
+      Overhaul activity launch completion detection to fix 'Unable to read any metrics' exception in startup macrobenchmarks. (
+      <a href="https://android-review.googlesource.com/#/q/Ia517c59c07d9c24e4471e86fb603dca56a6f855f">Ia517c</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_111_3" data-text="Version 1.1.1" tabindex="-1">Version 1.1.1</h2>

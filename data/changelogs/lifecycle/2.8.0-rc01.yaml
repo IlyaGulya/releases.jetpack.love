@@ -1,0 +1,56 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.8.0-rc01
+releaseDate: 2024-05-01
+#language=html
+changelogHtml: |
+  <h3 id="2.8.0-rc01" data-text="Version 2.8.0-rc01" tabindex="-1">Version 2.8.0-rc01</h3>
+  <p>May 1, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.8.0-rc01</code>
+    is released. Version 2.8.0-rc01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/67004410fdbff19f90caa4cc43965ab21dca1943..c8b86ee34b2e32889913843be8f20bd7b718132d/lifecycle">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where the Baseline Profile for
+      <code translate="no" dir="ltr">lifecycle-common</code>
+      classes was not properly packaged. These are now packaged in the
+      <code translate="no" dir="ltr">lifecycle-runtime</code>
+      AAR. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/3038274">aosp/3038274</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/322382422">b/322382422</a>
+      )
+    </li>
+    <li>
+      Fixed an unintentional ordering change in how
+      <code translate="no" dir="ltr">AutoCloseable</code>
+      instances attached to a ViewModel are cleared - the previous order of
+      <code translate="no" dir="ltr">addCloseable(String, AutoCloseable)</code>
+      , then
+      <code translate="no" dir="ltr">addClosable(AutoCloseable)</code>
+      , then
+      <code translate="no" dir="ltr">onCleared()</code>
+      has been restored. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/3041632">aosp/3041632</a>
+      )
+    </li>
+    <li>
+      Improve the default creation behavior for
+      <code translate="no" dir="ltr">viewModelScope</code>
+      for native and JVM Desktop environments. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/3039221">aosp/3039221</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Thanks Victor Kropp for improving the checking for the main thread on JVM Desktop. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/3037116">aosp/3037116</a>
+      )
+    </li>
+  </ul>

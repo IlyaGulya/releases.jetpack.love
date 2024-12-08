@@ -1,0 +1,113 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.8.0-alpha07
+releaseDate: 2024-12-11
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0-alpha07" data-text="Version 1.8.0-alpha07" tabindex="-1">Version 1.8.0-alpha07</h3>
+  <p>December 11, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.8.0-alpha07</code>
+    is released. Version 1.8.0-alpha07 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6f09cf2ae979e48fdb19485f757a033e4a34bb82..46295bc0b75a16f452e8e0090e8de41073d4dbb6/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Exposed owner from
+      <code translate="no" dir="ltr">LayoutNode</code>
+      for tools. (
+      <a href="https://android-review.googlesource.com/#/q/I26f7fd089daaab84d3e605f0f5231b171d09afce">I26f7f</a>
+      )
+    </li>
+    <li>
+      Has
+      <code translate="no" dir="ltr">LocalAutofillHighlightColor</code>
+      composition local use a Color type. (
+      <a href="https://android-review.googlesource.com/#/q/I0e05bc47c50ff04a873169ab69dfc79f9ecc0579">I0e05b</a>
+      )
+    </li>
+    <li>
+      Keep deprecated
+      <code translate="no" dir="ltr">UrlAnnotation</code>
+      and its methods marked as experimental. (
+      <a href="https://android-review.googlesource.com/#/q/Ic00213e5ce4f28ffc2548a6e5a97944262c421cf">Ic0021</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">IndexOutOfBoundsException</code>
+      crash when using
+      <code translate="no" dir="ltr">LinkAnnotation</code>
+      inside the
+      <code translate="no" dir="ltr">BasicText</code>
+      or Text composable (
+      <a href="https://android-review.googlesource.com/#/q/be7605af63fcd036dd037a67a1b18f2166598f6e">be7605</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/374115892">b/374115892</a>
+      )
+    </li>
+    <li>
+      Fixed issue where filled text fields with custom shape didn't clip the indicator line. (
+      <a href="https://android-review.googlesource.com/#/q/I4f87f4637da0f17e9e435fa5609061fd320b7f7b">I4f87f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/380704151">b/380704151</a>
+      )
+    </li>
+    <li>
+      Fixed missing backgrounds with long screenshots. (
+      <a href="https://android-review.googlesource.com/#/q/I4d57a4fedb020cc80a6df71054c768bd3c640bd0">I4d57a</a>
+      )
+    </li>
+    <li>
+      This library now uses
+      <a href="https://jspecify.dev/">JSpecify nullness annotations</a>
+      , which are type-use. Kotlin developers should use the following compiler arguments to enforce correct usage:
+      <code translate="no" dir="ltr">-Xjspecify-annotations=strict, -Xtype-enhancement-improvements-strict-mode</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Idfef8002dd13e94de525c5e53d018437e2cc050b">Idfef8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326456246">b/326456246</a>
+      )
+    </li>
+    <li>
+      Update Compose support for wide gamut and HDR colors when running on Android Q+. (
+      <a href="https://android-review.googlesource.com/#/q/Icd8bea0a02aeea8ac8a06cda9684eed39dc4b990">Icd8be</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/379135036">b/379135036</a>
+      )
+    </li>
+    <li>
+      Resource fonts that fail to load will now silently fall back to the default font, instead of the prior behavior of throwing an exception in measure. (
+      <a href="https://android-review.googlesource.com/#/q/Ib6a4941f8679d9c40bbcb3422d8d6a0a79633181">Ib6a49</a>
+      )
+    </li>
+    <li>
+      Fix focus lost when
+      <code translate="no" dir="ltr">AndroidView</code>
+      is detached and attached. (
+      <a href="https://android-review.googlesource.com/#/q/I53446d6e0f234ce408ed8555a6300d90e874b5c1">I53446</a>
+      )
+    </li>
+    <li>
+      Accept
+      <code translate="no" dir="ltr">requestFocus()</code>
+      from beyond bound layout action. (
+      <a href="https://android-review.googlesource.com/#/q/Ia84613ee89e40cb62a7682defea43b0a62c1cdda">Ia8461</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">BringIntoViewResponderModifierNode</code>
+      to UI, which provides a new way to implement Bring Into View functionality as well as allows implementing in on a platform level. (
+      <a href="https://android-review.googlesource.com/#/q/Ia6dd89b79c7a4e04fea0d73410b2b76e779b793f">Ia6dd8</a>
+      )
+    </li>
+  </ul>

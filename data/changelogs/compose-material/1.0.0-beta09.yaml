@@ -1,0 +1,167 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 1.0.0-beta09
+releaseDate: 2021-06-16
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta09" data-text="Version 1.0.0-beta09" tabindex="-1">Version 1.0.0-beta09</h3>
+  <p>June 16, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material-*:1.0.0-beta09</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/836237c11d7a415f28bb71acab597579be1d5227..f434dccf3dc4d4e82d8d965da3746615870537b4/compose/material">Version 1.0.0-beta09 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added Shape parameter to OutlinedTextField to be able to customize the shape of the border (
+      <a href="https://android-review.googlesource.com/#/q/I8f39edee8f5c4860336d9b26772403f680b4afff">I8f39e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/181322957">b/181322957</a>
+      )
+    </li>
+    <li>
+      TextOverflow is changed to an inline class. (
+      <a href="https://android-review.googlesource.com/#/q/I433af65606ae4e79ea0cb281be7049c73b12fcf0">I433af</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Scrim in BottomDrawer, BackdropScaffold and ModalBottomSheetLayout will disappear then the Color.Unspecified is passed (
+      <a href="https://android-review.googlesource.com/#/q/I2d8999e16e2b4b3942e4fd9df424c5d6446e5a2b">I2d899</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/182063309">b/182063309</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Added Profile Rules</strong></p>
+  <p>
+    This release adds profile rules to the following compose modules (
+    <a href="https://android-review.googlesource.com/#/q/I14ed64578d535320a40ed8d486f75715641b2762">I14ed6</a>
+    ):
+  </p>
+  <ul>
+    <li>androidx.compose.animation</li>
+    <li>androidx.compose.animation-core</li>
+    <li>androidx.compose.foundation</li>
+    <li>androidx.compose.foundation-layout</li>
+    <li>androidx.compose.material</li>
+    <li>androidx.compose.material-ripple</li>
+    <li>androidx.compose.runtime</li>
+    <li>androidx.compose.ui</li>
+    <li>androidx.compose.ui.geometry</li>
+    <li>androidx.compose.ui.graphics</li>
+    <li>androidx.compose.ui.text</li>
+    <li>androidx.compose.ui.text</li>
+    <li>androidx.compose.ui.unit</li>
+    <li>androidx.compose.ui.util</li>
+  </ul>
+  <h4 id="what_are_profile_rules_2" data-text="What are profile rules?" tabindex="-1">What are profile rules?</h4>
+  <ul>
+    <li>
+      <p>
+        Profile rules for a library are specified in a text file
+        <code translate="no" dir="ltr">baseline-prof.txt</code>
+        located in the
+        <code translate="no" dir="ltr">src/main</code>
+        or equivalent directory. The file specifies a rule per line, where a rule in this case is a pattern for matching to methods or classes in the library. The syntax for these rules is a superset of the human-readable ART profile format that is used when using
+        <code translate="no" dir="ltr">adb shell profman --dump-classes-and-methods ...</code>
+        . These rules take one of two forms to target either methods or classes.
+      </p>
+    </li>
+    <li>
+      <p>A method rule will have the following pattern:</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr">&lt;<span class="devsite-syntax-n">FLAGS&gt;&lt;CLASS_DESCRIPTOR&gt;</span><span class="devsite-syntax-o">-</span>&gt;&lt;<span class="devsite-syntax-n">METHOD_SIGNATURE</span>&gt;
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>And a class rule will have the following pattern:</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr">&lt;<span class="devsite-syntax-n">CLASS_DESCRIPTOR</span>&gt;
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        Here
+        <code translate="no" dir="ltr">&lt;FLAGS&gt;</code>
+        is one or more of the characters
+        <code translate="no" dir="ltr">H</code>
+        ,
+        <code translate="no" dir="ltr">S</code>
+        , and
+        <code translate="no" dir="ltr">P</code>
+        to indicate whether or not this method should be flagged as "Hot", "Startup", or "Post Startup".
+      </p>
+    </li>
+    <li>
+      <p>
+        The
+        <code translate="no" dir="ltr">&lt;CLASS_DESCRIPTOR&gt;</code>
+        is the descriptor for the class that the targeted method belongs to. For example, the class
+        <code translate="no" dir="ltr">androidx.compose.runtime.SlotTable</code>
+        would have a descriptor of
+        <code translate="no" dir="ltr">Landroidx/compose/runtime/SlotTable;</code>
+        .
+      </p>
+    </li>
+    <li>
+      <p>
+        The
+        <code translate="no" dir="ltr">&lt;METHOD_SIGNATURE&gt;</code>
+        is the signature of the method, and includes the name, parameter types, and return types of the method. For example, the method
+        <code translate="no" dir="ltr">fun isPlaced(): Boolean</code>
+        on
+        <code translate="no" dir="ltr">LayoutNode</code>
+        has the signature
+        <code translate="no" dir="ltr">isPlaced()Z</code>
+        .
+      </p>
+    </li>
+    <li>
+      <p>
+        These patterns can have wildcards (
+        <code translate="no" dir="ltr">**</code>
+        ,
+        <code translate="no" dir="ltr">*</code>
+        , and
+        <code translate="no" dir="ltr">?</code>
+        ) in order to have a single rule encompass multiple methods or classes.
+      </p>
+    </li>
+  </ul>
+  <h4 id="what_do_the_rules_do_2" data-text="What do the rules do?" tabindex="-1">What do the rules do?</h4>
+  <ul>
+    <li>
+      <p>
+        A method that has the flag
+        <code translate="no" dir="ltr">H</code>
+        indicates that this method is a "hot" method, and should be compiled ahead of time.
+      </p>
+    </li>
+    <li>
+      <p>
+        A method that has the flag
+        <code translate="no" dir="ltr">S</code>
+        indicates that it is a method which is called at startup, and should be compiled ahead of time to avoid the cost of compilation and interpreting the method at startup time.
+      </p>
+    </li>
+    <li>
+      <p>
+        A method that has the flag
+        <code translate="no" dir="ltr">P</code>
+        indicates that it is a method which is called after startup.
+      </p>
+    </li>
+    <li><p>A class that is present in this file indicates that it is used during startup and should be pre-allocated in the heap to avoid the cost of class loading.</p></li>
+  </ul>
+  <h4 id="how_does_this_work_2" data-text="How does this work?" tabindex="-1">How does this work?</h4>
+  <ul>
+    <li>Libraries can define these rules which will be packaged in AAR artifacts. When an APK is then built which includes these artifacts, these rules are merged together and the merged rules are used to build a compact binary ART profile that is specific to the APK. ART can then leverage this profile when the APK is installed on devices in order to ahead-of-time compile a specific subset of the application to improve the performance of the application, especially the first run. Note that this will have no effect on debuggable applications.</li>
+  </ul>

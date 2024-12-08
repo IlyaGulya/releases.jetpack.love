@@ -1,0 +1,25 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.2.0-alpha07
+releaseDate: 2022-04-06
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha07" data-text="Version 1.2.0-alpha07" tabindex="-1">Version 1.2.0-alpha07</h3>
+  <p>April 6, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.2.0-alpha07</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5ef5671233460b844828e14a816255dbf7904868..7ca43e00a517eaeeedc0a21f482b17f06e3d2181/compose/runtime">Version 1.2.0-alpha07 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      New function
+      <code translate="no" dir="ltr">Snapshot.withoutReadObservation { ... }</code>
+      was added. It allows users to run the passed lambda without subscribing to the changes of the state values read during this block. You could find it useful in use cases when you want to benefit from the snapshot based thread safe write/reads, but want to be able to read the value without causing unnecessary recomposition or remeasure. (
+      <a href="https://android-review.googlesource.com/#/q/I9f365d653483310cfda02cfa2c582fdcce8cfe33">I9f365</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/214054486">b/214054486</a>
+      )
+    </li>
+  </ul>

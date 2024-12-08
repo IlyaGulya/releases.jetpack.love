@@ -1,0 +1,38 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.0.0-alpha07
+releaseDate: 2020-10-01
+#language=html
+changelogHtml: |
+  <h3 id="3.0.0-alpha07" data-text="Version 3.0.0-alpha07" tabindex="-1">Version 3.0.0-alpha07</h3>
+  <p>October 1, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.0.0-alpha07</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/31022a2dda22705843be1199c786552a6f9f875d..f5a2c7477391539d8bc9f65a8f0db1e8a7bf2cf5/paging">Version 3.0.0-alpha07 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Async PagingData Guava-based operators now accept an Executor as a param, to control execution context. (
+      <a href="https://android-review.googlesource.com/#/q/Id4372a9d30afd3f702782bba46f4da37a1b8e30d">Id4372</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed IndexOutOfBounds exception thrown in RemoteMediator due to a race condition. (
+      <a href="https://android-review.googlesource.com/#/q/I00b7f9b00b2a36395ba8fe5c77931fec3ce20d7a">I00b7f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/165821814">b/165821814</a>
+      )
+    </li>
+    <li>Fixed a race condition in DataSource -&gt; PagingSource conversion that could cause the resulting PagingSource to ignore invalidation signals from DataSource.</li>
+    <li>Fixed an issue in page fetchin logic that would sometimes cause it to fail to pick up new generations of PagingSource until PagingDataAdapter.refresh() was invoked</li>
+    <li>Fixed an issue that would cause scroll-position to sometimes be lost when using a DataSource converted into a PagingSource (such as the one produced by Room), in conjunction with RemoteMediator</li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>Thanks to @simonschiller for adding RxJava2, RxJava3, and Guava-based async transformation operators for PagingData!</li>
+  </ul>

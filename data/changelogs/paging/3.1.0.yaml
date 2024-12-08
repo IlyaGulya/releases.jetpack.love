@@ -1,0 +1,90 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.1.0
+releaseDate: 2021-11-17
+#language=html
+changelogHtml: |
+  <h3 id="3.1.0" data-text="Version 3.1.0" tabindex="-1">Version 3.1.0</h3>
+  <p>November 17, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.1.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b15a1d282b578971faba0bbe4e631dd2e9b5b854..04b73e954d139340d0ac8b00cdcef55b103ba393/paging">Version 3.1.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 3.0.0</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">Flow&lt;PagingData&gt;.observable</code>
+      and
+      <code translate="no" dir="ltr">Flow&lt;PagingData&gt;.flowable</code>
+      APIs are no longer experimental
+    </li>
+    <li>
+      Behavior changes to
+      <code translate="no" dir="ltr">LoadState</code>
+      :
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">endOfPaginationReached</code>
+          is now always
+          <code translate="no" dir="ltr">false</code>
+          for
+          <code translate="no" dir="ltr">LoadType.REFRESH</code>
+          for both
+          <code translate="no" dir="ltr">PagingSource</code>
+          and
+          <code translate="no" dir="ltr">RemoteMediator</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">LoadStates</code>
+          from Paging now await valid values from both
+          <code translate="no" dir="ltr">PagingSource</code>
+          and
+          <code translate="no" dir="ltr">RemoteMediator</code>
+          before emitting downstream. New generations of
+          <code translate="no" dir="ltr">PagingData</code>
+          will now always correctly begin with
+          <code translate="no" dir="ltr">Loading</code>
+          for refresh state instead of resetting to
+          <code translate="no" dir="ltr">NotLoading</code>
+          incorrectly in some cases.
+        </li>
+        <li>
+          <code translate="no" dir="ltr">.loadStateFlow</code>
+          and
+          <code translate="no" dir="ltr">.addLoadStateListener</code>
+          on presenter APIs no longer redundantly send an initial
+          <code translate="no" dir="ltr">CombinedLoadStates</code>
+          that always has mediator states set to
+          <code translate="no" dir="ltr">null</code>
+        </li>
+      </ul>
+    </li>
+    <li>
+      Cancellation on past generations now happens eagerly on invalidation / new generations. It should no longer be required to use
+      <code translate="no" dir="ltr">.collectLatest</code>
+      on
+      <code translate="no" dir="ltr">Flow&lt;PagingData&gt;</code>
+      , although it is still recommended to do so.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PagingSource.LoadResult.Invalid</code>
+      has been added as a new return type from
+      <code translate="no" dir="ltr">PagingSource.load</code>
+      , which causes Paging to discard any pending or future load requests to this
+      <code translate="no" dir="ltr">PagingSource</code>
+      and invalidate it. This return type is designed to handle potentially invalid or stale data that can be returned from the database or network.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">.onPagesPresented</code>
+      and
+      <code translate="no" dir="ltr">.addOnPagesUpdatedListener</code>
+      presenter APIs which triggered synchronously as pages are presented in UI. Page updates can happen in the following scenarios:
+      <ul>
+        <li>Initial load of a new generation of PagingData completes, regardless if the new generation contains any changes to the presented items. i.e., A new generation completing initial load with no updates because the list is exactly the same will still trigger this callback.</li>
+        <li>A page is inserted, even if the inserted page contains no new items.</li>
+        <li>A page is dropped, even if the dropped page was empty.</li>
+      </ul>
+    </li>
+  </ul>

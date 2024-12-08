@@ -1,0 +1,91 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.9.0-alpha02
+releaseDate: 2024-01-24
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0-alpha02" data-text="Version 1.9.0-alpha02" tabindex="-1">Version 1.9.0-alpha02</h3>
+  <p>January 24, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.9.0-alpha02</code>
+    ,
+    <code translate="no" dir="ltr">androidx.activity:activity-compose:1.9.0-alpha02</code>
+    , and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.9.0-alpha02</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b5166f9a1e9c047162d1215884c3e2cd41a4a74a..51191bc12f96f233fc08995e1b4e8ff8b88bc7ce/activity">Version 1.9.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>Kotlin Conversions</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ActivityResultRegistry</code>
+      has been rewritten in Kotlin. This ensures that the nullability of the generics on the contract passed to
+      <code translate="no" dir="ltr">register</code>
+      will correctly be passed through to the
+      <code translate="no" dir="ltr">ActivityResultLauncher</code>
+      returned to you. (
+      <a href="https://android-review.googlesource.com/#/q/I121f0ca842066fb73ab0e51b89720029e991407a">I121f0</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ActivityResult</code>
+      has been rewritten in Kotlin. The
+      <code translate="no" dir="ltr">ActivityResult</code>
+      Kotlin extensions that support destructuring into the
+      <code translate="no" dir="ltr">resultCode</code>
+      and
+      <code translate="no" dir="ltr">data</code>
+      fields have been moved from
+      <code translate="no" dir="ltr">activity-ktx</code>
+      to
+      <code translate="no" dir="ltr">activity</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0565a95aa4470a4cd23dcddf75df3f9dd8dca19e">I0565a</a>
+      )
+    </li>
+    <li>
+      The Kotlin extensions of
+      <code translate="no" dir="ltr">by viewModels()</code>
+      for
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      and
+      <code translate="no" dir="ltr">trackPipAnimationHintView</code>
+      have been moved from
+      <code translate="no" dir="ltr">activity-ktx</code>
+      to
+      <code translate="no" dir="ltr">activity</code>
+      . The
+      <code translate="no" dir="ltr">activity-ktx</code>
+      artifact is now completely empty. (
+      <a href="https://android-review.googlesource.com/#/q/I0a444140b10671bbfbb5aeab66f1a3a7e9d28061">I0a444</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">enableEdgeToEdge</code>
+      API now draws around any display cutouts. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/a3644b966f658b5b726eb8dc7c60d370194d250d">a3644b</a>
+      ,
+      <a href="https://issuetracker.google.com/311173461">b/311173461</a>
+      )
+    </li>
+    <li>
+      From
+      <a href="#1.8.2">
+        Activity
+        <code translate="no" dir="ltr">1.8.2</code>
+      </a>
+      : Fixed the extra passed to the Photo Picker Activity Contract's
+      <code translate="no" dir="ltr">ACTION_SYSTEM_FALLBACK_PICK_IMAGES</code>
+      to correctly pass it the
+      <code translate="no" dir="ltr">EXTRA_SYSTEM_FALLBACK_PICK_IMAGES_MAX</code>
+      key, rather than using the extra with the key
+      <code translate="no" dir="ltr">"com.google.android.gms.provider.extra.PICK_IMAGES_MAX"</code>
+      . It is strongly recommended if you are an OEM who implements a system fallback Photo Picker to support both extras to ensure the widest compatibility. (
+      <a href="https://android-review.googlesource.com/#/q/I96a00ed51416a3ea65705357157127091a24f189">I96a00</a>
+      )
+    </li>
+  </ul>

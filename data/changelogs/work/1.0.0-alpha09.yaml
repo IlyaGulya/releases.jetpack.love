@@ -1,0 +1,119 @@
+libraryId: work
+groupId: androidx.work
+version: 1.0.0-alpha09
+releaseDate: 2018-09-19
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha09" data-text="Version 1.0.0-alpha09" tabindex="-1">Version 1.0.0-alpha09</h3>
+  <p>September 19, 2018</p>
+  <p><strong>Known Issue</strong></p>
+  <p>If you run into the following issue: "More than one file was found with OS independent path 'META-INF/proguard/androidx-annotations.pro'", please put the following in your gradle file as a temporary workaround while we fix the issue in alpha10:</p>
+  <div>
+    <div class="ds-selector-tabs">
+      <section>
+        <h3 id="groovy" data-text="Groovy" tabindex="-1">Groovy</h3>
+        <div></div>
+        <devsite-code>
+          <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Groovy"><span class="devsite-syntax-n">android</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">packagingOptions</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">{</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">exclude</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s1">'META-INF/proguard/androidx-annotations.pro'</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-o">}</span>
+  <span class="devsite-syntax-o">}</span></pre>
+        </devsite-code>
+      </section>
+      <section>
+        <h3 id="kts" data-text="Kotlin" tabindex="-1">Kotlin</h3>
+        <div></div>
+        <devsite-code>
+          <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><span class="devsite-syntax-n">android</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">packagingOptions</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">exclude</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"META-INF/proguard/androidx-annotations.pro"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span></pre>
+        </devsite-code>
+      </section>
+    </div>
+  </div>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Added another fix that was needed for the "100 jobs" error.
+      <a href="https://issuetracker.google.com/115560696">b/115560696</a>
+    </li>
+    <li>
+      Added some fixes for foreign key constraint errors due to race conditions.
+      <a href="https://issuetracker.google.com/114705286">b/114705286</a>
+    </li>
+    <li>
+      Delegated
+      <code translate="no" dir="ltr">ConstraintTrackingWorker.onStopped(boolean)</code>
+      calls to the underlying
+      <code translate="no" dir="ltr">Worker</code>
+      .
+      <a href="https://issuetracker.google.com/114125093">b/114125093</a>
+    </li>
+    <li>
+      Enforce correct minimum backoff delay for Firebase JobDispatcher.
+      <a href="https://issuetracker.google.com/113304626">b/113304626</a>
+    </li>
+    <li>Improved threading guarantees internal to the library.</li>
+    <li>
+      Correct potential issue with deduping of
+      <code translate="no" dir="ltr">LiveData</code>
+      internally.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      You can now create your own
+      <code translate="no" dir="ltr">Worker</code>
+      instances at runtime by specifying a
+      <code translate="no" dir="ltr">WorkerFactory</code>
+      as part of the
+      <code translate="no" dir="ltr">WorkManager.Configuration</code>
+      . The fallback factory is
+      <code translate="no" dir="ltr">DefaultWorkerFactory</code>
+      , which matches behavior of previous versions of WorkManager.
+      <ul>
+        <li>
+          The default constructors for
+          <code translate="no" dir="ltr">Worker</code>
+          and
+          <code translate="no" dir="ltr">NonBlockingWorker</code>
+          are now marked as deprecated. Please use the new constructor (
+          <code translate="no" dir="ltr">Worker(Context, WorkerParameters)</code>
+          ) and call
+          <code translate="no" dir="ltr">super(Context, WorkerParameters)</code>
+          ; future versions of WorkManager will remove the default constructor.
+        </li>
+      </ul>
+    </li>
+    <li>
+      We have started using the new
+      <code translate="no" dir="ltr">ListenableFuture</code>
+      artifact internally (free of Guava dependencies). We will introduce ListenableFutures to the API in upcoming releases. This change will support the eventual unhiding of
+      <code translate="no" dir="ltr">NonBlockingWorker</code>
+      .
+    </li>
+    <li>
+      Add ability to trigger timed work in
+      <code translate="no" dir="ltr">TestDriver</code>
+      via
+      <code translate="no" dir="ltr">TestDriver.setInitialDelayMet(UUID)</code>
+      and
+      <code translate="no" dir="ltr">TestDriver.setPeriodDelayMet(UUID)</code>
+      .
+      <a href="https://issuetracker.google.com/113360060">b/113360060</a>
+    </li>
+  </ul>
+  <p><strong>Breaking Changes</strong></p>
+  <ul>
+    <li>
+      The default
+      <code translate="no" dir="ltr">Worker</code>
+      and
+      <code translate="no" dir="ltr">NonBlockingWorker</code>
+      constructors are deprecated. Please migrate to the new constructor ASAP. Future versions will remove the default constructor.
+    </li>
+  </ul>

@@ -1,0 +1,68 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.3.0-alpha04
+releaseDate: 2023-02-22
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha04" data-text="Version 1.3.0-alpha04" tabindex="-1">Version 1.3.0-alpha04</h3>
+  <p>February 22, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.3.0-alpha04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ff35d3c81caf7392850e60f0410a04265fd95b80..e29b9d5011a682544cb10226575971c514437eae/camera">Version 1.3.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>A new feature to support previously unsupported Surface combinations by sharing one stream to multiple UseCases.</p>
+  <ul>
+    <li>
+      Previously, when binding “Preview, VideoCapture, ImageAnalysis” on camera hardware level FULL and below, or binding “Preview, VideoCapture, ImageCapture” on hardware level LEGACY, CameraX throws
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      .
+    </li>
+    <li>The new behavior is that the bindings will work without throwing exceptions. Instead, CameraX uses OpenGL to copy a shared stream to both Preview and VideoCapture.</li>
+    <li>As the cost of the buffer copy, the app may see an increase in latency and power consumption.</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add API to convert
+      <code translate="no" dir="ltr">ImageProxy</code>
+      to
+      <code translate="no" dir="ltr">Bitmap</code>
+      . The supported
+      <code translate="no" dir="ltr">ImageProxy</code>
+      format is
+      <code translate="no" dir="ltr">ImageFormat.YUV_420_888</code>
+      and
+      <code translate="no" dir="ltr">PixelFormat.RGBA_8888</code>
+      . If the format is invalid,
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      will be thrown. (
+      <a href="https://android-review.googlesource.com/#/q/Ic7110b128b568320fc27408d7f00c8031d339729">Ic7110</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">CoroutineCameraViewfinder</code>
+      to support configuring viewfinder using suspending functions in Kotlin. (
+      <a href="https://android-review.googlesource.com/#/q/I657bc25a2908414c44a700829f1706988c0c89ea">I657bc</a>
+      )
+    </li>
+    <li>
+      Add new public constructor for
+      <code translate="no" dir="ltr">ViewfinderSurfaceRequest</code>
+      . It provides the flexibility when user cannot provide
+      <code translate="no" dir="ltr">CameraCharacteristics</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie65492a882efe2a17d5fcb70cee9e1b1d4cc9e31">Ie6549</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed the Extensions crash that happens on some Samsung devices when pausing/resuming the app too quickly (
+      <a href="https://android-review.googlesource.com/#/q/Iaca262a499d7e8e72c5072ea7063943dd291b4f2">Iaca26</a>
+      )
+    </li>
+  </ul>

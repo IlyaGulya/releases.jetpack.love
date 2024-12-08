@@ -1,0 +1,50 @@
+libraryId: recyclerview
+groupId: androidx.recyclerview
+version: 1.1.0-beta01
+releaseDate: 2019-12-04
+#language=html
+changelogHtml: |
+  <h3 id="selection-1.1.0-beta01" data-text="RecyclerView-Selection Version 1.1.0-beta01" tabindex="-1">RecyclerView-Selection Version 1.1.0-beta01</h3>
+  <p>December 4, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.recyclerview:recyclerview-selection:1.1.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/0c2a7091f663f8e853290ecb2a84c08fc7adac86..ce2902e01f920f17637879b6c918ffe987d2f35b/recyclerview/recyclerview-selection">Version 1.1.0-beta01 contains these commits</a>
+    .
+  </p>
+  <p>General improvements in stability related to defensive checks and management of internal state.</p>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Improved management of library state and interpretation of CANCEL events, resulting in stability improvements.
+      <ul>
+        <li><a href="https://issuetracker.google.com/128054552">b/128054552</a></li>
+        <li><a href="https://issuetracker.google.com/130707991">b/130707991</a></li>
+        <li><a href="https://issuetracker.google.com/137460699">b/137460699</a></li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>Added selection key type parameter to classes and methods where missing.</li>
+    <li>
+      Deprecated methods:
+      <ul>
+        <li><a href="/reference/androidx/recyclerview/selection/SelectionTracker.Builder#withPointerTooltypes(int...)">SelectionTracker.Builder#withPointerTooltype</a></li>
+        <li><a href="/reference/androidx/recyclerview/selection/SelectionTracker.Builder#withGestureTooltypes(int...)">SelectionTracker.Builder#withGestureTooltype</a></li>
+        <li>
+          These methods existed with the intent that developers might map pointer or gesture behaviors to tooltypes other than the defaults*. The intent was good, but upon further use it became clear that user expectations around input behavior are
+          <em>very</em>
+          tooltype specific. Also, "passive" styli are FINGER tooltype as far as the Android input system is concerned.
+        </li>
+        <li>
+          Default tooltypes are
+          <a href="/reference/android/view/MotionEvent#TOOL_TYPE_FINGER">FINGER</a>
+          for Gesture and
+          <a href="/reference/android/view/MotionEvent#TOOL_TYPE_MOUSE">MOUSE</a>
+          for Pointer.
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <devsite-hats-survey class="nocontent" hats-id="VxqvKSur40kxBYCLVTd0SSGykbno" listnr-id="5207477"></devsite-hats-survey>

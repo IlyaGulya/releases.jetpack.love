@@ -1,0 +1,73 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.1.0-alpha05
+releaseDate: 2019-03-13
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha05" data-text="Version 1.1.0-alpha05" tabindex="-1">Version 1.1.0-alpha05</h3>
+  <p>March 13, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.1.0-alpha05</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.1.0-alpha05</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.1.0-alpha05</code>
+    are released. The full list of commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e3951615d7fc9e64177ce46599a36fe1c26ac918..4c34c957abe3a1cec4eb2342bb41a88c838999f7/fragment">here</a>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">@ContentView</code>
+      annotation lookups are now cached (
+      <a href="https://issuetracker.google.com/issues/123709449">b/123709449</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Behavior changes</strong></p>
+  <ul>
+    <li>
+      Calling
+      <code translate="no" dir="ltr">remove()</code>
+      ,
+      <code translate="no" dir="ltr">hide()</code>
+      ,
+      <code translate="no" dir="ltr">show()</code>
+      ,
+      <code translate="no" dir="ltr">detach()</code>
+      , and
+      <code translate="no" dir="ltr">setPrimaryNavigationFragment()</code>
+      with a Fragment attached to a different FragmentManager now throws an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      rather than silently failing (
+      <a href="https://android-review.googlesource.com/904301">aosp/904301</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">onNewIntent</code>
+      for
+      <code translate="no" dir="ltr">FragmentActivity</code>
+      is now correctly marked with
+      <code translate="no" dir="ltr">@CallSuper</code>
+      (
+      <a href="https://issuetracker.google.com/issues/124120586">b/124120586</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">DialogFragment</code>
+      ’s
+      <code translate="no" dir="ltr">onDismiss()</code>
+      could be called twice when using
+      <code translate="no" dir="ltr">getDialog().dismiss()</code>
+      or
+      <code translate="no" dir="ltr">getDialog().cancel()</code>
+      (
+      <a href="https://issuetracker.google.com/issues/126563750">b/126563750</a>
+      )
+    </li>
+  </ul>

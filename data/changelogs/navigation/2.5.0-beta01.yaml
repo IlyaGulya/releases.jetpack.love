@@ -1,0 +1,51 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.5.0-beta01
+releaseDate: 2022-04-20
+#language=html
+changelogHtml: |
+  <h3 id="2.5.0-beta01" data-text="Version 2.5.0-beta01" tabindex="-1">Version 2.5.0-beta01</h3>
+  <p>April 20, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.5.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7ca43e00a517eaeeedc0a21f482b17f06e3d2181..c0a89ec374961b3015097ab307ebb8196dbe3888/navigation">Version 2.5.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">DialogNavigator</code>
+      now uses
+      <code translate="no" dir="ltr">popWithTransition</code>
+      when executing a
+      <code translate="no" dir="ltr">dismiss()</code>
+      call. This fixes a race condition when using a
+      <code translate="no" dir="ltr">ViewModel</code>
+      within
+      <code translate="no" dir="ltr">dialog</code>
+      destination that would cause an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      when dismissing the Dialog by either using system back or tapping outside of the dialog to exit. (
+      <a href="https://android-review.googlesource.com/#/q/Id7376c0b8db5be869d8ff53185e15b0603bf8582">Id7376</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/226552301">b/226552301</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Updates</strong></p>
+  <ul>
+    <li>
+      Navigation now depends on
+      <a href="/jetpack/androidx/releases/lifecycle#2.5.0-beta01">
+        Lifecycle
+        <code translate="no" dir="ltr">2.5.0-beta01</code>
+      </a>
+      , fixing an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      when nesting one
+      <code translate="no" dir="ltr">NavHost</code>
+      within another
+      <code translate="no" dir="ltr">NavHost</code>
+      in a non-primary bottom navigation tab when using multiple back stacks.
+    </li>
+  </ul>

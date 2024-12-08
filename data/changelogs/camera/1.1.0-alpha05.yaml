@@ -1,0 +1,67 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.1.0-alpha05
+releaseDate: 2021-06-02
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha05" data-text="Version 1.1.0-alpha05" tabindex="-1">Version 1.1.0-alpha05</h3>
+  <p>June 2, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-camera2:1.1.0-alpha05</code>
+    ,
+    <code translate="no" dir="ltr">androidx.camera:camera-core:1.1.0-alpha05</code>
+    , and
+    <code translate="no" dir="ltr">androidx.camera:camera-lifecycle:1.1.0-alpha05</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/623bf2f080d4f35417d1af18aebdb72d29620275..5065c9982754d7b54b8577d64c4ff830375a4b0e/camera">Version 1.1.0-alpha05 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">Camera2CameraFilter</code>
+      class. Suggest to select camera by CameraFilter and retrieve CameraCharacteristics or other Camera2 related information through Camera2CameraInfo if needed. (
+      <a href="https://android-review.googlesource.com/#/q/Ib887c896d909690accc4923ee2af2bed46ac3c93">Ib887c</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ExperimentalCameraFilter</code>
+      APIs are now out of experimental stage and become formal APIs. They can be used without annotated OptIn. (
+      <a href="https://android-review.googlesource.com/#/q/I4bc946c2ee431ea8ec67982a68a1181ebc2e335f">I4bc94</a>
+      )
+    </li>
+    <li>
+      Added camera state API that's exposed through
+      <code translate="no" dir="ltr">CameraInfo#getCameraState()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia86b4332f352e0fd41fe0e40f4a05f4026f46ca7">Ia86b4</a>
+      )
+    </li>
+    <li>
+      Added experimental API
+      <code translate="no" dir="ltr">CameraInfo#getCameraSelector()</code>
+      which returns a CameraSelector unique to its camera (
+      <a href="https://android-review.googlesource.com/#/q/I77f9f0396ae8c4703d6bfb90055ba6119e773d00">I77f9f</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed the issue that ListenableFuture returned in setZoomRatio and setLinearZoom cannot complete on some android 11 devices (
+      <a href="https://android-review.googlesource.com/#/q/I716d7273111769d3da23de346ebfec8f017d3b98">I716d7</a>
+      )
+    </li>
+    <li>
+      Speed up Camera switching and reduce the error happen rate of the camera device (
+      <a href="https://android-review.googlesource.com/#/q/I34c99dd6bf6dcf95ee174f28bacc8bbc9c0caa59">I34c99</a>
+      )
+    </li>
+    <li>
+      Replaced ExperimentalUseCaseGroupLifecycle with ExperimentalUseCaseGroup. (
+      <a href="https://android-review.googlesource.com/#/q/I3b2ef21251f3831245722d9cf46edc52d406ddcf">I3b2ef</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/159033688">b/159033688</a>
+      )
+    </li>
+  </ul>

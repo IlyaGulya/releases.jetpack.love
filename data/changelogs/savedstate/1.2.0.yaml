@@ -1,0 +1,77 @@
+libraryId: savedstate
+groupId: androidx.savedstate
+version: 1.2.0
+releaseDate: 2022-06-29
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0" data-text="Version 1.2.0" tabindex="-1">Version 1.2.0</h3>
+  <p>June 29, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.savedstate:savedstate:1.2.0</code>
+    and
+    <code translate="no" dir="ltr">androidx.savedstate:savedstate-ktx:1.2.0</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/441d1e30254495bca43af4b5d3b13906babd74c7..3329ffac761570981343cb9fb84e087782d3403e/savedstate">Version 1.2.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 1.1.0</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">SavedStateRegistryController</code>
+      now allows early attachment of the
+      <code translate="no" dir="ltr">SavedStateRegistry</code>
+      via
+      <code translate="no" dir="ltr">performAttach()</code>
+      .
+    </li>
+    <li>
+      You can now retrieve a previously registered
+      <code translate="no" dir="ltr">SavedStateProvider</code>
+      from a
+      <code translate="no" dir="ltr">SavedStateRegistry</code>
+      via
+      <code translate="no" dir="ltr">getSavedStateProvider()</code>
+      .
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">SavedState</code>
+      library has been rewritten in Kotlin.
+      <ul>
+        <li>
+          For
+          <code translate="no" dir="ltr">SavedStateRegistryOwner</code>
+          , this is a
+          <strong>source incompatible change</strong>
+          for those classes written in Kotlin - you must now override the
+          <code translate="no" dir="ltr">savedStateRegistry</code>
+          property rather than implement the previous
+          <code translate="no" dir="ltr">getSavedStateRegistry()</code>
+          function.
+        </li>
+        <li>
+          For
+          <code translate="no" dir="ltr">ViewTreeSavedStateRegistryOwner</code>
+          , this is a
+          <strong>source incompatible change</strong>
+          for those classes written in Kotlin - you must now directly import and use the Kotlin extension methods on
+          <code translate="no" dir="ltr">View</code>
+          of
+          <code translate="no" dir="ltr">androidx.savedstate.setViewTreeSavedStateRegistryOwner</code>
+          and
+          <code translate="no" dir="ltr">androidx.savedstate.findViewTreeSavedStateRegistryOwner</code>
+          to set and find a previously set owner. This replaces the
+          <code translate="no" dir="ltr">savedstate-ktx</code>
+          API of
+          <code translate="no" dir="ltr">findViewTreeSavedStateRegistryOwner</code>
+          .
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">SavedStateRegistry</code>
+      no longer saves an empty Bundle if there is no state to save.
+    </li>
+  </ul>

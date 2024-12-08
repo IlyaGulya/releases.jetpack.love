@@ -1,0 +1,119 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.2.0-alpha08
+releaseDate: 2022-12-07
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha08" data-text="Version 1.2.0-alpha08" tabindex="-1">Version 1.2.0-alpha08</h3>
+  <p>December 7, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.2.0-alpha08</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a1e318590b217ecfce1b2de17eed2f18b6a680bb..4a2f5e696614339c1ac21f706c1a17c0285780e7/benchmark">Version 1.2.0-alpha08 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added experimental new APIs
+      <code translate="no" dir="ltr">PerfettoTrace.record {}</code>
+      and
+      <code translate="no" dir="ltr">PerfettoTraceRule</code>
+      to capture Perfetto traces (also known as System Traces) as part of a test, to inspect test behavior and performance. (
+      <a href="https://android-review.googlesource.com/#/q/I3ba165beded0d8aabde791e3ac1b786d415404ed">I3ba16</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BaselineProfileRule</code>
+      now accepts a filter predicate instead of a list of package prefixes. This gives the test full control on filtering. (
+      <a href="https://android-review.googlesource.com/#/q/I93240ab87438738dc1936a8a28de050002b34223">I93240</a>
+      )
+    </li>
+    <li>
+      Add an experimental API
+      <code translate="no" dir="ltr">BaselineProfileRule.collectStableBaselineProfile</code>
+      which waits until a baseline profile is stable for N iterations. (
+      <a href="https://android-review.googlesource.com/#/q/I923f37dc420501c606e9a809e0711791055acac3">I923f3</a>
+      )
+    </li>
+    <li>
+      Add the ability to specify an output file name prefix when generating baseline profiles using
+      <code translate="no" dir="ltr">BaselineProfileRule</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7b59f0017e8556dbeb40433e96a17089bf09b2fc">I7b59f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/260318655">b/260318655</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Improve safety of file output writing, which should prevent output files from silently not being written / appended, especially on API 21/22. (
+      <a href="https://android-review.googlesource.com/#/q/If8c444abd9115f214a84e15fbf93d8362d54e58f">If8c44</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/227510293">b/227510293</a>
+      )
+    </li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">simpleperf</code>
+      trace output to create and place the file correctly. This should also more generally fix issues where a file is unsuccessfully pulled by gradle. (
+      <a href="https://android-review.googlesource.com/#/q/I12a1cda85c3fb4925c6875b6a738e96494eb5f80">I12a1c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/259424099">b/259424099</a>
+      )
+    </li>
+    <li>
+      Improve profileinstaller error message printed when profileinstaller is too old. This now tells you to update profileinstaller version (1.2.1) for measuring baseline profiles on API 31 through 33, instead of saying it's not supported. (
+      <a href="https://android-review.googlesource.com/#/q/Ia517fe8ffdcf09d3b24354253309983a99a6091f">Ia517f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/253519888">b/253519888</a>
+      )
+    </li>
+    <li>
+      Fix several shell command failures onerror message Print needed API &lt;=23, including failed perfetto capture binary setup and trace capture failures (
+      <a href="https://android-review.googlesource.com/#/q/Ib6b872bca51c04c69a454dc1d896d3d7200abcc0">Ib6b87</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/258863685">b/258863685</a>
+      )
+    </li>
+    <li>
+      Automatically sort generated profile rules to minimize the number of changes as they change over time (when checking-in profile rules into source control). (
+      <a href="https://android-review.googlesource.com/#/q/Ie2509e9680444645162e583ea6247d3c2f8063c4">Ie2509</a>
+      )
+    </li>
+    <li>
+      Fixed crash on unrooted builds below Android 13 (API 33) with message
+      <code translate="no" dir="ltr">Expected no stderr from echo 3 &gt; /proc/sys/vm/drop_caches</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I6c2454926a9f73b665e7ec8f349ad21afe1f94b5">I6c245</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/259508183">b/259508183</a>
+      )
+    </li>
+  </ul>
+  <p>
+    <strong>Known Issues</strong>
+    -
+    <code translate="no" dir="ltr">MacrobenchmarkScope.dropShaderCache()</code>
+    may crash due to a missing broadcast registry in profileinstaller manifest, which has not yet been released. (
+    <a href="https://android-review.googlesource.com/#/q/I5c728449d99419a7599451414fe09f82c5970d3d">I5c728</a>
+    ,
+    <a href="https://issuetracker.google.com/issues/258619948">b/258619948</a>
+    ) To workaround the issue in
+    <code translate="no" dir="ltr">profileinstaller:1.3.0-alpha02</code>
+    , add the following to your application's (not your benchmark's) AndroidManifest.xml:
+  </p>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="GDScript"><code translate="no" dir="ltr"><span class="devsite-syntax-w">  </span>&lt;<span class="devsite-syntax-o">!--</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">workaround</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">bug</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-ow">in</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">profileinstaller</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mf">1.3</span><span class="devsite-syntax-o">.</span><span class="devsite-syntax-mi">0</span><span class="devsite-syntax-o">-</span><span class="devsite-syntax-n">alpha02</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">remove</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">when</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">updating</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">to</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">alpha03</span><span class="devsite-syntax-o">+</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">--</span>&gt;
+  <span class="devsite-syntax-w">  </span>&lt;<span class="devsite-syntax-n">receiver</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">android</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-n">name</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-s2">"androidx.profileinstaller.ProfileInstallReceiver"</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">android</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-n">permission</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-s2">"android.permission.DUMP"</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">android</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-n">exported</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-s2">"true"</span>&gt;
+  <span class="devsite-syntax-w">    </span>&lt;<span class="devsite-syntax-n">intent</span><span class="devsite-syntax-o">-</span><span class="devsite-syntax-n">filter</span>&gt;
+  <span class="devsite-syntax-w">        </span>&lt;<span class="devsite-syntax-n">action</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">android</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-n">name</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-s2">"androidx.profileinstaller.action.BENCHMARK_OPERATION"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">/</span>&gt;
+  <span class="devsite-syntax-w">    </span>&lt;<span class="devsite-syntax-o">/</span><span class="devsite-syntax-n">intent</span><span class="devsite-syntax-o">-</span><span class="devsite-syntax-n">filter</span>&gt;
+  <span class="devsite-syntax-w">  </span>&lt;<span class="devsite-syntax-o">/</span><span class="devsite-syntax-n">receiver</span>&gt;
+  </code></pre>
+  </devsite-code>

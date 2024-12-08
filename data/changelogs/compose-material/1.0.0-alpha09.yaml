@@ -1,0 +1,172 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 1.0.0-alpha09
+releaseDate: 2020-12-16
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha09" data-text="Version 1.0.0-alpha09" tabindex="-1">Version 1.0.0-alpha09</h3>
+  <p>December 16, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material-*:1.0.0-alpha09</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/10b5e9fd366c1c413d5576aed50a305d300938e1..72f02c12e4709ab41ae0fea9a8a668d5267a1df8/compose/material">Version 1.0.0-alpha09 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      added API to manually trigger settle animation and drag in Modifier.swipeable (
+      <a href="https://android-review.googlesource.com/#/q/Iaa17a40fec2949f6364a9339a5d269dc622570d6">Iaa17a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/162408885">b/162408885</a>
+      )
+    </li>
+    <li>
+      Renamed *Constants objects such as ButtonConstants to end with Defaults instead, such as ButtonDefaults. Also removes unnecessary
+      <code translate="no" dir="ltr">default</code>
+      prefixes from properties in these new objects. (
+      <a href="https://android-review.googlesource.com/#/q/Ibb915f0fd06a9c99ae6791e85634d5aea49374f6">Ibb915</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/159982740">b/159982740</a>
+      )
+    </li>
+    <li>
+      <p>Compose supports property getters that can make composable invocations. Support for this is not going away, but the syntax for declaring a property getter as being @Composable is changing.</p>
+
+      <p>The now-deprecated syntax for doing this was by annotating the property itself:</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-w">    </span><span class="devsite-syntax-nd">@Composable</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">someProperty</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">Int</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">get</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">...</span>
+  </code></pre>
+      </devsite-code>
+      <p>The now-correct syntax for doing this is by annotating the getter of the property:</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-w">   </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">someProperty</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">Int</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nd">@Composable</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">get</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">...</span>
+  </code></pre>
+      </devsite-code>
+      <p>
+        Both syntaxes will work for some time, but the former deprecated syntax will eventually become a compile error. (
+        <a href="https://android-review.googlesource.com/#/q/Id91977f2583b81d3e4e51bbf120cfaf943be25d5">Id9197</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">androidx.compose.material:material-ripple</code>
+        library containing ripple APIs to allow building interactive components without needing the rest of the Material library. rememberRippleIndication has been deprecated and replaced with rememberRipple. (
+        <a href="https://android-review.googlesource.com/#/q/Ibdf11f8fe8da5abc8abc4d57e06c8e53b8eb589c">Ibdf11</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Lambdas in offset modifiers now return IntOffset rather than Float. (
+      <a href="https://android-review.googlesource.com/#/q/Ic9ee5c05df4c89993ee19f19ddd327a986f21bc1">Ic9ee5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/174137212">b/174137212</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/174146755">b/174146755</a>
+      )
+    </li>
+    <li>
+      <p>Refactored ShaderBrush to lazily create a shader instance when sizing information of the drawing environment is available. This is useful to define gradients that occupy the full drawing bounds of a composable at composition time, without having to implement custom DrawModifier implementations.</p>
+
+      <p>
+        Deprecated gradient function constructor APIs in favor of factory methods on a Gradient object. (
+        <a href="https://android-review.googlesource.com/#/q/I511fc09bdeb4b41127de4a6b1e616688b10295f5">I511fc</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/173066799">b/173066799</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Modifier.focusObserver is deprecated. Use Modifier.onFocusChanged or Modifier.onFocusEvent instead (
+        <a href="https://android-review.googlesource.com/#/q/I30f17d06d60fa9b8c510ee0468464258894a467b">I30f17</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/168511863">b/168511863</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/168511484">b/168511484</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Deprecate LazyColumnFor, LazyRowFor, LazyColumnForIndexed and LazyRowForIndexed. Use LazyColumn and LazyRow instead (
+        <a href="https://android-review.googlesource.com/#/q/I5b48c8a3b1fef2f603ab69ded1d19709aa9f87fb">I5b48c</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Moved Dp.VectorConverter, Position.VectorConverter, etc to animation-core, and deprecated the old VectorConveters (
+        <a href="https://android-review.googlesource.com/#/q/If0c4bbdec55ec9d6436d74156db6f993904aae47">If0c4b</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Autofill API is now experimental API and requires opt-in (
+        <a href="https://android-review.googlesource.com/#/q/I0a1ecfbf4ddeccaecc3cea8d2223b0a4afa60636">I0a1ec</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Adding destructuring declarations to create FocusRequester instances (
+        <a href="https://android-review.googlesource.com/#/q/I35d84e1320bec5b62bf1fb096aa95f90cfd96e9c">I35d84</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/174817008">b/174817008</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        accessibilityLabel has been renamed to contentDescription. accessibilityValue has been renamed to stateDescription. (
+        <a href="https://android-review.googlesource.com/#/q/I250f2d41e139d4838b0b3706f18b56fcc4f515bd">I250f2</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        New infiniteRepeatable function for creating an InfiniteRepeatableSpec (
+        <a href="https://android-review.googlesource.com/#/q/I668e501c0c9061aa94b258ec9646617e0f77faf1">I668e5</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        The positioning behaviour of DropdownMenus was slightly changed according to the Material spec. (
+        <a href="https://android-review.googlesource.com/#/q/I34c721d5c6a710161af31bf131c7751740fb966c">I34c72</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/168594123">b/168594123</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        InteractionState support for TextFields has been added. (
+        <a href="https://android-review.googlesource.com/#/q/I61d91b15858fc3914ab9f15409857f0bccf67f34">I61d91</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added Modifier.clearAndSetSemantics to clear descendants' semantics and set new ones. (
+        <a href="https://android-review.googlesource.com/#/q/I277ca1b76fda44a34a2c01844b832244cb42ff7e">I277ca</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Moved ContentDrawScope to ui-graphics module to be with DrawScope. (
+        <a href="https://android-review.googlesource.com/#/q/Iee0437fa587fbe12a3623955f5fe720d5aae551f">Iee043</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/173832789">b/173832789</a>
+        )
+      </p>
+    </li>
+  </ul>

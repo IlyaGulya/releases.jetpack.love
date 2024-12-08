@@ -1,0 +1,129 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.9.0-alpha01
+releaseDate: 2024-08-07
+#language=html
+changelogHtml: |
+  <h3 id="2.9.0-alpha01" data-text="Version 2.9.0-alpha01" tabindex="-1">Version 2.9.0-alpha01</h3>
+  <p>August 7, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.9.0-alpha01</code>
+    is released. Version 2.9.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c8cb8f02adb648763c096b032f887895619c2d2e/lifecycle">these commits</a>
+    .
+  </p>
+  <p><strong>Kotlin Multiplatform</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">lifecycle-testing</code>
+      is now KMP compatible. (
+      <a href="https://android-review.googlesource.com/#/q/Iea41e975e31e22b3cf7a994c14e62454b9588b46">Iea41e</a>
+      )
+    </li>
+    <li>
+      Add support for
+      <code translate="no" dir="ltr">linuxArm64</code>
+      kotlin multiplatform target (
+      <a href="https://android-review.googlesource.com/#/q/I139d36226a3d06d9768bd63302de98b576a12a48">I139d3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/338268719">b/338268719</a>
+      )
+    </li>
+  </ul>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      A new
+      <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-viewmodel-testing</code>
+      KMP artifact is available that provides a
+      <a href="/reference/kotlin/androidx/lifecycle/viewmodel/testing/ViewModelScenario"><code translate="no" dir="ltr">ViewModelScenario</code></a>
+      class for testing ViewModels in isolation, with support for
+      <code translate="no" dir="ltr">onCleared</code>
+      (all platforms) and
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      (Android only). (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/337f68d7ae82f8eaceba983736bfa10ad1f1a0b9">337f68d</a>
+      ,
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/c9b3409fcde227edba6b2ee6f9baa89c6b43081c">c9b3409</a>
+      ,
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/9799a95c1fc5e6d976d693f5a3fcb74ebe1beb4b">9799a95c</a>
+      ,
+      <a href="https://issuetracker.google.com/264602919">b/264602919</a>
+      )
+    </li>
+    <li>
+      Creating a
+      <code translate="no" dir="ltr">ViewModel</code>
+      with
+      <code translate="no" dir="ltr">ViewModelProvider</code>
+      is now thread safe;
+      <code translate="no" dir="ltr">@MainThread</code>
+      annotations have been removed. (
+      <a href="https://android-review.googlesource.com/#/q/Ifd97842e103a029e1aeeeb5cd57dcb86b8770cf4">Ifd978</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/237006831">b/237006831</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add the
+      <code translate="no" dir="ltr">CreationExtras.Key()</code>
+      factory function to simplify the creation of anonymous
+      <code translate="no" dir="ltr">CreationExtras.Key</code>
+      objects. (
+      <a href="https://android-review.googlesource.com/#/q/I970ee39e7baf5c0e942a63eb7e175ba1f0de08e5">I970ee</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">CreationExtras</code>
+      now includes map-like operator overloads to enable idiomatic manipulation of content in Kotlin. It allows the use of
+      <code translate="no" dir="ltr">in</code>
+      ,
+      <code translate="no" dir="ltr">+=</code>
+      , and
+      <code translate="no" dir="ltr">+</code>
+      with
+      <code translate="no" dir="ltr">CreationExtras</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib43532fafb837bf35424d50836e2382d9b4825db">Ib4353</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">CreationExtras</code>
+      now implements
+      <code translate="no" dir="ltr">equals</code>
+      ,
+      <code translate="no" dir="ltr">hashCode</code>
+      , and
+      <code translate="no" dir="ltr">toString</code>
+      methods. (
+      <a href="https://android-review.googlesource.com/#/q/Ib43532fafb837bf35424d50836e2382d9b4825db">Ib4353</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NewInstanceFactory</code>
+      is now available on JVM Desktop and Android targets. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/d3d08924092add88321694bd37611ca911c7613b">d3d0892</a>
+      )
+    </li>
+    <li>
+      Inline extension property to expose underlying Application safely in Kotlin language version 2.0 (
+      <a href="https://android-review.googlesource.com/#/q/I39df26afb69744f6178d69e11c1d3b2b014a5886">I39df2</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Removed manual outlining of access to new platform APIs since this happens automatically via API modeling when using R8 with AGP 7.3 or later (e.g. R8 version 3.3) and for all builds when using AGP 8.1 or later (e.g. D8 version 8.1). Clients who are not using AGP are advised to update to D8 version 8.1 or later. See
+      <a href="https://medium.com/androiddevelopers/mitigating-soft-verification-issues-in-r8-and-d8-7e9e06827dfd">this article</a>
+      for more details. (
+      <a href="https://android-review.googlesource.com/#/q/If6b4ccfca0a943b45971a422b58949b13a10bada">If6b4c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/345472586">b/345472586</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_28_2" data-text="Version 2.8" tabindex="-1">Version 2.8</h2>

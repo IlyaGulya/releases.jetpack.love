@@ -1,0 +1,37 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.6.1
+releaseDate: 2023-07-26
+#language=html
+changelogHtml: |
+  <h3 id="1.6.1" data-text="Version 1.6.1" tabindex="-1">Version 1.6.1</h3>
+  <p>July 26, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment-*:1.6.1</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3d0a1cc9311a4f32d38f50c677b3e71d5c971697..2c3ed1b7130ae685522386d109f42c2030276ec6/fragment">Version 1.6.1 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where the saved state stored when the activity was stopped but not destroyed would be incorrectly cached even after the fragment instance was moved back to the
+      <code translate="no" dir="ltr">RESUMED</code>
+      state. This would cause that cached state to be reused if that fragment instance was on the back stack when using the multiple back stacks API to save and restore that fragment. (
+      <a href="https://android-review.googlesource.com/#/q/I712884633ae73e0784ba0a7fe50bb5a1046e2275">I71288</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/246289075">b/246289075</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Update</strong></p>
+  <ul>
+    <li>
+      Fragment now depends on
+      <a href="/jetpack/androidx/releases/activity#1.7.2">Activity 1.7.2</a>
+      . This fixes an issue where Kotlin users could not extend
+      <code translate="no" dir="ltr">ComponentDialog</code>
+      without an explicit dependency on Activity. (
+      <a href="https://issuetracker.google.com/287509323">b/287509323</a>
+      )
+    </li>
+  </ul>

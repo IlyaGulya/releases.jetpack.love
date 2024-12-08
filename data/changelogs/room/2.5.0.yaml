@@ -1,0 +1,56 @@
+libraryId: room
+groupId: androidx.room
+version: 2.5.0
+releaseDate: 2023-01-11
+#language=html
+changelogHtml: |
+  <h3 id="2.5.0" data-text="Version 2.5.0" tabindex="-1">Version 2.5.0</h3>
+  <p>January 11, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.5.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/18e4de7c7333c7b4451036bba19d03090dabd38a..e45926c282f76fcba0b4e86bfa74bc6e5a5ca642/room">Version 2.5.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 2.4.0</strong></p>
+  <ul>
+    <li>
+      All of
+      <code translate="no" dir="ltr">room-runtime</code>
+      sources has been converted from Java to Kotlin. Note that you may encounter source incompatibility issues if your code is in Kotlin due to the library conversion to Kotlin. For example, a known source incompatible change is that in
+      <code translate="no" dir="ltr">InvalidationTracker</code>
+      you will now need to declare
+      <code translate="no" dir="ltr">onInvalidate()</code>
+      in
+      <code translate="no" dir="ltr">Observer</code>
+      to have a param of type
+      <code translate="no" dir="ltr">Set</code>
+      and not
+      <code translate="no" dir="ltr">MutableSet</code>
+      . Moreover, certain getter methods were converted to properties requiring the property access syntax on Kotlin files. Please file a bug if there are any significant incompatibilities.
+    </li>
+    <li>
+      Added a new shortcut annotation,
+      <code translate="no" dir="ltr">@Upsert</code>
+      , which attempts to insert an entity when there is no uniqueness conflict or update the entity if there is a conflict. (
+      <a href="https://android-review.googlesource.com/#/q/I7aaab5416551ed70e0130a60b6b629a531757a16">I7aaab</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/241964353">b/241964353</a>
+      )
+    </li>
+    <li>
+      New room-paging artifacts
+      <code translate="no" dir="ltr">room-paging-rxjava2</code>
+      ,
+      <code translate="no" dir="ltr">room-paging-rxjava3</code>
+      and
+      <code translate="no" dir="ltr">room-paging-guava</code>
+      have been added for support in Room Paging.
+    </li>
+    <li>
+      Added APIs for providing key and value tables names for disambiguation in
+      <code translate="no" dir="ltr">@MapInfo</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Icc4b50a029d33c49fbfe7265d10b6be1b15da9c3">Icc4b5</a>
+      )
+    </li>
+  </ul>

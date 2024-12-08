@@ -1,0 +1,122 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.1.0-alpha04
+releaseDate: 2023-01-11
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha04" data-text="Version 1.1.0-alpha04" tabindex="-1">Version 1.1.0-alpha04</h3>
+  <p>January 11, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3:1.1.0-alpha04</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-window-size-class:1.1.0-alpha04</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/047e199bdcb8a5cd744cc7a2f986631bfb350ec7..adf1c279a86ab3886e1666c08e2c3efba783367b/compose/material3">Version 1.1.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Initial
+      <code translate="no" dir="ltr">DatePicker</code>
+      API for picking a single date via a calendar UI. This API is still undergoing changes. (
+      <a href="https://android-review.googlesource.com/#/q/I722b9884403da2d615167f6572a2da9256dbae2a">I722b9</a>
+      )
+    </li>
+    <li>
+      Added support for plain tooltips via
+      <code translate="no" dir="ltr">PlainTooltipBox</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0cdfb8dc51bc3691b948184adc4fcb9cf61be107">I0cdfb</a>
+      )
+    </li>
+    <li>
+      Search bar (
+      <a href="https://android-review.googlesource.com/#/q/Iad1280bb7c3eaeac73116f73567bb6de07a81eb2">Iad128</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SwipeToDismiss</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I458a8e1359896712a2a8aede43e0283977be4601">I458a8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/242889540">b/242889540</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added in
+      <code translate="no" dir="ltr">IsContainer</code>
+      semantics property on Surfaces. This property will be used in a later change that determines traversal order based on the semantic meaning of elements such as surfaces. (
+      <a href="https://android-review.googlesource.com/#/q/I63379fde102abbee7d5464c50b1c86a59e01e768">I63379</a>
+      )
+    </li>
+    <li>
+      Mark navigation drawer related APIs as stable. (
+      <a href="https://android-review.googlesource.com/#/q/Iab01ec21f7ef0de980ffc868f46b54966186e6ed">Iab01e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261439597">b/261439597</a>
+      )
+    </li>
+    <li>
+      Added a track color parameter for circular progress indicators, and a stroke cap parameter for both circular and linear progress indicators. (
+      <a href="https://android-review.googlesource.com/#/q/Ie668cc47ce9ce3aa688ad3c3ed9e9e15fdbda5e9">Ie668c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/216325962">b/216325962</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/222964817">b/222964817</a>
+      )
+    </li>
+    <li>
+      More return type nullability of deprecated-hidden functions (
+      <a href="https://android-review.googlesource.com/#/q/Ibf7b0ada56eb08983e6109d30fad5294f6b841f0">Ibf7b0</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">Modifier.minimumInteractiveComponentSize</code>
+      . It can be used to reserve at least 48.dp in size to disambiguate touch interactions if the element would measure smaller. (
+      <a href="https://android-review.googlesource.com/#/q/I33f58e4c11cf74668e97167b91dad26b64ac554b">I33f58</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/258495559">b/258495559</a>
+      )
+    </li>
+    <li>
+      Added experimental API for
+      <code translate="no" dir="ltr">AlertDialog</code>
+      composable that has a content slot. (
+      <a href="https://android-review.googlesource.com/#/q/Iec4a21dc5ad723f1a66527f3aea82a204fba4fd6">Iec4a2</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Progress for progress indicators is now properly bounded to its expected range. (
+      <a href="https://android-review.googlesource.com/#/q/I8a7eb76931af76bac20dbd2879674a60c2899672">I8a7eb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/262262727">b/262262727</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issue</strong></p>
+  <ul>
+    <li>
+      When updating from
+      <code translate="no" dir="ltr">androidx.compose.foundation:1.4.0-alpha03</code>
+      to
+      <code translate="no" dir="ltr">androidx.compose.foundation:1.4.0-alpha04</code>
+      , you might experience a
+      <code translate="no" dir="ltr">java.lang.NoSuchFieldError</code>
+      error.
+      <a href="https://issuetracker.google.com/issues/265172081">Here</a>
+      is where the issue was orginially reported. A fix has been submitted, and will be available on the next Compose update. As a work around, update your
+      <code translate="no" dir="ltr">androidx.compose.material</code>
+      and
+      <code translate="no" dir="ltr">androidx.compose.material3</code>
+      libraries to the latest version(1.1.0-alpha04) or downgrade your
+      <code translate="no" dir="ltr">androidx.compose.foundation</code>
+      to 1.4.0-alpha03.
+    </li>
+  </ul>

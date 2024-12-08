@@ -1,0 +1,133 @@
+libraryId: work
+groupId: androidx.work
+version: 2.4.0-alpha01
+releaseDate: 2020-03-04
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0-alpha01" data-text="Version 2.4.0-alpha01" tabindex="-1">Version 2.4.0-alpha01</h3>
+  <p>March 4, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.4.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d7ffb1e3214adc08092397ca92881b05fb69521a..2fd74387bd35dc4acb471992654788fab3244b35/work">Version 2.4.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">WorkManager</code>
+        s in-process scheduler is now more capable. Previously, the in-process Scheduler would only consider executing work that was
+        <em>not</em>
+        delayed and whose constraints were met. Now, the in-process scheduler tracks
+        <code translate="no" dir="ltr">WorkRequest</code>
+        s which might be executed in the future, including
+        <code translate="no" dir="ltr">PeriodicWorkRequest</code>
+        s. The in-process Scheduler also does
+        <strong>not</strong>
+        observe
+        <a href="/reference/androidx/work/Configuration.Builder#setMaxSchedulerLimit(int)">scheduling limits</a>
+        (but is still restricted to the size of the
+        <code translate="no" dir="ltr">Executor</code>
+        being used by WorkManager). This means that the application can now execute a lot more
+        <code translate="no" dir="ltr">WorkRequest</code>
+        s when the app is in the foreground. (
+        <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1185778">aosp/1185778</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added the ability to request diagnostic information from WorkManager using
+        <code translate="no" dir="ltr">adb shell am broadcast -a "androidx.work.diagnostics.REQUEST_DIAGNOSTICS" -p "&lt;your_app_package_name&gt;"</code>
+        . This provides a lot of useful information including:
+      </p>
+
+      <ul>
+        <li>WorkRequests that were completed in the last 24 hours.</li>
+        <li>WorkRequests that are currently RUNNING.</li>
+        <li>
+          Scheduled WorkRequests. (
+          <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1235501">aosp/1235501</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>New Lint rules which enforce:</p>
+
+      <ul>
+        <li>
+          Use of the right
+          <code translate="no" dir="ltr">foregroundServiceType</code>
+          when using
+          <code translate="no" dir="ltr">setForegroundAsync()</code>
+          APIs. (
+          <a href="https://issuetracker.google.com/issues/147873061">b/147873061</a>
+          ,
+          <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1215915">aosp/1215915</a>
+          )
+        </li>
+        <li>
+          Specifying
+          <code translate="no" dir="ltr">JobScheduler</code>
+          ids that
+          <code translate="no" dir="ltr">WorkManager</code>
+          should use when using
+          <code translate="no" dir="ltr">JobService</code>
+          APIs directly. (
+          <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1223567">aosp/1223567</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <p>
+        Add
+        <code translate="no" dir="ltr">ExistingWorkPolicy.APPEND_OR_REPLACE</code>
+        which is similar to
+        <code translate="no" dir="ltr">APPEND</code>
+        , but
+        <strong>replaces</strong>
+        a chain that has cancelled or failed prerequisites. (
+        <a href="https://issuetracker.google.com/issues/134613984">b/134613984</a>
+        ,
+        <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1199640">aosp/1199640</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Provide the ability to add a custom
+        <code translate="no" dir="ltr">RunnableScheduler</code>
+        to track
+        <code translate="no" dir="ltr">WorkRequest</code>
+        s that need to be executed in the future. This is used by the in-process Scheduler. (
+        <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1203944">aosp/1203944</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Deprecated
+      <code translate="no" dir="ltr">setProgress()</code>
+      in
+      <code translate="no" dir="ltr">RxWorker</code>
+      because it previously returned a
+      <code translate="no" dir="ltr">Single&lt;Void&gt;</code>
+      which is an impossible type. Added a new API
+      <code translate="no" dir="ltr">setCompletableProgress()</code>
+      which returns a
+      <code translate="no" dir="ltr">Completable</code>
+      instead; and added new Lint rules which help migrate to the new APIs. (
+      <a href="https://issuetracker.google.com/issues/150080946">b/150080946</a>
+      ,
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1242665">aosp/1242665</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_234_3" data-text="Version 2.3.4" tabindex="-1">Version 2.3.4</h2>

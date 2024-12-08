@@ -1,0 +1,75 @@
+libraryId: core
+groupId: androidx.core
+version: 1.13.0-beta01
+releaseDate: 2024-03-20
+#language=html
+changelogHtml: |
+  <h3 id="1.13.0-beta01" data-text="Version 1.13.0-beta01" tabindex="-1">Version 1.13.0-beta01</h3>
+  <p>March 20, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core:1.13.0-beta01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.core:core-ktx:1.13.0-beta01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.core:core-testing:1.13.0-beta01</code>
+    are released. Version 1.13.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ca2a8cf8da3a3502fccc593974f8085653e38261..a57d7d17753695012b58c9ce7ad55a8d39157e62/core">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">PathParser</code>
+      is now
+      <code translate="no" dir="ltr">final</code>
+      ,
+      <code translate="no" dir="ltr">interpolatePathDataNodes</code>
+      now throws an exception for incompatible arguments instead of returning a
+      <code translate="no" dir="ltr">boolean</code>
+      , and
+      <code translate="no" dir="ltr">nodesToPath</code>
+      now belongs to
+      <code translate="no" dir="ltr">PathParser</code>
+      rather than
+      <code translate="no" dir="ltr">PathParser.PathDataNode</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I20d624307bd376de9ba89d1c8b623cb56bcca580">I20d62</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FingerprintManagerCompat</code>
+      has been soft-removed prior to its removal from the Android V platform SDK. The implementation will be replaced with a no-op in the near future, and developers should migrate away from this class immediately. (
+      <a href="https://android-review.googlesource.com/#/q/I7ca1bea5c91171a5534a40ebe0acc8bd46454b82">I7ca1b</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">Pool</code>
+      interface and its subclasses,
+      <code translate="no" dir="ltr">SimplePool</code>
+      and
+      <code translate="no" dir="ltr">SynchronizedPool</code>
+      are now written in Kotlin. The generic type of objects being stored in the Pool must now be non-null. (
+      <a href="https://android-review.googlesource.com/#/q/I08afe319e60db7fa645665464b61d0ad069cbf0a">I08afe</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">GestureDetectorCompat</code>
+      is now deprecated as
+      <code translate="no" dir="ltr">GestureDetector</code>
+      is guaranteed to be available in the platform at the library’s minimum SDK version. Thanks to Jake Wharton for the contribution. (
+      <a href="https://android-review.googlesource.com/#/q/Icc4cd9df0b358863ac36d059dc6b997775321be6">Icc4cd</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">MarginLayoutParamsCompat</code>
+      is now deprecated as
+      <code translate="no" dir="ltr">MarginLayoutParams</code>
+      is guaranteed to be available in the platform as the library’s minimum SDK version. Thanks to Jake Wharton for the contribution. (
+      <a href="https://android-review.googlesource.com/#/q/I4e0c3644a1c0c8c8a820e3a3e90b1c6d05d717f3">I4e0c3</a>
+      )
+    </li>
+  </ul>

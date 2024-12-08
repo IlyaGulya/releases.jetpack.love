@@ -1,0 +1,83 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.0.0-alpha03
+releaseDate: 2020-07-22
+#language=html
+changelogHtml: |
+  <h3 id="3.0.0-alpha03" data-text="Version 3.0.0-alpha03" tabindex="-1">Version 3.0.0-alpha03</h3>
+  <p>July 22, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.0.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b6054a1a7396b962ac2c6d80d21053cf9d2f02db..9f60cc700129e30cee9df020005c317fb39d32ec/paging">Version 3.0.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The constructor for PagingState is now public, which should make testing implementations of getRefreshKey() easier (
+      <a href="https://android-review.googlesource.com/#/q/I8bf1577c8aad40d90a27f6fec12682ab84d2b49e">I8bf15</a>
+      )
+    </li>
+    <li>
+      Hid DataSource kotlin map function variants from Java, to resolve ambiguity between original and kotlin variants. (
+      <a href="https://android-review.googlesource.com/#/q/If7b239bfd58391e11b46a4fcd2ea99ffd729f84d">If7b23</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161150011">b/161150011</a>
+      )
+    </li>
+    <li>
+      Redundant APIs intended as conveniences for Kotlin users have been marked @JvmSynthetic (
+      <a href="https://android-review.googlesource.com/#/q/I56ae584e362d046df5361f49005b39c31177f7ac">I56ae5</a>
+      )
+    </li>
+    <li>
+      Added overloads for LoadResult.Page's constructor which defaults itemsBefore and itemsAfter to COUNT_UNDEFINED (
+      <a href="https://android-review.googlesource.com/#/q/I4784906e23efd2f552326f56c145fb4b8754c099">I47849</a>
+      )
+    </li>
+    <li>
+      Made existing PagingData operators accept suspending methods and introduced new mapSync, flatMapSync, and filterSync non-suspending operators for Java users. The existing transformation methods have been moved to extension functions so Kotlin users will now need to import them. (
+      <a href="https://android-review.googlesource.com/#/q/I342390a7b1eb98ac87072998744a9e46c99a1000">I34239</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/159983232">b/159983232</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Room (and PositionalDataSource) PagingSources will now display a leading separator as part of the first page, so the user doesn't need to scroll to reveal it. (
+      <a href="https://android-review.googlesource.com/#/q/I6f747ebc0b823b146c39b925ce1d659913a50421">I6f747</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/160257628">b/160257628</a>
+      )
+    </li>
+    <li>
+      Item accesses on placeholders now correctly trigger PagingSource loads until a page is returned that fulfills the requested index after being transformed by PagingData.filter() (
+      <a href="https://android-review.googlesource.com/#/q/I95625d22c1775be75f231ec25824b50ef404150d">I95625</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/158763195">b/158763195</a>
+      )
+    </li>
+    <li>
+      Fix for a bug where sometimes scrolling after PagingSource returns an error could prevent PagingDataAdapter.retry() from retrying. (
+      <a href="https://android-review.googlesource.com/#/q/I1084fdc5d66254bbbcaa87e154ccab1dbffd54db">I1084f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/160194384">b/160194384</a>
+      )
+    </li>
+    <li>
+      Fixes an issue where item accesses after dropping a page might not load pages although the item access was within prefetchDistance (
+      <a href="https://android-review.googlesource.com/#/q/Ie95ae57c4f73c35ea0ebd77fe5d7fa7dbf4923e6">Ie95ae</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/160038730">b/160038730</a>
+      )
+    </li>
+    <li>
+      Setting PagingConfig.maxSize no longer enables placeholders after a drop event (
+      <a href="https://android-review.googlesource.com/#/q/I2be299e5ce094c8c7460295ff5218758a65dfd1f">I2be29</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/159667766">b/159667766</a>
+      )
+    </li>
+  </ul>

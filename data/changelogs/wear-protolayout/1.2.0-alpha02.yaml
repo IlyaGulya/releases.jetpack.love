@@ -1,0 +1,107 @@
+libraryId: wear-protolayout
+groupId: androidx.wear
+version: 1.2.0-alpha02
+releaseDate: 2024-05-01
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha02" data-text="Version 1.2.0-alpha02" tabindex="-1">Version 1.2.0-alpha02</h3>
+  <p>May 1, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.protolayout:protolayout-*:1.2.0-alpha02</code>
+    is released. Version 1.2.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/638a8d3a474af45f6ad5fdc3d6d1836ea42d1778..fbd1ac175922f44c69a13545d194066ee428b342/wear/protolayout">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We've added support for disabling ripple feedback on individual clickable elements. (
+      <a href="https://android-review.googlesource.com/#/q/If1ede07acafe2c240dedb7ffd02e4b78488ae080">If1ede</a>
+      )
+    </li>
+    <li>
+      The API for transformation has been removed from
+      <code translate="no" dir="ltr">ArcModifiers</code>
+      as they don't support that feature (
+      <a href="https://android-review.googlesource.com/#/q/Ic08270e4e9c16ec4dc0059b1fa9b0b85100510ec">Ic0827</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ArcDirectionProp</code>
+      Builder now expects a value in the constructor. (
+      <a href="https://android-review.googlesource.com/#/q/I76adad8062d98bc57f9ee955a9d88d1b2aaaacd7">I76ada</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">PlatformDataValues.Builder.putAll</code>
+      method will allow merging one
+      <code translate="no" dir="ltr">PlatformDataValue</code>
+      into another one. (
+      <a href="https://android-review.googlesource.com/#/q/I50ba3f85643fb1916b95e3a29137ac7760b510a6">I50ba3</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Text#setIsScalable</code>
+      is renamed to
+      <code translate="no" dir="ltr">Text#setScalable</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If920edc451aef10f8161a5acce2fa368dcb5009c">If920e</a>
+      )
+    </li>
+    <li>
+      Material Text can set whether to use scalable size (grows when user font size is changed) or not. (
+      <a href="https://android-review.googlesource.com/#/q/Ibc849d3ddcfb79dd782669ac09597a599c10d69d">Ibc849</a>
+      )
+    </li>
+    <li>
+      We've added the option to set content description to
+      <code translate="no" dir="ltr">TitleChip</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I5d21fef571a06d600b849d509738bd4dd279506d">I5d21f</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">CompactChip</code>
+      to work correctly with icon only and update the API to allow this option. (
+      <a href="https://android-review.googlesource.com/#/q/I6589e045abb7beb2d2d7332b9a83258385aa6ab9">I6589e</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue of potential duplicate platform data during initialization. (
+      <a href="https://android-review.googlesource.com/#/q/Iba0fd638eddf4ca0ffc5f14c9f0f4cc4b1f272c0">Iba0fd</a>
+      )
+    </li>
+    <li>
+      Introduce a new getter to
+      <code translate="no" dir="ltr">DynamicDataNode</code>
+      to retrieve node cost. The cost is used when acquiring dynamic node quota. Currently, Nodes with fixed values will have a cost of 0, all the other nodes will have a cost of 1. (
+      <a href="https://android-review.googlesource.com/#/q/Ia33e17613a64eb25db850af0d7a5e004638c4941">Ia33e1</a>
+      )
+    </li>
+    <li>
+      Remove counting logic from the
+      <code translate="no" dir="ltr">NO_OP_QUOTA_MANAGER</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib50b8872b3f9341b994f758a3c0d5baebae8cc70">Ib50b8</a>
+      )
+    </li>
+    <li>
+      We have added a lint rule to report a warning when
+      <code translate="no" dir="ltr">PrimaryLayout</code>
+      is used without
+      <code translate="no" dir="ltr">setResponsiveContentInsetEnabled</code>
+      and provide a quick fix. (
+      <a href="https://android-review.googlesource.com/#/q/I120257c20dfa8912c2a0b4ecaabe843140d16285">I12025</a>
+      )
+    </li>
+    <li>
+      There is a limit to a number of dynamic expression nodes. (
+      <a href="https://android-review.googlesource.com/#/q/Iffae8e910bac092461fc97ab9a2e02ff9799eaad">Iffae8</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,75 @@
+libraryId: car-app
+groupId: androidx.car
+version: 1.7.0-beta02
+releaseDate: 2024-09-18
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-beta02" data-text="Version 1.7.0-beta02" tabindex="-1">Version 1.7.0-beta02</h3>
+  <p>September 18, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.car.app:app-*:1.7.0-beta02</code>
+    is released. Version 1.7.0-beta02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/948119be341fa4affc055418e695d8c4c7e5e2e4..0431b84980e97d6bafdfda7c9038bc4d9529564f/car/app">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">KEY_ROOT_HINT_MEDIA_HOST_VERSION</code>
+      extra (
+      <a href="https://android-review.googlesource.com/#/q/I8796b6a140e35fadd7731d80d82310500b42bc3c">I8796b</a>
+      )
+    </li>
+    <li>
+      Replace
+      <code translate="no" dir="ltr">TabContents.Api8Builder</code>
+      class with
+      <code translate="no" dir="ltr">@ExperimentalCarApi</code>
+      constructor in
+      <code translate="no" dir="ltr">TabContents.Builder</code>
+      class (
+      <a href="https://android-review.googlesource.com/#/q/I26fbef0a1f3fc21a72557288e30efef50b61902b">I26fbe</a>
+      )
+    </li>
+    <li>
+      Add intent action and extras for
+      <code translate="no" dir="ltr">CarMediaApp</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I50782ebd51bb3e39ea96c95929e35fbea49427a5">I50782</a>
+      )
+    </li>
+    <li>
+      Mark messaging APIs as non-experimental (
+      <a href="https://android-review.googlesource.com/#/q/I0b0700c03fe032f433db8e3de4bb0b4c8867948d">I0b070</a>
+      )
+    </li>
+    <li>
+      Add remote item loading to
+      <code translate="no" dir="ltr">SectionedItemTemplate</code>
+      (allows long lists to load without crashing) (
+      <a href="https://android-review.googlesource.com/#/q/I0d122185a54a70a5eddb709e422ad958b594f449">I0d122</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">SectionedItemTemplate</code>
+      to list of supported templates inside
+      <code translate="no" dir="ltr">TabTemplate</code>
+      in API 8. (
+      <a href="https://android-review.googlesource.com/#/q/Idc5d69119989929448c6125235b8b206adf530ba">Idc5d6</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Removed manual outlining of access to new platform APIs since this happens automatically via API modeling when using R8 with AGP 7.3 or later (e.g. R8 version 3.3) and for all builds when using AGP 8.1 or later (e.g. D8 version 8.1). Clients who are not using AGP are advised to update to D8 version 8.1 or later. See
+      <a href="https://medium.com/androiddevelopers/mitigating-soft-verification-issues-in-r8-and-d8-7e9e06827dfd">this article</a>
+      for more details. (
+      <a href="https://android-review.googlesource.com/#/q/I9496cfaeb50a5c484fbee6521b74a0605fb013dc">I9496c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/345472586">b/345472586</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,67 @@
+libraryId: preference
+groupId: androidx.preference
+version: 1.2.0
+releaseDate: 2022-01-26
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0" data-text="Version 1.2.0" tabindex="-1">Version 1.2.0</h3>
+  <p>January 26, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.preference:preference:1.2.0</code>
+    and
+    <code translate="no" dir="ltr">androidx.preference:preference-ktx:1.2.0</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/45c977739a46f49c3eab1fe134b54676db023544..9b029f485084a1654dab09979141c9ecab7bbe9d/preference">Version 1.2.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 1.1.0</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">PreferenceHeaderFragmentCompat</code>
+      for two-pane preference that automatically adapts based on size of the device used, making it suitable for use on phones, foldables, and tablets. The header pane is provided by overriding the
+      <code translate="no" dir="ltr">onCreatePreferenceHeader()</code>
+      method on
+      <code translate="no" dir="ltr">PreferenceHeaderFragmentCompat</code>
+      . Any
+      <code translate="no" dir="ltr">&lt;Preference&gt;</code>
+      in the header
+      <code translate="no" dir="ltr">PreferenceFragmentCompat</code>
+      that uses
+      <code translate="no" dir="ltr">app:fragment</code>
+      will cause that fragment to appear in the second detail pane. The initial detail fragment that should be displayed before any preference is manually selected can be customized by overriding
+      <code translate="no" dir="ltr">onCreateInitialDetailFragment()</code>
+      . The default implementation returns the first preference that has a fragment defined on it.
+    </li>
+  </ul>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">TwoPanePreference</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">PreferenceHeaderFragmentCompat</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kd">override</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">onCreatePreferenceHeader</span><span class="devsite-syntax-p">():</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">PreferenceFragmentCompat</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-k">return</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">PreferenceHeader</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+  </devsite-code>
+  <ul>
+    <li>
+      <p>
+        Added nullability annotations to many of the APIs that previously did not specify
+        <code translate="no" dir="ltr">@NonNull</code>
+        or
+        <code translate="no" dir="ltr">@Nullable</code>
+        . This is a potentially Kotlin source breaking change if the nullability you had chosen in your Kotlin code did not match the nullability that is now defined.
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">PreferenceFragmentCompat</code>
+        ’s now looks for implementations of the
+        <code translate="no" dir="ltr">OnPreferenceStartFragmentCallback</code>
+        ,
+        <code translate="no" dir="ltr">OnNavigateToScreenListener</code>
+        , and
+        <code translate="no" dir="ltr">OnDisplayPreferenceDialogListener</code>
+        interface on parent fragments before looking to see if the hosting Context or Activity implement these interfaces.
+      </p>
+    </li>
+  </ul>

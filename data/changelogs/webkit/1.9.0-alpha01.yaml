@@ -1,0 +1,87 @@
+libraryId: webkit
+groupId: androidx.webkit
+version: 1.9.0-alpha01
+releaseDate: 2023-10-18
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0-alpha01" data-text="Version 1.9.0-alpha01" tabindex="-1">Version 1.9.0-alpha01</h3>
+  <p>October 18, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.webkit:webkit:1.9.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6d044fc1d7a213f318abade3b2235f9d90b28901..465c5c5b7a0d79793bddb26a695f67aba8ea2f7e/webkit/webkit">Version 1.9.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      We added the multi-profile API which allows you to have separate browsing sessions between
+      <code translate="no" dir="ltr">WebViews</code>
+      , each profile has its own data (e.g. cookies). You can create profiles, assign them to
+      <code translate="no" dir="ltr">WebView</code>
+      instances, and retrieve them later for any data access. There is a singleton class
+      <code translate="no" dir="ltr">ProfileStore</code>
+      to help you manage profiles by creation or deletion with APIs;
+      <code translate="no" dir="ltr">getOrCreateProfile</code>
+      ,
+      <code translate="no" dir="ltr">getProfile</code>
+      ,
+      <code translate="no" dir="ltr">getAllProfileNames</code>
+      and
+      <code translate="no" dir="ltr">deleteProfile</code>
+      . The
+      <code translate="no" dir="ltr">Profile</code>
+      class will have different APIs to use to get associated data with this profile such as its name,
+      <a href="/reference/android/webkit/GeolocationPermissions"><code translate="no" dir="ltr">GeoLocationPermissions</code></a>
+      ,
+      <a href="/reference/android/webkit/ServiceWorkerController"><code translate="no" dir="ltr">ServiceWorkerController</code></a>
+      ,
+      <a href="/reference/android/webkit/CookieManager"><code translate="no" dir="ltr">CookieManager</code></a>
+      and
+      <a href="/reference/android/webkit/WebStorage"><code translate="no" dir="ltr">WebStorage</code></a>
+      . Each
+      <code translate="no" dir="ltr">WebView</code>
+      will run with the default profile by default however, you can change that using
+      <code translate="no" dir="ltr">WebViewCompat#setProfile</code>
+      Related to that, a
+      <code translate="no" dir="ltr">WebView</code>
+      ’s profile can be retrieved using
+      <code translate="no" dir="ltr">WebViewCompat#getProfile</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I32d2278b5028d43bb49a0dbc71d13ab594bcba11">I32d22</a>
+      )
+    </li>
+    <li>
+      Add APIs to modify how Attribution Reporting events are registered. We introduced a new API
+      <code translate="no" dir="ltr">WebSettingsCompat#setAttributionRegistrationBehavior</code>
+      which allows developers to configure whether sources and triggers are registered as coming from the app itself or coming from the web content in the
+      <code translate="no" dir="ltr">WebView</code>
+      . This method can also be used to disable Attribution Reporting in
+      <code translate="no" dir="ltr">WebView</code>
+      . Additionally we added a new API
+      <code translate="no" dir="ltr">WebSettingsCompat#getAttributionRegistrationBehavior</code>
+      to get the current behavior. For more information see the
+      <a href="/design-for-safety/privacy-sandbox/attribution-app-to-web#attribution_source_and_trigger_registration_from_webview">Privacy Sandbox documentation</a>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I661f28500fd791c31f20b8d9cab8c09872581d79">I661f2</a>
+      )
+    </li>
+    <li>
+      Add APIs to override user-agent metadata. We introduced a new API
+      <code translate="no" dir="ltr">WebSettingsCompat#setUserAgentMetadata</code>
+      to override the user-agent metadata for WebView, which is used to populate the user-agent client hints, and we also added another new API
+      <code translate="no" dir="ltr">WebSettingsCompat#getUserAgentMetadata</code>
+      to get current user-agent overrides. We encourage apps to use the new API to set the right override values instead of relying on changing user-agent. (
+      <a href="https://android-review.googlesource.com/#/q/I745009a8c24d287416787802fb29210a78967855">I74500</a>
+      )
+    </li>
+    <li>
+      Add an API to inject Javascript to be run during page load. The
+      <code translate="no" dir="ltr">WebViewCompat.addDocumentStartJavascript</code>
+      API allows apps to inject scripts into a WebView which will be run before any page scripts are executed. The API allows the app to specify a target list of origins for the script to be enabled on, ensuring that it only runs on intended pages. Unlike
+      <code translate="no" dir="ltr">WebView.evaluateJavascript</code>
+      , this API will allow execution of scripts in embedded Iframes when they load. (
+      <a href="https://android-review.googlesource.com/#/q/Ide0637579a8a879c6641bda61dec1448d3c51979">Ide063</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_18_2" data-text="Version 1.8" tabindex="-1">Version 1.8</h2>

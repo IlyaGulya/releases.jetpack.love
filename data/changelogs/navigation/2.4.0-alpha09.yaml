@@ -1,0 +1,119 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.4.0-alpha09
+releaseDate: 2021-09-15
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0-alpha09" data-text="Version 2.4.0-alpha09" tabindex="-1">Version 2.4.0-alpha09</h3>
+  <p>September 15, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.4.0-alpha09</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/47e81d1c497b8a57534a460c277855db1b0257ae..1a3dcfb231517d6104969f17063fcc6c97ba6eeb/navigation">Version 2.4.0-alpha09 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      You can now use the
+      <code translate="no" dir="ltr">clearBackStack()</code>
+      method to clear any state that was saved with
+      <code translate="no" dir="ltr">popBackStack()</code>
+      or
+      <code translate="no" dir="ltr">popUpToSaveState</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I80a0f7baf982d750383a7db7aa9311b4f8e2a77d">I80a0f</a>
+      )
+    </li>
+    <li>
+      You can now pass in a list of arguments and/or deep links to your nested navigation graph's builder and they will automatically be added to the resulting graph. (
+      <a href="https://android-review.googlesource.com/#/q/I8a47074b68f36d9195f353ef7c726c75b8e1a73f">I8a470</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/182545357">b/182545357</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">navArgument</code>
+      Kotlin DSL function is now part of
+      <code translate="no" dir="ltr">navigation-common</code>
+      instead of
+      <code translate="no" dir="ltr">navigation-compose</code>
+      . This will require updating imports to continue to use this function. (
+      <a href="https://android-review.googlesource.com/#/q/I1d0958743bb7a5df957968c091e16078f3ffa8f1">I1d095</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      When generating arguments, Safe Args now puts parameters without default values before those with default values. (
+      <a href="https://android-review.googlesource.com/#/q/I8970968c48deb3a1437437df9a3db696ed497372">I89709</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/198493585">b/198493585</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      When using Navigation Compose, NavGraphs will only be
+      <code translate="no" dir="ltr">DESTROYED</code>
+      once all their children are
+      <code translate="no" dir="ltr">DESTROYED</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I86552cc841eee95858ff23a1fce895e5d47c9746">I86552</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/198741720">b/198741720</a>
+      )
+    </li>
+    <li>
+      Nullable
+      <code translate="no" dir="ltr">NavDeepLink</code>
+      arguments no longer require a default value. (
+      <a href="https://android-review.googlesource.com/#/q/Ia14ef04bfe5b25942163688f40adacc30fa7e044">Ia14ef</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/198689811">b/198689811</a>
+      )
+    </li>
+    <li>
+      Calling
+      <code translate="no" dir="ltr">setGraph()</code>
+      with a new graph will now also clear any saved back stacks in addition to its previous behavior of popping the back stack. (
+      <a href="https://android-review.googlesource.com/#/q/I97f96a65efea43d4341c9572c3c1c63f343ab6ed">I97f96</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">OnDestinationChangedListener</code>
+      instances and the
+      <code translate="no" dir="ltr">currentBackStackEntryFlow</code>
+      were not notified when using
+      <code translate="no" dir="ltr">launchSingleTop</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iaaebc611c1134bec9a31a088742f66c30888f0f4">Iaaebc</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Updates</strong></p>
+  <ul>
+    <li>
+      Navigation Compose now depends on
+      <a href="/jetpack/androidx/releases/activity#1.3.1">Activity Compose 1.3.1</a>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I05829230af5c04cb1a284a5f6c9bcb14f24b0fc1">I05829</a>
+      )
+    </li>
+    <li>
+      Navigation Compose now depends on
+      <a href="/jetpack/androidx/releases/lifecycle#2.4.0-beta01">
+        Lifecycle ViewModel Compose
+        <code translate="no" dir="ltr">2.4.0-beta01</code>
+      </a>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib86a3ced486d87cd214b696123335ab8c5dd120b">Ib86a3</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,100 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.2.0-alpha15
+releaseDate: 2023-06-07
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha15" data-text="Version 1.2.0-alpha15" tabindex="-1">Version 1.2.0-alpha15</h3>
+  <p>June 7, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.2.0-alpha15</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6f3ac2bd197d5e61ab2708125b57d6ae4003ad68..8423c3f497cfbf2bf7b87006ca05f38626060135/benchmark">Version 1.2.0-alpha15 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added experimental
+      <code translate="no" dir="ltr">MemoryUsageMetric</code>
+      for tracking memory usage of a target application. (
+      <a href="https://android-review.googlesource.com/#/q/I564531163aae2fa317d68a0676cfaf3068d12ee5">I56453</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/133147125">b/133147125</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/281749311">b/281749311</a>
+      )
+    </li>
+    <li>
+      Add support for fully custom Perfetto configs with
+      <code translate="no" dir="ltr">PerfettoTrace.record</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/If9d752af8dd395b903f7530f393b1bb0b3fb3441">If9d75</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/280460183">b/280460183</a>
+      )
+    </li>
+    <li>
+      Added property to skip baseline profile generation. Usage:
+      <code translate="no" dir="ltr">./gradlew assemble -Pandroidx.baselineprofile.skipgeneration</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I37fda3f4b5761d8229c83be7d7a2cda197e8dbc8">I37fda</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/283447020">b/283447020</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">collectBaselineProfile</code>
+      API always generates stable baseline profiles. The
+      <code translate="no" dir="ltr">collectStableBaselineProfile</code>
+      API has been removed and
+      <code translate="no" dir="ltr">collectBaselineProfile</code>
+      should be used instead. (
+      <a href="https://android-review.googlesource.com/#/q/I1726295116bbecbcbc72561aee96538c1ea9a514">I17262</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/281078707">b/281078707</a>
+      )
+    </li>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">BaselineProfileRule</code>
+      's
+      <code translate="no" dir="ltr">filterPredicate</code>
+      arg to non-null, with a equivalent default value so that the default filter behavior is more clear in docs. (
+      <a href="https://android-review.googlesource.com/#/q/I3816e294acb3fd7b6a1e1ec646c6e717f15c2549">I3816e</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Disable
+      <code translate="no" dir="ltr">IsolationActivity</code>
+      and Perfetto tracing in
+      <code translate="no" dir="ltr">dryRunMode</code>
+      to significantly improve performance, as these were majority of runtime. (
+      <a href="https://android-review.googlesource.com/#/q/Ie4f7deac2b04002199ece5f72161b69af5a35425">Ie4f7d</a>
+      )
+    </li>
+    <li>
+      Support for call stack sampling in Macrobenchmarks using instrumentation test arguments
+      <code translate="no" dir="ltr">androidx.benchmark.profiling.mode=StackSampling</code>
+      and
+      <code translate="no" dir="ltr">androidx.benchmark.profiling.sampleFrequency</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1d13b9bae8d4511946ec9914e48e160f17a3bd3f">I1d13b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/282188489">b/282188489</a>
+      )
+    </li>
+    <li>
+      Fixes crash when dropping shaders on Android U (API 34), as well as on emulators. (
+      <a href="https://android-review.googlesource.com/#/q/I031ca38e15b9412e84a33eee4eb709cbf3014066">I031ca</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/274314544">b/274314544</a>
+      )
+    </li>
+  </ul>

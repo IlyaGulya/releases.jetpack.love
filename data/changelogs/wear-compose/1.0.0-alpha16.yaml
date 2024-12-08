@@ -1,0 +1,88 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.0.0-alpha16
+releaseDate: 2022-02-09
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha16" data-text="Version 1.0.0-alpha16" tabindex="-1">Version 1.0.0-alpha16</h3>
+  <p>February 9, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-foundation:1.0.0-alpha16</code>
+    ,
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material:1.0.0-alpha16</code>
+    , and
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-navigation:1.0.0-alpha16</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9dceceb54300ed028a7e8fc7a3454f270337ffde..db2ecbef194afcddfaede22e1d884a8959a9277c/wear/compose">Version 1.0.0-alpha16 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">CircularProgressIndicator</code>
+      . Progress indicators display the length of a process or an unspecified wait time. Supports a gap (cutout) for TimeText or other components if used full-screen. (
+      <a href="https://android-review.googlesource.com/#/q/Iab8daa0e5355391bc09d78690d4690e489f7621c">Iab8da</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Pickers now have a
+      <code translate="no" dir="ltr">flingBehavior</code>
+      parameter, the default value makes them snap to the closest option when scrolling/flinging. (
+      <a href="https://android-review.googlesource.com/#/q/I09000fa7ce9e02b5bd75d3ddfc278e04bb5c547c">I09000</a>
+      )
+    </li>
+    <li>
+      Additional integer API for InlineSlider and Stepper (
+      <a href="https://android-review.googlesource.com/#/q/I1b5d66881cec976f5d2c2c3fb272f9eabd5a8ddd">I1b5d6</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We have changed the default initialCenterItemIndex for the
+      <code translate="no" dir="ltr">ScalingLazyListState</code>
+      from 0-&gt;1. This means that unless overridden on state construction with
+      <code translate="no" dir="ltr">ScalingLazyListState.rememberScalingLazyListState(initialCenterItemIndex =</code>
+      <value>
+        <code translate="no" dir="ltr">)</code>
+        then the 2nd list item (index == 1) will be placed in the center of the viewport at initialization and the 1st (index == 0) item will be placed before it. This allows for a better default visual effect out of the box as most of the viewport will be filled with list items. (
+        <a href="https://android-review.googlesource.com/#/q/I0c62304ff98c3233e48f38a3641ef856491b5838">I0c623</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/217344252">b/217344252</a>
+        )
+      </value>
+    </li>
+    <li>
+      We have reduced the
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      default
+      <code translate="no" dir="ltr">extraPadding</code>
+      that is provided to ensure that there are plenty of list items to draw (even when we are scaling some of them down in size) from 10% to 5%. This will avoid composing extra list items that might not appear in the viewport. If non standard scalingParams are being used (more extreme scaling for instance) the developer can adjust extra padding using
+      <code translate="no" dir="ltr">viewportVerticalOffsetResolver</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I76be4dff5489bc7c07e3a1c0b2857ba4edf9f6bd">I76be4</a>
+      )
+    </li>
+    <li>
+      Fix an issue with TimeText on multiple lines on square device (
+      <a href="https://android-review.googlesource.com/#/q/Ibd3fbea3a09e9bd1871e8fb153bd2d72658ad3d7">Ibd3fb</a>
+      )
+    </li>
+    <li>
+      We have modified
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      so that it no longer greedily fills all of the space in its parent. Instead it will take its size from the size of its contents. This makes it consistent with the behavior of
+      <code translate="no" dir="ltr">LazyColumn</code>
+      . If you want to reinstate the old behavior then pass
+      <code translate="no" dir="ltr">Modifier.fillMaxSize()</code>
+      to the
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      - NOTE: This change is incomplete and will be addressed in a follow up change in the next Alpha release. (
+      <a href="https://android-review.googlesource.com/#/q/I3cbfa038e71a6137d052fa5f41224df1563d5bd7">I3cbfa</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,74 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.2.0-beta01
+releaseDate: 2020-10-01
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-beta01" data-text="Version 1.2.0-beta01" tabindex="-1">Version 1.2.0-beta01</h3>
+  <p>October 1, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.2.0-beta01</code>
+    and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.2.0-beta01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/96eb302ee1740ba656c90c9fb27df3723a1a89c1..f5a2c7477391539d8bc9f65a8f0db1e8a7bf2cf5/activity">Version 1.2.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <p>
+        The
+        <code translate="no" dir="ltr">ActivityResultRegistry</code>
+        now randomly generates integers until it finds one that is unallocated to use as a request code
+        <code translate="no" dir="ltr">register()</code>
+        , thus preventing the possible integer overflow caused by incrementing request codes. (
+        <a href="https://issuetracker.google.com/issues/168374000">b/168779518</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">Lifecycle</code>
+        observers are properly removed when calling
+        <code translate="no" dir="ltr">unregister()</code>
+        on an
+        <code translate="no" dir="ltr">ActivityResultLauncher</code>
+        . (
+        <a href="https://issuetracker.google.com/165608393">b/165608393</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">ActivityResultRegistry</code>
+      now throws an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      when attempting to call
+      <code translate="no" dir="ltr">register()</code>
+      with a
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      whose
+      <code translate="no" dir="ltr">Lifecycle</code>
+      has already reached
+      <code translate="no" dir="ltr">STARTED</code>
+      . (
+      <a href="https://issuetracker.google.com/165435866">b/165435866</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Documentation Updated</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ContextAware</code>
+      documentation links to
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      to highlight
+      <code translate="no" dir="ltr">Lifecycle</code>
+      callbacks as the appropriate place for creation and destruction events. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1414152">aosp/1414152</a>
+      )
+    </li>
+  </ul>

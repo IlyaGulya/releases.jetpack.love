@@ -1,0 +1,106 @@
+libraryId: wear-protolayout
+groupId: androidx.wear
+version: 1.0.0-beta01
+releaseDate: 2023-06-21
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta01" data-text="Version 1.0.0-beta01" tabindex="-1">Version 1.0.0-beta01</h3>
+  <p>June 21, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.protolayout:protolayout-*:1.0.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/73f902dee011bfe400d8a0330bfd8d4bb632065f..3b5b931546a48163444a9eddc533489fcddd7494/wear/protolayout">Version 1.0.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Allow setting clock for time binding tests. (
+      <a href="https://android-review.googlesource.com/#/q/I05622de839bbdce144e6f6863a2b4d1a310ee17d">I05622</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">PlatformDataReceiver.onData()</code>
+      and
+      <code translate="no" dir="ltr">StateBuilders.Builder.addKeyToValueMapping</code>
+      now accept type-safe mapping of
+      <code translate="no" dir="ltr">DynamicDataKey</code>
+      to
+      <code translate="no" dir="ltr">DynamicDataValue</code>
+      rather than unsafe generics. That means that
+      <code translate="no" dir="ltr">DynamicDataValue</code>
+      is now typed with its
+      <code translate="no" dir="ltr">DynamicType</code>
+      .
+      <code translate="no" dir="ltr">HEART_RATE_ACCURACY_X</code>
+      constants moved to the root of
+      <code translate="no" dir="ltr">PlatformHealthSources</code>
+      , to match other Android constants positioning.
+      <code translate="no" dir="ltr">HEART_RATE_ACCURACY_X</code>
+      int constants are now used directly in
+      <code translate="no" dir="ltr">DynamicHeartRateAccuracy.constant()</code>
+      and
+      <code translate="no" dir="ltr">DynamicHeartRateAccuracy.dynamicDataValueOf()</code>
+      instead of value constant. (
+      <a href="https://android-review.googlesource.com/#/q/I82ff585eadbbe15c7e5ed4227908a6cb7462ad23">I82ff5</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">PlatformHealthSources.Constants</code>
+      class was instantiable by mistake. This has been fixed now. (
+      <a href="https://android-review.googlesource.com/#/q/Icb8495d814744c05566e1440dc0a52c73619ee59">Icb849</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PlatformTimeUpdateNotifier#setReceiver</code>
+      now receives
+      <code translate="no" dir="ltr">Runnable</code>
+      instead of
+      <code translate="no" dir="ltr">Supplier</code>
+      function and
+      <code translate="no" dir="ltr">Executor</code>
+      to notify on. (
+      <a href="https://android-review.googlesource.com/#/q/I9d938801d769f050ce2e103a616d19f7f588484d">I9d938</a>
+      )
+    </li>
+    <li>
+      We have changed the parameter type in the
+      <code translate="no" dir="ltr">PlatformTimeUpdateNotifier#setReceiver</code>
+      from
+      <code translate="no" dir="ltr">Callable</code>
+      to
+      <code translate="no" dir="ltr">Supplier</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I664bf13fb47a8da7b8e0348d5d8cee5a2e14dbe4">I664bf</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">CompactChip</code>
+      and
+      <code translate="no" dir="ltr">TitleChip</code>
+      now support adding an icon to it. (
+      <a href="https://android-review.googlesource.com/#/q/I5a01e3366000b21651e686f04a3279f722cbbf1c">I5a01e</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Update Prop messages with dynamic fields to use oneof instead (
+      <a href="https://android-review.googlesource.com/#/q/I817390a7f8870a6b6e4a61402fa571391b9923bc">I81739</a>
+      )
+    </li>
+    <li>
+      Reuse setters implementation for overloads that have setters (
+      <a href="https://android-review.googlesource.com/#/q/Ied70c5e18f964fb5c46a2ca379274ff734456a05">Ied70c</a>
+      )
+    </li>
+    <li>
+      Properly record fingerprints in setters that have overloads (
+      <a href="https://android-review.googlesource.com/#/q/I86ed2ffe3e48f01f7c547862b9699c5437ae3cf4">I86ed2</a>
+      )
+    </li>
+  </ul>

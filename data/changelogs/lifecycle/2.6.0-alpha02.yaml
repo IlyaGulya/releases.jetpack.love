@@ -1,0 +1,78 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.6.0-alpha02
+releaseDate: 2022-09-07
+#language=html
+changelogHtml: |
+  <h3 id="2.6.0-alpha02" data-text="Version 2.6.0-alpha02" tabindex="-1">Version 2.6.0-alpha02</h3>
+  <p>September 7, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.6.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/8094b683499b4098092c01028b55a38b49e357f2..cce7b70f6a5ebf955cf748a73c18b63228b22c74/lifecycle">Version 2.6.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">MediatorLiveData</code>
+      now includes a constructor to set an initial value. (
+      <a href="https://android-review.googlesource.com/#/q/Ib6cc5fa9e5005642b63d563aa0f3b31162ae0063">Ib6cc5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/151244085">b/151244085</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">Lifecycle</code>
+      artifacts now include
+      <a href="https://docs.gradle.org/current/userguide/dependency_constraints.html#sec:adding-constraints-transitive-deps">constraints</a>
+      that ensure that all inter-dependent Lifecycle artifacts use the same version, automatically upgrading other dependencies when one is upgraded.
+      <a href="https://issuetracker.google.com/242871265">b/242871265</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FlowLiveData.asFlow()</code>
+      now creates a
+      <code translate="no" dir="ltr">callbackFlow</code>
+      rather than using its own
+      <code translate="no" dir="ltr">Channel</code>
+      implementation to ensure thread-safety and context preservation. (
+      <a href="https://android-review.googlesource.com/#/q/I4a8b270a92ac3779cbb3d56dae585bf6876396d2">I4a8b2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/200596935">b/200596935</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FlowLiveData</code>
+      's
+      <code translate="no" dir="ltr">asLiveData</code>
+      function will now preserve the initial value of a
+      <code translate="no" dir="ltr">StateFlow</code>
+      when creating the new
+      <code translate="no" dir="ltr">LiveData</code>
+      object. (
+      <a href="https://android-review.googlesource.com/#/q/I3f53068b1a071e2f334f2cbab2819e7f7a4c60b2">I3f530</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/157380488">b/157380488</a>
+      )
+    </li>
+    <li>
+      From
+      <a href="/jetpack/androidx/releases/lifecycle#2.5.1">
+        Lifecycle
+        <code translate="no" dir="ltr">2.5.1</code>
+      </a>
+      : Custom implementations of
+      <code translate="no" dir="ltr">AndroidViewModelFactory</code>
+      now correctly calls the
+      <code translate="no" dir="ltr">create(modelClass)</code>
+      function when using the stateful constructor with
+      <code translate="no" dir="ltr">Lifecycle</code>
+      2.4+ (
+      <a href="https://android-review.googlesource.com/#/q/I5b315ae80d1498b92e412d9316a90e7fa0e9fb3a">I5b315</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/238011621">b/238011621</a>
+      )
+    </li>
+  </ul>

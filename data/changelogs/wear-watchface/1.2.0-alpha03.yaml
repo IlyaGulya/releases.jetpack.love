@@ -1,0 +1,72 @@
+libraryId: wear-watchface
+groupId: androidx.wear
+version: 1.2.0-alpha03
+releaseDate: 2022-10-05
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha03" data-text="Version 1.2.0-alpha03" tabindex="-1">Version 1.2.0-alpha03</h3>
+  <p>October 5, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.watchface:watchface-*:1.2.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/bdce26bd7556b92d2d4d2af3de881dd8e2c51459..4586cf6e518f0c59410ef2b291e34ff9fdcff4e1/wear/watchface">Version 1.2.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>No new features, but we have fixed a couple of watch face editor bugs.</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Deprecated
+      <code translate="no" dir="ltr">UserStyleSchema.userStyleSettings</code>
+      as
+      <code translate="no" dir="ltr">rootUserStyleSettings</code>
+      become non-experimental (
+      <a href="https://android-review.googlesource.com/#/q/Ie96e3760a4601215a74c6acd6071a68ae20a4f6c">Ie96e3</a>
+      )
+    </li>
+    <li>
+      Move
+      <code translate="no" dir="ltr">rootUserStyleSettings</code>
+      out of experimental (
+      <a href="https://android-review.googlesource.com/#/q/I8d6b36c66e2ef0317336bdf7590856fd4d0b5628">I8d6b3</a>
+      )
+    </li>
+    <li>
+      We've marked
+      <code translate="no" dir="ltr">WatchFaceColors</code>
+      as experimental because it is not supported by all systems (
+      <a href="https://android-review.googlesource.com/#/q/I6d75d5d541082dc14c5d36acac20261ddecfa354">I6d75d</a>
+      )
+    </li>
+    <li>
+      Expose
+      <code translate="no" dir="ltr">DisconnectReasons</code>
+      in the public API to make it work with
+      <code translate="no" dir="ltr">IntDef</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I791f81d7369ba9c9c1144e5dc009547272ddc147">I791f8</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Close any open on watch editor if
+      <code translate="no" dir="ltr">SysUI</code>
+      dies. If
+      <code translate="no" dir="ltr">SysUI</code>
+      dies and the on watch face editor doesn't close, the watch face could be left in an inconsistent state because the system relies on
+      <code translate="no" dir="ltr">SysUI</code>
+      to persist any user style changes.(
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/ba762a5889e851761186bf113880402bc921f4bd">ba762a</a>
+    </li>
+    <li>
+      Fix a memory leak in
+      <code translate="no" dir="ltr">ComplicationDataSourceInfoRetriever</code>
+      , where a kotlin coroutine continuation was acting as a gc root and retaining the editor activity.(
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/33ee066bbca32c30b8b7c0bc2223b548762c7a9d">33ee06</a>
+      )
+    </li>
+  </ul>

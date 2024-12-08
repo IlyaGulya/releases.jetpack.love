@@ -1,0 +1,86 @@
+libraryId: wear
+groupId: androidx.wear
+version: 1.0.0-alpha04
+releaseDate: 2020-12-16
+#language=html
+changelogHtml: |
+  <h3 id="complications-watchface-1.0.0-alpha04" data-text="Version 1.0.0-alpha04" tabindex="-1">Version 1.0.0-alpha04</h3>
+  <p>December 16, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear:wear-*:1.0.0-alpha04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/38a668d3ef95f40ad28d6e735a2c3eb95ae4cf63..dd3c8e9c2424b78e44f55db599251891fd1cadb4/wear">Version 1.0.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>The wear watch face library now supports setting bounds per type. E.g. you can switch to a wide bounding box for ComplicationType.LONG_TEXT whilst using a smaller bounding box for other types.</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Complications now use ComplicationBounds which wraps a
+      <code translate="no" dir="ltr">Map&lt;ComplicationType, RectF&gt;</code>
+      to support per complication type sizes. (
+      <a href="https://android-review.googlesource.com/#/q/I1ebe78c6c7368ef3327c3dba39f6498b18089a4e">I1ebe7</a>
+      )
+    </li>
+    <li>
+      RenderParameters now lets you specify the highlight tint for use in screen shots. (
+      <a href="https://android-review.googlesource.com/#/q/Iff42b0df61de46be1e03566f8a9b79b67de8727e">Iff42b</a>
+      )
+    </li>
+    <li>
+      With the exception of bounds you now have to use ComplicationsUserStyleSetting to modify complications, this is to ensure the OS is kept in sync. (
+      <a href="https://android-review.googlesource.com/#/q/I8dc5db6f349e7ad4995f9ea7a3e12fe31b560c7e">I8dc5d</a>
+      )
+    </li>
+    <li>
+      Renderer is now a sealed class. This means CanvasRenderer and GlesRenderer are now inner classes of Renderer. (
+      <a href="https://android-review.googlesource.com/#/q/Iab5d4cf05f02a2ed3a47729c32fac6b6e6cf23dc">Iab5d4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173803230">b/173803230</a>
+      )
+    </li>
+    <li>
+      CanvasComplicationDrawable.drawHighlight renamed to drawOutline. ObservableWatchData now has a few missing UiThread annotations. ScreenState has now been fully removed from WatchState. (
+      <a href="https://android-review.googlesource.com/#/q/If1393142f3a0d7902a35a7622329c1bf6e7e3449">If1393</a>
+      )
+    </li>
+    <li>
+      The minimum API level for wear-watchface is now 25. Note hardware canvas support requires API level 26 or above. (
+      <a href="https://android-review.googlesource.com/#/q/Ic9bbdf1858ef4435bb6561cb02bba7b709d54d00">Ic9bbd</a>
+      )
+    </li>
+    <li>
+      InteractiveWatchFaceWcsClient now has a getComplicationIdAt helper. (
+      <a href="https://android-review.googlesource.com/#/q/I05811891b9ea4ebb4f4c3fa393d3b7510dee8e0b">I05811</a>
+      )
+    </li>
+    <li>
+      The API level for wear-watchface-client has been reduced to 25, however the screen shot APIs require API level 27. (
+      <a href="https://android-review.googlesource.com/#/q/Id31c21c4b650cc8cb21523f4b0cf861bd1b107e0">Id31c2</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We now expose the complication's current ComplicationData's ComplicationType in ComplicationState. (
+      <a href="https://android-review.googlesource.com/#/q/I9b39013cc5486d68bd285c9624fedc5f0ba835d2">I9b390</a>
+      )
+    </li>
+    <li>
+      InteractiveWatchFaceWcs now has a method `bringAttentionToComplication to briefly highlight the specified complication. (
+      <a href="https://android-review.googlesource.com/#/q/I6d31cb1a177fe9eb98c0859ce400391c8cecb668">I6d31c</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">InteractiveWatchFaceWcsClient#setUserStyle</code>
+      now has an overload accepting Map
+      <string, string="">
+        which can potentially avoid an extra IPC round trip necessary to construct UserStyle. (
+        <a href="https://android-review.googlesource.com/#/q/I24eec01f8eed113931fa7ec61cc8af4baf38049d">I24eec</a>
+        )
+      </string,>
+    </li>
+  </ul>

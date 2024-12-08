@@ -1,0 +1,164 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.5.0-alpha04
+releaseDate: 2023-05-10
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha04" data-text="Version 1.5.0-alpha04" tabindex="-1">Version 1.5.0-alpha04</h3>
+  <p>May 10, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation:1.5.0-alpha04</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-layout:1.5.0-alpha04</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/01bd392d5702480f8bfe61a8f8bbbea64cf362a0..6f3ac2bd197d5e61ab2708125b57d6ae4003ad68/compose/foundation">Version 1.5.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added optimized
+      <code translate="no" dir="ltr">TextStyle.merge(...)</code>
+      with full parameter list. (
+      <a href="https://android-review.googlesource.com/#/q/Iad23419809af1c7405ba9a9d42569521e7647034">Iad234</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/246961787">b/246961787</a>
+      )
+    </li>
+    <li>
+      Introduce a
+      <code translate="no" dir="ltr">SnapLayoutInfoProvider</code>
+      that can be used with
+      <code translate="no" dir="ltr">LazyGridState</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I92134d4e64e639774e0239814a2705d44467bbcf">I92134</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/269237141">b/269237141</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/260914964">b/260914964</a>
+      )
+    </li>
+    <li>
+      Experimental
+      <code translate="no" dir="ltr">Modifier.animateItemPlacement()</code>
+      was added for the lazy staggered grids item scope. You can apply it on the items in order to achieve the automation position change/reordering animations. (
+      <a href="https://android-review.googlesource.com/#/q/I4b62dc65bf21e9376678c2e86f368bd3b8ee7ae0">I4b62d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/257034719">b/257034719</a>
+      )
+    </li>
+    <li>
+      Promote
+      <code translate="no" dir="ltr">GridCells.FixedSize</code>
+      to stable.
+      <code translate="no" dir="ltr">FixedSize</code>
+      defines a
+      <code translate="no" dir="ltr">LazyGrid</code>
+      where each cell takes exact size on cross axis, with the remaining space distributed by cross axis arrangement. (
+      <a href="https://android-review.googlesource.com/#/q/I8542f31f185efcdb71169f2eba0f389c2222f2fc">I8542f</a>
+      )
+    </li>
+    <li>
+      Introduced receiver scope
+      <code translate="no" dir="ltr">PagerScope</code>
+      for Pager and an utility function for calculation a given page offset. (
+      <a href="https://android-review.googlesource.com/#/q/If25778c9ed12b11732fe98a3ca751542ebd69cc5">If2577</a>
+      )
+    </li>
+    <li>
+      Introduce the
+      <code translate="no" dir="ltr">snapPositionalThreshold</code>
+      when creating a snap fling behavior. Use this parameter to specify a positional threshold to short snapping in Pager. (
+      <a href="https://android-review.googlesource.com/#/q/If8f7f5c5c95cca74c7e810969c6bf14cb064683b">If8f7f</a>
+      )
+    </li>
+    <li>
+      Replaced
+      <code translate="no" dir="ltr">SnapLayoutInfoProvider.calculateSnappingOffsetBounds</code>
+      with
+      <code translate="no" dir="ltr">calculateSnappingOffset</code>
+      . In this new method we simply request the next offset to snap to. The calculation of the bounds should be performed at the implementation level as this may differ depending on how one needs snapping to happen. (
+      <a href="https://android-review.googlesource.com/#/q/I923a4f8fbfa08db31446a52fd9bb869e33daf9fd">I923a4</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LazyStaggeredGrid</code>
+      APIs have been promoted to stable. (
+      <a href="https://android-review.googlesource.com/#/q/I633a5534c0eaeee8e6cff80ed872a60bf42fdb20">I633a5</a>
+      )
+    </li>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">pageCount</code>
+      from
+      <code translate="no" dir="ltr">Horizontal/VerticalPager</code>
+      . This should be provided at the state creation. Updated
+      <code translate="no" dir="ltr">PagerState</code>
+      and
+      <code translate="no" dir="ltr">rememberPagerState</code>
+      to accept the
+      <code translate="no" dir="ltr">pageCount</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ieb52d10f08c4a45beaa4ce0a72734a44afb60ce7">Ieb52d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/266965072">b/266965072</a>
+      )
+    </li>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">pageCount</code>
+      from
+      <code translate="no" dir="ltr">Horizontal/VerticalPager</code>
+      . This should be provided at the state creation. Updated
+      <code translate="no" dir="ltr">PagerState</code>
+      and
+      <code translate="no" dir="ltr">rememberPagerState</code>
+      to accept the
+      <code translate="no" dir="ltr">pageCount</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ifa3cb3f0444ed1493efbeb3e6268f50684dec44a">Ifa3cb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/266965072">b/266965072</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">shortSnapVelocityThreshold</code>
+      in Pager's
+      <code translate="no" dir="ltr">SnapFlingBehavior</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7379e457b8b7321aba6605a81cccd2245122a80e">I7379e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/275579012">b/275579012</a>
+      )
+    </li>
+    <li>
+      Adds a
+      <code translate="no" dir="ltr">FlowRowScope</code>
+      and
+      <code translate="no" dir="ltr">FlowColumnScope</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I54fe2b0945ebcd8a2bf99cf58ce4a06c12e0553d">I54fe2</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Calls to get semantics on Text when constraints have
+      <code translate="no" dir="ltr">minWidth</code>
+      and
+      <code translate="no" dir="ltr">minHeight</code>
+      no longer crash. (
+      <a href="https://android-review.googlesource.com/#/q/Ibd0723171145265198eee10bf4666fdaa6efd06d">Ibd072</a>
+      )
+    </li>
+    <li>
+      Fixed regression where keyboard wasn't showing for text fields inside dialogs not created by the
+      <code translate="no" dir="ltr">Dialog</code>
+      composable. (
+      <a href="https://android-review.googlesource.com/#/q/I825512cde7e41dadfc8b7491bd24190d21b14729">I82551</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/262140644">b/262140644</a>
+      )
+    </li>
+  </ul>

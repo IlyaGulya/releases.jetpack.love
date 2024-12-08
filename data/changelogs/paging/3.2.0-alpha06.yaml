@@ -1,0 +1,95 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.2.0-alpha06
+releaseDate: 2023-05-24
+#language=html
+changelogHtml: |
+  <h3 id="3.2.0-alpha06" data-text="Version 3.2.0-alpha06" tabindex="-1">Version 3.2.0-alpha06</h3>
+  <p>May 24, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.2.0-alpha06</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6f3ac2bd197d5e61ab2708125b57d6ae4003ad68..c5bf9bc40dd5d9f0b3f34e7273ac0d4e4f05c41d/paging">Version 3.2.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">PagingSourceFactory</code>
+      functional interface that provides a more explicit API surface than the existing
+      <code translate="no" dir="ltr">() -&gt; PagingSource</code>
+      lambdas. This factory can be used to instantiate a
+      <code translate="no" dir="ltr">Pager</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3316590a0d667566edeb40d4e99e005cd6cee3ac">I33165</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/280655188">b/280655188</a>
+      )
+    </li>
+    <li>
+      Added new
+      <code translate="no" dir="ltr">paging-testing</code>
+      API of
+      <code translate="no" dir="ltr">List&lt;Value&gt;.asPagingSourceFactory()</code>
+      to get a
+      <code translate="no" dir="ltr">PagingSourceFactory</code>
+      that only loads from an immutable list of data. The existing extension on
+      <code translate="no" dir="ltr">Flow&lt;List&lt;Value&gt;&gt;</code>
+      should still be used for testing with multiple generations of static data. (
+      <a href="https://android-review.googlesource.com/#/q/Id34d1361119413d0c19a054a2e23dd26241faa6f">Id34d1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/280655188">b/280655188</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      All public APIs in paging-testing are now annotated with
+      <code translate="no" dir="ltr">@VisibleForTesting</code>
+      to ensure these APIs are used only in tests. (
+      <a href="https://android-review.googlesource.com/#/q/I7db6e8431cb78604653220c2768339c39db88f54">I7db6e</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">asSnapshot</code>
+      API no longer requires passing in a
+      <code translate="no" dir="ltr">CoroutineScope</code>
+      . It now defaults to using the context inherited from its parent scope. (
+      <a href="https://android-review.googlesource.com/#/q/Id0a78cc5dd633901b39cc608d66d6b7255618549">Id0a78</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/282240990">b/282240990</a>
+      )
+    </li>
+    <li>
+      Reordered
+      <code translate="no" dir="ltr">TestPager</code>
+      constructor parameters to intuitively match the order of real
+      <code translate="no" dir="ltr">Pager</code>
+      constructor parameters (
+      <a href="https://android-review.googlesource.com/#/q/I6185ad09fb5e695c02b50f88022d168405de39f2">I6185a</a>
+      )
+    </li>
+    <li>
+      Migrated paging-testing's use of lambda type
+      <code translate="no" dir="ltr">() -&gt; PagingSource&lt;Key, Value&gt;</code>
+      to type
+      <code translate="no" dir="ltr">PagingSourceFactory&lt;Key, Value&gt;</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4a95067989fabf8258a3392007dbf8abd35d8efa">I4a950</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/280655188">b/280655188</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      Main dispatcher is no longer required to run
+      <code translate="no" dir="ltr">asSnapshot</code>
+      Paging tests. Setting it no longer makes any changes to the test behavior. (
+      <a href="https://android-review.googlesource.com/#/q/Ie56ead0c5fcec3ef8dce1c77c150d2f8dd0d7d5e">Ie56ea</a>
+      )
+    </li>
+  </ul>

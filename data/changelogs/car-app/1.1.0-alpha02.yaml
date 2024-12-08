@@ -1,0 +1,168 @@
+libraryId: car-app
+groupId: androidx.car
+version: 1.1.0-alpha02
+releaseDate: 2021-07-21
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha02" data-text="Version 1.1.0-alpha02" tabindex="-1">Version 1.1.0-alpha02</h3>
+  <p>July 21, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.car.app:app-*:1.1.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cffcc074543c8c27a9fa134f558d332f2f5acf61..97264aa4532db7f7db1ffb3f42f3a9204971dbfc/car/app">Version 1.1.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      API Level 3: Added a
+      <code translate="no" dir="ltr">CarHardwareManager</code>
+      that can be used to query vehicle’s hardware data, such as model and make, fuel levels and other sensors. Currently, this feature is only available for Android Auto 6.7+ in the open-testing channel. Testing this in a desktop environment requires a new version of
+      <code translate="no" dir="ltr">Desktop Head Unit</code>
+      which will be released separately. Stay tuned on
+      <a href="/training/cars/testing">Test Android apps for cars page</a>
+      for details on when the new version becomes available.
+    </li>
+    <li>
+      Follow the
+      <a href="/training/cars/apps">development guide</a>
+      and the library reference for additional details and design guidelines on how to use these features in car hosts that are compatible with API level 3.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Consolidated
+      <code translate="no" dir="ltr">SessionController</code>
+      and
+      <code translate="no" dir="ltr">ScreenController</code>
+      lifecycle methods into a single
+      <code translate="no" dir="ltr">moveToState</code>
+      method (
+      <a href="https://android-review.googlesource.com/#/q/I1ed00d9e4df59af59643da25d9385f7a9326a3be">I1ed00</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">CarContext#getHostInfo()</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I8977e05be0746c1160bcee0b28e245e6bd18cb26">I8977e</a>
+      )
+    </li>
+    <li>
+      Removed deprecated fields. (
+      <a href="https://android-review.googlesource.com/#/q/I671682a7b8071cb93c140e734af56a1d7fd84a12">I67168</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">SessionController</code>
+      and
+      <code translate="no" dir="ltr">ScreenController</code>
+      to expose constructors directly (
+      <a href="https://android-review.googlesource.com/#/q/Iabf22d3bc74e9f18db7e763a2ce6a93de8796cb5">Iabf22</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">PinSignInMethod.Builder</code>
+      and
+      <code translate="no" dir="ltr">ProviderSignInMethod.Builder</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I9f0cb418805ce421545f7ca9f4681e050ceb8d0d">I9f0cb</a>
+      )
+    </li>
+    <li>
+      Added 'setCarAppResult()' to enable using templated apps 'for result' in AAOS (
+      <a href="https://android-review.googlesource.com/#/q/I37741edda17f20e598774e8735a4b69cde6c593c">I37741</a>
+      )
+    </li>
+    <li>
+      Annotated
+      <code translate="no" dir="ltr">CarHardware</code>
+      interfaces with
+      <code translate="no" dir="ltr">@MainThread</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib2f851610b8e1d12b6b59345dff28e7218fb5585">Ib2f85</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">OnCarDataListener</code>
+      to
+      <code translate="no" dir="ltr">OnCarDataAvailableListener</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I518ca17f196c6e251eadb189edaec1ff3ce61aa1">I518ca</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">CarInfo</code>
+      ,
+      <code translate="no" dir="ltr">Speed</code>
+      ,
+      <code translate="no" dir="ltr">Mileage</code>
+      method names and javadoc. (
+      <a href="https://android-review.googlesource.com/#/q/I866723b47136e2bee9b5f7fb770672d2813f4a71">I86672</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">Toll</code>
+      to
+      <code translate="no" dir="ltr">TollCard</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3e7c8d02668bcbfc706f8794dfec334e350ae427">I3e7c8</a>
+      )
+    </li>
+    <li>
+      Removed deprecated
+      <code translate="no" dir="ltr">PinSignInMethod.getPin</code>
+      which is replaced by
+      <code translate="no" dir="ltr">PinSignInMethod.getPinCode</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I996ce02262fc36a6686de682432bdbf4af9c05bc">I996ce</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">OnInputCompletedListener</code>
+      (replaced with
+      <code translate="no" dir="ltr">InputCallback</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/Ib5be1385276c86a62f3460716a2cd423bd268577">Ib5be1</a>
+      )
+    </li>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">PinSignInMethod</code>
+      to take
+      <code translate="no" dir="ltr">CharSequence</code>
+      instead of
+      <code translate="no" dir="ltr">String</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I275d5db8128dac97c85663493118dc279d3fbae5">I275d5</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Javadoc fixes for car hardware. (
+      <a href="https://android-review.googlesource.com/#/q/I2abbccc5fa3c48cbcb1901d6c1c90ddd8bf0aaad">I2abbc</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      In the
+      <code translate="no" dir="ltr">SignInTemplate</code>
+      , using the
+      <code translate="no" dir="ltr">InputSignInMethod</code>
+      may result in a
+      <code translate="no" dir="ltr">NullPointerException</code>
+      in the car host. This will be addressed in the next release of the library. To workaround the issue, include this line in your app’s Proguard config:
+      <code translate="no" dir="ltr">-keep class androidx.car.app.model.signin.InputSignInMethod { *; }</code>
+    </li>
+  </ul>

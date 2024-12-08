@@ -1,0 +1,173 @@
+libraryId: tv
+groupId: androidx.tv
+version: 1.0.0-alpha04
+releaseDate: 2023-02-08
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha04" data-text="Version 1.0.0-alpha04" tabindex="-1">Version 1.0.0-alpha04</h3>
+  <p>February 8, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.tv:tv-foundation:1.0.0-alpha04</code>
+    and
+    <code translate="no" dir="ltr">androidx.tv:tv-material:1.0.0-alpha04</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4a2f5e696614339c1ac21f706c1a17c0285780e7..f7337eab774a6ce3b17367d5f31708564b66e677/tv">Version 1.0.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      In lazy rows, columns and grids, the pivot is overridden, if necessary, to ensure the entire item is brought into view. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/11d7e404b79e59d4109f67eda53b073d7abe52e0">11d7e40</a>
+      )
+    </li>
+    <li>
+      Add customization of tab colors in different states. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/21b2925c6ad3ac9261b0fe60ffc649b05a374034">21b2925</a>
+      )
+    </li>
+    <li>
+      Carousel now accepts custom animations for forward and backward manual scrolling. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/431494a73bfe09021e5b5574504739bdf16ccead">431494a</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Renaming
+      <code translate="no" dir="ltr">androidx.tv.material</code>
+      to
+      <code translate="no" dir="ltr">androidx.tv.material3</code>
+      and flattening package structure under
+      <code translate="no" dir="ltr">androidx.tv.material3</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6ca5204047db3df141739ef3f16799277f4c05f7">I6ca52</a>
+      )
+    </li>
+    <li>
+      Indicator within Carousel Indicator row is now a slot that can be customized by the developer. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/268af2a462ade6f07711bb465b6dcbffac468648">268af2a</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">focusableItem</code>
+      to
+      <code translate="no" dir="ltr">immersiveListItem</code>
+      . Users will have to manually add
+      <code translate="no" dir="ltr">focusable()</code>
+      or
+      <code translate="no" dir="ltr">clickable()</code>
+      modifier along with
+      <code translate="no" dir="ltr">immersiveListItem</code>
+      (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/5dd50789a7bbcba846f41e4265bd5411fb542b02">5dd5078</a>
+      )(
+      <a href="https://issuetracker.google.com/263061052">b/263061052</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">timeToDisplayMillis</code>
+      to
+      <code translate="no" dir="ltr">autoScrollDurationMillis</code>
+      in Carousel component. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/431494a73bfe09021e5b5574504739bdf16ccead">431494a</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">CarouselItem</code>
+      is now restricted to use within
+      <code translate="no" dir="ltr">Carousel</code>
+      's. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/431494a73bfe09021e5b5574504739bdf16ccead">431494a</a>
+      )
+    </li>
+    <li>
+      Carousel now accepts
+      <code translate="no" dir="ltr">ContentTransforms</code>
+      as the animation definition instead of
+      <code translate="no" dir="ltr">EnterTransition</code>
+      and
+      <code translate="no" dir="ltr">ExitTransitions</code>
+      . (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/431494a73bfe09021e5b5574504739bdf16ccead">431494a</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">PinnableContainer</code>
+      api propagated by lazy lists via a composition local which allows to pin current item. (
+      <a href="https://android-review.googlesource.com/#/q/Ib8881191a529c9d9dc5e886570650b1987763207">Ib8881</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/259274257">b/259274257</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/195049010">b/195049010</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">mainAxisItemSpacing</code>
+      property to
+      <code translate="no" dir="ltr">TvLazyListLayoutInfo</code>
+      and
+      <code translate="no" dir="ltr">TvLazyGridLayoutInfo</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I37765a04924b9e759255a48555c16ff2dc380aa4">I37765</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Update tab-row to ensure it handles tab-count of 0 or 1 correctly. (
+      <a href="https://android-review.googlesource.com/#/q/I440099087b7a9ecca05953b55b011b56029936f4">I44009</a>
+      ), (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/1c015259a0b6c679d0c57a7505b315f6ad473dfe">1c01525</a>
+      ), (
+      <a href="https://issuetracker.google.com/264018028">b/264018028</a>
+      )
+    </li>
+    <li>
+      Fix focus-search crash when
+      <code translate="no" dir="ltr">TvLazyColumn</code>
+      contains empty
+      <code translate="no" dir="ltr">TvLazyRow</code>
+      . (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/e11b4feddd2d157c47c70c78a19a590a480bfaa3">e11b4fe</a>
+      ), (
+      <a href="https://issuetracker.google.com/260299091">b/260299091</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">clickable</code>
+      modifier now works with
+      <code translate="no" dir="ltr">ImmersiveList</code>
+      . (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/5dd50789a7bbcba846f41e4265bd5411fb542b02">5dd5078</a>
+      ), (
+      <a href="https://issuetracker.google.com/263061052">b/263061052</a>
+      )
+    </li>
+    <li>
+      Back key is now handled and used to exit Featured Carousel. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/84c138c2ddb0e893241f96b892ce5586e7c108b8">84c138c</a>
+      )
+    </li>
+    <li>
+      Carousel does not lose focus on multiple fast key-presses. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/799489fbda48b1c28456669e8310220a7de29bb6">799489f</a>
+      )
+    </li>
+    <li>
+      Carousel does not lose focus on long key-presses. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/b2cf37e19ad2d33fa0f9507e4985c7f8b56a1629">b2cf37e</a>
+      )
+    </li>
+    <li>
+      Addressed crashes when carousel slide-count changes. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/b261247aa43ae317aed022705f66d614370fe311">b261247</a>
+      )
+    </li>
+  </ul>

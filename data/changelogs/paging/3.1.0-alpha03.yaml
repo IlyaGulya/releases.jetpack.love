@@ -1,0 +1,42 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.1.0-alpha03
+releaseDate: 2021-07-21
+#language=html
+changelogHtml: |
+  <h3 id="3.1.0-alpha03" data-text="Version 3.1.0-alpha03" tabindex="-1">Version 3.1.0-alpha03</h3>
+  <p>July 21, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.1.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/19ae3a88ff0824d615355b492cb56049e16991f2..97264aa4532db7f7db1ffb3f42f3a9204971dbfc/paging">Version 3.1.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <p>A third LoadResult return type LoadResult.Invalid is added to PagingSource. When a PagingSource.load returns LoadResult.Invalid, paging will discard the loaded data and invalidate the PagingSource. This return type is designed to handle potentially invalid or stale data that can be returned from the database or network.</p>
+
+      <p>For example, if the underlying database gets written into but the PagingSource does not invalidate in time, it may return inconsistent results if its implementation depends on the immutability of the backing dataset it loads from (e.g., LIMIT OFFSET style db implementations). In this scenario, it is recommended to check for invalidation after loading and to return LoadResult.Invalid, which causes Paging to discard any pending or future load requests to this PagingSource and invalidate it.</p>
+
+      <p>This return type is also supported by Paging2 API that leverages LivePagedList or RxPagedList. When using a PagingSource with Paging2's PagedList APIs, the PagedList is immediately detached, stopping further attempts to load data on this PagedList and triggers invalidation on the PagingSource.</p>
+
+      <p>
+        LoadResult is a sealed class, which means this is a source-incompatible change such that use cases directly using PagingSource.load results will have to handle LoadResult.Invalid at compile time. For example, Kotlin users leveraging exhaustive-when to check return type will have to add a check for Invalid type. (
+        <a href="https://android-review.googlesource.com/#/q/Id6bd3f2544f1ba97a95a0d590353438a95fedf2a">Id6bd3</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/191806126">b/191806126</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/192013267">b/192013267</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Invalidation callbacks added via PagingSource.registerInvalidatedCallback or DataSource.addInvalidatedCallback now automatically trigger if they were registered on a PagingSource / DataSource that was already invalid. This resolves a race condition which caused Paging to drop invalidation signals and get stuck when provided a Source which was already invalid during initial load. Additionally, invalidate callbacks are now properly removed after being triggered as they are guaranteed to be called at most once. (
+      <a href="https://android-review.googlesource.com/#/q/I27e699be2bfa3d6656d10c8c0c1f2ef9638f52fc">I27e69</a>
+      )
+    </li>
+    <li>Submitting the placeholder initial value (InitialPagedList) from a newly instantiated PagedList stream, e.g., LivePagedListBuilder or RxPagedListBuilder will no longer clear previously loaded data.</li>
+  </ul>

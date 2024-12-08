@@ -1,0 +1,107 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.1.0-alpha06
+releaseDate: 2019-04-03
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha06" data-text="Version  1.1.0-alpha06" tabindex="-1">Version 1.1.0-alpha06</h3>
+  <p>April 3, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.1.0-alpha06</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.1.0-alpha06</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.1.0-alpha06</code>
+    are released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4c34c957abe3a1cec4eb2342bb41a88c838999f7..ea6ef7b3e86be09ad7380887c0ddada0064cdee5/fragment">here</a>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      Exceptions thrown by FragmentManager now include the Fragment’s name in the message. (
+      <a href="https://issuetracker.google.com/issues/67759402">b/67759402</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">Fragment</code>
+      and
+      <code translate="no" dir="ltr">FragmentActivity</code>
+      now contain a second constructor that takes a
+      <code translate="no" dir="ltr">@LayoutRes int</code>
+      , which replaces the previous behavior of annotating your class with
+      <code translate="no" dir="ltr">@ContentView</code>
+      . This approach works in both app and library modules. (
+      <a href="https://issuetracker.google.com/issues/128352521">b/128352521</a>
+      )
+    </li>
+    <li>
+      FragmentActivity’s
+      <code translate="no" dir="ltr">onActivityResult()</code>
+      is now properly marked as
+      <code translate="no" dir="ltr">@CallSuper</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/127971684">b/127971684</a>
+      )
+    </li>
+    <li>
+      The FragmentFactory’s
+      <code translate="no" dir="ltr">instantiate</code>
+      method that takes an argument Bundle has been deprecated and apps should use the new
+      <code translate="no" dir="ltr">instantiate</code>
+      overload that does not take a Bundle. (
+      <a href="https://issuetracker.google.com/issues/128836103">b/128836103</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FragmentScenario</code>
+      methods are now properly annotated with
+      <code translate="no" dir="ltr">@StyleRes</code>
+      . (
+      <a href="https://android-review.googlesource.com/924193">aosp/924193</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FragmentTabHost</code>
+      has been deprecated. (
+      <a href="https://issuetracker.google.com/issues/127971835">b/127971835</a>
+      )
+    </li>
+    <li>
+      FragmentActivity’s
+      <code translate="no" dir="ltr">getThemedContext()</code>
+      has been removed. (
+      <a href="https://android-review.googlesource.com/934078">aosp/934078</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a regression in 1.1.0-alpha05 that caused the incoming Fragment to flash on the screen. (
+      <a href="https://issuetracker.google.com/issues/129405432">b/129405432</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where the primary navigation fragment would be lost after a popBackStack+replace+popBackStack series of operations. (
+      <a href="https://issuetracker.google.com/issues/124332597">b/124332597</a>
+      )
+    </li>
+    <li>
+      Fixed an issue when using
+      <code translate="no" dir="ltr">@ContentView</code>
+      constructors on your Activity when restoring Fragment state. (
+      <a href="https://issuetracker.google.com/issues/127313094">b/127313094</a>
+      )
+    </li>
+    <li>
+      Corrected the logic of
+      <code translate="no" dir="ltr">setTargetFragment()</code>
+      when replacing an existing target Fragment with a Fragment not yet attached to the FragmentManager. (
+      <a href="https://android-review.googlesource.com/932156/">aosp/932156</a>
+      )
+    </li>
+  </ul>

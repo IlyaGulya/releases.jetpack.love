@@ -1,0 +1,67 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.4.0-alpha10
+releaseDate: 2021-09-29
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0-alpha10" data-text="Version 2.4.0-alpha10" tabindex="-1">Version 2.4.0-alpha10</h3>
+  <p>September 29, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.4.0-alpha10</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1a3dcfb231517d6104969f17063fcc6c97ba6eeb..1f6bc4d47b7be46a5af151ed726e84db0a1cf9f9/navigation">Version 2.4.0-alpha10 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      NavController now offers the ability to retrieve a list of all visible
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      instances via the
+      <code translate="no" dir="ltr">visibleEntries</code>
+      StateFlow (
+      <a href="https://android-review.googlesource.com/#/q/Ia964e808d2e2a2c3d3e60eea7713ce86fec7ee0d">Ia964e</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">rememberNavController()</code>
+      now takes a optional set of
+      <code translate="no" dir="ltr">Navigator</code>
+      instances that will be added to the returned
+      <code translate="no" dir="ltr">NavController</code>
+      to better support optional Navigators such as those from
+      <a href="https://google.github.io/accompanist/navigation-material/">Accompanist Navigation Material</a>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4619e6c4b47fc76c45a64c68085519fd8d18f699">I4619e</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Dynamic Navigation will no longer crash when the Activity is recreated. (
+      <a href="https://android-review.googlesource.com/#/q/Ifa6a3e2f563bbe181cb1fdfb8460217e77bb9338">Ifa6a3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/197942869">b/197942869</a>
+      )
+    </li>
+    <li>
+      Fixed an issue with the system back button that occurs only after popping back to a composable destination that contains a
+      <code translate="no" dir="ltr">NavHost</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/3ed14822dae6a7c72b8a070992800e0ebc7b5f39">3ed148</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/195668143">b/195668143</a>
+      )
+    </li>
+    <li>
+      SafeArgs now generates the arguments for
+      <code translate="no" dir="ltr">fromBundle()</code>
+      and
+      <code translate="no" dir="ltr">fromSavedStateHandle()</code>
+      in the proper parameter order. (
+      <a href="https://android-review.googlesource.com/#/q/I824a871363ff0aaf5fa5ef608f103582e7abfc61">I824a8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/200059831">b/200059831</a>
+      )
+    </li>
+  </ul>

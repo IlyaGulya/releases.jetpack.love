@@ -1,0 +1,224 @@
+libraryId: media3
+groupId: androidx.media3
+version: 1.2.1
+releaseDate: 2024-01-09
+#language=html
+changelogHtml: |
+  <h3 id="version_121_2" data-text="Version 1.2.1" tabindex="-1">Version 1.2.1</h3>
+  <p>January 9, 2024</p>
+  <ul>
+    <li>
+      ExoPlayer:
+      <ul>
+        <li>
+          Fix issue where manual seeks outside of the
+          <code translate="no" dir="ltr">LiveConfiguration.min/maxOffset</code>
+          range keep adjusting the offset back to
+          <code translate="no" dir="ltr">min/maxOffset</code>
+          .
+        </li>
+        <li>
+          Fix issue that OPUS and VORBIS channel layouts are wrong for 3, 5, 6, 7 and 8 channels (
+          <a href="https://github.com/google/ExoPlayer/issues/8396">#8396</a>
+          ).
+        </li>
+        <li>
+          Fix issue where track selections after seek to zero in a live stream incorrectly let the stream start at its default position (
+          <a href="https://github.com/google/ExoPlayer/issues/9347">#9347</a>
+          ).
+        </li>
+        <li>
+          Fix the issue where new instances of
+          <code translate="no" dir="ltr">CmcdData.Factory</code>
+          were receiving negative values for
+          <code translate="no" dir="ltr">bufferedDurationUs</code>
+          from chunk sources, resulting in an
+          <code translate="no" dir="ltr">IllegalArgumentException</code>
+          (
+          <a href="https://github.com/androidx/media/issues/888">#888</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Transformer:
+      <ul>
+        <li>Work around an issue where the encoder would throw at configuration time due to setting a high operating rate.</li>
+      </ul>
+    </li>
+    <li>
+      Extractors:
+      <ul>
+        <li>
+          Mark secondary (unplayable) HEVC tracks in JPEG motion photos as
+          <code translate="no" dir="ltr">ROLE_FLAG_ALTERNATE</code>
+          to prevent them being automatically selected for playback because of their higher resolution.
+        </li>
+        <li>
+          Fix wrong keyframe detection for TS H264 streams (
+          <a href="https://github.com/androidx/media/pull/864">#864</a>
+          ).
+        </li>
+        <li>
+          Fix duration estimation of TS streams that are longer than 47721 seconds (
+          <a href="https://github.com/androidx/media/issues/855">#855</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Audio:
+      <ul>
+        <li>
+          Fix handling of EOS for
+          <code translate="no" dir="ltr">SilenceSkippingAudioProcessor</code>
+          when called multiple times (
+          <a href="https://github.com/androidx/media/issues/712">#712</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Video:
+      <ul>
+        <li>
+          Add workaround for a device issue on Galaxy Tab S7 FE, Chromecast with Google TV, and Lenovo M10 FHD Plus that causes 60fps AVC streams to be marked as unsupported (
+          <a href="https://github.com/androidx/media/issues/693">#693</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Metadata:
+      <ul>
+        <li>
+          Fix bug where
+          <code translate="no" dir="ltr">MediaMetadata</code>
+          was only populated from Vorbis comments with upper-case keys (
+          <a href="https://github.com/androidx/media/issues/876">#876</a>
+          ).
+        </li>
+        <li>
+          Catch
+          <code translate="no" dir="ltr">OutOfMemoryError</code>
+          when parsing very large ID3 frames, meaning playback can continue without the tag info instead of playback failing completely.
+        </li>
+      </ul>
+    </li>
+    <li>
+      DRM:
+      <ul>
+        <li>
+          Extend workaround for spurious ClearKey
+          <code translate="no" dir="ltr">https://default.url</code>
+          license URL to API 33+ (previously the workaround only applied on API 33 exactly) (
+          <a href="https://github.com/androidx/media/pull/837">#837</a>
+          ).
+        </li>
+        <li>
+          Fix
+          <code translate="no" dir="ltr">ERROR_DRM_SESSION_NOT_OPENED</code>
+          when switching from encrypted to clear content without a surface attached to the player. The error was due to incorrectly using a secure decoder to play the clear content.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Session:
+      <ul>
+        <li>
+          Put the custom keys and values in
+          <code translate="no" dir="ltr">MediaMetadataCompat</code>
+          to
+          <code translate="no" dir="ltr">MediaMetadata.extras</code>
+          and
+          <code translate="no" dir="ltr">MediaMetadata.extras</code>
+          to
+          <code translate="no" dir="ltr">MediaMetadataCompat</code>
+          (
+          <a href="https://github.com/androidx/media/issues/756">#756</a>
+          ,
+          <a href="https://github.com/androidx/media/issues/802">#802</a>
+          ).
+        </li>
+        <li>
+          Fix broadcasting
+          <code translate="no" dir="ltr">notifyChildrenChanged</code>
+          for legacy controllers (
+          <a href="https://github.com/androidx/media/issues/644">#644</a>
+          ).
+        </li>
+        <li>
+          Fix a bug where setting a negative time for a disabled
+          <code translate="no" dir="ltr">setWhen</code>
+          timer of the notification caused a crash on some devices (
+          <a href="https://github.com/androidx/media/issues/903">#903</a>
+          ).
+        </li>
+        <li>
+          Fix
+          <code translate="no" dir="ltr">IllegalStateException</code>
+          when the media notification controller hasn't completed connecting when the first notification update is requested (
+          <a href="https://github.com/androidx/media/issues/917">#917</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      UI:
+      <ul>
+        <li>
+          Fix issue where forward and rewind buttons are not visible when used with Material Design in a BottomSheetDialogFragment (
+          <a href="https://github.com/androidx/media/issues/511">#511</a>
+          ).
+        </li>
+        <li>
+          Fix issue where the numbers in the fast forward button of the
+          <code translate="no" dir="ltr">PlayerControlView</code>
+          were misaligned (
+          <a href="https://github.com/androidx/media/issues/547">#547</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      DASH Extension:
+      <ul>
+        <li>
+          Parse "f800" as channel count of 5 for Dolby in DASH manifest (
+          <a href="https://github.com/androidx/media/issues/688">#688</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Decoder Extensions (FFmpeg, VP9, AV1, MIDI, etc.):
+      <ul>
+        <li>
+          MIDI: Fix issue where seeking forward skips the Program Change events (
+          <a href="https://github.com/androidx/media/issues/704">#704</a>
+          ).
+        </li>
+        <li>
+          Migrate to FFmpeg 6.0 and update supported NDK to
+          <code translate="no" dir="ltr">r26b</code>
+          (
+          <a href="https://github.com/androidx/media/pull/707">#707</a>
+          ,
+          <a href="https://github.com/androidx/media/pull/867">#867</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Cast Extension:
+      <ul>
+        <li>
+          Sanitize creation of a
+          <code translate="no" dir="ltr">Timeline</code>
+          to not crash the app when loading media fails on the cast device (
+          <a href="https://github.com/androidx/media/issues/708">#708</a>
+          ).
+        </li>
+      </ul>
+    </li>
+  </ul>

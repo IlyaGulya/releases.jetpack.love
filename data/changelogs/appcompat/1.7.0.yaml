@@ -1,0 +1,65 @@
+libraryId: appcompat
+groupId: androidx.appcompat
+version: 1.7.0
+releaseDate: 2024-05-29
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0" data-text="Version 1.7.0" tabindex="-1">Version 1.7.0</h3>
+  <p>May 29, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.appcompat:appcompat:1.7.0</code>
+    and
+    <code translate="no" dir="ltr">androidx.appcompat:appcompat-resources:1.7.0</code>
+    are released. Version 1.7.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6424b9a28d12f04e043d5257a3e821c152b0187d..31e0791ed498d528e1ee51f54e0c7cd334729997/appcompat">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.6.0</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">AppCompatDialog</code>
+      now correctly sets the
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      ,
+      <code translate="no" dir="ltr">SavedStateRegistryOwner</code>
+      , and
+      <code translate="no" dir="ltr">OnBackPressedDispatcherOwner</code>
+      on the dialog's decor view via the
+      <code translate="no" dir="ltr">ViewTree</code>
+      APIs, fixing issues when hosting a
+      <code translate="no" dir="ltr">ComposeView</code>
+      within an
+      <code translate="no" dir="ltr">AppCompatDialog</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AppCompatActivity</code>
+      now sets the
+      <code translate="no" dir="ltr">ViewTreeOnBackPressedDispatcherOwner</code>
+      so that it is possible to retrieve the dispatcher from the view.
+    </li>
+    <li>
+      Significantly improved the performance of
+      <code translate="no" dir="ltr">SupportMenuInflater</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Locale.getDefault()</code>
+      now returns the system locale after a cold start.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LinearLayoutCompat</code>
+      now preserves margin layout params.
+    </li>
+  </ul>
+  <p><strong>Dependency Updates</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">AppCompat</code>
+      now depends on Activity 1.7.0.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AppCompat</code>
+      now depends on Fragment version 1.5.4.
+    </li>
+  </ul>

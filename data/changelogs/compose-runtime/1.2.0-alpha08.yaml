@@ -1,0 +1,48 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.2.0-alpha08
+releaseDate: 2022-04-20
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha08" data-text="Version 1.2.0-alpha08" tabindex="-1">Version 1.2.0-alpha08</h3>
+  <p>April 20, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.2.0-alpha08</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7ca43e00a517eaeeedc0a21f482b17f06e3d2181..41a4e31408842caa2b58db5e4ee6ec708464425f/compose/runtime">Version 1.2.0-alpha08 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">TracingInProgress</code>
+      to the
+      <code translate="no" dir="ltr">CompositionTracer</code>
+      interface. (
+      <a href="https://android-review.googlesource.com/#/q/Ic6f12d84c8622c7a796d44cf3eb04b0e077efc97">Ic6f12</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">recomposeScopeIdentity</code>
+      to Composer (
+      <a href="https://android-review.googlesource.com/#/q/I0c8733fc97baaec4990e85f3fcbf8904ca732eaa">I0c873</a>
+      )
+    </li>
+    <li>
+      Restricted tracing APIs (Composer.setTracer) to
+      <code translate="no" dir="ltr">OptIn(InternalComposeTracingApi)</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I9187fb92741e90a78945ebb078686b53d103d19f">I9187f</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ResuableContentHost</code>
+      which allows better control over the lifetime of state created for reusable content. For example, if a sub-composition is temporarily not in use then the content can be deactivated causing all the remembered state in the composition to be forgotten triggering, for example, all disposable effects. (
+      <a href="https://android-review.googlesource.com/#/q/I2c0f297104d425e2bf673debccfe7a1729761593">I2c0f2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/220322704">b/220322704</a>
+      )
+    </li>
+  </ul>

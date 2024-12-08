@@ -1,0 +1,61 @@
+libraryId: graphics
+groupId: androidx.graphics
+version: 1.0.0-alpha04
+releaseDate: 2023-06-07
+#language=html
+changelogHtml: |
+  <h3 id="graphics-core-1.0.0-alpha04" data-text="Version 1.0.0-alpha04" tabindex="-1">Version 1.0.0-alpha04</h3>
+  <p>June 7, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.graphics:graphics-core:1.0.0-alpha04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5e7d256f82fbafb6d059ab7b18fddd87c7531553..73f902dee011bfe400d8a0330bfd8d4bb632065f/graphics/graphics-core">Version 1.0.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">CanvasFrontBufferedRenderer</code>
+      to support low latency graphics leveraging the
+      <code translate="no" dir="ltr">android.graphics.Canvas</code>
+      API alongside the existing OpenGL implementation
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">SurfaceControlCompat.Transaction#setBuffer</code>
+      API to allow for nullable
+      <code translate="no" dir="ltr">HardwareBuffer</code>
+      instances to mirror the corresponding platform API (
+      <a href="https://android-review.googlesource.com/#/q/I173d7f95eeafa68e5d5166f92314ca40b4e06b4b">I173d7</a>
+      )
+    </li>
+    <li>
+      Rename methods referring to Double Buffered rendering to Multi Buffered instead as the backing swapchain may contain more than 2 buffers. (
+      <a href="https://android-review.googlesource.com/#/q/I830d7148fd1a85c9ba375a93d3efc1edbc926ee1">I830d7</a>
+      )
+    </li>
+    <li>
+      Create
+      <code translate="no" dir="ltr">CanvasFrontBufferedRenderer</code>
+      API to enable 3ps to leverage a front buffered rendering system using the Canvas API. (
+      <a href="https://android-review.googlesource.com/#/q/Ibfc29911acb314b12611687012983031c9dd7165">Ibfc29</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed issue where
+      <code translate="no" dir="ltr">GLFrontBufferedRenderer</code>
+      would not render content after resuming the corresponding Activity.
+    </li>
+    <li>Fixed issue where front buffered content would be cleared prematurely.</li>
+    <li>
+      Fixed issue where
+      <code translate="no" dir="ltr">SurfaceHolder.Callbacks</code>
+      would not be removed after low latency graphics APIs were released.
+    </li>
+  </ul>

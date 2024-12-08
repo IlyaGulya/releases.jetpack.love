@@ -1,0 +1,197 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.0.0-alpha04
+releaseDate: 2020-10-01
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha04" data-text="Version 1.0.0-alpha04" tabindex="-1">Version 1.0.0-alpha04</h3>
+  <p>October 1, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation:1.0.0-alpha04</code>
+    ,
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-layout:1.0.0-alpha04</code>
+    , and
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-text:1.0.0-alpha04</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/18a5639262f8504db530176550e338a5d0e2e044..f5a2c7477391539d8bc9f65a8f0db1e8a7bf2cf5/compose/foundation">Version 1.0.0-alpha04 contains these commits.</a>
+  </p>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>Compose Version 1.0.0-alpha04 is only compatible with Android Studio 4.2 Canary 13 and later.</span>
+  </aside>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Stack was renamed to Box. The previously existing foundation.Box will be deprecated in favor of the new Box in compose.foundation.layout. The behavior of the new Box is to stack children one on top of another when it has multiple children - this is different from the previous Box, which was behaving similar to a Column. (
+      <a href="https://android-review.googlesource.com/#/q/I94893bca003d7826c6a5b3c05ac3878d2f6bf953">I94893</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/167680279">b/167680279</a>
+      )
+    </li>
+    <li>
+      Box decoration parameters have been deprecated. If you want to have decorations/padding on your box, use Modifiers instead (Modifier.background, Modifier.border, Modifier.padding) (
+      <a href="https://android-review.googlesource.com/#/q/Ibae92e99d0dd8984e666ece6cd6ec6f26f6ef672">Ibae92</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/167680279">b/167680279</a>
+      )
+    </li>
+    <li>
+      Add a new LazyListState class. This allows for observation and control of the scroll position of LazyRow and LazyColumn components. Instances can be created using rememberLazyListState() and passed into the state parameter of the component. Currently, the first visible item and offsets can be observed in this initial version. (
+      <a href="https://android-review.googlesource.com/#/q/Ic7cb72444d41ccb6add635ba0873bb0e9222cf15">Ic7cb7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/159307669">b/159307669</a>
+      )
+    </li>
+    <li>
+      Lazy list position and scroll offset are now saved and restored across Activity recreation (
+      <a href="https://android-review.googlesource.com/#/q/Ie045f8264ad032fd46934306d4cf603db81b23a2">Ie045f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/166589058">b/166589058</a>
+      )
+    </li>
+    <li>
+      Add long click semantics action (
+      <a href="https://android-review.googlesource.com/#/q/I6281b383328d549b30b3ef915e717abbbb28ddaa">I6281b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/156468846">b/156468846</a>
+      )
+    </li>
+    <li>
+      MutatorMutex utility added for keeping a single mutator of shared state over time and cancelling conflicting mutators by priority (
+      <a href="https://android-review.googlesource.com/#/q/I3f9751b239aba5b9769aa821be08e88909aca90e">I3f975</a>
+      )
+    </li>
+    <li>
+      Annotated rootAnimationClockFactory, transitionsEnabled, blinkingCursorEnabled and textInputServiceFactory with @VisibleForTesting, make them internal API and hide their kdoc (
+      <a href="https://android-review.googlesource.com/#/q/I554ebefac18b216d51e387e5fd1c3a735fde9500">I554eb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/168308412">b/168308412</a>
+      )
+    </li>
+    <li>
+      Removed inlineContent parameter from Text with String input. It won't be used because inlineContent must work with AnnotatedString. (
+      <a href="https://android-review.googlesource.com/#/q/Ief40369f380fe1d5e970b42358e5bb002eeb8ef4">Ief403</a>
+      )
+    </li>
+    <li>
+      The deprecated custom Arrangement APIs were removed. (
+      <a href="https://android-review.googlesource.com/#/q/Ic576d1053ebfe238d0805b4e8f0ec6a741e04645">Ic576d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/168297922">b/168297922</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/168297923">b/168297923</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">unbounded</code>
+      parameter was added to wrapContentSize modifiers, which enables measuring the layout element with infinite max constraints. (
+      <a href="https://android-review.googlesource.com/#/q/I7795170623538cd5dd2372ce0fd52bc6d0368cbd">I77951</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/158559319">b/158559319</a>
+      )
+    </li>
+    <li>
+      We prevented static imports of contents of layout scopes (e.g. alignWithSiblings in RowScope). The explicit scope alternative should be used instead:
+      <code translate="no" dir="ltr">with(RowScope) { Modifier.alignWithSiblings(FirstBaseline) }</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I216be6984d82e0a41432ac5b89f7d6240eef1b9d">I216be</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/166760797">b/166760797</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Updated many Graphics APIs
+      <ul>
+        <li>Updated scale and rotation transformation APIs to consume a single Offset parameter to represent the pivot coordinate instead of separate float parameters for the x/y coordinates in DrawScope and DrawTransform</li>
+        <li>Removed Rect.expandToInclude and Rect.join methods</li>
+        <li>Updated Radius documentation to say oval in addition to elliptical</li>
+        <li>Added documentation to indicate the public constructor for the inline Radius class is not to be called directly but instead Radius objects should be instantiated through their function constructors</li>
+        <li>Removed RoundRect APIs to query topRight, bottomRight, bottomCenter, etc.</li>
+        <li>Deprecated Rect.shift in favor of Rect.translate</li>
+        <li>Removed RoundRect.grow and Rect.shrink APIs</li>
+        <li>Renamed RoundRect.outerRect to Rect.boundingRect</li>
+        <li>Removed RoundRect.middleRect/tallMiddleRect/wideMiddleRect and Rect.isStadium methods</li>
+        <li>Renamed RoundRect.longestSide to RoundRect.maxDimension</li>
+        <li>Renamed RoundRect.shortestSide to RoundRect.minDimension</li>
+        <li>Changed RoundRect.center to be a property instead of a function</li>
+        <li>Updated RoundRect constructor to consume Radius properties instead of individual parameters for x/y radius values</li>
+        <li>Removed Size APIs that assumed it was a Rectangle with origin at 0,0</li>
+        <li>Added a destructing API to Radius</li>
+        <li>Migrated various RoundRect extension functions to be properties instead</li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I8f5c738d1629b2cabd1b6e9fc8e8241dd06cfe2c">I8f5c7</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/168762961">b/168762961</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Performance optimizations for LazyColumnFor/LazyRowFor scrolling by not doing unnecessary recompositions during every scroll (
+      <a href="https://android-review.googlesource.com/#/q/I64f6568fd1193a6d28e3e2e2205b977f4a5f116b">I64f65</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/168293643">b/168293643</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/167972292">b/167972292</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/165028371">b/165028371</a>
+      )
+    </li>
+    <li>
+      Fixed crash in LazyColumnFor/LazyRowFor after scrolling and then changing items and implemented auto scrolling up when the previously visible item was removed so we don't display empty gaps in the end anymore (
+      <a href="https://android-review.googlesource.com/#/q/I220abfb686295685653eb28019318ea671eb6755">I220ab</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161480164">b/161480164</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/167855468">b/167855468</a>
+      )
+    </li>
+    <li>
+      Nesting scrollable in the same direction containers like ScrollableContainer and LazyColumnFor is not allowed anymore. It was never supported and was breaking the fling and all the laziness of composing the items of LazyColumnFor (
+      <a href="https://android-review.googlesource.com/#/q/I6e1011b2fce2b5ecebda26987a28c6feb1ef6cf7">I6e101</a>
+      )
+    </li>
+    <li>
+      Updated many Graphics APIs
+      <ul>
+        <li>Updated DrawScope APIs with scoped transformation methods to indicate that the transformation is only applied within the callback and removed after the callback is invoked</li>
+        <li>Updated clipPath documentation to refer to Path instead of rounded rectangle</li>
+        <li>Fixed spacing in documentation for right parameter in clipPath</li>
+        <li>Renamed DrawScope.drawCanvas to drawIntoCanvas and removed size parameter</li>
+        <li>Renamed dx/dy parameters in inset method to horizontal and vertical</li>
+        <li>Added inset overload that provides the same inset value to all 4 bounds</li>
+        <li>Removed documentation on inset method indicating that inset would be applied to all 4 sides</li>
+        <li>Updated documentation for Rect class</li>
+        <li>Updated comments on Rect parameters to match kdoc style</li>
+        <li>Removed Rect.join and Rect.expandToInclude</li>
+        <li>Created overload for Rect.translate(offset) and deprecated Rect.shift</li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/If086a1610e1bff12482897852d45cba075dcb4a1">If086a</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/167737376">b/167737376</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      add AccessibilityScrollState to semantics properties. (
+      <a href="https://android-review.googlesource.com/#/q/Ifeda983f0f6b8a2a92dea82c1a594fa5607f7cc3">Ifeda9</a>
+      )
+    </li>
+    <li>
+      Make TextRange inline to avoid object creation. (
+      <a href="https://android-review.googlesource.com/#/q/Id034bee391b277905590a94dbb7198739ad1e848">Id034b</a>
+      )
+    </li>
+    <li>
+      ParagraphConstraints is removed. Width is directly passed to Paragraph now. (
+      <a href="https://android-review.googlesource.com/#/q/Ica712c3f10be8ab7e684c108b2339119f50eafb7">Ica712</a>
+      )
+    </li>
+  </ul>

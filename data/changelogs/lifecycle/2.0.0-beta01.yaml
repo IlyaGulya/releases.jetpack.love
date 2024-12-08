@@ -1,0 +1,45 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.0.0-beta01
+releaseDate: 2018-07-02
+#language=html
+changelogHtml: |
+  <h3 id="2.0.0-beta01" data-text="Version 2.0.0-beta01" tabindex="-1">Version 2.0.0-beta01</h3>
+  <p>July 2, 2018</p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed LifecycleObserver proguard rule to keep only implementations, not subinterfaces
+      <a href="https://issuetracker.google.com/issues/71389427">b/71389427</a>
+    </li>
+    <li>Fixed ViewModel proguard rules to allow obfuscation and shrinking</li>
+  </ul>
+  <h2 id="pre-androidx_versions_2" data-text="Pre-AndroidX Versions" tabindex="-1">Pre-AndroidX Versions</h2>
+  <p>For the pre-AndroidX versions of Lifecycle that follow, include these dependencies:</p>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Carbon"><code translate="no" dir="ltr"><span class="devsite-syntax-nx">dependencies</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nx">def</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nx">lifecycle_version</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"1.1.1"</span>
+
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// ViewModel and LiveData</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nx">implementation</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"android.arch.lifecycle:extensions:$lifecycle_version"</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// alternatively - just ViewModel</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nx">implementation</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"android.arch.lifecycle:viewmodel:$lifecycle_version"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-c1">// For Kotlin use viewmodel-ktx</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// alternatively - just LiveData</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nx">implementation</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"android.arch.lifecycle:livedata:$lifecycle_version"</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// alternatively - Lifecycles only (no ViewModel or LiveData).</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">//     Support library depends on this lightweight import</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nx">implementation</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"android.arch.lifecycle:runtime:$lifecycle_version"</span>
+
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nx">annotationProcessor</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"android.arch.lifecycle:compiler:$lifecycle_version"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-c1">// For Kotlin use kapt instead of annotationProcessor</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// alternately - if using Java8, use the following instead of compiler</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nx">implementation</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"android.arch.lifecycle:common-java8:$lifecycle_version"</span>
+
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// optional - ReactiveStreams support for LiveData</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nx">implementation</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"android.arch.lifecycle:reactivestreams:$lifecycle_version"</span>
+
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// optional - Test helpers for LiveData</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nx">testImplementation</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"android.arch.core:core-testing:$lifecycle_version"</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+  </devsite-code>

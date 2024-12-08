@@ -1,0 +1,77 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.1.0-beta04
+releaseDate: 2022-02-23
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-beta04" data-text="Version 1.1.0-beta04" tabindex="-1">Version 1.1.0-beta04</h3>
+  <p>February 23, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.1.0-beta04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/db2ecbef194afcddfaede22e1d884a8959a9277c..39a48a4e0a2478359e60946680f7f77a4680f6df/benchmark">Version 1.1.0-beta04 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <p>
+        Fix missing metrics on Android 10, and
+        <code translate="no" dir="ltr">NoSuchElementException</code>
+        caused by process names not being captured correctly in traces. (
+        <a href="https://android-review.googlesource.com/#/q/Ib4c173655d87ff8f5a8dd9959e6639fbb66e0ecd">Ib4c17</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/218668335">b/218668335</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Use
+        <code translate="no" dir="ltr">PowerManager</code>
+        for thermal throttling detection on Q (API 29) and higher. This significantly reduces frequency of false positives in thermal throttling detection (benchmark retry after 90 second cooldown), and speeds up benchmarks significantly on user builds. It also provides throttle detection even when clocks are locked (if they're locked too high for the device's physical environment). (
+        <a href="https://android-review.googlesource.com/#/q/I9c02781c91bb1f646f98d1c84f44fa16c6e5e7ba">I9c027</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/217497678">b/217497678</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/131755853">b/131755853</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Filter simpleperf sampled profiling to
+        <code translate="no" dir="ltr">measureRepeated</code>
+        thread only to simplify inspection (
+        <a href="https://android-review.googlesource.com/#/q/Ic3e12bb15660e78b63d23f070c2c5e676e744701">Ic3e12</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/217501939">b/217501939</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Support metrics from named UI subprocesses in multi-process apps (
+        <a href="https://android-review.googlesource.com/#/q/Ice6c0360953f464641774b0a1056af7015ecf8de">Ice6c0</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/215988434">b/215988434</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Filter Baseline Profile rules to target Android 9 (SDK 28).
+        <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1980331">aosp/1980331</a>
+        <a href="https://issuetracker.google.com/issues/216508418">b/216508418</a>
+      </p>
+    </li>
+    <li>
+      <p>
+        Skip Profile Installation when using
+        <code translate="no" dir="ltr">Compilation.None()</code>
+        . Additionally, report warnings when the app is using an older version of
+        <code translate="no" dir="ltr">androidx.profileinstaller</code>
+        and Android Gradle Plugin.
+        <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1977029">aosp/1977029</a>
+      </p>
+    </li>
+  </ul>

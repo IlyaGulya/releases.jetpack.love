@@ -1,0 +1,133 @@
+libraryId: savedstate
+groupId: androidx.savedstate
+version: 1.3.0-alpha05
+releaseDate: 2024-11-13
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha05" data-text="Version 1.3.0-alpha05" tabindex="-1">Version 1.3.0-alpha05</h3>
+  <p>November 13, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.savedstate:savedstate-*:1.3.0-alpha05</code>
+    is released. Version 1.3.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ccd90a76bd7c4acf4f4f01eca76350e383bc441e..0aac1878823c58d5a7b1eee060cc79d1b38b4996/savedstate">these commits</a>
+    .
+  </p>
+  <p><strong>KotlinX Serialization Support</strong></p>
+  <ul>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">SavedState</code>
+        now includes KotlinX Serialization support. You can convert a class annotated with
+        <code translate="no" dir="ltr">@Serializable</code>
+        to a
+        <code translate="no" dir="ltr">SavedState</code>
+        using the methods
+        <code translate="no" dir="ltr">encodeToSavedState</code>
+        and
+        <code translate="no" dir="ltr">decodeFromSavedState</code>
+        . The returned
+        <code translate="no" dir="ltr">SavedState</code>
+        is a regular
+        <code translate="no" dir="ltr">Bundle</code>
+        on Android and can be used by any API that accepts a
+        <code translate="no" dir="ltr">Bundle</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/I6f59faffaa3777bf56132a67f41b867d7a9663e5">I6f59f</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/374102924">b/374102924</a>
+        )
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@Serializable</span>
+  <span class="devsite-syntax-kd">data</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">Person</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">firstName</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">String</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">lastName</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">String</span><span class="devsite-syntax-p">)</span>
+
+  <span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">main</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">person</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Person</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"John"</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Doe"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">encoded</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">SavedState</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">encodeToSavedState</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">person</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">decoded</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Person</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">decodeFromSavedState</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">encoded</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        We also have included
+        <code translate="no" dir="ltr">saved</code>
+        , a lazy property delegate, to make it easy to store
+        <code translate="no" dir="ltr">@Serializable</code>
+        classes in a
+        <code translate="no" dir="ltr">SavedStateRegistryOwner</code>
+        (e.g.,
+        <code translate="no" dir="ltr">ComponentActivity</code>
+        ,
+        <code translate="no" dir="ltr">Fragment</code>
+        , etc.) and have those classes automatically be restored across process death and recreation. Please note the
+        <code translate="no" dir="ltr">saved</code>
+        delegate is lazy and will not call the
+        <code translate="no" dir="ltr">init</code>
+        lambda or save anything into the
+        <code translate="no" dir="ltr">SavedStateRegistry</code>
+        until it is accessed. (
+        <a href="https://android-review.googlesource.com/#/q/I667391f94de531e5535435b3b05bdef8bde5f61f">I66739</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/376027806">b/376027806</a>
+        )
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@Serializable</span>
+  <span class="devsite-syntax-kd">data</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">Person</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">firstName</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">String</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">lastName</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">String</span><span class="devsite-syntax-p">)</span>
+
+  <span class="devsite-syntax-kd">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">MyActivity</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">ComponentActivity</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kd">var</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">person</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">by</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">saved</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Person</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"John"</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Doe"</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kd">override</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">onCreate</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">savedInstanceState</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Bundle?)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-k">super</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">onCreate</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">savedInstanceState</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-k">this</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">person</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Person</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"Jane"</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Doe"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        There is a similar
+        <code translate="no" dir="ltr">saved</code>
+        property delegate for
+        <code translate="no" dir="ltr">SavedStateHandle</code>
+        added in
+        <a href="/jetpack/androidx/releases/lifecycle#2.9.0-alpha07">
+          Lifecycle
+          <code translate="no" dir="ltr">2.9.0-alpha07</code>
+        </a>
+        .
+      </p>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">toMap</code>
+      to
+      <code translate="no" dir="ltr">SavedState</code>
+      , allowing any
+      <code translate="no" dir="ltr">SavedState</code>
+      to be converted to a regular
+      <code translate="no" dir="ltr">Map</code>
+      (shallow copy). (
+      <a href="https://android-review.googlesource.com/#/q/I487b901051ad68a3e27f9a5550fd7336734abbb1">I487b9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/334076622">b/334076622</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SavedState</code>
+      KMP now supports arrays. (
+      <a href="https://android-review.googlesource.com/#/q/Ic0552cac5744d8422524d8219438a6571f70c476">Ic0552</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/334076622">b/334076622</a>
+      )
+    </li>
+  </ul>

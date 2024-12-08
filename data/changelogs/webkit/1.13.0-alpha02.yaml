@@ -1,0 +1,72 @@
+libraryId: webkit
+groupId: androidx.webkit
+version: 1.13.0-alpha02
+releaseDate: 2024-12-11
+#language=html
+changelogHtml: |
+  <h3 id="1.13.0-alpha02" data-text="Version 1.13.0-alpha02" tabindex="-1">Version 1.13.0-alpha02</h3>
+  <p>December 11, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.webkit:webkit:1.13.0-alpha02</code>
+    is released. Version 1.13.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6f09cf2ae979e48fdb19485f757a033e4a34bb82..46295bc0b75a16f452e8e0090e8de41073d4dbb6/webkit/webkit">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Add socket tagging API to
+      <code translate="no" dir="ltr">WebView</code>
+      for accounting of
+      <code translate="no" dir="ltr">WebView</code>
+      's network traffic using
+      <code translate="no" dir="ltr">NetworkStatsManager</code>
+      /
+      <code translate="no" dir="ltr">TrafficStats</code>
+      . This feature will only be available from
+      <code translate="no" dir="ltr">WebView</code>
+      M133. (
+      <a href="https://android-review.googlesource.com/#/q/Ica4412c9432ff479ea728c30c09b1d7bf359d0f0">Ica441</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/374932688">b/374932688</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Update Prefetch API by renaming
+      <code translate="no" dir="ltr">PrefetchParameter</code>
+      to
+      <code translate="no" dir="ltr">SpeculativeLoadingParamaters</code>
+      , introducing new
+      <code translate="no" dir="ltr">PrefetchNetworkException</code>
+      , replacing
+      <code translate="no" dir="ltr">PrefetchOperationCallback</code>
+      with
+      <code translate="no" dir="ltr">OutcomeReceiverCompat</code>
+      and update the javadoc. (
+      <a href="https://android-review.googlesource.com/#/q/If50726ae66737d2a14c0e06a38f91105c1156488">If5072</a>
+      )
+    </li>
+    <li>Get diagnostic information from WebView async startup API.</li>
+    <li>
+      Provide an option for apps to only trigger init that doesn't block the UI thread. (
+      <a href="https://android-review.googlesource.com/#/q/I9bf2b3b53b835366cf68c938a8bcd1612bd7f3fd">I9bf2b</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      This library now uses
+      <a href="https://jspecify.dev/">JSpecify nullness annotations</a>
+      , which are type-use. Kotlin developers should use the following compiler arguments to enforce correct usage:
+      <code translate="no" dir="ltr">-Xjspecify-annotations=strict, -Xtype-enhancement-improvements-strict-mode</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I0e4c595aa9288b02dfa563063fedbfd18c667f23">I0e4c5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326456246">b/326456246</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,86 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.2.0
+releaseDate: 2022-07-27
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0" data-text="Version 1.2.0" tabindex="-1">Version 1.2.0</h3>
+  <p>July 27, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.2.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/564504df2d2c03ea9d48f868e09764418772a8a7..1e0793130863c72dc4a2d02bc975128f3ef0158b/compose/runtime">Version 1.2.0 contains these commits.</a>
+  </p>
+  <p>
+    <strong>
+      Important changes since
+      <code translate="no" dir="ltr">1.1.0</code>
+    </strong>
+  </p>
+  <ul>
+    <li>
+      <p>
+        Compose Runtime had a handful of features introduced in 1.2.0, along with many stabilizing bug fixes. The most significant new feature was the
+        <a href="https://android.googlesource.com/platform/frameworks/support/+/f66e3a1be22d3490e8ff10474510bb8abf73c9f9">
+          introduction of the
+          <code translate="no" dir="ltr">movableContentOf</code>
+          API
+        </a>
+        , which can be used to enable complex UX such as shared element transitions. The
+        <code translate="no" dir="ltr">movableContentOf</code>
+        API converts a composable lambda into a lambda that moves it state, and corresponding nodes, to any new location it is called. When the previous call leaves the composition the state is temporarily preserved and if a new call to the lambda enters the composition then the state, and associated Nodes, are moved to the location of the new call. If no new call is added the state is removed permanently and remember observers are notified.
+      </p>
+    </li>
+    <li>
+      <p>
+        If a
+        <code translate="no" dir="ltr">movableContentOf</code>
+        lambda is called multiple times in the same composition, new state and nodes are created for each call and, as calls leave the composition and new calls enter, the state is moved from the first leaving calls to the entering calls in the order they are called. All state not claimed by new calls is removed permanently.
+      </p>
+    </li>
+    <li><p>In addition to this and a few other new features, much time was spent stabilizing the runtime and Snapshot state system. Various memory leaks were removed and code paths optimized.</p></li>
+    <li><p>A summarized list of the changes can be found below:</p></li>
+  </ul>
+  <p>
+    <strong>
+      New Features in
+      <code translate="no" dir="ltr">1.2</code>
+    </strong>
+  </p>
+  <ul>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/2ff1b5569536ab54fcc9442320f24ee2b58cf02e">Add experimental snapshot unsafeEnter/Leave</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/30abde422d8213dea266b1ddff7b4bbc39c74024">Add Snapshot.asContextElement experimental API</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/53805a49b7369999a2eb0f0230a8bbd99e86bbf8">Introduce Snapshot.withoutReadObservation</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/f66e3a1be22d3490e8ff10474510bb8abf73c9f9">Allow state to move within a composition</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/8176d9bb38dc25d1d6c4cc247bb57c3e5e6e4308">Tracing of Recompositions in Compose</a></li>
+  </ul>
+  <p>
+    <strong>
+      Performance in
+      <code translate="no" dir="ltr">1.2</code>
+    </strong>
+  </p>
+  <ul>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/45982f6e6be5ac74204d6b426a6eb56c5889efbb">Improve composition local performance</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/2dfe4b4afed725fda5bf42f6a790d1d43a443db6">Baseline profiles for compose should be derived using benchmarks</a></li>
+  </ul>
+  <p>
+    <strong>
+      Bug Fixes in
+      <code translate="no" dir="ltr">1.2</code>
+    </strong>
+  </p>
+  <ul>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/7ff668d1061ec9e732d65ec3bfa9dc3db50fd87a">Remove tracking information from release recompose scopes</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/30bc6b162ba68a8cab14a781c8c27def5d35cbbc">Prevent removing derived state from composition when it is read in other scopes</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/a1ba9c954b9cc2e36bf897e4c649f52442a07a0b">Use more efficient removeScope() in SnapshotStateObserver</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/ad7c95cd58204ef7be4cec4f999d602619c51a8a">Clean up derived state dependencies in composition</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/35585b15a00ec9022b1b9488e2a2edf23f205240">Fix currentCompositeKeyHash changing after inner recomposition inside movable content</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/896a6ccff51ea6186c047e818999d52482bdcfce">Clean up invalidated compositions during disposal</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/8e7c1e6bb6dcc0ce8133d731b6b779de21194fa1">Fix derive state read during recomposition</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/78dc85f30cb72ba38d36bee4f85509a975f19d06">Fix memory leak when observing derived state objects</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/3b830dfc084154218517a6f4e4d53f1d1203a26b">Fixed movableContent composite hash key to be consistent</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/32e4b949a79c50dbd5e935c052112c5cd4f51c54">Fix corner a case where the composer would crash</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/4504c4f219ca8491fc2a7896e0ab1f24d0718cba">Ensure forced invalidation of a group forces recomposition</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/59b8fa1ec8a2d45dc9df64e05b1c4f2f2d4b58f5">Fix bug when rememberSaveable with input is restored in the wrong order</a></li>
+  </ul>

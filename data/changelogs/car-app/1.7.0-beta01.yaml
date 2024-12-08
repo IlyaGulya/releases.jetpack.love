@@ -1,0 +1,101 @@
+libraryId: car-app
+groupId: androidx.car
+version: 1.7.0-beta01
+releaseDate: 2024-06-26
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-beta01" data-text="Version 1.7.0-beta01" tabindex="-1">Version 1.7.0-beta01</h3>
+  <p>June 26, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.car.app:app-*:1.7.0-beta01</code>
+    is released. Version 1.7.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5c17ac8d339b80b5f509f83792f5923e337612c7..948119be341fa4affc055418e695d8c4c7e5e2e4/car/app">these commits</a>
+    . Features are the same as published in alpha01, which are repeated below:
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <em>Map with Content:</em>
+      New template a Map Canvas plus a content template, which for now can be List / Grid / Pane / Message.
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">RoutePreview</code>
+          ,
+          <code translate="no" dir="ltr">PlaceListNavigation</code>
+          ,
+          <code translate="no" dir="ltr">MapTemplate</code>
+          are now deprecated. Templates will continue to work as-is.
+        </li>
+        <li>
+          Sample apps have been updated to show
+          <code translate="no" dir="ltr">MapWithContent</code>
+          usage instead of deprecated templates
+        </li>
+      </ul>
+    </li>
+    <li>
+      <em>Conversation Item:</em>
+      New APIs for displaying conversations (IM, SMS), and Assistant readout in the car.
+    </li>
+    <li>
+      <em>Vehicle Dimensions:</em>
+      New API to retrieve vehicle measures (data on AAOS at the moment).
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">@ExperimentalCarApi</code>
+      tag to
+      <code translate="no" dir="ltr">MediaPlaybackTemplate.Builder</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic195773f56a9f10234f232413b72404f95434ec6">Ic1957</a>
+      )
+    </li>
+    <li>
+      Adds a new
+      <code translate="no" dir="ltr">SectionedItemTemplate</code>
+      in experimental. (
+      <a href="https://android-review.googlesource.com/#/q/I5958aaacf42d05e9a28774f2c2b468a0c6d8c6de">I5958a</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">CarAppApiLevel 8</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I3fa220efd1382a4d0146f58f505991e55163ba44">I3fa22</a>
+      )
+    </li>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">MediaPlaybackTemplate</code>
+      for displaying content during media playback in Car App Library. (
+      <a href="https://android-review.googlesource.com/#/q/I3c10d979e8fbf2f9240fad946bc42220cda2ac4b">I3c10d</a>
+      )
+    </li>
+    <li>
+      Added new api for apps to detect whether the system supports background audio while driving (
+      <a href="https://android-review.googlesource.com/#/q/I0f868508078908bd80f8fd013ce8847dcd3844aa">I0f868</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixes certain instances of memory leaks and crashes in CAL client code and in CAL Navigation Sample App. (
+      <a href="https://android-review.googlesource.com/#/q/I55e04addc90298c44103806ae5c4de681a2506cf">I55e04</a>
+      )
+    </li>
+    <li>
+      Replace
+      <code translate="no" dir="ltr">requireNotNull instances</code>
+      in
+      <code translate="no" dir="ltr">BaseCarAppActivity</code>
+      's
+      <code translate="no" dir="ltr">onDestroy</code>
+      method with if-null checks to avoid crashes. (
+      <a href="https://android-review.googlesource.com/#/q/Iec6767110cf8839cb57b71cdc31444b6124a6950">Iec676</a>
+      )
+    </li>
+  </ul>

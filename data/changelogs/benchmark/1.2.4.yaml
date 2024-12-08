@@ -1,0 +1,35 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.2.4
+releaseDate: 2024-04-17
+#language=html
+changelogHtml: |
+  <h3 id="1.2.4" data-text="Version 1.2.4" tabindex="-1">Version 1.2.4</h3>
+  <p>April 17, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.2.4</code>
+    is released. Version 1.2.4 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9e027e27c0db4f6f105eca82dca664195b5f0f54..e7365ab824864067473dc58826e3ab710577345e/benchmark">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixes baseline profile srcset not being set up in benchmark variants. Also fixes
+      <code translate="no" dir="ltr">automaticGenerationDuringBuild</code>
+      in libraries causing a circular dependency. (
+      <a href="https://android-review.googlesource.com/#/q/I28ab748ce760dcf90086a34e6bf6571a3d54d3bb">I28ab7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/333024280">b/333024280</a>
+      )
+    </li>
+    <li>
+      Use
+      <code translate="no" dir="ltr">am force-stop</code>
+      to kill apps when not a system app like System UI or Launcher. This fixes
+      <code translate="no" dir="ltr">StartupMode.COLD</code>
+      benchmarks crashing from "Package $package must not be running prior to cold start!" due to process kill not fully succeeding. (
+      <a href="https://android-review.googlesource.com/#/q/I5e0280463ecbfe34b0805225dba0f77f2c740a27">I5e028</a>
+      )
+    </li>
+  </ul>

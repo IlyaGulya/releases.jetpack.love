@@ -1,0 +1,43 @@
+libraryId: recyclerview
+groupId: androidx.recyclerview
+version: 1.2.0
+releaseDate: 2021-04-07
+#language=html
+changelogHtml: |
+  <h3 id="recyclerview-1.2.0" data-text="Version 1.2.0" tabindex="-1">Version 1.2.0</h3>
+  <p>April 7, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.recyclerview:recyclerview:1.2.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/28a2b25e799c715db874d822a8c4197a249698cb..b3d7374d6ecfb818209fece439350ab44d44db1a/recyclerview/recyclerview">Version 1.2.0 contains these commits.</a>
+  </p>
+  <p><strong>Major changes since 1.1.0</strong></p>
+  <p>
+    <strong>ConcatAdapter</strong>
+    : This new adapter allows you to easily concatenate multiple Adapters on the same RecyclerView. See the
+    <a href="https://medium.com/androiddevelopers/merge-adapters-sequentially-with-mergeadapter-294d2942127a">blog post</a>
+    for more information.
+  </p>
+  <ul>
+    <li>
+      As part of this change,
+      <a href="https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView.ViewHolder#getAdapterPosition()"><code translate="no" dir="ltr">ViewHolder.getAdapterPosition</code></a>
+      is deprecated and replaced with two new methods:
+      <ul>
+        <li>
+          <a href="https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView.ViewHolder#getBindingAdapterPosition()">getBindingAdapterPosition</a>
+          returns the position relative to the Adapter which bound that item.
+        </li>
+        <li>
+          <a href="https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView.ViewHolder#getAbsoluteAdapterPosition()">getAbsoluteAdapterPosition</a>
+          returns the position relative to the whole RecyclerView.
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p>
+    <strong>Lazy State Restoration</strong>
+    : RecyclerView Adapter can now delay state restoration until its contents are loaded. See the
+    <a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView.Adapter#setstaterestorationpolicy">documentation</a>
+    for more details.
+  </p>

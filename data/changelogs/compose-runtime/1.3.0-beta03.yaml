@@ -1,0 +1,30 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.3.0-beta03
+releaseDate: 2022-09-21
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-beta03" data-text="Version 1.3.0-beta03" tabindex="-1">Version 1.3.0-beta03</h3>
+  <p>September 21, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.3.0-beta03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cce7b70f6a5ebf955cf748a73c18b63228b22c74..bdce26bd7556b92d2d4d2af3de881dd8e2c51459/compose/runtime">Version 1.3.0-beta03 contains these commits.</a>
+  </p>
+  <p><strong>Behavior Breaking Change</strong></p>
+  <ul>
+    <li>
+      The parameter to
+      <code translate="no" dir="ltr">remember</code>
+      and
+      <code translate="no" dir="ltr">rememberCoroutineScope</code>
+      where changed to be
+      <code translate="no" dir="ltr">crossinline</code>
+      . This will report an error for early returns instead of allowing an early return which will cause a later internal error to be reported.
+    </li>
+    <li>
+      This change can potentially lead to new compiler errors to be reported requiring non-local returns to be removed from the lambdas passed to these functions. (
+      <a href="https://android-review.googlesource.com/#/q/Ibea62b31341fb386f47d495ce6bb1708fbfa6c0a">Ibea62</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,157 @@
+libraryId: emoji2
+groupId: androidx.emoji2
+version: 1.0.0-alpha01
+releaseDate: 2021-05-18
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha01" data-text="Version 1.0.0-alpha01" tabindex="-1">Version 1.0.0-alpha01</h3>
+  <p>May 18, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.emoji2:emoji2:1.0.0-alpha01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.emoji2:emoji2-views:1.0.0-alpha01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.emoji2:emoji2-views-helper:1.0.0-alpha01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/66681ad83c328d0dd821b943bb3d375f02c1db61/emoji2">Version 1.0.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>Features in this initial release</strong></p>
+  <p>Integrating emojicompat is recommended for all apps to support modern emoji from API19. All user generated content in your app contains 🎉.</p>
+  <p>
+    EmojiCompat has moved from the
+    <code translate="no" dir="ltr">androidx.emoji</code>
+    artifacts to the new
+    <code translate="no" dir="ltr">androidx.emoji2</code>
+    , now in alpha01. The new artifacts replace the previous version.
+  </p>
+  <p>
+    <code translate="no" dir="ltr">emoji2</code>
+    is added as a dependency to AppCompat starting in
+    <a href="/jetpack/androidx/releases/appcompat#1.4.0-alpha01">
+      AppCompat
+      <code translate="no" dir="ltr">1.4.0-alpha01</code>
+    </a>
+    and is enabled by default for AppCompat views.
+  </p>
+  <p>
+    The
+    <code translate="no" dir="ltr">emoji2</code>
+    artifact introduces a new automatic configuration using the
+    <code translate="no" dir="ltr">androidx.startup</code>
+    library. You no longer need to write any 👨🏽‍💻 code to display 🐻‍❄️.
+  </p>
+  <p><strong>Changes in emoji2 from emoji</strong></p>
+  <ul>
+    <li>
+      Added new automatic configuration
+      <code translate="no" dir="ltr">EmojiCompatInitializer</code>
+      using
+      <code translate="no" dir="ltr">androidx.startup</code>
+      .
+    </li>
+    <li>
+      Added new default configuration that uses service location to find a downloadable fonts provider in
+      <code translate="no" dir="ltr">DefaultEmojiCompatConfiguration</code>
+      .
+    </li>
+    <li>
+      Classes moved from
+      <code translate="no" dir="ltr">androidx.emoji</code>
+      package to
+      <code translate="no" dir="ltr">androidx.emoji2</code>
+      .
+    </li>
+    <li>
+      Split
+      <code translate="no" dir="ltr">EmojiTextView</code>
+      and related views to a separate artifact
+      <code translate="no" dir="ltr">emoji2-views</code>
+      . This should only be used if your app doesn't use appcompat.
+    </li>
+    <li>
+      Extracted helpers for integrating emojicompat into custom views into a separate artifact
+      <code translate="no" dir="ltr">emoji2-views-helper</code>
+      .
+    </li>
+    <li>Added nullability annotations.</li>
+    <li>
+      Helpers in
+      <code translate="no" dir="ltr">emoji2-views-helper</code>
+      may now be used even when
+      <code translate="no" dir="ltr">EmojiCompat</code>
+      is not initialized (previously they threw an exception).
+    </li>
+  </ul>
+  <p><strong>What dependency should you add?</strong></p>
+  <ul>
+    <li>
+      Apps with AppCompat should upgrade to appcompat version
+      <a href="/jetpack/androidx/releases/appcompat#1.4.0-alpha01">
+        AppCompat
+        <code translate="no" dir="ltr">1.4.0-alpha01</code>
+      </a>
+      or higher.
+    </li>
+    <li>
+      Apps without AppCompat using
+      <code translate="no" dir="ltr">TextView</code>
+      /
+      <code translate="no" dir="ltr">EditText</code>
+      from platform should use
+      <code translate="no" dir="ltr">EmojiTextView</code>
+      and related classes from
+      <code translate="no" dir="ltr">emoji2-views</code>
+      .
+    </li>
+  </ul>
+  <p><strong>How to support in custom views</strong></p>
+  <ul>
+    <li>
+      Apps with AppCompat should extend
+      <code translate="no" dir="ltr">AppCompatTextView</code>
+      ,
+      <code translate="no" dir="ltr">AppCompatButton</code>
+      , etc. instead of platform
+      <code translate="no" dir="ltr">TextView</code>
+      , etc.
+    </li>
+    <li>
+      Apps without AppCompat should add
+      <code translate="no" dir="ltr">androidx.emoji2:emoji2-views-helper</code>
+      dependency and use helpers to integrate with custom
+      <code translate="no" dir="ltr">TextView</code>
+      or
+      <code translate="no" dir="ltr">EditText</code>
+      subclasses.
+    </li>
+  </ul>
+  <p><strong>Configuring automatic initialization</strong></p>
+  <ul>
+    <li>
+      <p>Apps can disable the automatic initialization by adding this to the manifest:</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="XML"><code translate="no" dir="ltr"><span class="devsite-syntax-w"> </span>&lt;provider
+  <span class="devsite-syntax-w">     </span>android:name="androidx.startup.InitializationProvider"
+  <span class="devsite-syntax-w">     </span>android:authorities="${applicationId}.androidx-startup"
+  <span class="devsite-syntax-w">     </span>android:exported="false"
+  <span class="devsite-syntax-w">     </span>tools:node="merge"&gt;
+  <span class="devsite-syntax-w">     </span>&lt;meta-data<span class="devsite-syntax-w"> </span>android:name="androidx.emoji2.text.EmojiCompatInitializer"
+  <span class="devsite-syntax-w">               </span>tools:node="remove"<span class="devsite-syntax-w"> </span>/&gt;
+  <span class="devsite-syntax-w"> </span>&lt;/provider&gt;
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        This disables automatic configuration, and you can then pass a custom configuration to
+        <code translate="no" dir="ltr">EmojiCompat.init</code>
+        . The default configuration for the system may be retrieved
+        <code translate="no" dir="ltr">DefaultEmojiCompatConfig.create(context)</code>
+        for further configuration before passing to
+        <code translate="no" dir="ltr">EmojiCompat.init</code>
+        .
+      </p>
+    </li>
+  </ul>
+  <devsite-hats-survey class="nocontent" hats-id="VxqvKSur40kxBYCLVTd0SSGykbno" listnr-id="5207477"></devsite-hats-survey>

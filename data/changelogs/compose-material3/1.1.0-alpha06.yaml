@@ -1,0 +1,146 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.1.0-alpha06
+releaseDate: 2023-02-08
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha06" data-text="Version 1.1.0-alpha06" tabindex="-1">Version 1.1.0-alpha06</h3>
+  <p>February 8, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3:1.1.0-alpha06</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-window-size-class:1.1.0-alpha06</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e5dad1e7d1c225f89f7c2d5a39a7a0de8d637d7b..f7337eab774a6ce3b17367d5f31708564b66e677/compose/material3">Version 1.1.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Text fields now support prefix and suffix text (
+      <a href="https://android-review.googlesource.com/#/q/Ia85786c582981e8f16a7053a869e06c2c1a43fb8">Ia8578</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/179884561">b/179884561</a>
+      )
+    </li>
+    <li>
+      Added a
+      <code translate="no" dir="ltr">TimePicker</code>
+      function to show a time picker following the Material 3 spec, used in conjunction with
+      <code translate="no" dir="ltr">TimePickerState</code>
+      and convenience method
+      <code translate="no" dir="ltr">rememberTimePickerState</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I71910979841fd934153da109380a5078ba1a9741">I71910</a>
+      )
+    </li>
+    <li>
+      A date input is now a display mode at the
+      <code translate="no" dir="ltr">DatePicker</code>
+      . Added support for switching between date picker and date input modes. (
+      <a href="https://android-review.googlesource.com/#/q/Ieeff707da21566b0b8d4fe365662ce6ae2a6acd1">Ieeff7</a>
+      )
+    </li>
+    <li>
+      Added API for
+      <code translate="no" dir="ltr">RichTextTooltips</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I58ef33c950cdcb0461e0cf5f192fb730444d6fb4">I58ef3</a>
+      )
+    </li>
+    <li>
+      Modal bottom sheet implementation for Material 3, including
+      <code translate="no" dir="ltr">ModalBottomSheet</code>
+      and
+      <code translate="no" dir="ltr">ModalBottomSheetDefaults</code>
+      . Also introduces
+      <code translate="no" dir="ltr">SheetState</code>
+      and
+      <code translate="no" dir="ltr">rememberSheetState</code>
+      which can be used for future sheet components. (
+      <a href="https://android-review.googlesource.com/#/q/I0853a6ec6d06166787701db1edb4a09b90dd563e">I0853a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/244189383">b/244189383</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Stablize the API
+      <code translate="no" dir="ltr">showSnackbar</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I195c2c308e2597acf97dc90b5c0f3315b3556e90">I195c2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261424370">b/261424370</a>
+      )
+    </li>
+    <li>
+      Stablize the APIs for assist chip and suggestion chip (
+      <a href="https://android-review.googlesource.com/#/q/Ibb67b1b2a21c8cb37213a22a76d49357b4097621">Ibb67b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261424370">b/261424370</a>
+      )
+    </li>
+    <li>
+      Promotes
+      <code translate="no" dir="ltr">ListItem</code>
+      ,
+      <code translate="no" dir="ltr">ListItemDefaults</code>
+      and
+      <code translate="no" dir="ltr">ListItemColors</code>
+      API to non-experimental (
+      <a href="https://android-review.googlesource.com/#/q/I7e7faed87feb7ab15de0dbda181eda60d6a9cebc">I7e7fa</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261438882">b/261438882</a>
+      )
+    </li>
+    <li>
+      Promoting
+      <code translate="no" dir="ltr">SliderPositions</code>
+      ,
+      <code translate="no" dir="ltr">SliderDefaults.Thumb</code>
+      , and
+      <code translate="no" dir="ltr">SliderDefaults.Track</code>
+      to stable and adding non-experimental
+      <code translate="no" dir="ltr">Slider</code>
+      and
+      <code translate="no" dir="ltr">RangeSlider</code>
+      APIs that contain custom thumbs and track. Also deprecating the previous
+      <code translate="no" dir="ltr">Slider</code>
+      and
+      <code translate="no" dir="ltr">RangeSlider</code>
+      APIs. (
+      <a href="https://android-review.googlesource.com/#/q/Ie5ea6c578fc9335e658305bdf2b64365eb4fab01">Ie5ea6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261566890">b/261566890</a>
+      )
+    </li>
+    <li>
+      Made
+      <code translate="no" dir="ltr">Modifier.tooltipAnchor()</code>
+      public, so devs can pass it to the anchor to indicate a tooltip should be displayed on long press. Updated
+      <code translate="no" dir="ltr">PlainTooltipBox</code>
+      API to no longer make
+      <code translate="no" dir="ltr">TooltipState</code>
+      nullable and now has a default. (
+      <a href="https://android-review.googlesource.com/#/q/Ie2fb71e5fdbe4266d075861f2eac972e1ba0de03">Ie2fb7</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ProgressIndicatorDefaults.circularTrackColor</code>
+      has been marked
+      <code translate="no" dir="ltr">@Composable</code>
+      for consistency. (
+      <a href="https://android-review.googlesource.com/#/q/Id29cc370fda15a68076e546550582298a64f17b4">Id29cc</a>
+      )
+    </li>
+    <li>
+      Restored property getter
+      <code translate="no" dir="ltr">LocalMinimuTouchTargetEnforcement</code>
+      and mark it as deprecated and redirect to
+      <code translate="no" dir="ltr">LocalMinimumInteractiveComponentEnforcement</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I60dd5ceb7c5703c8ba68f1b7d4a4a883b3f961a8">I60dd5</a>
+      )
+    </li>
+  </ul>

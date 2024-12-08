@@ -1,0 +1,110 @@
+libraryId: paging
+groupId: androidx.paging
+version: 2.1.0-alpha01
+releaseDate: 2018-10-12
+#language=html
+changelogHtml: |
+  <h3 id="2.1.0-alpha01" data-text="Version 2.1.0-alpha01" tabindex="-1">Version 2.1.0-alpha01</h3>
+  <p>October 12, 2018</p>
+  <p>
+    Paging
+    <code translate="no" dir="ltr">2.1.0-alpha01</code>
+    has two major additions - page dropping, and KTX extension libraries for every artifact - as well as several other API changes and bugfixes.
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">PagedList.Config.Builder.setMaxSize()</code>
+      for limiting the number of loaded items in memory.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">androidx.paging.Config()</code>
+      as a Kotlin alternative for
+      <code translate="no" dir="ltr">PagedList.Config.Builder</code>
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">androidx.paging.PagedList()</code>
+      as a Kotlin alternative for
+      <code translate="no" dir="ltr">PagedList.Builder</code>
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">DataSourceFactory.toLiveData()</code>
+      as a Kotlin alternative for
+      <code translate="no" dir="ltr">LivePagedListBuilder</code>
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">DataSourceFactory.toObservable()</code>
+      and
+      <code translate="no" dir="ltr">toFlowable()</code>
+      as Kotlin alternatives for
+      <code translate="no" dir="ltr">RxPagedListBuilder</code>
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">AsyncPagedListDiffer.addPagedListListener()</code>
+      for listening to when PagedList is swapped.
+      <a href="https://issuetracker.google.com/111698609">b/111698609</a>
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">PagedListAdapter.onCurrentListChanged()</code>
+      variant that passes old and new list, deprecated previous variant.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">PagedListAdapter/AsyncPagedListDiffer.submitList()</code>
+      variants which take an additional callback that triggers if/when the pagedlist is displayed, after diffing. This allows you to synchronize a PagedList swap with other UI updates.
+      <a href="https://issuetracker.google.com/73781068">b/73781068</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PagedList.getLoadedCount()</code>
+      added to let you know how many items are in memory. Note that the return value is always equal to
+      <code translate="no" dir="ltr">.size()</code>
+      if placeholders are disabled.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a race condition when diffing if lists are reused
+      <a href="https://issuetracker.google.com/111591017">b/111591017</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PagedList.loadAround()</code>
+      now throws
+      <code translate="no" dir="ltr">IndexOutOfBoundsException</code>
+      when index is invalid. Previously it could crash with an unclear other exception.
+    </li>
+    <li>
+      Fixed a case where an extremely small initial load size together with unchanged data would result in no further loading
+      <a href="https://issuetracker.google.com/113122599">b/113122599</a>
+    </li>
+  </ul>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      page dropping is currently off by default - enable it with the new
+      <code translate="no" dir="ltr">PagedList.Config.Builder.setMaxSize()</code>
+      API. To correctly support page dropping in a custom
+      <code translate="no" dir="ltr">ItemKeyedDataSource</code>
+      , you must implement
+      <code translate="no" dir="ltr">loadBefore</code>
+      .
+    </span>
+  </aside>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      Page dropping is not currently supported in
+      <code translate="no" dir="ltr">PageKeyedDataSource</code>
+      , due to having no way to re-load the
+      <code translate="no" dir="ltr">loadInitial</code>
+      result incrementally.
+    </span>
+  </aside>
+  <h2 id="version_200_3" data-text="Version 2.0.0" tabindex="-1">Version 2.0.0</h2>

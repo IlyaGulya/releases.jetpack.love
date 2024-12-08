@@ -1,0 +1,225 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.2.0-alpha03
+releaseDate: 2022-02-09
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha03" data-text="Version 1.2.0-alpha03" tabindex="-1">Version 1.2.0-alpha03</h3>
+  <p>February 9, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation:1.2.0-alpha03</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-layout:1.2.0-alpha03</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9dceceb54300ed028a7e8fc7a3454f270337ffde..db2ecbef194afcddfaede22e1d884a8959a9277c/compose/foundation">Version 1.2.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">notifyFocusedRect</code>
+      methods in
+      <code translate="no" dir="ltr">TextInputSession</code>
+      and
+      <code translate="no" dir="ltr">TextInputService</code>
+      are now deprecated and won't be called. Use
+      <code translate="no" dir="ltr">BringIntoViewRequester</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/Ia4302c5f6ee79eec30a9f42c149da8775e1ed57e">Ia4302</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/192043120">b/192043120</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/216842427">b/216842427</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/178211874">b/178211874</a>
+      )
+    </li>
+    <li>
+      Animations were enabled for items of lazy grids with Modifier.animateItemPlacement(). (
+      <a href="https://android-review.googlesource.com/#/q/Ib66210f8959214b5f94fd1fcc49100294cd0e2d6">Ib6621</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/211753218">b/211753218</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BringIntoViewRequester</code>
+      now propagates requests to the hosting Android View. (
+      <a href="https://android-review.googlesource.com/#/q/Ia7a5163a1eeb3e9d2f1623fa280f33cb98d4fb6d">Ia7a51</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FontFamilyResolver</code>
+      is now available via
+      <code translate="no" dir="ltr">LocalFontFamilyResolver.current</code>
+      <ul>
+        <li>
+          Added
+          <code translate="no" dir="ltr">createFontFamilyResolver(context)</code>
+          and
+          <code translate="no" dir="ltr">createFontFamilyResolver(context, coroutineScope)</code>
+          to create new FontFamily resolvers outside of compose usage.
+        </li>
+        <li>
+          Paragraph and MultiParagraph now take
+          <code translate="no" dir="ltr">FontFamily.Resolver</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">TextLayoutResult.layoutInput.fontFamilyResolver</code>
+          now contains the resolver used for this layout, deprecated
+          <code translate="no" dir="ltr">TextLayoutResult.layoutInput.resourceLoader</code>
+          as it is no longer used. (
+          <a href="https://android-review.googlesource.com/#/q/Id5a45c72bb6f33910643ee3da7f81a78dc093d86">Id5a45</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/174162090">b/174162090</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">AndroidFont</code>
+      , a new low-level API for providing new types of font resource descriptors on Android. For example, loading fonts from an app-specific backend, optionally locating pre-installed fonts on-device, or loading a font from a resource not provided by the current Font factories.
+      <ul>
+        <li>
+          Expanded
+          <code translate="no" dir="ltr">Font.ResourceLoaded</code>
+          API to support optional and async font loading. It is not recommended that application developers use this API directly. To add new types of fonts see AndroidFont.
+        </li>
+        <li>
+          <code translate="no" dir="ltr">Font.AndroidResourceLoader</code>
+          extension function allows construction of a
+          <code translate="no" dir="ltr">Font.ResourceLoader</code>
+          when outside of composition.
+        </li>
+        <li>
+          Added
+          <code translate="no" dir="ltr">loadingStrategy</code>
+          parameter to resource-based fonts, to allow async loading when resource font references downloadable fonts XML. (
+          <a href="https://android-review.googlesource.com/#/q/Ie5aeadd2feaf996d2c826d87dd310b8984e106c8">Ie5aea</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/174162090">b/174162090</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Typeface(FontFamily)</code>
+      constructor is deprecated. This was previously used to preload fonts, which may take up to 10 seconds for downloadable fonts. With downloadable fonts, this call may block for 10 seconds. Instead use
+      <code translate="no" dir="ltr">FontFamilyResolver.preload</code>
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">fontResource(FontFamily): Typeface</code>
+          is deprecated. This was previously used to preload fonts, which may take up to 10 seconds for downloadable fonts. Instead use
+          <code translate="no" dir="ltr">FontFamilyResolver.preload</code>
+          (
+          <a href="https://android-review.googlesource.com/#/q/If8e7c6ce7cd64be8094a576587cc1329e19d246f">If8e7c</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/174162090">b/174162090</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      You can now specify the content type for the items of
+      <code translate="no" dir="ltr">LazyVerticalGrid</code>
+      - item/items functions on
+      <code translate="no" dir="ltr">LazyGridScope</code>
+      now accept such parameter. Providing such information helps item composition reusing logic to make it more efficiently and only reuse the content between the items of similar type. (
+      <a href="https://android-review.googlesource.com/#/q/I7b3550cf626b6ef6f65029b1e55465266bfacb18">I7b355</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/215372836">b/215372836</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LazyListLayoutInfo</code>
+      and
+      <code translate="no" dir="ltr">LazyGridLayoutInfo</code>
+      now have new properties:
+      <code translate="no" dir="ltr">viewportSize</code>
+      ,
+      <code translate="no" dir="ltr">orientation</code>
+      ,
+      <code translate="no" dir="ltr">reverseLayout</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ifc8ed6a22fa14fecb3f6910ef86caa5345e6d5e4">Ifc8ed</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/200920410">b/200920410</a>
+      )
+    </li>
+    <li>
+      You can now specify the content type for the items of LazyColumn/LazyRow - item/items functions on LazyListScope now accept such parameter. Providing such information helps item composition reusing logic to make it more efficiently and only reuse the content between the items of similar type. (
+      <a href="https://android-review.googlesource.com/#/q/I26506a2b3d0049be6ff4decf295e183c5d2b8fc3">I26506</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SubcomposeLayoutState</code>
+      constructor accepting
+      <code translate="no" dir="ltr">maxSlotsToRetainForReuse</code>
+      is now deprecated. Instead there is a new constructor accepting
+      <code translate="no" dir="ltr">SubcomposeSlotReusePolicy</code>
+      - a new interface allowing more granular control on what slots should be retained for the future reuse. (
+      <a href="https://android-review.googlesource.com/#/q/I52c4d0360cd987ce03504807312beabdbe410ab0">I52c4d</a>
+      )
+    </li>
+    <li>
+      Adds Modifiers for WindowInsets, both for padding and sizing. This allows some content to extend into the inset area, and still have primary content stay out of the inset area. For example, windowInsetsPadding can be used to pad the content area to avoid areas that may be fully or partially covered. (
+      <a href="https://android-review.googlesource.com/#/q/Id0395142409b981e92f94fb46ebf1c2ec2540048">Id0395</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/213942085">b/213942085</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      TextFields will now be kept above the keyboard when they are focused and the keyboard is shown, when the soft input mode is
+      <code translate="no" dir="ltr">ADJUST_PAN</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I8eaebb684b7828dcf92b0678a86d796b49b349c8">I8eaeb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/190539358">b/190539358</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/192043120">b/192043120</a>
+      )
+    </li>
+    <li>
+      Desktop uses composition local for
+      <code translate="no" dir="ltr">FontFamily.Resolver</code>
+      <ul>
+        <li>
+          Desktop
+          <code translate="no" dir="ltr">FontLoader</code>
+          is deprecated
+        </li>
+        <li>
+          New
+          <code translate="no" dir="ltr">createFontFamilyResolver</code>
+          factory on Desktop (
+          <a href="https://android-review.googlesource.com/#/q/I6bbbb76ece4ca3844f07e2fc22c2e63478bfdd8c">I6bbbb</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/174162090">b/174162090</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      The soft keyboard input type no longer flickers when changing focus between text fields. (
+      <a href="https://android-review.googlesource.com/#/q/I1bf50cacddd8e20f9bd3d5124f277e5fef467ac0">I1bf50</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187746439">b/187746439</a>
+      )
+    </li>
+    <li>
+      Text fields no longer require an extra back press when the cursor handle is showing. (
+      <a href="https://android-review.googlesource.com/#/q/Ideb4bafc9e7ada3faf16310d96ae4abf0caca734">Ideb4b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/205726883">b/205726883</a>
+      )
+    </li>
+    <li>
+      Text selection magnifier behavior has been polished to match the platform magnifier. (
+      <a href="https://android-review.googlesource.com/#/q/Idd918c3b321e8d7626e47a027e0b19640085a2fa">Idd918</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/206833278">b/206833278</a>
+      )
+    </li>
+  </ul>

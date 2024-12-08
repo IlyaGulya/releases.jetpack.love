@@ -1,0 +1,36 @@
+libraryId: room
+groupId: androidx.room
+version: 2.3.0-beta01
+releaseDate: 2021-01-27
+#language=html
+changelogHtml: |
+  <h3 id="2.3.0-beta01" data-text="Version 2.3.0-beta01" tabindex="-1">Version 2.3.0-beta01</h3>
+  <p>January 27, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.3.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/dd3c8e9c2424b78e44f55db599251891fd1cadb4..aee18b103203a91ee89df91f0af5df2ecff356d6/room">Version 2.3.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <em>Auto Closable Databases</em>
+      : Room now has the ability to close databases that are not accessed after a given amount of time. This is an experimental feature and can be enabled by calling
+      <code translate="no" dir="ltr">RoomDatabase.Builder#setAutoCloseTimeout()</code>
+      . This feature is useful for applications with multiple databases.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix an issue where Dao methods with multiple
+      <code translate="no" dir="ltr">@Update</code>
+      or
+      <code translate="no" dir="ltr">@Delete</code>
+      methods with different conflict strategies would generate code with only one of the strategies, effectively ignoring the defined one. (
+      <a href="https://android-review.googlesource.com/#/q/I0b90daccfbfe784cd44c507d05edf84e6ba80052">/I0b90d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/176138543">b/176138543</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,71 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.3.1
+releaseDate: 2024-09-18
+#language=html
+changelogHtml: |
+  <h3 id="1.3.1" data-text="Version 1.3.1" tabindex="-1">Version 1.3.1</h3>
+  <p>September 18, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.3.1</code>
+    is released. Version 1.3.1 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/392c9f0664b76c0f1bc8ff14f591f1d7d65a4476..8b90fce166a020c62a93085f5f104552517472c5/benchmark">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Added gradle property
+      <code translate="no" dir="ltr">androidx.baselineprofile.suppressWarnings</code>
+      to suppress all baseline profile warnings (
+      <a href="https://android-review.googlesource.com/#/q/I7c36e3a0da43aa113394404215725b9c86b46cd5">I7c36e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/349646646">b/349646646</a>
+      )
+    </li>
+    <li>
+      Fixed Baseline Profile Gradle Plugin to use pre-existing
+      <code translate="no" dir="ltr">nonMinified…</code>
+      and
+      <code translate="no" dir="ltr">benchmark…</code>
+      if created by the app instead of creating wrappers. (
+      <a href="https://android-review.googlesource.com/#/q/Ia8934fdf3ff51d993f4fef8195821d72315026e2">Ia8934</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/361370179">b/361370179</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">java.lang.AssertionError: ERRORS (not suppressed): EMULATOR</code>
+      when
+      <code translate="no" dir="ltr">automaticGenerationDuringBuild</code>
+      is enabled on emulators. New argument is used to instead skip the test. (
+      <a href="https://android-review.googlesource.com/#/q/If3f51413074ac8b29bb42740038d285121430b50">If3f51</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/355515798">b/355515798</a>
+      )
+    </li>
+    <li>
+      Microbenchmark minification - keep subclasses of
+      <code translate="no" dir="ltr">org.junit.runner.notification.RunListener</code>
+      in benchmark library proguard (
+      <a href="https://android-review.googlesource.com/#/q/Ic8ed5d229c53d4f7779429e003331c251a5f1b39">Ic8ed5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/354264743">b/354264743</a>
+      )
+    </li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">TraceSectionMetric</code>
+      to Ignore non-terminating slices. Previously these were considered to have -1 duration, e.g. during summation or finding minimum duration. (
+      <a href="https://android-review.googlesource.com/#/q/If74b7a13a054c5a39b2f397e2c54f715abf7e3d3">If74b7</a>
+      )
+    </li>
+    <li>
+      Fixed an issue in
+      <code translate="no" dir="ltr">FrameTimingGfxInfoMetric</code>
+      where starting the metric would crash if the process wasn't already running. (
+      <a href="https://android-review.googlesource.com/#/q/I6e4126f2b3be7fdea22811141a68299c41296abe">I6e412</a>
+      )
+    </li>
+  </ul>

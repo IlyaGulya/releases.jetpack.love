@@ -1,0 +1,102 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 1.0.0-alpha06
+releaseDate: 2020-10-28
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha06" data-text="Version 1.0.0-alpha06" tabindex="-1">Version 1.0.0-alpha06</h3>
+  <p>October 28, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material:1.0.0-alpha06</code>
+    ,
+    <code translate="no" dir="ltr">androidx.compose.material:material-icons-core:1.0.0-alpha06</code>
+    , and
+    <code translate="no" dir="ltr">androidx.compose.material:material-icons-extended:1.0.0-alpha06</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/dd84d35abd1bc13fe53a4632d4b3889f6062ac81..234e23e470a5e7f81291f6acd12d538146dc010b/compose/material">Version 1.0.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      androidx.compose.foundation.Icon has been moved to androidx.compose.material.Icon. You can also use the Image component / Modifier.paint() with a Painter if you do not want to use the Material library. (
+      <a href="https://android-review.googlesource.com/#/q/I9f6222326427cebacde10562cde99b9ebff2490f">I9f622</a>
+      )
+    </li>
+    <li>
+      Adds FloatingActionButtonElevation to represent elevation used by FABs in different states. See FloatingActionButtonConstants.defaultElevation() for the default implementation (
+      <a href="https://android-review.googlesource.com/#/q/I2d4f59c6baf6d080dbc6ff3f95365a270727ebc3">I2d4f5</a>
+      )
+    </li>
+    <li>
+      Adds SwitchColors interface to represent colors used by a Switch in different states. See SwitchConstants.defaultColors to customize these colors. (
+      <a href="https://android-review.googlesource.com/#/q/I938059ed6a6279f99b66e892e7b6c9957fc16d6c">I93805</a>
+      )
+    </li>
+    <li>
+      Adds ButtonElevation and ButtonColors interfaces to represent elevation and colors used by buttons in different states. See the default functions in ButtonConstants to customize these parameters. (
+      <a href="https://android-review.googlesource.com/#/q/Ic5b7b2f2ebe67b77fe96e5981f9bdee31dcafd0f">Ic5b7b</a>
+      )
+    </li>
+    <li>
+      Adds RadioButtonColors interface to represent colors used by a RadioButton in different states. See RadioButtonConstants.defaultColors() to customize the colors used in different states. (
+      <a href="https://android-review.googlesource.com/#/q/I74130e122ab6432251d845937ee64524c233dbac">I74130</a>
+      )
+    </li>
+    <li>
+      Adds CheckboxColors interface to represent colors used by a checkbox in different states. See CheckboxConstants.defaultColors() to customize the colors used in different states. (
+      <a href="https://android-review.googlesource.com/#/q/I7dbdb42469e76deeaf921f49f3a178cca7d2865c">I7dbdb</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Material components do not set the elevation as zIndex anymore. Which means that within the same parent the child with larger shadow size will not be drawn on top of the child with the smaller one automatically. If you still need such behavior please set Modifier.zIndex() manually where needed (
+      <a href="https://android-review.googlesource.com/#/q/I704173218a6e049c215b33d5a71234e0eaba1c44">I70417</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170623932">b/170623932</a>
+      )
+    </li>
+    <li>
+      Deprecate VectorPainter in favor of rememberVectorPainter to better indicate that the composable API internally leverages 'remember' to persist data across compositions. (
+      <a href="https://android-review.googlesource.com/#/q/Ifda43dfd1d5b581c3666f4f69b528c47dbaa0ff5">Ifda43</a>
+      )
+    </li>
+    <li>
+      Enable transitions in ComposeTestRule; remove option to enable the blinking cursor from ComposeTestRule. (
+      <a href="https://android-review.googlesource.com/#/q/If0de36db743b7f57b161b0fe6324565750436866">If0de3</a>
+      )
+    </li>
+    <li>
+      Added single line keyboard option to CoreTextField (
+      <a href="https://android-review.googlesource.com/#/q/I72e6d9f84abbf4ff6a9ede5355de4c30d37c3d8c">I72e6d</a>
+      )
+    </li>
+    <li>
+      Renamed Radius API to CornerRadius to better express how it is used throughout Compose. Updated documentation to indicate that negative corner radii are clamped to zero. (
+      <a href="https://android-review.googlesource.com/#/q/I130c7e1baadaf1b2f8e6c32f1af0d3702e2cee50">I130c7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/168762961">b/168762961</a>
+      )
+    </li>
+    <li>
+      Refactored DrawScope and ContentDrawScope to be interfaces instead of abstract classes
+      <ul>
+        <li>Created CanvasDrawScope implementation of DrawScope</li>
+        <li>Refactored implementations of DrawScope to use CanvasScope instead</li>
+        <li>Created DrawContext to wrap dependencies for DrawScope</li>
+        <li>
+          Removed deprecated methods on DrawScope (
+          <a href="https://android-review.googlesource.com/#/q/I56f5e816116bea0d1337fbe0becc26b87694409b">I56f5e</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Box was made an inline function. (
+      <a href="https://android-review.googlesource.com/#/q/Ibce0c1940173f06c030fd1115b9badb692ceb05a">Ibce0c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/155056091">b/155056091</a>
+      )
+    </li>
+  </ul>

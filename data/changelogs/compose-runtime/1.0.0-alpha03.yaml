@@ -1,0 +1,48 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.0.0-alpha03
+releaseDate: 2020-09-16
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha03" data-text="Version 1.0.0-alpha03" tabindex="-1">Version 1.0.0-alpha03</h3>
+  <p>September 16, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.0.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/31022a2dda22705843be1199c786552a6f9f875d..18a5639262f8504db530176550e338a5d0e2e044/compose/runtime">Version 1.0.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">CompositionCoroutineScope</code>
+      no longer implements
+      <code translate="no" dir="ltr">MonotonicFrameClock</code>
+      . Callers of
+      <code translate="no" dir="ltr">withFrameNanos</code>
+      should import the top-level function explicitly. (
+      <a href="https://android-review.googlesource.com/#/q/Icb642e00a670c235f26d11e6549b4222b2b4c2fb">Icb642</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/166778123">b/166778123</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Global testing functions such as
+      <code translate="no" dir="ltr">onNode</code>
+      or
+      <code translate="no" dir="ltr">waitForIdle</code>
+      are now deprecated, please migrate to their new counterparts that are defined on ComposeTestRule (
+      <a href="https://android-review.googlesource.com/#/q/I7f45a41128160a0e67ad07e32a1ad49774602a97">I7f45a</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">launchInComposition</code>
+      no longer launches coroutines undispatched (
+      <a href="https://android-review.googlesource.com/#/q/Ief6afbbd9cae98ef337808a5cb481f012df602c8">Ief6af</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/166486000">b/166486000</a>
+      )
+    </li>
+  </ul>

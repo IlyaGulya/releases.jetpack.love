@@ -1,0 +1,116 @@
+libraryId: room
+groupId: androidx.room
+version: 2.2.0
+releaseDate: 2019-10-09
+#language=html
+changelogHtml: |
+  <h3 id="2.2.0" data-text="Version 2.2.0" tabindex="-1">Version 2.2.0</h3>
+  <p>October 9, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.2.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/aa36228c061a81036f6b98fd4fe2e0814415303d..31d127394de2acb29cd81204796b413f5a1db8b2/room">Version 2.2.0 contains these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since version 2.1.0</strong></p>
+  <ul>
+    <li>
+      <strong>Pre-packaged Database</strong>
+      : Two new APIs in
+      <code translate="no" dir="ltr">RoomDatabase.Builder</code>
+      are now available for creating a
+      <code translate="no" dir="ltr">RoomDatabase</code>
+      given an already populated database file.
+      <code translate="no" dir="ltr">createFromAsset()</code>
+      is for when the pre-populated database file is in the assets folder of the APK, while
+      <code translate="no" dir="ltr">createFromFile()</code>
+      is for when the file is in an arbitrary location. The usages of these API change the behaviour of destructive migrations such that during a fallback migration, Room will try to re-copy the pre-populated database if available, otherwise it fallbacks to just dropping and re-creating all tables.
+      <a href="https://issuetracker.google.com/issues/62185732">b/62185732</a>
+    </li>
+    <li>
+      <strong>Schema Default Values</strong>
+      :
+      <code translate="no" dir="ltr">@ColumnInfo</code>
+      now has a new property
+      <code translate="no" dir="ltr">defaultValue</code>
+      that can be used to specify the default value of a column. Default values are part of a database schema and will be validated during migrations if specified.
+      <a href="https://issuetracker.google.com/issues/64088772">b/64088772</a>
+    </li>
+    <li>
+      <strong>Many-to-Many Relations</strong>
+      :
+      <code translate="no" dir="ltr">@Relation</code>
+      now has a new property
+      <code translate="no" dir="ltr">associateBy</code>
+      , that takes in a new annotation
+      <code translate="no" dir="ltr">@Junction</code>
+      , used to declare a relation that needs to be satisfied via a junction table (also known as a join table).
+      <a href="https://issuetracker.google.com/issues/69201917">b/69201917</a>
+    </li>
+    <li>
+      <strong>One-to-One Relations</strong>
+      : The restriction in POJO fields annotated with
+      <code translate="no" dir="ltr">@Relation</code>
+      to be of type
+      <code translate="no" dir="ltr">List</code>
+      or
+      <code translate="no" dir="ltr">Set</code>
+      has been lifted, effectively allowing single-value relations to be represented.
+      <a href="https://issuetracker.google.com/issues/62905145">b/62905145</a>
+    </li>
+    <li>
+      <strong>Target Entity</strong>
+      : The DAO annnotations
+      <code translate="no" dir="ltr">@Insert</code>
+      ,
+      <code translate="no" dir="ltr">@Update</code>
+      and
+      <code translate="no" dir="ltr">@Delete</code>
+      now has a new property
+      <code translate="no" dir="ltr">targetEntity</code>
+      , that allows specifying the target table the DAO method is meant to act on. This allows for the parameters of those DAO methods to be arbitrary POJOs which will be interpreted as partial entities. In practice, this allows partial inserts, deletes and updates.
+      <a href="https://issuetracker.google.com/issues/127549506">b/127549506</a>
+    </li>
+    <li>
+      <strong>Coroutines Flow</strong>
+      :
+      <code translate="no" dir="ltr">@Query</code>
+      DAO methods can now be of return type
+      <code translate="no" dir="ltr">Flow&lt;T&gt;</code>
+      . The returned Flow will re-emit a new set of values if the observing tables in the query are invalidated. Declaring a DAO function with a
+      <code translate="no" dir="ltr">Channel&lt;T&gt;</code>
+      return type is an error, Room instead encourages you to use
+      <code translate="no" dir="ltr">Flow</code>
+      and then use the neighboring functions to convert the
+      <code translate="no" dir="ltr">Flow</code>
+      into a
+      <code translate="no" dir="ltr">Channel</code>
+      .
+      <a href="https://issuetracker.google.com/issues/130428884">b/130428884</a>
+    </li>
+    <li>
+      <strong>Gradle Incremental Annotation Processor</strong>
+      : Room is now a Gradle isolating annotation processor and incrementability can be enabled via the processor option
+      <code translate="no" dir="ltr">room.incremental</code>
+      . See
+      <a href="/jetpack/androidx/releases/room#compiler-options">Room Compiler Options</a>
+      for more information. If you encounter any issues please file a bug
+      <a href="https://issuetracker.google.com/issues/new?component=413107&amp;template=1096568">here</a>
+      . We plan to enable incrementability by default in a future, stable version.
+      <a href="https://issuetracker.google.com/issues/112110217">b/112110217</a>
+    </li>
+    <li>
+      <strong>Expanding Projections</strong>
+      : A new experimental compiler option
+      <code translate="no" dir="ltr">room.expandProjection</code>
+      was added that causes Room to rewrite a query with a star projection to only contain the columns in the returning type POJO. For example, for a DAO method with
+      <code translate="no" dir="ltr">@Query("SELECT * FROM Song")</code>
+      that returns a POJO named
+      <code translate="no" dir="ltr">SongIdAndTitle</code>
+      with only two fields. Then Room will rewrite the query to
+      <code translate="no" dir="ltr">SELECT id, title FROM Song</code>
+      such that the minimum set of columns to satisfy the return type are fetched. This essentially eliminates the
+      <code translate="no" dir="ltr">CURSOR_MISMATCH</code>
+      warning that is presented when the query returns extra columns that do not match any field in the returning POJO type.
+    </li>
+  </ul>

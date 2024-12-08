@@ -1,0 +1,45 @@
+libraryId: wear-watchface
+groupId: androidx.wear
+version: 1.3.0-alpha04
+releaseDate: 2024-09-18
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha04" data-text="Version 1.3.0-alpha04" tabindex="-1">Version 1.3.0-alpha04</h3>
+  <p>September 18, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.watchface:watchface-*:1.3.0-alpha04</code>
+    is released. Version 1.3.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/67004410fdbff19f90caa4cc43965ab21dca1943..0431b84980e97d6bafdfda7c9038bc4d9529564f/wear/watchface">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added support for lazy loading of icons in
+      <code translate="no" dir="ltr">UserStyleSettings</code>
+      and
+      <code translate="no" dir="ltr">UserStyleOptions</code>
+      which is a performance win for loading watch faces. (
+      <a href="https://android-review.googlesource.com/#/q/Iaf43d401f17a1cca4d1f3a48e363e14fa19c8bcd">Iaf43d</a>
+      )
+    </li>
+    <li>
+      Added an option for an updated screenshot to be taken whenever the system configuration changes (e.g. if the locale changed) via the new
+      <code translate="no" dir="ltr">Watchface.setUpdateScreenshotOnConfigurationChange</code>
+      . By default this setting is off. (
+      <a href="https://android-review.googlesource.com/#/q/I765a12a4e28f1b291c74b414e0527262ff95137a">I765a1</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Removed manual outlining of access to new platform APIs since this happens automatically via API modeling when using R8 with AGP 7.3 or later (e.g. R8 version 3.3) and for all builds when using AGP 8.1 or later (e.g. D8 version 8.1). Clients who are not using AGP are advised to update to D8 version 8.1 or later. See
+      <a href="https://medium.com/androiddevelopers/mitigating-soft-verification-issues-in-r8-and-d8-7e9e06827dfd">this article</a>
+      for more details. (
+      <a href="https://android-review.googlesource.com/#/q/Ia60e0ab9f0fd613883a772c8aa34e27cc986cae8">Ia60e0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/345472586">b/345472586</a>
+      )
+    </li>
+  </ul>

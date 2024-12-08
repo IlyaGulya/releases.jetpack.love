@@ -1,0 +1,42 @@
+libraryId: annotation
+groupId: androidx.annotation
+version: 1.1.0-alpha02
+releaseDate: 2019-03-13
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha02" data-text="Version 1.1.0-alpha02" tabindex="-1">Version 1.1.0-alpha02</h3>
+  <p>March 13, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.annotation:annotation:1.1.0-alpha02</code>
+    is released. The full list of commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/941836d33391459696e51b18c08a08f0441eb216..091eca9ac5e20c1346e4c1fdace7b63721f9ce43/annotations">here</a>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      New API restriction scope:
+      <code translate="no" dir="ltr">RestrictTo.Scope.LIBRARY_GROUP_PREFIX</code>
+      . It restricts usage to code within packages whose groups share the same library group prefix up to the last
+      <code translate="no" dir="ltr">.</code>
+      (period). For example, because libraries
+      <code translate="no" dir="ltr">foo.bar:lib1</code>
+      and
+      <code translate="no" dir="ltr">foo.baz:lib2</code>
+      share the prefix
+      <code translate="no" dir="ltr">foo</code>
+      , they can use each other's APIs that are restricted to this scope. Similarly, for
+      <code translate="no" dir="ltr">com.foo.bar:lib1</code>
+      and
+      <code translate="no" dir="ltr">com.foo.baz:lib2</code>
+      share the
+      <code translate="no" dir="ltr">com.foo.</code>
+      prefix and can share APIs restricted to that scope. Library
+      <code translate="no" dir="ltr">com.bar.qux:lib3</code>
+      however will not be able to use the restricted API because it only shares the prefix
+      <code translate="no" dir="ltr">com.</code>
+      and not all the way until the last
+      <code translate="no" dir="ltr">.</code>
+      (period).
+    </li>
+  </ul>

@@ -1,0 +1,42 @@
+libraryId: room
+groupId: androidx.room
+version: 2.5.1
+releaseDate: 2023-03-22
+#language=html
+changelogHtml: |
+  <h3 id="2.5.1" data-text="Version 2.5.1" tabindex="-1">Version 2.5.1</h3>
+  <p>March 22, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.5.1</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e45926c282f76fcba0b4e86bfa74bc6e5a5ca642..2f3269d9f8da6386519f59da82b374779e22c515/room">Version 2.5.1 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Avoid checking the database parent directory in
+      <code translate="no" dir="ltr">FrameworkSQLiteHelper</code>
+      if the database is already open. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/5de86b82c00590651c4b60acddf7873b1a1e4509">5de86b8</a>
+      )
+    </li>
+    <li>
+      Use an
+      <code translate="no" dir="ltr">isOpenInternal</code>
+      check when checking if the database is already open. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/e91fb356ef871317583b8dad84d0ee0eedbf9978">e91fb35</a>
+      )
+    </li>
+    <li>
+      Better handling of the reentrant case in Room's
+      <code translate="no" dir="ltr">acquireTransactionThread()</code>
+      is now available. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/219f98b7526323e0fac23b6e84136419ba4768df">219f98b</a>
+      ). During a suspending transaction, Room uses a thread from the transaction executor, starts an event loop in it and dispatches suspending database operations to it so they are all encapsulated within the transaction coroutine. It is usually expected that the transaction thread is different from the one starting the transaction, but in some cases they are the same. To handle such reentrant cases the
+      <code translate="no" dir="ltr">withTransaction()</code>
+      has been refactored to no longer rely on a control job and instead it will execute the suspending transaction block from within the
+      <code translate="no" dir="ltr">runBlocking</code>
+      in the transaction thread.
+    </li>
+  </ul>
+  <h2 id="version_250_4" data-text="Version 2.5.0" tabindex="-1">Version 2.5.0</h2>

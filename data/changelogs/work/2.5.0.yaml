@@ -1,0 +1,93 @@
+libraryId: work
+groupId: androidx.work
+version: 2.5.0
+releaseDate: 2021-01-27
+#language=html
+changelogHtml: |
+  <h3 id="2.5.0" data-text="Version 2.5.0" tabindex="-1">Version 2.5.0</h3>
+  <p>January 27, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.5.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/8e8a196e1c2eb6d6e6194b621267473c31bea375..b32e1d4efc3b6976da585fb8783f913e92108428/work">Version 2.5.0 contains these commits.</a>
+  </p>
+  <p><strong>Major changes since 2.4.0</strong></p>
+  <ul>
+    <li>
+      A new
+      <code translate="no" dir="ltr">:work:work-multiprocess</code>
+      artifact for apps that use multiple processes. This introduces performance gains by unifying work request scheduling to a single process.
+      <ul>
+        <li>
+          To use
+          <code translate="no" dir="ltr">work-multiprocess</code>
+          , define a dependency on:
+          <code translate="no" dir="ltr">implementation "androidx.work:work-multiprocess:2.5.0"</code>
+        </li>
+        <li>
+          Designate a primary process using
+          <a href="/reference/androidx/work/Configuration.Builder#setDefaultProcessName(java.lang.String)">Configuration.Builder.setDefaultProcessName(String)</a>
+          .
+        </li>
+        <li>
+          When using
+          <code translate="no" dir="ltr">work-multiprocess</code>
+          you also want to use
+          <a href="/reference/androidx/work/multiprocess/RemoteWorkManager">RemoteWorkManager</a>
+          to manage your
+          <code translate="no" dir="ltr">WorkRequest</code>
+          s.
+          <a href="/reference/androidx/work/multiprocess/RemoteWorkManager">RemoteWorkManager</a>
+          always reaches out to the designated process. The in-process scheduler also runs in the designated process.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Sometimes,
+      <code translate="no" dir="ltr">ActivityManager</code>
+      cannot instantiate the
+      <code translate="no" dir="ltr">JobService</code>
+      instance, to start a job. This causes the underlying job to get silently dropped because of a platform bug.
+      <code translate="no" dir="ltr">WorkManager</code>
+      now ensures that there are backing jobs for every single
+      <code translate="no" dir="ltr">WorkRequest</code>
+      when an
+      <code translate="no" dir="ltr">Application</code>
+      is being initialized by reconciling jobs. This greatly improves job execution reliability. (
+      <a href="https://issuetracker.google.com/issues/172475041">b/172475041</a>
+      ,
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1489577">aosp/1489577</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">WorkManager</code>
+      limits database growth by reducing the buffer duration that
+      <code translate="no" dir="ltr">WorkRequest</code>
+      s are tracked after a
+      <code translate="no" dir="ltr">WorkRequest</code>
+      is complete. The duration was
+      <code translate="no" dir="ltr">7</code>
+      days previously. It has been reduced to
+      <code translate="no" dir="ltr">1</code>
+      day + the
+      <a href="/reference/androidx/work/WorkRequest.Builder#keepResultsForAtLeast(java.time.Duration)">keepResultsForAtLeast</a>
+      duration. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1419708">aosp/1419708</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">TestListenableWorkerBuilder</code>
+      now supports the reified class extending
+      <code translate="no" dir="ltr">ListenableWorker</code>
+      to make testing easier. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1443299">aosp/1443299</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/169787349">b/169787349</a>
+      )
+    </li>
+    <li>
+      <a href="/studio/preview/features#workmanager-inspector">WorkManager inspector</a>
+      is now available when using Android Studio Arctic Fox.
+    </li>
+  </ul>

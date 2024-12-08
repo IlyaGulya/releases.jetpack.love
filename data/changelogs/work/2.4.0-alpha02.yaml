@@ -1,0 +1,78 @@
+libraryId: work
+groupId: androidx.work
+version: 2.4.0-alpha02
+releaseDate: 2020-04-01
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0-alpha02" data-text="Version 2.4.0-alpha02" tabindex="-1">Version 2.4.0-alpha02</h3>
+  <p>April 1, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.4.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/2fd74387bd35dc4acb471992654788fab3244b35..6c98d66b901be2eecdf89477ccd70d2490ca6fc2/work">Version 2.4.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added a new Lint rule that warns when
+      <code translate="no" dir="ltr">WorkRequest</code>
+      s requires both
+      <code translate="no" dir="ltr">Constraints.setRequiresCharging(...)</code>
+      and
+      <code translate="no" dir="ltr">Constraints.setRequiresDeviceIdle(...)</code>
+      . Some devices are never charging and idle at the same time. So such requests would run less frequently than expected. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1253840">aosp/1253840</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <p>
+        Added the ability to query for
+        <code translate="no" dir="ltr">WorkInfo</code>
+        s by using a
+        <code translate="no" dir="ltr">WorkQuery</code>
+        . This is useful when developers want to query
+        <code translate="no" dir="ltr">WorkInfo</code>
+        s by a combination of multiple attributes. For more information look at
+        <code translate="no" dir="ltr">WorkQuery.Builder withStates(...)</code>
+        ,
+        <code translate="no" dir="ltr">WorkQuery.Builder withTags(...)</code>
+        or
+        <code translate="no" dir="ltr">WorkQuery.Builder withUniqueWorkNames(...)</code>
+        . (
+        <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1253230">aosp/1253230</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/143847546">b/143847546</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Calls to
+        <code translate="no" dir="ltr">setForegroundAsync()</code>
+        that do not complete before completion of a
+        <code translate="no" dir="ltr">ListenableWorker</code>
+        will now be signalled via an
+        <code translate="no" dir="ltr">IllegalStateException</code>
+        on the returned
+        <code translate="no" dir="ltr">ListenableFuture</code>
+        . (
+        <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1262743">aosp/1262743</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed the lint rule that checks for invalid interval durations for
+      <code translate="no" dir="ltr">PeriodicWorkRequest</code>
+      s. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1254846">aosp/1254846</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/152606442">b/152606442</a>
+      )
+    </li>
+  </ul>

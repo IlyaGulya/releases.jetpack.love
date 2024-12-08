@@ -1,0 +1,65 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.0.0-alpha01
+releaseDate: 2018-11-05
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha01" data-text="Version 1.0.0-alpha01" tabindex="-1">Version 1.0.0-alpha01</h3>
+  <p>November 5, 2018</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity 1.0.0-alpha01</code>
+    introduces
+    <code translate="no" dir="ltr">ComponentActivity</code>
+    , a new base class of the existing
+    <code translate="no" dir="ltr">FragmentActivity</code>
+    and
+    <code translate="no" dir="ltr">AppCompatActivity</code>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      You can now register an
+      <code translate="no" dir="ltr">OnBackPressedCallback</code>
+      via
+      <code translate="no" dir="ltr">addOnBackPressedCallback</code>
+      to receive
+      <code translate="no" dir="ltr">onBackPressed()</code>
+      callbacks without needing to override the method in your activity.
+    </li>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">by viewModels()</code>
+      Kotlin property delegate for retrieving
+      <code translate="no" dir="ltr">ViewModel</code>
+      s from a
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      .
+    </li>
+    <li>
+      Pending input events (such as clicks) are now canceled in
+      <code translate="no" dir="ltr">onStop()</code>
+      .
+    </li>
+  </ul>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      The implementation of
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      and
+      <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+      have been moved from
+      <code translate="no" dir="ltr">FragmentActivity</code>
+      to
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">onRetainCustomNonConfigurationInstance</code>
+      has been deprecated. Use a
+      <code translate="no" dir="ltr">ViewModel</code>
+      for storing objects that need to survive configuration changes.
+    </li>
+  </ul>
+  <devsite-hats-survey class="nocontent" hats-id="VxqvKSur40kxBYCLVTd0SSGykbno" listnr-id="5207477"></devsite-hats-survey>

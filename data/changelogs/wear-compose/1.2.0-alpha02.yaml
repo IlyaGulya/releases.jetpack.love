@@ -1,0 +1,97 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.2.0-alpha02
+releaseDate: 2023-01-11
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha02" data-text="Version 1.2.0-alpha02" tabindex="-1">Version 1.2.0-alpha02</h3>
+  <p>January 11, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.2.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4a2f5e696614339c1ac21f706c1a17c0285780e7..adf1c279a86ab3886e1666c08e2c3efba783367b/wear/compose">Version 1.2.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Android Compose UI tests will now run layout passes for each frame when executing frames to get to idle (e.g. via
+      <code translate="no" dir="ltr">waitForIdle</code>
+      ). This may affect tests that assert on individual frames of layout animations. (
+      <a href="https://android-review.googlesource.com/#/q/I8ea08728a395665f9ec7965579797e537b2c35e5">I8ea08</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/222093277">b/222093277</a>
+      )
+    </li>
+    <li>
+      The parameter
+      <code translate="no" dir="ltr">minLines</code>
+      is added to Wear Text for consistent behaviour with
+      <code translate="no" dir="ltr">BasicText</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I24874b28ff5ee0fab36bbcc052560c8590e6e1bb">I24874</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">CompactChipTapTargetPadding</code>
+      has been made public so that it appears in the documentation (
+      <a href="https://android-review.googlesource.com/#/q/If1e709a1c1a1252f54d11907cc2e412fd2818db9">If1e70</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/234119038">b/234119038</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Disable multiplatform builds for
+      <code translate="no" dir="ltr">wear.compose</code>
+      packages (
+      <a href="https://android-review.googlesource.com/#/q/Iad3d746b9ac10e554fc796f7c3d7808da509d945">Iad3d7</a>
+      )
+    </li>
+    <li>
+      Fix kdocs for
+      <code translate="no" dir="ltr">scrollToOption</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I6f9a0166eae7c64f31ea3839cac180decfdd62b3">I6f9a0</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PlaceholderState.rememberPlaceholderState()</code>
+      updated to use
+      <code translate="no" dir="ltr">rememberUpdatedState</code>
+      to that the state will update if the
+      <code translate="no" dir="ltr">onContentReady</code>
+      lambda. (
+      <a href="https://android-review.googlesource.com/#/q/I02635c21c723a91aa2f5915fe79468a463fd1698">I02635</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/260343754">b/260343754</a>
+      )
+    </li>
+    <li>
+      We have fixed a text jittering issue seen in the
+      <code translate="no" dir="ltr">Picker</code>
+      component by leveraging the new compositing strategy added to
+      <code translate="no" dir="ltr">Modifier.graphicsLayer</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I993029ef37f128cbb568d4a9b80b8bf8f3534882">I99302</a>
+      )
+    </li>
+    <li>
+      We have fixed a bug that caused flickering in our
+      <code translate="no" dir="ltr">DatePicker</code>
+      demo (
+      <a href="https://android-review.googlesource.com/q/I660bde5d84f6194ce13011117a3cf2102b2ed152">I660bd</a>
+      )
+    </li>
+    <li>
+      We have improved the accessibility for the 12-hour time and date picker demos (
+      <a href="https://android-review.googlesource.com/q/I05e12f957e9e386fed9263f103e6ecb2de49c229">I05e12</a>
+      )
+    </li>
+    <li>
+      We have updated our time and date picker demos so that the pickers are not affected by RSB changes when unselected (
+      <a href="https://android-review.googlesource.com/q/I4aecb52deb69d14d2327d148d1518d92fed67902">I4aecb</a>
+      )
+    </li>
+  </ul>

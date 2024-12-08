@@ -1,0 +1,168 @@
+libraryId: wear
+groupId: androidx.wear
+version: 1.0.0-alpha03
+releaseDate: 2020-12-02
+#language=html
+changelogHtml: |
+  <h3 id="complications-watchface-1.0.0-alpha03" data-text="Version 1.0.0-alpha03" tabindex="-1">Version 1.0.0-alpha03</h3>
+  <p>December 2, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear:wear-*:1.0.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/2d49f9fa892a0d067580a871f3aa0cd6764f4c3b..38a668d3ef95f40ad28d6e735a2c3eb95ae4cf63/wear">Version 1.0.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>The Complication class now has a compicationData property letting watch faces observe ComplicationData changes. This makes it possible to change the complication’s dimensions based on the type of the complication.</p>
+  <p>Variable frame rates are now supported by assigning to Renderer.interactiveDrawModeUpdateDelayMillis. For watch faces which run short animations every second this can lead to good power savings by going to sleep when not animating.</p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">BACKGROUND_IMAGE</code>
+      has been renamed to
+      <code translate="no" dir="ltr">PHOTO_IMAGE</code>
+      along with related classes. This type of complication is not exclusively used for backgrounds hence the name change. (
+      <a href="https://android-review.googlesource.com/#/q/I995c61974db868d89184b8fa49d677e6fc16befa">I995c6</a>
+      )
+    </li>
+    <li>
+      DefaultComplicationProviderPolicy properly annotated with IntDefs. (
+      <a href="https://android-review.googlesource.com/#/q/I3b4312734532d2cec94d74ed70647fb33ecf21e3">I3b431</a>
+      )
+    </li>
+    <li>
+      The hidden TimeDependentText class is no longer exposed via ContentDescriptionLabel, instead we add an accessor to get the text at a specified time. (
+      <a href="https://android-review.googlesource.com/#/q/Ica69255606c011c1b4c733db31d3c4afdad16887">Ica692</a>
+      )
+    </li>
+    <li>
+      ObservableWatchData's constructor is now internal. (
+      <a href="https://android-review.googlesource.com/#/q/I301215475e08c10a8cb97095638b235d664bcfcb">I30121</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173802666">b/173802666</a>
+      )
+    </li>
+    <li>
+      Complication now has compicationData letting watch faces observe ComplicationData changes. Complication also has a new isActiveAt call which can be used to tell if anything should be rendered at the provided datetime. (
+      <a href="https://android-review.googlesource.com/#/q/Ic0e2a53c2c8973e133304a55197ec27c708404e7">Ic0e2a</a>
+      )
+    </li>
+    <li>
+      The empty
+      <code translate="no" dir="ltr">SharedMemoryImage</code>
+      is no longer in the public API. (
+      <a href="https://android-review.googlesource.com/#/q/I7ee17b402375ff3231a4fb8b6cd32cacaefdab8a">I7ee17</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">WatchFace.overridePreviewReferenceTimeMillis</code>
+      now has an IntRange annotation and the getter and setter have consistent names. (
+      <a href="https://android-review.googlesource.com/#/q/Ia5f7811eece551191ad1ec0ec9420369886058d2">Ia5f78</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Complication.Builder</code>
+      is now created via
+      <code translate="no" dir="ltr">Complication.createRoundRectComplicationBuilder</code>
+      or
+      <code translate="no" dir="ltr">Complication.createBackgroundComplicationBuilder</code>
+      for clarity (
+      <a href="https://android-review.googlesource.com/#/q/I54063447e6c0fac6f53448ec50a3f50d3a1c759b">I54063</a>
+      )
+    </li>
+    <li>
+      Added WatchFace.TapListener which allows taps not consumed by complications to be observed by the WatchFace. (
+      <a href="https://android-review.googlesource.com/#/q/Ic2fe1b967acc321e459f560a298ad98206a431ab">Ic2fe1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172721168">b/172721168</a>
+      )
+    </li>
+    <li>
+      WatchFace now supports variable frame rates by assigning to
+      <code translate="no" dir="ltr">Renderer.interactiveDrawModeUpdateDelayMillis</code>
+      . This can help preserve battery life by sleeping when not animating. (
+      <a href="https://android-review.googlesource.com/#/q/I707c9c6487b902c8f4f339ac292ca3a4dce49ef9">I707c9</a>
+      )
+    </li>
+    <li>
+      WatchFace.Builder is no longer needed and invalidate() and interactiveUpdateRateMillis have been moved to Renderer. (
+      <a href="https://android-review.googlesource.com/#/q/I329ea7916fe2ad0c37cf45d8ab9de6da326ee82d">I329ea</a>
+      )
+    </li>
+    <li>
+      For better java interoperability renamed getters for boolean properties in WatchState (
+      <a href="https://android-review.googlesource.com/#/q/I6d2f154452b3f6b17617bd7412539380ce0ea84c">I6d2f1</a>
+      )
+    </li>
+    <li>
+      Renamed TapListener to TapCallback and InvalidateCallback to InvalidateListener for consistency. (
+      <a href="https://android-review.googlesource.com/#/q/I9414ef54a9ebbdbda6c625ef9f139882a0ee0af6">I9414e</a>
+      )
+    </li>
+    <li>
+      Wear 2.0 watchface style options have been moved to their own class for clarity. WatchFace.Builder setters now have symmetrical WatchFace class getters. (
+      <a href="https://android-review.googlesource.com/#/q/Iefdfc95bbab3eec314d95b3cd7f6b4666fa28ba2">Iefdfc</a>
+      )
+    </li>
+    <li>
+      Added InteractiveWatchFaceWcsClient and
+      <code translate="no" dir="ltr">WatchFaceControlClient.getOrCreateWallpaperServiceBackedInteractiveWatchFaceWcsClient</code>
+      which either gets an existing instance or creates it once the wallaper service has connected and made the engine. (
+      <a href="https://android-review.googlesource.com/#/q/Id666e8c785c8cd803ff445dda4e45f40db65cee9">Id666e</a>
+      )
+    </li>
+    <li>
+      WatchFaceControlClient is now an interface to allow tests to mock it. (
+      <a href="https://android-review.googlesource.com/#/q/I875d9b0bf214db40781958e04e7cc751cdde709d">I875d9</a>
+      )
+    </li>
+    <li>
+      HeadlessWatchFaceClient, InteractiveWatchFaceSysUiClientImpl, InteractiveWatchFaceWcsClient are now interfaces to better facilitate testing. (
+      <a href="https://android-review.googlesource.com/#/q/I7cdc3a7b9e49cb26a9a55d43243ae305e8cf9701">I7cdc3</a>
+      )
+    </li>
+    <li>
+      Added annotations to methods in
+      <code translate="no" dir="ltr">wear-watchface-complications-rendering</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I0d65c78e9c6717748a5891fc539fc258812851c5">I0d65c</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Remove screen shape from DeviceConfig, which was duplicating
+      <code translate="no" dir="ltr">android.content.res.Configuration#isScreenRound()</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ifadf459ef1f67f24262e97279f859b413a2dd045">Ifadf4</a>
+      )
+    </li>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">WatchFaceControlClient.getOrCreateWallpaperServiceBackedInteractiveWatchFaceWcsClient</code>
+      to accept a
+      <code translate="no" dir="ltr">Map&lt;String, String&gt;</code>
+      instead of
+      <code translate="no" dir="ltr">UserStyle</code>
+      because it's hard to create a
+      <code translate="no" dir="ltr">UserStyle</code>
+      without knowing the schema which you can only get after the client has been created. (
+      <a href="https://android-review.googlesource.com/#/q/Iea02ada7595d6e0272a94644c470330ed17378c1">Iea02a</a>
+      )
+    </li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">InteractiveWatchFaceWcsClient</code>
+      to use
+      <code translate="no" dir="ltr">ComplicationState</code>
+      instead of the wire format. (
+      <a href="https://android-review.googlesource.com/#/q/Icb8a49513e834ead46c7bcca78504f905b8766ba">Icb8a4</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">UserStyleSettings</code>
+      is now a sealed class because the watch face editors only understand the built in classes. (
+      <a href="https://android-review.googlesource.com/#/q/I2d797029198ecd2b6a3aac3e16b691be05171f83">I2d797</a>
+      )
+    </li>
+  </ul>

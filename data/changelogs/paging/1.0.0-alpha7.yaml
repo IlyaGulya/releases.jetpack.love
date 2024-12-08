@@ -1,0 +1,90 @@
+libraryId: paging
+groupId: androidx.paging
+version: 1.0.0-alpha7
+releaseDate: 2018-03-21
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha7" data-text="Version 1.0.0-alpha7" tabindex="-1">Version 1.0.0-alpha7</h3>
+  <p>March 21, 2018</p>
+  <p>
+    Paging
+    <code translate="no" dir="ltr">1.0.0-alpha7</code>
+    is released alongside Lifecycles
+    <code translate="no" dir="ltr">1.1.1</code>
+    . As Paging alpha7 depends on the move of the
+    <code translate="no" dir="ltr">Function</code>
+    class mentioned above, you will need to update your
+    <code translate="no" dir="ltr">lifecycle:runtime</code>
+    dependency to
+    <code translate="no" dir="ltr">android.arch.lifecycle:runtime:1.1.1</code>
+    .
+  </p>
+  <p>
+    Paging
+    <code translate="no" dir="ltr">alpha7</code>
+    is planned to be the final release before Paging hits beta.
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">DataSource.LoadParams</code>
+      objects now have a public constructor and
+      <code translate="no" dir="ltr">DataSource.LoadCallback</code>
+      objects are now abstract. This enables wrapping a
+      <code translate="no" dir="ltr">DataSource</code>
+      or directly testing a
+      <code translate="no" dir="ltr">DataSource</code>
+      with a mock callback.
+      <a href="https://issuetracker.google.com/issues/72600421">b/72600421</a>
+    </li>
+    <li>
+      Mappers for DataSource and DataSource.Factory
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">map(Function&lt;IN,OUT&gt;)</code>
+          allows you to transform, wrap, or decorate results loaded by a
+          <code translate="no" dir="ltr">DataSource</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">mapByPage(&lt;List&lt;IN&gt;,List&lt;OUT&gt;&gt;)</code>
+          enables the same for batch processing (e.g. if items loaded from SQL need to additionally query a separate database, that can be done as a batch.)
+        </li>
+      </ul>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PagedList#getDataSource()</code>
+      is added as a convenience method
+      <a href="https://issuetracker.google.com/issues/72611341">b/72611341</a>
+    </li>
+    <li>
+      All deprecated classes have been removed from the API, including the remains of
+      <code translate="no" dir="ltr">recyclerview.extensions</code>
+      package, and the
+      <code translate="no" dir="ltr">LivePagedListProvider</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">DataSource.Factory</code>
+      is changed from an interface to an abstract class to enable map functionality.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Changed Builders to be final.
+      <a href="https://issuetracker.google.com/issues/70848565">b/70848565</a>
+    </li>
+    <li>
+      Room
+      <code translate="no" dir="ltr">DataSource</code>
+      implementation is now fixed to handle multi-table queries - this fix is contained within Room 1.1.0-beta1, see above.
+    </li>
+    <li>
+      Fixed a bug where
+      <code translate="no" dir="ltr">BoundaryCallback.onItemAtEndLoaded</code>
+      would not be invoked for
+      <code translate="no" dir="ltr">PositionalDataSource</code>
+      if placeholders are enabled and the total size is an exact multiple of the page size.
+    </li>
+  </ul>

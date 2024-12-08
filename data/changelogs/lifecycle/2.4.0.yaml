@@ -1,0 +1,126 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.4.0
+releaseDate: 2021-10-27
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0" data-text="Version 2.4.0" tabindex="-1">Version 2.4.0</h3>
+  <p>October 27, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.4.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/433fef42bf9ce2a319e54a8fc3f7ba350249d2d2..03e82488323f4f6d9999228d07c0336a54f4798e/lifecycle">Version 2.4.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 2.3.0</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">@OnLifecycleEvent</code>
+      was deprecated.
+      <code translate="no" dir="ltr">LifecycleEventObserver</code>
+      or
+      <code translate="no" dir="ltr">DefaultLifecycleObserver</code>
+      should be used instead.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-viewmodel-compose</code>
+      library was added. It provides
+      <code translate="no" dir="ltr">viewModel()</code>
+      composable and
+      <code translate="no" dir="ltr">LocalViewModelStoreOwner</code>
+      .
+      <ul>
+        <li>
+          <em>Source-breaking change</em>
+          :
+          <code translate="no" dir="ltr">ViewModelProvider</code>
+          has been rewritten in Kotlin.
+          <code translate="no" dir="ltr">ViewModelProvider.Factory.create</code>
+          method no longer allows nullable generic.
+        </li>
+      </ul>
+    </li>
+    <li>
+      New coroutines API were added to
+      <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-runtime-ktx</code>
+      :
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Lifecycle.repeatOnLifecycle</code>
+      , API that executes a block of code in a coroutine when the Lifecycle is at least in a certain state. The block will cancel and re-launch as the lifecycle moves in and out of the target state;
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Flow.flowWithLifecycle</code>
+      , API that emits values from the upstream Flow when the lifecycle is at least in a certain state.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">DefaultLifecycleObserver</code>
+      was moved from
+      <code translate="no" dir="ltr">lifecycle.lifecycle-common-java8</code>
+      to
+      <code translate="no" dir="ltr">lifecycle.lifecycle-common</code>
+      .
+      <code translate="no" dir="ltr">lifecycle.lifecycle-common-java8</code>
+      doesn't provide anymore any additional functionality on top of
+      <code translate="no" dir="ltr">lifecycle.lifecycle-common</code>
+      , so dependency on it can be replaced by
+      <code translate="no" dir="ltr">lifecycle.lifecycle-common</code>
+      .
+    </li>
+    <li>
+      Non coroutines API from
+      <code translate="no" dir="ltr">lifecycle-viewmodel-ktx</code>
+      have been moved to the
+      <code translate="no" dir="ltr">lifecycle-viewmodel</code>
+      module.
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">lifecycle-process</code>
+        now uses
+        <code translate="no" dir="ltr">androidx.startup</code>
+        to initialize the
+        <code translate="no" dir="ltr">ProcessLifecycleOwner</code>
+        .
+      </p>
+
+      <p>
+        Previously, this was being done by
+        <code translate="no" dir="ltr">androidx.lifecycle.ProcessLifecycleOwnerInitializer</code>
+        .
+      </p>
+
+      <p>
+        If you used
+        <code translate="no" dir="ltr">tools:node="remove"</code>
+        the
+        <code translate="no" dir="ltr">ContentProvider</code>
+        being used to initialize process lifecycle in the past, then you need to do the following instead.
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="XML"><code translate="no" dir="ltr"><span class="devsite-syntax-w"> </span>&lt;provider
+  <span class="devsite-syntax-w">    </span>android:name="androidx.startup.InitializationProvider"
+  <span class="devsite-syntax-w">    </span>android:authorities=\"${applicationId}.androidx-startup"
+  <span class="devsite-syntax-w">    </span>android:exported="false"
+  <span class="devsite-syntax-w">    </span>tools:node=\"merge"&gt;
+  <span class="devsite-syntax-w">    </span>&lt;!--<span class="devsite-syntax-w"> </span>If<span class="devsite-syntax-w"> </span>you<span class="devsite-syntax-w"> </span>are<span class="devsite-syntax-w"> </span>using<span class="devsite-syntax-w"> </span>androidx.startup<span class="devsite-syntax-w"> </span>to<span class="devsite-syntax-w"> </span>initialize<span class="devsite-syntax-w"> </span>other<span class="devsite-syntax-w"> </span>components<span class="devsite-syntax-w"> </span>--&gt;
+  <span class="devsite-syntax-w">    </span>&lt;meta-data
+  <span class="devsite-syntax-w">        </span>android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+  <span class="devsite-syntax-w">        </span>android:value="androidx.startup"
+  <span class="devsite-syntax-w">        </span>tools:node="remove"<span class="devsite-syntax-w"> </span>/&gt;
+  <span class="devsite-syntax-w"> </span>&lt;/provider&gt;
+  </code></pre>
+      </devsite-code>
+      <p>(or)</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="GDScript"><code translate="no" dir="ltr"><span class="devsite-syntax-w"> </span>&lt;<span class="devsite-syntax-o">!--</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">If</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">you</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">want</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">to</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">disable</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">androidx</span><span class="devsite-syntax-o">.</span><span class="devsite-syntax-n">startup</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">completely</span><span class="devsite-syntax-o">.</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">--</span>&gt;
+  <span class="devsite-syntax-w"> </span>&lt;<span class="devsite-syntax-n">provider</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">android</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-n">name</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-s2">"androidx.startup.InitializationProvider"</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">android</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-n">authorities</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-s2">"${applicationId}.androidx-startup"</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">tools</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-n">node</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-s2">"remove"</span>&gt;
+  <span class="devsite-syntax-w"> </span>&lt;<span class="devsite-syntax-o">/</span><span class="devsite-syntax-n">provider</span>&gt;
+  </code></pre>
+      </devsite-code>
+    </li>
+  </ul>

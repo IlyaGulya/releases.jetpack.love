@@ -1,0 +1,93 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.2.0-alpha09
+releaseDate: 2023-10-04
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha09" data-text="Version 1.2.0-alpha09" tabindex="-1">Version 1.2.0-alpha09</h3>
+  <p>October 4, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.2.0-alpha09</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/91bb8c1f81dcb031bda00fcd8e55f1e890b56f06..80156d02f56222d46dbad403c3adb812faaf62d6/compose/material3">Version 1.2.0-alpha09 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Migrated
+      <code translate="no" dir="ltr">ModalNavigationDrawer</code>
+      and
+      <code translate="no" dir="ltr">DismissibleNavigationDrawer</code>
+      to use new
+      <code translate="no" dir="ltr">AnchoredDraggable</code>
+      APIs.
+      <code translate="no" dir="ltr">DrawerState</code>
+      's
+      <code translate="no" dir="ltr">animateTo</code>
+      has been replaced by the open and close methods, and the offset is now exposed as a float instead of a state object. You can access the offset directly through
+      <code translate="no" dir="ltr">currentOffset</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0a72c377bd15770825efdce43c63a84ddfbeb0f4">I0a72c</a>
+      )
+    </li>
+    <li>
+      Non-Composable functions have been added for creating a
+      <code translate="no" dir="ltr">DatePickerState</code>
+      and
+      <code translate="no" dir="ltr">DateRangePickerState</code>
+      directly. These functions can be used as an alternative to the Composable
+      <code translate="no" dir="ltr">rememberDatePickerState</code>
+      and
+      <code translate="no" dir="ltr">rememberDateRangePickerState</code>
+      functions when needed. (
+      <a href="https://android-review.googlesource.com/#/q/I703262a5a9d3e87da82adf1c9993b462cd8d941a">I70326</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/291524052">b/291524052</a>
+      )
+    </li>
+    <li>
+      Fixed and Scrollable
+      <code translate="no" dir="ltr">TabRows</code>
+      now have Primary and Secondary variants. These correctly map to the color and indicator behavior as defined in Material3.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PrimaryScrollableTabRow</code>
+      and
+      <code translate="no" dir="ltr">SecondaryScrollableTabRow</code>
+      now expose scroll state. (
+      <a href="https://android-review.googlesource.com/#/q/Iec8f5a2876a15865842a6f0d4a584b539e16892a">Iec8f5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/260572337">b/260572337</a>
+      )
+    </li>
+    <li>
+      Adding a new
+      <code translate="no" dir="ltr">sheetMaxWidth</code>
+      parameter that developers can set to specify a maximum width that the sheet will span. Dp.Unspecified can be passed in for the parameter if a sheet that spans the entire screen width is desired. (
+      <a href="https://android-review.googlesource.com/#/q/Ifb7c9ee4d0066e86787e8fcbf0d156b9f92e5cfb">Ifb7c9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/266697696">b/266697696</a>
+      )
+    </li>
+    <li>
+      Adding back
+      <code translate="no" dir="ltr">PlainTooltipBox</code>
+      and
+      <code translate="no" dir="ltr">RichTooltipBox</code>
+      APIs as deprecated methods. (
+      <a href="https://android-review.googlesource.com/#/q/I246fa14bd02246c864f1db1b98e34a352fd32e55">I246fa</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix a crash when the
+      <code translate="no" dir="ltr">DatePicker</code>
+      is initialized with a
+      <code translate="no" dir="ltr">DatePickerFormatter</code>
+      that has certain date skeletons that stay the same when converted to date patterns (such as YY). (
+      <a href="https://android-review.googlesource.com/#/q/I01f2902849d4dd5c2426f4d3c13f52463692e3f4">I01f29</a>
+      )
+    </li>
+  </ul>

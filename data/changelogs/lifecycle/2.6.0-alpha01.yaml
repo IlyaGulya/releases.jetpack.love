@@ -1,0 +1,34 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.6.0-alpha01
+releaseDate: 2022-06-29
+#language=html
+changelogHtml: |
+  <h3 id="2.6.0-alpha01" data-text="Version 2.6.0-alpha01" tabindex="-1">Version 2.6.0-alpha01</h3>
+  <p>June 29, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.6.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/414e5d56fe642e82b7a9926e3219cbd756e8c9af..8094b683499b4098092c01028b55a38b49e357f2/lifecycle">Version 2.6.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added a new extension on
+      <code translate="no" dir="ltr">StateFlow</code>
+      and
+      <code translate="no" dir="ltr">Flow</code>
+      of
+      <code translate="no" dir="ltr">collectAsStateWithLifecycle</code>
+      that collect from flows and represents its latest value as Compose State in a lifecycle-aware manner. The flow is collected and the new emission is set to the State's value when the lifecycle is at least in a certain
+      <code translate="no" dir="ltr">Lifecycle.State</code>
+      . When the lifecycle falls below that
+      <code translate="no" dir="ltr">Lifecycle.State</code>
+      , the flow collection stops and the State's value is not updated. (
+      <a href="https://android-review.googlesource.com/#/q/I1856e689232fedf11c133907a63bc08b690d2ce9">I1856e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/230557927">b/230557927</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_25_2" data-text="Version 2.5" tabindex="-1">Version 2.5</h2>

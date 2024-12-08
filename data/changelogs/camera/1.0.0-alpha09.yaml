@@ -1,0 +1,139 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.0.0-alpha09
+releaseDate: 2020-04-01
+#language=html
+changelogHtml: |
+  <h3 id="camera-view-1.0.0-alpha09" data-text="Camera-View Version 1.0.0-alpha09" tabindex="-1">Camera-View Version 1.0.0-alpha09</h3>
+  <p>
+    April 1, 2020
+    <code translate="no" dir="ltr">androidx.camera:camera-view:1.0.0-alpha09</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/401dc9727e2eb1b5b89c0fbc4b7e1df77b2df75e..6c98d66b901be2eecdf89477ccd70d2490ca6fc2/camera/camera-view">Version 1.0.0-alpha09 contains these commits.</a>
+  </p>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      Using
+      <code translate="no" dir="ltr">ImplementationMode.SURFACE_VIEW</code>
+      with
+      <code translate="no" dir="ltr">PreviewView</code>
+      may not work well on certain devices, this is because the
+      <code translate="no" dir="ltr">SurfaceView</code>
+      used for preview invalidates its surface when the lifecycle of the window it's in is stopped, when it restarts, the camera is reopened and may attempt to resume preview before the
+      <code translate="no" dir="ltr">SurfaceView</code>
+      's surface is valid again. For now, you should use
+      <code translate="no" dir="ltr">ImplementationMode.TEXTURE_VIEW</code>
+      .
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">PreviewView.setImplementationMode()</code>
+      to
+      <code translate="no" dir="ltr">PreviewView.setPreferredImplementationMode()</code>
+      .
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">PreviewView.getImplementationMode()</code>
+      to
+      <code translate="no" dir="ltr">PreviewView.getPreferredImplementationMode()</code>
+      .
+    </li>
+    <li>
+      Replaced
+      <code translate="no" dir="ltr">PreviewView.getSurfaceProvider()</code>
+      by
+      <code translate="no" dir="ltr">PreviewView.createSurfaceProvider(CameraInfo)</code>
+      , which takes a nullable
+      <code translate="no" dir="ltr">CameraInfo</code>
+      instance used to optimize preview by using
+      <code translate="no" dir="ltr">ImplementationMode.SURFACE_VIEW</code>
+      whenever possible. If a null instance is passed, or if you set the preferred implementation mode to
+      <code translate="no" dir="ltr">ImplementationMode.TEXTURE_VIEW</code>
+      ,
+      <code translate="no" dir="ltr">ImplementationMode.TEXTURE_VIEW</code>
+      is used internally.
+    </li>
+    <li>
+      <p>The following code sample shows how a preview use case used to previously be used with PreviewView.</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-n">preview</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">setSurfaceProvider</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">previewView</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">previewSurfaceProvider</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-n">cameraProvider</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">bindToLifecycle</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">lifecycleOwner</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">cameraSelector</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">preview</span><span class="devsite-syntax-p">)</span>
+  </code></pre>
+      </devsite-code>
+      <p>Right now, you can write the following:</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">camera</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">cameraProvider</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">bindToLifecycle</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">lifecycleOwner</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">cameraSelector</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">preview</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-n">previewView</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">preferredImplementationMode</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">ImplementationMode</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">TEXTURE_VIEW</span>
+  <span class="devsite-syntax-n">preview</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">setSurfaceProvider</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">previewView</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">createSurfaceProvider</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">camera</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">cameraInfo</span><span class="devsite-syntax-p">))</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        The
+        <code translate="no" dir="ltr">@UiThread</code>
+        annotation has been added to
+        <code translate="no" dir="ltr">PreviewView.getSurfaceProvider()</code>
+        , meaning it must be called from the main thread. (
+        <a href="https://android-review.googlesource.com/#/q/I192f3e4f57c2ddf64c2d56302b19dd3b8c9aa34d">I192f3</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">PreviewView.setScaleType()</code>
+        which allows to set the scale type of the preview. It accepts one of the values in
+        <code translate="no" dir="ltr">PreviewView.ScaleType</code>
+        , and defaults to
+        <code translate="no" dir="ltr">PreviewView.ScaleType.FILL_CENTER</code>
+        .
+      </p>
+    </li>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">PreviewView.getScaleType()</code>
+        .
+      </p>
+    </li>
+    <li>
+      <p>
+        Removed support for setting the implementation mode for
+        <code translate="no" dir="ltr">PreviewView</code>
+        in a XML layout using the
+        <code translate="no" dir="ltr">implementationMode</code>
+        attribute.
+      </p>
+    </li>
+    <li>
+      <p>
+        Add
+        <code translate="no" dir="ltr">createMeteringPointFactory()</code>
+        API to PreviewView to support converting (x, y) in
+        <code translate="no" dir="ltr">PreviewView</code>
+        to
+        <code translate="no" dir="ltr">MeteringPoint</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/Ib36d78607ffcea891b5ec24b20f66e5e0eb42fc0">Ib36d7</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed cases where an incorrect preview is displayed after
+      <code translate="no" dir="ltr">PreviewView</code>
+      's size changes. (
+      <a href="https://android-review.googlesource.com/#/q/I711010b55949fb8cedb28458375954aff87f6149">I71101</a>
+      )
+    </li>
+  </ul>

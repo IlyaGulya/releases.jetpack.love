@@ -1,0 +1,92 @@
+libraryId: work
+groupId: androidx.work
+version: 2.8.0-alpha03
+releaseDate: 2022-08-10
+#language=html
+changelogHtml: |
+  <h3 id="2.8.0-alpha03" data-text="Version 2.8.0-alpha03" tabindex="-1">Version 2.8.0-alpha03</h3>
+  <p>August 10, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.8.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7ca43e00a517eaeeedc0a21f482b17f06e3d2181..bea814b246f89ff7244e3c6b0648f0b57e47897c/work">Version 2.8.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      An ability to update
+      <code translate="no" dir="ltr">WorkRequests</code>
+      in a non-intrusive way was added, preserving original enqueue time, chaining etc. See
+      <code translate="no" dir="ltr">WorkManager.updateWork</code>
+      and
+      <code translate="no" dir="ltr">ExistingPeriodicWorkPolicy.UPDATE</code>
+      for more details.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">WorkManager.updateWork</code>
+      was added to update work preserving its original enqueue time and chaining.(
+      <a href="https://android-review.googlesource.com/#/q/I9a2489e50d217cf70377d348b183ceb2d777506d">I9a248</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/219446409">b/219446409</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ExistingPeriodicWorkPolicy.UPDATE</code>
+      was added. This policy allows to update a periodic work by the name. It is similar to the existing
+      <code translate="no" dir="ltr">REPLACE</code>
+      , but it is less intrusive: it doesn't cancel a worker if it is currently running and it preserves enqueue time - initial delay and period are calculated from original enqueue time, rather than update time.
+      <code translate="no" dir="ltr">REPLACE</code>
+      was deprecated to decrease a confusion between very similarly named
+      <code translate="no" dir="ltr">REPLACE</code>
+      and
+      <code translate="no" dir="ltr">UPDATE</code>
+      . If you still want to keep the previous semantics of
+      <code translate="no" dir="ltr">REPLACE</code>
+      , the newly added
+      <code translate="no" dir="ltr">CANCEL_AND_REENQUEUE</code>
+      , which is identical to
+      <code translate="no" dir="ltr">REPLACE</code>
+      , can be used. (
+      <a href="https://android-review.googlesource.com/#/q/I985edc2cf7ac7c316932185f3fd0a3ca6660f2dc">I985ed</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/219446409">b/219446409</a>
+      )
+    </li>
+    <li>
+      Add the ability to intercept scheduling exceptions by defining a
+      <code translate="no" dir="ltr">SchedulingExceptionHandler</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I033eb7d6c3496a23825a63e1f55ecc35d05602f5">I033eb</a>
+      )
+    </li>
+    <li>
+      Inline helpers for
+      <code translate="no" dir="ltr">OneTimeWorkRequest</code>
+      &amp;
+      <code translate="no" dir="ltr">PeriodicWorkRequest</code>
+      were moved from
+      <code translate="no" dir="ltr">androidx.work:work-runtime-ktx</code>
+      to
+      <code translate="no" dir="ltr">androidx.work:work-runtime</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I0010f0bc806318ad840550458d872c12ee60eae7">I0010f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/209145335">b/209145335</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">@RequiresPermission</code>
+      to APIs that require granting the POST_NOTIFICATIONS permission on SDK 33 and above. (
+      <a href="https://android-review.googlesource.com/#/q/Ie542eb66c9af6e3c3a7c59bb291c7c5879458631">Ie542e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/238790278">b/238790278</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,82 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.5.0-alpha01
+releaseDate: 2022-01-26
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha01" data-text="Version 1.5.0-alpha01" tabindex="-1">Version 1.5.0-alpha01</h3>
+  <p>January 26, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.5.0-alpha01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.5.0-alpha01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.5.0-alpha01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b776acc2f42697fc8a24ca96f38043a133eee415..9dceceb54300ed028a7e8fc7a3454f270337ffde/fragment">Version 1.5.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">Fragment</code>
+      now integrates with ViewModel CreationExtras, introduced as part of
+      <a href="/jetpack/androidx/releases/lifecycle#2.5.0-alpha01">
+        Lifecycle
+        <code translate="no" dir="ltr">2.5.0-alpha01</code>
+      </a>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3060ba63bae3019489fc54eb116c3b4c1e50d8a1">I3060b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/207012585">b/207012585</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      From
+      <a href="#1.4.1">
+        Fragment
+        <code translate="no" dir="ltr">1.4.1</code>
+      </a>
+      :
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      no longer throws an illegal state exception when view IDs generated from xml have negative values. (
+      <a href="https://android-review.googlesource.com/#/q/Ic185b1efe5b48b616881e51b7b892c0f3bfc8e92">Ic185b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/213086140">b/213086140</a>
+      )
+    </li>
+    <li>
+      From
+      <a href="#1.4.1">
+        Fragment
+        <code translate="no" dir="ltr">1.4.1</code>
+      </a>
+      : When using a custom
+      <code translate="no" dir="ltr">ownerProducer</code>
+      lambda with the
+      <code translate="no" dir="ltr">by viewModels()</code>
+      lazy function, it will now use the
+      <code translate="no" dir="ltr">defaultViewModelProviderFactory</code>
+      from that owner if a custom
+      <code translate="no" dir="ltr">ViewModelProvider.Factory</code>
+      is not provided instead of always using the fragment's factory. (
+      <a href="https://android-review.googlesource.com/#/q/I561707e21a66afb0540c941bd5b94f834dc3953c">I56170</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/214106513">b/214106513</a>
+      )
+    </li>
+    <li>
+      Fixed a crash when accessing a
+      <code translate="no" dir="ltr">ViewModel</code>
+      for the very first time from a
+      <code translate="no" dir="ltr">registerForActivityResult()</code>
+      callback of a
+      <code translate="no" dir="ltr">Fragment</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iea2b30ca03908798474cac9327c4e06e3d4fd09b">Iea2b3</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_14_2" data-text="Version 1.4" tabindex="-1">Version 1.4</h2>

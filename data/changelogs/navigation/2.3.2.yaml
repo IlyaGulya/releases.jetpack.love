@@ -1,0 +1,77 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.3.2
+releaseDate: 2020-12-02
+#language=html
+changelogHtml: |
+  <h3 id="2.3.2" data-text="Version 2.3.2" tabindex="-1">Version 2.3.2</h3>
+  <p>December 2, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.3.2</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/76e4783df885f268f5aa76eee474c79167279a8a..722c6ca874bb106de216eddb5133c44b6921aaf9/navigation">Version 2.3.2 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a regression in
+      <code translate="no" dir="ltr">NavigationUI</code>
+      where using an
+      <code translate="no" dir="ltr">&lt;activity&gt;</code>
+      destination with
+      <code translate="no" dir="ltr">onNavDestinationSelected</code>
+      would fail to navigate to the Activity. (
+      <a href="https://android-review.googlesource.com/#/q/I22e34487faa43e2024a407047956c18b85923b52">I22e34</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171364502">b/171364502</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">navigation-dynamic-features-fragment</code>
+      would result in navigating to the newly installed destination multiple times. (
+      <a href="https://android-review.googlesource.com/1486056">aosp/1486056</a>
+      ,
+      <a href="https://issuetracker.google.com/169636207">b/169636207</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where default arguments would not be sent to
+      <code translate="no" dir="ltr">OnDestinationChangedListener</code>
+      instances when using
+      <code translate="no" dir="ltr">launchSingleTop</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2c5cbc0bb904880f76b2d3660f9800ec9a50fe14">I2c5cb</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where navigating to a nested navigation graph would not create a new graph instance on the back stack. (
+      <a href="https://android-review.googlesource.com/#/q/Ifc8318d58fedcfe71ed9a486fe43f963ebb4a330">Ifc831</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where using
+      <code translate="no" dir="ltr">navigate()</code>
+      with a
+      <code translate="no" dir="ltr">popUpTo</code>
+      that removed the last destination in a navigation graph would not immediately destroy and remove the navigation graph itself from the back stack. (
+      <a href="https://android-review.googlesource.com/#/q/I910a3aadd9add3932285cc9aefbb4cfc45ec178b">I910a3</a>
+      )
+    </li>
+    <li>
+      Navigation SafeArgs now uses KotlinPoet version 1.7.2 which adds support for Kotlin's explicit API mode. (
+      <a href="https://android-review.googlesource.com/#/q/I918b59356727391e3caa909089aee8a19c3ea4d5">I918b5</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavHostFragment.findNavController(Fragment)</code>
+      now also checks the root decor view of a DialogFragment in addition to the existing checks of the Fragment hierarchy and Fragment's view hierarchy. This allows you to test dialog fragments that use Navigation with
+      <code translate="no" dir="ltr">FragmentScenario</code>
+      and
+      <code translate="no" dir="ltr">Navigation.setViewNavController()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I69e0d4f69ce830d85e0697df410e62bb6333c8ac">I69e0d</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_231_3" data-text="Version 2.3.1" tabindex="-1">Version 2.3.1</h2>

@@ -1,0 +1,75 @@
+libraryId: transition
+groupId: androidx.transition
+version: 1.5.0-alpha01
+releaseDate: 2023-05-10
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha01" data-text="Version 1.5.0-alpha01" tabindex="-1">Version 1.5.0-alpha01</h3>
+  <p>May 10, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.transition:transition:1.5.0-alpha01</code>
+    and
+    <code translate="no" dir="ltr">androidx.transition:transition-ktx:1.5.0-alpha01</code>
+    are released. This version is developed in an internal branch.
+  </p>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      This version will only compile against the
+      <a href="https://developer.android.com/about/versions/14#beta-1">Android 14 (Upside Down Cake) Beta 2 SDK</a>
+      .
+    </span>
+  </aside>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Transitions support seeking on API 34 and above. A new API was added to
+      <code translate="no" dir="ltr">TransitionManager</code>
+      ,
+      <code translate="no" dir="ltr">controlDelayedTransition()</code>
+      , which returns a
+      <code translate="no" dir="ltr">TransisionSeekController</code>
+      that allows seeking the Transition.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">TransitionManager</code>
+      has a new method,
+      <code translate="no" dir="ltr">controlDelayedTransition()</code>
+      , that allows applications to control the progress of transition animations on API 34+. The returned
+      <code translate="no" dir="ltr">TransitionSeekController</code>
+      lets the developer know when the transition is ready for seeking, the duration of the animation, and allows setting the current time of the animation. Only Transitions that override
+      <code translate="no" dir="ltr">isSeekable()</code>
+      to return true are supported by
+      <code translate="no" dir="ltr">controlDelayedTransition()</code>
+      .
+    </li>
+    <li>
+      Transitions have a new method,
+      <code translate="no" dir="ltr">getRootTransition()</code>
+      , that returns the Transition containing the current Transition or the current Transition if it isn't contained by any other Transition. This can be useful if the developer needs to have listeners for when the entire Transition starts or ends.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TransitionListeners</code>
+      now have new
+      <code translate="no" dir="ltr">onTransitionStart()</code>
+      and
+      <code translate="no" dir="ltr">onTransitionEnd()</code>
+      listeners that allow the developer to know whether the transition is starting or ending going in reverse or not. This can be important for developing seekable transitions that have
+      <code translate="no" dir="ltr">TransitionListeners</code>
+      .
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Transitions now copy their
+      <code translate="no" dir="ltr">TransitionListeners</code>
+      when they are cloned. This means that adding new listeners during
+      <code translate="no" dir="ltr">createAnimator()</code>
+      will not affect the root Transition.
+    </li>
+  </ul>
+  <h2 id="version_141_3" data-text="Version 1.4.1" tabindex="-1">Version 1.4.1</h2>

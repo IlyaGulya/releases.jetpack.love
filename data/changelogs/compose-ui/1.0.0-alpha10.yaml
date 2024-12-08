@@ -1,0 +1,284 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.0.0-alpha10
+releaseDate: 2021-01-13
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha10" data-text="Version 1.0.0-alpha10" tabindex="-1">Version 1.0.0-alpha10</h3>
+  <p>January 13, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.0.0-alpha10</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/72f02c12e4709ab41ae0fea9a8a668d5267a1df8..6207afb1646d302c5d29c2c67d332b48db87fb27/compose/ui">Version 1.0.0-alpha10 contains these commits.</a>
+  </p>
+  <p><strong>Breaking Change</strong></p>
+  <ul>
+    <li>
+      <p>
+        Restructuring of the internal compiler API allows batching changes to the nodes generated as a result of composition into the "apply changes" phase of composition, after all
+        <code translate="no" dir="ltr">@Composable</code>
+        functions have completed.
+      </p>
+
+      <p>
+        This is a behavioral breaking change that might affect application code as nodes are no longer available from internal and experimental APIs until after changes have been applied. This can usually be worked around by surrounding code with such dependencies in a
+        <code translate="no" dir="ltr">SideEffect</code>
+        composable to defer execution of the code until after the nodes have been created and initialized. (
+        <a href="https://android-review.googlesource.com/#/q/I018dab05a0486e8db663aea39a7546aa73142c11">I018da</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added Modifier.focusOrder() that can be used to specify a custom focus traversal order (
+      <a href="https://android-review.googlesource.com/#/q/I90cf58d6b1f19341d6cdbc7846fd95934938e9f4">I90cf5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175899543">b/175899543</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170155556">b/170155556</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170155429">b/170155429</a>
+      )
+    </li>
+    <li>
+      Removed deprecated focusObserver use onFocusChanged or onFocusEvent instead (
+      <a href="https://android-review.googlesource.com/#/q/I3ecb9449c5aa3e9b3a9d396808c63a8b2c199916">I3ecb9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175156387">b/175156387</a>
+      )
+    </li>
+    <li>
+      EditOperations API Changes
+      <ul>
+        <li>Renamed EditOperation as EditCommand</li>
+        <li>Added Command suffix for EditOperation concrete implementations</li>
+        <li>EditCommand's are no longer data classes</li>
+        <li>Renamed EditOperation.process function to applyTo</li>
+        <li>Renamed InputEventListener to InputEventCallback</li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I0a366ac29c7a373efc36eb544bb759eba7f79f3d">I0a366</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Removed unused PxSquared, PxCubed, PxInverse. Changed Size.center() to be a property. (
+      <a href="https://android-review.googlesource.com/#/q/I973f7604b65d1228bd527022d12df785ed1e5d92">I973f7</a>
+      )
+    </li>
+    <li>
+      ui-test module will now be able to configure the creation of Recomposers for UIs under test (
+      <a href="https://android-review.googlesource.com/#/q/Ibebd8b327a7227f6c1ee66c66002bf682a2847f6">Ibebd8</a>
+      )
+    </li>
+    <li>
+      Modified Velocity to have component parts and mathematical operations. (
+      <a href="https://android-review.googlesource.com/#/q/Ib0447d694d7c5dc82fcef7448faeb0cdda87fced">Ib0447</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">@ExperimentalTesting</code>
+      to
+      <code translate="no" dir="ltr">@ExperimentalTestApi</code>
+      to be consistent with similar experimental api annotations (
+      <a href="https://android-review.googlesource.com/#/q/Ia4502a82d5b66328b6e3e3cd322614939816901e">Ia4502</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171464963">b/171464963</a>
+      )
+    </li>
+    <li>
+      Renamed Color.useOrElse() to Color.takeOrElse() (
+      <a href="https://android-review.googlesource.com/#/q/Ifdcf503101fa33b1eaf729a33ac14d0dc03f66ff">Ifdcf5</a>
+      )
+    </li>
+    <li>
+      Removed unused DpInverse, DpSquared, and DpCubed classes. (
+      <a href="https://android-review.googlesource.com/#/q/I4d62b6fb859cdae0cc2d5579a5ccfb7ea5372781">I4d62b</a>
+      )
+    </li>
+    <li>
+      Constraints#satisfiedBy was renamed to isSatisfiedBy. (
+      <a href="https://android-review.googlesource.com/#/q/I9cf5c5c15c90adaf95d91eef3da4d695733268e9">I9cf5c</a>
+      )
+    </li>
+    <li>
+      Add a callback to notify Owner when layoutnode bounds change. (
+      <a href="https://android-review.googlesource.com/#/q/I72fd151db59ff5196d9b03f0735f40535a71b47d">I72fd1</a>
+      )
+    </li>
+    <li>
+      Added isSpecified, isUnspecified, and useOrElse for inline classes with an Unspecified constant. (
+      <a href="https://android-review.googlesource.com/#/q/I93f7b4f1b6c3ef08a3fc6d89fa397a122ef41348">I93f7b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/174310811">b/174310811</a>
+      )
+    </li>
+    <li>
+      <p>Expand [Abstract]ComposeView APIs to allow recycling Compose-based views, disposing their composition to recreate again later. Add APIs for installing and discovering window-scoped Recomposers and CompositionReferences for creating child compositions.</p>
+
+      <p>
+        Add ViewCompositionStrategy for configuring the composition disposal strategy of [Abstract]ComposeViews; default behavior is dispose on window detach. (
+        <a href="https://android-review.googlesource.com/#/q/I860ab99a2950457157a4d904e0c514d5134fdfd7">I860ab</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Removed Any.identityHashCode() public api (
+        <a href="https://android-review.googlesource.com/#/q/I025d720aec64ebd2182787b9200ca9b3827d5436">I025d7</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Removed toStringAsFixed API in favor of using String.format instead directly. (
+        <a href="https://android-review.googlesource.com/#/q/Iaba6b2d83490bcd3d7fd1cd167b54569418164fb">Iaba6b</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Add Toggle to foundation Strings.kt (
+        <a href="https://android-review.googlesource.com/#/q/I4a5b74e3ed9bc3b1acd09af221331ef6ab51b9fe">I4a5b7</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/172366489">b/172366489</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Moved nativeClass to ui module and made it internal. Updated usages of nativeClass in equals implementations to use 'is MyClass' instead. (
+        <a href="https://android-review.googlesource.com/#/q/I4f7340266d36552665f0a059ab34e9b886926f0b">I4f734</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Modifier.focus() and Modifier.focusRequester() are deprecated. Use Modifier.focusModifier() and Modifier.focusReference() instead. (
+        <a href="https://android-review.googlesource.com/#/q/I75a483954b69de794c5d7be9efc236b6d6b8fcad">I75a48</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/175160751">b/175160751</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/175160532">b/175160532</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/175077829">b/175077829</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Introduced SelectionRegistrar.notifySelectableChange to notify Selectable updates to SelectionManager. (
+        <a href="https://android-review.googlesource.com/#/q/I6ff3055300ca7316ad644a4bcf7872d0d48878b8">I6ff30</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/173215242">b/173215242</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Introduced Outline.bounds property to obtain the bounding rect for various outline implementations. (
+        <a href="https://android-review.googlesource.com/#/q/I16e749ad4477cfaacfef8267e37ff5cfefb2fd02">I16e74</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/175093504">b/175093504</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Deprecated TestUiDispatcher. Use Dispatchers.Main instead (
+        <a href="https://android-review.googlesource.com/#/q/Ic171f9e9da0d7c8d3688754e0f5eed482a668560">Ic171f</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/175385255">b/175385255</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        ImeOptions and KeyboardOptions are no more a data class (
+        <a href="https://android-review.googlesource.com/#/q/I3c898ecf1f83f64bc9886a088af4fa2a12adcff7">I3c898</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/168684531">b/168684531</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>VisualTransformation API Changes</p>
+
+      <ul>
+        <li>Renamed OffsetMap to OffsetMapping</li>
+        <li>Renamed OffsetMapping.identityOffsetMap to OffsetMapping.Identity</li>
+        <li>PasswordTransformation is no longer data-class</li>
+        <li>Moved OffsetMapping to its own file</li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I0bdf3e90ac4a1d8e6e2a3c5762f51016561f2da8">I0bdf3</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        Renamed Position to DpOffset and removed getDistance() (
+        <a href="https://android-review.googlesource.com/#/q/Ib2dfde4ceb450e417ff759bdabbc74d2506a44c9">Ib2dfd</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Changed fun Dp.isFinite() to a val Dp.isFinite (
+        <a href="https://android-review.googlesource.com/#/q/I50e0035e772c40d61500f56453cd02bb0d9dee70">I50e00</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Recomposer now exposes a Flow of its current state, allowing monitoring its activity and the activity of associated effects. (
+      <a href="https://android-review.googlesource.com/#/q/Ifb2b901636db4ec2f3ad068d063f5b8f74be82f4">Ifb2b9</a>
+      )
+    </li>
+    <li>
+      The native keyEvent can now be accessed through keyEvent.nativeKeyEvent (
+      <a href="https://android-review.googlesource.com/#/q/I87c57d68b76441fe92d2b91f58385832fc40ec8d">I87c57</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173086397">b/173086397</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">animate()</code>
+      is now replaced with
+      <code translate="no" dir="ltr">animateAsState()</code>
+      , which returns a
+      <code translate="no" dir="ltr">State&lt;T&gt;</code>
+      instead of
+      <code translate="no" dir="ltr">T</code>
+      . This allows better performance, as the invalidation scope can be narrowed down to where the State value is read. (
+      <a href="https://android-review.googlesource.com/#/q/Ib179e3f5f4bf3b72f7445fc22e73c46af7cf74de">Ib179e</a>
+      )
+    </li>
+    <li>
+      Add Semantics role API and add Role as a parameter to clickable, selectable and toggleable SemanticsModifier. Changed Modifier.progressSemantics so that Slider can also use it. (
+      <a href="https://android-review.googlesource.com/#/q/I216cd5b9118581e569c48a095f009c841ed4418b">I216cd</a>
+      )
+    </li>
+    <li>
+      New coroutine-based API
+      <code translate="no" dir="ltr">Animatable</code>
+      that ensures mutual exclusiveness among its animations.
+      <ul>
+        <li>New DecayAnimationSpec to support multi-dimensional decay animation</li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I820f29e24eaa512515c776db971444290dea97e9">I820f2</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/168014930">b/168014930</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>

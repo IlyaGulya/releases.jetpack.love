@@ -1,0 +1,147 @@
+libraryId: wear-watchface
+groupId: androidx.wear
+version: 1.2.0-alpha04
+releaseDate: 2022-11-09
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha04" data-text="Version 1.2.0-alpha04" tabindex="-1">Version 1.2.0-alpha04</h3>
+  <p>November 9, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.watchface:watchface-*:1.2.0-alpha04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4586cf6e518f0c59410ef2b291e34ff9fdcff4e1..a1e318590b217ecfce1b2de17eed2f18b6a680bb/wear/watchface">Version 1.2.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      For Android T we’ve added support for two new complication types,
+      <code translate="no" dir="ltr">GoalProgressComplicationData</code>
+      and
+      <code translate="no" dir="ltr">WeightedElementsComplicationData</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">GoalProgressComplicationData</code>
+      is similar to
+      <code translate="no" dir="ltr">RangedValueComplicationData</code>
+      but it’s value is allowed to go past the target (for
+      <code translate="no" dir="ltr">RangedValueComplicationData</code>
+      the value is clamped to the range [min .. max]) which has implications for visual design that might not suit all watch faces.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">GoalProgressComplicationData</code>
+      adds support for pie charts and similar breakdowns of simple data.
+    </li>
+    <li>
+      We’ve added optional support for
+      <code translate="no" dir="ltr">ColorRamps</code>
+      to
+      <code translate="no" dir="ltr">RangedValueComplicationData</code>
+      .
+    </li>
+    <li>
+      For Android T, We've added
+      <code translate="no" dir="ltr">ComplicationPersistencePolicy</code>
+      and
+      <code translate="no" dir="ltr">setCachePolicy</code>
+      to
+      <code translate="no" dir="ltr">ComplicationData</code>
+      which currently allows a provider to control whether a complication is persisted or not (i.e. whether it's cached past reboot). Most complications won't need to set cache control, but doing so can fix corner cases with stale data for some complications that update frequently (e.g. health data complications). We've also added
+      <code translate="no" dir="ltr">ComplicationDisplayPolicy</code>
+      where
+      <code translate="no" dir="ltr">DO_NOT_SHOW_WHEN_DEVICE_LOCKED</code>
+      instructs a compatible watch face to not display the complication when the device is locked. (
+      <a href="https://android-review.googlesource.com/#/q/Ic9574b2c2055b0f4b8436efc913fe467a8a2ebde">Ic9574</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">GoalProgressComplicationData</code>
+      ,
+      <code translate="no" dir="ltr">WeightedElementsComplicationData</code>
+      and
+      <code translate="no" dir="ltr">ColorRamp</code>
+      are no longer experimental. (
+      <a href="https://android-review.googlesource.com/#/q/Ica9e231f40521a66de83094b64bc9bf9c32dbf54">Ica9e2</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ComplicationPersistencePolicy</code>
+      and
+      <code translate="no" dir="ltr">ComplicationDisplayPolicy</code>
+      are now properly marked as T APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I31d88c0532699c29b898682325a2ee8e66e3d607">I31d88</a>
+      )
+    </li>
+    <li>
+      The deprecated
+      <code translate="no" dir="ltr">ComplicationSlotOverlay</code>
+      constructor now has
+      <code translate="no" dir="ltr">DeprecationLevel.WARNING</code>
+      allowing it to be called from java once again. (
+      <a href="https://android-review.googlesource.com/#/q/Ib308c1b7b803057c40108ec5aa3251f6367a5f32">Ib308c</a>
+      )
+    </li>
+    <li>
+      We've fixed some java compat issues with
+      <code translate="no" dir="ltr">ComplicationRequestListener</code>
+      ,
+      <code translate="no" dir="ltr">CanvasComplication</code>
+      ,
+      <code translate="no" dir="ltr">ComplicationTapFilter</code>
+      and
+      <code translate="no" dir="ltr">InteractiveWatchFaceClient</code>
+      by annotating them with
+      <code translate="no" dir="ltr">@JvmDefaultWithCompatibility</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Id94fcecaf8ff2a98c514fdea194a87c334548fa4">Id94fc</a>
+      )
+    </li>
+    <li>
+      We've removed experimental
+      <code translate="no" dir="ltr">ProtoLayoutComplicationData</code>
+      and
+      <code translate="no" dir="ltr">ListComplicationData</code>
+      . The developer story for these was unclear, we hope to revisit in future. (
+      <a href="https://android-review.googlesource.com/#/q/I9df05c0e5d405fc37071231de72207a88ae50124">I9df05</a>
+      )
+    </li>
+    <li>
+      We've added a
+      <code translate="no" dir="ltr">ValueType</code>
+      back to
+      <code translate="no" dir="ltr">RangedValueComplicationData</code>
+      .
+      <code translate="no" dir="ltr">WeightedElementsComplicationData</code>
+      now supports a background color. We've removed
+      <code translate="no" dir="ltr">DiscreteRangedValueComplicationData</code>
+      because it's functionality is a subset of
+      <code translate="no" dir="ltr">WeightedElementsComplicationData</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6446c13658ec20c2f93f35393ecea7ff9edc9c8f">I6446c</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Include the
+      <code translate="no" dir="ltr">isForScreenShot</code>
+      in the equals and hash code. Make sure the
+      <code translate="no" dir="ltr">onRenderParametersChanged</code>
+      gets a correct
+      <code translate="no" dir="ltr">isForScreenshot</code>
+      value (
+      <a href="https://android-review.googlesource.com/#/q/I04a41ad0d943fa71cffe056c4fd5591cedb298a9">I04a41</a>
+      )
+    </li>
+    <li>
+      Fixed leaks of
+      <code translate="no" dir="ltr">WatchFaceControlService</code>
+      from headless clients. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/e90e0098e450b78b679c5c94e106739d4fe69db9">e90e00</a>
+      )
+    </li>
+  </ul>

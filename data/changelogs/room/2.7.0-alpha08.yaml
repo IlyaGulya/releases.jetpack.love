@@ -1,0 +1,70 @@
+libraryId: room
+groupId: androidx.room
+version: 2.7.0-alpha08
+releaseDate: 2024-09-18
+#language=html
+changelogHtml: |
+  <h3 id="2.7.0-alpha08" data-text="Version 2.7.0-alpha08" tabindex="-1">Version 2.7.0-alpha08</h3>
+  <p>September 18, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.7.0-alpha08</code>
+    is released. Version 2.7.0-alpha08 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/8c4071562bd7e22b937284d71fb7aca9c4cd662c..0431b84980e97d6bafdfda7c9038bc4d9529564f/room">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">room-paging</code>
+      artifacts have been migrated to be KMP compatible. (
+      <a href="https://android-review.googlesource.com/#/q/Ib875670e864fba5fbf2a2835d81713d8823724c6">Ib8756</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/339934824">b/339934824</a>
+      )
+    </li>
+    <li>
+      The API
+      <code translate="no" dir="ltr">invalidationTrackerFlow()</code>
+      has been commonized as a first-party API as
+      <code translate="no" dir="ltr">InvalidationTracker.createFlow()</code>
+      and is now available for non-Android source sets in KMP projects. (
+      <a href="https://android-review.googlesource.com/#/q/I1fbfa9a45041f774eb08ee9d6457a2cde6a236a1">I1fbfa</a>
+      , (
+      <a href="https://android-review.googlesource.com/#/q/I8fb29221e382b7a78259c47d9d93add4c59584ce">I8fb29</a>
+      ),
+      <a href="https://issuetracker.google.com/issues/329291639">b/329291639</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/329315924">b/329315924</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      All warnings and error messages in Room that use the word
+      <code translate="no" dir="ltr">Cursor</code>
+      have been removed or replaced, as
+      <code translate="no" dir="ltr">Cursor</code>
+      is no longer an accurate general term to use in the KMP version of Room. (
+      <a href="https://android-review.googlesource.com/#/q/Id8cd9a6a58809fd974808605b60b8c7ec5f853e8">Id8cd9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/334087492">b/334087492</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where Room KMP would try to emit code using
+      <code translate="no" dir="ltr">UUID</code>
+      for non-JVM platforms. (
+      <a href="https://issuetracker.google.com/362994709">b/362994709</a>
+      )
+    </li>
+    <li>
+      Fixed an issue with the Room Gradle Plugin that would cause an error such as ‘Cannot change attributes of configuration … after it has been locked for mutation’ when being used in a KMP project with Compose Multiplatform. (
+      <a href="https://issuetracker.google.com/343408758">b/343408758</a>
+      )
+    </li>
+  </ul>

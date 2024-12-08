@@ -1,0 +1,214 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 1.5.0
+releaseDate: 2023-08-09
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0" data-text="Version 1.5.0" tabindex="-1">Version 1.5.0</h3>
+  <p>August 9, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material-*:1.5.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d83e1a7d6afe597aed6e48be005010c7a26486dd..65e3f15108d25a7e1c5c841c0855b21eca194070/compose/material">Version 1.5.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 1.4.0</strong></p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Incorporated changes in the Swipeable1 APIs in
+      <code translate="no" dir="ltr">BottomSheetScaffold</code>
+      .
+      <code translate="no" dir="ltr">BottomSheetState</code>
+      's
+      <code translate="no" dir="ltr">confirmStateChange</code>
+      param has been renamed to
+      <code translate="no" dir="ltr">confirmValueChange</code>
+      .
+      <code translate="no" dir="ltr">progress</code>
+      is now exposed as a float value.
+      <code translate="no" dir="ltr">animateTo</code>
+      and
+      <code translate="no" dir="ltr">snapTo</code>
+      are internal. Use
+      <code translate="no" dir="ltr">expand()</code>
+      and
+      <code translate="no" dir="ltr">collapse()</code>
+      instead.
+      <code translate="no" dir="ltr">direction</code>
+      and
+      <code translate="no" dir="ltr">overflow</code>
+      have been removed.
+      <code translate="no" dir="ltr">offset</code>
+      has been replaced with
+      <code translate="no" dir="ltr">requireOffset()</code>
+      .
+      <a href="https://android-review.googlesource.com/#/q/I323b4ebe42e5a3817f27759749d72ad222ac084b">I323b4</a>
+    </li>
+    <li>
+      Mark the
+      <code translate="no" dir="ltr">snapTo</code>
+      function in Drawer as non-experimental API. (
+      <a href="https://android-review.googlesource.com/#/q/Ib9c18103d5485a48177a9b57ce40b29656bb4cf1">Ib9c18</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261425368">b/261425368</a>
+      )
+    </li>
+    <li>
+      Added a track color parameter for circular progress indicators, and a stroke cap parameter for both circular and linear progress indicators. (
+      <a href="https://android-review.googlesource.com/#/q/Ie668cc47ce9ce3aa688ad3c3ed9e9e15fdbda5e9">Ie668c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/216325962">b/216325962</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/222964817">b/222964817</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">ModalBottomSheetState</code>
+      ,
+      <code translate="no" dir="ltr">ModalBottomSheetState.Saver</code>
+      and
+      <code translate="no" dir="ltr">rememberModalBottomSheetState</code>
+      's
+      <code translate="no" dir="ltr">confirmStateChange</code>
+      to
+      <code translate="no" dir="ltr">confirmValueChange</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib48d1cbe2671647f5feda1fcde5dee9754c8caa0">Ib48d1</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">Modifier.minimumInteractiveComponentSize</code>
+      . It can be used to reserve at least 48.dp in size to disambiguate touch interactions if the element would measure smaller. (
+      <a href="https://android-review.googlesource.com/#/q/I33f58e4c11cf74668e97167b91dad26b64ac554b">I33f58</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/258495559">b/258495559</a>
+      )
+    </li>
+    <li>
+      Incorporated changes in the Swipeable APIs in
+      <code translate="no" dir="ltr">ModalBottomSheetLayout</code>
+      .
+      <code translate="no" dir="ltr">ModalBottomSheetState</code>
+      's animateTo does not take an
+      <code translate="no" dir="ltr">animationSpec</code>
+      parameter anymore and the offset exposed is now nullable. Use
+      <code translate="no" dir="ltr">requireOffset</code>
+      to require the offset. (
+      <a href="https://android-review.googlesource.com/#/q/Ia2e79162058b143cc40ab6c4b1082126e147a7a2">Ia2e79</a>
+      )
+    </li>
+    <li>
+      Adding
+      <code translate="no" dir="ltr">@JvmDefaultWithCompatibility</code>
+      annotation (
+      <a href="https://android-review.googlesource.com/#/q/I8f2067bb0754a5e9dc70c934403366ca8d319c36">I8f206</a>
+      )
+    </li>
+    <li>
+      Incorporated changes in the Swipeable APIs in
+      <code translate="no" dir="ltr">ModalDrawer. DrawerState</code>
+      's
+      <code translate="no" dir="ltr">animateTo</code>
+      has been replaced by the open and close methods and the offset is now nullable. Use
+      <code translate="no" dir="ltr">requireOffset</code>
+      to require the offset. (
+      <a href="https://android-review.googlesource.com/#/q/I3de9e361fdd8be7ee83c7946b809b5729d4ef2c4">I3de9e</a>
+      )
+    </li>
+    <li>Updated Drawers and Sheets to correctly delay presses in case gestures can become scroll events.</li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">minLines</code>
+      parameter into material and material3 Text,
+      <code translate="no" dir="ltr">TextField</code>
+      and
+      <code translate="no" dir="ltr">OutlinedTextField</code>
+      which allows setting the minimum height of the component in terms of number of lines (
+      <a href="https://android-review.googlesource.com/#/q/I4af1df6521acaa97edbed5048079b5e81b647dd8">I4af1d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixes an issue where
+      <code translate="no" dir="ltr">pullRefresh</code>
+      was not consuming velocity, causing overscroll to show. Also changed the API signature of the
+      <code translate="no" dir="ltr">onRelease</code>
+      lambda in
+      <code translate="no" dir="ltr">Modifier.pullRefresh</code>
+      to return a Float for consumed velocity (
+      <a href="https://android-review.googlesource.com/#/q/I7db6562a865f6ea870a57102f81d04e3d8289c0e">I7db65</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/266874741">b/266874741</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BottomSheetState</code>
+      ,
+      <code translate="no" dir="ltr">ModalBottomSheetState</code>
+      and
+      <code translate="no" dir="ltr">BottomDrawerState</code>
+      now expose a progress property indicating the progress between the current (settled) anchor and the closest anchor in the swipe direction. (
+      <a href="https://android-review.googlesource.com/#/q/I1b31727b4f56df890e336bea9f4de526733aaacc">I1b317</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/271169225">b/271169225</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/276375124">b/276375124</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/276776071">b/276776071</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/270066861">b/270066861</a>
+      )
+    </li>
+    <li>
+      Fixed the
+      <code translate="no" dir="ltr">AlertDialog</code>
+      dismiss action to appear below the confirm action when the actions stacked over each other to fit into the dialog's width. This fix aligns the implementation with the Material Design spec. (
+      <a href="https://android-review.googlesource.com/#/q/I029ded5c6dd79f38b1a060afb3d24dcfb9cf119a">I029de</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/235454277">b/235454277</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BottomSheetScaffold</code>
+      will not participate in nested scroll anymore when
+      <code translate="no" dir="ltr">gesturesEnabled</code>
+      is set to false. (
+      <a href="https://android-review.googlesource.com/#/q/I634f33bf0d7e6b4dea5d2225c8e7561b74a42d40">I634f3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/215403277">b/215403277</a>
+      )
+    </li>
+    <li>
+      Fixed a bug where
+      <code translate="no" dir="ltr">BottomSheetScaffold</code>
+      would crash when provided with empty content for slots. (
+      <a href="https://android-review.googlesource.com/#/q/Ib24a55cf43d4e887f7742691e522d7fc843ce89c">Ib24a5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/235588730">b/235588730</a>
+      )
+    </li>
+    <li>
+      Fixes
+      <code translate="no" dir="ltr">PullRefreshIndicator</code>
+      intercepting clicks/pointer events. (
+      <a href="https://android-review.git.corp.google.com/c/platform/frameworks/support/+/2494256">2494256</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/271777421">b/271777421</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">ModalBottomSheetLayout</code>
+      would crash in an edge case on orientation change. Layout animations (e.g.
+      <code translate="no" dir="ltr">Modifier.animateContentSize</code>
+      ) in/on the sheet content now work smoothly. (
+      <a href="https://android-review.googlesource.com/#/q/I2f981d892f163254f0282d6874fb860aae5d0992">I2f981</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/266780234">b/266780234</a>
+      )
+    </li>
+  </ul>

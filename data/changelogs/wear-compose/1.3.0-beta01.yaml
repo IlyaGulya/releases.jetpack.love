@@ -1,0 +1,183 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.3.0-beta01
+releaseDate: 2023-11-15
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-beta01" data-text="Version 1.3.0-beta01" tabindex="-1">Version 1.3.0-beta01</h3>
+  <p>November 15, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.3.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/465c5c5b7a0d79793bddb26a695f67aba8ea2f7e..1f80a6f0c1cb96288c04124001fa2c9bd29617d6/wear/compose">Version 1.3.0-beta01 contains these commits.</a>
+  </p>
+  <p>The 1.3-beta01 release of Compose for Wear OS indicates that this release of the library is feature complete and the API is locked (except where marked as experimental). Wear Compose 1.3 includes the following new functionality:</p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">SwipeToDismissBoxState</code>
+      ,
+      <code translate="no" dir="ltr">SwipeToDismissValue</code>
+      and
+      <code translate="no" dir="ltr">Modifier.edgeSwipeToDismiss</code>
+      have been migrated from
+      <code translate="no" dir="ltr">androidx.wear.compose.material</code>
+      to
+      <code translate="no" dir="ltr">androidx.wear.compose.foundation</code>
+      , along with the underlying swipe-to-dismiss implementation in
+      <code translate="no" dir="ltr">BasicSwipeToDismissBox</code>
+      . This allows the gesture handling for swipe-to-dismiss to be used independently of Material Design, for example from the
+      <code translate="no" dir="ltr">SwipeDismissableNavHost</code>
+      in
+      <code translate="no" dir="ltr">androidx.wear.compose.navigation</code>
+      .
+      <code translate="no" dir="ltr">SwipeToDismissBox</code>
+      from
+      <code translate="no" dir="ltr">androidx.wear.compose.material</code>
+      is still recommended to be used with Material Design, because it pulls colors from the
+      <code translate="no" dir="ltr">MaterialTheme</code>
+      , then delegates the remaining implementation to the
+      <code translate="no" dir="ltr">BasicSwipeToDismissBox</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SwipeDismissableNavHost</code>
+      now supports a new
+      <code translate="no" dir="ltr">userSwipeEnabled</code>
+      parameter so that swipe handling can be turned off for screens where it is not required.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BasicSwipeToDismissBox</code>
+      has improved focus handling using
+      <code translate="no" dir="ltr">HierarchicalFocusCoordinator</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      has new
+      <code translate="no" dir="ltr">SwipeToRevealCard</code>
+      and
+      <code translate="no" dir="ltr">SwipeToRevealChip</code>
+      composables in Material that follow the recommended UX guidance for
+      <code translate="no" dir="ltr">Card</code>
+      and
+      <code translate="no" dir="ltr">Chip</code>
+      . It also has undo support for the secondary action.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">DefaultTextStyle</code>
+      now turns off font padding to be consistent across the Android Platform.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Chip</code>
+      and
+      <code translate="no" dir="ltr">ToggleChip</code>
+      now adjust their height to accommodate content that has grown due to large fonts for accessibility
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      now has individual animation specs for the fade-in, fade-out and position-change animations. For performance reasons, we recommend that fade-in and position-change are turned off when used with scrollable lists.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ExpandableStateMapping</code>
+      provides a new way to generate
+      <code translate="no" dir="ltr">ExpandableStates</code>
+      when they need to be created on demand and not necessarily with a
+      <code translate="no" dir="ltr">@Composable</code>
+      scope.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Placeholder</code>
+      now allows resetting if the content is no longer in the ready state. Also, the reduce motion setting now applies to the shimmering effect and wipe-off motion on
+      <code translate="no" dir="ltr">Placeholder</code>
+      .
+    </li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      is not initially shown when a screen is first displayed. We intend to make a change in an early 1.4 alpha so that it will be initially shown, but without any animation.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We have renamed the Foundation level
+      <code translate="no" dir="ltr">SwipeToDismissBox</code>
+      to
+      <code translate="no" dir="ltr">BasicSwipeToDismissBox</code>
+      . This makes the distinction clearer between the Foundation level component and the Material level
+      <code translate="no" dir="ltr">SwipeToDismissBox</code>
+      . The latter pulls colors from the
+      <code translate="no" dir="ltr">MaterialTheme</code>
+      to be used in scrims and delegates the remaining implementation to the
+      <code translate="no" dir="ltr">BasicSwipeToDismissBox</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ibecfc1720eadd2d8e5e1c1cfd6832300775bffb1">Ibecfc</a>
+      )
+    </li>
+    <li>
+      We have marked
+      <code translate="no" dir="ltr">rememberExpandableStateMapping</code>
+      as experimental and improved the performance of
+      <code translate="no" dir="ltr">expandableItem</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I5f6bc03b5b0c8b8e4a66f03000a3710c368ebf67">I5f6bc</a>
+      )
+    </li>
+    <li>
+      We have replaced the
+      <code translate="no" dir="ltr">SwipeToRevealAction</code>
+      class in the Material
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      Card and Chip APIs with a slot-based API using
+      <code translate="no" dir="ltr">SwipeToRevealPrimaryAction</code>
+      ,
+      <code translate="no" dir="ltr">SwipeToRevealSecondaryAction</code>
+      and
+      <code translate="no" dir="ltr">SwipeToRevealUndoAction</code>
+      composables. Please see sample code for examples on how to use the new API. (
+      <a href="https://android-review.googlesource.com/#/q/Ia89431e240b0602bfe08bceb660ff9ef1137d938">Ia8943</a>
+      )
+    </li>
+    <li>
+      We have replaced the
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      animation flags with
+      <code translate="no" dir="ltr">AnimationSpec</code>
+      parameters. The individual animations can be disabled by passing
+      <code translate="no" dir="ltr">snap</code>
+      as the
+      <code translate="no" dir="ltr">AnimationSpec</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6c5232868a3e4fcafde3f066a735ae8df203cb54">I6c523</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We have fixed a bug triggered by limited curved text when size is limited (
+      <a href="https://android-review.googlesource.com/#/q/I50efee190c03dcb4e9abc433602623ae4ba955d7">I50efe</a>
+      )
+    </li>
+    <li>
+      We have addressed a potential NaN crash related to
+      <code translate="no" dir="ltr">curvedComposable</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I970ebced07b80bb3b51b6d6cd8329207be79902b">I970eb</a>
+      )
+    </li>
+    <li>
+      We have reverted the removal of the position change highlight animation on
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ieb4245ffbfde4405f948adc98a79b0c11def424e">Ieb424</a>
+      )
+    </li>
+    <li>
+      We have removed the material-core layer for material Chip to improve its performance. (
+      <a href="https://android-review.googlesource.com/#/q/If2dcbbc99bbb6394b85b7fc8f3c9d88bdc78ba4a">If2dcb</a>
+      )
+    </li>
+  </ul>

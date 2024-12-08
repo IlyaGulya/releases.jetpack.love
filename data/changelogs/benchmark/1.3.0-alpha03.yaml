@@ -1,0 +1,183 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.3.0-alpha03
+releaseDate: 2024-04-17
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha03" data-text="Version 1.3.0-alpha03" tabindex="-1">Version 1.3.0-alpha03</h3>
+  <p>April 17, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.3.0-alpha03</code>
+    is released. Version 1.3.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a57d7d17753695012b58c9ce7ad55a8d39157e62..9ece0ba5451df94f20485ea5647d9221742585a1/benchmark">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Adds public API
+      <code translate="no" dir="ltr">PerfettoTraceProcessor.Session.queryMetrics</code>
+      APIs with JSON, textproto, and proto binary (undecoded) variants. These allow you to query
+      <a href="https://perfetto.dev/docs/quickstart/trace-analysis#trace-based-metrics">metrics built into TraceProcessor</a>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I54d7fb0cfd2d6e448bda78d9397cb96d77a2125b">I54d7f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/304038382">b/304038382</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">profilerOutput</code>
+      to JSON output for easier tooling around profiling traces (e.g. perfetto, method traces). (
+      <a href="https://android-review.googlesource.com/#/q/I05ddd9af8864fdb79ce076e836699b80fca864e6">I05ddd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/332604449">b/332604449</a>
+      )
+    </li>
+    <li>
+      Added power tag to benchmark Perfetto Config. This captures, for example, wakelock tracepoints. (
+      <a href="https://android-review.googlesource.com/#/q/Icfe44e708991bb03eff2c8df527a6fe9f872fb88">Icfe44</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/286551983">b/286551983</a>
+      )
+    </li>
+    <li>
+      Added inst argument
+      <code translate="no" dir="ltr">androidx.benchmark.profiling.skipWhenDurationRisksAnr</code>
+      , can be set to false to avoid skipping method traces when expected duration may cause an ANR - strongly recommended to avoid in CI runs.
+    </li>
+    <li>
+      Added experimental inst argument
+      <code translate="no" dir="ltr">androidx.benchmark.profiling.perfCompare.enable</code>
+      , set this to true to run comparison timing between measurement and profiling phases. Useful in e.g. evaluating overhead of method tracing. (
+      <a href="https://android-review.googlesource.com/#/q/I61fb4703f52e8451bf87abf7d50f6f3b1facdabf">I61fb4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/329146942">b/329146942</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">TraceSectionMetric.Mode</code>
+      to sealed class to enable future expansion without breaking exhaustive when statements (
+      <a href="https://android-review.googlesource.com/#/q/I71f7b246b0db606cec972d9a55e83f0281fa55f4">I71f7b</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">TraceSectionMetric.Mode.Average</code>
+      and
+      <code translate="no" dir="ltr">.Count</code>
+      , and reordered args so the more common argument (mode) was earlier in the arg list, reducing need for specifying parameter names. (
+      <a href="https://android-review.googlesource.com/#/q/Ibf0b0b5a791460b6d37a4ef43dc369d6c8414ab7">Ibf0b0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/315830077">b/315830077</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/322167531">b/322167531</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">Metric.getResult</code>
+      to
+      <code translate="no" dir="ltr">getMeasurements</code>
+      to match return type (
+      <a href="https://android-review.googlesource.com/#/q/I4259554a5266d4dbc8e7319b0b88c682733dc64a">I42595</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix to ensure benchmarks use generated baseline profiles when
+      <code translate="no" dir="ltr">automaticGenerationDuringBuild</code>
+      is off (
+      <a href="https://android-review.googlesource.com/#/q/Ic144f394c09ec666d4892a4168a2197dc5031039">Ic144f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/333024280">b/333024280</a>
+      )
+    </li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">BaselineProfile</code>
+      gradle plugin property overrides to enable baseline profile generation and benchmarking when customizing a
+      <code translate="no" dir="ltr">nonMinified</code>
+      or benchmark build type. (
+      <a href="https://android-review.googlesource.com/#/q/Ib8f0555001ff719f4b82c35cf50c13b4a3fa308d">Ib8f05</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/324837887">b/324837887</a>
+      )
+    </li>
+    <li>
+      Fixed method traces flush in macrobenchmark, so that method traces should be fully captured and valid, even on slower devices. (
+      <a href="https://android-review.googlesource.com/#/q/I6349a48dca4116ac9b481882395ee630785f6181">I6349a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/329904950">b/329904950</a>
+      )
+    </li>
+    <li>
+      Enable blocking start on Perfetto trace record to reduce risk of missing data at beginning of trace. Only supported on API 33+. (
+      <a href="https://android-review.googlesource.com/#/q/Ie6e417ad248b431ebf6096e2865265d51553be7f">Ie6e41</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/310760059">b/310760059</a>
+      )
+    </li>
+    <li>
+      Added a warning when Android Test Orchestrator is used in benchmark modules, as this will cause per-module output JSON files to be repeatedly overwritten. (
+      <a href="https://android-review.googlesource.com/#/q/Ia1af6a178c9ef1c7e0dd80f735749eb97f416d7e">Ia1af6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/286899049">b/286899049</a>
+      )
+    </li>
+    <li>
+      Force ',' (comma) thousands separators for consistency in Studio output, ignoring device locale (
+      <a href="https://android-review.googlesource.com/#/q/I3e92172b3b507068eac6154bd1f8fa02d3236197">I3e921</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/313496656">b/313496656</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TraceSectionMetric</code>
+      now supports slices created using
+      <code translate="no" dir="ltr">Trace.{begin|end}AsyncSection</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I91b326e121fcca4b3ce8f65381eea87de796cdd1">I91b32</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/300434906">b/300434906</a>
+      )
+    </li>
+    <li>
+      Added log.w / exception labels to all startup detection failures. This does not change current behavior (so some errors throw, and others silently fail to detect the startup), just makes it more understandable. Generally the ones that
+      <code translate="no" dir="ltr">Log.w()</code>
+      and fail to report startup metrics are those where non-frame events are missing, exceptions are thrown when startup is detected except for frame timing information (from UI/RT slices). (
+      <a href="https://android-review.googlesource.com/#/q/Id240f7698dfb977457362a137f0070e73dc2495c">Id240f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/329145809">b/329145809</a>
+      )
+    </li>
+    <li>
+      Cancel background dexopt jobs before running a Macrobenchmark to reduce interference. (
+      <a href="https://android-review.googlesource.com/#/q/I989ed4f9e8384734f2fd16da7d6817f8dd1ee6cd">I989ed</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">frameCount</code>
+      measurement to
+      <code translate="no" dir="ltr">FrameTimingMetric</code>
+      to aid in discovery of scenarios where measurements change because the number of frames produced changed (new animations added, invalidation issues fixed). (
+      <a href="https://android-review.googlesource.com/#/q/I1e5aac6e28546cb5a9e1714ceac342c43e3a444c">I1e5aa</a>
+      )
+    </li>
+    <li>
+      Clarified that
+      <code translate="no" dir="ltr">frameOverrunMs</code>
+      is the preferred metric for tracking when available in docs, and why. (
+      <a href="https://android-review.googlesource.com/#/q/I1874977e4a9e8c0bebde86a7f6159d5730a26c47">I18749</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/329478323">b/329478323</a>
+      )
+    </li>
+  </ul>

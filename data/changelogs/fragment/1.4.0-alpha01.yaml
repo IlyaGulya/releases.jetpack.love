@@ -1,0 +1,473 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.4.0-alpha01
+releaseDate: 2021-05-18
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha01" data-text="Version 1.4.0-alpha01" tabindex="-1">Version 1.4.0-alpha01</h3>
+  <p>May 18, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.4.0-alpha01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.4.0-alpha01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.4.0-alpha01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a12bda4096b6d81e46ecf935fe7140fb80dc61e0..66681ad83c328d0dd821b943bb3d375f02c1db61/fragment">Version 1.4.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">FragmentContainerView</code>
+        now provides a
+        <code translate="no" dir="ltr">getFragment()</code>
+        method which returns the fragment that was most recently added to the container. This uses the same logic as
+        <code translate="no" dir="ltr">findFragmentById()</code>
+        with the ID of the
+        <code translate="no" dir="ltr">FragmentContainerView</code>
+        , but allows chaining the call. (
+        <a href="https://android-review.googlesource.com/#/q/Ife17ac3a7afe345a8a2e8e1bdf9281fabd63a2d1">Ife17a</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/162527857">b/162527857</a>
+        )
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">navController</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">binding</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">container</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">getFragment&lt;NavHostFragment&gt;</span><span class="devsite-syntax-p">().</span><span class="devsite-syntax-na">navController</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">FragmentTransaction#TRANSIT_FRAGMENT_MATCH_ACTIVITY_{OPEN, CLOSE}</code>
+        to specify whether to enable the standard Activity-transition animation taken from your theme in Fragments transition. (
+        <a href="https://android-review.googlesource.com/#/q/I46652ec813b0413a55d6c90efb656f6d9691c211">I46652</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Multiple back stacks</strong></p>
+  <p>
+    The
+    <code translate="no" dir="ltr">FragmentManager</code>
+    maintains a back stack made up of fragment transactions that used
+    <a href="/reference/androidx/fragment/app/FragmentTransaction#addToBackStack(java.lang.String)"><code translate="no" dir="ltr">addToBackStack()</code></a>
+    . This allows you to pop those transactions and return to the previous state, using the mechanisms for
+    <a href="/guide/fragments/saving-state">Saving state with fragments</a>
+    to allow your fragments to restore their state appropriately.
+  </p>
+  <p>
+    This release expands on these mechanisms by providing two new
+    <code translate="no" dir="ltr">FragmentManager</code>
+    APIs:
+    <code translate="no" dir="ltr">saveBackStack(String name)</code>
+    and
+    <code translate="no" dir="ltr">restoreBackStack(String name)</code>
+    . These APIs use the same
+    <code translate="no" dir="ltr">name</code>
+    as
+    <code translate="no" dir="ltr">addToBackStack()</code>
+    to save the state of the
+    <code translate="no" dir="ltr">FragmentTransaction</code>
+    and the state of every fragment that was added in those transactions and allow you to later restore those transactions and their fragments with their state in tact. This allows you to effectively ‘swap’ between multiple back stacks by saving the current back stack and restoring a saved back stack.
+  </p>
+  <p>
+    <code translate="no" dir="ltr">saveBackStack()</code>
+    operates similarly to
+    <a href="/reference/androidx/fragment/app/FragmentManager#popBackStack(java.lang.String,%20int)"><code translate="no" dir="ltr">popBackStack()</code></a>
+    in that it is asynchronous and results in all the fragment transactions back to that specific name to be reversed (‘popped’) and any added fragments to be destroyed and removed, but it differs in a few important ways:
+  </p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">saveBackStack()</code>
+      is always inclusive.
+    </li>
+    <li>
+      Unlike
+      <code translate="no" dir="ltr">popBackStack()</code>
+      which will pop
+      <strong>all</strong>
+      transactions on the back stack if the specified name is not found on the back stack or if a null name is provided,
+      <code translate="no" dir="ltr">saveBackStack()</code>
+      does nothing if you haven’t previously committed a fragment transaction using
+      <code translate="no" dir="ltr">addToBackStack()</code>
+      with that exact, non-null name.
+    </li>
+    <li>
+      The state of all fragments added from those transactions is saved. This means that the View state of every fragment is stored,
+      <code translate="no" dir="ltr">onSaveInstanceState()</code>
+      of every fragment is called and that state is restored, and any
+      <code translate="no" dir="ltr">ViewModel</code>
+      instances associated with those fragments are retained (and
+      <code translate="no" dir="ltr">onCleared()</code>
+      is
+      <strong>not</strong>
+      called on them).
+    </li>
+  </ul>
+  <p>
+    The fragment transactions that can be used with
+    <code translate="no" dir="ltr">saveBackStack()</code>
+    must meet certain criteria:
+  </p>
+  <ul>
+    <li>
+      Every fragment transaction must use
+      <a href="/reference/androidx/fragment/app/FragmentTransaction#setReorderingAllowed(boolean)"><code translate="no" dir="ltr">setReorderingAllowed(true)</code></a>
+      to ensure the transactions can be restored as a single, atomic operation.
+    </li>
+    <li>
+      The set of transactions saved must be self-contained (i.e., they must
+      <strong>not</strong>
+      explicitly reference any fragments outside of that set of transactions) to ensure that they can be restored at any later time, no matter what changes have been made to the back stack in the intervening time.
+    </li>
+    <li>
+      No fragment that is saved can be a retained fragment or have a retained fragment in their transitive set of child fragments to ensure that the
+      <code translate="no" dir="ltr">FragmentManager</code>
+      does not return any references to saved fragments after the back stack is saved.
+    </li>
+  </ul>
+  <p>
+    Similar to
+    <code translate="no" dir="ltr">saveBackStack()</code>
+    ,
+    <code translate="no" dir="ltr">restoreBackStack()</code>
+    does nothing if you have not previously called
+    <code translate="no" dir="ltr">saveBackStack()</code>
+    with the same name. (
+    <a href="https://issuetracker.google.com/80029773">b/80029773</a>
+    )
+  </p>
+  <p><strong>Fragment StrictMode</strong></p>
+  <p>
+    The
+    <code translate="no" dir="ltr">FragmentStrictMode</code>
+    APIs provide
+    <em>runtime</em>
+    checks that allow you to verify that your app or libraries you depend on are not calling deprecated fragment APIs. When a violation is detected, you can choose to print a log message, trigger your own custom listener, or crash your app. The
+    <code translate="no" dir="ltr">FragmentStrictMode.Policy</code>
+    that controls what checks are enabled and what “penalties” are triggered can be set on a
+    <code translate="no" dir="ltr">FragmentManager</code>
+    via the new
+    <code translate="no" dir="ltr">setStrictModePolicy()</code>
+    method. That policy applies to that
+    <code translate="no" dir="ltr">FragmentManager</code>
+    and transitively to any child fragment managers that do not set their own unique policy. (
+    <a href="https://github.com/androidx/androidx/pull/123">#123</a>
+    ,
+    <a href="https://github.com/androidx/androidx/pull/131">#131</a>
+    ,
+    <a href="https://github.com/androidx/androidx/pull/150">#150</a>
+    ,
+    <a href="https://issuetracker.google.com/153737341">b/143774122</a>
+    )
+  </p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">detectFragmentReuse()</code>
+      detects whether a previously removed
+      <code translate="no" dir="ltr">Fragment</code>
+      instance is being re-added to a
+      <code translate="no" dir="ltr">FragmentManager</code>
+      . You should never interact with or keep a reference to a
+      <code translate="no" dir="ltr">Fragment</code>
+      instance after it has been destroyed and removed from a
+      <code translate="no" dir="ltr">FragmentManager</code>
+      . (
+      <a href="https://github.com/androidx/androidx/pull/142">#142</a>
+      ,
+      <a href="https://issuetracker.google.com/153738653">b/153738653</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">detectFragmentTagUsage()</code>
+      detects when you are using the
+      <code translate="no" dir="ltr">&lt;fragment&gt;</code>
+      tag in your layout XML. You should always use
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      when inflating fragments as part of your layout. (
+      <a href="https://github.com/androidx/androidx/pull/141">#141</a>
+      ,
+      <a href="https://issuetracker.google.com/153738235">b/153738235</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">detectWrongFragmentContainer()</code>
+      detects when you add a fragment to a container that is
+      <em>not</em>
+      a
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      . You should always use
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      as the container for fragments in your layout. (
+      <a href="https://github.com/androidx/androidx/pull/146">#146</a>
+      ,
+      <a href="https://issuetracker.google.com/181137036">b/181137036</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">detectRetainInstanceUsage()</code>
+      detects when you use the deprecated
+      <code translate="no" dir="ltr">setRetainInstance()</code>
+      or
+      <code translate="no" dir="ltr">getRetainInstance()</code>
+      APIs. (
+      <a href="https://github.com/androidx/androidx/pull/140">#140</a>
+      ,
+      <a href="https://issuetracker.google.com/153737954">b/153737954</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">detectSetUserVisibleHint()</code>
+      detects when you use the deprecated
+      <code translate="no" dir="ltr">setUserVisibleHint()</code>
+      API. (
+      <a href="https://github.com/androidx/androidx/pull/136">#136</a>
+      ,
+      <a href="https://issuetracker.google.com/153738974">b/153738974</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">detectTargetFragmentUsage()</code>
+      detects when you use the deprecated
+      <code translate="no" dir="ltr">setTargetFragment()</code>
+      ,
+      <code translate="no" dir="ltr">getTargetFragment()</code>
+      or
+      <code translate="no" dir="ltr">getTargetRequestCode()</code>
+      APIs. (
+      <a href="https://github.com/androidx/androidx/pull/139">#139</a>
+      ,
+      <a href="https://issuetracker.google.com/153737745">b/153737745</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The experimental API of
+      <code translate="no" dir="ltr">FragmentManager.enableNewStateManager(boolean)</code>
+      has been removed and the
+      <a href="https://medium.com/androiddevelopers/fragments-rebuilding-the-internals-61913f8bf48e">new state manager</a>
+      is now the only option available. (
+      <a href="https://android-review.googlesource.com/#/q/I9003696ae7abecdd43eece8a20fea8e0657dadc4">I90036</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/162776418">b/162776418</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FragmentScenario</code>
+      now implements
+      <code translate="no" dir="ltr">Closeable</code>
+      , allowing you to use it with Kotlin’s
+      <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.io/use.html"><code translate="no" dir="ltr">use</code></a>
+      method or
+      <a href="https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html">try-with-resources</a>
+      . (
+      <a href="https://github.com/androidx/androidx/pull/121">#121</a>
+      ,
+      <a href="https://issuetracker.google.com/143774122">b/143774122</a>
+      )
+    </li>
+  </ul>
+  <p><strong>New Lint checks</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">UseGetLayoutInflater</code>
+      Lint check now warns when using
+      <code translate="no" dir="ltr">LayoutInflater.from(Context)</code>
+      within a
+      <code translate="no" dir="ltr">DialogFragment</code>
+      - you should always use the dialog fragment’s
+      <code translate="no" dir="ltr">getLayoutInflater()</code>
+      method to get the appropriate for
+      <code translate="no" dir="ltr">LayoutInflater</code>
+      . (
+      <a href="https://github.com/androidx/androidx/pull/156">#156</a>
+      ,
+      <a href="https://issuetracker.google.com/170781346">b/170781346</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">DialogFragmentCallbacksDetector</code>
+      Lint check now warns when calling
+      <code translate="no" dir="ltr">setOnCancelListener</code>
+      or
+      <code translate="no" dir="ltr">setOnDismissListener</code>
+      in the
+      <code translate="no" dir="ltr">onCreateDialog()</code>
+      method of a
+      <code translate="no" dir="ltr">DialogFragment</code>
+      - these listeners are owned by the
+      <code translate="no" dir="ltr">DialogFragment</code>
+      itself and you should override
+      <code translate="no" dir="ltr">onCancel()</code>
+      and
+      <code translate="no" dir="ltr">onDismiss()</code>
+      to receive these callbacks. (
+      <a href="https://github.com/androidx/androidx/pull/171">#171</a>
+      ,
+      <a href="https://issuetracker.google.com/181780047">b/181780047</a>
+      ,
+      <a href="https://issuetracker.google.com/187524311">b/187524311</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      From
+      <a href="#1.3.4">Fragment 1.3.4</a>
+      : Fixed a regression introduced in
+      <a href="#1.3.3">
+        Fragment
+        <code translate="no" dir="ltr">1.3.3</code>
+      </a>
+      when using the
+      <code translate="no" dir="ltr">ViewTreeViewModelStoreOwner.get()</code>
+      API with
+      <code translate="no" dir="ltr">ViewModelProvider</code>
+      or the Jetpack Compose method of
+      <code translate="no" dir="ltr">viewModel()</code>
+      inside a Fragment. These use cases now correctly use the
+      <code translate="no" dir="ltr">ViewModelProvider.Factory</code>
+      provided by your Fragment if it overrides
+      <code translate="no" dir="ltr">getDefaultViewModelProviderFactory()</code>
+      (as
+      <code translate="no" dir="ltr">@AndroidEntryPoint</code>
+      annotated Fragments do when using Hilt). If you do not override that method, a
+      <code translate="no" dir="ltr">SavedStateViewModelFactory</code>
+      that saves and restores its state alongside the Fragment’s view is created as the default factory. (
+      <a href="https://android-review.googlesource.com/#/q/I5cbfacde2479fb270c0c344c478260f20b3207d5">I5cbfa</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/186097368">b/186097368</a>
+      )
+    </li>
+    <li>
+      From
+      <a href="#1.3.4">Fragment 1.3.4</a>
+      : When using
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      on API 29, insets will no longer dispatch indefinitely, fixing issues with
+      <code translate="no" dir="ltr">BottomNavigationBar</code>
+      and
+      <code translate="no" dir="ltr">FloatingActionButton</code>
+      instances. (
+      <a href="https://android-review.googlesource.com/#/q/I1bb780dffcbbcb6a78fbfb74d288a3c0620a3a40">I1bb78</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/186012452">b/186012452</a>
+      )
+    </li>
+    <li>
+      From
+      <a href="#1.3.4">Fragment 1.3.4</a>
+      : You can now retrieve your Parcelable from the fragment result bundle after process death. (
+      <a href="https://android-review.googlesource.com/#/q/I6593233191347d9595f81268951d6f8dbb627273">I65932</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187443158">b/187443158</a>
+      )
+    </li>
+    <li>
+      From
+      <a href="#1.3.4">Fragment 1.3.4</a>
+      : When doing a shared element transition on a ViewGroup, if the ViewGroup has
+      <code translate="no" dir="ltr">transitionGroup</code>
+      set to false, it will now properly transition. (
+      <a href="https://android-review.googlesource.com/#/q/I99675eac030325415789be0762aa666355f27dd8">I99675</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Thanks
+      <a href="https://github.com/simonschiller">simonschiller</a>
+      for making
+      <code translate="no" dir="ltr">FragmentScenario</code>
+      implement
+      <code translate="no" dir="ltr">Closeable</code>
+      . (
+      <a href="https://github.com/androidx/androidx/pull/121">#121</a>
+      ,
+      <a href="https://issuetracker.google.com/143774122">b/143774122</a>
+      )
+    </li>
+    <li>
+      Thanks
+      <a href="https://github.com/simonschiller">simonschiller</a>
+      for adding the entirety of the
+      <code translate="no" dir="ltr">FragmentStrictMode</code>
+      API for this release! (
+      <a href="https://github.com/androidx/androidx/pull/123">#123</a>
+      ,
+      <a href="https://github.com/androidx/androidx/pull/131">#131</a>
+      ,
+      <a href="https://github.com/androidx/androidx/pull/150">#150</a>
+      ,
+      <a href="https://issuetracker.google.com/153737341">b/143774122</a>
+      ,
+      <a href="https://github.com/androidx/androidx/pull/142">#142</a>
+      ,
+      <a href="https://issuetracker.google.com/153738653">b/153738653</a>
+      ,
+      <a href="https://github.com/androidx/androidx/pull/141">#141</a>
+      ,
+      <a href="https://issuetracker.google.com/153738235">b/153738235</a>
+      ,
+      <a href="https://github.com/androidx/androidx/pull/146">#146</a>
+      ,
+      <a href="https://issuetracker.google.com/181137036">b/181137036</a>
+      ,
+      <a href="https://github.com/androidx/androidx/pull/140">#140</a>
+      ,
+      <a href="https://issuetracker.google.com/153737954">b/153737954</a>
+      ,
+      <a href="https://github.com/androidx/androidx/pull/136">#136</a>
+      ,
+      <a href="https://issuetracker.google.com/153738974">b/153738974</a>
+      ,
+      <a href="https://github.com/androidx/androidx/pull/139">#139</a>
+      ,
+      <a href="https://issuetracker.google.com/153737745">b/153737745</a>
+      )
+    </li>
+    <li>
+      Thanks
+      <a href="https://github.com/tatocaster">tatocaster</a>
+      for adding the
+      <code translate="no" dir="ltr">UseGetLayoutInflater</code>
+      Lint check. (
+      <a href="https://github.com/androidx/androidx/pull/156">#156</a>
+      ,
+      <a href="https://issuetracker.google.com/170781346">b/170781346</a>
+      )
+    </li>
+    <li>
+      Thanks
+      <a href="https://github.com/tatocaster">tatocaster</a>
+      for adding the
+      <code translate="no" dir="ltr">DialogFragmentCallbacksDetector</code>
+      Lint check. (
+      <a href="https://github.com/androidx/androidx/pull/171">#171</a>
+      ,
+      <a href="https://issuetracker.google.com/181780047">b/181780047</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_13_2" data-text="Version 1.3" tabindex="-1">Version 1.3</h2>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      The Kotlin dependant libraries of this version (
+      <code translate="no" dir="ltr">fragment-ktx</code>
+      ,
+      <code translate="no" dir="ltr">fragment-testing</code>
+      ) target Java 8 programming language bytecode. Please read
+      <a href="/studio/write/java8-support">Use Java 8 language features</a>
+      to learn how to use it in your project.
+    </span>
+  </aside>

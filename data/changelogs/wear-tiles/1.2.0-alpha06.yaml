@@ -1,0 +1,42 @@
+libraryId: wear-tiles
+groupId: androidx.wear
+version: 1.2.0-alpha06
+releaseDate: 2023-05-24
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha06" data-text="Version 1.2.0-alpha06" tabindex="-1">Version 1.2.0-alpha06</h3>
+  <p>May 24, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.tiles:tiles-*:1.2.0-alpha06</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6f3ac2bd197d5e61ab2708125b57d6ae4003ad68..c5bf9bc40dd5d9f0b3f34e7273ac0d4e4f05c41d/wear/tiles">Version 1.2.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">StateEntryValue</code>
+      to
+      <code translate="no" dir="ltr">DynamicDataValue</code>
+      , and update the state APIs to use the
+      <code translate="no" dir="ltr">DynamicDataKey</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/If1c01335804c5dd98dd2c326ec560e1816ec4c77">If1c01</a>
+      )
+    </li>
+    <li>
+      We are limiting the number of entries that are allowed in the
+      <code translate="no" dir="ltr">StateStore</code>
+      in order to ensure that memory usage and state update time are well contained and controlled for each instance of the
+      <code translate="no" dir="ltr">StateStore</code>
+      . As a result, the developer needs to ensure that they do not have more than
+      <code translate="no" dir="ltr">MAX_STATE_ENTRY_COUNT</code>
+      entries in the map otherwise they will get an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      when creating or updating the
+      <code translate="no" dir="ltr">StateStore</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ibadb3c422ade12c5d77cfedac1a806e8d7b0c756">Ibadb3</a>
+      )
+    </li>
+  </ul>

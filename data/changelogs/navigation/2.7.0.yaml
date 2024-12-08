@@ -1,0 +1,58 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.7.0
+releaseDate: 2023-08-09
+#language=html
+changelogHtml: |
+  <h3 id="2.7.0" data-text="Version 2.7.0" tabindex="-1">Version 2.7.0</h3>
+  <p>August 9, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.7.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a554ff273c1449c2dc482c764272981cef7496f1..ac88ab16827b2945b6f026fe517f8e300cfbd0b2/navigation">Version 2.7.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 2.6.0</strong></p>
+  <p><strong>Animations from Accompanist</strong></p>
+  <p>
+    Now that
+    <code translate="no" dir="ltr">AnimatedContent</code>
+    is stable, we were able to move the code from
+    <a href="https://google.github.io/accompanist/navigation-animation/">Accompanist Navigation Animation</a>
+    back into Navigation Compose itself.
+  </p>
+  <p>
+    This means all of the support for setting custom transitions that existed in
+    <code translate="no" dir="ltr">AnimatedNavHost</code>
+    is directly supported in
+    <code translate="no" dir="ltr">NavHost</code>
+    .
+  </p>
+  <p>
+    No additional changes will be made to Accompanist Navigation Animation and we’ll be formally deprecating it soon, along with guidance on how to migrate back to Navigation Compose itself, but it'll be the inverse of the
+    <a href="https://google.github.io/accompanist/navigation-animation/#migration">migration guide</a>
+    with no other API changes required if you're already using the latest Accompanist alpha (
+    <code translate="no" dir="ltr">0.31.2-alpha</code>
+    ). (
+    <a href="https://issuetracker.google.com/197140101">b/197140101</a>
+    )
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      NavHost in Navigation Compose now correctly intercepts system back calls even after the Activity has been STOPPED and RESUMED. (
+      <a href="https://android-review.googlesource.com/#/q/Icb6deab996d122487243f0d3d775af8c15fc7c25">Icb6de</a>
+      ,
+      <a href="https://issuetracker.google.com/279118447">b/279118447</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Updates</strong></p>
+  <ul>
+    <li>
+      Navigation now depends on Compose
+      <code translate="no" dir="ltr">1.5.0</code>
+      up from
+      <code translate="no" dir="ltr">1.1.0</code>
+      .
+    </li>
+  </ul>

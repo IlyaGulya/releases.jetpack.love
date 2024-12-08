@@ -1,0 +1,116 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.8.0-alpha08
+releaseDate: 2024-05-01
+#language=html
+changelogHtml: |
+  <h3 id="2.8.0-alpha08" data-text="Version 2.8.0-alpha08" tabindex="-1">Version 2.8.0-alpha08</h3>
+  <p>May 1, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.8.0-alpha08</code>
+    is released. Version 2.8.0-alpha08 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a0c81b50a8c175a7992821bb8eff152cc37e7a3c..fbd1ac175922f44c69a13545d194066ee428b342/navigation">these commits</a>
+    .
+  </p>
+  <p><strong>Safe Args in Navigation Compose</strong></p>
+  <ul>
+    <li>
+      The work to support compile time type safety for
+      <a href="/develop/ui/compose/navigation">Navigation Compose</a>
+      and users of the
+      <a href="/guide/navigation/design/kotlin-dsl">Navigation Kotlin DSL</a>
+      based on Kotlin Serialization has completed and previously experimental APIs are now stable. (
+      <a href="https://android-review.googlesource.com/#/q/Iea94de164795b79e99b8f1c2661e06ca6639b2bc">Iea94d</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I0eb0db9fe1dc51c25545d5ef2e915e181d3a9dae">I0eb0d</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I873b7d2beee8a589858e84f8e6f95f295c51e6b9">I873b7</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I3a64b21c11307c1cb409e2bb47e292021d55c0b7">I3a64b</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I6c3a2109d99a3c40102b8a81d7a8bc17746c6a93">I6c3a2</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I11f0bb08a3f2f220f3ba8ba2d72890cd16e56ef3">I11f0b</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ic30322fdcc6ab6abd383758d996d4007e1bf6375">Ic3032</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I8d3948948e68b65f05c5bb943daba3deda64db2e">I8d394</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I95710b70ebbfa839f1809df21049d5c50ab74c4c">I95710</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ice0608f7b128f367760d4617d6b7f770d46618c7">Ice060</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Id0e55c3e938d28c034aa2b6f2a23e815b0d8bfb9">Id0e55</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I45f8b649fc3f5e9d738c432c4a53f23db7ab931e">I45f8b</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Idcdaf353295d64d8162a8e2f792ccd2cdaccee4a">Idcdaf</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/If5380f1943f2a3dc1ff733ed3cfab5f1328c618a">If5380</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I08b231168eaedeabcd4add210daa96a99dc5807e">I08b23</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ia5c59da2d7d4e40db08e4fe29167ecc543df8a95">Ia5c59</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/188693139">b/188693139</a>
+      )
+    </li>
+  </ul>
+  <p>
+    This functionality uses
+    <a href="https://kotlinlang.org/docs/serialization.html">Kotlin Serialization</a>
+    to allow you to define destinations in your navigation graph via type safe objects and data classes:
+  </p>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// Define a home destination that doesn't take any arguments</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-nd">@Serializable</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-kd">object</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">Home</span>
+
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// Define a profile destination that takes an ID</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-nd">@Serializable</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-kd">data</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">Profile</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">id</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">String</span><span class="devsite-syntax-p">)</span>
+
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// Now define your NavHost using type safe objects</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">NavHost</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">navController</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">startDestination</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Home</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-n">composable&lt;Home&gt;</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-n">HomeScreen</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">onNavigateToProfile</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">id</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;
+  <span class="devsite-syntax-w">              </span><span class="devsite-syntax-n">navController</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">navigate</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">Profile</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">id</span><span class="devsite-syntax-p">))</span>
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-p">})</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-n">composable&lt;Profile&gt;</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">backStackEntry</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">profile</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Profile</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">backStackEntry</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">toRoute</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-n">ProfileScreen</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">profile</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+  </code></pre>
+  </devsite-code>
+  <p>
+    See the
+    <a href="https://medium.com/androiddevelopers/navigation-compose-meet-type-safety-e081fb3cf2f8">Navigation Compose meet Type Safety blog post</a>
+    for more information.
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">navigation-fragment-compose</code>
+      artifact now provides a
+      <code translate="no" dir="ltr">LocalFragment</code>
+      composition local to composable methods within a
+      <code translate="no" dir="ltr">ComposableFragment</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If35e5405bbd94fd5f45c1cc0dfe3d74278d64a09">If35e5</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavType</code>
+      now has built-in support for Lists of Int, String, Boolean, Float, and Long. (
+      <a href="https://android-review.googlesource.com/#/q/I4b6dd5ee05083c9b920eb886354384a9f55dc4aa">I4b6dd</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ia914c3739d9c3659909826b9eeaed7f74da39345">Ia914c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/188693139">b/188693139</a>
+      )
+    </li>
+  </ul>

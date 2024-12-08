@@ -1,0 +1,61 @@
+libraryId: annotation
+groupId: androidx.annotation
+version: 1.4.0-alpha02
+releaseDate: 2022-02-09
+#language=html
+changelogHtml: |
+  <h3 id="annotation-1.4.0-alpha02" data-text="Version 1.4.0-alpha02" tabindex="-1">Version 1.4.0-alpha02</h3>
+  <p>February 9, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.annotation:annotation:1.4.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/301586664b5aad60548f21866cad502d524dbf9f..db2ecbef194afcddfaede22e1d884a8959a9277c/annotation/annotation">Version 1.4.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">@ReturnThis</code>
+        ,
+        <code translate="no" dir="ltr">@OpenForTesting</code>
+        ,
+        <code translate="no" dir="ltr">@EmptySuper</code>
+        and
+        <code translate="no" dir="ltr">@DeprecatedSinceApi</code>
+        annotations. (
+        <a href="https://android-review.googlesource.com/#/q/I33e85ff4bed137b61b4f264d1993633dcd1a7015">21946a2</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">@ReturnThis</code>
+        (
+        <a href="https://issuetracker.google.com/issues/140249763">b/140249763</a>
+        ): Ensures that overriding methods of this method must return the same instance (intended for builders etc)
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">@OpenForTesting</code>
+        (
+        <a href="https://issuetracker.google.com/issues/141539024">b/141539024</a>
+        ): Kotlin classes and methods marked "open" can be annotated with this annotation, and lint will make sure that this class is only subclassed (and methods only overridden) from unit tests
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">@DeprecatedSinceApi</code>
+        (
+        <a href="https://issuetracker.google.com/issues/37116481">b/37116481</a>
+        ): Indicates that the annotated method (or class or field) is part of a backport library for a platform API, which is no longer needed as of the given API level.
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">@EmptySuper</code>
+        : Indicates that this method is defined to be empty, so when overriding you do not need to call it (and in fact you shouldn't; for example, it can contain backwards compatibility checking.)
+      </p>
+    </li>
+  </ul>

@@ -1,0 +1,136 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.3.0-beta01
+releaseDate: 2022-08-24
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-beta01" data-text="Version 1.3.0-beta01" tabindex="-1">Version 1.3.0-beta01</h3>
+  <p>August 24, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.3.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/bea814b246f89ff7244e3c6b0648f0b57e47897c..d9910e143f859716fd850a1f0036147622d6089b/compose/ui">Version 1.3.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>Modifier Node Refactor</strong></p>
+  <p>
+    The layer which handles
+    <code translate="no" dir="ltr">Modifier/Modifier.Element</code>
+    instances and coordinates their behavior on
+    <code translate="no" dir="ltr">LayoutNodes</code>
+    has been majorly refactored. As it stands this was a refactor which did not affect the public API of any of the many modifiers in Compose, and can be viewed as an implementation-only change. Despite that, this is an important change for various reasons. (
+    <a href="https://android-review.googlesource.com/#/q/Ie4313071d4d9ebc82b28b6fbb691d3736d7d738a">Ie4313</a>
+    )
+  </p>
+  <p>
+    <strong><em>Change Summary</em></strong>
+  </p>
+  <p>
+    The added experimental
+    <code translate="no" dir="ltr">Modifier.Node</code>
+    APIs provide an abstraction that allows for state to be maintained on an instance that will be retained with the lifecycle of the layout node, and will be allocated per-layout-node and per-usage of the corresponding
+    <code translate="no" dir="ltr">Modifier.Element</code>
+    that produced it.
+  </p>
+  <p>
+    Broadly speaking, this abstraction provides an alternative mechanism to produce stateful modifiers without relying on the mechanics of the
+    <code translate="no" dir="ltr">Modifier.composed</code>
+    API.
+  </p>
+  <p>
+    <strong><em>Risk</em></strong>
+  </p>
+  <p>
+    This change is strictly binary compatible with prior releases, and is intended to be backwards compatible in terms of observable behavior as much as practical and reasonable. That said, there are few subsystems of compose this refactor did not touch, and
+    <em>it is likely that behavior has changed in ways that were not covered by our tests and have not yet been found and fixed</em>
+    .
+  </p>
+  <p>Please upgrade to this release with caution. If you believe this has broken something for you, please let us know.</p>
+  <p>
+    <strong><em>Experimental APIs</em></strong>
+  </p>
+  <p>Various experimental APIs have been added, all relating to the new concept of a "Modifier Node". Modifier.Node’s are created as a result of</p>
+  <ul>
+    <li><code translate="no" dir="ltr">fun modifierElementOf(…): Modifier</code></li>
+    <li><code translate="no" dir="ltr">abstract class ModifierNodeElement</code></li>
+    <li><code translate="no" dir="ltr">abstract class Modifier.Node</code></li>
+    <li><code translate="no" dir="ltr">abstract class DelegatingNode</code></li>
+    <li><code translate="no" dir="ltr">interface LayoutModifierNode</code></li>
+    <li><code translate="no" dir="ltr">interface DrawModifierNode</code></li>
+    <li><code translate="no" dir="ltr">interface SemanticsNode</code></li>
+    <li><code translate="no" dir="ltr">interface PointerInputNode</code></li>
+    <li><code translate="no" dir="ltr">interface ModifierLocalNode</code></li>
+    <li><code translate="no" dir="ltr">interface ParentDataModifierNode</code></li>
+    <li><code translate="no" dir="ltr">interface LayoutAwareModifierNode</code></li>
+    <li><code translate="no" dir="ltr">interface GlobalPositionAwareModifierNode</code></li>
+    <li><code translate="no" dir="ltr">interface IntermediateLayoutModifierNode</code></li>
+  </ul>
+  <p><strong>Behavior breaking change</strong></p>
+  <p>Maximum supported elevation in dialogs and popups has been reduced to 8dp.</p>
+  <p>The maximum supported elevation for Compose dialogs and popups has been reduced from 30dp to 8dp. This change affects both material and ui custom dialogs and popups. This change is made to mitigate an accessibility bug on Android versions below S, and to ensure that accessibility services within those windows are able to interact with the content inside the dialog or popup.</p>
+  <p>You will only be impacted by this change if you are creating a custom dialog or popup implementation with an elevation set to levels higher than 8dp. Consider lowering the elevation of your dialog or popup. If you need to opt-out from this new behavior, consider forking your own dialog or popup with the desired elevation set. This is not recommended, as accessibility might be negatively impacted and it is on the developer to ensure the bottom part of the dialog or popup is interactable and readable by accessibility services.</p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">painterResource</code>
+      wouldn't update on configuration changes (
+      <a href="https://android-review.googlesource.com/#/q/I58e732cd43766d41a7f8f732c6bf519548a695d7">I58e73</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/228862715">b/228862715</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">rememberTextMeasurer</code>
+      no longer takes
+      <code translate="no" dir="ltr">FontFamily.Resolver</code>
+      ,
+      <code translate="no" dir="ltr">Density</code>
+      , or
+      <code translate="no" dir="ltr">LayoutDirection</code>
+      parameters. Please use the
+      <code translate="no" dir="ltr">TextMeasurer</code>
+      constructor to provide custom values for these parameters. (
+      <a href="https://android-review.googlesource.com/#/q/Ia1da39bdd839b3a26ccc848806c241c923604438">Ia1da3</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">DialogProperties.decorFitsSystemWindows</code>
+      property to allow Dialogs to support
+      <code translate="no" dir="ltr">WindowInsets</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I577429919e87610107d6fd476538d8904866b5ce">I57742</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/229378542">b/229378542</a>
+      )
+    </li>
+    <li>
+      Moved font constructors back to original kotlin file to retain binary compatibility. No change from last stable release. (
+      <a href="https://android-review.googlesource.com/#/q/Ieb2f3f5b9bff8000520a6e6ecb44c187abfd727c">Ieb2f3</a>
+      )
+    </li>
+    <li>
+      Removed unnecessary operator from several equals definitions - this has no effect. (
+      <a href="https://android-review.googlesource.com/#/q/I6c309cccd358bc76c82e7cd9e88e8a8bdf705c95">I6c309</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FontVariation.Setting</code>
+      is a sealed interface, to allow future clamping APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I110218032f9128790bf2b27ac19cfafb057e37ce">I11021</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/143703328">b/143703328</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">CompositionGroup.findParameters</code>
+      to
+      <code translate="no" dir="ltr">SlotTree.kt</code>
+      . This allows tools to retrieve parameters for a
+      <code translate="no" dir="ltr">CompositionGroup</code>
+      without having to parse the entire slot table. (
+      <a href="https://android-review.googlesource.com/#/q/I124fee0869556b869a1ed2ee2ce1d90014d1c58e">I124fe</a>
+      )
+    </li>
+  </ul>

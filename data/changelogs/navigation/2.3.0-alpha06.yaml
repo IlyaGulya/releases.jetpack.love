@@ -1,0 +1,66 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.3.0-alpha06
+releaseDate: 2020-04-29
+#language=html
+changelogHtml: |
+  <h3 id="2.3.0-alpha06" data-text="Version 2.3.0-alpha06" tabindex="-1">Version 2.3.0-alpha06</h3>
+  <p>April 29, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.3.0-alpha06</code>
+    is released. (
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/24daa503442fcd3e44ada60cf1da41df2815c045..942518f415d35ff9f2ff78f312c076c673468877/navigation">Version 2.3.0-alpha06 contains these commits.</a>
+    )
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Deep linking has been expanded to support
+      <code translate="no" dir="ltr">app:action</code>
+      and
+      <code translate="no" dir="ltr">app:mimeType</code>
+      in addition to the
+      <code translate="no" dir="ltr">app:uri</code>
+      previously available. NavController now supports navigating by any combination of these fields via the new
+      <code translate="no" dir="ltr">NavDeepLinkRequest</code>
+      class. (
+      <a href="https://issuetracker.google.com/issues/136573074">b/136573074</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/135334841">b/135334841</a>
+      )
+    </li>
+  </ul>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      Support for deep link actions and mime types is not yet available in Android Studio or in
+      <a href="https://issuetracker.google.com/issues/154166825">Manifest Merger</a>
+      . Until those are completed, you won't see the new attributes in the visual editor and any generated
+      <code translate="no" dir="ltr">&lt;intent-filter&gt;</code>
+      elements won't include your mime type in its
+      <code translate="no" dir="ltr">&lt;data&gt;</code>
+      element or your custom
+      <code translate="no" dir="ltr">&lt;action&gt;</code>
+      . You can add the attributes manually to the
+      <code translate="no" dir="ltr">&lt;deeplink&gt;</code>
+      element in XML and manually add an
+      <code translate="no" dir="ltr">&lt;intent-filter&gt;</code>
+      to your manifest, respectively.
+    </span>
+  </aside>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Greatly expanded the Kotlin DSL support for Dynamic Navigation destinations. (
+      <a href="https://issuetracker.google.com/issues/148969800">b/148969800</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where deep link Intents would be ignored when using a nested start destination. (
+      <a href="https://issuetracker.google.com/issues/154532067">b/154532067</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,173 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.1.0
+releaseDate: 2022-06-29
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0" data-text="Version 1.1.0" tabindex="-1">Version 1.1.0</h3>
+  <p>June 29, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.1.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/23746944e4ade5ba70e6d8e5f2bf4b543c99ea94..f066cfcb8ff63f32d0300623bf25da6baa10031e/camera">Version 1.1.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 1.0.0</strong></p>
+  <ul>
+    <li>Landed View, Extension and Video Capture libraries as their first RC version. From 1.1.0-beta01, all CameraX libraries will align the same version number. This will help developers track versions much easier and reduce the complexity of large version compatibility matrices.</li>
+    <li>Introduced new public APIs and features which including:</li>
+    <li>Add the official camera-video library to support video capture use cases.</li>
+    <li>
+      YUV to RGB conversion and rotation capability (
+      <code translate="no" dir="ltr">ImageAnalysis.Builder.setOutputImageRotationEnabled</code>
+      and
+      <code translate="no" dir="ltr">setOutputImageFormat</code>
+      )
+    </li>
+    <li>Support multi-window mode by allowing CameraX applications to resume the camera when the camera is interrupted by another app and focus is back.</li>
+    <li>Ensures CameraX works well in foldable devices by fixing some preview issues.</li>
+    <li>
+      Added a
+      <code translate="no" dir="ltr">CameraState</code>
+      API that will be exposed through CameraInfo.
+    </li>
+    <li>
+      Added an API
+      <code translate="no" dir="ltr">ProcessCameraProvider.getAvailableCameraInfos()</code>
+      to directly retrieve information about the available cameras
+    </li>
+    <li>
+      Output JPEG format for
+      <code translate="no" dir="ltr">ImageCapture#OnImageCapturedCallback</code>
+      when Extensions are enabled.
+    </li>
+    <li>
+      Added a API
+      <code translate="no" dir="ltr">isFocusMeteringSupported</code>
+      in
+      <code translate="no" dir="ltr">CameraInfo</code>
+      which allows applications to check if the given
+      <code translate="no" dir="ltr">FocusMeteringAction</code>
+      is supported on current camera or not.
+    </li>
+    <li>
+      Exposed
+      <code translate="no" dir="ltr">getResolutionInfo</code>
+      API to provide the resolution information for Preview,
+      <code translate="no" dir="ltr">ImageCapture</code>
+      and
+      <code translate="no" dir="ltr">ImageAnalysis</code>
+      .
+    </li>
+    <li>
+      Added a new API
+      <code translate="no" dir="ltr">ImageCapture.Builder#setJpegQuality</code>
+      to allow changing the output JPEG image compression quality when taking pictures.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">CameraSelector#filter</code>
+      to the public API to filter a list of
+      <code translate="no" dir="ltr">CameraInfos</code>
+      based on a
+      <code translate="no" dir="ltr">CameraSelector</code>
+      .
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Camera2CameraControl.clearCaptureRequestOptions</code>
+      for clearing the existing capture request options.
+    </li>
+    <li>
+      Added an experimental API for using
+      <code translate="no" dir="ltr">CameraController</code>
+      with external image processing libraries. e.g. MLKit
+    </li>
+    <li>
+      Added experimental API
+      <code translate="no" dir="ltr">CameraInfo#getCameraSelector()</code>
+      which returns a
+      <code translate="no" dir="ltr">CameraSelector</code>
+      unique to its camera
+    </li>
+    <li>Promoted several experimental APIs to formal public APIs</li>
+    <li>
+      Replaced annotation
+      <code translate="no" dir="ltr">@Experimental</code>
+      with
+      <code translate="no" dir="ltr">@RequiresOptIn</code>
+      to experimental APIs. For calling experimental APIs, use androidx.annotation.OptIn instead of deprecated androidx.annotation.experimental.UseExperimental.
+    </li>
+    <li>
+      Promoted the following experimental APIs to official APIs:
+      <code translate="no" dir="ltr">CameraXConfig.Builder#setAvailableCamerasLimiter()</code>
+      ,
+      <code translate="no" dir="ltr">CameraXConfig.Builder#setMinimumLoggingLevel()</code>
+      ,
+      <code translate="no" dir="ltr">CameraXconfig.Builder#setSchedulerHandler()</code>
+      ,
+      <code translate="no" dir="ltr">CameraXConfig#getAvailableCamerasLimiter()</code>
+      ,
+      <code translate="no" dir="ltr">CameraXConfig#getMinimumLoggingLevel()</code>
+      ,
+      <code translate="no" dir="ltr">CameraXConfig#getCameraExecutor()</code>
+      ,
+      <code translate="no" dir="ltr">CameraXConfig#getSchedulerHandler()</code>
+      ,
+    </li>
+    <li>
+      <code translate="no" dir="ltr">@ExperimentalCameraFilter</code>
+      APIs
+    </li>
+    <li>experimental exposure compensation APIs.</li>
+    <li>
+      Promoted the experimental
+      <code translate="no" dir="ltr">UseCaseGroup</code>
+      API for camera-core, camera-lifecycle and camera-video. Added
+      <code translate="no" dir="ltr">ViewPort#getLayoutDirection</code>
+      ,
+      <code translate="no" dir="ltr">ViewPort.Builder#setLayoutDirection</code>
+      and
+      <code translate="no" dir="ltr">ViewPort.Builder#setScaleType</code>
+      for customizing viewport.
+    </li>
+    <li>
+      Promoted the
+      <code translate="no" dir="ltr">ExperimentalUseCaseGroupLifecycle</code>
+      to formal public APIs.
+    </li>
+    <li>Changes to the existing APIs</li>
+    <li>
+      <code translate="no" dir="ltr">Renamed MediaStoreOutputOptions.getCollection</code>
+      to
+      <code translate="no" dir="ltr">MediaStoreOutputOptions.getCollectionUri</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ActiveRecording</code>
+      has been renamed to "Recording" to reduce verbosity.
+    </li>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">QualitySelector</code>
+      creator API to a list-based API
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">YuvToJpegProcessor</code>
+      <code translate="no" dir="ltr">EOFException</code>
+      issue when extension mode is enabled and
+      <code translate="no" dir="ltr">ImageCapture#CAPTURE_MODE_MAX_QUALITY</code>
+      mode is set.
+    </li>
+    <li>Fixed codec configuration failed due to video recording is closing</li>
+    <li>Fixed stretched preview/video aspect ratio when recording at FHD</li>
+    <li>Fixed audio/video out of sync after pause and resume on some devices</li>
+    <li>
+      Fixed the issue where flash is triggered during tap-to-focus (
+      <code translate="no" dir="ltr">startFocusAndMetering</code>
+      ) when flash mode is auto or always_on in low-light environment.
+    </li>
+  </ul>

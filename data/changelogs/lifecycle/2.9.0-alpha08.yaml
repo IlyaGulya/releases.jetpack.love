@@ -1,0 +1,77 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.9.0-alpha08
+releaseDate: 2024-12-11
+#language=html
+changelogHtml: |
+  <h3 id="2.9.0-alpha08" data-text="Version 2.9.0-alpha08" tabindex="-1">Version 2.9.0-alpha08</h3>
+  <p>December 11, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.9.0-alpha08</code>
+    is released. Version 2.9.0-alpha08 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/0dc1e27ead8f6b0c810ea4c8fc9c650507866085..46295bc0b75a16f452e8e0090e8de41073d4dbb6/lifecycle">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">ViewModelScenario.recreate</code>
+      to simulate a System Process Death recreating the
+      <code translate="no" dir="ltr">ViewModel</code>
+      under test and all associated components. (
+      <a href="https://android-review.googlesource.com/#/q/Id6a696888ce900c573e47c6c93e4ac9df1881e6b">Id6a69</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/381063087">b/381063087</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      and
+      <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+      instances retrieved via their respective
+      <code translate="no" dir="ltr">findViewTree</code>
+      APIs can now be resolved through disjoint parents of a view, such as a
+      <code translate="no" dir="ltr">ViewOverlay</code>
+      . See the release notes of core or the documentation in
+      <code translate="no" dir="ltr">ViewTree.setViewTreeDisjointParent</code>
+      for more information on disjoint view parents. (
+      <a href="https://android-review.googlesource.com/#/q/I800f4616721ada959cbc8123a919dbbf199110c4">I800f4</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Make the namings and package organization more consistent with
+      <code translate="no" dir="ltr">SavedStateRegistryOwnerDelegate</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I8c1353eedd7299f885ce45b7d85deb4a24c557e4">I8c135</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/376026744">b/376026744</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      This library now uses
+      <a href="https://jspecify.dev/">JSpecify nullness annotations</a>
+      , which are type-use. Kotlin developers should use the following compiler arguments to enforce correct usage:
+      <code translate="no" dir="ltr">-Xjspecify-annotations=strict, -Xtype-enhancement-improvements-strict-mode</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ie43402aa3b0aca97c4671b421b083365f13b4eb4">Ie4340</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326456246">b/326456246</a>
+      )
+    </li>
+    <li>
+      Document
+      <code translate="no" dir="ltr">ViewModel.onCleared</code>
+      clearing sequence. (
+      <a href="https://android-review.googlesource.com/#/q/I586c7a6e962a2ff6227a6cd2707e0fcd73b66575">I586c7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/363984116">b/363984116</a>
+      )
+    </li>
+  </ul>

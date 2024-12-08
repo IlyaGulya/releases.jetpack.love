@@ -1,0 +1,131 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.3.0-beta01
+releaseDate: 2023-06-21
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-beta01" data-text="Version 1.3.0-beta01" tabindex="-1">Version 1.3.0-beta01</h3>
+  <p>June 21, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.3.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/938a593fa34a9c8caac51e9aafa1945da629893b..bef05e5a3f6d09babb620159f75c659bcc7df495/camera">Version 1.3.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Renamed the
+      <code translate="no" dir="ltr">ResolutionSelector.Builder#setHighResolutionEnabledFlag(int)</code>
+      function name to
+      <code translate="no" dir="ltr">setAllowedResolutionMode</code>
+      and renamed the
+      <code translate="no" dir="ltr">ResolutionSelector#HIGH_RESOLUTION_FLAG_OFF</code>
+      /
+      <code translate="no" dir="ltr">ON</code>
+      constants to
+      <code translate="no" dir="ltr">PREFER_CAPTURE_RATE_OVER_HIGHER_RESOLUTION</code>
+      /
+      <code translate="no" dir="ltr">PREFER_HIGHER_RESOLUTION_OVER_CAPTURE_RATE</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If84e83d81be81de313ecd6064151d48408860018">If84e8</a>
+      )
+    </li>
+    <li>
+      Removed deprecated API
+      <code translate="no" dir="ltr">ImageAnalysis.setTargetRotationDegrees(int)</code>
+      ,
+      <code translate="no" dir="ltr">ImageCapture.setTargetRotationDegrees(int)</code>
+      and
+      <code translate="no" dir="ltr">VideoCapture.setTargetRotationDegrees(int)</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id8e7741d6baf94e87919a0f3e8352bc723cfd113">Id8e77</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">DynamicRange</code>
+      class respresent the dynamic range of images. This can be used to select High Dynamic Range formats as the output of
+      <code translate="no" dir="ltr">VideoCapture</code>
+      through
+      <code translate="no" dir="ltr">VideoCapture.Builder#setDynamicRange()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib03770371433647f98a3e47d4a9c9a8083e348a8">Ib0377</a>
+      )
+    </li>
+    <li>
+      Added an
+      <code translate="no" dir="ltr">isImageAnalysisSupported</code>
+      API to the
+      <code translate="no" dir="ltr">ExtensionsManager</code>
+      which apps can determine if an
+      <code translate="no" dir="ltr">ImageAnalysis</code>
+      use case can be bound along with Preview and
+      <code translate="no" dir="ltr">ImageCapture</code>
+      when Extensions are enabled. (
+      <a href="https://android-review.googlesource.com/#/q/I1bc6361c6fcb32f4ece0b616ebac1059b1ecfe76">I1bc63</a>
+      )
+    </li>
+    <li>
+      The new
+      <code translate="no" dir="ltr">VideoCapabilities</code>
+      class obtained from the
+      <code translate="no" dir="ltr">Recorder</code>
+      can be used to query supported dynamic ranges and qualities for video recording on the device.
+      <code translate="no" dir="ltr">QualitySelector</code>
+      's
+      <code translate="no" dir="ltr">getSupportedQualities()</code>
+      and
+      <code translate="no" dir="ltr">isQualitySupported()</code>
+      methods are being deprecated. Please use
+      <code translate="no" dir="ltr">VideoCapabilities</code>
+      's
+      <code translate="no" dir="ltr">getSupportedQualities()</code>
+      and
+      <code translate="no" dir="ltr">isQualitySupported()</code>
+      methods instead. (
+      <a href="https://android-review.googlesource.com/#/q/I04014e9d4fbeae8007e72d41effb40f5b7b9ad38">I04014</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">CameraController#setVideoCaptureTargetQuality()</code>
+      is renamed to
+      <code translate="no" dir="ltr">setVideoCaptureQualitySelector</code>
+      and takes argument
+      <code translate="no" dir="ltr">QualitySelector</code>
+      , which provides more flexibility for video quality setup.
+      <code translate="no" dir="ltr">CameraController#getVideoCaptureTargetQuality()</code>
+      is changed to
+      <code translate="no" dir="ltr">getVideoCaptureQualitySelector</code>
+      accordingly. (
+      <a href="https://android-review.googlesource.com/#/q/I520ed903bcb66e0bafa889b1a3038cde2dbd3412">I520ed</a>
+      )
+    </li>
+    <li>
+      Removed the experimental annotation for video features. The video features are now stable. (
+      <a href="https://android-review.googlesource.com/#/q/I1a113f55d90924ca4728f9d1fbb5600d94a8e2e9">I1a113</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Use torch as flash on Samsung SM-A320 models to improve the speed and the captured image quality in low light. (
+      <a href="https://android-review.googlesource.com/#/q/I6a022547c5a39c1783b9c1b8d9938a7d6494f482">I6a022</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/286190938">b/286190938</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">ImageFormat.JPEG</code>
+      format support for
+      <code translate="no" dir="ltr">ImageProxy.toBitmap()</code>
+      . If the JPEG byte array cannot be decoded, an
+      <code translate="no" dir="ltr">UnsupportedOperationException</code>
+      will be thrown. (
+      <a href="https://android-review.googlesource.com/#/q/I819581bc0cb6591133b1861d89e8ee67a8e7fd86">I81958</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/282057603">b/282057603</a>
+      )
+    </li>
+  </ul>

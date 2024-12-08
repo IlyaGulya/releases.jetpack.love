@@ -1,0 +1,82 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.6.0-alpha04
+releaseDate: 2022-12-07
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-alpha04" data-text="Version 1.6.0-alpha04" tabindex="-1">Version 1.6.0-alpha04</h3>
+  <p>December 7, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment-*:1.6.0-alpha04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4a2f5e696614339c1ac21f706c1a17c0285780e7/fragment">Version 1.6.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">FragmentStrictMode</code>
+      added a new
+      <code translate="no" dir="ltr">WrongNestedHierarchyViolation</code>
+      that detects when a child fragment is nested within it’s parent’s View hierarchy, but not added to the parent’s
+      <code translate="no" dir="ltr">childFragmentManager</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I725210f957b9be5875f7c0eadaaa992deda6614a">I72521</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/249299268">b/249299268</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      Fragments now restore their
+      <code translate="no" dir="ltr">SavedStateRegistry</code>
+      state before
+      <code translate="no" dir="ltr">onAttach()</code>
+      , ensuring that it is available from all upward lifecycle methods. (
+      <a href="https://android-review.googlesource.com/#/q/I1e2b1b1e65900219956c6d9c0d68c175012586b8">I1e2b1</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">fragment-testing-manifest</code>
+      artifact separates out the manifest entries from the rest of the fragment-testing components. This means you can do the following:
+    </li>
+  </ul>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Text only"><code translate="no" dir="ltr">debugImplementation("androidx.fragment:fragment-testing-manifest:X.Y.Z")
+  androidTestImplementation("androidx.fragment:fragment-testing:X.Y.Z")
+  </code></pre>
+  </devsite-code>
+  <p>
+    This avoids conflicts due to version skew between
+    <code translate="no" dir="ltr">fragment-testing</code>
+    and
+    <code translate="no" dir="ltr">androidx.test</code>
+    .(
+    <a href="https://android-review.googlesource.com/#/q/I8e534e2fcab467a43944b6ab4821dc34c1c02cef">I8e534</a>
+    ,
+    <a href="https://issuetracker.google.com/issues/128612536">b/128612536</a>
+    )
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      From
+      <a href="#1.5.5">
+        Fragment
+        <code translate="no" dir="ltr">1.5.5</code>
+      </a>
+      : Fragments will no longer incorrectly save the
+      <code translate="no" dir="ltr">ViewModel</code>
+      state as part of the view registry saved state. (
+      <a href="https://android-review.googlesource.com/#/q/I10d2b5363d0abe967e92ad90a578d3bf88a2ca3b">I10d2b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/253546214">b/253546214</a>
+      )
+    </li>
+  </ul>

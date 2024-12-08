@@ -1,0 +1,34 @@
+libraryId: datastore
+groupId: androidx.datastore
+version: 1.1.0-rc01
+releaseDate: 2024-04-03
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-rc01" data-text="Version 1.1.0-rc01" tabindex="-1">Version 1.1.0-rc01</h3>
+  <p>April 3, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.datastore:datastore-*:1.1.0-rc01</code>
+    is released. Version 1.1.0-rc01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/638a8d3a474af45f6ad5fdc3d6d1836ea42d1778..76cd793f15d1a1646b4ba892b9659379cdf1ee79/datastore">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed the performance degradation where
+      <code translate="no" dir="ltr">updateData</code>
+      calls didn’t optimize on disk writes if the new data is the same as the old data (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/d64cfb51b4243e341af8953f952681c20894206b">d64cfb5</a>
+      )
+    </li>
+    <li>
+      Fixed a race condition where
+      <code translate="no" dir="ltr">MultiProcess</code>
+      <code translate="no" dir="ltr">DataStore</code>
+      might miss invalidations during initialization. ((
+      <a href="https://b.corp.google.com/issues/326141553">b/326141553</a>
+      ),(
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/094c2dd1ca5f267289b34187882b76b6fbde19af">094c2dd</a>
+      ))
+    </li>
+  </ul>

@@ -1,0 +1,380 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.0.0-alpha24
+releaseDate: 2024-09-04
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha24" data-text="Version 1.0.0-alpha24" tabindex="-1">Version 1.0.0-alpha24</h3>
+  <p>September 4, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material3:1.0.0-alpha24</code>
+    is released. Version 1.0.0-alpha24 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6a69101fd0edc8d02aa316df1f43e0552fd2d7c4..80f82d37cb9b40250ee9eb15d9cbe9e93849355e/wear/compose/compose-material3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We have added a Motion scheme into the Material3 theme. This will be used by components across the library to apply animation specifications such as springs for expressive motion. (
+      <a href="https://android-review.googlesource.com/#/q/I54ff3a7cf0cb4d7315a065f691bf2f9d4a4520a7">I54ff3</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">AppScaffold</code>
+      and
+      <code translate="no" dir="ltr">ScreenScaffold</code>
+      components to the Material3 library, which include functionality to coordinate layering and transitions of
+      <code translate="no" dir="ltr">TimeText</code>
+      and
+      <code translate="no" dir="ltr">ScrollIndicator</code>
+      .
+      <code translate="no" dir="ltr">AppScaffold</code>
+      provides a top level of scaffold components that sit on top of all screens. As such, adding
+      <code translate="no" dir="ltr">TimeText</code>
+      to the
+      <code translate="no" dir="ltr">AppScaffold</code>
+      allows it to remain in place while swiping between screens. Screens can themselves override or hide the time text.
+      <code translate="no" dir="ltr">ScreenScaffold</code>
+      provides a slot for the
+      <code translate="no" dir="ltr">ScrollIndicator</code>
+      and automatically animates the scroll indicator when scrolling, including timeout to hide the scroll indicator after inactivity. (
+      <a href="https://android-review.googlesource.com/#/q/I047d639623ce9c54af9dabd86728107c8e1af422">I047d6</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">ScrollIndicator</code>
+      featuring the new Material3 design. It has a fixed thumb size based on initial list contents, in order to avoid size variations when lazy content is loaded into the list. (
+      <a href="https://android-review.googlesource.com/#/q/Ic228d48ed349dabb9c1fa02b949f07e3a6a4781b">Ic228d</a>
+      )
+    </li>
+    <li>
+      We have changed the
+      <code translate="no" dir="ltr">ScrollAway</code>
+      API such that
+      <code translate="no" dir="ltr">ScreenStage</code>
+      is a value class instead of an enum class, to allow for additional stages to be added as needed going forwards. (
+      <a href="https://android-review.googlesource.com/#/q/I48c9398b577d42c9792009018d8f494e2a33b479">I48c93</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">EdgeButton</code>
+      , a distinctive Wear-specific button with a shape that follows the curvature of the bottom of the screen (
+      <a href="https://android-review.googlesource.com/#/q/I16369a6d41fadde897bce87ddd0300caae90fd89">I16369</a>
+      )
+    </li>
+    <li>
+      We have added a new slot to the
+      <code translate="no" dir="ltr">ScreenScaffold</code>
+      for a bottom button (such as
+      <code translate="no" dir="ltr">EdgeButton</code>
+      ), that will be shown and resized depending on the scrolling content (
+      <a href="https://android-review.googlesource.com/#/q/I032eb44f3a38f8de3b6c6082babf837ad7df2a2a">I032eb</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">Modifier.scrollTransform</code>
+      and
+      <code translate="no" dir="ltr">Modifier.targetMorphingHeight</code>
+      to add Material3 motion effects to items in
+      <code translate="no" dir="ltr">LazyColumn</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie229a1aa8b3411881367fbe1f0c1ee3a57c39c91">Ie229a</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">SegmentedCircularProgressIndicator</code>
+      as a variation on
+      <code translate="no" dir="ltr">CircularProgressIndicator</code>
+      . The segmented variation either shows a single progress value across all segments or shows each segment as being on/off. (
+      <a href="https://android-review.googlesource.com/#/q/I6e05980ba823f00f8b7640129bbd4fa1c8fcfdd8">I6e059</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">LinearProgressIndicator</code>
+      as an alternative to the existing
+      <code translate="no" dir="ltr">CircularProgressIndicator</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I891827cc47667308393cfc7766b2d117806ab7f2">I89182</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">AlertDialog</code>
+      , providing layouts for presenting important prompts to the user. Variations are included for either a pair of confirm/dismiss buttons or a single bottom button (typically an EdgeButton) below a stack of options. Both variations have slots for icon, title and additional text to provide further details. (
+      <a href="https://android-review.googlesource.com/#/q/Ieb873637e1ce1a554a9ae01c7ab7a72c63650c19">Ieb873</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">OpenOnPhoneDialog</code>
+      , which should be used to indicate an action that will continue on the user's phone.
+      <code translate="no" dir="ltr">OpenOnPhoneDialog</code>
+      is dismissed after a specified timeout. (
+      <a href="https://android-review.googlesource.com/#/q/I978fdd711362f808cac89da4c15fce337ed100bc">I978fd</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">Confirmation</code>
+      , a dialog component that has slots for an icon and either curved or linear text. Specific variations are provided for success/failure messages. Confirmations are automatically dismissed after a timeout. (
+      <a href="https://android-review.googlesource.com/#/q/Ib43e8d613847d334bcb079c07806612526f63983">Ib43e8</a>
+      )
+    </li>
+    <li>
+      We have added a background to
+      <code translate="no" dir="ltr">TimeText</code>
+      to mitigate issues where the underlying content and the
+      <code translate="no" dir="ltr">TimeText</code>
+      overlapped, and obscured the time. (
+      <a href="https://android-review.googlesource.com/#/q/Ia11fd1c2a41630620c30d4c46b7e8c54fd659691">Ia11fd</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">LevelIndicator</code>
+      , which shows the value of a setting such as volume, and can be used with the existing
+      <code translate="no" dir="ltr">Stepper</code>
+      component to construct a volume screen.
+      <code translate="no" dir="ltr">LevelIndicator</code>
+      is similar to
+      <code translate="no" dir="ltr">ScrollIndicator</code>
+      , but is displayed on the opposite side of the screen and has a wider stroke width and different indicator color by default. (
+      <a href="https://android-review.googlesource.com/#/q/I8a4ac3d8ee7e06a1d73642aeee731ecc29298220">I8a4ac</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">TimePicker</code>
+      , with layouts for 24 hour time (with or without seconds), or 12 hour time with am/pm selection. (
+      <a href="https://android-review.googlesource.com/#/q/Ia5124f9e5aab57c5f7a530e5ed55184f86fe579d">Ia5124</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">DatePicker</code>
+      , with configuration for column ordering (i.e. day-month-year, month-day-year or year-month-day) and optional min/max dates. (
+      <a href="https://android-review.googlesource.com/#/q/Ibf13b15b750dc02e7c838f5d1791ad446464d5a7">Ibf13b</a>
+      )
+    </li>
+    <li>
+      We have added a weight parameter to the
+      <code translate="no" dir="ltr">TimeText</code>
+      's
+      <code translate="no" dir="ltr">text</code>
+      function. In cases where TimeText is made up of more than one text element, this allows control over how the space is distributed. (
+      <a href="https://android-review.googlesource.com/#/q/I3670007378ce6d66d0d79424a1a95b5b2ac8ca76">I36700</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">RadioButton</code>
+      and
+      <code translate="no" dir="ltr">SplitRadioButton</code>
+      - these components simplify the previous API by combining both the (Split)
+      <code translate="no" dir="ltr">SelectableButton</code>
+      and the child radio control (
+      <a href="https://android-review.googlesource.com/#/q/If7ae8389f0315715c3ba00cd97530eca47f15d0d">If7ae8</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">CheckboxButton</code>
+      and
+      <code translate="no" dir="ltr">SplitCheckboxButton</code>
+      - these components simplify the previous API by combining both the (Split)
+      <code translate="no" dir="ltr">ToggleButton</code>
+      and the child Checkbox control (
+      <a href="https://android-review.googlesource.com/#/q/Ia8f709ffee3fa93d697c945836d59391f4f25bd0">Ia8f70</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">SwitchButton</code>
+      and
+      <code translate="no" dir="ltr">SplitSwitchButton</code>
+      - these components simplify the previous API by combining both the
+      <code translate="no" dir="ltr">(Split)ToggleButton</code>
+      and the child Switch control (
+      <a href="https://android-review.googlesource.com/#/q/I0d3491ce1fb05d1fb83dee2538e7613d7938815c">I0d349</a>
+      )
+    </li>
+    <li>
+      We have updated
+      <code translate="no" dir="ltr">AnimatedText</code>
+      documentation to explain overshooting behavior. (
+      <a href="https://android-review.googlesource.com/#/q/Iff30ada5cd37d6818cc3fbbf34abb6302734f11b">Iff30a</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">ButtonGroup</code>
+      to combine 2 or 3 buttons such that button presses produce a coordinated animation. (
+      <a href="https://android-review.googlesource.com/#/q/Ie27db2fd01522caa9e8800b7296aaa4335dc14f3">Ie27db</a>
+      )
+    </li>
+    <li>
+      We have added optional shape animation for
+      <code translate="no" dir="ltr">IconButton</code>
+      and
+      <code translate="no" dir="ltr">TextButton</code>
+      when pressed. (
+      <a href="https://android-review.googlesource.com/#/q/Iffca57bcabad6283f2192fc42101f968caa00e4b">Iffca5</a>
+      )
+    </li>
+    <li>
+      We have added an additional color variation,
+      <code translate="no" dir="ltr">FilledVariant</code>
+      , to
+      <code translate="no" dir="ltr">Button</code>
+      ,
+      <code translate="no" dir="ltr">IconButton</code>
+      ,
+      <code translate="no" dir="ltr">TextButton</code>
+      ,
+      <code translate="no" dir="ltr">CompactButton</code>
+      and
+      <code translate="no" dir="ltr">EdgeButton</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I65fc3acf7589eacfc2280b028d83d1e352a100cc">I65fc3</a>
+      )
+    </li>
+    <li>
+      We have added the
+      <code translate="no" dir="ltr">forcedSize</code>
+      parameter to
+      <code translate="no" dir="ltr">ImageWithScrimPainter</code>
+      , such that Button image backgrounds now maintain their component size by default. Setting the
+      <code translate="no" dir="ltr">forcedSize = null</code>
+      adopts the
+      <code translate="no" dir="ltr">Painter.instrinsicSize</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/Ic57af1323c60a68ab6df859c3ecc348163417981">Ic57af</a>
+      )
+    </li>
+    <li>
+      We have added long-click to Buttons (
+      <a href="https://android-review.googlesource.com/#/q/Ib613d75052d7b4d5d85cc1e7dca009505e427f9c">Ib613d</a>
+      )
+    </li>
+    <li>
+      Long click support has also been added to
+      <code translate="no" dir="ltr">IconButton</code>
+      and
+      <code translate="no" dir="ltr">TextButton</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I38891ea0c0179d3c6ec380b1af4d00aa216dd347">I38891</a>
+      )
+    </li>
+    <li>
+      Long click support has been added to Cards. (
+      <a href="https://android-review.googlesource.com/#/q/I305d5005e98ece7424af6d9c690c5c844836ab5e">I305d5</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">LocalTextMaxLines</code>
+      ,
+      <code translate="no" dir="ltr">LocalTextAlign</code>
+      ,
+      <code translate="no" dir="ltr">LocalTextOverflow</code>
+      as
+      <code translate="no" dir="ltr">CompositionLocals</code>
+      and used them as parameter defaults on
+      <code translate="no" dir="ltr">Text</code>
+      . The composition locals can now be used by components such as
+      <code translate="no" dir="ltr">CheckboxButton</code>
+      ,
+      <code translate="no" dir="ltr">SwitchButton</code>
+      ,
+      <code translate="no" dir="ltr">RadioButton</code>
+      to implement UX guidance, but the parameters can be overridden by developers if necessary. (
+      <a href="https://android-review.googlesource.com/#/q/Iab841d8adde34a4aa92920e4372ce3493a8d638a">Iab841</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">Placeholder</code>
+      to help in masking the content of components like buttons &amp; cards until the data is loaded. (
+      <a href="https://android-review.googlesource.com/#/q/I1a5328e0f4fd379b41cbbcea0e44025d3b5ffb2e">I1a532</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">IconToggleButtonColors</code>
+      and
+      <code translate="no" dir="ltr">TextToggleButtonColors</code>
+      to replace the now removed
+      <code translate="no" dir="ltr">ToggleButtonColors</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie0bf11419433e68e344e3c8de46d14eba2cb490f">Ie0bf1</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We have updated
+      <code translate="no" dir="ltr">Button</code>
+      ,
+      <code translate="no" dir="ltr">FilledTonalButton</code>
+      ,
+      <code translate="no" dir="ltr">OutlinedButton</code>
+      ,
+      <code translate="no" dir="ltr">ChildButton</code>
+      ,
+      <code translate="no" dir="ltr">CompactButton</code>
+      to use the new
+      <code translate="no" dir="ltr">CompositionLocals</code>
+      <code translate="no" dir="ltr">LocalTextMaxLines</code>
+      ,
+      <code translate="no" dir="ltr">LocalTextAlign</code>
+      ,
+      <code translate="no" dir="ltr">LocalTextOverflow</code>
+      to implement UX guidance - these parameters can be overridden by developers on Text directly if necessary (
+      <a href="https://android-review.googlesource.com/#/q/Ie51f7257db279c736766c451402e7bc94cbc46d2">Ie51f7</a>
+      )
+    </li>
+    <li>
+      We have changed the default stroke width of the
+      <code translate="no" dir="ltr">LevelIndicator</code>
+      to
+      <code translate="no" dir="ltr">6dp</code>
+      to differentiate it from the
+      <code translate="no" dir="ltr">ScrollIndicator</code>
+      which has a stroke width of
+      <code translate="no" dir="ltr">4dp</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If6f63990d09de3fa3f00d542eaf404985a2bc68f">If6f63</a>
+      )
+    </li>
+    <li>
+      We have fixed an issue in
+      <code translate="no" dir="ltr">TimeText</code>
+      so that larger sweep angles are supported. (
+      <a href="https://android-review.googlesource.com/#/q/Ie489f0eb36f7f3c0365759baf827a60810d1e8d0">Ie489f</a>
+      )
+    </li>
+    <li>
+      Fixed an issue during
+      <code translate="no" dir="ltr">EdgeButton</code>
+      recomposition. (
+      <a href="https://android-review.googlesource.com/#/q/I4cdca0c8de8e08928489e9f6d523301a4de3bc75">I4cdca</a>
+      )
+    </li>
+    <li>
+      Corrected layouts of split toggle buttons when customized content padding is provided. (
+      <a href="https://android-review.googlesource.com/#/q/Ia33d396d38c2103b22d832152533cf2132660a0d">Ia33d3</a>
+      )
+    </li>
+    <li>
+      Rounded up small progress values to at least the line width of the progress indicator. (
+      <a href="https://android-review.googlesource.com/#/q/I3bd849c3f8c27ea5ba63317907196f2343bdfa47">I3bd84</a>
+      )
+    </li>
+  </ul>

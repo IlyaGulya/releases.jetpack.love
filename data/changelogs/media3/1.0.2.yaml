@@ -1,0 +1,107 @@
+libraryId: media3
+groupId: androidx.media3
+version: 1.0.2
+releaseDate: 2023-05-18
+#language=html
+changelogHtml: |
+  <h3 id="1.0.2" data-text="Version 1.0.2" tabindex="-1">Version 1.0.2</h3>
+  <p>May 18, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.media3:media3-*:1.0.2</code>
+    is released.
+    <a href="https://github.com/androidx/media/commits/1.0.2">Version 1.0.2 contains these commits.</a>
+  </p>
+  <p>
+    This release corresponds to the
+    <a href="https://github.com/google/ExoPlayer/releases/tag/r2.18.7">ExoPlayer 2.18.7 release</a>
+    .
+  </p>
+  <p>
+    This release contains the following changes since the
+    <a href="#1.0.1">1.0.1 release</a>
+    :
+  </p>
+  <ul>
+    <li>
+      Core library:
+      <ul>
+        <li>
+          Add
+          <code translate="no" dir="ltr">Buffer.isLastSample()</code>
+          that denotes if
+          <code translate="no" dir="ltr">Buffer</code>
+          contains flag
+          <code translate="no" dir="ltr">C.BUFFER_FLAG_LAST_SAMPLE</code>
+          .
+        </li>
+        <li>
+          Fix issue where last frame may not be rendered if the last sample with frames is dequeued without reading the 'end of stream' sample. (
+          <a href="https://github.com/google/ExoPlayer/issues/11079">#11079</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Extractors:
+      <ul>
+        <li>
+          Fix parsing of H.265 SPS in MPEG-TS files by re-using the parsing logic already used by RTSP and MP4 extractors (
+          <a href="https://github.com/androidx/media/issues/303">#303</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Text:
+      <ul>
+        <li>
+          SSA: Add support for UTF-16 files if they start with a byte order mark (
+          <a href="https://github.com/androidx/media/issues/319">#319</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Session:
+      <ul>
+        <li>
+          Fix issue where
+          <code translate="no" dir="ltr">MediaController</code>
+          doesn't update its available commands when connected to a legacy
+          <code translate="no" dir="ltr">MediaSessionCompat</code>
+          that updates its actions.
+        </li>
+        <li>
+          Fix bug that prevented the
+          <code translate="no" dir="ltr">MediaLibraryService</code>
+          from returning null for a call from System UI to
+          <code translate="no" dir="ltr">Callback.onGetLibraryRoot</code>
+          with
+          <code translate="no" dir="ltr">params.isRecent == true</code>
+          on API 30 (
+          <a href="https://github.com/androidx/media/issues/355">#355</a>
+          ).
+        </li>
+        <li>
+          Fix memory leak of
+          <code translate="no" dir="ltr">MediaSessionService</code>
+          or
+          <code translate="no" dir="ltr">MediaLibraryService</code>
+          (
+          <a href="https://github.com/androidx/media/issues/346">#346</a>
+          ).
+        </li>
+        <li>
+          Fix bug where a combined
+          <code translate="no" dir="ltr">Timeline</code>
+          and position update in a
+          <code translate="no" dir="ltr">MediaSession</code>
+          may cause a
+          <code translate="no" dir="ltr">MediaController</code>
+          to throw an
+          <code translate="no" dir="ltr">IllegalStateException</code>
+          .
+        </li>
+      </ul>
+    </li>
+  </ul>

@@ -1,0 +1,74 @@
+libraryId: work
+groupId: androidx.work
+version: 2.9.0-alpha02
+releaseDate: 2023-07-26
+#language=html
+changelogHtml: |
+  <h3 id="2.9.0-alpha02" data-text="Version 2.9.0-alpha02" tabindex="-1">Version 2.9.0-alpha02</h3>
+  <p>July 26, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.9.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/73f902dee011bfe400d8a0330bfd8d4bb632065f..4aed940027a19667e67d155563fc5fa8b7279313/work">Version 2.9.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Now
+      <code translate="no" dir="ltr">WorkManager</code>
+      provides a hint on why a worker was previously stopped. It can be queried from a worker itself via
+      <code translate="no" dir="ltr">getStopReason()</code>
+      method or from
+      <code translate="no" dir="ltr">WorkInfo</code>
+      via
+      <code translate="no" dir="ltr">getStopReason()</code>
+      .
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">stopReason</code>
+      was added to
+      <code translate="no" dir="ltr">WorkInfo</code>
+      . It makes available
+      <code translate="no" dir="ltr">stopReason</code>
+      after the worker ran. It could be helpful in the reporting
+      <code translate="no" dir="ltr">stopReason</code>
+      in usable way, because once a worker has been stopped, an app itself could be very quickly killed. (
+      <a href="https://android-review.googlesource.com/#/q/I213869adf99dd675b705f6d7f7a080c7bed88220">I21386</a>
+      )
+    </li>
+    <li>
+      Allow Clock to be set via config and used to drive execution sequencing of Worker tests. (
+      <a href="https://android-review.googlesource.com/#/q/Ic586efd1c81ac21ece399f4d74f0d2d8bdb1e5ea">Ic586e</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">getStopReason()</code>
+      method was added to
+      <code translate="no" dir="ltr">ListenableWorker</code>
+      that gives a hint why the worker was stopped. (
+      <a href="https://android-review.googlesource.com/#/q/I070605b2337c30c496c02bef142167f65c23cf5e">I07060</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">WorkManagerTestInitHelper#closeWorkDatabase()</code>
+      to avoid Closeguard's warning about leaked resources. (
+      <a href="https://android-review.googlesource.com/#/q/Ia8d49b6054df11ab5a67c8960c6317b515aa14b6">Ia8d49</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Added ability to bypass
+      <code translate="no" dir="ltr">overrideNextScheduleTime</code>
+      using
+      <code translate="no" dir="ltr">TestDriver</code>
+      and fixed issues with testability. (
+      <a href="https://android-review.googlesource.com/#/q/Ic29056d338f5aeb6c1825f487d8f206908465141">Ic2905</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,162 @@
+libraryId: core
+groupId: androidx.core
+version: 1.5.0-beta01
+releaseDate: 2021-01-13
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-beta01" data-text="Version 1.5.0-beta01" tabindex="-1">Version 1.5.0-beta01</h3>
+  <p>January 13, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core:1.5.0-beta01</code>
+    and
+    <code translate="no" dir="ltr">androidx.core:core-ktx:1.5.0-beta01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/2d49f9fa892a0d067580a871f3aa0cd6764f4c3b..6207afb1646d302c5d29c2c67d332b48db87fb27/core">Version 1.5.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Follow API guidelines for Bounds Compat/Platform interoperability (
+      <a href="https://android-review.googlesource.com/#/q/I7da358c617b6de36b2fef7dfc1a7bee2a408ccaf">I7da35</a>
+      )
+    </li>
+    <li>
+      Integrated drag-and-drop (drop events) in AppCompatEditText with OnReceiveContentListener. (
+      <a href="https://android-review.googlesource.com/#/q/Ib26c90d51e2087e7c134dfc9331371745bfaf3ab">Ib26c9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175343405">b/175343405</a>
+      )
+    </li>
+    <li>
+      Connection of the new Insets Animation API with the Platform implementation (
+      <a href="https://android-review.googlesource.com/#/q/I078da1189041c3f5e53c18dae36f339244f31987">I078da</a>
+      )
+    </li>
+    <li>
+      Added the new Insets Animation APIs (
+      <a href="https://android-review.googlesource.com/#/q/I8aebd12dfbadd9af03411a475710f8ae83d6cf40">I8aebd</a>
+      )
+    </li>
+    <li>
+      Updated OnReceiveContentListener and related APIs:
+      <ul>
+        <li>Updated OnReceiveContentListener so it can be set on any type of view via ViewCompat.</li>
+        <li>
+          Removed
+          <code translate="no" dir="ltr">getSupportedMimeTypes()</code>
+          from
+          <code translate="no" dir="ltr">OnReceiveContentListener</code>
+          ; now MIME types are passed as an additional arg on the
+          <code translate="no" dir="ltr">ViewCompat</code>
+          method that sets the listener.
+        </li>
+        <li>
+          Wrapped arguments to
+          <code translate="no" dir="ltr">OnReceiveContentListener.onReceiveContent()</code>
+          in an object.
+        </li>
+        <li>
+          Added linkUri as a param to
+          <code translate="no" dir="ltr">onReceiveContent()</code>
+          to ensure backwards compatibility with the keyboard image API.
+        </li>
+        <li>
+          Added a Bundle param to
+          <code translate="no" dir="ltr">onReceiveContent()</code>
+          to ensure backwards compatibility with the keyboard image API and to facilitate evolution of the API in the future.
+        </li>
+        <li>
+          Updated
+          <code translate="no" dir="ltr">onReceiveContent()</code>
+          to return any content that was not consumed, as a means to delegate to the default handling.
+        </li>
+        <li>
+          Removed
+          <code translate="no" dir="ltr">TextViewOnReceiveContentListener</code>
+          from the public API since the default behavior can now be triggered by returning any unconsumed content from the listener.
+        </li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/Ib4616cb0d0cd9f8537b64de6fcc19b80442dc3fb">Ib4616</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/173814913">b/173814913</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Deprecated
+      <code translate="no" dir="ltr">BuildCompat.isAtLeastR</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Idb37ed0673c5a8812b60d70de5636bfc3e191d85">Idb37e</a>
+      )
+    </li>
+    <li>
+      Moved
+      <code translate="no" dir="ltr">widget.RichContentReceiverCompat</code>
+      to
+      <code translate="no" dir="ltr">view.OnReceiveContentListener</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ifdab76f135e840a15430634a22e720947be4eecd">Ifdab7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173814913">b/173814913</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Preconditions.checkFlagsArgument</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4395206cabeae21a1ce031607f40b801aaebc270">I43952</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/174181100">b/174181100</a>
+      )
+    </li>
+    <li>
+      Deprecate custom menu for outbound sharing. (
+      <a href="https://android-review.googlesource.com/#/q/I7cd927f45e509bf7fcf32ec85a93fdb03b3ea74f">I7cd92</a>
+      )
+    </li>
+    <li>
+      Notifications can now be tagged as missed calls. (
+      <a href="https://android-review.googlesource.com/#/q/I14d907fc34999af5623260e09dd29dcbdde64c8e">I14d90</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">PackageInfoCompat#getSignatures</code>
+      for retrieving the certificate array for a package (
+      <a href="https://android-review.googlesource.com/#/q/I8e9a3ece2d45416abbcbaaa0cf2a0485180997d3">I8e9a3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/159831205">b/159831205</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix a bug where setting
+      <code translate="no" dir="ltr">BigPictureStyle.bigLargeIcon</code>
+      would break the
+      <code translate="no" dir="ltr">BigPictureStyle</code>
+      for that notification on newer OS versions. (
+      <a href="https://android-review.googlesource.com/#/q/Ic623db52b536e3ad6839be5073431e1afc1f7fd4">Ic623d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      ShareCompat now uses constructors for creation and the old factory methods have been deprecated. You can now create both builders and readers from a Context and an Activity is no longer required. (
+      <a href="https://android-review.googlesource.com/#/q/I315b68aff01ca931d38b934786e6d9b2174f720b">I315b6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173043501">b/173043501</a>
+      )
+    </li>
+    <li>
+      Set clip data and grant uri read permission when sharing streams using ShareCompat (
+      <a href="https://android-review.googlesource.com/#/q/I4aa318b146206e4e5cd028b7e3798c9d895d8324">I4aa31</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173137936">b/173137936</a>
+      )
+    </li>
+  </ul>

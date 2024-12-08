@@ -1,0 +1,173 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.4.0-alpha04
+releaseDate: 2023-01-11
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha04" data-text="Version 1.4.0-alpha04" tabindex="-1">Version 1.4.0-alpha04</h3>
+  <p>January 11, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation:1.4.0-alpha04</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-layout:1.4.0-alpha04</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/047e199bdcb8a5cd744cc7a2f986631bfb350ec7..adf1c279a86ab3886e1666c08e2c3efba783367b/compose/foundation">Version 1.4.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">FlowRow</code>
+      and
+      <code translate="no" dir="ltr">FlowColumn</code>
+      are now available as
+      <code translate="no" dir="ltr">@ExperimentalFoundationApi</code>
+      that allow for a more flexible row and column based layout of components that will break to a new line if there is not enough space on the main axis. (
+      <a href="https://android-review.googlesource.com/#/q/I3a7b26bff88ec172df7ab4acf62c2eefd5edb16d">I3a7b2</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Modifier.basicMarquee()</code>
+      is available as experimental for displaying content with a scrolling marquee effect. (
+      <a href="https://android-review.googlesource.com/#/q/I2df44c3343afa8400b0da768a642b77da94c103d">I2df44</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/139321650">b/139321650</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">FocusRequesterModifier</code>
+      is deprecated in favor of
+      <code translate="no" dir="ltr">FocusRequesterNode</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I7f4d7a99aa42f7f3e4f49d034f8358a41ed42d0f">I7f4d7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/247708726">b/247708726</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/255352203">b/255352203</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/253043481">b/253043481</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/247716483">b/247716483</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/254529934">b/254529934</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/251840112">b/251840112</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/251859987">b/251859987</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/257141589">b/257141589</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AndroidFont</code>
+      constructor with
+      <code translate="no" dir="ltr">variationSettings</code>
+      is now a stable API, and can be used to create new types of font descriptors. (
+      <a href="https://android-review.googlesource.com/#/q/I5adcc8bd923050d20021d4725fcfe0b36f258ae1">I5adcc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261565807">b/261565807</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">PinnableContainer</code>
+      api propagated by lazy lists via a composition local which allows to pin current item. This means such item will not be disposed when it is scrolled away from the view. For example,
+      <code translate="no" dir="ltr">Modifier.focusable()</code>
+      will pin the current focused item via this mechanism. (
+      <a href="https://android-review.googlesource.com/#/q/Ib8881191a529c9d9dc5e886570650b1987763207">Ib8881</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/259274257">b/259274257</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/195049010">b/195049010</a>
+      )
+    </li>
+    <li>
+      Rewrote the way scrollables respond to
+      <code translate="no" dir="ltr">bringIntoViewRequesters</code>
+      and focusables to better model the complexity of those operations and handle more edge cases. (
+      <a href="https://android-review.googlesource.com/#/q/I2e5fec8c8582a8fe1f191e37fd0f4f9165678664">I2e5fe</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/241591211">b/241591211</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/192043120">b/192043120</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/237190748">b/237190748</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/230756508">b/230756508</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/239451114">b/239451114</a>
+      )
+    </li>
+    <li>
+      More return type nullability of deprecated-hidden functions (
+      <a href="https://android-review.googlesource.com/#/q/Ibf7b0ada56eb08983e6109d30fad5294f6b841f0">Ibf7b0</a>
+      )
+    </li>
+    <li>
+      Added experimental
+      <code translate="no" dir="ltr">TextMotion</code>
+      to
+      <code translate="no" dir="ltr">TextStyle</code>
+      to define Text either to be
+      <code translate="no" dir="ltr">Static(default)</code>
+      or Animated. Use
+      <code translate="no" dir="ltr">TextMotion.Animated</code>
+      if Text is going to be scaled, translated, or rotated via animation. (
+      <a href="https://android-review.googlesource.com/#/q/I24dd75e606184220ed3eebc3c80f84d5c977c14c">I24dd7</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">TextFieldFocusModifier</code>
+      to fix focus navigation behaviour for android platform (
+      <a href="https://android-review.googlesource.com/#/q/I0030377131b9328f30ad62d8cb7f1a98f188b330">I00303</a>
+      )
+    </li>
+    <li>
+      Replaced
+      <code translate="no" dir="ltr">maxSize: IntSize</code>
+      argument in
+      <code translate="no" dir="ltr">drawText</code>
+      with
+      <code translate="no" dir="ltr">size: Size</code>
+      to be inline with other
+      <code translate="no" dir="ltr">DrawScope</code>
+      functions.
+      <code translate="no" dir="ltr">size</code>
+      is set to
+      <code translate="no" dir="ltr">Size.Unspecified</code>
+      by default which should not change the previous default behavior. (
+      <a href="https://android-review.googlesource.com/#/q/Icd27ddc109548e76c7bc4fba08fb9dfc174afa40">Icd27d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Adjustments in the snapping physics in
+      <code translate="no" dir="ltr">SnapFlingBehaviour</code>
+      for a more natural feel.
+    </li>
+  </ul>
+  <p><strong>Known Issue</strong></p>
+  <ul>
+    <li>
+      When updating from
+      <code translate="no" dir="ltr">androidx.compose.foundation:1.4.0-alpha03</code>
+      to
+      <code translate="no" dir="ltr">androidx.compose.foundation:1.4.0-alpha04</code>
+      , you might experience a
+      <code translate="no" dir="ltr">java.lang.NoSuchFieldError</code>
+      error.
+      <a href="https://issuetracker.google.com/issues/265172081">Here</a>
+      is where the issue was orginially reported. A fix has been submitted, and will be available on the next Compose update. As a work around, update your
+      <code translate="no" dir="ltr">androidx.compose.material</code>
+      and
+      <code translate="no" dir="ltr">androidx.compose.material3</code>
+      libraries to the latest version(1.1.0-alpha04) or downgrade your
+      <code translate="no" dir="ltr">androidx.compose.foundation</code>
+      to 1.4.0-alpha03.
+    </li>
+  </ul>

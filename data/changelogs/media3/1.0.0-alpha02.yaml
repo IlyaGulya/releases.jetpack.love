@@ -1,0 +1,701 @@
+libraryId: media3
+groupId: androidx.media3
+version: 1.0.0-alpha02
+releaseDate: 2022-03-02
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha02" data-text="Version 1.0.0-alpha02" tabindex="-1">Version 1.0.0-alpha02</h3>
+  <p>March 2, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.media3:media3-*:1.0.0-alpha02</code>
+    is released.
+    <a href="https://github.com/androidx/media/commits/1.0.0-alpha02">Version 1.0.0-alpha02 contains these commits.</a>
+  </p>
+  <p>
+    This corresponds to the
+    <a href="https://github.com/google/ExoPlayer/releases/tag/r2.17.0">ExoPlayer 2.17.0 release</a>
+    .
+  </p>
+  <ul>
+    <li>
+      Core Library:
+      <ul>
+        <li>
+          Add protected method
+          <code translate="no" dir="ltr">DefaultRenderersFactory.getCodecAdapterFactory()</code>
+          so that subclasses of
+          <code translate="no" dir="ltr">DefaultRenderersFactory</code>
+          that override
+          <code translate="no" dir="ltr">buildVideoRenderers()</code>
+          or
+          <code translate="no" dir="ltr">buildAudioRenderers()</code>
+          can access the codec adapter factory and pass it to
+          <code translate="no" dir="ltr">MediaCodecRenderer</code>
+          instances they create.
+        </li>
+        <li>
+          Propagate ICY header fields
+          <code translate="no" dir="ltr">name</code>
+          and
+          <code translate="no" dir="ltr">genre</code>
+          to
+          <code translate="no" dir="ltr">MediaMetadata.station</code>
+          and
+          <code translate="no" dir="ltr">MediaMetadata.genre</code>
+          respectively so that they reach the app via
+          <code translate="no" dir="ltr">Player.Listener.onMediaMetadataChanged()</code>
+          (
+          <a href="https://github.com/google/ExoPlayer/issues/9677">#9677</a>
+          ).
+        </li>
+        <li>
+          Remove null keys from
+          <code translate="no" dir="ltr">DefaultHttpDataSource#getResponseHeaders</code>
+          .
+        </li>
+        <li>
+          Sleep and retry when creating a
+          <code translate="no" dir="ltr">MediaCodec</code>
+          instance fails. This works around an issue that occurs on some devices when switching a surface from a secure codec to another codec (
+          <a href="https://github.com/google/ExoPlayer/issues/8696">#8696</a>
+          ).
+        </li>
+        <li>
+          Add
+          <code translate="no" dir="ltr">MediaCodecAdapter.getMetrics()</code>
+          to allow users obtain metrics data from
+          <code translate="no" dir="ltr">MediaCodec</code>
+          . (
+          <a href="https://github.com/google/ExoPlayer/issues/9766">#9766</a>
+          ).
+        </li>
+        <li>
+          Fix Maven dependency resolution (
+          <a href="https://github.com/google/ExoPlayer/issues/8353">#8353</a>
+          ).
+        </li>
+        <li>
+          Disable automatic speed adjustment for live streams that neither have low-latency features nor a user request setting the speed (
+          <a href="https://github.com/google/ExoPlayer/issues/9329">#9329</a>
+          ).
+        </li>
+        <li>
+          Rename
+          <code translate="no" dir="ltr">DecoderCounters#inputBufferCount</code>
+          to
+          <code translate="no" dir="ltr">queuedInputBufferCount</code>
+          .
+        </li>
+        <li>
+          Make
+          <code translate="no" dir="ltr">SimpleExoPlayer.renderers</code>
+          private. Renderers can be accessed via
+          <code translate="no" dir="ltr">ExoPlayer.getRenderer</code>
+          .
+        </li>
+        <li>
+          Updated some
+          <code translate="no" dir="ltr">AnalyticsListener.EventFlags</code>
+          constant values to match values in
+          <code translate="no" dir="ltr">Player.EventFlags</code>
+          .
+        </li>
+        <li>
+          Split
+          <code translate="no" dir="ltr">AnalyticsCollector</code>
+          into an interface and default implementation to allow it to be stripped by R8 if an app doesn't need it.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Track selection:
+      <ul>
+        <li>
+          Support preferred video role flags in track selection (
+          <a href="https://github.com/google/ExoPlayer/issues/9402">#9402</a>
+          ).
+        </li>
+        <li>
+          Update video track selection logic to take preferred MIME types and role flags into account when selecting multiple video tracks for adaptation (
+          <a href="https://github.com/google/ExoPlayer/issues/9519">#9519</a>
+          ).
+        </li>
+        <li>
+          Update video and audio track selection logic to only choose formats for adaptive selections that have the same level of decoder and hardware support (
+          <a href="https://github.com/google/ExoPlayer/issues/9565">#9565</a>
+          ).
+        </li>
+        <li>
+          Update video track selection logic to prefer more efficient codecs if multiple codecs are supported by primary, hardware-accelerated decoders (
+          <a href="https://github.com/google/ExoPlayer/issues/4835">#4835</a>
+          ).
+        </li>
+        <li>Prefer audio content preferences (for example, the "default" audio track or a track matching the system locale language) over technical track selection constraints (for example, preferred MIME type, or maximum channel count).</li>
+        <li>
+          Fix track selection issue where overriding one track group did not disable other track groups of the same type (
+          <a href="https://github.com/google/ExoPlayer/issues/9675">#9675</a>
+          ).
+        </li>
+        <li>
+          Fix track selection issue where a mixture of non-empty and empty track overrides is not applied correctly (
+          <a href="https://github.com/google/ExoPlayer/issues/9649">#9649</a>
+          ).
+        </li>
+        <li>
+          Prohibit duplicate
+          <code translate="no" dir="ltr">TrackGroup</code>
+          s in a
+          <code translate="no" dir="ltr">TrackGroupArray</code>
+          .
+          <code translate="no" dir="ltr">TrackGroup</code>
+          s can always be made distinguishable by setting an
+          <code translate="no" dir="ltr">id</code>
+          in the
+          <code translate="no" dir="ltr">TrackGroup</code>
+          constructor. This fixes a crash when resuming playback after backgrounding the app with an active track override (
+          <a href="https://github.com/google/ExoPlayer/issues/9718">#9718</a>
+          ).
+        </li>
+        <li>
+          Amend logic in
+          <code translate="no" dir="ltr">AdaptiveTrackSelection</code>
+          to allow a quality increase under sufficient network bandwidth even if playback is very close to the live edge (
+          <a href="https://github.com/google/ExoPlayer/issues/9784">#9784</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Video:
+      <ul>
+        <li>Fix decoder fallback logic for Dolby Vision to use a compatible H264/H265 decoder if needed.</li>
+      </ul>
+    </li>
+    <li>
+      Audio:
+      <ul>
+        <li>Fix decoder fallback logic for Dolby Atmos (E-AC3-JOC) to use a compatible E-AC3 decoder if needed.</li>
+        <li>
+          Change
+          <code translate="no" dir="ltr">AudioCapabilities</code>
+          APIs to require passing explicitly
+          <code translate="no" dir="ltr">AudioCapabilities.DEFAULT_AUDIO_CAPABILITIES</code>
+          instead of
+          <code translate="no" dir="ltr">null</code>
+          .
+        </li>
+        <li>
+          Allow customization of the
+          <code translate="no" dir="ltr">AudioTrack</code>
+          buffer size calculation by injecting an
+          <code translate="no" dir="ltr">AudioTrackBufferSizeProvider</code>
+          to
+          <code translate="no" dir="ltr">DefaultAudioSink</code>
+          . (
+          <a href="https://github.com/google/ExoPlayer/issues/8891">#8891</a>
+          ).
+        </li>
+        <li>
+          Retry
+          <code translate="no" dir="ltr">AudioTrack</code>
+          creation if the requested buffer size was &gt; 1MB. (
+          <a href="https://github.com/google/ExoPlayer/issues/9712">#9712</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Extractors:
+      <ul>
+        <li>
+          WAV: Add support for RF64 streams (
+          <a href="https://github.com/google/ExoPlayer/issues/9543">#9543</a>
+          ).
+        </li>
+        <li>
+          Fix incorrect parsing of H.265 SPS NAL units (
+          <a href="https://github.com/google/ExoPlayer/issues/9719">#9719</a>
+          ).
+        </li>
+        <li>
+          Parse Vorbis Comments (including
+          <code translate="no" dir="ltr">METADATA_BLOCK_PICTURE</code>
+          ) in Ogg Opus and Ogg Vorbis files.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Text:
+      <ul>
+        <li>
+          Add a
+          <code translate="no" dir="ltr">MediaItem.SubtitleConfiguration.id</code>
+          field which is propagated to the
+          <code translate="no" dir="ltr">Format.id</code>
+          field of the subtitle track created from the configuration (
+          <a href="https://github.com/google/ExoPlayer/issues/9673">#9673</a>
+          ).
+        </li>
+        <li>
+          Add basic support for WebVTT subtitles in Matroska containers (
+          <a href="https://github.com/google/ExoPlayer/issues/9886">#9886</a>
+          ).
+        </li>
+        <li>
+          Prevent
+          <code translate="no" dir="ltr">Cea708Decoder</code>
+          from reading more than the declared size of a service block.
+        </li>
+      </ul>
+    </li>
+    <li>
+      DRM:
+      <ul>
+        <li>
+          Remove
+          <code translate="no" dir="ltr">playbackLooper</code>
+          from
+          <code translate="no" dir="ltr">DrmSessionManager.(pre)acquireSession</code>
+          . When a
+          <code translate="no" dir="ltr">DrmSessionManager</code>
+          is used by an app in a custom
+          <code translate="no" dir="ltr">MediaSource</code>
+          , the
+          <code translate="no" dir="ltr">playbackLooper</code>
+          needs to be passed to
+          <code translate="no" dir="ltr">DrmSessionManager.setPlayer</code>
+          instead.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Ad playback / IMA:
+      <ul>
+        <li>
+          Add support for
+          <a href="https://support.google.com/admanager/answer/6147120">IMA Dynamic Ad Insertion (DAI)</a>
+          (
+          <a href="https://github.com/google/ExoPlayer/issues/8213">#8213</a>
+          ).
+        </li>
+        <li>
+          Add a method to
+          <code translate="no" dir="ltr">AdPlaybackState</code>
+          to allow resetting an ad group so that it can be played again (
+          <a href="https://github.com/google/ExoPlayer/issues/9615">#9615</a>
+          ).
+        </li>
+        <li>
+          Enforce playback speed of 1.0 during ad playback (
+          <a href="https://github.com/google/ExoPlayer/issues/9018">#9018</a>
+          ).
+        </li>
+        <li>
+          Fix issue where an ad group that failed to load caused an immediate playback reset (
+          <a href="https://github.com/google/ExoPlayer/issues/9929">#9929</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      UI:
+      <ul>
+        <li>
+          Fix the color of the numbers in
+          <code translate="no" dir="ltr">StyledPlayerView</code>
+          rewind and fastforward buttons when using certain themes (
+          <a href="https://github.com/google/ExoPlayer/issues/9765">#9765</a>
+          ).
+        </li>
+        <li>
+          Correctly translate playback speed strings (
+          <a href="https://github.com/google/ExoPlayer/issues/9811">#9811</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      DASH:
+      <ul>
+        <li>
+          Add parsed essential and supplemental properties to the
+          <code translate="no" dir="ltr">Representation</code>
+          (
+          <a href="https://github.com/google/ExoPlayer/issues/9579">#9579</a>
+          ).
+        </li>
+        <li>
+          Support the
+          <code translate="no" dir="ltr">forced-subtitle</code>
+          track role (
+          <a href="https://github.com/google/ExoPlayer/issues/9727">#9727</a>
+          ).
+        </li>
+        <li>
+          Stop interpreting the
+          <code translate="no" dir="ltr">main</code>
+          track role as
+          <code translate="no" dir="ltr">C.SELECTION_FLAG_DEFAULT</code>
+          .
+        </li>
+        <li>
+          Fix base URL exclusion logic for manifests that do not declare the DVB namespace (
+          <a href="https://github.com/google/ExoPlayer/issues/9856">#9856</a>
+          ).
+        </li>
+        <li>
+          Support relative
+          <code translate="no" dir="ltr">MPD.Location</code>
+          URLs (
+          <a href="https://github.com/google/ExoPlayer/issues/9939">#9939</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      HLS:
+      <ul>
+        <li>
+          Correctly populate
+          <code translate="no" dir="ltr">Format.label</code>
+          for audio only HLS streams (
+          <a href="https://github.com/google/ExoPlayer/issues/9608">#9608</a>
+          ).
+        </li>
+        <li>
+          Use chunkless preparation by default to improve start up time. If your renditions contain muxed closed-caption tracks that are
+          <strong>not</strong>
+          declared in the master playlist, you should add them to the master playlist to be available for playback, or turn off chunkless preparation with
+          <code translate="no" dir="ltr">HlsMediaSource.Factory.setAllowChunklessPreparation(false)</code>
+          .
+        </li>
+        <li>
+          Support key-frame accurate seeking in HLS (
+          <a href="https://github.com/google/ExoPlayer/issues/2882">#2882</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      RTSP:
+      <ul>
+        <li>
+          Provide a client API to override the
+          <code translate="no" dir="ltr">SocketFactory</code>
+          used for any server connection (
+          <a href="https://github.com/google/ExoPlayer/pull/9606">#9606</a>
+          ).
+        </li>
+        <li>
+          Prefer DIGEST authentication method over BASIC if both are present (
+          <a href="https://github.com/google/ExoPlayer/issues/9800">#9800</a>
+          ).
+        </li>
+        <li>
+          Handle when RTSP track timing is not available (
+          <a href="https://github.com/google/ExoPlayer/issues/9775">#9775</a>
+          ).
+        </li>
+        <li>
+          Ignore invalid RTP-Info header values (
+          <a href="https://github.com/google/ExoPlayer/issues/9619">#9619</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Transformer:
+      <ul>
+        <li>Increase required min API version to 21.</li>
+        <li>
+          <code translate="no" dir="ltr">TransformationException</code>
+          is now used to describe errors that occur during a transformation.
+        </li>
+        <li>
+          Add
+          <code translate="no" dir="ltr">TransformationRequest</code>
+          for specifying the transformation options.
+        </li>
+        <li>Allow multiple listeners to be registered.</li>
+        <li>Fix Transformer being stuck when the codec output is partially read.</li>
+        <li>
+          Fix potential NPE in
+          <code translate="no" dir="ltr">Transformer.getProgress</code>
+          when releasing the muxer throws.
+        </li>
+        <li>Add a demo app for applying transformations.</li>
+      </ul>
+    </li>
+    <li>
+      MediaSession extension:
+      <ul>
+        <li>
+          By default,
+          <code translate="no" dir="ltr">MediaSessionConnector</code>
+          now clears the playlist on stop. Apps that want the playlist to be retained can call
+          <code translate="no" dir="ltr">setClearMediaItemsOnStop(false)</code>
+          on the connector.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Cast extension:
+      <ul>
+        <li>
+          Fix bug that prevented
+          <code translate="no" dir="ltr">CastPlayer</code>
+          from calling
+          <code translate="no" dir="ltr">onIsPlayingChanged</code>
+          correctly (
+          <a href="https://github.com/google/ExoPlayer/issues/9792">#9792</a>
+          ).
+        </li>
+        <li>
+          Support audio metadata including artwork with
+          <code translate="no" dir="ltr">DefaultMediaItemConverter</code>
+          (
+          <a href="https://github.com/google/ExoPlayer/issues/9663">#9663</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      FFmpeg extension:
+      <ul>
+        <li>
+          Make
+          <code translate="no" dir="ltr">build_ffmpeg.sh</code>
+          depend on LLVM's bin utils instead of GNU's (
+          <a href="https://github.com/google/ExoPlayer/issues/9933">#9933</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Android 12 compatibility:
+      <ul>
+        <li>
+          Upgrade the Cast extension to depend on
+          <code translate="no" dir="ltr">com.google.android.gms:play-services-cast-framework:20.1.0</code>
+          . Earlier versions of
+          <code translate="no" dir="ltr">play-services-cast-framework</code>
+          are not compatible with apps targeting Android 12, and will crash with an
+          <code translate="no" dir="ltr">IllegalArgumentException</code>
+          when creating
+          <code translate="no" dir="ltr">PendingIntent</code>
+          s (
+          <a href="https://github.com/google/ExoPlayer/issues/9528">#9528</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Remove deprecated symbols:
+      <ul>
+        <li>
+          Remove
+          <code translate="no" dir="ltr">Player.EventListener</code>
+          . Use
+          <code translate="no" dir="ltr">Player.Listener</code>
+          instead.
+        </li>
+        <li>
+          Remove
+          <code translate="no" dir="ltr">MediaSourceFactory#setDrmSessionManager</code>
+          ,
+          <code translate="no" dir="ltr">MediaSourceFactory#setDrmHttpDataSourceFactory</code>
+          , and
+          <code translate="no" dir="ltr">MediaSourceFactory#setDrmUserAgent</code>
+          . Use
+          <code translate="no" dir="ltr">MediaSourceFactory#setDrmSessionManagerProvider</code>
+          instead.
+        </li>
+        <li>
+          Remove
+          <code translate="no" dir="ltr">MediaSourceFactory#setStreamKeys</code>
+          . Use
+          <code translate="no" dir="ltr">MediaItem.Builder#setStreamKeys</code>
+          instead.
+        </li>
+        <li>
+          Remove
+          <code translate="no" dir="ltr">MediaSourceFactory#createMediaSource(Uri)</code>
+          . Use
+          <code translate="no" dir="ltr">MediaSourceFactory#createMediaSource(MediaItem)</code>
+          instead.
+        </li>
+        <li>
+          Remove
+          <code translate="no" dir="ltr">setTag</code>
+          from
+          <code translate="no" dir="ltr">DashMediaSource</code>
+          ,
+          <code translate="no" dir="ltr">HlsMediaSource</code>
+          and
+          <code translate="no" dir="ltr">SsMediaSource</code>
+          . Use
+          <code translate="no" dir="ltr">MediaItem.Builder#setTag</code>
+          instead.
+        </li>
+        <li>
+          Remove
+          <code translate="no" dir="ltr">DashMediaSource#setLivePresentationDelayMs(long, boolean)</code>
+          . Use
+          <code translate="no" dir="ltr">MediaItem.Builder#setLiveConfiguration</code>
+          and
+          <code translate="no" dir="ltr">MediaItem.LiveConfiguration.Builder#setTargetOffsetMs</code>
+          to override the manifest, or
+          <code translate="no" dir="ltr">DashMediaSource#setFallbackTargetLiveOffsetMs</code>
+          to provide a fallback value.
+        </li>
+        <li>
+          Remove
+          <code translate="no" dir="ltr">(Simple)ExoPlayer.setThrowsWhenUsingWrongThread</code>
+          . Opting out of the thread enforcement is no longer possible.
+        </li>
+        <li>
+          Remove
+          <code translate="no" dir="ltr">ActionFile</code>
+          and
+          <code translate="no" dir="ltr">ActionFileUpgradeUtil</code>
+          . Use ExoPlayer 2.16.1 or before to use
+          <code translate="no" dir="ltr">ActionFileUpgradeUtil</code>
+          to merge legacy action files into
+          <code translate="no" dir="ltr">DefaultDownloadIndex</code>
+          .
+        </li>
+        <li>
+          Remove
+          <code translate="no" dir="ltr">ProgressiveMediaSource#setExtractorsFactory</code>
+          . Use
+          <code translate="no" dir="ltr">ProgressiveMediaSource.Factory(DataSource.Factory, ExtractorsFactory)</code>
+          constructor instead.
+        </li>
+        <li>
+          Remove
+          <code translate="no" dir="ltr">ProgressiveMediaSource.Factory#setTag</code>
+          and, and
+          <code translate="no" dir="ltr">ProgressiveMediaSource.Factory#setCustomCacheKey</code>
+          . Use
+          <code translate="no" dir="ltr">MediaItem.Builder#setTag</code>
+          and
+          <code translate="no" dir="ltr">MediaItem.Builder#setCustomCacheKey</code>
+          instead.
+        </li>
+        <li>
+          Remove
+          <code translate="no" dir="ltr">DefaultRenderersFactory(Context, @ExtensionRendererMode int)</code>
+          and
+          <code translate="no" dir="ltr">DefaultRenderersFactory(Context, @ExtensionRendererMode int, long)</code>
+          constructors. Use the
+          <code translate="no" dir="ltr">DefaultRenderersFactory(Context)</code>
+          constructor,
+          <code translate="no" dir="ltr">DefaultRenderersFactory#setExtensionRendererMode</code>
+          , and
+          <code translate="no" dir="ltr">DefaultRenderersFactory#setAllowedVideoJoiningTimeMs</code>
+          instead.
+        </li>
+        <li>
+          Remove all public
+          <code translate="no" dir="ltr">CronetDataSource</code>
+          constructors. Use
+          <code translate="no" dir="ltr">CronetDataSource.Factory</code>
+          instead.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Change the following
+      <code translate="no" dir="ltr">IntDefs</code>
+      to
+      <code translate="no" dir="ltr">@Target(TYPE_USE)</code>
+      only. This may break the compilation of usages in Kotlin, which can be fixed by moving the annotation to annotate the type (
+      <code translate="no" dir="ltr">Int</code>
+      ).
+      <ul>
+        <li><code translate="no" dir="ltr">@AacAudioObjectType</code></li>
+        <li><code translate="no" dir="ltr">@Ac3Util.SyncFrameInfo.StreamType</code></li>
+        <li><code translate="no" dir="ltr">@AdLoadException.Type</code></li>
+        <li><code translate="no" dir="ltr">@AdtsExtractor.Flags</code></li>
+        <li><code translate="no" dir="ltr">@AmrExtractor.Flags</code></li>
+        <li><code translate="no" dir="ltr">@AspectRatioFrameLayout.ResizeMode</code></li>
+        <li><code translate="no" dir="ltr">@AudioFocusManager.PlayerCommand</code></li>
+        <li><code translate="no" dir="ltr">@AudioSink.SinkFormatSupport</code></li>
+        <li><code translate="no" dir="ltr">@BinarySearchSeeker.TimestampSearchResult.Type</code></li>
+        <li><code translate="no" dir="ltr">@BufferReplacementMode</code></li>
+        <li><code translate="no" dir="ltr">@C.BufferFlags</code></li>
+        <li><code translate="no" dir="ltr">@C.ColorRange</code></li>
+        <li><code translate="no" dir="ltr">@C.ColorSpace</code></li>
+        <li><code translate="no" dir="ltr">@C.ColorTransfer</code></li>
+        <li><code translate="no" dir="ltr">@C.CryptoMode</code></li>
+        <li><code translate="no" dir="ltr">@C.Encoding</code></li>
+        <li><code translate="no" dir="ltr">@C.PcmEncoding</code></li>
+        <li><code translate="no" dir="ltr">@C.Projection</code></li>
+        <li><code translate="no" dir="ltr">@C.SelectionReason</code></li>
+        <li><code translate="no" dir="ltr">@C.StereoMode</code></li>
+        <li><code translate="no" dir="ltr">@C.VideoOutputMode</code></li>
+        <li><code translate="no" dir="ltr">@CacheDataSource.Flags</code></li>
+        <li><code translate="no" dir="ltr">@CaptionStyleCompat.EdgeType</code></li>
+        <li><code translate="no" dir="ltr">@DataSpec.Flags</code></li>
+        <li><code translate="no" dir="ltr">@DataSpec.HttpMethods</code></li>
+        <li><code translate="no" dir="ltr">@DecoderDiscardReasons</code></li>
+        <li><code translate="no" dir="ltr">@DecoderReuseResult</code></li>
+        <li><code translate="no" dir="ltr">@DefaultAudioSink.OutputMode</code></li>
+        <li><code translate="no" dir="ltr">@DefaultDrmSessionManager.Mode</code></li>
+        <li><code translate="no" dir="ltr">@DefaultTrackSelector.SelectionEligibility</code></li>
+        <li><code translate="no" dir="ltr">@DefaultTsPayloadReaderFactory.Flags</code></li>
+        <li><code translate="no" dir="ltr">@EGLSurfaceTexture.SecureMode</code></li>
+        <li><code translate="no" dir="ltr">@EbmlProcessor.ElementType</code></li>
+        <li><code translate="no" dir="ltr">@ExoMediaDrm.KeyRequest.RequestType</code></li>
+        <li><code translate="no" dir="ltr">@ExtensionRendererMode</code></li>
+        <li><code translate="no" dir="ltr">@Extractor.ReadResult</code></li>
+        <li><code translate="no" dir="ltr">@FileTypes.Type</code></li>
+        <li>
+          <code translate="no" dir="ltr">@FlacExtractor.Flags</code>
+          (in
+          <code translate="no" dir="ltr">com.google.android.exoplayer2.ext.flac</code>
+          package)
+        </li>
+        <li>
+          <code translate="no" dir="ltr">@FlacExtractor.Flags</code>
+          (in
+          <code translate="no" dir="ltr">com.google.android.exoplayer2.extractor.flac</code>
+          package)
+        </li>
+        <li><code translate="no" dir="ltr">@FragmentedMp4Extractor.Flags</code></li>
+        <li><code translate="no" dir="ltr">@HlsMediaPlaylist.PlaylistType</code></li>
+        <li><code translate="no" dir="ltr">@HttpDataSourceException.Type</code></li>
+        <li><code translate="no" dir="ltr">@IllegalClippingException.Reason</code></li>
+        <li><code translate="no" dir="ltr">@IllegalMergeException.Reason</code></li>
+        <li><code translate="no" dir="ltr">@LoadErrorHandlingPolicy.FallbackType</code></li>
+        <li><code translate="no" dir="ltr">@MatroskaExtractor.Flags</code></li>
+        <li><code translate="no" dir="ltr">@Mp3Extractor.Flags</code></li>
+        <li><code translate="no" dir="ltr">@Mp4Extractor.Flags</code></li>
+        <li><code translate="no" dir="ltr">@NotificationUtil.Importance</code></li>
+        <li><code translate="no" dir="ltr">@PlaybackException.FieldNumber</code></li>
+        <li><code translate="no" dir="ltr">@PlayerNotificationManager.Priority</code></li>
+        <li><code translate="no" dir="ltr">@PlayerNotificationManager.Visibility</code></li>
+        <li><code translate="no" dir="ltr">@PlayerView.ShowBuffering</code></li>
+        <li><code translate="no" dir="ltr">@Renderer.State</code></li>
+        <li><code translate="no" dir="ltr">@RendererCapabilities.AdaptiveSupport</code></li>
+        <li><code translate="no" dir="ltr">@RendererCapabilities.Capabilities</code></li>
+        <li><code translate="no" dir="ltr">@RendererCapabilities.DecoderSupport</code></li>
+        <li><code translate="no" dir="ltr">@RendererCapabilities.FormatSupport</code></li>
+        <li><code translate="no" dir="ltr">@RendererCapabilities.HardwareAccelerationSupport</code></li>
+        <li><code translate="no" dir="ltr">@RendererCapabilities.TunnelingSupport</code></li>
+        <li><code translate="no" dir="ltr">@SampleStream.ReadDataResult</code></li>
+        <li><code translate="no" dir="ltr">@SampleStream.ReadFlags</code></li>
+        <li><code translate="no" dir="ltr">@StyledPlayerView.ShowBuffering</code></li>
+        <li><code translate="no" dir="ltr">@SubtitleView.ViewType</code></li>
+        <li><code translate="no" dir="ltr">@TextAnnotation.Position</code></li>
+        <li><code translate="no" dir="ltr">@TextEmphasisSpan.MarkFill</code></li>
+        <li><code translate="no" dir="ltr">@TextEmphasisSpan.MarkShape</code></li>
+        <li><code translate="no" dir="ltr">@Track.Transformation</code></li>
+        <li><code translate="no" dir="ltr">@TrackOutput.SampleDataPart</code></li>
+        <li><code translate="no" dir="ltr">@Transformer.ProgressState</code></li>
+        <li><code translate="no" dir="ltr">@TsExtractor.Mode</code></li>
+        <li><code translate="no" dir="ltr">@TsPayloadReader.Flags</code></li>
+        <li><code translate="no" dir="ltr">@WebvttCssStyle.FontSizeUnit</code></li>
+      </ul>
+    </li>
+  </ul>

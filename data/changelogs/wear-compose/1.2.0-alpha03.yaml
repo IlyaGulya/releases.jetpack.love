@@ -1,0 +1,153 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.2.0-alpha03
+releaseDate: 2023-01-25
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha03" data-text="Version 1.2.0-alpha03" tabindex="-1">Version 1.2.0-alpha03</h3>
+  <p>January 25, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.2.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/adf1c279a86ab3886e1666c08e2c3efba783367b..e5dad1e7d1c225f89f7c2d5a39a7a0de8d637d7b/wear/compose">Version 1.2.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We have migrated
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      (and associated classes) from
+      <code translate="no" dir="ltr">androidx.wear.compose.material.ScalingLazyColumn</code>
+      to
+      <code translate="no" dir="ltr">andrdoidx.wear.compose.foundation.lazy.ScalingLazyColumn</code>
+      (see
+      <a href="https://github.com/android/wear-os-samples/issues/663">this example</a>
+      for migration). This new location more closely matches that of
+      <code translate="no" dir="ltr">compose.foundation.lazy.LazyColumn</code>
+      and is more natural as it is not an opinionated Material component. The change is happening now in preparation for a new Material3 library, which we will be working on in parallel with the existing Material library. (
+      <a href="https://android-review.googlesource.com/#/q/I060e778102ae01b859b0642efd7039b2ed69fd69">I060e7</a>
+      )
+    </li>
+  </ul>
+  <p>
+    The following changes are part of the
+    <code translate="no" dir="ltr">ScalingLazyColumn</code>
+    migration from Material to
+    <code translate="no" dir="ltr">Foundation.Lazy</code>
+    :
+  </p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      apis targeting Material
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      have been deprecated - please update to
+      <code translate="no" dir="ltr">Foundation.Lazy ScalingLazyColumn</code>
+      . Additionally
+      <code translate="no" dir="ltr">anchorType</code>
+      field was added to
+      <code translate="no" dir="ltr">ScalingLazyListLayoutInfo</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I29d95f1dcb1997a445b5cdb04fe5dd7cd81527d0">I29d95</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      has been marked as deprecated in the Wear Compose Material package (
+      <a href="https://android-review.googlesource.com/#/q/I16d3409dce206c78db9da178d7e736a212544689">I16d34</a>
+      )
+    </li>
+    <li>
+      We have updated the
+      <code translate="no" dir="ltr">ScrollAway</code>
+      modifier to use
+      <code translate="no" dir="ltr">ScalingLazyListState</code>
+      from Wear Compose
+      <code translate="no" dir="ltr">Foundation.Lazy</code>
+      and deprecated the overload that took
+      <code translate="no" dir="ltr">ScalingLazyListState</code>
+      from Wear Compose Material. (
+      <a href="https://android-review.googlesource.com/#/q/Ifc42c9c35e468b757fd840cfa43df353907b362e">Ifc42c</a>
+      )
+    </li>
+    <li>
+      We have updated the Dialog APIs to use
+      <code translate="no" dir="ltr">ScalingLazyListState</code>
+      from
+      <code translate="no" dir="ltr">Foundation.Lazy</code>
+      and deprecated the overloads that used Material
+      <code translate="no" dir="ltr">ScalingLazyListState</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ic896024a00faf50c35ff2addae61339ada11904b">Ic8960</a>
+      )
+    </li>
+    <li>
+      We have updated the Picker APIs to use
+      <code translate="no" dir="ltr">ScalingParams</code>
+      from
+      <code translate="no" dir="ltr">Foundation.Lazy</code>
+      and deprecated the overloads that used Material
+      <code translate="no" dir="ltr">ScalingParams</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Idc3d84c55d88489e3adae02a1c197947810c468b">Idc3d8</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We have fixed a bug that caused unnecessary recompositions in
+      <code translate="no" dir="ltr">ScalingLazyListState.centerItemIndex</code>
+      by ensuring that it only pushes updates when the value actually changes (
+      <a href="https://android-review.googlesource.com/#/q/Ia9f38b1cbd96eac0598fc3c482f73326b86f06b9">Ia9f38</a>
+      )
+    </li>
+    <li>
+      We have improved the performance of
+      <code translate="no" dir="ltr">SwipeToDismissBox</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I3933b64e8b94a5008a37fd1f26315ed4d8df2eb5">I3933b</a>
+      )
+    </li>
+    <li>
+      Added benchmark tests for
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      in Wear Compose Foundation (
+      <a href="https://android-review.googlesource.com/#/q/Ie00f99910775b6d924bdb73b9917f6bb703937a1">Ie00f9</a>
+      )
+    </li>
+    <li>
+      We have updated some internal
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      classes methods in Material to use their equivalents from
+      <code translate="no" dir="ltr">Foundation.Lazy</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I38aab976a9901b6e28a8b4f0d67e332962b6644e">I38aab</a>
+      )
+    </li>
+    <li>
+      We have fixed some issues in Picker tests and add more tests for checking scroll with offset (
+      <a href="https://android-review.googlesource.com/#/q/I6ac34226d3bcd0f7dbbf12818ac27b0dbf73082c">I6ac34</a>
+      )
+    </li>
+    <li>
+      We migrated the
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      Integration Demos to depend on
+      <code translate="no" dir="ltr">Foundation.Lazy</code>
+      instead of Material
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ic6caa03b0fd887bdfb3c5f4dd5a4eb6d22027db1">Ic6caa</a>
+      )
+    </li>
+    <li>
+      We have added optional
+      <code translate="no" dir="ltr">fromDate/toDate</code>
+      parameters to our
+      <code translate="no" dir="ltr">DatePicker</code>
+      demo (
+      <a href="https://android-review.googlesource.com/#/q/I961cd2cf102f8b9537e3923dd646f3db19c3649c">I961cd</a>
+      )
+    </li>
+  </ul>

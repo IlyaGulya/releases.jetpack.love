@@ -1,0 +1,152 @@
+libraryId: wear-watchface
+groupId: androidx.wear
+version: 1.2.0-alpha01
+releaseDate: 2022-08-10
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha01" data-text="Version 1.2.0-alpha01" tabindex="-1">Version 1.2.0-alpha01</h3>
+  <p>August 10, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.watchface:watchface-*:1.2.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/0412edaeb003a9619a2239e48e5b208f0398221b..bea814b246f89ff7244e3c6b0648f0b57e47897c/wear/watchface">Version 1.2.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      We’ve added experimental support for various new complication formats. This is an area of active development; these new formats are subject to change without notice and currently there’s no renderer support from
+      <code translate="no" dir="ltr">CanvasComplicationDrawable</code>
+      .
+    </li>
+    <li>We’ve also added optional margins to complication slots which make small complications easier to tap on.</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The experimental
+      <code translate="no" dir="ltr">BoundingArc</code>
+      class is now immutable. (
+      <a href="https://android-review.googlesource.com/#/q/If624a586111c5a57fe5c8da35f430a8cc5a9fa13">If624a</a>
+      )
+    </li>
+    <li>
+      Small complications can be tricky to tap on. To help mitigate this, we've introduced support for margins which increase the tappable area without affecting rendering. Unless specified (either in code or via XML)
+      <code translate="no" dir="ltr">ComplciationSlots</code>
+      have zero sized margins. (
+      <a href="https://android-review.googlesource.com/#/q/I14089309eb6be3ad536c072c8248f65e445ef33b">I14089</a>
+      )
+    </li>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">getComplicationSlotInflationFactory(CurrentUserStyleRepository)</code>
+      signature to return a non-null factory instance. It was an error to return null before, so this is just making the API contract clearer. (
+      <a href="https://android-review.googlesource.com/#/q/I0fcc05f693c83f3ea854f0fa5fefe73a4f9d893d">I0fcc0</a>
+      )
+    </li>
+    <li>
+      We've added
+      <code translate="no" dir="ltr">currentUserStyleRepository</code>
+      argument to the
+      <code translate="no" dir="ltr">WatchFaceService.getComplicationSlotInflationFactory</code>
+      method to be consistent with
+      <code translate="no" dir="ltr">createComplicationSlotsManager</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2ddd2927a57f83a6470907a275a57c36184b945c">I2ddd2</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">UserStyleFlavors</code>
+      have become non-experimental feature. (
+      <a href="https://android-review.googlesource.com/#/q/I69cdc590cb06962cd62b2616e2b8918fb9fc8c62">I69cdc</a>
+      )
+    </li>
+    <li>
+      We have removed the experimental
+      <code translate="no" dir="ltr">ValueType</code>
+      from
+      <code translate="no" dir="ltr">RangedValueComplicationData</code>
+      and instead introduced experimental
+      <code translate="no" dir="ltr">DiscreteRangedValueComplicationData</code>
+      which is like
+      <code translate="no" dir="ltr">RangedValueComplicationData</code>
+      except for integer range &amp; value. We've also introduced experimental
+      <code translate="no" dir="ltr">GoalProgressComplicationData</code>
+      which is similar to
+      <code translate="no" dir="ltr">RangedValueComplicationData</code>
+      except it's for progress towards a goal where min implicitly is zero, and the value is allowed to be larger than
+      <code translate="no" dir="ltr">targetValue</code>
+      . Note for all
+      <code translate="no" dir="ltr">RangedValue</code>
+      variants at least one of monochromeImage, text or title must be specified. (
+      <a href="https://android-review.googlesource.com/#/q/I9590c240808a1c6f6235e904af403565e1c2efdb">I9590c</a>
+      )
+    </li>
+    <li>
+      We removed
+      <code translate="no" dir="ltr">boundsWithMargins</code>
+      from
+      <code translate="no" dir="ltr">ComplicationSlotState</code>
+      because system software doesn't have a use case for it. (
+      <a href="https://android-review.googlesource.com/#/q/I42e2670faf421549d8a9d84e4e198992b474886f">I42e26</a>
+      )
+    </li>
+    <li>
+      We've added experimental support for
+      <code translate="no" dir="ltr">WeightedElementsComplicationData</code>
+      which consists of an array of Elements (pairs of weight and color) along with optional text/title/image. These might be displayed as a pie chart where the colors need to be meaningful given the context, since there typically isn't room in a complication to render labels. (
+      <a href="https://android-review.googlesource.com/#/q/I87eea137c8c4cf14921139f78d81a40433169f2e">I87eea</a>
+      )
+    </li>
+    <li>
+      The experimental
+      <code translate="no" dir="ltr">ColorRamps</code>
+      optionally used by
+      <code translate="no" dir="ltr">RangedValueComplicationData</code>
+      and
+      <code translate="no" dir="ltr">GoalProgressComplicationData</code>
+      now allow you to specify a sequence of up to seven colors and a flag stating whether the colors should be smoothly tweened or whether equal sized solid steps of color should be rendered. (
+      <a href="https://android-review.googlesource.com/#/q/I9f5bfc436a32a82d83e15c6c043c3a9d6bb8b06d">I9f5bf</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">RangedValueComplicationData.drawSegmented</code>
+      has been changed to
+      <code translate="no" dir="ltr">valueType</code>
+      which is an int with a corresponding
+      <code translate="no" dir="ltr">ValueType IntDef</code>
+      which provides semantic meaning to the ranged value and may be used by the complication renderer to influence styling. (
+      <a href="https://android-review.googlesource.com/#/q/I0616b9501a6fce413c02416bea148473c2274635">I0616b</a>
+      )
+    </li>
+    <li>
+      We've added experimental support for optional
+      <code translate="no" dir="ltr">ColorRanges</code>
+      to
+      <code translate="no" dir="ltr">RangedValueComplicationData</code>
+      . Normally complications would be rendered in colors of the watch face's choosing, but sometimes the
+      <code translate="no" dir="ltr">ComplicationDataSource</code>
+      is best placed to set the colors e.g. when they have a particular semantic meaning. E.g. red to blue for temperature. (
+      <a href="https://android-review.googlesource.com/#/q/I5153a3f4839ed70fb3ad6c60c6121810c3c26748">I5153a</a>
+      )
+    </li>
+    <li>
+      We've added an experimental
+      <code translate="no" dir="ltr">drawSegmented</code>
+      hint to
+      <code translate="no" dir="ltr">RangedValueComplicationData</code>
+      . This signals renderers to draw the ranged value indicator with segments, where 1 segment = 1 unit. (
+      <a href="https://android-review.googlesource.com/#/q/I7d7c19c4be04051e1c0d9c92da3a6104d927974c">I7d7c1</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We've added the ability to define
+      <code translate="no" dir="ltr">ComplicationSlotBounds</code>
+      relative to a predefined screen coordinate system. (
+      <a href="https://android-review.googlesource.com/#/q/I0985d8c959f8e755b523a8befb523fec43d6e220">I0985d</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_11_2" data-text="Version 1.1" tabindex="-1">Version 1.1</h2>

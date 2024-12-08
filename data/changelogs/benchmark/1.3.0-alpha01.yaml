@@ -1,0 +1,194 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.3.0-alpha01
+releaseDate: 2024-02-21
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha01" data-text="Version 1.3.0-alpha01" tabindex="-1">Version 1.3.0-alpha01</h3>
+  <p>February 21, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.3.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9e027e27c0db4f6f105eca82dca664195b5f0f54..e1b82c49c59d8e976ce558aba5586f6c61bc9054/benchmark">Version 1.3.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">MicrobenchmarkConfig</code>
+      boolean parameters to avoid unnecessary word 'should' (
+      <a href="https://android-review.googlesource.com/#/q/Ia8f009b76a7adfc081bf3e4a2e730393fd4d4af8">Ia8f00</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/303387299">b/303387299</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">BenchmarkRule.measureRepeatedOnMainThread</code>
+      so main thread benchmarks (e.g. ones touching Views or Compose UIs) can avoid triggering ANRs, especially during large suites in CI. (
+      <a href="https://android-review.googlesource.com/#/q/I5c86dd05d6eca4984805d13a18d22b39a2382b02">I5c86d</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">FrameTimingGfxInfoMetric</code>
+      , an experimental alternate implementation of
+      <code translate="no" dir="ltr">FrameTimingMetric</code>
+      with measurements coming directly from the platform, rather than extracted from the Perfetto trace. (
+      <a href="https://android-review.googlesource.com/#/q/I457cbf351ee86141130d1667b6f352cd2ade453b">I457cb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/322232828">b/322232828</a>
+      )
+    </li>
+    <li>
+      Add the ability to dump an ART profile during individual
+      <code translate="no" dir="ltr">warmUp</code>
+      iterations. (
+      <a href="https://android-review.googlesource.com/#/q/I17923a8bc7d37fa8472910fa33f840f182d1dbff">I17923</a>
+      )
+    </li>
+    <li>
+      Several changes to
+      <code translate="no" dir="ltr">TraceSectionMetric</code>
+      API:
+      <ul>
+        <li>
+          Add
+          <code translate="no" dir="ltr">Mode.Min</code>
+          ,
+          <code translate="no" dir="ltr">Mode.Max</code>
+        </li>
+        <li>Add label argument to override section name as metric label</li>
+        <li>Added mode name to output to clarify metric meaning</li>
+        <li>
+          Changed default to sum, as most usage of this metric is for repeated events Be aware of this changes in CI usage, as it may create discontinuities or break parsing. (
+          <a href="https://android-review.googlesource.com/#/q/Ic1e821511d80afb2927b3cb1095336de85e82ba1">Ic1e82</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/301892382">b/301892382</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/301955938">b/301955938</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Improved error message in baseline profile gradle plugin when specified managed device does not exist (
+      <a href="https://android-review.googlesource.com/#/q/Idea2b6d830807f215a576192bbbf844659a97c58">Idea2b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/313803289">b/313803289</a>
+      )
+    </li>
+    <li>
+      Fix for including library baseline profiles in AAR prior to AGP 8.3.0-alpha15 (
+      <a href="https://android-review.googlesource.com/#/q/I1d2af6193d596a43a5f6a05eb15b2b0951523ad4">I1d2af</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/313992099">b/313992099</a>
+      )
+    </li>
+    <li>
+      Fixed baseline and startup profile output url at the end of generation task (
+      <a href="https://android-review.googlesource.com/#/q/I802e5e2b335a1efa0370a0ac3d5e5bc656827f0f">I802e5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/313976958">b/313976958</a>
+      )
+    </li>
+    <li>
+      Adjusted data source timeouts to attempt to fix
+      <code translate="no" dir="ltr">java.lang.IllegalStateException: Failed to stop [ProcessPid(processName=perfetto, pid=...)]</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I8dc7d5091ea1a8e68cb5effb21363f1c3196cf56">I8dc7d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/323601788">b/323601788</a>
+      )
+    </li>
+    <li>
+      Add two instrumentation arguments for overriding shader dropping behavior to workaround crashes when benchmarking apps without
+      <code translate="no" dir="ltr">ProfileInstaller</code>
+      1.3:
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">androidx.benchmark.dropShaders.enable=true/false</code>
+          : can be used to skip all shader dropping (including that done in
+          <code translate="no" dir="ltr">StartupMode.Cold</code>
+          launches), esp when benchmarking apps that don't yet use profileinstaller 1.3
+        </li>
+        <li>
+          <code translate="no" dir="ltr">androidx.benchmark.dropShaders.throwOnFailure=true/false</code>
+          : can be used to tolerate failures when trying to drop shaders, for example when benchmarking apps without profileinstaller 1.3 (
+          <a href="https://android-review.googlesource.com/#/q/I4f57309332981ee79d082237ebaca887f39417b3">I4f573</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Skip method tracing on UI thread when expected to take longer than a few seconds, and cleanup method traces when throwing. (
+      <a href="https://android-review.googlesource.com/#/q/I6e7689e1c0087aa557015aea5690e439786d5565">I6e768</a>
+      )
+    </li>
+    <li>
+      Throw when filenames are longer than 200 chars to avoid unclear crashes when writing or post-processing files. (
+      <a href="https://android-review.googlesource.com/#/q/I4a5abd3ce0107d4465fd88f9067592a8a06f8e7c">I4a5ab</a>
+      )
+    </li>
+    <li>
+      Fixes issue where unterminated frames at the beginning and end of the trace could be paired together, which would incorrectly report as a single extremely long frame. (
+      <a href="https://android-review.googlesource.com/#/q/I393531f8cf983b2700c419c00a9c7c47ec382e67">I39353</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/322232828">b/322232828</a>
+      )
+    </li>
+    <li>
+      Use
+      <code translate="no" dir="ltr">--skip verification</code>
+      on API 30+ when reinstalling a package on API 30-33 to clear ART profiles on user builds. This helps bypass Play Protect warnings that cause failures on some class of devices. (
+      <a href="https://android-review.googlesource.com/#/q/Ic9e366f45be17cc45da5f273901ff2bc620ff9eb">Ic9e36</a>
+      )
+    </li>
+    <li>
+      Use
+      <code translate="no" dir="ltr">am force-stop</code>
+      to kill apps when not a system app like System UI or Launcher. (
+      <a href="https://android-review.googlesource.com/#/q/I5e0280463ecbfe34b0805225dba0f77f2c740a27">I5e028</a>
+      )
+    </li>
+    <li>
+      Macrobenchmark now waits for
+      <code translate="no" dir="ltr">1 second</code>
+      for the target application to flush an ART profile (previously it waited for
+      <code translate="no" dir="ltr">500 ms</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/I85a50e775f8b997c9a69c7a40d1e2b59561a10b1">I85a50</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/316082056">b/316082056</a>
+      )
+    </li>
+    <li>
+      Improve
+      <code translate="no" dir="ltr">FrameTimingMetric</code>
+      error when frames aren't produced, and always output link to trace when failing metric parsing to assist in diagnosing problem. (
+      <a href="https://android-review.googlesource.com/#/q/I956b90505fbd72a80dc00ad2214420f4d3957659">I956b9</a>
+      )
+    </li>
+    <li>
+      Fixed crash in
+      <code translate="no" dir="ltr">FrameTimingMetric</code>
+      failing to parse frame id, especially on certain OEM devices. (
+      <a href="https://android-review.googlesource.com/#/q/Ia24bc3c90b317252f579cc2425547f034ef96ef8">Ia24bc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/303823815">b/303823815</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/306235276">b/306235276</a>
+      )
+    </li>
+    <li>
+      Relaxed strictness of checks in
+      <code translate="no" dir="ltr">FrameMetrics</code>
+      , and added more detail to error messages. (
+      <a href="https://android-review.googlesource.com/#/q/Iadededa9b5721f1e68534a0457c3dfc2f8c91b0f">Iadede</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_12_2" data-text="Version 1.2" tabindex="-1">Version 1.2</h2>

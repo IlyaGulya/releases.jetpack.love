@@ -1,0 +1,84 @@
+libraryId: datastore
+groupId: androidx.datastore
+version: 1.1.0-alpha02
+releaseDate: 2023-03-22
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha02" data-text="Version 1.1.0-alpha02" tabindex="-1">Version 1.1.0-alpha02</h3>
+  <p>March 22, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.datastore:datastore-*:1.1.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cebbd6df05e83f6381aa710c63b17e764b5d7cf0..5e7d256f82fbafb6d059ab7b18fddd87c7531553/datastore">Version 1.1.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>Note</strong></p>
+  <p>Note that this version includes an important internal refactor that merges the implementations for single process and multi process DataStore implementations. Please keep an eye on possible unintended behavior changes (e.g. timing of update notifications). You can use the issue tracker component to report such changes.</p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      You can now use
+      <code translate="no" dir="ltr">DataStore</code>
+      in
+      <a href="https://kotlinlang.org/docs/multiplatform-mobile-getting-started.html">KMM</a>
+      projects. Note that non-Android targets of DataStore are still experimental but we decided to merge versions to make it easier for developers to try them.
+    </li>
+    <li>
+      Multi process features are moved from
+      <code translate="no" dir="ltr">androidx.datastore.multiprocess</code>
+      to
+      <code translate="no" dir="ltr">androidx.datastore.core</code>
+      .
+    </li>
+    <li>
+      Add a new factory method in
+      <code translate="no" dir="ltr">androidx.datastore.core.MultiProcessDataStoreFactory</code>
+      to create DataStore instances with
+      <code translate="no" dir="ltr">Storage</code>
+      objects for file operations.
+    </li>
+    <li>
+      Add a new interface
+      <code translate="no" dir="ltr">InterProcessCoordinator</code>
+      that helps multiple DataStore instances communicate across processes. Note that, Multi-Process implementation of
+      <code translate="no" dir="ltr">InterProcessCoordinator</code>
+      is only available on Android.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">InterProcessCoordinator</code>
+      to
+      <code translate="no" dir="ltr">StorageConnection</code>
+      in datastore-core interface (
+      <a href="https://android-review.googlesource.com/#/q/I555bb258ac460b29b7a5d638957d861cf13e4d21">I555bb</a>
+      )
+    </li>
+    <li>
+      Change APIs in datastore-core
+      <code translate="no" dir="ltr">MultiProcessDataStoreFactory</code>
+      to use Storage. (
+      <a href="https://android-review.googlesource.com/#/q/Iac02f50e9334d4fb384238f9447208598441b8ab">Iac02f</a>
+      )
+    </li>
+    <li>
+      Move public APIs in datastore-multiprocess to datastore-core (
+      <a href="https://android-review.googlesource.com/#/q/I76d7cc8b230fc408511fe8799de9a0236c1bde43">I76d7c</a>
+      )
+    </li>
+    <li>
+      Exposed
+      <code translate="no" dir="ltr">PreferencesSerializer</code>
+      from datastore-preferences-core (
+      <a href="https://android-review.googlesource.com/#/q/I4b78858d19f5000c6cc9bb293b1a055bf25293a2">I4b788</a>
+      )
+    </li>
+    <li>
+      Adding
+      <code translate="no" dir="ltr">@JvmDefaultWithCompatibility</code>
+      annotation (
+      <a href="https://android-review.googlesource.com/#/q/I8f2067bb0754a5e9dc70c934403366ca8d319c36">I8f206</a>
+      )
+    </li>
+  </ul>

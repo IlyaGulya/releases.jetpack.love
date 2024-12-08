@@ -1,0 +1,58 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.0.0-rc02
+releaseDate: 2019-03-06
+#language=html
+changelogHtml: |
+  <h3 id="2.0.0-rc02" data-text="Version 2.0.0-rc02" tabindex="-1">Version 2.0.0-rc02</h3>
+  <p>March 6, 2019</p>
+  <p>
+    Navigation 2.0.0-rc02 provides new artifacts with the
+    <code translate="no" dir="ltr">androidx.navigation</code>
+    group ID and changes its dependencies to the AndroidX equivalents.
+  </p>
+  <p>
+    The behavior of 2.0.0-rc02 is identical to behavior to Navigation 1.0.0-rc02 and no changes to your code should be required to update from 1.0.0-rc02 besides updating your dependencies to match the
+    <a href="#declaring_dependencies">new dependencies</a>
+    .
+  </p>
+  <p>
+    Your project must have
+    <a href="/jetpack/androidx/migrate">migrated to AndroidX</a>
+    to use 2.X releases of Navigation. Navigation 1.0 stable will be the last release using the Support Library dependencies; all future development beyond 1.0 will be based on AndroidX and build upon the 2.0 stable release.
+  </p>
+  <h2 id="pre-androidx_dependencies_2" data-text="Pre-AndroidX Dependencies" tabindex="-1">Pre-AndroidX Dependencies</h2>
+  <p>For the pre-AndroidX versions of Navigation, include these dependencies:</p>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Carbon"><code translate="no" dir="ltr"><span class="devsite-syntax-nx">dependencies</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nx">def</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nx">nav_version</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"1.0.0"</span>
+
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nx">implementation</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"android.arch.navigation:navigation-fragment:$nav_version"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-c1">// For Kotlin use navigation-fragment-ktx</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nx">implementation</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"android.arch.navigation:navigation-ui:$nav_version"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-c1">// For Kotlin use navigation-ui-ktx</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+  </devsite-code>
+  <p>
+    For
+    <a href="/topic/libraries/architecture/navigation/navigation-pass-data#Safe-args">Safe args</a>
+    , add the following
+    <strong>classpath</strong>
+    in your
+    <strong>top level</strong>
+    <code translate="no" dir="ltr">build.gradle</code>
+    file
+  </p>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Text only"><code translate="no" dir="ltr">buildscript {
+      repositories {
+          google()
+      }
+      dependencies {
+          classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0"
+      }
+  }
+  </code></pre>
+  </devsite-code>
+  <h2 id="version_100_3" data-text="Version 1.0.0" tabindex="-1">Version 1.0.0</h2>

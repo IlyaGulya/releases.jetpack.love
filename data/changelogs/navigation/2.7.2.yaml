@@ -1,0 +1,72 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.7.2
+releaseDate: 2023-09-06
+#language=html
+changelogHtml: |
+  <h3 id="2.7.2" data-text="Version 2.7.2" tabindex="-1">Version 2.7.2</h3>
+  <p>September 6, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.7.2</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/fd8660753c8ba907ddedda62ae5a37ba7bceffc0..33b98d60f650a2e97f01fff71ce0eef1c8a3b2d7/navigation">Version 2.7.2 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Navigation now depends on
+      <a href="/jetpack/androidx/releases/lifecycle#2.6.2">
+        Lifecycle
+        <code translate="no" dir="ltr">2.6.2</code>
+      </a>
+      , fixing an interaction between
+      <code translate="no" dir="ltr">rememberSaveable</code>
+      and Navigation Compose’s
+      <code translate="no" dir="ltr">NavHost</code>
+      that would cause the
+      <code translate="no" dir="ltr">rememberSaveable</code>
+      state of destinations and any
+      <code translate="no" dir="ltr">ViewModel</code>
+      owned
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      instances from being properly restored after process death and recreation. (
+      <a href="https://issuetracker.google.com/issues/298059596">b/298059596</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/289436035">b/289436035</a>
+      )
+    </li>
+    <li>
+      Fixed an issue when showing multiple dialogs in Navigation Compose simultaneously where the partially obscured dialogs (e.g., not the topmost dialog) would be in the
+      <code translate="no" dir="ltr">CREATED</code>
+      Lifecycle state rather than the
+      <code translate="no" dir="ltr">STARTED</code>
+      state. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/2728520">aosp/2728520</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/289257213">b/289257213</a>
+      )
+    </li>
+    <li>
+      Fixed an issue when showing multiple dialogs in Navigation Compose simultaneously where dismissing the topmost dialog would cause the new topmost dialog to be stuck in the
+      <code translate="no" dir="ltr">STARTED</code>
+      Lifecycle state rather than correctly moving to
+      <code translate="no" dir="ltr">RESUMED</code>
+      . (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/2629401">aosp/2629401</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/286371387">b/286371387</a>
+      )
+    </li>
+    <li>
+      Navigation Safe Args no longer instantiates its task eagerly if it is not actually being executed. (
+      <a href="https://android-review.googlesource.com/#/q/I0e385ae46f667c2b72cad31ca8c8c84aa8965605">I0e385</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/260322841">b/260322841</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Update</strong></p>
+  <ul>
+    <li>Navigation Compose now depends on Compose 1.5.1.</li>
+  </ul>
+  <h2 id="version_271_3" data-text="Version 2.7.1" tabindex="-1">Version 2.7.1</h2>

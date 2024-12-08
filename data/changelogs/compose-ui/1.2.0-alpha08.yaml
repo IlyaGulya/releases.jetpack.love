@@ -1,0 +1,102 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.2.0-alpha08
+releaseDate: 2022-04-20
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha08" data-text="Version 1.2.0-alpha08" tabindex="-1">Version 1.2.0-alpha08</h3>
+  <p>April 20, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.2.0-alpha08</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7ca43e00a517eaeeedc0a21f482b17f06e3d2181..41a4e31408842caa2b58db5e4ee6ec708464425f/compose/ui">Version 1.2.0-alpha08 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">pluralStringResource</code>
+      functions were marked as experimental in order to allow evolution to support better internationalization in the future. (
+      <a href="https://android-review.googlesource.com/#/q/If24e41254c027dac9f68b3271ce91c8788712a9b">If24e4</a>
+      )
+    </li>
+    <li>
+      Paragraph and MultiParagraph are now accepting Constraints parameter. Passing
+      <code translate="no" dir="ltr">Constraints.maxHeight</code>
+      is a no-op at the moment but will allow to do some calculation in the future, like ellipsizing based on the height. (
+      <a href="https://android-review.googlesource.com/#/q/I6afeecb15d34ade2e82cad0381018f0736a167c1">I6afee</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/168720622">b/168720622</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SubcomposeSlotReusePolicy.getSlotsToRetain()</code>
+      now accepts a custom MutableSet-like class which doesn't allow adding new items in it. (
+      <a href="https://android-review.googlesource.com/#/q/Icd314177f35c2ba05d1042454ca47834cf196e10">Icd314</a>
+      )
+    </li>
+    <li>
+      PointerIcon is now a
+      <code translate="no" dir="ltr">@Stable</code>
+      interface (
+      <a href="https://android-review.googlesource.com/#/q/I9dafec680d335898344ecf5be5cd2de9fcf92b06">I9dafe</a>
+      )
+    </li>
+    <li>
+      Partial consumption (down OR position) has been deprecated in
+      <code translate="no" dir="ltr">PointerInputChange</code>
+      . You can use
+      <code translate="no" dir="ltr">consume()</code>
+      to consume the change completely. You can use
+      <code translate="no" dir="ltr">isConsumed</code>
+      to determine whether or not someone else has previously consumed the change.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PointerInputChange::copy()</code>
+      now always makes a shallow copy. It means that copies of
+      <code translate="no" dir="ltr">PointerInputChange</code>
+      will be consumed once one of the copies is consumed. If you want to create an unbound
+      <code translate="no" dir="ltr">PointerInputChange</code>
+      , use constructor instead. (
+      <a href="https://android-review.googlesource.com/#/q/Ie6be471e6ed2a843e38712922c2231fdfd26213a">Ie6be4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/225669674">b/225669674</a>
+      )
+    </li>
+    <li>
+      Enable Nested Scroll interop between Compose and View in the direction Compose &gt; View. This means that a compose parent will be able to receive nested scroll deltas from a nested scroll view. (
+      <a href="https://android-review.googlesource.com/#/q/If7949ccb50ba7897bc740b489fd3f4d615a5369b">If7949</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/174348612">b/174348612</a>
+      )
+    </li>
+    <li>
+      New
+      <code translate="no" dir="ltr">SemanticsProperty testTagsAsResourceId</code>
+      , which can be used to make Compose conform with UIAutomator tests designed for the View system. (
+      <a href="https://android-review.googlesource.com/#/q/I39c207e20a892df47707e38708bc314a23fe18f7">I39c20</a>
+      )
+    </li>
+    <li>
+      Display all available weights for systems fonts on Android when using
+      <code translate="no" dir="ltr">FontFamily.SansSerif</code>
+      . This will use fallback font names like sans-serif-medium internally on API 21-28. This is a behavior change as previously only weights 400 and 700 were supported on API 21-28. (
+      <a href="https://android-review.googlesource.com/#/q/I380fecb5ba839eecbf0b08acbca6247082b605d7">I380fe</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/156048036">b/156048036</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/226441992">b/226441992</a>
+      )
+    </li>
+    <li>
+      Paragraph and Multiparagraph instructors reordered positional arguments to before optional arguments. (
+      <a href="https://android-review.googlesource.com/#/q/Idafaae32232ac4fd093530dac211f4de491c89b6">Idafaa</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AndroidFont</code>
+      now takes typefaceLoader as a constructor parameter. (
+      <a href="https://android-review.googlesource.com/#/q/I2c9718fa02b6f84813e5d5cdb499c89b355b0b4b">I2c971</a>
+      )
+    </li>
+  </ul>

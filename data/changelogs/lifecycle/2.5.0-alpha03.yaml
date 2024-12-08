@@ -1,0 +1,105 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.5.0-alpha03
+releaseDate: 2022-02-23
+#language=html
+changelogHtml: |
+  <h3 id="2.5.0-alpha03" data-text="Version 2.5.0-alpha03" tabindex="-1">Version 2.5.0-alpha03</h3>
+  <p>February 23, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.5.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/db2ecbef194afcddfaede22e1d884a8959a9277c..9b2b3d8efd5f00bd4af903bbaa926f6a712d0bd8/lifecycle">Version 2.5.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added an
+      <code translate="no" dir="ltr">addCloseable()</code>
+      API and a new constructor overload that allow you to add one or more
+      <code translate="no" dir="ltr">Closeable</code>
+      objects to the
+      <code translate="no" dir="ltr">ViewModel</code>
+      that will be closed when the
+      <code translate="no" dir="ltr">ViewModel</code>
+      is cleared without requiring any manual work in
+      <code translate="no" dir="ltr">onCleared()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I55ea006f3ddcfbf358c488b30d65a21f4fc85998">I55ea0</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">lifecycle-viewmodel</code>
+      now provides an
+      <code translate="no" dir="ltr">InitializerViewModelFactory</code>
+      that allows you to add lambda for handling particular
+      <code translate="no" dir="ltr">ViewModel</code>
+      classes, using
+      <code translate="no" dir="ltr">CreationExtras</code>
+      as the primary data source. (
+      <a href="https://android-review.googlesource.com/#/q/If58fc49053a6b551643e411c648da564680bff32">If58fc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/216687549">b/216687549</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">lifecycle-viewmodel-compose</code>
+      now offers a
+      <code translate="no" dir="ltr">viewModel()</code>
+      API that takes a lambda factory for creating a
+      <code translate="no" dir="ltr">ViewModel</code>
+      instance without requiring the creation of a custom
+      <code translate="no" dir="ltr">ViewModelProvider.Factory</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I97fbb96b6426eed4805feffe249220a783ec8999">I97fbb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/216688927">b/216688927</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      You can now create a
+      <code translate="no" dir="ltr">ViewModel</code>
+      with
+      <code translate="no" dir="ltr">CreationExtras</code>
+      via
+      <code translate="no" dir="ltr">lifecycle-viewmodel-compose</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I08887cf8df03ade08dceeb84bccbe3fd9748186e">I08887</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/216688927">b/216688927</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Behavior changes</strong></p>
+  <ul>
+    <li>
+      Attempting to move the
+      <code translate="no" dir="ltr">Lifecycle.State</code>
+      from
+      <code translate="no" dir="ltr">INITIALIZED</code>
+      to
+      <code translate="no" dir="ltr">DESTROYED</code>
+      will now always throw an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      regardless of whether the
+      <code translate="no" dir="ltr">Lifecycle</code>
+      has an attached observer. (
+      <a href="https://android-review.googlesource.com/#/q/I7c3903602cc4b9be234a0bed6e6392e710ce3206">I7c390</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177924329">b/177924329</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LifecycleRegistry</code>
+      will now clear their observers when they reach the
+      <code translate="no" dir="ltr">DESTROYED</code>
+      state. (
+      <a href="https://android-review.googlesource.com/#/q/I4f8ddff68b9daebbd89aaa6d9abe7d462081d45e">I4f8dd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/142925860">b/142925860</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,38 @@
+libraryId: paging
+groupId: androidx.paging
+version: 1.0.0-alpha01
+releaseDate: 2020-10-28
+#language=html
+changelogHtml: |
+  <h3 id="compose-1.0.0-alpha01" data-text="Version 1.0.0-alpha01" tabindex="-1">Version 1.0.0-alpha01</h3>
+  <p>October 28, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-compose:1.0.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/234e23e470a5e7f81291f6acd12d538146dc010b/paging/compose">Version 1.0.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>
+    The
+    <code translate="no" dir="ltr">paging-compose</code>
+    artifact provides integration between
+    <a href="/paging">The Paging Library</a>
+    and
+    <a href="/jetpack/compose">Jetpack Compose</a>
+    . A simple usage example:
+  </p>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-w">  </span><span class="devsite-syntax-nd">@Composable</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-nd">@OptIn</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">ExperimentalLazyDsl</span><span class="devsite-syntax-o">::</span><span class="devsite-syntax-n">class</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">ItemsDemo</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">flow</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Flow&lt;PagingData&lt;String&gt;</span>&gt;<span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">lazyPagingItems</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">flow</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">collectAsLazyPagingItems</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-n">LazyColumn</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-n">items</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">lazyPagingItems</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">              </span><span class="devsite-syntax-n">Text</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"Item is </span><span class="devsite-syntax-si">$</span><span class="devsite-syntax-n">it</span><span class="devsite-syntax-s">"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+  </code></pre>
+  </devsite-code>
+  <h2 id="version_301_3" data-text="Version 3.0.1" tabindex="-1">Version 3.0.1</h2>

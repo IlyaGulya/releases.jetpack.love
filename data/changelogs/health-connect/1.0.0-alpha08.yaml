@@ -1,0 +1,121 @@
+libraryId: health-connect
+groupId: androidx.health
+version: 1.0.0-alpha08
+releaseDate: 2022-12-07
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha08" data-text="Version 1.0.0-alpha08" tabindex="-1">Version 1.0.0-alpha08</h3>
+  <p>December 7, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.health.connect:connect-client:1.0.0-alpha08</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/548c8ac2570ae6cf15798fea1380491f7d93796b..4a2f5e696614339c1ac21f706c1a17c0285780e7/health/connect/connect-client">Version 1.0.0-alpha08 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">BodyWaterMass</code>
+      ,
+      <code translate="no" dir="ltr">HeartRateVariabilityRmssdRecord</code>
+      as new supported Record Types. (
+      <a href="https://android-review.googlesource.com/#/q/Ifd58fa6924f83f155ca9c771d2cef67138caab1d">Ifd58f</a>
+      )
+    </li>
+    <li>
+      Removes
+      <code translate="no" dir="ltr">HipCircumferenceRecord</code>
+      ,
+      <code translate="no" dir="ltr">WaistCircumferenceRecord</code>
+      as supported
+      <code translate="no" dir="ltr">RecordTypes</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I62fb944fecb0916fd96e374351838d1d1c93c322">I62fb9</a>
+      )
+    </li>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">MenstruationFlowRecord.flow</code>
+      from
+      <code translate="no" dir="ltr">stringdef</code>
+      to
+      <code translate="no" dir="ltr">intdefs</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0369f1dbd5f853311694347c63cb4504b4e8880c">I0369f</a>
+      )
+    </li>
+    <li>
+      Changed enum-like Record fields with
+      <code translate="no" dir="ltr">Strings</code>
+      to
+      <code translate="no" dir="ltr">Integers</code>
+      for better performance. (
+      <a href="https://android-review.googlesource.com/#/q/I3b295be1c89cef14b37dd87d00c358450f37f430">I3b295</a>
+      )
+    </li>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">ExerciseSession</code>
+      ,
+      <code translate="no" dir="ltr">ExerciseRepetitions</code>
+      ,
+      <code translate="no" dir="ltr">SleepStage</code>
+      enum-like fields from string to integer types. (
+      <a href="https://android-review.googlesource.com/#/q/Id32a90d9b866dced5a1a6f1257d3176449873295">Id32a9</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">ExerciseSessionRecord.ACTIVE_TIME_TOTAL-&gt;EXERCISE_DURATION_TOTAL</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I5d7bdc112ea601fb47e842b77d9a1d13dd480e3b">I5d7bd</a>
+      )
+    </li>
+    <li>
+      Adds "Unusual" to
+      <code translate="no" dir="ltr">CervicalMucus</code>
+      enums. Rename "Clear" to "Eggwhite" for more specificity. Changed
+      <code translate="no" dir="ltr">CervicalMucus#appearance</code>
+      and #sensation from
+      <code translate="no" dir="ltr">StringDefs</code>
+      to IntDefs. (
+      <a href="https://android-review.googlesource.com/#/q/I3ac51c9583a1362030bad96b96e636a5c8e686f1">I3ac51</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">StringDef</code>
+      of
+      <code translate="no" dir="ltr">DeviceTypes</code>
+      enum is now moved into
+      <code translate="no" dir="ltr">IntDefs</code>
+      under Device. (
+      <a href="https://android-review.googlesource.com/#/q/I3abf324d8d734d614ad163131277d982d4d90946">I3abf3</a>
+      )
+    </li>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">HealthConnectClient.isApiSupported()</code>
+      , which returns false on SDK versions with no compatible implementations. Renamed
+      <code translate="no" dir="ltr">HealthConnectClient.isAvailable-&gt;isProviderAvailable</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3674ea3c306e2d58c37dc83fe17e966464313ada">I3674e</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Disallow
+      <code translate="no" dir="ltr">HeartRate beatsPerMinute</code>
+      values less than 1 (
+      <a href="https://android-review.googlesource.com/#/q/I6052fc98f475e137578f7d6e340795b61e66cdea">I6052f</a>
+      )
+    </li>
+    <li>
+      Adding
+      <code translate="no" dir="ltr">@JvmDefaultWithCompatibility</code>
+      annotation (
+      <a href="https://android-review.googlesource.com/#/q/I8f2067bb0754a5e9dc70c934403366ca8d319c36">I8f206</a>
+      )
+    </li>
+  </ul>

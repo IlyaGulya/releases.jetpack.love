@@ -1,0 +1,68 @@
+libraryId: compose-animation
+groupId: androidx.compose
+version: 1.0.0-alpha10
+releaseDate: 2021-01-13
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha10" data-text="Version 1.0.0-alpha10" tabindex="-1">Version 1.0.0-alpha10</h3>
+  <p>January 13, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.animation:animation:1.0.0-alpha10</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.animation:animation-core:1.0.0-alpha10</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/72f02c12e4709ab41ae0fea9a8a668d5267a1df8..6207afb1646d302c5d29c2c67d332b48db87fb27/compose/animation">Version 1.0.0-alpha10 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Modified Velocity to have component parts and mathematical operations. (
+      <a href="https://android-review.googlesource.com/#/q/Ib0447d694d7c5dc82fcef7448faeb0cdda87fced">Ib0447</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">@ExperimentalTesting</code>
+      to
+      <code translate="no" dir="ltr">@ExperimentalTestApi</code>
+      to be consistent with similar experimental api annotations (
+      <a href="https://android-review.googlesource.com/#/q/Ia4502a82d5b66328b6e3e3cd322614939816901e">Ia4502</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171464963">b/171464963</a>
+      )
+    </li>
+    <li>
+      Renamed Position to DpOffset and removed getDistance() (
+      <a href="https://android-review.googlesource.com/#/q/Ib2dfde4ceb450e417ff759bdabbc74d2506a44c9">Ib2dfd</a>
+      )
+    </li>
+    <li>
+      Removed Any.identityHashCode() public api (
+      <a href="https://android-review.googlesource.com/#/q/I025d720aec64ebd2182787b9200ca9b3827d5436">I025d7</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      New coroutine-based API
+      <code translate="no" dir="ltr">Animatable</code>
+      that ensures mutual exclusiveness among its animations. New DecayAnimationSpec to support multi-dimensional decay animation (
+      <a href="https://android-review.googlesource.com/#/q/I820f29e24eaa512515c776db971444290dea97e9">I820f2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/168014930">b/168014930</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">animate()</code>
+      is now replaced with
+      <code translate="no" dir="ltr">animateAsState()</code>
+      , which returns a
+      <code translate="no" dir="ltr">State&lt;T&gt;</code>
+      instead of
+      <code translate="no" dir="ltr">T</code>
+      . This allows better performance, as the invalidation scope can be narrowed down to where the State value is read. (
+      <a href="https://android-review.googlesource.com/#/q/Ib179e3f5f4bf3b72f7445fc22e73c46af7cf74de">Ib179e</a>
+      )
+    </li>
+  </ul>

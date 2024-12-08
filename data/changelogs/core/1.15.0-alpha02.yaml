@@ -1,0 +1,97 @@
+libraryId: core
+groupId: androidx.core
+version: 1.15.0-alpha02
+releaseDate: 2024-08-21
+#language=html
+changelogHtml: |
+  <h3 id="1.15.0-alpha02" data-text="Version 1.15.0-alpha02" tabindex="-1">Version 1.15.0-alpha02</h3>
+  <p>August 21, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core:1.15.0-alpha02</code>
+    ,
+    <code translate="no" dir="ltr">androidx.core:core-ktx:1.15.0-alpha02</code>
+    , and
+    <code translate="no" dir="ltr">androidx.core:core-testing:1.15.0-alpha02</code>
+    are released. Version 1.15.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4b0206986a60b7647e83f56df70756f23e5760d6..6b2638e1bfd54531dae1f04b33829101af8bf350/core">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes</strong></p>
+  <ul>
+    <li>
+      Removed manual outlining of access to new platform APIs since this happens automatically via API modeling when using R8 with AGP 7.3 or later (e.g. R8 version 3.3) and for all builds when using AGP 8.1 or later (e.g. D8 version 8.1). Clients who are not using AGP are advised to update to D8 version 8.1 or later. See
+      <a href="https://medium.com/androiddevelopers/mitigating-soft-verification-issues-in-r8-and-d8-7e9e06827dfd">this article</a>
+      for more details. (
+      <a href="https://android-review.googlesource.com/#/q/Ieb9aecd2af5587c5b82833146fee6e912693ab7b">Ieb9ae</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/345472586">b/345472586</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">fallbackQuery</code>
+      XML attribute to downloadable font definitions, allowing character-level fallback with downloadable fonts. (
+      <a href="https://android-review.googlesource.com/#/q/Idd5449c07ede206b5a27e6553b5340dc16588347">Idd544</a>
+      )
+    </li>
+    <li>
+      Adds helper APIs for using
+      <code translate="no" dir="ltr">ProfilingManager</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/If22927ac53ca54bcb294240f90c44ccf7ed01f1d">If2292</a>
+      )
+    </li>
+    <li>
+      Add compat method for
+      <code translate="no" dir="ltr">ActivityOptions.setPendingIntentBackgroundActivityStartMode</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I3ba1f4174f3a098e64aa255db50567bd76e3fbe5">I3ba1f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/349617674">b/349617674</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">DisplayCutoutCompat.getCutoutPath</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I58778bb5c23837304fb5130644f9f4412884cdc2">I58778</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/279635904">b/279635904</a>
+      )
+    </li>
+    <li>
+      Reverts deprecation of
+      <code translate="no" dir="ltr">ParcelCompat.writeBoolean</code>
+      and delegates to the platform API on API level 29 and above. (
+      <a href="https://android-review.googlesource.com/#/q/I9d2436d90f3cbe3bf22e2a3c97171f39b53cf040">I9d243</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/313834577">b/313834577</a>
+      )
+    </li>
+    <li>
+      Create
+      <code translate="no" dir="ltr">FontsContractCompat.requestFonts</code>
+      that takes executors (
+      <a href="https://android-review.googlesource.com/#/q/I0301600d9a3c2f5062631d59105e42ad51bb4754">I03016</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/302377512">b/302377512</a>
+      )
+    </li>
+    <li>
+      Reverts deprecation of
+      <code translate="no" dir="ltr">LocationCompat.isMock</code>
+      and delegates to the platform API on API level 31 and above. (
+      <a href="https://android-review.googlesource.com/#/q/I559407ae8f2cce149cd2802322485f1b80cb85c9">I55940</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/313834577">b/313834577</a>
+      )
+    </li>
+    <li>
+      Notifications can now be tagged as voicemail. (
+      <a href="https://android-review.googlesource.com/#/q/I068aba00fe41ff34ceef18ad0ff43f60b30f18c9">I068ab</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,69 @@
+libraryId: datastore
+groupId: androidx.datastore
+version: 1.1.0-beta02
+releaseDate: 2024-03-06
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-beta02" data-text="Version 1.1.0-beta02" tabindex="-1">Version 1.1.0-beta02</h3>
+  <p>March 6, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.datastore:datastore-*:1.1.0-beta02</code>
+    is released. Version 1.1.0-beta02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7a45f0bc9e0a73744b3780a6f92e1b570de58bba..638a8d3a474af45f6ad5fdc3d6d1836ea42d1778/datastore">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Performance improvement on
+      <code translate="no" dir="ltr">DataStore</code>
+      only collects update notifications when it is observed. (
+      <a href="https://issuetracker.google.com/267792241">b/267792241</a>
+      )
+      <ul>
+        <li>
+          Note that this change might trigger
+          <code translate="no" dir="ltr">UncompletedCoroutinesError</code>
+          in your tests if you are using the Coroutines testing library. Make sure you pass the
+          <a href="https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-test/kotlinx.coroutines.test/-test-scope/background-scope.html"><code translate="no" dir="ltr">TestScope.backgroundScope</code></a>
+          when initializing
+          <code translate="no" dir="ltr">DataStore</code>
+          in your tests to avoid this issue.
+        </li>
+      </ul>
+    </li>
+    <li>
+      ​Fixed the issue of nested
+      <code translate="no" dir="ltr">updateData</code>
+      calls on the same instance would deadlock. (
+      <a href="https://b.corp.google.com/issues/241760537">b/241760537</a>
+      )
+    </li>
+    <li>
+      Made
+      <code translate="no" dir="ltr">DataStore</code>
+      no longer throw
+      <code translate="no" dir="ltr">IOExceptions</code>
+      if it fails to delete
+      <code translate="no" dir="ltr">SharedPreferences</code>
+      during migration. (
+      <a href="https://b.corp.google.com/issues/195553816">b/195553816</a>
+      )
+    </li>
+    <li>
+      Fixed the issue where file rename fails during
+      <code translate="no" dir="ltr">updateData</code>
+      in non-Android JVM environments. (
+      <a href="https://b.corp.google.com/issues/203087070">b/203087070</a>
+      )
+    </li>
+    <li>
+      Fixed the issue where
+      <code translate="no" dir="ltr">CorruptionException</code>
+      is not handled after
+      <code translate="no" dir="ltr">DataStore</code>
+      initialization. (
+      <a href="https://issuetracker.google.com/289582516">b/289582516</a>
+      )
+    </li>
+  </ul>

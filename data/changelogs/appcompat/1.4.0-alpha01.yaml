@@ -1,0 +1,126 @@
+libraryId: appcompat
+groupId: androidx.appcompat
+version: 1.4.0-alpha01
+releaseDate: 2021-05-18
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha01" data-text="Version 1.4.0-alpha01" tabindex="-1">Version 1.4.0-alpha01</h3>
+  <p>May 18, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.appcompat:appcompat:1.4.0-alpha01</code>
+    and
+    <code translate="no" dir="ltr">androidx.appcompat:appcompat-resources:1.4.0-alpha01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3908fb8ddc16c8cb0a7603c3cce0ca7ea8a5076a..66681ad83c328d0dd821b943bb3d375f02c1db61/appcompat">Version 1.4.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Integrated EmojiCompat support to a variety of AppCompat widgets (
+      <a href="https://android-review.googlesource.com/#/q/Id409bc24e172446ce8ddb2db8dd80fb2b238c7af">Id409b</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/If7a1add31a3ac8a2c2503a354cc7187e8cf118d4">If7a1a</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ic262df79e5f11a5e3acb3a2078956834c84d8324">Ic262d</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ib5f4a60f7f8321a4c3495008efc458b1ee03992c">Ib5f4a</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I4fb3ce9259064a55b4c1ee6a5f0fccf72aa4f9a4">I4fb3c</a>
+      )
+    </li>
+    <li>
+      Added support for nested tinted resources and vector drawables in AppCompat resource loading backports. Note, however, that this means apps cannot override
+      <code translate="no" dir="ltr">getDrawable()</code>
+      on a custom Resources object when backports are enabled. (
+      <a href="https://android-review.googlesource.com/#/q/Ia6b034d5143311a111c31d59afbb37dbeeea2131">Ia6b03</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/176129022">b/176129022</a>
+      )
+    </li>
+    <li>
+      Improved layout inspector support (
+      <a href="https://android-review.googlesource.com/#/q/I6d77175d77c65e224177679055eb2ddfdfd7d7ae">I6d771</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a scenario where calling setSupportActionBar after setting the window callback would overwrite the callback. (
+      <a href="https://android-review.googlesource.com/#/q/Ie43eedf8322caa44e7b201a95cbc64197953e020">Ie43ee</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/186791590">b/186791590</a>
+      )
+    </li>
+    <li>
+      Added a workaround for an issue on SDKs 29 and 30 where ColorStateListDrawable resources cloned from the drawable cache don't load a default color until they receive a state change. (
+      <a href="https://android-review.googlesource.com/#/q/Iedb4b99763a1c33fecaef7fdc1f68ce9c4baca70">Iedb4b</a>
+      )
+    </li>
+    <li>
+      Avoid NPE when handling null custom selection action mode callbacks on AppCompat-backed views. (
+      <a href="https://android-review.googlesource.com/#/q/I033c712ffa477853f122788f2335e7cab9a877fb">I033c7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173435375">b/173435375</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Updates</strong></p>
+  <ul>
+    <li>
+      From
+      <a href="#1.5.0">
+        AppCompat
+        <code translate="no" dir="ltr">1.5.0</code>
+      </a>
+      : AppCompat now depends on Fragment
+      <a href="/jetpack/androidx/releases/fragment#1.3.4">
+        Fragment
+        <code translate="no" dir="ltr">1.3.4</code>
+      </a>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I13089bfa891650845dbbf844215131d2b089f30e">I13089</a>
+      )
+    </li>
+    <li>
+      From
+      <a href="#1.5.0">
+        AppCompat
+        <code translate="no" dir="ltr">1.5.0</code>
+      </a>
+      : AppCompat now depends on
+      <a href="/jetpack/androidx/releases/activity#1.2.3">
+        Activity
+        <code translate="no" dir="ltr">1.2.3</code>
+      </a>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I815b7412e1a9f8b2530a5b576f023f9f134116e8">I815b7</a>
+      )
+    </li>
+    <li>
+      From
+      <a href="#1.5.0">
+        AppCompat
+        <code translate="no" dir="ltr">1.5.0</code>
+      </a>
+      : AppCompat now depends on
+      <a href="/jetpack/androidx/releases/lifecycle#2.3.1">
+        Lifecycle
+        <code translate="no" dir="ltr">2.3.1</code>
+      </a>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia75a16f05e4144bd7bc6d06018620e46f37378b0">Ia75a1</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Backport tintable background and check mark for
+      <code translate="no" dir="ltr">CheckedTextView</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I8575c5c23240a14153654ffafd0387fa89f2a3bc">I8575c</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_131_3" data-text="Version 1.3.1" tabindex="-1">Version 1.3.1</h2>

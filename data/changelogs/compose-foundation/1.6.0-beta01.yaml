@@ -1,0 +1,244 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.6.0-beta01
+releaseDate: 2023-11-15
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-beta01" data-text="Version 1.6.0-beta01" tabindex="-1">Version 1.6.0-beta01</h3>
+  <p>November 15, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.6.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/465c5c5b7a0d79793bddb26a695f67aba8ea2f7e..1f80a6f0c1cb96288c04124001fa2c9bd29617d6/compose">Version 1.6.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">DragAndDropTarget</code>
+      modifier now takes in the receiving
+      <code translate="no" dir="ltr">DragAndDropTarget</code>
+      explicitly and has a lambda to opt into a drag and drop session. There are now two factory functions for a
+      <code translate="no" dir="ltr">DragAndDropModifierNode</code>
+      . One for receiving transfers and one for transferring data (
+      <a href="https://android-review.googlesource.com/#/q/I69481ca031bfa52b3f8ff910b159e3ee8f7ffaf9">I69481</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">maximumFlingVelocity</code>
+      to be represented as Float. Updated documentation to be more clear about the
+      <code translate="no" dir="ltr">maximumFlingVelocity</code>
+      unity. (
+      <a href="https://android-review.googlesource.com/#/q/I8adc73327ca3c0d43a9ea31d871ddae1da5e9496">I8adc7</a>
+      )
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">onDragAndDropStart</code>
+        in the
+        <code translate="no" dir="ltr">DragAndDropModifierNode</code>
+        factory has been renamed to
+        <code translate="no" dir="ltr">acceptDragAndDropTransfer</code>
+        .
+      </p>
+
+      <p>
+        <code translate="no" dir="ltr">acceptsDragAndDropTransfer</code>
+        has been added to the
+        <code translate="no" dir="ltr">dragAndDropTarget</code>
+        <code translate="no" dir="ltr">Modifier</code>
+        to accept from a drag and drop session. This lambda returns a viable
+        <code translate="no" dir="ltr">DragAndDropTarget</code>
+        if interested in a drag and drop session. Other lambdas for processing drag events have been replaced by this.
+      </p>
+
+      <p>
+        a
+        <code translate="no" dir="ltr">DragAndDropTarget</code>
+        factory function has been added to receive from drag and drop sessions (
+        <a href="https://android-review.googlesource.com/#/q/Iebf3a243ad9e4515dfe43b1947ab98ade6804a99">Iebf3a</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Exposing
+        <code translate="no" dir="ltr">startDragImmediately</code>
+        in
+        <code translate="no" dir="ltr">AnchoredDraggable</code>
+        gives control for detecting dragging gestures when using it. It is useful to set it when the widget is animating to a target anchor. See
+        <a href="https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:compose/foundation/foundation/samples/src/main/java/androidx/compose/foundation/samples/AnchoredDraggableSample.kt?q=java%2Fandroidx%2Fcompose%2Ffoundation%2Fsamples%2FAnchoredDraggableSample.kt#:%7E:text=AnchoredDraggableCatchAnimatingWidgetSample">Sample</a>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/Ie6d134277bb4f25bbab7ff1929d59bba00ede235">Ie6d13</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/285139987">b/285139987</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Foundation Tooltip APIs are now
+        <code translate="no" dir="ltr">@ExperimentalFoundationApi</code>
+        (
+        <a href="https://android-review.googlesource.com/#/q/I30b0b47c0d7d048369779600071fde5f2452e71d">I30b0b</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Removed
+        <code translate="no" dir="ltr">DragAndDropInfo</code>
+        as a type
+        <code translate="no" dir="ltr">DragAndDropModifierNode.drag</code>
+        now takes parameters for the
+        <code translate="no" dir="ltr">transferData</code>
+        , decoration size and drag decoration
+        <code translate="no" dir="ltr">DrawScope</code>
+        lambda
+      </p>
+
+      <p>
+        <code translate="no" dir="ltr">DragAndDropTarget</code>
+        has methods for particular drag and drop events instead of being a single abstract method
+      </p>
+
+      <p>
+        <code translate="no" dir="ltr">onDragAndDropEvent</code>
+        in the factory function for a
+        <code translate="no" dir="ltr">DragAndDropModifierNode</code>
+        has been renamed to
+        <code translate="no" dir="ltr">onDragAndDropStart</code>
+        to better communicate that the
+        <code translate="no" dir="ltr">DragAndDropTarget</code>
+        provided is valid for a given drag and drop session only
+      </p>
+
+      <p>
+        The
+        <code translate="no" dir="ltr">DragAndDropEventType</code>
+        has been removed (
+        <a href="https://android-review.googlesource.com/#/q/I645b1531085bceef359daebf7f36aa9119f6017b">I645b1</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Renamed
+        <code translate="no" dir="ltr">PlatformTextInputModifierNode.runTextInputSession</code>
+        to
+        <code translate="no" dir="ltr">establishTextInputSession</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/I03cd0d84be09a89ed7a763d1b5921cb4975b72a0">I03cd0</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Replace
+        <code translate="no" dir="ltr">OriginalText</code>
+        by
+        <code translate="no" dir="ltr">TextSubstitution</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/Ifa5a8d6a2efd776c384642d9148dbf40b23eb6e3">Ifa5a8</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Renamed
+        <code translate="no" dir="ltr">PlatformTextInputModifierNode.textInputSession</code>
+        to
+        <code translate="no" dir="ltr">runTextInputSession</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/Ie9c6b37420dc9c024d68bbfc94fdcbbef105a547">Ie9c6b</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        The children of
+        <code translate="no" dir="ltr">SubcomposeLayout</code>
+        (and layouts like
+        <code translate="no" dir="ltr">LazyColumn</code>
+        based on it) which are retained to be reused in future are considered deactivated. New
+        <code translate="no" dir="ltr">assertIsDeactivated()</code>
+        test API was introduced to test such nodes. The rest of the test apis will filter out deactivated nodes by default. (
+        <a href="https://android-review.googlesource.com/#/q/I2ef84fb2ed578238bb20c07655c475df6fb8dbd0">I2ef84</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/187188981">b/187188981</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">clippingEnabled</code>
+        parameter of
+        <code translate="no" dir="ltr">Modifier.magnifier</code>
+        is renamed to
+        <code translate="no" dir="ltr">clip</code>
+        .
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">magnifierCenter</code>
+        parameter of
+        <code translate="no" dir="ltr">Modifier.magnifier</code>
+        is made nullable preserving the same default behavior. (
+        <a href="https://android-review.googlesource.com/#/q/I6aa66e52283bd467372b6a04132341642549f20d">I6aa66</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Material
+        <code translate="no" dir="ltr">SwipeToReveal</code>
+        APIs (for Cards and Chips) now rely on a slot based API (as recommended by Compose) instead of data class based instances to create those slots. This is a breaking change, please see the demo and sample code for examples on how to use the new API. (
+        <a href="https://android-review.googlesource.com/#/q/Ia89431e240b0602bfe08bceb660ff9ef1137d938">Ia8943</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Implement equals and hashcode for
+      <code translate="no" dir="ltr">PageSize.Fixed</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie3edea3aafd75068cd57c04aafdd7055ead20ad7">Ie3ede</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/300134276">b/300134276</a>
+      )
+    </li>
+    <li>
+      Fixed a bug that would cause
+      <code translate="no" dir="ltr">BasicText</code>
+      layout to not shrink when
+      <code translate="no" dir="ltr">minWidth</code>
+      changed and
+      <code translate="no" dir="ltr">minWidth</code>
+      less than initial measure constraints
+      <code translate="no" dir="ltr">maxWidth</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Idb19ce3a2975761c189962887575eab3066a04b7">Idb19c</a>
+      )
+    </li>
+    <li>
+      Add renderer support for Sweep Gradient in
+      <code translate="no" dir="ltr">ArcLine</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4d5bb5948d2216dca2a29d2449fd97519b2b65bb">I4d5bb</a>
+      )
+    </li>
+    <li>
+      Fix binary compatibility issue with Window Inset change (
+      <a href="https://android-review.googlesource.com/#/q/Iee695f0f1b2bf24a820b5a1bccfe550d9c29a5fa">Iee695</a>
+      )
+    </li>
+    <li>
+      Remove material core layer for Material3 Chip/Button as the microbenchmarks show better performance without it. (
+      <a href="https://android-review.googlesource.com/#/q/I5555573520638dd3c7f0d202e048ae6fffde19e5">I55555</a>
+      )
+    </li>
+  </ul>

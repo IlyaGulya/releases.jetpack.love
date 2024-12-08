@@ -1,0 +1,105 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.1.0-beta03
+releaseDate: 2022-04-06
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-beta03" data-text="Version 1.1.0-beta03" tabindex="-1">Version 1.1.0-beta03</h3>
+  <p>April 6, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.1.0-beta03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/43a214c72ffc3093ee9c3d7c340ad3a57ed4289b..86c9b1e60c382a866990a04dd1250d436372891f/camera">Version 1.1.0-beta03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Made
+      <code translate="no" dir="ltr">CaptureRequestOptions</code>
+      constructor restricted. (
+      <a href="https://android-review.googlesource.com/#/q/I261b65a7851ad2c73ad59bd5028e28cf6b8f008d">I261b6</a>
+      )
+    </li>
+    <li>
+      Added an experimental API for using
+      <code translate="no" dir="ltr">CameraController</code>
+      with external image processing libraries. e.g. MLKit (
+      <a href="https://android-review.googlesource.com/#/q/I4ea71fb8112a13c16dbc79873267b7714e94c6ec">I4ea71</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed the issue that preview becomes sideway in
+      <code translate="no" dir="ltr">PreviewView</code>
+      when activity is not restarted after rotating devices in multi-window. (
+      <a href="https://android-review.googlesource.com/#/q/I1ea3633cceb751cc101ab45dace4973f41dcd593">I1ea36</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/223488673">b/223488673</a>
+      )
+    </li>
+    <li>
+      Fix a multi-window issue that when focus changes back to the app it fails to resume the camera when (1) other high priority app opens a different camera (2) the device is Samsung Android 12 devices. (
+      <a href="https://android-review.googlesource.com/#/q/I7e9f2e0d306c43a9693f281b1d44ab80d4be8622">I7e9f2</a>
+      )
+    </li>
+    <li>
+      Workaround included for devices that crash when checking availability of flash. These devices will not have torch available. (
+      <a href="https://android-review.googlesource.com/#/q/If26a3e436ce12dc82451f07ce49969ea237017c0">If26a3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/216667482">b/216667482</a>
+      )
+    </li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">AbstractMethodError</code>
+      issue happened when apps use extensions and enable proguard. (
+      <a href="https://android-review.googlesource.com/#/q/I7cbaf1aae571a2b4c12859171bcd46c529e33d57">I7cbaf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/222726805">b/222726805</a>
+      )
+    </li>
+    <li>
+      Force disable bokeh extension mode on Motorola razr 5G device which will cause black preview screen issue. (
+      <a href="https://android-review.googlesource.com/#/q/I35d499e78e40b60f5f3193072543aabddf0b9850">I35d49</a>
+      )
+    </li>
+    <li>
+      Fixed audio/video out of sync after pause and resume on some Samsung devices pre-API 29. (
+      <a href="https://android-review.googlesource.com/#/q/I646221b9f94ae688592d4be96245f17f74806f0b">I64622</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/202798609">b/202798609</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/202798572">b/202798572</a>
+      )
+    </li>
+    <li>
+      Fixed audio/video out of sync after pause and resume on Sony G3125. (
+      <a href="https://android-review.googlesource.com/#/q/I2a1a5c3cdb4f5908819fb93af19e237426c673fb">I2a1a5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/202799148">b/202799148</a>
+      )
+    </li>
+    <li>
+      Fixed a crash when the Recorder encountered an
+      <code translate="no" dir="ltr">InvalidConfigException</code>
+      . However, this fix only prevents app from crashing, but doesn't resolve the cause of the
+      <code translate="no" dir="ltr">InvalidConfigException</code>
+      . If the
+      <code translate="no" dir="ltr">Recorder</code>
+      still cannot be configured, applications will receive error callback when it starts recording. (
+      <a href="https://android-review.googlesource.com/#/q/I89c295716c6228c47f8bdadefef8336c9c058bd3">I89c29</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/213617227">b/213617227</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      updated :compose:ui:ui-test api (updateApi) due to test-coroutines-lib migration (
+      <a href="https://android-review.googlesource.com/#/q/I3366d5111b2fb830d619da5402c12ea4c929391a">I3366d</a>
+      )
+    </li>
+  </ul>

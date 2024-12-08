@@ -1,0 +1,96 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.1.0-alpha07
+releaseDate: 2022-10-05
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha07" data-text="Version 1.1.0-alpha07" tabindex="-1">Version 1.1.0-alpha07</h3>
+  <p>October 5, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-foundation:1.1.0-alpha07</code>
+    ,
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material:1.1.0-alpha07</code>
+    , and
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-navigation:1.1.0-alpha07</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/bdce26bd7556b92d2d4d2af3de881dd8e2c51459..4586cf6e518f0c59410ef2b291e34ff9fdcff4e1/wear/compose">Version 1.1.0-alpha07 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      We have added experimental placeholder support. This has three distinct visual effects designed to work together. Firstly a placeholder background brush effect used in containers such as Chip and Cards to draw over the normal background when waiting for content to load. Secondly a modifier (
+      <code translate="no" dir="ltr">Modifier.placeholder()</code>
+      ) to draw a stadium shaped placeholder widget over the top of content that is being loaded. Thirdly a modifier gradient/shimmer effect (
+      <code translate="no" dir="ltr">Modifier.placeholderShimmer()</code>
+      ) that is drawn over the top of the other effects to indicate to users that we are waiting for data to load. All of these effects are designed to be coordinated and shimmer and wipe-off in an orchestrated fashion. (
+      <a href="https://android-review.googlesource.com/#/q/I3c33961fa8bdda098b9a992896d49550185e2b86">I3c339</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added support for
+      <code translate="no" dir="ltr">fontWeight</code>
+      ,
+      <code translate="no" dir="ltr">fontFamily</code>
+      ,
+      <code translate="no" dir="ltr">fontStyle</code>
+      and
+      <code translate="no" dir="ltr">fontSynthesis</code>
+      in
+      <code translate="no" dir="ltr">CurvedTextStyle</code>
+      , usable on
+      <code translate="no" dir="ltr">curvedText</code>
+      and
+      <code translate="no" dir="ltr">basicCurvedText</code>
+      . Those parameter can be used to specify the font and style to use on the curved text.(
+      <a href="https://android-review.googlesource.com/#/q/Iaa1a817c1763cc3adc0baf4fcebedeb9578ff440">Iaa1a8</a>
+      ),(
+      <a href="https://android-review.googlesource.com/#/q/I727597b13d3c8bf687076aaae47e03420ef0a8d1">I72759</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">Modifier.scrollAway</code>
+      's offset parameter to Dp for consistency with
+      <code translate="no" dir="ltr">Modifier.offset</code>
+      (previously it was in pixels). Also, refactored as a
+      <code translate="no" dir="ltr">LayoutModifier</code>
+      for efficiency. (
+      <a href="https://android-review.googlesource.com/#/q/I9f94b1f482dc787dc12858dc3deab3d6b7ba805a">I9f94b</a>
+      )
+    </li>
+    <li>
+      As part of the new toggle controls API, we have renamed
+      <code translate="no" dir="ltr">RadioButton’s circleColor</code>
+      to
+      <code translate="no" dir="ltr">ringColor</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I28fa9d0eb30725394d3ec3f7de572ef6d66e7da7">I28fa9</a>
+      )
+    </li>
+    <li>
+      We have added animated
+      <code translate="no" dir="ltr">Checkbox</code>
+      ,
+      <code translate="no" dir="ltr">Switch</code>
+      and
+      <code translate="no" dir="ltr">RadioButton</code>
+      toggle controls for use with
+      <code translate="no" dir="ltr">ToggleChip</code>
+      and
+      <code translate="no" dir="ltr">SplitToggleChip</code>
+      . These can be used instead of the static icons provided by
+      <code translate="no" dir="ltr">ToggleChipDefaults</code>
+      (
+      <code translate="no" dir="ltr">switchIcon</code>
+      ,
+      <code translate="no" dir="ltr">checkboxIcon</code>
+      and
+      <code translate="no" dir="ltr">radioIcon</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/I8a8c495030cd9186bc583a1670db20a8af8db966">I8a8c4</a>
+      )
+    </li>
+  </ul>

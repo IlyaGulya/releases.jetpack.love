@@ -1,0 +1,73 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.2.0-alpha08
+releaseDate: 2020-08-19
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha08" data-text="Version 1.2.0-alpha08" tabindex="-1">Version 1.2.0-alpha08</h3>
+  <p>August 19, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.2.0-alpha08</code>
+    and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.2.0-alpha08</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9f60cc700129e30cee9df020005c317fb39d32ec..96eb302ee1740ba656c90c9fb27df3723a1a89c1/activity">Version 1.2.0-alpha08 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      now implements
+      <code translate="no" dir="ltr">ContextAware</code>
+      , allowing you to add one or more
+      <code translate="no" dir="ltr">OnContextAvailableListener</code>
+      instances which will receive a callback before the base
+      <code translate="no" dir="ltr">Activity.onCreate()</code>
+      . (
+      <a href="https://issuetracker.google.com/161390636">b/161390636</a>
+      )
+      <ul>
+        <li>
+          A suspending Kotlin extension
+          <code translate="no" dir="ltr">withContextAvailable()</code>
+          allows you to run a non-suspending block when the Context becomes available and return a result. (
+          <a href="https://android-review.googlesource.com/#/q/I8290cd9de8231913036d23a233c177ed45d2d370">I8290c</a>
+          )
+        </li>
+        <li>
+          This API is used by
+          <code translate="no" dir="ltr">FragmentActivity</code>
+          in
+          <a href="/jetpack/androidx/releases/fragment#1.3.0-alpha08">Fragment 1.3.0-alpha08</a>
+          to restore the state of the
+          <code translate="no" dir="ltr">FragmentManager</code>
+          . Any listeners added to subclasses of
+          <code translate="no" dir="ltr">FragmentActivity</code>
+          will run after that listener. (
+          <a href="https://android-review.googlesource.com/#/q/I513da73bc0862b62af4166be35ba353fc7869a09">I513da</a>
+          )
+        </li>
+        <li>
+          This API is used by
+          <code translate="no" dir="ltr">AppCompatActivity</code>
+          in
+          <a href="/jetpack/androidx/releases/appcompat#1.3.0-alpha02">AppCompat 1.3.0-alpha02</a>
+          . Any listeners added to subclasses of
+          <code translate="no" dir="ltr">AppCompatActivity</code>
+          will run after that listener. (
+          <a href="https://android-review.googlesource.com/#/q/I513da73bc0862b62af4166be35ba353fc7869a09">I513da</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue with the
+      <code translate="no" dir="ltr">ActivityResultFragmentVersionDetector</code>
+      Lint check that caused it to break when using Lint 27.1.0 or higher. (
+      <a href="https://issuetracker.google.com/162155191">b/162155191</a>
+      )
+    </li>
+  </ul>

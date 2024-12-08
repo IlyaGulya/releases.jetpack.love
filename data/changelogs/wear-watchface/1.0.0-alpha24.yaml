@@ -1,0 +1,65 @@
+libraryId: wear-watchface
+groupId: androidx.wear
+version: 1.0.0-alpha24
+releaseDate: 2021-10-13
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha24" data-text="Version 1.0.0-alpha24" tabindex="-1">Version 1.0.0-alpha24</h3>
+  <p>October 13, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.watchface:watchface-*:1.0.0-alpha24</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1f6bc4d47b7be46a5af151ed726e84db0a1cf9f9..db0888af4fa9a8eaeaf55cc1f120724bc67bdb20/wear/watchface">Version 1.0.0-alpha24 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Classes in package
+      <code translate="no" dir="ltr">androidx.wear.watchface.complications</code>
+      have been moved into a new
+      <code translate="no" dir="ltr">wear:watchface:watchface-complications</code>
+      project. Note this means you can't include this library as well as any previous alpha version of
+      <code translate="no" dir="ltr">wear:watchface:watchface-complications-data</code>
+      because you'll get errors about duplicate classes. (
+      <a href="https://android-review.googlesource.com/#/q/I9719558082a019b4a8b98fdbfa6b979b62604316">I97195</a>
+      )
+    </li>
+    <li>
+      Renderer.dump has been renamed to Renderer.onDump and has been annotated with @UiThread. (
+      <a href="https://android-review.googlesource.com/#/q/I4484566d9f8ddb874f7dc23caccd2281cf14acd4">I44845</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">InteractiveWatchFaceClient.addWatchFaceReadyListener</code>
+      has been renamed to
+      <code translate="no" dir="ltr">addOnWatchFaceReadyListener</code>
+      and
+      <code translate="no" dir="ltr">removeWatchFaceReadyListener</code>
+      has been renamed to
+      <code translate="no" dir="ltr">removeOnWatchFaceReadyListener</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I48fea9e27af16b8521eef0237c280ca562c07a63">I48fea</a>
+      )
+    </li>
+    <li>
+      EditorSession
+      <code translate="no" dir="ltr">getComplicationsPreviewData</code>
+      and
+      <code translate="no" dir="ltr">getComplicationsDataSourceInfo</code>
+      are no longer suspend functions, instead they are
+      <code translate="no" dir="ltr">StateFlow&lt;&gt;</code>
+      properties whose value is initially null. In ListenableEditorSession
+      <code translate="no" dir="ltr">getListenableComplicationPreviewData</code>
+      and
+      <code translate="no" dir="ltr">getListenableComplicationsProviderInfo</code>
+      have been removed in favor of the new
+      <code translate="no" dir="ltr">StateFlow&lt;&gt;</code>
+      objects from the base class. If you need to listen to changes in java code, consider using
+      <code translate="no" dir="ltr">androidx.lifecycle.FlowLiveDataConversions.asLiveData</code>
+      to convert to
+      <code translate="no" dir="ltr">LiveData&lt;&gt;</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic5483c018ffc98879fa49bdc4e741bfa68fdc2af">Ic5483</a>
+      )
+    </li>
+  </ul>

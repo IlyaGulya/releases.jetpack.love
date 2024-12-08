@@ -1,0 +1,108 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.3.0-alpha05
+releaseDate: 2020-05-20
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha05" data-text="Version 1.3.0-alpha05" tabindex="-1">Version 1.3.0-alpha05</h3>
+  <p>May 20, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.3.0-alpha05</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.3.0-alpha05</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.3.0-alpha05</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/942518f415d35ff9f2ff78f312c076c673468877..ccc6e95c574b66563952c33fbe26888b93a0e0cb/fragment">Version 1.3.0-alpha05 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added support for
+      <code translate="no" dir="ltr">ViewTreeViewModelStoreOwner</code>
+      from
+      <a href="/jetpack/androidx/releases/lifecycle#2.3.0-alpha03">
+        Lifecycle
+        <code translate="no" dir="ltr">2.3.0-alpha03</code>
+      </a>
+      , and
+      <code translate="no" dir="ltr">ViewTreeSavedStateRegistryOwner</code>
+      from
+      <a href="/jetpack/androidx/releases/savedstate#1.1.0-alpha01">
+        SavedState
+        <code translate="no" dir="ltr">1.1.0-alpha01</code>
+      </a>
+      when using a
+      <code translate="no" dir="ltr">View</code>
+      within a
+      <code translate="no" dir="ltr">Fragment</code>
+      . (
+      <a href="https://android-review.googlesource.com/1300264">aosp/1297993</a>
+      ,
+      <a href="https://android-review.googlesource.com/1298680">aosp/1300264</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">setFragmentResult()</code>
+      and
+      <code translate="no" dir="ltr">setFragmentResultListener()</code>
+      APIs now take a non-null
+      <code translate="no" dir="ltr">Bundle</code>
+      and
+      <code translate="no" dir="ltr">FragmentResultListener</code>
+      , respectively. To explicitly clear a previously set result or listener, use the new
+      <code translate="no" dir="ltr">clearFragmentResult()</code>
+      and
+      <code translate="no" dir="ltr">clearFragmentResultListener()</code>
+      methods. (
+      <a href="https://issuetracker.google.com/issues/155416778">b/155416778</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">setFragmentResultListener()</code>
+      Kotlin extensions that take a lambda are now marked as
+      <code translate="no" dir="ltr">inline</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/155323404">b/155323404</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      The previously deprecated
+      <code translate="no" dir="ltr">startActivityForResult()</code>
+      ,
+      <code translate="no" dir="ltr">startIntentSenderForResult()</code>
+      , and
+      <code translate="no" dir="ltr">requestPermissions</code>
+      on
+      <code translate="no" dir="ltr">Fragment</code>
+      now internally use
+      <code translate="no" dir="ltr">ActivityResultRegistry</code>
+      , thus removing the restriction on using only the lower bits (below
+      <code translate="no" dir="ltr">0xFFFF</code>
+      ) for your request codes when using those APIs. (
+      <a href="https://issuetracker.google.com/issues/155518741">b/155518741</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Documentation Updates</strong></p>
+  <ul>
+    <li>
+      Expanded the documentation on the
+      <code translate="no" dir="ltr">Fragment(@LayoutRes int)</code>
+      and
+      <code translate="no" dir="ltr">DialogFragment(@LayoutRes int)</code>
+      constructors to clarify that they should be called from your subclasses’ no argument constructor when using the default
+      <code translate="no" dir="ltr">FragmentFactory</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/153042497">b/153042497</a>
+      )
+    </li>
+  </ul>

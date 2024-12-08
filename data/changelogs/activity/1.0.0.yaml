@@ -1,0 +1,84 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.0.0
+releaseDate: 2019-09-05
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0" data-text="Version 1.0.0" tabindex="-1">Version 1.0.0</h3>
+  <p>September 5, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.0.0</code>
+    and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.0.0</code>
+    are released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/31e072b23ddd65615efc5f3fbece2276b6b5cae4..04474c7d7e242b12e34e49067cabadade0ee8a86/activity">here</a>
+    .
+  </p>
+  <p><strong>Major Features of 1.0.0</strong></p>
+  <ul>
+    <li>
+      <strong>ComponentActivity</strong>
+      :
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      serves as the new base class for
+      <code translate="no" dir="ltr">FragmentActivity</code>
+      in
+      <a href="/jetpack/androidx/releases/fragment#1.1.0">
+        Fragment
+        <code translate="no" dir="ltr">1.1.0</code>
+      </a>
+      and, by extension,
+      <code translate="no" dir="ltr">AppCompatActivity</code>
+      in
+      <a href="/jetpack/androidx/releases/appcompat#1.1.0">
+        AppCompat
+        <code translate="no" dir="ltr">1.1.0</code>
+      </a>
+      .
+    </li>
+    <li>
+      <strong>activity-ktx</strong>
+      : The
+      <code translate="no" dir="ltr">activity-ktx</code>
+      module includes a
+      <code translate="no" dir="ltr">by viewModels</code>
+      Kotlin property extension for accessing ViewModels. This module is automatically included when you include
+      <code translate="no" dir="ltr">fragment-ktx</code>
+      from
+      <a href="/jetpack/androidx/releases/fragment#1.1.0">
+        Fragment
+        <code translate="no" dir="ltr">1.1.0</code>
+      </a>
+      .
+    </li>
+    <li>
+      <strong>OnBackPressedDispatcher</strong>
+      : As a composable alternative to overriding
+      <code translate="no" dir="ltr">onBackPressed()</code>
+      , you can now register a
+      <code translate="no" dir="ltr">OnBackPressedCallback</code>
+      from any
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      (such as a fragment) to intercept system back button events. A lambda with receiver version
+      <code translate="no" dir="ltr">addCallback</code>
+      has been added to
+      <code translate="no" dir="ltr">activity-ktx</code>
+      . See
+      <a href="/guide/navigation/navigation-custom-back">Provide custom back navigation documentation</a>
+      for more details.
+    </li>
+    <li>
+      <strong>onRetainCustomNonConfigurationInstance deprecation</strong>
+      : the
+      <code translate="no" dir="ltr">onRetainCustomNonConfigurationInstance()</code>
+      and the related
+      <code translate="no" dir="ltr">getLastCustomNonConfigurationInstance()</code>
+      APIs have been deprecated. It is strongly recommended to use
+      <a href="/topic/libraries/architecture/viewmodel">ViewModels</a>
+      to store non-configuration state as they offer a composable solution suitable for any
+      <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+      that makes the ownership of the retained objects clear and provides an
+      <code translate="no" dir="ltr">onCleared()</code>
+      callback for cleaning up resources when the activity is finally destroyed.
+    </li>
+  </ul>

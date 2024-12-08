@@ -1,0 +1,136 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.2.0
+releaseDate: 2023-07-26
+#language=html
+changelogHtml: |
+  <h3 id="3.2.0" data-text="Version 3.2.0" tabindex="-1">Version 3.2.0</h3>
+  <p>July 26, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.2.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c2d5f1bbc58c2910a46d02584ecc6ff02f1cc789..22c1844d8a4508469b860b1415c1aea9aa46eb78/paging">Version 3.2.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 3.1.0</strong></p>
+  <ul>
+    <li>
+      Paging Compose reached API stability and has been merged back into the rest of Paging where its version now matches all the other Paging artfacts. Changes since 3.1.0 include:
+      <ul>
+        <li>
+          Support for previewing a list of fake data by creating a
+          <code translate="no" dir="ltr">PagingData.from(fakeData)</code>
+          and wrapping that
+          <code translate="no" dir="ltr">PagingData</code>
+          in a
+          <code translate="no" dir="ltr">MutableStateFlow</code>
+          (e.g.
+          <code translate="no" dir="ltr">MutableStateFlow(PagingData.from(listOf(1, 2, 3)))</code>
+          ). Pass this flow into
+          <code translate="no" dir="ltr">@Preview</code>
+          composables as receiver for
+          <code translate="no" dir="ltr">collectAsLazyPagingItems()</code>
+          to preview.
+        </li>
+        <li>
+          Support for all lazy layouts such as
+          <code translate="no" dir="ltr">LazyVerticalGrid</code>
+          and
+          <code translate="no" dir="ltr">HorizontalPager</code>
+          as well as custom lazy components from Wear and TV libraries. This was achieved through new lower level
+          <code translate="no" dir="ltr">LazyPagingItems</code>
+          extension methods
+          <code translate="no" dir="ltr">itemKey</code>
+          and
+          <code translate="no" dir="ltr">itemContentType</code>
+          , which helps you implement the
+          <code translate="no" dir="ltr">key</code>
+          and
+          <code translate="no" dir="ltr">contentType</code>
+          parameters to the standard
+          <code translate="no" dir="ltr">items</code>
+          APIs that already exist for
+          <code translate="no" dir="ltr">LazyColumn</code>
+          ,
+          <code translate="no" dir="ltr">LazyVerticalGrid</code>
+          as well as their equivalents in APIs like
+          <code translate="no" dir="ltr">HorizontalPager</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">items(lazyPagingItems)</code>
+          and
+          <code translate="no" dir="ltr">itemsIndexed(lazyPagingItems)</code>
+          which only supports
+          <code translate="no" dir="ltr">LazyListScope</code>
+          were deprecated.
+        </li>
+      </ul>
+    </li>
+    <li>
+      New
+      <code translate="no" dir="ltr">paging-testing</code>
+      artifact which provides APIs designed around unit testing each layer of your app and its integration with Paging in isolation. For example, it includes
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">TestPager</code>
+          class that allows you to validate the behavior of your own custom
+          <code translate="no" dir="ltr">PagingSource</code>
+          implementation independently from the Pager and real UI.
+        </li>
+        <li>
+          ​​
+          <code translate="no" dir="ltr">asPagingSourceFactory</code>
+          APIs to transform either a
+          <code translate="no" dir="ltr">Flow&lt;List&lt;Value&gt;&gt;</code>
+          or a static
+          <code translate="no" dir="ltr">List&lt;Value&gt;</code>
+          into a
+          <code translate="no" dir="ltr">PagingSourceFactory</code>
+          that can be passed to a Pager in tests
+        </li>
+        <li>
+          <code translate="no" dir="ltr">asSnapshot</code>
+          Kotlin extension on
+          <code translate="no" dir="ltr">Flow&lt;PagingData&lt;Value&gt;&gt;</code>
+          , which translates the
+          <code translate="no" dir="ltr">Flow&lt;PagingData&lt;Value&gt;&gt;</code>
+          into a direct
+          <code translate="no" dir="ltr">List&lt;Value&gt;</code>
+          . The
+          <code translate="no" dir="ltr">asSnapshot lambda</code>
+          allows you to mimic the UI of your app via APIs such as
+          <code translate="no" dir="ltr">scrollTo</code>
+          or
+          <code translate="no" dir="ltr">appendScrollWhile</code>
+          so that you can verify the snapshot of data is correct at any point in your set of paged data.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Added default logs to expose Paging debugging information in two levels:
+      <code translate="no" dir="ltr">VERBOSE</code>
+      and
+      <code translate="no" dir="ltr">DEBUG</code>
+      . The logs can be enabled via the command
+      <code translate="no" dir="ltr">adb shell setprop log.tag.Paging [DEBUG|VERBOSE]</code>
+      . This applies to both Paging with views or Paging with Compose.
+    </li>
+    <li>
+      Added constructors for
+      <code translate="no" dir="ltr">PagingDataAdapter</code>
+      and
+      <code translate="no" dir="ltr">AsyncPagingDataDiffer</code>
+      which accept
+      <code translate="no" dir="ltr">CoroutineContext</code>
+      instead of
+      <code translate="no" dir="ltr">CoroutineDispatcher</code>
+      .
+    </li>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">PagingSourceFactory</code>
+      functional interface that provides a more explicit API surface than the previous () -&gt;
+      <code translate="no" dir="ltr">PagingSource</code>
+      lambdas. This factory can be used to instantiate a Pager.
+    </li>
+  </ul>

@@ -1,0 +1,173 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.2.0
+releaseDate: 2020-01-22
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0" data-text="Version 1.2.0" tabindex="-1">Version 1.2.0</h3>
+  <p>January 22, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.2.0</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.2.0</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.2.0</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/52c5cbd1c318a40cad51528d31aa6535f1ab38fe..905771170a6b905b05c195eb55273e8f0aade92b/fragment">Version 1.2.0 contains these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.1.0</strong></p>
+  <ul>
+    <li>
+      <strong>FragmentContainerView</strong>
+      : The
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      is the strongly recommended container for dynamically added Fragments, replacing usage of
+      <code translate="no" dir="ltr">FrameLayout</code>
+      or other layouts. It also supports the same
+      <code translate="no" dir="ltr">class</code>
+      ,
+      <code translate="no" dir="ltr">android:name</code>
+      , and optional
+      <code translate="no" dir="ltr">android:tag</code>
+      as the
+      <code translate="no" dir="ltr">&lt;fragment&gt;</code>
+      tag, but uses a normal
+      <code translate="no" dir="ltr">FragmentTransaction</code>
+      to add this initial fragment, instead of the custom code path used by
+      <code translate="no" dir="ltr">&lt;fragment&gt;</code>
+      .
+    </li>
+    <li>
+      <strong>
+        <code translate="no" dir="ltr">onDestroyView()</code>
+        timing
+      </strong>
+      : Fragments now wait for exit animations, exit framework transitions, and exit AndroidX transitions (when using
+      <a href="/jetpack/androidx/releases/transition#version_130_2">
+        Transition
+        <code translate="no" dir="ltr">1.3.0</code>
+      </a>
+      ) to complete before calling
+      <code translate="no" dir="ltr">onDestroyView()</code>
+      .
+    </li>
+    <li>
+      <strong>
+        Class based
+        <code translate="no" dir="ltr">add()</code>
+        and
+        <code translate="no" dir="ltr">replace()</code>
+      </strong>
+      : Added new overloads of
+      <code translate="no" dir="ltr">add()</code>
+      and
+      <code translate="no" dir="ltr">replace()</code>
+      on
+      <code translate="no" dir="ltr">FragmentTransaction</code>
+      that take a
+      <code translate="no" dir="ltr">Class&lt;? extends Fragment&gt;</code>
+      and optional
+      <code translate="no" dir="ltr">Bundle</code>
+      of arguments. These methods use your
+      <code translate="no" dir="ltr">FragmentFactory</code>
+      to construct an instance of the Fragment to add. Kotlin extensions that use reified types (i.e,
+      <code translate="no" dir="ltr">fragmentTransaction.replace&lt;YourFragment&gt;(R.id.container)</code>
+      ) have also been added to
+      <code translate="no" dir="ltr">fragment-ktx</code>
+      .
+    </li>
+    <li>
+      <strong>Lifecycle ViewModel SavedState Integration</strong>
+      :
+      <code translate="no" dir="ltr">SavedStateViewModelFactory</code>
+      is now the default factory used when using
+      <code translate="no" dir="ltr">by viewModels()</code>
+      ,
+      <code translate="no" dir="ltr">by activityViewModels()</code>
+      , the
+      <code translate="no" dir="ltr">ViewModelProvider</code>
+      constructor, or
+      <code translate="no" dir="ltr">ViewModelProviders.of()</code>
+      with a Fragment.
+    </li>
+    <li>
+      <strong>New Lint checks</strong>
+      : Added a new Lint check that ensures you are using
+      <code translate="no" dir="ltr">getViewLifecycleOwner()</code>
+      when observing
+      <code translate="no" dir="ltr">LiveData</code>
+      from
+      <code translate="no" dir="ltr">onCreateView()</code>
+      ,
+      <code translate="no" dir="ltr">onViewCreated()</code>
+      , or
+      <code translate="no" dir="ltr">onActivityCreated()</code>
+      .
+    </li>
+    <li>
+      <strong>
+        <code translate="no" dir="ltr">getFragmentManager()</code>
+        deprecation
+      </strong>
+      : The
+      <code translate="no" dir="ltr">getFragmentManager()</code>
+      and
+      <code translate="no" dir="ltr">requireFragmentManager()</code>
+      methods on Fragment have been deprecated and replaced with a single
+      <code translate="no" dir="ltr">getParentFragmentManager()</code>
+      method, which returns the non-null
+      <code translate="no" dir="ltr">FragmentManager</code>
+      the Fragment is added to (you can use
+      <code translate="no" dir="ltr">isAdded()</code>
+      to determine if it is safe to call).
+    </li>
+    <li>
+      <strong>
+        <code translate="no" dir="ltr">FragmentManager.enableDebugLogging()</code>
+        deprecation
+      </strong>
+      : The static
+      <code translate="no" dir="ltr">FragmentManager.enableDebugLogging</code>
+      method has been deprecated. FragmentManager now respects
+      <a href="/reference/android/util/Log#isLoggable(java.lang.String,%20int)"><code translate="no" dir="ltr">Log.isLoggable()</code></a>
+      for the tag
+      <code translate="no" dir="ltr">FragmentManager</code>
+      , allowing you to enable either
+      <code translate="no" dir="ltr">DEBUG</code>
+      or
+      <code translate="no" dir="ltr">VERBOSE</code>
+      logging without re-compiling your app.
+    </li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      Fragments referenced only via the
+      <code translate="no" dir="ltr">class</code>
+      or
+      <code translate="no" dir="ltr">android:name</code>
+      attribute on a
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      are not kept by ProGuard automatically, requiring that you manually add a keep rule for each fragment class. (
+      <a href="https://issuetracker.google.com/issues/142601969">b/142601969</a>
+      )
+    </li>
+    <li>
+      When adding a
+      <code translate="no" dir="ltr">NavHostFragment</code>
+      using
+      <code translate="no" dir="ltr">class</code>
+      or
+      <code translate="no" dir="ltr">android:name</code>
+      in XML with
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      , you cannot use
+      <code translate="no" dir="ltr">findNavController()</code>
+      in
+      <code translate="no" dir="ltr">onCreate()</code>
+      of your Activity. (
+      <a href="https://issuetracker.google.com/issues/142847973">b/142847973</a>
+      )
+    </li>
+  </ul>

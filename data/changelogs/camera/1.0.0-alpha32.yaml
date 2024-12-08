@@ -1,0 +1,97 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.0.0-alpha32
+releaseDate: 2021-12-15
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha32" data-text="Version 1.0.0-alpha32" tabindex="-1">Version 1.0.0-alpha32</h3>
+  <p>December 15, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-extensions:1.0.0-alpha32</code>
+    and
+    <code translate="no" dir="ltr">androidx.camera:camera-view:1.0.0-alpha32</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/85f6fde74bd9e34dee843bce6a5acfba9b82c38e..f06551837636599d191fd581d56b68225440ed82/camera">Version 1.0.0-alpha32 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removed unnecessary
+      <code translate="no" dir="ltr">@RequiresApi(21)</code>
+      annotations from the inner classes/interfaces. (
+      <a href="https://android-review.googlesource.com/#/q/I8e28678667e2f8a5e982d64674abe4c19b5e9155">I8e286</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/204917951">b/204917951</a>
+      )
+    </li>
+    <li>
+      Update api files for camera-extensions artifact. (
+      <a href="https://android-review.googlesource.com/#/q/If683a4952044f06bded3e87d6fa47d7aff2ad0e9">If683a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161377155">b/161377155</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Disallow the app to enable extension modes when binding
+      <code translate="no" dir="ltr">VideoCapture</code>
+      . CameraX Extensions only support
+      <code translate="no" dir="ltr">ImageCapture</code>
+      and
+      <code translate="no" dir="ltr">Preview</code>
+      . The
+      <code translate="no" dir="ltr">VideoCapture</code>
+      can't be supported yet. If the app binds
+      <code translate="no" dir="ltr">VideoCapture</code>
+      and enables any extension mode, an
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      will be thrown. (
+      <a href="https://android-review.googlesource.com/#/q/I0d87b67c82786d18e947bf031df71842be5fc8f5">I0d87b</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">CameraSelector#filter</code>
+      no longer throws an
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      when the result set is empty. (
+      <a href="https://android-review.googlesource.com/#/q/I27804168a78b11d74051d7b407762ed46c9f0f50">I27804</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">ExtensionsManager#getInstance</code>
+      API as
+      <code translate="no" dir="ltr">getInstanceAsync</code>
+      because it returns
+      <code translate="no" dir="ltr">ListenableFuture</code>
+      . The Async suffix of the function name can clearly present that it is an async function. (
+      <a href="https://android-review.googlesource.com/#/q/I279d2908ecff343f5abbe9ef4f11c6a10cfcdf57">I279d2</a>
+      )
+    </li>
+    <li>
+      Remove resolution parameter from the
+      <code translate="no" dir="ltr">ExtensionsManager#getEstimatedCaptureLatencyRange</code>
+      API since users can't know which sizes are supported for the
+      <code translate="no" dir="ltr">ImageCapture</code>
+      use case and can't distinguish whether the returned latency information is for the maximum capture output size or the input resolution parameter. (
+      <a href="https://android-review.googlesource.com/#/q/I74bb23e0bcb340772f19a1d620282f4f3607576f">I74bb2</a>
+      )
+    </li>
+    <li>
+      Move
+      <code translate="no" dir="ltr">CameraProvider</code>
+      parameter of
+      <code translate="no" dir="ltr">ExtensionsManager</code>
+      functions to the
+      <code translate="no" dir="ltr">getInstance()</code>
+      API. So that the users don't need to input the
+      <code translate="no" dir="ltr">CameraProvider</code>
+      parameter each time when calling the
+      <code translate="no" dir="ltr">ExtensionsManager</code>
+      functions. (
+      <a href="https://android-review.googlesource.com/#/q/Ic7e48c7404a14d0e8810f8c5da6e48067248f9d9">Ic7e48</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,84 @@
+libraryId: compose-animation
+groupId: androidx.compose
+version: 0.1.0-dev17
+releaseDate: 2020-08-19
+#language=html
+changelogHtml: |
+  <h3 id="0.1.0-dev17" data-text="Version 0.1.0-dev17" tabindex="-1">Version 0.1.0-dev17</h3>
+  <p>August 19, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.animation:animation:0.1.0-dev17</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.animation:animation-core:0.1.0-dev17</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/316f882e649c600372170f013a18515f590f490d..96eb302ee1740ba656c90c9fb27df3723a1a89c1/ui">Version 0.1.0-dev17 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Offset has become an inline class (
+      <a href="https://android-review.googlesource.com/#/q/Iaec70bb466cae8964f03e7484c1e86857c924f82">Iaec70</a>
+      )
+    </li>
+    <li>
+      IntOffset is now an inline class (
+      <a href="https://android-review.googlesource.com/#/q/Iac0bf89bb95642bf3a77073aead2cbce4c0e2e37">Iac0bf</a>
+      )
+    </li>
+    <li>
+      IntSize is now an inline class (
+      <a href="https://android-review.googlesource.com/#/q/I2bf426245b41f4189dead45114e3791bbceb9d13">I2bf42</a>
+      )
+    </li>
+    <li>
+      <p>AnimatedVisibilty composable animates the appearance and disappearance of the child content.</p>
+
+      <p>
+        EnterTransition and ExitTransition are introduced to work with AnimatedVisibilty composable to provide 3 different typs of appearance and disappearance animation: fade, slide, and expand/shrink the content. The different types of animations can be combined to achieve more bespoke look and feel. (
+        <a href="https://android-review.googlesource.com/#/q/Idda1162e0d7f777f64dfd91b3192c2548d1c2c29">Idda11</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Deprecated PxBounds in favor of Rect. Updated all usages of PxBounds with rect and added proper deprecate/replace with annotations to assist with the migration. (
+        <a href="https://android-review.googlesource.com/#/q/I370384202fff3e5b147d42086f4350ab7fa830de">I37038</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/162627058">b/162627058</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">PlacementScope.placeAbsolute()</code>
+      was renamed to
+      <code translate="no" dir="ltr">PlacementScope.place()</code>
+      , and the previous
+      <code translate="no" dir="ltr">PlacementScope.place()</code>
+      was renamed to
+      <code translate="no" dir="ltr">PlacementScope.placeRelative()</code>
+      . As a result, the
+      <code translate="no" dir="ltr">PlacementScope.place()</code>
+      method will not automatically mirror the position in right-to-left contexts anymore. If this is desired, use
+      <code translate="no" dir="ltr">PlacementScope.placeRelative()</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/I873ac827e6c4d4bf6c85a80b7128174c61602945">I873ac</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/162916675">b/162916675</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">state { ... }</code>
+      composable is now deprecated in favor of explicit calls to
+      <code translate="no" dir="ltr">remember { mutableStateOf(...) }</code>
+      for clarity. This reduces the overall API surface and number of concepts for state management, and matches the
+      <code translate="no" dir="ltr">by mutableStateOf()</code>
+      pattern for class property delegation. (
+      <a href="https://android-review.googlesource.com/#/q/Ia57278556d4f35ecf2cf5e6e30888b0d1f1f8012">Ia5727</a>
+      )
+    </li>
+  </ul>

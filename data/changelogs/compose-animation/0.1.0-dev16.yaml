@@ -1,0 +1,100 @@
+libraryId: compose-animation
+groupId: androidx.compose
+version: 0.1.0-dev16
+releaseDate: 2020-08-05
+#language=html
+changelogHtml: |
+  <h3 id="0.1.0-dev16" data-text="Version 0.1.0-dev16" tabindex="-1">Version 0.1.0-dev16</h3>
+  <p>August 5, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.animation:animation:0.1.0-dev16</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.animation:animation-core:0.1.0-dev16</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9c74ed7b07d1c18da576f179d55e568ca12973df..316f882e649c600372170f013a18515f590f490d/ui">Version 0.1.0-dev16 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Built-in vector converters to convert built-in units are now accessible via
+      <code translate="no" dir="ltr">Foo.VectorConverter</code>
+      . e.g.
+      <code translate="no" dir="ltr">Dp.VectorConverter</code>
+      ,
+      <code translate="no" dir="ltr">Color.VectorConverter</code>
+      ,
+      <code translate="no" dir="ltr">Float.VectorConverter</code>
+      , etc (
+      <a href="https://android-review.googlesource.com/#/q/I3e2734f9712d94cc664184d35d495edab50bda53">I3e273</a>
+      )
+    </li>
+    <li>
+      Support end listener in
+      <code translate="no" dir="ltr">Modifier.animateContentSize()</code>
+      such that when size change animation finishes, the listener will be notified, along with start/end size of the animation. (
+      <a href="https://android-review.googlesource.com/#/q/I277b2b90f1ab5c6473cfb1e2de56e0ae7e67245d">I277b2</a>
+      )
+    </li>
+    <li>
+      New animateContentSize modifier that animates the layout size change of its child modifier (
+      <a href="https://android-review.googlesource.com/#/q/Ieffdccd0fd0545ed139ecc20ef7baaebcda6d9d2">Ieffdc</a>
+      )
+    </li>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">MonotonicFrameAnimationClock</code>
+        that enables you to use a MonotonicFrameClock as an
+        <code translate="no" dir="ltr">AnimationClockObservable</code>
+        to bridge the gap between the new coroutines based clocks and APIs that still use the old callback based clocks.
+      </p>
+
+      <p>
+        The
+        <code translate="no" dir="ltr">MonotonicFrameClock</code>
+        equivalent of
+        <code translate="no" dir="ltr">ManualAnimationClock</code>
+        is now
+        <code translate="no" dir="ltr">ManualFrameClock</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/I111c7b7182a1495f95eab1bb808d3acd6af82447">I111c7</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/161247083">b/161247083</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      The APIs for right-to-left support has been updated. LayoutDirectionAmbient has been added, which can be used to read and change the layout direction. Modifier.rtl and Modifier.ltr have been removed. (
+      <a href="https://android-review.googlesource.com/#/q/I080b3cb674dc32af5fbe7e696228ac21f0720d72">I080b3</a>
+      )
+    </li>
+    <li>
+      Require type T to be explicitly specified for transitionDefinition. (
+      <a href="https://android-review.googlesource.com/#/q/I1adedb34525ebb8c079a77a9af2636f1cb8339f7">I1aded</a>
+      )
+    </li>
+    <li>
+      foundation.shape.corner package were flatten to foundation.share (
+      <a href="https://android-review.googlesource.com/#/q/I464919cb74f8941c2a02f14dea0aa417febf3691">I46491</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161887429">b/161887429</a>
+      )
+    </li>
+    <li>
+      Modifier.plus has been deprecated, use Modifier.then instead. 'Then' has a stronger signal of ordering, while also prohibits to type
+      <code translate="no" dir="ltr">Modifier.padding().background() + anotherModifier</code>
+      , which breaks the chain and harder to read (
+      <a href="https://android-review.googlesource.com/#/q/Iedd587edbed0ba964ef203a66b98be7297147bd7">Iedd58</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161529964">b/161529964</a>
+      )
+    </li>
+    <li>
+      Modifier.drawBackground has been renamed to Modifier.background (
+      <a href="https://android-review.googlesource.com/#/q/I1367723fce0e07418ed4ab391fe20c69aa092f53">I13677</a>
+      )
+    </li>
+  </ul>

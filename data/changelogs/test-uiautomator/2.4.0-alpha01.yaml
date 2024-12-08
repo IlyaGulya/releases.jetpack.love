@@ -1,0 +1,73 @@
+libraryId: test-uiautomator
+groupId: androidx.test
+version: 2.4.0-alpha01
+releaseDate: 2024-06-26
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0-alpha01" data-text="Version 2.4.0-alpha01" tabindex="-1">Version 2.4.0-alpha01</h3>
+  <p>June 26, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.test.uiautomator:uiautomator:2.4.0-alpha01</code>
+    is released. Version 2.4.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4f8d91d904a453dc1b9661cb43ea02b62436a1e6..948119be341fa4affc055418e695d8c4c7e5e2e4/test/uiautomator/uiautomator">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Deprecated
+      <code translate="no" dir="ltr">Configurator#getKeyInjectionDelay</code>
+      and
+      <code translate="no" dir="ltr">setKeyInjectionDelay</code>
+      as the parameter is unused now that text is always injected directly rather than by key presses. (
+      <a href="https://android-review.googlesource.com/#/q/I3bcc58975300f83c2e49b41ece57b7e2f0385265">I3bcc5</a>
+      ).
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Updated the delay between
+      <code translate="no" dir="ltr">UiObject2</code>
+      motion events to account for dynamic refresh rates (i.e. Smooth Display) (
+      <a href="https://android-review.googlesource.com/#/q/I43f12c4d40dc21f000983572232796d5d6439330">I43f12</a>
+      ).
+    </li>
+    <li>
+      Reduced flakiness from accessibility node staleness on certain UIs by periodically invalidating the accessibility cache (
+      <a href="https://android-review.googlesource.com/#/q/I3be25f8a627766be1fbb2760d2188ae69fda5ae9">I3be25</a>
+      ).
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">StaleObjectException</code>
+      s occurring when calling
+      <code translate="no" dir="ltr">toString</code>
+      or
+      <code translate="no" dir="ltr">hashCode</code>
+      on a stale
+      <code translate="no" dir="ltr">UiObject2</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I38ea13d4040879c0fe896434d760565de99ff50a">I38ea1</a>
+      ).
+    </li>
+    <li>
+      Improved
+      <code translate="no" dir="ltr">UiWatcher</code>
+      performance by skipping unnecessary
+      <code translate="no" dir="ltr">waitForIdle</code>
+      calls. (
+      <a href="https://android-review.googlesource.com/#/q/I8c65ead246dee1d1d99562e0f7d934a9fa30db16">I8c65e</a>
+      ).
+    </li>
+    <li>
+      Fixed javadoc inaccuracies, especially to clarify when each
+      <code translate="no" dir="ltr">Configurator</code>
+      parameter is used. (
+      <a href="https://android-review.googlesource.com/#/q/Ie10b14bdc4d5010a360e285374f1835be6f5f8f3">Ie10b1</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I7163105da85bf3cb8a2cb7f6f9c1fdfb94ec8f4f">I71631</a>
+      ).
+    </li>
+  </ul>
+  <h2 id="version_230_3" data-text="Version 2.3.0" tabindex="-1">Version 2.3.0</h2>

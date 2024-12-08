@@ -1,0 +1,102 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.3.0
+releaseDate: 2024-05-14
+#language=html
+changelogHtml: |
+  <h3 id="3.3.0" data-text="Version 3.3.0" tabindex="-1">Version 3.3.0</h3>
+  <p>May 14, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.3.0</code>
+    is released. Version 3.3.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c6ffa207f646ff44d4ca47694e4ef62043d2fdd3..656d55d844d23f2561b23f4970d65e4b7f63debc/paging">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 3.2.0</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">PagingDataPresenter</code>
+      is now a public class. Multiplatform presenters can now be built on top of
+      <code translate="no" dir="ltr">PagingDataPresenter</code>
+      rather than requiring internal Paging APIs or
+      <code translate="no" dir="ltr">paging-runtime</code>
+      ’s
+      <code translate="no" dir="ltr">AsyncPagingDataDiffer</code>
+      .
+    </li>
+    <li>
+      Added new
+      <code translate="no" dir="ltr">LoadStates</code>
+      and
+      <code translate="no" dir="ltr">CombinedLoadStates</code>
+      helper methods in
+      <code translate="no" dir="ltr">hasError</code>
+      and
+      <code translate="no" dir="ltr">isIdle</code>
+      to check if
+      <code translate="no" dir="ltr">LoadStates</code>
+      is in Error or
+      <code translate="no" dir="ltr">NotLoading</code>
+      state, respectively. Also added a new
+      <code translate="no" dir="ltr">awaitNotLoading()</code>
+      Kotlin extension method on
+      <code translate="no" dir="ltr">Flow&lt;CombinedLoadStates&gt;</code>
+      that waits until a load has settled into either
+      <code translate="no" dir="ltr">NotLoading</code>
+      or Error state.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PagingData.empty()</code>
+      now dispatches
+      <code translate="no" dir="ltr">NotLoading</code>
+      states by default unless custom
+      <code translate="no" dir="ltr">LoadStates</code>
+      are passed to its constructor. This departs from existing behavior where it doesn't dispatch
+      <code translate="no" dir="ltr">LoadStates</code>
+      when submitted to a
+      <code translate="no" dir="ltr">PagingDataAdapter</code>
+      or it dispatches Loading states when collected as
+      <code translate="no" dir="ltr">LazyPagingItems</code>
+      . When collected as
+      <code translate="no" dir="ltr">LazyPagingItems</code>
+      , it will now also display an empty list immediately upon initial composition.
+    </li>
+  </ul>
+  <p><strong>Kotlin Multiplatform Compatibility</strong></p>
+  <p>
+    Paging now ships artifacts compatible with Kotlin Multiplatform, thanks in large part to upstreamed work from CashApp's
+    <a href="https://github.com/cashapp/multiplatform-paging">multiplatform-paging</a>
+    project.
+  </p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">paging-common</code>
+      has moved all Paging 3 APIs to
+      <code translate="no" dir="ltr">common</code>
+      and is now compatible with jvm and iOS in addition to Android.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">paging-testing</code>
+      has moved its code to
+      <code translate="no" dir="ltr">common</code>
+      and is now compatible with jvm and iOS in addition to Android.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">paging-compose</code>
+      has moved its code to
+      <code translate="no" dir="ltr">common</code>
+      and ships an Android artifact, matching the multiplatform support of
+      <code translate="no" dir="ltr">androidx.compose</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">paging-runtime</code>
+      ,
+      <code translate="no" dir="ltr">paging-guava</code>
+      ,
+      <code translate="no" dir="ltr">paging-rxjava2</code>
+      , and
+      <code translate="no" dir="ltr">paging-rxjava3</code>
+      will remain Android only.
+    </li>
+  </ul>

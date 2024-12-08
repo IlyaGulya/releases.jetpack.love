@@ -1,0 +1,445 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.0.0-alpha11
+releaseDate: 2021-01-28
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha11" data-text="Version 1.0.0-alpha11" tabindex="-1">Version 1.0.0-alpha11</h3>
+  <p>January 28, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.0.0-alpha11</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6207afb1646d302c5d29c2c67d332b48db87fb27..6950aab50fe6c9f7e9d97cf865161f2d3999eb9e/compose/ui">Version 1.0.0-alpha11 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      WithConstraints was reworked as BoxWithConstraints and moved to foundation.layout. (
+      <a href="https://android-review.googlesource.com/#/q/I9420b9e0fbea7ee048b23a6ef328165bbb11e8a8">I9420b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173387208">b/173387208</a>
+      )
+    </li>
+    <li>
+      Key.DPadUp is deprecated. Use Key.DirectionUp instead. (
+      <a href="https://android-review.googlesource.com/#/q/Iab3358b1d0172731601009df117974ca02d2e5a6">Iab335</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177954892">b/177954892</a>
+      )
+    </li>
+    <li>
+      Owner interface from now on internal. (
+      <a href="https://android-review.googlesource.com/#/q/If8e354bd05ef6227abf5ac0765619332752ca8e1">If8e35</a>
+      )
+    </li>
+    <li>
+      Added FocusManager.moveFocus() API to move focus programmatically. (
+      <a href="https://android-review.googlesource.com/#/q/I045cb347ad697c00cffbd97988df4fd8b6179527">I045cb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177681839">b/177681839</a>
+      )
+    </li>
+    <li>
+      Changes PopupPositionProvider to use window-relative coordinates, not global coordinates. Renames parentGlobalBounds to anchorBounds, and changes windowGlobalBounds to be windowSize: IntSize (
+      <a href="https://android-review.googlesource.com/#/q/I2994a280d3d5c2eafa3a7027f7df5403acaa9cc9">I2994a</a>
+      )
+    </li>
+    <li>
+      Duration and Uptime will be replace with Long milliseconds, and this step removes the dependency of pointer input on those classes. (
+      <a href="https://android-review.googlesource.com/#/q/Ia33b2d6835861501019481b388cb2c99441c346c">Ia33b2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175142755">b/175142755</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177420019">b/177420019</a>
+      )
+    </li>
+    <li>
+      AmbientSavedStateRegistryOwner was added similarly to already existing AmbientLifecycleOwner and AmbientViewModelStoreOwner (
+      <a href="https://android-review.googlesource.com/#/q/I9a3e829262e30c950ac07dfc4f89eeda632a729f">I9a3e8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/176756365">b/176756365</a>
+      )
+    </li>
+    <li>
+      Updated vector graphics API to support parsing of tinting applied to the root of vector graphics. (
+      <a href="https://android-review.googlesource.com/#/q/Id9d53298227fdce798db2968f79d1d27c57c1312">Id9d53</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177210509">b/177210509</a>
+      )
+    </li>
+    <li>
+      Added toolType to PointerInputChange to differentiate devices (
+      <a href="https://android-review.googlesource.com/#/q/Iac78769d346a4a29be581cec54ab380d4901452e">Iac787</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175142755">b/175142755</a>
+      )
+    </li>
+    <li>
+      AmbientWindowManager is renamed to AmbientWindowInfo (
+      <a href="https://android-review.googlesource.com/#/q/I2686a353413875efef5899b1122b75d12ee43af6">I2686a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177084714">b/177084714</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177084983">b/177084983</a>
+      )
+    </li>
+    <li>
+      Deprecated global coordinates methods and made new window-based coordinates methods. (
+      <a href="https://android-review.googlesource.com/#/q/Iee284dee7dbc4226493feb144d446a0289b7c83e">Iee284</a>
+      )
+    </li>
+    <li>
+      Added Modifier.toolingGraphicsLayer which adds a graphics layer modifier when inspection is turned on. (
+      <a href="https://android-review.googlesource.com/#/q/I315df592b0903a783dcd48deff73f31beb63b56c">I315df</a>
+      )
+    </li>
+    <li>
+      FocusRequester.createRefs is now marked as experimental as it might change. (
+      <a href="https://android-review.googlesource.com/#/q/I2d898d56ed0ac33f5a08253509cfd811ee0e8a5d">I2d898</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177000821">b/177000821</a>
+      )
+    </li>
+    <li>
+      SemanticsPropertyReceiver.hidden was renamed to invisibleToUser and marked @ExperimentalComposeUiApi. AccessibilityRangeInfo was renamed to ProgressBarRangeInfo. stateDescriptionRange was renamed to progressBarRangeInfo. AccessibilityScrollState was renamed to ScrollAxisRange. horizontalAccessibilityScrollState was renamed to horizontalScrollAxisRange. verticalAccessibilityScrollState was renamed to verticalScrollAxisRange. (
+      <a href="https://android-review.googlesource.com/#/q/Id31487aa7cbddf4d3d163999afae458cdab4dc8a">Id3148</a>
+      )
+    </li>
+    <li>
+      Removed PointerInputData and modified PointerInputChange to give it all of PointerInputData's fields. Made PointerInputEvent and PointerInputEventData internal because they aren't used in any public API. (
+      <a href="https://android-review.googlesource.com/#/q/Ifff970815031482a0ac1d5dab42a6156e10154b1">Ifff97</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175142755">b/175142755</a>
+      )
+    </li>
+    <li>
+      Updated GraphicsLayerScope implement density to support conversions of dp into raw pixels. (
+      <a href="https://android-review.googlesource.com/#/q/Ied528ab0f8c3cb058664ace248e93942ef374c74">Ied528</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/176819695">b/176819695</a>
+      )
+    </li>
+    <li>
+      Updated matrix API to follow row major ordering and provide index constants to assist with conversions between different matrix representations to match framework conversion logic between SkMatrix and Matrix4 internally. (
+      <a href="https://android-review.googlesource.com/#/q/I432e61366431db5d7e00f8e9a2e1cdbf412dc6ce">I432e6</a>
+      )
+    </li>
+    <li>
+      Removed experimental monotonicFrameAnimationClockOf methods (
+      <a href="https://android-review.googlesource.com/#/q/Ib753f5d3cb77dabc7727f677a73bb7da8dae5fe2">Ib753f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170708374">b/170708374</a>
+      )
+    </li>
+    <li>
+      Move String.fintPrecedingBreak and String.fingFollowingBreak to InternalTextApi. (
+      <a href="https://android-review.googlesource.com/#/q/I657c4531059f27c8609d0f458dc6ddfab3488ad3">I657c4</a>
+      )
+    </li>
+    <li>
+      androidx.compose.ui.util.isSurrogatePair has been removed from public API. (
+      <a href="https://android-review.googlesource.com/#/q/Ia9494b64647137dcb10508878deb46f30685344e">Ia9494</a>
+      )
+    </li>
+    <li>
+      Renamed TransformedText.transformedText to TransformedText.text
+      <ul>
+        <li>
+          TransformedText is no longer a data class (
+          <a href="https://android-review.googlesource.com/#/q/Ie672ad03d475ce6a9bf21b8c74a431592b01040b">Ie672a</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">data class</code>
+      from the following classes:
+      <ul>
+        <li>InlineTextContent</li>
+        <li>
+          LocaleList (
+          <a href="https://android-review.googlesource.com/#/q/I605c7a0e257f0a52db29f8d82ee449e4ed2c9d8e">I605c7</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      The following classes are not data classes anymore:
+      <ul>
+        <li>AnnotatedString</li>
+        <li>ParagraphStyle</li>
+        <li>SpanStyle</li>
+        <li>TextStyle</li>
+        <li>FontWeight</li>
+        <li>TextDecoration</li>
+        <li>TextGeometricTransform</li>
+        <li>TextIndex</li>
+        <li>TextLayoutResult</li>
+        <li>
+          TextLayoutInput (
+          <a href="https://android-review.googlesource.com/#/q/Iaff995cc24f578b5ffd397aa12a6c98b75182e80">Iaff99</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Changed VisualTransformation to be a functional interface (
+      <a href="https://android-review.googlesource.com/#/q/I3bba482675b65f234f5d46676f1e70853b21c051">I3bba4</a>
+      )
+    </li>
+    <li>
+      Added a function reference parameter type (
+      <a href="https://android-review.googlesource.com/#/q/I5e1bdbe66deb2528a7e152113818a2d7ff5303e6">I5e1bd</a>
+      )
+    </li>
+    <li>
+      Add transformed bounds to InspectorNode (
+      <a href="https://android-review.googlesource.com/#/q/Ice42fc685090449cb94241b46711e904a994d427">Ice42f</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      onCommit, onDispose, and onActive have been deprecated in favor of SideEffect and DisposableEffect APIs (
+      <a href="https://android-review.googlesource.com/#/q/If760ec2a190c4121a35006695d953010ac22a43a">If760e</a>
+      )
+    </li>
+    <li>
+      <p>Changes to factory functions for Font/FontFamily/Typeface</p>
+
+      <ul>
+        <li>Added factory functions that start with capital letter</li>
+        <li>Deprecated previous factory functions with lowercase first letters</li>
+        <li>New factory functions return the FontFamily instead of subclasses</li>
+        <li>Hid constructors of the subclasses, so that they can only be constructed via factory functions.</li>
+        <li>
+          Renamed Font.asFontFamily to Font.toFontFamily (
+          <a href="https://android-review.googlesource.com/#/q/I42aa7f9fb7e11eb708bc9e9828f65c57c6c9320b">I42aa7</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        Introduced
+        <code translate="no" dir="ltr">ComposeContentTestRule</code>
+        , which extends
+        <code translate="no" dir="ltr">ComposeTestRule</code>
+        and defines
+        <code translate="no" dir="ltr">setContent</code>
+        , which has been removed from
+        <code translate="no" dir="ltr">ComposeTestRule</code>
+        . Added a factory method
+        <code translate="no" dir="ltr">createEmptyComposeRule()</code>
+        that returns a
+        <code translate="no" dir="ltr">ComposeTestRule</code>
+        and does not launch an Activity for you. Use this when you want to launch your Activity during your test, e.g. using
+        <code translate="no" dir="ltr">ActivityScenario.launch</code>
+        (
+        <a href="https://android-review.googlesource.com/#/q/I9d78283c27d87a3135071884e115bbd814492c47">I9d782</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/174472899">b/174472899</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        animateAsState is now animateFooAsState, where Foo is the type of the variable being animated. e.g. Float, Dp, Offset, etc (
+        <a href="https://android-review.googlesource.com/#/q/Ie7e25c8978996334b0dcc757b07df1434ff346aa">Ie7e25</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Content description parameter has been added to the Image and Icon. It is used to provide description to the accessibility services (
+        <a href="https://android-review.googlesource.com/#/q/I2ac4c1058ed0bf1e5756cc6cdae546806974409e">I2ac4c</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Remove displaySize as it should be avoided. Typically it is better to use size of onRoot() or window size at least. (
+        <a href="https://android-review.googlesource.com/#/q/I62db4535f36b09ab6f0b874c221ece0b352db962">I62db4</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        OnSizeChanged was reporting the size of the layout's contents. It now reports the size at its position within the modifier chain. (
+        <a href="https://android-review.googlesource.com/#/q/I36b78f445cf90b10f3df4ea6251bc19392bb7c11">I36b78</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/177562900">b/177562900</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        The emit() API and all overloads have been deprecated and renamed to ComposeNode. The APIs are identical, just a different name in order to follow the naming conventions of Compose (
+        <a href="https://android-review.googlesource.com/#/q/I4137beb6f23fb43350bf7badcbe790f59fa85e2c">I4137b</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>TextFieldValue accepts AnnotatedString. However this is an API only change and multi-style text editing is not implemented yet.</p>
+
+      <ul>
+        <li>
+          Removed
+          <code translate="no" dir="ltr">initial</code>
+          from EditingBuffer constructor parameters. (
+          <a href="https://android-review.googlesource.com/#/q/I326d534a69911fdd39097cdb42e9341ee7987130">I326d5</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        invalidate and compositionReference() are now deprecated in favor of currentRecomposeScope and rememberCompositionReference respectively. (
+        <a href="https://android-review.googlesource.com/#/q/I583a8efa6e3d3bc303792b825b948b3722ada103">I583a8</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        AnnotatedString is changed to extend from kotlin.CharSequence. Therefore length and subSequence are now instance functions, and extension functions are removed. (
+        <a href="https://android-review.googlesource.com/#/q/Iaf429c94da9f1867cc0815cb26933961a71cc629">Iaf429</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>RememberObserver replaces CompositionLifecycleObserver and CompositionLifecycleObserver is now deprecated.</p>
+
+      <p>
+        <code translate="no" dir="ltr">RememberObserver</code>
+        is a replacement for
+        <code translate="no" dir="ltr">CompositionLifecycleObserver</code>
+        with modified semantics and renamed methods. Changing to the new API can be done mechanically for objects that are only remembered once which is, and continues to be, the recommended practice. However, if a reference was remembered more than once in a composition
+        <code translate="no" dir="ltr">onRemembered</code>
+        is called for each reference where
+        <code translate="no" dir="ltr">onEnter</code>
+        is only called once.
+        <code translate="no" dir="ltr">onEnter</code>
+        was called multiple time if the object was used in subcompositions, such as
+        <code translate="no" dir="ltr">WithConstraints</code>
+        and
+        <code translate="no" dir="ltr">Scaffold</code>
+        making the single
+        <code translate="no" dir="ltr">onEnter</code>
+        call guarantee unreliable and it was removed for
+        <code translate="no" dir="ltr">RememberObserver</code>
+        .
+      </p>
+
+      <p>
+        <code translate="no" dir="ltr">RememberObserver</code>
+        adds
+        <code translate="no" dir="ltr">onAbandoned</code>
+        which is called if the
+        <code translate="no" dir="ltr">RememberObserver</code>
+        instance is returned from the callback passed to
+        <code translate="no" dir="ltr">remember</code>
+        but was not remembered in the composition state and, therefore, will never have
+        <code translate="no" dir="ltr">onRemembered</code>
+        called. This can occur if an exception terminates composition before completing or the composition is discarded because the state is was producing a composition for is no longer current or otherwise is no longer needed. If the instance of
+        <code translate="no" dir="ltr">RememberObserver</code>
+        following the single reference recommendation above is tracking an external resource both
+        <code translate="no" dir="ltr">onForgotten</code>
+        and
+        <code translate="no" dir="ltr">onAbandoned</code>
+        each indicate that the resource is no longer needed. If the object is tracking work started or resources allocated in
+        <code translate="no" dir="ltr">onRemembered</code>
+        ,
+        <code translate="no" dir="ltr">onAbandoned</code>
+        can be ignored as it will not be called if
+        <code translate="no" dir="ltr">onRemembered</code>
+        is called. (
+        <a href="https://android-review.googlesource.com/#/q/I02c364f517507abd6a5c071fb527192ad1d77239">I02c36</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Deprecated arithmetic operations between 2 or more TextUnits. Deprecated TextUnit.Sp and TextUnit.Em functions in preference to the extension functions such as Int.sp and Int.em. (
+        <a href="https://android-review.googlesource.com/#/q/I4836990929ce6414615d6c5ebca83b5708a9753b">I48369</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Resources in libraries with no explicitly declared public resources (ex. via public.xml) are now private by default. (
+        <a href="https://android-review.googlesource.com/#/q/Ia1dcca1ad5c65c1ab90b97c22589e7392161fd62">Ia1dcc</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/170882230">b/170882230</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        ScrollableColumn/Row were deprecated. Using ScrollableColumn is less efficient compared to LazyColumn when you have a large scrolling content because with LazyColumn we can only compose/measure/draw visible elements. To prevent users from going the inefficient way we decided to deprecate ScrollableColumn and ScrollableRow and promote usages of LazyColumn and LazyRow instead. Users can still decide they don't need the lazy behaviour and use the modifiers directly like this: Column(Modifier.verticalScroll(rememberScrollState())) (
+        <a href="https://android-review.googlesource.com/#/q/Ib976b534e063a86a2c587762b786a23e32cc61b6">Ib976b</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/170468083">b/170468083</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        New
+        <code translate="no" dir="ltr">items(count: Int)</code>
+        factory method for scope of LazyColumn/LazyRow/LazyVerticalGrid.
+        <code translate="no" dir="ltr">items(items: List)</code>
+        and
+        <code translate="no" dir="ltr">itemsIndexed(items: List)</code>
+        are now extension functions so you have to manually import them when used. New extension overloads for Arrays:
+        <code translate="no" dir="ltr">items(items: Array)</code>
+        and
+        <code translate="no" dir="ltr">itemsIndexed(Array)</code>
+        (
+        <a href="https://android-review.googlesource.com/#/q/I803fc5f25fac55855c710ff5064f11525f7b6010">I803fc</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/175562574">b/175562574</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>Please use ImeAction.None instead of ImeAction.NoAction</p>
+
+      <ul>
+        <li>
+          Please use ImeAction.Default instead of ImeAction.Unspecified (
+          <a href="https://android-review.googlesource.com/#/q/Ie1bcc7bc3828c757e497b85c4dd70d37764f616f">Ie1bcc</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        Leverage TestCoroutineDispatcher in testing (
+        <a href="https://android-review.googlesource.com/#/q/I532b68e37ea6f72964fdcc267e397d285cffd9ad">I532b6</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Renamed TextInputService.onStateUpdated as updateState (
+        <a href="https://android-review.googlesource.com/#/q/Id4853b777bb81a4645d1b41b5dff874322949022">Id4853</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        TransitionDefinition-based Transition has been deprecated (
+        <a href="https://android-review.googlesource.com/#/q/I0ac57acd13386d028dfe0840e8ce509362cf107e">I0ac57</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        TextUnitType.Inherit is removed. Please use TextUnitType.Unspecified instead. (
+        <a href="https://android-review.googlesource.com/#/q/I9ff64d3a870fe3b14582de5c18f82b01ba6f91b4">I9ff64</a>
+        )
+      </p>
+    </li>
+  </ul>

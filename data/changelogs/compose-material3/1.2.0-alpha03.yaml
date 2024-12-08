@@ -1,0 +1,159 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.2.0-alpha03
+releaseDate: 2023-06-21
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha03" data-text="Version 1.2.0-alpha03" tabindex="-1">Version 1.2.0-alpha03</h3>
+  <p>June 21, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.2.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c5bf9bc40dd5d9f0b3f34e7273ac0d4e4f05c41d..3b5b931546a48163444a9eddc533489fcddd7494/compose/material3">Version 1.2.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">includeFontPadding</code>
+      is now
+      <code translate="no" dir="ltr">false</code>
+      by default in Material 3 typography. The default line height style has also been changed to
+      <code translate="no" dir="ltr">Trim.None</code>
+      and
+      <code translate="no" dir="ltr">Alignment.Center</code>
+      , and explicit
+      <code translate="no" dir="ltr">lineHeight</code>
+      (in sp) have been added to the
+      <code translate="no" dir="ltr">TextStyle</code>
+      s of
+      <code translate="no" dir="ltr">Typography</code>
+      . Consult
+      <a href="https://developer.android.com/jetpack/compose/text/style-paragraph#adjust-line-height">the API docs</a>
+      if you want to customize these values, and see
+      <a href="https://medium.com/androiddevelopers/fixing-font-padding-in-compose-text-768cd232425b">the blog post</a>
+      for an in-depth explainer of these changes. (
+      <a href="https://android-review.googlesource.com/#/q/I6266fefa603c4079ec506a53d1372cebcc8dc50e">I6266f</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Icabc31f64e23ba0b8b92c909a8df1fe5f72ce9ed">Icabc3</a>
+      )
+    </li>
+  </ul>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added an overload for
+      <code translate="no" dir="ltr">RangeSlider</code>
+      that is a stateful version of the component. Created
+      <code translate="no" dir="ltr">RangeSliderState</code>
+      that holds all of the information for the current active track, the measurements of the components of the
+      <code translate="no" dir="ltr">RangeSlider</code>
+      , and the drag and gesture logic. (
+      <a href="https://android-review.googlesource.com/#/q/I8c270fd01856f713bb5a40bf356f2875e64fd6e1">I8c270</a>
+      )
+    </li>
+    <li>
+      Search bar now supports shadows via the newly added
+      <code translate="no" dir="ltr">shadowElevation</code>
+      parameter. (
+      <a href="https://android-review.googlesource.com/#/q/Ia5369b93f692ff1289148eb13a0fd0c44af8ec4e">Ia5369</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/271040353">b/271040353</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ColorScheme</code>
+      now supports new
+      <a href="https://material.io/blog/tone-based-surface-color-m3">
+        <code translate="no" dir="ltr">SurfaceContainer</code>
+        roles
+      </a>
+      .
+    </li>
+    <li>
+      Surface tonal elevation overlay can now be disabled with the
+      <code translate="no" dir="ltr">LocalTonalElevationEnabled</code>
+      composition local. (
+      <a href="https://android-review.googlesource.com/#/q/Ic203c029337ab0892d1efdbecef069ad3c771f46">Ic203c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/277774590">b/277774590</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Open the component colors constructors. (
+      <a href="https://android-review.googlesource.com/#/q/I8c4a6ce56fb4a77a1e3eb17c6cad139b16bdc6ff">I8c4a6</a>
+      )
+    </li>
+    <li>
+      Adding focusable parameter to both tooltip APIs, so that developers can have the tooltip consume touch events or not. Be cautious that this might break accessibility focus automatic traversal. (
+      <a href="https://android-review.googlesource.com/#/q/Ie32d8060e23253e7e7763ac882b07c8f54b113a3">Ie32d8</a>
+      )
+    </li>
+    <li>
+      Optimized accessibility for performance and memory allocations. (
+      <a href="https://android-review.googlesource.com/#/q/Iede48198c2709b0736a39287ebc8f082d3869ae2">Iede48</a>
+      )
+    </li>
+    <li>
+      Expose
+      <code translate="no" dir="ltr">DefaultSizeClasses</code>
+      and create
+      <code translate="no" dir="ltr">StandardSizeClasses</code>
+      for
+      <code translate="no" dir="ltr">WindowSizeClasses</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I9183896b65cae68d142f0d4c2e8a023a958eb082">I91838</a>
+      )
+    </li>
+    <li>
+      change
+      <code translate="no" dir="ltr">WindowWidth/HeightSizeClass</code>
+      to float value classes (
+      <a href="https://android-review.googlesource.com/#/q/Ie686e093b760eb4e7bc055b03b848b026221554a">Ie686e</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Scaffold's
+      <code translate="no" dir="ltr">contentWindowInsets</code>
+      parameter now respects consumed window insets. Note that the behavior of content padding based on
+      <code translate="no" dir="ltr">topBar</code>
+      and
+      <code translate="no" dir="ltr">bottomBar</code>
+      remains unchanged when these parameters are provided. (
+      <a href="https://android-review.googlesource.com/#/q/I08b739c22d2f2ac541801ae92e466ae41f265ff4">I08b73</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/264601542">b/264601542</a>
+      )
+    </li>
+    <li>
+      Fix the alignment of the center top app bar to ensure that a long title doesn't render over the action icons or the navigation icon. (
+      <a href="https://android-review.googlesource.com/#/q/I4369f6c51c711129bb30b1de58684131b02499ae">I4369f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/236994621">b/236994621</a>
+      )
+    </li>
+    <li>
+      Tab positions now enforce a minimum content width of 24.dp. This provides an accessible touch target for tab indicators. (
+      <a href="https://android-review.googlesource.com/#/q/Id8861dce93609e920311f95b31151a778cc06222">Id8861</a>
+      )
+    </li>
+    <li>
+      Dynamic color palettes from
+      <code translate="no" dir="ltr">dynamicLightColorScheme</code>
+      and
+      <code translate="no" dir="ltr">dynamicDarkColorScheme</code>
+      now support new surface roles. (
+      <a href="https://android-review.googlesource.com/#/q/I1252ebaf56aa26fab7a211ffcb0df306ab831b4d">I1252e</a>
+      )
+    </li>
+    <li>
+      Updating the badge notification alignment to not clip when colliding with great grandparent. (
+      <a href="https://android-review.googlesource.com/#/q/Idf75aadf4f6e06f3697ca2ae8420681772f7b48e">Idf75a</a>
+      )
+    </li>
+  </ul>

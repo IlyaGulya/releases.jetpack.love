@@ -1,0 +1,131 @@
+libraryId: biometric
+groupId: androidx.biometric
+version: 1.1.0-alpha02
+releaseDate: 2020-08-19
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha02" data-text="Version 1.1.0-alpha02" tabindex="-1">Version 1.1.0-alpha02</h3>
+  <p>August 19, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.biometric:biometric:1.1.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b6054a1a7396b962ac2c6d80d21053cf9d2f02db..96eb302ee1740ba656c90c9fb27df3723a1a89c1/biometric/biometric">Version 1.1.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">BiometricManager#canAuthenticate()</code>
+      may now return
+      <code translate="no" dir="ltr">BIOMETRIC_STATUS_UNKNOWN</code>
+      to indicate that the user
+      <em>may</em>
+      still be able to authenticate, or
+      <code translate="no" dir="ltr">BIOMETRIC_ERROR_UNSUPPORTED</code>
+      to indicate that a given authenticator combination is not supported by the device.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BiometricPrompt#authenticate()</code>
+      may now be used for device credential authentication with an associated
+      <code translate="no" dir="ltr">CryptoObject</code>
+      on Android 11 (API level 30) and above
+      <em>only</em>
+      .
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Made it optional to provide an explicit
+      <code translate="no" dir="ltr">Executor</code>
+      when constructing an instance of
+      <code translate="no" dir="ltr">BiometricPrompt</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6bb8ad575f02611ca235fe1ff3123a032f2e6d1d">I6bb8a</a>
+      )
+    </li>
+    <li>
+      Added the
+      <a href="https://developer.android.com/reference/android/hardware/biometrics/BiometricManager#canAuthenticate(int)"><code translate="no" dir="ltr">BiometricManager#canAuthenticate(int)</code></a>
+      method from Android 11. (
+      <a href="https://android-review.googlesource.com/#/q/Ia3f1c378e2d1638f872dfb0a18589d61d8ddb087">Ia3f1c</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">BiometricPrompt</code>
+      to add support for
+      <a href="https://developer.android.com/reference/android/hardware/biometrics/BiometricManager.Authenticators"><code translate="no" dir="ltr">BiometricManager.Authenticators</code></a>
+      constants from Android 11. (
+      <a href="https://android-review.googlesource.com/#/q/I39bd8917d35f8f38db52106a9a77d47af24a6d30">I39bd8</a>
+      )
+    </li>
+    <li>
+      Added the
+      <a href="https://developer.android.com/reference/android/hardware/biometrics/BiometricPrompt.AuthenticationResult#getAuthenticationType()"><code translate="no" dir="ltr">BiometricPrompt.AuthenticationResult#getAuthenticationType()</code></a>
+      method from Android 11. (
+      <a href="https://android-review.googlesource.com/#/q/Icfad54cdf7baa5719e54464e0d33fc6757bb12c2">Icfad5</a>
+      )
+    </li>
+    <li>
+      Added the
+      <a href="https://developer.android.com/reference/android/hardware/biometrics/BiometricPrompt#BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED"><code translate="no" dir="ltr">BiometricPrompt.ERROR_SECURITY_UPDATE_REQUIRED</code></a>
+      error code from Android 11. (
+      <a href="https://android-review.googlesource.com/#/q/I6610b1602ef48de1e093c2dd58d742257eaeb268">I6610b</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">BiometricPrompt.CryptoObject</code>
+      to support
+      <a href="https://developer.android.com/reference/android/security/identity/IdentityCredential"><code translate="no" dir="ltr">IdentityCredential</code></a>
+      on Android 11 (API level 30) and above
+      <em>only</em>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1d9f661240f8a5ce889ce5caef6c95933d60559d">I1d9f6</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed memory leaks reported by LeakCanary in
+      <code translate="no" dir="ltr">BiometricFragment</code>
+      and
+      <code translate="no" dir="ltr">BiometricViewModel</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/144919472">b/144919472</a>
+      )
+    </li>
+    <li>
+      Ensured that
+      <code translate="no" dir="ltr">BiometricViewModel</code>
+      will no longer call
+      <code translate="no" dir="ltr">MutableLiveData#setValue()</code>
+      from a background thread. (
+      <a href="https://issuetracker.google.com/issues/159983244">b/159983244</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">BiometricPrompt</code>
+      was not correctly handling temporary lockout on some API levels. (
+      <a href="https://android-review.googlesource.com/#/q/9acfce9decd30444242fbfee799ff509511817f3">9acfce9</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">BiometricPrompt</code>
+      would return the wrong error code for a device not secured with a screen lock credential on some API levels. (
+      <a href="https://issuetracker.google.com/issues/148626482">b/148626482</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">BiometricManager</code>
+      and
+      <code translate="no" dir="ltr">BiometricPrompt</code>
+      would return the wrong error codes for a device with no keyguard implementation on some API levels. (
+      <a href="https://android-review.googlesource.com/#/q/891c6e0c97fbe94b47a544994d8abd6162e583f8">891c6e0</a>
+      )
+    </li>
+  </ul>

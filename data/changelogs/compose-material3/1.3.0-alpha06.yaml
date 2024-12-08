@@ -1,0 +1,148 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.3.0-alpha06
+releaseDate: 2024-05-01
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha06" data-text="Version 1.3.0-alpha06" tabindex="-1">Version 1.3.0-alpha06</h3>
+  <p>May 1, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.3.0-alpha06</code>
+    is released. Version 1.3.0-alpha06 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/67004410fdbff19f90caa4cc43965ab21dca1943..fbd1ac175922f44c69a13545d194066ee428b342/compose/material3">these commits</a>
+    .
+  </p>
+  <p><strong>Breaking Changes</strong></p>
+  <ul>
+    <li>
+      <p>New pull-to-refresh APIs:</p>
+
+      <ul>
+        <li>
+          Simplified
+          <code translate="no" dir="ltr">PullToRefreshState</code>
+          to use fractional values instead of Dp units.
+        </li>
+        <li>
+          <code translate="no" dir="ltr">isRefreshing</code>
+          state is controlled by the user instead of
+          <code translate="no" dir="ltr">PullToRefreshState</code>
+          .
+        </li>
+        <li>
+          Separated out the nested scroll connection from
+          <code translate="no" dir="ltr">PullToRefreshState</code>
+          . It is handled by the new
+          <code translate="no" dir="ltr">PullToRefreshBox</code>
+          or
+          <code translate="no" dir="ltr">Modifier.pullToRefresh</code>
+          .
+        </li>
+        <li>
+          This update is a breaking change to previous experimental APIs. (
+          <a href="https://android-review.googlesource.com/#/q/I0adeb950063988d1a05aca7aa135ccd982431423">I0adeb</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/314496282">b/314496282</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/317177684">b/317177684</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/323787138">b/323787138</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/324573502">b/324573502</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/317177683">b/317177683</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">RippleConfiguration#isEnabled</code>
+      has been removed, and
+      <code translate="no" dir="ltr">LocalRippleConfiguration</code>
+      has been made nullable. To disable a ripple, instead of providing a
+      <code translate="no" dir="ltr">RippleConfiguration</code>
+      with
+      <code translate="no" dir="ltr">isEnabled = false</code>
+      , provide
+      <code translate="no" dir="ltr">null</code>
+      to
+      <code translate="no" dir="ltr">LocalRippleConfiguration</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I22725ce120f27f7dd0041bfabff5f3faff614ea9">I22725</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ModalBottomSheet</code>
+      more accurately draws scrim over status bar when edge to edge is enabled. Modal bottom sheet content can now consume window insets, allowing for visible content above the navigation bar.
+      <code translate="no" dir="ltr">ModalBottomSheet</code>
+      parameter
+      <code translate="no" dir="ltr">windowInsets</code>
+      renamed to
+      <code translate="no" dir="ltr">contentWindowInsets</code>
+      to specify where the insets will be applied, these are no longer tied to window logic.
+      <code translate="no" dir="ltr">contentWindowInsets</code>
+      type has been changed to a function which returns
+      <code translate="no" dir="ltr">WindowInsets</code>
+      , to allow it to be resolved within its new window. (
+      <a href="https://android-review.googlesource.com/#/q/I39630f2d9a1b159ef27fa62750ffa26b00e078a0">I39630</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/274872542">b/274872542</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/300280229">b/300280229</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/290893168">b/290893168</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PrimaryScrollableTabRow</code>
+      and
+      <code translate="no" dir="ltr">SecondaryScrollableTabRow</code>
+      now use custom layout instead of subcomposition, which should improve performance. (
+      <a href="https://android-review.googlesource.com/#/q/I991e05b5b44b3c8bf0cd0e80c4ab5fd0d580ba46">I991e0</a>
+      )
+    </li>
+    <li>
+      Text links got pressed state styling option in addition to normal styling, hovered and focused.
+      <code translate="no" dir="ltr">TextDefaults</code>
+      methods each got a
+      <code translate="no" dir="ltr">pressedStyle</code>
+      argument to support that. (
+      <a href="https://android-review.googlesource.com/#/q/Ic473f81fd32d95ad84d6bc452c8dcbf6de7ba4ba">Ic473f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/139312671">b/139312671</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Navigation drawer drag anchors now match the
+      <code translate="no" dir="ltr">drawerContent</code>
+      's width. (
+      <a href="https://android-review.googlesource.com/#/q/Ibc72f1f09657bbf2162f1ad609553dd7cc9f34ef">Ibc72f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/245355396">b/245355396</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">OutlinedTextField</code>
+      top padding for label now accounts for system font size. (
+      <a href="https://android-review.googlesource.com/#/q/Idc78176ca566364b041b5863aa477ada660d05a9">Idc781</a>
+      )
+    </li>
+    <li>
+      Fixed package location of
+      <code translate="no" dir="ltr">CalendarLocale</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ifa235f8e3562e2cba9a0a3a90a48e76930cc9fd0">Ifa235</a>
+      )
+    </li>
+    <li>
+      [Predictive Back] Update predictive back animations to use interpolation curve of (0.1, 0.1, 0, 1) (
+      <a href="https://android-review.googlesource.com/#/q/I2591a653d70f25e4da39b39bc92bb1ac94735d31">I2591a</a>
+      )
+    </li>
+  </ul>

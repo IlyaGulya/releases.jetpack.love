@@ -1,0 +1,40 @@
+libraryId: work
+groupId: androidx.work
+version: 2.1.0-beta01
+releaseDate: 2019-06-13
+#language=html
+changelogHtml: |
+  <h3 id="2.1.0-beta01" data-text="Version 2.1.0-beta01" tabindex="-1">Version 2.1.0-beta01</h3>
+  <p>June 13, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.1.0-beta01</code>
+    is released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5243b462794554b6dcc3f51793c5ef22531bb6ec..3aa279901a440d8a3a16c07c7e49361991097939/work">here</a>
+    .
+  </p>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      This version is dependent on the Java 8 programming language. Please read
+      <a href="/studio/write/java8-support">Use Java 8 language features</a>
+      to learn how to use it in your project.
+    </span>
+  </aside>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      WorkManager now depends on
+      <code translate="no" dir="ltr">Room 2.1.0</code>
+      , which should fix some database issues.
+    </li>
+    <li>Removed some startup disk I/O on the main thread.</li>
+    <li>
+      Fixed a potential deadlock in constraint tracking.
+      <a href="https://issuetracker.google.com/134361006">b/134361006</a>
+    </li>
+    <li>
+      Preemptively cancelled invalid jobs attributed to WorkManager.
+      <a href="https://issuetracker.google.com/134058261">b/134058261</a>
+    </li>
+    <li>Added some defensive calls to JobScheduler APIs for misbehaving devices.</li>
+  </ul>

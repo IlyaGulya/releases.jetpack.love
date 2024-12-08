@@ -1,0 +1,538 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.4.0-alpha01
+releaseDate: 2021-05-18
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0-alpha01" data-text="Version 2.4.0-alpha01" tabindex="-1">Version 2.4.0-alpha01</h3>
+  <p>May 18, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.4.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3a949c2a53232f2253802f435d043677db8cecba..66681ad83c328d0dd821b943bb3d375f02c1db61/navigation">Version 2.4.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">currentBackStackEntryAsFlow()</code>
+      method on
+      <code translate="no" dir="ltr">NavController</code>
+      provides a
+      <code translate="no" dir="ltr">Flow</code>
+      that emits whenever the current
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      changes. This flow can be used as an alternative to manually managing an
+      <code translate="no" dir="ltr">OnDestinationChangedListener</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I19c4a18a70cb04543b50a39fc9eb35daccb8fa69">I19c4a</a>
+      ,
+      <a href="https://github.com/androidx/androidx/pull/89">#89</a>
+      ,
+      <a href="https://issuetracker.google.com/163947280">b/163947280</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Multiple back stacks</strong></p>
+  <p>
+    The NavController is responsible for managing the back stack of destinations, adding destinations to the back stack when you
+    <code translate="no" dir="ltr">navigate()</code>
+    to them and removing them when you call
+    <code translate="no" dir="ltr">popBackStack()</code>
+    or trigger the system back button. The existing
+    <a href="/reference/kotlin/androidx/navigation/NavOptions"><code translate="no" dir="ltr">NavOptions</code></a>
+    class and the integration into
+    <code translate="no" dir="ltr">&lt;action&gt;</code>
+    entries in the navigation graph XML has been expanded to support saving and restoring the back stack. (
+    <a href="https://issuetracker.google.com/80029773">b/80029773</a>
+    )
+  </p>
+  <p>
+    As part of this change, the
+    <code translate="no" dir="ltr">NavigationUI</code>
+    methods of
+    <code translate="no" dir="ltr">onNavDestinationSelected()</code>
+    ,
+    <code translate="no" dir="ltr">BottomNavigationView.setupWithNavController()</code>
+    and
+    <code translate="no" dir="ltr">NavigationView.setupWithNavController()</code>
+    now automatically save and restore the state of popped destinations, enabling support for multiple back stacks without any code changes. When using Navigation with Fragments, this is the recommended way to integrate with multiple back stacks. (
+    <a href="https://android-review.googlesource.com/#/q/Ie07ca3089faca25e56e58293b49f32b795e1f30a">Ie07ca</a>
+    )
+  </p>
+  <p>The underlying APIs for saving and restoring the state are exposed via a number of surfaces:</p>
+  <ul>
+    <li>
+      <p>
+        In Navigation XML, the
+        <code translate="no" dir="ltr">&lt;action&gt;</code>
+        element can now use the boolean attributes of
+        <code translate="no" dir="ltr">app:popUpToSaveState</code>
+        and
+        <code translate="no" dir="ltr">app:restoreState</code>
+        to save the state of any destinations popped via
+        <code translate="no" dir="ltr">app:popUpTo</code>
+        and restore the state associated with the destination passed as the
+        <code translate="no" dir="ltr">app:destination</code>
+        :
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="XML"><code translate="no" dir="ltr">&lt;action
+  <span class="devsite-syntax-w">  </span>android:id=”@+id/swap_stack”
+  <span class="devsite-syntax-w">  </span>app:destination=”@id/second_stack”
+  <span class="devsite-syntax-w">  </span>app:restoreState=”true”
+  <span class="devsite-syntax-w">  </span>app:popUpTo=”@id/first_stack_start_destination”
+  <span class="devsite-syntax-w">  </span>app:popUpToSaveState=”true”<span class="devsite-syntax-w"> </span>/&gt;
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        In the
+        <a href="/reference/kotlin/androidx/navigation/package-summary#navoptions">
+          <code translate="no" dir="ltr">navOptions</code>
+          Kotlin DSL
+        </a>
+        , you can add the
+        <code translate="no" dir="ltr">restoreState</code>
+        boolean property and the
+        <code translate="no" dir="ltr">saveState</code>
+        boolean property on the
+        <a href="/reference/kotlin/androidx/navigation/NavOptionsBuilder#popupto">
+          <code translate="no" dir="ltr">popUpTo</code>
+          builder
+        </a>
+        :
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-c1">// Use the navigate() method that takes a navOptions DSL Builder</span>
+  <span class="devsite-syntax-n">navController</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">navigate</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">selectedBottomNavRoute</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">launchSingleTop</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kc">true</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">restoreState</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kc">true</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">popUpTo</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">navController</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">graph</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">startDestinationId</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">saveState</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kc">true</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        In manually building a
+        <code translate="no" dir="ltr">NavOptions</code>
+        object via the
+        <a href="/reference/kotlin/androidx/navigation/NavOptions.Builder"><code translate="no" dir="ltr">NavOptions.Builder</code></a>
+        , you can use the
+        <code translate="no" dir="ltr">setRestoreState()</code>
+        and new overload to
+        <code translate="no" dir="ltr">setPopUpTo()</code>
+        that takes an additional
+        <code translate="no" dir="ltr">saveState</code>
+        parameter.
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Java"><code translate="no" dir="ltr"><span class="devsite-syntax-n">NavOptions</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">navOptions</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">new</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">NavOptions</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">Builder</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">setLaunchSingleTop</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-kc">true</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">setRestoreState</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-kc">true</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">setPopUpTo</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">navController</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">getGraph</span><span class="devsite-syntax-p">().</span><span class="devsite-syntax-na">getStartDestinationId</span><span class="devsite-syntax-p">(),</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kc">false</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-c1">// inclusive</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kc">true</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-c1">// saveState</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">build</span><span class="devsite-syntax-p">();</span>
+  <span class="devsite-syntax-n">navController</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">navigate</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">selectedBottomNavId</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kc">null</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">navOptions</span><span class="devsite-syntax-p">);</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        Programmatic calls to
+        <a href="/reference/kotlin/androidx/navigation/NavController#popbackstack"><code translate="no" dir="ltr">popBackStack()</code></a>
+        can now include an additional
+        <code translate="no" dir="ltr">saveState</code>
+        parameter.
+      </p>
+    </li>
+  </ul>
+  <p>
+    In all cases, the
+    <code translate="no" dir="ltr">NavController</code>
+    will save and restore the state of each
+    <code translate="no" dir="ltr">NavBackStackEntry</code>
+    , including any navigation destination scoped
+    <code translate="no" dir="ltr">ViewModel</code>
+    instances. The
+    <a href="/kotlin/androidx/navigation/Navigator"><code translate="no" dir="ltr">Navigator</code></a>
+    APIs have been updated to enable each
+    <code translate="no" dir="ltr">Navigator</code>
+    to support saving and restoring their own state.
+  </p>
+  <p>
+    The
+    <code translate="no" dir="ltr">ComposeNavigator</code>
+    used for
+    <code translate="no" dir="ltr">composable</code>
+    destinations in Navigation Compose and the
+    <code translate="no" dir="ltr">FragmentNavigator</code>
+    and
+    <code translate="no" dir="ltr">DynamicFragmentNavigator</code>
+    used for
+    <code translate="no" dir="ltr">&lt;fragment&gt;</code>
+    destinations in Navigation with Fragments have both been updated to use the new Navigator APIs and support saving and restoring state.
+  </p>
+  <p><strong>Navigation Routes</strong></p>
+  <p>
+    A
+    <strong>route</strong>
+    is a
+    <code translate="no" dir="ltr">String</code>
+    that uniquely identifies a destination. While previously only used in
+    <a href="/jetpack/compose/navigation">Navigation Compose</a>
+    , this concept has now graduated to become a part of the core Navigation APIs. This provides an alternative to using integer IDs when constructing your graph through the
+    <a href="/guide/navigation/navigation-kotlin-dsl">Navigation Kotlin DSL</a>
+    . (
+    <a href="https://issuetracker.google.com/172823546">b/172823546</a>
+    )
+  </p>
+  <p>
+    All APIs that used to only take an ID now have an overload that takes a route
+    <code translate="no" dir="ltr">String</code>
+    . This includes
+    <code translate="no" dir="ltr">navigate()</code>
+    ,
+    <code translate="no" dir="ltr">popBackStack()</code>
+    ,
+    <code translate="no" dir="ltr">popUpTo()</code>
+    , and
+    <code translate="no" dir="ltr">getBackStackEntry()</code>
+    .
+  </p>
+  <p>This has had some API implications:</p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">popUpTo</code>
+      kotlin property on the Kotlin DSL has been deprecated in favor of
+      <code translate="no" dir="ltr">popUpToId</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I59c73c383b84eb2b36472966aedff1b53957e26d">I59c73</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172823546">b/172823546</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">getStartDestination()</code>
+      API has been deprecated in favor of
+      <code translate="no" dir="ltr">getStartDestinationId()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0887ffe673bea453b69dff286d5dc142ce4ef462">I0887f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172823546">b/172823546</a>
+      )
+    </li>
+  </ul>
+  <p>
+    For developers upgrading from previous versions of Navigation Compose to Navigation Compose
+    <code translate="no" dir="ltr">2.4.0-alpha01</code>
+    , this means that the following imports on extension methods are no longer necessary and should be removed:
+  </p>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-k">import</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nn">androidx.navigation.compose.navigation</span>
+  <span class="devsite-syntax-k">import</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nn">androidx.navigation.compose.createGraph</span>
+  <span class="devsite-syntax-k">import</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nn">androidx.navigation.compose.getBackStackEntry</span>
+  <span class="devsite-syntax-k">import</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nn">androidx.navigation.compose.navigate</span>
+  <span class="devsite-syntax-k">import</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nn">androidx.navigation.compose.popUpTo</span>
+  </code></pre>
+  </devsite-code>
+  <p>
+    The
+    <code translate="no" dir="ltr">KEY_ROUTE</code>
+    argument has been replaced with the
+    <code translate="no" dir="ltr">route</code>
+    property on
+    <code translate="no" dir="ltr">NavDestination</code>
+    , allowing you to call
+    <code translate="no" dir="ltr">navBackStackEntry.destination.route</code>
+    directly.
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      All Navigation artifacts have been rewritten in Kotlin. This has improved the nullability of classes using generics (such as
+      <code translate="no" dir="ltr">NavType</code>
+      subclasses). All Kotlin extension functions that used to be part of the
+      <code translate="no" dir="ltr">-ktx</code>
+      artifacts have been moved to their respective main artifacts. The
+      <code translate="no" dir="ltr">-ktx</code>
+      artifacts will continue to be published, but are completely empty. (
+      <a href="https://issuetracker.google.com/issues/184292145">b/184292145</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavDeepLinkBuilder</code>
+      now supports adding multiple distinct destinations to the generated back stack. (
+      <a href="https://android-review.googlesource.com/#/q/I3ee0d5251ec1047774aa4e826b25a6d8cf4ec28d">I3ee0d</a>
+      ,
+      <a href="https://issuetracker.google.com/147913689">b/147913689</a>
+      )
+    </li>
+    <li>
+      Add factory functions for
+      <code translate="no" dir="ltr">DynamicNavHostFragment</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Icd51523a8f3cc3f93fffc1796c6a270bc28eaede">Icd515</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175222619">b/175222619</a>
+      )
+    </li>
+    <li>
+      The unique ID of a
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      is now exposed as part of its public API. (
+      <a href="https://android-review.googlesource.com/#/q/Ie033a9056cead23ef9bcff1c52e67172c459b0f2">Ie033a</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">name</code>
+      and
+      <code translate="no" dir="ltr">argument</code>
+      fields and destructuring functions of
+      <code translate="no" dir="ltr">NamedNavArgument</code>
+      are now public. (
+      <a href="https://github.com/androidx/androidx/pull/174">#174</a>
+      ,
+      <a href="https://issuetracker.google.com/181320559">b/181320559</a>
+      )
+    </li>
+    <li>
+      Introduced a new
+      <code translate="no" dir="ltr">NavBackStackEntry#provideToCompositionLocals</code>
+      extension that provides the
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      to the relevant composition locals. (
+      <a href="https://github.com/androidx/androidx/pull/175">#175</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187229439">b/187229439</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Safe Args</strong></p>
+  <ul>
+    <li>
+      <p>
+        Safe Args now generates a
+        <code translate="no" dir="ltr">fromSavedStateHandle()</code>
+        method for each
+        <code translate="no" dir="ltr">NavArgs</code>
+        class. (
+        <a href="https://github.com/androidx/androidx/pull/122">#122</a>
+        ,
+        <a href="https://issuetracker.google.com/136967621">b/136967621</a>
+        )
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">HomeViewModel</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">savedStateHandle</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">SavedStateHandle</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">ViewModel</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// Create a HomeDestinationArgs class with type safe accessors for each argument</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// defined on your destination</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-kd">private</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">args</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">HomeDestinationArgs</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">fromSavedStateHandle</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">savedStateHandle</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        Updated Safe Args to depend on KotlinPoet
+        <code translate="no" dir="ltr">1.8.0</code>
+        . (
+        <a href="https://github.com/androidx/androidx/pull/172">#172</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/183990444">b/183990444</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      Navigation now depends on
+      <a href="/jetpack/androidx/releases/lifecycle#2.3.1">
+        Lifecycle
+        <code translate="no" dir="ltr">2.3.1</code>
+      </a>
+      and now marks
+      <code translate="no" dir="ltr">setGraph()</code>
+      ,
+      <code translate="no" dir="ltr">popBackStack()</code>
+      ,
+      <code translate="no" dir="ltr">navigateUp()</code>
+      , and
+      <code translate="no" dir="ltr">navigate()</code>
+      , the methods that update the
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      <code translate="no" dir="ltr">Lifecycle</code>
+      , as
+      <code translate="no" dir="ltr">@MainThread</code>
+      , aligning Navigation with the main thread enforcement introduced in Lifecycle
+      <code translate="no" dir="ltr">2.3.0</code>
+      . (
+      <a href="https://issuetracker.google.com/171125856">b/171125856</a>
+      )
+    </li>
+    <li>
+      Parsing Enum arguments from deep links is now case insensitive, allowing a deep link like
+      <code translate="no" dir="ltr">http://www.example.com/red</code>
+      to match a
+      <code translate="no" dir="ltr">www.example.com/{color}</code>
+      deep link even when the enum has the value of
+      <code translate="no" dir="ltr">RED</code>
+      . (
+      <a href="https://github.com/androidx/androidx/pull/152">#152</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/135857840">b/135857840</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Compose Compatibility</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">androidx.navigation:navigation-compose:2.4.0-alpha01</code>
+      is only compatible with Compose version
+      <code translate="no" dir="ltr">1.0.0-beta07</code>
+      and above.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where trailing argument placeholders would take precedence over deep links that have a matching exact suffix. (
+      <a href="https://github.com/androidx/androidx/pull/153">#153</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/184072811">b/184072811</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavHostFragment</code>
+      now supports custom Navigators that use the same
+      <code translate="no" dir="ltr">@Navigator.Name("dialog")</code>
+      as the default
+      <code translate="no" dir="ltr">DialogFragmentNavigator</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib1c2cc38e7a621d133be1f4c3692e62913450dda">Ib1c2c</a>
+      ,
+      <a href="https://issuetracker.google.com/175979140">b/175979140</a>
+      )
+    </li>
+    <li>
+      Improved the behavior of
+      <code translate="no" dir="ltr">NavigatorProvider#addNavigator</code>
+      to ensure that calling it repeatedly with the same instance does not cause issues. (
+      <a href="https://github.com/androidx/androidx/pull/176">#176</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187443146">b/187443146</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contributions</strong></p>
+  <ul>
+    <li>
+      Thanks
+      <a href="https://github.com/simonschiller">simonschiller</a>
+      for building support for Safe Args generating a
+      <code translate="no" dir="ltr">fromSavedStateHandle()</code>
+      method for each
+      <code translate="no" dir="ltr">NavArgs</code>
+      class. (
+      <a href="https://github.com/androidx/androidx/pull/122">#122</a>
+      ,
+      <a href="https://issuetracker.google.com/136967621">b/136967621</a>
+      )
+    </li>
+    <li>
+      Thanks
+      <a href="https://github.com/Bradleycorn">Bradleycorn</a>
+      for making parsing Enum arguments from deep links case insensitive. (
+      <a href="https://github.com/androidx/androidx/pull/152">#152</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/135857840">b/135857840</a>
+      )
+    </li>
+    <li>
+      Thanks
+      <a href="https://github.com/osipxd">osipxd</a>
+      for fixing an issue where trailing argument placeholders would take precedence over deep links that have a matching exact suffix. (
+      <a href="https://github.com/androidx/androidx/pull/153">#153</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/184072811">b/184072811</a>
+      )
+    </li>
+    <li>
+      Thanks
+      <a href="https://github.com/tatocaster">tatocaster</a>
+      for updating Safe Args to depend on KotlinPoet
+      <code translate="no" dir="ltr">1.8.0</code>
+      . (
+      <a href="https://github.com/androidx/androidx/pull/172">#172</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/183990444">b/183990444</a>
+      )
+    </li>
+    <li>
+      Thanks
+      <a href="https://github.com/jossiwolf">jossiwolf</a>
+      for making the
+      <code translate="no" dir="ltr">name</code>
+      and
+      <code translate="no" dir="ltr">argument</code>
+      fields and destructuring functions of
+      <code translate="no" dir="ltr">NamedNavArgument</code>
+      public. (
+      <a href="https://github.com/androidx/androidx/pull/174">#174</a>
+      ,
+      <a href="https://issuetracker.google.com/181320559">b/181320559</a>
+      )
+    </li>
+    <li>
+      Thanks
+      <a href="https://github.com/jossiwolf">jossiwolf</a>
+      for introducing a new
+      <code translate="no" dir="ltr">NavBackStackEntry#provideToCompositionLocals</code>
+      extension that provides the
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      to the relevant composition locals. (
+      <a href="https://github.com/androidx/androidx/pull/175">#175</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187229439">b/187229439</a>
+      )
+    </li>
+    <li>
+      Thanks
+      <a href="https://github.com/jossiwolf">jossiwolf</a>
+      for improved the behavior of
+      <code translate="no" dir="ltr">NavigatorProvider#addNavigator</code>
+      to ensure that calling it repeatedly with the same instance does not cause issues. (
+      <a href="https://github.com/androidx/androidx/pull/176">#176</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187443146">b/187443146</a>
+      )
+    </li>
+  </ul>
+  <h2 id="navigation_compose_version_100_2" data-text="Navigation Compose Version 1.0.0" tabindex="-1">Navigation Compose Version 1.0.0</h2>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      Navigation Compose has aligned versioning with the rest of
+      <code translate="no" dir="ltr">androidx.navigation</code>
+      as of
+      <code translate="no" dir="ltr">2.4.0-alpha01</code>
+      .
+      <code translate="no" dir="ltr">androidx.navigation:navigation-compose:1.0.0-alpha11</code>
+      became
+      <code translate="no" dir="ltr">androidx.navigation:navigation-compose:2.4.0-alpha01</code>
+      .
+    </span>
+  </aside>

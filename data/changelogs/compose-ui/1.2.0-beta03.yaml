@@ -1,0 +1,101 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.2.0-beta03
+releaseDate: 2022-06-01
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-beta03" data-text="Version 1.2.0-beta03" tabindex="-1">Version 1.2.0-beta03</h3>
+  <p>June 1, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.2.0-beta03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6266a22ad9adaed6fa88fe98aa8adaa46eb96ccc..7cbb37cc779160b89644d03e042c129d0ce025d2/compose/ui">Version 1.2.0-beta03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">pressKeyTimes</code>
+      as well as
+      <code translate="no" dir="ltr">isCapsLockOn</code>
+      and friends to
+      <code translate="no" dir="ltr">KeyInjectionScope</code>
+      . Additionally, the API now supports mouse and keyboard combined injection patterns such as clicking a mouse button with a meta key held down. (
+      <a href="https://android-review.googlesource.com/#/q/I4c8dae112eeb7526cbc32b9bce90d7e3bb5ce73a">I4c8da</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/229831515">b/229831515</a>
+      )
+    </li>
+    <li>
+      Added experimental support for injecting key events. Use
+      <code translate="no" dir="ltr">performKeyInput</code>
+      to send key events, or send them through the
+      <code translate="no" dir="ltr">key</code>
+      property of
+      <code translate="no" dir="ltr">MultiModalInjectionScope</code>
+      during a multi modal input gesture with
+      <code translate="no" dir="ltr">performMultiModalInput</code>
+      . See
+      <code translate="no" dir="ltr">KeyInjectionScope</code>
+      for documentation of the API. (
+      <a href="https://android-review.googlesource.com/#/q/Ic5000922484274309323ee4d13c9941e0d737673">Ic5000</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/229831515">b/229831515</a>
+      )
+    </li>
+    <li>
+      Add new
+      <code translate="no" dir="ltr">GoogleFont.Provider.AllFontsListUri</code>
+      for retrieving the canonical internet source of Google Fonts supported by Android.
+    </li>
+    <li>
+      Improve error messages rethrown when GoogleFonts fail to load in compose. (
+      <a href="https://android-review.googlesource.com/#/q/I0416cf8dc002cb2dd108cfc1a2cfddba4d5d3590">I0416c</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      When adding
+      <code translate="no" dir="ltr">InputEventChange</code>
+      events to Velocity Tracker we will consider now deltas instead of positions, this will guarantee the velocity is correctly calculated for all cases even if the target element moves (
+      <a href="https://android-review.googlesource.com/#/q/I51ec384a0424829b680b4666c7d3ce49227f45de">I51ec3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/216582726">b/216582726</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/223440806">b/223440806</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/227709803">b/227709803</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">Show Layout Bounds</code>
+      setting will now be applied for composables immediately after toggling it from the quick settings tile, without having to leave and re-enter the activity. (
+      <a href="https://android-review.googlesource.com/#/q/I843d5a7dec3cd7b6b43c0c8af2f928bba51e1532">I843d5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/225937688">b/225937688</a>
+      )
+    </li>
+    <li>
+      Accessibility string lookup does not trigger font loading. Previously, it would attempt to load fonts for
+      <code translate="no" dir="ltr">StyleSpans</code>
+      , which lead to crashes if
+      <code translate="no" dir="ltr">FontFamily.Resolver</code>
+      had been overwritten. (
+      <a href="https://android-review.googlesource.com/#/q/I4609d0202654e929d5ec4a86432987c9fb92b494">I4609d</a>
+      )
+    </li>
+    <li>Pressing the forward delete key when the cursor is at the end of a text field will no longer crash.</li>
+    <li>
+      <code translate="no" dir="ltr">DeleteSurroundingTextCommand</code>
+      and
+      <code translate="no" dir="ltr">DeleteSurroundingTextInCodePointsCommand</code>
+      now require their constructor arguments to be non-negative. (
+      <a href="https://android-review.googlesource.com/#/q/Ica8e66d221137a82ac8aaa59372decab096a6ef6">Ica8e6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/199919707">b/199919707</a>
+      )
+    </li>
+  </ul>

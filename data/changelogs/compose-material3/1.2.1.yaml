@@ -1,0 +1,69 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.2.1
+releaseDate: 2024-03-06
+#language=html
+changelogHtml: |
+  <h3 id="1.2.1" data-text="Version 1.2.1" tabindex="-1">Version 1.2.1</h3>
+  <p>March 6, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.2.1</code>
+    is released. Version 1.2.1 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d9d6f951af96c8a1ab87b069a10f40b9a7b8a721..93f0ae12e7922676c5010cdc5d10f3da59640c42/compose/material3">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Make the Slider states stable again. Making
+      <code translate="no" dir="ltr">State.onValueChangeFinished</code>
+      a val again. Wrapping
+      <code translate="no" dir="ltr">onValueChangeFinished</code>
+      in a
+      <code translate="no" dir="ltr">rememberUpdatedState</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie8fd041e069aa00a93541248631e3d59f68df56e">Ie8fd0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/322269951">b/322269951</a>
+      )
+    </li>
+    <li>
+      Removing
+      <code translate="no" dir="ltr">@Stable</code>
+      from the states of
+      <code translate="no" dir="ltr">Slider</code>
+      since we're changing
+      <code translate="no" dir="ltr">state.onValueChangeFinished</code>
+      to a
+      <code translate="no" dir="ltr">var</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I82ba1489fd131525790df3d7051bb9aa35e8ad71">I82ba1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/322269951">b/322269951</a>
+      )
+    </li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">NavigationBar</code>
+      custom colors to copy from defaults. (
+      <a href="https://android-review.googlesource.com/#/q/f660a827d39245668e4edd0a30df044d135c6733">80a779</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326894020">b/326894020</a>
+      )
+    </li>
+    <li>
+      Fix regression in
+      <code translate="no" dir="ltr">ExposedDropdownMenu</code>
+      to make it focusable again (
+      <a href="https://android-review.googlesource.com/#/q/Iabcf320c0fa1762463ce2fe2f38bae7ea73fcec1">3fcec1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/323694447">b/323694447</a>
+      )
+    </li>
+    <li>
+      Fix button color caching issue (
+      <a href="https://android-review.googlesource.com/#/q/I7ffc4bffce91df28b572815cae21a316123e5bbc">3e5bbc</a>
+      <a href="https://issuetracker.google.com/issues/327371655">b/327371655</a>
+      )
+    </li>
+  </ul>

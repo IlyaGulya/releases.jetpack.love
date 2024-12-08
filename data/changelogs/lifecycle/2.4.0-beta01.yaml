@@ -1,0 +1,62 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.4.0-beta01
+releaseDate: 2021-09-15
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0-beta01" data-text="Version 2.4.0-beta01" tabindex="-1">Version 2.4.0-beta01</h3>
+  <p>September 15, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.4.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d725303accfa9be6d5c3d61c7603ed1b9a780cbd..1a3dcfb231517d6104969f17063fcc6c97ba6eeb/lifecycle">Version 2.4.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">@OnLifecycleEvent</code>
+      was deprecated.
+      <code translate="no" dir="ltr">LifecycleEventObserver</code>
+      or
+      <code translate="no" dir="ltr">DefaultLifecycleObserver</code>
+      should be used instead. (
+      <a href="https://android-review.googlesource.com/#/q/I5a8fa69584fe45c4dfa44c37d08023c0b2235dbb">I5a8fa</a>
+      )
+    </li>
+    <li>
+      DefaultLifecycleObserver was moved from
+      <code translate="no" dir="ltr">androidx.lifecycle.lifecycle-common-java8</code>
+      to
+      <code translate="no" dir="ltr">androidx.lifecycle.lifecycle-common</code>
+      .
+      <code translate="no" dir="ltr">androidx.lifecycle.lifecycle-common-java8</code>
+      doesn't provide anymore any additional functionality on top of
+      <code translate="no" dir="ltr">androidx.lifecycle.lifecycle-common</code>
+      , so dependency on it can be replaced by
+      <code translate="no" dir="ltr">androidx.lifecycle.lifecycle-common</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I021aab3f3b3493e97775757b5aa307c494690b40">I021aa</a>
+      )
+    </li>
+    <li>
+      Non coroutines API from
+      <code translate="no" dir="ltr">lifecycle-viewmodel-ktx</code>
+      have been moved to the
+      <code translate="no" dir="ltr">lifecycle-viewmodel</code>
+      module. (
+      <a href="https://android-review.googlesource.com/#/q/I6d5b2c3702472d7c6a50b44fc00f7b6e516edba7">I6d5b2</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Thanks
+      <a href="https://github.com/dmitrilc">dmitrilc</a>
+      for fixing a type in the
+      <code translate="no" dir="ltr">ViewModel</code>
+      documentation! (
+      <a href="https://github.com/androidx/androidx/pull/221">#221</a>
+      )
+    </li>
+  </ul>

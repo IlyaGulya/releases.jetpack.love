@@ -1,0 +1,69 @@
+libraryId: mediarouter
+groupId: androidx.mediarouter
+version: 1.7.0-alpha01
+releaseDate: 2023-11-15
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha01" data-text="Version 1.7.0-alpha01" tabindex="-1">Version 1.7.0-alpha01</h3>
+  <p>November 15, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.mediarouter:mediarouter:1.7.0-alpha01</code>
+    and
+    <code translate="no" dir="ltr">androidx.mediarouter:mediarouter-testing:1.7.0-alpha01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b0e4a78094191074b46ef428e2c04350e604f605..312eb9f1ddece3a18317f18515a877e0e745cb2c/mediarouter">Version 1.7.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">isSystemRoute()</code>
+      to
+      <code translate="no" dir="ltr">MediaRouteDescriptor</code>
+      and
+      <code translate="no" dir="ltr">RouteInfo</code>
+      which returns true if the corresponding route is a system-managed route, which means that the system is the route provider and the app is in charge of feeding media samples to the system for their rendering (
+      <a href="https://android-review.googlesource.com/#/q/I949e41347ede2fec98700f45de532cf89e75d9f8">I949e4</a>
+      ). Bluetooth headsets, wired headsets and built-in speakers are examples of system routes.
+    </li>
+    <li>
+      Deprecate
+      <code translate="no" dir="ltr">MediaRouter.removeRemoteControlClient</code>
+      . You should call
+      <code translate="no" dir="ltr">setMediaSessionCompat(MediaSessionCompat)</code>
+      instead of
+      <code translate="no" dir="ltr">addRemoteControlClient(Object)</code>
+      so that there is no need to call
+      <code translate="no" dir="ltr">removeRemoteControlClient(Object)</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I8fc5e2ec38776d1f965541437c35dfda95eb276b">I8fc5e</a>
+      ).
+    </li>
+    <li>
+      Make
+      <code translate="no" dir="ltr">MediaRouteButton</code>
+      extend
+      <code translate="no" dir="ltr">AppCompatImageView</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib455eabd662effe6bde57a54f80a56ef009afde0">Ib455e</a>
+      ).
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">DEVICE_TYPE_SMARTPHONE</code>
+      , which indicates that a media route is a smartphone. (
+      <a href="https://android-review.googlesource.com/#/q/I39837f2ed6a28c8126b7c3e9eff00e92cdb83639">I39837</a>
+      ).
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Add missing icon resolutions for the route button that was possibly causing some isolated crashes. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/cddba9334fdcdc5e5e7ac6df9753df7095545814">cddba9</a>
+      ,
+      <a href="https://issuetracker.google.com/261878418">b/261878418</a>
+      ).
+    </li>
+  </ul>
+  <h2 id="version_16_2" data-text="Version 1.6" tabindex="-1">Version 1.6</h2>

@@ -1,0 +1,69 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.3.0-alpha03
+releaseDate: 2020-03-04
+#language=html
+changelogHtml: |
+  <h3 id="2.3.0-alpha03" data-text="Version 2.3.0-alpha03" tabindex="-1">Version 2.3.0-alpha03</h3>
+  <p>March 4, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.3.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6f7b9ed69dc63e3c2c2b02ee1155b6009a9d5f82..666ae665acfcfa2a20eccc18e4494808169742f4/navigation">Version 2.3.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Instead of relying on the concrete
+      <code translate="no" dir="ltr">DrawerLayout</code>
+      class,
+      <code translate="no" dir="ltr">AppBarConfiguration</code>
+      now uses the
+      <code translate="no" dir="ltr">Openable</code>
+      interface introduced in
+      <a href="/jetpack/androidx/releases/customview#1.1.0-alpha02">
+        CustomView
+        <code translate="no" dir="ltr">1.1.0-alpha02</code>
+      </a>
+      (which
+      <code translate="no" dir="ltr">DrawerLayout</code>
+      implements as of
+      <a href="/jetpack/androidx/releases/drawerlayout#1.1.0-alpha03">
+        DrawerLayout
+        <code translate="no" dir="ltr">1.1.0-alpha04</code>
+      </a>
+      ), allowing you to use custom implementations of
+      <code translate="no" dir="ltr">Openable</code>
+      with
+      <code translate="no" dir="ltr">NavigationUI</code>
+      . (
+      <a href="https:///issuetracker.google.com/issues/129030452">b/129030452</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">navigation-common-ktx</code>
+      ProGuard rules now correctly only keep the
+      <code translate="no" dir="ltr">NavArgs</code>
+      classes that are used rather than all
+      <code translate="no" dir="ltr">NavArgs</code>
+      instances. (
+      <a href="https://issuetracker.google.com/issues/150213558">b/150213558</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency changes</strong></p>
+  <ul>
+    <li>
+      Navigation has reverted its dependency on Core
+      <code translate="no" dir="ltr">1.2.0</code>
+      and now depends on Core
+      <code translate="no" dir="ltr">1.1.0</code>
+      to avoid forcing developers to move to a newer dependency when Navigation does not depend on any new APIs in Core
+      <code translate="no" dir="ltr">1.2.0</code>
+      .
+    </li>
+  </ul>

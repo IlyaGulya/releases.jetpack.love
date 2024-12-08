@@ -1,0 +1,118 @@
+libraryId: constraintlayout
+groupId: androidx.constraintlayout
+version: 1.1.0-alpha06
+releaseDate: 2023-01-25
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha06" data-text="Version 1.1.0-alpha06" tabindex="-1">Version 1.1.0-alpha06</h3>
+  <p>January 25, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha06</code>
+    and
+    <code translate="no" dir="ltr">androidx.constraintlayout:constraintlayout-core:1.1.0-alpha06</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4a2f5e696614339c1ac21f706c1a17c0285780e7..e5dad1e7d1c225f89f7c2d5a39a7a0de8d637d7b/constraintlayout">Version 1.1.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Add new Apis to enable the Grid Helper in Compose with JSON representation which allows composables to be placed in a 2D grid. (
+      <a href="https://android-review.googlesource.com/#/q/I968ad630bd51473eef8658e4b0bf5209831a4c6b">I968ad</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add support for arc up and arc down modes
+      <code translate="no" dir="ltr">Arc.Above</code>
+      and
+      <code translate="no" dir="ltr">Arc.Below</code>
+      direction independent arc modes to
+      <code translate="no" dir="ltr">MotionLayout</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I184a9003c18f576009ac9bc8daf9ccdb8ba47f02">I184a9</a>
+      )
+    </li>
+    <li>
+      It is now possible to constrain a baseline anchor to top/bottom anchors and vice versa. (
+      <a href="https://android-review.googlesource.com/#/q/I546283cc910dfad223c2e8c7330e0e8c5f2c5073">I54628</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">MotionLayoutScope#motionProperties</code>
+      (including derivatives) to
+      <code translate="no" dir="ltr">MotionLayoutScope#customProperties</code>
+      . This is to be consistent as when setting custom properties. (
+      <a href="https://android-review.googlesource.com/#/q/Ib34c9e063267a9c0dfd89ff5e8caaa53da9f745f">Ib34c9</a>
+      )
+    </li>
+    <li>
+      It’s now possible to create multiple references in
+      <code translate="no" dir="ltr">ConstraintSet</code>
+      and
+      <code translate="no" dir="ltr">MotionScene</code>
+      :
+      <code translate="no" dir="ltr">val (box, text, button) = createRefsFor("box", "text","button")</code>
+      . Apply constraints to multiple elements with
+      <code translate="no" dir="ltr">constrain(box, button, text)</code>
+      . Within a
+      <code translate="no" dir="ltr">ConstrainScope</code>
+      , you may now intuitively set a fixed dimension with
+      <code translate="no" dir="ltr">Dp.asDimension</code>
+      :
+      <code translate="no" dir="ltr">width = 10.dp.asDimension</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I021ecb4cc93ba7e638225326e07b234c12de2611">I021ec</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ia0960697ea260a26cba3323b43bdeeea549ba6cd">Ia0960</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">MotionScene()</code>
+      and
+      <code translate="no" dir="ltr">Transition()</code>
+      methods are now non-Composable functions. The objects from these functions (including
+      <code translate="no" dir="ltr">ConstraintSet</code>
+      ) should now be properly comparable from each other.
+      <code translate="no" dir="ltr">animateChanges = true</code>
+      in
+      <code translate="no" dir="ltr">ConstraintLayout</code>
+      can now be used with only one
+      <code translate="no" dir="ltr">ConstraintSet</code>
+      reference, as long as any of its properties changed on recomposition. (
+      <a href="https://android-review.googlesource.com/#/q/I7d22e599204c749b80244f8169ccbc5888741cd6">I7d22e</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed issue where
+      <code translate="no" dir="ltr">ConstraintLayout</code>
+      always triggered an unnecessary extra recomposition when helpers were changed. (
+      <a href="https://android-review.googlesource.com/#/q/Id83ada3e963b20180c324f25b6db7c53f810463f">Id83ad</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/222093277">b/222093277</a>
+      )
+    </li>
+    <li>
+      Fix behavior when using Intrinsics with
+      <code translate="no" dir="ltr">ConstraintLayout</code>
+      &amp;
+      <code translate="no" dir="ltr">MotionLayout</code>
+      . (
+      <a href="https://android-review.googlesource.com/q/I487ae6fcc36342cee7fe38428971c27500be0b23">I487ae</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/220527863">b/220527863</a>
+      )
+    </li>
+    <li>
+      Fix not being able to remeasure when the content changes. (
+      <a href="https://android-review.googlesource.com/q/Ibfe8a2aeffba85aa6374d763729887aa1f308b35">Ibfe8a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/219091179">b/219091179</a>
+      )
+    </li>
+  </ul>

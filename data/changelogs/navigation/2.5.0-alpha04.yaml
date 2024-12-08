@@ -1,0 +1,91 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.5.0-alpha04
+releaseDate: 2022-04-06
+#language=html
+changelogHtml: |
+  <h3 id="2.5.0-alpha04" data-text="Version 2.5.0-alpha04" tabindex="-1">Version 2.5.0-alpha04</h3>
+  <p>April 6, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.5.0-alpha04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9b2b3d8efd5f00bd4af903bbaa926f6a712d0bd8..7ca43e00a517eaeeedc0a21f482b17f06e3d2181/navigation">Version 2.5.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">visibleEntries</code>
+      is no longer experimental. (
+      <a href="https://android-review.googlesource.com/#/q/I4829fb8402901ea9e7ef31262f4b1c7ac3e26818">I4829f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/225394514">b/225394514</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      NavHost now depend on
+      <code translate="no" dir="ltr">visibleEntries</code>
+      from the
+      <code translate="no" dir="ltr">NavController</code>
+      to determine which entries to compose. This means that when using nested NavHost the inner
+      <code translate="no" dir="ltr">NavHost</code>
+      should now properly animate out. (
+      <a href="https://android-review.googlesource.com/#/q/I4ba2b542821154a76566f9c02cf7a95599a30f14">I4ba2b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/225394514">b/225394514</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">visibleEntries</code>
+      <code translate="no" dir="ltr">StateFlow</code>
+      provided by
+      <code translate="no" dir="ltr">NavController</code>
+      is now based on the entry max Lifecycle state instead of the current Lifecycle state. This means that even if the host lifecycle of the
+      <code translate="no" dir="ltr">navController</code>
+      goes below STARTED, the list of visible entires will remain the same. (
+      <a href="https://android-review.googlesource.com/#/q/I9e2a810f261e9dc1e61417b168427b3bf597fbd5">I9e2a8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/225394514">b/225394514</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SavedStateViewFactory</code>
+      now supports using
+      <code translate="no" dir="ltr">CreationExtras</code>
+      even when it was initialized with a
+      <code translate="no" dir="ltr">SavedStateRegistryOwner</code>
+      . If extras are provided, the initialized arguments are ignored. (
+      <a href="https://android-review.googlesource.com/#/q/I6c43bfd75888cb4b8bdd610cd07d4962aaba37ea">I6c43b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/224844583">b/224844583</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavDeepLink</code>
+      can now parse Uris with a single query parameter with no value. (
+      <a href="https://android-review.googlesource.com/#/q/I0efe8852542de7d50677499fcd7d32d905163908">I0efe8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/148905489">b/148905489</a>
+      )
+    </li>
+    <li>
+      Empty string are now considered as valid arguments in deep links. (
+      <a href="https://android-review.googlesource.com/#/q/I70a0d1b47db028d829014f21763f95bb76fa8e3c">I70a0d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/217399862">b/217399862</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Navigation Safe Args</code>
+      will no longer crash when using namespaces and no
+      <code translate="no" dir="ltr">AndroidManifest.xml</code>
+      is present. (
+      <a href="https://android-review.googlesource.com/#/q/I17ccf95b5f4137762d7c3db0503ec394812e89e8">I17ccf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/227229815">b/227229815</a>
+      )
+    </li>
+  </ul>

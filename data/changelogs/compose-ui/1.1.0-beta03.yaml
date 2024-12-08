@@ -1,0 +1,55 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.1.0-beta03
+releaseDate: 2021-11-17
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-beta03" data-text="Version 1.1.0-beta03" tabindex="-1">Version 1.1.0-beta03</h3>
+  <p>November 17, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.1.0-beta03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f07d12061370a603549747200c79b60239706330..cc1240d00b28657ee0c1a937f60430eaf1b03b09/compose/ui">Version 1.1.0-beta03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added new modifier Modifier.onPlaced to allow placement change to be observed. Additional changes to child modifier's offset can therefore be made based on the observed placement change. (
+      <a href="https://android-review.googlesource.com/#/q/I558fd6a0fc0788942efe09a6c3e33c6c62608904">I558fd</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">InjectionScope.flush()</code>
+      and
+      <code translate="no" dir="ltr">InjectionScope.dispose()</code>
+      . Flushing of all events and disposing of the scope now happens at the end of the called perform*Input() method like before. (
+      <a href="https://android-review.googlesource.com/#/q/I2bed810296ab70173753b06bbc049dabeec39daa">I2bed8</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">MultiModalInjectionScope.Touch</code>
+      and
+      <code translate="no" dir="ltr">MultiModalInjectionScope.Mouse</code>
+      . In order to inject touch and mouse events for multi-modal gestures, you can now use
+      <code translate="no" dir="ltr">MultiModalInjectionScope.touch()</code>
+      and
+      <code translate="no" dir="ltr">MultiModalInjectionScope.mouse()</code>
+      , both of which accept a lambda that has the receiver scope of that modality. (
+      <a href="https://android-review.googlesource.com/#/q/Idde18dc95d6b71c8ac15772198ef5de8b612a5b6">Idde18</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      The default value for
+      <code translate="no" dir="ltr">durationMillis</code>
+      in
+      <code translate="no" dir="ltr">TouchInjectionScope.swipeWithVelocity</code>
+      is now calculated such that the swipe is feasible. (
+      <a href="https://android-review.googlesource.com/#/q/I19deb73532dd304fd8646b576f27feec6538f58f">I19deb</a>
+      )
+    </li>
+  </ul>

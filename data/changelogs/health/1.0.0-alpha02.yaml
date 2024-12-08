@@ -1,0 +1,49 @@
+libraryId: health
+groupId: androidx.health
+version: 1.0.0-alpha02
+releaseDate: 2021-09-29
+#language=html
+changelogHtml: |
+  <h3 id="health-services-client-1.0.0-alpha02" data-text="Version 1.0.0-alpha02" tabindex="-1">Version 1.0.0-alpha02</h3>
+  <p>September 29, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.health:health-services-client:1.0.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9b26835518d143ca5c7cc6f70c596aba6e527456..1f6bc4d47b7be46a5af151ed726e84db0a1cf9f9/health/health-services-client">Version 1.0.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ExerciseClient</code>
+      now supports preparing an exercise. This allows clients to warm-up the sensors and wait for things like a GPS Fix before starting exercise.
+    </li>
+    <li>
+      Introduces CumulativeDataPoints and StatisticalDataPoints AggregateDataPoint classes to better model aggregate metrics tracked during an active exercise. CumulativeDataPoints hold cumulative values of aggregated interval data types (such as total distance during the exercise) while StatisticalDataPoints model aggregates of sampled data points (such as min, max, and average HeartRateBpm). This replaces the previous
+      <code translate="no" dir="ltr">AGGREGATE_*</code>
+      DataTypes and can be accessed in the ExerciseUpdate via
+      <code translate="no" dir="ltr">getLatestAggregateMetrics()</code>
+      .
+      <code translate="no" dir="ltr">AGGREGATE_*</code>
+      DataTypes are no longer supported.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PassiveMonitoring</code>
+      Events have been renamed to
+      <code translate="no" dir="ltr">PassiveGoals</code>
+      which supports setting of goals and receiving notifications when those goals are met for data types like Daily metrics (i.e. DAILY_STEPS).
+    </li>
+    <li>Improved modeling of Heart Rate and Location accuracy and availability via the introduction of the new HrAccuracy, LocationAccuracy, and LocationAvailability classes.</li>
+    <li>
+      Improved naming of
+      <code translate="no" dir="ltr">ExerciseConfig</code>
+      and new
+      <code translate="no" dir="ltr">PassiveMonitoringConfig</code>
+      fields and introduction of
+      <code translate="no" dir="ltr">ExerciseConfig.shouldEnableGps</code>
+      to request GPS-backed data
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>Migrates to proto-backed IPC transport for better backwards compatibility support</li>
+  </ul>

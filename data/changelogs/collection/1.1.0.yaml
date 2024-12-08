@@ -1,0 +1,120 @@
+libraryId: collection
+groupId: androidx.collection
+version: 1.1.0
+releaseDate: 2019-06-05
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0" data-text="Version 1.1.0" tabindex="-1">Version 1.1.0</h3>
+  <p>June 5, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.collection:collection:1.1.0</code>
+    and
+    <code translate="no" dir="ltr">androidx.collection:collection-ktx:1.1.0</code>
+    are released. The commits included 1.1.0 can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cd5f909e9f35c63dbc7252a0d790de4a62c22b7e..2ee5d826c17d6b538469d85d92745ea43f1ec19e/collection">here</a>
+    .
+  </p>
+  <p><strong>Below is a summary of changes from 1.0.0 to 1.1.0:</strong></p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      Use more efficient implementation for
+      <code translate="no" dir="ltr">contains</code>
+      and
+      <code translate="no" dir="ltr">isNotEmpty</code>
+      functions in 'collection-ktx' artifact. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/866529">aosp/866529</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">putIfAbsent</code>
+      to
+      <code translate="no" dir="ltr">LongSparseArray</code>
+      ,
+      <code translate="no" dir="ltr">SimpleArrayMap</code>
+      , and
+      <code translate="no" dir="ltr">SparseArrayCompat</code>
+      (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/772608">aosp/772608</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">getOrDefault</code>
+      to
+      <code translate="no" dir="ltr">SimpleArrayMap</code>
+      (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/772607">aosp/772607</a>
+      )
+    </li>
+    <li>
+      Add two-argument
+      <code translate="no" dir="ltr">remove</code>
+      to
+      <code translate="no" dir="ltr">LongSparseArray</code>
+      ,
+      <code translate="no" dir="ltr">SimpleArrayMap</code>
+      , and
+      <code translate="no" dir="ltr">SparseArrayCompat</code>
+      . Deprecate corresponding KTX extensions for this functionality. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/772482">aosp/772482</a>
+      )
+    </li>
+    <li>
+      Add two-argument
+      <code translate="no" dir="ltr">replace</code>
+      to
+      <code translate="no" dir="ltr">LongSparseArray</code>
+      ,
+      <code translate="no" dir="ltr">SimpleArrayMap</code>
+      , and
+      <code translate="no" dir="ltr">SparseArrayCompat</code>
+      (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/772483">aosp/772483</a>
+      )
+    </li>
+    <li>
+      Add three-argument
+      <code translate="no" dir="ltr">replace</code>
+      to
+      <code translate="no" dir="ltr">LongSparseArray</code>
+      ,
+      <code translate="no" dir="ltr">SimpleArrayMap</code>
+      , and
+      <code translate="no" dir="ltr">SparseArrayCompat</code>
+      (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/772484">aosp/772484</a>
+      )
+    </li>
+    <li>
+      Deprecate redundant
+      <code translate="no" dir="ltr">delete</code>
+      methods. The
+      <code translate="no" dir="ltr">remove</code>
+      method offers the same API and functionality and matches the API used by non-specialized Maps. (
+      <a href="https://r.android.com/866053">aosp/866053</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Change
+      <code translate="no" dir="ltr">SimpleArrayMap</code>
+      to synchronize its internal global cache of arrays on
+      <code translate="no" dir="ltr">SimpleArrayMap.class</code>
+      instead of
+      <code translate="no" dir="ltr">ArrayMap.class</code>
+      . This ensures that if you are only using
+      <code translate="no" dir="ltr">SimpleArrayMap</code>
+      ,
+      <code translate="no" dir="ltr">ArrayMap</code>
+      can be removed by code shrinking tools. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/934557">aosp/934557</a>
+      )
+    </li>
+  </ul>

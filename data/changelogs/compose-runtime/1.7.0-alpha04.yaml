@@ -1,0 +1,45 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.7.0-alpha04
+releaseDate: 2024-03-06
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha04" data-text="Version 1.7.0-alpha04" tabindex="-1">Version 1.7.0-alpha04</h3>
+  <p>March 6, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.7.0-alpha04</code>
+    is released. Version 1.7.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e1b82c49c59d8e976ce558aba5586f6c61bc9054..638a8d3a474af45f6ad5fdc3d6d1836ea42d1778/compose/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>Performance Improvements</strong></p>
+  <ul>
+    <li>
+      Call
+      <code translate="no" dir="ltr">Snapshot.current</code>
+      once per derived state evaluation (
+      <a href="https://android-review.googlesource.com/#/q/I56b506c51222ff15588e80e3090d3bc8731fcc99">ee7daf</a>
+      )
+    </li>
+    <li>
+      Read
+      <code translate="no" dir="ltr">currentRecord</code>
+      once per observation in composition (
+      <a href="https://android-review.googlesource.com/#/q/Ie9b7e0b9d296802c38b0a1c91ab2cc9650aa71ea">b882b2</a>
+      )
+    </li>
+    <li>
+      Remove accidental iterator allocation in
+      <code translate="no" dir="ltr">snapshotFlow</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I45c7948014ee647de0532dd5727682d5a4fcc427">231e56</a>
+      )
+    </li>
+    <li>
+      Enable
+      <code translate="no" dir="ltr">nonSkippingGroupOptimization</code>
+      for compose libraries. This causes the generated code for all non-restartable composable functions in androidx to be more efficient. In the future we plan to enable this by default. I(
+      <a href="https://android-review.googlesource.com/#/q/I486ef31e83f76763ffb3d3ca6ff78f04e7b0e465">acbc08</a>
+      )
+    </li>
+  </ul>

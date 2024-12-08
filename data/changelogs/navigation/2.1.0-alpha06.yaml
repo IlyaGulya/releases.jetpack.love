@@ -1,0 +1,90 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.1.0-alpha06
+releaseDate: 2019-07-02
+#language=html
+changelogHtml: |
+  <h3 id="2.1.0-alpha06" data-text="Version 2.1.0-alpha06" tabindex="-1">Version 2.1.0-alpha06</h3>
+  <p>July 2, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:*:2.1.0-alpha06</code>
+    is released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/067bb2bdba5ad5259e147e5f36ec20c5efa9ae42..498e1c39f543ee174434d4fc26e26219c298e9cd/navigation">here</a>
+    .
+  </p>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      This version is dependent on the Java 8 programming language. Please read
+      <a href="/studio/write/java8-support">Use Java 8 language features</a>
+      to learn how to use it in your project.
+    </span>
+  </aside>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">app:navGraph</code>
+      attribute used by NavHostFragment has now been moved to the
+      <code translate="no" dir="ltr">navigation-runtime</code>
+      artifact. Custom navigators that can be added via XML should use this attribute to gain integration with the Navigation Editor’s Host panel. (
+      <a href="https://issuetracker.google.com/issues/133880955">b/133880955</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">getViewModelStore()</code>
+      API on
+      <code translate="no" dir="ltr">NavController</code>
+      has been deprecated in favor of the new
+      <code translate="no" dir="ltr">getViewModelStoreOwner()</code>
+      method that returns a
+      <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+      . (
+      <a href="https://android-review.googlesource.com/987010">aosp/987010</a>
+      )
+    </li>
+    <li>
+      The implementation of floating window destinations, such as
+      <code translate="no" dir="ltr">&lt;dialog&gt;</code>
+      destinations, has been generalized into a marker interface,
+      <code translate="no" dir="ltr">FloatingWindow</code>
+      , that all
+      <code translate="no" dir="ltr">&lt;dialog&gt;</code>
+      destinations now implement. NavigationUI methods for interacting with the top app bar now ignore
+      <code translate="no" dir="ltr">FloatingWindow</code>
+      destinations. (
+      <a href="https://issuetracker.google.com/issues/133600763">b/133600763</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Behavior changes</strong></p>
+  <ul>
+    <li>
+      Navigation now correctly keeps its state in sync with what is seen on the screen when using a
+      <code translate="no" dir="ltr">&lt;dialog&gt;</code>
+      destination. As a consequence, Navigation now automatically pops
+      <code translate="no" dir="ltr">&lt;dialog&gt;</code>
+      destinations when you navigate to a non-dialog and non-activity destination, such as a
+      <code translate="no" dir="ltr">&lt;fragment&gt;</code>
+      destination. (
+      <a href="https://issuetracker.google.com/issues/134089818">b/134089818</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Navigation now suppresses the animation that occurs when recreating the activity when handling a deep link, fixing a visual flash. (
+      <a href="https://issuetracker.google.com/issues/130362979">b/130362979</a>
+      )
+    </li>
+    <li>
+      Fixed a bug where the Navigation back stack would be out of sync when popping a Fragment as the initial fragment is being added. (
+      <a href="https://issuetracker.google.com/issues/133832218">b/133832218</a>
+      )
+    </li>
+  </ul>

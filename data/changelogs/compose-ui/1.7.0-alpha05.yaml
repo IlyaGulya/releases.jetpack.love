@@ -1,0 +1,174 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.7.0-alpha05
+releaseDate: 2024-03-20
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha05" data-text="Version 1.7.0-alpha05" tabindex="-1">Version 1.7.0-alpha05</h3>
+  <p>March 20, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.7.0-alpha05</code>
+    is released. Version 1.7.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/638a8d3a474af45f6ad5fdc3d6d1836ea42d1778..a57d7d17753695012b58c9ce7ad55a8d39157e62/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Introduce new
+      <code translate="no" dir="ltr">GraphicsLayer</code>
+      API to record drawing commands in a display list as well as additional properties that affect the rendering of the display list. This provides an isolation boundary to divide a complex scene into smaller pieces that can be updated individually of one another without recreating the entire scene. Transformations made to a
+      <code translate="no" dir="ltr">GraphicsLayer</code>
+      can be done without re-recording the display list. Unlike
+      <code translate="no" dir="ltr">Modifier.graphicsLayer</code>
+      ,
+      <code translate="no" dir="ltr">GraphicsLayer</code>
+      allows for rendering of Composable content elsewhere and is useful in animated use cases where content is expected to be rendered in different scenes.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">GraphicsLayer.draw(Canvas)</code>
+      is not a public api anymore. Please use the
+      <code translate="no" dir="ltr">DrawScope.drawLayer(GraphicsLayer)</code>
+      extension function instead to draw the layer. (
+      <a href="https://android-review.googlesource.com/#/q/I7a7c001e58c2f6d4b13562b75a5695bab27aec9d">I7a7c0</a>
+      )
+    </li>
+    <li>
+      Split
+      <code translate="no" dir="ltr">restrictedConstraints()</code>
+      to two methods:
+      <code translate="no" dir="ltr">fitPrioritizingWidth()</code>
+      and
+      <code translate="no" dir="ltr">fitPrioritizingHeight()</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I6d7fd3811fffff13b3343c5365290e73cb151bcb">I6d7fd</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">HardwareCanvas</code>
+      stub for Android L usage (
+      <a href="https://android-review.googlesource.com/#/q/I1c3b5821c20f51b9c8ae96f81c822174583251b7">I1c3b5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/288494724">b/288494724</a>
+      )
+    </li>
+    <li>
+      Update Compose framework to expose a
+      <code translate="no" dir="ltr">GraphicsContext</code>
+      composition local alongside updating Owner,
+      <code translate="no" dir="ltr">DelegateableNode</code>
+      and
+      <code translate="no" dir="ltr">drawWithCache</code>
+      Modifier implementations to expose access to the
+      <code translate="no" dir="ltr">GraphicsContext</code>
+      for scoped access that will automatically cleanup
+      <code translate="no" dir="ltr">GraphicsLayer</code>
+      instances when Modifiers are torn down. (
+      <a href="https://android-review.googlesource.com/#/q/I64a2f6a2e156f9305fe32ac2a6f9be2b61f7f0ed">I64a2f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/288494724">b/288494724</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">InterceptPlatformTextInput</code>
+      for helping write low-level IME-related tests and other low-level IME use cases.
+      <code translate="no" dir="ltr">PlatformTextInputTestOverride</code>
+      has been deprecated. (
+      <a href="https://android-review.googlesource.com/#/q/I862ed2e997d6a98e33a25da2ff536a2779ae173d">I862ed</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/322680547">b/322680547</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">GraphicsLayer.setOutline(Outline)</code>
+      extension function was added. (
+      <a href="https://android-review.googlesource.com/#/q/Ib81f4aeab09a394baf300623738555c9c9db9616">Ib81f4</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">GraphicsContext</code>
+      function constructor to create a factory to create
+      <code translate="no" dir="ltr">GraphicsLayer</code>
+      instances (
+      <a href="https://android-review.googlesource.com/#/q/Ib98d6b140fab3d857f74faa4fa227927e1625bed">Ib98d6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/288494724">b/288494724</a>
+      )
+    </li>
+    <li>
+      Exposed
+      <code translate="no" dir="ltr">GraphicsLayer</code>
+      API to provide developer defined flexibility in capturing drawing commands that can be used to draw elsewhere and also apply different visual effects to the end result. (
+      <a href="https://android-review.googlesource.com/#/q/I802452c9375fc6949ed85fb65d77173456893907">I80245</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/288494724">b/288494724</a>
+      )
+    </li>
+    <li>
+      Introduce the
+      <code translate="no" dir="ltr">Paragraph#getRangeForRect</code>
+      which returns a range of text covered by a given rectangle area. (
+      <a href="https://android-review.googlesource.com/#/q/Iee51691ed1fbc3c68bbedd000abf4ae19bc5f84e">Iee516</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/325660505">b/325660505</a>
+      )
+    </li>
+    <li>
+      Removed experimental override of
+      <code translate="no" dir="ltr">BasicText</code>
+      with
+      <code translate="no" dir="ltr">onLinkClicked</code>
+      argument. A replacement API for hyperlinks support will follow in the future. (
+      <a href="https://android-review.googlesource.com/#/q/I107d5d08153db444fac816ad7c9c65057d931a81">I107d5</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">GraphicsLayer</code>
+      expect/actual API definition to support capturing and replaying of drawing commands with optional compositing visual effects and transforms. Introduce
+      <code translate="no" dir="ltr">GraphicsContext</code>
+      interface to contain graphics dependencies including creation and management of
+      <code translate="no" dir="ltr">GraphicsLayer</code>
+      instances. (
+      <a href="https://android-review.googlesource.com/#/q/I4a8d67d7b45798d5e8afa78402168d14512e4318">I4a8d6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/288494724">b/288494724</a>
+      )
+    </li>
+    <li>
+      Fixed an interop issue with 1D focus search where focus would get stuck inside a
+      <code translate="no" dir="ltr">ComposeView</code>
+      that was embedded among other views. (
+      <a href="https://android-review.googlesource.com/#/q/I08fd438a8b995c73d52d914786c640646e3f3d8e">I08fd4</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">LocalLifecycleOwner</code>
+      moved from Compose UI to
+      <code translate="no" dir="ltr">lifecycle-runtime-compose</code>
+      so that its Compose-based helper APIs can be used outside of Compose UI. Thanks Jake Wharton for the contribution. (
+      <a href="https://android-review.googlesource.com/#/q/I6c41b92eb6aaab67e7d733dfe3fe0b429b46becf">I6c41b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/328263448">b/328263448</a>
+      )
+    </li>
+    <li>
+      Consistently expose bias float properties on all bias-based alignment subtypes. (
+      <a href="https://android-review.googlesource.com/#/q/I69f0fb6798bb99d81287d69f9a9618bc89d99ffd">I69f0f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/328088992">b/328088992</a>
+      )
+    </li>
+  </ul>

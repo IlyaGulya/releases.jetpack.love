@@ -1,0 +1,63 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.0.0-alpha06
+releaseDate: 2019-01-30
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha06" data-text="Version 1.0.0-alpha06" tabindex="-1">Version 1.0.0-alpha06</h3>
+  <p>April 3rd, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.0.0-alpha06</code>
+    and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.0.0-alpha06</code>
+    are released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/82ddb41c3e7be8ae7a4a3557e66edb5274c6d96c..00d1b79bfaa97c1a00793e5e80769f094316a6b0/activity">here</a>
+    .
+  </p>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      ComponentActivity now contain a second constructor that takes a
+      <code translate="no" dir="ltr">@LayoutRes int</code>
+      , which replaces the previous behavior of annotating your AppCompatActivity class with
+      <code translate="no" dir="ltr">@ContentView</code>
+      . This approach works in both app and library modules. (
+      <a href="https://issuetracker.google.com/issues/128352521">b/128352521</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">OnBackPressedCallback</code>
+      related APIs on ComponentActivity have been deprecated in favor of the new
+      <code translate="no" dir="ltr">OnBackPressedDispatcher</code>
+      , retrievable via
+      <code translate="no" dir="ltr">getOnBackPressedDispatcher()</code>
+      . (
+      <a href="https://android-review.googlesource.com/922523">aosp/922523</a>
+      )
+    </li>
+    <li>
+      Methods to add a new
+      <code translate="no" dir="ltr">OnBackPressedCallback</code>
+      to the
+      <code translate="no" dir="ltr">OnBackPressedDispatcher</code>
+      now return a
+      <code translate="no" dir="ltr">Cancellable</code>
+      object, allowing removal of the callback without requiring an explicit reference to the
+      <code translate="no" dir="ltr">OnBackPressedDispatcher</code>
+      . (
+      <a href="https://android-review.googlesource.com/922523">aosp/922523</a>
+      )
+    </li>
+    <li>
+      Adding a
+      <code translate="no" dir="ltr">OnBackPressedCallback</code>
+      with an associated
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      now results in adding and removing the
+      <code translate="no" dir="ltr">OnBackPressedCallback</code>
+      as the Lifecycle is started and stopped, respectively. (
+      <a href="https://android-review.googlesource.com/922523">aosp/922523</a>
+      )
+    </li>
+  </ul>

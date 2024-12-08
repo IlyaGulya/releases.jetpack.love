@@ -1,0 +1,69 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.4.0-rc01
+releaseDate: 2024-08-07
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-rc01" data-text="Version 1.4.0-rc01" tabindex="-1">Version 1.4.0-rc01</h3>
+  <p>August 7, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.4.0-rc01</code>
+    is released. Version 1.4.0-rc01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/97ce0972adadb34722870dfe4d0a6bb0540d13e7..95c324b1e196c9c30883678f411faafdf32f2a63/camera">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added experimental
+      <code translate="no" dir="ltr">CameraInfo.getCameraInfo</code>
+      to provide specific camera information without the need of binding use cases to the camera. (
+      <a href="https://android-review.googlesource.com/#/q/I550d1855dc32a47deaad7e26284987eccf81be71">I550d1</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">PreviewView.getScreenFlash</code>
+      and
+      <code translate="no" dir="ltr">PreviewView.setScreenFlashOverlayColor</code>
+      APIs for cases where
+      <code translate="no" dir="ltr">ScreenFlashView</code>
+      is not explicitly added. (
+      <a href="https://android-review.googlesource.com/#/q/I439457f23bde793514933f0d250d288a95fd82a1">I43945</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed exposure and color tint issues when image captured with flash enabled under low light with VideoCapture use case bound. (
+      <a href="https://android-review.googlesource.com/#/q/Ic9814d1e52fd1d7384fb663b793a7010c34ee41c">Ic9814</a>
+      )
+    </li>
+    <li>
+      Fix the issue that interrupting a
+      <code translate="no" dir="ltr">takePicture</code>
+      request with Extensions enabled could fail to get result and the next
+      <code translate="no" dir="ltr">takePicture</code>
+      request might no longer work. (
+      <a href="https://android-review.googlesource.com/#/q/Iae78f85a429b5e72354debb9201daa130784a1ab">Iae78f</a>
+      )
+    </li>
+    <li>
+      Fixed a memory leakage issue that happens when Extensions are enabled. (
+      <a href="https://android-review.googlesource.com/#/q/Iab2762d4abf3f4779a3065e78deb3856de7de81b">Iab276</a>
+      )
+    </li>
+    <li>
+      Resolved a CameraX extensions malfunction on devices like Pixel 7/8 and Samsung Galaxy S24 series. The issue, stemming from a
+      <code translate="no" dir="ltr">Camera2OutputConfigImpl</code>
+      conversion problem in release mode, surfaced after upgrading AGP to 8.5.1 and enabling minification. (
+      <a href="https://android-review.googlesource.com/#/q/I9959873ee37f47e07aa617b92859d2a5cadc7830">I99598</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/354824993">b/354824993</a>
+      )
+    </li>
+  </ul>

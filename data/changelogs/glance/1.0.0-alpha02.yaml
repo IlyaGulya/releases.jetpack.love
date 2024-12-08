@@ -1,0 +1,83 @@
+libraryId: glance
+groupId: androidx.glance
+version: 1.0.0-alpha02
+releaseDate: 2022-01-26
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha02" data-text="Version 1.0.0-alpha02" tabindex="-1">Version 1.0.0-alpha02</h3>
+  <p>January 26, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.glance:glance-*:1.0.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/301586664b5aad60548f21866cad502d524dbf9f..9dceceb54300ed028a7e8fc7a3454f270337ffde/glance">Version 1.0.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>This release contains the set of APIs to build Wear Tiles using Compose runtime with composables optimized for "Glanceable"</p>
+  <ul>
+    <li>
+      Declare your wear tile service by extending
+      <code translate="no" dir="ltr">GlanceTileService</code>
+      , a service to create your tile in the composable Content() function.
+    </li>
+    <li>
+      Wear tiles specific glance composables:
+      <code translate="no" dir="ltr">CurvedRow</code>
+      ,
+      <code translate="no" dir="ltr">CurvedText</code>
+      .
+    </li>
+    <li>
+      Handle different timeline modes for tile by defining
+      <code translate="no" dir="ltr">TimelineMode.SingleEntry</code>
+      and
+      <code translate="no" dir="ltr">TimelineMode.TimeBoundEntries</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LocalTimeInterval</code>
+      , the Local composition refer to a specific time interval.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BorderModifer</code>
+      is a
+      <code translate="no" dir="ltr">GlanceModifier</code>
+      applying a border around an element.
+    </li>
+  </ul>
+  <p>This release also adds Progress Indicators to AppWidget Glance.</p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">LinearProgressIndicator</code>
+      and
+      <code translate="no" dir="ltr">CircularProgressIndicator</code>
+      composable. (
+      <a href="https://android-review.googlesource.com/#/q/Ie116b422d01c2a23c1fb4f41f638d872e732a109">Ie116b</a>
+      )
+    </li>
+    <li>
+      Change
+      <code translate="no" dir="ltr">actionStartBroadcastReceiver</code>
+      to
+      <code translate="no" dir="ltr">actionSendBroadcast</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I7d555ef9a609a53dca6f923a3649f39fd20c29e0">I7d555</a>
+      )
+    </li>
+    <li>
+      Pass Context to
+      <code translate="no" dir="ltr">GlanceAppWidget</code>
+      onDelete callback (
+      <a href="https://android-review.googlesource.com/#/q/I4c7953e962072c4f88e0c34f6bff045c7fe3bbf1">I4c795</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Correct handling of OPTIONS_APPWIDGET_SIZES if present but empty. (
+      <a href="https://android-review.googlesource.com/#/q/I01f8212b96b44467bfa336b8831f76369d702214">I01f82</a>
+      )
+    </li>
+  </ul>

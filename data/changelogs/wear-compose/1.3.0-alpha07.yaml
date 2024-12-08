@@ -1,0 +1,86 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.3.0-alpha07
+releaseDate: 2023-10-04
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha07" data-text="Version 1.3.0-alpha07" tabindex="-1">Version 1.3.0-alpha07</h3>
+  <p>October 4, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.3.0-alpha07</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/91bb8c1f81dcb031bda00fcd8e55f1e890b56f06..1f7407d4293384a1b91bc142880e3525048b3443/wear/compose">Version 1.3.0-alpha07 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We have added individual flags to
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      to control different animations:
+      <code translate="no" dir="ltr">showFadeInAnimation</code>
+      ,
+      <code translate="no" dir="ltr">showFadeOutAnimation</code>
+      and
+      <code translate="no" dir="ltr">showPositionAnimation</code>
+      . The previous API has been deprecated and forwards calls to the new one. For performance reasons and for UX consistency, when the
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      is used with a scrollable list, we recommend switching off
+      <code translate="no" dir="ltr">showFadeInAnimation</code>
+      and
+      <code translate="no" dir="ltr">showPositionAnimation</code>
+      flags. If
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      is used as a standalone indicator, for example for volume change, then we recommend having all 3 animations turned on. (
+      <a href="https://android-review.googlesource.com/#/q/Ia2d63d8ea92ca87b09b11d79c7968f0f72460bab">Ia2d63</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We have made improvements to the swipe to reveal motion by adding a fade animation to the primary action text, and fading the secondary action/changing the icon scale on full swipe expansion. (
+      <a href="https://android-review.googlesource.com/#/q/Ib72232be1be3c7711282f663570d8a9fa7432216">Ib7223</a>
+      )
+    </li>
+    <li>
+      It is recommended that Swipe to Reveal actions are made accessible and we have added custom accessibility actions to our Swipe to Reveal samples. (
+      <a href="https://android-review.googlesource.com/#/q/I422247105b834eec718b76cbb2b3d77e9085d998">I42224</a>
+      )
+    </li>
+    <li>
+      We have improved the performance of
+      <code translate="no" dir="ltr">SwipeToDismissBox</code>
+      , including refactoring to ensure that the initial logic does not trigger a recomposition. The
+      <code translate="no" dir="ltr">SwipeToDismissBox</code>
+      is now drawn as the full screen size. (
+      <a href="https://android-review.googlesource.com/#/q/Ie0aa2d6ef7c2cea5a96d5b268cfd2e0545b402a1">Ie0aa2</a>
+      )
+    </li>
+    <li>
+      We have fixed a bug when the
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      incorrectly disappeared. (
+      <a href="https://android-review.googlesource.com/#/q/I2091a88014bbaccf5ff6171d9bf2c50c96d4ae36">I2091a</a>
+      )
+    </li>
+    <li>
+      Improved performance of
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      by optimizing recompositions. New flags to control the animations (
+      <code translate="no" dir="ltr">fadeIn</code>
+      ,
+      <code translate="no" dir="ltr">fadeOut</code>
+      and
+      <code translate="no" dir="ltr">positionChange</code>
+      ) have been added subsequently (see API Changes) (
+      <a href="https://android-review.googlesource.com/#/q/Ifac7de410fc3d68a604cc1212abe19d1de9d6f06">Ifac7d</a>
+      )
+    </li>
+    <li>
+      We have added Microbenchmark tests for
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Idf8756cae7809140d50e7de19f60ddedbf8aac03">Idf875</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,58 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.1.0-alpha10
+releaseDate: 2021-10-27
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha10" data-text="Version 1.1.0-alpha10" tabindex="-1">Version 1.1.0-alpha10</h3>
+  <p>October 27, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.1.0-alpha10</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/db476cd663f3d4c2d60594fd492ec621639b2c72..31a8acd5d0aa030454712d3df1ec114631651ef3/benchmark">Version 1.1.0-alpha10 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Backport StartupTimingMetric to work back to API 23. This new implementation also better handles reportFullyDrawn() to wait until corresponding content has been rendered. (
+      <a href="https://android-review.googlesource.com/#/q/If3ac9a339bedbb61785c80ea78c0e7ae8f9018e9">If3ac9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/183129298">b/183129298</a>
+      )
+    </li>
+    <li>
+      Added JvmOverloads to multiple MacrobenchmarkScope methods for Java callers. (
+      <a href="https://android-review.googlesource.com/#/q/I644fe5b1ba90200ae264e8dabd68ae27689befa8">I644fe</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/184546459">b/184546459</a>
+      )
+    </li>
+    <li>
+      Provide alternative MacrobenchmarkRule.measureRepeated function that uses a
+      <code translate="no" dir="ltr">Consumer&lt;MacrobenchmarkScope&gt;</code>
+      for idiomatic usage in Java language. (
+      <a href="https://android-review.googlesource.com/#/q/If74abe75c4b0defd0016acd3de20689cf604badd">If74ab</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/184546459">b/184546459</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix for traces not starting early enough, and missing metric data. This is expected to fix "Unable to read any metrics during benchmark" exceptions that were caused by the library itself. (
+      <a href="https://android-review.googlesource.com/#/q/I6dfcbda59c6f5887433f3b1227613f8789ca6307">I6dfcb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/193827052">b/193827052</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/200302931">b/200302931</a>
+      )
+    </li>
+    <li>
+      FrameNegativeSlack has been renamed to FrameOverrun to clarify its meaning - how much the frame went over its time budget. (
+      <a href="https://android-review.googlesource.com/#/q/I6c2aa3a408b3cc455bcabcd1479933672f186636">I6c2aa</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/203008701">b/203008701</a>
+      )
+    </li>
+  </ul>

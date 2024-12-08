@@ -1,0 +1,259 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.3.0-alpha02
+releaseDate: 2024-03-06
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha02" data-text="Version 1.3.0-alpha02" tabindex="-1">Version 1.3.0-alpha02</h3>
+  <p>March 6, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.3.0-alpha02</code>
+    is released. Version 1.3.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e1b82c49c59d8e976ce558aba5586f6c61bc9054..638a8d3a474af45f6ad5fdc3d6d1836ea42d1778/compose/material3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Making the slider states stable again. Making
+      <code translate="no" dir="ltr">State.onValueChangeFinished</code>
+      a val again. Wrapping
+      <code translate="no" dir="ltr">onValueChangeFinished</code>
+      in a
+      <code translate="no" dir="ltr">rememberUpdatedState</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I82ab29f469b01077eb17a70204f43b7a154abc1d">I82ab2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/322269951">b/322269951</a>
+      )
+    </li>
+    <li>
+      The Navigation components now use the new
+      <code translate="no" dir="ltr">SurfaceContainer</code>
+      roles.
+      <code translate="no" dir="ltr">DrawerDefaults</code>
+      now provides distinct
+      <code translate="no" dir="ltr">standardContainerColor</code>
+      and
+      <code translate="no" dir="ltr">modalContainerColor</code>
+      attributes.
+      <code translate="no" dir="ltr">DrawerDefaults.ModalDrawerElevation</code>
+      is now
+      <code translate="no" dir="ltr">0.dp</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7fbacfbf3b79a4077bae2b84973d6db7e1d94f2f">I7fbac</a>
+      )
+    </li>
+    <li>
+      Removing
+      <code translate="no" dir="ltr">@Stable</code>
+      from the states of
+      <code translate="no" dir="ltr">Slider</code>
+      since we're changing
+      <code translate="no" dir="ltr">state.onValueChangeFinished</code>
+      to a
+      <code translate="no" dir="ltr">var</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ied34a92fed040ceeb5d676d6f75767ee33762cfb">Ied34a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/322269951">b/322269951</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ModalBottomSheet</code>
+      and
+      <code translate="no" dir="ltr">StandardBottomSheet</code>
+      animation spec is now a
+      <code translate="no" dir="ltr">TweenSpec</code>
+      , updated from a spring animation. This resolves an issue with a visible overshoot. Deprecated
+      <code translate="no" dir="ltr">SheetState</code>
+      constructors without density have now been removed. (
+      <a href="https://android-review.googlesource.com/#/q/I7babc194825f4cf6c05f9724eeba14d556c0840c">I7babc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/285847707">b/285847707</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">SurfaceContainer</code>
+      variants are now used by components. Components which formally calculated color with Surface and
+      <code translate="no" dir="ltr">TonalElevation</code>
+      now use
+      <code translate="no" dir="ltr">SurfaceContainer</code>
+      roles by default, which are not affected by tonal elevation. (
+      <a href="https://issuetracker.google.com/issues/304584161">b/304584161</a>
+      )
+    </li>
+    <li>
+      Fixed bug that caused
+      <code translate="no" dir="ltr">ElevatedFilterChip</code>
+      's unselected, disabled container color to be black. (
+      <a href="https://android-review.googlesource.com/#/q/I400e69a7f00c00c3c77e3fdef1e947156483731b">I400e6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/322407043">b/322407043</a>
+      )
+    </li>
+    <li>
+      Fix indeterminate progress indicator when the progress is 0 (
+      <a href="https://android-review.googlesource.com/#/q/Id658289077d4189ce18d7fc1e7cb167cc1068043">Id6582</a>
+      )
+    </li>
+    <li>
+      Fixed an issue with
+      <code translate="no" dir="ltr">Slider</code>
+      and
+      <code translate="no" dir="ltr">RangeSlider</code>
+      on RTL layout (
+      <a href="https://android-review.googlesource.com/#/q/Iab0e100af81859c5baaaa43ef3119113eee748ce">Iab0e1</a>
+      )
+    </li>
+    <li>
+      Adding
+      <code translate="no" dir="ltr">SliderRangeTolerance</code>
+      for the slider range calculation since Float rounding can be inaccurate. (
+      <a href="https://android-review.googlesource.com/#/q/Ic918adc77cd76bd1e988e0b3e7aa92c54cf19ade">Ic918a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/324934900">b/324934900</a>
+      )
+    </li>
+    <li>
+      Ensure that the
+      <code translate="no" dir="ltr">DatePickerDialog</code>
+      displays its buttons when nesting a
+      <code translate="no" dir="ltr">DateRangePicker</code>
+      or when displaying any type of date picker on small screens with larger fonts. (
+      <a href="https://android-review.googlesource.com/#/q/Ie4758e82b94eb2d5e448a973c550302ff1601f3f">Ie4758</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/325107799">b/325107799</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/277768544">b/277768544</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Menu</code>
+      now leverages the
+      <code translate="no" dir="ltr">SurfaceContainer</code>
+      role for container color.
+      <code translate="no" dir="ltr">MenuDefaults.TonalElevation</code>
+      is now
+      <code translate="no" dir="ltr">0.dp</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I135b7b5609dcb272a4458e14062495cca2a52ec8">I135b7</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TextField</code>
+      now leverages the
+      <code translate="no" dir="ltr">SurfaceContainerHighest</code>
+      role for container color. (
+      <a href="https://android-review.googlesource.com/#/q/I4dced0c76604b38aff9d58ba63f1450818054caa">I4dced</a>
+      )
+    </li>
+    <li>
+      Elevated chips now leverage the
+      <code translate="no" dir="ltr">SurfaceContainerLow</code>
+      role (
+      <a href="https://android-review.googlesource.com/#/q/I7cd2f8866db81c2c930406a631ad927b4ea755a8">I7cd2f</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">DatePicker</code>
+      container color is now
+      <code translate="no" dir="ltr">SurfaceContainerHigh</code>
+      .
+      <code translate="no" dir="ltr">DatePickerDefaults.TonalElevation</code>
+      is now
+      <code translate="no" dir="ltr">0.dp</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ida75315148a0eeafda207121bd58cf5ad6ef9987">Ida753</a>
+      )
+    </li>
+    <li>
+      Updates Bottom Sheets container color and drag handle color. (
+      <a href="https://android-review.googlesource.com/#/q/I72a0a4c343584952d0dc66c4f7de7be28955a4ae">I72a0a</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">RichTooltip</code>
+      container color is now
+      <code translate="no" dir="ltr">SurfaceContainer</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia8b459ba7ed2809286896f442654c75dec9c350a">Ia8b45</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SearchBar</code>
+      container color is now
+      <code translate="no" dir="ltr">SurfaceContainerHighest</code>
+      .
+      <code translate="no" dir="ltr">SearchBarDefaults.TonalElevation</code>
+      is now
+      <code translate="no" dir="ltr">0.dp</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I886044e0819b603b0fc4265079bbd445759197c8">I88604</a>
+      )
+    </li>
+    <li>
+      Updates switch disabled and unselected tracks/icons to leverage the
+      <code translate="no" dir="ltr">SurfaceContainerHighest</code>
+      color role. (
+      <a href="https://android-review.googlesource.com/#/q/I7687aa6aa79d2eb2381c9d0f64dffe2c2e958673">I7687a</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AlertDialog</code>
+      container color is now
+      <code translate="no" dir="ltr">SurfaceContainerHigh</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie0433fc844ba6faab004e5f93f61681eb675045e">Ie0433</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BottomAppBar</code>
+      container color is now
+      <code translate="no" dir="ltr">SurfaceContainer</code>
+      .
+      <code translate="no" dir="ltr">TopAppBar</code>
+      <code translate="no" dir="ltr">onScroll</code>
+      color is now
+      <code translate="no" dir="ltr">SurfaceContainer</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I416308fdb2b68d77d41857598ce30f09ddae36fe">I41630</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ElevatedCard</code>
+      container color is now
+      <code translate="no" dir="ltr">SurfaceContainerLow</code>
+      .
+      <code translate="no" dir="ltr">FilledCard</code>
+      ’s container color of
+      <code translate="no" dir="ltr">SurfaceContainerHighest</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I35141af0d7a069353309f267143e5808a9c0afca">I35141</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ElevatedButton</code>
+      container color is now
+      <code translate="no" dir="ltr">SurfaceContainerLow</code>
+      .
+      <code translate="no" dir="ltr">FilledIconButton</code>
+      ’s when unselected now have a container color of
+      <code translate="no" dir="ltr">SurfaceContainerHighest</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I792c9da5cc2cee2bc06e2acd99c47162ff59e872">I792c9</a>
+      )
+    </li>
+    <li>
+      Updates
+      <code translate="no" dir="ltr">TimePicker</code>
+      container color and clock dial color role to
+      <code translate="no" dir="ltr">SurfaceContainerHighest</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I43b9360aa0ee69d8b898c6d9dfb97234f2c138fb">I43b93</a>
+      )
+    </li>
+  </ul>

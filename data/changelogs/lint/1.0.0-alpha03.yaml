@@ -1,0 +1,49 @@
+libraryId: lint
+groupId: androidx.lint
+version: 1.0.0-alpha03
+releaseDate: 2024-12-11
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha03" data-text="Version 1.0.0-alpha03" tabindex="-1">Version 1.0.0-alpha03</h3>
+  <p>December 11, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lint:lint-gradle:1.0.0-alpha03</code>
+    is released. Version 1.0.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9cd42c5cbf5e69b0223d5b0c357593175182f365..2ffcbb08c7221e79b12c0ef234bcfb5517d10ece/lint/lint-gradle">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Catch calls to
+      <code translate="no" dir="ltr">Provider&lt;&gt;.toString</code>
+      as it is nearly always a bug to do that.
+    </li>
+    <li>
+      Catch calls of Kotlin collection extension functions on
+      <code translate="no" dir="ltr">TaskContainer</code>
+      as these cause eager
+      <code translate="no" dir="ltr">Task</code>
+      creation.
+    </li>
+    <li>
+      Catch calls to
+      <code translate="no" dir="ltr">ConfigurableFileCollection.from</code>
+      passing in a
+      <code translate="no" dir="ltr">Configuration</code>
+      as that causes eager resolution of the configuration suggesting to use
+      <code translate="no" dir="ltr">project.files(configuration)</code>
+      or
+      <code translate="no" dir="ltr">configuration.incoming.artifactView {}.files</code>
+      .
+    </li>
+    <li>
+      Catch usages of
+      <code translate="no" dir="ltr">Property&lt;File&gt;</code>
+      suggesting to use
+      <code translate="no" dir="ltr">RegularFileProperty</code>
+      or
+      <code translate="no" dir="ltr">DirectoryProperty</code>
+      as it is enforcing the use directory vs file.
+    </li>
+  </ul>

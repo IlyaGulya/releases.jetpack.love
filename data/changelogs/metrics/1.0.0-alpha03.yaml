@@ -1,0 +1,96 @@
+libraryId: metrics
+groupId: androidx.metrics
+version: 1.0.0-alpha03
+releaseDate: 2022-07-27
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha03" data-text="Version 1.0.0-alpha03" tabindex="-1">Version 1.0.0-alpha03</h3>
+  <p>July 27, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.metrics:metrics-performance:1.0.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/8094b683499b4098092c01028b55a38b49e357f2..a7f0710ad21f556f0dde9bf7bdab6d2135170fd4/metrics/metrics-performance">Version 1.0.0-alpha03 contains these commits.</a>
+  </p>
+  <ul>
+    <li>
+      <p>
+        This release contains minor API refinements as the library gets closer to beta. One of the API changes removes the Executor from the
+        <code translate="no" dir="ltr">createAndTrack()</code>
+        factory method for creating a
+        <code translate="no" dir="ltr">JankStats</code>
+        object. This has implications for the
+        <code translate="no" dir="ltr">OnFrameListener</code>
+        callback, as that listener is now called on the thread which delivers the per-frame data to
+        <code translate="no" dir="ltr">JankStats</code>
+        (the Main/UI thread on versions earlier than API 24, and the
+        <code translate="no" dir="ltr">FrameMetrics</code>
+        thread on API 24+). Moreover, the
+        <code translate="no" dir="ltr">FrameData</code>
+        object passed to the listener is now reused every frame, so data from that object must be copied and cached elsewhere during the callback, as that object should be considered obsolete as soon as the listener returns.
+      </p>
+    </li>
+    <li><p>There were also various bug fixes, including some concurrency issues.</p></li>
+    <li>
+      <p>
+        Finally, the fix to reuse
+        <code translate="no" dir="ltr">FrameData</code>
+        (mentioned above) means that there are now zero allocations per frame due to frame metrics delivery. There weren’t many allocations before, but the new approach means that you can use
+        <code translate="no" dir="ltr">JankStats</code>
+        without incurring any per-frame GC overhead in your app.
+      </p>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Updated method and parameter names in
+      <code translate="no" dir="ltr">PerformanceMetricsState</code>
+      to make the results of those calls clearer. (
+      <a href="https://android-review.googlesource.com/#/q/I56da57b13818bf4077a64ab144222ce255f4539a">I56da5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/233421985">b/233421985</a>
+      )
+    </li>
+    <li>
+      Added benchmark tests to track allocations, eliminated some internal allocations related to state management and reporting. Note that
+      <code translate="no" dir="ltr">FrameData</code>
+      passed to listeners is now considered volatile; that structure will be reused for the next frame and the data is only reliable until the listener returns.
+    </li>
+    <li>
+      Removed Executor from constructor for
+      <code translate="no" dir="ltr">JankStats</code>
+      ; listeners are now called on whatever thread the internal data was received upon. (
+      <a href="https://android-review.googlesource.com/#/q/I1274320bf29c171b82578868e657a3b01f7805c7">I12743</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed crash due to double-removal of
+      <code translate="no" dir="ltr">OnFrameMetricsAvailableListener</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I4409483d6e2f7287a0a93f521f68a4be9e22d969">I44094</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/239457413">b/239457413</a>
+      )
+    </li>
+    <li>
+      Return to original logic of posting
+      <code translate="no" dir="ltr">OnPreDrawListener</code>
+      messages at front of queue, for more consistent and predictable frame timing. (
+      <a href="https://android-review.googlesource.com/#/q/I05a434fe9453ea1be28d398e3eb284dd9b0cb64a">I05a43</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/233358407">b/233358407</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">ConcurrentModificationException</code>
+      bug where the list of listener delegates was being modified while it was also being iterated through to send per-frame data. (
+      <a href="https://android-review.googlesource.com/#/q/Ib769386f18e51dc6b58c935b42c5b8566c644abc">Ib7693</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/236612357">b/236612357</a>
+      )
+    </li>
+  </ul>

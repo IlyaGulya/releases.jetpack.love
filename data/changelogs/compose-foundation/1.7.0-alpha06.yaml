@@ -1,0 +1,293 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.7.0-alpha06
+releaseDate: 2024-04-03
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha06" data-text="Version 1.7.0-alpha06" tabindex="-1">Version 1.7.0-alpha06</h3>
+  <p>April 3, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.7.0-alpha06</code>
+    is released. Version 1.7.0-alpha06 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a57d7d17753695012b58c9ce7ad55a8d39157e62..02b55f664eba38e42e362e1af3913be1df552d55/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Item appearance and disappearance animation support was added into
+      <code translate="no" dir="ltr">LazyColumn</code>
+      and
+      <code translate="no" dir="ltr">LazyRow</code>
+      . Previously it was possible to add
+      <code translate="no" dir="ltr">Modifier.animateItemPlacement()</code>
+      modifier in order to support placement (reordering) animations. We deprecated this modifier and introduced a new non-experimental modifier called
+      <code translate="no" dir="ltr">Modifier.animateItem()</code>
+      which allows you to support all three animation types: appearance (fade in), disappearance (fade out) and reordering. (
+      <a href="https://android-review.googlesource.com/#/q/I2d7f7a376cea26c0a36a59a4586d2705ab04cab7">I2d7f7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/150812265">b/150812265</a>
+      )
+    </li>
+    <li>
+      Clients of
+      <code translate="no" dir="ltr">LazyColumn/LazyRow</code>
+      may now opt-out of maintaining an index based on the key for the upcoming measure-pass by calling a non-suspend
+      <code translate="no" dir="ltr">LazyListState.requestToScroll</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I98036297fdf1bdf73125c6713fe746d71d6d94a8">I98036</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/209652366">b/209652366</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">parseAsHtml</code>
+      method for styled strings: it allows to convert a string marked with HTML tags into
+      <code translate="no" dir="ltr">AnnotatedString</code>
+      . Note that not all tags are supported, for example you won't be able to display bullet lists yet. (
+      <a href="https://android-review.googlesource.com/#/q/I84d3d1881805e964cea940eb1c68a5bba16f6416">I84d3d</a>
+      )
+    </li>
+    <li>
+      Implemented experimental support for long screenshots in Compose scroll containers using the official Android API (
+      <code translate="no" dir="ltr">ScrollCaptureCallback</code>
+      ). This feature is experimental and may not currently handle all cases correctly. For that reason it is currently disabled by default. To opt-in, set the
+      <code translate="no" dir="ltr">ComposeFeatureFlag_LongScreenshotsEnabled</code>
+      flag to true. This flag will be removed before 1.7 beta. (
+      <a href="https://android-review.googlesource.com/#/q/I2b0552d34c530b127d64ac58f48a0fa399b3edde">I2b055</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/329296471">b/329296471</a>
+      )
+    </li>
+    <li>
+      Introduce new
+      <code translate="no" dir="ltr">GraphicsLayer</code>
+      API to provide more flexibility in placement and rendering of
+      <code translate="no" dir="ltr">GraphicsLayer</code>
+      instances and support intrinsic rendering features without needing to coordinate with Composable implementations to specify
+      <code translate="no" dir="ltr">GraphicsLayer</code>
+      modifier instances.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      All
+      <code translate="no" dir="ltr">KeyboardOptions</code>
+      parameters now have an unspecified value by default. Added
+      <code translate="no" dir="ltr">KeyboardOptions.merge</code>
+      method.
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">KeyboardOptions.autoCorrect</code>
+      to
+      <code translate="no" dir="ltr">autoCorrectEnabled</code>
+      and made it nullable, where null indicates no value was specified. (
+      <a href="https://android-review.googlesource.com/#/q/Ia8ba0fb1235a7a1c6c42d140119ddcb40b65892d">Ia8ba0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/295951492">b/295951492</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">outOfBoundsPageCount</code>
+      to
+      <code translate="no" dir="ltr">beyondViewportPageCount</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I129c68df1d82f992e102b4141427c0b425b38799">I129c6</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">fun ClipEntry.getMetadata()</code>
+      is changed to
+      <code translate="no" dir="ltr">val ClipEntry.clipMetadata</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I50155cef29574f74be45e850d210d0c405aa69f5">I50155</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">TextFieldState.valueAsFlow()</code>
+      . Prefer using
+      <code translate="no" dir="ltr">snapshotFlow { state.text }</code>
+      , or
+      <code translate="no" dir="ltr">snapshotFlow { TextFieldCharSequence(state.text, state.selection) }</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I7d629547848fe91ac6127b83c2836fe4c358c1ef">I7d629</a>
+      )
+    </li>
+    <li>
+      Reorganized
+      <code translate="no" dir="ltr">InputTransformation.transformInput</code>
+      parameters. Removed
+      <code translate="no" dir="ltr">originalValue: TextFieldCharSequence</code>
+      . Instead
+      <code translate="no" dir="ltr">TextFieldBuffer</code>
+      now carries this value with the same name. Also removed the
+      <code translate="no" dir="ltr">valueWithChanges: TextFieldBuffer</code>
+      parameter.
+      <code translate="no" dir="ltr">TextFieldBuffer</code>
+      now is the receiver scope on the function. (
+      <a href="https://android-review.googlesource.com/#/q/I919cc112d32cc821ee5beb7d90888020a060e024">I919cc</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BasicTextField(state)</code>
+      variant and
+      <code translate="no" dir="ltr">BasicSecureTextField</code>
+      now use
+      <code translate="no" dir="ltr">KeyboardActionHandler</code>
+      instead of
+      <code translate="no" dir="ltr">KeyboardActions</code>
+      to process actions taken by the software keyboard. (
+      <a href="https://android-review.googlesource.com/#/q/I58dda71cd89a62a1fa34df44a40f7bc0e7384991">I58dda</a>
+      )
+    </li>
+    <li>
+      Stylus handwriting delegation APIs to support stylus handwriting on "fake" text input fields. (
+      <a href="https://android-review.googlesource.com/#/q/I9c09c7c66896625e812674f262eceeb00938d983">I9c09c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/327271923">b/327271923</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">KeyboardOptions.shouldShowKeyboardOnFocus</code>
+      to
+      <code translate="no" dir="ltr">showKeyboardOnFocus</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib4b7af571c6bdfb06c3b0e160482cbb62c5277fa">Ib4b7a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/295951492">b/295951492</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">hintMediaTypes</code>
+      parameter from
+      <code translate="no" dir="ltr">Modifier.contentReceiver</code>
+      . Developers were already encouraged to check the received
+      <code translate="no" dir="ltr">TransferableContent</code>
+      's media type since it could be incompatible with the configured
+      <code translate="no" dir="ltr">hintMediaTypes</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I82f995187934e7d62ff2c6312869964ba7ca3b6a">I82f99</a>
+      )
+    </li>
+    <li>
+      Reordered the parameters of
+      <code translate="no" dir="ltr">BasicSecureTextField</code>
+      . Removed
+      <code translate="no" dir="ltr">keyboardType</code>
+      and
+      <code translate="no" dir="ltr">imeAction</code>
+      parameters in favor of full
+      <code translate="no" dir="ltr">KeyboardOptions</code>
+      class while keeping the same defaults appropriate for
+      <code translate="no" dir="ltr">BasicSecureTextField</code>
+      . Also removed the
+      <code translate="no" dir="ltr">scrollState</code>
+      parameter. (
+      <a href="https://android-review.googlesource.com/#/q/Ibbfa90ce45ab4e5ef7e4e38aed293d8f831af674">Ibbfa9</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TextFieldState.text</code>
+      's type is changed from
+      <code translate="no" dir="ltr">TextFieldCharSequence</code>
+      to just
+      <code translate="no" dir="ltr">CharSequence</code>
+      . Therefore, added
+      <code translate="no" dir="ltr">TextFieldState.selection: TextRange</code>
+      and
+      <code translate="no" dir="ltr">TextFieldState.composition: TextRange?</code>
+      to read the current selection and composition values directly from the state object.
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">TextFieldState.forEachTextValue</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Idb2a216a1866957e336c12ad6ee0c1338f0f530d">Idb2a2</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">ClipboardManager.getClipMetadata</code>
+      and
+      <code translate="no" dir="ltr">ClipboardManager.hasClip</code>
+      functions. Please use
+      <code translate="no" dir="ltr">clipEntry.getMetadata()</code>
+      to read the current clip entry's metadata. Also check
+      <code translate="no" dir="ltr">ClipboardManager.getClip</code>
+      's result if it's null or not to understand whether Clipboard has a current clip. (
+      <a href="https://android-review.googlesource.com/#/q/I504988d835b71009609c01919b387239a1e2bee0">I50498</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ClipboardManager.setClip</code>
+      now accepts null to be able to clear the Clipboard. (
+      <a href="https://android-review.googlesource.com/#/q/I7d2e957005fb2efecc64b7273d8209161016b36a">I7d2e9</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ReceiveContentListener</code>
+      is converted to a function interface. Also
+      <code translate="no" dir="ltr">Modifier.receiveContent</code>
+      overload that takes in a lambda is removed since
+      <code translate="no" dir="ltr">ReceiveContentListener</code>
+      is a function interface now.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Modifier.receiveContent</code>
+      is renamed to
+      <code translate="no" dir="ltr">Modifier.contentReceiver</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1e6affb8908f738c0a27f57f67479bf7ee091a7e">I1e6af</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">TransferableContent.consumeEach</code>
+      to
+      <code translate="no" dir="ltr">TransferableContent.consume</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1e462742e827d84c9dec6e8184a9a2f9acb84540">I1e462</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">rememberTextFieldState</code>
+      has graduated to a Stable API. (
+      <a href="https://android-review.googlesource.com/#/q/I3799979f1211c2182f32e45af82be5d13e181f3d">I37999</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a bug where
+      <code translate="no" dir="ltr">BasicTextField(state)</code>
+      variant did not work with CJK(composition based) keyboards. (
+      <a href="https://android-review.googlesource.com/#/q/I544255c03179f59e86974710d59308cfea48b036">I54425</a>
+      )
+    </li>
+    <li>
+      Fixed a bug where
+      <code translate="no" dir="ltr">Modifier.dragAndDropTarget()</code>
+      could reference stale data in certain scenarios with
+      <code translate="no" dir="ltr">Modifier.Node</code>
+      re-use. (
+      <a href="https://android-review.googlesource.com/#/q/I05bb1a7dea19acf4234f88fe988f51e3c2822f4b">I05bb1</a>
+      )
+    </li>
+    <li>
+      Reverted a recent contract change where
+      <code translate="no" dir="ltr">AnchoredDraggableState#anchoredDrag</code>
+      calls would snap at the end of an
+      <code translate="no" dir="ltr">anchoredDrag</code>
+      operation. (
+      <a href="https://android-review.googlesource.com/#/q/I9571542e53b0bd026e6bcb8ca6abead58ca4a4ae">I95715</a>
+      )
+    </li>
+  </ul>

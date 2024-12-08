@@ -1,0 +1,133 @@
+libraryId: work
+groupId: androidx.work
+version: 2.8.0-alpha01
+releaseDate: 2022-01-12
+#language=html
+changelogHtml: |
+  <h3 id="2.8.0-alpha01" data-text="Version 2.8.0-alpha01" tabindex="-1">Version 2.8.0-alpha01</h3>
+  <p>January 12, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.8.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a8b339074687010fb5c861b5af9d169113f0c04b..f09f3e0f47cacc65a631115deac08ee8cc132ceb/work">Version 2.8.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Helper methods
+      <code translate="no" dir="ltr">WorkQuery.fromStates</code>
+      ,
+      <code translate="no" dir="ltr">WorkQuery.fromUniqueWorkNames</code>
+      ,
+      <code translate="no" dir="ltr">WorkQuery.fromTags</code>
+      were added to create WorkQuery directly. (
+      <a href="https://android-review.googlesource.com/#/q/If48f2ae0a5523792a9abe21279084f895abe7c53">If48f2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/199919736">b/199919736</a>
+      )
+    </li>
+    <li>
+      Adds experimental BuildCompat methods for future SDKs (
+      <a href="https://android-review.googlesource.com/#/q/Iafd82e20e0c6d54878d352baddb18e86095504a7">Iafd82</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/207528937">b/207528937</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">getForegroundInfo</code>
+      to
+      <code translate="no" dir="ltr">Worker</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic1ead06bc9cc4cf61e90526dc47dff4c1365ea4c">Ic1ead</a>
+      )
+    </li>
+    <li>
+      Helper methods
+      <code translate="no" dir="ltr">WorkQuery.fromIds</code>
+      to create WorkQuery directly from ids were added. (
+      <a href="https://android-review.googlesource.com/#/q/Ie5bdf99ac193c9aa9179dcf629a46227fe876242">Ie5bdf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/199919736">b/199919736</a>
+      )
+    </li>
+    <li>
+      RxWorker now has
+      <code translate="no" dir="ltr">setForeground</code>
+      returning
+      <code translate="no" dir="ltr">Completable</code>
+      that can be used instead of
+      <code translate="no" dir="ltr">setForegroundInfoAsync</code>
+      that returns
+      <code translate="no" dir="ltr">ListenableFuture</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I851567cc042d4f3f6de9023f4eb6d0f2a25e8b8e">I85156</a>
+      )
+    </li>
+    <li>
+      RxWorker for RxJava 2 now has
+      <code translate="no" dir="ltr">getForegroundInfo</code>
+      returning
+      <code translate="no" dir="ltr">Single</code>
+      that can be used instead of
+      <code translate="no" dir="ltr">getForegroundInfoAsync</code>
+      that returns
+      <code translate="no" dir="ltr">ListenableFuture</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I21c91cd5db57e85bf1aaa7e1596e2287ab44675c">I21c91</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/203851459">b/203851459</a>
+      )
+    </li>
+    <li>
+      RxWorker for RxJava 3 now has
+      <code translate="no" dir="ltr">getForegroundInfo</code>
+      returning
+      <code translate="no" dir="ltr">Single</code>
+      that can be used instead of
+      <code translate="no" dir="ltr">getForegroundInfoAsync</code>
+      that returns
+      <code translate="no" dir="ltr">ListenableFuture</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1ca8aee15cd28ea1afe363fa235ff6a13be8f95c">I1ca8a</a>
+      )
+    </li>
+    <li>
+      RxWorker now has
+      <code translate="no" dir="ltr">setForeground</code>
+      returning
+      <code translate="no" dir="ltr">Completable</code>
+      that can be used instead of
+      <code translate="no" dir="ltr">setForegroundInfoAsync</code>
+      that returns
+      <code translate="no" dir="ltr">ListenableFuture</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I992a32849600b8c3bb37fa362e9775bc46a6462b">I992a3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/203851459">b/203851459</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Propagate cancellations in the
+      <code translate="no" dir="ltr">CoroutineScope</code>
+      to the
+      <code translate="no" dir="ltr">ListenableFuture</code>
+      when using
+      <code translate="no" dir="ltr">suspendCancellableCoroutine</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I77e6348e89ba345f1ae1024b7102334b3608ca6d">I77e63</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_27_2" data-text="Version 2.7" tabindex="-1">Version 2.7</h2>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      WorkManager Version
+      <code translate="no" dir="ltr">2.7.0</code>
+      is required for apps targeting Android 12 (S).
+    </span>
+  </aside>

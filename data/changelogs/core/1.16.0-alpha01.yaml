@@ -1,0 +1,123 @@
+libraryId: core
+groupId: androidx.core
+version: 1.16.0-alpha01
+releaseDate: 2024-12-11
+#language=html
+changelogHtml: |
+  <h3 id="1.16.0-alpha01" data-text="Version 1.16.0-alpha01" tabindex="-1">Version 1.16.0-alpha01</h3>
+  <p>December 11, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core:1.16.0-alpha01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.core:core-ktx:1.16.0-alpha01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.core:core-testing:1.16.0-alpha01</code>
+    are released. Version 1.16.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f9cb5997d32284d4f93d768acd1c74775fd8683f..46295bc0b75a16f452e8e0090e8de41073d4dbb6/core">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">setLaunchDisplayId</code>
+      to
+      <code translate="no" dir="ltr">ActivityOptionsCompat</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I39e773972f9f91b6f970c542740a61486197a3cc">I39e77</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/379669743">b/379669743</a>
+      )
+    </li>
+    <li>
+      Added compat API for
+      <code translate="no" dir="ltr">SYSTEM_OVERLAYS</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ibd1fd4a28dae7ccdc3193f1afcfac7b097265d71">Ibd1fd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/287470173">b/287470173</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">OutcomeReceiverCompat</code>
+      , a version of Android's
+      <code translate="no" dir="ltr">OutcomeReceiver</code>
+      available on all API levels. (
+      <a href="https://android-review.googlesource.com/#/q/Ib82652305f6dd0aab5e9598dbfc13a397ab0f367">Ib8265</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/380060342">b/380060342</a>
+      )
+    </li>
+    <li>
+      Added compat class for
+      <code translate="no" dir="ltr">android.view.ScrollFeedbackProvider</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Icaa92df0d4abf1c6997b910a59e552bf27006e09">Icaa92</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ViewCompat.addViewOverlay(View)</code>
+      as an alternative to
+      <code translate="no" dir="ltr">View.getOverlay().add(View)</code>
+      . The
+      <code translate="no" dir="ltr">ViewCompat</code>
+      variant fixes an issue where owners like the
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      and
+      <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+      could not be resolved between the view being overlaid and the overlay owner. (
+      <a href="https://android-review.googlesource.com/#/q/I81413883e41e56e5ea76372debbd5b012c345f20">I81413</a>
+      )
+    </li>
+    <li>
+      Introduces the concept of a
+      <code translate="no" dir="ltr">View</code>
+      being able to have a disjoint parent. A disjoint parent of a view is a different view that effectively parents the other view, but is not set via the
+      <code translate="no" dir="ltr">View.parent</code>
+      property. See the documentation for more information. (
+      <a href="https://android-review.googlesource.com/#/q/Ib295041b91c759b403d01fd9cb46bb189549a104">Ib2950</a>
+      )
+    </li>
+    <li>
+      Added a new API
+      <code translate="no" dir="ltr">ViewGroupCompat#installCompatInsetsDispatch</code>
+      for developers to fix an insets dispatching issue present prior to API 30. (
+      <a href="https://android-review.googlesource.com/#/q/I111590881991b94e5cd5f2100bf88dd4468bc781">I11159</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">FontsContractCompat.TypefaceStyle</code>
+      IntDef for annotating
+      <code translate="no" dir="ltr">Typeface</code>
+      styles in
+      <code translate="no" dir="ltr">FontsContractCompat</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib3e5be8259ac48eac43b3a5618f32cd67e047afc">Ib3e5b</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Deprecated
+      <code translate="no" dir="ltr">BuildCompat.isAtLeastV</code>
+      . Callers should check
+      <code translate="no" dir="ltr">SDK_INT</code>
+      against 35 directly instead. Thanks to Jake Wharton! (
+      <a href="https://android-review.googlesource.com/#/q/I294d117a8fea924e7f1b739d52268a9a54be6db7">I294d1</a>
+      )
+    </li>
+    <li>
+      Added a mutability flag to
+      <code translate="no" dir="ltr">TaskStackBuilder</code>
+      . Thanks to Kamal Faraj! (
+      <a href="https://android-review.googlesource.com/#/q/Ife0ec30e6c08d6ed56781cdb58a722a6c1f6b6c1">Ife0ec</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/371534781">b/371534781</a>
+      )
+    </li>
+  </ul>
+  <h2 id="core_and_core-ktx_version_115_2" data-text="Core and Core-ktx Version 1.15" tabindex="-1">Core and Core-ktx Version 1.15</h2>

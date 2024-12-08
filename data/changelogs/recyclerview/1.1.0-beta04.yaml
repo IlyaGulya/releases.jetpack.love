@@ -1,0 +1,66 @@
+libraryId: recyclerview
+groupId: androidx.recyclerview
+version: 1.1.0-beta04
+releaseDate: 2019-09-05
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-beta04" data-text="Version 1.1.0-beta04" tabindex="-1">Version 1.1.0-beta04</h3>
+  <p>September 5, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.recyclerview:recyclerview:1.1.0-beta04</code>
+    is released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1bd267a0d9317f3a8698ecc2b739d48a8805ca87..9c00f40057f472c088c53de0c23937c02c9b64fc/recyclerview/recyclerview">here</a>
+    .
+  </p>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">PagerSnapHelper</code>
+      and
+      <code translate="no" dir="ltr">LinearSnapHelper</code>
+      now take padding of RecyclerView into account regardless of the value of
+      <code translate="no" dir="ltr">clipToPadding</code>
+      (
+      <a href="https://issuetracker.google.com/139452422">b/139452422</a>
+      ,
+      <a href="https://issuetracker.google.com/139012032">b/139012032</a>
+      ,
+      <a href="https://android-review.googlesource.com/1103182">aosp/1103182</a>
+      ,
+      <a href="https://android-review.googlesource.com/1106715">aosp/1106715</a>
+      )
+    </li>
+    <li>
+      Fixed a bug where RecyclerView was not disallowing touch intercept when nested pre-scrolling caused a
+      <code translate="no" dir="ltr">NestedScrollingParent</code>
+      to scroll (
+      <a href="https://issuetracker.google.com/138668210">b/138668210</a>
+      ,
+      <a href="https://android-review.googlesource.com/1105373">aosp/1105373</a>
+      ). This benefits libraries such as
+      <a href="/jetpack/androidx/releases/viewpager2">ViewPager2</a>
+      .
+    </li>
+    <li>
+      RecyclerView now consistently goes to
+      <code translate="no" dir="ltr">SCROLL_STATE_DRAGGING</code>
+      before nested pre scrolls are dispatched (
+      <a href="https://android-review.googlesource.com/1105373">aosp/1105373</a>
+      )
+    </li>
+    <li>
+      Nested pre-scrolling is no longer performed before the gesture exceeds touch slop (
+      <a href="https://issuetracker.google.com/139530818">b/139530818</a>
+      ,
+      <a href="https://android-review.googlesource.com/1105373">aosp/1105373</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">dx</code>
+      and
+      <code translate="no" dir="ltr">dy</code>
+      arguments dispatched to nested pre-scrolls are zeroed when RecyclerView can’t scroll in that direction (
+      <a href="https://android-review.googlesource.com/1105373">aosp/1105373</a>
+      )
+    </li>
+  </ul>

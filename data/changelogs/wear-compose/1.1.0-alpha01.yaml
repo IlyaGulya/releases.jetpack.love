@@ -1,0 +1,81 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.1.0-alpha01
+releaseDate: 2022-06-29
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha01" data-text="Version 1.1.0-alpha01" tabindex="-1">Version 1.1.0-alpha01</h3>
+  <p>June 29, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-foundation:1.1.0-alpha01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material:1.1.0-alpha01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-navigation:1.1.0-alpha01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/aa660d501ab7cf1ffb63464e855e86e650838fb6..8094b683499b4098092c01028b55a38b49e357f2/wear/compose">Version 1.1.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Picker's
+      <code translate="no" dir="ltr">contentDescription</code>
+      parameter is now used only for the selected Picker option and takes a nullable String (previously, it was necessary to pass a mapping from option to the content description, but only the selected option was used). (
+      <a href="https://android-review.googlesource.com/#/q/Ife6a7cb095c8e76ae2e6b7715e7efada12d971ec">Ife6a7</a>
+      )
+    </li>
+    <li>
+      We have made accessibility improvements to Picker so that multi-picker screens are navigable with screen readers and the content description is accessible (
+      <a href="https://android-review.googlesource.com/#/q/I64edb15386b8e92e4cc33b6a0bb816d333dba961">I64edb</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We have updated the baseline profile rules packaged with the Wear Compose library (
+      <a href="https://android-review.googlesource.com/#/q/I9c69474e05395bb28ec62355714700b58923ba07">I9c694</a>
+      )
+    </li>
+    <li>
+      We have corrected the direction of the gradient for Chips in right to left mode. Was top left-&gt;bottom right, is now top right-&gt;bottom left. (
+      <a href="https://android-review.googlesource.com/#/q/Ic2e77f4712f21f6b57cb7bbde63136b70769523e">Ic2e77</a>
+      )
+    </li>
+    <li>
+      We have updated the default gradients for
+      <code translate="no" dir="ltr">Chip/ToggleChip/Card</code>
+      to bring them in line with latest UX spec.
+      <code translate="no" dir="ltr">ChipDefaults.gradientBackgroundChipColors</code>
+      has been updated to start from 50% of primary rather than 32.5%.
+      <code translate="no" dir="ltr">CardDefaults.cardBackgroundPainter</code>
+      has been updated to start from 30% of primary and end at 20% of
+      <code translate="no" dir="ltr">onSurfaceVariant</code>
+      (was previously 20% to 10%
+      <code translate="no" dir="ltr">onSurfaceVariant</code>
+      ).
+      <code translate="no" dir="ltr">ToggleChip.toggleChipColors</code>
+      changes from a linear gradient of 75% surface to 32.5% primary to 0% surface to 50% primary. (
+      <a href="https://android-review.googlesource.com/#/q/I43bbd9804f53013ea65f570bfdd91f9c5d2016f3">I43bbd</a>
+      )
+    </li>
+    <li>
+      We have added a background color (
+      <code translate="no" dir="ltr">MaterialTheme.color.surface</code>
+      ) behind
+      <code translate="no" dir="ltr">Chip/ToggleChips</code>
+      that have gradient backgrounds in order to ensure that they are properly visible in the unlikely event that a light color is used behind them. (
+      <a href="https://android-review.googlesource.com/#/q/Ibe1a442812a48a6d39912b4bbf399a2f4b11ae5b">Ibe1a4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/235937657">b/235937657</a>
+      )
+    </li>
+    <li>
+      Picker items are now always center-aligned, fixing a bug when setting
+      <code translate="no" dir="ltr">gradientRatio</code>
+      to zero had the side-effect of changing the alignment. (
+      <a href="https://android-review.googlesource.com/#/q/I712b872a76103fa3365a2a8ef651394a2a0eab32">I712b8</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_10_2" data-text="Version 1.0" tabindex="-1">Version 1.0</h2>

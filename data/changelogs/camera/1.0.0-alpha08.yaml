@@ -1,0 +1,59 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.0.0-alpha08
+releaseDate: 2020-02-26
+#language=html
+changelogHtml: |
+  <h3 id="camera-view-1.0.0-alpha08" data-text="Camera-View Version 1.0.0-alpha08" tabindex="-1">Camera-View Version 1.0.0-alpha08</h3>
+  <p>February 26, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-view:1.0.0-alpha08</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1c76d34916ab81f6fea02ba6e2d717243562bb24..401dc9727e2eb1b5b89c0fbc4b7e1df77b2df75e/camera/camera-view">Version 1.0.0-alpha08 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Replaced the
+      <code translate="no" dir="ltr">ListenableFuture</code>
+      on
+      <code translate="no" dir="ltr">SurfaceRequest.provideSurface()</code>
+      with an
+      <code translate="no" dir="ltr">Executor</code>
+      and
+      <code translate="no" dir="ltr">Callback</code>
+      . This simplifies the API by no longer requiring handling of exceptions on
+      <code translate="no" dir="ltr">provideSurface()</code>
+      and enforces that the
+      <code translate="no" dir="ltr">provideSurface()</code>
+      callback cannot be cancelled. This is to prevent crashes on older devices caused by prematurely releasing surfaces. The
+      <code translate="no" dir="ltr">SurfaceRequest.Result</code>
+      object is now used for tracking how a
+      <code translate="no" dir="ltr">SurfaceRequest</code>
+      uses the provided
+      <code translate="no" dir="ltr">Surface</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7854b0a3c01c2e11030d18bf99eb4539207267e3">I7854b</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">SurfaceRequest.setSurface(Surface)</code>
+      to
+      <code translate="no" dir="ltr">SurfaceRequest.provideSurface(Surface)</code>
+      and
+      <code translate="no" dir="ltr">SurfaceRequest.setWillNotComplete()</code>
+      to
+      <code translate="no" dir="ltr">SurfaceRequest.willNotProvideSurface()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I224fe088094eed4fb9e8a8ff83b7fa2417c6f36d">I224fe</a>
+      )
+    </li>
+    <li>
+      Fixed initialization of app variants with ProGuard enabled by preserving the flag that sets the default
+      <code translate="no" dir="ltr">CameraXConfig</code>
+      provider. (
+      <a href="https://android-review.googlesource.com/#/q/I2d6c1134e10e9d9add5e61d32efb14b06f2ae7ac">I2d6c1</a>
+      )
+    </li>
+  </ul>

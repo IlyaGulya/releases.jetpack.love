@@ -1,0 +1,43 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.1.0-alpha02
+releaseDate: 2021-07-01
+#language=html
+changelogHtml: |
+  <h3 id="3.1.0-alpha02" data-text="Version 3.1.0-alpha02" tabindex="-1">Version 3.1.0-alpha02</h3>
+  <p>July 1, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.1.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/86ff5b4bb956431ec884586ce0aea0127e189ec4..19ae3a88ff0824d615355b492cb56049e16991f2/paging">Version 3.1.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>Added onPagesPresented listener and flow presenter APIs which trigger immediately after presented pages are updated in UI.</p>
+
+      <p>Since these updates are synchronous with UI, you may call adapter methods such as .snapshot, .getItemCount, to inspect the state after the update has been applied. Note that .snapshot() was left to be explicitly called because it can be expensive to do on every update.</p>
+
+      <p>Page updates can happen in the following scenarios:</p>
+
+      <ul>
+        <li>Initial load of a new generation of PagingData completes, regardless if the new generation contains any changes to the presented items. i.e., A new generation completing initial load with no updates because the list is exactly the same will still trigger this callback.</li>
+        <li>A page is inserted, even if the inserted page contains no new items</li>
+        <li>
+          A page is dropped, even if the dropped page was empty (
+          <a href="https://android-review.googlesource.com/#/q/I272c9a6b5d80f155dffcc05d5cda176d58c18d31">I272c9</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/189999634">b/189999634</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Accessing PagedList.dataSource from the initial value produced by LivePagedList or RxPagedList will no longer incorrectly throw an IllegalStateException (
+      <a href="https://android-review.googlesource.com/#/q/I96707a477f347bd19e7aeccdb52eca39d637297a">I96707</a>
+      )
+    </li>
+  </ul>

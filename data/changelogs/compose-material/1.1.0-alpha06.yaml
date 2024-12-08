@@ -1,0 +1,52 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 1.1.0-alpha06
+releaseDate: 2021-10-13
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha06" data-text="Version 1.1.0-alpha06" tabindex="-1">Version 1.1.0-alpha06</h3>
+  <p>October 13, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material-*:1.1.0-alpha06</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/da9716386798fc4e39075f54e5bd3317384a63e6..db0888af4fa9a8eaeaf55cc1f120724bc67bdb20/compose/material">Version 1.1.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      A child-less overload for Layout was added, with improved efficiency (
+      <a href="https://android-review.googlesource.com/#/q/Ib0d9a0f11936c0568d20e26a3c6eaa3f938e0ccd">Ib0d9a</a>
+      )
+    </li>
+    <li>
+      Implementation of
+      <code translate="no" dir="ltr">ExposedDropdownMenu</code>
+      based on
+      <code translate="no" dir="ltr">ExposedDropdownMenuBox</code>
+      with
+      <code translate="no" dir="ltr">TextField</code>
+      and
+      <code translate="no" dir="ltr">DropdownMenu</code>
+      inside (
+      <a href="https://android-review.googlesource.com/#/q/If60b2e6c7c139d4d4c134c714e2803f531a6c72a">If60b2</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">dismissOnOutsideClick</code>
+      was added to
+      <code translate="no" dir="ltr">PopupProperties</code>
+      , replacing
+      <code translate="no" dir="ltr">dismissOnClickOutside</code>
+      which was deprecated. The new property receives the click position and the anchor bounds, providing finer control over whether onDismissRequest should be invoked or not. For example, this can be useful to prevent anchor dismissal for touches on the anchor.
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">updateAndroidWindowManagerFlags</code>
+          was added to
+          <code translate="no" dir="ltr">PopupProperties</code>
+          , offering low-level control over the flags passed by the popup to the Android WindowManager. The parameter of the lambda will be the flags calculated from the PopupProperties values that result in WindowManager flags: e.g. focusable. The result of the lambda will be the final flags which will be passed to the Android WindowManager. By default, updateAndroidWindowManagerFlags will leave the flags calculated from parameters unchanged. This API should be used with caution, only in cases where the popup has very specific behavior requirements. (
+          <a href="https://android-review.googlesource.com/#/q/I6e9f9d393dc12bd1ea7ae294af1761817f154735">I6e9f9</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>

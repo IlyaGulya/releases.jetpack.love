@@ -1,0 +1,55 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 1.0.0-alpha04
+releaseDate: 2018-07-19
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha04" data-text="Version 1.0.0-alpha04" tabindex="-1">Version 1.0.0-alpha04</h3>
+  <p>July 19, 2018</p>
+  <p>
+    Navigation
+    <code translate="no" dir="ltr">1.0.0-alpha04</code>
+    and the associated Safe Args gradle plugin contains a number of API changes, behavior changes, and bug fixes.
+  </p>
+  <p><strong>API / Behavior Changes</strong></p>
+  <ul>
+    <li>
+      NavHostFragment will always set the current Fragment as the primary navigation fragment, ensuring that child fragment managers are popped before the outer NavController is popped
+      <a href="https://issuetracker.google.com/issues/111345778">b/111345778</a>
+    </li>
+  </ul>
+  <p><strong>Safe Args</strong></p>
+  <ul>
+    <li>
+      <strong>Breaking Change:</strong>
+      <code translate="no" dir="ltr">app:type</code>
+      has been changed to
+      <code translate="no" dir="ltr">app:argType</code>
+      to avoid conflicts with other libraries such as ConstraintLayout 2.0.0-alpha1
+      <a href="https://issuetracker.google.com/issues/111110548">b/111110548</a>
+    </li>
+    <li>
+      Error messages from Safe Args are now clickable
+      <a href="https://issuetracker.google.com/issues/111534438">b/111534438</a>
+    </li>
+    <li>
+      Args classes now confirms that
+      <code translate="no" dir="ltr">NonNull</code>
+      attributes are actually not null
+      <a href="https://issuetracker.google.com/issues/111451769">b/111451769</a>
+    </li>
+    <li>
+      Additional
+      <code translate="no" dir="ltr">NonNull</code>
+      annotations have been added to NavDirections and Args generated classes
+      <a href="https://issuetracker.google.com/issues/111455455">b/111455455</a>
+      <a href="https://issuetracker.google.com/issues/111455456">b/111455456</a>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue with the system back button after deep linking to a fragment destination
+      <a href="https://issuetracker.google.com/issues/111515685">b/111515685</a>
+    </li>
+  </ul>

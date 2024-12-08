@@ -1,0 +1,82 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.3.0-alpha05
+releaseDate: 2020-04-15
+#language=html
+changelogHtml: |
+  <h3 id="2.3.0-alpha05" data-text="Version 2.3.0-alpha05" tabindex="-1">Version 2.3.0-alpha05</h3>
+  <p>April 15, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.3.0-alpha05</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/8744680798c115f612a99148c5a5c3ad4bd6fbf5..24daa503442fcd3e44ada60cf1da41df2815c045/navigation">Version 2.3.0-alpha05 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      For
+      <a href="/guide/navigation/navigation-dynamic#included">dynamic graph includes</a>
+      using
+      <code translate="no" dir="ltr">&lt;include-dynamic&gt;</code>
+      , you no longer need to specify
+      <code translate="no" dir="ltr">app:graphPackage</code>
+      and a default one will be used by adding
+      <code translate="no" dir="ltr">moduleName</code>
+      suffix to the
+      <code translate="no" dir="ltr">applicationId</code>
+      after a dot. If you do need to customize your
+      <code translate="no" dir="ltr">graphPackage</code>
+      , an
+      <code translate="no" dir="ltr">${applicationId}</code>
+      placeholder is now supported. (
+      <a href="https://issuetracker.google.com/issues/152696768">b/152696768</a>
+      )
+    </li>
+    <li>
+      The Navigation Graph Kotlin DSL now exposes a
+      <code translate="no" dir="ltr">defaultArguments</code>
+      <code translate="no" dir="ltr">Map</code>
+      for actions, mirroring the ability to set default values on
+      <code translate="no" dir="ltr">&lt;action&gt;</code>
+      elements in Navigation XML files. (
+      <a href="https://issuetracker.google.com/issues/150345605">b/150345605</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      From
+      <a href="/androidx/releases/navigation#2.2.2">Navigation 2.2.2</a>
+      : Fixed an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      when deep linking to the start destination of your graph when you have multiple
+      <code translate="no" dir="ltr">NavHostFragment</code>
+      instances in your Activity. (
+      <a href="https://issuetracker.google.com/issues/147378752">b/147378752</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency updates</strong></p>
+  <ul>
+    <li>
+      Navigation now depends on
+      <a href="/jetpack/androidx/releases/fragment#1.2.4">
+        Fragment
+        <code translate="no" dir="ltr">1.2.4</code>
+      </a>
+      . (
+      <a href="https://android-review.googlesource.com/1277325">aosp/1277325</a>
+      )
+    </li>
+    <li>
+      Dynamic Navigation now depends on
+      <a href="/reference/com/google/android/play/core/release-notes#1-7-2">
+        Play Core
+        <code translate="no" dir="ltr">1.7.2</code>
+      </a>
+      . (
+      <a href="https://android-review.googlesource.com/1282257">aosp/1282257</a>
+      )
+    </li>
+  </ul>

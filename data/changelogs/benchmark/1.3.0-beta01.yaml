@@ -1,0 +1,140 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.3.0-beta01
+releaseDate: 2024-06-12
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-beta01" data-text="Version 1.3.0-beta01" tabindex="-1">Version 1.3.0-beta01</h3>
+  <p>June 12, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.3.0-beta01</code>
+    is released. Version 1.3.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6a69101fd0edc8d02aa316df1f43e0552fd2d7c4..e688db5c82e85000364f92965558ef1e2236c5a0/benchmark">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">MethodTracing.affectsMeasurementOnThisDevice</code>
+      to
+      <code translate="no" dir="ltr">AFFECTS_MEASUREMENT_ON_THIS_DEVICE</code>
+      for consistency. (
+      <a href="https://android-review.googlesource.com/#/q/I1bdfa9acbd481f837649a2444fee46185d49bd61">I1bdfa</a>
+      )
+    </li>
+    <li>
+      Added experimental
+      <code translate="no" dir="ltr">BlackHole.consume()</code>
+      api to prevent dead code elimination in microbenchmarks. (
+      <a href="https://android-review.googlesource.com/#/q/If681208c4e5ad5d054117c2320b4fd56b86f4ff5">If6812</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/286091643">b/286091643</a>
+      )
+    </li>
+    <li>
+      Microbenchmark will now correctly throw to prevent method tracing from interfering with measurements. This occurs on certain devices when method tracing is forced on (via instrumentation args or
+      <code translate="no" dir="ltr">MicrobenchmarkConfig</code>
+      ), and if a measurement is attempted after a method trace. Affected devices are running API 26-30 or certain ART mainline module versions affected by this interference, and can be detected at runtime via
+      <code translate="no" dir="ltr">ProfilerConfig.MethodTracing.affectsMeasurementOnThisDevice</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iafb92c47c76bf257c047634b61401d873ce85cc5">Iafb92</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/303660864">b/303660864</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Bumped max agp version recommended to 9.0.0-alpha01. (
+      <a href="https://android-review.googlesource.com/#/q/I5bbb0401cf54f7f5394e7462235947d61be20ee2">I5bbb0</a>
+      )
+    </li>
+    <li>
+      Added compilation mode to benchmark context (
+      <a href="https://android-review.googlesource.com/#/q/If5612552a718b459e95cd96dc721e92a88e3fa8a">If5612</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/325512900">b/325512900</a>
+      )
+    </li>
+    <li>
+      Enable AIDL tracing by default (requires API 28) (
+      <a href="https://android-review.googlesource.com/#/q/Ia0af2a55ac2635db68427845860dc96d93994220">Ia0af2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/341852305">b/341852305</a>
+      )
+    </li>
+    <li>
+      Added additional information in benchmark context in JSON output:
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">context.artMainlineVersion</code>
+          - integer version of Art mainline module (if present on device, -1 otherwise)
+        </li>
+        <li>
+          <code translate="no" dir="ltr">context.build.id</code>
+          - Equals
+          <code translate="no" dir="ltr">android.os.Build.ID</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">context.build.version.codename</code>
+          - Equals
+          <code translate="no" dir="ltr">android.os.Build.VERSION.CODENAME</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">context.build.version.abbreviatedCodename</code>
+          - corresponds to first letter of pre-release codename (even on release builds) (
+          <a href="https://android-review.googlesource.com/#/q/Ie502065af175c2a8054bbe85716f15f4ff38b822">Ie5020</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Fixes
+      <code translate="no" dir="ltr">StackSampling</code>
+      to respect
+      <code translate="no" dir="ltr">androidx.benchmark.profiling.sampleDurationSeconds</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ib1d5318442eb4bb586d6d5c06ce57bb929e1d996">Ib1d53</a>
+      )
+    </li>
+    <li>
+      Change macro-&gt;common dependency to be
+      <code translate="no" dir="ltr">api()</code>
+      , so it's easier to use e.g.
+      <code translate="no" dir="ltr">PerfettoTrace</code>
+      and
+      <code translate="no" dir="ltr">PerfettoConfig</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Icdae394628d71131e556c6a02840c6c894f82957">Icdae3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/341851833">b/341851833</a>
+      )
+    </li>
+    <li>
+      Ensure
+      <code translate="no" dir="ltr">mergeArtProfile</code>
+      and
+      <code translate="no" dir="ltr">mergeStartupProfile</code>
+      tasks always wait for baseline profile generation. (
+      <a href="https://android-review.git.corp.google.com/q/I623d65b8fedc7abb1d22fb2ca016582703f51176">I623d6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/343086054">b/343086054</a>
+      )
+    </li>
+    <li>
+      Consider variant enable state when deciding whether variant should be enabled. (
+      <a href="https://android-review.git.corp.google.com/q/I5d19e3040d28243857fab9b9a679057d6ad46c1b">I5d19e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/343249144">b/343249144</a>
+      )
+    </li>
+    <li>
+      Increased default start timeout for perfetto trace processor. (
+      <a href="https://android-review.git.corp.google.com/q/I87e8c9ec3472db0aafb908b590a9a91f6e9e5ed8">I87e8c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/329145808">b/329145808</a>
+      )
+    </li>
+  </ul>

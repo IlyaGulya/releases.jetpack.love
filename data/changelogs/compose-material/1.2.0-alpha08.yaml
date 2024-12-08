@@ -1,0 +1,37 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 1.2.0-alpha08
+releaseDate: 2022-04-20
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha08" data-text="Version 1.2.0-alpha08" tabindex="-1">Version 1.2.0-alpha08</h3>
+  <p>April 20, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material-*:1.2.0-alpha08</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7ca43e00a517eaeeedc0a21f482b17f06e3d2181..41a4e31408842caa2b58db5e4ee6ec708464425f/compose/material">Version 1.2.0-alpha08 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Partial consumption (down OR position) has been deprecated in
+      <code translate="no" dir="ltr">PointerInputChange</code>
+      . You can use
+      <code translate="no" dir="ltr">consume()</code>
+      to consume the change completely. You can use
+      <code translate="no" dir="ltr">isConsumed</code>
+      to determine whether or not someone else has previously consumed the change.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PointerInputChange::copy()</code>
+      now always makes a shallow copy. It means that copies of
+      <code translate="no" dir="ltr">PointerInputChange</code>
+      will be consumed once one of the copies is consumed. If you want to create an unbound
+      <code translate="no" dir="ltr">PointerInputChange</code>
+      , use constructor instead. (
+      <a href="https://android-review.googlesource.com/#/q/Ie6be471e6ed2a843e38712922c2231fdfd26213a">Ie6be4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/225669674">b/225669674</a>
+      )
+    </li>
+  </ul>

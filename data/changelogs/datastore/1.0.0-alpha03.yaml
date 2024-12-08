@@ -1,0 +1,109 @@
+libraryId: datastore
+groupId: androidx.datastore
+version: 1.0.0-alpha03
+releaseDate: 2020-11-11
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha03" data-text="Version 1.0.0-alpha03" tabindex="-1">Version 1.0.0-alpha03</h3>
+  <p>November 11, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.datastore:datastore-*:1.0.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/2d49f9fa892a0d067580a871f3aa0cd6764f4c3b/datastore">Version 1.0.0-alpha03 contains these commits.</a>
+  </p>
+  <aside class="caution">
+    <strong>Caution:</strong>
+    <span>
+      Please use version
+      <code translate="no" dir="ltr">1.0.0-alpha04</code>
+      instead. A critical issue was found in
+      <code translate="no" dir="ltr">1.0.0-alpha03</code>
+      that causes Preference Datastore to crash with
+      <code translate="no" dir="ltr">java.lang.NoClassDefFoundError</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/173036843">b/173036843</a>
+      )
+    </span>
+  </aside>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Preferences now supports double values (which is useful if you need more precision than floats) (
+      <a href="https://android-review.googlesource.com/#/q/I5be8f30e938e0ff6f2e699b51452c4eb8ffda031">I5be8f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/169471808">b/169471808</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Created a pure kotlin dependency for datastore to allow for faster compilation.
+      <code translate="no" dir="ltr">androidx.datastore:datastore-core</code>
+      contains the core kotlin only APIs and
+      <code translate="no" dir="ltr">androidx.datastore:datastore</code>
+      contains the APIs that depend on android (including the
+      <code translate="no" dir="ltr">SharedPreferencesMigration</code>
+      and the
+      <code translate="no" dir="ltr">Context.createDataStore</code>
+      constructor.)(
+      <a href="https://android-review.googlesource.com/#/q/I42d75d0f66dc0cac19bd0f452a84b58806a65a46">I42d75</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/168512698">b/168512698</a>
+      )
+    </li>
+    <li>
+      Splitting out targets for preferences data store for faster kotlin compilation (
+      <a href="https://android-review.googlesource.com/#/q/Ia3c19ddedcb622b751efc189ca20ce0ef684393a">Ia3c19</a>
+      )
+    </li>
+    <li>
+      <p>Serializers now require a new property for the default value that will be used if there is no data on disk. This makes it easier to implement custom serializers so users do not have to special case empty input streams (empty input streams don't parse with json).</p>
+
+      <ul>
+        <li>
+          Also there is now a check to confirm that the output stream provided to writeTo() is not closed, and if it is closed it throws exceptions (
+          <a href="https://android-review.googlesource.com/#/q/I16e2984b16cb387d8df55bad7a82a8120e94597a">I16e29</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        Making the constructor for SharedPreferencesView internal. It was originally public to allow for testing. Tests should instead construct a SharedPreferencesMigration and test against that. (
+        <a href="https://android-review.googlesource.com/#/q/I938912884b2f088e70262fecc9c81a80795e1579">I93891</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">produceFile</code>
+      parameter on
+      <code translate="no" dir="ltr">DataStoreFactory</code>
+      and
+      <code translate="no" dir="ltr">PreferenceDataStoreFactory</code>
+      is now the last parameter in the list so it lets you use the kotlin trailing lambda syntax. (
+      <a href="https://android-review.googlesource.com/#/q/Ibe7f1ef0d244dd22ad1513a66e79f228fd088469">Ibe7f1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/169425442">b/169425442</a>
+      )
+    </li>
+    <li>
+      Following the new explicit API requirements for kotlin (
+      <a href="https://android-review.googlesource.com/#/q/I5ae1edbb2184cc9793a91f22457fe0c2864d61b5">I5ae1e</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      Preference Datastore crashes with
+      <code translate="no" dir="ltr">java.lang.NoClassDefFoundError</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/173036843">b/173036843</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,101 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.0.0-alpha02
+releaseDate: 2020-06-24
+#language=html
+changelogHtml: |
+  <h3 id="3.0.0-alpha02" data-text="Version 3.0.0-alpha02" tabindex="-1">Version 3.0.0-alpha02</h3>
+  <p>June 24, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.0.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/91b99a1bab5d164df694a93d77b6694a65257e7e..b6054a1a7396b962ac2c6d80d21053cf9d2f02db/paging">Version 3.0.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added overloads for
+      <code translate="no" dir="ltr">PagingConfig</code>
+      's constructor with common default values (
+      <a href="https://android-review.googlesource.com/#/q/I39c508a7403e0372b66d2f511843538e26e7cde7">I39c50</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/158576040">b/158576040</a>
+      )
+    </li>
+    <li>
+      Added overloads for constructors of
+      <code translate="no" dir="ltr">PagingDataAdapter</code>
+      and
+      <code translate="no" dir="ltr">AsyncPagingDataDiffer</code>
+      with common default values (
+      <a href="https://android-review.googlesource.com/#/q/Ie91f55060e17102435525ef4e90f8d943df3c90b">Ie91f5</a>
+      )
+    </li>
+    <li>
+      The adapter APIs,
+      <code translate="no" dir="ltr">dataRefreshFlow</code>
+      and
+      <code translate="no" dir="ltr">dataRefreshListener</code>
+      now pass a Boolean to signal whether a
+      <code translate="no" dir="ltr">PagingData</code>
+      is empty (
+      <a href="https://android-review.googlesource.com/#/q/I6e37e844cf9f947aeefaaa99d22b2672e04f207d">I6e37e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/159054196">b/159054196</a>
+      )
+    </li>
+    <li>
+      Added RxJava and Guava APIs for RemoteMediator -
+      <a href="https://developer.android.com/reference/kotlin/androidx/paging/RxRemoteMediator">RxRemoteMediator</a>
+      and
+      <a href="https://developer.android.com/reference/kotlin/androidx/paging/ListenableFutureRemoteMediator">ListenableFutureRemoteMediator</a>
+    </li>
+    <li>
+      Added helpers to PagingState for common item access such as
+      <code translate="no" dir="ltr">isEmpty()</code>
+      and
+      <code translate="no" dir="ltr">firstItemOrNull()</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I3b5b687f5188e1408806c567417921fb8101bfdb">I3b5b6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/158892717">b/158892717</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Pager now checks for PagingSource reuse in factory, to prevent accidental reuse of invalid PagingSources, which gave an unclear error (
+      <a href="https://android-review.googlesource.com/q/I99809eba7ca878fb841d2f250387d6b989ef701e">I99809</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/158486430">b/158486430</a>
+      )
+    </li>
+    <li>
+      Failures from RemoteMediator REFRESH no longer prevent PagingSource from loading (
+      <a href="https://android-review.googlesource.com/#/q/I38b1b1784af935cfbd8b937d9f4ab372f59619ed">I38b1b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/158892717">b/158892717</a>
+      )
+    </li>
+    <li>
+      The non-suspending version of
+      <code translate="no" dir="ltr">submitData</code>
+      no longer causes a crash due to concurrent collection on multiple
+      <code translate="no" dir="ltr">PagingData</code>
+      when called after the suspending version of
+      <code translate="no" dir="ltr">submitData</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I263580a7cb300229eadaa431fa699f25d7ac4ee1">I26358</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/158048877">b/158048877</a>
+      )
+    </li>
+    <li>
+      Fixed "cannot collect twice from pager" exception that could occur after config change (
+      <a href="https://android-review.googlesource.com/#/q/I58bcc4b2bde88b1c78ed1a96cf227e068127b47e">I58bcc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/158784811">b/158784811</a>
+      )
+    </li>
+  </ul>

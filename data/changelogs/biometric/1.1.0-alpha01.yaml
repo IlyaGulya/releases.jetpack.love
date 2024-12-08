@@ -1,0 +1,48 @@
+libraryId: biometric
+groupId: androidx.biometric
+version: 1.1.0-alpha01
+releaseDate: 2020-06-24
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha01" data-text="Version 1.1.0-alpha01" tabindex="-1">Version 1.1.0-alpha01</h3>
+  <p>June 24, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.biometric:biometric:1.1.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/33c93675e3a1ba85a74980937fb3df96824f7888..b6054a1a7396b962ac2c6d80d21053cf9d2f02db/biometric/biometric">Version 1.1.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Refactored the internal library implementation to address potential sources of memory leaks and other unintended behavior:
+      <ul>
+        <li>
+          Internal fragments now share and persist data using a
+          <code translate="no" dir="ltr">ViewModel</code>
+          that is tied to the client application's activity lifecycle.
+        </li>
+        <li>Device credential authentication prior to Android 10 (API level 29) no longer starts a transparent activity within the client application.</li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Resolved deprecation warnings related to the use of
+      <code translate="no" dir="ltr">FingerprintManagerCompat</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/142967618">b/142967618</a>
+      )
+    </li>
+    <li>
+      Changed how SDK-gated platform methods are called to avoid class verification issues on older Android versions. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/94beb4b7bf9f66e78bd767bc4e4e3c0448e25689">94beb4b</a>
+      )
+    </li>
+    <li>
+      Gradle dependencies that are not part of the public API are no longer exported by the library. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/f289d9eca14bc9d88d6fae7599fd3137437972b9">f289d9e</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_101_3" data-text="Version 1.0.1" tabindex="-1">Version 1.0.1</h2>

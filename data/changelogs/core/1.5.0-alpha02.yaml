@@ -1,0 +1,134 @@
+libraryId: core
+groupId: androidx.core
+version: 1.5.0-alpha02
+releaseDate: 2020-08-19
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha02" data-text="Version 1.5.0-alpha02" tabindex="-1">Version 1.5.0-alpha02</h3>
+  <p>August 19, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core:1.5.0-alpha02</code>
+    and
+    <code translate="no" dir="ltr">androidx.core:core-ktx:1.5.0-alpha02</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9c15c60181fb736eac5d7fe37b547e04764eace6..96eb302ee1740ba656c90c9fb27df3723a1a89c1/core">Version 1.5.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>
+        The
+        <a href="/reference/androidx/core/view/WindowInsetsCompat"><code translate="no" dir="ltr">WindowInsetsCompat</code></a>
+        APIs have been updated to those in the platform in Android 11. This includes the new
+        <code translate="no" dir="ltr">ime()</code>
+        inset type, which allows checking the visibility and size of the on-screen keyboard.
+      </p>
+
+      <ul>
+        <li>
+          Some caveats about the
+          <code translate="no" dir="ltr">ime()</code>
+          type, it works very reliably on API 23+ when your Activity is using the
+          <code translate="no" dir="ltr">adjustResize</code>
+          <a href="/training/keyboard-input/visibility#Respond">window soft input mode</a>
+          . If you’re instead using the
+          <code translate="no" dir="ltr">adjustPan</code>
+          mode, it should work reliably back to API 14.
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ObjectsCompat#toString(Object, String)</code>
+      . This offers the behavior of
+      <code translate="no" dir="ltr">Objects#toString(Object, String)</code>
+      but can be used pre-API 19. (
+      <a href="https://android-review.googlesource.com/#/q/I26cdca93fcc21d7172908691e013afc19f23e9de">I26cdc</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">NotificationCompat.Builder.recoverBuilder(Notification)</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I6f10001da2930b84eecaff7fa9cec7f25d8b02fe">I6f100</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">NotificationCompat.Builder.createContentView()</code>
+      and peers (
+      <a href="https://android-review.googlesource.com/#/q/I6fe13b85c1cbda4b54cff34fcfd5ae4e28c7f046">I6fe13</a>
+      )
+    </li>
+    <li>
+      Add extra data related APIs in AccessibilityNodeInfoCompat (
+      <a href="https://android-review.googlesource.com/#/q/I19567b78f3dd007eb30404b8cfdf2d9ccb44b3b3">I19567</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">NotificationCompat.Builder.setSettingsText</code>
+      and
+      <code translate="no" dir="ltr">NotificationCompat.MessagingStyle.addHistoricMessage</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I62bb68df92c93375364b0753506ecbe91824210a">I62bb6</a>
+      )
+    </li>
+    <li>
+      Update Notification documentation (
+      <a href="https://android-review.googlesource.com/#/q/I1293ff2c58fcaf841fc9e99a2bcbbac33b91987f">I1293f</a>
+      )
+    </li>
+    <li>
+      Fix nullability of NotificationCompat.Builder (
+      <a href="https://android-review.googlesource.com/#/q/I932e3b5db964d6154f1426341f138651f895f275">I932e3</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">NotificationChannelCompat</code>
+      and
+      <code translate="no" dir="ltr">NotificationChannelGroupCompat</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Icc3b6aea1216a7ee2c64f5ea6922988a31970e63">Icc3b6</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">addExtraDataToAccessibilityNodeInfo</code>
+      to
+      <code translate="no" dir="ltr">AccessibilityNodeProviderCompat</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I2657562adcf20b6b7379b5fc4f956d76f2d5d80c">I26575</a>
+      )
+    </li>
+    <li>
+      Update WindowInsetsCompat to Android 11 APIs (
+      <a href="https://android-review.googlesource.com/#/q/I3df9e889650db916c48d5567a9bcf9c7a7b9aa85">I3df9e</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">Uri</code>
+      overloads for
+      <code translate="no" dir="ltr">MailTo</code>
+      methods (
+      <a href="https://android-review.googlesource.com/#/q/I6fa6bac337338753677130985112642e0967aa1f">I6fa6b</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">MailTo</code>
+      API which provides consistent behavior and bug fixes for all API levels (
+      <a href="https://android-review.googlesource.com/#/q/Ie93956270775e1214d778a890711105dd4b1db19">Ie9395</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/159827506">b/159827506</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,64 @@
+libraryId: window
+groupId: androidx.window
+version: 1.4.0-alpha02
+releaseDate: 2024-09-04
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha02" data-text="Version 1.4.0-alpha02" tabindex="-1">Version 1.4.0-alpha02</h3>
+  <p>September 4, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.window:window-*:1.4.0-alpha02</code>
+    is released. Version 1.4.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9130b719318a69f2f3eaf82c32b131232fd721cb..cb8fe0a26f0e27cf7f9239f308a1d34a0146bc66/window">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>
+    Add support for custom
+    <code translate="no" dir="ltr">WindowSizeClass</code>
+    .
+  </p>
+  <ul>
+    <li>
+      Open the constructor for
+      <code translate="no" dir="ltr">WindowSizeClass</code>
+      so devs can use their own.
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">isAtLeast</code>
+      utility methods so that developers can process a range of
+      <code translate="no" dir="ltr">WindowSizeClass</code>
+      values.
+    </li>
+    <li>
+      Add an extension function on
+      <code translate="no" dir="ltr">Set&lt;WindowSizeClass&gt;</code>
+      to compute the best match from the Set.
+    </li>
+    <li>Add constants for the Android recommended breakpoints.</li>
+    <li>Add the breakpoint set corresponding to the Android recommended breakpoints.</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Update bounds method names for
+      <code translate="no" dir="ltr">WindowSizeClass</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If89a645d13a20168a2a9af6febf50a21a1012b9a">If89a6</a>
+      )
+    </li>
+    <li>
+      Update the
+      <code translate="no" dir="ltr">WindowSizeClass</code>
+      API to support adding new breakpoint values in the future. Instead of having absolute bounds we use the lower bounds and recommend devs use lower bound checks when processing a
+      <code translate="no" dir="ltr">WindowSizeClass</code>
+      . The existing
+      <code translate="no" dir="ltr">WindowWidthSizeClass</code>
+      and
+      <code translate="no" dir="ltr">WindowHeightSizeClass</code>
+      will be deprecated as they will not be developed further. (
+      <a href="https://android-review.googlesource.com/#/q/I014cef212823dc5dfa8bb430fdbe0b505f0b81ff">I014ce</a>
+      )
+    </li>
+  </ul>

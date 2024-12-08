@@ -1,0 +1,156 @@
+libraryId: window
+groupId: androidx.window
+version: 1.1.0-alpha04
+releaseDate: 2022-11-09
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha04" data-text="Version 1.1.0-alpha04" tabindex="-1">Version 1.1.0-alpha04</h3>
+  <p>November 9, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.window:window-*:1.1.0-alpha04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a7f0710ad21f556f0dde9bf7bdab6d2135170fd4..a1e318590b217ecfce1b2de17eed2f18b6a680bb/window">Version 1.1.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Expose a method to determine if an
+      <code translate="no" dir="ltr">ActivityStack</code>
+      is empty for
+      <code translate="no" dir="ltr">ActivityEmbedding</code>
+      .
+    </li>
+    <li>
+      Removed experimental API tags from
+      <code translate="no" dir="ltr">ActivityEmbedding</code>
+      APIs.
+    </li>
+    <li>
+      Hide
+      <code translate="no" dir="ltr">ActivityRule</code>
+      constructor as the
+      <code translate="no" dir="ltr">Builder</code>
+      is the preferred way to construct.
+    </li>
+    <li>
+      Add an experimental method to get the
+      <code translate="no" dir="ltr">WindowInsets</code>
+      on
+      <code translate="no" dir="ltr">WindowMetrics</code>
+      .
+    </li>
+    <li>
+      Update
+      <code translate="no" dir="ltr">SplitPlaceholderFinishBehavior</code>
+      to prevent finishing the placeholder. Finishing the placeholder caused some confusing behavior.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Make val
+      <code translate="no" dir="ltr">isEmpty</code>
+      public to replace fun
+      <code translate="no" dir="ltr">isEmpty</code>
+      .
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">ActivityStack</code>
+      parameter activities to
+      <code translate="no" dir="ltr">activitiesInProcess</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia505530dbc6c86baf049060791202461bc1a191c">Ia5055</a>
+      )
+    </li>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">ActivityFilter#matchesClassName</code>
+      and
+      <code translate="no" dir="ltr">ActivityFilter#matchesClassNameOrWildCard</code>
+      because they are confusing.
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">ActivityFilter#componentName</code>
+      abd
+      <code translate="no" dir="ltr">ActivityFilter#intentAction</code>
+      to allow the caller to distinguish different filters (
+      <a href="https://android-review.googlesource.com/#/q/I41f220f8ecfb3deebfc515061c1eced568aaf30f">I41f22</a>
+      )
+    </li>
+    <li>
+      Remove the
+      <code translate="no" dir="ltr">@Deprecated</code>
+      APIs from the experimental API (
+      <a href="https://android-review.googlesource.com/#/q/I216b3d3c43ded16fc84510cf2666d485cf75e7aa">I216b3</a>
+      )
+    </li>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">@ExperimentalWindowApi</code>
+      for Activity Embedding APIs (
+      <a href="https://android-review.googlesource.com/#/q/I69ebe86d328e1314826eba87ad57d2f640900994">I69ebe</a>
+      )
+    </li>
+    <li>
+      Hide
+      <code translate="no" dir="ltr">ActivityRule</code>
+      constructor, use Builder instead. (
+      <a href="https://android-review.googlesource.com/#/q/If4eb6a461f82ab1176b336e28b0338d12fabce77">If4eb6</a>
+      )
+    </li>
+    <li>
+      Add APIs to check if an Activity is part of the
+      <code translate="no" dir="ltr">ActivityFilter</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia43cfc0fe4d7108a4a2d84d204bba51913309c8f">Ia43cf</a>
+      )
+    </li>
+    <li>
+      Update API files to reflect changes in
+      <code translate="no" dir="ltr">WindowMetrics</code>
+      and
+      <code translate="no" dir="ltr">WindowMetricsCalculatorCompat</code>
+      classes (
+      <a href="https://android-review.googlesource.com/#/q/I667fe7908615b044eb3d6423e124b6d697a9a100">I667fe</a>
+      )
+    </li>
+    <li>
+      Update
+      <code translate="no" dir="ltr">ActivityEmbedding</code>
+      Property Javadoc and class name (
+      <a href="https://android-review.googlesource.com/#/q/Ia1386fcbdffb219199486316f23a92a156a86ee6">Ia1386</a>
+      )
+    </li>
+    <li>
+      Adding
+      <code translate="no" dir="ltr">ActivityEmbedding</code>
+      property tag names to be used in AndroidManifest.xml (
+      <a href="https://android-review.googlesource.com/#/q/Id1ad453a295639a8cf53542d28c3991ecd4cc3da">Id1ad4</a>
+      )
+    </li>
+    <li>
+      Added new API
+      <code translate="no" dir="ltr">SplitPlaceholderFinishBehavior</code>
+      and
+      <code translate="no" dir="ltr">SplitPlaceholderRule.finishPrimaryWithPlaceholder</code>
+      , this replaces existing
+      <code translate="no" dir="ltr">SplitPlaceholderRule.finishPrimaryWithSecondary</code>
+      which defines when placeholder activites are finished, how associated activites in Activity Embedding should behave. (
+      <a href="https://android-review.googlesource.com/#/q/I64647ee85533e8bebeefdef55b6252e919768fa7">I64647</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Introduces the
+      <code translate="no" dir="ltr">WindowAreaController</code>
+      and API's to enable
+      <code translate="no" dir="ltr">RearDisplay</code>
+      Mode to move the current window to the display that is aligned with the rear camera. (
+      <a href="https://android-review.googlesource.com/#/q/I388ab775740713650e6142135fbfc57891d2214b">I388ab</a>
+      )
+    </li>
+  </ul>

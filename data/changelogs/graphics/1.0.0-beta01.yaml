@@ -1,0 +1,124 @@
+libraryId: graphics
+groupId: androidx.graphics
+version: 1.0.0-beta01
+releaseDate: 2023-12-13
+#language=html
+changelogHtml: |
+  <h3 id="graphics-core-1.0.0-beta01" data-text="Version 1.0.0-beta01" tabindex="-1">Version 1.0.0-beta01</h3>
+  <p>December 13, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.graphics:graphics-core:1.0.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9ce75ea1baa2af10dda8f787f69c40c6654bcac1..9174577f8a57ba4ae4958cc31787ea4db3b2b44a/graphics/graphics-core">Version 1.0.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Introduced a new
+      <code translate="no" dir="ltr">LowLatencyCanvasView</code>
+      API to support low latency rendering with Android’s 2d graphics APIs (Canvas + Paint) within the View hierarchy.
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">CanvasBufferedRenderer</code>
+      API to support hardware accelerated Canvas rendering to a
+      <code translate="no" dir="ltr">HardwareBuffer</code>
+      . This can be used to draw a portion of a user interface into a buffer that can be converted to a Bitmap using the
+      <code translate="no" dir="ltr">Bitmap.wrapHardwareBuffer</code>
+      API.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">CanvasBufferRenderer#releaseBuffer</code>
+      API to have an optional fence parameter. Updated documentation to describe when
+      <code translate="no" dir="ltr">RenderResult#fence</code>
+      is returned. (
+      <a href="https://android-review.googlesource.com/#/q/If1ea7aea45c9770725ba8d33c24f1bf30e4a2cc8">If1ea7</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">draw</code>
+      method to
+      <code translate="no" dir="ltr">RenderRequest</code>
+      to support leveraging coroutines to schedule draw requests. Renamed the previous draw method that consumed an executor to
+      <code translate="no" dir="ltr">drawAsync</code>
+      . Refactored
+      <code translate="no" dir="ltr">isClosed()</code>
+      method to a property. (
+      <a href="https://android-review.googlesource.com/#/q/I5bff6e5cfb2591600258d9dcd2cee49c7a5d114b">I5bff6</a>
+      )
+    </li>
+    <li>
+      Exposed buffer format parameter to
+      <code translate="no" dir="ltr">CanvasFrontBufferRenderer</code>
+      to map directly to
+      <code translate="no" dir="ltr">CanvasBufferedRenderer.Builder#setBufferFormat</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I0f2729fcf92515273855b261dc81ee1fdfde08ef">I0f272</a>
+      )
+    </li>
+    <li>
+      Created
+      <code translate="no" dir="ltr">CanvasBufferedRenderer</code>
+      API to handle hardware accelerated canvas rendering into a
+      <code translate="no" dir="ltr">HardwareBuffer</code>
+      . This provides a backported implementation to Android Q alongside configuration of a swapchain depth of
+      <code translate="no" dir="ltr">HardwareBuffers</code>
+      .
+      <code translate="no" dir="ltr">ColorSpace</code>
+      configuration is still limited to Android U+ however the compat implementation provides no-op behavior on the developers' behalf. (
+      <a href="https://android-review.googlesource.com/#/q/I9b1d889595b72e32418344e298a0017394fdc6e6">I9b1d8</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">setFrameRate</code>
+      /
+      <code translate="no" dir="ltr">clearFrameRate</code>
+      APIs to
+      <code translate="no" dir="ltr">SurfaceControlCompat.Transaction</code>
+      in order to control the frame rate alongside the change strategy for seamless or default transitions. (
+      <a href="https://android-review.googlesource.com/#/q/I6045cfe9bba4247fe93f7eb6cdc67e61d65dbf29">I6045c</a>
+      )
+    </li>
+    <li>
+      Lowered required API level for
+      <code translate="no" dir="ltr">setDataSpace</code>
+      to Android Q from Android T. (
+      <a href="https://android-review.googlesource.com/#/q/I59c347a7a669819b1df48ed2758ad0d0e9248979">I59c34</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">onBufferReleased</code>
+      callback to
+      <code translate="no" dir="ltr">GLFrameBufferRenderer</code>
+      API to give consumers the opportunity to clean up state when a buffer is no longer being presented (
+      <a href="https://android-review.googlesource.com/#/q/I8a4e238a07ec32e39e2d67fb7f7093dcdb9752f4">I8a4e2</a>
+      )
+    </li>
+    <li>
+      Create
+      <code translate="no" dir="ltr">LowLatencyCanvasView</code>
+      to support a simple use case of rendering content with low latency that gets synchronized with the View hierarchy rendering. This mitigates the complexities associated with
+      <code translate="no" dir="ltr">SurfaceView</code>
+      management by internally managing the
+      <code translate="no" dir="ltr">SurfaceView</code>
+      instance that gets translated off/on screen for synchronized and low latency rendering respectively. (
+      <a href="https://android-review.googlesource.com/#/q/I9253bd3e42cfd24e5396a9d1117868cfd91d1909">I9253b</a>
+      )
+    </li>
+    <li>
+      Added colorspace configuration support to
+      <code translate="no" dir="ltr">CanvasFrontBufferedRenderer</code>
+      API. Updated multibuffered callbacks to also include the back buffered
+      <code translate="no" dir="ltr">SurfaceControl</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I24bd949fd100317663346bf12c866a358011f38c">I24bd9</a>
+      )
+    </li>
+  </ul>

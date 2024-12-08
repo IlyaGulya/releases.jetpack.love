@@ -1,0 +1,98 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.3.3
+releaseDate: 2021-04-21
+#language=html
+changelogHtml: |
+  <h3 id="1.3.3" data-text="Version 1.3.3" tabindex="-1">Version 1.3.3</h3>
+  <p>April 21, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.3.3</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.3.3</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.3.3</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/359e0b300368007d383fda1172a2813f9126d11f..a12bda4096b6d81e46ecf935fe7140fb80dc61e0/fragment">Version 1.3.3 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Using
+      <code translate="no" dir="ltr">SavedStateViewModelFactory</code>
+      now works when used with the
+      <code translate="no" dir="ltr">SavedStateRegistryOwner</code>
+      returned by using
+      <code translate="no" dir="ltr">ViewTreeSavedStateRegistryOwner.get()</code>
+      with the Fragment's View. (
+      <a href="https://android-review.googlesource.com/#/q/I21acf18f70ab6dcc60f5946d5b0d878e12bc76df">I21acf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/181577191">b/181577191</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a regression introduced in
+      <a href="#1.3.2">
+        Fragment
+        <code translate="no" dir="ltr">1.3.2</code>
+      </a>
+      which would cause
+      <code translate="no" dir="ltr">popEnter</code>
+      animations to not run when popping a
+      <code translate="no" dir="ltr">FragmentTransaction</code>
+      that included a
+      <code translate="no" dir="ltr">setPrimaryNavFragment</code>
+      operation, such as those used by
+      <code translate="no" dir="ltr">NavHostFragment</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I38c877ae34c825b3a451ab325b6f683de00a2457">I38c87</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/183877426">b/183877426</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      now ensures that every
+      <code translate="no" dir="ltr">Fragment</code>
+      is dispatched a new set of
+      <code translate="no" dir="ltr">WindowInsets</code>
+      , ensuring that each fragment can now independently consume the insets. (
+      <a href="https://android-review.googlesource.com/#/q/I63f685e6715334a77e477180ae94771eeef827c3">I63f68</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172153900">b/172153900</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">DialogFragment</code>
+      now properly handles cases where a child fragment is added to a container that has the same ID as a container in your custom
+      <code translate="no" dir="ltr">Dialog</code>
+      class, fixing view hierarchy issues when reusing IDs that are used internally by dialogs such as
+      <code translate="no" dir="ltr">BottomSheetDialog</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie62791677cb8771f22b19bdce5985426c669fba0">Ie6279</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/180021387">b/180021387</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FragmentManager.dump()</code>
+      now properly indents the first fragment in the list of active fragments. (
+      <a href="https://android-review.googlesource.com/#/q/If5c339c3052a95bf5f1db4f97d460b4969ea31cb">If5c33</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/183705451">b/183705451</a>
+      )
+    </li>
+  </ul>
+  <p><strong>New State Manager Bug Fixes</strong></p>
+  <ul>
+    <li>
+      The new fragment state manager now properly handles exit transitions with hide operations. (
+      <a href="https://android-review.googlesource.com/#/q/I9e4de834e866143295435825c6eba8d5b06011f8">I9e4de</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/184830265">b/184830265</a>
+      )
+    </li>
+  </ul>

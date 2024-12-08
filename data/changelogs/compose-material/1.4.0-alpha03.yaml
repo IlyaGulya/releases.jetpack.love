@@ -1,0 +1,86 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 1.4.0-alpha03
+releaseDate: 2022-12-07
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha03" data-text="Version 1.4.0-alpha03" tabindex="-1">Version 1.4.0-alpha03</h3>
+  <p>December 7, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material-*:1.4.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a1e318590b217ecfce1b2de17eed2f18b6a680bb..047e199bdcb8a5cd744cc7a2f986631bfb350ec7/compose/material">Version 1.4.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Adding
+      <code translate="no" dir="ltr">@JvmDefaultWithCompatibility</code>
+      annotation (
+      <a href="https://android-review.googlesource.com/#/q/I8f2067bb0754a5e9dc70c934403366ca8d319c36">I8f206</a>
+      )
+    </li>
+    <li>
+      Incorporated changes in the
+      <code translate="no" dir="ltr">Swipeable</code>
+      APIs in
+      <code translate="no" dir="ltr">ModalDrawer</code>
+      .
+      <code translate="no" dir="ltr">DrawerState</code>
+      's
+      <code translate="no" dir="ltr">animateTo</code>
+      has been replaced by the
+      <code translate="no" dir="ltr">open</code>
+      and
+      <code translate="no" dir="ltr">close</code>
+      methods and the offset is now nullable. Use
+      <code translate="no" dir="ltr">requireOffset</code>
+      to require the offset. (
+      <a href="https://android-review.googlesource.com/#/q/I3de9e361fdd8be7ee83c7946b809b5729d4ef2c4">I3de9e</a>
+      )
+    </li>
+    <li>
+      Added an Modifier API to query ancestors scroll info. (
+      <a href="https://android-review.googlesource.com/#/q/I2ba9d6d55f853e5d2775fe9a9f15e7a41d41e359">I2ba9d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/203141462">b/203141462</a>
+      )
+    </li>
+    <li>
+      Used in
+      <code translate="no" dir="ltr">Clickable</code>
+      to correctly delay press interactions, when gestures could become scroll events.
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">Clickables</code>
+      not correctly delaying ripples, when used inside an
+      <code translate="no" dir="ltr">Scrollable ViewGroup</code>
+      .
+    </li>
+    <li>Updated Drawers and Sheets to correctly delay presses in case gestures can become scroll events.</li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">PullRefreshIndicator</code>
+      could get stuck after
+      <code translate="no" dir="ltr">onRefresh</code>
+      is called, if the refreshing state was not changed to true. (
+      <a href="https://android-review.googlesource.com/#/q/Ie24160bf51bd010d165d75675cfb2c51f28dde04">Ie2416</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/248274004">b/248274004</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Updates</strong></p>
+  <ul>
+    <li>
+      Compose UI and Compose Material now depend on Lifecycle 2.5.1. (
+      <a href="https://android-review.googlesource.com/#/q/I05ab08e48f49eee1a1e573d172ba22efc47640a6">I05ab0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/258038814">b/258038814</a>
+      )
+    </li>
+  </ul>

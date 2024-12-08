@@ -1,0 +1,138 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.2.0-alpha04
+releaseDate: 2023-02-08
+#language=html
+changelogHtml: |
+  <h3 id="3.2.0-alpha04" data-text="Version 3.2.0-alpha04" tabindex="-1">Version 3.2.0-alpha04</h3>
+  <p>February 8, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.2.0-alpha04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/548c8ac2570ae6cf15798fea1380491f7d93796b..7d3ac1ab1206c01fae3ebb500b5b942636070155/paging">Version 3.2.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>Paging Testing</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">paging-testing</code>
+      artifact now contains a
+      <code translate="no" dir="ltr">asPagingSourceFactory</code>
+      method to create a
+      <code translate="no" dir="ltr">pagingSourceFactory</code>
+      from a
+      <code translate="no" dir="ltr">Flow&lt;List&lt;Value&gt;&gt;</code>
+      to be supplied to a Pager. Each
+      <code translate="no" dir="ltr">List&lt;Value&gt;&gt;</code>
+      emitted from the Flow represents a generation of Paged data. This facilitates paging tests on, for example,
+      <code translate="no" dir="ltr">PagingData</code>
+      transformations by faking a data source for the Pager to collect from. (
+      <a href="https://android-review.googlesource.com/#/q/I6f230da9825c187eb0d8ae6645df7f0a67925574">I6f230</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/235528239">b/235528239</a>
+      )
+    </li>
+    <li>
+      <p>
+        The
+        <code translate="no" dir="ltr">paging-testing</code>
+        artifact has been expanded with new APIs suitable for verifying the data contained with a
+        <code translate="no" dir="ltr">Flow&lt;PagingData&lt;T&gt;&gt;</code>
+        is correct. This can be used, for example, to assert the output of a
+        <code translate="no" dir="ltr">Flow&lt;PagingData&lt;T&gt;&gt;</code>
+        from your ViewModel layer.
+      </p>
+
+      <p>
+        This is done via the
+        <code translate="no" dir="ltr">asSnapshot</code>
+        Kotlin extension on
+        <code translate="no" dir="ltr">Flow&lt;PagingData&lt;Value&gt;&gt;</code>
+        , which translates the
+        <code translate="no" dir="ltr">Flow&lt;PagingData&lt;Value&gt;&gt;</code>
+        into a direct
+        <code translate="no" dir="ltr">List&lt;Value&gt;</code>
+        . The
+        <code translate="no" dir="ltr">asSnapshot</code>
+        lambda allows you to mimic the UI of your app via APIs such as
+        <code translate="no" dir="ltr">scrollTo</code>
+        or
+        <code translate="no" dir="ltr">appendScrollWhile</code>
+        in a way that is repeatable and consistent so that you can verify the snapshot of data is correct at any point in your set of paged data.
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-c1">// Create your ViewModel instance</span>
+  <span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">viewModel</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-err">…</span>
+  <span class="devsite-syntax-c1">// Get the Flow of PagingData from the ViewModel</span>
+  <span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">data</span>&lt;<span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Flow&lt;PagingData&lt;String&gt;</span>&gt;<span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">viewModel</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">data</span>
+  <span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">snapshot</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">List&lt;String&gt;</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">data</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">asSnapshot</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// Each operation inside the lambda waits for the data to settle before continuing</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">scrollTo</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">index</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-m">50</span><span class="devsite-syntax-p">)</span>
+
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// While you can’t view the items within the asSnapshot call,</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// you can continuously scroll in a direction while some condition is true</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// i.e., in this case until you hit a placeholder item</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">appendScrollWhile</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">item</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">String</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;<span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">item</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">!=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-err">“</span><span class="devsite-syntax-n">Header</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-m">1</span><span class="devsite-syntax-err">”</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-c1">// With the asSnapshot complete, you can now verify that the snapshot</span>
+  <span class="devsite-syntax-c1">// has the expected values</span>
+  </code></pre>
+      </devsite-code>
+      <p>
+        <code translate="no" dir="ltr">asSnapshot</code>
+        is a
+        <code translate="no" dir="ltr">suspend</code>
+        method that is expected to be run within
+        <code translate="no" dir="ltr">runTest</code>
+        . See
+        <a href="/kotlin/coroutines/test">Testing Kotlin coroutines on Android</a>
+        for more information. (
+        <a href="https://android-review.googlesource.com/#/q/I55fd2374b68f8e18a292865a92143f9de50bbad0">I55fd2</a>
+        ,
+        <a href="https://android-review.googlesource.com/#/q/I5bd26ec7d66f52696a3d4ea6a610b0ccabd95a84">I5bd26</a>
+        ,
+        <a href="https://android-review.googlesource.com/#/q/I7ce345200d07fa1eef9f5d1028fd88caab1477b3">I7ce34</a>
+        ,
+        <a href="https://android-review.googlesource.com/#/q/I51f4d2bba2a98a829eeac3ed689ecc0ea0fc7a19">I51f4d</a>
+        ,
+        <a href="https://android-review.googlesource.com/#/q/I2249f7147213881bdef9acd42287d9fca0dfcc09">I2249f</a>
+        ,
+        <a href="https://android-review.googlesource.com/#/q/Id6223b81ebf221456147e41c428a7718e9c494e6">Id6223</a>
+        ,
+        <a href="https://android-review.googlesource.com/#/q/Ic4babf6783f51dbdab690693e176f65820fa3a38">Ic4bab</a>
+        ,
+        <a href="https://android-review.googlesource.com/#/q/Ib29b92793c33a759b52d6b4881d3a3f812b26382">Ib29b9</a>
+        ,
+        <a href="https://android-review.googlesource.com/#/q/Ic1238184b82106a5ac6ec5f517819a489dd13218">Ic1238</a>
+        ,
+        <a href="https://android-review.googlesource.com/#/q/I96def78b99fcc9ee088a0a912ba69866d8667715">I96def</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/235528239">b/235528239</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      UI calls to
+      <code translate="no" dir="ltr">getItem</code>
+      and
+      <code translate="no" dir="ltr">peek</code>
+      in
+      <code translate="no" dir="ltr">AsyncPagingDataDiffer</code>
+      and
+      <code translate="no" dir="ltr">PagingDataAdapter</code>
+      are now correctly marked as only callable on the Main thread. (
+      <a href="https://android-review.googlesource.com/#/q/I699b6d8875267b186ead2dc3254099b8c2fdd5e9">I699b6</a>
+      )
+    </li>
+    <li>
+      Removed wildcards from generic types used by
+      <code translate="no" dir="ltr">TestPager</code>
+      , making it easier to consume the results of those methods in code written in the Java programming language. (
+      <a href="https://android-review.googlesource.com/#/q/I56c429dcda1a579ea1512d3e9a2b235ba33ad200">I56c42</a>
+      )
+    </li>
+  </ul>

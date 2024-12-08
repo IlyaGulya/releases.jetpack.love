@@ -1,0 +1,57 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.6.0-alpha09
+releaseDate: 2023-04-05
+#language=html
+changelogHtml: |
+  <h3 id="2.6.0-alpha09" data-text="Version 2.6.0-alpha09" tabindex="-1">Version 2.6.0-alpha09</h3>
+  <p>April 5, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.6.0-alpha09</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f50d0aafadd4964d658f64172cbfc3f78371efc8..a200cb82769634cecdb118ec4f0bfdf0b086e597/navigation">Version 2.6.0-alpha09 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed checks for invalid route such that if a
+      <code translate="no" dir="ltr">NavDestination</code>
+      contains non-nullable
+      <code translate="no" dir="ltr">NavArgument</code>
+      , this destination's route must contain placeholders for args named the same as the non-nullable
+      <code translate="no" dir="ltr">NavArgument</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic62bfa7c99202fa789dd0733bca834743f1ad39c">Ic62bf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/274697949">b/274697949</a>
+      )
+    </li>
+    <li>
+      Deeplink navigations based on
+      <code translate="no" dir="ltr">Action/MimeType</code>
+      will now fail if the navigation operation is missing a non-nullable
+      <code translate="no" dir="ltr">NavArgument</code>
+      required by the
+      <code translate="no" dir="ltr">NavDestination</code>
+      that the
+      <code translate="no" dir="ltr">Action/MimeType</code>
+      matches with. (
+      <a href="https://android-review.googlesource.com/#/q/Ibfa17dd8043e478e330af5cbb4df865b8e494836">Ibfa17</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/271777424">b/271777424</a>
+      )
+    </li>
+    <li>
+      When
+      <code translate="no" dir="ltr">NavController</code>
+      sets a graph with the same route and destinations as the previous graph, it now properly replaces its current graph nodes and its back stack destinations with new instances. This fixes a crash when using
+      <code translate="no" dir="ltr">onLaunchSingleTop</code>
+      without saving state in Navigation Compose. This also fixes an error where navigating to destinations associated with the root graph builds and incorrect back stack. (
+      <a href="https://android-review.git.corp.google.com/q/I5bc582e315578ee53383596070ee3ea4a23aed69">I5bc58</a>
+      ,
+      <a href="https://issuetracker.google.com/275258161">b/275258161</a>
+      ,
+      <a href="https://issuetracker.google.com/275407804">b/275407804</a>
+      )
+    </li>
+  </ul>

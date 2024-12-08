@@ -1,0 +1,76 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.8.0-alpha06
+releaseDate: 2024-11-13
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0-alpha06" data-text="Version 1.8.0-alpha06" tabindex="-1">Version 1.8.0-alpha06</h3>
+  <p>November 13, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.8.0-alpha06</code>
+    is released. Version 1.8.0-alpha06 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ccd90a76bd7c4acf4f4f01eca76350e383bc441e..6f09cf2ae979e48fdb19485f757a033e4a34bb82/compose/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Changes to the
+      <code translate="no" dir="ltr">PausableComposition</code>
+      API. These breaking changes with respect to previous releases of 1.8.0-alpha (since 1.8.0-alpha02) but, as these are new APIs in 1.8.0, backwards compatibility is not maintained as the APIs are still in alpha. (
+      <a href="https://android-review.googlesource.com/#/q/I39819fd1a6509973a0008cd4fdec8a892829a301">I39819</a>
+      )
+    </li>
+    <li>
+      Adds tooling APIs to observe the creation of new compositions within a Recomposer (
+      <a href="https://android-review.googlesource.com/#/q/Iaeb7e218aa949ebf1c061b311a3c4383cf5c2728">Iaeb7e</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">snapshotId</code>
+      , of type
+      <code translate="no" dir="ltr">Long</code>
+      , to
+      <code translate="no" dir="ltr">Snapshot</code>
+      and deprecated
+      <code translate="no" dir="ltr">id</code>
+      . The ID of a snapshot changed from a
+      <code translate="no" dir="ltr">Int</code>
+      to a
+      <code translate="no" dir="ltr">Long</code>
+      to avoid the snapshot ID from overflowing on systems with very high frame rates and long running animations. The type was made expect/actual to allow this type to be
+      <code translate="no" dir="ltr">Int</code>
+      , or other type, on platforms that don't have a native
+      <code translate="no" dir="ltr">Long</code>
+      type. Platforms that do not have a native
+      <code translate="no" dir="ltr">Long</code>
+      , such as JavaScript, should avoid high frame rates (over 1000 FPS) which would cause an overflow for
+      <code translate="no" dir="ltr">Int</code>
+      approximate every 24 days. (
+      <a href="https://android-review.googlesource.com/#/q/I38ac3d43d3af7f691c957017eaf6895f5ae6ebb9">I38ac3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/374821679">b/374821679</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">providesDefault</code>
+      for a single
+      <code translate="no" dir="ltr">provides</code>
+      . (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/3318540">aosp/3318540</a>
+      <a href="https://issuetracker.google.com/issues/374263387">b/374263387</a>
+      )
+    </li>
+    <li>
+      Optimize
+      <code translate="no" dir="ltr">ChangeList</code>
+      . (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/3318538">3318538</a>
+      )
+    </li>
+  </ul>

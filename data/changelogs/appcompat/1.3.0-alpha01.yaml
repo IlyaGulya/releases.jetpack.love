@@ -1,0 +1,89 @@
+libraryId: appcompat
+groupId: androidx.appcompat
+version: 1.3.0-alpha01
+releaseDate: 2020-05-20
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha01" data-text="Version 1.3.0-alpha01" tabindex="-1">Version 1.3.0-alpha01</h3>
+  <p>May 20, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.appcompat:appcompat:1.3.0-alpha01</code>
+    and
+    <code translate="no" dir="ltr">androidx.appcompat:appcompat-resources:1.3.0-alpha01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6c98d66b901be2eecdf89477ccd70d2490ca6fc2..ccc6e95c574b66563952c33fbe26888b93a0e0cb/appcompat">Version 1.3.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>Add a new Lint rule to flag calls to setActionBar on activities that extend AppCompatActivity</li>
+    <li>
+      Added support for
+      <code translate="no" dir="ltr">ViewTreeLifecycleOwner</code>
+      from
+      <a href="/jetpack/androidx/releases/lifecycle#2.3.0-alpha03">
+        Lifecycle
+        <code translate="no" dir="ltr">2.3.0-alpha01</code>
+      </a>
+      ,
+      <code translate="no" dir="ltr">ViewTreeViewModelStoreOwner</code>
+      from
+      <a href="/jetpack/androidx/releases/lifecycle#2.3.0-alpha01">
+        Lifecycle
+        <code translate="no" dir="ltr">2.3.0-alpha03</code>
+      </a>
+      , and
+      <code translate="no" dir="ltr">ViewTreeSavedStateRegistryOwner</code>
+      from
+      <a href="/jetpack/androidx/releases/savedstate#1.1.0-alpha01">
+        SavedState
+        <code translate="no" dir="ltr">1.1.0-alpha01</code>
+      </a>
+      when using a
+      <code translate="no" dir="ltr">View</code>
+      within an
+      <code translate="no" dir="ltr">AppCompatActivity</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/151603528">b/151603528</a>
+      ,
+      <a href="https://android-review.googlesource.com/1300264/">aosp/1300264</a>
+      )
+    </li>
+    <li>
+      Add common API for inserting rich content (e.g. pasting an image). The new callback provides a single API that apps can implement to support the different ways in which rich content may be inserted. For now the API is only added to
+      <code translate="no" dir="ltr">AppCompatEditText</code>
+      and will be invoked for the following code paths:
+      <ul>
+        <li>paste from the clipboard</li>
+        <li>
+          content insertion from the IME (
+          <code translate="no" dir="ltr">InputConnection.commitContent</code>
+          ) (
+          <a href="https://android-review.googlesource.com/#/q/I22bf76a22b795cb47c7ab12e4f5b529fff8fe5d7">I22bf7</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      From
+      <a href="#1.2.0-rc01">
+        AppCompat
+        <code translate="no" dir="ltr">1.2.0-rc01</code>
+      </a>
+      : AppCompat no longer calls
+      <code translate="no" dir="ltr">onMenuOpened()</code>
+      with a
+      <code translate="no" dir="ltr">null</code>
+      menu. (
+      <a href="https://issuetracker.google.com/issues/142843126">b/142843126</a>
+      )
+    </li>
+    <li>
+      Correctly resolve text link and hint colors on older devices when TextViewCompat.setTextAppearance is called with a text appearance style that has color state lists that reference theme color attributes (
+      <a href="https://issuetracker.google.com/issues/154702995">b/154702995</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_120_3" data-text="Version 1.2.0" tabindex="-1">Version 1.2.0</h2>

@@ -1,0 +1,146 @@
+libraryId: room
+groupId: androidx.room
+version: 2.7.0-alpha06
+releaseDate: 2024-08-07
+#language=html
+changelogHtml: |
+  <h3 id="2.7.0-alpha06" data-text="Version 2.7.0-alpha06" tabindex="-1">Version 2.7.0-alpha06</h3>
+  <p>August 7, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.7.0-alpha06</code>
+    is released. Version 2.7.0-alpha06 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/56579bc30499ce39f0d7a6713a065b00c6194206..851bf84c0a2be5c65b9a8ad1add25fc42d701f48/room">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Change the instantiation setup for a
+      <code translate="no" dir="ltr">RoomDatabase</code>
+      in a KMP project.
+    </li>
+  </ul>
+  <p>
+    Due to Kotlin 2.0 compilation model, the strategy of referencing a to-be-generated function, named
+    <code translate="no" dir="ltr">instantiateImpl()</code>
+    is longer viable. Two new APIs,
+    <code translate="no" dir="ltr">@ConstructedBy</code>
+    and
+    <code translate="no" dir="ltr">RoomDatabaseConstructor</code>
+    are introduced that replace the
+    <code translate="no" dir="ltr">instantiateImpl()</code>
+    strategy. The new strategy is as follow:
+  </p>
+  <ol>
+    <li>
+      <p>
+        Define an expect object that implements
+        <code translate="no" dir="ltr">RoomDatabaseConstructor</code>
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Text only"><code translate="no" dir="ltr">  expect object MyDatabaseCtor : RoomDatabaseConstructor&lt;MyDatabase&gt;
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        Link the object with the
+        <code translate="no" dir="ltr">@Database</code>
+        declaration using
+        <code translate="no" dir="ltr">@ConstructedBy</code>
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Transact-SQL"><code translate="no" dir="ltr"><span class="devsite-syntax-w">  </span><span class="devsite-syntax-nv">@Database</span><span class="devsite-syntax-p">(...)</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-nv">@ConstructedBy</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-nl">MyDatabaseCtor</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-err">:</span><span class="devsite-syntax-k">class</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">//</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">NEW</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">abstract</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">MyDatabase</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-err">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">RoomDatabase</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>Create a new database instance but without passing a factory argument</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Text only"><code translate="no" dir="ltr">  fun createNewDatabase(path: String) =
+      Room.databaseBuilder&lt;AppDatabase&gt;(name = path)
+        .setDriver(BundledSQLiteDriver())
+        .setQueryCoroutineContext(Dispatchers.IO)
+        .build()
+  </code></pre>
+      </devsite-code>
+    </li>
+  </ol>
+  <p>
+    Fixes
+    <a href="https://issuetracker.google.com/issues/316978491">b/316978491</a>
+    ,
+    <a href="https://issuetracker.google.com/issues/338446862">b/338446862</a>
+    , and
+    <a href="https://issuetracker.google.com/issues/342905180">b/342905180</a>
+  </p>
+  <ul>
+    <li>
+      Support for
+      <code translate="no" dir="ltr">@RawQuery</code>
+      in Room KMP by adding a new API called
+      <code translate="no" dir="ltr">RoomRawQuery</code>
+      that is similar to
+      <code translate="no" dir="ltr">SupportSQLiteQuery</code>
+      in terms of holding into the raw SQL string and a function to bind arguments into a statement.
+      <code translate="no" dir="ltr">@RawQuery</code>
+      annotated functions can now accept a
+      <code translate="no" dir="ltr">RoomRawQuery</code>
+      as their single parameter. (
+      <a href="https://android-review.googlesource.com/#/q/Iea84484b18c0c969b4012977e737eb12c4b4f2c6">Iea844</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/330586815">b/330586815</a>
+      )
+    </li>
+    <li>
+      Add an overload of
+      <code translate="no" dir="ltr">setQueryCallback()</code>
+      that accepts a
+      <code translate="no" dir="ltr">CoroutineContext</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id66ff055ce126085d50cad15f8982ad88c34267e">Id66ff</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/309996304">b/309996304</a>
+      )
+    </li>
+    <li>
+      Added support for
+      <code translate="no" dir="ltr">linuxArm64</code>
+      Kotlin Multiplatform targets (
+      <a href="https://android-review.googlesource.com/#/q/I139d36226a3d06d9768bd63302de98b576a12a48">I139d3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/338268719">b/338268719</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix an issue where Room would incorrectly generate a call to
+      <code translate="no" dir="ltr">recursiveFetchArrayMap</code>
+      in non-Android targets. (
+      <a href="https://android-review.googlesource.com/#/q/3b10c6e1a87df1f97e64364f1dd1a15ec9710c36">710c36</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/352482325">b/352482325</a>
+      )
+    </li>
+    <li>
+      Fix an issue where sometimes Room would throw an exception about ‘Timed out attempting a connection’ in a KMP project. (
+      <a href="https://android-review.googlesource.com/#/q/241d1fe6eaf04405a4d3118384d7831a69fa72d0">fa72d0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/347737870">b/347737870</a>
+      )
+    </li>
+    <li>
+      Fix an issue in auto-migrations that would check for foreign keys too early before other tables changed their schemas to conform to the new foreign keys. (
+      <a href="https://android-review.googlesource.com/#/q/a499a0c267f712fcc62d8227d23878a5757672c0">7672c0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/352085724">b/352085724</a>
+      )
+    </li>
+  </ul>

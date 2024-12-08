@@ -1,0 +1,613 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 0.1.0-dev15
+releaseDate: 2020-07-22
+#language=html
+changelogHtml: |
+  <h3 id="0.1.0-dev15" data-text="Version 0.1.0-dev15" tabindex="-1">Version 0.1.0-dev15</h3>
+  <p>July 22, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:0.1.0-dev15</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9f60cc700129e30cee9df020005c317fb39d32ec/compose">Version 0.1.0-dev15 contains these commits.</a>
+  </p>
+  <h4 id="dependencies_update_2" data-text="Dependencies Update" tabindex="-1">Dependencies Update</h4>
+  <ul>
+    <li>
+      To use the
+      <code translate="no" dir="ltr">0.1.0-dev15</code>
+      version of Compose, you will need to update your dependencies according to the new code snippets shown above in
+      <a href="#declaring_dependencies">Declaring dependencies</a>
+      .
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">@Model</code>
+        annotation is now deprecated. Use state and mutableStateOf as alternatives. This deprecation decision was reached after much careful discussion.
+      </p>
+
+      <h4 id="justification_2" data-text="Justification" tabindex="-1">Justification</h4>
+
+      <p>Rationale includes but is not limited to:</p>
+
+      <ul>
+        <li>Reduces API surface area and concepts we need to teach</li>
+        <li>More closely aligns with other comparable toolkits (Swift UI, React, Flutter)</li>
+        <li>
+          Reversible decision. We can always bring
+          <code translate="no" dir="ltr">@Model</code>
+          back later.
+        </li>
+        <li>
+          Removes corner-case usage and difficult to answer questions about configuring
+          <code translate="no" dir="ltr">@Model</code>
+          as things we need to handle
+        </li>
+        <li>
+          <code translate="no" dir="ltr">@Model</code>
+          data classes, equals, hashcode, etc.
+        </li>
+        <li>How do I have some properties “observed” and others not?</li>
+        <li>How do I specify structural vs. referential equality to be used in observation?</li>
+        <li>Reduces “magic” in the system. Would reduce the likelihood of someone assuming system was smarter than it is (ie, it knowing how to diff a list)</li>
+        <li>Makes the granularity of observation more intuitive.</li>
+        <li>Improves refactorability from variable -&gt; property on class</li>
+        <li>Potentially opens up possibilities to do hand-crafted State-specific optimizations</li>
+        <li>More closely aligns with the rest of the ecosystem and reduces ambiguity towards immutable or us “embracing mutable state”</li>
+      </ul>
+
+      <h4 id="migration_notes_2" data-text="Migration Notes" tabindex="-1">Migration Notes</h4>
+
+      <p>
+        Almost all existing usages of
+        <code translate="no" dir="ltr">@Model</code>
+        are fairly trivially transformed in one of two ways. The example below has a
+        <code translate="no" dir="ltr">@Model</code>
+        class with two properties just for the sake of example, and has it being used in a composable.
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@Model</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">Position</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">var</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">x</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">Int</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">var</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">y</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">Int</span>
+  <span class="devsite-syntax-p">)</span>
+
+  <span class="devsite-syntax-nd">@Composable</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">Example</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">var</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">p</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">remember</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Position</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-m">0</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-m">0</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">PositionChanger</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">   </span><span class="devsite-syntax-n">position</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-n">p</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">   </span><span class="devsite-syntax-n">onXChange</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">p</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">x</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nb">it</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">   </span><span class="devsite-syntax-n">onYChange</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">p</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">y</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nb">it</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+      <h4 id="alternative_1_use_stateoriginalclass_and_create_copies_2" data-text="Alternative 1: Use State<OriginalClass> and create copies." tabindex="-1">
+        Alternative 1: Use
+        <code translate="no" dir="ltr">State&lt;OriginalClass&gt;</code>
+        and create copies.
+      </h4>
+
+      <p>
+        This approach is made easier with Kotlin’s data classes. Essentially, make all previously
+        <code translate="no" dir="ltr">var</code>
+        properties into
+        <code translate="no" dir="ltr">val</code>
+        properties of a data class, and then use
+        <code translate="no" dir="ltr">state</code>
+        instead of
+        <code translate="no" dir="ltr">remember</code>
+        , and assign the state value to cloned copies of the original using the data class
+        <code translate="no" dir="ltr">copy(...)</code>
+        convenience method.
+      </p>
+
+      <p>
+        It’s important to note that this approach only works when the only mutations to that class were done in the same scope that the
+        <code translate="no" dir="ltr">State</code>
+        instance is created. If the class is internally mutating itself outside of the scope of usage, and you are relying on the observation of that, then the next approach is the one you will want to use.
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">data</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">Position</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">x</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">Int</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">y</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">Int</span>
+  <span class="devsite-syntax-p">)</span>
+
+  <span class="devsite-syntax-nd">@Composable</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">Example</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">var</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">p</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">by</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">state</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Position</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-m">0</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-m">0</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">PositionChanger</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">   </span><span class="devsite-syntax-n">position</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-n">p</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">   </span><span class="devsite-syntax-n">onXChange</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">p</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">p</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">copy</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">x</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-nb">it</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">   </span><span class="devsite-syntax-n">onYChange</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">p</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">p</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">copy</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">y</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-nb">it</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+      <h4 id="alternative_2_use_mutablestateof_and_property_delegates_2" data-text="Alternative 2: Use mutableStateOf and property delegates" tabindex="-1">Alternative 2: Use mutableStateOf and property delegates</h4>
+
+      <p>
+        This approach is made easier with Kotlin’s property delegates and the
+        <code translate="no" dir="ltr">mutableStateOf</code>
+        API which allows you to create MutableState instances outside of composition. Essentially, replace all
+        <code translate="no" dir="ltr">var</code>
+        properties of the original class with
+        <code translate="no" dir="ltr">var</code>
+        properties with
+        <code translate="no" dir="ltr">mutableStateOf</code>
+        as their property delegate. This has the advantage that the usage of the class will not change at all, only the internal implementation of it. The behavior is not completely identical to the original example though, as each property is now observed/subscribed to individually, so the recompositions you see after this refactor could be more narrow (a good thing).
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">Position</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">x</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">Int</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">y</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">Int</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">var</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">x</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">by</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">mutableStateOf</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">x</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">var</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">y</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">by</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">mutableStateOf</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">y</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-p">}</span>
+
+  <span class="devsite-syntax-c1">// source of Example is identical to original</span>
+  <span class="devsite-syntax-nd">@Composable</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">Example</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">var</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">p</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">remember</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Position</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-m">0</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-m">0</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">PositionChanger</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">   </span><span class="devsite-syntax-n">position</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-n">p</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">   </span><span class="devsite-syntax-n">onXChange</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">p</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">x</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nb">it</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">   </span><span class="devsite-syntax-n">onYChange</span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">p</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">y</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nb">it</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+      <p>
+        (
+        <a href="https://android-review.googlesource.com/#/q/I409e8c158841eae1dd548b33f1ec80bb609cba31">I409e8</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/152050010">b/152050010</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/146362815">b/146362815</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/146342522">b/146342522</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/143413369">b/143413369</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/135715219">b/135715219</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/143263925">b/143263925</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/139653744">b/139653744</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>Changes the code generation strategy of Compose’s compiler. Prior to the change, the compose compiler would transform calls to composable functions. With this change, we now transform the body of a composable function and leave the callsite unaltered (mostly).</p>
+
+      <p>This means that most of the logic communicating with the compose runtime happens at the start of the function body, instead of at the callsite.</p>
+
+      <p>This should be a source-compatible change for all usage of compose. Most users of compose should not have to update any code as a result of this change.</p>
+
+      <p>In order to support this work, the JVM signature of all composable functions has changed. A Composable function accepting a single parameter is transformed into a function accepting 3 parameters, the additional parameters are the Composer, a ‘key’ integer. a bitmask integer used to propagate metadata through calls.</p>
+
+      <p>Compose now also transforms default arguments to a composable function. It does this without introducing an additional synthetic default overload of the function itself, so this change will result in fewer functions being defined.</p>
+
+      <p>Known intentional behavioral changes resulting from this:</p>
+
+      <ol>
+        <li>Some calls will skip where they wouldn’t have previously</li>
+        <li>Composable expressions in default argument expressions are now correctly subscribed to and handled</li>
+      </ol>
+
+      <p>This work included some optimizations: 1. The result of comparisons of parameters are propagated through the call graph to other composable functions. This will result in fewer comparisons at runtime, reduces the slot table size, as well as more skipping of composable functions that were previously not skipped 2. Paremeters which are determined to be “static” at compile time are no longer compared or stored in the runtime. This reduces the number of comparisons and reduces slot table size. 3. Control flow structure of the body of functions is used to minimize the number of groups that are generated. This reduces slot table size and results in less work for the runtime 4. Unused dispatch and receiver parameters to functions are not included in determining skippability of the function if they are not used inside of the body of the function.</p>
+
+      <p>
+        Most breaking changes were for APIs that the compiler targets directly, and typical use of compose will not be affected: 1. Composer::startExpr was removed 2. Composer::endExpr was removed 3. Composer::call was deprecated 4. The non-varargs overloads of
+        <code translate="no" dir="ltr">key</code>
+        have been removed. Use the
+        <code translate="no" dir="ltr">vararg</code>
+        version going forward. 5. The Pivotal annotation was deprecated. Use
+        <code translate="no" dir="ltr">key</code>
+        as a replacement. 6. ScopeUpdateScope::updateScope was changed to expect a Function3 instead of Function1 7. restartableFunction and restartableFunctionN were updated to include additional compile time parameters (
+        <a href="https://android-review.googlesource.com/#/q/I607560574d83b4b6c1e68ff72cc4124c5f8c2602">I60756</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/143464846">b/143464846</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added sortWith and removeRange to MutableVector (
+        <a href="https://android-review.googlesource.com/#/q/Icccf73d3dd073dab0c7e67edf06afe77ec19bc67">Icccf7</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added default method implementations for CompositionLifecycleObserver (
+        <a href="https://android-review.googlesource.com/#/q/I2428951907b8256d698fc11291dc7d8c3b756d4c">I24289</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Applier now requires a clear() method for disposing compositions (
+        <a href="https://android-review.googlesource.com/#/q/Ibe697b06ea885852731d029ef56da657b5f290dc">Ibe697</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added asMutableList() to MutableVector to allow it to be passed to public API without having to copy the entire list. (
+        <a href="https://android-review.googlesource.com/#/q/I298df3722ef0fa4bcce7cc0398b931ee934bb233">I298df</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added rememberCoroutineScope() to obtain a managed CoroutineScope in composition for launching jobs in response to events. (
+        <a href="https://android-review.googlesource.com/#/q/I0e264f3f74fc520c6e57051000a513a52f2d07ce">I0e264</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        MutableVector is a new collection that does not implement any of the standard Collection interface. This collection offers speed above other requirements and is intended to only be used in internal implementations. (
+        <a href="https://android-review.googlesource.com/#/q/I8ebd6bf1407595d45eee2a22c1d1db3f38f4ab0b">I8ebd6</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Temporarily removed
+        <code translate="no" dir="ltr">StableMutableList</code>
+        and
+        <code translate="no" dir="ltr">StableMutableMap</code>
+        to avoid an issue in the version of Kotlin compose requires. These interfaces will be reintroduced once compose is updated to a version of Kotlin that doesn't have the issue.
+      </p>
+
+      <p>
+        <code translate="no" dir="ltr">SnapshotStateList</code>
+        and
+        <code translate="no" dir="ltr">SnapshotStateMap</code>
+        are now public but they will be deprecated once
+        <code translate="no" dir="ltr">StableMutableList</code>
+        and
+        <code translate="no" dir="ltr">StableMutableMap</code>
+        are restored. (
+        <a href="https://android-review.googlesource.com/#/q/Ia77691c6a5f523f63bd5d76cd6d7d7dc3f1afce1">Ia7769</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        add top-level withFrameNanos function for animation timing (
+        <a href="https://android-review.googlesource.com/#/q/Ie34c53e2e105353acc5ad56df0e15e1bc2a2da08">Ie34c5</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        @Untracked annotation has been deprecated. Replace with @ComposableContract(tracked=false) (
+        <a href="https://android-review.googlesource.com/#/q/Id211e1c7c168c5171bbf3c844792890ee87d4fc2">Id211e</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        RestartableFunction and associated APIs have been renamed to ComposableLambda, etc. These APIs were targeted only by the compiler so this should not affect source level compatibility normally. The rename was done primarily to communicate what this class is better when it shows up in stack traces (
+        <a href="https://android-review.googlesource.com/#/q/I7eb259b38d832c575810c6d61f2fd7d5fc035009">I7eb25</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        @Composable annotation is no longer valid on classes (
+        <a href="https://android-review.googlesource.com/#/q/Ia5f02c4e27d7f96ee52206dc29896751dbf98fb2">Ia5f02</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">Ambient&lt;T&gt;</code>
+        is now @Stable instead of @Immutable (
+        <a href="https://android-review.googlesource.com/#/q/I0b4bbe1926fd68e04a7b7a66485c7a2e090f8c46">I0b4bb</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Prior to this change, the compose compiler plugin would non-trivially intercept calls to constructors inside of a @Composable function if there was an (
+        <a href="https://android-review.googlesource.com/#/q/I5205af707238a70d600c105843cd99e88a5381e0">I5205a</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/158123804">b/158123804</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        The Recompose composable is no longer a useful abstraction. Most recomposition should happen as a result of MutableState assignments. For anything beyond that, it is recommended that you use the
+        <code translate="no" dir="ltr">invalidate</code>
+        function to trigger a recomposition of the current scope. (
+        <a href="https://android-review.googlesource.com/#/q/Ifc9926013c51c1db1e27e702a707bc1050f82fa6">Ifc992</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Observe is no longer a useful abstraction. If you need to replicate it, its implementation can be replicated by just creating a composable function which executes a composable lambda parameter. For example,
+        <code translate="no" dir="ltr">@Composable fun Observe(body: @Composable () -&gt; Unit) = body()</code>
+        (
+        <a href="https://android-review.googlesource.com/#/q/I40d37d6da7268c612231e0b91e1940c6c4fe2ac9">I40d37</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        @Direct was deprecated in favor of @ComposableContract(restartable=false) (
+        <a href="https://android-review.googlesource.com/#/q/If47080869682224dff147fd11505c0bc3949fb20">If4708</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added an adapter for the recently introduced StateFlow which allows as to pre-populate the initial value so the returned State is non-nullable (
+        <a href="https://android-review.googlesource.com/#/q/I61dd845b2329f0e209175ed500a7f27f1520f471">I61dd8</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/156233789">b/156233789</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added an adapter for Flow. Example of the usage: val value by flow.collectAsState() (
+        <a href="https://android-review.googlesource.com/#/q/If219801db734613cc4ea411756141d372f889490">If2198</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/153375923">b/153375923</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        [Mutable]State property delegate operators moved to extensions to support Kotlin 1.4 property delegate optimizations. Callers must add imports to continue using
+        <code translate="no" dir="ltr">by state { ... }</code>
+        or
+        <code translate="no" dir="ltr">by mutableStateOf(...)</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/I5312cf7bdfa072cadc1be2de5d5f45ec53200f41">I5312c</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        androidx.compose.ViewComposer has been moved to androidx.ui.node.UiComposer androidx.compose.Emittable has been removed. It was redundant with ComponentNode. androidx.compose.ViewAdapters has been removed. They are no longer a supported use case. Compose.composeInto has been deprecated. Use
+        <code translate="no" dir="ltr">setContent</code>
+        or
+        <code translate="no" dir="ltr">setViewContent</code>
+        instead. Compose.disposeComposition has been deprecated. Use the
+        <code translate="no" dir="ltr">dispose</code>
+        method on the
+        <code translate="no" dir="ltr">Composition</code>
+        returned by
+        <code translate="no" dir="ltr">setContent</code>
+        instead. androidx.compose.Compose.subcomposeInto has moved to androidx.ui.core.subcomposeInto ComponentNode#emitInsertAt has been renamed to ComponentNode#insertAt ComponentNode#emitRemoveAt has been renamed to ComponentNode#removeAt ComponentNode#emitMode has been renamed to ComponentNode#move (
+        <a href="https://android-review.googlesource.com/#/q/Idef00fba3a2e67d7034e31d580d69192e9018b5f">Idef00</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Updated the
+        <code translate="no" dir="ltr">ComposeFlags.COMPOSER_PARAM</code>
+        flag to be
+        <code translate="no" dir="ltr">true</code>
+        , which will change the code generation strategy for the compose plugin. At a high level, this causes @Composable functions to be generated with an additional synthetic parameter, which is passed through to subsequent @Composable calls in order for the runtime to properly manage execution. This is a significant binary breaking change, however, should preserve source-level compatibility in all sanctioned usage of compose. (
+        <a href="https://android-review.googlesource.com/#/q/I7971ca1b6525440c38643953645fa388131e31f0">I7971c</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Breaking changes to the ambients API. See log and
+        <code translate="no" dir="ltr">Ambient&lt;T&gt;</code>
+        documentation for details (
+        <a href="https://android-review.googlesource.com/#/q/I4c7eea45f2b7bf41f8a8ba75fd667c06010469a9">I4c7ee</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/143769776">b/143769776</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added ui-livedata - new artifact with an adapter for LiveData. Example of the usage: val value by liveData.observeAsState() (
+        <a href="https://android-review.googlesource.com/#/q/Ie9e8c37c952358186ab311d0d232c188003631f4">Ie9e8c</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/150465596">b/150465596</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Rx adapters without explicit initial value are deprecated. Using null is not always the best default, for example when you have a List it is better to start with emptyList() or any other reasonable default (
+        <a href="https://android-review.googlesource.com/#/q/I00025b20be5441dc64edf3077c2e63800e1abf77">I00025</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/161348384">b/161348384</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added ui-rxjava2 - new artifact with adapters for RxJava2. Example of the usage: val value by observable.subscribeAsState() (
+        <a href="https://android-review.googlesource.com/#/q/Ifab4b1eebfa0649716ffd3d9fc980a71ef30eb61">Ifab4b</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/153369097">b/153369097</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">savedInstanceState()</code>
+        can now be used with nullable types (
+        <a href="https://android-review.googlesource.com/#/q/I6847f1a78afc14061082993583a6fcfc374e3277">I6847f</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/153532190">b/153532190</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        New listSaver() and mapSaver() to make it easier to write custom Saver objects (
+        <a href="https://android-review.googlesource.com/#/q/I8cf68efa3344c92d69a980efd4a737c5cac436fa">I8cf68</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/152331508">b/152331508</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        New functions: savedInstanceState() and rememberSavedInstanceState(). They are similar to state() and remember() but have a saved instance state support build in (
+        <a href="https://android-review.googlesource.com/#/q/If1987a758d18f9fa4ccfeb75011155304ee99cef">If1987</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/152025209">b/152025209</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">runOnIdleCompose</code>
+      renamed to
+      <code translate="no" dir="ltr">runOnIdle</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I836071f1c3c63d21417a531f336f8a93ca13f9ed">I83607</a>
+      )
+    </li>
+    <li>
+      Made LayoutNode experimental API (
+      <a href="https://android-review.googlesource.com/#/q/I4f2e93737020b0993f8ba5671e2a0a87f5de3ce2">I4f2e9</a>
+      )
+    </li>
+    <li>
+      androidx.ui.foundation.TextFieldValue and androidx.ui.input.EditorValue is deprecated. TextField, FilledTextField and CoreTextField composables that uses that type is also deprecated. Please use androidx.ui.input.TextFieldValue instead (
+      <a href="https://android-review.googlesource.com/#/q/I4066d1f4d2e3e3514753aa3495680292dc55f89d">I4066d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/155211005">b/155211005</a>
+      )
+    </li>
+    <li>
+      Removed deprecated DrawBackground API in favor of drawBackground extension APIs on Modifier. Refactored color, brush and paint drawBackground implementations to reduce code paths as well as remove requirement for Modifier to be created as part of composition. (
+      <a href="https://android-review.googlesource.com/#/q/I0343a0d32684e77f9bc72c9cf68ce55d92ec575d">I0343a</a>
+      )
+    </li>
+    <li>
+      Updated higher level compose APIs that expose a Canvas to expose CanvasScope instead. This removes the need for consumers to maintain their own Paint objects. For consumers that still require access to a Canvas they can use the drawCanvas extension method which provides a callback to issue drawing commands with the underlying Canvas. (
+      <a href="https://android-review.googlesource.com/#/q/I80afdf4c0a648962aa6ef1efc05b1d3b65757094">I80afd</a>
+      )
+    </li>
+    <li>
+      WithConstraints trailing lambda API has been changed. Now instead of two params it has a receiver scope which in addition to constraints and layoutDirection provides minWidth, maxWidth, minHeight and maxHeight properties in Dp (
+      <a href="https://android-review.googlesource.com/#/q/I91b9af740cd2613ddd4fe6d63cd539a46b52fc52">I91b9a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/149979702">b/149979702</a>
+      )
+    </li>
+    <li>
+      Added symmetric padding modifier. (
+      <a href="https://android-review.googlesource.com/#/q/I39840a44ea3ff9cbf17dc1c073b1d142d59b02ec">I39840</a>
+      )
+    </li>
+    <li>
+      Updated wrapContentWidth and wrapContentHeight to expect vertical or horizontal Alignment rather than any Alignment. The gravity modifier was updated to accept vertical or horizontal Alignment. Row, Column and Stack were updated to support custom continuous Alignments. (
+      <a href="https://android-review.googlesource.com/#/q/Ib07281752fa9806a13e61823e00accb26f99c1f6">Ib0728</a>
+      )
+    </li>
+    <li>
+      ui-text module is renamed as ui-text-core (
+      <a href="https://android-review.googlesource.com/#/q/I57dec72ca50e7288e37c9272ef6ce8bcc485a83e">I57dec</a>
+      )
+    </li>
+    <li>
+      Improve DrawModifier API:
+      <ul>
+        <li>Made the receiver scope for draw() ContentDrawScope</li>
+        <li>Removed all parameters on draw()</li>
+        <li>DrawScope has same interface as former CanvasScope</li>
+        <li>
+          ContentDrawScope has drawContent() method (
+          <a href="https://android-review.googlesource.com/#/q/Ibaced5feb8778510b8fe78e96f4fd3da1a6fda50">Ibaced</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/152919067">b/152919067</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      ColoredRect has been deprecated. Use
+      <code translate="no" dir="ltr">Box(Modifier.preferredSize(width, height).drawBackground(color))</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/I499fa26b66b128943500fbdf9ba490d754adf561">I499fa</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/152753731">b/152753731</a>
+      )
+    </li>
+    <li>
+      Replaced Modifier plus operator with factory extension functions (
+      <a href="https://android-review.googlesource.com/#/q/I225e444f50956d84e15ca4f1378b7f805d54e0ca">I225e4</a>
+      )
+    </li>
+    <li>
+      RowScope and ColumnScope members are now accessible outside Row and Column. (
+      <a href="https://android-review.googlesource.com/#/q/I3a6415334c145f6a3f610d7852c4d2478371e6e6">I3a641</a>
+      )
+    </li>
+    <li>
+      Renamed LayoutFlexible to LayoutWeight. Renamed tight parameter to fill. (
+      <a href="https://android-review.googlesource.com/#/q/If4738c70c381e149ded400d657b5efd888ae5891">If4738</a>
+      )
+    </li>
+    <li>
+      WithConstraints got LayoutDirection parameter (
+      <a href="https://android-review.googlesource.com/#/q/I6d6f7d5fd9a4a0428e3ee188a9a3790e1cdaf083">I6d6f7</a>
+      )
+    </li>
+    <li>
+      Renamed background to DrawBackground and make it to be memorized by default (
+      <a href="https://android-review.googlesource.com/#/q/Ia0bd3f7657dc66ae6f492ccfcf88c44ba92bb7e0">Ia0bd3</a>
+      )
+    </li>
+    <li>
+      Replaced ButtonStyle with distinct functions and removed text (string) overload. See updated samples for usage information. (
+      <a href="https://android-review.googlesource.com/#/q/If63ab32bd3f12050a2d2f4b8c0cb044bc7144a6b">If63ab</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/146478620">b/146478620</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/146482131">b/146482131</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">runOnIdleCompose</code>
+      and
+      <code translate="no" dir="ltr">runOnUiThread</code>
+      are now global functions instead of methods on ComposeTestRule. (
+      <a href="https://android-review.googlesource.com/#/q/Icbe8fd71d52144e855ccb4ce06a4677337be731a">Icbe8f</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Remove unneeded API such as Looper and Handler from Compose Runtime porting layer (
+      <a href="https://android-review.googlesource.com/#/q/I6847daf0d70608673a8fe8b2bbf7f3b94fb762f1">I6847d</a>
+      )
+    </li>
+    <li>
+      Deprecate
+      <code translate="no" dir="ltr">Flow&lt;T&gt;.collectAsState()</code>
+      with no initial value. Use
+      <code translate="no" dir="ltr">StateFlow&lt;T&gt;</code>
+      or pass an explicit initial value instead. (
+      <a href="https://android-review.googlesource.com/#/q/I63f98eabd19d74c87bc951677cef15c678aeae2f">I63f98</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/157674865">b/157674865</a>
+      )
+    </li>
+  </ul>
+  <devsite-hats-survey class="nocontent" hats-id="VxqvKSur40kxBYCLVTd0SSGykbno" listnr-id="5207477"></devsite-hats-survey>

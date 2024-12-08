@@ -1,0 +1,231 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.4.0-alpha05
+releaseDate: 2024-04-17
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha05" data-text="Version 1.4.0-alpha05" tabindex="-1">Version 1.4.0-alpha05</h3>
+  <p>April 17, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.4.0-alpha05</code>
+    is released. Version 1.4.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cc8546da2e453883b157aa38bbd034b8ae5bbac8..7f20a95e69d42bdab1dbae806dd5dee41b86143d/camera">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Converted
+      <code translate="no" dir="ltr">ProcessCameraProvider</code>
+      into Kotlin implementation. (
+      <a href="https://android-review.googlesource.com/#/q/I46d4fb4e2a7eb8908f952afd5ffb8565d27f8a47">I46d4f</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ImageCapture.takePicture</code>
+      suspend functions to allow it to be called in a Kotlin-idiomatic way. (
+      <a href="https://android-review.googlesource.com/#/q/I920bed9dc547a4e1b78af37f1ba4239793741bb5">I920be</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add output format APIs to
+      <code translate="no" dir="ltr">ImageCapture</code>
+      , and add
+      <code translate="no" dir="ltr">getSupportedOutputFormats</code>
+      method to
+      <code translate="no" dir="ltr">ImageCaptureCapabilities</code>
+      for querying device capability. The default output format value is
+      <code translate="no" dir="ltr">OUTPUT_FORMAT_JPEG</code>
+      , which captures SDR images in JPEG format. When the device supports Ultra HDR and the output format is set to
+      <code translate="no" dir="ltr">OUTPUT_FORMAT_JPEG_ULTRA_HDR</code>
+      , CameraX will capture Ultra HDR compressed images using the JPEG/R image format. The format is backwards compatible with SDR JPEG format and supports HDR rendering of content. This means that on older apps or devices, images appear seamlessly as regular JPEG; on apps and devices that have been updated to fully support the format, images appear as HDR. (
+      <a href="https://android-review.googlesource.com/#/q/I5de5085906d23a4319d8f795a1d34bfe435d011c">I5de50</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">PhysicalCameraInfo</code>
+      in
+      <code translate="no" dir="ltr">CameraInfo</code>
+      to query physical camera information and add physical camera id setter/getter in
+      <code translate="no" dir="ltr">CameraSelector</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ic5b9021a03fed697df2eec33ef418869015ca0b1">Ic5b90</a>
+      )
+    </li>
+    <li>
+      Replace
+      <code translate="no" dir="ltr">CameraController#COORDINATE_SYSTEM_VIEW_REFERENCED</code>
+      with
+      <code translate="no" dir="ltr">ImageAnalysis#COORDINATE_SYSTEM_VIEW_REFERENCED</code>
+      . The value of the constant remains the same. This is for consolidating all the constants into one place. (
+      <a href="https://android-review.googlesource.com/#/q/I890bb13e2c045393bd7b6e438c0f35a03eefe240">I890bb</a>
+      )
+    </li>
+    <li>
+      New
+      <code translate="no" dir="ltr">RetryPolicy</code>
+      API empowers developers to customize retry behavior for CameraX initialization. (
+      <a href="https://android-review.googlesource.com/#/q/I36dd233d93bced1931cc765a79409a3384035931">I36dd2</a>
+      )
+    </li>
+    <li>
+      Enable creation of
+      <code translate="no" dir="ltr">ImageCaptureLatencyEstimate</code>
+      object to assist with testability (
+      <a href="https://android-review.googlesource.com/#/q/Iaba99723592047b8d3a244cd69391e75ef702ef7">Iaba99</a>
+      )
+    </li>
+    <li>
+      Add a
+      <code translate="no" dir="ltr">ImageAnalysis#COORDINATE_SYSTEM_SENSOR</code>
+      . When this is used, the
+      <code translate="no" dir="ltr">MlKitAnalyzer</code>
+      returns coordinates in the camera sensor coordinate system. (
+      <a href="https://android-review.googlesource.com/#/q/I3ec61b28688aafb8398b7ddf7aa5f9325fc73a2d">I3ec61</a>
+      )
+    </li>
+    <li>
+      Exposed extensions metadata API. New
+      <code translate="no" dir="ltr">CameraExtensionsInfo</code>
+      and
+      <code translate="no" dir="ltr">CameraExtensionsControl</code>
+      interfaces allow applications to monitor and adjust extension strength settings. Applications can obtain the
+      <code translate="no" dir="ltr">CameraExtensionsInfo</code>
+      or
+      <code translate="no" dir="ltr">CameraExtensionsControl</code>
+      instance via the newly added
+      <code translate="no" dir="ltr">ExtensionsManager#getCameraExtensionsInfo()</code>
+      or
+      <code translate="no" dir="ltr">ExtensionsManager#getCameraExtensionsControl()</code>
+      methods. (
+      <a href="https://android-review.googlesource.com/#/q/I28e1ad1ffa814e5c7c21408f6bf3ea121c2e2d2a">I28e1a</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ProcessCameraProvider.awaitInstance</code>
+      which is a suspending version of
+      <code translate="no" dir="ltr">ProcessCameraProvider.getInstance</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ib22b908216f928c9b1be6bc5a61f7cf2592cdabd">Ib22b9</a>
+      )
+    </li>
+    <li>
+      Add a
+      <code translate="no" dir="ltr">PreviewView#getSensorToViewTransform()</code>
+      API. The Matrix represents the transformation from camera sensor coordinates to the
+      <code translate="no" dir="ltr">PreviewView</code>
+      's coordinates. This can be used to transform coordinates from one
+      <code translate="no" dir="ltr">UseCase</code>
+      to another. For example, transforming the coordinates of detected objects in
+      <code translate="no" dir="ltr">ImageAnalysis</code>
+      to
+      <code translate="no" dir="ltr">PreviewView</code>
+      overlay. (
+      <a href="https://android-review.googlesource.com/#/q/I947ab623ddb63915a3f4dd77222b3aeba8c5b82e">I947ab</a>
+      )
+    </li>
+    <li>
+      Make
+      <code translate="no" dir="ltr">camera-viewfinder-core</code>
+      API more generic so it can be used by
+      <code translate="no" dir="ltr">camera-viewfinder</code>
+      and
+      <code translate="no" dir="ltr">camera-viewfinder-compose</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1e295d7e809802ad710a4c466b2a4720a067760f">I1e295</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">getSurface</code>
+      function to
+      <code translate="no" dir="ltr">ViewfinderSurfaceRequest</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I781a031ae184bf9a4e1a4d818533358db4ea8687">I781a0</a>
+      )
+    </li>
+    <li>
+      Use
+      <code translate="no" dir="ltr">camera-viewfinder-core</code>
+      in
+      <code translate="no" dir="ltr">camera-viewfinder</code>
+      and deprecate
+      <code translate="no" dir="ltr">ViewfinderSurfaceRequest</code>
+      and
+      <code translate="no" dir="ltr">CameraViewfinder</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6198c02781be9016805daca034386467092ff308">I6198c</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ZoomGestureDetector</code>
+      that interprets scaling gestures specifically configured for pinch-to-zoom activity. (
+      <a href="https://android-review.googlesource.com/#/q/Ifafbfc2e24759013c3ed856fddba1ed372280c5a">Ifafbf</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">ImageAnalysis</code>
+      ' resolution selection issue related to the analyzer default target resolution setting: target resolution was incorrectly kept as 640x480 even if applications has set a different analyzer default resolution setting. If applications encounter this issue (1.3.0 ~ 1.3.2) and can't upgrade to use the newer version releases which contain the solution, directly setting a
+      <code translate="no" dir="ltr">ResolutionSelector</code>
+      with the preferred resolution and a matching
+      <code translate="no" dir="ltr">AspectRatioStrategy</code>
+      to the
+      <code translate="no" dir="ltr">ImageAnalysis</code>
+      <code translate="no" dir="ltr">UseCase</code>
+      can workaround this issue. (
+      <a href="https://android-review.googlesource.com/#/q/I81f72a850dcedb664e5b661247991ee4851bdfc6">I81f72</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/330091012">b/330091012</a>
+      )
+    </li>
+    <li>
+      Fixed an issue that queued
+      <code translate="no" dir="ltr">takePicture</code>
+      request might fail to run if the current request is failed. (
+      <a href="https://android-review.googlesource.com/#/q/Ie080131d791aeaf6b7459cda3003480a0dc5692a">Ie0801</a>
+      )
+    </li>
+    <li>
+      Make the invalid JPEG data check applied to Vivo X60 and X60 Pro devices. This can fix abnormally large image issue on these devices. (
+      <a href="https://android-review.googlesource.com/#/q/I8224707d5976d8e9a2cb96c54399544fb14699de">I82247</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/288828159">b/288828159</a>
+      )
+    </li>
+    <li>
+      Fixed the incorrect JPEG image metadata issue on Samsung A24 devices. With the fix, CameraX can successfully save the JPEG image, or correct Bitmap objects can be returned when calling the
+      <code translate="no" dir="ltr">ImageProxy.toBitmap()</code>
+      function on Samsung A24 devices. (
+      <a href="https://android-review.googlesource.com/#/q/I8d6eb3b4cc6f68237248cda566f0b9742f98862d">I8d6eb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/309005680">b/309005680</a>
+      )
+    </li>
+    <li>
+      Make the invalid JPEG data check applied to all Samsung devices if the captured image is larger than 10 MB. This can fix abnormally large iamge issue on Samsung devices. (
+      <a href="https://android-review.googlesource.com/#/q/Ic2a65ccdc3eeb75bdf4c70e5c2b96004328422d1">Ic2a65</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/288828159">b/288828159</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">ImageAnalysis</code>
+      support on CameraX Extensions as many OEMs' Extensions implementations don't work with
+      <code translate="no" dir="ltr">ImageAnalysis</code>
+      well and might cause inconsistent issues. (
+      <a href="https://android-review.googlesource.com/#/q/I2d9262b3cc2078e351328f315b811a26720f077c">I2d926</a>
+      )
+    </li>
+  </ul>

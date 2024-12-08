@@ -1,0 +1,51 @@
+libraryId: biometric
+groupId: androidx.biometric
+version: 1.2.0-alpha04
+releaseDate: 2021-11-17
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha04" data-text="Version 1.2.0-alpha04" tabindex="-1">Version 1.2.0-alpha04</h3>
+  <p>November 17, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.biometric:biometric:1.2.0-alpha04</code>
+    and
+    <code translate="no" dir="ltr">androidx.biometric:biometric-ktx:1.2.0-alpha04</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5c90131a69042a6a3e13952e1da9e7ffc571c31d..cc1240d00b28657ee0c1a937f60430eaf1b03b09/biometric">Version 1.2.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Improved BiometricPrompt support for fragments that are hosted by non-activity contexts (
+      <a href="https://android-review.googlesource.com/#/q/I9312befb2355f746e8fc4d1d68db4b80ae71d80f">I9312b</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added support for the Android 12
+      <a href="https://developer.android.com/reference/android/hardware/biometrics/BiometricManager.Strings">BiometricManager.Strings</a>
+      API (
+      <a href="https://android-review.googlesource.com/#/q/I12f2d943fcb69e7430f701338d5a392b63fe9923">I12f2d</a>
+      )
+    </li>
+    <li>
+      Changed target and source compatibility from Java 7 to Java 8 (
+      <a href="https://android-review.googlesource.com/#/q/I16129eb28425183bc2f1f016c89ac6a96668574f">I16129</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue on API 29 where some devices (including emulators) would receive a cancellation error when falling back to PIN/pattern/password. Note that, for some devices on API 29, this may cause the user to be prompted for their screen lock even if a biometric is available and enrolled. (
+      <a href="https://issuetracker.google.com/issues/142740104">b/142740104</a>
+      )
+    </li>
+    <li>
+      Fixed an issue on API 29 where devices with no biometric hardware would not correctly fall back to PIN/pattern/password (
+      <a href="https://issuetracker.google.com/issues/170517889">b/170517889</a>
+      )
+    </li>
+  </ul>

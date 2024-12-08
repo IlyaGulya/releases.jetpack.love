@@ -1,0 +1,110 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.0.0-alpha10
+releaseDate: 2022-04-20
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha10" data-text="Version 1.0.0-alpha10" tabindex="-1">Version 1.0.0-alpha10</h3>
+  <p>April 20, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3:1.0.0-alpha10</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-window-size-class:1.0.0-alpha10</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/41a4e31408842caa2b58db5e4ee6ec708464425f/compose/material3">Version 1.0.0-alpha10 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">material3-window-size-class</code>
+      is a new library that provides support for window size classes: a set of opinionated viewport breakpoints for you to design, develop, and test resizable application layouts against. You can use
+      <code translate="no" dir="ltr">calculateWindowSizeClass</code>
+      to retrieve a window size class instance, which you can use to determine how your UI should appear, such as showing a navigation rail instead of bottom navigation for larger window sizes. For more information and sample usage see the API reference documentation for
+      <code translate="no" dir="ltr">WindowSizeClass</code>
+      . For more information on window size class definitions, see the public guidance on supporting different screen sizes.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Adds default FAB elevation for
+      <code translate="no" dir="ltr">BottomAppBar</code>
+      , removes trailing lambda from
+      <code translate="no" dir="ltr">BottomAppBar</code>
+      with FAB. (
+      <a href="https://android-review.googlesource.com/#/q/I92c479d1978bc1d2a2e2d5f66d63afee870363fa">I92c47</a>
+      )
+    </li>
+    <li>
+      Adds Material3
+      <code translate="no" dir="ltr">FilledIconButton</code>
+      ,
+      <code translate="no" dir="ltr">FilledTonalIconButton</code>
+      , and
+      <code translate="no" dir="ltr">OutlinedIconButton</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib2bda93643f833d04a989233cc3b1bc09bcdfa2d">Ib2bda</a>
+      )
+    </li>
+    <li>
+      Updates Material 3 Snackbar API to accept color values for the optional action and dismiss-action. (
+      <a href="https://android-review.googlesource.com/#/q/Ibe4b49cdf157005f98eda5c1bb5a2e2c40668d63">Ibe4b4</a>
+      )
+    </li>
+    <li>
+      Partial consumption (down OR position) has been deprecated in
+      <code translate="no" dir="ltr">PointerInputChange</code>
+      . You can use
+      <code translate="no" dir="ltr">consume()</code>
+      to consume the change completely. You can use
+      <code translate="no" dir="ltr">isConsumed</code>
+      to determine whether or not someone else has previously consumed the change.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PointerInputChange::copy()</code>
+      now always makes a shallow copy. It means that copies of
+      <code translate="no" dir="ltr">PointerInputChange</code>
+      will be consumed once one of the copies is consumed. If you want to create an unbound
+      <code translate="no" dir="ltr">PointerInputChange</code>
+      , use constructor instead. (
+      <a href="https://android-review.googlesource.com/#/q/Ie6be471e6ed2a843e38712922c2231fdfd26213a">Ie6be4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/225669674">b/225669674</a>
+      )
+    </li>
+    <li>
+      Changes to the Cards API to receive the container and content colors via a
+      <code translate="no" dir="ltr">CardColors</code>
+      interface, and to support a disabled state for clickable cards. (
+      <a href="https://android-review.googlesource.com/#/q/I927dfb2b7723e3d2f5c36de86c6ea9a78582c153">I927df</a>
+      )
+    </li>
+    <li>
+      The parameter
+      <code translate="no" dir="ltr">backgroundColor</code>
+      has been renamed
+      <code translate="no" dir="ltr">containerColor</code>
+      in Material 3 text fields for improved consistency with other components. (
+      <a href="https://android-review.googlesource.com/#/q/I6fbd9b4114b8bbd699ed57a8ff1df73b8fd16c33">I6fbd9</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Updates to the standard
+      <code translate="no" dir="ltr">IconButton</code>
+      to align it with the Material3 spec. (
+      <a href="https://android-review.googlesource.com/#/q/I09eab8e771f182abcafaabf8679ce1374126181b">I09eab</a>
+      )
+    </li>
+    <li>
+      Move the top bar height of material3 Scaffold into the padding passed to content, allowing the content to render underneath the top app bar. If the
+      <code translate="no" dir="ltr">PaddingValues</code>
+      are ignored, then the content might be obscured by the top bar. (
+      <a href="https://android-review.googlesource.com/#/q/I83cbc17a8068a04ea8b18609f12bd9e103630229">I83cbc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/217776202">b/217776202</a>
+      )
+    </li>
+  </ul>

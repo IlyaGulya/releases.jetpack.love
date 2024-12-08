@@ -1,0 +1,84 @@
+libraryId: room
+groupId: androidx.room
+version: 2.1.0-alpha04
+releaseDate: 2019-01-25
+#language=html
+changelogHtml: |
+  <h3 id="2.1.0-alpha04" data-text="Version 2.1.0-alpha04" tabindex="-1">Version 2.1.0-alpha04</h3>
+  <p>January 25, 2019</p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      DAO methods annotated with
+      <code translate="no" dir="ltr">@Query</code>
+      containing
+      <code translate="no" dir="ltr">INSERT</code>
+      ,
+      <code translate="no" dir="ltr">UPDATE</code>
+      or
+      <code translate="no" dir="ltr">DELETE</code>
+      statements can now return async types
+      <code translate="no" dir="ltr">Single</code>
+      ,
+      <code translate="no" dir="ltr">Mayble</code>
+      ,
+      <code translate="no" dir="ltr">Completable</code>
+      and
+      <code translate="no" dir="ltr">ListenableFuture</code>
+      . Additionally they can also be suspend functions.
+      <a href="https://issuetracker.google.com/120227284">b/120227284</a>
+    </li>
+  </ul>
+  <p><strong>API / Behavior Changes</strong></p>
+  <ul>
+    <li>
+      Room will now throw an error if a non-abstract DAO method annotated with
+      <code translate="no" dir="ltr">@Transaction</code>
+      returns an async type such as
+      <code translate="no" dir="ltr">Single</code>
+      ,
+      <code translate="no" dir="ltr">Mayble</code>
+      ,
+      <code translate="no" dir="ltr">Completable</code>
+      ,
+      <code translate="no" dir="ltr">LiveData</code>
+      or
+      <code translate="no" dir="ltr">ListenableFuture</code>
+      . Since transactions are thread confined it is currently impossible for Room to begin and end a transaction around a function that may peform queries in different threads.
+      <a href="https://issuetracker.google.com/120109336">b/120109336</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">OnConflictStrategy.FAIL</code>
+      and
+      <code translate="no" dir="ltr">OnConflictStrategy.ROLLBACK</code>
+      have been
+      <code translate="no" dir="ltr">@Deprecated</code>
+      since they do not behave as intended with Android's current SQLite bindings.
+      <a href="https://issuetracker.google.com/117266738">b/117266738</a>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a bug where Room wouldn't correctly use the TypeConverter of a return type if the DAO method was a suspend function.
+      <a href="https://issuetracker.google.com/122988159">b/122988159</a>
+    </li>
+    <li>
+      Fixed a bug where Room would incorrectly identify inherited suspend functions as non-suspending.
+      <a href="https://issuetracker.google.com/122902595">b/122902595</a>
+    </li>
+    <li>
+      Fixed a bug where Room would generate incorrect code when an
+      <code translate="no" dir="ltr">@Embedded</code>
+      field was in a parent class and used in multiple child classes.
+      <a href="https://issuetracker.google.com/121099048">b/121099048</a>
+    </li>
+    <li>
+      Fixed an issue where the database would deadlock when invoking DAO suspend functions between a
+      <code translate="no" dir="ltr">beginTransaction()</code>
+      and
+      <code translate="no" dir="ltr">endTransaction()</code>
+      .
+      <a href="https://issuetracker.google.com/120854786">b/120854786</a>
+    </li>
+  </ul>

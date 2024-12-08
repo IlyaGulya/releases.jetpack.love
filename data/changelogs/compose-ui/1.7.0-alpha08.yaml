@@ -1,0 +1,140 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.7.0-alpha08
+releaseDate: 2024-05-01
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha08" data-text="Version 1.7.0-alpha08" tabindex="-1">Version 1.7.0-alpha08</h3>
+  <p>May 1, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.7.0-alpha08</code>
+    is released. Version 1.7.0-alpha08 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/67004410fdbff19f90caa4cc43965ab21dca1943..06bfcd36801b67b9fe9b9bcae0d16a55e7d40fd7/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Adds support for mutable shape implementations.
+      <code translate="no" dir="ltr">Shape#createOutline</code>
+      is now observed inside graphics layers, so reading state values inside will cause invalidations when the state changes, allowing for more performant shape animations. (
+      <a href="https://android-review.googlesource.com/#/q/Id1629c24f02d882ba0de5e3e82fbc1284accc3ea">Id1629</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326070216">b/326070216</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">isPositionedByParentWithDirectManipulation</code>
+      to
+      <code translate="no" dir="ltr">introducesFrameOfReference</code>
+      . Note that it now has the reverse effect, meaning that by default, most
+      <code translate="no" dir="ltr">LayoutCoordinates</code>
+      introduce a frame of reference, and, only when placed under direct manipulation the property will be false. To query position with only those that introduce a frame of reference, use
+      <code translate="no" dir="ltr">positionInLocalFrameOfReference(...)</code>
+      . Or
+      <code translate="no" dir="ltr">positionInLocalLookaheadFrameOfReference</code>
+      from a
+      <code translate="no" dir="ltr">LookaheadScope</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ifc5f78c683543035e13ff727edf14a79075b1a84">Ifc5f7</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LookaheadScope</code>
+      APIs have been made stable (
+      <a href="https://android-review.googlesource.com/#/q/I21507b73d88acc221e5963b76b9f1a83539342db">I21507</a>
+      )
+    </li>
+    <li>
+      Change action lambda for
+      <code translate="no" dir="ltr">getScrollViewportLength</code>
+      as per API council feedback. (
+      <a href="https://android-review.googlesource.com/#/q/Ibc74abf76a2d5d88f97b9c5853a3d3b2d58585b9">Ibc74a</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">GraphicsLayer</code>
+      outline APIs to consume float parameters instead of int. Removed
+      <code translate="no" dir="ltr">UnsetOffset/UnsetSize IntSize</code>
+      sentinel values in favor of already existing Unspecified constants on float based Offset and Size inline classes (
+      <a href="https://android-review.googlesource.com/#/q/I2fb03296a009ad4957a59905b97b6f21355cb8ba">I2fb03</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/333863462">b/333863462</a>
+      )
+    </li>
+    <li>
+      When injecting mouse input during tests,
+      <code translate="no" dir="ltr">MouseInjectionScope.click()</code>
+      ,
+      <code translate="no" dir="ltr">MouseInjectionScope.doubleClick()</code>
+      ,
+      <code translate="no" dir="ltr">MouseInjectionScope.tripleClick()</code>
+      ,
+      <code translate="no" dir="ltr">MouseInjectionScope.longClick()</code>
+      now accept a
+      <code translate="no" dir="ltr">button: MouseButton</code>
+      parameter to make them more universally applicable. The default value is
+      <code translate="no" dir="ltr">MouseButton.Primary</code>
+      for all methods. (
+      <a href="https://android-review.googlesource.com/#/q/I31a23e6819a82b5513db3731dce3bf8cd7587d69">I31a23</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/190493367">b/190493367</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261439695">b/261439695</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">onClicked</code>
+      to
+      <code translate="no" dir="ltr">onClick</code>
+      inside
+      <code translate="no" dir="ltr">LinkInteractionListener</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iaa35cd1c54bdea113071a2eaf1e7d700e0eb5f19">Iaa35c</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">TextInclusionStrategy.isInside</code>
+      to
+      <code translate="no" dir="ltr">isIncluded</code>
+      . Make
+      <code translate="no" dir="ltr">Paragraph/MultiParagraph#getRangeForRect()</code>
+      return type non nullable. (
+      <a href="https://android-review.googlesource.com/#/q/I51f269566495a3781946c8a72e6b615af2da57b9">I51f26</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed long screenshot capture for scrolling containers with
+      <code translate="no" dir="ltr">reverseScrolling=true</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7c59cd9f43ca6968f3eefadbcfc7582c1aec51c7">I7c59c</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Added support for prefetching items in nested
+      <code translate="no" dir="ltr">LazyLists</code>
+      (e.g. a
+      <code translate="no" dir="ltr">LazyColumn</code>
+      that renders nested
+      <code translate="no" dir="ltr">LazyRows</code>
+      ). This change is expected to reduce frame drops during scrolling for these
+      <code translate="no" dir="ltr">LazyLists</code>
+      . The implementation default is to prefetch the first 2 nested items, however this behavior can be controlled by the new
+      <code translate="no" dir="ltr">LazyLayoutPrefetchStrategy(nestedPrefetchItemCount)</code>
+      and
+      <code translate="no" dir="ltr">LazyListPrefetchStrategy#onNestedPrefetch</code>
+      APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I519526a694d8e9a89a1a040cd179d0416fa2d6d9">I51952</a>
+      )
+    </li>
+  </ul>

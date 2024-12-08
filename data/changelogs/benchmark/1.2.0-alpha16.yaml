@@ -1,0 +1,58 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.2.0-alpha16
+releaseDate: 2023-06-21
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha16" data-text="Version 1.2.0-alpha16" tabindex="-1">Version 1.2.0-alpha16</h3>
+  <p>June 21, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.2.0-alpha16</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/8423c3f497cfbf2bf7b87006ca05f38626060135..3b5b931546a48163444a9eddc533489fcddd7494/benchmark">Version 1.2.0-alpha16 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">BaselineProfileRule.collectBaselineProfile()</code>
+      API has been renamed to
+      <code translate="no" dir="ltr">BaselineProfileRule.collect()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4b66589863999d3b3b018f22997a7736d5edc1bf">I4b665</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Macrobenchmark support for
+      <code translate="no" dir="ltr">androidx.benchmark.profiling.mode = MethodTracing</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7ad37bee17646cfef1564c9f0c84d20923d63ed9">I7ad37</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/285912360">b/285912360</a>
+      )
+    </li>
+    <li>
+      Microbenchmark profiling moved to a separate phase, so it occurs in sequence
+      <em>after</em>
+      measurement, instead of replacing it.
+      <code translate="no" dir="ltr">MethodTracing</code>
+      trace sections are also now included in the captured Perfetto trace, if present. (
+      <a href="https://android-review.googlesource.com/#/q/I9f6573ccd97ed3079be46a95962728a6c428fe85">I9f657</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/285014599">b/285014599</a>
+      )
+    </li>
+    <li>
+      Add count measurement to
+      <code translate="no" dir="ltr">TraceSectionMetric</code>
+      with
+      <code translate="no" dir="ltr">Mode.Sum</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic121ac1432a973413b5318ccf5df6a2e1556419a">Ic121a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/264398606">b/264398606</a>
+      )
+    </li>
+  </ul>

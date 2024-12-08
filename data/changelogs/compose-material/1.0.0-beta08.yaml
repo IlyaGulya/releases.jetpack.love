@@ -1,0 +1,121 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 1.0.0-beta08
+releaseDate: 2021-06-02
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta08" data-text="Version 1.0.0-beta08" tabindex="-1">Version 1.0.0-beta08</h3>
+  <p>June 2, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material-*:1.0.0-beta08</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b648147c5fdfc5ecbad57e40e2dc0c69aa23bf12..86ff5b4bb956431ec884586ce0aea0127e189ec4/compose/material">Version 1.0.0-beta08 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <p><strong>Behavior Breaking API Change</strong></p>
+  <ul>
+    <li>
+      BEHAVIOUR-BREAKING: Card now consumes clicks, making clicks added via
+      <code translate="no" dir="ltr">Card(Modifier.clickable)</code>
+      to be a no-op. Please, use new experimental overload of a Card that accepts onClick. (
+      <a href="https://android-review.googlesource.com/#/q/Ia8744f372b7ecafd4e92d0fc58245ebc0972b18d">Ia8744</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/183775620">b/183775620</a>
+      )
+      <ul>
+        <li>
+          Added a new Card overload that handles clicks as well as other clickable functionality: indication, interactionSource, enabled/disabled. It wasn't possible to use a regular non-clickable Card with the
+          <code translate="no" dir="ltr">Modifier.clickable</code>
+          because the Card will not clip the ripple indication in those cases.
+        </li>
+      </ul>
+    </li>
+    <li>
+      BEHAVIOUR-BREAKING: Surface now consumes clicks, making clicks added via
+      <code translate="no" dir="ltr">Surface(Modifier.clickable)</code>
+      to be a no-op. Please, use new experimental overload of Surface that accepts onClick. (
+      <a href="https://android-review.googlesource.com/#/q/I73e6c76ed6389040d824a5dcc82dc84dc4fea0c7">I73e6c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/183775620">b/183775620</a>
+      )
+      <ul>
+        <li>
+          Added a new Surface overload that handles clicks as well as other clickable functionality: indication, interactionSource, enabled/disabled. It wasn't possible to use a regular non-clickable Surface with the
+          <code translate="no" dir="ltr">Modifier.clickable</code>
+          because the Surface will not clip the ripple indication in those cases.
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">FabPosition</code>
+      was converted to inline class from enum to support potential expansion in the future (
+      <a href="https://android-review.googlesource.com/#/q/I030fbbd31d4406985cca383e355f6973eee2861b">I030fb</a>
+      )
+    </li>
+    <li>
+      Refactored enum usages to inline classes to avoid issues with exhaustive when statements when new enum values are added. (
+      <a href="https://android-review.googlesource.com/#/q/I2b5eb2f04d64d1eccf38557d80e3eef06869c310">I2b5eb</a>
+      )
+    </li>
+    <li>
+      Adds a tap timeout to clickable / toggleable to prevent showing a ripple during a scroll / drag (
+      <a href="https://android-review.googlesource.com/#/q/Ia27044999597dd9411344119a7b77180943d9a25">Ia2704</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/168524931">b/168524931</a>
+      )
+    </li>
+    <li>
+      ContentDescription and Text semantics properties are no longer single values but lists. This enables to merge them as they are instead of concatenations. Also provided better testing APIs to utilize these changes (
+      <a href="https://android-review.googlesource.com/#/q/Ica6bf4236d05b97357c18fb306a6305877a349f7">Ica6bf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/184825850">b/184825850</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Modifier.focusModifier()</code>
+      is deprecated and replaced by
+      <code translate="no" dir="ltr">Modifier.focusTarget()</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I6c860991217cc0c4e7cb35be73207f94669ce607">I6c860</a>
+      )
+    </li>
+    <li>
+      Replaced
+      <code translate="no" dir="ltr">FocusState</code>
+      enum with a
+      <code translate="no" dir="ltr">FocusState</code>
+      interface (
+      <a href="https://android-review.googlesource.com/#/q/Iccc1a7306fe886969b3a5c74359f53250b3901d9">Iccc1a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/187055290">b/187055290</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">LocalRippleNativeRendering</code>
+      now that the View-backed ripple implementation is stable (
+      <a href="https://android-review.googlesource.com/#/q/I7fab3b12f34b82741c562ae8af3b2d08fbbb47c7">I7fab3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/188569367">b/188569367</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">Modifier.onGloballyPositioned()</code>
+      was changed to report the coordinates of this modifier in the modifier chain, not the layout coordinates after applying all the modifiers. This means that now the ordering of modifiers is affecting what coordinates would be reported. (
+      <a href="https://android-review.googlesource.com/#/q/Ieb67da0c327c9dc323a4b0a8bf33dbb66f0611e3">Ieb67d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177926591">b/177926591</a>
+      )
+    </li>
+    <li>
+      Added a README for the existing Compose Material catalog. (
+      <a href="https://android-review.googlesource.com/#/q/If9191a89b99bea722566a18e0d2878aa71b79ac6">If9191</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,56 @@
+libraryId: emoji2
+groupId: androidx.emoji2
+version: 1.0.0-alpha03
+releaseDate: 2021-06-30
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha03" data-text="Version 1.0.0-alpha03" tabindex="-1">Version 1.0.0-alpha03</h3>
+  <p>June 30, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.emoji2:emoji2-*:1.0.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/86ff5b4bb956431ec884586ce0aea0127e189ec4..19ae3a88ff0824d615355b492cb56049e16991f2/emoji2">Version 1.0.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>This release is a bugfix and stabilization release.</p>
+  <ol>
+    <li>
+      EmojiEditTextHelper now allows
+      <code translate="no" dir="ltr">null</code>
+      to be passed as a KeyListener. This allows the platform behavior of allowing nulls to be applied to emoji supporting EditText implementations.
+    </li>
+    <li>When using EmojiCompatInitializer initial startup delay is improved to trigger after the first Activity resumes. This allows app startup to happen uncontended, and avoids loading the font for app starts that never show a UI. After a short delay, EmojiCompat will create a thread to load the emoji font.</li>
+  </ol>
+  <ul>
+    <li>
+      A new dependency on
+      <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-process</code>
+      from
+      <code translate="no" dir="ltr">androidx.emoji2:emoji2</code>
+      is added to implement the delay. This will have negligible APK size impact for apps that already include lifecycle (such as apps with appcompat).
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Allow null KeyListener in AppCompatEditText. This reverses the non-null annotation that was added to AppCompatEditText in 1.4.0-alpha01 and restores the previous behavior when passed null. (
+      <a href="https://android-review.googlesource.com/#/q/I214824131c0206349b73471a8c22be38bf5dd0d8">I21482</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/189559345">b/189559345</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Change EmojiCompatInitializer to delay font loading until 500ms after the first
+      <code translate="no" dir="ltr">Activity.onResume</code>
+      . This allows an activity to perform
+      <code translate="no" dir="ltr">Application.onCreate</code>
+      and
+      <code translate="no" dir="ltr">Activity.onCreate</code>
+      uncontended, while still ensuring that the emoji font is loaded shortly after app startup. (
+      <a href="https://android-review.googlesource.com/#/q/I4bff7a1b8ae23529be059f5154a8de91ba939861">I4bff7</a>
+      )
+    </li>
+  </ul>

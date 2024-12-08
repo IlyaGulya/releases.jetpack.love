@@ -1,0 +1,100 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 1.0.0-alpha09
+releaseDate: 2018-12-18
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha09" data-text="Version 1.0.0-alpha09" tabindex="-1">Version 1.0.0-alpha09</h3>
+  <p>December 18, 2018</p>
+  <p>
+    This release contains breaking API changes; please see the
+    <em>Breaking Changes</em>
+    section below.
+  </p>
+  <p>
+    We have chosen not to continue development of the
+    <code translate="no" dir="ltr">android.arch.navigation:navigation-testing</code>
+    artifact. While it has proven helpful for internal testing of
+    <code translate="no" dir="ltr">NavController</code>
+    , we strongly recommend alternate testing strategies, such as mocking the
+    <code translate="no" dir="ltr">NavController</code>
+    instance in order to verify that the correct
+    <code translate="no" dir="ltr">navigate()</code>
+    calls are being done. This approach is discussed in detail in the
+    <a href="https://www.youtube.com/watch?v=2k8x8V77CrU">Single Activity talk at AndroidDevSummit 2018</a>
+    and we'll be working on additional documentation specifically around testing with Navigation.
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">MenuItem</code>
+      s with
+      <code translate="no" dir="ltr">menuCategory="secondary"</code>
+      will no longer pop the back stack when used with
+      <code translate="no" dir="ltr">NavigationUI</code>
+      methods.
+      <a href="https://issuetracker.google.com/120104424">b/120104424</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AppBarConfiguration</code>
+      now allows you to set a fallback
+      <a href="/reference/androidx/navigation/AppBarConfiguration.OnNavigateUpListener"><code translate="no" dir="ltr">OnNavigateUpListener</code></a>
+      instance which will be called when
+      <code translate="no" dir="ltr">navController.navigateUp()</code>
+      returns
+      <code translate="no" dir="ltr">false</code>
+      .
+      <a href="https://issuetracker.google.com/79993862">b/79993862</a>
+      <a href="https://issuetracker.google.com/120690961">b/120690961</a>
+    </li>
+  </ul>
+  <p><strong>Breaking Changes</strong></p>
+  <ul>
+    <li>
+      When using an
+      <code translate="no" dir="ltr">&lt;argument&gt;</code>
+      with an
+      <code translate="no" dir="ltr">argType="reference"</code>
+      , Navigation no longer parses the reference, instead providing the raw resource ID itself.
+      <a href="https://issuetracker.google.com/111736515">b/111736515</a>
+    </li>
+    <li>
+      <a href="/reference/androidx/navigation/ui/NavigationUI#onNavDestinationSelected(android.view.MenuItem,%20androidx.navigation.NavController)"><code translate="no" dir="ltr">onNavDestinationSelected()</code></a>
+      now pops back to the start destination of your navigation graph by default, making them consistent with the
+      <code translate="no" dir="ltr">setup</code>
+      methods. Add
+      <code translate="no" dir="ltr">menuCategory="secondary"</code>
+      to your
+      <code translate="no" dir="ltr">MenuItem</code>
+      to avoid popping the back stack.
+      <a href="https://android-review.googlesource.com/852869">aosp/852869</a>
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">fromBundle()</code>
+      methods of generated
+      <code translate="no" dir="ltr">Args</code>
+      classes now take a non-null
+      <code translate="no" dir="ltr">Bundle</code>
+      instead of a nullable
+      <code translate="no" dir="ltr">Bundle</code>
+      <a href="https://android-review.googlesource.com/845616">aosp/845616</a>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Arguments are now properly parsed from deep links as the correct
+      <code translate="no" dir="ltr">argType</code>
+      instead of always as strings
+      <a href="https://issuetracker.google.com/110273284">b/110273284</a>
+    </li>
+    <li>
+      Navigation now correctly exports its public resources
+      <a href="https://issuetracker.google.com/121059552">b/121059552</a>
+    </li>
+    <li>
+      Safe Args is now compatible with Android Gradle Plugin 3.4 Canary 4 and higher
+      <a href="https://issuetracker.google.com/119662045">b/119662045</a>
+    </li>
+  </ul>

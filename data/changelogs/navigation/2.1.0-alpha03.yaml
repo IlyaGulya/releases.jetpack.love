@@ -1,0 +1,109 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.1.0-alpha03
+releaseDate: 2019-05-07
+#language=html
+changelogHtml: |
+  <h3 id="2.1.0-alpha03" data-text="Version 2.1.0-alpha03" tabindex="-1">Version 2.1.0-alpha03</h3>
+  <p>May 7, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:*:2.1.0-alpha03</code>
+    is released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3cc9b77742508c095f3268b60956967bce46f0ed..d339df058031dadca4676524c5c184e559553a2e/navigation">here</a>
+    .
+  </p>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      NavHostFragment continues to intercept the system Back button despite using
+      <code translate="no" dir="ltr">app:defaultNavHost="false"</code>
+      <a href="https://issuetracker.google.com/issues/132077777">b/132077777</a>
+    </li>
+  </ul>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      You can now create
+      <code translate="no" dir="ltr">&lt;dialog&gt;</code>
+      destinations that will show a
+      <code translate="no" dir="ltr">DialogFragment</code>
+      when you
+      <code translate="no" dir="ltr">navigate</code>
+      to them.
+      <code translate="no" dir="ltr">NavHostFragment</code>
+      supports dialog destinations by default.
+      <a href="https://issuetracker.google.com/issues/80267254">b/80267254</a>
+    </li>
+    <li>
+      In addition to calling
+      <code translate="no" dir="ltr">navigate</code>
+      with a resource id or a
+      <code translate="no" dir="ltr">NavDirections</code>
+      instance, you can now navigate via a
+      <code translate="no" dir="ltr">Uri</code>
+      , which uses the
+      <code translate="no" dir="ltr">&lt;deepLink&gt;</code>
+      you’ve added to a destination to navigate to the correct destination.
+      <a href="https://issuetracker.google.com/issues/110412864">b/110412864</a>
+    </li>
+  </ul>
+  <p><strong>Behavior changes</strong></p>
+  <ul>
+    <li>
+      The default animations provided by NavigationUI have been sped up from 400ms to 220ms to match the default animation speed of activities and fragments.
+      <a href="https://issuetracker.google.com/issues/130055522">b/130055522</a>
+    </li>
+  </ul>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">createFragmentNavigator()</code>
+      method of
+      <code translate="no" dir="ltr">NavHostFragment</code>
+      has been deprecated and its functionality moved to the new
+      <code translate="no" dir="ltr">onCreateNavController()</code>
+      method to make it more clear that this is the correct entry point of adding custom Navigators when subclassing
+      <code translate="no" dir="ltr">NavHostFragment</code>
+      .
+      <a href="https://issuetracker.google.com/issues/122802849">b/122802849</a>
+    </li>
+    <li>
+      A
+      <code translate="no" dir="ltr">hasDeepLink()</code>
+      method has been added to
+      <code translate="no" dir="ltr">NavDestination</code>
+      to allow you to check if a given
+      <code translate="no" dir="ltr">Uri</code>
+      can be handled by that destination or, in the case of a
+      <code translate="no" dir="ltr">NavGraph</code>
+      , any destination in the navigation graph.
+      <a href="https://issuetracker.google.com/issues/117437718">b/117437718</a>
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Default arguments are now correctly passed to
+      <code translate="no" dir="ltr">OnDestinationChangedListener</code>
+      instances.
+      <a href="https://issuetracker.google.com/issues/130630686">b/130630686</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavHostFragment</code>
+      now intercepts system Back events using the
+      <code translate="no" dir="ltr">OnBackPressedDispatcher</code>
+      , fixing an issue when doing conditional navigation in Fragment lifecycle methods upon returning to a Fragment.
+      <a href="https://issuetracker.google.com/issues/111598096">b/111598096</a>
+    </li>
+    <li>
+      For Safe Args, an
+      <code translate="no" dir="ltr">android:defaultValue=”@null”</code>
+      with an unspecified
+      <code translate="no" dir="ltr">app:argType</code>
+      is now properly inferred as a
+      <code translate="no" dir="ltr">string</code>
+      argument.
+      <a href="https://issuetracker.google.com/issues/129629192">b/129629192</a>
+    </li>
+  </ul>

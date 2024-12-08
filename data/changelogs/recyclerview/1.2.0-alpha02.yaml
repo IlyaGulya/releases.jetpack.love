@@ -1,0 +1,91 @@
+libraryId: recyclerview
+groupId: androidx.recyclerview
+version: 1.2.0-alpha02
+releaseDate: 2020-04-01
+#language=html
+changelogHtml: |
+  <h3 id="recyclerview-1.2.0-alpha02" data-text="Version 1.2.0-alpha02" tabindex="-1">Version 1.2.0-alpha02</h3>
+  <p>April 1, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.recyclerview:recyclerview:1.2.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/740cde70237dd276f8ad66dfe9528b1cdb5d54bb..6c98d66b901be2eecdf89477ccd70d2490ca6fc2/recyclerview/recyclerview">Version 1.2.0-alpha02 contains these commits.</a>
+  </p>
+  <p>
+    This and higher versions of RecyclerView are not compatible with lower versions of ViewPager2. If you are currently using
+    <code translate="no" dir="ltr">androidx.viewpager2:viewpager2:1.0.0</code>
+    or lower, make sure to update to
+    <a href="/jetpack/androidx/releases/viewpager2#1.1.0-alpha01"><code translate="no" dir="ltr">androidx.viewpager2:viewpager2:1.1.0-alpha01</code></a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p><strong>MergeAdapter</strong></p>
+
+      <ul>
+        <li>
+          <a href="/reference/androidx/recyclerview/widget/MergeAdapter">MergeAdapter</a>
+          : A new RecyclerView Adapter that can combine multiple adapters linearly.
+        </li>
+      </ul>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Java"><code translate="no" dir="ltr"><span class="devsite-syntax-n">MyAdapter</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">adapter1</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">...;</span>
+  <span class="devsite-syntax-n">AnotherAdapter</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">adapter2</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">...;</span>
+  <span class="devsite-syntax-n">MergeAdapter</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">merged</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">new</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">MergeAdapter</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">adapter1</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">adapter2</span><span class="devsite-syntax-p">);</span>
+  <span class="devsite-syntax-n">recyclerView</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">setAdapter</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">mergedAdapter</span><span class="devsite-syntax-p">);</span>
+  </code></pre>
+      </devsite-code>
+      <p>
+        For the sample above, MergeAdapter will present items from
+        <code translate="no" dir="ltr">adapter1</code>
+        followed by
+        <code translate="no" dir="ltr">adapter2</code>
+        .
+      </p>
+    </li>
+    <li>
+      <p>
+        <strong>
+          <code translate="no" dir="ltr">RecyclerView.Adapter</code>
+          lazy state restoration
+        </strong>
+        :
+      </p>
+
+      <ul>
+        <li>
+          <p>
+            Added a new API to the
+            <code translate="no" dir="ltr">RecyclerView.Adapter</code>
+            class which allows Adapter to control when the layout state should be restored.
+          </p>
+        </li>
+        <li><p>For example, you can call:</p></li>
+      </ul>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Java"><code translate="no" dir="ltr"><span class="devsite-syntax-n">myAdapter</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">setStateRestorationStrategy</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">StateRestorationStrategy</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">WHEN_NOT_EMPTY</span><span class="devsite-syntax-p">);</span>
+  </code></pre>
+      </devsite-code>
+      <p>to make RecyclerView wait until Adapter is not empty before restoring the scroll position.</p>
+    </li>
+    <li>
+      <p><strong>CollectionInfo and CollectionItemInfo will no longer be populated by default.</strong></p>
+
+      <ul>
+        <li><p>If you would like Accessibility Services (Talkback for example) to continue indicating count and item index to the user, you will need to populate CollectionInfo and CollectionItemInfo yourself.</p></li>
+        <li><p>These objects are no longer populated in the framework because the framework can’t determine the count of items as perceived by the user (such as separators, headers, or RecyclerView items that represent multiple perceived items).</p></li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>RecyclerView now avoids anchoring on Views outside the viewport when the viewport size has changed</li>
+    <li>
+      Fixed a bug in DiffUtil where it might compute the diff wrong when an original item in the first list is duplicated multiple times in the second list. (
+      <a href="https://issuetracker.google.com/issues/123376278">b/123376278</a>
+      )
+    </li>
+  </ul>

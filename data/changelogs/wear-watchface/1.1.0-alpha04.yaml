@@ -1,0 +1,98 @@
+libraryId: wear-watchface
+groupId: androidx.wear
+version: 1.1.0-alpha04
+releaseDate: 2022-03-09
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha04" data-text="Version 1.1.0-alpha04" tabindex="-1">Version 1.1.0-alpha04</h3>
+  <p>March 9, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.watchface:watchface-*:1.1.0-alpha04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/db2ecbef194afcddfaede22e1d884a8959a9277c..33cb12e8aba043a05b40470a5ef3be1b35114fd5/wear/watchface">Version 1.1.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Up to date
+      <code translate="no" dir="ltr">ComplicationData</code>
+      may not always be available (e.g. expired cached ComplicationData) so we've extended
+      <code translate="no" dir="ltr">NoDataComplication</code>
+      with an optional placeholder ComplicationData and added
+      <code translate="no" dir="ltr">ComplicationText.PLACEHOLDER</code>
+      ,
+      <code translate="no" dir="ltr">MonochromaticImage.PLACEHOLDER</code>
+      ,
+      <code translate="no" dir="ltr">SmallImage.PLACEHOLDER</code>
+      ,
+      <code translate="no" dir="ltr">PhotoImage.PLACEHOLDER</code>
+      which are only allowed to be used inside the context of a
+      <code translate="no" dir="ltr">NoDataComplicationData</code>
+      placeholder. If selected these placeholders are suggested to be rendered with gray boxes/arcs. (
+      <a href="https://android-review.googlesource.com/#/q/I6285d065676350564f74292337d982dd8e52da01">I6285d</a>
+      )
+    </li>
+    <li>
+      We've added
+      <code translate="no" dir="ltr">ComplicationData.getNextChangeInstant</code>
+      which tells you the next Instant after the reference Instant at which any field of the complication may change. This is used internally to schedule frames for complication updates. E.g. if a watch face normally updates once per minute, setting the stop watch complication will cause it to update once per second. (
+      <a href="https://android-review.googlesource.com/#/q/I7ceb222cb1f0abb5159c927ec846581365b9bfc7">I7ceb2</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">EditorSession.watchFaceId</code>
+      can now be used on all API levels. In addition its value will now always be consistent with
+      <code translate="no" dir="ltr">WatchState.watchFaceInstanceId</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I323b949e624150437015cbe3bc522fba9fb4398a">I323b9</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">getPendingIntentForTouchEvent</code>
+      API is no longer necessary since the underlying issue has been fixed in the framework, so all the related APIs have been removed. Watchfaces do not need to do anything special for
+      <code translate="no" dir="ltr">PendingIntents</code>
+      to fire, even if the home button has recently been pressed. (
+      <a href="https://android-review.googlesource.com/#/q/I1f2e88d00fb07953c46c7dd7768398165196d943">I1f2e8</a>
+      )
+    </li>
+    <li>
+      We've added
+      <code translate="no" dir="ltr">RendererParameters.isForScreenShot</code>
+      which will be true if the render is for a screen shot. Some watch faces with animations need to know this in order to make adjustments to ensure the best results. (
+      <a href="https://android-review.googlesource.com/#/q/I96d99f6d6548ac143961e8d785e16de4ecf1b7aa">I96d99</a>
+      )
+    </li>
+    <li>
+      We've added
+      <code translate="no" dir="ltr">WatchFaceExceptionReason</code>
+      to
+      <code translate="no" dir="ltr">WatchFaceException</code>
+      to give some context to what went wrong. (
+      <a href="https://android-review.googlesource.com/#/q/I01d1535242a5d5b580c6c748726341ce3ee5f640">I01d15</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ComplicationDataSourceService.onImmediateComplicationRequest</code>
+      has been removed, instead
+      <code translate="no" dir="ltr">ComplicationRequest.immediateResponseRequired</code>
+      has been added to signal that the provider needs to respond quickly (ideally responding in &lt; 100ms). Note this functionality is guarded behind the privileged
+      <code translate="no" dir="ltr">com.google.android.wearable.permission.USE_IMMEDIATE_COMPLICATION_UPDATE</code>
+      permission. (
+      <a href="https://android-review.googlesource.com/#/q/Ie6b236a3b92bc4cc671f7cf4a2d2744d5b0f9ed9">Ie6b23</a>
+      )
+    </li>
+    <li>
+      Updated nullability in core and appcompat to match Tiramisu DP2 (
+      <a href="https://android-review.googlesource.com/#/q/I0cbb7f22651e725a4bb36d20388a949a72cc5903">I0cbb7</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Now watchface app crashes with an exception if the schema validation fails (
+      <a href="https://android-review.googlesource.com/#/q/Ia400f2a57baa8001ba60c27c9b96fa329b96a301">Ia400f</a>
+      )
+    </li>
+  </ul>

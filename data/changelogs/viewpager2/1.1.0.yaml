@@ -1,0 +1,59 @@
+libraryId: viewpager2
+groupId: androidx.viewpager2
+version: 1.1.0
+releaseDate: 2024-05-14
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0" data-text="Version 1.1.0" tabindex="-1">Version 1.1.0</h3>
+  <p>May 14, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.viewpager2:viewpager2:1.1.0</code>
+    is released. Version 1.1.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e65db83eb3a66072d236d5e1af59ecdf69f02d26..8c2fe519f8f6a06207ee73a1d02f62121479a59a/viewpager2/viewpager2">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.0.0</strong></p>
+  <ul>
+    <li>
+      Fixes crashes when used with
+      <a href="/jetpack/androidx/releases/recyclerview#recyclerview-1.3.1-rc01">
+        RecyclerView
+        <code translate="no" dir="ltr">1.3.1-rc01</code>
+      </a>
+      or higher.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ViewPager2</code>
+      now correctly populates the
+      <code translate="no" dir="ltr">CollectionInfo</code>
+      and
+      <code translate="no" dir="ltr">CollectionItemInfo</code>
+      that
+      <a href="/jetpack/androidx/releases/recyclerview#recyclerview-1.2.0-alpha02">
+        RecyclerView
+        <code translate="no" dir="ltr">1.2.0-alpha02</code>
+      </a>
+      and higher no longer populate by default.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">FragmentTransactionCallback</code>
+      interface for listening to fragment lifecycle changes that happen inside
+      <code translate="no" dir="ltr">FragmentStateAdapter</code>
+      .
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">FragmentStateAdapter</code>
+      issue with initial fragment menu visibility when adding a fragment to the
+      <code translate="no" dir="ltr">FragmentManager</code>
+      .
+    </li>
+    <li>
+      Fixed dispatch of window insets: all pages now get the same insets. Due to how
+      <code translate="no" dir="ltr">WindowInsets</code>
+      are dispatched on old API versions (&lt; API 30) that can prevent insets from being available to sibling views, you must opt into this fix via
+      <code translate="no" dir="ltr">WindowInsetsApplier.install(viewPager2)</code>
+      if you want to apply insets on &lt; API 30 devices.
+    </li>
+  </ul>

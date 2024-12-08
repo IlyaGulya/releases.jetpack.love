@@ -1,0 +1,111 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.8.0-alpha06
+releaseDate: 2024-11-13
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0-alpha06" data-text="Version 1.8.0-alpha06" tabindex="-1">Version 1.8.0-alpha06</h3>
+  <p>November 13, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.8.0-alpha06</code>
+    is released. Version 1.8.0-alpha06 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ccd90a76bd7c4acf4f4f01eca76350e383bc441e..6f09cf2ae979e48fdb19485f757a033e4a34bb82/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">stylusHoverIcon</code>
+      modifier. (
+      <a href="https://android-review.googlesource.com/#/q/Iff20af03b451228bc44c4356d4b4e89956cc3b45">Iff20a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/331289114">b/331289114</a>
+      )
+    </li>
+    <li>
+      Deprecated
+      <code translate="no" dir="ltr">AnchoredDraggableState</code>
+      's
+      <code translate="no" dir="ltr">confirmValueChange</code>
+      . Instead of vetoing state changes, disallowed anchors should not be in the active anchor set, and an
+      <code translate="no" dir="ltr">OverscrollEffect</code>
+      should be used to indicate the unavailability of the requested action. (
+      <a href="https://android-review.googlesource.com/#/q/Ia717fb7dba3db65609a933a55b164d2186e25806">Ia717f</a>
+      )
+    </li>
+    <li>
+      Changes Autofill manager to be an interface. (
+      <a href="https://android-review.googlesource.com/#/q/I8491407de5699bf7273b9f88bda11cc438e2fd62">I84914</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/376080755">b/376080755</a>
+      )
+    </li>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">OverscrollEffect#withoutDrawing</code>
+      and
+      <code translate="no" dir="ltr">OverscrollEffect#withoutEventHandling</code>
+      APIs - these APIs create a wrapped instance of the provided overscroll effect that doesn't draw / handle events respectively, which allows for rendering overscroll in a separate component from the component that is dispatching events. For example, disabling drawing the overscroll inside a lazy list, and then drawing the overscroll separately on top / elsewhere. (
+      <a href="https://android-review.googlesource.com/#/q/Idbb3d91546b49c1987a041f959bce4b2b09a9f61">Idbb3d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/266550551">b/266550551</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/204650733">b/204650733</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/255554340">b/255554340</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/229537244">b/229537244</a>
+      )
+    </li>
+    <li>
+      Adding autofill support in text toolbar. (
+      <a href="https://android-review.googlesource.com/#/q/Ie6a4c0542737d76d603a925f85c389c81eb49747">Ie6a4c</a>
+      )
+    </li>
+    <li>
+      Deprecates
+      <code translate="no" dir="ltr">OverscrollConfiguration</code>
+      and
+      <code translate="no" dir="ltr">LocalOverscrollConfiguration</code>
+      , and adds
+      <code translate="no" dir="ltr">rememberPlatformOverscrollFactory</code>
+      to create an instance of / customize parameters of the default overscroll implementation. To disable overscroll, instead of
+      <code translate="no" dir="ltr">LocalOverscrollConfiguration provides null</code>
+      , use
+      <code translate="no" dir="ltr">LocalOverscrollFactory provides null</code>
+      . To change the glow color / padding, instead of
+      <code translate="no" dir="ltr">LocalOverscrollConfiguration provides OverscrollConfiguration(myColor, myPadding)</code>
+      , use
+      <code translate="no" dir="ltr">LocalOverscrollFactory provides rememberPlatformOverscrollFactory(myColor, myPadding)</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie71f9a016face13262f4fe16ac56c40a0d6f9712">Ie71f9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/255554340">b/255554340</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/234451516">b/234451516</a>
+      )
+    </li>
+    <li>
+      Changed the
+      <code translate="no" dir="ltr">effectModifier</code>
+      property on
+      <code translate="no" dir="ltr">OverscrollEffect</code>
+      to be
+      <code translate="no" dir="ltr">node: DelegatableNode</code>
+      , consistent with other APIs. (
+      <a href="https://android-review.googlesource.com/#/q/Ic0b46a80aa7d9426ced0731531b3492093e1654e">Ic0b46</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/255554340">b/255554340</a>
+      )
+    </li>
+    <li>
+      Removed the experimental
+      <code translate="no" dir="ltr">GlobalAssertions</code>
+      API. It's intended use was to run accessibility checks, see
+      <code translate="no" dir="ltr">enableAccessibilityChecks()</code>
+      for that purpose instead. (
+      <a href="https://android-review.googlesource.com/#/q/I5932296f2aca4c3daa30a013dd00e876ecebb077">I59322</a>
+      )
+    </li>
+  </ul>

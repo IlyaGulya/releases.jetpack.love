@@ -1,0 +1,53 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.7.0-alpha01
+releaseDate: 2022-10-05
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha01" data-text="Version 1.7.0-alpha01" tabindex="-1">Version 1.7.0-alpha01</h3>
+  <p>October 5, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.7.0-alpha01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.activity:activity-compose:1.7.0-alpha01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.7.0-alpha01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a7d70188d0ef7d7ad972567094fa04e25c88b421..4586cf6e518f0c59410ef2b291e34ff9fdcff4e1/activity">Version 1.7.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>FullyDrawnReporter APIs</strong></p>
+  <p>
+    <code translate="no" dir="ltr">ComponentActivity</code>
+    now provides a
+    <code translate="no" dir="ltr">FullyDrawnReporter</code>
+    instance that allows multiple components to report when they are ready for interaction.
+    <code translate="no" dir="ltr">ComponentActivity</code>
+    will wait for all components to complete before calling
+    <code translate="no" dir="ltr">reportFullyDrawn()</code>
+    on your behalf. These APIs take care of the timing requirements for you and do not need to be called as part of an
+    <code translate="no" dir="ltr">onDraw</code>
+    call.
+  </p>
+  <p>These APIs are encouraged to enable:</p>
+  <ul>
+    <li>Signaling the Android Runtime when startup completes, to ensure all of the code run during a multi-frame startup sequence is included and prioritized for background compilation.</li>
+    <li>Signaling Macrobenchmark and Play Vitals when your application should be considered fully drawn for startup metrics, so you can track performance.</li>
+  </ul>
+  <p>
+    Two Activity Compose APIs have been added to make it more convenient to use the
+    <code translate="no" dir="ltr">FullyDrawnReporter</code>
+    from individual composables:
+  </p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ReportDrawnWhen</code>
+      takes a predicate (i.e.,
+      <code translate="no" dir="ltr">list.count &gt; 0</code>
+      ) to indicate when your composable is ready for interaction.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ReportDrawnAfter</code>
+      takes a suspending method that, when it completes, indicates that you are ready for interaction.
+    </li>
+  </ul>
+  <h2 id="version_161_3" data-text="Version 1.6.1" tabindex="-1">Version 1.6.1</h2>

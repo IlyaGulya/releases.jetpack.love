@@ -1,0 +1,49 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.4.0-alpha06
+releaseDate: 2021-08-04
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha06" data-text="Version 1.4.0-alpha06" tabindex="-1">Version 1.4.0-alpha06</h3>
+  <p>August 4, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.4.0-alpha06</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.4.0-alpha06</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.4.0-alpha06</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/97264aa4532db7f7db1ffb3f42f3a9204971dbfc..d725303accfa9be6d5c3d61c7603ed1b9a780cbd/fragment">Version 1.4.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue with multiple back stacks when rapidly swapping between back stacks that would appear as an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      while restoring a
+      <code translate="no" dir="ltr">FragmentTransaction</code>
+      or as a second copy of a fragment appearing. (
+      <a href="https://android-review.googlesource.com/#/q/I9039f01490dae53cb66ef435161b153b4a0568ff">I9039f</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">FragmentManager</code>
+      would hold onto a copy of state previously saved via
+      <code translate="no" dir="ltr">saveBackStack()</code>
+      even after that state was restored. (
+      <a href="https://android-review.googlesource.com/#/q/Ied212e256fedc5ba5288d046c023ba1b767a894a">Ied212</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">dismissAllowingStateLoss()</code>
+      method of
+      <code translate="no" dir="ltr">DialogFragment</code>
+      no longer crashes when you call it after the state is saved when specifically adding the DialogFragment via the
+      <code translate="no" dir="ltr">show(FragmentTransaction, String)</code>
+      method. (
+      <a href="https://android-review.googlesource.com/#/q/I844222aba9e56d7ae6b0cdb57793ab38f6dbe4c1">I84422</a>
+      )
+    </li>
+  </ul>

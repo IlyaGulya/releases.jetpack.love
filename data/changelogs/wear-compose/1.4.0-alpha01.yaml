@@ -1,0 +1,137 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.4.0-alpha01
+releaseDate: 2024-01-24
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha01" data-text="Version 1.4.0-alpha01" tabindex="-1">Version 1.4.0-alpha01</h3>
+  <p>January 24, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.4.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/51191bc12f96f233fc08995e1b4e8ff8b88bc7ce/wear/compose">Version 1.4.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      We have added entry animation to
+      <code translate="no" dir="ltr">SwipeDismissableNavHost</code>
+      for in-app transitions.(
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/cfeb79aea228f03346b7f837340e3d022c0f29cc">cfeb79a</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      is now shown by default when a screen is first displayed. This change was introduced in order to help meet Wear Quality guidelines. Unfortunately, it means that screenshot tests will need to be updated on screens that include
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      , as the
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      would not previously have been displayed. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/419cef709025753de2d4e2e33d57c8359ce51276">419cef7</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We have added a new ripple API in
+      <code translate="no" dir="ltr">wear:compose-material</code>
+      and
+      <code translate="no" dir="ltr">wear:compose-material3</code>
+      libraries which replaces the deprecated
+      <code translate="no" dir="ltr">rememberRipple</code>
+      . Also adds a temporary
+      <code translate="no" dir="ltr">CompositionLocal</code>
+      ,
+      <code translate="no" dir="ltr">LocalUseFallbackRippleImplementation</code>
+      , to revert Material components to using the deprecated
+      <code translate="no" dir="ltr">rememberRipple/RippleTheme</code>
+      APIs. This will be removed in the next stable release, and is only intended to be a temporary migration aid for cases where you are providing a custom
+      <code translate="no" dir="ltr">RippleTheme</code>
+      . See developer.android.com for migration information and more background information behind this change. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/af92b215fa235f565a4b2e2612f195d67adf9a99">af92b21</a>
+      )
+    </li>
+    <li>
+      We have updated
+      <code translate="no" dir="ltr">ColorScheme</code>
+      to be immutable, making individual color updates less efficient, but making more common usage of colors more efficient. The reasoning behind this change is that the majority of apps wouldn't have updating individual colors as a main use case. This is still possible but it will recompose more than before, in turn we significantly decrease the amount of state subscriptions through all of the material code and will impact initialization and runtime cost of more standard use cases. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/f5c48b7f84d5e37e89330f41fb4b3444206ebb98">f5c48b7</a>
+      )
+    </li>
+    <li>
+      Wear material and Wear material3 components exposing a
+      <code translate="no" dir="ltr">MutableInteractionSource</code>
+      in their API have been updated to now expose a nullable
+      <code translate="no" dir="ltr">MutableInteractionSource</code>
+      that defaults to null. There are no semantic changes here: passing null means that you do not wish to hoist the
+      <code translate="no" dir="ltr">MutableInteractionSource</code>
+      , and it will be created inside the component if needed. Changing to null allows for some components to never allocate a
+      <code translate="no" dir="ltr">MutableInteractionSource</code>
+      , and allows for other components to only lazily create an instance when they need to, which improves performance across these components. If you are not using the
+      <code translate="no" dir="ltr">MutableInteractionSource</code>
+      you pass to these components, it is recommended that you pass null instead. It is also recommended that you make similar changes in your own components. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/f8fa920a5a088277028bfa4c186aedb235d253c0">f8fa920</a>
+      )
+    </li>
+    <li>
+      We have updated
+      <code translate="no" dir="ltr">rememberExpandableState</code>
+      to save expandable state. This ensures that data is stored when navigating to another screen and restored when coming back to the original screen. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/5c800956e76db61e0d7436f99bc8472253067633">5c80095</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We have updated the
+      <code translate="no" dir="ltr">ReduceMotion</code>
+      setting to use a lifecycle aware listener. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/7c6b12215fdea6e50e0b5374f53eb20a7f93d112">7c6b122</a>
+      )
+    </li>
+    <li>
+      We have updated
+      <code translate="no" dir="ltr">TouchExplorationStateProvider</code>
+      ’s Listener to be lifecycle aware (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/be28b01faa4c1821eb8b5de0bb5583b1681923e5">be28b01</a>
+      )
+    </li>
+    <li>
+      We have removed the materialcore layer for
+      <code translate="no" dir="ltr">CompactButton</code>
+      to improve performance (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/25db8e9acd8be3f1bd2634265a8dfadc6683682e">25db8e9</a>
+      )
+    </li>
+    <li>
+      We have made
+      <code translate="no" dir="ltr">BasicSwipeToDismissBox</code>
+      more robust to NaN offsets to avoid exceptions (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/b983739273a8918d6500319f7376da7e893c2ecc">b983739</a>
+      )
+    </li>
+    <li>
+      We have updated
+      <code translate="no" dir="ltr">BasicSwipeToDismissBox</code>
+      to ensure alpha values are within the range
+      <a href="/jetpack/androidx/releases/%5B8eb3892%5D(https:/android.googlesource.com/platform/frameworks/support/+/8eb3892aea8625003a33fc921360d3a5e28c724a)">0,1</a>
+    </li>
+    <li>
+      We have fixed a bug in the
+      <code translate="no" dir="ltr">ToggleButton</code>
+      ,
+      <code translate="no" dir="ltr">SplitToggleButton</code>
+      ,
+      <code translate="no" dir="ltr">Checkbox</code>
+      ,
+      <code translate="no" dir="ltr">Switch</code>
+      and
+      <code translate="no" dir="ltr">RadioButton</code>
+      so that accessibility announcements are not repeated (previously, semantic roles were duplicated) (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/d11eeb781c925eaad0acf5502671830a4da62883">d11eeb7</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_13_2" data-text="Version 1.3" tabindex="-1">Version 1.3</h2>

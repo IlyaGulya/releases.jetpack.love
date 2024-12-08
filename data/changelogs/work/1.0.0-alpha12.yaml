@@ -1,0 +1,234 @@
+libraryId: work
+groupId: androidx.work
+version: 1.0.0-alpha12
+releaseDate: 2018-12-05
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha12" data-text="Version 1.0.0-alpha12" tabindex="-1">Version 1.0.0-alpha12</h3>
+  <p>December 5, 2018</p>
+  <p>
+    This release contains some breaking API changes; please see the
+    <em>Breaking API Changes</em>
+    section below. This version is likely to be released as our first beta.
+    <code translate="no" dir="ltr">alpha12</code>
+    also contains extensive documentation updates.
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      A new artifact,
+      <code translate="no" dir="ltr">work-rxjava2</code>
+      , introduces
+      <code translate="no" dir="ltr">RxWorker</code>
+      . This is a
+      <code translate="no" dir="ltr">ListenableWorker</code>
+      that expects a
+      <code translate="no" dir="ltr">Single&lt;Payload&gt;</code>
+      .
+    </li>
+    <li>
+      Support for Firebase JobDispatcher has been removed because of its impending deprecation. This means that the
+      <code translate="no" dir="ltr">work-firebase</code>
+      artifact will no longer be updated as we head into beta. We will be looking into adding an alternative in the future.
+    </li>
+    <li>
+      Combined
+      <code translate="no" dir="ltr">Payload</code>
+      into
+      <code translate="no" dir="ltr">Result</code>
+      .
+      <code translate="no" dir="ltr">Result</code>
+      is now a "sealed class" with three concrete implementations, which you can obtain via
+      <code translate="no" dir="ltr">Result.success()</code>
+      (or
+      <code translate="no" dir="ltr">Result.success(Data)</code>
+      ),
+      <code translate="no" dir="ltr">Result.failure()</code>
+      (or
+      <code translate="no" dir="ltr">Result.failure(Data)</code>
+      ), and
+      <code translate="no" dir="ltr">Result.retry()</code>
+      . Your
+      <code translate="no" dir="ltr">ListenableFuture</code>
+      s now result
+      <code translate="no" dir="ltr">Result</code>
+      instead of
+      <code translate="no" dir="ltr">Payload</code>
+      .
+      <code translate="no" dir="ltr">Worker</code>
+      s don't have getter and setter methods for output
+      <code translate="no" dir="ltr">Data</code>
+      .
+      <em>This is a breaking change.</em>
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Constraints.Builder.setTriggerContentMaxDelay(long, TimeUnit)</code>
+      and
+      <code translate="no" dir="ltr">Constraints.Builder.setTriggerContentUpdateDelay(long, TimeUnit)</code>
+      and variants to better support slow triggering content URIs.
+      <a href="https://issuetracker.google.com/119919774">b/119919774</a>
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">WorkRequest.Builder.setBackoffCriteria(BackoffPolicy, Duration)</code>
+      variant. This method requires API 26.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Operation.await()</code>
+      and
+      <code translate="no" dir="ltr">ListenableFuture.await()</code>
+      Kotlin extension methods.
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">Operation.getException()</code>
+      to
+      <code translate="no" dir="ltr">Operation.getThrowable()</code>
+      .
+      <em>This is a breaking change.</em>
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">ContentUriTriggers</code>
+      class and methods referencing it are no longer available for public usage.
+      <em>This is a breaking change.</em>
+    </li>
+    <li>
+      Removed the rest of the varargs methods in
+      <code translate="no" dir="ltr">WorkManager</code>
+      ,
+      <code translate="no" dir="ltr">WorkContinuation</code>
+      , and
+      <code translate="no" dir="ltr">OneTimeWorkRequest</code>
+      to streamline the API. To fix any build problems, you can wrap your existing varargs with
+      <code translate="no" dir="ltr">Arrays.asList(...)</code>
+      . We still include single-argument versions of each method.
+      <em>This is a breaking change.</em>
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">WorkContinuation.combine(OneTimeWorkRequest, *)</code>
+      variants. They were presenting a confusing API; the existing
+      <code translate="no" dir="ltr">combine</code>
+      methods are more understandable.
+      <em>This is a breaking change.</em>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>Pre-Marshmallow implementations are now more reliable in recovering from process death of an already-executing task.</li>
+    <li>
+      <code translate="no" dir="ltr">LiveData</code>
+      that is observed via
+      <code translate="no" dir="ltr">observeForever</code>
+      is tracked via WorkManager. This is a backport of a Room library fix.
+      <a href="https://issuetracker.google.com/74477406">b/74477406</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Data.Builder.build()</code>
+      now throws an exception if the serialized object exceeds its maximum size. This previously would only happen on a background thread where you couldn't properly handle it.
+    </li>
+    <li>
+      Further distinguished stopped vs. cancelled work;
+      <code translate="no" dir="ltr">getWorkInfoById()</code>
+      will return a
+      <code translate="no" dir="ltr">WorkInfo</code>
+      with the
+      <code translate="no" dir="ltr">CANCELLED</code>
+      <code translate="no" dir="ltr">State</code>
+      during
+      <code translate="no" dir="ltr">ListenableWorker.onStopped()</code>
+      .
+    </li>
+    <li>
+      Treat
+      <code translate="no" dir="ltr">null</code>
+      <code translate="no" dir="ltr">Result</code>
+      s as failures in
+      <code translate="no" dir="ltr">ListenableWorker</code>
+      .
+      <a href="https://issuetracker.google.com/120362353">b/120362353</a>
+    </li>
+    <li>
+      Speculative fix for Shield Tablets running API 24 that sometimes threw an
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      .
+      <a href="https://issuetracker.google.com/119484416">b/119484416</a>
+    </li>
+  </ul>
+  <p><strong>Breaking API Changes</strong></p>
+  <ul>
+    <li>
+      Support for Firebase JobDispatcher has been removed because of its impending deprecation. This means that the
+      <code translate="no" dir="ltr">work-firebase</code>
+      artifact will no longer be updated as we head into beta. We will be looking into adding an alternative in the future.
+    </li>
+    <li>
+      Combined
+      <code translate="no" dir="ltr">Payload</code>
+      into
+      <code translate="no" dir="ltr">Result</code>
+      .
+      <code translate="no" dir="ltr">Result</code>
+      is now a "sealed class" with three concrete implementations, which you can obtain via
+      <code translate="no" dir="ltr">Result.success()</code>
+      (or
+      <code translate="no" dir="ltr">Result.success(Data)</code>
+      ),
+      <code translate="no" dir="ltr">Result.failure()</code>
+      (or
+      <code translate="no" dir="ltr">Result.failure(Data)</code>
+      ), and
+      <code translate="no" dir="ltr">Result.retry()</code>
+      . Your
+      <code translate="no" dir="ltr">ListenableFuture</code>
+      s now result
+      <code translate="no" dir="ltr">Result</code>
+      instead of
+      <code translate="no" dir="ltr">Payload</code>
+      .
+      <code translate="no" dir="ltr">Worker</code>
+      s don't have getter and setter methods for output
+      <code translate="no" dir="ltr">Data</code>
+      .
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Operation.await()</code>
+      and
+      <code translate="no" dir="ltr">ListenableFuture.await()</code>
+      Kotlin extension methods.
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">Operation.getException()</code>
+      to
+      <code translate="no" dir="ltr">Operation.getThrowable()</code>
+      .
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">ContentUriTriggers</code>
+      class and methods referencing it are no longer available for public usage.
+    </li>
+    <li>
+      Removed the rest of the varargs methods in
+      <code translate="no" dir="ltr">WorkManager</code>
+      ,
+      <code translate="no" dir="ltr">WorkContinuation</code>
+      , and
+      <code translate="no" dir="ltr">OneTimeWorkRequest</code>
+      to streamline the API. To fix any build problems, you can wrap your existing varargs with
+      <code translate="no" dir="ltr">Arrays.asList(...)</code>
+      . We still include single-argument versions of each method.
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">WorkContinuation.combine(OneTimeWorkRequest, *)</code>
+      variants. They were presenting a confusing API; the existing
+      <code translate="no" dir="ltr">combine</code>
+      methods are more understandable.
+    </li>
+  </ul>

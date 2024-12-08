@@ -1,0 +1,92 @@
+libraryId: work
+groupId: androidx.work
+version: 2.3.0-beta02
+releaseDate: 2019-12-18
+#language=html
+changelogHtml: |
+  <h3 id="2.3.0-beta02" data-text="Version 2.3.0-beta02" tabindex="-1">Version 2.3.0-beta02</h3>
+  <p>December 18, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.3.0-beta02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/0042c0019bb455afc79ddfec9bf2993d018f70ce..740cde70237dd276f8ad66dfe9528b1cdb5d54bb/work">Version 2.3.0-beta02 contains these commits</a>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      Added a better error message for non-recoverable SQLite exceptions. (
+      <a href="https://android-review.googlesource.com/c/1185777">aosp/1185777</a>
+      )
+    </li>
+    <li>
+      Added a lint rule which ensures that the content provider
+      <code translate="no" dir="ltr">androidx.work.impl.WorkManagerInitializer</code>
+      is removed from the
+      <code translate="no" dir="ltr">AndroidManifest.xml</code>
+      when using on demand initialization. (
+      <a href="https://android-review.googlesource.com/c/1167007">aosp/1167007</a>
+      )
+    </li>
+    <li>
+      Added a lint warning when
+      <code translate="no" dir="ltr">enqueue()</code>
+      is used for a
+      <code translate="no" dir="ltr">PeriodicWorkRequest</code>
+      instead of
+      <code translate="no" dir="ltr">enqueueUniquePeriodicWork()</code>
+      . (
+      <a href="https://android-review.googlesource.com/c/1166032">aosp/1166032</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ForegroundInfo</code>
+      now requires you to specify the
+      <code translate="no" dir="ltr">notificationId</code>
+      to be used when using
+      <code translate="no" dir="ltr">ListenableWorker.setForegroundAsync()</code>
+      .
+      <strong>This is a breaking change.</strong>
+      This allows you to run multiple long running
+      <code translate="no" dir="ltr">Worker</code>
+      s in parallel.
+      <code translate="no" dir="ltr">WorkManager</code>
+      also better manages lifetimes of the provided
+      <code translate="no" dir="ltr">Notification</code>
+      s. (
+      <a href="https://issuetracker.google.com/issues/145473554">b/145473554</a>
+      ,
+      <a href="https://android-review.googlesource.com/c/1181208">aosp/1181208</a>
+      ,
+      <a href="https://android-review.googlesource.com/c/1181216">asop/1181216</a>
+      ,
+      <a href="https://android-review.googlesource.com/c/1183577">asop/1183577</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a bug in the AlarmManager implementation where alarms were not being cleaned up correctly. (
+      <a href="https://android-review.googlesource.com/c/1156444">aosp/1156444</a>
+      )
+    </li>
+    <li>
+      Fixed a bug where an empty list of
+      <code translate="no" dir="ltr">WorkRequest</code>
+      s would cause an incorrect
+      <code translate="no" dir="ltr">WorkContinuation</code>
+      chain to be built. (
+      <a href="https://issuetracker.google.com/issues/142835274">b/142835274</a>
+      ,
+      <a href="https://android-review.googlesource.com/c/1157051">aosp/1157051</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency changes</strong></p>
+  <ul>
+    <li>WorkManager now uses Room 2.2.2.</li>
+  </ul>

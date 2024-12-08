@@ -1,0 +1,66 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.1.0-alpha12
+releaseDate: 2021-11-17
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha12" data-text="Version 1.1.0-alpha12" tabindex="-1">Version 1.1.0-alpha12</h3>
+  <p>November 17, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.1.0-alpha12</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f07d12061370a603549747200c79b60239706330..cc1240d00b28657ee0c1a937f60430eaf1b03b09/benchmark">Version 1.1.0-alpha12 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Add experimental TraceSectionMetric for custom trace-based timing measurements. (
+      <a href="https://android-review.googlesource.com/#/q/I99db1c735f639a626bdc023b477058bf24bb7602">I99db1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/204572664">b/204572664</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Wake device each iteration, to ensure UI can be tested - requires lockscreen is disabled. (
+      <a href="https://android-review.googlesource.com/#/q/Ibfa283d90c297d2a440ec9d4261887c75516d8cf">Ibfa28</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/180963442">b/180963442</a>
+      )
+    </li>
+    <li>
+      Fixes multiple crashes in StackSampling profiling mode on emulators and non-rooted devices (
+      <a href="https://android-review.googlesource.com/#/q/Icdbda7d0659aa07f1bdd47eb1b5234af7e714ce8">Icdbda</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/202719335">b/202719335</a>
+      )
+    </li>
+    <li>
+      Removed 0.5 second sleep at the end of each iteration - if you see missing metrics with this change, please file a bug. (
+      <a href="https://android-review.googlesource.com/#/q/Iff6aa112c49c005dfda274f8407c89e31f44d4ec">Iff6aa</a>
+      )
+    </li>
+    <li>
+      Reduce chances of dropped data, and lower memory overhead from tracing (
+      <a href="https://android-review.googlesource.com/#/q/Id254422b83525f9d87a6bd359e2723601b510ab5">Id2544</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/199324831">b/199324831</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/204448861">b/204448861</a>
+      )
+    </li>
+    <li>
+      Reduce trace size by ~40% by switching to compact sched storage format. (
+      <a href="https://android-review.googlesource.com/#/q/Id5fb6277cc37c303b62b0a8abb4adb19d40fcc5c">Id5fb6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/199324831">b/199324831</a>
+      )
+    </li>
+    <li>
+      Updated implementations of startup metrics to always end at end of renderthread. This will be more contistent across platform versions, and more closely map to in-app measurements. (
+      <a href="https://android-review.googlesource.com/#/q/Ic6b55121ce0f08a89665790e222587717478da1d">Ic6b55</a>
+      )
+    </li>
+  </ul>

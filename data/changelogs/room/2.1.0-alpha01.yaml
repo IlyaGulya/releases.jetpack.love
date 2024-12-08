@@ -1,0 +1,125 @@
+libraryId: room
+groupId: androidx.room
+version: 2.1.0-alpha01
+releaseDate: 2018-10-08
+#language=html
+changelogHtml: |
+  <h3 id="2.1.0-alpha01" data-text="Version 2.1.0-alpha01" tabindex="-1">Version 2.1.0-alpha01</h3>
+  <p>October 8, 2018</p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <strong>FTS</strong>
+      : Room now supports entities with a mapping
+      <a href="https://www.sqlite.org/fts3.html">FTS3 or FTS4</a>
+      table. Classes annotated with
+      <code translate="no" dir="ltr">@Entity</code>
+      can now be additionally annotated with
+      <code translate="no" dir="ltr">@Fts3</code>
+      or
+      <code translate="no" dir="ltr">@Fts4</code>
+      to declare a class with a mapping full-text search table. FTS options for further customization are available via the annotation’s methods.
+      <a href="https://issuetracker.google.com/62356416">b/62356416</a>
+    </li>
+    <li>
+      <strong>Views</strong>
+      : Room now supports declaring a class as a stored query, also known as a
+      <a href="https://www.sqlite.org/lang_createview.html">view</a>
+      using the @DatabaseView annotation.
+      <a href="https://issuetracker.google.com/67033276">b/67033276</a>
+    </li>
+    <li>
+      <strong>Auto Value</strong>
+      : Room now supports declaring
+      <a href="https://github.com/google/auto/blob/master/value/userguide/index.md">AutoValue</a>
+      annotated classes as entities and POJOs. The Room annotations
+      <code translate="no" dir="ltr">@PrimaryKey</code>
+      ,
+      <code translate="no" dir="ltr">@ColumnInfo</code>
+      ,
+      <code translate="no" dir="ltr">@Embedded</code>
+      and
+      <code translate="no" dir="ltr">@Relation</code>
+      can now be declared in an auto value annotated class’ abstract methods. Note that these annotation must also be accompanied by
+      <code translate="no" dir="ltr">@CopyAnnotations</code>
+      for Room to properly understand them.
+      <a href="https://issuetracker.google.com/62408420">b/62408420</a>
+    </li>
+    <li>
+      <strong>Additional Rx Return Types Support</strong>
+      : DAO methods annotated with
+      <code translate="no" dir="ltr">@Insert</code>
+      ,
+      <code translate="no" dir="ltr">@Delete</code>
+      or
+      <code translate="no" dir="ltr">@Update</code>
+      now support Rx return types
+      <code translate="no" dir="ltr">Completable</code>
+      ,
+      <code translate="no" dir="ltr">Single&lt;T&gt;</code>
+      and
+      <code translate="no" dir="ltr">Maybe&lt;T&gt;</code>
+      .
+      <a href="https://issuetracker.google.com/63317956">b/63317956</a>
+    </li>
+    <li>
+      <strong>
+        Immutable Types with
+        <code translate="no" dir="ltr">@Relation</code>
+      </strong>
+      : Room previously required
+      <code translate="no" dir="ltr">@Relation</code>
+      annotated fields to be settable but now they can be constructor parameters.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">enableMultiInstanceInvalidation</code>
+      : Is a new API in
+      <code translate="no" dir="ltr">RoomDatabase.Builder</code>
+      to enable invalidation across multiple instances of RoomDatabase using the same database file. This multi-instance invalidation mechanism also works across multiple processes.
+      <a href="https://issuetracker.google.com/62334005">b/62334005</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">fallbackToDestructiveMigrationOnDowngrade</code>
+      : Is a new API in
+      <code translate="no" dir="ltr">RoomDatabase.Builder</code>
+      to automatically re-create the database if a downgrade happens.
+      <a href="https://issuetracker.google.com/110416954">b/110416954</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ignoredColumns</code>
+      : Is a new API in the
+      <code translate="no" dir="ltr">@Entity</code>
+      annotation that can be used to list ignored fields by name. Useful for ignoring inherited fields on an entity.
+      <a href="https://issuetracker.google.com/63522075">b/63522075</a>
+    </li>
+  </ul>
+  <p><strong>API / Behavior Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">mCallback</code>
+      and
+      <code translate="no" dir="ltr">mDatabase</code>
+      in
+      <code translate="no" dir="ltr">RoomDatabase</code>
+      are now
+      <code translate="no" dir="ltr">@Deprecated</code>
+      and will be removed in the next major version of Room.
+      <a href="https://issuetracker.google.com/76109329">b/76109329</a>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed two issues where Room wouldn’t properly recover from a corrupted database or a bad migration during initialization.
+      <a href="https://issuetracker.google.com/111504749">b/111504749</a>
+      and
+      <a href="https://issuetracker.google.com/111519144">b/111519144</a>
+    </li>
+    <li>
+      Room will now properly use Kotlin’s primary constructor in data classes avoiding the need to declare the fields as
+      <code translate="no" dir="ltr">vars</code>
+      .
+      <a href="https://issuetracker.google.com/105769985">b/105769985</a>
+    </li>
+  </ul>
+  <h2 id="version_200_3" data-text="Version 2.0.0" tabindex="-1">Version 2.0.0</h2>

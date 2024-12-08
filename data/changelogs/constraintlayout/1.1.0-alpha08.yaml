@@ -1,0 +1,75 @@
+libraryId: constraintlayout
+groupId: androidx.constraintlayout
+version: 1.1.0-alpha08
+releaseDate: 2023-03-08
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha08" data-text="Version 1.1.0-alpha08" tabindex="-1">Version 1.1.0-alpha08</h3>
+  <p>March 8, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha08</code>
+    and
+    <code translate="no" dir="ltr">androidx.constraintlayout:constraintlayout-core:1.1.0-alpha08</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f7337eab774a6ce3b17367d5f31708564b66e677..c37bd7a58b465e53962265e5a5991400817fc2e5/constraintlayout">Version 1.1.0-alpha08 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Lint checks added to suggest the use of
+      <code translate="no" dir="ltr">Dimension.percent(1f)</code>
+      and
+      <code translate="no" dir="ltr">LayoutReference.withChainParams()</code>
+      in cases where the typical patterns may lead to unpredictable behavior. (
+      <a href="https://android-review.googlesource.com/#/q/I62eb07e51c36d762aaeff3bfa0031fcfbf6e3923">I62eb0</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I030608fef51ad993841c3a5e78ac6b551dac7609">I03060</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Enable
+      <code translate="no" dir="ltr">ReverseSpanDirection</code>
+      and
+      <code translate="no" dir="ltr">SpansOrderFirst</code>
+      flags for Grid Helper in Compose.
+      <ol>
+        <li>
+          <code translate="no" dir="ltr">ReverseSpanDirection</code>
+          : reverse the width and height specification for spans/skips.
+        </li>
+        <li>
+          <code translate="no" dir="ltr">SpansOrderFirst</code>
+          : spans would respect the order of the widgets. (
+          <a href="https://android-review.googlesource.com/#/q/I6ad503428cd269eb503de96d010c77b3521b33a1">I6ad50</a>
+          )
+        </li>
+      </ol>
+    </li>
+    <li>
+      Use
+      <code translate="no" dir="ltr">Modifier.onStartEndBoundsChanged(...)</code>
+      to obtain local bounds of Composables in a
+      <code translate="no" dir="ltr">MotionLayout</code>
+      that are not affected by animation. Useful for any ui interaction that requires layout information that may also trigger animations such as
+      <code translate="no" dir="ltr">DragAndDrop</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6b5f9882acf81386dc62340b5f1ffb46ca91c750">I6b5f9</a>
+      )
+    </li>
+    <li>
+      Enable skips and spans of the Grid Helper in Compose (
+      <a href="https://android-review.googlesource.com/#/q/I917b66a7127e0db39aaabf2c9b9036969b2ad1f0">I917b6</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed translation properties not applying expected values. (
+      <a href="https://android-review.googlesource.com/#/q/I961cdf6bc804ec56b455111119ed623e4229cd6d">I961cd</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,91 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.3.5
+releaseDate: 2021-04-07
+#language=html
+changelogHtml: |
+  <h3 id="2.3.5" data-text="Version 2.3.5" tabindex="-1">Version 2.3.5</h3>
+  <p>April 7, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.3.5</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ac398a3ebf3b1e2659e61710acf5220ba17dfc11..3a949c2a53232f2253802f435d043677db8cecba/navigation">Version 2.3.5 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      When navigating using a
+      <code translate="no" dir="ltr">NavDeepLinkRequest</code>
+      or
+      <code translate="no" dir="ltr">Uri</code>
+      , you can now access the
+      <code translate="no" dir="ltr">Uri</code>
+      , action, and mime type in the resulting destination by getting the intent from arguments via
+      <a href="/reference/kotlin/androidx/navigation/NavController#key_deep_link_intent"><code translate="no" dir="ltr">KEY_DEEP_LINK_INTENT</code></a>
+      , mirroring the functionality already available for external deep linking. (
+      <a href="https://android-review.googlesource.com/#/q/I975c3ed3958575cd6213c0a97ef2c4c8071c7a71">I975c3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/181521877">b/181521877</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">OnBackPressedCallbacks</code>
+      added to a dispatcher with the
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      as the LifecycleOwner now properly intercept back after the Activity Lifecycle is
+      <code translate="no" dir="ltr">STOPPED</code>
+      , then
+      <code translate="no" dir="ltr">STARTED</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Iff94f9efa9739fa49166ddb2dc11b50d2a4c4a8c">Iff94f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/182284739">b/182284739</a>
+      )
+    </li>
+    <li>
+      Deep link domain parsing is now case insensitive, ensuring that
+      <code translate="no" dir="ltr">www.example.com</code>
+      matches both
+      <code translate="no" dir="ltr">www.example.com</code>
+      and
+      <code translate="no" dir="ltr">www.Example.com</code>
+      . Note that query parameter names are still case sensitive. (
+      <a href="https://github.com/androidx/androidx/pull/144">#144</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/153829033">b/153829033</a>
+      )
+    </li>
+    <li>
+      Fixed a
+      <code translate="no" dir="ltr">NullPointerException</code>
+      that could occur when a destination has multiple non-nullable default arguments and you navigate to that destination while only overriding a subset of those arguments. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1644827">aosp/1644827</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Updates</strong></p>
+  <ul>
+    <li>
+      The Navigation Safe Args Gradle Plugin now depends on Kotlin Gradle Plugin 1.4.31. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1661058">aosp/1661058</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/181156413">b/181156413</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Thanks
+      <a href="https://github.com/bentrengrove"><code translate="no" dir="ltr">bentrengrove</code></a>
+      for the pull request making deep link domain parsing case insensitive. (
+      <a href="https://github.com/androidx/androidx/pull/144">#144</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/153829033">b/153829033</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_234_3" data-text="Version 2.3.4" tabindex="-1">Version 2.3.4</h2>

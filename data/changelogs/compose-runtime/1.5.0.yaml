@@ -1,0 +1,247 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.5.0
+releaseDate: 2023-08-09
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0" data-text="Version 1.5.0" tabindex="-1">Version 1.5.0</h3>
+  <p>August 9, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.5.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e423b92ad8e8707ff4031626131f05e33979eac8..65e3f15108d25a7e1c5c841c0855b21eca194070/compose/runtime">Version 1.5.0 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removed allocations in recomposition, color animations, and
+      <code translate="no" dir="ltr">AndroidComposeView</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib2bfaf0af40bc0970424f86141ae24607a2b1223">Ib2bfa</a>
+      )
+    </li>
+    <li>
+      Added a
+      <code translate="no" dir="ltr">@StateFactoryMarker</code>
+      annotation, to mark functions that create states and must be wrapped in a
+      <code translate="no" dir="ltr">remember</code>
+      call. (
+      <a href="https://android-review.googlesource.com/#/q/I64550a0cb1647096260f00b75e7d35897878c617">I64550</a>
+      )
+    </li>
+    <li>
+      Add primitive versions of State and
+      <code translate="no" dir="ltr">MutableState</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I48e438d0af15226217b77b2ba9a970c3219580bf">fb3d89</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Snapshot.isApplyObserverNotificationPending</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I672a5c268230bfa1603341dd3327733faca5ca2a">I672a5</a>
+      )
+    </li>
+    <li>
+      Added primitive versions of the
+      <code translate="no" dir="ltr">State</code>
+      API, allowing Int, Long, Float, and Double values to be tracked in
+      <code translate="no" dir="ltr">State</code>
+      objects without incurring penalties for autoboxing. Use the new factory methods
+      <code translate="no" dir="ltr">mutableIntState(Int)</code>
+      ,
+      <code translate="no" dir="ltr">mutableFloatStateOf(Float)</code>
+      , etc in order to use these. (
+      <a href="https://android-review.googlesource.com/#/q/I48e438d0af15226217b77b2ba9a970c3219580bf">I48e43</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Skip recomposition of subcompositions that will be removed. (
+      <a href="https://android-review.googlesource.com/#/q/Ieeb9919897a9f9b4274ddc77e66608a673cd1112">Ieeb99</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/254645321">b/254645321</a>
+      )
+    </li>
+    <li>
+      Don't retain snapshot reference in
+      <code translate="no" dir="ltr">ComposerImpl</code>
+      (
+      <a href="https://android-review.googlesource.com/q/commit:6f0e3949772ada45e2c376ce67a55380820206f7">0206f7</a>
+      )
+    </li>
+    <li>
+      Don’t apply composition twice (
+      <a href="https://android-review.googlesource.com/#/q/Ie64c91900541e39b0397e9c4141be92007291353">f5791b</a>
+      )
+    </li>
+    <li>
+      Ensure invalidation for non-initialized derived state values (
+      <a href="https://android-review.googlesource.com/#/q/I73d7888ac05f4adaa2128e01088288b7cf369fbd">aa2a92</a>
+      )
+    </li>
+    <li>
+      Call
+      <code translate="no" dir="ltr">onEndChanges</code>
+      during composition dispose. (
+      <a href="https://android-review.googlesource.com/#/q/I03ddce4062cbf7fb97f0447484ac46b0aedeab35">62cc8c</a>
+      )
+    </li>
+    <li>
+      Fix moving content into a sub-composition (
+      <a href="https://android-review.googlesource.com/#/q/Ic75f8dcaddc8c784f35f1884d662be04f084b455">4beb41</a>
+      )
+    </li>
+    <li>
+      Fix potential deadlocks (
+      <a href="https://android-review.googlesource.com/#/q/Ie8b87caecabc88f6a6dd610805d964aed3489b85">c1a425</a>
+      and
+      <a href="https://android-review.googlesource.com/#/q/I5cd5b2b3388758fef0826af619c680edce07d349">8edce0</a>
+      )
+    </li>
+    <li>
+      The recomposer created for an Android window will now only block calls to
+      <code translate="no" dir="ltr">withFrameNanos</code>
+      instead of all composition when it receives an ON_STOP notification. This means windows associated with stopped activites will continue to recompose for data changes but the animations, or any other caller of
+      <code translate="no" dir="ltr">withFrameNanos</code>
+      , will block. (
+      <a href="https://android-review.googlesource.com/#/q/Id9e7fe262710544a48c2e4fc5fcbf1d27bfaa1ba">Id9e7f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/240975572">b/240975572</a>
+      )
+    </li>
+    <li>
+      Execute deactivation callbacks for
+      <code translate="no" dir="ltr">LayoutNode</code>
+      before disposing effects
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/dfbea3ec8e88bf2a9a77c1bca0b02a8e2b8b0fa4">3784073</a>
+    </li>
+    <li>
+      Fix changed flags for restarted lambdas
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/9d9677ac37d963a7472698f23b63bd97e68a03e9">ea81df9</a>
+    </li>
+    <li>
+      Fix live edit regression for Composable with nodes
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/2fc2bea6dbe7430e8add3d87e611cdeceadb309f">73fd4d8</a>
+    </li>
+    <li>
+      ON_STOP should pause the frame clock broadcasts instead of composition
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/66fef38b1d11e0c48b11137e6c3d007909f4a2d1">ae276f1</a>
+    </li>
+    <li>
+      Invalidate
+      <code translate="no" dir="ltr">SnapshotStateObserver</code>
+      scopes for unchanged derived states
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/c5d22e7f422942f83a8649e0dec0a5546141c52d">84d9b1c</a>
+    </li>
+    <li>
+      Fix potential dead-lock when disposing compositions
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/59526cdd95681694b310ae874ec2b1ad198edce0">28761fc</a>
+    </li>
+    <li>
+      Fix moving content into a sub-composition
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/803754d2519a47c1aec0b1a0f1b058f1024beb41">92d4156</a>
+    </li>
+    <li>
+      Fix changed flags for restarted lambdas (
+      <a href="https://android-review.googlesource.com/#/q/I203ec51beb7fc8c09eb536fa435ea2f8203f046c">8a03e9</a>
+      )
+    </li>
+    <li>
+      Execute deactivation callbacks for
+      <code translate="no" dir="ltr">LayoutNode</code>
+      before disposing effects (
+      <a href="https://android-review.googlesource.com/#/q/I5957617e9f15af8d581b5cf304f5312bba310169">8b0fa4</a>
+      )
+    </li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">endToMarker()</code>
+      when ending node groups. (
+      <a href="https://android-review.googlesource.com/#/q/Ibe7063cf22f4bff6eda5bde05c37c1e665c09167">d71d980</a>
+      )
+    </li>
+    <li>
+      Use current
+      <code translate="no" dir="ltr">SlotWriter</code>
+      group for check on deactivation (
+      <a href="https://android-review.googlesource.com/#/q/Ief210ba5d2e20734277d58ae6b5916db2c92e8db">a0b518b</a>
+      )
+    </li>
+    <li>
+      Remove the
+      <code translate="no" dir="ltr">fill</code>
+      in
+      <code translate="no" dir="ltr">SlotTable.moveSlotGapTo()</code>
+      and move it to close (
+      <a href="https://android-review.googlesource.com/#/q/Iccc23740ba06a0aa952a5f6f52999de247ce62c5">81f9935</a>
+      )
+    </li>
+    <li>
+      Fix missing invalidations while movable content is moving (
+      <a href="https://android-review.googlesource.com/#/q/Ic487b8f797a2862effc07d2ef020d8461717940e">1d7c024</a>
+      )
+    </li>
+    <li>
+      Fix immediate invalidations for moved movable content (
+      <a href="https://android-review.googlesource.com/#/q/I4d23a4f5745782ae65c1e0186579842d73bdbddb">8676618</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Performance Improvements</strong></p>
+  <ul>
+    <li>
+      Avoid calculating
+      <code translate="no" dir="ltr">readableHash</code>
+      in
+      <code translate="no" dir="ltr">DerivedState</code>
+      if snapshot wasn't modified. (
+      <a href="https://android-review.googlesource.com/#/q/Iadb225542a94e5df2a59021696ad151eefa930c8">307102</a>
+      )
+    </li>
+    <li>
+      Reduced allocations (
+      <a href="https://android-review.googlesource.com/#/q/I65c09492518269d6605a4731effd164d93be023a">I65c09</a>
+      ,
+      <a href="https://android-review.googlesource.com/q/commit:55a39a86b2af2221eee79db32036cb649bd7ea77">d7ea77</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ifc5a47a41da8c75409d987c84f672f6cc8a82682">727974</a>
+      , and
+      <a href="https://android-review.googlesource.com/#/q/Ib2bfaf0af40bc0970424f86141ae24607a2b1223">445808</a>
+      )
+    </li>
+    <li>
+      Quick cancellation of compose
+      <code translate="no" dir="ltr">CoroutineScopes</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I2fbb777cbdab880f062584ae86ce69e89e9a9cf0">a55362</a>
+      and
+      <a href="https://android-review.googlesource.com/#/q/I8fbb9904408dff4dd694f24d8a5effb7d16ed2c4">bd382f</a>
+      )
+    </li>
+    <li>
+      Overwrite records of state objects with inaccessible state records (
+      <a href="https://android-review.googlesource.com/#/q/I9e793b3285b5102392cea30f72ed1583e798b810">c986960</a>
+      )
+    </li>
+    <li>
+      Use composer of the correct scope when realizing groups (
+      <a href="https://android-review.googlesource.com/#/q/I0cc3c7be151edb7cbbe4114fffbde8736f7ec428">9a5e5b6</a>
+      )
+    </li>
+    <li>
+      Use
+      <code translate="no" dir="ltr">IdentityArraySet</code>
+      to store snapshot invalidations (
+      <a href="https://android-review.googlesource.com/#/q/I476e3c43cabd165ad8edce928aa3b46c06952779">7f60cca</a>
+      )
+    </li>
+    <li>
+      Reduce allocations for snapshot observations (
+      <a href="https://android-review.googlesource.com/#/q/I72da3303b1b7ea0d02324cf85f10023cdc97b564">5bc535f</a>
+      )
+    </li>
+  </ul>

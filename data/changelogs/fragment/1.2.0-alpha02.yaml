@@ -1,0 +1,210 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.2.0-alpha02
+releaseDate: 2019-08-07
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha02" data-text="Version 1.2.0-alpha02" tabindex="-1">Version 1.2.0-alpha02</h3>
+  <p>August 7, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.2.0-alpha02</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.2.0-alpha02</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:11.2.0-alpha02</code>
+    is released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/588801999e8e8ea9ec080a796f72fefa17f3cd3b..ece690f1fdb4481b47c5128fd21d88da7d6850a6/fragment">here</a>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">SavedStateViewModelFactory</code>
+      is now the default factory used when using
+      <code translate="no" dir="ltr">by viewModels()</code>
+      ,
+      <code translate="no" dir="ltr">by activityViewModels()</code>
+      , the
+      <code translate="no" dir="ltr">ViewModelProvider</code>
+      constructor, or
+      <code translate="no" dir="ltr">ViewModelProviders.of()</code>
+      with a
+      <code translate="no" dir="ltr">Fragment</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/135716331">b/135716331</a>
+      )
+    </li>
+    <li>
+      The default animations when using
+      <code translate="no" dir="ltr">TRANSIT_FRAGMENT_OPEN</code>
+      ,
+      <code translate="no" dir="ltr">TRANSIT_FRAGMENT_CLOSE</code>
+      ,
+      <code translate="no" dir="ltr">TRANSIT_FRAGMENT_FADE</code>
+      with
+      <code translate="no" dir="ltr">setTransition</code>
+      on a
+      <code translate="no" dir="ltr">FragmentTransaction</code>
+      have been updated to match the animations used by activities on Android 10 devices. (
+      <a href="https://android-review.googlesource.com/1012812">aosp/1012812</a>
+      ,
+      <a href="https://android-review.googlesource.com/1014730">aosp/1014730</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      Introduces
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      as the strongly recommended container for dynamically added Fragments, replacing usage of
+      <code translate="no" dir="ltr">FrameLayout</code>
+      , etc. as it fixes animation z-ordering issues and window insets dispatching to Fragments. (
+      <a href="https://issuetracker.google.com/issues/37036000">b/37036000</a>
+      ,
+      <a href="https://android-review.googlesource.com/985243">aosp/985243</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/136494650">b/136494650</a>
+      )
+    </li>
+    <li>
+      Added a static
+      <code translate="no" dir="ltr">FragmentManager.findFragment(View)</code>
+      method to retrieve the containing Fragment from a view inflated by a fragment. A Kotlin extension is also available in
+      <code translate="no" dir="ltr">fragment-ktx</code>
+      . (
+      <a href="https://android-review.googlesource.com/1090757">aosp/1090757</a>
+      )
+    </li>
+    <li>
+      Added new overloads of
+      <code translate="no" dir="ltr">add()</code>
+      and
+      <code translate="no" dir="ltr">replace()</code>
+      on
+      <code translate="no" dir="ltr">FragmentTransaction</code>
+      that take a
+      <code translate="no" dir="ltr">Class&lt;? extends Fragment&gt;</code>
+      and optional
+      <code translate="no" dir="ltr">Bundle</code>
+      of arguments. These methods use your
+      <code translate="no" dir="ltr">FragmentFactory</code>
+      to construct an instance of the Fragment to add. Kotlin extension that use reified types (i.e,
+      <code translate="no" dir="ltr">fragmentTransaction.replace&lt;YourFragment&gt;(R.id.container)</code>
+      ) have also been added to
+      <code translate="no" dir="ltr">fragment-ktx</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/126124987">b/126124987</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">@MainThread</code>
+      annotations have been added to
+      <code translate="no" dir="ltr">Fragment</code>
+      lifecycle callbacks. (
+      <a href="https://issuetracker.google.com/issues/127272564">b/127272564</a>
+      )
+    </li>
+    <li>
+      The breadcrumb title related APIs on
+      <code translate="no" dir="ltr">FragmentTransaction</code>
+      and
+      <code translate="no" dir="ltr">FragmentManager.BackStackEntry</code>
+      have been deprecated. (
+      <a href="https://issuetracker.google.com/issues/138252944">b/138252944</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">setTransitionStyle</code>
+      method on
+      <code translate="no" dir="ltr">FragmentTransaction</code>
+      has been deprecated. (
+      <a href="https://android-review.googlesource.com/1011537">aosp/1011537</a>
+      )
+    </li>
+    <li>
+      Many of the methods in
+      <code translate="no" dir="ltr">FragmentManager</code>
+      are no longer
+      <code translate="no" dir="ltr">abstract</code>
+      .
+      <code translate="no" dir="ltr">FragmentManager</code>
+      itself remains
+      <code translate="no" dir="ltr">abstract</code>
+      and should not be directly instantiated or extended; you should continue to only get an existing instance from
+      <code translate="no" dir="ltr">getSupportFragmentManager()</code>
+      ,
+      <code translate="no" dir="ltr">getChildFragmentManager()</code>
+      , etc.
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      From
+      <a href="#1.1.0-rc04">
+        Fragment
+        <code translate="no" dir="ltr">1.1.0-rc04</code>
+      </a>
+      : Fragments now correctly cancel postponed transitions on Fragments have been popped. (
+      <a href="https://issuetracker.google.com/issues/138251858">b/138251858</a>
+      )
+    </li>
+    <li>
+      From
+      <a href="#1.1.0-rc03">
+        Fragment
+        <code translate="no" dir="ltr">1.1.0-rc03</code>
+      </a>
+      : Fixed an issue where calling
+      <code translate="no" dir="ltr">postponeEnterTransition()</code>
+      with a timeout more than once would not cancel previous timeouts. (
+      <a href="https://issuetracker.google.com/issues/137797118">b/137797118</a>
+      )
+    </li>
+    <li>
+      From
+      <a href="#1.1.0-rc02">
+        Fragment
+        <code translate="no" dir="ltr">1.1.0-rc02</code>
+      </a>
+      : Fixed a crash in
+      <code translate="no" dir="ltr">FragmentPagerAdapter</code>
+      and
+      <code translate="no" dir="ltr">FragmentStatePagerAdapter</code>
+      when removing the current item. (
+      <a href="https://issuetracker.google.com/issues/137209870">b/137209870</a>
+      )
+    </li>
+    <li>
+      Fragments now wait for animations to finish before dispatching
+      <code translate="no" dir="ltr">onDestroyView()</code>
+      . (
+      <a href="https:///issuetracker.google.com/issues/136110528">b/136110528</a>
+      )
+    </li>
+    <li>
+      Fragment animations from child fragments and their descendants are now properly handled when animating the parent Fragment. (
+      <a href="https:///issuetracker.google.com/issues/116675313">b/116675313</a>
+      )
+    </li>
+    <li>
+      Fixed a
+      <code translate="no" dir="ltr">NullPointerException</code>
+      when using shared element transitions and combining a pop and add operation. (
+      <a href="https://issuetracker.google.com/issues/120507394">b/120507394</a>
+      )
+    </li>
+    <li>
+      Added a workaround to
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      s when using
+      <code translate="no" dir="ltr">FragmentPagerAdapter</code>
+      and
+      <code translate="no" dir="ltr">FragmentStatePagerAdapter</code>
+      in Robolectric tests. (
+      <a href="https://issuetracker.google.com/issues/137201343">b/137201343</a>
+      )
+    </li>
+  </ul>

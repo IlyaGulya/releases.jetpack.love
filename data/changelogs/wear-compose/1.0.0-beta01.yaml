@@ -1,0 +1,244 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.0.0-beta01
+releaseDate: 2022-05-11
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta01" data-text="Version 1.0.0-beta01" tabindex="-1">Version 1.0.0-beta01</h3>
+  <p>May 11, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-foundation:1.0.0-beta01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material:1.0.0-beta01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-navigation:1.0.0-beta01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c0a89ec374961b3015097ab307ebb8196dbe3888..53d512be6fd26bc30bffa7cae8e9769ec5c4bfbf/wear/compose">Version 1.0.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>What’s in Compose for Wear OS 1.0</strong></p>
+  <p>
+    The
+    <code translate="no" dir="ltr">1.0.0-beta01</code>
+    of Compose for Wear OS marks an important milestone as the library is feature complete and the API locked.
+  </p>
+  <p>Wear Compose Material components in the 1.0 release include:</p>
+  <ul>
+    <li>
+      Material Theme - used as a replacement for the Compose for Mobile
+      <code translate="no" dir="ltr">MaterialTheme</code>
+      , provides the colors, shapes and typography for building components on Wearables that implement the Wear Material Design UX guidelines out of the box.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Button</code>
+      ,
+      <code translate="no" dir="ltr">CompactButton</code>
+      and
+      <code translate="no" dir="ltr">ToggleButton</code>
+      - Button offers a single slot to take an icon, image or short text (3 characters max). Circular in shape with recommended sizes for default, large or small buttons.
+      <code translate="no" dir="ltr">CompactButton</code>
+      offers a single slot to take any content (icon, image or text) and is circular in shape with background size extra small.
+      <code translate="no" dir="ltr">CompactButton</code>
+      has optional transparent padding around the background that increases the clickable area.
+      <code translate="no" dir="ltr">ToggleButton</code>
+      is a button that offers a single slot to take any content (short text, icon or image) and has on/off (checked/unchecked) states with coloring and different icons to show whether checked or not
+    </li>
+    <li>
+      Cards - used to display information about applications such as notifications. Flexible design for different use cases with
+      <code translate="no" dir="ltr">AppCard</code>
+      and
+      <code translate="no" dir="ltr">TitleCard</code>
+      giving different layouts and support for images as either card contents or backgrounds.
+    </li>
+    <li>Chips - stadium shaped components similar to buttons, but with a larger area and multiple slots to allow for labels, secondary labels and icons. In different sizes and with support for images as backgrounds.</li>
+    <li>
+      ToggleChips and SplitToggleChips - a Chip with a checked/unchecked state and the addition of a
+      <code translate="no" dir="ltr">ToggleControl</code>
+      slot to show an icon such as a switch or radio button to show the checked state of the component. In addition, the
+      <code translate="no" dir="ltr">SplitToggleChip</code>
+      has two tappable areas, one clickable and one toggleable.
+    </li>
+    <li>CircularProgressIndicator - Wear Material progress indicator with two variations. The first expresses the proportion of completion of an ongoing task and supports a gap in the circular track between start and end angles. The second indicates indeterminate progress for an unspecified wait time.</li>
+    <li>
+      curvedText - forms part of the DSL for describing
+      <code translate="no" dir="ltr">CurvedLayouts</code>
+      , along with
+      <code translate="no" dir="ltr">curvedRow</code>
+      and
+      <code translate="no" dir="ltr">curvedColumn</code>
+      , to lay out components around circular devices. See Wear Component Foundation below for more details on
+      <code translate="no" dir="ltr">CurvedLayout</code>
+      and
+      <code translate="no" dir="ltr">CurvedModifier</code>
+      (this plays a similar role to Modifiers in the non curved world and allows for configuration of various aspects of layout, padding, gradients, etc).
+    </li>
+    <li>Dialog, Alert and Confirmation - Dialog displays a full-screen dialog, layered over any other content, and supports swipe-to-dismiss. It takes a single slot which is expected to be opinionated Wear Material dialog content such as Alert or Confirmation. Alert is opinionated dialog content with slots for icon, title and message. It has overloads for either two negative and positive buttons shown side-by-side or a slot for one or more vertically stacked chips. Confirmation is opinionated dialog content that displays a message for a given duration. It has a slot for an icon or image (that could be animated).</li>
+    <li>HorizontalPageIndicator - shows horizontal page position in a fashion appropriate to the Wearable form factor. Designed to take the full screen and show a curved indicator on round devices. Can be used with the Accompanist page viewer.</li>
+    <li>Icon - A Wear implementation of Icon which takes color and alpha from the Wear Material Theme. For a clickable icon, see Button or Chip.</li>
+    <li>Picker - displays a scrollable list of items from which to pick. By default, items will be repeated ‘infinitely’ in both directions. Can be displayed in read-only mode to hide unselected options.</li>
+    <li>PositionIndicator - shows scroll position or other positional indication in a fashion appropriate to the Wearable form factor. Designed to take the full screen and shows a curved indicator on round devices.</li>
+    <li>
+      Scaffold - implements the basic Wear Material Design visual layout structure. This component provides an API to put together several Wear Material components (such as
+      <code translate="no" dir="ltr">TimeText</code>
+      ,
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      and
+      <code translate="no" dir="ltr">Vignette</code>
+      ) constructing the screen, ensuring proper layout strategy for them and collecting necessary data so these components will work together correctly.
+    </li>
+    <li>
+      ScalingLazyColumn - a scrolling scaling/fisheye list component that forms a key part of the Wear Material Design language. Provides scaling and transparency effects to the content items.
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      is designed to be able to handle potentially large numbers of content items, which are only materialized and composed when needed.
+    </li>
+    <li>Slider - allows users to make a selection from a range of values. The range of selections is shown as a bar, which can optionally be displayed with separators.</li>
+    <li>Stepper - a full-screen component that allows users to make a selection from a range of values, using increase/decrease buttons at the top and bottom of the screen, with a slot in the middle for Text or a Chip.</li>
+    <li>
+      SwipeToDismissBox - handles the swipe-to-dismiss gesture. It takes a single slot for the background (only displayed during the swipe gesture) and the foreground content. Can optionally be combined with the androidx navigation library by using
+      <code translate="no" dir="ltr">SwipeDismissableNavHost</code>
+      (see Wear Compose Navigation library below).
+    </li>
+    <li>Text - A Wear implementation of the Compose Material Text component, taking color and alpha from the Wear Material Theme</li>
+    <li>TimeText - a component for showing Time and application status at the top of the screen. Adjusts to screen shape by using curved text on round screens.</li>
+    <li><p>Vignette - a screen treatment for use in the Scaffold that blurs top and bottom of screen when scrollable content is in use.</p></li>
+    <li><p>The following components are also included from Wear Compose Foundation:</p></li>
+    <li>
+      <p>
+        CurvedLayout - Wear Foundation
+        <code translate="no" dir="ltr">CurvedLayout</code>
+        is a layout composable that places its children in an arc, rotating them as needed. This is similar to a Row layout curved into a segment of an annulus. Note that the content of a
+        <code translate="no" dir="ltr">CurvedLayout</code>
+        is not a composable lambda - rather, it is a DSL (domain-specific language). All elements in the CurvedLayout’s DSL support an optional modifier parameter, created from
+        <code translate="no" dir="ltr">CurvedModifier</code>
+        .
+      </p>
+    </li>
+    <li>
+      <p>
+        basicCurvedText - an element in the
+        <code translate="no" dir="ltr">CurvedLayout</code>
+        DSL,
+        <code translate="no" dir="ltr">basicCurvedText</code>
+        allows developers to easily write curved text following the curvature of a circle (usually at the edge of a circular screen).
+        <code translate="no" dir="ltr">basicCurvedText</code>
+        can be only created within the
+        <code translate="no" dir="ltr">CurvedLayout</code>
+        to ensure the best experience, like being able to specify the positioning, and using
+        <code translate="no" dir="ltr">CurvedModifiers</code>
+        . Note that in most cases curvedText should be used instead, since it uses Material theming.
+      </p>
+    </li>
+    <li>
+      <p>
+        curvedComposable - wraps normal composable content so that it can be used with
+        <code translate="no" dir="ltr">CurvedLayout</code>
+        . If
+        <code translate="no" dir="ltr">curvedComposable</code>
+        has several elements inside, they will be drawn on top of each other (like a Box). To put several composables along a curve, wrap each one with
+        <code translate="no" dir="ltr">curvedComposable</code>
+        .
+      </p>
+    </li>
+    <li>
+      <p>
+        curvedRow and curvedColumn - similar to Row and Column,
+        <code translate="no" dir="ltr">curvedRow</code>
+        and
+        <code translate="no" dir="ltr">curvedColumn</code>
+        can be nested inside a
+        <code translate="no" dir="ltr">CurvedLayout</code>
+        to lay elements out as needed. For a
+        <code translate="no" dir="ltr">curvedRow</code>
+        , the angular layout direction and radial alignment may be specified. For a
+        <code translate="no" dir="ltr">curvedColumn</code>
+        , the angular alignment and radial direction may be specified.
+      </p>
+    </li>
+    <li>
+      <p>
+        CurvedModifier - all curved components accept a modifier parameter that can be created using
+        <code translate="no" dir="ltr">CurvedModifier</code>
+        : background, size, weight and padding are supported.
+      </p>
+    </li>
+    <li><p>The following component is also included from Wear Compose Navigation:</p></li>
+    <li>
+      <p>
+        SwipeDismissableNavHost - provides a place in the Compose hierarchy for self-contained navigation to occur, with backwards navigation provided by a swipe gesture. Content is displayed within a
+        <code translate="no" dir="ltr">SwipeToDismissBox</code>
+        , showing the current navigation level. During a swipe-to-dismiss gesture, the previous navigation level (if any) is shown in the background.
+      </p>
+    </li>
+    <li><p>See previous release notes for the various Alpha releases for more details of what has been delivered.</p></li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">CurvedModifier.padding*</code>
+      functions. These are used to specify additional space to be added around a curved component. (
+      <a href="https://android-review.googlesource.com/#/q/I4dbb48de80390332def76f830b1802167bd8df15">I4dbb4</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">CompositionLocal</code>
+      internal class (
+      <a href="https://android-review.googlesource.com/#/q/I424907fb374b6195dece35c591cc49665e7130c0">I42490</a>
+      )
+    </li>
+    <li>
+      We have added constant values for
+      <code translate="no" dir="ltr">Button</code>
+      ,
+      <code translate="no" dir="ltr">CompactButton</code>
+      and
+      <code translate="no" dir="ltr">ToggleButton</code>
+      icon sizes, as guidance (
+      <a href="https://android-review.googlesource.com/#/q/I57cabdbbf3eb5fcfd2aabf2a4a9e78a0cf9dcf53">I57cab</a>
+      )
+    </li>
+    <li>
+      Add enabled parameter to
+      <code translate="no" dir="ltr">AppCard</code>
+      and
+      <code translate="no" dir="ltr">TitleCard</code>
+      . Now they have a similar API to
+      <code translate="no" dir="ltr">androidx.compose.material</code>
+      Cards. When the parameter is set to false, the card will not be clickable. (
+      <a href="https://android-review.googlesource.com/#/q/Idc48d9088b2f285ba2ecf541ec126f3a79ba7496">Idc48d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/228869805">b/228869805</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Stepper now disables the decrease and increase buttons when the lower/upper limits have been reached (and applies ContentAlpha.disabled to the iconColor) (
+      <a href="https://android-review.googlesource.com/#/q/I4be9fb53f859e20b4da89b2040f46d9bcf0e856e">I4be9f</a>
+      )
+    </li>
+    <li>
+      We have added 1dp padding around Picker contents when drawn with a gradient to prevent jitter on text seen when swiping. (
+      <a href="https://android-review.googlesource.com/#/q/I0b7b946c55a3553bd869a2d2add2958fd909a591">I0b7b9</a>
+      )
+    </li>
+    <li>
+      Add screenshot tests for
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I5e8bc672f7a17e330b5d57f25fd4efc998a87632">I5e8bc</a>
+      )
+    </li>
+    <li>
+      Add more tests for
+      <code translate="no" dir="ltr">AppCard</code>
+      and
+      <code translate="no" dir="ltr">TitleCard</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I85391f610a7ff821796a10cf94045d0c009c2803">I85391</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/228869805">b/228869805</a>
+      )
+    </li>
+  </ul>

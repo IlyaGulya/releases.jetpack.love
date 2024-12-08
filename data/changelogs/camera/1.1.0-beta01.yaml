@@ -1,0 +1,58 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.1.0-beta01
+releaseDate: 2022-01-26
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-beta01" data-text="Version 1.1.0-beta01" tabindex="-1">Version 1.1.0-beta01</h3>
+  <p>January 26, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.1.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f06551837636599d191fd581d56b68225440ed82..d133838a0a0efc58107ebeca386c34d70789865b/camera">Version 1.1.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>From 1.1.0-beta01, all CameraX libraries will align the same version number. This will help developers track versions much easier and reduce the complexity of large version compatibility matrix.</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Camera2CameraControl.clearCaptureRequestOptions</code>
+      for clearing the existing capture request options. (
+      <a href="https://android-review.googlesource.com/#/q/Ifa07da1e4417c4bf9a4f6c64ab3d954be33ccfc9">Ifa07d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed the crash when recording the video on some pre-Android O(API 26) devices. (
+      <a href="https://android-review.googlesource.com/#/q/I88fdff4a6c3bf756378c66f08564e820110f74a5">I88fdf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/212328261">b/212328261</a>
+      )
+    </li>
+    <li>
+      Fixed the incorrect AF region issue when using
+      <code translate="no" dir="ltr">cameraControl#startFocusAndMetering()</code>
+      on front lens-facing camera in Samsung devices (
+      <a href="https://android-review.googlesource.com/#/q/Ifbf590152fa5740a2ca4ef5eee32ba424bc70f3e">Ifbf59</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/210548792">b/210548792</a>
+      )
+    </li>
+    <li>
+      Use torch as flash on Pixel 3a/Pixel 3a XL to improve the speed and the captured image quality in dark (
+      <a href="https://android-review.googlesource.com/#/q/Ib12b6f948e545a1b33862e14db8bb4d989032fa6">Ib12b6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/211474332">b/211474332</a>
+      )
+    </li>
+    <li>
+      Enabled applications to resume the camera when camera is interrupted by other higher priority application in the multi-window mode and the focus changes back to the application. Please note that there could be some latency(1 second to 10 seconds or more) between focus changes and camera reopened due to some framework issue. (
+      <a href="https://android-review.googlesource.com/#/q/I4d0929f80b644387b8ba1ec3ec8b8c792a8a2481">I4d092</a>
+      )
+    </li>
+  </ul>

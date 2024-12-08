@@ -1,0 +1,80 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.2.0
+releaseDate: 2020-01-22
+#language=html
+changelogHtml: |
+  <h3 id="2.2.0" data-text="Version 2.2.0" tabindex="-1">Version 2.2.0</h3>
+  <p>January 22, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.2.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/8e4cae9ad8deb81db632012ff7b4980108511947..6d46ea5e549b1ec0d0e48ff6b6e63eb6d34c242c/lifecycle">Version 2.2.0 contains these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 2.1.0</strong></p>
+  <ul>
+    <li>
+      <strong>Lifecycle Coroutine Integration</strong>
+      : The new
+      <code translate="no" dir="ltr">lifecycle-runtime-ktx</code>
+      artifact adds integration between Lifecycle and Kotlin coroutines. The
+      <code translate="no" dir="ltr">lifecycle-livedata-ktx</code>
+      has also been expanded to take advantage of coroutines. See
+      <a href="/topic/libraries/architecture/coroutines">Use Kotlin coroutines with Architecture Components</a>
+      for more details.
+    </li>
+    <li>
+      <strong>
+        <code translate="no" dir="ltr">ViewModelProviders.of()</code>
+        deprecation
+      </strong>
+      :
+      <code translate="no" dir="ltr">ViewModelProviders.of()</code>
+      has been deprecated. You can pass a
+      <code translate="no" dir="ltr">Fragment</code>
+      or
+      <code translate="no" dir="ltr">FragmentActivity</code>
+      to the new
+      <code translate="no" dir="ltr">ViewModelProvider(ViewModelStoreOwner)</code>
+      constructor to achieve the same functionality when using
+      <a href="/jetpack/androidx/releases/fragment#1.2.0">
+        Fragment
+        <code translate="no" dir="ltr">1.2.0</code>
+      </a>
+      .
+    </li>
+    <li>
+      <strong>
+        <code translate="no" dir="ltr">lifecycle-extensions</code>
+        Artifact Deprecation
+      </strong>
+      : With the above deprecation of
+      <code translate="no" dir="ltr">ViewModelProviders.of()</code>
+      , this release marks the deprecation of the last API in
+      <code translate="no" dir="ltr">lifecycle-extensions</code>
+      and this artifact should now be considered deprecated in its entirety. We strongly recommend depending on the specific Lifecycle artifacts you need (such as
+      <code translate="no" dir="ltr">lifecycle-service</code>
+      if you’re using
+      <code translate="no" dir="ltr">LifecycleService</code>
+      and
+      <code translate="no" dir="ltr">lifecycle-process</code>
+      if you’re using
+      <code translate="no" dir="ltr">ProcessLifecycleOwner</code>
+      ) rather than
+      <code translate="no" dir="ltr">lifecycle-extensions</code>
+      as there will not be a future
+      <code translate="no" dir="ltr">2.3.0</code>
+      release of
+      <code translate="no" dir="ltr">lifecycle-extensions</code>
+      .
+    </li>
+    <li>
+      <strong>Gradle Incremental Annotation Processor</strong>
+      : Lifecycle's annotation processor is incremental by default. If your app is written in the Java 8 programming language you can use
+      <code translate="no" dir="ltr">DefautLifecycleObserver</code>
+      instead; and if it's written in the Java 7 programming language you can use
+      <code translate="no" dir="ltr">LifecycleEventObserver</code>
+      .
+    </li>
+  </ul>

@@ -1,0 +1,91 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.0.0-alpha02
+releaseDate: 2020-09-02
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha02" data-text="Version 1.0.0-alpha02" tabindex="-1">Version 1.0.0-alpha02</h3>
+  <p>September 2, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.0.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/96eb302ee1740ba656c90c9fb27df3723a1a89c1..31022a2dda22705843be1199c786552a6f9f875d/compose/ui">Version 1.0.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      remove callback to notify Owner when layoutnode bounds change. (
+      <a href="https://android-review.googlesource.com/#/q/If654ebfbf711c9a7f6bcddb28673e4b6f786d05b">If654e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/166106882">b/166106882</a>
+      )
+    </li>
+    <li>
+      Added support for filltype parameters on vector graphics paths to support cutouts of shapes according to evenOdd or NonZero path fill rules. (
+      <a href="https://android-review.googlesource.com/#/q/I43dd21d2d08f44979107b46d4f644ac5aef19f69">I43dd2</a>
+      )
+    </li>
+    <li>
+      Uptime and Velocity are now inline classes (
+      <a href="https://android-review.googlesource.com/#/q/I48f4ad4311b0e05694a0ad0f008820e9e6102098">I48f4a</a>
+      )
+    </li>
+    <li>
+      Duration is now an inline class (
+      <a href="https://android-review.googlesource.com/#/q/I565eb86145c866c18ceb35fc6b4065aba0ceb25f">I565eb</a>
+      )
+    </li>
+    <li>
+      Add a callback to notify Owner when layoutnode bounds change. (
+      <a href="https://android-review.googlesource.com/#/q/Ic40b3c0c68a4ae5eb06ec2b9bd207037dff2c505">Ic40b3</a>
+      )
+    </li>
+    <li>
+      <p>Fixed issue where Rect function constructor with Offset and radius would create the Rect in the order of left, right, top, bottom instead of left, top, right, bottom.</p>
+
+      <p>Removed deprecated companion methods on Rect in favor of function constructors.</p>
+
+      <p>
+        Added tests to verify methods in Rect.kt (
+        <a href="https://android-review.googlesource.com/#/q/I0846006bd0ec7f1a0effd90490c93002b42e132b">I08460</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/165822356">b/165822356</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Added MutableRect, a rectangle that can be modified. (
+      <a href="https://android-review.googlesource.com/#/q/I71bd20996a79aa72f33a1287e57e18d94c2cc504">I71bd2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/160140398">b/160140398</a>
+      )
+    </li>
+    <li>
+      Matrix4 was replaced with Matrix. All other parts of vectormath package have been removed. (
+      <a href="https://android-review.googlesource.com/#/q/Ibd66522490b861d85a7539176a4f105e20c31a66">Ibd665</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/160140398">b/160140398</a>
+      )
+    </li>
+    <li>
+      <p>The calling convention for composable functions has changed. This is a binary breaking change. All libraries must be recompiled to work with this version of the compose compiler plugin.</p>
+
+      <p>
+        This change does not create a source level breaking change as the only APIs that have changed are compiler APIs that have an explicit opt in. (
+        <a href="https://android-review.googlesource.com/#/q/I7afd2d7b19652ec92b8d6d1d1e92f0745968aa66">I7afd2</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/158123185">b/158123185</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Fixed crash that could occur when dispatch to a PointerInputFilter could cause the PointerInputFilter to be synchronously removed. (
+        <a href="https://android-review.googlesource.com/#/q/I58f253629761b39591e5fdf5b8553d352287d11c">I58f25</a>
+        )
+      </p>
+    </li>
+  </ul>

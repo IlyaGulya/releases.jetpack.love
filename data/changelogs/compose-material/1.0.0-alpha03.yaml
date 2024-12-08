@@ -1,0 +1,152 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 1.0.0-alpha03
+releaseDate: 2020-09-16
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha03" data-text="Version 1.0.0-alpha03" tabindex="-1">Version 1.0.0-alpha03</h3>
+  <p>September 16, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material:1.0.0-alpha03</code>
+    ,
+    <code translate="no" dir="ltr">androidx.compose.material:material-icons-core:1.0.0-alpha03</code>
+    , and
+    <code translate="no" dir="ltr">androidx.compose.material:material-icons-extended:1.0.0-alpha03</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/31022a2dda22705843be1199c786552a6f9f875d..18a5639262f8504db530176550e338a5d0e2e044/compose/material">Version 1.0.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Renames
+      <code translate="no" dir="ltr">BottomNavigationItem</code>
+      's
+      <code translate="no" dir="ltr">onSelect</code>
+      parameter to
+      <code translate="no" dir="ltr">onClick</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I919251069ab307d1ed5c1c3fbf5a01bf77a85047">I91925</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161809324">b/161809324</a>
+      )
+    </li>
+    <li>
+      Adds InteractionState parameter to BottomNavigationItem and Tab, allowing hoisting this state and adjusting how the component appears in different states. (
+      <a href="https://android-review.googlesource.com/#/q/Ia3e9ee1699a7d6eda38f4e62ce5a11d4ef616652">Ia3e9e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/168025711">b/168025711</a>
+      )
+    </li>
+    <li>
+      Removes
+      <code translate="no" dir="ltr">disabledBackgroundColor</code>
+      and
+      <code translate="no" dir="ltr">disabledContentColor</code>
+      parameters from buttons. You should instead use the new default color functions inside ButtonConstants. If you are already setting contentColor / backgroundColor explicitly, you should instead use these default functions and customize some / all of the parameters to avoid overwriting the color for both enabled / disabled states. (
+      <a href="https://android-review.googlesource.com/#/q/If9b521ce01fe83ffc833fb340815120692abdd37">If9b52</a>
+      )
+    </li>
+    <li>
+      Textfield's background color does not implicitly apply transparency alpha anymore. Instead, any color provided through the backgroundColor parameter will be applied directly. (
+      <a href="https://android-review.googlesource.com/#/q/Iecee9f535b699acf684948fa99ec64217ea3f249">Iecee9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/167951441">b/167951441</a>
+      )
+    </li>
+    <li>
+      InnerPadding was renamed to PaddingValues. (
+      <a href="https://android-review.googlesource.com/#/q/I195f122095b02ee49bf2ee0bc7f15f0339ca027f">I195f1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/167389171">b/167389171</a>
+      )
+    </li>
+    <li>
+      The params
+      <code translate="no" dir="ltr">resistanceFactorAtMin</code>
+      and
+      <code translate="no" dir="ltr">resistanceFactorAtMax</code>
+      in
+      <code translate="no" dir="ltr">Modifier.swipeable</code>
+      were replaced with a single resistance param. A new
+      <code translate="no" dir="ltr">defaultResistanceConfig</code>
+      method was added in
+      <code translate="no" dir="ltr">SwipeableConstants</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I54238306c8356145c8d03507ff20d79cfdab5707">I54238</a>
+      )
+    </li>
+    <li>
+      Adds animated stateful elevation support for Button and FloatingActionButton. The elevation now animates between default and pressed states. To customize the elevation between states, please use
+      <code translate="no" dir="ltr">ButtonConstants.defaultAnimatedElevation()</code>
+      and
+      <code translate="no" dir="ltr">FloatingActionButtonConstants.defaultAnimatedElevation()</code>
+      instead of setting a flat Dp value in all cases. (
+      <a href="https://android-review.googlesource.com/#/q/I37925f16f21bc8d9e35732e003b8c535f3d284b3">I37925</a>
+      )
+    </li>
+    <li>
+      Label became an optional parameter inside TextField and OutlinedTextField (
+      <a href="https://android-review.googlesource.com/#/q/I267f6ada96a3371aaa99bdaa4007229ab7efddab">I267f6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/162234081">b/162234081</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Global testing functions such as
+      <code translate="no" dir="ltr">onNode</code>
+      or
+      <code translate="no" dir="ltr">waitForIdle</code>
+      are now deprecated, please migrate to their new counterparts that are defined on ComposeTestRule (
+      <a href="https://android-review.googlesource.com/#/q/I7f45a41128160a0e67ad07e32a1ad49774602a97">I7f45a</a>
+      )
+    </li>
+    <li>
+      DpConstraints and APIs using it were deprecated. (
+      <a href="https://android-review.googlesource.com/#/q/I90cdbe407ae8dd69badd26cd02bbb784ba10ba6a">I90cdb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/167389835">b/167389835</a>
+      )
+    </li>
+    <li>
+      The parameters minWidth and maxWidth of widthIn were renamed to min and max. Similarly for preferredWidthIn, heightIn, preferredHeightIn. (
+      <a href="https://android-review.googlesource.com/#/q/I0e5e1405083224e747c54afcf7c5db5ec7472773">I0e5e1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/167389544">b/167389544</a>
+      )
+    </li>
+    <li>
+      Remove scroll forward/backward semantics actions. Added steps in AccessibilityRangeInfo. (
+      <a href="https://android-review.googlesource.com/#/q/Ia47b0be6d058f36b07d2141ec33aca634e63b544">Ia47b0</a>
+      )
+    </li>
+    <li>
+      Usages of gravity were consistently renamed to align or alignment in layout APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I2421a4d640a7086079739cd0e569aef70bb48577">I2421a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/164077038">b/164077038</a>
+      )
+    </li>
+    <li>
+      Added onNode and other global methods on ComposeTestRule as the current global ones are going to be deprecated. (
+      <a href="https://android-review.googlesource.com/#/q/Ieae36a4b67a3190759e7284a638f8b755c06c1ec">Ieae36</a>
+      )
+    </li>
+    <li>
+      Moved
+      <code translate="no" dir="ltr">createAndroidComposeRule</code>
+      and
+      <code translate="no" dir="ltr">AndroidInputDispatcher</code>
+      from
+      <code translate="no" dir="ltr">androidx.ui.test.android</code>
+      to
+      <code translate="no" dir="ltr">androidx.ui.test</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Idef08e5b796ba14140eafd054c8aa898a3d38feb">Idef08</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/164060572">b/164060572</a>
+      )
+    </li>
+  </ul>

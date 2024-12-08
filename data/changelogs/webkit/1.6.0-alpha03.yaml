@@ -1,0 +1,60 @@
+libraryId: webkit
+groupId: androidx.webkit
+version: 1.6.0-alpha03
+releaseDate: 2022-11-09
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-alpha03" data-text="Version 1.6.0-alpha03" tabindex="-1">Version 1.6.0-alpha03</h3>
+  <p>November 9, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.webkit:webkit:1.6.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/548c8ac2570ae6cf15798fea1380491f7d93796b..a1e318590b217ecfce1b2de17eed2f18b6a680bb/webkit/webkit">Version 1.6.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">ProcessGlobalConfig</code>
+      class enabling users to set process global config before loading
+      <code translate="no" dir="ltr">WebView</code>
+      .
+      <code translate="no" dir="ltr">WebView</code>
+      has some process-global configuration parameters that cannot be changed once
+      <code translate="no" dir="ltr">WebView</code>
+      has been loaded (e.g. the
+      <code translate="no" dir="ltr">WebView</code>
+      data directory). This class allows apps to set these parameters. The configuration should be set up and applied as early as possible during application startup, to ensure that it happens before any other thread can call a method that loads
+      <code translate="no" dir="ltr">WebView</code>
+      into the process. (
+      <a href="https://android-review.googlesource.com/#/q/I7c0e0e42e91efe45f16e66afead7b9e52240bfe4">I7c0e0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/250553687">b/250553687</a>
+      )
+    </li>
+    <li>
+      Adding new API to let applications explicitly send the app package name in the X-Requested-With header to allowlisted origins. The header has traditionally been sent on every request from
+      <code translate="no" dir="ltr">WebView</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0adfea18e5c9b60405af2d62c61786b09c37ffb9">I0adfe</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/226552535">b/226552535</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">WebSettingsCompat#setAlgorithmicDarkeningAllowed</code>
+      API is supported on all Android versions in
+      <code translate="no" dir="ltr">WebView</code>
+      version 105 and later. Previous versions of
+      <code translate="no" dir="ltr">WebView</code>
+      only supported the API on Android Q and later. As a result, this api is no longer marked
+      <code translate="no" dir="ltr">@RequiresApi(Build.VERSION_CODES.Q)</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3ac1dd6b5cb464d5b40fddcccd465ad0ba731452">I3ac1d</a>
+      )
+    </li>
+  </ul>

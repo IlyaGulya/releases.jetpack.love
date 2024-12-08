@@ -1,0 +1,128 @@
+libraryId: xr-arcore
+groupId: androidx.xr
+version: 1.0.0-alpha01
+releaseDate: 2024-12-12
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha01" data-text="Version 1.0.0-alpha01" tabindex="-1">Version 1.0.0-alpha01</h3>
+  <p>December 12, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.arcore:arcore-* 1.0.0-alpha01</code>
+    is released.
+  </p>
+  <p><strong>Features of initial release</strong></p>
+  <p>
+    Inspired by the existing ARCore library, the ARCore for Jetpack XR library provides capabilities for blending digital content with the real world. This library includes motion tracking, persistent anchors, hit testing, and plane identification with semantic labeling (for example, floor, walls, and tabletops). View the
+    <a href="/develop/xr/jetpack-xr-sdk/work-with-arcore">developer guide</a>
+    to learn more about working with ARCore for Jetpack XR.
+  </p>
+  <ul>
+    <li>
+      <p>
+        <a href="/reference/kotlin/androidx/xr/runtime/Session"><code translate="no" dir="ltr">Session</code></a>
+        : ARCore for Jetpack XR uses the Jetpack XR Runtime under-the-hood to power its functionality. You will use a Session to interact with most ARCore for Jetpack XR APIs, so please take a look at its documentation.
+      </p>
+    </li>
+    <li>
+      <p>
+        <a href="/reference/kotlin/androidx/xr/arcore/Plane"><code translate="no" dir="ltr">Plane</code></a>
+        : Use planes to understand the world around you. Each plane has a
+        <a href="/reference/kotlin/androidx/xr/arcore/Plane.Label"><code translate="no" dir="ltr">Label</code></a>
+        that describes it semantically. You can use
+        <a href="/reference/kotlin/androidx/xr/arcore/Plane#subscribe(androidx.xr.runtime.Session)"><code translate="no" dir="ltr">subscribe</code></a>
+        to be notified about the latest detected planes or
+        <a href="/reference/kotlin/androidx/xr/arcore/Plane#state()"><code translate="no" dir="ltr">state</code></a>
+        to be notified about the changes to a specific plane.
+      </p>
+    </li>
+    <li>
+      <p>
+        <a href="/reference/kotlin/androidx/xr/arcore/Anchor"><code translate="no" dir="ltr">Anchor</code></a>
+        : A link between a virtual object and a real world location. Anchors can be attached to a specific location in space (using
+        <a href="/reference/kotlin/androidx/xr/arcore/Anchor#create(androidx.xr.runtime.Session,androidx.xr.runtime.math.Pose)"><code translate="no" dir="ltr">create</code></a>
+        ) or a
+        <a href="/reference/kotlin/androidx/xr/arcore/Trackable"><code translate="no" dir="ltr">Trackable</code></a>
+        (using
+        <a href="/reference/kotlin/androidx/xr/arcore/Trackable#createAnchor(androidx.xr.runtime.math.Pose)"><code translate="no" dir="ltr">createAnchor</code></a>
+        ).
+      </p>
+
+      <ul>
+        <li>
+          <p>
+            Anchors can be reused across sessions. You can use
+            <a href="/reference/kotlin/androidx/xr/arcore/Anchor#persist()"><code translate="no" dir="ltr">persist</code></a>
+            to store them,
+            <a href="/reference/kotlin/androidx/xr/arcore/Anchor#getPersistedAnchorUuids(androidx.xr.runtime.Session)"><code translate="no" dir="ltr">getPersistedAnchorUuids</code></a>
+            to enumerate them and
+            <a href="/reference/kotlin/androidx/xr/arcore/Anchor#load(androidx.xr.runtime.Session,java.util.UUID)"><code translate="no" dir="ltr">load</code></a>
+            to retrieve them. Make sure that you
+            <a href="/reference/kotlin/androidx/xr/arcore/Anchor#unpersist(androidx.xr.runtime.Session,java.util.UUID)"><code translate="no" dir="ltr">unpersist</code></a>
+            them once they are no longer in use.
+          </p>
+        </li>
+        <li>
+          <p>
+            Anchors are interoperable between ARCore for Jetpack XR and Jetpack SceneCore. You can create an
+            <a href="/reference/kotlin/androidx/xr/scenecore/AnchorEntity"><code translate="no" dir="ltr">AnchorEntity</code></a>
+            using an anchor or, if you have an existing AnchorEntity, you can use
+            <a href="/reference/kotlin/androidx/xr/scenecore/AnchorEntity#getAnchor(androidx.xr.runtime.Session)"><code translate="no" dir="ltr">getAnchor</code></a>
+            to retrieve its backing anchor.
+          </p>
+        </li>
+        <li>
+          <p>
+            Offer natural user interactions using
+            <a href="/reference/kotlin/androidx/xr/arcore/package-summary#hitTest(androidx.xr.runtime.Session,androidx.xr.runtime.math.Ray)"><code translate="no" dir="ltr">hitTest</code></a>
+            . A hitTest uses a
+            <a href="/reference/kotlin/androidx/xr/runtime/math/Ray"><code translate="no" dir="ltr">Ray</code></a>
+            to determine which contents it intersects and to create an
+            <a href="/reference/kotlin/androidx/xr/arcore/Anchor"><code translate="no" dir="ltr">Anchor</code></a>
+            from that location. Consider conducting a hitTest from an
+            <a href="/reference/kotlin/androidx/xr/scenecore/InputEvent"><code translate="no" dir="ltr">InputEvent</code></a>
+            .
+          </p>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      <p>
+        There might be a delay between calling
+        <a href="/reference/kotlin/androidx/xr/arcore/Anchor#unpersist(androidx.xr.runtime.Session,java.util.UUID)"><code translate="no" dir="ltr">unpersist</code></a>
+        and its UUID being removed from the results returned by
+        <a href="/reference/kotlin/androidx/xr/arcore/Anchor#getPersistedAnchorUuids(androidx.xr.runtime.Session)"><code translate="no" dir="ltr">getPersistedAnchorUuids</code></a>
+        .
+      </p>
+    </li>
+    <li>
+      <p>
+        <a href="/reference/kotlin/androidx/xr/arcore/Anchor#create(androidx.xr.runtime.Session,androidx.xr.runtime.math.Pose)"><code translate="no" dir="ltr">create</code></a>
+        will not validate that the system has enough resources to return new anchors. Creating an excessive amount of anchors might lead to a crash.
+      </p>
+    </li>
+    <li><p>Persisting an Anchor that was previously persisted and unpersisted is not currently supported.</p></li>
+    <li>
+      <p>
+        Usage in the emulator is supported, but the behavior might not be as stable as when running on an actual device. Particularly, calls to
+        <a href="/reference/kotlin/androidx/xr/arcore/Anchor#create(androidx.xr.runtime.Session,androidx.xr.runtime.math.Pose)"><code translate="no" dir="ltr">create</code></a>
+        might fail with a native code error and immediately terminate the activity.
+      </p>
+    </li>
+    <li>
+      <p>
+        In certain circumstances, a
+        <code translate="no" dir="ltr">RuntimeException</code>
+        might be erroneously thrown when calling
+        <a href="/reference/kotlin/androidx/xr/arcore/Anchor#persist()"><code translate="no" dir="ltr">persist</code></a>
+        with the message “Anchor was not persisted”. In those circumstances, the function would still succeed and the anchor will be persisted. We recommend wrapping the call to
+        <code translate="no" dir="ltr">persist</code>
+        with a
+        <code translate="no" dir="ltr">try</code>
+        block as a workaround.
+      </p>
+    </li>
+  </ul>
+  <devsite-hats-survey class="nocontent" hats-id="VxqvKSur40kxBYCLVTd0SSGykbno" listnr-id="5207477"></devsite-hats-survey>

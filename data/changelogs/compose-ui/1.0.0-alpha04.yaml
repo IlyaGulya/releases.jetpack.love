@@ -1,0 +1,179 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.0.0-alpha04
+releaseDate: 2020-10-01
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha04" data-text="Version 1.0.0-alpha04" tabindex="-1">Version 1.0.0-alpha04</h3>
+  <p>October 1, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.0.0-alpha04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/18a5639262f8504db530176550e338a5d0e2e044..f5a2c7477391539d8bc9f65a8f0db1e8a7bf2cf5/compose/ui">Version 1.0.0-alpha04 contains these commits.</a>
+  </p>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>Compose Version 1.0.0-alpha04 is only compatible with Android Studio 4.2 Canary 13 and later.</span>
+  </aside>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added OwnerScope to allow collection of layout and drawing observation scopes once they are no longer valid. (
+      <a href="https://android-review.googlesource.com/#/q/Ic4cf8889e486e175e0f2405f1a0dc7a5a085ad99">Ic4cf8</a>
+      )
+    </li>
+    <li>
+      Added OnRemeasuredModifier and onSizeChanged() to receive a callback when content layout has been remeasured and the size has changed, respectively. (
+      <a href="https://android-review.googlesource.com/#/q/I657cf033de811e9279a2b2079933ca0bd89e5e60">I657cf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/154108792">b/154108792</a>
+      )
+    </li>
+    <li>
+      Add long click semantics action (
+      <a href="https://android-review.googlesource.com/#/q/I6281b383328d549b30b3ef915e717abbbb28ddaa">I6281b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/156468846">b/156468846</a>
+      )
+    </li>
+    <li>
+      Made FocusManager private. (
+      <a href="https://android-review.googlesource.com/#/q/I7872fd59410800f15727c3220796af1d270d5a7e">I7872f</a>
+      )
+    </li>
+    <li>
+      <p>Updated implementation to create a dedicated DrawCacheModifier implementation instead of adding optional properties on DrawModifier.</p>
+
+      <p>
+        Updated documentation for various methods (
+        <a href="https://android-review.googlesource.com/#/q/Ibd16690b8519362fc74659e2c85c6decfb0dd431">Ibd166</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Make TextRange inline to avoid object creation. (
+        <a href="https://android-review.googlesource.com/#/q/Id034bee391b277905590a94dbb7198739ad1e848">Id034b</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        PlacementScope#parentWidth and PlacementScope#parentLayoutDirection can no longer be read from the placement block of a custom layout. (
+        <a href="https://android-review.googlesource.com/#/q/Icc1ae00d774147c5fa7006c4bb408c99c7731690">Icc1ae</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/168295623">b/168295623</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        add AccessibilityScrollState to semantics properties. (
+        <a href="https://android-review.googlesource.com/#/q/Ifeda983f0f6b8a2a92dea82c1a594fa5607f7cc3">Ifeda9</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Introduced Modifier.drawWithCache to support creating a drawing object that conditionally recreates dependencies that depend on size/state information (
+        <a href="https://android-review.googlesource.com/#/q/I376dc757683caac4f330d2d525cf3d5ce2e531fc">I376dc</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        ParagraphConstraints is removed. Width is directly passed to Paragraph now. (
+        <a href="https://android-review.googlesource.com/#/q/Ica712c3f10be8ab7e684c108b2339119f50eafb7">Ica712</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Updated many Graphics APIs
+      <ul>
+        <li>Updated scale and rotation transformation APIs to consume a single Offset parameter to represent the pivot coordinate instead of separate float parameters for the x/y coordinates in DrawScope and DrawTransform</li>
+        <li>Removed Rect.expandToInclude and Rect.join methods</li>
+        <li>Updated Radius documentation to say oval in addition to elliptical</li>
+        <li>Added documentation to indicate the public constructor for the inline Radius class is not to be called directly but instead Radius objects should be instantiated through their function constructors</li>
+        <li>Removed RoundRect APIs to query topRight, bottomRight, bottomCenter, etc.</li>
+        <li>Deprecated Rect.shift in favor of Rect.translate</li>
+        <li>Removed RoundRect.grow and Rect.shrink APIs</li>
+        <li>Renamed RoundRect.outerRect to Rect.boundingRect</li>
+        <li>Removed RoundRect.middleRect/tallMiddleRect/wideMiddleRect and Rect.isStadium methods</li>
+        <li>Renamed RoundRect.longestSide to RoundRect.maxDimension</li>
+        <li>Renamed RoundRect.shortestSide to RoundRect.minDimension</li>
+        <li>Changed RoundRect.center to be a property instead of a function</li>
+        <li>Updated RoundRect constructor to consume Radius properties instead of individual parameters for x/y radius values</li>
+        <li>Removed Size APIs that assumed it was a Rectangle with origin at 0,0</li>
+        <li>Added a destructing API to Radius</li>
+        <li>Migrated various RoundRect extension functions to be properties instead</li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I8f5c738d1629b2cabd1b6e9fc8e8241dd06cfe2c">I8f5c7</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/168762961">b/168762961</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      foundation.Box was deprecated. Please use foundation.layout.Box instead. (
+      <a href="https://android-review.googlesource.com/#/q/Ie59501cfd404c6bce53afee2d14dd95f1520d02c">Ie5950</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/167680279">b/167680279</a>
+      )
+    </li>
+    <li>
+      Stack was renamed to Box. The previously existing Box will be deprecated in favor of the new Box in compose.foundation.layout. The behavior of the new Box is to stack children one on top of another when it has multiple children - this is different from the previous Box, which was behaving similar to a Column. (
+      <a href="https://android-review.googlesource.com/#/q/I94893bca003d7826c6a5b3c05ac3878d2f6bf953">I94893</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/167680279">b/167680279</a>
+      )
+    </li>
+    <li>
+      Box decoration parameters have been deprecated. If you want to have decorations/padding on your box, use Modifiers instead (Modifier.background, Modifier.border, Modifier.padding) (
+      <a href="https://android-review.googlesource.com/#/q/Ibae92e99d0dd8984e666ece6cd6ec6f26f6ef672">Ibae92</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/167680279">b/167680279</a>
+      )
+    </li>
+    <li>
+      Updated many Graphics APIs
+      <ul>
+        <li>Updated DrawScope APIs with scoped transformation methods to indicate that the transformation is only applied within the callback and removed after the callback is invoked</li>
+        <li>Updated clipPath documentation to refer to Path instead of rounded rectangle</li>
+        <li>Fixed spacing in documentation for right parameter in clipPath</li>
+        <li>Renamed DrawScope.drawCanvas to drawIntoCanvas and removed size parameter</li>
+        <li>Renamed dx/dy parameters in inset method to horizontal and vertical</li>
+        <li>Added inset overload that provides the same inset value to all 4 bounds</li>
+        <li>Removed documentation on inset method indicating that inset would be applied to all 4 sides</li>
+        <li>Updated documentation for Rect class</li>
+        <li>Updated comments on Rect parameters to match kdoc style</li>
+        <li>Removed Rect.join and Rect.expandToInclude</li>
+        <li>Created overload for Rect.translate(offset) and deprecated Rect.shift</li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/If086a1610e1bff12482897852d45cba075dcb4a1">If086a</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/167737376">b/167737376</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Annotated rootAnimationClockFactory, transitionsEnabled, blinkingCursorEnabled and textInputServiceFactory with @VisibleForTesting, make them internal API and hide their kdoc (
+      <a href="https://android-review.googlesource.com/#/q/I554ebefac18b216d51e387e5fd1c3a735fde9500">I554eb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/168308412">b/168308412</a>
+      )
+    </li>
+    <li>
+      Remove SelectionContainer from the Top to disable default selection and avoid unexpected behavior. One can specifically use a SelectionContainer to wrap the content that needs to be selectable instead. (
+      <a href="https://android-review.googlesource.com/#/q/I8dfe067d1a56ddb95c8fdd7fa2678e8ac43bba6b">I8dfe0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/158459594">b/158459594</a>
+      )
+    </li>
+  </ul>

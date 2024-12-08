@@ -1,0 +1,72 @@
+libraryId: constraintlayout
+groupId: androidx.constraintlayout
+version: 1.1.0-alpha14
+releaseDate: 2024-08-07
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha14" data-text="Version 1.1.0-alpha14" tabindex="-1">Version 1.1.0-alpha14</h3>
+  <p>August 7, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha14</code>
+    ,
+    <code translate="no" dir="ltr">androidx.constraintlayout:constraintlayout-compose-android:1.1.0-alpha14</code>
+    , and
+    <code translate="no" dir="ltr">androidx.constraintlayout:constraintlayout-core:1.1.0-alpha14</code>
+    are released. Version 1.1.0-alpha14 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1f7407d4293384a1b91bc142880e3525048b3443..9130b719318a69f2f3eaf82c32b131232fd721cb/constraintlayout">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Flags are now provided individually through the companion object and may be combined with the
+      <code translate="no" dir="ltr">or</code>
+      operator. (
+      <a href="https://android-review.googlesource.com/#/q/I9df5318aefd42496f9dd15ba1ec1b3376cf958ec">I9df53</a>
+      )
+    </li>
+    <li>
+      Simplified
+      <code translate="no" dir="ltr">createRow</code>
+      &amp;
+      <code translate="no" dir="ltr">createColumn</code>
+      helpers. Improved
+      <code translate="no" dir="ltr">createGrid</code>
+      parameter names and documentation for clarification. (
+      <a href="https://android-review.googlesource.com/#/q/Iebc92f65e5986d57d5c592dd82fad34aef7b3ee4">Iebc92</a>
+      )
+    </li>
+    <li>
+      Simplified
+      <code translate="no" dir="ltr">animateChanges</code>
+      API in
+      <code translate="no" dir="ltr">ConstraintLayout</code>
+      to only need a non-null
+      <code translate="no" dir="ltr">AnimationSpec</code>
+      .
+      <code translate="no" dir="ltr">onIncomingConstraints</code>
+      in
+      <code translate="no" dir="ltr">InvalidationStrategy</code>
+      is now a regular lambda.
+      <code translate="no" dir="ltr">fixedWidthRate</code>
+      renamed to
+      <code translate="no" dir="ltr">shouldInvalidateOnFixedWith</code>
+      , same for the Height variant. (
+      <a href="https://android-review.googlesource.com/#/q/Ie59cd551b999788c0f11ce77feb62d00dc8b9de6">Ie59cd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/332898040">b/332898040</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/336370035">b/336370035</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NestedScroll</code>
+      sources Drag and Fling are being replaced by
+      <code translate="no" dir="ltr">UserInput</code>
+      and
+      <code translate="no" dir="ltr">SideEffect</code>
+      to accommodate for the extended definition of these sources that now include animations (Side Effect) and Mouse Wheel and Keyboard (UserInput). (
+      <a href="https://android-review.googlesource.com/#/q/I40579c9b053d6bcf477191b212c7a72876a588b7">I40579</a>
+      )
+    </li>
+  </ul>

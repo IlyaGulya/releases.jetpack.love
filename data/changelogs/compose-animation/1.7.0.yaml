@@ -1,0 +1,137 @@
+libraryId: compose-animation
+groupId: androidx.compose
+version: 1.7.0
+releaseDate: 2024-09-04
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0" data-text="Version 1.7.0" tabindex="-1">Version 1.7.0</h3>
+  <p>September 4, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.animation:animation-*:1.7.0</code>
+    is released.
+  </p>
+  <p><strong>Important changes since 1.6.0</strong></p>
+  <p>
+    Important changes in version 1.7.0 are covered in
+    <a href="https://android-developers.googleblog.com/2024/05/whats-new-in-jetpack-compose-at-io-24.html">this blogpost</a>
+    .
+  </p>
+  <p>New Shared Element Transition APIs</p>
+  <ul>
+    <li>
+      New shared element transition APIs await your usage and feedback. These new experimental APIs enable tagging layouts as shared across layout tree using the provided modifiers, producing smoothly changing bounds when one set of shared content exits and the other set enters. (
+      <a href="https://android-review.googlesource.com/#/q/Icb0b953f1eaff80a582b1edd3f21f9f8031cf8b0">Icb0b9</a>
+      )
+    </li>
+    <li>
+      New
+      <code translate="no" dir="ltr">scaleInSharedContentToBounds</code>
+      and
+      <code translate="no" dir="ltr">scaleOutSharedContentToBounds</code>
+      to scale content in
+      <code translate="no" dir="ltr">sharedBounds</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I731c18d0bd9a533bbf53ebba62f4638bdc758cbe">I731c1</a>
+      )
+    </li>
+    <li>
+      Experimental
+      <code translate="no" dir="ltr">SharedTransitionScope</code>
+      is now an interface rather than a class. (
+      <a href="https://android-review.googlesource.com/#/q/Iaf856b84ad2d91f94f8e294f015b6341808fcc74">Iaf856</a>
+      )
+    </li>
+    <li>
+      New
+      <code translate="no" dir="ltr">resizeModes</code>
+      (
+      <code translate="no" dir="ltr">ScaleToBounds</code>
+      and
+      <code translate="no" dir="ltr">RemeasureToBounds</code>
+      ) for
+      <code translate="no" dir="ltr">sharedBounds</code>
+      to choose between scaling and remeasure. The previous
+      <code translate="no" dir="ltr">scaleIn/OutSharedContentToBounds</code>
+      APIs are now deprecated. (
+      <a href="https://android-review.googlesource.com/#/q/I0d41aa7395b84f0232c1c64281e95f693526faa9">I0d41a</a>
+      )
+    </li>
+  </ul>
+  <p>Improvements to existing APIs:</p>
+  <ul>
+    <li>
+      New
+      <code translate="no" dir="ltr">Modifier.animateContentSize</code>
+      that takes an additional parameter for custom content alignment. (
+      <a href="https://android-review.googlesource.com/#/q/I5623af336f137bb4464cbf7993942452e86bcd88">I5623a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/269803907">b/269803907</a>
+      )
+    </li>
+    <li>
+      New Experimental
+      <code translate="no" dir="ltr">DeferredTargetAnimation</code>
+      for animating size, position, or any other target that is unknown during instantiation. (
+      <a href="https://android-review.googlesource.com/#/q/I60745501487754b36b0e1986bc2bc7ecbac267e8">I60745</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SeekableTransitionState</code>
+      replaces
+      <code translate="no" dir="ltr">snapTo()</code>
+      with
+      <code translate="no" dir="ltr">seekTo()</code>
+      , and adds a
+      <code translate="no" dir="ltr">snapTo()</code>
+      that immediately changes the state to a destination state without any kind of animation.
+    </li>
+    <li>
+      You may now pass a
+      <code translate="no" dir="ltr">periodicBias</code>
+      value (Float) to
+      <code translate="no" dir="ltr">keyframesWithSpline</code>
+      , this will make it so that the initial and final velocity of the spline are equal. Useful for repeatable animations using splines. The bias indicates how much each velocity (initial and final) gets modified to achieve periodicity. (
+      <a href="https://android-review.googlesource.com/#/q/Ic1e6c4996f8c25055955331384639b57e9ad86db">Ic1e6c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/292114811">b/292114811</a>
+      )
+    </li>
+  </ul>
+  <p>The following APIs have become stable or been removed:</p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">AnimatedVisibilityScope.transition</code>
+      is now a stable API.
+      <code translate="no" dir="ltr">Modifier.animateEnterExit(..)</code>
+      has also been made stable. (
+      <a href="https://android-review.googlesource.com/#/q/I6c1d1ea596664892cc8928c1379bbe8d9b207f1e">I6c1d1</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ApproachLayoutModifierNode</code>
+      and
+      <code translate="no" dir="ltr">Modifier.approachLayout</code>
+      are now stable, with new
+      <code translate="no" dir="ltr">isMeasurementApproachInProgress()</code>
+      and
+      <code translate="no" dir="ltr">isPlacementApproachInProgress()</code>
+      to replace the old
+      <code translate="no" dir="ltr">isMeasurementApproachComplete()</code>
+      and
+      <code translate="no" dir="ltr">isPlacementApproachComplete()</code>
+      respectively.
+    </li>
+    <li>
+      Removed deprecated
+      <code translate="no" dir="ltr">intermediateLayout</code>
+      modifier. (
+      <a href="https://android-review.googlesource.com/#/q/I3e91ca2cfabebde655491f063466d2e5642f055e">I3e91c</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LookaheadScope</code>
+      APIs have been made stable. (
+      <a href="https://android-review.googlesource.com/#/q/I21507b73d88acc221e5963b76b9f1a83539342db">I21507</a>
+      )
+    </li>
+  </ul>

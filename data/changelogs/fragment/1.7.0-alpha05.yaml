@@ -1,0 +1,42 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.7.0-alpha05
+releaseDate: 2023-09-20
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha05" data-text="Version 1.7.0-alpha05" tabindex="-1">Version 1.7.0-alpha05</h3>
+  <p>September 20, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment-*:1.7.0-alpha05</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9ce75ea1baa2af10dda8f787f69c40c6654bcac1..91bb8c1f81dcb031bda00fcd8e55f1e890b56f06/fragment">Version 1.7.0-alpha05 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Fragments now provide support for Predictive back when using Androidx Transitions. This allows you to use the back gesture to seek to the previous fragment with your custom Androidx Transition before deciding to either commit or cancel the transaction via the completed gesture. You must depend on the
+      <a href="/jetpack/androidx/releases/transition#1.5.0-alpha03">
+        Transition
+        <code translate="no" dir="ltr">1.5.0-alpha03</code>
+      </a>
+      release to enable this feature. (
+      <a href="https://android-review.googlesource.com/#/q/Ib49b455d0a00d38203de7616fb2be05a3677a548">Ib49b4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/285175724">b/285175724</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      There is currently an issue where after you cancel a back gesture with a transition once, the next time you start the back gesture it will fail to run the transition, causing a blank screen. This could be caused by an issue in the Transition library. (
+      <a href="https://issuetracker.google.com/300157785">b/300157785</a>
+      ). If you see this issue, please
+      <a href="https://issuetracker.google.com/issues/new?component=460964">file an issue against Fragment</a>
+      with a sample project that reproduces your issue. You can disable predictive back by using
+      <code translate="no" dir="ltr">FragmentManager.enabledPredictiveBack(false)</code>
+      in the
+      <code translate="no" dir="ltr">onCreate()</code>
+      of your Activity.
+    </li>
+  </ul>

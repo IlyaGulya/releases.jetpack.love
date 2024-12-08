@@ -1,0 +1,108 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.1.0-alpha01
+releaseDate: 2021-08-04
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha01" data-text="Version 1.1.0-alpha01" tabindex="-1">Version 1.1.0-alpha01</h3>
+  <p>August 4, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.1.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1a3ba62b97c98d85f6c0ac2fb6483fc9ac60872e..d725303accfa9be6d5c3d61c7603ed1b9a780cbd/compose/ui">Version 1.1.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">RelocationRequester.bringIntoView</code>
+      now accepts a rectangle as a parameter which enables us to bring a part of a composable into view (
+      <a href="https://android-review.googlesource.com/#/q/Ice2c55d582bbeb80757cf30e2334bb970a31f438">Ice2c5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/194330245">b/194330245</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AnimatedImageVector</code>
+      and the related APIs are now in the new
+      <code translate="no" dir="ltr">androidx.compose.animation:animation-graphics</code>
+      module. (
+      <a href="https://android-review.googlesource.com/#/q/I6087391a9869d2315a71422f24175f42ec085681">I60873</a>
+      )
+    </li>
+    <li>
+      Added experimental modifier to handle relocation requests. (
+      <a href="https://android-review.googlesource.com/#/q/I65a97bd7fca7271781efe31fcc9cb387e9857b51">I65a97</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/178211874">b/178211874</a>
+      )
+    </li>
+    <li>
+      <p>Introduced BrushPainter API to support drawing of an arbitrary Brush within a Painter, similar to ColorPainter</p>
+
+      <p>
+        Updated Brush API to have an intrinsic size parameter that is queried within BrushPainter (
+        <a href="https://android-review.googlesource.com/#/q/Ia27529070e6f2acdac9d2c73f41e886b36452f34">Ia2752</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/189466433">b/189466433</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Updated DrawScope#drawImage method that consumes source and destination rects to consume an optional FilterQuality parameter. This is useful for pixel art that is intended to be pixelated when scaled up for pixel based art. Updated BitmapPainter + Image composable to also consume an optional FilterQuality parameter (
+        <a href="https://android-review.googlesource.com/#/q/Ie4fb04013701add0fba1c5c6bb9da2812d6436e7">Ie4fb0</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/180311607">b/180311607</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">GestureScope.advanceEventTime</code>
+        method to give more control over the timing of events in a gesture (
+        <a href="https://android-review.googlesource.com/#/q/Ibf3e2d35b4462863aa0de010cb2d0fe0d10cd3d1">Ibf3e2</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      In order to better support chaining of draw modifiers, make sure the Modifier.paint implementation calls drawsContent. Previously Modifier.paint was expected to a leaf node in the chain of Modifiers, however, by doing so it prevents it from being configured on a composable container (ex. box) or adding additional decorations on top such as
+      <code translate="no" dir="ltr">Modifier.paint().border()</code>
+      . By having Modifier.paint call drawContent after drawing the contents of the given painter, we have better behavior consistency in behavior with the modifier pattern. (
+      <a href="https://android-review.googlesource.com/#/q/Ibb2a7ae54a86643ba4fc1604ce39df7477ab66f0">Ibb2a7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/178201337">b/178201337</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/186213275">b/186213275</a>
+      )
+    </li>
+    <li>
+      Dialogs now follow the platform sizing behaviour. Set
+      <code translate="no" dir="ltr">usePlatformDefaultWidth</code>
+      to false to override this behaviour. (
+      <a href="https://android-review.googlesource.com/#/q/Iffaedb8890f59627a58fb4f33d06044ac120fd7d">Iffaed</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/192682388">b/192682388</a>
+      )
+    </li>
+    <li>
+      Moved
+      <code translate="no" dir="ltr">InfiniteAnimationPolicy</code>
+      to :compose:ui (
+      <a href="https://android-review.googlesource.com/#/q/I5eb09c7aa24a85fd2e66cc9b84ea6c906dc5210a">I5eb09</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/160602714">b/160602714</a>
+      )
+    </li>
+    <li>
+      Scrolling via semantics actions for lazy lists and regular scrolling components is now animated (
+      <a href="https://android-review.googlesource.com/#/q/Id9066420fd80bbea3c0463813be0338fff017514">Id9066</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/190742024">b/190742024</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_10_2" data-text="Version 1.0" tabindex="-1">Version 1.0</h2>

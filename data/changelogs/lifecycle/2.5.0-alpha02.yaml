@@ -1,0 +1,107 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.5.0-alpha02
+releaseDate: 2022-02-09
+#language=html
+changelogHtml: |
+  <h3 id="2.5.0-alpha02" data-text="Version 2.5.0-alpha02" tabindex="-1">Version 2.5.0-alpha02</h3>
+  <p>February 9, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.5.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9dceceb54300ed028a7e8fc7a3454f270337ffde..db2ecbef194afcddfaede22e1d884a8959a9277c/lifecycle">Version 2.5.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      and
+      <code translate="no" dir="ltr">SavedStateViewModelFactory</code>
+      have been converted to Kotlin. This has improved the nullability of the generics in both classes. (
+      <a href="https://android-review.googlesource.com/#/q/Ib6ce2007340487f0f4a7d80112ccb94db9c0e3d8">Ib6ce2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/216168263">b/216168263</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I9647ab9888955fbdc3b90f9ab86f8204df038a7b">I9647a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177667711">b/177667711</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">LiveData</code>
+      <code translate="no" dir="ltr">switchMap</code>
+      function parameter can now have a nullable output. (
+      <a href="https://android-review.googlesource.com/#/q/I40396c3279a9506a52a4ab1f81e98af2120ff4e0">I40396</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/132923666">b/132923666</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">LiveData</code>
+      -ktx extensions are now annotated with
+      <code translate="no" dir="ltr">@CheckResult</code>
+      to enforce that the result is used when calling these functions. (
+      <a href="https://android-review.googlesource.com/#/q/Ia0f05f444838c04ea56cccc066a7270337b65000">Ia0f05</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/207325134">b/207325134</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Behavior changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      now properly stores the defaultValue when no value for the specified key exists. (
+      <a href="https://android-review.googlesource.com/#/q/I1c6ce7584520393eaf58884f92e0b6d90ff7de12">I1c6ce</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/178510877">b/178510877</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      From
+      <a href="#2.4.1">
+        Lifecycle
+        <code translate="no" dir="ltr">2.4.1</code>
+      </a>
+      : Updated
+      <code translate="no" dir="ltr">lifecycle-process</code>
+      to depend on
+      <a href="/jetpack/androidx/releases/startup#1.1.1">Startup 1.1.1</a>
+      to ensure that fixes that prevent
+      <code translate="no" dir="ltr">ProcessLifecycleInitializer</code>
+      from throwing a
+      <code translate="no" dir="ltr">StartupException</code>
+      are available by default. (
+      <a href="https://android-review.googlesource.com/#/q/Ib01dfbba1d63aa03e43e09ee8886cc76e1050e1b">Ib01df</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/216490724">b/216490724</a>
+      )
+    </li>
+    <li>
+      There is now an improved error message when custom
+      <code translate="no" dir="ltr">AndroidViewModel</code>
+      classes have parameters in the wrong order and attempt to create a
+      <code translate="no" dir="ltr">ViewModel</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I340f7696bbf90e331e0b727e9195210cf1dadd0a">I340f7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177667711">b/177667711</a>
+      )
+    </li>
+    <li>
+      You can now create a view model via
+      <code translate="no" dir="ltr">CreationExtras</code>
+      using the
+      <code translate="no" dir="ltr">AndroidViewModelFactory</code>
+      without setting an application. (
+      <a href="https://android-review.googlesource.com/#/q/I6ebefdf40940a08576a92ee4fb2dcc2b561d781d">I6ebef</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/217271656">b/217271656</a>
+      )
+    </li>
+  </ul>

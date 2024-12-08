@@ -1,0 +1,123 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.7.0-alpha04
+releaseDate: 2024-03-06
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha04" data-text="Version 1.7.0-alpha04" tabindex="-1">Version 1.7.0-alpha04</h3>
+  <p>March 6, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.7.0-alpha04</code>
+    is released. Version 1.7.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e1b82c49c59d8e976ce558aba5586f6c61bc9054..638a8d3a474af45f6ad5fdc3d6d1836ea42d1778/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Support stylus handwriting feature on devices after Android U. (
+      <a href="https://android-review.googlesource.com/#/q/I002e4f3218bb909833fcb92b8d1ff9b2153931d7">I002e4</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">hintLocales</code>
+      to
+      <code translate="no" dir="ltr">KeyboardOptions</code>
+      to provide
+      <code translate="no" dir="ltr">TextFields</code>
+      with the ability to hint IMEs with specific locales to preset a preferred language. (
+      <a href="https://android-review.googlesource.com/#/q/Id18c27ef6047856a416e98c899674e2b5295e939">Id18c2</a>
+      )
+    </li>
+    <li>
+      Removed the Experimental
+      <code translate="no" dir="ltr">BasicTextField2</code>
+      and
+      <code translate="no" dir="ltr">BasicSecureTextField</code>
+      overloads that took
+      <code translate="no" dir="ltr">value: String</code>
+      and
+      <code translate="no" dir="ltr">onValueChange: () -&gt; String</code>
+      parameters. (
+      <a href="https://android-review.googlesource.com/#/q/I568b4fc59c404938cf38f45e0f8ba1f2b35e8fc1">I568b4</a>
+      )
+    </li>
+    <li>
+      Add an optional
+      <code translate="no" dir="ltr">applySemantics</code>
+      function to
+      <code translate="no" dir="ltr">InputTransformation</code>
+      to influence the semantics of the
+      <code translate="no" dir="ltr">BasicTextField2</code>
+      that it's applied to. (
+      <a href="https://android-review.googlesource.com/#/q/I74a2f4db178fe2660862749f10367bac57761ae9">I74a2f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170648072">b/170648072</a>
+      )
+    </li>
+    <li>
+      In this CL we are adding the
+      <code translate="no" dir="ltr">GetScrollViewportLength</code>
+      semantic action so we can pipe up information about the components being scrolled in compose to the a11y system. This CL also applies the usage of said property in Foundation Scrollable Lists. (
+      <a href="https://android-review.googlesource.com/#/q/Ic5fa297df4613636529e12037a0b7d03bcacc534">Ic5fa2</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BasicTextField2</code>
+      is renamed to
+      <code translate="no" dir="ltr">BasicTextField</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie5713a5542fa0980aefc5a15b41c9ba8f777b277">Ie5713</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FocusRequester.createRefs</code>
+      is now stable (
+      <a href="https://android-review.googlesource.com/#/q/I4d92c644c57436fcd4883bc73fe0120ffa0a6fb2">I4d92c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261436820">b/261436820</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">DelegatableNode.scrollIntoView()</code>
+      to allow modifier nodes to make
+      <code translate="no" dir="ltr">scrollIntoView</code>
+      requests directly. (
+      <a href="https://android-review.googlesource.com/#/q/I2b3b7b59a4906f213ae161c531d5af667b4049c7">I2b3b7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/299939840">b/299939840</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">DelegatableNode.requireView()</code>
+      to allow modifier nodes to get the current Android
+      <code translate="no" dir="ltr">View</code>
+      without reading a composition local. (
+      <a href="https://android-review.googlesource.com/#/q/I407682883cafa8315d1ede370288afdaf62d97a4">I40768</a>
+      )
+    </li>
+    <li>
+      Introducing contextual layout information within Contextual Flow Row Scope and Contextual Flow Column Scope, featuring line index, position, and constraints on maximum width and height to stay in specified position. Items exceeding maximum width/height may flow to the next line or be omitted based on overflow settings. (
+      <a href="https://android-review.googlesource.com/#/q/Id13f86913c1c7a2c87c2980d451374db187e83ae">Id13f8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/292114798">b/292114798</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a bug where in certain conditions toggling
+      <code translate="no" dir="ltr">enabled</code>
+      or
+      <code translate="no" dir="ltr">readOnly</code>
+      attributes of
+      <code translate="no" dir="ltr">TextField</code>
+      would cause a crash. (
+      <a href="https://android-review.googlesource.com/#/q/Iae17bf3ac4f0da228413f4f3efbed729e0621a6d">Iae17b</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,93 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 1.1.0
+releaseDate: 2018-01-22
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0" data-text="Version 1.1.0" tabindex="-1">Version 1.1.0</h3>
+  <p>January 22, 2018</p>
+  <p><strong>Packaging Changes</strong></p>
+  <p>New, much smaller dependencies are now available:</p>
+  <ul>
+    <li><code translate="no" dir="ltr">android.arch.lifecycle:livedata:1.1.0</code></li>
+    <li><code translate="no" dir="ltr">android.arch.lifecycle:viewmodel:1.1.0</code></li>
+  </ul>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      Lifecycle Extensions
+      <code translate="no" dir="ltr">1.0.0</code>
+      (
+      <code translate="no" dir="ltr">android.arch.lifecycle:extensions:1.0.0</code>
+      ) is
+      <strong>not</strong>
+      compatible with
+      <code translate="no" dir="ltr">livedata:1.1.0</code>
+      or
+      <code translate="no" dir="ltr">viewmodel:1.1.0</code>
+      . Please update to
+      <code translate="no" dir="ltr">extensions:1.1.0</code>
+      , which includes a transitive dependency on
+      <code translate="no" dir="ltr">livedata:1.1.0</code>
+      and
+      <code translate="no" dir="ltr">viewmodel 1.1.0</code>
+      .
+    </span>
+  </aside>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      <code translate="no" dir="ltr">android.arch.lifecycle:reactivestreams:1.1.0</code>
+      now only depends on
+      <code translate="no" dir="ltr">android.arch.lifecycle:livedata:1.1.0</code>
+      , not all of
+      <code translate="no" dir="ltr">android.arch.lifecycle:extensions:1.1.0</code>
+      .
+    </span>
+  </aside>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The deprecated
+      <code translate="no" dir="ltr">LifecycleActivity</code>
+      and
+      <code translate="no" dir="ltr">LifecycleFragment</code>
+      have now been
+      <strong>removed</strong>
+      - please use
+      <code translate="no" dir="ltr">FragmentActivity</code>
+      ,
+      <code translate="no" dir="ltr">AppCompatActivity</code>
+      or support
+      <code translate="no" dir="ltr">Fragment</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">@NonNull</code>
+      annotations have been added to
+      <code translate="no" dir="ltr">ViewModelProviders</code>
+      and
+      <code translate="no" dir="ltr">ViewModelStores</code>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ViewModelProviders</code>
+      constructor has been deprecated - please use its static methods directly
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ViewModelProviders.DefaultFactory</code>
+      has been deprecated - please use
+      <code translate="no" dir="ltr">ViewModelProvider.AndroidViewModelFactory</code>
+    </li>
+    <li>
+      The static
+      <code translate="no" dir="ltr">ViewModelProvider.AndroidViewModelFactory.getInstance(Application)</code>
+      method has been added to retrieve a static
+      <code translate="no" dir="ltr">Factory</code>
+      suitable for creating
+      <code translate="no" dir="ltr">ViewModel</code>
+      and
+      <code translate="no" dir="ltr">AndroidViewModel</code>
+      instances.
+    </li>
+  </ul>
+  <devsite-hats-survey class="nocontent" hats-id="VxqvKSur40kxBYCLVTd0SSGykbno" listnr-id="5207477"></devsite-hats-survey>

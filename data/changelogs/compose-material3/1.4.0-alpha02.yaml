@@ -1,0 +1,154 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.4.0-alpha02
+releaseDate: 2024-10-16
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha02" data-text="Version 1.4.0-alpha02" tabindex="-1">Version 1.4.0-alpha02</h3>
+  <p>October 16, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.4.0-alpha02</code>
+    is released. Version 1.4.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/fea5a8a99788fe9368f7be39aab0d1bbee389feb..b8a68b0896897fa158508d73a31998a26161d9a7/compose/material3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Updates to the date pickers to ensure consistent Locale usage throughout the
+      <code translate="no" dir="ltr">DatePicker</code>
+      and
+      <code translate="no" dir="ltr">DateRangePicker</code>
+      when setting a Locale directly through a
+      <code translate="no" dir="ltr">DatePickerState</code>
+      or a
+      <code translate="no" dir="ltr">DateRangePickerState</code>
+      . Note that when setting Locales directly to the state, it's up to you to ensure that the title and headline texts are localized accordingly, as their default text will still be applied according to the default platform Locale. (
+      <a href="https://android-review.googlesource.com/#/q/I370735477b6adae8628fb967b6aa6c6138216883">I37073</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326490763">b/326490763</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/321657276">b/321657276</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SheetState.isAnimationRunning</code>
+      is now exposed. (
+      <a href="https://android-review.googlesource.com/#/q/I9a3d7fd89aef2731c794a8a0ee379debb6a6d77d">I9a3d7</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">DatePickerColors</code>
+      now correctly take precedence over any conflicting colors defined at the theme's Typography text styles. Also note that this update adjusts the
+      <code translate="no" dir="ltr">color</code>
+      parameter's position in the date picker functions and introduces a
+      <code translate="no" dir="ltr">contentColor</code>
+      parameter for customizing the header and title text colors. (
+      <a href="https://android-review.googlesource.com/#/q/I30d0307b11ba2e1a02535928ab4e4131100692a8">I30d03</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/347031394">b/347031394</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">SplitButton</code>
+      to
+      <code translate="no" dir="ltr">SplitButtonLayout</code>
+      and remove
+      <code translate="no" dir="ltr">SplitButton</code>
+      color variants APIs, variants will be achieve by re-using button variants provided by
+      <code translate="no" dir="ltr">SplitButtonDefaults</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I44c36b66afc26ffd4a1b7d20c33b409ada12e0f8">I44c36</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ModalBottomSheet</code>
+      now has
+      <code translate="no" dir="ltr">sheetGestureEnabled</code>
+      parameter (
+      <a href="https://android-review.googlesource.com/#/q/I856cbb6b8907ce773d47589f2c83a828a5740eb8">I856cb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/288211587">b/288211587</a>
+      )
+    </li>
+    <li>
+      Renamed the
+      <code translate="no" dir="ltr">standardMotionScheme</code>
+      and the
+      <code translate="no" dir="ltr">expressiveMotionScheme</code>
+      to standard and expressive. Both functions are now accessible through the
+      <code translate="no" dir="ltr">MotionScheme</code>
+      companion object by calling
+      <code translate="no" dir="ltr">MotionScheme.standard()</code>
+      and
+      <code translate="no" dir="ltr">MotionScheme.expressive()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iceccf241c8a9b729d3d7eb97432c2e2abedec332">Iceccf</a>
+      )
+    </li>
+    <li>
+      Adding
+      <code translate="no" dir="ltr">maxWidth</code>
+      parameter to plain and rich tooltips. It defaults to the design spec of 200 dp for plain tooltips and 320 dp for rich tooltips. (
+      <a href="https://android-review.googlesource.com/#/q/I30ce99fa9a23048859335aa781ac7b67dc92042d">I30ce9</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">DatePicker</code>
+      and
+      <code translate="no" dir="ltr">DateRangePicker</code>
+      now correctly update the displayed month when set via their state's
+      <code translate="no" dir="ltr">displayedMonthMillis</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If9e47133cb89ea689612133e10a31bfa20f45fd6">If9e47</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/333414302">b/333414302</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ModalBottomSheet</code>
+      content now moves content away from status bar. (
+      <a href="https://android-review.googlesource.com/#/q/I5114c66808d155f5db97908520bad2efd93be08e">I5114c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/321877275">b/321877275</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/336962418">b/336962418</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/342093067">b/342093067</a>
+      )
+    </li>
+    <li>
+      [Bottom Sheet] Change back callback priority to
+      <code translate="no" dir="ltr">PRIORITY_DEFAULT</code>
+      to allow IME keyboard to dismiss first. (
+      <a href="https://android-review.googlesource.com/#/q/I447fba3df4f9178532cccf2832abd87d106f1c64">I447fb</a>
+      )
+    </li>
+    <li>
+      Fix crashes in the
+      <code translate="no" dir="ltr">DatePicker</code>
+      and
+      <code translate="no" dir="ltr">DateRangePicker</code>
+      when the minimum selectable year is set to a future year. (
+      <a href="https://android-review.googlesource.com/#/q/I78656c7fcf507532603e08f4bb4ef34bdba99f87">I78656</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/319395747">b/319395747</a>
+      )
+    </li>
+    <li>
+      Fix a date-picker issue to update the UI when an updated
+      <code translate="no" dir="ltr">SelectableDates</code>
+      instance is applied. (
+      <a href="https://android-review.googlesource.com/#/q/Iad59a46ee1c6484c2dc2409c9cc135070aa94bc2">Iad59a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/290135807">b/290135807</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/339898760">b/339898760</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,64 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.3.0-rc01
+releaseDate: 2024-08-07
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-rc01" data-text="Version 1.3.0-rc01" tabindex="-1">Version 1.3.0-rc01</h3>
+  <p>August 7, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.3.0-rc01</code>
+    is released. Version 1.3.0-rc01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/56579bc30499ce39f0d7a6713a065b00c6194206..2f785440e93a6465ac53828357b5f71f0ad28329/benchmark">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">androidx.benchmark.cpuEventCounter</code>
+      producing corrupt values for non-Instruction events (
+      <a href="https://android-review.googlesource.com/#/q/I7386abe3494b2b11a2447fa85a4109613857c28c">I7386a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/286306579">b/286306579</a>
+      )
+    </li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">resumeTiming</code>
+      /
+      <code translate="no" dir="ltr">runWithTimingDisabled</code>
+      to respect metric priority order, and significantly reduce impact of lower priority metric pause/resume on higher priority metric results. For example, if using cpu perf counters via
+      <code translate="no" dir="ltr">cpuEventCounter.enable</code>
+      instrumentation argument, timeNs is no longer significantly reduced when pause/resume occur. (
+      <a href="https://android-review.googlesource.com/#/q/I39c2eb911129927972740d074ee8f2adca7bda1a">I39c2e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/286306579">b/286306579</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/307445225">b/307445225</a>
+      )
+    </li>
+    <li>
+      Reduced chance of stack sampling causing
+      <code translate="no" dir="ltr">measureRepeatedOnMainThread</code>
+      from hitting main thread hard timeout by moving stack sampling conversion off main thread. (
+      <a href="https://android-review.googlesource.com/#/q/I487a8df198f66a1af0001d2f0faece5288eff178">I487a8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/342237318">b/342237318</a>
+      )
+    </li>
+    <li>
+      Removed manual outlining of access to new platform APIs since this happens automatically via API modeling when using R8 with AGP 7.3 or later (e.g. R8 version 3.3) and for all builds when using AGP 8.1 or later (e.g. D8 version 8.1). Clients who are not using AGP are advised to update to D8 version 8.1 or later. See
+      <a href="https://medium.com/androiddevelopers/mitigating-soft-verification-issues-in-r8-and-d8-7e9e06827dfd">this article</a>
+      for more details. (
+      <a href="https://android-review.googlesource.com/#/q/I9496cfaeb50a5c484fbee6521b74a0605fb013dc">I9496c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/345472586">b/345472586</a>
+      )
+    </li>
+    <li>
+      Added agp version check to send package name as instr arg. Previous to AGP 8.4.0 the target app package name cannot be send to the instrumentation app via instrumentation arguments. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/0c72a3f2f9bd7c26741d94fa210a8ac227bf03cc">0c72a3f</a>
+      )
+    </li>
+  </ul>

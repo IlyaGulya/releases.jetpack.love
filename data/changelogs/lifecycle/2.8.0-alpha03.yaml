@@ -1,0 +1,169 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.8.0-alpha03
+releaseDate: 2024-03-20
+#language=html
+changelogHtml: |
+  <h3 id="2.8.0-alpha03" data-text="Version 2.8.0-alpha03" tabindex="-1">Version 2.8.0-alpha03</h3>
+  <p>March 20, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.8.0-alpha03</code>
+    is released. Version 2.8.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a0ec9dc0763af4507de3604aed283a57843bb85f..a57d7d17753695012b58c9ce7ad55a8d39157e62/lifecycle">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">ViewModel.viewModelScope</code>
+        is now an overridable constructor parameter, allowing you to inject your own dispatcher and
+        <code translate="no" dir="ltr">SupervisorJob()</code>
+        or to override the default by using the
+        <code translate="no" dir="ltr">backgroundScope</code>
+        available within
+        <code translate="no" dir="ltr">runTest</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/I2817ca223e31fb3e66b1b87b470b2eb26c2fac55">I2817c</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/264598574">b/264598574</a>
+        )
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">MyViewModel</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// Make Dispatchers.Main the default, rather than Dispatchers.Main.immediate</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">viewModelScope</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">CoroutineScope</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Dispatchers</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">Main</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">+</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">SupervisorJob</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">ViewModel</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">viewModelScope</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// Use viewModelScope as before, without any code changes</span>
+  <span class="devsite-syntax-p">}</span>
+
+  <span class="devsite-syntax-c1">// Allows overriding the viewModelScope in a test</span>
+  <span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">Test</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">runTest</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">viewModel</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">MyViewModel</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">backgroundScope</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+  </ul>
+  <p><strong>Kotlin Multiplatform Compatibility</strong></p>
+  <p>
+    The
+    <code translate="no" dir="ltr">lifecycle-viewmodel</code>
+    artifact and APIs like
+    <code translate="no" dir="ltr">ViewModel</code>
+    ,
+    <code translate="no" dir="ltr">ViewModelStore</code>
+    ,
+    <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+    , and
+    <code translate="no" dir="ltr">ViewModelProvider</code>
+    are now shipped in artifacts compatible with Kotlin Multiplatform. (
+    <a href="https://issuetracker.google.com/issues/214568825">b/214568825</a>
+    )
+  </p>
+  <p>
+    To accommodate this change, methods such as those on
+    <code translate="no" dir="ltr">ViewModelProvider</code>
+    that took a
+    <code translate="no" dir="ltr">java.lang.Class&lt;T&gt;</code>
+    now have an equivalent method that takes a
+    <code translate="no" dir="ltr">kotlin.reflect.KClass&lt;T&gt;</code>
+    .
+  </p>
+  <p>Binary compatibility on Android has been maintained, but there are a few notable changes when comparing the Android API surface to the common API surface:</p>
+  <ul>
+    <li>
+      Constructing a
+      <code translate="no" dir="ltr">ViewModelProvider</code>
+      instance is now done through the
+      <code translate="no" dir="ltr">ViewModelProvider.create()</code>
+      methods rather than directly calling its constructor.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ViewModelProvider.NewInstanceFactory</code>
+      and
+      <code translate="no" dir="ltr">ViewModelProvider.AndroidViewModelFactory</code>
+      are only available on Android.
+      <ul>
+        <li>
+          Custom Factories are recommended to extend from
+          <code translate="no" dir="ltr">ViewModelProvider.Factory</code>
+          and use the
+          <code translate="no" dir="ltr">create</code>
+          method that takes a
+          <code translate="no" dir="ltr">CreationExtras</code>
+          or use the
+          <code translate="no" dir="ltr">viewModelFactory</code>
+          Kotlin DSL.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Using
+      <code translate="no" dir="ltr">ViewModelProvider</code>
+      without a custom factory on non-JVM platforms will result in an
+      <code translate="no" dir="ltr">UnsupportedOperationException</code>
+      . On JVM platforms, compatibility is preserved by using the no-args ViewModel constructor if a custom factory is not provided.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">viewModelScope</code>
+      will fallback to an
+      <code translate="no" dir="ltr">EmptyCoroutineContext</code>
+      in platforms where
+      <code translate="no" dir="ltr">Dispatchers.Main</code>
+      is not available (e.g., Linux).
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">InitializerViewModelFactory</code>
+      (including
+      <code translate="no" dir="ltr">viewModelFactory</code>
+      builder function) will now throw an
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      if a
+      <code translate="no" dir="ltr">initializer</code>
+      with the same
+      <code translate="no" dir="ltr">clazz: KClass&lt;VM : ViewModel&gt;</code>
+      has already been added. (
+      <a href="https://android-review.googlesource.com/#/q/Ic3a36b87c170bd886e60fc264a352096be003c02">Ic3a36</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ViewModel.getCloseable</code>
+      now handles duplicated keys: if the
+      <code translate="no" dir="ltr">key</code>
+      already has an
+      <code translate="no" dir="ltr">AutoCloseable</code>
+      resource associated with it, the old resource will be replaced and closed immediately. (
+      <a href="https://android-review.googlesource.com/#/q/Ibeb675fc50766f954d980e582374224cfa910548">Ibeb67</a>
+      )
+    </li>
+    <li>
+      Accessing the
+      <code translate="no" dir="ltr">viewModelScope</code>
+      of a
+      <code translate="no" dir="ltr">ViewModel</code>
+      is now thread safe. (
+      <a href="https://android-review.googlesource.com/#/q/If4766608206f1354b03463b2771b7a369a0b537f">If4766</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/322407038">b/322407038</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">LocalLifecycleOwner</code>
+      moved from Compose UI to lifecycle-runtime-compose so that its Compose-based helper APIs can be used outside of Compose UI. Thanks Jake Wharton for the contribution. (
+      <a href="https://android-review.googlesource.com/#/q/I6c41b92eb6aaab67e7d733dfe3fe0b429b46becf">I6c41b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/328263448">b/328263448</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,75 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.3.1
+releaseDate: 2023-12-13
+#language=html
+changelogHtml: |
+  <h3 id="1.3.1" data-text="Version 1.3.1" tabindex="-1">Version 1.3.1</h3>
+  <p>December 13, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.3.1</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ef36c63f9e8f6ac59ad44c45496c271d6cb2a3cc..ee5fe2aa34dba21365bb402477c32c593ccbecda/camera">Version 1.3.1 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <p>
+    Improved the
+    <code translate="no" dir="ltr">ProcessCameraProvider#bindToLifecycle()</code>
+    performance. The major change is to optimize the process of identifying the most suitable size combinations for
+    <code translate="no" dir="ltr">UseCases</code>
+    . The optimal results vary based on the specific
+    <code translate="no" dir="ltr">UseCase</code>
+    combinations and the number of supported output sizes for the target devices. (
+    <a href="https://android-review.googlesource.com/#/q/I454f2ca19be1d77ed737a651676834f6e431e0b7">I454f2</a>
+    )
+  </p>
+  <p>Here are some reference results for various scenarios:</p>
+  <ul>
+    <li>
+      <p>
+        Four
+        <code translate="no" dir="ltr">UseCases</code>
+        :
+        <code translate="no" dir="ltr">Preview</code>
+        +
+        <code translate="no" dir="ltr">ImageCapture</code>
+        +
+        <code translate="no" dir="ltr">ImageAnalysis</code>
+        +
+        <code translate="no" dir="ltr">VideoCapture</code>
+      </p>
+
+      <ul>
+        <li>Google Pixel 7: Approximately 430 ms to 60 ms</li>
+        <li>Samsung Galaxy S23 Ultra: Approximately 540 ms to 45 ms</li>
+        <li>Samsung A53 5G: Approximately 115 ms to 70 ms</li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        Three
+        <code translate="no" dir="ltr">UseCases</code>
+        :
+        <code translate="no" dir="ltr">Preview</code>
+        +
+        <code translate="no" dir="ltr">ImageCapture</code>
+        +
+        <code translate="no" dir="ltr">ImageAnalysis</code>
+      </p>
+
+      <ul>
+        <li>Google Pixel 7: Approximately 9 ms to 7 ms</li>
+        <li>Samsung Galaxy S23 Ultra: Approximately 6 ms to 5 ms</li>
+        <li>Samsung A53 5G: Approximately 32 ms to 12 ms</li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        Added Snapdragon 480 to the
+        <code translate="no" dir="ltr">CameraUseInconsistentTimebaseQuirk</code>
+        . This fixes an issue on Android 12 for devices using this chipset where the audio in recordings is offset by the amount of time the device is in a suspended state. (
+        <a href="https://android-review.googlesource.com/#/q/I580100cfa2cd3111e687b8d0515f8f02c50205d7">I58010</a>
+        )
+      </p>
+    </li>
+  </ul>

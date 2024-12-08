@@ -1,0 +1,39 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.8.4
+releaseDate: 2024-07-24
+#language=html
+changelogHtml: |
+  <h3 id="2.8.4" data-text="Version 2.8.4" tabindex="-1">Version 2.8.4</h3>
+  <p>July 24, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.8.4</code>
+    is released. Version 2.8.4 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/92cc6e5d71efd12345ce7ba558cbc2a29926e9ac..e878847bccb7129bf31369a274059013b3a3c240/lifecycle">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">LiveData.asFlow()</code>
+      now correctly handles cases where the returned Flow is immediately completed after receiving a value already set on the
+      <code translate="no" dir="ltr">LiveData</code>
+      (for example, when using
+      <code translate="no" dir="ltr">take(1)</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/I9c56697c40907f9cee43f89f7ee1aa01adb470b1">I9c566</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Lifecycle*Effect</code>
+      completion is now idempotent (i.e., if the
+      <code translate="no" dir="ltr">onStopOrDispose</code>
+      was called because of the Lifecycle being stopped, it won’t be called a second time upon disposal unless the Lifecycle goes back up to
+      <code translate="no" dir="ltr">STARTED</code>
+      again). (
+      <a href="https://android-review.googlesource.com/#/q/I5f607934fb725f98c018b567e6e2f0052c7e8a69">I5f607</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/352364595">b/352364595</a>
+      )
+    </li>
+  </ul>

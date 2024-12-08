@@ -1,0 +1,47 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.3.0-rc01
+releaseDate: 2024-01-10
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-rc01" data-text="Version 1.3.0-rc01" tabindex="-1">Version 1.3.0-rc01</h3>
+  <p>January 10, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.3.0-rc01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b76585a287cbcfdae38c3e16e5acbc6e26e808e2..37d04ed2f8dfcced119779f812301352786bc623/wear/compose">Version 1.3.0-rc01 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <p>
+        We have updated the
+        <code translate="no" dir="ltr">MaterialTheme</code>
+        large shape to use a 26dp rounded corner radius and this will now be used by Chip and
+        <code translate="no" dir="ltr">ToggleChip</code>
+        . This change is needed to support height adjustments when contents need extra height to accommodate large font sizes—otherwise, the existing stadium shape clips some text content.
+      </p>
+
+      <figure id="include-font-padding-true">
+        <img src="/static/jetpack/androidx/images/ChipFullRoundedCornerTextClipping.svg" width="50%" alt="Text clipped on corners" />
+        <figcaption>
+          <b>Figure 1</b>
+          : Text clipped on corners.
+        </figcaption>
+      </figure>
+
+      <figure id="include-font-padding-false">
+        <img src="/static/jetpack/androidx/images/ChipLargeCornerNoTextClipping.svg" width="50%" alt="Text not clipped" />
+        <figcaption>
+          <b>Figure 2</b>
+          : Text not clipped.
+        </figcaption>
+      </figure>
+
+      <p>
+        This change may cause a breakage in screenshot tests. (
+        <a href="https://android-review.googlesource.com/#/q/I2e6ae57e2c7f47521cf48d518fd9ff67e030f6da">I2e6ae</a>
+        )
+      </p>
+    </li>
+  </ul>

@@ -1,17 +1,43 @@
-import { mkdir, readdir, readFile, writeFile, stat } from 'fs/promises';
-import path from 'path';
-import { pnpmWorkspaceRootSync } from "@node-kit/pnpm-workspace-root";
-import { Library, LibraryChangelog } from '../src/lib/types';
+import {mkdir, readdir, readFile, stat, writeFile} from 'fs/promises';
+import * as path from 'path';
+import {pnpmWorkspaceRootSync} from "@node-kit/pnpm-workspace-root";
+import {Library, LibraryChangelog} from '../src/lib/types';
+import {parse as parseYaml} from 'yaml';
+import {JSDOM} from 'jsdom';
+
+const ANDROID_DOCS_BASE = 'https://developer.android.com';
+
+function makeUrlsAbsolute(html: string): string {
+  const dom = new JSDOM(html);
+  const document = dom.window.document;
+
+  ['href', 'src'].forEach(attr => {
+    document.querySelectorAll(`[${attr}]`).forEach((element) => {
+      const value = element.getAttribute(attr);
+      if (value && 
+          !value.startsWith('http') && 
+          !value.startsWith('mailto:') && 
+          !value.startsWith('#')) {  // Skip anchor links
+        const absoluteUrl = value.startsWith('/') 
+          ? `${ANDROID_DOCS_BASE}${value}`
+          : `${ANDROID_DOCS_BASE}/${value}`;
+        element.setAttribute(attr, absoluteUrl);
+      }
+    });
+  });
+
+  return document.body.innerHTML;
+}
 
 async function ensureDir(dir: string) {
-  await mkdir(dir, { recursive: true });
+  await mkdir(dir, {recursive: true});
 }
 
 async function fileExists(filePath: string): Promise<boolean> {
   try {
     await stat(filePath);
     return true;
-  } catch(error) {
+  } catch (error) {
     console.error(error);
     return false;
   }
@@ -19,7 +45,7 @@ async function fileExists(filePath: string): Promise<boolean> {
 
 async function buildStaticData() {
   const outputDir = path.join(process.cwd(), 'public', 'data');
-  
+
   // Always try to get the workspace root first
   const workspaceRoot = pnpmWorkspaceRootSync(process.cwd());
   if (!workspaceRoot) {
@@ -48,7 +74,9 @@ async function buildStaticData() {
   const libraryIndex: Record<string, Library> = {};
 
   for (const library of changelogs) {
-    const versions = await readdir(path.join(sourceDir, 'changelogs', library));
+    const versions =
+      (await readdir(path.join(sourceDir, 'changelogs', library)))
+        .filter((versionFile) => versionFile.endsWith('.yaml'));
     const versionInfos: Array<{ version: string; date: string }> = [];
 
     for (const version of versions) {
@@ -56,7 +84,11 @@ async function buildStaticData() {
         path.join(sourceDir, 'changelogs', library, version),
         'utf-8',
       );
-      const changelog: LibraryChangelog = JSON.parse(content);
+      // Parse YAML instead of JSON
+      const changelog: LibraryChangelog = parseYaml(content);
+
+      // Convert relative URLs to absolute in changelog HTML
+      const processedHtml = makeUrlsAbsolute(changelog.changelogHtml);
 
       versionInfos.push({
         version: changelog.version,
@@ -68,7 +100,7 @@ async function buildStaticData() {
         JSON.stringify({
           version: changelog.version,
           date: changelog.releaseDate,
-          changelogHtml: changelog.changelogHtml,
+          changelogHtml: processedHtml, // Use processed HTML with absolute URLs
           commitsUrl: changelog.commitsUrl,
         }),
       );
@@ -83,7 +115,7 @@ async function buildStaticData() {
 
     await writeFile(
       path.join(outputDir, 'libraries', `${library}.json`),
-      JSON.stringify(libraryIndex[library])
+      JSON.stringify(libraryIndex[library]),
     );
   }
 
@@ -95,4 +127,4 @@ async function buildStaticData() {
   console.log('Data generation complete!');
 }
 
-buildStaticData().catch(console.error); 
+buildStaticData().catch(console.error);

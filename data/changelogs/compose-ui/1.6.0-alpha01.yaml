@@ -1,0 +1,265 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.6.0-alpha01
+releaseDate: 2023-06-21
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-alpha01" data-text="Version 1.6.0-alpha01" tabindex="-1">Version 1.6.0-alpha01</h3>
+  <p>June 21, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.6.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9eb2d144f9209cb9c4205ad1f981eb7ddf29b96e..3b5b931546a48163444a9eddc533489fcddd7494/compose/ui">Version 1.6.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Support lookahead in
+      <code translate="no" dir="ltr">LazyList</code>
+      . This allows
+      <code translate="no" dir="ltr">LazyList</code>
+      in the lookahead pass to bypass any animation (e.g. item placement animation,
+      <code translate="no" dir="ltr">AnimatedVisibility</code>
+      , etc) and to calculate the lookahead size and position for all children. After the lookahead pass, children of
+      <code translate="no" dir="ltr">LazyList</code>
+      could animate independently to the reality as seen in the lookahead pass.
+    </li>
+  </ul>
+  <p><strong>Behavior Change: includeFontPadding is now false by default in Compose</strong></p>
+  <p>
+    <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/PlatformTextStyle#PlatformTextStyle(kotlin.Boolean)"><code translate="no" dir="ltr">includeFontPadding</code></a>
+    is now false by default (
+    <a href="https://android-review.googlesource.com/#/q/21d806ccda067df1e0e90cb7a4ff489d7e11a71d">21d806</a>
+    ) in Compose.
+  </p>
+  <p>
+    <code translate="no" dir="ltr">includeFontPadding</code>
+    is a legacy attribute that controls whether or not to include extra padding on top of the first line and last line of the text to accommodate any characters that may extend above or below the text baselines.
+  </p>
+  <p>Updating this Compose version will modify how all texts render in your UI by removing the extra padding on top of the first line and last line of every text you display.</p>
+  <p>Depending on your UI requirements and the font metrics you’re using, the changes should be minimal. However you might encounter blockers such as: - Broken screenshot tests. Fix the UI if required, and regenerate the golden images. - Text is slightly misaligned. Remove any custom negative paddings or add padding if required.</p>
+  <p>
+    You can opt-in to
+    <code translate="no" dir="ltr">includeFontPadding</code>
+    by using
+    <code translate="no" dir="ltr">PlatformTextStyle</code>
+    for each text:
+  </p>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="scdoc"><code translate="no" dir="ltr">Text(
+   text = myText,
+   style = TextStyle(
+     lineHeight = 2.5.em,
+     platformStyle = PlatformTextStyle(
+       includeFontPadding = true/false
+     )
+     /* … */
+    )
+  )
+  </code></pre>
+  </devsite-code>
+  <p>
+    You can opt-in to
+    <code translate="no" dir="ltr">includeFontPadding</code>
+    for all your texts by configuring your Material styles. Note that parameter names will vary between M2 and M3.
+  </p>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="scdoc"><code translate="no" dir="ltr">val Typography = Typography(
+     body1 = TextStyle(
+         fontFamily =    /* … <span class="devsite-syntax-gs">*/,</span>
+  <span class="devsite-syntax-gs">       fontSize =    /*</span> … <span class="devsite-syntax-gs">*/,</span>
+  <span class="devsite-syntax-gs">       platformStyle = PlatformTextStyle(</span>
+  <span class="devsite-syntax-gs">           includeFontPadding = false</span>
+  <span class="devsite-syntax-gs">       )</span>
+  <span class="devsite-syntax-gs">   /*</span> … <span class="devsite-syntax-gs">*/</span>
+  <span class="devsite-syntax-gs">   )</span>
+  <span class="devsite-syntax-gs">)</span>
+
+  <span class="devsite-syntax-gs">MaterialTheme(</span>
+  <span class="devsite-syntax-gs">   typography = Typography,</span>
+  <span class="devsite-syntax-gs">   /*</span> … */
+  )
+  </code></pre>
+  </devsite-code>
+  <p>
+    You can find more about Compose
+    <code translate="no" dir="ltr">includeFontPadding</code>
+    in
+    <a href="https://developer.android.com/jetpack/compose/text/style-paragraph#adjust-line-height">developer documentation</a>
+    and
+    <a href="https://medium.com/androiddevelopers/fixing-font-padding-in-compose-text-768cd232425b">this blog post</a>
+    .
+  </p>
+  <p>
+    If you experience issues/bugs connected with this change, file a bug using the
+    <a href="https://b.corp.google.com/issues/new?component=779818&amp;template=1371638">issue tracker</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Support
+      <code translate="no" dir="ltr">InputConnection#requestCursorUpdates</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I0c69bf50846ad6a639fe3f3f5f77f89747035b26">I0c69b</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">FocusRequester.saveFocusedChild</code>
+      and
+      <code translate="no" dir="ltr">FocusRequester.restoreFocusedChild</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ic557eaacc4b5c5fe9f908c5afcc86fc5e84f2bac">Ic557e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/272302679">b/272302679</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/275157318">b/275157318</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">ResourceResolutionException</code>
+      type to wrap throwables thrown when attempting to load bitmap assets with a description of the asset path that failed to load. (
+      <a href="https://android-review.googlesource.com/#/q/I19f445605ae8b171532b73b7ae4697cec0453767">I19f44</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/230166331">b/230166331</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/278424788">b/278424788</a>
+      )
+    </li>
+    <li>
+      Optimized accessibility for performance and memory allocations. (
+      <a href="https://android-review.googlesource.com/#/q/Iede48198c2709b0736a39287ebc8f082d3869ae2">Iede48</a>
+      )
+    </li>
+    <li>
+      Added semantics properties and actions to support text translation. (
+      <a href="https://android-review.googlesource.com/#/q/I4a6bc0e167389b8604135d05fbcae7b3cebab0d1">I4a6bc</a>
+      )
+    </li>
+    <li>
+      New property in
+      <code translate="no" dir="ltr">IntrinsincMeasureScope</code>
+      and its implementations (e.g.
+      <code translate="no" dir="ltr">MeasureScope</code>
+      ) to indicate whether the current measure pass is a lookahead pass. (
+      <a href="https://android-review.googlesource.com/#/q/I7a8122bf09752d7afb6ace1a0b397a2632708e95">I7a812</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">DrawScope</code>
+      api to introduce the ability to retarget rendering into a different canvas with alternative density/layoutdirection and size.
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">DrawContext</code>
+      to support configuration of density and layout direction as well as making the canvas configurable. (
+      <a href="https://android-review.googlesource.com/#/q/Ie1f9b83f0486bdaa9a159084625c79d312d7e013">Ie1f9b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/225408150">b/225408150</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Paragraph#fillBoundingBoxes</code>
+      to calculate character bounding boxes. (
+      <a href="https://android-review.googlesource.com/#/q/If30eee7df01266200e8b41ee3a6efc141f0c781d">If30ee</a>
+      )
+    </li>
+    <li>
+      Added a set of common
+      <code translate="no" dir="ltr">MultiPreviews</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ia5a27a26c2282a484a91ec812a01a8d1bc1bff17">Ia5a27</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">FocusTargetModifierNode</code>
+      interface that can be used to create a custom
+      <code translate="no" dir="ltr">FocusTarget</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I9790ef90091a66436fd7f03d0be787741b42935c">I9790e</a>
+      )
+    </li>
+    <li>
+      Renamed the
+      <code translate="no" dir="ltr">fallback*</code>
+      parameters on the
+      <code translate="no" dir="ltr">TextMeasurer</code>
+      constructor to
+      <code translate="no" dir="ltr">default*</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I940a5fa24ae24dd98ed854eb4b57737c9de857f5">I940a5</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">SemanticsPropertyReceiver.performImeAction</code>
+      to
+      <code translate="no" dir="ltr">onImeAction</code>
+      and
+      <code translate="no" dir="ltr">SemanticsActions.PerformImeAction</code>
+      to
+      <code translate="no" dir="ltr">OnImeAction</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I8e841b9789b882fecf991ac2fdcfc4fcb0aaa5b7">I8e841</a>
+      )
+    </li>
+    <li>
+      Adds Wheel to differentiate a mouse scroll from a drag in nested scrolling (specifically, in
+      <code translate="no" dir="ltr">NestedScrollConnection</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/Ie57e47dbfb69c312d49fb67297771df332a14dca">Ie57e4</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">asComposePaint</code>
+      API to replace
+      <code translate="no" dir="ltr">toComposePaint</code>
+      as the returned object wraps the original
+      <code translate="no" dir="ltr">android.graphics.Paint</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I22b4c3b279f05277536465f2d5d701030268420f">I22b4c</a>
+      )
+    </li>
+    <li>
+      Deprecate
+      <code translate="no" dir="ltr">SemanticsProperties.imeAction</code>
+      and replace with a new parameter to
+      <code translate="no" dir="ltr">SemanticsActions.performImeAction</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4a5871554bc5614b494a0ce8a7f60e0357f629aa">I4a587</a>
+      )
+    </li>
+    <li>
+      Added support for selection by mouse. Touch based selection will expand by word, and shrink by character. (
+      <a href="https://android-review.googlesource.com/#/q/Ic0c6c247aefb9cf567525369468fe19fe77dc986">Ic0c6c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/180639271">b/180639271</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Paragraph</code>
+      methods that used to throw
+      <code translate="no" dir="ltr">AssertionError</code>
+      for out of bounds offsets now throw
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      as
+      <code translate="no" dir="ltr">MultiParagraph</code>
+      does. (
+      <a href="https://android-review.googlesource.com/#/q/I549d3ec936afbd941361690d1f16fadc4998670a">I549d3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/243338896">b/243338896</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_15_2" data-text="Version 1.5" tabindex="-1">Version 1.5</h2>

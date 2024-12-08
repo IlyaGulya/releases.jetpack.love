@@ -1,0 +1,59 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.3.0
+releaseDate: 2022-10-24
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0" data-text="Version 1.3.0" tabindex="-1">Version 1.3.0</h3>
+  <p>October 24, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.3.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3c2d5397fb8ef697bb04bfc7e98721e2dc0aa255..b5cb4dae1f526ce2408f450b50ade8708684b2be/compose/runtime">Version 1.3.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 1.2.0</strong></p>
+  <p><strong>Exception Handling / Live Edit Support</strong></p>
+  <ul>
+    <li>In order to better support live edit, APIs were added to enable handling of exceptions during composition</li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/2819ab44af5776f76d8ac1e29d33e50a0b929a61">Composition error handling for hot reload</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/ae943d2f8299b58a3054f70b83d2bdd8d6e6913d">Handle live edit errors on save/restore</a></li>
+  </ul>
+  <p><strong>Composition Tracing</strong></p>
+  <ul>
+    <li>Runtime tracing APIs were added in order to support new composition tracing tooling</li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/24ece7949cc87f232664336a0fb7f26839378aa5">Generate composable trace event start/end calls</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/96e00fb1786ae4bc4a515d22d13f995ece7ed2b5">Re-added ComposerKt.traceEventStart(Int, String)</a></li>
+  </ul>
+  <p><strong>Composable Reflection APIs</strong></p>
+  <ul>
+    <li>
+      A new
+      <code translate="no" dir="ltr">ComposableMethod</code>
+      API was added to allow for more reliable reflection-based invocations of composable APIs.
+    </li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/5d0660b9e8113873c8887ce74bb989aa1c212191">Move invokeComposable to compose runtime</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/eb253ee20bd005b0b419e2157d96c06a96e92916">Rework API to invoke composable method</a></li>
+  </ul>
+  <p><strong>Runtime Fixes</strong></p>
+  <ul>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/bc7b810e4bcb1702e46b562682b6c96830cab649">Fix faulty range test for slot table checking for markers</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/07b6f4372eb02255568de41924515ec50d0acd94">Allow movable content to move into and out of SubcomposeLayout</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/63e59df34fcb10d627a3aea2d22013888ee76993">Fix moving content to new content of a subcomposition</a></li>
+  </ul>
+  <p><strong>Snapshot System</strong></p>
+  <ul>
+    <li>The snapshot system got various improvements around memory management, performance, and correctness.</li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/486f60a81dd4accb2a52106005f002fac4ddddff">Optimize scope removal in SnapshotStateObserver</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/e82b3518094e5451dd4697f31a412c10075b28c5">Dispose nested snapshots created from transparent snapshots</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/c5ff609874b5f7c19f7dfadcadcb7651d4ee14cd">Fixed race condition when reading state from the global snapshot</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/0f8c4cc72262771896665eb83887ec4f7ea5a225">Support DerivedState in SnapshotStateObserver</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/4945dfa31180f343697de5810b99ec80a48dc386">Prevent removing derived state from composition when it is read in other scopes</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/fbe8655d6c56990f4de613176939a52f2bc9fa9a">Use IdentityArrayMap instead of HashMap inside DerivedState</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/ae918365742eadb840fe89c72ec8b14b9dacf8a1">Update derived state observers to use mutable vector</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/62ef19d62c33659c190b4018d8ffb67d929bcc61">Update SnapshotStateObserver state cleanup</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/4088aca726bb99f5c007ef61209fddacdb8817ad">Replace SnapshotStateObserver.invalidated with ArraySet</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/c5ff609874b5f7c19f7dfadcadcb7651d4ee14cd">Fixed race condition when reading state from the global snapshot</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/bfd2a904f9e78db21b23b8c5420260f95fb16129">Fix use of stale record in DerivedState hash calculation</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/2abd2315fd690a61c868684c93018ed79ad949d1">Fix race condition when advancing the global snapshot</a></li>
+    <li><a href="https://android.googlesource.com/platform/frameworks/support/+/05812da909010aa9c73251849aac4b970a5a9209">Speed up scope observations cleanup in SnapshotStateObserver</a></li>
+  </ul>

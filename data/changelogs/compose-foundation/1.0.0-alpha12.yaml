@@ -1,0 +1,427 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.0.0-alpha12
+releaseDate: 2021-02-10
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha12" data-text="Version 1.0.0-alpha12" tabindex="-1">Version 1.0.0-alpha12</h3>
+  <p>February 10, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation:1.0.0-alpha12</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-layout:1.0.0-alpha12</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6950aab50fe6c9f7e9d97cf865161f2d3999eb9e..9ed3262e0dfca1d352bdbf8f8e10253a61ef6218/compose/foundation">Version 1.0.0-alpha12 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Modifier.pointerInput now requires remember keys to indicate when the pointer input detection coroutine should restart for new dependencies. (
+      <a href="https://android-review.googlesource.com/#/q/I849cd63912b2d4c86ebe0dd24a7d0e2eb7a4e6d1">I849cd</a>
+      )
+    </li>
+    <li>
+      Testing update: hasText() will check for both input and label/hint/placeholder texts in the text field (
+      <a href="https://android-review.googlesource.com/#/q/Iab8030e3c98f05bd6f0ffaf203b8c15acab513bb">Iab803</a>
+      )
+    </li>
+    <li>
+      PaddingValues.Absolute was added and can be used in APIs accepting PaddingValues. (
+      <a href="https://android-review.googlesource.com/#/q/Ia5f30058d0e5e9549132cdad9b1611a20c975359">Ia5f30</a>
+      )
+    </li>
+    <li>
+      onImeActionPerformed is deprecated. use KeyboardActions instead (
+      <a href="https://android-review.googlesource.com/#/q/If0bbda1241018d4c19b5df3cd1811c38cce4a76d">If0bbd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/179071523">b/179071523</a>
+      )
+    </li>
+    <li>
+      In order to better match naming conventions with ImageBitmap and ImageVector, ImagePainter has been renamed to BitmapPainter to parallel VectorPainter. (
+      <a href="https://android-review.googlesource.com/#/q/Iba3810ae5cfd6f57442154c93eec500f35ba4ad5">Iba381</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/174565889">b/174565889</a>
+      )
+    </li>
+    <li>
+      Better substring test APIs with substring now as an argument (
+      <a href="https://android-review.googlesource.com/#/q/Icbe78369fe75bc01bfcfa25b8e9ee2ad148fdb96">Icbe78</a>
+      )
+    </li>
+    <li>
+      Introduced an
+      <code translate="no" dir="ltr">InfiniteAnimationPolicy</code>
+      coroutine context element that will be applied in infinite animations. By default no policy is installed, except when running tests with
+      <code translate="no" dir="ltr">ComposeTestRule</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I50ec421d7db495459a61c9282dbc2bfbc1f1ad02">I50ec4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/151940543">b/151940543</a>
+      )
+    </li>
+    <li>
+      Animatable.snapTo and Animatable.stop are now suspend functions (
+      <a href="https://android-review.googlesource.com/#/q/If42887504caa0a07a0d89477805b68ca51c9b3b4">If4288</a>
+      )
+    </li>
+    <li>
+      ComponentActivity.setContent has moved to androidx.activity.compose.setContent in the androidx.activity:activity-compose module. (
+      <a href="https://android-review.googlesource.com/#/q/Icf4168e6078b87ce746569a946b2a90274197c72">Icf416</a>
+      )
+    </li>
+    <li>
+      Destructuring and copy() methods have been removed from several classes where they were rarely used. (
+      <a href="https://android-review.googlesource.com/#/q/I267021d3a45314acc9a169f6bbdfbfb4295a448c">I26702</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/178659281">b/178659281</a>
+      )
+    </li>
+    <li>
+      <p>Custom keys support for LazyColumn/LazyRow was added. This allows us to smarter handle items reordering. So the state you stored in remember {} blocks will move together with the item when you reorder elements or removed the item from the middle.</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-n">LazyColumn</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">items</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">users</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">key</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">user</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;<span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">user</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">id</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">})</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">...</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+      <ul>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/Ia50ef7cd8f47ab87d76edc4e0691199ce426729d">Ia50ef</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/164901852">b/164901852</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        Changed Indication#createInstance to be @Composable, and changed LocalIndication to contain an Indication, not () -&gt; Indication. (
+        <a href="https://android-review.googlesource.com/#/q/I5eeea2424e4deda6116f0b48b690b628f8d545eb">I5eeea</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/157150564">b/157150564</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">Constraints.enforce</code>
+        was replaced with
+        <code translate="no" dir="ltr">Constraints.constrain</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/I8b8ea7898b09ccaa411b9b6ef20a16523e8ba029">I8b8ea</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        loadFontResource is deprecated. Use fontResource instead. imageResource, loadImageResource, vectorResource, and loadVectorResource are deprecated. Use painterResource instead. (
+        <a href="https://android-review.googlesource.com/#/q/I6b8096508b2280ca49c70a432c5497f386dc570e">I6b809</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        For performance reasons, ScrollAxisRange semantics now takes lambdas returning Floats instead of direct Float values. (
+        <a href="https://android-review.googlesource.com/#/q/If4a353ef9ac511ce77cf334ccf9a589ecadcac56">If4a35</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/178657186">b/178657186</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added EditableText semantics to mark editable input text of the text field for accessibility and corresponding test methods to check the semantics (
+        <a href="https://android-review.googlesource.com/#/q/I8e07ab8a8f29d5c2a31fb1c979e099303083a38f">I8e07a</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Modifier.clickable now doesn't have double and long click support. Use Modifier.combinedClickable to achieve this functionality. (
+        <a href="https://android-review.googlesource.com/#/q/Iafad17bbdb5029ce413bce94cd47f7c5233cb67b">Iafad1</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        toIntPx() was renamed to roundToPx(). (
+        <a href="https://android-review.googlesource.com/#/q/I9b7e460fb4b6e72ba65cdd8f5d1165c306461773">I9b7e4</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/173502290">b/173502290</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        IntBounds was renamed to IntRect and the API was improved. (
+        <a href="https://android-review.googlesource.com/#/q/I1f6ff3831e502856f1550ede9c367bf05c5a51b1">I1f6ff</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Modifier.dragGestureFilter has been deprecated. Use
+        <code translate="no" dir="ltr">Modifier.pointerInput { detectDragGestures (...)}</code>
+        instead. Alternatively, use Modifier.draggable for one axis drags (
+        <a href="https://android-review.googlesource.com/#/q/I0ba93559f565fc2a277f322e53dce9df9855ea46">I0ba93</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/175294473">b/175294473</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Renamed Ambients to match the Ambient -&gt; CompositionLocal rename. Ambients used to be named AmbientFoo, now CompositionLocals are named LocalFoo. (
+        <a href="https://android-review.googlesource.com/#/q/I2d55d1c5c38a08b04e72a569d3079db4feca1bf7">I2d55d</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Selection was moved to foundation. (
+        <a href="https://android-review.googlesource.com/#/q/I7892b8be5d2f91849f8ecc2e1034e0a8277bb61c">I7892b</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Similarly to how we previously removed
+        <code translate="no" dir="ltr">state { 0 }</code>
+        composable and now promote usage like
+        <code translate="no" dir="ltr">remember { mutableStateOf(0) }</code>
+        we are going to remove
+        <code translate="no" dir="ltr">savedInstanceState { 0 }</code>
+        composable. You should use
+        <code translate="no" dir="ltr">rememberSaveable { mutableStateOf(0) }</code>
+        instead and it will save and restore automatically if the type used inside the MutableState can be stored in the Bundle. If previously you were passing a custom saver object now you need to use a new overload of rememberSaveable which has the
+        <code translate="no" dir="ltr">stateSaver</code>
+        parameter. The usage will look like this:
+        <code translate="no" dir="ltr">val holder = rememberSaveable(stateSaver = HolderSaver) { mutableStateOf(Holder(0)) }</code>
+        (
+        <a href="https://android-review.googlesource.com/#/q/Ib4c266902d166f119ea1770cccbc78ac25a54ff7">Ib4c26</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/177338004">b/177338004</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added password semantics for accessibility (
+        <a href="https://android-review.googlesource.com/#/q/I231ce1c1e9c781c8ec8fda5536d8a0588d68755d">I231ce</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added ProgressBarRangeInfo.Indeterminate to mark indeterminate progress bars for accessibility (
+        <a href="https://android-review.googlesource.com/#/q/I6fe052ba60861d64f31963507ff11e95f3331d89">I6fe05</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Playtime in animation is now unfiied to nanoseconds (
+        <a href="https://android-review.googlesource.com/#/q/If776ab3406909ddf6d841dc2e71fc0889db77047">If776a</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>@ComposableContract has been deprecated in favor of three more specific annotations.</p>
+
+      <p>
+        <code translate="no" dir="ltr">@ComposableContract(restartable = false)</code>
+        has become
+        <code translate="no" dir="ltr">@NonRestartableComposable</code>
+        <code translate="no" dir="ltr">@ComposableContract(readonly = true)</code>
+        has become
+        <code translate="no" dir="ltr">@ReadOnlyComposable</code>
+        <code translate="no" dir="ltr">@ComposableContract(preventCapture = true)</code>
+        has become
+        <code translate="no" dir="ltr">@DisallowComposableCalls</code>
+        <code translate="no" dir="ltr">@ComposableContract(tracked = true)</code>
+        has been removed. (
+        <a href="https://android-review.googlesource.com/#/q/I60a9db0287dc0e03b38e6cf31a7d435026a2ce0f">I60a9d</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">emptyContent()</code>
+        and
+        <code translate="no" dir="ltr">(@Composable () -&gt; Unit).orEmpty()</code>
+        utilities have been deprecated as they no longer have any positive performance impact or value (
+        <a href="https://android-review.googlesource.com/#/q/I0484d3ef439993d05eea86e53f05997eced590ab">I0484d</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Recomposers can now be closed. Closed recomposers will continue recomposition until composition child coroutines complete. Recomposer.shutDown renamed to cancel to contrast with close. (
+        <a href="https://android-review.googlesource.com/#/q/Ib6d766b91381ee45af41a14b7951c48f794f0a90">Ib6d76</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        APIs related to LazyVerticalGrid are marked as experimental (
+        <a href="https://android-review.googlesource.com/#/q/Ia53e3b055e4278f67d52df379f3f65c2a10adcc4">Ia53e3</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/178519862">b/178519862</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        rememberSavedInstanceState() was renamed to rememberSaveable() and moved to androidx.compose.runtime.saveable package. (
+        <a href="https://android-review.googlesource.com/#/q/I1366e7fef0a5a56a43d6eeb3770967a9bf683380">I1366e</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/177338004">b/177338004</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        RestorableStateHolder was renamed to SaveableStateHolder and moved to androidx.compose.runtime.saveable package. Inner method RestorableStateProvider was renamed to SaveableStateProvider. Generic type was removed so you can just pass Any as a key. Experimental annotation is not needed anymore. (
+        <a href="https://android-review.googlesource.com/#/q/I0902eb1618d36d08ade37be7b6a9453d85b1af62">I0902e</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/174598702">b/174598702</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Saver, listSaver(), mapSaver(), autoSaver was moved from androidx.compose.runtime.savedinstancestate to androidx.compose.runtime.saveable (
+        <a href="https://android-review.googlesource.com/#/q/I77fe618aa5e124891b84973d8b8b12735f9f909e">I77fe6</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Artefact androidx:compose:runtime:runtime-saved-instance-state was renamed to androidx:compose:runtime:runtime-saveable (
+        <a href="https://android-review.googlesource.com/#/q/I6dcac2489cf4ec4f17b8ce73bba6eab955a54c6d">I6dcac</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Many longstanding deprecated APIs in the ui package are deleted. (
+        <a href="https://android-review.googlesource.com/#/q/I2f2dcaf64fe719c6f2387202f3d0a5699d892657">I2f2dc</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        The compose:runtime-dispatch artifact is now deprecated. MonotonicFrameClock can now be found in compose:runtime and AndroidUiDispatcher can be found in compose:ui. (
+        <a href="https://android-review.googlesource.com/#/q/Ib5c36a427306eceac4b9b16b52a091e864e5b936">Ib5c36</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Parameters on RounderCornerShape, CutCornerShape and CornerBasedShape were renamed from left/right to start/end in order to support the shape's auto mirroring in the rtl direction. AbsoluteRounderCornerShape and AbsoluteCutCornerShape were introduced for the cases when auto-mirroring is not desired. (
+        <a href="https://android-review.googlesource.com/#/q/I61040b7bba950191361af89ff4c736ef6cb56235">I61040</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/152756983">b/152756983</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        canDrag has been removed from the Modifier.scrollable. (
+        <a href="https://android-review.googlesource.com/#/q/Id66e70ac186ffbdd05e2a62af26c7a41e85f02e9">Id66e7</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/175294473">b/175294473</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>The API the Compose compiler plugin targets has been refactored to use an interface instead of a concrete class. The interface also no longer uses a type parameter.</p>
+
+      <p>
+        This is an internal change that should not effect source code compatibility but is a binary breaking change. (
+        <a href="https://android-review.googlesource.com/#/q/I3b9229969aa70138bc57f5e8498602f5b2dba1e6">I3b922</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/169406779">b/169406779</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Modifier.scaleGestureFilter has been removed. Use Modifier.zoomable instead. Alternatively, use
+        <code translate="no" dir="ltr">Modifier.pointerInput { detectMultitouchGestures { ... }}</code>
+        (
+        <a href="https://android-review.googlesource.com/#/q/Id5da14604597ffe92bf1dd32837a34b462eaa80d">Id5da1</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/175294473">b/175294473</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        AnimatedValue/Float is now deprecated. Please use Animatable instead. (
+        <a href="https://android-review.googlesource.com/#/q/I713457f88b04e50fbc5deb70a5bb7bbcf777e630">I71345</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/177457083">b/177457083</a>
+        )
+      </p>
+    </li>
+    <li>
+      <ul>
+        <li>Removed CoreText and CoreTextField from public API</li>
+      </ul>
+
+      <ul>
+        <li>
+          Removed deprecated SelectionContainer overload (
+          <a href="https://android-review.googlesource.com/#/q/I99c199c4f9055da1e668d9d799ef11c90239df5b">I99c19</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        Remove deprecated non-suspend scrolling functions Continuing with the changes from last release, the non-suspend scrolling functions are now removed entirely. Please convert to the suspend functions with the same names. A coroutine scope can be obtained via rememberCoroutineScope(). (
+        <a href="https://android-review.googlesource.com/#/q/I3d39c25a1d6790ee5c378f298ffe7af62047810f">I3d39c</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/178169563">b/178169563</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        androidx.compose.foundation.layout.ConstraintLayout was deprecated in favor of androidx.constraintlayout.compose.ConstraintLayout. You will need to add a dependency on
+        <code translate="no" dir="ltr">androidx.constraintlayout:constraintlayout-compose:1.0.0-alpha01</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/I87adc8984e1bb9cb8f76b5779f7c90eab48d2e36">I87adc</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        tapGestureFilter, doubleTapGestureFilter, longPressGestureFilter and pressIndicaitonGestureFilter have been deprecated. Use Modifier.clickable or Modifier.pointerInput with detectTapGestures function instead. (
+        <a href="https://android-review.googlesource.com/#/q/I6baf95f881b6fa6890ca1d065d49fef3e27bce83">I6baf9</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/175294473">b/175294473</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Removed
+        <code translate="no" dir="ltr">Recomposer.current()</code>
+        . [Abstract]ComposeView now default to lazily created, window-scoped Recomposers driven by the ViewTreeLifecycleOwner for the window. Recomposition and withFrameNanos-based animation ticks are paused while the host Lifecycle is stopped. (
+        <a href="https://android-review.googlesource.com/#/q/I38e11565b2fc776966b6b6984aceafd8a1e6fed1">I38e11</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Recomposer.runningRecomposers now offers a global StateFlow of read-only RecomposerInfo for observing ongoing composition state in the process. Prefer this API to Recomposer.current(), which is now deprecated. (
+        <a href="https://android-review.googlesource.com/#/q/If8ebe3959cfe71682ad372382d3b720035ef1605">If8ebe</a>
+        )
+      </p>
+    </li>
+  </ul>

@@ -1,0 +1,73 @@
+libraryId: emoji2
+groupId: androidx.emoji2
+version: 1.1.0-alpha01
+releaseDate: 2021-12-15
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha01" data-text="Version 1.1.0-alpha01" tabindex="-1">Version 1.1.0-alpha01</h3>
+  <p>December 15, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.emoji2:emoji2-*:1.1.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7a115796b2e8dbaedf17e2f7ad2eda5c58698b04..301586664b5aad60548f21866cad502d524dbf9f/emoji2">Version 1.1.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">emoji2-bundled</code>
+      contains emoji 14 font
+    </li>
+    <li>
+      New
+      <code translate="no" dir="ltr">getEmojiMatch</code>
+      API returns accurate information for keyboards to decide how an emoji will display in the presence of an emojicompat font that's behind the system font
+    </li>
+    <li>
+      Bugfix for
+      <code translate="no" dir="ltr">NumberKeyListener</code>
+      that makes digit input correctly filter characters
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add new API
+      <code translate="no" dir="ltr">getEmojiMatch</code>
+      to allow keyboards to more accurately lookup emoji match behavior in emojicompat.
+    </li>
+    <li>
+      Deprecate
+      <code translate="no" dir="ltr">hasEmojiGlyph</code>
+      , as its boolean return value is inaccurate when testing against a font that is older than the platform emoji font. Replace with
+      <code translate="no" dir="ltr">getEmojiMatch</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie693d9d045954f86d37cae623a72f75aeeea6a9d">Ie693d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Emoji2 will not wrap instances of
+      <code translate="no" dir="ltr">NumberKeyListener</code>
+      , allowing the locale to be configured by
+      <code translate="no" dir="ltr">TextView</code>
+      .
+    </li>
+    <li>
+      Appcompat will not wrap instances of
+      <code translate="no" dir="ltr">NumberKeyListener</code>
+      passed to
+      <code translate="no" dir="ltr">setKeyListener</code>
+      , allowing
+      <code translate="no" dir="ltr">TextView</code>
+      to correctly configure the locale on
+      <code translate="no" dir="ltr">NumberKeyListeners</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ibf113081112d05c75937eec5bc87904ebf450b26">Ibf113</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/207119921">b/207119921</a>
+      )
+    </li>
+  </ul>
+  <h2 id="10_2" data-text="1.0" tabindex="-1">1.0</h2>

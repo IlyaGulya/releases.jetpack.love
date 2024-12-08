@@ -1,0 +1,104 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.3.0-alpha04
+releaseDate: 2020-04-29
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha04" data-text="Version 1.3.0-alpha04" tabindex="-1">Version 1.3.0-alpha04</h3>
+  <p>April 29, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.3.0-alpha04</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.3.0-alpha04</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.3.0-alpha04</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6c98d66b901be2eecdf89477ccd70d2490ca6fc2..942518f415d35ff9f2ff78f312c076c673468877/fragment">Version 1.3.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added support for passing results between two Fragments via new APIs on
+      <code translate="no" dir="ltr">FragmentManager</code>
+      . This works for hierarchy fragments (parent/child), DialogFragments, and fragments in Navigation and ensures that results are only sent to your Fragment while it is at least
+      <code translate="no" dir="ltr">STARTED</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/149787344">b/149787344</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The target fragment APIs have been deprecated. To pass data between fragments the new Fragment Result APIs should be used instead. (
+      <a href="https://issuetracker.google.com/issues/149787344">b/149787344</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">startActivityForResult()</code>
+      /
+      <code translate="no" dir="ltr">onActivityResult()</code>
+      and
+      <code translate="no" dir="ltr">requestPermissions()</code>
+      /
+      <code translate="no" dir="ltr">onRequestPermissionsResult()</code>
+      APIs on Fragment have been deprecated. Please use the
+      <a href="/training/basics/intents/result">Activity Result APIs</a>
+      . (
+      <a href="https://android-review.googlesource.com/1290887">aosp/1290887</a>
+      )
+    </li>
+    <li>
+      <strong>Breaking change</strong>
+      from
+      <a href="/jetpack/androidx/releases/activity#1.2.0-alpha04">
+        Activity
+        <code translate="no" dir="ltr">1.2.0-alpha04</code>
+      </a>
+      : the
+      <code translate="no" dir="ltr">prepareCall()</code>
+      method has been renamed to
+      <code translate="no" dir="ltr">registerForActivityResult()</code>
+      . (
+      <a href="https://android-review.googlesource.com/1278717">aosp/1278717</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      The fragment’s
+      <code translate="no" dir="ltr">getViewLifecycleOwner()</code>
+      is now stopped before
+      <code translate="no" dir="ltr">onSaveInstanceState()</code>
+      is called, mirroring the behavior of the fragment’s lifecycle. (
+      <a href="https://issuetracker.google.com/issues/154645875">b/154645875</a>
+      )
+    </li>
+    <li>
+      Calling
+      <code translate="no" dir="ltr">setMenuVisibility(false)</code>
+      on a fragment now correctly changes the visibility of menus provided by its child fragments. (
+      <a href="https://issuetracker.google.com/issues/153593580">b/153593580</a>
+      )
+    </li>
+    <li>
+      Fixed an
+      <code translate="no" dir="ltr">illegalStateException</code>
+      when adding a fragment to a
+      <code translate="no" dir="ltr">DialogFragment</code>
+      ’s view hierarchy with
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/154366601">b/154366601</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">getDefaultViewModelProviderFactory()</code>
+      method on fragments no longer crashes when hosting your fragments outside of an activity. (
+      <a href="https://issuetracker.google.com/issues/153762914">b/153762914</a>
+      )
+    </li>
+  </ul>

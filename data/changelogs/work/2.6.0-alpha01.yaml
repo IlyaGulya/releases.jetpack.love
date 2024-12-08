@@ -1,0 +1,95 @@
+libraryId: work
+groupId: androidx.work
+version: 2.6.0-alpha01
+releaseDate: 2021-03-24
+#language=html
+changelogHtml: |
+  <h3 id="2.6.0-alpha01" data-text="Version 2.6.0-alpha01" tabindex="-1">Version 2.6.0-alpha01</h3>
+  <p>March 24, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.6.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b32e1d4efc3b6976da585fb8783f913e92108428..5c42896eb6591b09e3952030fb7ea8d9b8c42713/work">Version 2.6.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">WorkManager</code>
+        now uses
+        <code translate="no" dir="ltr">androidx.startup</code>
+        to initialize WorkManager. Previously, this was being done by
+        <code translate="no" dir="ltr">androidx.work.impl.WorkManagerInitializer</code>
+        . (
+        <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1608813">aosp/1608813</a>
+        )
+      </p>
+
+      <p>
+        If you used
+        <code translate="no" dir="ltr">tools:node="remove"</code>
+        the
+        <code translate="no" dir="ltr">ContentProvider</code>
+        being used to initialize process lifecycle in the past, then you need to do the following instead.
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="XML"><code translate="no" dir="ltr"><span class="devsite-syntax-w"> </span>&lt;provider
+  <span class="devsite-syntax-w">    </span>android:name="androidx.startup.InitializationProvider"
+  <span class="devsite-syntax-w">    </span>android:authorities=\"${applicationId}.androidx-startup"
+  <span class="devsite-syntax-w">    </span>android:exported="false"
+  <span class="devsite-syntax-w">    </span>tools:node=\"merge"&gt;
+  <span class="devsite-syntax-w">    </span>&lt;!--<span class="devsite-syntax-w"> </span>If<span class="devsite-syntax-w"> </span>you<span class="devsite-syntax-w"> </span>are<span class="devsite-syntax-w"> </span>using<span class="devsite-syntax-w"> </span>androidx.startup<span class="devsite-syntax-w"> </span>to<span class="devsite-syntax-w"> </span>initialize<span class="devsite-syntax-w"> </span>other<span class="devsite-syntax-w"> </span>components<span class="devsite-syntax-w"> </span>--&gt;
+  <span class="devsite-syntax-w">    </span>&lt;meta-data
+  <span class="devsite-syntax-w">        </span>android:name="androidx.work.impl.WorkManagerInitializer"
+  <span class="devsite-syntax-w">        </span>android:value="androidx.startup"
+  <span class="devsite-syntax-w">        </span>tools:node="remove"<span class="devsite-syntax-w"> </span>/&gt;
+  <span class="devsite-syntax-w"> </span>&lt;/provider&gt;
+  </code></pre>
+      </devsite-code>
+      <p>(or)</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="XML"><code translate="no" dir="ltr"><span class="devsite-syntax-w"> </span>&lt;!--<span class="devsite-syntax-w"> </span>If<span class="devsite-syntax-w"> </span>you<span class="devsite-syntax-w"> </span>want<span class="devsite-syntax-w"> </span>to<span class="devsite-syntax-w"> </span>disable<span class="devsite-syntax-w"> </span>android.startup<span class="devsite-syntax-w"> </span>completely.<span class="devsite-syntax-w"> </span>--&gt;
+  <span class="devsite-syntax-w"> </span>&lt;provider
+  <span class="devsite-syntax-w">    </span>android:name="androidx.startup.InitializationProvider"
+  <span class="devsite-syntax-w">    </span>android:authorities="${applicationId}.androidx-startup"
+  <span class="devsite-syntax-w">    </span>tools:node="remove"&gt;
+  <span class="devsite-syntax-w"> </span>&lt;/provider&gt;
+  </code></pre>
+      </devsite-code>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add a
+      <code translate="no" dir="ltr">Result.getOutputData()</code>
+      API which returns the ListenableWorker's
+      <code translate="no" dir="ltr">outputData</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie51e31db49b6952172dd502d2178164c951a2db1">Ie51e3</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Add a workaround for an OEM bug which causes a
+      <code translate="no" dir="ltr">SecurityException</code>
+      to be thrown when using
+      <code translate="no" dir="ltr">AlarmManager</code>
+      APIs. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1587518">aosp/1587518</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_250_3" data-text="Version 2.5.0" tabindex="-1">Version 2.5.0</h2>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      WorkManager Version 2.5.0 is
+      <strong>not compatible</strong>
+      with apps targeting Android 12 (S)
+    </span>
+  </aside>

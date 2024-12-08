@@ -1,0 +1,68 @@
+libraryId: emoji2
+groupId: androidx.emoji2
+version: 1.0.0-beta01
+releaseDate: 2021-09-15
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta01" data-text="Emoji2 Version 1.0.0-beta01" tabindex="-1">Emoji2 Version 1.0.0-beta01</h3>
+  <p>September 15, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.emoji2:emoji2-*:1.0.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/19ae3a88ff0824d615355b492cb56049e16991f2..1a3dcfb231517d6104969f17063fcc6c97ba6eeb/emoji2">Version 1.0.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">setLoadingExecutor</code>
+        to
+        <code translate="no" dir="ltr">FontRequestEmojiCompatConfig</code>
+        , which replaces the previous API of
+        <code translate="no" dir="ltr">setHandler</code>
+        . This API allows apps to configure
+        <code translate="no" dir="ltr">FontRequestEmojiCompatConfig</code>
+        to use any background executor.
+      </p>
+
+      <p>
+        This change is a breaking change from
+        <code translate="no" dir="ltr">androidx.emoji:emoji</code>
+        , so
+        <code translate="no" dir="ltr">setHandler</code>
+        is retained as a no-op Deprecated API to aid in migration. (
+        <a href="https://android-review.googlesource.com/#/q/I6cd48e8f8ad6d8d51c62bd8f2d02c04c77e9db81">I6cd48</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        EmojiCompat correctly sets
+        <code translate="no" dir="ltr">EditorInfo.extras</code>
+        on Android 11
+      </p>
+
+      <ul>
+        <li>
+          Custom widgets that use IME not subclassing EditText may call
+          <code translate="no" dir="ltr">EmojiCompat.updateEditorInfo</code>
+          to inform IME that they support EmojiCompat processing. (
+          <a href="https://android-review.googlesource.com/#/q/I1ea9bdd579e64139d98bc1298ad2d9c5ade65045">I1ea9b</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">DefaultEmojiCompatConfig</code>
+      to correctly lookup emoji font provider on API 19 and 28. This fixes a bug introduced in emoji2 1.0.0-alpha01. (
+      <a href="https://android-review.googlesource.com/#/q/Ib33d84de2a030f6e57e3d5382a088255a202692a">Ib33d8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/197906329">b/197906329</a>
+      )
+    </li>
+  </ul>

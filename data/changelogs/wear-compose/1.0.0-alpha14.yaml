@@ -1,0 +1,86 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.0.0-alpha14
+releaseDate: 2022-01-12
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha14" data-text="Version 1.0.0-alpha14" tabindex="-1">Version 1.0.0-alpha14</h3>
+  <p>January 12, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-foundation:1.0.0-alpha14</code>
+    ,
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material:1.0.0-alpha14</code>
+    , and
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-navigation:1.0.0-alpha14</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/301586664b5aad60548f21866cad502d524dbf9f..f09f3e0f47cacc65a631115deac08ee8cc132ceb/wear/compose">Version 1.0.0-alpha14 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>
+        We have added a number of methods to
+        <code translate="no" dir="ltr">ScalingLazyListState</code>
+        to allow developer control over scrolling to specific list items and also setting the initial list item and offset.
+      </p>
+
+      <p>As part of this change we have also modified the ScalingLazyList so that it is oriented around the center of the viewport of the ScalingLazyList rather than the start of the viewport.</p>
+
+      <p>
+        A new property
+        <code translate="no" dir="ltr">anchorType: ScalingLazyListAnchorType = ScalingLazyListAnchorType.ItemCenter</code>
+        has been added to the
+        <code translate="no" dir="ltr">ScalingLazyList</code>
+        to control whether the center (
+        <code translate="no" dir="ltr">ScalingLazyListAnchorType.ItemCenter</code>
+        ) or
+        <code translate="no" dir="ltr">Edge</code>
+        (
+        <code translate="no" dir="ltr">ScalingLazyListAnchorType.ItemStart</code>
+        ) should be aligned to the viewport's centerline.
+      </p>
+
+      <p>
+        As a result the
+        <code translate="no" dir="ltr">ScalingLazyListItemInfo.offset</code>
+        and
+        <code translate="no" dir="ltr">ScalingLazyListItemInfo.adjustedOffset</code>
+        have changed and will now reflect the offset of the item with respect to both the position of the list item and the
+        <code translate="no" dir="ltr">anchorType</code>
+        of the list. E.g. for a
+        <code translate="no" dir="ltr">ScalingLazyColumn</code>
+        with
+        <code translate="no" dir="ltr">anchorType</code>
+        of
+        <code translate="no" dir="ltr">ItemCenter</code>
+        and an list item positioned with its center on the centerline of the viewport the offset would be
+        <code translate="no" dir="ltr">0</code>
+        .
+      </p>
+
+      <p>
+        The new methods are
+        <code translate="no" dir="ltr">scrollTo</code>
+        ,
+        <code translate="no" dir="ltr">animatedScrollTo</code>
+        ,
+        <code translate="no" dir="ltr">centerItemIndex</code>
+        , and
+        <code translate="no" dir="ltr">centerItemOffset</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/I61b61fbed9539408138216fb9acef46c9bd94479">I61b61</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        We have added a back button handler to
+        <code translate="no" dir="ltr">SwipeDismissableNavHost</code>
+        , so that pressing back navigates to the previous level in the navigation hierarchy. (
+        <a href="https://android-review.googlesource.com/#/q/I5b08689b1651c1aae5f038f058956007df398909">I5b086</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/210205624">b/210205624</a>
+        )
+      </p>
+    </li>
+  </ul>

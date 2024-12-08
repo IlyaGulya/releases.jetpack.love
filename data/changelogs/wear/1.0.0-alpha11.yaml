@@ -1,0 +1,306 @@
+libraryId: wear
+groupId: androidx.wear
+version: 1.0.0-alpha11
+releaseDate: 2021-04-07
+#language=html
+changelogHtml: |
+  <h3 id="complications-watchface-1.0.0-alpha11" data-text="Version 1.0.0-alpha11" tabindex="-1">Version 1.0.0-alpha11</h3>
+  <p>April 7, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear:wear-*:1.0.0-alpha11</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5c42896eb6591b09e3952030fb7ea8d9b8c42713..24330de8135d689b34a31a701181b20549e8db25/wear">Version 1.0.0-alpha11 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      More polish has been applied to the watch face APIs. Most of the changes are simple renamings but
+      <code translate="no" dir="ltr">InteractiveWatchFaceWcsClient</code>
+      and
+      <code translate="no" dir="ltr">InteractiveWatchFaceSysUiClient</code>
+      have been merged into
+      <code translate="no" dir="ltr">InteractiveWatchFaceClient</code>
+      .
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      ContentDescriptionLabel.text is now a ComplicationText rather than the old wearable support library TimeDependentText. (
+      <a href="https://android-review.googlesource.com/#/q/I80c03a2ce3092e7c571df230515c8ed8121fe4e1">I80c03</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SystemProviders.GOOGLE_PAY</code>
+      is not guaranteed to be present on all Android R devices so it has been removed from the list. It's still possible to use this provider via
+      <code translate="no" dir="ltr">DefaultComplicationProviderPolicy</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/If01b508bf26e1537da0f6a47f535a38a9d0c85be">If01b5</a>
+      )
+    </li>
+    <li>
+      We've renamed ComplicationUpdateCallback to ComplicationUpdateListener for consistency. (
+      <a href="https://android-review.googlesource.com/#/q/I61ec7b97abae1fbb590453dcfd1e6d323c4e3dcb">I61ec7</a>
+      )
+    </li>
+    <li>
+      The UserStyle wire format map has been changed to
+      <code translate="no" dir="ltr">Map&lt;String, byte[]&gt;</code>
+      and for convenience a
+      <code translate="no" dir="ltr">UserStyleData</code>
+      class has been added to the public API and is now used by wear-watchface-client and wear-watchface-editor. In addition CustomValueUserStyleSetting.CustomValueOption.value is now
+      <code translate="no" dir="ltr">byte[]</code>
+      instead of
+      <code translate="no" dir="ltr">String</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iaa103736ab143ef4f6303db2529d416b4a28b1ca">Iaa103</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">UserStyleSetting</code>
+      and
+      <code translate="no" dir="ltr">UserStyleSetting.Option</code>
+      now use
+      <code translate="no" dir="ltr">UserStyleSetting.Id</code>
+      and
+      <code translate="no" dir="ltr">UserStyleSetting.Option.Id</code>
+      respectively to store their ids rather than a String. (
+      <a href="https://android-review.googlesource.com/#/q/I63f722e8ae9814892bb238007c498f22f5fcfbb4">I63f72</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">InteractiveWatchFaceClient.SystemState</code>
+      has been renamed to
+      <code translate="no" dir="ltr">WatchUiState</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6a4e0f8fd3811cdd22bd0b58f0e97accee3b3e0d">I6a4e0</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">InteractiveWatchFaceWcsClient</code>
+      and
+      <code translate="no" dir="ltr">InteractiveWatchFaceSysUiClient</code>
+      have been merged because it was hard to explain the division of responsibility (
+      <a href="https://android-review.googlesource.com/#/q/Iff3fa02c0a40a9ae8ac2696a1ba76cd06273d311">Iff3fa</a>
+      )
+    </li>
+    <li>
+      Layer enum values have been renamed for clarity.
+      <code translate="no" dir="ltr">Layer#TOP_LAYER</code>
+      is now
+      <code translate="no" dir="ltr">Layer#COMPLICATIONS_OVERLAY</code>
+      and
+      <code translate="no" dir="ltr">Layer#BASE_LAYER</code>
+      is now
+      <code translate="no" dir="ltr">Layer#BASE</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ia144eca1c93fb57841e47e396cc442b86f5b2b0a">Ia144e</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">UserStyleListener</code>
+      has been renamed to
+      <code translate="no" dir="ltr">UserStyleChangeListener</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I185243bbd2723439457e75f78b3e145f1f1854a0">I18524</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">UserStyleRepository</code>
+      has been renamed to
+      <code translate="no" dir="ltr">CurrentUserStyleRepository</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I6ea531f4e0c9cdce6125ecf661c8548c4cb870e8">I6ea53</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">InteractiveWatchFaceWcsClient.updateInstance</code>
+      has been renamed to
+      <code translate="no" dir="ltr">updateWatchfaceInstance</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I321dc89e3b46d523245c76080b9491657834bcca">I321dc</a>
+      )
+    </li>
+    <li>
+      WatchFace TapType events have been renamed to align with MotionEvents / Compose. (
+      <a href="https://android-review.googlesource.com/#/q/I0dfd0d1f55f13d583c2383aaee5775aa5446a8ff">I0dfd0</a>
+      )
+    </li>
+    <li>
+      takeWatchfaceScreenshot has been renamed to renderWatchFaceToBitmap, and takeComplicationScreenshot has been renamed to renderComplicationToBitmap (
+      <a href="https://android-review.googlesource.com/#/q/Ie0697af81b3b9aca215b8916c64e7bfd3c24b2e3">Ie0697</a>
+      )
+    </li>
+    <li>
+      The CanvasComplication interface has been removed in favor of the open class CanvasComplicationDrawable. (
+      <a href="https://android-review.googlesource.com/#/q/I1f81f33d4bf34b69d9014676e9b467c4dae6cd18">I1f81f</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">WatcfaceControlServiceFactory</code>
+      has been removed from the public api. (
+      <a href="https://android-review.googlesource.com/#/q/I1f8d3c6c8be716b9b5316f7197ce032b7b7b3ad9">I1f8d3</a>
+      )
+    </li>
+    <li>
+      We've renamed
+      <code translate="no" dir="ltr">CanvasComplication.setData</code>
+      to
+      <code translate="no" dir="ltr">CanvasComplication.loadData</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If1239a257d3cfad2abcba02a246461993ac69426">If1239</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ComplicationsManager.bringAttentionToComplication</code>
+      has been renamed to
+      <code translate="no" dir="ltr">displayPressedAnimation</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic4297c90db7536b0fc07f61588b217bfe4beae25">Ic4297</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">WatchFaceService.createWatchFace</code>
+      now has an
+      <code translate="no" dir="ltr">@UiThread</code>
+      annotation. (
+      <a href="https://android-review.googlesource.com/#/q/Ib54c292a1a50031544b934644039bd1de0966575">Ib54c2</a>
+      )
+    </li>
+    <li>
+      Changed the name of a CanvasComplicationDrawable parameter to fix a bug. (
+      <a href="https://android-review.googlesource.com/#/q/I50dac9dd98c1461e44427134813d1866f1476f94">I50dac</a>
+      )
+    </li>
+    <li>
+      We've added
+      <code translate="no" dir="ltr">HeadlessWatchFaceClient.toBundle()</code>
+      and
+      <code translate="no" dir="ltr">HeadlessWatchFaceClient.createFromBundle</code>
+      to support sending
+      <code translate="no" dir="ltr">HeadlessWatchFaceClient</code>
+      over AIDL. (
+      <a href="https://android-review.googlesource.com/#/q/I07c35ca36d0ecae0c8e0b8cd926b38c602b2d9d8">I07c35</a>
+      )
+    </li>
+    <li>
+      HeadlessWatchFaceClient and InteractiveWatchFaceClient now have ClientDisconnectListener and isConnectionAlive() to allow you to observe if the connection is broken for some reason (e.g. the watchface being killed). (
+      <a href="https://android-review.googlesource.com/#/q/Ie446d8b50110c9d2992378ff8d8642707db7d2d1">Ie446d</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">WatchFaceControlClient#getOrCreateWallpaperServiceBackedInteractiveWatchFaceWcsClientAsync</code>
+      is now a suspend function and has been renamed to
+      <code translate="no" dir="ltr">getOrCreateInteractiveWatchFaceClient</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib745d13d911ffbb90d3cf9a961e469143fe8aaef">Ib745d</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">EditorState.commitChanges</code>
+      and
+      <code translate="no" dir="ltr">hasCommitChanges()</code>
+      has been renamed to
+      <code translate="no" dir="ltr">shouldCommitChanges()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I06e0407f2473e7884145ed418b9438b93017ecfd">I06e04</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">previewComplicationData</code>
+      has been renamed to
+      <code translate="no" dir="ltr">previewComplicationsData</code>
+      to indicate theres (usually) more than one complication in the map. (
+      <a href="https://android-review.googlesource.com/#/q/I56c062bffef9d922a95abf8f2015cf716b105211">I56c06</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">InteractiveWatchFaceWcsClient.bringAttentionToComplication</code>
+      has been renamed to
+      <code translate="no" dir="ltr">displayPressedAnimation</code>
+      for consistency with
+      <code translate="no" dir="ltr">ComplicationsManager.displayPressedAnimation</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic9999c10a88f44faf88e186bc4437056575e6605">Ic9999</a>
+      )
+    </li>
+    <li>
+      All instances of watchface instance id have been encapsulated in a new WatchFaceId class (
+      <a href="https://android-review.googlesource.com/#/q/I45fdf4b8e7a0b1ac7262856191bcb021fb2dd911">I45fdf</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">complicationState</code>
+      property has been renamed to
+      <code translate="no" dir="ltr">complicationsState</code>
+      to indicate plurality. (
+      <a href="https://android-review.googlesource.com/#/q/Ided07073723d9115dedd9b37f2327e4c36893e0c">Ided07</a>
+      )
+    </li>
+    <li>
+      We've removed the various wear-watchface-client Binder conversions, they should be necessary. (
+      <a href="https://android-review.googlesource.com/#/q/Icc4c02ef623b142b7d5d2a7fed86b2bb4930d7a4">Icc4c0</a>
+      )
+    </li>
+    <li>
+      For consistency
+      <code translate="no" dir="ltr">EditorServiceClient</code>
+      has been refactored to use listeners instead of observers. (
+      <a href="https://android-review.googlesource.com/#/q/Iec3a437e9583fbd7ca0835a2068cc306d6fa49f1">Iec3a4</a>
+      )
+    </li>
+    <li>
+      We've added a couple of missing
+      <code translate="no" dir="ltr">@Px</code>
+      annotations to
+      <code translate="no" dir="ltr">InteractiveWatchFaceSysUiClient</code>
+      and
+      <code translate="no" dir="ltr">WatchFaceControlClient</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3277a824046ea85c10439e02df89dbb6b842d7a5">I3277a</a>
+      )
+    </li>
+    <li>
+      Renamed EditorObserverCallback to EditorObserverListener for consistency. (
+      <a href="https://android-review.googlesource.com/#/q/Ie572d57d0075f83219f721f76fc93b8860439f17">Ie572d</a>
+      )
+    </li>
+    <li>
+      EditorState.watchFaceInstanceId is restricted to Android R API level and above and is no longer nullable. (
+      <a href="https://android-review.googlesource.com/#/q/Id52bb6d9ebc1d92cbff2deeda788f54e58e75113">Id52bb</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">EditorSession.launchComplicationProviderChooser</code>
+      has been renamed to
+      <code translate="no" dir="ltr">openComplicationProviderChooser</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I9d441b6cc55549a73832f38194180d9c6c6ddd14">I9d441</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">EditorSession.createOnWatchEditingSessionAsync</code>
+      has been renamed to
+      <code translate="no" dir="ltr">createOnWatchEditingSession</code>
+      and is now a suspend function. (
+      <a href="https://android-review.googlesource.com/#/q/Id257baf80bca3fa8f97aa106684444e41f35fd5d">Id257b</a>
+      )
+    </li>
+    <li>
+      Added several missing
+      <code translate="no" dir="ltr">@UiThread</code>
+      annotations on
+      <code translate="no" dir="ltr">EditorSession</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6935ce9865b194764437c77b305d20f875b66806">I6935c</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">UserStyleSetting.affectsLayers</code>
+      has been renamed to
+      <code translate="no" dir="ltr">affectedLayers</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6e22bf8a630776c9ca8f30c5214e9f4224999b0d">I6e22b</a>
+      )
+    </li>
+  </ul>

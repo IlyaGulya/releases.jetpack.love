@@ -1,0 +1,61 @@
+libraryId: car-app
+groupId: androidx.car
+version: 1.0.0-rc01
+releaseDate: 2021-03-24
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-rc01" data-text="Version 1.0.0-rc01" tabindex="-1">Version 1.0.0-rc01</h3>
+  <p>March 24, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.car.app:app:1.0.0-rc01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9f4c909a46b4d538ee280141d444dc3bf8acca7c..e3a516e6a35300705fe998d142ca4fcea7e582e5/car/app/app">Version 1.0.0-rc01 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a race condition bug where
+      <code translate="no" dir="ltr">NavigationManagerCallback#onStopNavigation</code>
+      was being called after the callback was cleared. This happened if the callback was cleared before the callback executor actually ran (
+      <a href="https://android-review.googlesource.com/#/q/I7fc5ebe1f371b0530f084f76236ab058f71f2a5c">I7fc5e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/181143772">b/181143772</a>
+      )
+    </li>
+    <li>
+      Fixed an issue that required the app to explicitly take a dependency on
+      <code translate="no" dir="ltr">lifecycle-common-java8</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I8b8c831d1fe033a2f8b8e653f373b10539dd0969">I8b8c8</a>
+      )
+    </li>
+    <li>
+      Fixed a
+      <code translate="no" dir="ltr">NullPointerException</code>
+      that was thrown when the app receives a
+      <code translate="no" dir="ltr">stopNavigation</code>
+      call when it has already removed a callback (
+      <a href="https://android-review.googlesource.com/#/q/Ib8b89f43bd5891ef9f8b53944b5ef00979d8e607">Ib8b89</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/181143772">b/181143772</a>
+      )
+    </li>
+    <li>
+      Improvements to not dispatch calls to app if its lifecycle is not at least in a
+      <code translate="no" dir="ltr">CREATED</code>
+      state (
+      <a href="https://android-review.googlesource.com/#/q/I8696503d1a9859411c4a52fa73d2852c8b3383d9">I86965</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/179800224">b/179800224</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177921120">b/177921120</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where an invalid min API specified in the app's manifest would throw, causing an ANR on the host. (
+      <a href="https://android-review.googlesource.com/#/q/Iffeddb795639f3a62611814784be7cffd59d2f7d">Iffedd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/174231592">b/174231592</a>
+      )
+    </li>
+  </ul>

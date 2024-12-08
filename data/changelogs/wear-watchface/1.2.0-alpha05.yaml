@@ -1,0 +1,97 @@
+libraryId: wear-watchface
+groupId: androidx.wear
+version: 1.2.0-alpha05
+releaseDate: 2022-12-07
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha05" data-text="Version 1.2.0-alpha05" tabindex="-1">Version 1.2.0-alpha05</h3>
+  <p>December 7, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.watchface:watchface-*:1.2.0-alpha05</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a1e318590b217ecfce1b2de17eed2f18b6a680bb..4a2f5e696614339c1ac21f706c1a17c0285780e7/wear/watchface">Version 1.2.0-alpha05 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>
+        A while back we added support for hierarchical
+        <code translate="no" dir="ltr">UserStyleSettings</code>
+        , and from android T it’s now possible to have more than one
+        <code translate="no" dir="ltr">ComplicationSlotsUserStyleSetting</code>
+        in a hierarchy. Only one
+        <code translate="no" dir="ltr">ComplicationSlotsUserStyleSetting</code>
+        will be active, based on the user’s style selections.
+      </p>
+    </li>
+    <li>
+      <p>
+        We’re improving screen reader support for
+        <code translate="no" dir="ltr">ListOption</code>
+        and
+        <code translate="no" dir="ltr">ComplicationSlotsOption</code>
+        by adding a
+        <code translate="no" dir="ltr">screenReaderName</code>
+        field, note prior to android T this field will be ignored by companion editors.
+      </p>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We've added a new optional
+      <code translate="no" dir="ltr">screenReaderName</code>
+      field to
+      <code translate="no" dir="ltr">ListOption</code>
+      and
+      <code translate="no" dir="ltr">ComplicationSlotsOption</code>
+      for use by editors - will be ignored by companion editors on devices before android T. (
+      <a href="https://android-review.googlesource.com/#/q/I75326b574ad8fab39af898df547c1848d5723648">I75326</a>
+      )
+    </li>
+    <li>
+      From android T multiple
+      <code translate="no" dir="ltr">ComplicationSlotsUserStyleSettings</code>
+      are now supported in a style hierarchy as long as at most only one of them can be active at any one time. We've added a utility function
+      <code translate="no" dir="ltr">findComplicationSlotsOptionForUserStyle</code>
+      to
+      <code translate="no" dir="ltr">UserStyleSchema</code>
+      to help find the active
+      <code translate="no" dir="ltr">ComplicationSlotsOption</code>
+      if any. (
+      <a href="https://android-review.googlesource.com/#/q/Ic2b065c5f6374669b9bd60f26ca061cb38e87460">Ic2b06</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">RangedValuesTypes</code>
+      have been pulled into
+      <code translate="no" dir="ltr">RangedValueComplicationData</code>
+      's companion object and renamed to
+      <code translate="no" dir="ltr">TYPE_UNDEFINED</code>
+      ,
+      <code translate="no" dir="ltr">TYPE_RATING</code>
+      and a new
+      <code translate="no" dir="ltr">TYPE_PERCENTAGE</code>
+      has been added. (
+      <a href="https://android-review.googlesource.com/#/q/I55d020e09fea35f92999d233e1bbf98c89f3613b">I55d02</a>
+      )
+    </li>
+    <li>
+      We've renamed experimental
+      <code translate="no" dir="ltr">DynamicFloat</code>
+      to
+      <code translate="no" dir="ltr">FloatExpression</code>
+      and marked it as
+      <code translate="no" dir="ltr">@hide</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Idf4f17447cd68b06fbee4d9f5d747e9dffe25428">Idf4f1</a>
+      )
+    </li>
+    <li>
+      Adding
+      <code translate="no" dir="ltr">@JvmDefaultWithCompatibility</code>
+      annotation (
+      <a href="https://android-review.googlesource.com/#/q/I8f2067bb0754a5e9dc70c934403366ca8d319c36">I8f206</a>
+      )
+    </li>
+  </ul>

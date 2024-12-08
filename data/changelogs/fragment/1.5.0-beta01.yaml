@@ -1,0 +1,64 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.5.0-beta01
+releaseDate: 2022-04-20
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-beta01" data-text="Version 1.5.0-beta01" tabindex="-1">Version 1.5.0-beta01</h3>
+  <p>April 20, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.5.0-beta01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.5.0-beta01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.5.0-beta01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7ca43e00a517eaeeedc0a21f482b17f06e3d2181..c0a89ec374961b3015097ab307ebb8196dbe3888/fragment">Version 1.5.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">DialogFragment</code>
+      has added a new
+      <code translate="no" dir="ltr">dismissNow</code>
+      method that uses
+      <code translate="no" dir="ltr">commitNow</code>
+      for parity with the
+      <code translate="no" dir="ltr">showNow</code>
+      function. Note that this will not make the
+      <code translate="no" dir="ltr">Dialog</code>
+      be dismissed immediately, it will only synchronously update the state of the
+      <code translate="no" dir="ltr">FragmentManager</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I15c3618ccbea638e8f2125b5c361cce43721b017">I15c36</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/72644830">b/72644830</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Saved Instance State Refactoring</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">FragmentManager</code>
+      now saves its saved instance state into a
+      <code translate="no" dir="ltr">Bundle</code>
+      instead of directly in a custom
+      <code translate="no" dir="ltr">Parcelable</code>
+      . This is the first step in providing additional transparency into what is actually being saved by Fragments. (
+      <a href="https://android-review.googlesource.com/#/q/I93807d8bebb127fd24d20dee23fc7813cfa0f6ab">I93807</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/207158202">b/207158202</a>
+      )
+    </li>
+    <li>
+      Results set via the
+      <a href="/guide/fragments/communicate#fragment-result">Fragment Result APIs</a>
+      that have not yet been delivered are now saved separately from the internal state of the
+      <code translate="no" dir="ltr">FragmentManager</code>
+      . This will allow for additional transparency into what results are being saved as part of your saved instance state. (
+      <a href="https://android-review.googlesource.com/#/q/I6ea121b1c4a42408de9af44e6cd12a825ec378d1">I6ea12</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/207158202">b/207158202</a>
+      )
+    </li>
+  </ul>

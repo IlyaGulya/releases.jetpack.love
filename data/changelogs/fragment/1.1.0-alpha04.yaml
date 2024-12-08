@@ -1,0 +1,118 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.1.0-alpha04
+releaseDate: 2019-02-07
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha04" data-text="Version 1.1.0-alpha04" tabindex="-1">Version 1.1.0-alpha04</h3>
+  <p>February 7, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment 1.1.0-alpha04</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx 1.1.0-alpha04</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing 1.1.0-alpha04</code>
+    are released.
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      Added support for the
+      <code translate="no" dir="ltr">@ContentView</code>
+      class annotation that allows you to indicate which layout XML file should be inflated as an alternative to overriding
+      <code translate="no" dir="ltr">onCreateView()</code>
+      . It is recommended to do view related work in
+      <code translate="no" dir="ltr">onViewCreated()</code>
+      . (
+      <a href="https://android-review.googlesource.com/837619">aosp/837619</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">fragment-testing</code>
+      now depends on
+      <code translate="no" dir="ltr">androidx.test:core-ktx</code>
+      1.1.0 stable (
+      <a href="https://issuetracker.google.com/issues/121209673">b/121209673</a>
+      )
+    </li>
+    <li>
+      You can now use
+      <code translate="no" dir="ltr">openActionBarOverflowOrOptionsMenu</code>
+      with
+      <code translate="no" dir="ltr">FragmentScenario</code>
+      to test Fragment hosted options menus (
+      <a href="https://issuetracker.google.com/issues/121126668">b/121126668</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      Added a
+      <code translate="no" dir="ltr">requireArguments()</code>
+      method which returns a
+      <code translate="no" dir="ltr">@NonNull Bundle</code>
+      or throws an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      (
+      <a href="https://issuetracker.google.com/issues/121196360">b/121196360</a>
+      )
+    </li>
+    <li>
+      Added a note that
+      <code translate="no" dir="ltr">getLifecycle()</code>
+      ,
+      <code translate="no" dir="ltr">getViewLifecycleOwner()</code>
+      , and
+      <code translate="no" dir="ltr">getViewLifecycleOwnerLiveData()</code>
+      should not be overridden and will be made final in a future release. Please
+      <a href="https://issuetracker.google.com/issues/new?component=460964">file a feature request</a>
+      if you are currently overriding this method. (
+      <a href="https://android-review.googlesource.com/880714">aosp/880714</a>
+      )
+    </li>
+    <li>
+      Added a note that
+      <code translate="no" dir="ltr">getViewModelStore()</code>
+      should not be overridden and will be made final in a future release. Please
+      <a href="https://issuetracker.google.com/issues/new?component=460964">file a feature request</a>
+      if you are currently overriding this method. (
+      <a href="https://android-review.googlesource.com/880713">aosp/880713</a>
+      )
+    </li>
+    <li>
+      Fixed an issue with binary compatibility with previous releases of Fragments. (
+      <a href="https://android-review.googlesource.com/887877">aosp/887877</a>
+      ) (
+      <a href="https://android-review.googlesource.com/889834">aosp/889834</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Target fragments are correctly cleared out when you pass
+      <code translate="no" dir="ltr">null</code>
+      to
+      <code translate="no" dir="ltr">setTargetFragment()</code>
+      . (
+      <a href="https://android-review.googlesource.com/849969">aosp/849969</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where target Fragments were sometimes unavailable in or after
+      <code translate="no" dir="ltr">onDestroy()</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/122312935">b/122312935</a>
+      )
+    </li>
+    <li>
+      DialogFragment’s onDismiss() is now called before
+      <code translate="no" dir="ltr">onDestroy()</code>
+      . (
+      <a href="https://android-review.googlesource.com/874133">aosp/874133</a>
+      ) (
+      <a href="https://android-review.googlesource.com/890734">aosp/890734</a>
+      )
+    </li>
+  </ul>

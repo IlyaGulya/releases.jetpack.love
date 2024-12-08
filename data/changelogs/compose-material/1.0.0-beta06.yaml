@@ -1,0 +1,68 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 1.0.0-beta06
+releaseDate: 2021-05-05
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta06" data-text="Version 1.0.0-beta06" tabindex="-1">Version 1.0.0-beta06</h3>
+  <p>May 5, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material-*:1.0.0-beta06</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b04f2c39ebb45a0480dc0dc04d7fb7406646eb5e..4c1927601bfcaaaf049d0fc7a4e5801ff5cf9729/compose/material">Version 1.0.0-beta06 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Ripple has been migrated to use
+      <code translate="no" dir="ltr">RippleDrawable</code>
+      internally on Android devices. This means that ripple animations will happen on the RenderThread, and so will be smooth even when the UI thread is under load, such as when navigating between screens. This does not change the API surface of ripple, but there may be behavior changes introduced as a result of this change. To aid the migration,
+      <code translate="no" dir="ltr">LocalRippleNativeRendering</code>
+      has been added - provide a value of
+      <code translate="no" dir="ltr">false</code>
+      to this CompositionLocal to fall back to the previous ripple implementation inside the CompositionLocalProvider. This API is temporary and will be removed in the future, so if you run into issues that cause you to use this API, please
+      <a href="https://issuetracker.google.com/issues/new?component=612128">file a bug</a>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I902f8eecaa8e3f55eb4c1bebc86f4f50e2967d0c">I902f8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/168777351">b/168777351</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/183019123">b/183019123</a>
+      )
+    </li>
+    <li>
+      Added CollectionInfo and CollectionItemInfo accessibility APIs that allows to mark collection and its items for accessibility services (
+      <a href="https://android-review.googlesource.com/#/q/Id54ef37379e14e41ac52782b40e29de54f95eed0">Id54ef</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/180479017">b/180479017</a>
+      )
+    </li>
+    <li>
+      Added accessibility API
+      <code translate="no" dir="ltr">error</code>
+      that allows to mark a node that contains invalid input (
+      <a href="https://android-review.googlesource.com/#/q/I129977e3d3b5f03435de41de409fde9029c325b9">I12997</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/180584804">b/180584804</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/182142737">b/182142737</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Updated Compose Material catalog insets implementation from: https://github.com/google/accompanist/pull/365. (
+      <a href="https://android-review.googlesource.com/#/q/I25dc3d73bdf3245036a6299efe11f9c7a2de14df">I25dc3</a>
+      )
+    </li>
+    <li>
+      Row &amp; Column children with weight(fill = false) are no longer making the parent fill the entire available main axis space. (
+      <a href="https://android-review.googlesource.com/#/q/Ied94da682f4cf6ead5b91e06ba08904c1a349b9f">Ied94d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/186012444">b/186012444</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/184355105">b/184355105</a>
+      )
+    </li>
+  </ul>

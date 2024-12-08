@@ -1,0 +1,148 @@
+libraryId: glance
+groupId: androidx.glance
+version: 1.1.0-alpha01
+releaseDate: 2024-02-07
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha01" data-text="Version 1.1.0-alpha01" tabindex="-1">Version 1.1.0-alpha01</h3>
+  <p>February 7, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.glance:glance-*:1.1.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/29997d5d985705337c8ee155f0419b38c3115d0a/glance">Version 1.1.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>Unit test library for Glance that doesn’t require UI Automator. Glance code can be tested directly without having to inflate the view.</li>
+    <li>Higher level components for simpler layouts.</li>
+    <li>New Modifiers and theme options.</li>
+    <li>
+      New API for getting a flow of RemoteViews from a composition,
+      <code translate="no" dir="ltr">runComposition</code>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Adds a new
+      <code translate="no" dir="ltr">widgetBackground</code>
+      color role to Glance themes. (
+      <a href="https://android-review.googlesource.com/#/q/Ia2ab8f629fbed26c42074ab52e39bc81b3cf8792">Ia2ab8</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">GlanceAppWidget.runComposition</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I6344ce93a486a86b7484dfd704453da118e3aa79">I6344c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/298066147">b/298066147</a>
+      )
+    </li>
+    <li>
+      Adds new
+      <code translate="no" dir="ltr">TopBar</code>
+      component (
+      <a href="https://android-review.googlesource.com/#/q/Ibd3614d2c41d23d677fc726eb8976f4f1e07d9e6">Ibd361</a>
+      )
+    </li>
+    <li>
+      Adds overrides to the
+      <code translate="no" dir="ltr">clickable</code>
+      modifier. (
+      <a href="https://android-review.googlesource.com/#/q/Iacecf6b4d414fdfee85456ec04a1fcdb7f2b8003">Iacecf</a>
+      )
+    </li>
+    <li>
+      Adds a new api for tinting buttons. This should be experimental until 1.0 ships. (
+      <a href="https://android-review.googlesource.com/#/q/I9252308e5e15af2cea79b0732098a8e9b0a598ff">I92523</a>
+      )
+    </li>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">runGlanceAppWidgetUnitTest</code>
+      that provides scope to call methods on
+      <code translate="no" dir="ltr">GlanceAppWidgetUnitTest</code>
+      such as
+      <code translate="no" dir="ltr">provideComposable</code>
+      to provide a small isolated composable for test,
+      <code translate="no" dir="ltr">onNode</code>
+      to find a Glance composable element in the provided content. This enables you to write unit tests for individual composable functions in your appWidget to verify that given certain inputs the function outputs the intended set of glance composable elements. (
+      <a href="https://android-review.googlesource.com/#/q/I2f682d9ee00def5d768bd41f44cc097fc049794b">I2f682</a>
+      )
+    </li>
+    <li>
+      Adds a
+      <code translate="no" dir="ltr">testTag</code>
+      modifier in semantics for use in unit tests. (
+      <a href="https://android-review.googlesource.com/#/q/I8f62ffd327c46c10653ae8638315c5a6434be866">I8f62f</a>
+      )
+    </li>
+    <li>
+      update
+      <code translate="no" dir="ltr">TitleBar</code>
+      - text and icon individually tintable. (
+      <a href="https://android-review.googlesource.com/#/q/Ia0a608e6058bcf4c80407ea0d161cf3be73ce545">Ia0a60</a>
+      )
+    </li>
+    <li>
+      Adds scaffold component (
+      <a href="https://android-review.googlesource.com/#/q/I8a73651ddb86aa007faaa2866f7c06c5445babfb">I8a736</a>
+      )
+    </li>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">hasActionRunCallbackClickAction</code>
+      filter and
+      <code translate="no" dir="ltr">assertHasActionRunCallbackClickAction</code>
+      assertion to test
+      <code translate="no" dir="ltr">actionRunCallack</code>
+      . Also, adds additional shorthand variant functions for action related test filters -
+      <code translate="no" dir="ltr">hasStartActivityClickAction&lt;activityClass&gt;(..)</code>
+      ,
+      <code translate="no" dir="ltr">hasStartServiceAction&lt;receiverClass&gt;(..)</code>
+      ,
+      <code translate="no" dir="ltr">hasSendBroadcastAction&lt;receiverClass&gt;(..)</code>
+      . Adds similar variants for their
+      <code translate="no" dir="ltr">assertHasXXX</code>
+      counterparts. (
+      <a href="https://android-review.googlesource.com/#/q/Ieca63a50ab1f7c09514f247987f3989cdb9001be">Ieca63</a>
+      )
+    </li>
+    <li>
+      Moves unreleased api around. Changes a modifier from internal to public but library restricted (
+      <a href="https://android-review.googlesource.com/#/q/If2a080ee52df86bf5d600cdd5d0d2899d4acaff1">If2a08</a>
+      )
+    </li>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">onCompositionError</code>
+      method where developers can run code when an error occurs (
+      <a href="https://android-review.googlesource.com/#/q/I9b56f60b54671e82cfed777e25d4cc79865ee674">I9b56f</a>
+      )
+    </li>
+    <li>
+      Adds button and iconbutton apis to glance (
+      <a href="https://android-review.googlesource.com/#/q/I0fd6f71d10b79647c5f5d49cd2e92056c58c1e51">I0fd6f</a>
+      )
+    </li>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">isLinearProgressIndicator</code>
+      ,
+      <code translate="no" dir="ltr">isIndeterminateLinearProgressIndicator</code>
+      ,
+      <code translate="no" dir="ltr">isIndeterminateCircularProgressIndicator</code>
+      filters to match progress indicators. Additional includes
+      <code translate="no" dir="ltr">hasAnyDescendants</code>
+      filter to test if a node has a descendant in its sub-hierarchy that matches a specific matcher (
+      <a href="https://android-review.googlesource.com/#/q/Ifd4261e129826ea0701772067479cbc0a9da6685">Ifd426</a>
+      )
+    </li>
+    <li>
+      Adds assertions and filters to enable testing of click actions that start service / activity or broadcasts. Also includes testing if input elements are checked. (
+      <a href="https://android-review.googlesource.com/#/q/I3041cf8e63e246abac1d47865ba0b1cb27ed8843">I3041c</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_100_3" data-text="Version 1.0.0" tabindex="-1">Version 1.0.0</h2>

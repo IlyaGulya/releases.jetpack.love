@@ -1,0 +1,92 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.1.0-alpha03
+releaseDate: 2018-12-17
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha03" data-text="Version 1.1.0-alpha03" tabindex="-1">Version 1.1.0-alpha03</h3>
+  <p>December 17, 2018</p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      Fragment now implements
+      <code translate="no" dir="ltr">BundleSavedStateRegistryOwner</code>
+      and depends on the newly released SavedState library [
+      <a href="https://android-review.googlesource.com/824380">aosp/824380</a>
+      ]
+    </li>
+    <li>
+      A
+      <code translate="no" dir="ltr">by activityViewModels</code>
+      Kotlin property delegate has been added to retrieve ViewModels associated with the containing Activity [
+      <a href="https://issuetracker.google.com/issues/119050253">b/119050253</a>
+      ]
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">by viewModels</code>
+      Kotlin property delegate has been expanded to take an optional lambda method for getting the
+      <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+      , allowing you to pass in the parent Fragment or other custom
+      <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+      with code such as
+      <code translate="no" dir="ltr">val viewModel: MyViewModel by viewModels(::requireParentFragment)</code>
+      [
+      <a href="https://issuetracker.google.com/issues/119050253">b/119050253</a>
+      ]
+    </li>
+  </ul>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">FragmentScenario</code>
+      now allows you to specify a theme such as
+      <code translate="no" dir="ltr">Theme.AppCompat</code>
+      [
+      <a href="https://issuetracker.google.com/issues/119054431">b/119054431</a>
+      ]. This is a breaking change.
+    </li>
+    <li>
+      Added a
+      <code translate="no" dir="ltr">requireView()</code>
+      method which returns a
+      <code translate="no" dir="ltr">@NonNull View</code>
+      or throws an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      [
+      <a href="https://issuetracker.google.com/issues/120241368">b/120241368</a>
+      ]
+    </li>
+    <li>
+      Added a
+      <code translate="no" dir="ltr">requireParentFragment()</code>
+      method which returns a
+      <code translate="no" dir="ltr">@NonNull Fragment</code>
+      or throws an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      [
+      <a href="https://issuetracker.google.com/issues/112103783">b/112103783</a>
+      ]
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Fixed IllegalStateException: Failure saving state
+      <a href="https://issuetracker.google.com/issues/120814739">b/120814739</a>
+    </li>
+    <li>
+      Fragments being restored from saved instance state will now always receive a non-null
+      <code translate="no" dir="ltr">Bundle</code>
+      [
+      <a href="https://issuetracker.google.com/issues/119794496">b/119794496</a>
+      ]
+    </li>
+    <li>
+      Removed Fragments no longer reuse their
+      <code translate="no" dir="ltr">Lifecycle</code>
+      object if re-added [
+      <a href="https://issuetracker.google.com/issues/118880674">b/118880674</a>
+      ]
+    </li>
+  </ul>

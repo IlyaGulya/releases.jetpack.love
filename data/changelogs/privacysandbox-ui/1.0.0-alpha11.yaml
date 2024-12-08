@@ -1,0 +1,55 @@
+libraryId: privacysandbox-ui
+groupId: androidx.privacysandbox
+version: 1.0.0-alpha11
+releaseDate: 2024-11-13
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha11" data-text="Version 1.0.0-alpha11" tabindex="-1">Version 1.0.0-alpha11</h3>
+  <p>November 13, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.privacysandbox.ui:ui-client:1.0.0-alpha11</code>
+    ,
+    <code translate="no" dir="ltr">androidx.privacysandbox.ui:ui-core:1.0.0-alpha11</code>
+    , and
+    <code translate="no" dir="ltr">androidx.privacysandbox.ui:ui-provider:1.0.0-alpha11</code>
+    are released. Version 1.0.0-alpha11 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/0431b84980e97d6bafdfda7c9038bc4d9529564f..6f09cf2ae979e48fdb19485f757a033e4a34bb82/privacysandbox/ui">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Introduced an experimental API,
+      <code translate="no" dir="ltr">DelegatingSandboxedUiAdapter</code>
+      , which extends
+      <code translate="no" dir="ltr">SandboxedUiAdapter</code>
+      and can be used to delegate between different
+      <code translate="no" dir="ltr">SandboxedUiAdapters</code>
+      . When this adapter is set on a client container such as
+      <code translate="no" dir="ltr">SandboxedSdkView</code>
+      , the delegating adapter can change the delegate adapter using
+      <code translate="no" dir="ltr">updateDelegate</code>
+      . This will close the existing session and create a new
+      <code translate="no" dir="ltr">SandboxedUiAdapter.Session</code>
+      for the new delegate. This allows for seamless transitions between delegates. (
+      <a href="https://android-review.googlesource.com/#/q/I5f1c501d1f4018d0f5eba2bd569eafe065e824aa">I5f1c5</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I9e3e70ad9118fae9da424749f54043de672ae72f">I9e3e7</a>
+      )
+    </li>
+    <li>
+      Added better
+      <code translate="no" dir="ltr">SandboxedSdkView</code>
+      support for padding. (
+      <a href="https://android-review.googlesource.com/#/q/Ic414fb34bce985fc31423cc8161fc970f7360233">Ic414f</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">NullPointerException</code>
+      that could occur on a global layout event.
+    </li>
+  </ul>

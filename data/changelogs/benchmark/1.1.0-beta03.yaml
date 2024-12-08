@@ -1,0 +1,99 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.1.0-beta03
+releaseDate: 2022-02-09
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-beta03" data-text="Version 1.1.0-beta03" tabindex="-1">Version 1.1.0-beta03</h3>
+  <p>February 9, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.1.0-beta03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9dceceb54300ed028a7e8fc7a3454f270337ffde..db2ecbef194afcddfaede22e1d884a8959a9277c/benchmark">Version 1.1.0-beta03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">AudioUnderrunMetric</code>
+      into macrobenchmark library under experimental flag to allow detection of audio underruns (
+      <a href="https://android-review.googlesource.com/#/q/Ib5972944077ec4609d3e862dadf4cfedacaf1b11">Ib5972</a>
+      )
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">BaselineProfileRule</code>
+        no longer accepts a
+        <code translate="no" dir="ltr">setup</code>
+        block as this functioned the same as the
+        <code translate="no" dir="ltr">profileBlock</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/Ic7dfe2424734ceb106e01763ba5a2c4d1b195fcc">Ic7dfe</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/215536447">b/215536447</a>
+        )
+      </p>
+
+      <p>For e.g.</p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@Test</span>
+  <span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">collectBaselineProfile</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">baselineRule</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">collectBaselineProfile</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">packageName</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">PACKAGE_NAME</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">setupBlock</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">startActivityAndWait</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">},</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">profileBlock</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-c1">// ...</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@Test</span>
+  <span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">collectBaselineProfile</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">baselineRule</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">collectBaselineProfile</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">packageName</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">PACKAGE_NAME</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">profileBlock</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">startActivityAndWait</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-c1">// ...</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed issue where microbench profiler traces would fail to be updated in subsequent runs when linked in Studio output (
+      <a href="https://android-review.googlesource.com/#/q/I5ae4d8eae1f463f75fcc43ceb751c01d4e5f4d8d">I5ae4d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/214917025">b/214917025</a>
+      )
+    </li>
+    <li>
+      Prevent compilation shell commands on API 23 (
+      <a href="https://android-review.googlesource.com/#/q/Ice3802adb7cdacdf675336b7d5029169e423f87e">Ice380</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">FrameCpuTime</code>
+      -&gt;
+      <code translate="no" dir="ltr">FrameDurationCpu</code>
+      ,
+      <code translate="no" dir="ltr">FrameUiTime</code>
+      -&gt;
+      <code translate="no" dir="ltr">FrameDurationUi</code>
+      to clarify these are durations, not timestamps, and to match prefixes. (
+      <a href="https://android-review.googlesource.com/#/q/I0eba35542431905ab926f5dc7db4ab6e292fde69">I0eba3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/216337830">b/216337830</a>
+      )
+    </li>
+  </ul>

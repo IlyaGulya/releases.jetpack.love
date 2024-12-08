@@ -1,0 +1,121 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.4.0-alpha02
+releaseDate: 2022-11-09
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha02" data-text="Version 1.4.0-alpha02" tabindex="-1">Version 1.4.0-alpha02</h3>
+  <p>November 9, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.4.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/548c8ac2570ae6cf15798fea1380491f7d93796b..a1e318590b217ecfce1b2de17eed2f18b6a680bb/compose/ui">Version 1.4.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">GraphicsLayerScope</code>
+      to expose the current size of the
+      <code translate="no" dir="ltr">graphicsLayer</code>
+      . This is useful for computing
+      <code translate="no" dir="ltr">graphicsLayer</code>
+      transformations as a function of the Composable size. (
+      <a href="https://android-review.googlesource.com/#/q/If8c43dad95441ba7cc7ddc845bfa502cce688c7b">If8c43</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/181387080">b/181387080</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">CompositingStrategy</code>
+      to determine when to leverage an offscreen compositing layer for rendering of
+      <code translate="no" dir="ltr">graphicsLayer</code>
+      content. Auto maintains the default behavior which internally leverages a layer if alpha is applied or a
+      <code translate="no" dir="ltr">RenderEffect/Overscroll</code>
+      . Always will always introduce an offscreen buffer where
+      <code translate="no" dir="ltr">ModulateAlpha</code>
+      will avoid leveraging an offscreen buffer and instead will modulate each of the recorded drawing instructions within the
+      <code translate="no" dir="ltr">graphicsLayer</code>
+      .
+      <code translate="no" dir="ltr">ModulateAlpha</code>
+      usage will still leverage an offscreen buffer for
+      <code translate="no" dir="ltr">RenderEffect/Overscroll</code>
+      usages (
+      <a href="https://android-review.googlesource.com/#/q/I25e82c7d302e2ffd9353373595a72b8b10627a37">I25e82</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/256382834">b/256382834</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">invalidateSubtree()</code>
+      was added to
+      <code translate="no" dir="ltr">Modifier.Node</code>
+      to allow invalidating entire hierarchies for layout and drawing. (
+      <a href="https://android-review.googlesource.com/#/q/I4bd90727827d98f95f4ae4db9032a79dbba2fa33">I4bd90</a>
+      )
+    </li>
+    <li>
+      Promote
+      <code translate="no" dir="ltr">rememberNestedScrollInteropConnection</code>
+      to stable. Introduced the ability to pass a root view to
+      <code translate="no" dir="ltr">rememberNestedScrollInteropConnection</code>
+      . This can help the custom view better react to scrolling constraints, specially in non-standard views (e.g.
+      <code translate="no" dir="ltr">ModalBottomSheetDialog</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/I9e10769a50354aad1decadaa80152a3814c4480e">I9e107</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ObserverNode</code>
+      interface that can be used by
+      <code translate="no" dir="ltr">Modifier.Node</code>
+      implementations that need to be notified when a value that they had previously read has changed (
+      <a href="https://android-review.googlesource.com/#/q/I5728be00aad7c3fb9e44240c257f4d45a081da6f">I5728b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/247716483">b/247716483</a>
+      )
+    </li>
+    <li>
+      Added a new constructor to
+      <code translate="no" dir="ltr">Paint</code>
+      that accepts a native
+      <code translate="no" dir="ltr">android.graphics.Paint</code>
+      . Also added an extension function
+      <code translate="no" dir="ltr">toComposePaint()</code>
+      that converts an existing native Paint object to Compose Paint. (
+      <a href="https://android-review.googlesource.com/#/q/Ica91bfd4d1e2215cb0778c173c02f06c3f23fd9d">Ica91b</a>
+      )
+    </li>
+    <li>
+      Add new
+      <code translate="no" dir="ltr">FontFamily.Resolver.resolveAsTypeface</code>
+      for use on Android. (
+      <a href="https://android-review.googlesource.com/#/q/I8950b91fc2a4edd52c66626c708c413e6d799dfd">I8950b</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">ToolingState</code>
+      to allow tooling to change internal states of Composable (
+      <a href="https://android-review.googlesource.com/#/q/Ie66147788cfde7ede84a94d9591b3a05c51209cb">Ie6614</a>
+      )
+    </li>
+    <li>
+      Refactor tooling to have better support for new added animations (
+      <a href="https://android-review.googlesource.com/#/q/I8677b632c114f596a49e2a8d86a16f150feccd6a">I8677b</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">minLines</code>
+      parameter into material and material3 Text,
+      <code translate="no" dir="ltr">TextField</code>
+      and
+      <code translate="no" dir="ltr">OutlinedTextField</code>
+      which allows setting the minimum height of the component in terms of number of lines (
+      <a href="https://android-review.googlesource.com/#/q/I4af1df6521acaa97edbed5048079b5e81b647dd8">I4af1d</a>
+      )
+    </li>
+  </ul>

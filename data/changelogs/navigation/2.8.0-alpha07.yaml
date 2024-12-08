@@ -1,0 +1,93 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.8.0-alpha07
+releaseDate: 2024-04-17
+#language=html
+changelogHtml: |
+  <h3 id="2.8.0-alpha07" data-text="Version 2.8.0-alpha07" tabindex="-1">Version 2.8.0-alpha07</h3>
+  <p>April 17, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.8.0-alpha07</code>
+    is released. Version 2.8.0-alpha07 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/02b55f664eba38e42e362e1af3913be1df552d55..a0c81b50a8c175a7992821bb8eff152cc37e7a3c/navigation">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>
+        Adds a new
+        <code translate="no" dir="ltr">navigation-fragment-compose</code>
+        artifact that includes a
+        <code translate="no" dir="ltr">ComposableNavHostFragment</code>
+        alternative to
+        <code translate="no" dir="ltr">NavHostFragment</code>
+        that allows you to add
+        <code translate="no" dir="ltr">composable</code>
+        destinations to your Navigation XML files. Each
+        <code translate="no" dir="ltr">composable</code>
+        destination must be expressed as a top-level, no argument
+        <code translate="no" dir="ltr">@Composable</code>
+        method whose fully qualified name is used as the
+        <code translate="no" dir="ltr">android:name</code>
+        attribute on each destination. When navigating to one of these destinations, a containing fragment is created to display the composable content. (
+        <a href="https://android-review.googlesource.com/#/q/I0ef2e5897128d18d1b374f3617c7095022ca7c0e">I0ef2e</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/265480755">b/265480755</a>
+        )
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-c1">// In HomeScreen.kt</span>
+  <span class="devsite-syntax-nd">@Composable</span>
+  <span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">HomeScreen</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// Your Composable content here</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="XML"><code translate="no" dir="ltr">//<span class="devsite-syntax-w"> </span>In<span class="devsite-syntax-w"> </span>your<span class="devsite-syntax-w"> </span>navigation.xml
+  &lt;composable
+  <span class="devsite-syntax-w">  </span>android:id="@+id/home_screen"
+  <span class="devsite-syntax-w">  </span>android:name="com.example.HomeScreenKt\$HomeScreen"<span class="devsite-syntax-w"> </span>/&gt;
+  </code></pre>
+      </devsite-code>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Support for Safe Args in Navigation Compose using an approach based on Kotlin Serialization continued. These APIs are
+      <em>not finished</em>
+      and are marked with the
+      <code translate="no" dir="ltr">ExperimentalSafeArgsApi</code>
+      annotation. This annotation will be removed when the entire API surface is complete in a future release. (
+      <a href="https://android-review.googlesource.com/#/q/Iefd951a986bd24057701fa2be24298fe691e0929">Iefd95</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I409c87eea0b64195a49980c115a3581a52d3e975">I409c8</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I5b5ac494f3d444d6d11f17d7c60168c6c094390e">I5b5ac</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I7e753bebb4576fc9ddb2872b8b11cd97e1b4efe3">I7e753</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I960f8941527db5a4f6a527b303bbd22f56d368bc">I960f8</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I3eabd8a83cb2153c3d3bc03a58cd02d7d8e7293d">I3eabd</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I8ed5a1d9e9d7aeac6ea3f3993777425a47f597ef">I8ed5a</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ied2c9c8208cd7adc5c2e848b2e166d857afc8165">Ied2c9</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I9b73c5cafcb80ea92d6ecb03677a5128fb7fb944">I9b73c</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I554db9e95f298f0c0ca51d4b7dc76087c20f9272">I554db</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ib3aba24336deb730aabd222f37eaefefca8006cf">Ib3aba</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ia668dffcae8b255bf5db75b6c149983d973d2b06">Ia668d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/188693139">b/188693139</a>
+      )
+    </li>
+  </ul>

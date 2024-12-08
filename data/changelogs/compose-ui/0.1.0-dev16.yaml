@@ -1,0 +1,302 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 0.1.0-dev16
+releaseDate: 2020-08-05
+#language=html
+changelogHtml: |
+  <h3 id="0.1.0-dev16" data-text="Version 0.1.0-dev16" tabindex="-1">Version 0.1.0-dev16</h3>
+  <p>August 5, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:0.1.0-dev16</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/316f882e649c600372170f013a18515f590f490d/ui">Version 0.1.0-dev16 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      OnChildPositioned has been deprecated. Use OnPositioned on the child instead. (
+      <a href="https://android-review.googlesource.com/#/q/I87f95da597607cbc534647def3b1a39527dcdeaa">I87f95</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/162109766">b/162109766</a>
+      )
+    </li>
+    <li>
+      setViewContent was deprecated. setContent should be used instead. (
+      <a href="https://android-review.googlesource.com/#/q/I7e49740d26f42e9326cb5582a4522d74957b90fe">I7e497</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/160335130">b/160335130</a>
+      )
+    </li>
+    <li>
+      Added the AndroidViewBinding API for inflating and composing layout resources, based on ViewBinding. (
+      <a href="https://android-review.googlesource.com/#/q/I081c698b4961d5ef2cfeedd49ff33a2a4b7f7886">I081c6</a>
+      )
+    </li>
+    <li>
+      KeyEvent2 is replaced by KeyEvent (
+      <a href="https://android-review.googlesource.com/#/q/I2d77004dc241ade2042effd1ff8e93762fc72dda">I2d770</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/162097585">b/162097585</a>
+      )
+    </li>
+    <li>
+      Added support for Alt hardware key (
+      <a href="https://android-review.googlesource.com/#/q/I9036b3e3941f14c0623ee48efa50cc209c0e9e8b">I9036b</a>
+      )
+    </li>
+    <li>
+      FocusManager is Deprecated. Use Modifier.focus(), Modifier.focusObserver() and Modifier.focusRequester() instead. (
+      <a href="https://android-review.googlesource.com/#/q/I74ae41f8a0ad2fa1c5f614f57dcb67b969d9e5d3">I74ae4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/162211322">b/162211322</a>
+      )
+    </li>
+    <li>
+      loadVectorResource supports trimPath attributes (
+      <a href="https://android-review.googlesource.com/#/q/I808feb22bb1a04e78441097726a2de0f373fecc7">I808fe</a>
+      )
+    </li>
+    <li>
+      Move dialog to ui (
+      <a href="https://android-review.googlesource.com/#/q/I47fa618a788e598182b782eab755defccaf45ebb">I47fa6</a>
+      )
+    </li>
+    <li>
+      Removed 2 PointerEventPasses that are no longer needed. (
+      <a href="https://android-review.googlesource.com/#/q/I33ca77cee9c0c030d8495b2113e798e449bacbfd">I33ca7</a>
+      )
+    </li>
+    <li>
+      Implemented PointerInteropModifier which provides the ability to receive MotionEvents and interact with Compose as if you are an implementation of an Android View. (
+      <a href="https://android-review.googlesource.com/#/q/Ieb08cb00b2a70e3b4263640200cb2219b1fa728c">Ieb08c</a>
+      )
+    </li>
+    <li>
+      Removed the deprecated tag modifier. Please use layoutId instead. (
+      <a href="https://android-review.googlesource.com/#/q/Idaa051ac5c7f60703e8499c8d229a2b2f750a7a9">Idaa05</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/162023919">b/162023919</a>
+      )
+    </li>
+    <li>
+      The APIs for right-to-left support has been updated. LayoutDirectionAmbient has been added, which can be used to read and change the layout direction. Modifier.rtl and Modifier.ltr have been removed. (
+      <a href="https://android-review.googlesource.com/#/q/I080b3cb674dc32af5fbe7e696228ac21f0720d72">I080b3</a>
+      )
+    </li>
+    <li>
+      Support path trimming in vector graphics (
+      <a href="https://android-review.googlesource.com/#/q/Ie16c93cdb5dc389a818418e7729d58b7999b68af">Ie16c9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/158188351">b/158188351</a>
+      )
+    </li>
+    <li>
+      Added Modifier.layout() that allows to create a custom layout modifier conveniently (
+      <a href="https://android-review.googlesource.com/#/q/I73b699f2434a2c8ca0400fca1c331997c09a44e9">I73b69</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161355194">b/161355194</a>
+      )
+    </li>
+    <li>
+      Added a new AndroidView API and deprecated the existing ones. (
+      <a href="https://android-review.googlesource.com/#/q/I5bcfd9c9945fecb3e55fe95d6528d8391ac7b961">I5bcfd</a>
+      )
+    </li>
+    <li>
+      Modifier.plus has been deprecated, use Modifier.then instead. 'Then' has a stronger signal of ordering, while also prohibits to type
+      <code translate="no" dir="ltr">Modifier.padding().background() + anotherModifier</code>
+      , which breaks the chain and harder to read (
+      <a href="https://android-review.googlesource.com/#/q/Iedd587edbed0ba964ef203a66b98be7297147bd7">Iedd58</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161529964">b/161529964</a>
+      )
+    </li>
+    <li>
+      Add [Abstract]ComposeView View subclasses for hosting Compose content in a View hierarchy. (
+      <a href="https://android-review.googlesource.com/#/q/I4635790610de55ca7ffd6de72485e243196112a8">I46357</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Row</code>
+      and
+      <code translate="no" dir="ltr">Column</code>
+      are now inline function significantly reducing the overhead of using them. (
+      <a href="https://android-review.googlesource.com/#/q/I75c10e663b74ffc250a3293df7583fcd86ea891a">I75c10</a>
+      )
+    </li>
+    <li>
+      SubcomposeLayout is added. It is a low level primitive which allows to compose the children during the measuring if we want to use some values available only later during the measure for the subtree composition. For example WithConstraints is not implemented using SubcomposeLayout. (
+      <a href="https://android-review.googlesource.com/#/q/I25cc8cfe8382db1ef61e93866ba08f4668cbc734">I25cc8</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">SemanticsNode.positionInRoot</code>
+      to get the position of a SemanticsNode relative to the root of the Compose hierarchy (
+      <a href="https://android-review.googlesource.com/#/q/Icdf262558341d6441ae91dfb8807d19f88f5b3fb">Icdf26</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161336532">b/161336532</a>
+      )
+    </li>
+    <li>
+      MotionEvents passed all the way through from Android, into Compose, and back into Android. (
+      <a href="https://android-review.googlesource.com/#/q/I14be8bd67609696bf3e8950feb0bb54367786b81">I14be8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/158034713">b/158034713</a>
+      )
+    </li>
+    <li>
+      Removed dropdownPopup. (
+      <a href="https://android-review.googlesource.com/#/q/I00430bd9ee70cba47019034392bf6263497d85e8">I00430</a>
+      )
+    </li>
+    <li>
+      Fixed popup position on cut-out displays. (
+      <a href="https://android-review.googlesource.com/#/q/Idd7ddf5f88728a96fc8ff725a39979fe962e8889">Idd7dd</a>
+      )
+    </li>
+    <li>
+      Add accessibility action to get TextLayoutResult (
+      <a href="https://android-review.googlesource.com/#/q/I9d6e6313528500524f04638ccb5742fcfbb41392">I9d6e6</a>
+      )
+    </li>
+    <li>
+      RemeasurementModifier added. it allows to synchronously remeasure the layout. In general you never need it as remeasure/relayout is happening automatically, but we use it inside LazyColumnItems during the scroll. (
+      <a href="https://android-review.googlesource.com/#/q/I5f33173ba1f76153139fa086fef4e2a86d010282">I5f331</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/160791058">b/160791058</a>
+      )
+    </li>
+    <li>
+      Remove getLineEllipsisOffset/getLineEllipsisCount. Use getLineVisibleEnd/getLineEnd/isLineEllipsized instead. (
+      <a href="https://android-review.googlesource.com/#/q/I85aa258d57056cbdae2816b14ce1af313023020c">I85aa2</a>
+      )
+    </li>
+    <li>
+      Add some Marks/Annotations for best practice reason. (
+      <a href="https://android-review.googlesource.com/#/q/I66b206ffe0fe1a5ceb88bf0b0a2b0d84f2c3f6bd">I66b20</a>
+      )
+    </li>
+    <li>
+      expose more line APIs in TextLayoutResult. (
+      <a href="https://android-review.googlesource.com/#/q/I79bd278c138c53477f3cbaf811d4bdcfe03b3dc3">I79bd2</a>
+      )
+    </li>
+    <li>
+      Built-in vector converters to convert built-in units are now accessible via Foo.VectorConverter. e.g. Dp.VectorConverter, Color.VectorConverter, Float.VectorConverter, etc (
+      <a href="https://android-review.googlesource.com/#/q/I3e2734f9712d94cc664184d35d495edab50bda53">I3e273</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Address broad API fixes (
+      <a href="https://android-review.googlesource.com/#/q/I077bcdc5c027e5dbe865d56f49420ce4a70a4e44">I077bc</a>
+      )
+      <ol>
+        <li>Remove unused OffsetBase interface</li>
+        <li>Align Offset and IntOffset classes to have a consistent API surface</li>
+        <li>Rename IntOffset.Origin to IntOffset.Zero to be consistent with Offset API</li>
+        <li>Moved nativeCanvas method off of Canvas interface to support consumers to create their own Canvas instances</li>
+        <li>Created stub EmptyCanvas class to refactor DrawScope to be a non-null parameter instead of lateinit and ensure non-nullability of the field</li>
+        <li>Renamed ClipOp enums to be Pascal Case</li>
+        <li>Renamed FilterQuality enums to be Pascal Case</li>
+        <li>Renamed StrokeJoin enums to be Pascal Case</li>
+        <li>Renamed PointMode enums to be Pascal Case</li>
+        <li>Renamed PaintingStyle enums to be Pascal Case</li>
+        <li>Renamed PathFillType enums to be Pascal Case</li>
+        <li>Renamed StrokeCap enums to be Pascal Case</li>
+        <li>Updated DrawCache implementation to no longer use lateinit params</li>
+        <li>Updated DrawScope to no longer use lazy delegation for fillPaint and strokePaint internal parameters</li>
+        <li>Updated Image composable to avoid Box usage for less overhead</li>
+        <li>Updated Outline class to have @Immutable annotations</li>
+        <li>Updated PathNode to have @Immutable annotations for each path instruction</li>
+        <li>Updated Vector subcomposition to remove redundant conditional checks for equality as compose already handles them</li>
+        <li>Deprecated Rect companion constructor methods in favor of function constructors</li>
+        <li>Updated Brush classes and function constructors with @Immutable and @Stable APIs</li>
+        <li>Updated VertexMode enum to be PascalCase</li>
+        <li>Updated DrawScope selectPaint method to conditionally overwrite stroke parameters on the paint if they have changed</li>
+        <li>Updated Size to add destructuring API, rename UnspecifiedSize to Unspecified and removed unused methods</li>
+      </ol>
+    </li>
+    <li>
+      Updated compose BlendMode API consumption to properly map between Android framework BlendModes and PorterDuff modes depending on API level. Introduced BlendMode#isSupported API to act as a capability query to determine if the BlendMode is supported on the device before it is used. (
+      <a href="https://android-review.googlesource.com/#/q/I0ef42dfc77e9813c277454c97f8f6ce4f6b9e9de">I0ef42</a>
+      )
+    </li>
+    <li>
+      LazyItemScope was added for itemContent param of Lazy lists. It provides modifiers to fill the parent max size which solves the use case when the item should fill the viewport and the regular Modifier.fillMaxSize() doesn't work as the item is measured with infinity constraints. (
+      <a href="https://android-review.googlesource.com/#/q/Ibd3b21685641c22f7deaab1bb71785d8d6135058">Ibd3b2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/162248854">b/162248854</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">SemanticsNodeInteraction.performPartialGesture</code>
+      . Use
+      <code translate="no" dir="ltr">SemanticsNodeInteraction.performGesture</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/Id9b628ebe475c8a067118320b26a7b2461e98129">Id9b62</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LazyColumnItems</code>
+      was renamed to
+      <code translate="no" dir="ltr">LazyColumnFor</code>
+      .
+      <code translate="no" dir="ltr">LazyRowItems</code>
+      was renamed to
+      <code translate="no" dir="ltr">LazyRowFor</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I84f843793994276f1ccb9f21464c4b74629aaf12">I84f84</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">foundation.shape.corner</code>
+      package was flattened to
+      <code translate="no" dir="ltr">foundation.share</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I464919cb74f8941c2a02f14dea0aa417febf3691">I46491</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161887429">b/161887429</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">AndroidComposeTestRule</code>
+      to
+      <code translate="no" dir="ltr">createAndroidComposeRule</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I70aaf550e1bff2871b9732cc5abf58e9af1479fe">I70aaf</a>
+      )
+    </li>
+    <li>
+      Added more APIs to
+      <code translate="no" dir="ltr">TextLayoutResult</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id7e043fd17351ba68b80f51a376925916b541963">Id7e04</a>
+      )
+    </li>
+    <li>
+      Material
+      <code translate="no" dir="ltr">FilledTextField</code>
+      was renamed to
+      <code translate="no" dir="ltr">TextField</code>
+      and foundational
+      <code translate="no" dir="ltr">TextField</code>
+      was renamed to
+      <code translate="no" dir="ltr">BaseTextField</code>
+      to make simplest desired API easy to discover and use (
+      <a href="https://android-review.googlesource.com/#/q/Ia62420a7a2231c02b6874a9a2867bf786a397ed3">Ia6242</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/155482676">b/155482676</a>
+      )
+    </li>
+    <li>
+      Modifier.drawBackground has been renamed to Modifier.background (
+      <a href="https://android-review.googlesource.com/#/q/I1367723fce0e07418ed4ab391fe20c69aa092f53">I13677</a>
+      )
+    </li>
+  </ul>

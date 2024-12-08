@@ -1,0 +1,87 @@
+libraryId: security
+groupId: androidx.security
+version: 1.1.0-alpha04
+releaseDate: 2022-11-09
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha04" data-text="Version 1.1.0-alpha04" tabindex="-1">Version 1.1.0-alpha04</h3>
+  <p>November 9, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.security:security-crypto:1.1.0-alpha04</code>
+    and
+    <code translate="no" dir="ltr">androidx.security:security-crypto-ktx:1.1.0-alpha04</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/66681ad83c328d0dd821b943bb3d375f02c1db61..a1e318590b217ecfce1b2de17eed2f18b6a680bb/security">Version 1.1.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Removed log message “keyset not found, will generate a new one” on first app launch. (
+      <a href="https://issuetracker.google.com/issues/185219606">b/185219606</a>
+      )
+    </li>
+    <li>Upgraded Tink dependency to version 1.7.0.</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Changes
+      <code translate="no" dir="ltr">EncryptedFile#openFileInput()</code>
+      to throw a
+      <code translate="no" dir="ltr">FileNotFoundException</code>
+      , rather than a generic
+      <code translate="no" dir="ltr">IOException</code>
+      when the requested file doesn't exist. (
+      <a href="https://android-review.googlesource.com/#/q/I80e415bfd53e9e9f3b9a456d50b6b90c0a00c621">I80e41</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/148804719">b/148804719</a>
+      )
+    </li>
+    <li>
+      Updated 'MasterKeys' class to require Android M rather than each of its methods. (
+      <a href="https://android-review.googlesource.com/#/q/I8b4b8354c197af50300ab37f7d1aeed8fdcd79df">I8b4b8</a>
+      )
+    </li>
+    <li>
+      Changes all preference getters on
+      <code translate="no" dir="ltr">EncryptedSharedPreferences</code>
+      (ex
+      <code translate="no" dir="ltr">#getString</code>
+      ,
+      <code translate="no" dir="ltr">#getInt</code>
+      ) to throw
+      <code translate="no" dir="ltr">SecurityException</code>
+      in rare circumstances where the type of a value can not be matched with one of the defined enum variants. (
+      <a href="https://issuetracker.google.com/issues/241699427">b/241699427</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Synchronized security-crypto-ktx library’s minimum SDK version with security-crypto by lowering it to v21 (
+      <a href="https://issuetracker.google.com/issues/193550375">b/193550375</a>
+      )
+    </li>
+    <li>
+      Fixed concurrency bug when building multiple
+      <code translate="no" dir="ltr">EncryptedFile</code>
+      s (
+      <a href="https://issuetracker.google.com/issues/136590547">b/136590547</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Received a fix for
+      <code translate="no" dir="ltr">EncryptedSharedPreferences.Editor#remove</code>
+      from chr.ibbotson@gmail.com (
+      <a href="https://issuetracker.google.com/issues/224994760">b/224994760</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/134197835">b/134197835</a>
+      ,
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/2163645">f44d44d</a>
+      )
+    </li>
+  </ul>

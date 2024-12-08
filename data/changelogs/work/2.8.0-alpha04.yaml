@@ -1,0 +1,45 @@
+libraryId: work
+groupId: androidx.work
+version: 2.8.0-alpha04
+releaseDate: 2022-09-07
+#language=html
+changelogHtml: |
+  <h3 id="2.8.0-alpha04" data-text="Version 2.8.0-alpha04" tabindex="-1">Version 2.8.0-alpha04</h3>
+  <p>September 7, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.8.0-alpha04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/bea814b246f89ff7244e3c6b0648f0b57e47897c..cce7b70f6a5ebf955cf748a73c18b63228b22c74/work">Version 2.8.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">WorkerInfo.getGeneration()</code>
+      and
+      <code translate="no" dir="ltr">WorkerParameters.getGeneration()</code>
+      were added that return the generation of a worker. A worker has multiple generations, if it was updated via
+      <code translate="no" dir="ltr">WorkManager.updateWork</code>
+      or
+      <code translate="no" dir="ltr">WorkManager.enqueueUniquePeriodicWork</code>
+      using
+      <code translate="no" dir="ltr">ExistingPeriodicWorkPolicy.UPDATE</code>
+      . Note that If the worker is currently running, it is possible for this method to return a newer generation from that of the currently running worker if an update has happened during an execution of the worker. (
+      <a href="https://android-review.googlesource.com/#/q/I665c5d480700dd682d1268ee88be124783fca70f">I665c5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/219446409">b/219446409</a>
+      ) (
+      <a href="https://android-review.googlesource.com/#/q/I128a9838067f3a1722a9460f52ef58fb0f98136c">I128a9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/219446409">b/219446409</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">InitializationExceptionHandler</code>
+      , an Exception Handler that can be used to determine if there were issues when trying to initialize
+      <code translate="no" dir="ltr">WorkManager</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I061de05e60048dc7a816c1392f2b5ae60a31f14c">I061de</a>
+      )
+    </li>
+  </ul>

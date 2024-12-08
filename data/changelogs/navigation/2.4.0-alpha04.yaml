@@ -1,0 +1,159 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.4.0-alpha04
+releaseDate: 2021-07-01
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0-alpha04" data-text="Version 2.4.0-alpha04" tabindex="-1">Version 2.4.0-alpha04</h3>
+  <p>July 1, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.4.0-alpha04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ccf79f53033e665475116a4e78ff124df2a52c4b..19ae3a88ff0824d615355b492cb56049e16991f2/navigation">Version 2.4.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">navigation-fragment</code>
+      artifact now contains a prebuilt implementation of a
+      <a href="/guide/topics/ui/layout/twopane">two pane layout</a>
+      via the new
+      <code translate="no" dir="ltr">AbstractListDetailFragment</code>
+      . This fragment uses a
+      <code translate="no" dir="ltr">SlidingPaneLayout</code>
+      to manage a list pane (which your subclass provides) and a detail pane, which uses a
+      <code translate="no" dir="ltr">NavHostFragment</code>
+      as its implementation, as seen in our
+      <a href="https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:navigation/integration-tests/testapp/src/main/java/androidx/navigation/testapp/TwoPaneFragment.kt">example implementation</a>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iac4be7b764ced86cdbff3c696c2cbdf2741eb81c">Iac4be</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/191276636">b/191276636</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">NavHost</code>
+      of the
+      <code translate="no" dir="ltr">navigation-compose</code>
+      artifact now supports
+      <code translate="no" dir="ltr">dialog</code>
+      destinations in addition to
+      <code translate="no" dir="ltr">composable</code>
+      destinations. These dialog destinations will each be shown within a Composable
+      <code translate="no" dir="ltr">Dialog</code>
+      , floating above the current
+      <code translate="no" dir="ltr">composable</code>
+      destination. (
+      <a href="https://android-review.googlesource.com/#/q/I011d03df5689a72e938d755c9c6da2b0f72eb162">I011d0</a>
+      )
+    </li>
+  </ul>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">navController</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">rememberNavController</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">Scaffold</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">innerPadding</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">NavHost</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">navController</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"home"</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Modifier</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">padding</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">innerPadding</span><span class="devsite-syntax-p">))</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">composable</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"home"</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-c1">// This content fills the area provided to the NavHost</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-n">HomeScreen</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">dialog</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"detail_dialog"</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-c1">// This content will be automatically added to a Dialog() composable</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-c1">// and appear above the HomeScreen or other composable destinations</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-n">DetailDialogContent</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+  </code></pre>
+  </devsite-code>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">add</code>
+      function in
+      <code translate="no" dir="ltr">NavigatorState</code>
+      has been renamed to
+      <code translate="no" dir="ltr">push</code>
+      . All current calls to
+      <code translate="no" dir="ltr">add()</code>
+      will need to be changed to push(). (
+      <a href="https://android-review.googlesource.com/#/q/Ie89fcbcf0753d6918f91450e322b156ff2fd6e9b">Ie89fc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172112072">b/172112072</a>
+      )
+    </li>
+    <li>
+      Custom
+      <code translate="no" dir="ltr">Navigator</code>
+      instances can now use the
+      <code translate="no" dir="ltr">pushWithTransaction</code>
+      and
+      <code translate="no" dir="ltr">popWithTransition</code>
+      APIs on
+      <code translate="no" dir="ltr">NavigatorState</code>
+      to push or pop a destination asynchronously. Note that this APIs are not yet used by any of the included navigators. (
+      <a href="https://android-review.googlesource.com/#/q/Ic4d7cc6530bf576c4d812d1fd0c5a2697874d384">Ic4d7c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172112072">b/172112072</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">NavDeepLinkBuilder</code>
+      now adds
+      <code translate="no" dir="ltr">PendingIntent.FLAG_IMMUTABLE</code>
+      to the
+      <code translate="no" dir="ltr">PendingIntent</code>
+      returned by
+      <code translate="no" dir="ltr">createPendingIntent()</code>
+      , ensuring that this API works as expected when targeting Android 12. (
+      <a href="https://android-review.googlesource.com/#/q/If8c522f9719dd134f6518c4241acab1a791aa656">If8c52</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue with
+      <code translate="no" dir="ltr">&lt;include-dynamic&gt;</code>
+      where arguments passed to the graph would not be correctly passed to the dynamically included graph. (
+      <a href="https://android-review.googlesource.com/#/q/I3e11572a629c34aaee290fb1255f258ebf632d75">I3e115</a>
+      )
+    </li>
+    <li>
+      Fixed a
+      <code translate="no" dir="ltr">NullPointerException</code>
+      when navigating to a destination using a
+      <code translate="no" dir="ltr">string[]</code>
+      argument with a default value of
+      <code translate="no" dir="ltr">@null</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1fbe8da49d9652a842852778e9935e2426984ea9">I1fbe8</a>
+      )
+    </li>
+    <li>
+      Add ProGuard rules for
+      <code translate="no" dir="ltr">@Navigator.Name</code>
+      , fixing issues when using R8 3.1 full mode. (
+      <a href="https://android-review.googlesource.com/#/q/I2add9f695eede9d912de6710745a37f088050cac">I2add9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/191654433">b/191654433</a>
+      )
+    </li>
+    <li>
+      SafeArgs will no longer fail when building your app with
+      <code translate="no" dir="ltr">Kotlin</code>
+      versions before
+      <code translate="no" dir="ltr">1.5.0</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Icd1ff3c64f220f4b310934c2edf910d6aae01475">Icd1ff</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/190739257">b/190739257</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,141 @@
+libraryId: room
+groupId: androidx.room
+version: 2.3.0-alpha03
+releaseDate: 2020-10-14
+#language=html
+changelogHtml: |
+  <h3 id="2.3.0-alpha03" data-text="Version 2.3.0-alpha03" tabindex="-1">Version 2.3.0-alpha03</h3>
+  <p>October 14, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.3.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9f60cc700129e30cee9df020005c317fb39d32ec..f413b8be76bfa0a4d109a3afb583188c580a2aa6/room">Version 2.3.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>
+        Room now has APIs for providing instances of type converters such that the app can control their initialization. To mark a type converter that will be provided to Room use the new annotation
+        <code translate="no" dir="ltr">@ProvidedTypeConverter</code>
+        . Thanks to ‘mzgreen
+        <a href="mailto:yairobbe@gmail.com">yairobbe@gmail.com</a>
+        ’. (
+        <a href="https://android-review.googlesource.com/#/q/Ie4fa505b36f8aa3c98091f60af9cbbdb10ca3f33">Ie4fa5</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/121067210">b/121067210</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Room now has APIs for creating a database using a pre-packaged database read from an input stream. This allows for cases such as when the pre-package database is gzipped. Thanks to ‘Ahmed El-Helw
+        <a href="mailto:ahmedre@gmail.com">ahmedre@gmail.com</a>
+        ’ (
+        <a href="https://android.googlesource.com/platform/frameworks/support/+/3e6792c7521cdf41c295a1c0037137ecf9c7a005">3e6792</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/146911060">b/146911060</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <p>
+        Added missing target to
+        <code translate="no" dir="ltr">@ForeignKey</code>
+        annotation preventing its usage outside of the
+        <code translate="no" dir="ltr">@Entity</code>
+        annotation. (
+        <a href="https://android-review.googlesource.com/#/q/Iced1e9480e5f5bf1a93815e4581e0a4123d22509">Iced1e</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        The field
+        <code translate="no" dir="ltr">mCallbacks</code>
+        in
+        <code translate="no" dir="ltr">RoomDatabase.java</code>
+        is now hidden. (
+        <a href="https://android.googlesource.com/platform/frameworks/support/+/d576cbdc911cba16638a44fd8223391a90a07ef7">d576cb</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/76109329">b/76109329</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <p>
+        Update to TypeConverters documentation to clarify that TypeConverters can only be used to convert columns / fields and not rows. (
+        <a href="https://android-review.googlesource.com/#/q/I07c56c02866b27e8e2e4802f2426130f8713f472">I07c56</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/77307836">b/77307836</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Update to the DaoProcessor to fix compiler error on Dao with a generic super type with Kotlin "primitives". (
+        <a href="https://android-review.googlesource.com/#/q/Ice6bbd327c1a2693bafd371da0bfdfea8769b4c8">Ice6bb</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/160258066">b/160258066</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Update add/remove observer methods documentation to clarify threading (
+        <a href="https://android-review.googlesource.com/#/q/Ifd1d988bf88ca54415aca08e82ed9e45a654a02c">Ifd1d9</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/153948821">b/153948821</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Fix an issue with Room incorrectly validating FTS tables that declared their rowid column. (
+        <a href="https://android.googlesource.com/platform/frameworks/support/+/d62ebcd6f4a555e25596db7bdc46e6b339391045">d62ebc</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/145858914">b/145858914</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>External Contributions</strong></p>
+  <ul>
+    <li>
+      <p>
+        Fix upper/lowercase locale issues related to Turkish (
+        <a href="https://android.googlesource.com/platform/frameworks/support/+/5746e3392b60a9f79bca2d7f93774cc5cf50383f">5746e3</a>
+        ),
+        <a href="https://issuetracker.google.com/issues/68159494">b/68159494</a>
+      </p>
+    </li>
+    <li>
+      <p>
+        Replace the
+        <code translate="no" dir="ltr">ConcurrentHashMap</code>
+        inside
+        <code translate="no" dir="ltr">RoomDatabase</code>
+        with
+        <code translate="no" dir="ltr">Collections.synchronizedMap()</code>
+        to avoid issues on Android Lollipop (
+        <a href="https://android.googlesource.com/platform/frameworks/support/+/d1cfc7d2f73f5ea75da8ab2ab0d5f195f7eaf829">d1cfc7</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/162431855">b/162431855</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Add a onOpenPrepackagedDatabase callback for when a prepackaged DB is copied. (
+        <a href="https://android-review.googlesource.com/#/q/I1ba740f679565f5c97548f6683de40b0f40f9024">I1ba74</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/148934423">b/148934423</a>
+        )
+      </p>
+    </li>
+  </ul>

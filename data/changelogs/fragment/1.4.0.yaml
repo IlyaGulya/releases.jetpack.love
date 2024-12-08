@@ -1,0 +1,181 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.4.0
+releaseDate: 2021-11-17
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0" data-text="Version 1.4.0" tabindex="-1">Version 1.4.0</h3>
+  <p>November 17, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.4.0</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.4.0</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.4.0</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/02d119fbee4cdfe60f6b1b1a4ee172a726f26963..b776acc2f42697fc8a24ca96f38043a133eee415/fragment">Version 1.4.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 1.3.0</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">FragmentStrictMode</code>
+      APIs provide
+      <em>runtime</em>
+      checks that allow you to verify that your app or libraries you depend on are not calling deprecated fragment APIs. When a violation is detected, you can choose to print a log message, trigger your own custom listener, or crash your app. The
+      <code translate="no" dir="ltr">FragmentStrictMode.Policy</code>
+      that controls what checks are enabled and what “penalties” are triggered can be set on a
+      <code translate="no" dir="ltr">FragmentManager</code>
+      via the new
+      <code translate="no" dir="ltr">setStrictModePolicy()</code>
+      method. That policy applies to that
+      <code translate="no" dir="ltr">FragmentManager</code>
+      and transitively to any child fragment managers that do not set their own unique policy. See
+      <a href="/guide/fragments/debugging#strictmode">StrictMode for fragments</a>
+      .
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">FragmentContainerView</code>
+        now provides a
+        <code translate="no" dir="ltr">getFragment()</code>
+        method which returns the fragment that was most recently added to the container. This uses the same logic as
+        <code translate="no" dir="ltr">findFragmentById()</code>
+        with the ID of the
+        <code translate="no" dir="ltr">FragmentContainerView</code>
+        , but allows chaining the call.
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">navController</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">binding</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">container</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">getFragment&lt;NavHostFragment&gt;</span><span class="devsite-syntax-p">().</span><span class="devsite-syntax-na">navController</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">FragmentScenario</code>
+        now implements
+        <code translate="no" dir="ltr">Closeable</code>
+        , allowing you to use it with Kotlin’s
+        <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.io/use.html"><code translate="no" dir="ltr">use</code></a>
+        method or
+        <a href="https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html">try-with-resources</a>
+        .
+      </p>
+    </li>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">FragmentTransaction#TRANSIT_FRAGMENT_MATCH_ACTIVITY_{OPEN, CLOSE}</code>
+        to specify whether to enable the standard Activity-transition animation taken from your theme in Fragments transition.
+      </p>
+    </li>
+    <li>
+      <p>
+        The experimental API of
+        <code translate="no" dir="ltr">FragmentManager.enableNewStateManager(boolean)</code>
+        has been removed and the
+        <a href="https://medium.com/androiddevelopers/fragments-rebuilding-the-internals-61913f8bf48e">new state manager</a>
+        is now the only option available.
+      </p>
+    </li>
+  </ul>
+  <p><strong>Multiple back stacks</strong></p>
+  <p>
+    The
+    <code translate="no" dir="ltr">FragmentManager</code>
+    maintains a back stack made up of fragment transactions that used
+    <a href="/reference/androidx/fragment/app/FragmentTransaction#addToBackStack(java.lang.String)"><code translate="no" dir="ltr">addToBackStack()</code></a>
+    . This allows you to pop those transactions and return to the previous state, using the mechanisms for
+    <a href="/guide/fragments/saving-state">Saving state with fragments</a>
+    to allow your fragments to restore their state appropriately.
+  </p>
+  <p>
+    This release expands on these mechanisms by providing three new
+    <code translate="no" dir="ltr">FragmentManager</code>
+    APIs:
+    <code translate="no" dir="ltr">saveBackStack(String name)</code>
+    ,
+    <code translate="no" dir="ltr">restoreBackStack(String name)</code>
+    , and
+    <code translate="no" dir="ltr">clearBackStack(String name)</code>
+    . These APIs use the same
+    <code translate="no" dir="ltr">name</code>
+    as
+    <code translate="no" dir="ltr">addToBackStack()</code>
+    to save the state of the
+    <code translate="no" dir="ltr">FragmentTransaction</code>
+    and the state of every fragment that was added in those transactions and allow you to later restore those transactions and their fragments with their state in tact. This allows you to effectively ‘swap’ between multiple back stacks by saving the current back stack and restoring a saved back stack.
+  </p>
+  <p>
+    <code translate="no" dir="ltr">saveBackStack()</code>
+    operates similarly to
+    <a href="/reference/androidx/fragment/app/FragmentManager#popBackStack(java.lang.String,%20int)"><code translate="no" dir="ltr">popBackStack()</code></a>
+    in that it is asynchronous and results in all the fragment transactions back to that specific name to be reversed (‘popped’) and any added fragments to be destroyed and removed, but it differs in a few important ways:
+  </p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">saveBackStack()</code>
+      is always inclusive.
+    </li>
+    <li>
+      Unlike
+      <code translate="no" dir="ltr">popBackStack()</code>
+      which will pop
+      <strong>all</strong>
+      transactions on the back stack if the specified name is not found on the back stack or if a null name is provided,
+      <code translate="no" dir="ltr">saveBackStack()</code>
+      does nothing if you haven’t previously committed a fragment transaction using
+      <code translate="no" dir="ltr">addToBackStack()</code>
+      with that exact, non-null name.
+    </li>
+    <li>
+      The state of all fragments added from those transactions is saved. This means that the View state of every fragment is stored,
+      <code translate="no" dir="ltr">onSaveInstanceState()</code>
+      of every fragment is called and that state is restored, and any
+      <code translate="no" dir="ltr">ViewModel</code>
+      instances associated with those fragments are retained (and
+      <code translate="no" dir="ltr">onCleared()</code>
+      is
+      <strong>not</strong>
+      called on them).
+    </li>
+  </ul>
+  <p>
+    The fragment transactions that can be used with
+    <code translate="no" dir="ltr">saveBackStack()</code>
+    must meet certain criteria:
+  </p>
+  <ul>
+    <li>
+      Every fragment transaction must use
+      <a href="/reference/androidx/fragment/app/FragmentTransaction#setReorderingAllowed(boolean)"><code translate="no" dir="ltr">setReorderingAllowed(true)</code></a>
+      to ensure the transactions can be restored as a single, atomic operation.
+    </li>
+    <li>
+      The set of transactions saved must be self-contained (i.e., they must
+      <strong>not</strong>
+      explicitly reference any fragments outside of that set of transactions) to ensure that they can be restored at any later time, no matter what changes have been made to the back stack in the intervening time.
+    </li>
+    <li>
+      No fragment that is saved can be a retained fragment or have a retained fragment in their transitive set of child fragments to ensure that the
+      <code translate="no" dir="ltr">FragmentManager</code>
+      does not return any references to saved fragments after the back stack is saved.
+    </li>
+  </ul>
+  <p>
+    Similar to
+    <code translate="no" dir="ltr">saveBackStack()</code>
+    ,
+    <code translate="no" dir="ltr">restoreBackStack()</code>
+    and
+    <code translate="no" dir="ltr">clearBackStack()</code>
+    , which would restore a previously saved back stack or clear a previously saved back stack, respectively, both do nothing if you have not previously called
+    <code translate="no" dir="ltr">saveBackStack()</code>
+    with the same name.
+  </p>
+  <p>
+    For more information, see
+    <a href="https://medium.com/androiddevelopers/multiple-back-stacks-b714d974f134">Multiple back stacks: A deep dive</a>
+    .
+  </p>

@@ -1,0 +1,54 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.0.0-alpha29
+releaseDate: 2021-09-29
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha29" data-text="Version 1.0.0-alpha29" tabindex="-1">Version 1.0.0-alpha29</h3>
+  <p>September 29, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-extensions:1.0.0-alpha29</code>
+    and
+    <code translate="no" dir="ltr">androidx.camera:camera-view:1.0.0-alpha29</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9e98cbf6f7926e3ccb8a11600bd631b238ed64c9..0329df5c3c75f45da38e69e594283dddfe1e82c7/camera">Version 1.0.0-alpha29 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      ExperimentalUseCaseGroup annotation is removed now that the APIs are no longer experimental. (
+      <a href="https://android-review.googlesource.com/#/q/I01ef54912cd4ef540fe0389f785aa0bec5fc0783">I01ef5</a>
+      )
+    </li>
+    <li>
+      remove
+      <code translate="no" dir="ltr">RotationProvider#removeAllListeners()</code>
+      . Please use
+      <code translate="no" dir="ltr">RotationProvider#removeListener(...)</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/Id9d4a5dabaa567eb8d660e6109eae049f1cbddb4">Id9d4a</a>
+      )
+    </li>
+    <li>
+      Updated the RotationReceiver class: changed set/clear Listener to add/remove/removeAll, remove the setListener variation that uses the main thread by default and added annotation of methods. (
+      <a href="https://android-review.googlesource.com/#/q/Ib16691ae0f4e13721cb3bebc127c404fdbe3e72b">Ib1669</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Renamed ExtensionMode#BEAUTY to FACE_RETOUCH to correctly present what is done by the extension mode. (
+      <a href="https://android-review.googlesource.com/#/q/I61f544ce058d1ee39722825fd95e7bb1e1ac6349">I61f54</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/198515274">b/198515274</a>
+      )
+    </li>
+    <li>
+      Fixed the issue that camera is closed unexpectedly when multiple CameraController and PreviewView are used in one Activity. (
+      <a href="https://android-review.googlesource.com/#/q/Ibfd1842890b683ae3db639bf0cc4a2202110fe9f">Ibfd18</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/197539358">b/197539358</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,65 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.0.0-alpha08
+releaseDate: 2020-10-28
+#language=html
+changelogHtml: |
+  <h3 id="3.0.0-alpha08" data-text="Version 3.0.0-alpha08" tabindex="-1">Version 3.0.0-alpha08</h3>
+  <p>October 28, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.0.0-alpha08</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/8d1cacd5e482a2b20351525ac2b630ce49911228..234e23e470a5e7f81291f6acd12d538146dc010b/paging">Version 3.0.0-alpha08 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The Kotlin / Java variants of
+      <code translate="no" dir="ltr">DataSource.InvalidatedCallback</code>
+      have been combined by enabling SAM-conversions in Kotlin via functional interface (available in Kotlin 1.4). This also fixes a bug where the kotlin variant of invalidate callbacks were not called after transformed by
+      <code translate="no" dir="ltr">.map</code>
+      or
+      <code translate="no" dir="ltr">.mapByPage</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1f244498bd9f78bfed2744d9e6c9d5c1c1448971">I1f244</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/165313046">b/165313046</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Paging’s interaction with ViewPager has been improved considerably. Specifically, Paging will no longer cancel a
+      <code translate="no" dir="ltr">RemoteMediator#load</code>
+      call due to a page invalidation. It will also no longer make an append/prepend load request,
+      <em>if REFRESH is required</em>
+      , until REFRESH request completes successfully. (
+      <a href="https://android-review.googlesource.com/#/q/I6390be0c0c1073005456f928a2a8afa81c16d3ef">I6390b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/162252536">b/162252536</a>
+      )
+    </li>
+    <li>
+      API lint check for MissingGetterMatchingBuilder is enabled for androidx (
+      <a href="https://android-review.googlesource.com/#/q/I4bbeacf9869d8338a3d7086acb40bc56ec68c3f9">I4bbea</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/138602561">b/138602561</a>
+      )
+    </li>
+    <li>
+      Fixed a bug where
+      <code translate="no" dir="ltr">.withLoadState*</code>
+      <code translate="no" dir="ltr">ConcatAdapter</code>
+      helpers would crash due to notifying RecyclerView from background thread (
+      <a href="https://android-review.googlesource.com/#/q/I18bb54c857dfc5098cd36b5c22dce386c4776d3d">I18bb5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170988309">b/170988309</a>
+      )
+    </li>
+    <li>
+      Fixed a bug where loading a very small non-empty page would sometimes prevent prefetch from triggering loads correctly.
+      <a href="https://android-review.googlesource.com/q/Iffda3a0eb7abe162045893367b4781daf75adb01">Iffda3</a>
+      <a href="https://issuetracker.google.com/169259468">b/169259468</a>
+    </li>
+  </ul>

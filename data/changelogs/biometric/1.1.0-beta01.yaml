@@ -1,0 +1,76 @@
+libraryId: biometric
+groupId: androidx.biometric
+version: 1.1.0-beta01
+releaseDate: 2020-10-01
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-beta01" data-text="Version 1.1.0-beta01" tabindex="-1">Version 1.1.0-beta01</h3>
+  <p>October 1, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.biometric:biometric:1.1.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/96eb302ee1740ba656c90c9fb27df3723a1a89c1..f5a2c7477391539d8bc9f65a8f0db1e8a7bf2cf5/biometric/biometric">Version 1.1.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Significantly reduced the library's APK size footprint (by &gt;100 KB compressed, in some cases) by replacing dialog animations with static assets on Android 8.1 and earlier. (
+      <a href="https://android-review.googlesource.com/q/I4844e5d47da629c1a7017edbc6b84f4f10e12a5f">I4844e</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BiometricPrompt</code>
+      now automatically falls back to device credential authentication (if allowed) on all supported Android versions when biometric authentication is locked out. (
+      <a href="https://issuetracker.google.com/issues/149579143">b/149579143</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">BiometricPrompt</code>
+      caused a crash on some Android 9 devices without a fingerprint sensor. (
+      <a href="https://issuetracker.google.com/issues/151443237">b/151443237</a>
+      )
+    </li>
+    <li>
+      Fixed a potential
+      <code translate="no" dir="ltr">NullPointerException</code>
+      in
+      <code translate="no" dir="ltr">FingerprintDialogFragment</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/167951429">b/167951429</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where the wrong
+      <code translate="no" dir="ltr">CryptoObject</code>
+      type was used for a reflective method invocation in
+      <code translate="no" dir="ltr">BiometricManager</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/165824669">b/165824669</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where showing
+      <code translate="no" dir="ltr">BiometricPrompt</code>
+      again shortly after dismissal caused the new prompt to be dismissed automatically on some Android 10 devices. (
+      <a href="https://issuetracker.google.com/issues/157783075">b/157783075</a>
+      )
+    </li>
+    <li>
+      Fixed memory leaks related to the use of
+      <code translate="no" dir="ltr">FingerprintManagerCompat</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/165840273">b/165840273</a>
+      )
+    </li>
+    <li>
+      Fixed issues with the fingerprint dialog UI being hidden or shown incorrectly on some Android 9 devices. (
+      <a href="https://issuetracker.google.com/issues/154868505">b/154868505</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/148350291">b/148350291</a>
+      )
+    </li>
+  </ul>

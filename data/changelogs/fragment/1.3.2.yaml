@@ -1,0 +1,53 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.3.2
+releaseDate: 2021-03-24
+#language=html
+changelogHtml: |
+  <h3 id="1.3.2" data-text="Version 1.3.2" tabindex="-1">Version 1.3.2</h3>
+  <p>March 24, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.3.2</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.3.2</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.3.2</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/587cd19caebfbd63197a766916bf5296b3a6d65e..359e0b300368007d383fda1172a2813f9126d11f/fragment">Version 1.3.2 contains these commits.</a>
+  </p>
+  <p><strong>New State Manager Bug Fixes</strong></p>
+  <ul>
+    <li>
+      When running both
+      <code translate="no" dir="ltr">popBackStack()</code>
+      and
+      <code translate="no" dir="ltr">commit()</code>
+      operations together, the last operation will now set the direction for all animations rather than running some pop animations and some enter animations. (
+      <a href="https://android-review.googlesource.com/#/q/I7072e2c8008318ae812ae461a42ddafbbe6055cd">I7072e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/181142246">b/181142246</a>
+      )
+    </li>
+    <li>
+      Views within in a shared element hierarchy will no longer have their transition name cleared when doing a shared element transition. (
+      <a href="https://android-review.googlesource.com/#/q/I4d4a6d7770d5c6d54e4c647559d5cabae71f0051">I4d4a6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/179934757">b/179934757</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Updates</strong></p>
+  <ul>
+    <li>
+      Fragment now depends on
+      <a href="/jetpack/androidx/releases/activity#1.2.2">Activity 1.2.2</a>
+      , fixing an issue with Activity’s
+      <code translate="no" dir="ltr">InvalidFragmentVersionForActivityResult</code>
+      lint check when using Fragment 1.3.1 or higher.
+    </li>
+    <li>
+      Fragment now depends on
+      <a href="/jetpack/androidx/releases/lifecycle#2.3.1">Lifecycle 2.3.1</a>
+      .
+    </li>
+  </ul>

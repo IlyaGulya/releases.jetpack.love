@@ -1,0 +1,267 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 0.1.0-dev17
+releaseDate: 2020-08-19
+#language=html
+changelogHtml: |
+  <h3 id="0.1.0-dev17" data-text="Version 0.1.0-dev17" tabindex="-1">Version 0.1.0-dev17</h3>
+  <p>August 19, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material:0.1.0-dev17</code>
+    ,
+    <code translate="no" dir="ltr">androidx.compose.material:material-icons-core:0.1.0-dev17</code>
+    , and
+    <code translate="no" dir="ltr">androidx.compose.material:material-icons-extended:0.1.0-dev17</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/316f882e649c600372170f013a18515f590f490d..96eb302ee1740ba656c90c9fb27df3723a1a89c1/ui/ui-material">Version 0.1.0-dev17 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Previously deprecated RadioGroup and RadioGroupItems have been removed. Use Row and RadioBotton instead (
+      <a href="https://android-review.googlesource.com/#/q/I381b71bbaf0092608a14743cdd2976de5d574824">I381b7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/163806637">b/163806637</a>
+      )
+    </li>
+    <li>
+      Removed onFocusChanged callbacks from TextField. Use Modifier.focusObserver instead. (
+      <a href="https://android-review.googlesource.com/#/q/I51089bfbc858ea302770f92b13886818cf48ba9c">I51089</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161297615">b/161297615</a>
+      )
+    </li>
+    <li>
+      Modifier.drawBorder has been deprecated. Use Modifier.border instead. Border data class has been replaced by BorderStroke (
+      <a href="https://android-review.googlesource.com/#/q/I4257d62b222e27c9ad67e1b2581b162cc9392c9e">I4257d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/158160576">b/158160576</a>
+      )
+    </li>
+    <li>
+      Renamed some properties in SwipeableState: swipeTarget -&gt; targetValue, swipeProgress -&gt; progress, swipeDirection -&gt; direction. Added a rememberSwipeableState function for creating SwipeableStates. (
+      <a href="https://android-review.googlesource.com/#/q/I2fc9c3af465b579a18359ae0aa0853c2d2b02abe">I2fc9c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/163129614">b/163129614</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/163132293">b/163132293</a>
+      )
+    </li>
+    <li>
+      Snackbar support with positioning and proper queueing has been added. Access it via
+      <code translate="no" dir="ltr">SnackbarHostState.showSnackbar</code>
+      suspend function. Additionally:
+      <ul>
+        <li>SnackbarHost components has been added. It hosts Snackbars based on the state and is responsible for transition between snackbars.</li>
+        <li>
+          SnackbarHostState has been added to allow for control over snackbars, snackbars hosts and to decouple it from the ScaffoldState. you can access this state via
+          <code translate="no" dir="ltr">scaffoldState.snackbarHostState</code>
+          as well.
+        </li>
+        <li>
+          Snackbar overload has been added to support common interface between snackbarHostState and snackbars itself. (
+          <a href="https://android-review.googlesource.com/#/q/I79aaae1deb410d6b1019a691a12a0ab861f6b03f">I79aaa</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Adds enabled parameter to IconButton, and reorders parameters in IconToggleButton (
+      <a href="https://android-review.googlesource.com/#/q/I0a9419b1a631cadad451395302ad87b7f9214f96">I0a941</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161809385">b/161809385</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161807956">b/161807956</a>
+      )
+    </li>
+    <li>
+      ListItem version with String-based API has been removed. Use slot version instead. (
+      <a href="https://android-review.googlesource.com/#/q/Ib8f5742805f11b458db53b98a893c7fcb35eba00">Ib8f57</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161804681">b/161804681</a>
+      )
+    </li>
+    <li>
+      Removed deprecated FilledTextField component. Please use TextField instead to get the Material Design implementation of the Filled text field. (
+      <a href="https://android-review.googlesource.com/#/q/I5e88900375ee81067f24d39f82f4022bf85b3d9c">I5e889</a>
+      )
+    </li>
+    <li>
+      AlertDialog now uses FlowRow for buttons (
+      <a href="https://android-review.googlesource.com/#/q/I00ec1052c1e452380cda3a95bdb3ae5b74c5511e">I00ec1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161809319">b/161809319</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/143682374">b/143682374</a>
+      )
+    </li>
+    <li>
+      Added params in Modifier.swipeable for changing the amount of resistance when swiping past the bounds. Removed [min/max]Value params. (
+      <a href="https://android-review.googlesource.com/#/q/I93d98d2674798d39844f88dcef356cbbdb34458a">I93d98</a>
+      )
+    </li>
+    <li>
+      Added backgroundColor parameter to LinearProgressIndicator and removed internal padding from CircularProgressIndicator. Added new ProgressIndicatorConstants.DefaultProgressAnimationSpec which can be used as the default AnimationSpec when animating progress between values (
+      <a href="https://android-review.googlesource.com/#/q/If38b5dd58d052b75c1974031e0974f22808d9776">If38b5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161809914">b/161809914</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161804677">b/161804677</a>
+      )
+    </li>
+    <li>
+      Optional param velocityThreshold added to Modifier.swipeable. (
+      <a href="https://android-review.googlesource.com/#/q/I698ba84bbb83ba262b8a55d9f70da4bff907eba9">I698ba</a>
+      )
+    </li>
+    <li>
+      bottomBarSize, fabSize and others and not available anymore in ScaffoldState. Use Modifier.onPosition instead on the component you'd like to know the size of. contentColor and Modifier pamateres have been added to Scaffold (
+      <a href="https://android-review.googlesource.com/#/q/Ic6f7bdd21d469227675b5e59a6b32c592c1ff9e5">Ic6f7b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161811485">b/161811485</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/157174382">b/157174382</a>
+      )
+    </li>
+    <li>
+      Renames and reorders some parameters in Tab for consistency with other APIs (
+      <a href="https://android-review.googlesource.com/#/q/Ia2d12aa787a9c8b829371070cd4379ae30049c7c">Ia2d12</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161807532">b/161807532</a>
+      )
+    </li>
+    <li>
+      Splits TabRow into TabRow and ScrollableTabRow, removing isScrollable from TabRow. Also exposes edgePadding in ScrollableTabRow, which allows controlling the free space before / after the tabs. (
+      <a href="https://android-review.googlesource.com/#/q/I583e82f0424571b538adbf6f3e8f69721c37352b">I583e8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161809544">b/161809544</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">TabRow</code>
+      object has been removed, replacing it with TabConstants. TabRow.TabPosition has moved to be top level (TabPosition), and indicatorContainer has been renamed to
+      <code translate="no" dir="ltr">indicator</code>
+      . See the samples and documentation for detailed information on how to use the updated API, and defaults. (
+      <a href="https://android-review.googlesource.com/#/q/I54d452697a70b9653812e5366420563a3aa19209">I54d45</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161809544">b/161809544</a>
+      )
+    </li>
+    <li>
+      The thresholds param in Modifier.swipeable was tweaked; it now takes a pair of states (of type T) and returns the threshold between them in the form of a ThresholdConfig. A param dismissThresholds was added to SwipeToDismiss, which is a lambda (DismissDirection) -&gt; ThresholdConfig. (
+      <a href="https://android-review.googlesource.com/#/q/Ie1080e5a6a23459abab5cff1d292b326542cb62d">Ie1080</a>
+      )
+    </li>
+    <li>
+      Slider has more colors for granular customization (
+      <a href="https://android-review.googlesource.com/#/q/I73e647095847ac0dae744fd1d6407d2cf29418d4">I73e64</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161810475">b/161810475</a>
+      )
+    </li>
+    <li>
+      Card's color param was renamed to backgroundColor (
+      <a href="https://android-review.googlesource.com/#/q/I01fc1d0aceae82f80663f4428a02fe6a0acbccc0">I01fc1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161809546">b/161809546</a>
+      )
+    </li>
+    <li>
+      Snackbar has customizable background and content colors now (
+      <a href="https://android-review.googlesource.com/#/q/I238f223914322fd47ad6c9707219075c45706c08">I238f2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161804381">b/161804381</a>
+      )
+    </li>
+    <li>
+      modifier, backgroundColor, contentColor and scrimColor customization params has been added to Drawers (
+      <a href="https://android-review.googlesource.com/#/q/I236555ff68b57685c4709ba24a6464e7fba0c10a">I23655</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161804378">b/161804378</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">state { ... }</code>
+      composable is now deprecated in favor of explicit calls to
+      <code translate="no" dir="ltr">remember { mutableStateOf(...) }</code>
+      for clarity. This reduces the overall API surface and number of concepts for state management, and matches the
+      <code translate="no" dir="ltr">by mutableStateOf()</code>
+      pattern for class property delegation. (
+      <a href="https://android-review.googlesource.com/#/q/Ia57278556d4f35ecf2cf5e6e30888b0d1f1f8012">Ia5727</a>
+      )
+    </li>
+    <li>
+      Button's padding param was renamed to contentPadding (
+      <a href="https://android-review.googlesource.com/#/q/Id252e03bd7750acf9acea72672d41b4f409ad1d0">Id252e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161809394">b/161809394</a>
+      )
+    </li>
+    <li>
+      Add an experimental material component SwipeToDismiss. (
+      <a href="https://android-review.googlesource.com/#/q/I129e5ce937cf6eca5e4e12e6564db810da0cc902">I129e5</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">onChildPositioned</code>
+      and
+      <code translate="no" dir="ltr">OnChildPositionedModifier</code>
+      . Developers should use
+      <code translate="no" dir="ltr">onPositioned</code>
+      and
+      <code translate="no" dir="ltr">OnPositionedModifier</code>
+      on the child layout instead. (
+      <a href="https://android-review.googlesource.com/#/q/I4522e2cd4a0edb08fd36212eacf19d2895ae87f7">I4522e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/162109766">b/162109766</a>
+      )
+    </li>
+    <li>
+      Added mergePolicy lambda to SemanticsPropertyKey. This can be used to define a custom policy for mergeAllDescendants semantics merging. The default policy is to use the parent value if already present, otherwise the child value. (
+      <a href="https://android-review.googlesource.com/#/q/Iaf6c4cc327017ee492f4d8334c8df5167d33df58">Iaf6c4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161979921">b/161979921</a>
+      )
+    </li>
+    <li>
+      IntSize is now an inline class (
+      <a href="https://android-review.googlesource.com/#/q/I2bf426245b41f4189dead45114e3791bbceb9d13">I2bf42</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PlacementScope.placeAbsolute()</code>
+      was renamed to
+      <code translate="no" dir="ltr">PlacementScope.place()</code>
+      , and the previous
+      <code translate="no" dir="ltr">PlacementScope.place()</code>
+      was renamed to
+      <code translate="no" dir="ltr">PlacementScope.placeRelative()</code>
+      . As a result, the
+      <code translate="no" dir="ltr">PlacementScope.place()</code>
+      method will not automatically mirror the position in right-to-left contexts anymore. If this is desired, use
+      <code translate="no" dir="ltr">PlacementScope.placeRelative()</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/I873ac827e6c4d4bf6c85a80b7128174c61602945">I873ac</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/162916675">b/162916675</a>
+      )
+    </li>
+    <li>
+      Deprecated PxBounds in favor of Rect. Updated all usages of PxBounds with rect and added proper deprecate/replace with annotations to assist with the migration. (
+      <a href="https://android-review.googlesource.com/#/q/I370384202fff3e5b147d42086f4350ab7fa830de">I37038</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/162627058">b/162627058</a>
+      )
+    </li>
+    <li>
+      Renamed RRect to RoundRect to better fit compose naming patterns Created similar function constructors to RRect and deprecated RRect function constructors (
+      <a href="https://android-review.googlesource.com/#/q/I5d32529a133bc2f69ea1de94c2912b2748a0d678">I5d325</a>
+      )
+    </li>
+  </ul>

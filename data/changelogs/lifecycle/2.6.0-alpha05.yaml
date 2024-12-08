@@ -1,0 +1,105 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.6.0-alpha05
+releaseDate: 2023-01-25
+#language=html
+changelogHtml: |
+  <h3 id="2.6.0-alpha05" data-text="Version 2.6.0-alpha05" tabindex="-1">Version 2.6.0-alpha05</h3>
+  <p>January 25, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.6.0-alpha05</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/adf1c279a86ab3886e1666c08e2c3efba783367b..e5dad1e7d1c225f89f7c2d5a39a7a0de8d637d7b/lifecycle">Version 2.6.0-alpha05 contains these commits.</a>
+  </p>
+  <p><strong>Kotlin Conversions</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">Transformations</code>
+      is now written in Kotlin. This is a
+      <strong>source incompatible change</strong>
+      for those classes written in Kotlin that were directly using syntax such as
+      <code translate="no" dir="ltr">Transformations.map</code>
+      - Kotlin code
+      <strong>must</strong>
+      now use the Kotlin extension method syntax that was previously only available when using
+      <code translate="no" dir="ltr">lifecycle-livedata-ktx</code>
+      . When using the Java programming language, the versions of these methods that take an
+      <code translate="no" dir="ltr">androidx.arch.core.util.Function</code>
+      method are deprecated and replaced with the versions that take a Kotlin
+      <code translate="no" dir="ltr">Function1</code>
+      . This change maintains binary compatibility. (
+      <a href="https://android-review.googlesource.com/#/q/I8e14f0c95d1b509620dfe6b94318e314f84d9f4b">I8e14f</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ViewTreeViewModelStoreOwner</code>
+      is now written in Kotlin. This is a
+      <strong>source incompatible change</strong>
+      for those classes written in Kotlin - you must now directly import and use the Kotlin extension methods on
+      <code translate="no" dir="ltr">View</code>
+      of
+      <code translate="no" dir="ltr">androidx.lifecycle.setViewTreeViewModelStoreOwner</code>
+      and
+      <code translate="no" dir="ltr">androidx.lifecycle.findViewTreeViewModelStoreOwner</code>
+      to set and find a previously set owner. This is binary compatible and remains source compatible for implementations written in the Java programming language. (
+      <a href="https://android-review.googlesource.com/#/q/Ia06d830b263c0f7f1193c5b3ead1587533ca1b0c">Ia06d8</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ib22d8b129e70972429920bf7dd63632d80e68730">Ib22d8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/240298691">b/240298691</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">HasDefaultViewModelProviderFactory</code>
+      interface is now written in Kotlin. This is a
+      <strong>source incompatible change</strong>
+      for classes written in Kotlin - they must now override the
+      <code translate="no" dir="ltr">defaultViewModelProviderFactory</code>
+      and
+      <code translate="no" dir="ltr">defaultViewModelCreationExtras</code>
+      properties rather than implementing the previous corresponding functions. (
+      <a href="https://android-review.googlesource.com/#/q/Iaed9c26539611f73794de6a1349e7b31a415ee9d">Iaed9c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/240298691">b/240298691</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Observer</code>
+      is now written in Kotlin. Its
+      <code translate="no" dir="ltr">onChanged()</code>
+      method now uses the name
+      <code translate="no" dir="ltr">value</code>
+      for its parameter. (
+      <a href="https://android-review.googlesource.com/#/q/Iffef21b829fdb1ce2685747c27b4ff4841c01613">Iffef2</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I4995e88bac1a5dba16a8359f9361886aff013bb0">I4995e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/240298691">b/240298691</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AndroidViewModel</code>
+      ,
+      <code translate="no" dir="ltr">AbstractSavedStateViewModelFactory</code>
+      ,
+      <code translate="no" dir="ltr">LifecycleService</code>
+      ,
+      <code translate="no" dir="ltr">ServiceLifecycleDispatcher</code>
+      , and
+      <code translate="no" dir="ltr">ProcessLifecycleOwner</code>
+      are now written in Kotlin (
+      <a href="https://android-review.googlesource.com/#/q/I2e771b51b5f7a3250d862b659a48c6f6b709b025">I2e771</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ibae407718237391b600decdf0700a90c5e23e5b5">Ibae40</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I160d7e0be9d70207038f35a19cb05e5fcf8d25b2">I160d7</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I088840f6961cdc5c6b8857cbd6f3bee0a7faa4e8">I08884</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I1cda7f18602f9d4831027d0199220285557d85ec">I1cda7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/240298691">b/240298691</a>
+      )
+    </li>
+  </ul>

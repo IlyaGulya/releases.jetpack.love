@@ -1,0 +1,66 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.0.0-alpha16
+releaseDate: 2020-09-16
+#language=html
+changelogHtml: |
+  <h3 id="camera-view-1.0.0-alpha16" data-text="Camera-View Version 1.0.0-alpha16" tabindex="-1">Camera-View Version 1.0.0-alpha16</h3>
+  <p>September 16, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-view:1.0.0-alpha16</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/96eb302ee1740ba656c90c9fb27df3723a1a89c1..9ebe09b1cb65d62b65b01054fd9ecd055d653a22/camera/camera-view">Version 1.0.0-alpha16 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">PreviewView#setDeviceRotationForRemoteDisplayMode()</code>
+      and
+      <code translate="no" dir="ltr">PreviewView#getDeviceRotationForRemoteDisplayMode()</code>
+      . The two methods are for customizing preview rotation, when desired rotation is not display rotation, e.g. remote display. To handle the non-display preview rotation now, set the desired rotation with
+      <code translate="no" dir="ltr">Preview#setTargetRotation()</code>
+      and the newly added
+      <code translate="no" dir="ltr">PreviewView#getViewPort(targetRotation)</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib62ccd85d93197642cc25b97c80f2d33815df10e">Ib62cc</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">createSurfaceProvider()</code>
+      to
+      <code translate="no" dir="ltr">getSurfaceProvider()</code>
+      . The method will always return the same instance of Preview.SurfaceProvider. (
+      <a href="https://android-review.googlesource.com/#/q/Iff83cd9c45539a84f465f080e1975432c3561ac4">Iff83c</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Forced PreviewView to use TextureView if extension effect is enabled and the vendor library implementation needs to do a special process on the output surface. (
+      <a href="https://android-review.googlesource.com/#/q/I0c3cc867847ec0f350119a8d05ace41c631d04de">I0c3cc</a>
+      )
+    </li>
+    <li>
+      Allow arbitrary target rotation for Preview. The transformation info is calculated and returned to user on-the-fly via a new
+      <code translate="no" dir="ltr">TranformationInfoListener</code>
+      callback. (
+      <a href="https://android-review.googlesource.com/#/q/I214703dfb077891738666bfbfbe1b7187fe02461">I21470</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      In PreviewView,
+      <code translate="no" dir="ltr">OnClickListener#onClick()</code>
+      is not invoked when the end user clicks PreviewView. The touch event is mistakenly consumed by PreviewView#onTouchEvent(). The issue will be fixed in the next release.
+    </li>
+    <li>
+      The MeteringPoint obtained from
+      <code translate="no" dir="ltr">PreviewView#getMeteringPointFactory()</code>
+      may be wrong if ViewPort is used with PreviewView.
+    </li>
+  </ul>

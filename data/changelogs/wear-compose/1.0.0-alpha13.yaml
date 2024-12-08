@@ -1,0 +1,82 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.0.0-alpha13
+releaseDate: 2021-12-15
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha13" data-text="Version 1.0.0-alpha13" tabindex="-1">Version 1.0.0-alpha13</h3>
+  <p>December 15, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-foundation:1.0.0-alpha13</code>
+    ,
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material:1.0.0-alpha13</code>
+    , and
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-navigation:1.0.0-alpha13</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/75784ce6dbac6faa5320e5898e9472f02ab8710c..301586664b5aad60548f21866cad502d524dbf9f/wear/compose">Version 1.0.0-alpha13 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We have made
+      <code translate="no" dir="ltr">RangeIcons</code>
+      internal (referenced internally by
+      <code translate="no" dir="ltr">InlineSlider</code>
+      and
+      <code translate="no" dir="ltr">Stepper</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/I927ec058650a49adb0bf5603410b962c025446bc">I927ec</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <p>
+        Fixed an issue where
+        <code translate="no" dir="ltr">SwipeDismissableNavHost</code>
+        would add a destination to the Compose hierarchy before it has reached the
+        <code translate="no" dir="ltr">CREATED</code>
+        Lifecycle state, resulting in an
+        <code translate="no" dir="ltr">IllegalStateException</code>
+        . This fix was a prerequisite to updating dependency on
+        <code translate="no" dir="ltr">navigation-compose</code>
+        to
+        <code translate="no" dir="ltr">2.4.0-beta02</code>
+        and beyond. (
+        <a href="https://android-review.googlesource.com/#/q/I40a2ba51ec8805007dd11f531a5807e60f595a0d">I40a2b</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/207328687">b/207328687</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added a Drawables enum class for getting drawable resources within the Wear Compose library, so that reflection is no longer needed. This fixes a bug where library drawables were removed when
+        <code translate="no" dir="ltr">minifyEnabled=true</code>
+        or
+        <code translate="no" dir="ltr">shrinkResources=true</code>
+        ). (
+        <a href="https://android-review.googlesource.com/q/Ib2a98513706c9d2ec080498742ae6d6810ae6be3">Ib2a98</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added tests for
+        <code translate="no" dir="ltr">Stepper</code>
+        in Wear Compose (
+        <a href="https://android-review.googlesource.com/#/q/I2d03a3e12fe55d6f98fa9be31a4f8511e8ca69b2">I2d03a</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added samples for
+        <code translate="no" dir="ltr">SwipeDismissableNavHost</code>
+        in Wear Compose Navigation. (
+        <a href="https://android-review.googlesource.com/#/q/I85f063563bd521badf131943dbe49754a408c153">I85f06</a>
+        )
+      </p>
+    </li>
+  </ul>

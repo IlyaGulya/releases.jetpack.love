@@ -1,0 +1,114 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.0.0-alpha07
+releaseDate: 2020-02-10
+#language=html
+changelogHtml: |
+  <h3 id="camera-view-1.0.0-alpha07" data-text="Camera-View  Version 1.0.0-alpha07" tabindex="-1">Camera-View Version 1.0.0-alpha07</h3>
+  <p>February 10, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-view:1.0.0-alpha07</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/0a3d894e8fe0217f1312fb163a89ad51bf15794e..1c76d34916ab81f6fea02ba6e2d717243562bb24/camera/camera-view">Version 1.0.0-alpha07 contains these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">PreviewView</code>
+      's
+      <code translate="no" dir="ltr">TextureView</code>
+      implementation now sets the
+      <code translate="no" dir="ltr">TextureView</code>
+      's size to the camera sensor output size before scaling it to fill its parent
+      <code translate="no" dir="ltr">PreviewView</code>
+      . If you want the camera preview to fill an entire part of the UI (the whole screen for instance), you should not set the
+      <code translate="no" dir="ltr">PreviewView</code>
+      's size to a fixed value, or have it wrap its content (by using the attribute "
+      <code translate="no" dir="ltr">wrap_content</code>
+      " for example), this may result in the camera preview only filling part of the
+      <code translate="no" dir="ltr">PreviewView</code>
+      (if the camera sensor output size is smaller). Instead, you should set the
+      <code translate="no" dir="ltr">PreviewView</code>
+      as big as its parent (by using the attribute "
+      <code translate="no" dir="ltr">match_parent</code>
+      " for example). (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1204869/">1204869</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">ImageCapture</code>
+      to allow saving images to
+      <code translate="no" dir="ltr">Uri</code>
+      and
+      <code translate="no" dir="ltr">OutputStream</code>
+      . Combined overloaded
+      <code translate="no" dir="ltr">takePicture</code>
+      methods into one. Updated test app to use
+      <code translate="no" dir="ltr">Uri</code>
+      as the canonical example. (
+      <a href="https://android-review.googlesource.com/#/q/Ia3becf13029c367e7525d1b110f89bd4a06833a9">Ia3bec</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Preview.PreviewSurfaceProvider</code>
+      has been renamed to
+      <code translate="no" dir="ltr">Preview.SurfaceProvider</code>
+      .
+      <code translate="no" dir="ltr">SurfaceProvider</code>
+      s no longer require developers to create their own
+      <code translate="no" dir="ltr">ListenableFuture</code>
+      , and providing a
+      <code translate="no" dir="ltr">Surface</code>
+      is now done through a new
+      <code translate="no" dir="ltr">SurfaceRequest</code>
+      object. The
+      <code translate="no" dir="ltr">Preview.getPreviewSurfaceProvider()</code>
+      method has been removed due to its potential for misuse when
+      <code translate="no" dir="ltr">Preview</code>
+      is paired with other classes such as
+      <code translate="no" dir="ltr">PreviewView</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2010570526c2336250d873c681a5c00d8420938e">I20105</a>
+      )
+    </li>
+    <li>
+      The arguments that were previously passed in
+      <code translate="no" dir="ltr">ImageCapture.OnImageSavedCallback.onError()</code>
+      and
+      <code translate="no" dir="ltr">ImageCapture.OnImageCapturedCallback.onError()</code>
+      have now been replaced by a single argument
+      <code translate="no" dir="ltr">ImageCaptureException</code>
+      , which still contains all the information that was previously passed.
+    </li>
+    <li>
+      The file argument previously passed in
+      <code translate="no" dir="ltr">ImageCapture.OnImageSavedCallback.onImageSaved()</code>
+      has been removed. (
+      <a href="https://android-review.googlesource.com/#/q/I750d258b4d532ac99d7a49c1c7800dc2edea3c43">I750d2</a>
+      )
+    </li>
+    <li>
+      API updated, with
+      <code translate="no" dir="ltr">getZoomRatio()</code>
+      ,
+      <code translate="no" dir="ltr">getMaxZoomRatio()</code>
+      ,
+      <code translate="no" dir="ltr">getMinZoomRatio()</code>
+      , and
+      <code translate="no" dir="ltr">getLinearZoom()</code>
+      methods of
+      <code translate="no" dir="ltr">CameraInfo</code>
+      merging into
+      <code translate="no" dir="ltr">getZoomState()</code>
+      which returns a
+      <code translate="no" dir="ltr">ZoomState</code>
+      instance. (
+      <a href="https://android-review.googlesource.com/#/q/Ib19feb7377aac17623e8d3edbde1dd39b25b31b9">Ib19fe</a>
+      )
+    </li>
+  </ul>

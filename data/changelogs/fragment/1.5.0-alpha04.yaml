@@ -1,0 +1,53 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.5.0-alpha04
+releaseDate: 2022-03-23
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha04" data-text="Version 1.5.0-alpha04" tabindex="-1">Version 1.5.0-alpha04</h3>
+  <p>March 23, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.5.0-alpha04</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.5.0-alpha04</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.5.0-alpha04</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9b2b3d8efd5f00bd4af903bbaa926f6a712d0bd8..5ef5671233460b844828e14a816255dbf7904868/fragment">Version 1.5.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The Fragment APIs for providing a menu to your activity’s
+      <code translate="no" dir="ltr">ActionBar</code>
+      have been deprecated as they tightly couple your fragment to your activity and are not testable in isolation. The
+      <code translate="no" dir="ltr">MenuHost</code>
+      and
+      <code translate="no" dir="ltr">MenuProvider</code>
+      APIs added in
+      <a href="/jetpack/androidx/releases/activity#1.4.0-alpha01">
+        Activity
+        <code translate="no" dir="ltr">1.4.0-alpha01</code>
+      </a>
+      provide a testable, lifecycle aware equivalent API surface that fragments should use. (
+      <a href="https://android-review.googlesource.com/#/q/I50a599c9ee85c085e377f74353db72376dcce19a">I50a59</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I2075845d3598bf3b2635512918fca04abe2e281a">I20758</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">SavedStateViewFactory</code>
+      now supports using
+      <code translate="no" dir="ltr">CreationExtras</code>
+      even when it was initialized with a
+      <code translate="no" dir="ltr">SavedStateRegistryOwner</code>
+      . If extras are provided, the initialized arguments are ignored. (
+      <a href="https://android-review.googlesource.com/#/q/I6c43bfd75888cb4b8bdd610cd07d4962aaba37ea">I6c43b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/224844583">b/224844583</a>
+      )
+    </li>
+  </ul>

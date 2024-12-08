@@ -1,0 +1,64 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.9.0
+releaseDate: 2024-04-17
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0" data-text="Version 1.9.0" tabindex="-1">Version 1.9.0</h3>
+  <p>April 17, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.9.0</code>
+    ,
+    <code translate="no" dir="ltr">androidx.activity:activity-compose:1.9.0</code>
+    , and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.9.0</code>
+    are released. Version 1.9.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/80bdf43686b9fa5e4c31299217168d73df5c9243..fdf742dd71a144f62554c9d810891993dcfb9fa8/activity">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.8.0</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      now implements
+      <code translate="no" dir="ltr">OnUserLeaveHintProvider</code>
+      to allow components to callbacks for
+      <code translate="no" dir="ltr">onUserLeaveHint</code>
+      events.
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">OnBackPressedCallback</code>
+      ,
+      <code translate="no" dir="ltr">BackHandler</code>
+      , and
+      <code translate="no" dir="ltr">PredictiveBackHandler</code>
+      APIs now warn when calling
+      <code translate="no" dir="ltr">onBackPressedDispatcher.onBackPressed()</code>
+      when handling back as that will always break the
+      <a href="/guide/navigation/custom-back/predictive-back-gesture">Predictive Back Animation</a>
+      . See the
+      <a href="/guide/navigation/custom-back/predictive-back-gesture#ui-logic">best practices guide</a>
+      for more details.
+    </li>
+    <li>
+      The remainder of the Activity APIs have been rewritten in Kotlin and all extensions previously available in
+      <code translate="no" dir="ltr">activity-ktx</code>
+      have been moved to
+      <code translate="no" dir="ltr">activity</code>
+      .
+      <code translate="no" dir="ltr">activity-ktx</code>
+      is now completely empty.
+      <ul>
+        <li>
+          As part of the conversion of
+          <code translate="no" dir="ltr">ActivityResultLauncher</code>
+          to Kotlin, the
+          <code translate="no" dir="ltr">getContract</code>
+          method is now an abstract Kotlin property. This is a binary compatible change, but source breaking if your implementation of
+          <code translate="no" dir="ltr">ActivityResultLauncher</code>
+          is written in Kotlin.
+        </li>
+      </ul>
+    </li>
+  </ul>

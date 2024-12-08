@@ -1,0 +1,180 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.9.0-alpha04
+releaseDate: 2024-12-11
+#language=html
+changelogHtml: |
+  <h3 id="2.9.0-alpha04" data-text="Version 2.9.0-alpha04" tabindex="-1">Version 2.9.0-alpha04</h3>
+  <p>December 11, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.9.0-alpha04</code>
+    is released. Version 2.9.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6f09cf2ae979e48fdb19485f757a033e4a34bb82..46295bc0b75a16f452e8e0090e8de41073d4dbb6/navigation">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      The type safe APIs that were previously only accessible via
+      <code translate="no" dir="ltr">reified</code>
+      methods i.e.,
+      <code translate="no" dir="ltr">composable&lt;YourScreen&gt;</code>
+      now have non-reified versions that directly take a
+      <code translate="no" dir="ltr">KClass</code>
+      instance.(
+      <a href="https://android-review.googlesource.com/#/q/Ia7eed5b9c0fe15834468d3eccc489c2dc3edca74">Ia7eed</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Id28791416c67c0b4930370ded037ffb3c40922b6">Id2879</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ibf24453e66d69c00d4ffb3abe4dc5a1f3782ad09">Ibf244</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I17d79479d8a1f2acda8f6767a40ff19773235d9d">I17d79</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Id09d2f511e9844b0618140781f07bebe1e7deb77">Id09d2</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I54696ee5ce64305386de64654c6ce15f3a1fd741">I54696</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ia47be2a0ac9e2b8ef5def4aa808b939e15259d2a">Ia47be</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I93281ed88fe3be9e6c68a2d5f16d9e0f335c999d">I93281</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ic1bf09bdd59e0d96db7edb89276ac31a977d6602">Ic1bf0</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Iba4ee26b906c09e7ec47b7e940cf689788c117e8">Iba4ee</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/If56a553a4d2608a5eb059ea684e566a4feae955b">If56a5</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Icf9692ffcf3103b1ec0c6b98e436eec09f7f9d9d">Icf969</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I676443ef1ac6cbb7464fb5677c8639ef1786272d">I67644</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I6f7884836f74d263d9d342df1593c61a9b9835ba">I6f788</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/382094941">b/382094941</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/366291612">b/366291612</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/381938808">b/381938808</a>
+      )
+    </li>
+  </ul>
+  <p>The table below provides the reified and KClass APIs.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>reified</th>
+        <th>KClass</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td><code translate="no" dir="ltr">composable&lt;TestClass&gt; { }</code></td>
+        <td><code translate="no" dir="ltr">composable(TestClass::class) { }</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">navigation&lt;NestedGraph&gt;(startDestination = TestClass::class)</code></td>
+        <td><code translate="no" dir="ltr">navigation(route = NestedGraph::class, startDestination = TestClass::class)</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">dialog&lt;TestClass&gt; {}</code></td>
+        <td><code translate="no" dir="ltr">dialog(TestClass::class) {}</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">navDeepLink&lt;TestClass&gt;(baseUri)</code></td>
+        <td><code translate="no" dir="ltr">navDeepLink(TestClass::class, baseUri)</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">NavDeepLink.Builder.setUriPattern&lt;TestClass&gt;(baseUri)</code></td>
+        <td><code translate="no" dir="ltr">NavDeepLink.Builder.setUriPattern(TestClass::class, baseUri)</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">NavDestinationBuilder.deepLink&lt;TestDeepLink&gt;(baseUri) { }</code></td>
+        <td><code translate="no" dir="ltr">NavDestinationBuilder.deepLink(TestDeepLink::class, baseUri) { }</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">navController.getBackStackEntry&lt;TestClass&gt;()</code></td>
+        <td><code translate="no" dir="ltr">navController.getBackStackEntry(TestClass::class)</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">navController.popBackStack&lt;TestClass&gt;(true)</code></td>
+        <td><code translate="no" dir="ltr">navController.popBackStack(TestClass::class, true)</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">navController.clearBackStack&lt;TestClass&gt;()</code></td>
+        <td><code translate="no" dir="ltr">navController.clearBackStack(TestClass::class)</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">NavOptions.setPopUpTo&lt;TestClass&gt;()</code></td>
+        <td><code translate="no" dir="ltr">NavOptions.setPopUpTo(TestClass::class)</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">navOptions { popUpTo&lt;TestClass&gt; {...} }</code></td>
+        <td><code translate="no" dir="ltr">navOptions { popUpTo(TestClass::class) {...} }</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">NavGraph.setStartDestination&lt;TestClass&gt;()</code></td>
+        <td><code translate="no" dir="ltr">NavGraph.setStartDestination(TestClass::class)</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">NavGraph.findNode&lt;TestClass&gt;()</code></td>
+        <td><code translate="no" dir="ltr">NavGraph.findNode(TestClass::class)</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">backStackEntry.toRoute&lt;TestClass&gt;()</code></td>
+        <td><code translate="no" dir="ltr">backStackEntry.toRoute(TestClass::class)</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">savedStateHandle.toRoute&lt;TestClass&gt;()</code></td>
+        <td><code translate="no" dir="ltr">savedStateHandle.toRoute(TestClass::class)</code></td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The kotlin-specific
+      <code translate="no" dir="ltr">NavGraph.setStartDestination</code>
+      overload for type safety is hidden from Java sources. (
+      <a href="https://android-review.googlesource.com/#/q/Ic640c37f3cef5578022866529a8e576eba8d745d">Ic640c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/364634035">b/364634035</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      From
+      <a href="#2.8.5">
+        Navigation
+        <code translate="no" dir="ltr">2.8.5</code>
+      </a>
+      : Fixed an issue where
+      <code translate="no" dir="ltr">NavHost</code>
+      could throw an exception inside of the
+      <code translate="no" dir="ltr">PredictiveBackHandler</code>
+      if the back stack is popped down to 1 entry and a system back are triggered in the same frame. (
+      <a href="https://android-review.googlesource.com/#/q/I1a4297a10f2d0da8c8477644b9250c61e4792923">I1a429</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/375343407">b/375343407</a>
+      )
+    </li>
+    <li>
+      From
+      <a href="#2.8.5">
+        Navigation
+        <code translate="no" dir="ltr">2.8.5</code>
+      </a>
+      : Fixed
+      <code translate="no" dir="ltr">NavDestination</code>
+      <code translate="no" dir="ltr">NullPointerException</code>
+      when updating a graph's
+      <code translate="no" dir="ltr">startDestination</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I99421bf1e4aef9802873d9d78fbc6fafc15a21ba">I99421</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/361560785">b/361560785</a>
+      )
+    </li>
+  </ul>

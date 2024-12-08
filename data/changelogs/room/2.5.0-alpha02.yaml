@@ -1,0 +1,103 @@
+libraryId: room
+groupId: androidx.room
+version: 2.5.0-alpha02
+releaseDate: 2022-06-01
+#language=html
+changelogHtml: |
+  <h3 id="2.5.0-alpha02" data-text="Version 2.5.0-alpha02" tabindex="-1">Version 2.5.0-alpha02</h3>
+  <p>June 1, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.5.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9b2b3d8efd5f00bd4af903bbaa926f6a712d0bd8..7cbb37cc779160b89644d03e042c129d0ce025d2/room">Version 2.5.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      New
+      <code translate="no" dir="ltr">room-paging</code>
+      artifacts
+      <code translate="no" dir="ltr">room-paging-rxjava2</code>
+      ,
+      <code translate="no" dir="ltr">room-paging-rxjava3</code>
+      and
+      <code translate="no" dir="ltr">room-paging-guava</code>
+      have been added for support in Room Paging.(
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/41a1d4f8677c57db934d37bb0cd8db9d3f3aae6c">41a1d4</a>
+      ,
+      <a href="https://issuetracker.google.com/203666906">b/203666906</a>
+      ),(
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/eb60980fbbeb3a9d824e721969a54db902c44857">eb6098</a>
+      ,
+      <a href="https://issuetracker.google.com/203666906">b/203666906</a>
+      ),(
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/1b9ae441be4de3443b138e789c85722bba29c356">1b9ae4</a>
+      ,
+      <a href="https://issuetracker.google.com/203666906">b/203666906</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      All of
+      <code translate="no" dir="ltr">room-runtime</code>
+      has been converted from Java to Kotlin. (
+      <a href="https://android-review.googlesource.com/#/q/If2069426a29fffe312a58fcd3e116551090c0b4e">If2069</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/206859668">b/206859668</a>
+      ),(
+      <a href="https://android-review.googlesource.com/#/q/Ie4b55827902c6ddcc4cc004de8bb5286823e9ab5">Ie4b55</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/206859668">b/206859668</a>
+      ), (
+      <a href="https://android-review.googlesource.com/#/q/I697ee52d9234358fd83dc8d94c66d4f2b849fc1b">I697ee</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/206859668">b/206859668</a>
+      ), (
+      <a href="https://android-review.googlesource.com/#/q/I96c25112c3ab32f8df71c1408c8006bdae1b3b7f">I96c25</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/206859668">b/206859668</a>
+      )
+      <p class="note">
+        <b>Note:</b>
+        You may encounter source incompatibility issues due to the library conversion to Kotlin. If your code was in Kotlin and calling the old version of Room, the new version will need to handle these cases. For example, a known source incompatible change is that in
+        <code translate="no" dir="ltr">InvalidationTracker</code>
+        you will now need to declare
+        <code translate="no" dir="ltr">onInvalidate()</code>
+        in
+        <code translate="no" dir="ltr">Observer</code>
+        to have a param of type
+        <code translate="no" dir="ltr">Set</code>
+        and not
+        <code translate="no" dir="ltr">MutableSet</code>
+        .
+      </p>
+    </li>
+    <li>
+      Added APIs for providing key and value tables names for disambiguation in
+      <code translate="no" dir="ltr">@MapInfo</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Icc4b50a029d33c49fbfe7265d10b6be1b15da9c3">Icc4b5</a>
+      )
+    </li>
+    <li>
+      Fix a source compatibility issue to re-allow
+      <code translate="no" dir="ltr">@Ignore</code>
+      in property getters. (
+      <a href="https://android-review.googlesource.com/#/q/Ifc2fb4922956bb84d5dbd855911da61a1b4ec69a">Ifc2fb</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Duplicate column resolution heuristic algorithm. Room will now attempt to resolve ambiguous columns in a multimap query. This allows for JOINs with tables containing same-name tables to be correctly mapped to a result data object. (
+      <a href="https://android-review.googlesource.com/#/q/I4b444b042245a334cc3f362f3239721ce0b6bd1e">I4b444</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/201306012">b/201306012</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/212279118">b/212279118</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,139 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 1.0.0-alpha07
+releaseDate: 2020-11-11
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha07" data-text="Version 1.0.0-alpha07" tabindex="-1">Version 1.0.0-alpha07</h3>
+  <p>November 11, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material:1.0.0-alpha07</code>
+    ,
+    <code translate="no" dir="ltr">androidx.compose.material:material-icons-core:1.0.0-alpha07</code>
+    , and
+    <code translate="no" dir="ltr">androidx.compose.material:material-icons-extended:1.0.0-alpha07</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/234e23e470a5e7f81291f6acd12d538146dc010b..358bdaf3c3c4a917883408e9f747da521fdf9e65/compose/material">Version 1.0.0-alpha07 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Emphasis has been deprecated and replaced with AmbientContentAlpha. AmbientContentAlpha is a simpler abstraction that represents the preferred content alpha for part of the hierarchy, similar to how AmbientContentColor represents the preferred content color. Text and Icon now consume the current value from AmbientContentAlpha by default, and you can manually do:
+      <code translate="no" dir="ltr">color.copy(alpha = AmbientContentAlpha.current)</code>
+      to have the same effect in your components. Instead of using ProvideEmphasis, you can just directly provide a value through AmbientContentAlpha, and use the new default levels in ContentAlpha to replace the old EmphasisLevels. (
+      <a href="https://android-review.googlesource.com/#/q/Idf03e63a3082842e183535b5fdbf04947e3a671c">Idf03e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/159017896">b/159017896</a>
+      )
+    </li>
+    <li>
+      Adds androidx.compose.material.AmbientContentColor to replace androidx.compose.foundation.AmbientContentColor (
+      <a href="https://android-review.googlesource.com/#/q/I84f7be83a15ed02b301c3d9d0e44481ebb01ddb0">I84f7b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172067770">b/172067770</a>
+      )
+    </li>
+    <li>
+      Adds androidx.compose.material.Text to replace androidx.compose.foundation.Text as a high level, themeable Text component. For a basic text component that does not consume color / text style from the theme, use BasicText. (
+      <a href="https://android-review.googlesource.com/#/q/Ie6ae043baf890ec6c47555bce2b0ea35d270ec2b">Ie6ae0</a>
+      )
+    </li>
+    <li>
+      Added maxLines to TextFields (
+      <a href="https://android-review.googlesource.com/#/q/Ib2a5bb1c0ec8782b6a05fc48033fd4b05622820e">Ib2a5b</a>
+      )
+    </li>
+    <li>
+      Update TextFields to accept KeyboardOptions (
+      <a href="https://android-review.googlesource.com/#/q/Ida7f3c71647dc9fff8acdd50fc5604a15957ccec">Ida7f3</a>
+      )
+    </li>
+    <li>
+      Surface now uses the absolute (total) elevation when calculating elevation overlays, so a Surface nested in another Surface will use the combined elevation to draw the overlay. (
+      <a href="https://android-review.googlesource.com/#/q/I7bd2b08da276d5624baad6a2e59eb74bc021bc45">I7bd2b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171031040">b/171031040</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">captureToBitmap</code>
+      moved to
+      <code translate="no" dir="ltr">captureToImage</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I86385454625b533b83c87e48d82e143dd1bcb88e">I86385</a>
+      )
+    </li>
+    <li>
+      The foundation AmbientTextStyle, ProvideTextStyle, and AmbientContentColor have been deprecated. Instead use the new versions available in the Material library. For non-Material applications, you should instead create your own design system specific theming ambients that can be consumed in your own components. (
+      <a href="https://android-review.googlesource.com/#/q/I74accf7166eaca28e9e2d14402ed08d80f8625ab">I74acc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172067770">b/172067770</a>
+      )
+    </li>
+    <li>
+      foundation.Text has been deprecated and replaced with material.Text. For a basic, unopinionated text API that does not consume values from a theme, see androidx.compose.foundation.BasicText. (
+      <a href="https://android-review.googlesource.com/#/q/If64cbdd89497f171edfd1b4de907123f73279e8d">If64cb</a>
+      )
+    </li>
+    <li>
+      Rename KeyboardOptions as ImeOptions (
+      <a href="https://android-review.googlesource.com/#/q/I82f364ca1ede4bfea9430fcc9fd227d729b39fd9">I82f36</a>
+      )
+    </li>
+    <li>
+      Moved KeyboardType and ImeAction into KeyboardOptions (
+      <a href="https://android-review.googlesource.com/#/q/I910cea6ec0ef3568b9a94f7b193e8cb7e8b776ed">I910ce</a>
+      )
+    </li>
+    <li>
+      BaseTextField has been deprecated. Use BasicTextField instead. (
+      <a href="https://android-review.googlesource.com/#/q/I896eb0eb21e73bda5f269e1ffae4357201acb219">I896eb</a>
+      )
+    </li>
+    <li>
+      ExperimentalSubcomposeLayoutApi annotation was removed. SubcomposeLayout can now be used without adding @OptIn (
+      <a href="https://android-review.googlesource.com/#/q/I708adafbc3c10cc6c23fe5a236f66e73146e4f56">I708ad</a>
+      )
+    </li>
+    <li>
+      FirstBaseline and LastBaseline were moved to androidx.compose.ui.layout package (
+      <a href="https://android-review.googlesource.com/#/q/Ied2e7ff4c8d8a45072439d719ea5c75270c28c97">Ied2e7</a>
+      )
+    </li>
+    <li>
+      Updated Icon API to take in Color.Unspecified as a possible tint color which will draw the provided asset or painter without a ColorFilter. Previously attempts to ignore tinting with Color.Unspecified would tint with a transparent color ending up with nothing rendered at all. (
+      <a href="https://android-review.googlesource.com/#/q/I049e2b7464204f1fd8965d31d6dfba811b30a2bb">I049e2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171624632">b/171624632</a>
+      )
+    </li>
+    <li>
+      relativePaddingFrom was renamed to paddingFrom. The paddingFromBaseline modifier was added, as convenience for specifying distances from layout bounds to text baselines. (
+      <a href="https://android-review.googlesource.com/#/q/I0440af2aea41e020cb581b9030522b7586fe952e">I0440a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170633813">b/170633813</a>
+      )
+    </li>
+    <li>
+      LaunchedTask was renamed to LaunchedEffect for consistency with the SideEffect and DisposableEffect APIs. LaunchedEffect with no subject params is not permitted in order to encourage best practices. (
+      <a href="https://android-review.googlesource.com/#/q/Ifd3d4f3b529b3956915c99096eef3fb3108b2b61">Ifd3d4</a>
+      )
+    </li>
+    <li>
+      MeasureResult was moved out of MeasureScope. (
+      <a href="https://android-review.googlesource.com/#/q/Ibf96ddadae8115015066dcda2026a57b87c2ead6">Ibf96d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/171184002">b/171184002</a>
+      )
+    </li>
+    <li>
+      Several layout related symbols were moved from androidx.compose.ui to androidx.compose.layout.ui. (
+      <a href="https://android-review.googlesource.com/#/q/I0fa982d87929e5ca9e3a32762fe9cf1fa8b8cfef">I0fa98</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170475424">b/170475424</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,81 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.6.0-rc02
+releaseDate: 2022-09-07
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-rc02" data-text="Version 1.6.0-rc02" tabindex="-1">Version 1.6.0-rc02</h3>
+  <p>September 7, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.6.0-rc02</code>
+    ,
+    <code translate="no" dir="ltr">androidx.activity:activity-compose:1.6.0-rc02</code>
+    , and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.6.0-rc02</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/55e944757f7798ad52edde754a70cb854e2cdd23..4e758496ed4c0a1acd5da1fd0fbbde75da899183/activity">Version 1.6.0-rc02 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">OnBackPressedDispatcher</code>
+      now registers the
+      <code translate="no" dir="ltr">OnBackInvokedCallback</code>
+      with the
+      <code translate="no" dir="ltr">PRIORITY_DEFAULT</code>
+      instead of
+      <code translate="no" dir="ltr">PRIORITY_OVERLAY</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3901fa85f26fa5554da4e0b309447e9592766601">I3901f</a>
+      )
+    </li>
+    <li>
+      Classes that extend
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      will now always have both of their
+      <code translate="no" dir="ltr">onMultiWindowModeChanged()</code>
+      callbacks dispatched. (
+      <a href="https://android-review.googlesource.com/#/q/Ic4d85882270447666ed7b15019c39c04aa4d4602">Ic4d85</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">ActivityResultRegistry</code>
+      will no longer return a result to the
+      <code translate="no" dir="ltr">ActivityResultCallback</code>
+      when the
+      <code translate="no" dir="ltr">launch</code>
+      call throws any
+      <code translate="no" dir="ltr">Exception</code>
+      and the callback was registered without a
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia7ff773da287b2d97490bcc553f90020ea9d6067">Ia7ff7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/238350794">b/238350794</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      will now properly dispatch menu calls without the need to call the super function in your activity. (
+      <a href="https://android-review.googlesource.com/#/q/Ie33c57e900be51ab49abfdbe5c57407f61553167">Ie33c5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/238057118">b/238057118</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Update</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">Activity</code>
+      library now depends on
+      <a href="/jetpack/androidx/releases/lifecycle#2.5.1">
+        Lifecycle
+        <code translate="no" dir="ltr">2.5.1</code>
+      </a>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If6697c8a96ac9378c29d76a5a26fce8f6ff9d1b1">If6697</a>
+      )
+    </li>
+  </ul>

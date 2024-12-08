@@ -1,0 +1,81 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.2.0-alpha01
+releaseDate: 2022-06-01
+#language=html
+changelogHtml: |
+  <h3 id="3.2.0-alpha01" data-text="Version 3.2.0-alpha01" tabindex="-1">Version 3.2.0-alpha01</h3>
+  <p>June 1, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.2.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/65c8f2c53158200a61e0e1cc012cdbbadaee60ab..7cbb37cc779160b89644d03e042c129d0ce025d2/paging">Version 3.2.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added constructors for
+      <code translate="no" dir="ltr">PagingDataAdapter</code>
+      and
+      <code translate="no" dir="ltr">AsyncPagingDataDiffer</code>
+      which accept
+      <code translate="no" dir="ltr">CoroutineContext</code>
+      instead of
+      <code translate="no" dir="ltr">CoroutineDispatcher</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Idc8784ff12a2d6e4a617bae51c7053582c5f1986">Idc878</a>
+      )
+    </li>
+    <li>
+      By default,
+      <code translate="no" dir="ltr">PagingData.from()</code>
+      and
+      <code translate="no" dir="ltr">PagingData.empty()</code>
+      will no longer affect
+      <code translate="no" dir="ltr">CombinedLoadStates</code>
+      on the presenter side. A new overload that allows passing
+      <code translate="no" dir="ltr">sourceLoadStates</code>
+      and
+      <code translate="no" dir="ltr">remoteLoadStates</code>
+      in to these constructors has been added to maintain the existing behavior of setting
+      <code translate="no" dir="ltr">LoadStates</code>
+      to be fully terminal (i.e.,
+      <code translate="no" dir="ltr">NotLoading(endOfPaginationReached = false)</code>
+      ), with the option to include remote states as well if needed. If
+      <code translate="no" dir="ltr">LoadStates</code>
+      are not passed, then the previous
+      <code translate="no" dir="ltr">CombinedLoadStates</code>
+      will be maintained on the presenter side when it receives the static
+      <code translate="no" dir="ltr">PagingData</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic3ce54f8984e2f1d76b3f3e3412b3e41a837f1db">Ic3ce5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/205344028">b/205344028</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      The result of
+      <code translate="no" dir="ltr">PagingSource.getRefreshKey()</code>
+      is now correctly priotized over
+      <code translate="no" dir="ltr">initialKey</code>
+      in cases where it would return null, but a non-null
+      <code translate="no" dir="ltr">initialKey</code>
+      was set. (
+      <a href="https://android-review.googlesource.com/#/q/Ic9542c0062f9a72e5cfa15469bcf0c204a0934bd">Ic9542</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/230391606">b/230391606</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Updated :compose:ui:ui-test api (updateApi) due to test-coroutines-lib migration (
+      <a href="https://android-review.googlesource.com/#/q/I3366d5111b2fb830d619da5402c12ea4c929391a">I3366d</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_31_2" data-text="Version 3.1" tabindex="-1">Version 3.1</h2>

@@ -1,0 +1,176 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.4.0-alpha03
+releaseDate: 2022-12-07
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha03" data-text="Version 1.4.0-alpha03" tabindex="-1">Version 1.4.0-alpha03</h3>
+  <p>December 7, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation:1.4.0-alpha03</code>
+    and
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-layout:1.4.0-alpha03</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a1e318590b217ecfce1b2de17eed2f18b6a680bb..047e199bdcb8a5cd744cc7a2f986631bfb350ec7/compose/foundation">Version 1.4.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      In UI tests using a Compose rule, continuations resumed during
+      <code translate="no" dir="ltr">withFrameNanos</code>
+      callbacks will not be dispatched until after all frame callbacks have finished running. This matches the behavior of compose when running normally. However, tests that rely on the old behavior may fail. This should only affect code that calls
+      <code translate="no" dir="ltr">withFrameNanos</code>
+      or
+      <code translate="no" dir="ltr">withFrameMillis</code>
+      directly, and has logic outside of callback passed to those functions that may need to be moved inside the callbacks. See the animation test changes in
+      <a href="https://android-review.googlesource.com/#/q/Idb41309445a030c91e8e4ae05daa9642b450505c">this CL for examples</a>
+      .
+    </li>
+    <li>
+      Added optional
+      <code translate="no" dir="ltr">onPerformTraversals: (Long) -&gt; Unit</code>
+      parameter to
+      <code translate="no" dir="ltr">TestMonotonicFrameClock</code>
+      constructor and factory function to run code after
+      <code translate="no" dir="ltr">withFrameNanos</code>
+      callbacks but before resuming callers' coroutines. (
+      <a href="https://android-review.googlesource.com/#/q/Idb41309445a030c91e8e4ae05daa9642b450505c">Idb413</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/254115946">b/254115946</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/222093277">b/222093277</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/255802670">b/255802670</a>
+      )
+    </li>
+    <li>
+      Introduce Page accessibility actions:
+      <code translate="no" dir="ltr">PageUp</code>
+      ,
+      <code translate="no" dir="ltr">PageDown</code>
+      ,
+      <code translate="no" dir="ltr">PageLeft</code>
+      ,
+      <code translate="no" dir="ltr">PageRight</code>
+      . Note that these are only available from API 29. (
+      <a href="https://android-review.googlesource.com/#/q/Ida4ab069a2c7f8d2fc06bf20555c611f4a360728">Ida4ab</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">HorizontalPager</code>
+      and
+      <code translate="no" dir="ltr">VerticalPager</code>
+      , a way of showing composables in a Pager manner. Introduced
+      <code translate="no" dir="ltr">PagerState</code>
+      to control the Pagers as well as query information about the Pager's current state. Introduced
+      <code translate="no" dir="ltr">PageSize</code>
+      , a way of controlling the size of a Pager's page, this can be used to create a carousel like Pagers. Introduced
+      <code translate="no" dir="ltr">PagerSnapDistance</code>
+      , a way to control how snapping will work in Pager's fling behavior. (
+      <a href="https://android-review.googlesource.com/#/q/I01120224eaccd9ee255890eb409e87a7ef7ffd5f">I01120</a>
+      )
+    </li>
+    <li>
+      Introduced an overload in
+      <code translate="no" dir="ltr">SnapFlingBehavior.performFling</code>
+      to help to understand where the fling will settle. (
+      <a href="https://android-review.googlesource.com/#/q/I569f6480401d4250f7a4e8a73f02d29d9c8c3b95">I569f6</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">OverscrollEffect#isEnabled</code>
+      . Instead of needing to remember and set this flag, just don't dispatch events to the overscroll effect in cases where you do not want overscroll to show (for example if
+      <code translate="no" dir="ltr">ScrollableState#canScrollForward/backward</code>
+      both return false). (
+      <a href="https://android-review.googlesource.com/#/q/I1a4b07627dca47f13d7adb7481fd25097b6eb6a9">I1a4b0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/255554340">b/255554340</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/255557085">b/255557085</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ScrollableState#canScrollForward</code>
+      and
+      <code translate="no" dir="ltr">ScrollableState#canScrollBackward</code>
+      to query whether a
+      <code translate="no" dir="ltr">ScrollableState</code>
+      has room to scroll in either direction (whether it is at the minimum / maximum of its range). This defaults to true for backwards compatibility with existing implementations of
+      <code translate="no" dir="ltr">ScrollableState</code>
+      . Consumers can use this to show indication to the user that there is still room to scroll, and this could also be used to avoid dispatching delta to
+      <code translate="no" dir="ltr">ScrollableStates</code>
+      that have no room to scroll in a given direction, to reduce unnecessary work. (
+      <a href="https://android-review.googlesource.com/#/q/Idf1a066bdd86d2205d4bd5bab121c73059ada054">Idf1a0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/255557085">b/255557085</a>
+      )
+    </li>
+    <li>
+      Added an Modifier API to query ancestors scroll info. (
+      <a href="https://android-review.googlesource.com/#/q/I2ba9d6d55f853e5d2775fe9a9f15e7a41d41e359">I2ba9d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/203141462">b/203141462</a>
+      )
+    </li>
+    <li>
+      Used in
+      <code translate="no" dir="ltr">Clickable</code>
+      to correctly delay press interactions, when gestures could become scroll events.
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">Clickables</code>
+      not correctly delaying ripples, when used inside an
+      <code translate="no" dir="ltr">Scrollable ViewGroup</code>
+      .
+    </li>
+    <li>Updated Drawers and Sheets to correctly delay presses in case gestures can become scroll events.</li>
+    <li>
+      Update
+      <code translate="no" dir="ltr">snapStepSize</code>
+      naming to be consistent with other methods in
+      <code translate="no" dir="ltr">SnapLayoutInfoProvider</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ife67c7ed561e4e8169f3e6234dab33819998234c">Ife67c</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">EmojiCompat</code>
+      to
+      <code translate="no" dir="ltr">Compose</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ibf6f9f9d37c6280fe1b051269b127f0dfb1d6b6a">Ibf6f9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/139326806">b/139326806</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">consumedWindowInsets()</code>
+      to
+      <code translate="no" dir="ltr">consumeWindowInsets()</code>
+      and
+      <code translate="no" dir="ltr">withConsumedWindowInsets()</code>
+      to
+      <code translate="no" dir="ltr">onConsumedWindowInsetsChanged()</code>
+      and made the Modifiers public. (
+      <a href="https://android-review.googlesource.com/#/q/Ie44e1304babf2007f6dc5894716ca92c2ef6d067">Ie44e1</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      The crash with
+      <code translate="no" dir="ltr">Modifier.animateItemPlacement()</code>
+      and Lazy grids was fixed. It was happening in some conditions when the new items count is smaller then the previous one. (
+      <a href="https://android-review.googlesource.com/#/q/I0bcac889f7916ab032be277ba11fcfb723e56516">I0bcac</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/253195989">b/253195989</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,48 @@
+libraryId: room
+groupId: androidx.room
+version: 2.3.0
+releaseDate: 2021-04-21
+#language=html
+changelogHtml: |
+  <h3 id="2.3.0" data-text="Version 2.3.0" tabindex="-1">Version 2.3.0</h3>
+  <p>April 21, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.3.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/29ce56e372f451c2dbf8036b1b9754733a15f32e..9666e15e33983547016363106d116b9a82974bda/room">Version 2.3.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 2.2.0</strong></p>
+  <ul>
+    <li>
+      <strong>Built-in Enum Support</strong>
+      : Room will now default to using an Enum to String and vice versa type converter if none is provided. If a type converter for an enum already exists, Room will prioritize using it over the default one.
+    </li>
+    <li>
+      <strong>Query Callback</strong>
+      : Room now offers a general callback API RoomDatabase.QueryCallback, for when queries are about to execute, which can be useful for logging in debug builds. The callback can be set via
+      <code translate="no" dir="ltr">RoomDatabase.Builder#setQueryCallback()</code>
+      .
+    </li>
+    <li>
+      <strong>Pre-packaged Improvement</strong>
+      : Room now has APIs for creating a database using a pre-packaged database read from an input stream. This allows for cases such as when the pre-package database is gzipped.
+    </li>
+    <li>
+      <strong>Provided Type Converters</strong>
+      : Room now has APIs for providing instances of type converters such that the app can control their initialization. To mark a type converter that will be provided to Room use the new annotation @ProvidedTypeConverter.
+    </li>
+    <li>
+      <strong>RxJava3 Support</strong>
+      : Room now supports RxJava3 types. Similar to RxJava2 you can declare DAO methods whose return type are Flowable, Single, Maybe and Completable. Additionally a new artifact
+      <code translate="no" dir="ltr">androidx.room:room-rxjava3</code>
+      is available to support RxJava3.
+    </li>
+    <li>
+      <strong>Paging 3.0 Support</strong>
+      : Room will now support generating implementations for
+      <code translate="no" dir="ltr">@Query</code>
+      annotated methods whose return type is
+      <code translate="no" dir="ltr">androidx.paging.PagingSource</code>
+      .
+    </li>
+  </ul>

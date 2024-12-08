@@ -1,0 +1,64 @@
+libraryId: mediarouter
+groupId: androidx.mediarouter
+version: 1.8.0-alpha01
+releaseDate: 2024-12-11
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0-alpha01" data-text="Version 1.8.0-alpha01" tabindex="-1">Version 1.8.0-alpha01</h3>
+  <p>December 11, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.mediarouter:mediarouter:1.8.0-alpha01</code>
+    and
+    <code translate="no" dir="ltr">androidx.mediarouter:mediarouter-testing:1.8.0-alpha01</code>
+    are released. Version 1.8.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/10bd7b9c1fd5169f3dfc50e744fa70aa87c65182..46295bc0b75a16f452e8e0090e8de41073d4dbb6/mediarouter">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add new API to support connecting (and disconnecting) to routes without affecting the route selection. (
+      <a href="https://android-review.googlesource.com/#/q/I64a8e45a1b3270d4749291fb7d6d62be5b57bb85">I64a8e</a>
+      ).
+    </li>
+    <li>
+      Add new API that allows providers to take parameters when creating a controller. (
+      <a href="https://android-review.googlesource.com/#/q/I703b9011c8ab76fd9849362f8805340dc4cc4c11">I703b9</a>
+      ).
+    </li>
+    <li>
+      Add new API for listening for changes in the list of bound
+      <code translate="no" dir="ltr">MediaRouteProviderService</code>
+      clients. (
+      <a href="https://android-review.googlesource.com/#/q/I6999664611a2f23401dd8237c437ecf04a7dffad">I69996</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>Mitigate issue causing playback to be incorrectly routed to the built-in speakers while a Bluetooth device is connected.</li>
+    <li>
+      Removed manual outlining of access to new platform APIs since this happens automatically via API modeling when using R8 with AGP 7.3 or later (e.g. R8 version 3.3) and for all builds when using AGP 8.1 or later (e.g. D8 version 8.1). Clients who are not using AGP are advised to update to D8 version 8.1 or later. See
+      <a href="https://medium.com/androiddevelopers/mitigating-soft-verification-issues-in-r8-and-d8-7e9e06827dfd">this article</a>
+      for more details. (
+      <a href="https://android-review.googlesource.com/#/q/If6b4ccfca0a943b45971a422b58949b13a10bada">If6b4c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/345472586">b/345472586</a>
+      )
+    </li>
+    <li>
+      Fix Output Switcher invocation in certain
+      <code translate="no" dir="ltr">WearOs</code>
+      scenarios (
+      <a href="https://android-review.googlesource.com/#/q/Iab44ae49e1288a95e2c79334bfcd5e147ffdb75f">Iab44a</a>
+      ).
+    </li>
+    <li>
+      Fix some translations for the
+      <code translate="no" dir="ltr">MediaRouteChooserDialog</code>
+      . (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/26da14b8a0d61b65cb7f063c0ddb9d2e349b694c">26da14</a>
+      ).
+    </li>
+  </ul>
+  <h2 id="version_17_2" data-text="Version 1.7" tabindex="-1">Version 1.7</h2>

@@ -1,0 +1,128 @@
+libraryId: wear-watchface
+groupId: androidx.wear
+version: 1.1.0-alpha03
+releaseDate: 2022-02-09
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha03" data-text="Version 1.1.0-alpha03" tabindex="-1">Version 1.1.0-alpha03</h3>
+  <p>February 9, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.watchface:watchface-*:1.1.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f09f3e0f47cacc65a631115deac08ee8cc132ceb..db2ecbef194afcddfaede22e1d884a8959a9277c/wear/watchface">Version 1.1.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We've added experimental support for hierarchical style schemas. We've added a new property to
+      <code translate="no" dir="ltr">androidx.wear.watchface.style.UserStyleSetting.Option</code>
+      , childSettings which is initially only used by
+      <code translate="no" dir="ltr">ListOption</code>
+      . This allows a hierarchy of styles to be described for use by Editor UIs, the underlying UserStyle is unchanged and is still a
+      <code translate="no" dir="ltr">Map&lt;String, ByteArray&gt;</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iaf6f4ba2862b8d1aff3ccad7f4b9bd2826b5db51">Iaf6f4</a>
+      )
+    </li>
+    <li>
+      We've added
+      <code translate="no" dir="ltr">WatchFace.OverlayStyle</code>
+      which allows the watch face to configure the rendering of the system status overlay. (
+      <a href="https://android-review.googlesource.com/#/q/I8520d9761d3587c85ac7fde2de56d632c41c0687">I8520d</a>
+      )
+    </li>
+    <li>
+      We've introduced
+      <code translate="no" dir="ltr">clearWithBackgroundTintBeforeRenderingHighlightLayer</code>
+      a new optional constructor parameter for
+      <code translate="no" dir="ltr">CanvasRenderer</code>
+      (default is false), if set to true then the canvas will be cleared with the background tint color. (
+      <a href="https://android-review.googlesource.com/#/q/Ie01e5b68545ec435c0b087152d332695b02bda12">Ie01e5</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">androidx.watchface.complications.datasource.DEFAULT_CONFIGURATION_SUPPORTED</code>
+      metadata key which allows complication data sources to indicate they can provide a default value without any configuration (
+      <a href="https://android-review.googlesource.com/#/q/Icc0d46e9e49cc1a688ab99e4acf535d5385e5aec">Icc0d4</a>
+      )
+    </li>
+    <li>
+      It's common when editing a watch face for there to be both an interactive and a headless instance. To help save memory we've introduced
+      <code translate="no" dir="ltr">Renderer.SharedAssets</code>
+      which allows a watch face renderer to share immutable data (e.g. textures and shaders) between instances.
+      <code translate="no" dir="ltr">GlesRenderer.setEglConfig</code>
+      and
+      <code translate="no" dir="ltr">GlesRenderer.setEglDisplay</code>
+      are deprecated, it was never intended for these to be settable, and doing so would have led to undefined behavior. (
+      <a href="https://android-review.googlesource.com/#/q/I0d9e730bb712afc24dbd84611c6917f248772a27">I0d9e7</a>
+      )
+    </li>
+    <li>
+      We've added
+      <code translate="no" dir="ltr">setNameResourceId</code>
+      &amp;
+      <code translate="no" dir="ltr">setScreenReaderNameResourceId</code>
+      (which reference string resources) to
+      <code translate="no" dir="ltr">ComplicationSlot.Builder</code>
+      and corresponding getters in
+      <code translate="no" dir="ltr">androidx.wear.watchface.client.ComplicationSlotState</code>
+      . This allows the system to fetch the names of ComplicationSlots for use in editors and screen readers. (
+      <a href="https://android-review.googlesource.com/#/q/If6c6a13d5af8392269c11e19ecfc41542c195f6c">If6c6a</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">WatchfaceMetadataClient.getUserStyleSchema</code>
+      and
+      <code translate="no" dir="ltr">getComplicationSlotMetadataMap</code>
+      now throw
+      <code translate="no" dir="ltr">WatchFaceException</code>
+      instead of
+      <code translate="no" dir="ltr">RemoteException</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I86f11f548ffe3371d8dbee3f8b9eeae34fe1b88c">I86f11</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">onSynchronousComplicationRequest</code>
+      and related functions in
+      <code translate="no" dir="ltr">ComplicationDataSourceService</code>
+      have been renamed to
+      <code translate="no" dir="ltr">onImmediateComplicationRequest</code>
+      etc... (
+      <a href="https://android-review.googlesource.com/#/q/I87ba0857ac292cd0eb80fa2cb1a754f26e779ecc">I87ba0</a>
+      )
+    </li>
+    <li>
+      Watch face editors have much less screen real estate than companion editors, therefore it makes sense to support different icons for on watch face editors. This patch adds
+      <code translate="no" dir="ltr">OnWatchEditorData</code>
+      (currently containing just an icon) to all UserStyleSettings and where appropriate their Option classes. (
+      <a href="https://android-review.googlesource.com/#/q/If1886f42fd7d9867c1002b2a5550e051c370e80b">If1886</a>
+      )
+    </li>
+    <li>
+      We've added
+      <code translate="no" dir="ltr">@JvmOverloads</code>
+      to ListenableGlesRenderer's constructor for better java interop. (
+      <a href="https://android-review.googlesource.com/#/q/I2974a4c12a66776dc8932371a1294998fd6550ac">I2974a</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ListenableGlesRenderer</code>
+      's constructor is now correctly marked as
+      <code translate="no" dir="ltr">@Throws(GlesException::class)</code>
+      , and it is now possible to extend this class in java. (
+      <a href="https://android-review.googlesource.com/#/q/Iac6d0037a736c34e733622688cc3f68e9fa633c5">Iac6d0</a>
+      )
+    </li>
+    <li>
+      Fixes bug with
+      <code translate="no" dir="ltr">PhotoImageComplicationData</code>
+      tapAction not being correctly handled (
+      <a href="https://android-review.googlesource.com/#/q/I1cc30a56e343c6f0b41406b3884e8b945f4085e8">I1cc30</a>
+      )
+    </li>
+  </ul>

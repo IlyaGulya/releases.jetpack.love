@@ -1,0 +1,58 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.3.0-alpha06
+releaseDate: 2020-06-10
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha06" data-text="Version 1.3.0-alpha06" tabindex="-1">Version 1.3.0-alpha06</h3>
+  <p>June 10, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.3.0-alpha06</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.3.0-alpha06</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.3.0-alpha06</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ccc6e95c574b66563952c33fbe26888b93a0e0cb..bea4dafe72ba1ec91a105da3128954d5ed7f1cd0/fragment">Version 1.3.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">onAttachFragment()</code>
+      callback on
+      <code translate="no" dir="ltr">FragmentActivity</code>
+      and
+      <code translate="no" dir="ltr">Fragment</code>
+      have been deprecated. A new
+      <code translate="no" dir="ltr">FragmentOnAttachListener</code>
+      has been added to provide a more flexible alternative, allowing delegation of
+      <code translate="no" dir="ltr">onAttachFragment()</code>
+      to separate, testable listeners and support for adding a listener to FragmentManagers other than your direct child FragmentManager. (
+      <a href="https://android-review.googlesource.com/#/q/I06d3daa4247914ae363382f7eab920657f23b5fa">I06d3d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Parent fragments now have their view state restored before their child fragments, fixing a visual ordering issue after a configuration change when a
+      <code translate="no" dir="ltr">DialogFragment</code>
+      would show another
+      <code translate="no" dir="ltr">DialogFragment</code>
+      as a child fragment. (
+      <a href="https://issuetracker.google.com/issues/157195715">b/157195715</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where the
+      <code translate="no" dir="ltr">UseRequireInsteadOfGet</code>
+      Lint check would not handle chained usages of the
+      <code translate="no" dir="ltr">?.</code>
+      and
+      <code translate="no" dir="ltr">!!</code>
+      operators correctly. (
+      <a href="https://issuetracker.google.com/issues/157677616">b/157677616</a>
+      )
+    </li>
+  </ul>

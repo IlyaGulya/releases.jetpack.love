@@ -1,0 +1,293 @@
+libraryId: collection
+groupId: androidx.collection
+version: 1.3.0-alpha01
+releaseDate: 2022-06-29
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha01" data-text="Version 1.3.0-alpha01" tabindex="-1">Version 1.3.0-alpha01</h3>
+  <p>June 29, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.collection:collection:1.3.0-alpha01</code>
+    and
+    <code translate="no" dir="ltr">androidx.collection:collection-ktx:1.3.0-alpha01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/271a55ffaa9a85ba4f84c140c435906d088e79a0..8094b683499b4098092c01028b55a38b49e357f2/collection/collection">Version 1.3.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">collection-ktx</code>
+      extensions have been migrated into the main collections artifact,
+      <code translate="no" dir="ltr">androidx.collection:collection</code>
+      . This change makes the pre-existing -ktx extensions accessible to Kotlin users without requiring the -ktx dependency, while still maintaining compatibility for existing users. Maintaining these extensions in a separate -ktx artifact is no longer beneficial since the main artifact has moved to Kotlin. (
+      <a href="https://android-review.googlesource.com/#/q/I6eef28fa8fcb929df5979a29a869ca8aa0828215">I6eef2</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ArraySet</code>
+      now extends
+      <code translate="no" dir="ltr">AbstractMutableCollection</code>
+      and no longer directly implements the Collection interface. (
+      <a href="https://android-review.googlesource.com/#/q/If6da08d5a1a41257b0b79728796509e06efe9f35">If6da0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/230860589">b/230860589</a>
+      )
+    </li>
+    <li>
+      Converted
+      <code translate="no" dir="ltr">ArraySet</code>
+      to Kotlin. Due to stricter typing, some Kotlin calls may no longer compile. (
+      <a href="https://android-review.googlesource.com/#/q/Id68c130a8451c916c1e85b8a59c76ba267297cc4">Id68c1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/230860589">b/230860589</a>
+      )
+      <ul>
+        <li>
+          The following calls have the argument type
+          <code translate="no" dir="ltr">T</code>
+          , not
+          <code translate="no" dir="ltr">T?</code>
+          :
+          <ul>
+            <li><code translate="no" dir="ltr">ArraySet&lt;T&gt;.contains(null)</code></li>
+            <li><code translate="no" dir="ltr">ArraySet&lt;T&gt;.add(null)</code></li>
+            <li><code translate="no" dir="ltr">ArraySet&lt;T&gt;.remove(null)</code></li>
+          </ul>
+        </li>
+        <li>
+          The following calls have the return type
+          <code translate="no" dir="ltr">T?</code>
+          , not
+          <code translate="no" dir="ltr">T!</code>
+          :
+          <ul>
+            <li><code translate="no" dir="ltr">ArraySet&lt;T?&gt;.valueAt(n)</code></li>
+            <li><code translate="no" dir="ltr">ArraySet&lt;T?&gt;.removeAt(n)</code></li>
+            <li><code translate="no" dir="ltr">ArraySet&lt;T?&gt;().iterator().next()</code></li>
+          </ul>
+        </li>
+        <li>
+          The following calls are no longer possible from Kotlin:
+          <ul>
+            <li>
+              <code translate="no" dir="ltr">set.toArray()</code>
+              - use
+              <code translate="no" dir="ltr">set.toTypedArray()</code>
+            </li>
+            <li>
+              <code translate="no" dir="ltr">set.toArray(array)</code>
+              - use
+              <code translate="no" dir="ltr">set.forEachIndexed(array::set)</code>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      Combine overloaded constructor for
+      <code translate="no" dir="ltr">SparseArrayCompat</code>
+      as an optional argument for Kotlin users. (
+      <a href="https://android-review.googlesource.com/#/q/If8407a9111227e7e7fb960f4065af07b5fbc1d99">If8407</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/227474719">b/227474719</a>
+      )
+    </li>
+    <li>
+      Remove operator syntax for
+      <code translate="no" dir="ltr">SparseArrayCompat.get(key, defaultValue).</code>
+      Note this still allows operator syntax for
+      <code translate="no" dir="ltr">.get(key)</code>
+      , but better aligns the API surface of
+      <code translate="no" dir="ltr">SparseArrayCompat</code>
+      with the other classes in this library. (
+      <a href="https://android-review.googlesource.com/#/q/I9a38dbed9008f1280e14bf8f12df304de1293447">I9a38d</a>
+      )
+    </li>
+    <li>
+      Migrate
+      <code translate="no" dir="ltr">LongSparseArray</code>
+      extensions into the main artifact, androidx.collection:collection. This change makes the pre-existing -ktx extensions accessible to Kotlin users without requiring the -ktx dependency, while still maintaining compatibility for existing users. Maintaining these extensions in a separate -ktx artifact is no longer beneficial since the main artifact has moved to Kotlin. (
+      <a href="https://android-review.googlesource.com/#/q/I8659ae3f23dd6c568b3a15f84cf1592ce7446774">I8659a</a>
+      )
+    </li>
+    <li>
+      Convert
+      <code translate="no" dir="ltr">LongSparseArray</code>
+      to Kotlin. This change adds explicit nullity to its types, which is a binary compatible change, but may cause source incompatibilities. In particular: *
+      <code translate="no" dir="ltr">.isEmpty</code>
+      is no longer accessible as a property, it must be accessed as a function call in Kotlin -
+      <code translate="no" dir="ltr">.isEmpty()</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Idfd0f4592fa5a708ba90b41f88d0600690aa2896">Idfd0f</a>
+      )
+    </li>
+    <li>
+      Convert
+      <code translate="no" dir="ltr">SimpleArrayMap</code>
+      to Kotlin. This change introduces a few incompatible changes, as a result of Java-Kotlin interop and the ability to correctly define nullity of types in the source.
+      <ul>
+        <li>
+          The package private APIs,
+          <code translate="no" dir="ltr">.mSize</code>
+          ,
+          <code translate="no" dir="ltr">.mArray</code>
+          ,
+          <code translate="no" dir="ltr">.mHashes</code>
+          ,
+          <code translate="no" dir="ltr">.indexOf()</code>
+          ,
+          <code translate="no" dir="ltr">.indexOfNull()</code>
+          , and
+          <code translate="no" dir="ltr">.indexOfValue()</code>
+          , were made private - this is technically a binary incompatible change, but reflects the intended visibility of these fields and is the closest we can achieve in Kotlin since it does not include a way to specify package-private visibility.
+        </li>
+        <li>
+          The nullity of some types are now properly defined, the affected methods are:
+          <code translate="no" dir="ltr">.getOrDefault</code>
+          ,
+          <code translate="no" dir="ltr">.keyAt</code>
+          ,
+          <code translate="no" dir="ltr">.valueAt</code>
+          ,
+          <code translate="no" dir="ltr">.setValueAt</code>
+          ,
+          <code translate="no" dir="ltr">.put</code>
+          ,
+          <code translate="no" dir="ltr">.putIfAbsent</code>
+          ,
+          <code translate="no" dir="ltr">.removeAt</code>
+          ,
+          <code translate="no" dir="ltr">.replace</code>
+          .
+        </li>
+        <li>
+          For Kotlin users,
+          <code translate="no" dir="ltr">.isEmpty()</code>
+          is now only available as a function instead of also through property access. (
+          <a href="https://android-review.googlesource.com/#/q/I271b70587e94ef166be71c5b60d8c6361b4b1849">I271b7</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/182813986">b/182813986</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        Convert
+        <code translate="no" dir="ltr">CircularArray</code>
+        to Kotlin. Notable changes:
+      </p>
+
+      <ul>
+        <li>Corrects the nullity of its generics to be non-null, which was previously impossible to declare, but was enforced in all of its public APIs.</li>
+        <li>
+          Due to Kotlin's Java interop, it was previously possible to access certain methods as both properties or functions. However, to reduce duplication while maintaining binary compatibility, it was necessary to remove these, which is a source-incompatible change. The affectedn calls are:
+          <code translate="no" dir="ltr">.isEmpty</code>
+          ,
+          <code translate="no" dir="ltr">.getLast()</code>
+          and
+          <code translate="no" dir="ltr">.getFirst()</code>
+          . (
+          <a href="https://android-review.googlesource.com/#/q/Ifffac44a13ca2bc4eb652728ef2c412dd0425f7e">Ifffac</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        Convert
+        <code translate="no" dir="ltr">CircularIntArray</code>
+        to Kotlin. Due to Kotlin's Java interop, it was previously possible to access certain methods as both properties or functions. However, to reduce duplication while maintaining binary compatibility, it was necessary to remove these, which is a source-incompatible change. The affected calls are:
+        <code translate="no" dir="ltr">.isEmpty</code>
+        ,
+        <code translate="no" dir="ltr">.getLast()</code>
+        and
+        <code translate="no" dir="ltr">.getFirst()</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/Ie36ce80725187227e054177d5bbe07f76ed5462a">Ie36ce</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Convert
+        <code translate="no" dir="ltr">LruCache</code>
+        to Kotlin (
+        <a href="https://android-review.googlesource.com/#/q/Ia2f190fa5e262dbb30204ab2a74ae8b91587e2d9">Ia2f19</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Convert
+        <code translate="no" dir="ltr">SparseArrayCompat</code>
+        to Kotlin. (
+        <a href="https://android-review.googlesource.com/#/q/If6fe8079f570d8e1a356c0d4a586d3c66d871d82">If6fe8</a>
+        )
+      </p>
+
+      <p>
+        A small behavior change is added to
+        <code translate="no" dir="ltr">SparseArrayCompat.valueAt()</code>
+        , which no longer incorrectly returns
+        <code translate="no" dir="ltr">null</code>
+        for un-initialized calls out of bounds of
+        <code translate="no" dir="ltr">size()</code>
+        but within the provided initial capacity.
+      </p>
+
+      <p>This change also introduces the correct nullity for some types which was previously missing.</p>
+
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">.get(): E?</code>
+          -&gt;
+          <code translate="no" dir="ltr">.get(): E</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">.replace(Int, Int?): Int?</code>
+          -&gt;
+          <code translate="no" dir="ltr">.replace(Int, Int): Int?</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">.replace(Int, Int?, Int?): Boolean</code>
+          -&gt;
+          <code translate="no" dir="ltr">.replace(Int, Int, Int): Boolean</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">.put(Int, Int?)</code>
+          -&gt;
+          <code translate="no" dir="ltr">.put(Int, Int)</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">.putIfAbsent(Int, Int?): Int?</code>
+          -&gt;
+          <code translate="no" dir="ltr">.putIfAbsent(Int, Int): Int?</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">.setValueAt(index: Int, value: Int?)</code>
+          -&gt;
+          <code translate="no" dir="ltr">.setValueAt(index: Int, value: Int)</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">.indexOfValue(value: Int?): Int</code>
+          -&gt;
+          <code translate="no" dir="ltr">.indexOfValue(value: Int): Int</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">.containsValue(value: Int?): Boolean</code>
+          -&gt;
+          <code translate="no" dir="ltr">.containsValue(value: Int): Boolean</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">.append(key: Int, value: Int?)</code>
+          -&gt;
+          <code translate="no" dir="ltr">.append(key: Int, value: Int)</code>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <h2 id="version_120_3" data-text="Version 1.2.0" tabindex="-1">Version 1.2.0</h2>

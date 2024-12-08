@@ -1,0 +1,143 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.7.0-alpha03
+releaseDate: 2024-02-21
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha03" data-text="Version 1.7.0-alpha03" tabindex="-1">Version 1.7.0-alpha03</h3>
+  <p>February 21, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.7.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ca2a8cf8da3a3502fccc593974f8085653e38261..e1b82c49c59d8e976ce558aba5586f6c61bc9054/compose/foundation">Version 1.7.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">DelegatableNode.requireLayoutCoordinates()</code>
+      as a way to get a
+      <code translate="no" dir="ltr">Modifier.Node</code>
+      's current
+      <code translate="no" dir="ltr">LayoutCoordinates</code>
+      without needing to override
+      <code translate="no" dir="ltr">onPlaced</code>
+      and store the coordinates in a property yourself. (
+      <a href="https://android-review.googlesource.com/#/q/Ia86579f48f389b7bc8d8a8be25602edfded6160c">Ia8657</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">DelegatableNode.currentLayoutCoordinates</code>
+      as a way to get a
+      <code translate="no" dir="ltr">Modifier.Node</code>
+      's current
+      <code translate="no" dir="ltr">LayoutCoordinates</code>
+      without needing to override
+      <code translate="no" dir="ltr">onPlaced</code>
+      and store the coordinates in a property yourself. (
+      <a href="https://android-review.googlesource.com/#/q/Iaebaa704ca29bb366bea5f85958fc4ddaae8be2f">Iaebaa</a>
+      )
+    </li>
+    <li>
+      Performance optimizations in
+      <code translate="no" dir="ltr">DraggableAnchors</code>
+      used by
+      <code translate="no" dir="ltr">AnchoredDraggable</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I89cffe9b91f9559d0295b064e7237d68393023a2">I89cff</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BasicTextField2</code>
+      and related APIs under
+      <code translate="no" dir="ltr">androidx.compose.foundation.text2</code>
+      package are moved to
+      <code translate="no" dir="ltr">androidx.compose.foundation.text</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I9f6355e98b573d8985af9ec5135634da58bcc597">I9f635</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BasicTextField2</code>
+      no longer accepts a
+      <code translate="no" dir="ltr">CodepointTransformation</code>
+      parameter. Use
+      <code translate="no" dir="ltr">BasicSecureTextField</code>
+      or
+      <code translate="no" dir="ltr">OutputTransformation</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id34ffdd13deb8079fcc678cc519511fe9d1c97a5">Id34ff</a>
+      )
+    </li>
+    <li>
+      Added method to compare only the annotations of two
+      <code translate="no" dir="ltr">AnnotatedStrings</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3265940a29ab587c50c96bfcbeb35590cad48100">I32659</a>
+      )
+    </li>
+    <li>
+      Introducing
+      <code translate="no" dir="ltr">ContextualFlowRow</code>
+      and Enhanced
+      <code translate="no" dir="ltr">FlowRow</code>
+      /
+      <code translate="no" dir="ltr">Column</code>
+      with
+      <code translate="no" dir="ltr">MaxLines</code>
+      and
+      <code translate="no" dir="ltr">Overflow</code>
+      . We are excited to announce enhancements to the experimental
+      <code translate="no" dir="ltr">FlowRow</code>
+      and
+      <code translate="no" dir="ltr">FlowColumn</code>
+      , now featuring
+      <code translate="no" dir="ltr">maxLines</code>
+      and overflow support, alongside the debut of
+      <code translate="no" dir="ltr">ContextualFlowRow</code>
+      and
+      <code translate="no" dir="ltr">ContextualFlowColumn</code>
+      . This update is designed to provide performance optimal components, where
+      <code translate="no" dir="ltr">ContextualFlow*</code>
+      is perfect for a large number of items making use of a small
+      <code translate="no" dir="ltr">maxLines</code>
+      config and dynamic +N see more buttons, and
+      <code translate="no" dir="ltr">FlowRow</code>
+      and
+      <code translate="no" dir="ltr">FlowColumn</code>
+      is perfect for a small number of items, less than 100 items. Important: To maintain existing behavior in
+      <code translate="no" dir="ltr">FlowRow</code>
+      or
+      <code translate="no" dir="ltr">FlowColumn</code>
+      where all items are composed regardless of if they fit the cross axis max, set
+      <code translate="no" dir="ltr">overflow</code>
+      to
+      <code translate="no" dir="ltr">FlowRowOverflow.Visible</code>
+      or
+      <code translate="no" dir="ltr">FlowColumnOverflow.Visible</code>
+      during initialization. Explore
+      <code translate="no" dir="ltr">ContextualFlowRowSample</code>
+      and
+      <code translate="no" dir="ltr">FlowRowSample</code>
+      for examples of these new features in action. (
+      <a href="https://android-review.googlesource.com/#/q/Ib913509969a79ff002eafb0075e6722a7a118531">Ib9135</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/293577082">b/293577082</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Cursor animation no longer requests frames between on and off states. (
+      <a href="https://android-review.googlesource.com/#/q/Ia22537827b1735a0c2f6f5c732bebf79aaa3b773">Ia2253</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">KeyboardOptions</code>
+      ' deprecated copy constructors will now correctly copy all properties. (
+      <a href="https://android-review.googlesource.com/#/q/If12deae291313795562ab37f59afe4255012960e">If12de</a>
+      )
+    </li>
+  </ul>

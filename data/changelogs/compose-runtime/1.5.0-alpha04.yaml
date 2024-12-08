@@ -1,0 +1,66 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.5.0-alpha04
+releaseDate: 2023-05-10
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha04" data-text="Version 1.5.0-alpha04" tabindex="-1">Version 1.5.0-alpha04</h3>
+  <p>May 10, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.5.0-alpha04</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/01bd392d5702480f8bfe61a8f8bbbea64cf362a0..6f3ac2bd197d5e61ab2708125b57d6ae4003ad68/compose/runtime">Version 1.5.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added primitive versions of the
+      <code translate="no" dir="ltr">State</code>
+      API, allowing Int, Long, Float, and Double values to be tracked in
+      <code translate="no" dir="ltr">State</code>
+      objects without incurring penalties for autoboxing. Use the new factory methods
+      <code translate="no" dir="ltr">mutableIntState(Int)</code>
+      ,
+      <code translate="no" dir="ltr">mutableFloatStateOf(Float)</code>
+      , etc in order to use these. (
+      <a href="https://android-review.googlesource.com/#/q/I48e438d0af15226217b77b2ba9a970c3219580bf">I48e43</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <p>
+        Call
+        <code translate="no" dir="ltr">onEndChanges</code>
+        during composition dispose. Focus nodes removed during
+        <code translate="no" dir="ltr">Composition.dispose</code>
+        are subscribing to
+        <code translate="no" dir="ltr">onEndChanges</code>
+        to reset focus.(
+        <a href="https://android-review.googlesource.com/#/q/I03ddce4062cbf7fb97f0447484ac46b0aedeab35">03d4a47</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Ensure invalidation for non-initialized derived state values. Each derived state is associated with a list of its dependencies in
+        <code translate="no" dir="ltr">SnapshotStateObserver</code>
+        , used to invalidate scopes associated with derived state whenever dependency changes. The dependency change is registered on snapshot advance, which can happen after derived state read (due to the call to
+        <code translate="no" dir="ltr">Snapshot.notifyObjectsInitialized()</code>
+        ).
+      </p>
+
+      <p>
+        Previous derived state observation logic in
+        <code translate="no" dir="ltr">SnapshotStateObserver</code>
+        was cleaning up old dependencies, then reading new value. This resulted in a race condition with invalidation happening in a cleaned up state, where dependency invalidation wasn't registered.
+      </p>
+
+      <p>
+        This change reorders derived state read and dependency cleanup, ensuring that invalidation always happens in a valid state. (
+        <a href="https://android-review.googlesource.com/#/q/I73d7888ac05f4adaa2128e01088288b7cf369fbd">c472be6</a>
+        )
+      </p>
+    </li>
+  </ul>

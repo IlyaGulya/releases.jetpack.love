@@ -1,0 +1,87 @@
+libraryId: wear-watchface
+groupId: androidx.wear
+version: 1.2.0-beta01
+releaseDate: 2023-08-23
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-beta01" data-text="Version 1.2.0-beta01" tabindex="-1">Version 1.2.0-beta01</h3>
+  <p>August 23, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.watchface:watchface-*:1.2.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3b5b931546a48163444a9eddc533489fcddd7494..3315f1ef094c312203fe26841287902916fbedf5/wear/watchface">Version 1.2.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>From Android T, WearOS will now support a default weather system complication.</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add weather default system fallback for complications. (
+      <a href="https://android-review.googlesource.com/#/q/Ia0994329edec853a3ff0293ec2cd291556d841c6">Ia0994</a>
+      )
+    </li>
+    <li>
+      This patch adds
+      <code translate="no" dir="ltr">WatchFaceRuntimeService</code>
+      and
+      <code translate="no" dir="ltr">WatchFaceControlClient.createWatchFaceRuntimeControlClient</code>
+      along with guava wrappers. These add support for watch face runtimes which are a special kind of watch face that loads it's definition from another package. Currently WearOS only supports the runtime for the
+      <a href="/training/wearables/wff">Android Watch Face Format</a>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2799f9aa593a208ac5b40b768b37d7c072bb91c4">I2799f</a>
+      )
+    </li>
+    <li>
+      This patch is a follow up to
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/2636578">aosp/2636578</a>
+      where we rename the int defs so any code depending on
+      <code translate="no" dir="ltr">WatchFaceType</code>
+      ,
+      <code translate="no" dir="ltr">CanvasType</code>
+      ,
+      <code translate="no" dir="ltr">TapType</code>
+      or
+      <code translate="no" dir="ltr">ComplicationsSlotBoundsType</code>
+      doesn't need to change. (
+      <a href="https://android-review.googlesource.com/#/q/I4098ba9d91d7783ada0c1b4e70e18249e0f68bc5">I4098b</a>
+      )
+    </li>
+    <li>
+      Updated API files to annotate compatibility suppression. (
+      <a href="https://android-review.googlesource.com/#/q/I8e87ae292b38fac1886001f5317acda1592f174b">I8e87a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/287516207">b/287516207</a>
+      )
+    </li>
+    <li>
+      This patch exposes
+      <code translate="no" dir="ltr">WatchFaceType</code>
+      constants in
+      <code translate="no" dir="ltr">WatchFaceTypes</code>
+      ,
+      <code translate="no" dir="ltr">CanvasType</code>
+      constants in
+      <code translate="no" dir="ltr">CanvasTypes</code>
+      ,
+      <code translate="no" dir="ltr">TapType</code>
+      constants in
+      <code translate="no" dir="ltr">TapTypes</code>
+      and
+      <code translate="no" dir="ltr">ComplicationsSlotBoundsType</code>
+      constants in
+      <code translate="no" dir="ltr">ComplicationsSlotBoundsType</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3b85afb17aa66668bb1b012c1eb9849b38affeb9">I3b85a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/288750666">b/288750666</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">WatchFace.OverlayStyle</code>
+      has very low usage and is not well supported by OEMs so we're depreciating it with intention to remove it at a later date. (
+      <a href="https://android-review.googlesource.com/#/q/I7344a08f21f3a2986594288409cea11f4ec0b7d8">I7344a</a>
+      )
+    </li>
+  </ul>

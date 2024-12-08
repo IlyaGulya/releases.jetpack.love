@@ -1,0 +1,71 @@
+libraryId: draganddrop
+groupId: androidx.draganddrop
+version: 1.0.0
+releaseDate: 2022-05-11
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0" data-text="Version 1.0.0" tabindex="-1">Version 1.0.0</h3>
+  <p>May 11, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.draganddrop:draganddrop:1.0.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/792d15289c94ffb5121f8e0ea664cc758926ff49..50f2d1d62c4cb89366df3bf9f811754b8cdda677/draganddrop/draganddrop">Version 1.0.0 contains these commits.</a>
+  </p>
+  <p><strong>Major features of 1.0.0</strong></p>
+  <p>
+    <code translate="no" dir="ltr">DropHelper</code>
+    , the first member of the
+    <code translate="no" dir="ltr">draganddrop</code>
+    library, is a utility class that simplifies implementation of drag and drop capabilities. Use
+    <code translate="no" dir="ltr">DropHelper</code>
+    to specify drop targets, customize drop target highlighting, and define how dropped data is handled.
+  </p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">DropHelper</code>
+      leverages Jetpack’s
+      <a href="/reference/androidx/core/view/OnReceiveContentListener"><code translate="no" dir="ltr">OnReceiveContentListener</code></a>
+      to provide target-specific processing of drag and drop
+      <a href="/reference/android/content/ClipData"><code translate="no" dir="ltr">ClipData</code></a>
+      .
+      <code translate="no" dir="ltr">DropHelper</code>
+      enhances the user experience by configuring drop targets to display a highlight as users drag content over the targets. The
+      <code translate="no" dir="ltr">DropHelper.Options</code>
+      nested class enables you to customize the appearance of the default highlight.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">DropHelper</code>
+      attaches an
+      <a href="/reference/androidx/core/view/OnReceiveContentListener"><code translate="no" dir="ltr">OnReceiveContentListener</code></a>
+      to drop targets and configures drop targets to listen for drag and drop events. Do not attach an
+      <a href="/jetpack/androidx/releases/m/reference/android/view/View.OnDragListener"><code translate="no" dir="ltr">OnDragListener</code></a>
+      or additional
+      <code translate="no" dir="ltr">OnReceiveContentListener</code>
+      to drop targets when using
+      <code translate="no" dir="ltr">DropHelper</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">DropHelper.Options</code>
+      gives you the ability to list all
+      <a href="/reference/android/widget/EditText"><code translate="no" dir="ltr">EditText</code></a>
+      elements contained in the view hierarchy of complex drop targets. If any are present, they must be specified in this way.
+      <code translate="no" dir="ltr">DropHelper</code>
+      prevents the
+      <code translate="no" dir="ltr">EditText</code>
+      elements from stealing focus from the drop target when users drag data over the target. If the drag and drop
+      <code translate="no" dir="ltr">ClipData</code>
+      includes text and URI data,
+      <code translate="no" dir="ltr">DropHelper</code>
+      selects one of the
+      <code translate="no" dir="ltr">EditText</code>
+      elements in the drop target to handle the text data when the
+      <code translate="no" dir="ltr">ClipData</code>
+      is dropped.
+    </li>
+  </ul>
+  <p>
+    For more information, see the
+    <a href="/guide/topics/ui/drag-drop#drophelper">Drag and drop</a>
+    developer’s guide.
+  </p>

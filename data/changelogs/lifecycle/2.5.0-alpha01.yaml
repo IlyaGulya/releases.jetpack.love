@@ -1,0 +1,204 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.5.0-alpha01
+releaseDate: 2022-01-26
+#language=html
+changelogHtml: |
+  <h3 id="2.5.0-alpha01" data-text="Version 2.5.0-alpha01" tabindex="-1">Version 2.5.0-alpha01</h3>
+  <p>January 26, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.5.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/03e82488323f4f6d9999228d07c0336a54f4798e..9dceceb54300ed028a7e8fc7a3454f270337ffde/lifecycle">Version 2.5.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>ViewModel CreationExtras</strong></p>
+  <p>
+    With this release, we are laying the groundwork for restructuring how a
+    <code translate="no" dir="ltr">ViewModel</code>
+    is constructed. Instead of a rigid set of subclasses of
+    <code translate="no" dir="ltr">ViewModelProvider.Factory</code>
+    that each add additional functionality (allowing an
+    <code translate="no" dir="ltr">Application</code>
+    constructor parameter via
+    <code translate="no" dir="ltr">AndroidViewModelFactory</code>
+    , allowing a
+    <code translate="no" dir="ltr">SavedStateHandle</code>
+    constructor parameter via
+    <code translate="no" dir="ltr">SavedStateViewModelFactory</code>
+    and
+    <code translate="no" dir="ltr">AbstractSavedStateViewModelFactory</code>
+    , etc.), we are moving to a world of stateless factories that rely on a new concept,
+    <code translate="no" dir="ltr">CreationExtras</code>
+    . (
+    <a href="https://android-review.googlesource.com/#/q/Ia73439cb2282609a9a1eaebf8ba79b9cc93feb7c">Ia7343</a>
+    ,
+    <a href="https://issuetracker.google.com/issues/188691010">b/188691010</a>
+    ,
+    <a href="https://issuetracker.google.com/issues/188541057">b/188541057</a>
+    )
+  </p>
+  <p>
+    With this change,
+    <code translate="no" dir="ltr">ViewModelProvider</code>
+    no longer makes direct calls into the previous
+    <code translate="no" dir="ltr">create(Class&lt;T&gt;)</code>
+    method of
+    <code translate="no" dir="ltr">ViewModelProvider.Factory</code>
+    . Instead, it calls into a new overload of
+    <code translate="no" dir="ltr">create</code>
+    :
+    <code translate="no" dir="ltr">create(Class&lt;T&gt;, CreationExtras)</code>
+    . This means that any direct implementation of the
+    <code translate="no" dir="ltr">ViewModelProvider.Factory</code>
+    instance now has access to each of these new
+    <code translate="no" dir="ltr">CreationExtras</code>
+    :
+  </p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ViewModelProvider.NewInstanceFactory.VIEW_MODEL_KEY</code>
+      : this
+      <code translate="no" dir="ltr">String</code>
+      provides access to the custom key you passed to
+      <code translate="no" dir="ltr">ViewModelProvider.get()</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY</code>
+      provides access to the
+      <code translate="no" dir="ltr">Application</code>
+      class.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SavedStateHandleSupport.SAVED_STATE_REGISTRY_OWNER_KEY</code>
+      provides access to the
+      <code translate="no" dir="ltr">SavedStateRegistryOwner</code>
+      that is being used to construct this ViewModel.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SavedStateHandleSupport.VIEW_MODEL_STORE_OWNER_KEY</code>
+      provides access to the
+      <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+      that is being used to construct this ViewModel.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SavedStateHandleSupport.DEFAULT_ARGS_KEY</code>
+      provides access to the
+      <code translate="no" dir="ltr">Bundle</code>
+      of arguments that should be used to construct a
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      .
+    </li>
+  </ul>
+  <p>
+    These extras are provided by default when using
+    <a href="/jetpack/androidx/releases/activity#1.5.0-alpha01">
+      Activity
+      <code translate="no" dir="ltr">1.5.0-alpha01</code>
+    </a>
+    ,
+    <a href="/jetpack/androidx/releases/fragment#1.5.0-alpha01">
+      Fragment
+      <code translate="no" dir="ltr">1.5.0-alpha01</code>
+    </a>
+    , and
+    <a href="/jetpack/androidx/releases/navigation#2.5.0-alpha01">
+      Navigation
+      <code translate="no" dir="ltr">2.5.0-alpha01</code>
+    </a>
+    . If you use an earlier version of those libraries, your
+    <code translate="no" dir="ltr">CreationExtras</code>
+    will be empty - all of the existing subclasses of
+    <code translate="no" dir="ltr">ViewModelProvider.Factory</code>
+    have been rewritten to support both the legacy creation path used by earlier versions of those libraries and the
+    <code translate="no" dir="ltr">CreationExtras</code>
+    path which will be used going forward.
+  </p>
+  <p>
+    These
+    <code translate="no" dir="ltr">CreationExtras</code>
+    allow you to construct a
+    <code translate="no" dir="ltr">ViewModelProvider.Factory</code>
+    that passes just the information you need to each
+    <code translate="no" dir="ltr">ViewModel</code>
+    without relying on a strict hierarchy of Factory subclasses:
+  </p>
+  <div></div>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">CustomFactory</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">ViewModelProvider</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">Factory</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kd">override</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span>&lt;<span class="devsite-syntax-nf">T</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">ViewModel</span>&gt;<span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">create</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">modelClass</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Class&lt;T&gt;</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">extras</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">CreationExtras</span><span class="devsite-syntax-p">):</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">T</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-k">return</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">when</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">modelClass</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">HomeViewModel</span><span class="devsite-syntax-o">::</span><span class="devsite-syntax-kd">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-err">-&gt; {</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-c1">// Get the Application object from extras</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">application</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">checkNotNull</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">extras</span><span class="devsite-syntax-o">[</span><span class="devsite-syntax-n">ViewModelProvider</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">AndroidViewModelFactory</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">APPLICATION_KEY</span><span class="devsite-syntax-o">]</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-c1">// Pass it directly to HomeViewModel</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-n">HomeViewModel</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">application</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">DetailViewModel</span><span class="devsite-syntax-o">::</span><span class="devsite-syntax-kd">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-err">-&gt; {</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-c1">// Create a SavedStateHandle for this ViewModel from extras</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">savedStateHandle</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">extras</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">createSavedStateHandle</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-n">DetailViewModel</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">savedStateHandle</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-k">else</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;<span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">throw</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">IllegalArgumentException</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"Unknown class </span><span class="devsite-syntax-si">$</span><span class="devsite-syntax-n">modelClass</span><span class="devsite-syntax-s">"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">}</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">as</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">T</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+  </devsite-code>
+  <p>
+    We use the
+    <code translate="no" dir="ltr">createSavedStateHandle()</code>
+    Kotlin extension function on
+    <code translate="no" dir="ltr">CreationExtras</code>
+    from
+    <code translate="no" dir="ltr">SavedStateHandleSupport</code>
+    to construct a
+    <code translate="no" dir="ltr">SavedStateHandle</code>
+    only for the one ViewModel that needs it. (
+    <a href="https://android-review.googlesource.com/#/q/Ia6654a36eff3c71dc45dbf35e447d1efe24b5b4b">Ia6654</a>
+    ,
+    <a href="https://issuetracker.google.com/issues/188541057">b/188541057</a>
+    )
+  </p>
+  <p>
+    Custom
+    <code translate="no" dir="ltr">CreationExtras</code>
+    can be provided by overriding
+    <code translate="no" dir="ltr">getDefaultViewModelCreationExtras()</code>
+    in your
+    <code translate="no" dir="ltr">ComponentActivity</code>
+    or
+    <code translate="no" dir="ltr">Fragment</code>
+    , thus making them available to your custom
+    <code translate="no" dir="ltr">ViewModelProvider.Factory</code>
+    as a built in form of assisted injection. These extras will automatically be made available to your custom Factory when used directly with
+    <code translate="no" dir="ltr">ViewModelProvider</code>
+    or when using the
+    <code translate="no" dir="ltr">by viewModels()</code>
+    and
+    <code translate="no" dir="ltr">by activityViewModels()</code>
+    Kotlin property extensions. (
+    <a href="https://android-review.googlesource.com/#/q/I79f2bbd8ae78103d3ef764fd527674cdfb592936">I79f2b</a>
+    ,
+    <a href="https://issuetracker.google.com/issues/207012584">b/207012584</a>
+    ,
+    <a href="https://issuetracker.google.com/issues/207012585">b/207012585</a>
+    ,
+    <a href="https://issuetracker.google.com/issues/207012490">b/207012490</a>
+    )
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where the default value provided to a
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      would reappear after process death and recreation, even if it was specifically removed from the
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      . As a consequence of this,
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      will no longer merge default values and restored values together, instead only using the restored values as the source of truth. (
+      <a href="https://android-review.googlesource.com/#/q/I53a4bbffc6990f8dea902584daf47e780ae9abdb">I53a4b</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_24_2" data-text="Version 2.4" tabindex="-1">Version 2.4</h2>

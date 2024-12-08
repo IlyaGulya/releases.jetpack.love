@@ -1,0 +1,158 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 1.0.0-alpha10
+releaseDate: 2019-01-23
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha10" data-text="Version 1.0.0-alpha10" tabindex="-1">Version 1.0.0-alpha10</h3>
+  <p>January 23, 2019</p>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      Safe Args fails to import the Directions class associated with global actions.
+      <a href="https://issuetracker.google.com/123307342">b/123307342</a>
+    </li>
+  </ul>
+  <p>
+    This release contains breaking API changes; please see the
+    <em>Breaking Changes</em>
+    section below.
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Kotlin users can now use the
+      <code translate="no" dir="ltr">by navArgs()</code>
+      property delegate to lazily get a reference to a Safe Args generated
+      <code translate="no" dir="ltr">NavArgs</code>
+      class in an
+      <code translate="no" dir="ltr">Activity</code>
+      or
+      <code translate="no" dir="ltr">Fragment</code>
+      .
+      <a href="https://issuetracker.google.com/122603367">b/122603367</a>
+    </li>
+    <li>
+      Safe Args now allows you to generate Kotlin code by applying the
+      <code translate="no" dir="ltr">androidx.navigation.safeargs.kotlin</code>
+      plugin. The Kotlin code is built specifically for Kotlin only modules, using default arguments and immutable classes over the builder pattern that is still available via the previous
+      <code translate="no" dir="ltr">androidx.navigation.safeargs</code>
+      plugin.
+      <a href="https://issuetracker.google.com/110263087">b/110263087</a>
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      Matching deep links are now biased towards the deep link that has the most matching arguments.
+      <a href="https://issuetracker.google.com/118393029">b/118393029</a>
+    </li>
+    <li>
+      Calling
+      <code translate="no" dir="ltr">setGraph()</code>
+      on a
+      <code translate="no" dir="ltr">NavController</code>
+      will now reset the back stack.
+      <a href="https://issuetracker.google.com/111450672">b/111450672</a>
+    </li>
+    <li>
+      Unknown deep links no longer throw an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      , but are ignored, fixing issues with nested or multiple
+      <code translate="no" dir="ltr">NavHostFragment</code>
+      s.
+      <a href="https://issuetracker.google.com/121340440">b/121340440</a>
+    </li>
+  </ul>
+  <p><strong>Breaking Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">NavOptions.applyPopAnimationsToPendingTransition()</code>
+      method for applying pop animations to an Activity has been moved to
+      <code translate="no" dir="ltr">ActivityNavigator</code>
+      .
+      <a href="https://issuetracker.google.com/122413117">b/122413117</a>
+    </li>
+    <li>
+      Safe Args now avoids duplicating identical classes for actions without arguments. The return type for no argument methods in generated NavDirections classes is now
+      <code translate="no" dir="ltr">NavDirections</code>
+      .
+      <a href="https://issuetracker.google.com/123233147">b/123233147</a>
+    </li>
+    <li>
+      Safe Args generated Directions classes no longer have a public constructor - you should only be interacting with the generated static methods.
+      <a href="https://issuetracker.google.com/123031660">b/123031660</a>
+    </li>
+    <li>
+      Safe Args generated
+      <code translate="no" dir="ltr">NavDirections</code>
+      classes no longer have a public constructor - they should only be generated via the static methods in the generated Directions classes.
+      <a href="https://issuetracker.google.com/122963206">b/122963206</a>
+    </li>
+    <li>
+      The returned
+      <code translate="no" dir="ltr">Bundle</code>
+      from
+      <code translate="no" dir="ltr">NavDirections</code>
+      '
+      <code translate="no" dir="ltr">getArguments()</code>
+      is now marked as
+      <code translate="no" dir="ltr">@NonNull</code>
+      rather than
+      <code translate="no" dir="ltr">@Nullable</code>
+      .
+      <a href="https://issuetracker.google.com/123243957">b/123243957</a>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">NavDeepLinkBuilder</code>
+      now correctly handles multiple simultaneous
+      <code translate="no" dir="ltr">PendingIntent</code>
+      s to the same destination by using the arguments you pass in to determine the uniqueness.
+      <a href="https://issuetracker.google.com/120042732">b/120042732</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavController</code>
+      now correctly handles
+      <code translate="no" dir="ltr">popBackStack()</code>
+      operations when using a nested
+      <code translate="no" dir="ltr">NavHostFragment</code>
+      or other child Fragments with a back stack.
+      <a href="https://issuetracker.google.com/122770335">b/122770335</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavigationUI</code>
+      now correctly sets the content description of the Up button.
+      <a href="https://issuetracker.google.com/120395362">b/120395362</a>
+    </li>
+    <li>
+      Safe Args generated Directions classes now correctly handle global actions that have the same id as an action on a destination.
+      <a href="https://issuetracker.google.com/122962504">b/122962504</a>
+    </li>
+    <li>
+      Safe Args generated
+      <code translate="no" dir="ltr">NavDirections</code>
+      classes now correctly have equal
+      <code translate="no" dir="ltr">hashCode()</code>
+      values when
+      <code translate="no" dir="ltr">equals()</code>
+      would return true.
+      <a href="https://issuetracker.google.com/123043662">b/123043662</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FragmentNavigator</code>
+      now throws a better error message if you attempt to do custom
+      <code translate="no" dir="ltr">FragmentTransactions</code>
+      on the
+      <code translate="no" dir="ltr">NavHostFragment</code>
+      's
+      <code translate="no" dir="ltr">FragmentManager</code>
+      . You should always use
+      <code translate="no" dir="ltr">getChildFragmentManager()</code>
+      .
+      <a href="https://issuetracker.google.com/112927148">b/112927148</a>
+    </li>
+  </ul>

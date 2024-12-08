@@ -1,0 +1,78 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.5.0
+releaseDate: 2022-06-29
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0" data-text="Version 1.5.0" tabindex="-1">Version 1.5.0</h3>
+  <p>June 29, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.5.0</code>
+    ,
+    <code translate="no" dir="ltr">androidx.activity:activity-compose:1.5.0</code>
+    , and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.5.0</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/49cd978b488ce31274b756058de8dc8b42ffbf4e..e047538e9c1a9b12afec093910a556017720cb13/activity">Version 1.5.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 1.4.0</strong></p>
+  <ul>
+    <li>
+      <strong>ComponentDialog</strong>
+      -
+      <code translate="no" dir="ltr">ComponentDialog</code>
+      is a subclass of
+      <code translate="no" dir="ltr">Dialog</code>
+      that includes an
+      <code translate="no" dir="ltr">OnBackPressedDispatcher</code>
+      that will be called when the system back button is pressed and the dialog is visible. Importantly, this subclass also sets the
+      <code translate="no" dir="ltr">ViewTreeOnBackPressedDispatcherOwner</code>
+      , allowing views a generic way to retrieve the correct dispatcher whether it exists in a
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      or a
+      <code translate="no" dir="ltr">ComponentDialog</code>
+      .
+    </li>
+    <li>
+      <strong>Callback Interfaces</strong>
+      -
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      now implements a set of modular callback interfaces that can be used instead of the
+      <code translate="no" dir="ltr">Activity</code>
+      callbacks. These interfaces include the following:
+      <code translate="no" dir="ltr">OnNewIntentProvider</code>
+      ,
+      <code translate="no" dir="ltr">OnConfigurationChangedProvider</code>
+      ,
+      <code translate="no" dir="ltr">OnTrimMemoryProvider</code>
+      ,
+      <code translate="no" dir="ltr">OnPictureInPictureModeChangedProvider</code>
+      ,
+      <code translate="no" dir="ltr">OnMultiWindowModeChangedProvider</code>
+    </li>
+    <li>
+      <strong>CreationExtras Integration</strong>
+      -
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      now has the ability to provide a stateless
+      <code translate="no" dir="ltr">ViewModelProvider.Factory</code>
+      via
+      <a href="/jetpack/androidx/releases/lifecycle#2.5.0">
+        Lifecycle
+        <code translate="no" dir="ltr">2.5.0</code>
+      </a>
+      ’s
+      <code translate="no" dir="ltr">CreationExtras</code>
+      .
+    </li>
+  </ul>
+  <p><strong>Other changes</strong></p>
+  <ul>
+    <li>
+      The no parameter constructor for
+      <code translate="no" dir="ltr">ActivityResultContracts.CreateDocument</code>
+      has been deprecated and replaced with a new constructor that takes a concrete mime type (e.g., "image/png") as is required by
+      <code translate="no" dir="ltr">Intent.ACTION_CREATE_DOCUMENT</code>
+      .
+    </li>
+  </ul>

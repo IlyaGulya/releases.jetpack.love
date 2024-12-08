@@ -1,0 +1,70 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.1.0-alpha02
+releaseDate: 2021-05-18
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha02" data-text="Version 1.1.0-alpha02" tabindex="-1">Version 1.1.0-alpha02</h3>
+  <p>May 18, 2021</p>
+  <p>
+    Benchmark version 1.1.0-alpha02 brings a big component to benchmarking - Macrobenchmark. In addition to
+    <em>benchmark</em>
+    allowing you to measure CPU loops,
+    <em>macrobenchmark</em>
+    allows you to measure whole-app interactions like startup and scrolling, and capture traces. For more information see the
+    <a href="/benchmark">library documentation</a>
+    .
+  </p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.1.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/945594abd75f83bd14daf4fbcd8621796161281e..66681ad83c328d0dd821b943bb3d375f02c1db61/benchmark">Version 1.1.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>
+    Macrobenchmark artifacts added (
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-macro-junit4</code>
+    and
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-macro</code>
+    )
+  </p>
+  <ul>
+    <li>Capture startup, scrolling/animation performance metrics from your app, locally or in CI</li>
+    <li>Capture and inspect traces from within Android Studio</li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Workaround shell permissions issue with output directory on Android 12 (Note - may require updating Android Gradle Plugin to 7.0.0 canary and Android Studio to Arctic Fox (2020.3.1), to continue capturing output files on affected devices). (
+      <a href="https://android-review.googlesource.com/#/q/Icb039cf7a41342b44cb2d79229898662ee76869e">Icb039</a>
+      )
+    </li>
+    <li>
+      Support configuration caching in BenchmarkPlugin (
+      <a href="https://android-review.googlesource.com/#/q/6be1c120b8c4cbf64c0ae7865780ebe39c1ba2be">6be1c1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/159804788">b/159804788</a>
+      )
+    </li>
+    <li>
+      Simplified file output - on by default, in a directory that doesn't require
+      <code translate="no" dir="ltr">requestLegacyExternalStorage=true</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/8b5a4df9f4344d8df875558c4b5cc5621ef3ffc8">8b5a4d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/172376362">b/172376362</a>
+      )
+    </li>
+    <li>
+      Fixes library printing logcat warnings about not finding JIT thread on platform versions where it is not present. (
+      <a href="https://android-review.googlesource.com/#/q/I9cc637ed3d5ec50169f4bad795d47c4f2a03befa">I9cc63</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/161847393">b/161847393</a>
+      )
+    </li>
+    <li>
+      Fix for reading device max frequency. (
+      <a href="https://android-review.googlesource.com/#/q/I55c7ade72e880d6b045ef6e24bc2a54b2d774acd">I55c7a</a>
+      )
+    </li>
+  </ul>

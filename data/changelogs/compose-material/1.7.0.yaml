@@ -1,0 +1,41 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 1.7.0
+releaseDate: 2024-09-04
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0" data-text="Version 1.7.0" tabindex="-1">Version 1.7.0</h3>
+  <p>September 4, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material-*:1.7.0</code>
+    is released. Version 1.7.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d8995e2377dd4baad64b39becb6d480cadd05c86..38ffb9c315c3f894412184bda180c1b58b2a8556/compose/material">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.6.0</strong></p>
+  <ul>
+    <li>
+      Material components have been migrated to use the new ripple APIs, and no longer query
+      <code translate="no" dir="ltr">RippleTheme</code>
+      .
+    </li>
+    <li>
+      Material components that previously accepted a
+      <code translate="no" dir="ltr">MutableInteractionSource</code>
+      and defaulted to
+      <code translate="no" dir="ltr">remember { MutableInteractionSource() }</code>
+      now accept a nullable
+      <code translate="no" dir="ltr">MutableInteractionSource</code>
+      and default to null instead. If you are not hoisting and using the
+      <code translate="no" dir="ltr">MutableInteractionSource</code>
+      , you should pass null. This allows for some components to lazily create an instance only when needed, improving performance. It is also recommended that you make similar changes in your own components.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BottomDrawer</code>
+      ,
+      <code translate="no" dir="ltr">ModalBottomSheet</code>
+      ,
+      <code translate="no" dir="ltr">BackdropScaffold</code>
+      and standard Bottomsheet have been promoted to stable API.
+    </li>
+  </ul>

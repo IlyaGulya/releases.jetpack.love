@@ -1,0 +1,74 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.6.0-beta01
+releaseDate: 2023-02-08
+#language=html
+changelogHtml: |
+  <h3 id="2.6.0-beta01" data-text="Version 2.6.0-beta01" tabindex="-1">Version 2.6.0-beta01</h3>
+  <p>February 8, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.6.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e5dad1e7d1c225f89f7c2d5a39a7a0de8d637d7b..7d3ac1ab1206c01fae3ebb500b5b942636070155/lifecycle">Version 2.6.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>Kotlin Conversions</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      is now written in Kotlin. This is a
+      <strong>source incompatible change</strong>
+      for classes written in Kotlin - they must now override the
+      <code translate="no" dir="ltr">lifecycle</code>
+      property rather than implementing the previous
+      <code translate="no" dir="ltr">getLifecycle()</code>
+      function. (
+      <a href="https://android-review.googlesource.com/#/q/I75b4b3ffc999f3f00c6ca57e027dff5e18f54146">I75b4b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/240298691">b/240298691</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+      is now in Kotlin. This is a
+      <strong>source incompatible change</strong>
+      for classes written in Kotlin - they must now override the
+      <code translate="no" dir="ltr">viewModelStore</code>
+      property rather than implementing the previous
+      <code translate="no" dir="ltr">getViewModelStore()</code>
+      function. (
+      <a href="https://android-review.googlesource.com/#/q/I864099e6aa61bc9cbc041181dafd6a7bce7d93b1">I86409</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/240298691">b/240298691</a>
+      )
+    </li>
+    <li>
+      The Kotlin extension on
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      that provides the
+      <code translate="no" dir="ltr">lifecycleScope</code>
+      field has been moved to the
+      <code translate="no" dir="ltr">lifecycle-common</code>
+      artifact from
+      <code translate="no" dir="ltr">lifecycle-runtime-ktx</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I41d786b9db40eae569b1eb9cedd559bb87178fdc">I41d78</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/240298691">b/240298691</a>
+      )
+    </li>
+    <li>
+      The Kotlin extension on
+      <code translate="no" dir="ltr">Lifecycle</code>
+      that provides the
+      <code translate="no" dir="ltr">coroutineScope</code>
+      field has been moved to the
+      <code translate="no" dir="ltr">lifecycle-common</code>
+      artifact from
+      <code translate="no" dir="ltr">lifecycle-runtime-ktx</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iabb911950a0646052eed89f5ce2751b156268aae">Iabb91</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/240298691">b/240298691</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,37 @@
+libraryId: work
+groupId: androidx.work
+version: 1.0.0-alpha08
+releaseDate: 2018-08-27
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha08" data-text="Version 1.0.0-alpha08" tabindex="-1">Version 1.0.0-alpha08</h3>
+  <p>August 27, 2018</p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Explicitly labelled WorkManager components as direct boot unaware so they don't fire up during direct boot. In the future, we will provide a version of WorkManager that is direct boot-aware.
+      <a href="https://issuetracker.google.com/112665532">b/112665532</a>
+    </li>
+    <li>
+      Fixed an issue where retried work was not running.
+      <a href="https://issuetracker.google.com/112604021">b/112604021</a>
+    </li>
+    <li>
+      Fixed periodic work not executing repeatedly (related to the above issue).
+      <a href="https://issuetracker.google.com/112859683">b/112859683</a>
+    </li>
+    <li>Honored backoff policies when the app process is already running.</li>
+    <li>
+      Corrected exception messages in
+      <code translate="no" dir="ltr">Data</code>
+      to indicate the limit is 10KB.
+    </li>
+    <li>
+      Lowered maximum value of
+      <code translate="no" dir="ltr">Configuration.setMaxSchedulerLimit(int)</code>
+      to 50 to account for some latency in
+      <code translate="no" dir="ltr">JobScheduler</code>
+      processing completion.
+      <a href="https://issuetracker.google.com/112817355">b/112817355</a>
+    </li>
+  </ul>

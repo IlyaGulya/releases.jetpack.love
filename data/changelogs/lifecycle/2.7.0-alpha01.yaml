@@ -1,0 +1,128 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.7.0-alpha01
+releaseDate: 2023-07-26
+#language=html
+changelogHtml: |
+  <h3 id="2.7.0-alpha01" data-text="Version 2.7.0-alpha01" tabindex="-1">Version 2.7.0-alpha01</h3>
+  <p>July 26, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.7.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5b3397913c8a67b0cffa4d23cb4666aa3cb6c6d7..4aed940027a19667e67d155563fc5fa8b7279313/lifecycle">Version 2.7.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">Lifecycle.State</code>
+      is now Compose-observable via
+      <code translate="no" dir="ltr">Lifecycle.currentStateFlow</code>
+      , which returns a
+      <code translate="no" dir="ltr">StateFlow</code>
+      where the
+      <code translate="no" dir="ltr">value</code>
+      is the current
+      <code translate="no" dir="ltr">Lifecycle.State</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib212d9b84307e0397306e521ceaae41e2c76d532">Ib212d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/209684871">b/209684871</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Lifecycle.Event</code>
+      s can now able to be observed as a
+      <code translate="no" dir="ltr">Flow</code>
+      with
+      <code translate="no" dir="ltr">Lifecycle.asFlow().</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/If2c0f10760caca7109d43c235ea76437ef2af5dc">If2c0f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/176311030">b/176311030</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LifecycleResumeEffect</code>
+      API has been added to run Compose
+      <code translate="no" dir="ltr">SideEffect</code>
+      s based on both
+      <code translate="no" dir="ltr">Lifecycle.Event.ON_RESUME</code>
+      and
+      <code translate="no" dir="ltr">Lifecycle.Event.ON_PAUSE</code>
+      event callbacks. (
+      <a href="https://android-review.googlesource.com/#/q/I603860f21eb6a433c909d7ae6f8120f6d23179aa">I60386</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/235529345">b/235529345</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LifecycleStartEffect</code>
+      API has been added to run Compose
+      <code translate="no" dir="ltr">SideEffect</code>
+      s based on
+      <code translate="no" dir="ltr">Lifecycle.Event.ON_START</code>
+      and
+      <code translate="no" dir="ltr">Lifecycle.Event.ON_STOP</code>
+      event callbacks. (
+      <a href="https://android-review.googlesource.com/#/q/I5a8d1e6f152b7083e086146ba97044c4b454db84">I5a8d1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/235529345">b/235529345</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LifecycleEventEffect</code>
+      API has been added to run Compose
+      <code translate="no" dir="ltr">SideEffect</code>
+      s based on
+      <code translate="no" dir="ltr">Lifecycle.Event</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic9794d7e59b1a66cc7f31cbaebed9b3d3dee5dd3">Ic9794</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/235529345">b/235529345</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Lifecycle.collectAsState()</code>
+      extension has been added to directly expose
+      <code translate="no" dir="ltr">Lifecycle.State</code>
+      as Compose
+      <code translate="no" dir="ltr">State</code>
+      . This is equivalent (and a shorter alternative) to
+      <code translate="no" dir="ltr">lifecycle.currentStateFlow.collectAsState()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1101507a270980554046f7505b356c9c923ad48e">I11015</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/235529345">b/235529345</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">LiveData.distinctUntilChanged()</code>
+      extension now sets the
+      <code translate="no" dir="ltr">value</code>
+      of the returned
+      <code translate="no" dir="ltr">LiveData</code>
+      if the previous
+      <code translate="no" dir="ltr">LiveData</code>
+      has had a value set on it. This does not change the observation behavior - updated values from the source
+      <code translate="no" dir="ltr">LiveData</code>
+      will still only apply once you start observing the
+      <code translate="no" dir="ltr">LiveData</code>
+      returned from
+      <code translate="no" dir="ltr">distinctUntilChanged()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib482f0cc74fad451e0ff37088a11fcf2682f0f8a">Ib482f</a>
+      )
+    </li>
+    <li>
+      The proguard keep rules associated with
+      <code translate="no" dir="ltr">LifecycleObserver</code>
+      have been removed. This means that proguarded code that wishes to use APIs via reflection will need to provide their own keep rules for their specific use case. (
+      <a href="https://android-review.googlesource.com/#/q/Ia12fdc429a23d43d5b6a4a5c103f866141480bf5">Ia12fd</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_26_2" data-text="Version 2.6" tabindex="-1">Version 2.6</h2>

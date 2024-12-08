@@ -1,0 +1,109 @@
+libraryId: wear-protolayout
+groupId: androidx.wear
+version: 1.2.0-beta01
+releaseDate: 2024-07-10
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-beta01" data-text="Version 1.2.0-beta01" tabindex="-1">Version 1.2.0-beta01</h3>
+  <p>July 10, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.protolayout:protolayout-*:1.2.0-beta01</code>
+    is released. Version 1.2.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/948119be341fa4affc055418e695d8c4c7e5e2e4..56579bc30499ce39f0d7a6713a065b00c6194206/wear/protolayout">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>The 1.2.0-beta01 release of Wear ProtoLayout indicates that this release of the library is feature complete and the API is locked (except where marked as experimental). Wear ProtoLayout 1.2 includes the following new functionalities and APIs:</p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">FontStyle</code>
+      has been updated to have additional font support as following:
+      <ul>
+        <li>
+          Setting different font variation setting such as
+          <code translate="no" dir="ltr">FontSetting.weight</code>
+          and
+          <code translate="no" dir="ltr">FontSetting.width</code>
+        </li>
+        <li>
+          Setting the same width for all numeric characters - tabular numerals (
+          <code translate="no" dir="ltr">FontSetting.tnum</code>
+          font feature setting)
+        </li>
+        <li>Improved font selection APIs to support the upcoming flex fonts by specifying preferred font family names to be used.</li>
+      </ul>
+    </li>
+    <li>
+      Extended
+      <code translate="no" dir="ltr">Corner</code>
+      modifier to support specifying each
+      <code translate="no" dir="ltr">CornerRadius</code>
+      with a separate horizontal and vertical values to allow building elements with asymmetric corners.
+    </li>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">Transformation</code>
+      modifier offering translation, rotation and scaling of
+      <code translate="no" dir="ltr">LayoutElement</code>
+      . These transformations can be animated by using dynamic values.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">setArcDirection</code>
+      with
+      <code translate="no" dir="ltr">Clockwise</code>
+      ,
+      <code translate="no" dir="ltr">CounterClockwise</code>
+      and
+      <code translate="no" dir="ltr">Normal</code>
+      options to all arc elements (
+      <code translate="no" dir="ltr">Arc</code>
+      ,
+      <code translate="no" dir="ltr">ArcLine</code>
+      and
+      <code translate="no" dir="ltr">ArcText</code>
+      ) for better support in different layout directions (such as LTR and RTL).
+    </li>
+    <li>
+      Improved accessibility of all touch targets by extending the tappable area of any element that uses
+      <code translate="no" dir="ltr">Clickable</code>
+      modifier to be at least
+      <code translate="no" dir="ltr">48dp</code>
+      by
+      <code translate="no" dir="ltr">48dp</code>
+      .
+    </li>
+    <li>
+      Improved
+      <code translate="no" dir="ltr">PrimaryLayout</code>
+      and
+      <code translate="no" dir="ltr">EdgeContentLayout</code>
+      by adding
+      <code translate="no" dir="ltr">setResponsiveContentInsetEnabled</code>
+      to better support responsive behavior of these layouts across different screen sizes and improve Tiles consistency. Added linter warning to suggest usage of these APIs with a quick fix.
+    </li>
+    <li>
+      Improved scaling/non-scaling of the Material
+      <code translate="no" dir="ltr">Text</code>
+      for Android 14's non-linear font scaling.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Default font family name (
+      <code translate="no" dir="ltr">DEFAULT_SYSTEM_FONT</code>
+      ) is removed as it is implied by not using the
+      <code translate="no" dir="ltr">preferredFontFamilies</code>
+      API. (
+      <a href="https://android-review.googlesource.com/#/q/I39dab419cb0ae1461136d8f1a6181ba04ab80985">I39dab</a>
+      )
+    </li>
+    <li>
+      Parameter passed in to the
+      <code translate="no" dir="ltr">FontSetting.width</code>
+      should be positive. (
+      <a href="https://android-review.googlesource.com/#/q/I1266f60f35a6bd94e8159fd40e2f1f2ca0b0a8f6">I1266f</a>
+      )
+    </li>
+  </ul>

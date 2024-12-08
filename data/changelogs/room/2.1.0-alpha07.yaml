@@ -1,0 +1,27 @@
+libraryId: room
+groupId: androidx.room
+version: 2.1.0-alpha07
+releaseDate: 2019-04-25
+#language=html
+changelogHtml: |
+  <h3 id="2.1.0-alpha07" data-text="Version 2.1.0-alpha07" tabindex="-1">Version 2.1.0-alpha07</h3>
+  <p>April 25, 2019</p>
+  <p><strong>API / Behavior Changes</strong></p>
+  <ul>
+    <li>
+      The extension function
+      <code translate="no" dir="ltr">RoomDatabase.withTransaction</code>
+      has been changed to no longer take a function block with a
+      <code translate="no" dir="ltr">CoroutineScope</code>
+      as receiver. This prevents skipping the additional
+      <code translate="no" dir="ltr">coroutineScope { }</code>
+      wrapper required to run things in the transaction block concurrently.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a bug where Room would fail to match a TypeConverter for a Kotlin DAO function containing a parameter of Collection type.
+      <a href="https://issuetracker.google.com/issues/122066791">b/122066791</a>
+    </li>
+  </ul>

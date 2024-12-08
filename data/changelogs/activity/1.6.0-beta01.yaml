@@ -1,0 +1,101 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.6.0-beta01
+releaseDate: 2022-08-10
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-beta01" data-text="Version 1.6.0-beta01" tabindex="-1">Version 1.6.0-beta01</h3>
+  <p>August 10, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.6.0-beta01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.activity:activity-compose:1.6.0-beta01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.6.0-beta01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/8f2c5386181f36db1a3b90633150c993f8dd6192..bea814b246f89ff7244e3c6b0648f0b57e47897c/activity">Version 1.6.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Marked the deprecated
+      <code translate="no" dir="ltr">startActivityForResult</code>
+      and
+      <code translate="no" dir="ltr">startIntentSenderForResult</code>
+      methods on
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      with
+      <code translate="no" dir="ltr">@NonNull</code>
+      because passing
+      <code translate="no" dir="ltr">null</code>
+      has always resulted in a crash. (
+      <a href="https://android-review.googlesource.com/#/q/Id2a257e4c6f0327c104d87d677543e589f483ab8">Id2a25</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/231476082">b/231476082</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      From
+      <a href="#1.5.1">
+        Activity
+        <code translate="no" dir="ltr">1.5.1</code>
+      </a>
+      : The
+      <code translate="no" dir="ltr">ActivityResultRegistry</code>
+      will no longer return a result to the
+      <code translate="no" dir="ltr">ActivityResultCallback</code>
+      when the
+      <code translate="no" dir="ltr">launch</code>
+      call throws any
+      <code translate="no" dir="ltr">Exception</code>
+      and the callback was registered without a
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia7ff773da287b2d97490bcc553f90020ea9d6067">Ia7ff7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/238350794">b/238350794</a>
+      )
+    </li>
+    <li>
+      From
+      <a href="#1.5.1">
+        Activity
+        <code translate="no" dir="ltr">1.5.1</code>
+      </a>
+      :
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      will now properly dispatch menu calls to
+      <code translate="no" dir="ltr">onPrepareOptionMenu()</code>
+      ,
+      <code translate="no" dir="ltr">onCreateOptionsMenu()</code>
+      and
+      <code translate="no" dir="ltr">onOptionsItemSelected()</code>
+      overrides without the need to call the super function. (
+      <a href="https://android-review.googlesource.com/#/q/Ie33c57e900be51ab49abfdbe5c57407f61553167">Ie33c5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/238057118">b/238057118</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Update</strong></p>
+  <ul>
+    <li>
+      From
+      <a href="#1.5.1">
+        Activity
+        <code translate="no" dir="ltr">1.5.1</code>
+      </a>
+      : The
+      <code translate="no" dir="ltr">Activity</code>
+      library now depends on the
+      <code translate="no" dir="ltr">Lifecycle</code>
+      version
+      <code translate="no" dir="ltr">2.5.1</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If6697c8a96ac9378c29d76a5a26fce8f6ff9d1b1">If6697</a>
+      )
+    </li>
+  </ul>

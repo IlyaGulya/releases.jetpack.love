@@ -1,0 +1,51 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.0.0-beta02
+releaseDate: 2021-03-10
+#language=html
+changelogHtml: |
+  <h3 id="3.0.0-beta02" data-text="Version 3.0.0-beta02" tabindex="-1">Version 3.0.0-beta02</h3>
+  <p>March 10, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.0.0-beta02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/602cf9bff5e74e4355760aa47d3fc73a2e6d779b..52fbd7ed5b07ca4431fa828325a1f8da45b02e51/paging">Version 3.0.0-beta02 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Rx3 extensions now correctly propagate
+      <code translate="no" dir="ltr">@ExperimentalCoroutinesApi</code>
+      Opt-In requirement. Previously they were marked on the
+      <code translate="no" dir="ltr">@get</code>
+      method, which is ignored by the Kotlin Compiler due to: https://youtrack.jetbrains.com/issue/KT-45227 (
+      <a href="https://android-review.googlesource.com/#/q/I5733cdcebf531126d4aa6bef66daefe53a8d7177">I5733c</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Enforce restrictions on public usage of experimental APIs (
+      <a href="https://android-review.googlesource.com/#/q/I6aa29518ed4d6a3821d921d2ae1a300e31183dcc">I6aa29</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/174531520">b/174531520</a>
+      )
+    </li>
+    <li>
+      Fixed a bug causing
+      <code translate="no" dir="ltr">PagingState</code>
+      to always be
+      <code translate="no" dir="ltr">null</code>
+      when remote refresh is called.
+    </li>
+    <li>
+      Fixed a bug where empty pages returned by PagingSource could prevent Paging from fetching again to fulfill
+      <code translate="no" dir="ltr">prefetchDistance</code>
+      causing Paging to get “stuck”.
+    </li>
+  </ul>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>Users using PagingSource provided by Room should upgrade to 2.3.0-beta03, which fixes a critical threading bug that could cause Paging to crash due to creating PagingSource on the main thread.</span>
+  </aside>

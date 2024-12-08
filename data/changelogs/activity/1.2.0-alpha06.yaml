@@ -1,0 +1,61 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.2.0-alpha06
+releaseDate: 2020-06-10
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha06" data-text="Version 1.2.0-alpha06" tabindex="-1">Version 1.2.0-alpha06</h3>
+  <p>June 10, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.2.0-alpha06</code>
+    and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.2.0-alpha06</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ccc6e95c574b66563952c33fbe26888b93a0e0cb..bea4dafe72ba1ec91a105da3128954d5ed7f1cd0/activity">Version 1.2.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      You can now destructure the
+      <code translate="no" dir="ltr">ActivityResult</code>
+      class in kotlin to directly access the
+      <code translate="no" dir="ltr">requestCode</code>
+      and
+      <code translate="no" dir="ltr">intent</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/157212935">b/157212935</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ActivityResultLauncher</code>
+      now allows you to get the
+      <code translate="no" dir="ltr">ActivityResultContract</code>
+      that was used to register the launcher. (
+      <a href="https://issuetracker.google.com/issues/156875743">b/156875743</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <em>Breaking change</em>
+      : The
+      <code translate="no" dir="ltr">invoke()</code>
+      method on
+      <code translate="no" dir="ltr">ActivityResultRegistry</code>
+      has been renamed to
+      <code translate="no" dir="ltr">onLaunch()</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/157496491">b/157496491</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">OpenMultipleDocuments</code>
+      contract now returns an empty list instead of
+      <code translate="no" dir="ltr">null</code>
+      to the registered callback if no result is returned. (
+      <a href="https://issuetracker.google.com/issues/157348014">b/157348014</a>
+      )
+    </li>
+  </ul>

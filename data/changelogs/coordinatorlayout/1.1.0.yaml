@@ -1,0 +1,55 @@
+libraryId: coordinatorlayout
+groupId: androidx.coordinatorlayout
+version: 1.1.0
+releaseDate: 2019-12-04
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0" data-text="Version 1.1.0" tabindex="-1">Version 1.1.0</h3>
+  <p>December 4, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.coordinatorlayout:coordinatorlayout:1.1.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b98f40c889e3083050d4270e953874921fde8e52..7f141e51dccf55d6c8d368dac9afaf06c11a8108/coordinatorlayout">Version 1.1.0 contains these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.0.0</strong></p>
+  <ul>
+    <li>
+      <a href="https://android-review.googlesource.com/c/737190">aosp/737190</a>
+      : CoordinatorLayout now implements
+      <code translate="no" dir="ltr">NestedScrollingParent3</code>
+      and
+      <code translate="no" dir="ltr">CoordinatorLayout.Behavior</code>
+      implements a new overload of
+      <code translate="no" dir="ltr">onNestedScroll</code>
+      to enable
+      <code translate="no" dir="ltr">Behaviors</code>
+      to be able to report how much scroll distance they consume to nested scrolling children (during the
+      <code translate="no" dir="ltr">dispatchNestedScroll()</code>
+      /
+      <code translate="no" dir="ltr">onNestedScroll()</code>
+      pass). The previously existing
+      <code translate="no" dir="ltr">onNestedScroll(CoordinatorLayout, V, View, int, int, int, int, int)</code>
+      has been deprecated in favor of the new
+      <code translate="no" dir="ltr">onNestedScroll(CoordinatorLayout, V, View, int, int, int, int, int, int[])</code>
+      and
+      <code translate="no" dir="ltr">Behavior</code>
+      implementations should be updated accordingly. If developer code currently overrides
+      <code translate="no" dir="ltr">CoordinatorLayout#onNestedScroll(View, int, int, int, int, int)</code>
+      , it will likely no longer be called and
+      <code translate="no" dir="ltr">CoordinatorLayout#onNestedScroll(View, int, int, int, int, int, int[])</code>
+      should be overridden instead.
+    </li>
+    <li>
+      Exposed CoordinatorLayout to accessibility services (
+      <a href="https://android-review.googlesource.com/c/1056175">aosp/1056175</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">CoordinatorLayout.DefaultBehavior</code>
+      annotation is deprecated. Use the
+      <code translate="no" dir="ltr">CoordinatorLayout.AttachedBehavior</code>
+      interface instead.
+    </li>
+  </ul>

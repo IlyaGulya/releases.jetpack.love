@@ -1,0 +1,105 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.0.0-alpha10
+releaseDate: 2020-12-02
+#language=html
+changelogHtml: |
+  <h3 id="3.0.0-alpha10" data-text="Version 3.0.0-alpha10" tabindex="-1">Version 3.0.0-alpha10</h3>
+  <p>December 2, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.0.0-alpha10</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/2d49f9fa892a0d067580a871f3aa0cd6764f4c3b..38a668d3ef95f40ad28d6e735a2c3eb95ae4cf63/paging">Version 3.0.0-alpha10 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <p>
+        The deprecated
+        <code translate="no" dir="ltr">dataRefreshFlow</code>
+        and
+        <code translate="no" dir="ltr">dataRefreshListener</code>
+        APIs have been removed as they are redundant with loadStateFlow / Listener updates. For those migrating, the loadStateFlow equivalent is:
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-n">loadStateFlow</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">distinctUntilChangedBy</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nb">it</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">refresh</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">filter</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nb">it</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">refresh</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">is</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">NotLoading</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+      <p>
+        (
+        <a href="https://android-review.googlesource.com/#/q/Ib55709c3f560711200a9eac5a4931d57c76053af">Ib5570</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/173530908">b/173530908</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      endOfPaginationReached for RemoteMediator
+      <code translate="no" dir="ltr">REFRESH</code>
+      now correctly propagate to LoadState updates and prevents remote
+      <code translate="no" dir="ltr">APPEND</code>
+      and
+      <code translate="no" dir="ltr">PREPEND</code>
+      from triggering. (
+      <a href="https://android-review.googlesource.com/#/q/I94a3f787182eee6c5875b11e8c861d5e6e6e9e22">I94a3f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/155290248">b/155290248</a>
+      )
+    </li>
+    <li>
+      Presenting an empty list either due to empty initial page or heavy filtering will no longer prevent Paging from kicking off
+      <code translate="no" dir="ltr">PREPEND</code>
+      or
+      <code translate="no" dir="ltr">APPEND</code>
+      loads. (
+      <a href="https://android-review.googlesource.com/#/q/I3e702b6daf002f6dd3010c9b6f8867caf95135e0">I3e702</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/168169730">b/168169730</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">getRefreshKey</code>
+      does not get called on subsequent generations of PagingSource when invalidations occur rapidly. (
+      <a href="https://android-review.googlesource.com/#/q/I4546070c31ed73fd285754707b8b480cba206b93">I45460</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170027530">b/170027530</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      A new abstract class InvalidatingPagingSourceFactory has been added with an
+      <code translate="no" dir="ltr">.invalidate()</code>
+      API that forwards invalidate to all of the PagingSources it emits. Thanks to
+      <a href="https://github.com/claraf3">@claraf3</a>
+      ! (
+      <a href="https://android-review.googlesource.com/#/q/Ie71fc1cc974dbc72f42572234ea9053e31b44039">Ie71fc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/160716447">b/160716447</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      Headers and footers from the .insertSeparators() transform may not appear immediately when using RemoteMediator
+      <a href="https://issuetracker.google.com/172254056">b/172254056</a>
+    </li>
+    <li>
+      Using RemoteMediator can cause remote
+      <code translate="no" dir="ltr">LoadState</code>
+      to get stuck if invalidation and
+      <code translate="no" dir="ltr">PagingSource.load(LoadParams.Refresh(...))</code>
+      completes before
+      <code translate="no" dir="ltr">RemoteMediator.load()</code>
+      returns
+      <a href="https://issuetracker.google.com/173717820">b/173717820</a>
+    </li>
+  </ul>

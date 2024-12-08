@@ -1,0 +1,47 @@
+libraryId: sqlite
+groupId: androidx.sqlite
+version: 2.3.0
+releaseDate: 2023-01-11
+#language=html
+changelogHtml: |
+  <h3 id="2.3.0" data-text="Version 2.3.0" tabindex="-1">Version 2.3.0</h3>
+  <p>January 11, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.sqlite:sqlite:2.3.0</code>
+    ,
+    <code translate="no" dir="ltr">androidx.sqlite:sqlite-framework:2.3.0</code>
+    , and
+    <code translate="no" dir="ltr">androidx.sqlite:sqlite-ktx:2.3.0</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/12dae2c26b3e222a26e61ec6ce33cc8dcda28436..b06d4b8c52b58338b7e3a9a32bd153c0c464d224/sqlite">Version 2.3.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 2.2.0</strong></p>
+  <ul>
+    <li>
+      The library group
+      <code translate="no" dir="ltr">androidx.sqlite</code>
+      sources has been converted from Java to Kotlin. Be aware that because
+      <code translate="no" dir="ltr">androidx.sqlite</code>
+      had some missing nullability annotations you might experience source incompatibility errors if your sources are in Kotlin and the code was inferring the wrong nullability. Moreover, certain getter methods were converted to properties requiring the property access syntax on Kotlin files. Please file a bug if there are any significant incompatibilities. (
+      <a href="https://b.corp.google.com/issues/240707042">b/240707042</a>
+      )
+    </li>
+    <li>
+      Add an API in
+      <code translate="no" dir="ltr">SupportSQLite's</code>
+      configuration to allow data loss during the recovery mechanism. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1971361">I1b830</a>
+      ,
+      <a href="https://b.corp.google.com/issues/215592732">b/215592732</a>
+      )
+    </li>
+    <li>
+      Added API for multi-process lock and usage at the
+      <code translate="no" dir="ltr">FrameworkSQLite*</code>
+      level, to protect multi-process 1st time database creation and migrations. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1797472">Ied267</a>
+      ,
+      <a href="https://b.corp.google.com/issues/193182592">b/193182592</a>
+      )
+    </li>
+  </ul>

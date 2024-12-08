@@ -1,0 +1,68 @@
+libraryId: work
+groupId: androidx.work
+version: 1.0.0-alpha07
+releaseDate: 2018-08-16
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha07" data-text="Version 1.0.0-alpha07" tabindex="-1">Version 1.0.0-alpha07</h3>
+  <p>August 16, 2018</p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>Fixed a potential SQL query with negative limits that could return an unbounded number of results.</li>
+    <li>
+      Work that has finished execution now correctly cancels all pending copies of that work in other Schedulers. This led to exceeding the
+      <code translate="no" dir="ltr">JobScheduler</code>
+      jobs limit.
+      <a href="https://issuetracker.google.com/111569265">b/111569265</a>
+    </li>
+    <li>
+      Fixed a
+      <code translate="no" dir="ltr">ConcurrentModificationException</code>
+      in
+      <code translate="no" dir="ltr">ConstraintTracker</code>
+      .
+      <a href="https://issuetracker.google.com/112272753">b/112272753</a>
+    </li>
+    <li>
+      Changed return type annotations of
+      <code translate="no" dir="ltr">Data.getBooleanArray(String)</code>
+      and
+      <code translate="no" dir="ltr">Data.getIntArray(String)</code>
+      to
+      <code translate="no" dir="ltr">@Nullable</code>
+      instead of
+      <code translate="no" dir="ltr">@NonNull</code>
+      .
+      <a href="https://issuetracker.google.com/112275229">b/112275229</a>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">Worker</code>
+      now extends a new class,
+      <code translate="no" dir="ltr">NonBlockingWorker</code>
+      . This does not affect any current usage. In the future,
+      <code translate="no" dir="ltr">NonBlockingWorker</code>
+      will become a fully supported entity for custom threading solutions.
+    </li>
+    <li>
+      Changed return type annotations of
+      <code translate="no" dir="ltr">Data.getBooleanArray(String)</code>
+      and
+      <code translate="no" dir="ltr">Data.getIntArray(String)</code>
+      to
+      <code translate="no" dir="ltr">@Nullable</code>
+      instead of
+      <code translate="no" dir="ltr">@NonNull</code>
+      .
+      <a href="https://issuetracker.google.com/112275229">b/112275229</a>
+    </li>
+    <li>
+      Kotlin extensions: deprecated
+      <code translate="no" dir="ltr">Map.toWorkData()</code>
+      and added a top-level
+      <code translate="no" dir="ltr">workDataOf(vararg Pair&lt;String, Any?&gt;)</code>
+      to be more consistent with existing APIs.
+    </li>
+  </ul>

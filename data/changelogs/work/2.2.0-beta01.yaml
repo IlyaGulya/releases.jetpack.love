@@ -1,0 +1,42 @@
+libraryId: work
+groupId: androidx.work
+version: 2.2.0-beta01
+releaseDate: 2019-07-17
+#language=html
+changelogHtml: |
+  <h3 id="2.2.0-beta01" data-text="Version 2.2.0-beta01" tabindex="-1">Version 2.2.0-beta01</h3>
+  <p>July 17, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.2.0-beta01</code>
+    is released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/41741982b76f2249a5fc71f2b2fa86aed5e6b6df..32988b2236646245cde4cd158dedbf8c6b2fd0c2/work">here</a>
+    .
+  </p>
+  <aside class="caution">
+    <strong>Caution:</strong>
+    <span>
+      This version contains an unintentional dependency on
+      <code translate="no" dir="ltr">org.jacoco:org.jacoco.agent:0.8.3</code>
+      , which can cause a build failure. Please update to the latest version, in which this dependency has been removed.
+    </span>
+  </aside>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">androidx.work:work-gcm:2.2.0-beta01</code>
+      is a new Maven artifact which supports the use of GCMNetworkManager as a scheduler when Google Play Services is available for API levels &lt;= 22. This is an
+      <em>optional</em>
+      dependency that helps with more reliable and performant background processing on older API versions. If your app uses Google Play Services, add this dependency to your gradle file to automatically get GCMNetworkManager support. If Play Services is not available, WorkManager will continue to fall back to AlarmManager on older devices.
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Fix for
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      when tracking network state on Nvidia Shield K1 tablets. (
+      <a href="https://android-review.googlesource.com/1010188">aosp/1010188</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_210_5" data-text="Version 2.1.0" tabindex="-1">Version 2.1.0</h2>

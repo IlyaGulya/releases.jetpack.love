@@ -1,0 +1,112 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.6.0-alpha06
+releaseDate: 2023-09-20
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-alpha06" data-text="Version 1.6.0-alpha06" tabindex="-1">Version 1.6.0-alpha06</h3>
+  <p>September 20, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.6.0-alpha06</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9ce75ea1baa2af10dda8f787f69c40c6654bcac1..91bb8c1f81dcb031bda00fcd8e55f1e890b56f06/compose/foundation">Version 1.6.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      New Composable wrappers for
+      <code translate="no" dir="ltr">SurfaceView</code>
+      and
+      <code translate="no" dir="ltr">TextureView: GraphicsSurface()</code>
+      and
+      <code translate="no" dir="ltr">EmbeddedGraphicsSurface()</code>
+      . It is an experimental API and is subject to changes and modifications. (
+      <a href="https://android-review.googlesource.com/#/q/I9ddb2355e01aacb20b9e595c7d58c7e972f63630">I9ddb2</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Modifier.magnifier()</code>
+      is now a stable API. This includes the removal of
+      <code translate="no" dir="ltr">MagnifierStyle</code>
+      in favor of inline parameters in the modifier itself. (
+      <a href="https://android-review.googlesource.com/#/q/I83bec09bc5ec419cb007d6f1e1340fba99f122d6">I83bec</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/298381260">b/298381260</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/262367109">b/262367109</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261438887">b/261438887</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">updateCurrentPage</code>
+      and
+      <code translate="no" dir="ltr">updateTargetPage</code>
+      in
+      <code translate="no" dir="ltr">ScrollScope</code>
+      , these are the last pieces necessary to allowing customization of animated scroll through
+      <code translate="no" dir="ltr">PagerState.scroll</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I9cad5789ef0d48da46b0e38fbc04bd9ac740861e">I9cad5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/267744105">b/267744105</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/243786897">b/243786897</a>
+      )
+    </li>
+    <li>
+      Remove density from
+      <code translate="no" dir="ltr">SnapFlingBehavior</code>
+      . All implementations of
+      <code translate="no" dir="ltr">SnapLayoutInfoProvider</code>
+      already have a way of accessing the density, the receiver scope could be removed which will lead to a less complex implementation of both
+      <code translate="no" dir="ltr">SnapFlingBehavior</code>
+      and
+      <code translate="no" dir="ltr">SnapLayoutInfoProviders</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I153c358968d8f4bfec027f0568f29c887aa06d53">I153c3</a>
+      )
+    </li>
+    <li>
+      More modifiers marked as stable. (
+      <a href="https://android-review.googlesource.com/#/q/I56af1d5a1f7e93a0e228a57e6631957ff94f82a3">I56af1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/298046462">b/298046462</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">SnapStepSize</code>
+      from
+      <code translate="no" dir="ltr">SnapLayoutInfoProvider</code>
+      . The calculation should be done using the Layout information and provided through the approach or snapping offsets. (
+      <a href="https://android-review.googlesource.com/#/q/If320cd680d318151d7c83f1f1df1878385c56078">If320c</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      Compose now uses non-linear font scaling for better readability and accessibility. When font scale &gt; 100% in system settings, small text will increase in size normally, but already-large text will only increase a little bit. Also, line heights defined in SP will automatically adjust to stay proportional to the 100% scale intended height. See the
+      <a href="https://goo.gle/font-scaling-best-practices">Font Scaling Best Practices</a>
+      for more info. (
+      <a href="https://android-review.googlesource.com/#/q/I115181d1e91dff483c68aeb781e7cae4609e73d4">I11518</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Remove the use of
+      <code translate="no" dir="ltr">rememberSaveable</code>
+      for tooltips. (
+      <a href="https://android-review.googlesource.com/#/q/Icc131c852cc3b3c722954aecb0a002711e13ca96">Icc131</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/299500338">b/299500338</a>
+      )
+    </li>
+  </ul>

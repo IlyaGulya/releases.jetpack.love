@@ -1,0 +1,67 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.1.0-alpha01
+releaseDate: 2020-06-10
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha01" data-text="Version 1.1.0-alpha01" tabindex="-1">Version 1.1.0-alpha01</h3>
+  <p>June 10, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-common:1.1.0-alpha01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-gradle-plugin:1.1.0-alpha01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-junit4:1.1.0-alpha01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e4841066bef97212f3eeb84f894d36dc5a25f756..945594abd75f83bd14daf4fbcd8621796161281e/benchmark">Version 1.1.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features of 1.1</strong></p>
+  <ul>
+    <li>Allocation Metric - Benchmarks now run an additional phase after warmup and timing, capturing allocation counts. Allocations can cause performance problems on older versions of the platform (140ns in O became 8ns in M - measured on Nexus5X, with locked clocks). This metric is displayed in Android Studio console output, as well as in the</li>
+    <li>
+      <a href="/benchmark#profiling">Profiling support</a>
+      - You can now capture profiling data for a benchmark run, to inspect why your code may be running slowly. Benchmark supports capturing either method tracing, or method sampling from ART. These files can be inspected with the Profiler inside Android Studio using
+      <em>File &gt; Open</em>
+      .
+    </li>
+    <li>
+      The Benchmark Gradle plugin now provides defaults for simpler setup:
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">testBuildType</code>
+          is set to release by default, to avoid using dependencies with code coverage built-in. The release buildType is also configured as the default buildType, which allows Android Studio to automatically select the correct build variant when opening a project for the first time. (
+          <a href="https://issuetracker.google.com/issues/138808399">b/138808399</a>
+          )
+        </li>
+        <li>
+          <code translate="no" dir="ltr">signingConfig.debug</code>
+          is used as the default signing config (
+          <a href="https://issuetracker.google.com/issues/153583269">b/153583269</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p>** Bug Fixes **</p>
+  <ul>
+    <li>
+      Significantly reduced the warmup transition overhead, where the first measurement for each benchmark was artificially higher than others. This issue was more pronounced in very small benchmarks (1 microsecond or less). (
+      <a href="https://issuetracker.google.com/issues/142058671">b/142058671</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">InstrumentationResultParser</code>
+      error printed for each benchmark when running from command line. (
+      <a href="https://android-review.googlesource.com/#/q/I64988447a89d7e0314cedabf87812eaf6c413545">I64988</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/154248456">b/154248456</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>Command line, gradle invocations of Benchmark do not print out results directly. You can work around this by either running through Studio, or parsing the JSON output file for results.</li>
+    <li>Benchmark reporting fails to pull the report from devices that have an app installed with an applicationId ending with either “android” or “download” (case insensitive). Users hitting this issue should upgrade the Android Gradle Plugin to 4.2-alpha01 or later.</li>
+  </ul>
+  <h2 id="version_100_2" data-text="Version 1.0.0" tabindex="-1">Version 1.0.0</h2>

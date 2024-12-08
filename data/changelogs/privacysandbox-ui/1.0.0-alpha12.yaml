@@ -1,0 +1,63 @@
+libraryId: privacysandbox-ui
+groupId: androidx.privacysandbox
+version: 1.0.0-alpha12
+releaseDate: 2024-12-11
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha12" data-text="Version 1.0.0-alpha12" tabindex="-1">Version 1.0.0-alpha12</h3>
+  <p>December 11, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.privacysandbox.ui:ui-client:1.0.0-alpha12</code>
+    ,
+    <code translate="no" dir="ltr">androidx.privacysandbox.ui:ui-core:1.0.0-alpha12</code>
+    , and
+    <code translate="no" dir="ltr">androidx.privacysandbox.ui:ui-provider:1.0.0-alpha12</code>
+    are released. Version 1.0.0-alpha12 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6f09cf2ae979e48fdb19485f757a033e4a34bb82..46295bc0b75a16f452e8e0090e8de41073d4dbb6/privacysandbox/ui">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Replaced
+      <code translate="no" dir="ltr">StateChangedListener</code>
+      with
+      <code translate="no" dir="ltr">SandboxedSdkViewEventListener</code>
+      . This event listener can be used to listen to UI displayed, session closed and session error events.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">SandboxedSdkViewEventListener</code>
+      for listening to UI events inside
+      <code translate="no" dir="ltr">SandboxedSdkView</code>
+      . This version also removes
+      <code translate="no" dir="ltr">StateChangedListener</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id71ea0a13bf1813547fa58197173dba40ca9c7d1">Id71ea</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Removed clipping bounds logic from
+      <code translate="no" dir="ltr">SandboxedSdkView</code>
+      . This will cause UX issues if
+      <code translate="no" dir="ltr">SandboxedSdkView</code>
+      is placed in a scrollable container and
+      <code translate="no" dir="ltr">orderProviderUiAboveClientUi(false)</code>
+      has not been called (until the underlying framework bug is fixed). (
+      <a href="https://android-review.googlesource.com/#/q/Id420d880865a6debe6d595dfc2e6e9cd3316b236">Id420d</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">RemoteException</code>
+      that could occur if the remote process dies while using
+      <code translate="no" dir="ltr">DelegatingSandboxedUiAdapter</code>
+      .
+    </li>
+  </ul>

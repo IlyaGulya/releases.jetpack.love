@@ -1,0 +1,428 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.3.0
+releaseDate: 2024-08-21
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0" data-text="Version 1.3.0" tabindex="-1">Version 1.3.0</h3>
+  <p>August 21, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.3.0</code>
+    is released. Version 1.3.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/2f785440e93a6465ac53828357b5f71f0ad28329..392c9f0664b76c0f1bc8ff14f591f1d7d65a4476/benchmark">these commits</a>
+    .
+  </p>
+  <p><strong>Microbenchmark changes since 1.2.0</strong></p>
+  <ul>
+    <li>
+      Method tracing is on by default in microbenchmarks when running on most devices
+      <ul>
+        <li>Method tracing runs as a separate phase, after measurements - this enables accurate measurements and method traces to both be output from a single benchmark run</li>
+        <li>Method tracing on some Android OS and ART versions will affect later measurement phases - on these versions, method tracing is off by default and a warning is printed to Studio output</li>
+      </ul>
+    </li>
+    <li>
+      Main thread benchmarks and ANRs
+      <ul>
+        <li>
+          Added
+          <code translate="no" dir="ltr">measureRepeatedOnMainThread</code>
+          for UI thread benchmarks (e.g. those that interact with Compose/View UIs) to avoid ANRs when running for many seconds.
+        </li>
+        <li>
+          Method traces are skipped if expected to overrun the ANR avoidance deadline. Set
+          <code translate="no" dir="ltr">androidx.benchmark.profiling.skipWhenDurationRisksAnr</code>
+          to false to disable this behavior (not recommended for CI runs, as ANRs can cause problem in long CI runs).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Minification
+      <ul>
+        <li>Embedded proguard rules to improve microbenchmarking with minification enabled</li>
+        <li>
+          Minification/R8 in a library module requires AGP 8.3, and can be enabled via
+          <code translate="no" dir="ltr">android.buildTypes.release.androidTest.enableMinification</code>
+          in your
+          <code translate="no" dir="ltr">build.gradle</code>
+        </li>
+        <li>
+          Experimental
+          <code translate="no" dir="ltr">BlackHole.consume()</code>
+          API added to prevent dead code elimination (
+          <a href="https://android-review.git.corp.google.com/c/platform/frameworks/support/+/3084471">If6812</a>
+          ,
+          <a href="https://b.corp.google.com/issues/286091643">b/286091643</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Metrics
+      <ul>
+        <li>
+          Experimental cpu event counter feature (metrics from
+          <code translate="no" dir="ltr">perf_event_open</code>
+          , which requires root on most versions of the platform), access via
+          <code translate="no" dir="ltr">InstrumentationArgument</code>
+          <code translate="no" dir="ltr">androidx.benchmark.cpuEventCounter.enable</code>
+          (can be set to
+          <code translate="no" dir="ltr">true</code>
+          ), and
+          <code translate="no" dir="ltr">androidx.benchmark.cpuEventCounter.events</code>
+          can be set e.g. to (
+          <code translate="no" dir="ltr">Instructions,CpuCycles</code>
+          ). This should be supported on some userdebug emulators, but support has not been tested across all available emulators
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>MACRObenchmark changes since 1.2.0</strong></p>
+  <ul>
+    <li>
+      Method tracing overhaul for macrobenchmarks.
+      <ul>
+        <li>
+          Now method traces are scoped to the duration of the
+          <code translate="no" dir="ltr">measureBlock</code>
+          , and can capture multiple sessions if the process starts multiple times.
+        </li>
+        <li>
+          Previously, method tracing would only work for
+          <code translate="no" dir="ltr">StartupMode.COLD</code>
+          benchmarks, and capture nothing for
+          <code translate="no" dir="ltr">measureBlocks</code>
+          that didn't restart the target process
+        </li>
+        <li>
+          Fixed method traces flush in macrobenchmark, so that method traces should be fully captured and valid, even on slower devices. (
+          <a href="https://android-review.googlesource.com/#/q/I6349a48dca4116ac9b481882395ee630785f6181">I6349a</a>
+          ,
+          <a href="https://b.corp.google.com/issues/329904950">b/329904950</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Correctly dump ART profile during individual
+      <code translate="no" dir="ltr">warmUp</code>
+      iterations when process is killed so
+      <code translate="no" dir="ltr">CompilationMode.Partial(warmup=N)</code>
+      measurements are more accurate. (
+      <a href="https://android-review.googlesource.com/#/q/I17923a8bc7d37fa8472910fa33f840f182d1dbff">I17923</a>
+      )
+    </li>
+    <li>
+      Drop Shader broadcast failure message
+      <ul>
+        <li>Added debugging suggestions to drop shader broadcast failure message</li>
+        <li>
+          Add two instrumentation arguments for overriding shader dropping behavior to workaround crashes when benchmarking apps without
+          <code translate="no" dir="ltr">ProfileInstaller</code>
+          1.3:
+          <ul>
+            <li>
+              <code translate="no" dir="ltr">androidx.benchmark.dropShaders.enable=true/false</code>
+              : can be used to skip all shader dropping (including that done in
+              <code translate="no" dir="ltr">StartupMode.Cold</code>
+              launches), esp when benchmarking apps that don't yet use profileinstaller 1.3
+            </li>
+            <li>
+              <code translate="no" dir="ltr">androidx.benchmark.dropShaders.throwOnFailure=true/false</code>
+              : can be used to tolerate failures when trying to drop shaders, for example when benchmarking apps without profileinstaller 1.3 (
+              <a href="https://android-review.googlesource.com/#/q/I4f57309332981ee79d082237ebaca887f39417b3">I4f573</a>
+              )
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      Added experimental
+      <code translate="no" dir="ltr">MacrobenchmarkRule#measureRepeated</code>
+      variant which takes a custom
+      <code translate="no" dir="ltr">PerfettoConfig</code>
+      for fully customized Perfetto trace recording. Note that incorrectly configured configs may cause built in Metric classes to fail. (
+      <a href="https://android-review.googlesource.com/#/q/Idfd3d0c071005f04f8be9975c6379e6095416775">Idfd3d</a>
+      ,
+      <a href="https://b.corp.google.com/issues/309841164">b/309841164</a>
+      ,
+      <a href="https://b.corp.google.com/issues/304038384">b/304038384</a>
+      )
+    </li>
+    <li>
+      Cancel background dexopt jobs before running a Macrobenchmark to reduce interference. (
+      <a href="https://android-review.googlesource.com/#/q/I989ed4f9e8384734f2fd16da7d6817f8dd1ee6cd">I989ed</a>
+      )
+    </li>
+    <li>
+      Macrobenchmark now waits for 1 second for the target application to flush an ART profile (previously it waited for 500 ms). (
+      <a href="https://android-review.googlesource.com/#/q/I85a50e775f8b997c9a69c7a40d1e2b59561a10b1">I85a50</a>
+      ,
+      <a href="https://b.corp.google.com/issues/316082056">b/316082056</a>
+      )
+    </li>
+    <li>
+      <a href="https://developer.android.com/reference/kotlin/androidx/benchmark/macro/TraceSectionMetric">TraceSectionMetric</a>
+      overhaul
+      <ul>
+        <li>
+          <strong>Note</strong>
+          :
+          <code translate="no" dir="ltr">TraceSectionMetric</code>
+          changes below can affect outputs in CI usage, and may create discontinuities, or break parsing
+        </li>
+        <li>Sum is now the default, as most usage of this metric is for repeated events, and first would discard data in these cases</li>
+        <li>Changed to be more customizable, with more available modes</li>
+        <li>Mode names are now embedded in metric output name (in Studio and JSON)</li>
+        <li>
+          Now supports slices created using
+          <code translate="no" dir="ltr">Trace.{begin|end}AsyncSection</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      Metrics
+      <ul>
+        <li>
+          Power - Added
+          <code translate="no" dir="ltr">PowerMetric.deviceSupportsHighPrecisionTracking</code>
+          ,
+          <code translate="no" dir="ltr">PowerMetric.deviceBatteryHasMinimumCharge()</code>
+          and
+          <code translate="no" dir="ltr">PowerMetric.deviceSupportsPowerEnergy()</code>
+        </li>
+        <li>
+          Renamed
+          <code translate="no" dir="ltr">Metric.getResult</code>
+          to
+          <code translate="no" dir="ltr">getMeasurements</code>
+          to match return type
+        </li>
+        <li>
+          Added log.w / exception labels to all startup detection failures. This does not change current behavior (so some errors throw, and others silently fail to detect the startup), just makes it more understandable. Generally the ones that
+          <code translate="no" dir="ltr">Log.w()</code>
+          and fail to report startup metrics are those where non-frame events are missing, exceptions are thrown when startup is detected except for frame timing information (from UI/RT slices). (
+          <a href="https://android-review.googlesource.com/#/q/Id240f7698dfb977457362a137f0070e73dc2495c">Id240f</a>
+          ,
+          <a href="https://b.corp.google.com/issues/329145809">b/329145809</a>
+          )
+        </li>
+        <li>
+          Added
+          <code translate="no" dir="ltr">frameCount</code>
+          measurement to
+          <code translate="no" dir="ltr">FrameTimingMetric</code>
+          to aid in discovery of scenarios where measurements change because the number of frames produced changed (new animations added, invalidation issues fixed). (
+          <a href="https://android-review.googlesource.com/#/q/I1e5aac6e28546cb5a9e1714ceac342c43e3a444c">I1e5aa</a>
+          )
+        </li>
+        <li>
+          Clarified that
+          <code translate="no" dir="ltr">frameOverrunMs</code>
+          is the preferred metric for tracking when available in docs, and why. (
+          <a href="https://android-review.googlesource.com/#/q/I1874977e4a9e8c0bebde86a7f6159d5730a26c47">I18749</a>
+          ,
+          <a href="https://b.corp.google.com/issues/329478323">b/329478323</a>
+          )
+        </li>
+        <li>
+          Fixes issue where unterminated frames at the beginning and end of the trace could be paired together, which would incorrectly report as a single extremely long frame. (
+          <a href="https://android-review.googlesource.com/#/q/I393531f8cf983b2700c419c00a9c7c47ec382e67">I39353</a>
+          ,
+          <a href="https://b.corp.google.com/issues/322232828">b/322232828</a>
+          )
+        </li>
+        <li>
+          Improve
+          <code translate="no" dir="ltr">FrameTimingMetric</code>
+          error when frames aren't produced, and always output link to trace when failing metric parsing to assist in diagnosing problem. (
+          <a href="https://android-review.googlesource.com/#/q/I956b90505fbd72a80dc00ad2214420f4d3957659">I956b9</a>
+          )
+        </li>
+        <li>
+          Fixed crash in
+          <code translate="no" dir="ltr">FrameTimingMetric</code>
+          failing to parse frame id, especially on certain OEM devices. (
+          <a href="https://android-review.googlesource.com/#/q/Ia24bc3c90b317252f579cc2425547f034ef96ef8">Ia24bc</a>
+          ,
+          <a href="https://b.corp.google.com/issues/303823815">b/303823815</a>
+          ,
+          <a href="https://b.corp.google.com/issues/306235276">b/306235276</a>
+          )
+        </li>
+        <li>
+          Relaxed strictness of checks in
+          <code translate="no" dir="ltr">FrameMetrics</code>
+          , and added more detail to error messages. (
+          <a href="https://android-review.googlesource.com/#/q/Iadededa9b5721f1e68534a0457c3dfc2f8c91b0f">Iadede</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Baseline Profile capture / Gradle plugin changes since 1.2.0</strong></p>
+  <ul>
+    <li>Increased max recommended version of AGP to 9.0.0-alpha01.</li>
+    <li>
+      Ensure
+      <code translate="no" dir="ltr">mergeArtProfile</code>
+      and
+      <code translate="no" dir="ltr">mergeStartupProfile</code>
+      tasks always wait for baseline profile generation. (
+      <a href="https://android-review.git.corp.google.com/q/I623d65b8fedc7abb1d22fb2ca016582703f51176">I623d6</a>
+      ,
+      <a href="https://b.corp.google.com/issues/343086054">b/343086054</a>
+      )
+    </li>
+    <li>
+      Generating a baseline profile successfully will output a summary of what changed (
+      <a href="https://android-review.googlesource.com/#/q/I824c84553c4c1c0dd5b585f0846093762b938460">I824c8</a>
+      ,
+      <a href="https://b.corp.google.com/issues/269484510">b/269484510</a>
+      )
+    </li>
+    <li>
+      Added DSL to disable warnings (
+      <a href="https://android-review.googlesource.com/#/q/Ic4deb86fc3b91a31854053f19581e9798e43cbd6">Ic4deb</a>
+      ,
+      <a href="https://b.corp.google.com/issues/331237001">b/331237001</a>
+      )
+    </li>
+    <li>
+      Fix to ensure benchmarks use generated baseline profiles when
+      <code translate="no" dir="ltr">automaticGenerationDuringBuild</code>
+      is off (
+      <a href="https://android-review.googlesource.com/#/q/Ic144f394c09ec666d4892a4168a2197dc5031039">Ic144f</a>
+      ,
+      <a href="https://b.corp.google.com/issues/333024280">b/333024280</a>
+      )
+    </li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">BaselineProfile</code>
+      gradle plugin property overrides to enable baseline profile generation and benchmarking when customizing a
+      <code translate="no" dir="ltr">nonMinified</code>
+      or benchmark build type. (
+      <a href="https://android-review.googlesource.com/#/q/Ib8f0555001ff719f4b82c35cf50c13b4a3fa308d">Ib8f05</a>
+      ,
+      <a href="https://b.corp.google.com/issues/324837887">b/324837887</a>
+      )
+    </li>
+    <li>
+      Fix for including library baseline profiles in AAR prior to AGP 8.3.0-alpha15. (
+      <a href="https://android-review.googlesource.com/#/q/I1d2af6193d596a43a5f6a05eb15b2b0951523ad4">I1d2af</a>
+      ,
+      <a href="https://b.corp.google.com/issues/313992099">b/313992099</a>
+      )
+    </li>
+    <li>
+      Fixed baseline and startup profile output url at the end of generation task. (
+      <a href="https://android-review.googlesource.com/#/q/I802e5e2b335a1efa0370a0ac3d5e5bc656827f0f">I802e5</a>
+      ,
+      <a href="https://b.corp.google.com/issues/313976958">b/313976958</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Other significant changes since 1.2.0</strong></p>
+  <ul>
+    <li>
+      Trace capture
+      <ul>
+        <li>Reduced EXITCODE 2 error when starting perfetto from an error to logged warning</li>
+        <li>
+          Enable AIDL tracing by default in benchmarks(requires API 28) (
+          <a href="https://android-review.googlesource.com/#/q/Ia0af2a55ac2635db68427845860dc96d93994220">Ia0af2</a>
+          ,
+          <a href="https://b.corp.google.com/issues/341852305">b/341852305</a>
+          )
+        </li>
+        <li>
+          Enable porter tag tracing by default in benchmarks. This captures, for example, wakelock tracepoints. (
+          <a href="https://android-review.googlesource.com/#/q/Icfe44e708991bb03eff2c8df527a6fe9f872fb88">Icfe44</a>
+          ,
+          <a href="https://b.corp.google.com/issues/286551983">b/286551983</a>
+          )
+        </li>
+        <li>
+          Increased trace capture start timeout to avoid crashes when starting tracing on slower devices (
+          <a href="https://android-review.googlesource.com/#/q/I988418daa69ec33343364f7ad7c5fca26a39a5fa">I98841</a>
+          ,
+          <a href="https://b.corp.google.com/issues/329145808">b/329145808</a>
+          )
+        </li>
+        <li>
+          Added public API
+          <code translate="no" dir="ltr">PerfettoTraceProcessor.Session.queryMetrics</code>
+          APIs with JSON, textproto, and proto binary (undecoded) variants. These allow you to query metrics built into
+          <code translate="no" dir="ltr">TraceProcessor</code>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I54d7fb0cfd2d6e448bda78d9397cb96d77a2125b">I54d7f</a>
+          ,
+          <a href="https://b.corp.google.com/issues/304038382">b/304038382</a>
+          )
+        </li>
+        <li>
+          Enable blocking start on Perfetto trace record to reduce risk of missing data at beginning of trace. Only supported on API 33+. (
+          <a href="https://android-review.googlesource.com/#/q/Ie6e417ad248b431ebf6096e2865265d51553be7f">Ie6e41</a>
+          ,
+          <a href="https://b.corp.google.com/issues/310760059">b/310760059</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      JSON output
+      <ul>
+        <li>
+          Added additional information in benchmark context in JSON output:
+          <ul>
+            <li>
+              <code translate="no" dir="ltr">context.artMainlineVersion</code>
+              - integer version of Art mainline module (if present on device,
+              <code translate="no" dir="ltr">-1</code>
+              otherwise)
+            </li>
+            <li>
+              <code translate="no" dir="ltr">context.build.id</code>
+              - Equals
+              <a href="http://android.os.Build.ID">android.os.Build.ID</a>
+            </li>
+            <li>
+              <code translate="no" dir="ltr">context.build.version.codename</code>
+              - Equals
+              <a href="http://android.os.Build.VERSION.CODENAME">android.os.Build.VERSION.CODENAME</a>
+            </li>
+            <li>
+              <code translate="no" dir="ltr">context.build.version.abbreviatedCodename</code>
+              - corresponds to first letter of pre-release codename (including on release builds) (
+              <a href="https://android-review.git.corp.google.com/c/platform/frameworks/support/+/3081738">Ie5020</a>
+              )
+            </li>
+          </ul>
+        </li>
+        <li>
+          Added
+          <code translate="no" dir="ltr">profilerOutput</code>
+          list to JSON output for easier tooling around profiling traces (e.g. Perfetto, Method traces) (
+          <a href="https://android-review.googlesource.com/#/q/I05ddd9af8864fdb79ce076e836699b80fca864e6">I05ddd</a>
+          ,
+          <a href="https://b.corp.google.com/issues/332604449">b/332604449</a>
+          )
+        </li>
+        <li>
+          Added a warning when Android Test Orchestrator is used in benchmark modules, as this will cause per-module output JSON files to be repeatedly overwritten. (
+          <a href="https://android-review.googlesource.com/#/q/Ia1af6a178c9ef1c7e0dd80f735749eb97f416d7e">Ia1af6</a>
+          ,
+          <a href="https://b.corp.google.com/issues/286899049">b/286899049</a>
+          )
+        </li>
+        <li>
+          Throw when filenames are longer than 200 chars to avoid unclear crashes when writing or post-processing files. (
+          <a href="https://android-review.googlesource.com/#/q/I4a5abd3ce0107d4465fd88f9067592a8a06f8e7c">I4a5ab</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>

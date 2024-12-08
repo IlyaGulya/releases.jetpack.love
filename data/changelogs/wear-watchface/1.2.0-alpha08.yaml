@@ -1,0 +1,142 @@
+libraryId: wear-watchface
+groupId: androidx.wear
+version: 1.2.0-alpha08
+releaseDate: 2023-04-19
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha08" data-text="Version 1.2.0-alpha08" tabindex="-1">Version 1.2.0-alpha08</h3>
+  <p>April 19, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.watchface:watchface-*:1.2.0-alpha08</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/87533b4ff06971ed59028936cd9b6da988cd4522..01bd392d5702480f8bfe61a8f8bbbea64cf362a0/wear/watchface">Version 1.2.0-alpha08 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      From Android T, complication providers with the privileged
+      <code translate="no" dir="ltr">com.google.wear.permission.GET_IS_FOR_SAFE_WATCH_FACE</code>
+      may register
+      <code translate="no" dir="ltr">androidx.wear.watchface.complications.datasource.SAFE_WATCH_FACE_SUPPORTED_TYPES</code>
+      metadata which overrides
+      <code translate="no" dir="ltr">android.support.wearable.complications.SUPPORTED_TYPES</code>
+      for safe watch faces. This means a complication provider may choose to serve different types to trusted vs untrusted watchfaces.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Propagation of
+      <code translate="no" dir="ltr">@Deprecated</code>
+      class to property (
+      <a href="https://android-review.googlesource.com/#/q/I882d15d1d0d17f2227262e682d05d9dc7d082e8a">I882d1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/271441831">b/271441831</a>
+      )
+    </li>
+    <li>
+      Value parameter name for
+      <code translate="no" dir="ltr">Enum.valueOf</code>
+      changed (
+      <a href="https://android-review.googlesource.com/#/q/Ia9b89b3c1bd0407c9beac825c49477cdfc9c1f2a">Ia9b89</a>
+      )
+    </li>
+    <li>
+      More thrown exceptions from enum valueOf (
+      <a href="https://android-review.googlesource.com/#/q/I818fed80f3a1af1a97b5b0de7882fb2e1b99ae62">I818fe</a>
+      )
+    </li>
+    <li>
+      We've removed
+      <code translate="no" dir="ltr">renderWatchFaceToSurface</code>
+      in favour of
+      <code translate="no" dir="ltr">createRemoteWatchFaceView</code>
+      which is built on top of SurfaceControlViewHost and allows the caller to embed a view from the watch face, which is rendered when the client calls
+      <code translate="no" dir="ltr">RemoteWatchFaceViewHost#renderWatchFace</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib311dce2ac383a94cb68492f88cde998f808cd87">Ib311d</a>
+      )
+    </li>
+    <li>
+      We've added
+      <code translate="no" dir="ltr">renderWatchFaceToSurface</code>
+      to
+      <code translate="no" dir="ltr">InteractiveWatchFaceClient</code>
+      ,
+      <code translate="no" dir="ltr">HeadlessWatchFaceClient</code>
+      and
+      <code translate="no" dir="ltr">EditorSession</code>
+      . Typically this will be more performant than rendering to a bitmap. (
+      <a href="https://android-review.googlesource.com/#/q/Ieacad76ca5461a512affa11a3811c58b531af86c">Ieacad</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ObservableStateStore</code>
+      has been rename to
+      <code translate="no" dir="ltr">StateStore</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ieb0e23bb8e5a09ad260eac5ebe2579407b4f8c14">Ieb0e2</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">DynamicTypeEvaluator.Builder</code>
+      instead of constructor arguments to allow more optional arguments, including
+      <code translate="no" dir="ltr">ObservableStateStore</code>
+      which now defaults to an empty store. (
+      <a href="https://android-review.googlesource.com/#/q/I6f832cc86bad4e8b226d37e707a8061a5617f4cd">I6f832</a>
+      )
+    </li>
+    <li>
+      Refactored order of parameters in
+      <code translate="no" dir="ltr">DynamicTypeEvaluator</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic1ba4a23722fdde3380903090fb97db6b3cd3af1">Ic1ba4</a>
+      )
+    </li>
+    <li>
+      Executor has been added to the
+      <code translate="no" dir="ltr">DynamicTypeEvaluator.bind</code>
+      methods. (
+      <a href="https://android-review.googlesource.com/#/q/I346ab948e16e89d05f30bcf47bb558995aa26ea2">I346ab</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">startEvaluation</code>
+      method to the
+      <code translate="no" dir="ltr">BoundDynamicType</code>
+      to trigger the evaluation after dynamic type is bound. (
+      <a href="https://android-review.googlesource.com/#/q/I19908be6191614c6f4beae72f576ea016688be21">I19908</a>
+      )
+    </li>
+    <li>
+      Complication providers with the privileged
+      <code translate="no" dir="ltr">com.google.wear.permission.GET_IS_FOR_SAFE_WATCH_FACE</code>
+      may register
+      <code translate="no" dir="ltr">androidx.wear.watchface.complications.datasource.SAFE_WATCH_FACE_SUPPORTED_TYPES</code>
+      metadata which overrides
+      <code translate="no" dir="ltr">android.support.wearable.complications.SUPPORTED_TYPES</code>
+      for safe watch faces. (
+      <a href="https://android-review.googlesource.com/#/q/Id1c73337af3bd44e59b5b6d2e6aaf75de774ccd6">Id1c73</a>
+      )
+    </li>
+    <li>
+      We've renamed
+      <code translate="no" dir="ltr">CustomValueUserStyleSettings2</code>
+      to
+      <code translate="no" dir="ltr">LargeCustomValueUserStyleSettings</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic17ac7042ba7e2b0fc2c29b8d35fc7e70dfb4532">Ic17ac</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">DynamicTypeValueReceiver#onPreUpdate</code>
+      has been removed. (
+      <a href="https://android-review.googlesource.com/#/q/I2dc3582d8e5b586c8c1904ef26fb2f740b3d9d8d">I2dc35</a>
+      )
+    </li>
+  </ul>

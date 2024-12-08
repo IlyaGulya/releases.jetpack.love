@@ -1,0 +1,441 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.0.0-alpha12
+releaseDate: 2021-02-10
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha12" data-text="Version 1.0.0-alpha12" tabindex="-1">Version 1.0.0-alpha12</h3>
+  <p>February 10, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.0.0-alpha12</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6950aab50fe6c9f7e9d97cf865161f2d3999eb9e..9ed3262e0dfca1d352bdbf8f8e10253a61ef6218/compose/ui">Version 1.0.0-alpha12 contains these commits.</a>
+  </p>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      An issue was found in Activity Compose that causes a
+      <code translate="no" dir="ltr">NoSuchMethodError: No static method setContent</code>
+      exception to be thrown by default for Apps that depend on either
+      <code translate="no" dir="ltr">androidx.compose.ui:ui-tooling:1.0.0-alpha12</code>
+      or
+      <code translate="no" dir="ltr">androidx.compose.ui:ui-test-junit4:1.0.0-alpha12</code>
+      , or internally use
+      <code translate="no" dir="ltr">setContent</code>
+      (
+      <a href="https://issuetracker.google.com/issues/179911234">b/179911234</a>
+      ). To fix, add a dependency on
+      <a href="/jetpack/androidx/releases/activity#1.3.0-alpha02"><code translate="no" dir="ltr">androidx.activity:activity-compose:1.3.0-alpha02</code></a>
+      .
+    </span>
+  </aside>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Support for ViewGroups was removed from UiApplier. The Deprecated emitView composables were removed. (
+      <a href="https://android-review.googlesource.com/#/q/Ifb2141153189ac4b0fbd748a23c3de38ed155af7">Ifb214</a>
+      )
+    </li>
+    <li>
+      Modifier.pointerInput now requires remember keys to indicate when the pointer input detection coroutine should restart for new dependencies. (
+      <a href="https://android-review.googlesource.com/#/q/I849cd63912b2d4c86ebe0dd24a7d0e2eb7a4e6d1">I849cd</a>
+      )
+    </li>
+    <li>
+      CompositionReference renamed to CompositionContext (
+      <a href="https://android-review.googlesource.com/#/q/I53fcb2d87d57c95c293108bf80e54c7d17064f24">I53fcb</a>
+      )
+    </li>
+    <li>
+      Bounds has been renamed to DpRect (
+      <a href="https://android-review.googlesource.com/#/q/I4b32a75caa8a5e8a1b5a0051f9041855411876e4">I4b32a</a>
+      )
+    </li>
+    <li>
+      Testing update: hasText() will check for both input and label/hint/placeholder texts in the text field (
+      <a href="https://android-review.googlesource.com/#/q/Iab8030e3c98f05bd6f0ffaf203b8c15acab513bb">Iab803</a>
+      )
+    </li>
+    <li>
+      viewModel() composable and LocalViewModelStoreOwner were moved to androidx.lifecycle.viewmodel.compose. You will now need to add a separate dependency androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha01 in order to use it. (
+      <a href="https://android-review.googlesource.com/#/q/I7a374b76168a6387e585337c131a988bddcb912b">I7a374</a>
+      )
+    </li>
+    <li>
+      Allow nullable action in AccessibilityAction, change action label in AccessibilityAction and CustomAccessibilityAction from CharSequence to String (
+      <a href="https://android-review.googlesource.com/#/q/I0dc82f11f78ebe89be161727feed53e1c2390b72">I0dc82</a>
+      )
+    </li>
+    <li>
+      In order to better match naming conventions with ImageBitmap and ImageVector, ImagePainter has been renamed to BitmapPainter to parallel VectorPainter. (
+      <a href="https://android-review.googlesource.com/#/q/Iba3810ae5cfd6f57442154c93eec500f35ba4ad5">Iba381</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/174565889">b/174565889</a>
+      )
+    </li>
+    <li>
+      Better substring test APIs with substring now as an argument (
+      <a href="https://android-review.googlesource.com/#/q/Icbe78369fe75bc01bfcfa25b8e9ee2ad148fdb96">Icbe78</a>
+      )
+    </li>
+    <li>
+      Added an
+      <code translate="no" dir="ltr">Modifier.focusOrder()</code>
+      that accepts a FocusRequester without specifying a custom focus order a lambda. This is useful when we only need to specify a reference but not a custom focus order for a composable (
+      <a href="https://android-review.googlesource.com/#/q/I4f52aa4697d6c7d23b7aa4f49719e2eb55302920">I4f52a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/179180978">b/179180978</a>
+      )
+    </li>
+    <li>
+      ComponentActivity.setContent has moved to androidx.activity.compose.setContent in the androidx.activity:activity-compose module. (
+      <a href="https://android-review.googlesource.com/#/q/Icf4168e6078b87ce746569a946b2a90274197c72">Icf416</a>
+      )
+    </li>
+    <li>
+      Destructuring and copy() methods have been removed from several classes where they were rarely used. (
+      <a href="https://android-review.googlesource.com/#/q/I267021d3a45314acc9a169f6bbdfbfb4295a448c">I26702</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/178659281">b/178659281</a>
+      )
+    </li>
+    <li>
+      Moved Popup to be platform specific. AndroidPopupProperties has been renamed to PopupProperties, and
+      <code translate="no" dir="ltr">isFocusable</code>
+      has been moved to a
+      <code translate="no" dir="ltr">focusable</code>
+      parameter in
+      <code translate="no" dir="ltr">PopupProperties</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ieeea528d395b4bb37834345e4a06c36eed0ce231">Ieeea5</a>
+      )
+    </li>
+    <li>
+      Moved Dialog to be platform specific. Renamed AndroidDialogProperties to DialogProperties. (
+      <a href="https://android-review.googlesource.com/#/q/I4ef69bc957d579c7d5566bb749057cbde807d6a5">I4ef69</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/179138130">b/179138130</a>
+      )
+    </li>
+    <li>
+      Made LayoutNode internal (
+      <a href="https://android-review.googlesource.com/#/q/I8a7b11b17c33e94b707692b208d15026510f3031">I8a7b1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175103944">b/175103944</a>
+      )
+    </li>
+    <li>
+      Constraints.enforce was replaced with Constraints.constrain. (
+      <a href="https://android-review.googlesource.com/#/q/I8b8ea7898b09ccaa411b9b6ef20a16523e8ba029">I8b8ea</a>
+      )
+    </li>
+    <li>
+      loadFontResource is deprecated. Use fontResource instead. imageResource, loadImageResource, vectorResource, and loadVectorResource are deprecated. Use painterResource instead. (
+      <a href="https://android-review.googlesource.com/#/q/I6b8096508b2280ca49c70a432c5497f386dc570e">I6b809</a>
+      )
+    </li>
+    <li>
+      For performance reasons, ScrollAxisRange semantics now takes lambdas returning Floats instead of direct Float values. (
+      <a href="https://android-review.googlesource.com/#/q/If4a353ef9ac511ce77cf334ccf9a589ecadcac56">If4a35</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/178657186">b/178657186</a>
+      )
+    </li>
+    <li>
+      Added EditableText semantics to mark editable input text of the text field for accessibility and corresponding test methods to check the semantics (
+      <a href="https://android-review.googlesource.com/#/q/I8e07ab8a8f29d5c2a31fb1c979e099303083a38f">I8e07a</a>
+      )
+    </li>
+    <li>
+      Made OwnerLayer/OwnerScope/OwnerSnapshotObserver internal (
+      <a href="https://android-review.googlesource.com/#/q/I4ffafd0d9eaa5204200941609944d540934403e1">I4ffaf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175103944">b/175103944</a>
+      )
+    </li>
+    <li>
+      toIntPx() was renamed to roundToPx(). (
+      <a href="https://android-review.googlesource.com/#/q/I9b7e460fb4b6e72ba65cdd8f5d1165c306461773">I9b7e4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/173502290">b/173502290</a>
+      )
+    </li>
+    <li>
+      IntBounds was renamed to IntRect and the API was improved. (
+      <a href="https://android-review.googlesource.com/#/q/I1f6ff3831e502856f1550ede9c367bf05c5a51b1">I1f6ff</a>
+      )
+    </li>
+    <li>
+      Snapshot API was updated to be more consistent with API guideline as well as hiding internal implementation classes from the public API. (
+      <a href="https://android-review.googlesource.com/#/q/Id9e32c885473f09cd69354a4c87a2c57c5f86533">Id9e32</a>
+      )
+    </li>
+    <li>
+      Added expand and collapse semantics actions. Added expand and halfExpand in ModalBottomSheetState (
+      <a href="https://android-review.googlesource.com/#/q/Ib50644cb5d591f9c3a58b4d35da064341ac7253c">Ib5064</a>
+      )
+    </li>
+    <li>
+      Modifier.dragGestureFilter has been deprecated. Use
+      <code translate="no" dir="ltr">Modifier.pointerInput { detectDragGestures (...)}</code>
+      instead. Alternatively, use Modifier.draggable for one axis drags (
+      <a href="https://android-review.googlesource.com/#/q/I0ba93559f565fc2a277f322e53dce9df9855ea46">I0ba93</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175294473">b/175294473</a>
+      )
+    </li>
+    <li>
+      Renamed Ambients to match the Ambient -&gt; CompositionLocal rename. Ambients used to be named AmbientFoo, now CompositionLocals are named LocalFoo. (
+      <a href="https://android-review.googlesource.com/#/q/I2d55d1c5c38a08b04e72a569d3079db4feca1bf7">I2d55d</a>
+      )
+    </li>
+    <li>
+      The deprecated BaseTextField is now removed. Use BasicTextField instead. (
+      <a href="https://android-review.googlesource.com/#/q/I71368dafbe218764095e841e314c75278794a389">I71368</a>
+      )
+    </li>
+    <li>
+      Selection was moved to foundation. (
+      <a href="https://android-review.googlesource.com/#/q/I7892b8be5d2f91849f8ecc2e1034e0a8277bb61c">I7892b</a>
+      )
+    </li>
+    <li>
+      Similarly to how we previously removed
+      <code translate="no" dir="ltr">state { 0 }</code>
+      composable and now promote usage like
+      <code translate="no" dir="ltr">remember { mutableStateOf(0) }</code>
+      we are going to remove
+      <code translate="no" dir="ltr">savedInstanceState { 0 }</code>
+      composable. You should use
+      <code translate="no" dir="ltr">rememberSaveable { mutableStateOf(0) }</code>
+      instead and it will save and restore automatically if the type used inside the MutableState can be stored in the Bundle. If previously you were passing a custom saver object now you need to use a new overload of rememberSaveable which has
+      <code translate="no" dir="ltr">stateSaver</code>
+      parameter. The usage will look like this:
+      <code translate="no" dir="ltr">val holder = rememberSaveable(stateSaver = HolderSaver) { mutableStateOf(Holder(0)) }</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ib4c266902d166f119ea1770cccbc78ac25a54ff7">Ib4c26</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177338004">b/177338004</a>
+      )
+    </li>
+    <li>
+      Added password semantics for accessibility (
+      <a href="https://android-review.googlesource.com/#/q/I231ce1c1e9c781c8ec8fda5536d8a0588d68755d">I231ce</a>
+      )
+    </li>
+    <li>
+      Added ProgressBarRangeInfo.Indeterminate to mark indeterminate progress bars for accessibility (
+      <a href="https://android-review.googlesource.com/#/q/I6fe052ba60861d64f31963507ff11e95f3331d89">I6fe05</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">emptyContent()</code>
+      and
+      <code translate="no" dir="ltr">(@Composable () -&gt; Unit).orEmpty()</code>
+      utilities have been deprecated as they no longer have any positive performance impact or value (
+      <a href="https://android-review.googlesource.com/#/q/I0484d3ef439993d05eea86e53f05997eced590ab">I0484d</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">snapshotFlow</code>
+      and
+      <code translate="no" dir="ltr">withMutableSnapshot</code>
+      are no longer experimental (
+      <a href="https://android-review.googlesource.com/#/q/I6a45fac62267a318481e9a3ba8a3acf3162219f6">I6a45f</a>
+      )
+    </li>
+    <li>
+      Recomposers can now be closed. Closed recomposers will continue recomposition until composition child coroutines complete. Recomposer.shutDown renamed to cancel to contrast with close. (
+      <a href="https://android-review.googlesource.com/#/q/Ib6d766b91381ee45af41a14b7951c48f794f0a90">Ib6d76</a>
+      )
+    </li>
+    <li>
+      UiSavedStateRegistry was renamed to SaveableStateRegistry, AmbientUiSavedStateRegistry was renamed to AmbientSaveableStateRegistry and both moved to androidx.compose.runtime.saveable package. (
+      <a href="https://android-review.googlesource.com/#/q/I30224b3f671d01d6a2ae30a80405a69067e76838">I30224</a>
+      )
+    </li>
+    <li>
+      Artefact androidx:compose:runtime:runtime-saved-instance-state was renamed to androidx:compose:runtime:runtime-saveable (
+      <a href="https://android-review.googlesource.com/#/q/I6dcac2489cf4ec4f17b8ce73bba6eab955a54c6d">I6dcac</a>
+      )
+    </li>
+    <li>
+      Many longstanding deprecated APIs in the ui package are deleted. (
+      <a href="https://android-review.googlesource.com/#/q/I2f2dcaf64fe719c6f2387202f3d0a5699d892657">I2f2dc</a>
+      )
+    </li>
+    <li>
+      The compose:runtime-dispatch artifact is now deprecated. MonotonicFrameClock can now be found in compose:runtime and AndroidUiDispatcher can be found in compose:ui. (
+      <a href="https://android-review.googlesource.com/#/q/Ib5c36a427306eceac4b9b16b52a091e864e5b936">Ib5c36</a>
+      )
+    </li>
+    <li>
+      Outline.* classes are not data classes anymore (
+      <a href="https://android-review.googlesource.com/#/q/I4879e118a767e2fbe2d3272abca4696a9b5b5cdd">I4879e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/178001427">b/178001427</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">view.captureToImage()</code>
+      without any replacement. (
+      <a href="https://android-review.googlesource.com/#/q/I7fcd2ef813209aa11ec459374fd9a671b1a9d63a">I7fcd2</a>
+      )
+    </li>
+    <li>
+      Introduced ColorMatrix API used to modify rgb values of source content Refactored ColorFilter API to be an interface and match the implementation of PathEffect. (
+      <a href="https://android-review.googlesource.com/#/q/Ica1e88332eb005e185e3da2ec95aff33440aa51d">Ica1e8</a>
+      )
+    </li>
+    <li>
+      Add layoutDirection param to Shape's createOutline. This allows to create layout direction aware shapes. (
+      <a href="https://android-review.googlesource.com/#/q/I57c20c45978b5468556159966bd9836653a2e40d">I57c20</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/152756983">b/152756983</a>
+      )
+    </li>
+    <li>
+      onImeActionPerformed is deprecated. use KeyboardActions instead (
+      <a href="https://android-review.googlesource.com/#/q/If0bbda1241018d4c19b5df3cd1811c38cce4a76d">If0bbd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/179071523">b/179071523</a>
+      )
+    </li>
+    <li>
+      Introduced an
+      <code translate="no" dir="ltr">InfiniteAnimationPolicy</code>
+      coroutine context element that will be applied in infinite animations. By default no policy is installed, except when running tests with
+      <code translate="no" dir="ltr">ComposeTestRule</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I50ec421d7db495459a61c9282dbc2bfbc1f1ad02">I50ec4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/151940543">b/151940543</a>
+      )
+    </li>
+    <li>
+      canDrag has been removed from the Modifier.scrollable. (
+      <a href="https://android-review.googlesource.com/#/q/Id66e70ac186ffbdd05e2a62af26c7a41e85f02e9">Id66e7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175294473">b/175294473</a>
+      )
+    </li>
+    <li>
+      Renamed LayoutCoordinates.parentCoordinates to LayoutCoordinates.parentLayoutCoordinates to allow for a new parentCoordinates property. The parentCoordinates property now offers the parent modifier's LayoutCoordintes. This will make for more complete use cases for onSizeChanged() and onGloballyPositioned() (
+      <a href="https://android-review.googlesource.com/#/q/Idfbfd3012d88b8661b097cb50e4554f2b73f3b64">Idfbfd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177926591">b/177926591</a>
+      )
+    </li>
+    <li>
+      tapGestureFilter, doubleTapGestureFilter, longPressGestureFilter and pressIndicaitonGestureFilter have been deprecated. Use Modifier.clickable or Modifier.pointerInput with detectTapGestures function instead. (
+      <a href="https://android-review.googlesource.com/#/q/I6baf95f881b6fa6890ca1d065d49fef3e27bce83">I6baf9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175294473">b/175294473</a>
+      )
+    </li>
+    <li>
+      SaveableStateRegistry's unregisterProvider was removed. Instead registerProvider() now returns SaveableStateRegistry.Entry object which you can use to unregister (
+      <a href="https://android-review.googlesource.com/#/q/Ic42741cecc67ce93cc097f01f7196110e2fff09d">Ic4274</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/178583739">b/178583739</a>
+      )
+    </li>
+    <li>
+      rememberSavedInstanceState() was renamed to rememberSaveable() and moved to androidx.compose.runtime.saveable package. (
+      <a href="https://android-review.googlesource.com/#/q/I1366e7fef0a5a56a43d6eeb3770967a9bf683380">I1366e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177338004">b/177338004</a>
+      )
+    </li>
+    <li>
+      Removed CoreText and CoreTextField from public API
+      <ul>
+        <li>Removed deprecated SelectionContainer overload</li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I99c199c4f9055da1e668d9d799ef11c90239df5b">I99c19</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Tests in which Compose is used in hierarchies that are added/removed directly to the WindowManager are now more stable. (
+      <a href="https://android-review.googlesource.com/#/q/Ie81ed2a14d183b3d5cab594302e86261c8db2379">Ie81ed</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175765614">b/175765614</a>
+      )
+    </li>
+    <li>
+      Removed Recomposer.current(). [Abstract]ComposeView now default to lazily created, window-scoped Recomposers driven by the ViewTreeLifecycleOwner for the window. Recomposition and withFrameNanos-based animation ticks are paused while the host Lifecycle is stopped. (
+      <a href="https://android-review.googlesource.com/#/q/I38e11565b2fc776966b6b6984aceafd8a1e6fed1">I38e11</a>
+      )
+    </li>
+    <li>
+      Recomposer.runningRecomposers now offers a global StateFlow of read-only RecomposerInfo for observing ongoing composition state in the process. Prefer this API to Recomposer.current(), which is now deprecated. (
+      <a href="https://android-review.googlesource.com/#/q/If8ebe3959cfe71682ad372382d3b720035ef1605">If8ebe</a>
+      )
+    </li>
+    <li>
+      Saver, listSaver(), mapSaver(), autoSaver was moved from androidx.compose.runtime.savedinstancestate to androidx.compose.runtime.saveable (
+      <a href="https://android-review.googlesource.com/#/q/I77fe618aa5e124891b84973d8b8b12735f9f909e">I77fe6</a>
+      )
+    </li>
+    <li>
+      EditCommands accept AnnotatedString. However this is an API only change and multi-style text editing is not implemented yet. (
+      <a href="https://android-review.googlesource.com/#/q/I4c3eaf53926b558759da95d498a07bc636ba4336">I4c3ea</a>
+      )
+    </li>
+    <li>
+      Uptime and Duration have been removed. (
+      <a href="https://android-review.googlesource.com/#/q/Ib9bf443043fdcc8ed2b27666b301d52fb3064d65">Ib9bf4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177420019">b/177420019</a>
+      )
+    </li>
+    <li>
+      CompositionData.asTree() and related APIs moved to separate ui-tooling-data module and marked as experimental (
+      <a href="https://android-review.googlesource.com/#/q/Ic95b89456b04b25ef41b8157a72511d10aca09cc">Ic95b8</a>
+      )
+    </li>
+    <li>
+      Parameters on RounderCornerShape, CutCornerShape and CornerBasedShape were renamed from left/right to start/end in order to support the shape's auto mirroring in the rtl direction. AbsoluteRounderCornerShape and AbsoluteCutCornerShape were introduced for the cases when auto-mirroring is not desired. (
+      <a href="https://android-review.googlesource.com/#/q/I61040b7bba950191361af89ff4c736ef6cb56235">I61040</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/152756983">b/152756983</a>
+      )
+    </li>
+    <li>
+      <p>The API the Compose compiler plugin targets has been refactored to use an interface instead of a concrete class. The interface also no longer uses a type parameter.</p>
+
+      <p>
+        This is an internal change that should not effect source code compatibility but is a binary breaking change. (
+        <a href="https://android-review.googlesource.com/#/q/I3b9229969aa70138bc57f5e8498602f5b2dba1e6">I3b922</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/169406779">b/169406779</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Remove unintentionally public StringBuilder.deleteAt function (
+        <a href="https://android-review.googlesource.com/#/q/Id6ed95e2e42ca664c13c79032f3276f1037f7625">Id6ed9</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      ComposeViews placed in view hierarchies that are children of another composition now host child compositions of their ancestors (
+      <a href="https://android-review.googlesource.com/#/q/I92883a1532c4166de8d3551fc342b0533325375d">I92883</a>
+      )
+    </li>
+    <li>
+      Updated compose's imageFromResource API to reuse the resource drawable cache when loading ImageBitmap objects. (
+      <a href="https://android-review.googlesource.com/#/q/If3627edded04b55794aede912b7e698abbcad7e6">If3627</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/178751994">b/178751994</a>
+      )
+    </li>
+  </ul>

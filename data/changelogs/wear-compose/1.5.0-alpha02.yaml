@@ -1,0 +1,73 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.5.0-alpha02
+releaseDate: 2024-09-18
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha02" data-text="Version 1.5.0-alpha02" tabindex="-1">Version 1.5.0-alpha02</h3>
+  <p>September 18, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.5.0-alpha02</code>
+    is released. Version 1.5.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/80f82d37cb9b40250ee9eb15d9cbe9e93849355e..0431b84980e97d6bafdfda7c9038bc4d9529564f/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We have added support for the Wear Compose
+      <code translate="no" dir="ltr">LazyColumn</code>
+      with our
+      <code translate="no" dir="ltr">ScreenScaffold</code>
+      (and added an implementation of
+      <code translate="no" dir="ltr">ScrollInfoProvider</code>
+      for
+      <code translate="no" dir="ltr">LazyColumnState</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/Ib8d2946c22fe8279d08b0f8fc9029cdf5b8e0423">Ib8d29</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">viewportSize</code>
+      to
+      <code translate="no" dir="ltr">LazyColumnLayoutInfo</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4187fae58a65c69b4c07e3ef99fa64ace50e1078">I4187f</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We have fixed a bug so that rotary scrolling is now disabled in
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      when the
+      <code translate="no" dir="ltr">userScrollEnabled</code>
+      flag is set to
+      <code translate="no" dir="ltr">false</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I490ab6859a0ccd7cd12d26acabb8d8a9eade4086">I490ab</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/360295825">b/360295825</a>
+      )
+    </li>
+    <li>
+      We have made a bug fix to address unexpected vertical padding on curved text. The curved text height now more closely matches the actual space used by the text. Please note that this is likely to break screenshot tests that involve curved text (
+      <a href="https://android-review.googlesource.com/#/q/Iaa6ef3ca880041ece108243dc108f04668d6ac78">Iaa6ef</a>
+      )
+    </li>
+    <li>
+      We have reverted a bug fix to
+      <code translate="no" dir="ltr">Dialog</code>
+      where the
+      <code translate="no" dir="ltr">onDismissRequest</code>
+      callback was called when
+      <code translate="no" dir="ltr">showDialog</code>
+      was set to false, because in some cases this resulted in
+      <code translate="no" dir="ltr">onDismissRequest</code>
+      being called multiple times. (
+      <a href="https://android-review.googlesource.com/#/q/I64656df176525ed88fd6f6e997d4a85688bfc2ce">I64656</a>
+      )
+    </li>
+  </ul>

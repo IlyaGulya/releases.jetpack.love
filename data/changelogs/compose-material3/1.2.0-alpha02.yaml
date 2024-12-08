@@ -1,0 +1,219 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.2.0-alpha02
+releaseDate: 2023-05-24
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha02" data-text="Version 1.2.0-alpha02" tabindex="-1">Version 1.2.0-alpha02</h3>
+  <p>May 24, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.2.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/258b72327bc8e1d5a2205e37886d37e4de48495a..c5bf9bc40dd5d9f0b3f34e7273ac0d4e4f05c41d/compose/material3">Version 1.2.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add window insets parameter to
+      <code translate="no" dir="ltr">ModalBottomSheet</code>
+      .
+      <ul>
+        <li>
+          Scrim for
+          <code translate="no" dir="ltr">ModalBottomSheet</code>
+          may now be drawn behind status bar with
+          <code translate="no" dir="ltr">windowInsets</code>
+          set to zero
+        </li>
+        <li>
+          Updated default
+          <code translate="no" dir="ltr">ModalBottomSheet</code>
+          functionality to stay outside of system bars including navigation
+        </li>
+        <li>Status bar inset handling is provided by drag handle in edge-to-edge mode.</li>
+        <li>
+          <code translate="no" dir="ltr">BottomSheetDefaults</code>
+          includes window insets for
+          <code translate="no" dir="ltr">BottomSheetWindow</code>
+          . (
+          <a href="https://android-review.googlesource.com/#/q/I312008e48573ebd21326f77216be0bcd0372aa78">I31200</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/274872542">b/274872542</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/272973615">b/272973615</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/272334475">b/272334475</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/268432129">b/268432129</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/275849044">b/275849044</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/275486106">b/275486106</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/268433162">b/268433162</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Deprecate
+      <code translate="no" dir="ltr">Indicator</code>
+      and add
+      <code translate="no" dir="ltr">Primary</code>
+      /
+      <code translate="no" dir="ltr">SecondaryIndicator</code>
+      to match the M3 specs.
+      <code translate="no" dir="ltr">PrimaryIndicator</code>
+      matches the width of the tab's content whereas
+      <code translate="no" dir="ltr">SecondaryIndicator</code>
+      spans the full available width.
+      <code translate="no" dir="ltr">SecondaryIndicator</code>
+      is equivalent to the now deprecated
+      <code translate="no" dir="ltr">Indicator</code>
+      and can be a direct replacement. (
+      <a href="https://android-review.googlesource.com/#/q/I27604bde8305f90ea2549993df676c92babfbaef">I27604</a>
+      )
+    </li>
+    <li>
+      Added an option to pass in a
+      <code translate="no" dir="ltr">ScrollState</code>
+      when constructing a
+      <code translate="no" dir="ltr">DropdownMenu</code>
+      or an
+      <code translate="no" dir="ltr">ExposedDropdownMenu</code>
+      for controlling the vertical scroll state of the displayed menu items. (
+      <a href="https://android-review.googlesource.com/#/q/Ia0734c832441988ff0047f25719d7c8edae8db5c">Ia0734</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/185304441">b/185304441</a>
+      )
+    </li>
+    <li>
+      Added an overload for
+      <code translate="no" dir="ltr">Slider</code>
+      that is a stateful version of the component. Created
+      <code translate="no" dir="ltr">SliderState</code>
+      that holds all of the information for the current active track, the measurements of the components of the
+      <code translate="no" dir="ltr">Slider</code>
+      , and the drag and gesture logic. (
+      <a href="https://android-review.googlesource.com/#/q/I124a5957177062146d7994a115c486a299f1bbb3">I124a5</a>
+      )
+    </li>
+    <li>
+      Renaming the Semantics property
+      <code translate="no" dir="ltr">isContainer</code>
+      to
+      <code translate="no" dir="ltr">isTraversalGroup</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I121f64d7e7be332c41a1fbf10a70ef1ec14ce0dc">I121f6</a>
+      )
+    </li>
+    <li>
+      Added optimized
+      <code translate="no" dir="ltr">TextStyle.merge(...)</code>
+      with full parameter list. (
+      <a href="https://android-review.googlesource.com/#/q/Iad23419809af1c7405ba9a9d42569521e7647034">Iad234</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/246961787">b/246961787</a>
+      )
+    </li>
+    <li>
+      Made
+      <code translate="no" dir="ltr">TooltipState</code>
+      ,
+      <code translate="no" dir="ltr">RichTooltipState</code>
+      , and
+      <code translate="no" dir="ltr">PlainTooltipState</code>
+      public interfaces. Added
+      <code translate="no" dir="ltr">RichTooltipStateImpl</code>
+      and
+      <code translate="no" dir="ltr">PlainTooltipStateImpl</code>
+      for default states. Added
+      <code translate="no" dir="ltr">remember*State</code>
+      functions to obtain these implemented states. Removed
+      <code translate="no" dir="ltr">TooltipSync</code>
+      in favor of an
+      <code translate="no" dir="ltr">TooltipDefault.GlobalMutatorMutex</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7813de158d25c43169dfb12cdf6b183332f753d9">I7813d</a>
+      )
+    </li>
+    <li>
+      Updated the
+      <code translate="no" dir="ltr">DatePickerColors</code>
+      to include additional customization options for the date picker divider, navigation, and text input fields colors. (
+      <a href="https://android-review.googlesource.com/#/q/I1a6856afd9a84e2aec18ece4ed6646b7f4ff4079">I1a685</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/274626815">b/274626815</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">DatePickerState</code>
+      and the
+      <code translate="no" dir="ltr">DateRangePickerState</code>
+      are now public interfaces with default implementations that can be retrieved by the
+      <code translate="no" dir="ltr">rememberDatePickerState</code>
+      and
+      <code translate="no" dir="ltr">rememberDateRangePickerState</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I71c523826e8295772291dd5e3459c50037ac14a7">I71c52</a>
+      )
+    </li>
+    <li>
+      Removed the
+      <code translate="no" dir="ltr">dateValidator</code>
+      from
+      <code translate="no" dir="ltr">DatePicker</code>
+      and
+      <code translate="no" dir="ltr">DateRangePicker</code>
+      and introduced a
+      <code translate="no" dir="ltr">SelectableDates</code>
+      interface that can be set on the state to control which dates or years are selectable in the UI. (
+      <a href="https://android-review.googlesource.com/#/q/Ic2fc6f681417f632e7279016bd67ccbe372d653e">Ic2fc6</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TimePicker</code>
+      removed from stable API, further changes are expected in the state API (
+      <a href="https://android-review.googlesource.com/#/q/I3f39a13a8cfd4ae5fdc2c05b644452b7bceea963">I3f39a</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ModalBottomSheet</code>
+      moved to android only.
+      <code translate="no" dir="ltr">ModalBottomSheet</code>
+      is not recommended for desktop use, and the functionality is not actively maintained. (
+      <a href="https://android-review.googlesource.com/#/q/Ib37784ddf10366ce34ecbcab3bcf15cc534b26fc">Ib3778</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed the
+      <code translate="no" dir="ltr">AlertDialog</code>
+      dismiss action to appear below the confirm action when the actions stacked over each other to fit into the dialog's width. This fix aligns the implementation with the Material Design spec. (
+      <a href="https://android-review.googlesource.com/#/q/I029ded5c6dd79f38b1a060afb3d24dcfb9cf119a">I029de</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/235454277">b/235454277</a>
+      )
+    </li>
+    <li>
+      Fixed bug in
+      <code translate="no" dir="ltr">ListItem</code>
+      using incorrect padding for three-line items. (
+      <a href="https://android-review.googlesource.com/#/q/I6e235866f4f873b16a0d5f8e37fdc7f4370b76aa">I6e235</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ModalBottomSheet</code>
+      now can display IME keyboard (
+      <a href="https://android-review.googlesource.com/#/q/Idc5082008acb547cac2100a69cab4be7db85f50f">Idc508</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/262140644">b/262140644</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/268380384">b/268380384</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/272483584">b/272483584</a>
+      )
+    </li>
+  </ul>

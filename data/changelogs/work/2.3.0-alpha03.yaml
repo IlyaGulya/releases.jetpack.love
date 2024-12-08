@@ -1,0 +1,61 @@
+libraryId: work
+groupId: androidx.work
+version: 2.3.0-alpha03
+releaseDate: 2019-10-23
+#language=html
+changelogHtml: |
+  <h3 id="2.3.0-alpha03" data-text="Version 2.3.0-alpha03" tabindex="-1">Version 2.3.0-alpha03</h3>
+  <p>October 23, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.3.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3ceb16dfb202e267249a5a5f14e9159ff0f95d9e..bc0450b5cd9c18270bfc4ce5068140e0b76d52c9/work">Version 2.3.0-alpha03 contains these commits</a>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">WorkManager.createCancelPendingIntent()</code>
+      API which makes it easy to cancel
+      <code translate="no" dir="ltr">WorkRequest</code>
+      s without having to register another component in the
+      <code translate="no" dir="ltr">AndroidManifest.xml</code>
+      . This API makes it especially easy to cancel
+      <code translate="no" dir="ltr">WorkRequest</code>
+      s from
+      <code translate="no" dir="ltr">Notification</code>
+      s. We expect this to be paired with the new foreground APIs in 2.3.0.
+    </li>
+    <li>
+      WorkManager now depends on
+      <code translate="no" dir="ltr">androidx.room:*:2.2.0</code>
+      stable.
+    </li>
+  </ul>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">ForegroundInfo.getNotificationType()</code>
+      to
+      <code translate="no" dir="ltr">ForegroundInfo.getForegroundServiceType()</code>
+      to be more consistent with the underlying platform APIs. (
+      <a href="https://issuetracker.google.com/issues/142729893">b/142729893</a>
+      ,
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1143316">aosp/1143316</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a bug which is caused by an unnecessary call to
+      <code translate="no" dir="ltr">setTransactionSuccessful()</code>
+      outside of a transaction. This happens for rare migrations. (
+      <a href="https://issuetracker.google.com/issues/142580433">b/142580433</a>
+      ,
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/1141737">aosp/1141737</a>
+      )
+    </li>
+  </ul>

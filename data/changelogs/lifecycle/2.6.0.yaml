@@ -1,0 +1,177 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.6.0
+releaseDate: 2023-03-08
+#language=html
+changelogHtml: |
+  <h3 id="2.6.0" data-text="Version 2.6.0" tabindex="-1">Version 2.6.0</h3>
+  <p>March 8, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.6.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e6a3d07b22cc0b7b17462b8b52feb2989a8d0e40..63b60b83b0674a40e13c559d081c757ecbb09d79/lifecycle">Version 2.6.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 2.5.0</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">LiveData</code>
+      now includes a new
+      <code translate="no" dir="ltr">isInitialized</code>
+      property that indicates whether an explicit value has ever been set on the
+      <code translate="no" dir="ltr">LiveData</code>
+      , allowing you to distinguish between
+      <code translate="no" dir="ltr">liveData.value</code>
+      returning
+      <code translate="no" dir="ltr">null</code>
+      because no value has ever been set or an explicit
+      <code translate="no" dir="ltr">null</code>
+      value.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">MediatorLiveData</code>
+      now includes a constructor to set an initial value.
+    </li>
+    <li>
+      Added a new extension on
+      <code translate="no" dir="ltr">StateFlow</code>
+      and
+      <code translate="no" dir="ltr">Flow</code>
+      of
+      <a href="https://medium.com/androiddevelopers/consuming-flows-safely-in-jetpack-compose-cde014d0d5a3"><code translate="no" dir="ltr">collectAsStateWithLifecycle()</code></a>
+      that collect from flows and represents its latest value as Compose State in a lifecycle-aware manner.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Lifecycle.launchWhenX</code>
+      methods and
+      <code translate="no" dir="ltr">Lifecycle.whenX</code>
+      methods have been deprecated as the use of a pausing dispatcher can lead to wasted resources in some cases. It is recommended to use
+      <code translate="no" dir="ltr">Lifecycle.repeatOnLifecycle</code>
+      . For more information about one-time suspending work, please see
+      <a href="https://issuetracker.google.com/270049505#comment2">this explanation</a>
+      on why this is inherently unsafe.
+    </li>
+    <li>
+      <strong>Kotlin Conversion</strong>
+      - A large number of Lifecycle classes have been converted to Kotlin. All converted classes still retain their binary compatibility with previous versions. The following classes have
+      <strong>source incompatible</strong>
+      changes for classes written in Kotlin:
+      <code translate="no" dir="ltr">ViewTreeLifecycleOwner</code>
+      ,
+      <code translate="no" dir="ltr">LiveDataReactiveStreams</code>
+      ,
+      <code translate="no" dir="ltr">HasDefaultViewModelProviderFactory</code>
+      ,
+      <code translate="no" dir="ltr">ViewTreeViewModelStoreOwner</code>
+      ,
+      <code translate="no" dir="ltr">Transformations</code>
+      ,
+      <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+      ,
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+    </li>
+  </ul>
+  <p>The table below provides the source conversions for the new version of lifecycle.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Lifecycle 2.5</th>
+        <th>Lifecycle 2.5 (KTX)</th>
+        <th>Lifecycle 2.6</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td><code translate="no" dir="ltr">Transformations.switchMap(liveData) {...}</code></td>
+        <td><code translate="no" dir="ltr">liveData.switchMap {...}</code></td>
+        <td><code translate="no" dir="ltr">liveData.switchMap {...}</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">Transformations.map(liveData) {...}</code></td>
+        <td><code translate="no" dir="ltr">liveData.map {...}</code></td>
+        <td><code translate="no" dir="ltr">liveData.map {...}</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">Transformations.distinctUntilChanged(liveData) {...}</code></td>
+        <td><code translate="no" dir="ltr">liveData.distinctUntilChanged{...}</code></td>
+        <td><code translate="no" dir="ltr">liveData.distinctUntilChanged{...}</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">LiveDataReactiveStreams.fromPublisher(publisher)</code></td>
+        <td><code translate="no" dir="ltr">publisher.toLiveData()</code></td>
+        <td><code translate="no" dir="ltr">publisher.toLiveData()</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">LiveDataReactiveStreams.toPublisher(lifecycleOwner, liveData)</code></td>
+        <td><code translate="no" dir="ltr">liveData.toPublisher(lifecycleOwner)</code></td>
+        <td><code translate="no" dir="ltr">liveData.toPublisher(lifecycleOwner)</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">override fun getDefaultViewModelProviderFactory(): ViewModelProvider.Factory = factory</code></td>
+        <td><code translate="no" dir="ltr">override fun getDefaultViewModelProviderFactory(): ViewModelProvider.Factory = factory</code></td>
+        <td><code translate="no" dir="ltr">override val defaultViewModelProviderFactory = factory</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">override fun getDefaultViewModelCreationExtras(): CreationExtras = extras</code></td>
+        <td><code translate="no" dir="ltr">override fun getDefaultViewModelCreationExtras(): CreationExtras = extras</code></td>
+        <td><code translate="no" dir="ltr">override val defaultViewModelProviderCreationExtras = extras</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">ViewTreeLifecycleOwner.set(view, owner)</code></td>
+        <td><code translate="no" dir="ltr">ViewTreeLifecycleOwner.set(view, owner)</code></td>
+        <td><code translate="no" dir="ltr">view.setViewTreeLifecycleOwner(owner)</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">ViewTreeLifecycleOwner.get(view)</code></td>
+        <td><code translate="no" dir="ltr">view.findViewTreeLifecycleOwner()</code></td>
+        <td><code translate="no" dir="ltr">view.findViewTreeLifecycleOwner()</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">override fun getViewModelStore(): ViewModelStore = store</code></td>
+        <td><code translate="no" dir="ltr">override fun getViewModelStore(): ViewModelStore = store</code></td>
+        <td><code translate="no" dir="ltr">override val viewModelStore: ViewModelStore = store</code></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">override fun getLifecycle(): Lifecycle = registry</code></td>
+        <td><code translate="no" dir="ltr">override fun getLifecycle(): Lifecycle = registry</code></td>
+        <td><code translate="no" dir="ltr">override val lifecycle: Lifecycle get() = registry</code></td>
+      </tr>
+    </tbody>
+  </table>
+  <ul>
+    <li>
+      The nullability of the
+      <code translate="no" dir="ltr">onChanged</code>
+      method of a
+      <code translate="no" dir="ltr">Observer</code>
+      created in Kotlin now matches the nullability of the generic type. If you want
+      <code translate="no" dir="ltr">Observer.onChanged()</code>
+      to accept a nullable type, you must instantiate the
+      <code translate="no" dir="ltr">Observer</code>
+      with a nullable type.
+    </li>
+    <li>
+      These classes were also converted to Kotlin, but remain source compatible:
+      <code translate="no" dir="ltr">DefaultLifecycleObserver</code>
+      ,
+      <code translate="no" dir="ltr">LifecycleEventObserver</code>
+      ,
+      <code translate="no" dir="ltr">Lifecycle</code>
+      ,
+      <code translate="no" dir="ltr">LifecycleRegistry</code>
+      ,
+      <code translate="no" dir="ltr">LifecycleObserver</code>
+      ,
+      <code translate="no" dir="ltr">ViewModelStore</code>
+      ,
+      <code translate="no" dir="ltr">AndroidViewModel</code>
+      ,
+      <code translate="no" dir="ltr">AbstractSavedStateViewModelFactory</code>
+      ,
+      <code translate="no" dir="ltr">LifecycleService</code>
+      ,
+      <code translate="no" dir="ltr">ServiceLifecycleDispatcher</code>
+      , and
+      <code translate="no" dir="ltr">ProcessLifecycleOwner</code>
+    </li>
+  </ul>

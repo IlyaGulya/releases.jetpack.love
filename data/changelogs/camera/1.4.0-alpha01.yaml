@@ -1,0 +1,68 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.4.0-alpha01
+releaseDate: 2023-09-20
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha01" data-text="Version 1.4.0-alpha01" tabindex="-1">Version 1.4.0-alpha01</h3>
+  <p>September 20, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.4.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a5d48fc5725f8aac203c2ae3bd24e0e53dafbd4d..c46c913e821a8f47c1376abbe688af1a9e8558cd/camera">Version 1.4.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add new API to access audio amplitude information while recording. (
+      <a href="https://android-review.googlesource.com/#/q/Id492575f356184b9dbe77b4bc24861be1d64e654">Id4925</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Improve Extensions stability by ensuring that the initialization and deinitialization events are triggered in correct order. (
+      <a href="https://android-review.googlesource.com/#/q/Ib3b8e50d7818e659a264a4dc5aa5505486414617">Ib3b8e</a>
+      )
+    </li>
+    <li>
+      Fixed capture session configuration failure for exceeding supported surface combination due to adding extra repeating surface internally. (
+      <a href="https://android-review.googlesource.com/#/q/Id718ca7a481564e229e54c7431317f7125877392">Id718c</a>
+      )
+    </li>
+    <li>
+      Fixed large captured JPEG image issue on Vivo S16 device. The captured JPEG images contain redundant 0's padding data in the JFIF compressed data segment. It causes the captured images to have large file size. Those redundant 0's padding data will be removed to make the captured images have normal image file sizes. (
+      <a href="https://android-review.googlesource.com/#/q/I79505f36e448374847f82eba0696c31b0839ab26">I79505</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/299069235">b/299069235</a>
+      )
+    </li>
+    <li>
+      Fixed the issue that
+      <code translate="no" dir="ltr">ImageAnalysis</code>
+      can't be bound together with
+      <code translate="no" dir="ltr">ImageCapture</code>
+      and Preview when some extension modes are enabled on some devices. The fix will return correct value when apps query the
+      <code translate="no" dir="ltr">ImageAnalysis</code>
+      availability via
+      <code translate="no" dir="ltr">ExtensionsManager#isImageAnalysisSupported()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7d53885cebd4ea1c9b1aaead0a9c234fbc63f922">I7d538</a>
+      )
+    </li>
+    <li>
+      Update JavaDoc to match behavior. Instead of completes immediately, the
+      <code translate="no" dir="ltr">#setZoomRatio</code>
+      ,
+      <code translate="no" dir="ltr">#setLinearZoom</code>
+      and
+      <code translate="no" dir="ltr">#enableTorch</code>
+      wait until camera is ready. Also added information about how to get the maximum FOV with the
+      <code translate="no" dir="ltr">#takePicture</code>
+      API. (
+      <a href="https://android-review.googlesource.com/#/q/I235883105dce096f094308423c68b3bbf5126868">I23588</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_13_2" data-text="Version 1.3" tabindex="-1">Version 1.3</h2>

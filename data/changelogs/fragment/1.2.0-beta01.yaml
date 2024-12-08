@@ -1,0 +1,139 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.2.0-beta01
+releaseDate: 2019-10-09
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-beta01" data-text="Version 1.2.0-beta01" tabindex="-1">Version 1.2.0-beta01</h3>
+  <p>October 9, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.2.0-beta01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.2.0-beta01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.2.0-beta01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1d4e6911dcf86c2b56d96037e56d0bbe4552732f..20f7c62349217f2b3f79a3c7548b2331235de42c/fragment">Version 1.2.0-beta01 contains these commits</a>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      adds support for adding an initial fragment with added support for the
+      <code translate="no" dir="ltr">android:name</code>
+      and optional
+      <code translate="no" dir="ltr">android:tag</code>
+      XML attributes. Unlike the
+      <code translate="no" dir="ltr">&lt;fragment&gt;</code>
+      tag,
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      uses a normal
+      <code translate="no" dir="ltr">FragmentTransaction</code>
+      under the hood to add the initial fragment, allowing further
+      <code translate="no" dir="ltr">FragmentTransaction</code>
+      operations on the
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      and enables the usage of View Binding for the layout. (
+      <a href="https://issuetracker.google.com/issues/139830628">b/139830628</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/141177981">b/141177981</a>
+      )
+    </li>
+    <li>
+      Fragments now contains a Lint warning offering a quick fix to replace
+      <code translate="no" dir="ltr">&lt;fragment&gt;</code>
+      with
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/139830056">b/139830056</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a
+      <code translate="no" dir="ltr">ClassCastException</code>
+      when using
+      <code translate="no" dir="ltr">androidx.transition</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/140680619">b/140680619</a>
+      )
+    </li>
+    <li>
+      When using
+      <a href="/jetpack/androidx/releases/transition#1.3.0-beta01">
+        Transition
+        <code translate="no" dir="ltr">1.3.0-beta01</code>
+      </a>
+      , Fragments now wait for
+      <code translate="no" dir="ltr">androidx.transition</code>
+      transitions (in addition to framework transitions and animations, which were fixed in
+      <a href="/jetpack/androidx/releases/fragment#1.2.0-alpha03">
+        Fragment
+        <code translate="no" dir="ltr">1.2.0-alpha03</code>
+      </a>
+      and
+      <a href="/jetpack/androidx/releases/fragment#1.2.0-alpha02">
+        Fragment
+        <code translate="no" dir="ltr">1.2.0-alpha02</code>
+      </a>
+      , respectively) to finish before dispatching
+      <code translate="no" dir="ltr">onDestroyView()</code>
+      . (
+      <a href="https://android-review.googlesource.com/1119841">aosp/1119841</a>
+      )
+    </li>
+    <li>
+      When using
+      <a href="/jetpack/androidx/releases/transition#1.3.0-beta01">
+        Transition
+        <code translate="no" dir="ltr">1.3.0-beta01</code>
+      </a>
+      , Fragments now properly cancel
+      <code translate="no" dir="ltr">androidx.transition</code>
+      transitions before starting new transitions / animations on the same container. (
+      <a href="https://android-review.googlesource.com/1119841">aosp/1119841</a>
+      )
+    </li>
+    <li>
+      Fixed an issue on API 17 and lower when using
+      <code translate="no" dir="ltr">androidx.transition</code>
+      transitions on the root view of your Fragment when using
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/140361893">b/140361893</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">fragment-testing</code>
+      artifact now depends on AndroidX Test
+      <code translate="no" dir="ltr">1.2.0</code>
+      , fixing an incompatibility with the latest Espresso 3.2.0. (
+      <a href="https://issuetracker.google.com/issues/139100149">b/139100149</a>
+      )
+    </li>
+    <li>
+      Removed usage of
+      <code translate="no" dir="ltr">Log.w</code>
+      in FragmentManager. (
+      <a href="https://android-review.googlesource.com/1126468">aosp/1126468</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known issues</strong></p>
+  <ul>
+    <li>
+      Fragment's
+      <code translate="no" dir="ltr">onInflate()</code>
+      do not receive proper attributes from
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      , breaking cases such as
+      <code translate="no" dir="ltr">NavHostFragment</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/142421837">b/142421837</a>
+      )
+    </li>
+  </ul>

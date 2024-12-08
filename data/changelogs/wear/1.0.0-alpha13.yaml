@@ -1,0 +1,154 @@
+libraryId: wear
+groupId: androidx.wear
+version: 1.0.0-alpha13
+releaseDate: 2021-05-05
+#language=html
+changelogHtml: |
+  <h3 id="complications-watchface-1.0.0-alpha13" data-text="Wear Complications &amp; Watchface Version 1.0.0-alpha13" tabindex="-1">Wear Complications &amp; Watchface Version 1.0.0-alpha13</h3>
+  <p>May 5, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear:wear-*:1.0.0-alpha13</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4ddfc1583c09aaa878d34437fbfee1b995b60d3a..3d6f168394d1dd14e1d6f5b6dc4a0d405cb1a26a/wear">Version 1.0.0-alpha13 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li><p>Watch faces can have important visual elements beyond showing the time and complications. To provide screen reader support for this, watchface can now specify accessibility ContentDescriptionLabels via the Renderer's additionalContentDescriptionLabels property. In addition, to control the ordering of ContentDescriptionLabels accessibilityTraversalIndex has been added to complications. This can be modified by a ComplicationsUserStyleSetting.</p></li>
+    <li>
+      <p>
+        To encourage developers to carefully consider screen readers we have made
+        <code translate="no" dir="ltr">ShortTextComplicationData.Builder</code>
+        's,
+        <code translate="no" dir="ltr">LongTextComplicationData.Builder</code>
+        's and
+        <code translate="no" dir="ltr">RangedValueComplicationData.Builder</code>
+        's
+        <code translate="no" dir="ltr">contentDescription</code>
+        field mandatory to be passed into their constructors. If
+        <code translate="no" dir="ltr">ComplicationText.EMPTY</code>
+        is passed in for the
+        <code translate="no" dir="ltr">contentDescription</code>
+        , a
+        <code translate="no" dir="ltr">contentDescription</code>
+        will be automatically generated from the text and title.
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">WatchFaceControlClient.getOrCreateInteractiveWatchFaceClient</code>
+        now throws
+        <code translate="no" dir="ltr">ServiceStartFailureException</code>
+        if the watchface throws an exception during init, this makes it much easier to diagnose issues during watch face startup.
+      </p>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We added support for having a null component name in ComplicationProviderInfo, which is needed to support older versions of Wear OS. (
+      <a href="https://android-review.googlesource.com/#/q/I744d23cebf1d658c0066d63f4b989a078dc828f9">I744d2</a>
+      )
+    </li>
+    <li>
+      We have migrated
+      <code translate="no" dir="ltr">androidx.wear.complications.SystemProviders</code>
+      from Java to Kotlin. (
+      <a href="https://android-review.googlesource.com/#/q/Ia1f8bd1a6ed1e129b0fcc469781aa06a7f03dc90">Ia1f8b</a>
+      )
+    </li>
+    <li>
+      We have hidden all classes from public API that are in android.support.wearable.complications and created corresponding wrappers in AndroidX where needed. (
+      <a href="https://android-review.googlesource.com/#/q/I7bd50e3bd368ae14883ad2c4802404a1c424ab3f">I7bd50</a>
+      )
+    </li>
+    <li>
+      We have renamed method in
+      <code translate="no" dir="ltr">TimeDifferenceComplicationText.Builder</code>
+      from
+      <code translate="no" dir="ltr">setMinimumUnit</code>
+      to
+      <code translate="no" dir="ltr">setMinimalTimeUnit</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I20c64730819afd73e0bc0531315565d31ea21ada">I20c64</a>
+      )
+    </li>
+    <li>
+      We have made
+      <code translate="no" dir="ltr">ShortTextComplicationData.Builder</code>
+      's,
+      <code translate="no" dir="ltr">LongTextComplicationData.Builder</code>
+      's and
+      <code translate="no" dir="ltr">RangedValueComplicationData.Builder</code>
+      's
+      <code translate="no" dir="ltr">contentDescription</code>
+      field mandatory to be passed in constructor. (
+      <a href="https://android-review.googlesource.com/#/q/I8cb69eb4bf900fb76eae8d2bb39af1297d490b6f">I8cb69</a>
+      )
+    </li>
+    <li>
+      We have renamed ComplicationProviderService.onComplicationUpdate to onComplicationRequest and encapsulated id and type parameter of this method into data ComplicationRequest. Corresponding listener has been renamed to ComplicationRequestListener and its method ComplicationRequestListener.onComplicationData. (
+      <a href="https://android-review.googlesource.com/#/q/Iaf146c9495ce65ec8a3a13908979bc79277da6d8">Iaf146</a>
+      )
+    </li>
+    <li>
+      We have removed method
+      <code translate="no" dir="ltr">isActiveAt</code>
+      from
+      <code translate="no" dir="ltr">ComplicationData</code>
+      and exposed field
+      <code translate="no" dir="ltr">validTimeRange</code>
+      instead of it. This method call can be replaced with
+      <code translate="no" dir="ltr">validTimeRange.contains</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I65936f9b3b4d6c2acf3f64be2773e92600e55d9c">I65936</a>
+      )
+    </li>
+    <li>
+      We have changed description of the method ComplicationProviderService.onComplicationActivated to receive a ComplicationType instead of an int. (
+      <a href="https://android-review.googlesource.com/#/q/Idb5ffd58898956aba178505c0791c434fcea9239">Idb5ff</a>
+      )
+    </li>
+    <li>
+      Migrated ProviderUpdateRequester from Java to Koltin. (
+      <a href="https://android-review.googlesource.com/#/q/Ibce13d8a9e244164640ade18afccf3e80af31250">Ibce13</a>
+      )
+    </li>
+    <li>
+      GlesRender.makeContextCurrent is now public. Watch face code may need to make gl calls outside of render and onGlContextCreated and because there may be both an interactive and a headless context its necessary to call this. (
+      <a href="https://android-review.googlesource.com/#/q/I8a43ce92884892b6131c0b1fe2e08019c9f38fa1">I8a43c</a>
+      )
+    </li>
+    <li>
+      WatchFaceControlClient.getOrCreateInteractiveWatchFaceClient now throws ServiceStartFailureException if the watchface throws during init. In addition WatchFaceService now throws an exception if createWatchFace takes longer than 6 seconds. (
+      <a href="https://android-review.googlesource.com/#/q/I59b2f354e62a71eea1b4b4d5da9309e3968b3b2e">I59b2f</a>
+      )
+    </li>
+    <li>
+      We have removed the unused id property of
+      <code translate="no" dir="ltr">GlesTextureComplication</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I28958350f962380a962b520425ae6e5d3acc5536">I28958</a>
+      )
+    </li>
+    <li>
+      The watchface can now specify accessibility ContentDescriptionLabels via the
+      <code translate="no" dir="ltr">Renderer</code>
+      's additionalContentDescriptionLabels property. In addition to controlling the ordering of ContentDescriptionLabels accessibilityTraversalIndex has been added to complications. This can be modified by a ComplicationsUserStyleSetting. (
+      <a href="https://android-review.googlesource.com/#/q/Ib7362def16d52e924f7db5fdcfedb000683e7103">Ib7362</a>
+      )
+    </li>
+    <li>
+      Expand documentation about touch event handling in the watch face. (
+      <a href="https://android-review.googlesource.com/#/q/Iaf31ef431003a29c90228fc1866ef85e2651be55">Iaf31e</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">EditorSession.getComplicationsPreviewData()</code>
+      now returns a map for every rather only non-empty complications. An instance of EmptyComplicationData is used for empty complications. (
+      <a href="https://android-review.googlesource.com/#/q/I1ef7e9c1c9919a3103e83fdfb4f3c005962287db">I1ef7e</a>
+      )
+    </li>
+  </ul>

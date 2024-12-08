@@ -1,0 +1,87 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.7.0-beta01
+releaseDate: 2023-02-08
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-beta01" data-text="Version 1.7.0-beta01" tabindex="-1">Version 1.7.0-beta01</h3>
+  <p>February 8, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.7.0-beta01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.activity:activity-compose:1.7.0-beta01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.7.0-beta01</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e5dad1e7d1c225f89f7c2d5a39a7a0de8d637d7b..2ea70540638fa56f90e00b5a8b84781a400a49a1/activity">Version 1.7.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">IntentSenderRequest.Builder.setFlags()</code>
+      now allows you to set multiple flags from
+      <code translate="no" dir="ltr">Intent</code>
+      , rather than only a single flag. (
+      <a href="https://android-review.googlesource.com/#/q/Iac04cfbd35caadf10db7376505888f1c7cd8b216">Iac04c</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      The fallback for
+      <code translate="no" dir="ltr">PickVisualMedia</code>
+      for when the framework Photo Picker is unavailable now correctly limits the handling to apps installed in the device's system image. (
+      <a href="https://android-review.googlesource.com/#/q/If8ae6760b36221fa0357cb6ee9f81acd76f7f3a2">If8ae6</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Kotlin Conversions</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ActivityResultRegistryOwner</code>
+      is now written in Kotlin. This is a
+      <strong>source incompatible change</strong>
+      for those classes written in Kotlin - you must now override the
+      <code translate="no" dir="ltr">activityResultRegistry</code>
+      property rather than implementing the previous
+      <code translate="no" dir="ltr">getActivityResultRegistry()</code>
+      function. (
+      <a href="https://android-review.googlesource.com/#/q/I0b00efc873c16e5b6d26e9ebad889f00a8ddb6b3">I0b00e</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">OnBackPressedDispatcherOwner</code>
+      is now written in Kotlin. This is a
+      <strong>source incompatible change</strong>
+      for those classes written in Kotlin - you must now override the
+      <code translate="no" dir="ltr">onBackPressedDispatcher</code>
+      property rather than implementing the previous
+      <code translate="no" dir="ltr">getOnBackPressedDispatcher</code>
+      function. (
+      <a href="https://android-review.googlesource.com/#/q/Ia277dc57731597b869c4e86d3f8c13896a6ce56f">Ia277d</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ContextAware</code>
+      ,
+      <code translate="no" dir="ltr">ContextAwareHelper</code>
+      ,
+      <code translate="no" dir="ltr">OnContextAvailableListener</code>
+      ,
+      <code translate="no" dir="ltr">IntentSenderRequest</code>
+      and
+      <code translate="no" dir="ltr">OnBackPressedDispatcher</code>
+      are now written in Kotlin. (
+      <a href="https://android-review.googlesource.com/#/q/I1a73e84b3742edf18db69c18722f61b8bc49548b">I1a73e</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Iada9260aa0d006aeea976d08713e171285848d7f">Iada92</a>
+      ,
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/2410754">aosp/2410754</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I18ac79d3cd20fc29159542b729935d3b8d2e4506">I18ac7</a>
+      ,
+      <a href="https://issuetracker.google.com/257291701">b/257291701</a>
+      )
+    </li>
+  </ul>

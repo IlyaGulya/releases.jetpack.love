@@ -1,0 +1,154 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.3.0-alpha02
+releaseDate: 2022-07-27
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha02" data-text="Version 1.3.0-alpha02" tabindex="-1">Version 1.3.0-alpha02</h3>
+  <p>July 27, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.3.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/8094b683499b4098092c01028b55a38b49e357f2..a7f0710ad21f556f0dde9bf7bdab6d2135170fd4/compose/ui">Version 1.3.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added a new property
+      <code translate="no" dir="ltr">PointerInputChange#pressure</code>
+      to retrieve the pressure. (
+      <a href="https://android-review.googlesource.com/#/q/I45a5e8a0097064b01bba449df9e1d455a82e696c">I45a5e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/205164819">b/205164819</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">rememberTextMeasurer</code>
+      to easily create and remember
+      <code translate="no" dir="ltr">TextMeasurer</code>
+      instances in composition. (
+      <a href="https://android-review.googlesource.com/#/q/I8d66e8064e6ee4779270ba81f06c501815a725f7">I8d66e</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Rect</code>
+      ,
+      <code translate="no" dir="ltr">RoundRect</code>
+      , and
+      <code translate="no" dir="ltr">MutableRect</code>
+      now support the Kotlin
+      <code translate="no" dir="ltr">in</code>
+      syntax for calling the
+      <code translate="no" dir="ltr">contains</code>
+      function. (
+      <a href="https://android-review.googlesource.com/#/q/Ie42b063455800b15524996628a4d6c94d4596ce8">Ie42b0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/238642990">b/238642990</a>
+      )
+    </li>
+    <li>
+      Remove unnecessary functions from
+      <code translate="no" dir="ltr">KeyInjectionScope</code>
+      , as they can be easily implemented with simpler parts of the API. The functions that have been removed include
+      <code translate="no" dir="ltr">pressKeys</code>
+      ,
+      <code translate="no" dir="ltr">keysDown</code>
+      and
+      <code translate="no" dir="ltr">keysUp</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I81d7787f740184789e1b6d886a424ffffbcf1f1b">I81d77</a>
+      )
+    </li>
+    <li>
+      Refactored constant and parameter names in
+      <code translate="no" dir="ltr">KeyInjectionScope</code>
+      to include the suffix 'Millis' where the units of said constants and parameters are milliseconds. (
+      <a href="https://android-review.googlesource.com/#/q/Iabef5a81de7d38e2e1bb9de01e94fd69f933e7a1">Iabef5</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">toStringForLog()</code>
+      method to
+      <code translate="no" dir="ltr">EditCommand</code>
+      to help troubleshoot text editing issues. (
+      <a href="https://android-review.googlesource.com/#/q/I53354b781acb7c000c57a293aaf8bc030ac0e484">I53354</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/228862731">b/228862731</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">drawText</code>
+      extension function on
+      <code translate="no" dir="ltr">DrawScope</code>
+      to provide a way to draw multi-styled text on composables and modifiers that operate on a
+      <code translate="no" dir="ltr">DrawScope</code>
+      like
+      <code translate="no" dir="ltr">Canvas</code>
+      and
+      <code translate="no" dir="ltr">drawBehind</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I16a6226ae83d879f2c493fb811f1ecef77a1fc15">I16a62</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/190787898">b/190787898</a>
+      )
+    </li>
+    <li>
+      Introduce a new experimental API called
+      <code translate="no" dir="ltr">TextMeasurer</code>
+      that enables arbitrary text layout computation that creates identical results to
+      <code translate="no" dir="ltr">BasicText</code>
+      , independent from Compose runtime. (
+      <a href="https://android-review.googlesource.com/#/q/I1710117775b135a2e2a01361758aa96c2c5193cc">I17101</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">mapTree</code>
+      to
+      <code translate="no" dir="ltr">SlotTree.kt</code>
+      . This allows tools to inspect the
+      <code translate="no" dir="ltr">SlotTree</code>
+      without making an in memory copy first like asTree does. For the Layout Inspector this gives a performance improvement of about a factor 10. (
+      <a href="https://android-review.googlesource.com/#/q/I5e1135269ea35b617616aa03e58296765b291deb">I5e113</a>
+      )
+    </li>
+    <li>
+      Changed Compose Preview to be stored in binary output files, in order to allow developers to write and reuse
+      <code translate="no" dir="ltr">MultiPreview</code>
+      annotations from libraries. (
+      <a href="https://android-review.googlesource.com/#/q/I856993ed3f4568f62130cfbd92ebb451ec897c24">I85699</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/233511976">b/233511976</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      When adding
+      <code translate="no" dir="ltr">InputEventChange</code>
+      events to
+      <code translate="no" dir="ltr">Velocity</code>
+      Tracker we will consider now deltas instead of positions, this will guarantee the velocity is correctly calculated for all cases even if the target element moves (
+      <a href="https://android-review.googlesource.com/#/q/Icea9d76a43643a6b17da11f3c539d27cb8fa6f6e">Icea9d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/216582726">b/216582726</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/223440806">b/223440806</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/227709803">b/227709803</a>
+      )
+    </li>
+    <li>
+      Fix NPE caused by
+      <code translate="no" dir="ltr">AnnotatedString.toUpperCase</code>
+      when annotations are present. (
+      <a href="https://android-review.googlesource.com/#/q/I0aca2865d1137bc375b2548eac039112294a62fb">I0aca2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/210899140">b/210899140</a>
+      )
+    </li>
+  </ul>

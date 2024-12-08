@@ -1,0 +1,37 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.8.0-alpha03
+releaseDate: 2024-10-02
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0-alpha03" data-text="Version 1.8.0-alpha03" tabindex="-1">Version 1.8.0-alpha03</h3>
+  <p>October 2, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.8.0-alpha03</code>
+    is released. Version 1.8.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/baa5cf7b949ae30f236d40b11ba88f9b0c8cffb9..b6ae8d0a0e8cd803f7b84f30101eda1af4f1d6b6/compose/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>Performance Improvements</strong></p>
+  <ul>
+    <li>
+      Lazily create child context for
+      <code translate="no" dir="ltr">rememberCoroutineScope</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I6be8777ee40a52d1ca0d9f28f6c8ba687a6d5263">f61464</a>
+      )
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">rememberCoroutineScope</code>
+          is typically used to launch coroutines in response to events that happen post-composition. In some scenarios these events may never occur, leading to added costs of Job creation and cancellation without any benefit.
+        </li>
+        <li>
+          Make the scope returned by
+          <code translate="no" dir="ltr">rememberCoroutineScope</code>
+          create its
+          <code translate="no" dir="ltr">coroutineContext</code>
+          lazily when accessed, avoiding job creation and cancellation entirely if the scope is never used.
+        </li>
+      </ul>
+    </li>
+  </ul>

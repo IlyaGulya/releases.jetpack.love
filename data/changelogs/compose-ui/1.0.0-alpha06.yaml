@@ -1,0 +1,180 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.0.0-alpha06
+releaseDate: 2020-10-28
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha06" data-text="Version 1.0.0-alpha06" tabindex="-1">Version 1.0.0-alpha06</h3>
+  <p>October 28, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.0.0-alpha06</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/dd84d35abd1bc13fe53a4632d4b3889f6062ac81..234e23e470a5e7f81291f6acd12d538146dc010b/compose/ui">Version 1.0.0-alpha06 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Recomposer is now a CompositionReference and a valid composition parent. Explicit Recomposer is now required in fewer places. (
+      <a href="https://android-review.googlesource.com/#/q/I4036ff66dff4759bd40127a9af0ca59cbaa37041">I4036f</a>
+      )
+    </li>
+    <li>
+      Deprecate VectorPainter in favor of rememberVectorPainter to better indicate that the composable API internally leverages 'remember' to persist data across compositions. (
+      <a href="https://android-review.googlesource.com/#/q/Ifda43dfd1d5b581c3666f4f69b528c47dbaa0ff5">Ifda43</a>
+      )
+    </li>
+    <li>
+      Updated Modifier.drawWithCache API to expose ContentDrawScope as a receiver scope instead of DrawScope in order to provide implementations the ability to re-order drawing commands. This is useful for blending/ tinting use cases in which content pixels must be rendered first in order for the corresponding blend mode algorithm to be applied properly. (
+      <a href="https://android-review.googlesource.com/#/q/Ie7ec854e6b3f065aba1b8fe43e2b213b6ddf6fe5">Ie7ec8</a>
+      )
+    </li>
+    <li>
+      Move SimpleContainer into PopupTestUtils.kt (
+      <a href="https://android-review.googlesource.com/#/q/I78c5741b466eac4301b265636c82487215ebb633">I78c57</a>
+      )
+    </li>
+    <li>
+      ConsumedData is no longer a data class. See https://android-review.googlesource.com/c/platform/frameworks/support/+/1455219 for details (
+      <a href="https://android-review.googlesource.com/#/q/I1737f9928e7731402e896deedf7d8a97a598e725">I1737f</a>
+      )
+    </li>
+    <li>
+      Fix Rtl Handle Position. (
+      <a href="https://android-review.googlesource.com/#/q/I6e1e07b76476d8e2f0be50ff022257c2379edcf7">I6e1e0</a>
+      )
+    </li>
+    <li>
+      Refactored DrawScope and ContentDrawScope to be interfaces instead of abstract classes
+      <ul>
+        <li>Created CanvasDrawScope implementation of DrawScope</li>
+        <li>Refactored implementations of DrawScope to use CanvasScope instead</li>
+        <li>Created DrawContext to wrap dependencies for DrawScope</li>
+        <li>
+          Removed deprecated methods on DrawScope (
+          <a href="https://android-review.googlesource.com/#/q/I56f5e816116bea0d1337fbe0becc26b87694409b">I56f5e</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Breaking change: removed the return value from
+      <code translate="no" dir="ltr">PointerInputFilter.onPointerEvent(...)</code>
+      given that the only value that should be able to be changed in pointer events is consumption data. Instead of returning data from
+      <code translate="no" dir="ltr">PointerInputFilter.onPointerEvent(...)</code>
+      , now you can just mutate the consumption data of the PointerEvents passed in. (
+      <a href="https://android-review.googlesource.com/#/q/I6acd06e56ab49c8ca932ff7c2d35a517a412e2d2">I6acd0</a>
+      )
+    </li>
+    <li>
+      MeasureScope and IntrinsicMeasureScope were made interfaces. (
+      <a href="https://android-review.googlesource.com/#/q/I1a087c70511d15a9976a7f1cfc6ded7e90f66215">I1a087</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170461665">b/170461665</a>
+      )
+    </li>
+    <li>
+      The merge function for AlignmentLine was hidden. (
+      <a href="https://android-review.googlesource.com/#/q/I9da1ae8390aca7148051361bbe64954bd2a6b7c2">I9da1a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170612900">b/170612900</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170611568">b/170611568</a>
+      )
+    </li>
+    <li>
+      Add ability to specify inspector info in composed modifier (
+      <a href="https://android-review.googlesource.com/#/q/Idee08841816fb7dfc8f0621eb5a32c3663131aa1">Idee08</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/163494569">b/163494569</a>
+      )
+    </li>
+    <li>
+      Added SelectAll option into selection menu (
+      <a href="https://android-review.googlesource.com/#/q/Ief02bb5bb39d11a02112c4ace1b971d6834ec5dd">Ief02b</a>
+      )
+    </li>
+    <li>
+      Updated DrawTransform.rotate to take a default pivot parameter of center to match the documentation.
+      <ul>
+        <li>Updated DrawScope.rotateRad to consume an Offset for the pivot point to match other transformation methods.</li>
+        <li>Deprecated DrawScope.rotateRad overload that consumed floats for the x and y coordinate of the pivot.</li>
+        <li>
+          (
+          <a href="https://android-review.googlesource.com/#/q/Iffcbb650423db90194d17e028cd4518d61a3a33e">Iffcbb</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/170434992">b/170434992</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      API lint check for MissingGetterMatchingBuilder is enabled for androidx (
+      <a href="https://android-review.googlesource.com/#/q/I4bbeacf9869d8338a3d7086acb40bc56ec68c3f9">I4bbea</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/138602561">b/138602561</a>
+      )
+    </li>
+    <li>
+      Add test. (
+      <a href="https://android-review.googlesource.com/#/q/I6b8ae3cf931bc18b948bf611e1056dfeba57d285">I6b8ae</a>
+      )
+    </li>
+    <li>
+      Enable transitions in ComposeTestRule; remove option to enable the blinking cursor from ComposeTestRule. (
+      <a href="https://android-review.googlesource.com/#/q/If0de36db743b7f57b161b0fe6324565750436866">If0de3</a>
+      )
+    </li>
+    <li>
+      Added KeyboardCapitalization IME Option (
+      <a href="https://android-review.googlesource.com/#/q/I8ac3875c7c668bcd2868becd328bb3a253c667cd">I8ac38</a>
+      )
+    </li>
+    <li>
+      Added single line keyboard option to CoreTextField (
+      <a href="https://android-review.googlesource.com/#/q/I72e6d9f84abbf4ff6a9ede5355de4c30d37c3d8c">I72e6d</a>
+      )
+    </li>
+    <li>
+      Move SimpleContainer into PopupTestUtils.kt (
+      <a href="https://android-review.googlesource.com/#/q/I65c3ea4dfec4f69438495f8e60348b92e19abef3">I65c3e</a>
+      )
+    </li>
+    <li>
+      Renamed Radius API to CornerRadius to better express how it is used throughout Compose. Updated documentation to indicate that negative corner radii are clamped to zero. (
+      <a href="https://android-review.googlesource.com/#/q/I130c7e1baadaf1b2f8e6c32f1af0d3702e2cee50">I130c7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/168762961">b/168762961</a>
+      )
+    </li>
+    <li>
+      Improved Android interop by continuing to send MotionEvents to child Android Views that return false for onTouchEvent for all actions except
+      <code translate="no" dir="ltr">ACTION_DOWN</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I94c5ae24d8fd33d8e2f3d0086ed53654a0a57fea">I94c5a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/170320973">b/170320973</a>
+      )
+    </li>
+    <li>
+      Box was made an inline function. (
+      <a href="https://android-review.googlesource.com/#/q/Ibce0c1940173f06c030fd1115b9badb692ceb05a">Ibce0c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/155056091">b/155056091</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Support different locales for
+      <code translate="no" dir="ltr">AnnotatedString.capitalize</code>
+      and
+      <code translate="no" dir="ltr">AnnotatedString.decapitalize</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I4aa7f34296538953954558e21598755a239ab79a">I4aa7f</a>
+      )
+    </li>
+  </ul>

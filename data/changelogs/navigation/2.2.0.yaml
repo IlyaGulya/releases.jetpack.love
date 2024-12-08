@@ -1,0 +1,63 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.2.0
+releaseDate: 2020-01-22
+#language=html
+changelogHtml: |
+  <h3 id="2.2.0" data-text="Version 2.2.0" tabindex="-1">Version 2.2.0</h3>
+  <p>January 22, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.2.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ecc5b7be8afa070b3e8381ad059773453c860324..1420d9e061d8a0ff92bf7b3d28a6bdc4f20d13f5/navigation">Version 2.2.0 contains these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 2.1.0</strong></p>
+  <ul>
+    <li>
+      <strong>NavBackStackEntry</strong>
+      : You can now call
+      <code translate="no" dir="ltr">NavController.getBackStackEntry()</code>
+      , passing in the ID of a destination or navigation graph on the back stack. The returned
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      provides a Navigation-driven
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      ,
+      <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+      (the same returned by
+      <code translate="no" dir="ltr">NavController.getViewModelStoreOwner()</code>
+      ), and
+      <code translate="no" dir="ltr">SavedStateRegistryOwner</code>
+      , in addition to providing the arguments used to start that destination.
+    </li>
+    <li>
+      <strong>Lifecycle ViewModel SavedState Integration</strong>
+      :
+      <code translate="no" dir="ltr">SavedStateViewModelFactory</code>
+      is now the default factory used when using
+      <code translate="no" dir="ltr">by navGraphViewModels()</code>
+      or the
+      <code translate="no" dir="ltr">ViewModelProvider</code>
+      constructor with a
+      <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+      returned by
+      <code translate="no" dir="ltr">NavController.getBackStackEntry()</code>
+      or
+      <code translate="no" dir="ltr">NavController.getViewModelStoreOwner()</code>
+      .
+    </li>
+    <li>
+      <strong>Query Parameter Support for Deep Links</strong>
+      : Deep links with query parameters now support reordered query parameters; arguments that have a default value or are nullable are now optional when matching deep links.
+    </li>
+    <li>
+      <strong>Improved Animation Support</strong>
+      :
+      <code translate="no" dir="ltr">NavHostFragment</code>
+      now uses
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      from
+      <a href="/jetpack/androidx/releases/fragment#1.2.0">Fragment 1.2.0</a>
+      , fixing animation z-ordering issues and window insets dispatching to Fragments.
+    </li>
+  </ul>

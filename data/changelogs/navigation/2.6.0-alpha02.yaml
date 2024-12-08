@@ -1,0 +1,54 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.6.0-alpha02
+releaseDate: 2022-10-05
+#language=html
+changelogHtml: |
+  <h3 id="2.6.0-alpha02" data-text="Version 2.6.0-alpha02" tabindex="-1">Version 2.6.0-alpha02</h3>
+  <p>October 5, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.6.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cce7b70f6a5ebf955cf748a73c18b63228b22c74..4586cf6e518f0c59410ef2b291e34ff9fdcff4e1/navigation">Version 2.6.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      When passing the ID of a navigation graph to
+      <code translate="no" dir="ltr">AppBarConfiguration</code>
+      (such as via a
+      <code translate="no" dir="ltr">Menu</code>
+      ),
+      <code translate="no" dir="ltr">NavigationUI</code>
+      now only considers the start destination of that navigation graph as a top level destination, rather than incorrectly marking every destination within the graph as a top level destination. The behavior of passing the ID of an individual destination is unchanged. This same functionality is available to your own code via the new
+      <code translate="no" dir="ltr">isTopLevelDestination</code>
+      function on
+      <code translate="no" dir="ltr">AppBarConfiguration</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie936ece98a80c2a13fbfb77b83a0ba86e926ebd9">Ie936e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/238496771">b/238496771</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">navigation:navigation-fragment</code>
+      component now depends on Fragment version
+      <code translate="no" dir="ltr">1.5.2</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I00ba4999d13e3330ffd8b260dc856c6e142dd644">I00ba4</a>
+      )
+    </li>
+    <li>
+      The selected menu item will no longer be updated when navigating to a
+      <code translate="no" dir="ltr">FloatingWindow</code>
+      destination such as a dialog. (
+      <a href="https://android-review.googlesource.com/#/q/I4cde820ed7dd61a1a6cb7803f81e704e4b446a0b">I4cde8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/240308330">b/240308330</a>
+      )
+    </li>
+  </ul>

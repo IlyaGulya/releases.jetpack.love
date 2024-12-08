@@ -1,0 +1,68 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.2.3
+releaseDate: 2020-03-18
+#language=html
+changelogHtml: |
+  <h3 id="1.2.3" data-text="Version 1.2.3" tabindex="-1">Version 1.2.3</h3>
+  <p>March 18, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.2.3</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.2.3</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.2.3</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9598eb9e7eaf8411e0433c8b5fc5a5bc8abc096a..bb33dc2112f153d6d7ae15a267d2acd7ac53dabb/fragment">Version 1.2.3 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a bug in
+      <code translate="no" dir="ltr">DialogFragment</code>
+      that caused a
+      <code translate="no" dir="ltr">StackOverflowError</code>
+      when calling
+      <code translate="no" dir="ltr">getLayoutInflater()</code>
+      from within
+      <code translate="no" dir="ltr">onCreateDialog()</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/117894767">b/117894767</a>
+      ,
+      <a href="https://android-review.googlesource.com/1258665">aosp/1258665</a>
+      )
+    </li>
+    <li>
+      Reduced the scope of Fragment’s included ProGuard rules to ensure that unused Fragment classes can be stripped. (
+      <a href="https://issuetracker.google.com/issues/149665169">b/149665169</a>
+      )
+    </li>
+    <li>
+      Fixed false positives in the
+      <code translate="no" dir="ltr">UseRequireInsteadOfGet</code>
+      Lint check when using a local variable name that shadowed the Kotlin property name. (
+      <a href="https://issuetracker.google.com/issues/149891163">b/149891163</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FragmentContainerView</code>
+      no longer throws an
+      <code translate="no" dir="ltr">UnsupportedOperationException</code>
+      for using the incorrect constructor in layout preview. (
+      <a href="https://issuetracker.google.com/issues/149707833">b/149707833</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_122_3" data-text="Version 1.2.2" tabindex="-1">Version 1.2.2</h2>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>
+      The Kotlin dependant libraries of this version (
+      <code translate="no" dir="ltr">fragment-ktx</code>
+      ,
+      <code translate="no" dir="ltr">fragment-testing</code>
+      ) target Java 8 programming language bytecode. Please read
+      <a href="/studio/write/java8-support">Use Java 8 language features</a>
+      to learn how to use it in your project.
+    </span>
+  </aside>

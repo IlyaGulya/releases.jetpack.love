@@ -1,0 +1,63 @@
+libraryId: wear
+groupId: androidx.wear
+version: 1.0.0-alpha14
+releaseDate: 2021-05-18
+#language=html
+changelogHtml: |
+  <h3 id="complications-watchface-1.0.0-alpha14" data-text="Version 1.0.0-alpha14" tabindex="-1">Version 1.0.0-alpha14</h3>
+  <p>May 18, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear:wear-*:1.0.0-alpha14</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3d6f168394d1dd14e1d6f5b6dc4a0d405cb1a26a..66681ad83c328d0dd821b943bb3d375f02c1db61/wear">Version 1.0.0-alpha14 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">EditorSession.openComplicationProviderChooser</code>
+      now returns ChosenComplicationProvider which contains the complication id,
+      <code translate="no" dir="ltr">ComplicationProviderInfo</code>
+      and a Bundle containing any additional extras returned by the provider chooser.
+    </li>
+    <li>In addition we have been steadily migrating code to Kotlin and the majority of the watch face API is now defined in Kotlin.</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      GlesRenderer properties
+      <code translate="no" dir="ltr">eglContext</code>
+      and
+      <code translate="no" dir="ltr">eglDisplay</code>
+      are now non-nullable. Any GL errors are now reported via
+      <code translate="no" dir="ltr">GlesRenderer.GlesException</code>
+      rather than via RuntimeExceptions. (
+      <a href="https://android-review.googlesource.com/#/q/Ib100510722daafabdb37b3d32aefc79824917c57">Ib1005</a>
+      )
+    </li>
+    <li>
+      We have migrated
+      <code translate="no" dir="ltr">androidx.wear.watchface.complications.rendering.ComplicationDrawable</code>
+      from Java to Kotlin (
+      <a href="https://android-review.googlesource.com/#/q/Ibc3eb9084e8bf9b6261fc54a227898c587c200c6">Ibc3eb</a>
+      )
+    </li>
+    <li>
+      We have migrated
+      <code translate="no" dir="ltr">androidx.wear.watchface.complications.rendering.ComplicationStyle</code>
+      from Java to Kotlin (
+      <a href="https://android-review.googlesource.com/#/q/I3375e0cda465c9fb52a993465f7e717e1fd2cf0a">I3375e</a>
+      )
+    </li>
+    <li>
+      We added information about the complication provider for each complication within EditorSession. (
+      <a href="https://android-review.googlesource.com/#/q/I37f14f4867c495bfd9b67d9e32318e5a78eb33c7">I37f14</a>
+      )
+    </li>
+    <li>
+      We extended the result of
+      <code translate="no" dir="ltr">EditorSession.openComplicationProviderChooser</code>
+      to include information returned by the chosen. (
+      <a href="https://android-review.googlesource.com/#/q/Iead6d1a7a7c64aeb4dd3d8d6f49a54b26c8f9c6a">Iead6d</a>
+      )
+    </li>
+  </ul>

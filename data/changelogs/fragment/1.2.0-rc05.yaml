@@ -1,0 +1,41 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.2.0-rc05
+releaseDate: 2020-01-08
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-rc05" data-text="Version 1.2.0-rc05" tabindex="-1">Version 1.2.0-rc05</h3>
+  <p>January 8, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.2.0-rc05</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.2.0-rc05</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.2.0-rc05</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/51813e9145ac8b1ed7f01f3b8dc6741abc937079..52c5cbd1c318a40cad51528d31aa6535f1ab38fe/fragment">Version 1.2.0-rc05 contains these commits</a>
+    .
+  </p>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a regression in Fragment
+      <code translate="no" dir="ltr">1.2.0-rc04</code>
+      when using the
+      <code translate="no" dir="ltr">&lt;fragment&gt;</code>
+      tag which caused
+      <code translate="no" dir="ltr">onViewCreated()</code>
+      to be called incorrectly during activity destruction. (
+      <a href="https://issuetracker.google.com/issues/146290333">b/146290333</a>
+      )
+    </li>
+    <li>
+      Fragments added with the
+      <code translate="no" dir="ltr">&lt;fragment&gt;</code>
+      tag now properly have their non-config cleared even when they are only sometimes in the layout (i.e., only in your landscape layout). As a consequence, these Fragments are now correctly moved to
+      <code translate="no" dir="ltr">CREATED</code>
+      even when not in your layout instead of being instantiated but never moving through any lifecycle methods. (
+      <a href="https://issuetracker.google.com/issues/145769287">b/145769287</a>
+      )
+    </li>
+  </ul>

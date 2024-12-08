@@ -1,0 +1,44 @@
+libraryId: coordinatorlayout
+groupId: androidx.coordinatorlayout
+version: 1.1.0-alpha01
+releaseDate: 2018-12-03
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha01" data-text="Version 1.1.0-alpha01" tabindex="-1">Version 1.1.0-alpha01</h3>
+  <p>December 3, 2018</p>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      <p>
+        <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/737190">aosp/737190</a>
+        : CoordinatorLayout now implements
+        <code translate="no" dir="ltr">NestedScrollingParent3</code>
+        and
+        <code translate="no" dir="ltr">CoordinatorLayout.Behavior</code>
+        implements a new overload of
+        <code translate="no" dir="ltr">onNestedScroll</code>
+        to enable
+        <code translate="no" dir="ltr">Behaviors</code>
+        to be able to report how much scroll distance they consume to nested scrolling children (during the
+        <code translate="no" dir="ltr">dispatchNestedScroll()</code>
+        /
+        <code translate="no" dir="ltr">onNestedScroll()</code>
+        pass). The previously existing
+        <code translate="no" dir="ltr">onNestedScroll(CoordinatorLayout, V, View, int, int, int, int, int)</code>
+        has been deprecated in favor of the new
+        <code translate="no" dir="ltr">onNestedScroll(CoordinatorLayout, V, View, int, int, int, int, int, int[])</code>
+        and
+        <code translate="no" dir="ltr">Behavior</code>
+        implementations should be updated accordingly.
+      </p>
+
+      <p>
+        If developer code currently overrides
+        <code translate="no" dir="ltr">CoordinatorLayout#onNestedScroll(View, int, int, int, int, int)</code>
+        , it will likely no longer be called and
+        <code translate="no" dir="ltr">CoordinatorLayout#onNestedScroll(View, int, int, int, int, int, int[])</code>
+        should be overridden instead.
+      </p>
+    </li>
+  </ul>
+  <devsite-hats-survey class="nocontent" hats-id="VxqvKSur40kxBYCLVTd0SSGykbno" listnr-id="5207477"></devsite-hats-survey>

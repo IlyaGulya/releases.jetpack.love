@@ -1,0 +1,73 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.10.0-alpha03
+releaseDate: 2024-10-30
+#language=html
+changelogHtml: |
+  <h3 id="1.10.0-alpha03" data-text="Version 1.10.0-alpha03" tabindex="-1">Version 1.10.0-alpha03</h3>
+  <p>October 30, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.10.0-alpha03</code>
+    ,
+    <code translate="no" dir="ltr">androidx.activity:activity-compose:1.10.0-alpha03</code>
+    , and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.10.0-alpha03</code>
+    are released. Version 1.10.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/80f82d37cb9b40250ee9eb15d9cbe9e93849355e..ccd90a76bd7c4acf4f4f01eca76350e383bc441e/activity">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">LocalActivity</code>
+      composition local that provides the
+      <code translate="no" dir="ltr">Activity</code>
+      for the current scope, removing the need for developers to get an
+      <code translate="no" dir="ltr">Activity</code>
+      from the
+      <code translate="no" dir="ltr">LocalContext</code>
+      . It also comes with a new lint rule that checks when the
+      <code translate="no" dir="ltr">LocalContext</code>
+      is incorrectly being cast to an
+      <code translate="no" dir="ltr">Activity</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7746aaaeb779d7af79867b4d9143b9d5c5545543">I7746a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/283009666">b/283009666</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      From
+      <a href="#1.9.3">
+        Activity
+        <code translate="no" dir="ltr">1.9.3</code>
+      </a>
+      :
+      <code translate="no" dir="ltr">PredictiveBackHandler</code>
+      will no longer fire it's callback after the handler has been disabled. This will fix an issue where the
+      <code translate="no" dir="ltr">NavHost</code>
+      from Navigation Compose would throw an
+      <code translate="no" dir="ltr">IndexOutOfBoundsException</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3f75eb2415f39b914f18cf4b87bf4ed57bb5a483">I3f75e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/365027664">b/365027664</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/340202286">b/340202286</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Update</strong></p>
+  <ul>
+    <li>
+      Activity Compose now depends on Compose Runtime 1.7.0 (
+      <a href="https://android-review.googlesource.com/#/q/I7746aaaeb779d7af79867b4d9143b9d5c5545543">I7746a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/283009666">b/283009666</a>
+      )
+    </li>
+  </ul>

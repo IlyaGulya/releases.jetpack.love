@@ -1,0 +1,188 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.3.0-alpha01
+releaseDate: 2024-02-21
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha01" data-text="Version 1.3.0-alpha01" tabindex="-1">Version 1.3.0-alpha01</h3>
+  <p>February 21, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.3.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d9d6f951af96c8a1ab87b069a10f40b9a7b8a721..e1b82c49c59d8e976ce558aba5586f6c61bc9054/compose/material3">Version 1.3.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Update Compose M3
+      <code translate="no" dir="ltr">ModalBottomSheet</code>
+      to support Predictive Back on U+ (
+      <a href="https://android-review.googlesource.com/#/q/Iccf324cb6dfc7f4ea1fe413b69e035658282360d">Iccf32</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/281967264">b/281967264</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/304850357">b/304850357</a>
+      )
+    </li>
+    <li>
+      Updated Compose M3
+      <code translate="no" dir="ltr">SearchBar</code>
+      to support Predictive Back on U+ (
+      <a href="https://android-review.googlesource.com/#/q/I657f8859433717fe5e4058bcd7a74649adece529">I657f8</a>
+      )
+    </li>
+    <li>
+      Updated Slider to improve accessibility by adding a gap and stop indicator. (
+      <a href="https://android-review.googlesource.com/#/q/I3058e77cfa7017a781f70e498889ab11330990af">I3058e</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">ProgressIndicator</code>
+      to improve accessibility by adding a gap and stop indicator. (
+      <a href="https://android-review.googlesource.com/#/q/I2145171a393ef661a91799f4e1d39bdd69">I21451</a>
+      )
+    </li>
+    <li>
+      Adding a default caret for rich tooltip, new rich tooltip API now allows for custom caret to be drawn given anchor
+      <code translate="no" dir="ltr">LayoutCoordinates</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ifd42c2be34f72060cccce6414e28c1b2c01e025a">Ifd42c</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      Material components have been migrated to use the new ripple APIs, and no longer query
+      <code translate="no" dir="ltr">RippleTheme</code>
+      .
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The fun
+      <code translate="no" dir="ltr">drawStopIndicator</code>
+      is now public. (
+      <a href="https://android-review.googlesource.com/#/q/I3f59f30d4182bf3d296d13cf048d2077bccb35dc">I3f59f</a>
+      )
+    </li>
+    <li>
+      Mark the
+      <code translate="no" dir="ltr">DatePicker</code>
+      's
+      <code translate="no" dir="ltr">formatWithSkeleton</code>
+      function as internal (
+      <a href="https://android-review.googlesource.com/#/q/Ic65dcccfde74a292180c92be96d69dd6468421f7">Ic65dc</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">DropdownMenu</code>
+      now supports custom color, shape, elevation, and border. (
+      <a href="https://android-review.googlesource.com/#/q/I8e9818a88b1aca1f16370c668ae60d19b0c5a89d">I8e981</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/289554448">b/289554448</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/301887035">b/301887035</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/283654243">b/283654243</a>
+      )
+    </li>
+    <li>
+      Material3 components exposing a
+      <code translate="no" dir="ltr">MutableInteractionSource</code>
+      in their API have been updated to now expose a nullable
+      <code translate="no" dir="ltr">MutableInteractionSource</code>
+      that defaults to
+      <code translate="no" dir="ltr">null</code>
+      . There are no semantic changes here: passing null means that you do not wish to hoist the
+      <code translate="no" dir="ltr">MutableInteractionSource</code>
+      , and it will be created inside the component if needed. Changing to null allows for some components to never allocate a
+      <code translate="no" dir="ltr">MutableInteractionSource</code>
+      , and allows for other components to only lazily create an instance when they need to, which improves performance across these components. If you are not using the
+      <code translate="no" dir="ltr">MutableInteractionSource</code>
+      you pass to these components, it is recommended that you pass null instead. It is also recommended that you make similar changes in your own components. (
+      <a href="https://android-review.googlesource.com/#/q/I41abb601499b4a735b6302b96cdc1f0d066dbbdc">I41abb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/298048146">b/298048146</a>
+      )
+    </li>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">RippleConfiguration</code>
+      and
+      <code translate="no" dir="ltr">LocalRippleConfiguration</code>
+      to allow for per-component / sub-tree customization of ripples using fixed values. For example, to change the color of a component you don't control, or to disable a ripple for a component. In most cases the default values should be used: these APIs are an escape hatch for customization of individual components / limited sub-trees. For wider changes and custom design systems, you should instead build your own ripple using
+      <code translate="no" dir="ltr">createRippleModifierNode</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7b5d62fd50ee78bb3559f83886aa1e7d9f964fb1">I7b5d6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/298048146">b/298048146</a>
+      )
+    </li>
+    <li>
+      Adds new ripple API in material3 which replaces the deprecated
+      <code translate="no" dir="ltr">rememberRipple</code>
+      . Also adds a temporary
+      <code translate="no" dir="ltr">CompositionLocal</code>
+      ,
+      <code translate="no" dir="ltr">LocalUseFallbackRippleImplementation</code>
+      , to revert material3 components to using the deprecated
+      <code translate="no" dir="ltr">rememberRipple</code>
+      /
+      <code translate="no" dir="ltr">RippleTheme</code>
+      APIs. This will be removed in the next stable release, and is only intended to be a temporary migration aid for cases where you are providing a custom
+      <code translate="no" dir="ltr">RippleTheme</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I34cbc2834133de4f3e8dde389ed4dab8c54b0c95">I34cbc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/298048146">b/298048146</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Removed subcomposition inside
+      <code translate="no" dir="ltr">ModalBottomSheet</code>
+      to improve performance. Fixed an issue where
+      <code translate="no" dir="ltr">ModalBottomSheet</code>
+      could crash in specific scenarios in combination with
+      <code translate="no" dir="ltr">LookaheadScope</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2a198c788c55484541e5baa1a9fe2f9146e1e37c">I2a198</a>
+      )
+    </li>
+    <li>
+      Removed subcomposition inside
+      <code translate="no" dir="ltr">BottomSheetScaffold</code>
+      to improve performance. Fixed an issue where
+      <code translate="no" dir="ltr">BottomSheetScaffold</code>
+      would crash in specific scenarios in combination with
+      <code translate="no" dir="ltr">LookaheadScope</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie6401d2db363ef3377ffd16bdf456c5f0b5a1667">Ie6401</a>
+      )
+    </li>
+    <li>
+      The badge alignment is adjusted to be closer to the center of the anchor content in respect to the top-right corner. (
+      <a href="https://android-review.googlesource.com/#/q/I18a28437cf249cd7d7ddffe103c89bdbe200399a">I18a28</a>
+      )
+    </li>
+    <li>
+      Fix an a11y issue with the
+      <code translate="no" dir="ltr">DateRangePicker</code>
+      where the Month-Year text title was conveyed as actionable to the screen reader, Switch access, and Voice access users. (
+      <a href="https://android-review.googlesource.com/#/q/I2ac55010a9f9a39a8b0c3c76ed149488fba651d8">I2ac55</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">mediumTopAppBarColors</code>
+      param order bug. (
+      <a href="https://android-review.googlesource.com/#/q/Ibe64a4f96541f9379e43c137c6f4f30eeaf1794a">Ibe64a</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_12_2" data-text="Version 1.2" tabindex="-1">Version 1.2</h2>

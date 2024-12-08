@@ -1,0 +1,94 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.2.0-alpha04
+releaseDate: 2020-04-29
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha04" data-text="Version 1.2.0-alpha04" tabindex="-1">Version 1.2.0-alpha04</h3>
+  <p>April 29, 2020</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.2.0-alpha04</code>
+    and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.2.0-alpha04</code>
+    are released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6c98d66b901be2eecdf89477ccd70d2490ca6fc2..942518f415d35ff9f2ff78f312c076c673468877/activity">Version 1.2.0-alpha04 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added a contract that can call startIntentSenderForResult to the ActivityResult APIs. (
+      <a href="https://issuetracker.google.com/issues/153007517">b/153007517</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">prepareCall()</code>
+      method has been renamed to
+      <code translate="no" dir="ltr">registerForActivityResult()</code>
+      , both on
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      here and in
+      <a href="/jetpack/androidx/releases/fragment#1.3.0-alpha04">
+        Fragment
+        <code translate="no" dir="ltr">1.3.0-alpha04</code>
+      </a>
+      . (
+      <a href="https://android-review.googlesource.com/1278717">aosp/1278717</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">GetContents</code>
+      ,
+      <code translate="no" dir="ltr">OpenDocuments</code>
+      , and
+      <code translate="no" dir="ltr">RequestPermissions</code>
+      contracts have been renamed to
+      <code translate="no" dir="ltr">GetMultipleContents</code>
+      ,
+      <code translate="no" dir="ltr">OpenMultipleDocuments</code>
+      , and
+      <code translate="no" dir="ltr">RequestMultiplePermissions</code>
+      , respectively. (
+      <a href="https://android-review.googlesource.com/1280161">aosp/1280161</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      now implements the
+      <code translate="no" dir="ltr">ActivityResultRegisteryOwner</code>
+      interface. (
+      <a href="https://android-review.googlesource.com/1290888">aosp/1290888</a>
+      )
+    </li>
+    <li>
+      - The
+      <code translate="no" dir="ltr">startActivityForResult()</code>
+      /
+      <code translate="no" dir="ltr">onActivityResult()</code>
+      and
+      <code translate="no" dir="ltr">onRequestPermissionsResult()</code>
+      APIs on
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      have been deprecated. Please use the
+      <a href="/training/basics/intents/result">Activity Result APIs</a>
+      . (
+      <a href="https://issuetracker.google.com/issues/154751887">b/154751887</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      When using the
+      <code translate="no" dir="ltr">GetMultipleContents</code>
+      and
+      <code translate="no" dir="ltr">OpenMultipleDocuments</code>
+      contracts and selecting a single item, it is now correctly returned to your callback. (
+      <a href="https://issuetracker.google.com/issues/152941153">b/152941153</a>
+      )
+    </li>
+  </ul>

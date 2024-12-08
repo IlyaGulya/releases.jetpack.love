@@ -1,0 +1,94 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.3.0-alpha08
+releaseDate: 2023-10-18
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha08" data-text="Version 1.3.0-alpha08" tabindex="-1">Version 1.3.0-alpha08</h3>
+  <p>October 18, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.3.0-alpha08</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1f7407d4293384a1b91bc142880e3525048b3443..465c5c5b7a0d79793bddb26a695f67aba8ea2f7e/wear/compose">Version 1.3.0-alpha08 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We have added individual flags to
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      overloads, to control different animations:
+      <code translate="no" dir="ltr">showFadeInAnimation</code>
+      ,
+      <code translate="no" dir="ltr">showFadeOutAnimation</code>
+      and
+      <code translate="no" dir="ltr">showPositionAnimation</code>
+      . The previous API has been deprecated and forwards calls to the new one. For performance reasons and for UX consistency, when the
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      is used with a scrollable list, we recommend switching off
+      <code translate="no" dir="ltr">showFadeInAnimation</code>
+      and
+      <code translate="no" dir="ltr">showPositionAnimation</code>
+      flags. If
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      is used as a standalone indicator, for example for volume change, then we recommend having all 3 animations turned on. (
+      <a href="https://android-review.googlesource.com/#/q/I44294ccbb47f244dda839b4659a1b2cd962c7aef">I44294</a>
+      )
+    </li>
+    <li>
+      We have deprecated the Material
+      <code translate="no" dir="ltr">SwipeToDismissBoxState</code>
+      ,
+      <code translate="no" dir="ltr">SwipeToDismissValue</code>
+      and
+      <code translate="no" dir="ltr">edgeSwipeToDismiss</code>
+      following the migration of Swipe-to-Dismiss functionality to
+      <code translate="no" dir="ltr">wear.compose.foundation</code>
+      . Please replace with the
+      <code translate="no" dir="ltr">wear.compose.foundation</code>
+      equivalents. (
+      <a href="https://android-review.googlesource.com/#/q/Iee8c97aeb50a9109d35fc70d41c57fb755dab699">Iee8c9</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We have updated the baseline profiles for wear compose foundation, material and navigation libraries. (
+      <a href="https://android-review.googlesource.com/#/q/Idb060e09eeb5d708f6bf5c531fe9c01b7e5ae465">Idb060</a>
+      )
+    </li>
+    <li>
+      We have reverted a behavioral change for
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      introduced in a previous CL, such that the
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      was animated when a screen was initially displayed. We intend to make a similar change in an early 1.4 alpha, so that the
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      is initially displayed, but without any animation. (
+      <a href="https://android-review.googlesource.com/#/q/I41843ef10d4ebad839616c8005070f1989b2e940">I41843</a>
+      )
+    </li>
+    <li>
+      We have addressed some performance issues in
+      <code translate="no" dir="ltr">PositionIndicator</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1c6546abc834f718c9d8f11d756262d507590acc">I1c654</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/302399827">b/302399827</a>
+      )
+    </li>
+    <li>
+      We have optimized performance of the touch exploration state provider default implementation to rely on
+      <code translate="no" dir="ltr">State&lt;Boolean&gt;</code>
+      rather than derived state. (
+      <a href="https://android-review.googlesource.com/#/q/Ieec4de2ea71eefabb5dbac43d61975e4f36cc5df">Ieec4d</a>
+      )
+    </li>
+    <li>
+      We have set
+      <code translate="no" dir="ltr">systemGestureExclusion</code>
+      rectangles for Android 13 and higher. (
+      <a href="https://android-review.googlesource.com/#/q/Ib1f4b09be3efedc382213b58d80f02bb21608e7d">Ib1f4b</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,74 @@
+libraryId: room
+groupId: androidx.room
+version: 2.6.0-alpha01
+releaseDate: 2023-03-22
+#language=html
+changelogHtml: |
+  <h3 id="2.6.0-alpha01" data-text="Version 2.6.0-alpha01" tabindex="-1">Version 2.6.0-alpha01</h3>
+  <p>March 22, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.6.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e45926c282f76fcba0b4e86bfa74bc6e5a5ca642..5e7d256f82fbafb6d059ab7b18fddd87c7531553/room">Version 2.6.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Supporting value classes in Room for KSP. Room is now able to support value classes in Entities. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/4194095366032c1c06d9e472e4e78b822c82cbe6">4194095</a>
+      )
+    </li>
+    <li>
+      Kotlin code generation(or “Kotlin CodeGen”) can now be enabled in Room (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/4297ec00790d6d88f86c6c5d9dfb9a260a7131ad">4297ec0</a>
+      ). To turn on Kotlin CodeGen in Room, add the
+      <code translate="no" dir="ltr">room.generateKotlin</code>
+      option name to your processor options for KSP. For more details on how to pass processor options for KSP, see the
+      <a href="https://kotlinlang.org/docs/ksp-quickstart.html#pass-options-to-processors">KSP documentation</a>
+      .
+    </li>
+  </ul>
+  <p class="note">
+    <b>Note:</b>
+    When using Kotlin CodeGen, it is important to note that there are additional restrictions that have been added. Abstract properties as DAO getters or DAO queries in Kotlin CodeGen are disallowed, and instead expected to be rewritten as functions to avoid the false notion that the property value is immutable and has a fixed stored result. Another restriction that has been added is that Nullable collection return types are no longer allowed in Room for Kotlin CodeGen.
+  </p>
+  <p class="warning">
+    <b>Warning:</b>
+    You may find that your projects are more strict in terms of nullability when using Kotlin CodeGen. In Kotlin CodeGen, the nullability of type arguments is important, wheras in Java this is mostly ignored. For example, let's say you have a `Flow
+    <foo\>
+      ` return type and the table is empty. In Java CodeGen, this will not cause any issues, but in Kotlin CodeGen, you will get an error. To avoid this, you will need to use `Flow
+      <foo?\>`, assuming a null is emitted.</foo?\>
+    </foo\>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Guarding against meaningless usage of nullable collections in DAO method return types. (
+      <a href="https://android-review.googlesource.com/#/q/I777dca93da0fb30e1712bcbd20dbf57044cdbc2a">I777dc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/253271782">b/253271782</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/259426907">b/259426907</a>
+      )
+    </li>
+    <li>
+      Add an API for creating a Flow that emits invalidation tracker changes. The API is useful for creating streams that need to react to database changes. (
+      <a href="https://android-review.googlesource.com/#/q/I8c7904f0d630bfc48574af96e288e8c7b5bf777a">I8c790</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/252899305">b/252899305</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Disallow abstract properties as DAO getters or DAO queries in Kotlin codegen, instead they should be rewritten as functions to avoid the false notion that the property value is immutable and has a fixed stored result. (
+      <a href="https://android-review.googlesource.com/#/q/If6a13382b351fbcf9072a40c496d600cd329fd38">If6a13</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/127483380">b/127483380</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/257967987">b/257967987</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_252_3" data-text="Version 2.5.2" tabindex="-1">Version 2.5.2</h2>

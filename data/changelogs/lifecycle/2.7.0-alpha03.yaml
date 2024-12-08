@@ -1,0 +1,48 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.7.0-alpha03
+releaseDate: 2023-10-18
+#language=html
+changelogHtml: |
+  <h3 id="2.7.0-alpha03" data-text="Version 2.7.0-alpha03" tabindex="-1">Version 2.7.0-alpha03</h3>
+  <p>October 18, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.7.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9ce75ea1baa2af10dda8f787f69c40c6654bcac1..465c5c5b7a0d79793bddb26a695f67aba8ea2f7e/lifecycle">Version 2.7.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">lifecycle-runtime-testing</code>
+      now contains a new Lint check to avoid setting the
+      <code translate="no" dir="ltr">Lifecycle.State</code>
+      of the
+      <code translate="no" dir="ltr">TestLifecycleOwner</code>
+      by using the
+      <code translate="no" dir="ltr">currentState</code>
+      field when inside of a coroutine. The Lint check now suggests the suspending
+      <code translate="no" dir="ltr">setCurrentState</code>
+      which allows setting the
+      <code translate="no" dir="ltr">Lifecycle.State</code>
+      without blocking. (
+      <a href="https://android-review.googlesource.com/#/q/Icf728aa93a9aeca7c3cd89311289aae970d1f651">Icf728</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/297880630">b/297880630</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue with
+      <code translate="no" dir="ltr">LiveData.switchMap</code>
+      where returning the same
+      <code translate="no" dir="ltr">LiveData</code>
+      instance both on the initial call and a subsequent call would prevent the
+      <code translate="no" dir="ltr">LiveData</code>
+      instance from being added as a source. (
+      <a href="https://android-review.googlesource.com/#/q/Ibedcba7934ae43bba58eb1cb43388e125adf4bc6">Ibedcba7</a>
+      )
+    </li>
+  </ul>

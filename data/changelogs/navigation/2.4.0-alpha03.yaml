@@ -1,0 +1,91 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.4.0-alpha03
+releaseDate: 2021-06-16
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0-alpha03" data-text="Version 2.4.0-alpha03" tabindex="-1">Version 2.4.0-alpha03</h3>
+  <p>June 16, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.4.0-alpha03</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/86ff5b4bb956431ec884586ce0aea0127e189ec4..ccf79f53033e665475116a4e78ff124df2a52c4b/navigation">Version 2.4.0-alpha03 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where two
+      <code translate="no" dir="ltr">navigate()</code>
+      calls were needed to navigate to an included dynamic graph. (
+      <a href="https://android-review.googlesource.com/#/q/I7785c40969a40b30b34acd6eedd896b44c3200a1">I7785c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/188859835">b/188859835</a>
+      )
+    </li>
+    <li>
+      Fixed a regression introduced in
+      <a href="#2.4.0-alpha01">
+        Navigation
+        <code translate="no" dir="ltr">2.4.0-alpha01</code>
+      </a>
+      where
+      <code translate="no" dir="ltr">setupActionBarWithNavController()</code>
+      would not properly remove the Up icon when you are on a top level destination. (
+      <a href="https://android-review.googlesource.com/#/q/I5d4439021161f544d664a822e1c422ff60c91e1b">I5d443</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/189868637">b/189868637</a>
+      )
+    </li>
+    <li>
+      Fixed an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      when calling
+      <code translate="no" dir="ltr">popBackStack()</code>
+      after previously popping the root graph of the NavController. (
+      <a href="https://android-review.googlesource.com/#/q/I2a330acdd339aece36455aa0da37d0609767552c">I2a330</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/190265699">b/190265699</a>
+      )
+    </li>
+    <li>
+      ProGuard rules for
+      <code translate="no" dir="ltr">by navArgs()</code>
+      now properly apply when using
+      <code translate="no" dir="ltr">navigation-common</code>
+      or any artifacts that depend on it. (
+      <a href="https://android-review.googlesource.com/#/q/I688009632403c98afe728d856ce91cd056ef32a5">I68800</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/190082521">b/190082521</a>
+      )
+    </li>
+    <li>
+      An
+      <code translate="no" dir="ltr">OnDestinationChangedListener</code>
+      that calls
+      <code translate="no" dir="ltr">navigate()</code>
+      the first time it receives a callback now properly get a second callback with the destination it navigated to. (
+      <a href="https://android-review.googlesource.com/#/q/Ie5f9e0f8dec404775c99a0e90c1cde8a9e059550">Ie5f9e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/190228815">b/190228815</a>
+      )
+    </li>
+    <li>
+      Safe Args no longer crashes when using it with dynamic feature modules and AGP 7.0+. (
+      <a href="https://android-review.googlesource.com/#/q/I6951812da260e739a2d515fb9b3782b90c75642d">I69518</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/189966576">b/189966576</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issue</strong></p>
+  <ul>
+    <li>
+      Safe Args will fail with an
+      <code translate="no" dir="ltr">Unable to find method ‘’java.lang.String kotlin.text.CarsKt.titleCase(char, java.util.Locale)’’</code>
+      error when using Gradle
+      <code translate="no" dir="ltr">6.7.0</code>
+      due to a dependency on an older version of Kotlin. This can be worked around by updating to use Gradle 7.0. (
+      <a href="https://issuetracker.google.com/190739257">b/190739257</a>
+      )
+    </li>
+  </ul>

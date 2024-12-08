@@ -1,0 +1,43 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.0.0-beta01
+releaseDate: 2021-02-10
+#language=html
+changelogHtml: |
+  <h3 id="3.0.0-beta01" data-text="Version 3.0.0-beta01" tabindex="-1">Version 3.0.0-beta01</h3>
+  <p>February 10, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.0.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/aee18b103203a91ee89df91f0af5df2ecff356d6..602cf9bff5e74e4355760aa47d3fc73a2e6d779b/paging">Version 3.0.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Rx2 and Rx3 wrappers now expose the experimental annotation it depends on. If you are using the Rx compat wrappers in paging-rxjava2 or paging-rxjava3, you will now need to annotate usages with
+      <code translate="no" dir="ltr">@OptIn(ExperimentalCoroutinesApi::class)</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ib1f9d578ee9eb4c1bdf6c8bbabc99c978398c584">Ib1f9d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">IndexOutOfBoundsException: Inconsistency detected</code>
+      sometimes thrown when using v2
+      <code translate="no" dir="ltr">DataSource</code>
+      APIs through compatibility paths
+    </li>
+    <li>
+      <code translate="no" dir="ltr">isInvalid</code>
+      call during initialization of
+      <code translate="no" dir="ltr">DataSource</code>
+      when used via compatibility paths are now correctly launched on fetchDispatcher instead of on the main thread. This fixes an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      due to Db access on the main thread when using Room’s
+      <code translate="no" dir="ltr">PagingSource</code>
+      implementation.
+    </li>
+  </ul>

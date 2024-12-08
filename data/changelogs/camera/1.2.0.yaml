@@ -1,0 +1,67 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.2.0
+releaseDate: 2022-12-07
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0" data-text="Version 1.2.0" tabindex="-1">Version 1.2.0</h3>
+  <p>December 7, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.2.0</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4492a75904152396b00e333181677981b0e28fd0..05a044e1a19ef44742449bb296cc7520dd109e35/camera">Version 1.2.0 contains these commits.</a>
+  </p>
+  <p><strong>Important changes since 1.1.0</strong></p>
+  <ul>
+    <li>
+      New library camera-mlkit-vision. Easily integrate CameraX with many MLKit features, including barcode scanning, face detection, text detection, etc. Added
+      <code translate="no" dir="ltr">MLKitAnalyzer</code>
+      as new APIs.
+    </li>
+    <li>
+      New experimental Zero-Shutter Lag API. Optimizes capture pipeline to have better latency while keeping good image quality. When the capture mode is set to
+      <code translate="no" dir="ltr">CAPTURE_MODE_ZERO_SHUTTER_LAG</code>
+      , the latency between the shutter button is clicked and the picture is taken is expected to be minimized, compared with other capture modes. On devices that don’t support
+      <code translate="no" dir="ltr">ZERO_SHUTTER_LAG</code>
+      , it’ll fallback to
+      <code translate="no" dir="ltr">CAPTURE_MODE_MINIMIZE_LATENCY</code>
+      .
+    </li>
+    <li>
+      Deprecate
+      <code translate="no" dir="ltr">android.camera.core.VideoCapture</code>
+      .
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">setStreamUseCase()</code>
+      as a public
+      <code translate="no" dir="ltr">Camera2Interop</code>
+      API.
+    </li>
+    <li>
+      Added API level requirement for
+      <code translate="no" dir="ltr">setOutputImageRotationEnabled</code>
+      .
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">ImageAnalysis.Analyzer#getTargetResolutionOverride()</code>
+      to
+      <code translate="no" dir="ltr">ImageAnalysis.Analyzer#getDefaultTargetResolution()</code>
+      .
+    </li>
+    <li>Added API for setting location metadata to the saved video.</li>
+    <li>
+      Fixed low framerate when using
+      <code translate="no" dir="ltr">VideoCapture</code>
+      and Preview use cases with 16:9 aspect ratio
+    </li>
+    <li>Fixed the black preview issue that happens when BOKEH extension is enabled on some Samsung devices and the user switches the cameras.</li>
+    <li>
+      Fixed Samsung J7 Prime (SM-G610M) and J7 (SM-J710MN)
+      <code translate="no" dir="ltr">Preview/VideoCapture</code>
+      stretched issue on API level 27 devices.
+    </li>
+    <li>Disabled the workaround to flip the AF region horizontally of front cameras on Samsung Android T since the issue was fixed</li>
+  </ul>

@@ -1,0 +1,31 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.6.2
+releaseDate: 2023-09-06
+#language=html
+changelogHtml: |
+  <h3 id="2.6.2" data-text="Version 2.6.2" tabindex="-1">Version 2.6.2</h3>
+  <p>September 6, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.6.2</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5b3397913c8a67b0cffa4d23cb4666aa3cb6c6d7..7be61b15f970440682c946bd769cc7e3737acd86/lifecycle">Version 2.6.2 contains these commits.</a>
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      would not correctly be restored after process death if the state was restored,
+      <code translate="no" dir="ltr">save()</code>
+      was called without actually saving the state in the parent
+      <code translate="no" dir="ltr">SavedStateRegistry</code>
+      , and then the state was restored again. This fixes the interaction between
+      <code translate="no" dir="ltr">rememberSaveable</code>
+      and Navigation Compose’s
+      <code translate="no" dir="ltr">NavHost</code>
+      . (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/2729289">aosp/2729289</a>
+      )
+    </li>
+  </ul>

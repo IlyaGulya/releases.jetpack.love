@@ -1,0 +1,54 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.6.0-beta01
+releaseDate: 2023-04-19
+#language=html
+changelogHtml: |
+  <h3 id="2.6.0-beta01" data-text="Version 2.6.0-beta01" tabindex="-1">Version 2.6.0-beta01</h3>
+  <p>April 19, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.6.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1691115db9e0e4fbbaa2d2250992d98c61de9ed6..01bd392d5702480f8bfe61a8f8bbbea64cf362a0/navigation">Version 2.6.0-beta01 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">NavBackStackEntry</code>
+      now provides a custom
+      <code translate="no" dir="ltr">toString</code>
+      implementation. (
+      <a href="https://android-review.googlesource.com/#/q/Iff00bfa2c625e9828d5c9cf19c566069fffc6afe">Iff00b</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      When using Navigation with Fragments, attempting to manually do a
+      <code translate="no" dir="ltr">FragmentTransaction</code>
+      that adds a fragment to the
+      <code translate="no" dir="ltr">FragmentManager</code>
+      's back stack will now throw an
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      . You should always add fragments via the
+      <code translate="no" dir="ltr">navigate()</code>
+      API. (
+      <a href="https://android-review.googlesource.com/#/q/I6d38e3fac4b7552881655d18304d5efec6168d03">I6d38e</a>
+      )
+    </li>
+    <li>
+      When there is a
+      <code translate="no" dir="ltr">navigate</code>
+      that adds an entry and a
+      <code translate="no" dir="ltr">popBackStack</code>
+      that removes it in the same frame, the resulting top entry on the back stack will now consistently make it back to the
+      <code translate="no" dir="ltr">RESUMED</code>
+      <code translate="no" dir="ltr">Lifecycle.State</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id80678cf8856ca2de55c8adbc19b33fa0f8fbec9">Id8067</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/276495952">b/276495952</a>
+      )
+    </li>
+  </ul>

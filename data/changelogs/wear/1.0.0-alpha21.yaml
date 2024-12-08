@@ -1,0 +1,31 @@
+libraryId: wear
+groupId: androidx.wear
+version: 1.0.0-alpha21
+releaseDate: 2021-09-01
+#language=html
+changelogHtml: |
+  <h3 id="complications-watchface-1.0.0-alpha21" data-text="Version 1.0.0-alpha21" tabindex="-1">Version 1.0.0-alpha21</h3>
+  <p>September 1, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear:wear-*:1.0.0-alpha21</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1e0ab9e58c3c2ebe8152b7507938aef7e9c1acdc..47e81d1c497b8a57534a460c277855db1b0257ae/wear">Version 1.0.0-alpha21 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      All public watch face, client, editor and complication APIs now use java.time.Instant for times rather than a Long, as a consequence the minimum API level has increased to 26. (
+      <a href="https://android-review.googlesource.com/#/q/I3cd482ea3c80e6b88d28f9e33368b8f0e8e651c8">I3cd48</a>
+      )
+    </li>
+    <li>
+      The watchface and complication APIs now use the immutable ZonedDateTime instead of Calendar. (
+      <a href="https://android-review.googlesource.com/#/q/I25cf828b22577fe838a8baf8eab591febb90c284">I25cf8</a>
+      )
+    </li>
+    <li>
+      ComplicationSlots are now initialized with NoDataComplicationData, ComplicationSlot.complicationData now always has a value and CanvasComplicationDrawable.complicationData is no longer nullable. (
+      <a href="https://android-review.googlesource.com/#/q/I4dfd6e996b84f3d6d664fce98bc8e6601d9298cd">I4dfd6</a>
+      ) This reduces (but doesn’t eliminate) complication flickering when switching between watch faces.
+    </li>
+  </ul>

@@ -1,0 +1,57 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.9.0-alpha06
+releaseDate: 2024-10-30
+#language=html
+changelogHtml: |
+  <h3 id="2.9.0-alpha06" data-text="Version 2.9.0-alpha06" tabindex="-1">Version 2.9.0-alpha06</h3>
+  <p>October 30, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.9.0-alpha06</code>
+    is released. Version 2.9.0-alpha06 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b8a68b0896897fa158508d73a31998a26161d9a7..ccd90a76bd7c4acf4f4f01eca76350e383bc441e/lifecycle">these commits</a>
+    .
+  </p>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">Lifecycle.DESTROYED</code>
+      state is terminal, and any attempt to move a
+      <code translate="no" dir="ltr">Lifecycle</code>
+      from it to any other state will now result in an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I116c40ccb6a7a4807072ecf85ed4cf5ceca07568">I116c4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/370577987">b/370577987</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      no longer includes any
+      <code translate="no" dir="ltr">SavedStateProvider.saveState()</code>
+      where the returned
+      <code translate="no" dir="ltr">Bundle</code>
+      is empty. (
+      <a href="https://android-review.googlesource.com/#/q/I910b58ff45d036c700a2f3ad93ea9db1d7284e52">I910b5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/370577987">b/370577987</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">Lifecycle.eventFlow</code>
+      now correctly complete when
+      <code translate="no" dir="ltr">Lifecycle</code>
+      is
+      <code translate="no" dir="ltr">DESTROYED</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I293b274b166de819115e249b624117f0492ed67b">I293b2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/374043130">b/374043130</a>
+      )
+    </li>
+  </ul>

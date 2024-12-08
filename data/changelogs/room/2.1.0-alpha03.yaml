@@ -1,0 +1,82 @@
+libraryId: room
+groupId: androidx.room
+version: 2.1.0-alpha03
+releaseDate: 2018-12-04
+#language=html
+changelogHtml: |
+  <h3 id="2.1.0-alpha03" data-text="Version 2.1.0-alpha03" tabindex="-1">Version 2.1.0-alpha03</h3>
+  <p>December 4, 2018</p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The FTS
+      <code translate="no" dir="ltr">tokenizer</code>
+      in
+      <code translate="no" dir="ltr">@Fts3</code>
+      /
+      <code translate="no" dir="ltr">@Fts4</code>
+      now takes a String instead of an Enum. This allows custom tokenizers to be used by Room. Built-in tokenizers are still defined in
+      <code translate="no" dir="ltr">FtsOptions</code>
+      as string constants.
+      <a href="https://issuetracker.google.com/119234881">b/119234881</a>
+    </li>
+  </ul>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <strong>Couroutines</strong>
+      : DAO methods can now be suspend functions. To support suspend functions in Room a new artifact has been released,
+      <code translate="no" dir="ltr">room-coroutines</code>
+      .
+      <a href="https://issuetracker.google.com/69474692">b/69474692</a>
+    </li>
+    <li>
+      DAO methods annotated with
+      <code translate="no" dir="ltr">@Insert</code>
+      ,
+      <code translate="no" dir="ltr">@Delete</code>
+      or
+      <code translate="no" dir="ltr">@Update</code>
+      now support
+      <code translate="no" dir="ltr">ListenableFuture</code>
+      as return type.
+      <a href="https://issuetracker.google.com/119418331">b/119418331</a>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a bug where Room would incorrectly attempt to find a constructor with columns in the
+      <code translate="no" dir="ltr">ignoredColumns</code>
+      property of
+      <code translate="no" dir="ltr">@Entity</code>
+      .
+      <a href="https://issuetracker.google.com/119830714">b/119830714</a>
+    </li>
+    <li>
+      Fixed a bug where Room would not mark DAO method parameters as final in their generated implementation.
+      <a href="https://issuetracker.google.com/118015483">b/118015483</a>
+    </li>
+    <li>
+      Fixed a bug where Room's processor would crash when reporting an error on a query with special symbols.
+      <a href="https://issuetracker.google.com/119520136">b/119520136</a>
+    </li>
+    <li>
+      Fixed a bug where Room would decline other various
+      <code translate="no" dir="ltr">Collection</code>
+      implementations as arguments of an
+      <code translate="no" dir="ltr">IN</code>
+      expression.
+      <a href="https://issuetracker.google.com/119884035">b/119884035</a>
+    </li>
+    <li>
+      Fixed a bug where LiveData returned from Room would get garbage collected when observed forever causing it to no longer emit new data.
+      <a href="https://issuetracker.google.com/74477406">b/74477406</a>
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">RoomDatabase</code>
+      's close lock to reduce lock contention.
+      <a href="https://issuetracker.google.com/117900450">b/117900450</a>
+    </li>
+  </ul>
