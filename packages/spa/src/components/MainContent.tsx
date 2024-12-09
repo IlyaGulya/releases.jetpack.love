@@ -23,28 +23,30 @@ export default function MainContent({
   onSelectVersions,
 }: MainContentProps) {
   return (
-    <div className="container mx-auto p-4">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="md:col-span-1">
-          <LibrarySearch
-            libraries={libraries}
-            onSelect={onSelectLibrary}
-            selectedLibrary={selectedLibrary}
-          />
-        </div>
-
-        <div className="md:col-span-3">
-          {selectedLibrary ? (
-            <VersionSelector
-              library={selectedLibrary}
-              selectedVersions={selectedVersions}
-              onSelectVersions={onSelectVersions}
+    <div className="h-[calc(100vh-73px)] overflow-hidden">
+      <div className="container mx-auto p-4 h-full">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 h-full">
+          <div className="md:col-span-1 h-full">
+            <LibrarySearch
+              libraries={libraries}
+              onSelect={onSelectLibrary}
+              selectedLibrary={selectedLibrary}
             />
-          ) : (
-            <div className="text-center text-muted-foreground">
-              Select a library to begin
-            </div>
-          )}
+          </div>
+
+          <div className="md:col-span-3 h-full overflow-hidden">
+            {selectedLibrary ? (
+              <VersionSelector
+                library={selectedLibrary}
+                selectedVersions={selectedVersions}
+                onSelectVersions={onSelectVersions}
+              />
+            ) : (
+              <div className="text-center text-muted-foreground flex items-center justify-center h-full">
+                <h2 className="text-2xl font-medium">Select a library to begin</h2>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

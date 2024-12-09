@@ -42,16 +42,16 @@ export default function LibrarySearch({
   };
 
   return (
-    <div className="w-full space-y-2">
+    <div className="w-full h-full flex flex-col">
       <Input
         type="search"
         placeholder="Search libraries..."
         value={search}
         onChange={handleSearchChange}
-        className="w-full"
+        className="w-full mb-2"
       />
 
-      <div className="h-[60vh] overflow-y-auto">
+      <div className="flex-1 overflow-y-auto">
         <div className="space-y-1">
           {results.map((library) => (
             <button
