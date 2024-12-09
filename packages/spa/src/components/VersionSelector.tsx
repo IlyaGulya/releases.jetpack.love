@@ -9,6 +9,7 @@ import Fuse from 'fuse.js';
 import semver from 'semver';
 import {useQueries} from '@tanstack/react-query';
 import {useNavigate} from 'react-router';
+import { usePostHog } from 'posthog-js/react'
 
 interface Version {
   version: string;
@@ -46,6 +47,7 @@ export default function VersionSelector({
       threshold: 0.2,
     }) : null
   );
+  const posthog = usePostHog()
 
   useEffect(() => {
     if (!library) {
@@ -85,12 +87,20 @@ export default function VersionSelector({
     if (!selectedVersions.from || !selectedVersions.to) {
       // If clicking the already selected "from" version, deselect it
       if (selectedVersions.from === version.version) {
+        posthog?.capture('deselect_version', {
+          library: library?.id,
+          version: version.version
+        })
         onSelectVersions({ from: null, to: null });
         return;
       }
 
       // Initial selection without dialog
       if (!selectedVersions.from) {
+        posthog?.capture('select_from_version', {
+          library: library?.id,
+          version: version.version
+        })
         onSelectVersions({from: version.version, to: null});
       } else if (!selectedVersions.to) {
         // If selecting the same version as "from", deselect "from"
@@ -101,13 +111,20 @@ export default function VersionSelector({
 
         const comparison = semver.compare(version.version, selectedVersions.from);
         if (comparison >= 0) {
+          posthog?.capture('select_to_version', {
+            library: library?.id,
+            from_version: selectedVersions.from,
+            to_version: version.version
+          })
           onSelectVersions({...selectedVersions, to: version.version});
         } else {
           onSelectVersions({from: version.version, to: selectedVersions.from});
         }
       }
     } else {
-      // Clear selection and return to version list
+      posthog?.capture('clear_version_selection', {
+        library: library?.id
+      })
       clearSelection();
     }
   };
@@ -155,6 +172,18 @@ export default function VersionSelector({
     .filter((q) => q.data)
     .map((q) => q.data as Version)
     .sort((a, b) => (ascending ? 1 : -1) * semver.compare(a.version, b.version));
+
+  // When changelog data is loaded successfully
+  useEffect(() => {
+    if (allVersionData.length > 0) {
+      posthog?.capture('view_changelog', {
+        library: library?.id,
+        from_version: selectedVersions.from,
+        to_version: selectedVersions.to,
+        versions_count: allVersionData.length
+      })
+    }
+  }, [allVersionData.length, library?.id, selectedVersions.from, selectedVersions.to])
 
   if (!library) return null;
 
