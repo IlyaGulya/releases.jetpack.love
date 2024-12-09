@@ -282,25 +282,29 @@ export default function VersionSelector({
               {allVersionData.map((version, index) => (
                 <div key={index} className="border-l-4 border-primary/80 rounded-r-lg p-6 mb-8 bg-card shadow-sm">
                   <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-                    <h3 className="m-0 text-base md:text-lg font-semibold text-primary">{version.version}</h3>
+                    <div className="flex items-center gap-3">
+                      <h3 className="m-0 text-base md:text-lg font-semibold text-primary">{version.version}</h3>
+                      {version.commitsUrl && (
+                        <>
+                          <div className="h-4 w-[2px] bg-border" />
+                          <a
+                            href={version.commitsUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm text-primary hover:text-primary/90 inline-flex items-center gap-1 no-underline"
+                          >
+                            View Commits
+                            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path d="M7 17L17 7M17 7H7M17 7V17" />
+                            </svg>
+                          </a>
+                        </>
+                      )}
+                    </div>
                     <div className="text-sm text-muted-foreground">
                       {version.date}
                     </div>
                   </div>
-
-                  {version.commitsUrl && (
-                    <a
-                      href={version.commitsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-primary hover:text-primary/90 mb-4 inline-flex items-center gap-1 no-underline"
-                    >
-                      View Commits
-                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M7 17L17 7M17 7H7M17 7V17" />
-                      </svg>
-                    </a>
-                  )}
 
                   <div
                     className="prose dark:prose-invert
