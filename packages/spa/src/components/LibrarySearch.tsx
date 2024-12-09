@@ -58,15 +58,17 @@ export default function LibrarySearch({
               key={library.id}
               onClick={() => onSelect(library)}
               className={`w-full p-3 text-left rounded-md transition-colors border
-                ${selectedLibrary?.id === library.id ? 'bg-primary text-primary-foreground border-primary' : 'border-border hover:bg-accent'}`}
+                ${selectedLibrary?.id === library.id 
+                  ? 'bg-primary text-primary-foreground border-primary' 
+                  : 'border-input bg-background hover:bg-accent hover:text-accent-foreground'}`}
             >
-              <div className="font-medium truncate">{library.id}</div>
+              <div className="font-semibold text-foreground dark:text-foreground truncate">{library.id}</div>
               {library.groupId && (
-                <div className="text-sm text-muted-foreground truncate">
+                <div className="text-sm text-foreground/70 dark:text-foreground/80 truncate">
                   {library.groupId}
                 </div>
               )}
-              <div className="text-xs text-muted-foreground mt-1">
+              <div className="text-xs text-foreground/70 dark:text-foreground/80 mt-1">
                 {library.versions.length} versions
               </div>
             </button>
