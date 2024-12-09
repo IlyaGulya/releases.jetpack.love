@@ -70,40 +70,47 @@ export default function App() {
     <ThemeProvider defaultTheme="system" storageKey="releases-theme">
       <QueryClientProvider client={queryClient}>
         <div className="bg-background text-foreground min-h-screen">
-          <header className="border-b">
-            <div className="container mx-auto p-4 flex justify-between items-center">
-              <h1 className="text-2xl font-bold">Releases.Jetpack.Love</h1>
-              <div className="flex items-center gap-4">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  asChild
-                >
-                  <a href="https://gulya.me" target="_blank" rel="noopener noreferrer">
-                    Author Webpage
-                  </a>
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  asChild
-                >
-                  <a href="https://github.com/ilyagulya/releases.jetpack.love" target="_blank" rel="noopener noreferrer">
-                    <Github className="w-4 h-4 mr-2" />
-                    GitHub
-                  </a>
-                </Button>
-                <ThemeToggle />
+          <header className="border-b fixed top-0 left-0 right-0 bg-background z-50">
+            <div className="container mx-auto px-3 py-2 md:p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
+              <h1 className="text-lg md:text-2xl font-bold">Releases.Jetpack.Love</h1>
+              <div className="flex items-center gap-2 md:gap-4">
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-7 md:h-8"
+                    asChild
+                  >
+                    <a href="https://gulya.me" target="_blank" rel="noopener noreferrer">
+                      Author
+                    </a>
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-7 md:h-8"
+                    asChild
+                  >
+                    <a href="https://github.com/ilyagulya/releases.jetpack.love" target="_blank" rel="noopener noreferrer">
+                      <Github className="w-4 h-4" />
+                    </a>
+                  </Button>
+                </div>
+                <div className="border-l pl-2">
+                  <ThemeToggle />
+                </div>
               </div>
             </div>
           </header>
-          <Routes>
-            <Route path="/" element={<AppContent />} />
-            <Route path="/:libraryId" element={<AppContent />} />
-            <Route path="/:libraryId/:fromVersion" element={<AppContent />} />
-            <Route path="/:libraryId/:fromVersion/:toVersion" element={<AppContent />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
+          <div className="pt-[72px] md:pt-[64px]">
+            <Routes>
+              <Route path="/" element={<AppContent />} />
+              <Route path="/:libraryId" element={<AppContent />} />
+              <Route path="/:libraryId/:fromVersion" element={<AppContent />} />
+              <Route path="/:libraryId/:fromVersion/:toVersion" element={<AppContent />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </div>
         </div>
       </QueryClientProvider>
     </ThemeProvider>
