@@ -5,6 +5,8 @@ import { Library } from './lib/types';
 import { Routes, Route, useNavigate, useParams, Navigate } from 'react-router';
 import { ThemeProvider } from './components/theme-provider';
 import { ThemeToggle } from './components/theme-toggle';
+import { Button } from './components/ui/button';
+import { Github } from 'lucide-react';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -71,7 +73,28 @@ export default function App() {
           <header className="border-b">
             <div className="container mx-auto p-4 flex justify-between items-center">
               <h1 className="text-2xl font-bold">Releases.Jetpack.Love</h1>
-              <ThemeToggle />
+              <div className="flex items-center gap-4">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  asChild
+                >
+                  <a href="https://gulya.me" target="_blank" rel="noopener noreferrer">
+                    Author Webpage
+                  </a>
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  asChild
+                >
+                  <a href="https://github.com/ilyagulya/releases.jetpack.love" target="_blank" rel="noopener noreferrer">
+                    <Github className="w-4 h-4 mr-2" />
+                    GitHub
+                  </a>
+                </Button>
+                <ThemeToggle />
+              </div>
             </div>
           </header>
           <Routes>
