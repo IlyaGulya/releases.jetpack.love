@@ -309,7 +309,8 @@ export default function VersionSelector({
                       prose-ul:space-y-2 
                       prose-li:marker:text-muted-foreground
                       [&_ul_ul]:mt-2 [&_ul_ul]:mb-0 [&_ul_ul]:ml-4
-                      max-w-none"
+                      max-w-none
+                      prose-code:before:hidden prose-code:after:hidden"
                     dangerouslySetInnerHTML={{__html: version.changelogHtml}}
                   />
                 </div>
