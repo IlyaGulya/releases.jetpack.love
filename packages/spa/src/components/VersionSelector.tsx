@@ -272,17 +272,11 @@ export default function VersionSelector({
                   )}
 
                   <div
-                    className="changelog-content prose-sm md:prose-base dark:prose-invert
-                      prose-headings:font-semibold prose-headings:mt-6 prose-headings:mb-4 
+                    className="prose dark:prose-invert
                       prose-h3:text-lg prose-h3:text-primary/90 prose-h3:mt-0 prose-h3:border-b prose-h3:border-border/40 prose-h3:pb-2
                       prose-h2:text-xl prose-h2:text-primary
-                      prose-p:my-3 prose-p:leading-relaxed
-                      prose-ul:my-4 prose-ul:space-y-2 
-                      prose-li:my-0.5 prose-li:marker:text-muted-foreground
-                      prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-                      prose-strong:text-foreground/90 prose-strong:font-semibold
-                      prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-sm prose-code:font-mono
-                      prose-pre:bg-muted/50 prose-pre:p-4 prose-pre:rounded-lg prose-pre:overflow-x-auto
+                      prose-ul:space-y-2 
+                      prose-li:marker:text-muted-foreground
                       [&_ul_ul]:mt-2 [&_ul_ul]:mb-0 [&_ul_ul]:ml-4
                       max-w-none"
                     dangerouslySetInnerHTML={{__html: version.changelogHtml}}
