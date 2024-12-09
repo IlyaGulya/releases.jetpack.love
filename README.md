@@ -1,3 +1,152 @@
-# Plan
+# Complete Project Structure
 
-- Support history api to be able to copy url to specific changelog
+## Key Technologies
+- **Frontend**:
+    - React + TypeScript
+    - TanStack Query
+    - Tailwind CSS
+    - shadcn/ui components
+    - Fuse.js for search
+
+- **Scraper**:
+    - Node.js
+    - Cheerio for parsing
+    - File-based caching
+    - CLI interface
+
+- **Build Tools**:
+    - Vite
+    - pnpm workspaces
+    - TypeScript
+    - ESLint
+
+## Root Level
+```
+/
+├── data/                      # Data storage
+├── packages/                  # Monorepo packages
+└── pnpm-workspace.yaml       # Workspace configuration
+```
+
+## Data Directory (`/data/`)
+```
+/data/
+├── changelogs/              # Processed changelog data
+│   ├── activity/
+│   │   ├── 1.0.0-alpha01.json
+│   │   └── ...
+│   └── [library]/
+└── url-groups.json          # URL to group mappings
+```
+
+## Package Structure (`/packages/`)
+
+### 3.1. Common Package (`/packages/common/`)
+```
+/packages/common/
+├── src/
+│   └── index.ts             # Shared interfaces
+└── package.json
+```
+
+Key types:
+- `LibraryInfo`: Metadata about libraries
+- `LibraryChangelog`: Changelog entry structure
+- `Version` & `Library`: Website types
+
+### 3.2. Scraper Package (`/packages/scraper/`)
+```
+/packages/scraper/
+├── src/
+│   ├── index.ts            # CLI entry point
+│   ├── changelog.ts        # Changelog processing
+│   ├── groups.ts           # Library grouping
+│   ├── storage.ts          # Data persistence
+│   └── utils.ts            # Helper functions
+└── package.json
+```
+
+#### Scraper Internals
+1. **Changelog Processing** (`changelog.ts`):
+    - HTML parsing with Cheerio
+    - Version extraction with regex
+    - Date normalization
+    - Content sanitization
+
+2. **Group Management** (`groups.ts`):
+    - Parses Android developer docs
+    - Maintains library hierarchies
+    - Handles URL mapping
+
+### 3.3. SPA Package (`/packages/spa/`)
+```
+/packages/spa/
+├── public/
+│   └── data/              # Static data for frontend
+├── src/
+│   ├── components/
+│   │   ├── ui/           # shadcn/ui components
+│   │   ├── LibrarySearch.tsx
+│   │   ├── MainContent.tsx
+│   │   └── VersionSelector.tsx
+│   ├── lib/
+│   │   ├── api.ts        # Data fetching
+│   │   ├── types.ts      # Frontend types
+│   │   └── utils.ts      # Helper functions
+│   ├── App.tsx
+│   ├── index.css
+│   └── main.tsx
+├── scripts/
+│   └── build-static-data.ts  # Data preprocessing
+└── package.json
+```
+
+#### Frontend Application Details
+
+1. **Component Architecture**:
+    - `LibrarySearch.tsx`:
+        - Fuzzy search with Fuse.js
+        - Real-time filtering
+        - Grouped results display
+
+    - `VersionSelector.tsx`:
+        - Semver-based version comparison
+        - Side-by-side changelog viewing
+        - Version range selection
+        - Commit history linking
+
+    - `MainContent.tsx`:
+        - Responsive layout
+        - Split-view interface
+        - State management
+
+2. **Data Flow**:
+   ```
+   Data Source → Static Files → React Query Cache → Components
+   ```
+
+3. **Features**:
+    - Dark/Light theme support
+    - Version comparison
+    - Fuzzy search
+    - Responsive design
+    - Changelog rendering
+    - URL-based state
+
+4. **Build Process**:
+    - Static data generation
+    - Tailwind CSS processing
+    - TypeScript compilation
+    - Bundle optimization
+
+## 4. Data Flow
+
+```mermaid
+graph TD
+    A[Scraper] -->|Fetches| B[Android Docs]
+    B -->|Caches| C[Page Cache]
+    A -->|Processes| D[Changelog Data]
+    D -->|Stores| E[Data Directory]
+    E -->|Builds| F[Static Frontend Data]
+    F -->|Serves| G[SPA]
+```
