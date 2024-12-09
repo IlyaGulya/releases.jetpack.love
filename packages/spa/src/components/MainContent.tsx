@@ -23,10 +23,10 @@ export default function MainContent({
   onSelectVersions,
 }: MainContentProps) {
   return (
-    <div className="h-[calc(100vh-73px)] overflow-hidden">
+    <div className="h-[100vh] overflow-hidden">
       <div className="container mx-auto p-4 h-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 h-full">
-          <div className="md:col-span-1 h-full">
+          <div className="md:col-span-1 h-full overflow-hidden">
             <LibrarySearch
               libraries={libraries}
               onSelect={onSelectLibrary}

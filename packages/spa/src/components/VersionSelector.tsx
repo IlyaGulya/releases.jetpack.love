@@ -195,7 +195,7 @@ export default function VersionSelector({
 
   return (
     <div className="h-full flex flex-col">
-      <div className="flex gap-2 mb-4">
+      <div className="flex gap-2 mb-4 flex-shrink-0">
         <Input
           type="search"
           placeholder="Search versions..."
@@ -218,8 +218,8 @@ export default function VersionSelector({
 
       {!selectedVersions.from || !selectedVersions.to ? (
         // Version selection mode
-        <div className="flex flex-col flex-1">
-          <div className="flex gap-2 items-center mb-2">
+        <div className="flex flex-col flex-1 overflow-hidden">
+          <div className="flex gap-2 items-center mb-2 flex-shrink-0">
             <div className="text-sm">
               From: {selectedVersions.from || 'Select version'}
             </div>
@@ -236,7 +236,7 @@ export default function VersionSelector({
             )}
           </div>
 
-          <div className="flex-1 overflow-y-auto min-h-0">
+          <div className="flex-1 overflow-y-auto min-h-0 pr-2 custom-scrollbar">
             <div className="space-y-1">
               {results.map((version) => (
                 <button
@@ -258,7 +258,7 @@ export default function VersionSelector({
         </div>
       ) : (
         // Changelog display mode
-        <div className="flex-1 overflow-y-auto min-h-0">
+        <div className="flex-1 overflow-y-auto min-h-0 pr-2 custom-scrollbar">
           {isLoading ? (
             <div className="text-center">Loading changelogs...</div>
           ) : error ? (
@@ -313,8 +313,8 @@ export default function VersionSelector({
             <DialogTitle>Change Version Range</DialogTitle>
           </DialogHeader>
           
-          <div className="py-4">
-            <div className="flex gap-2 items-center mb-4">
+          <div className="py-4 overflow-y-auto max-h-[60vh] pr-2 custom-scrollbar">
+            <div className="flex gap-2 items-center mb-4 flex-shrink-0">
               <div className="text-sm text-foreground">
                 From: {tempVersions.from || 'Select version'}
               </div>
