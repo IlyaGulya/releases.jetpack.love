@@ -3,6 +3,8 @@ import { useLibraryIndex } from './lib/api';
 import MainContent from './components/MainContent';
 import { Library } from './lib/types';
 import { Routes, Route, useNavigate, useParams, Navigate } from 'react-router';
+import { ThemeProvider } from './components/theme-provider';
+import { ThemeToggle } from './components/theme-toggle';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -63,21 +65,24 @@ function AppContent() {
 
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <div className="dark bg-background text-foreground min-h-screen">
-        <header className="border-b">
-          <div className="container mx-auto p-4">
-            <h1 className="text-2xl font-bold">Releases.Jetpack.Love</h1>
-          </div>
-        </header>
-        <Routes>
-          <Route path="/" element={<AppContent />} />
-          <Route path="/:libraryId" element={<AppContent />} />
-          <Route path="/:libraryId/:fromVersion" element={<AppContent />} />
-          <Route path="/:libraryId/:fromVersion/:toVersion" element={<AppContent />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </div>
-    </QueryClientProvider>
+    <ThemeProvider defaultTheme="system" storageKey="releases-theme">
+      <QueryClientProvider client={queryClient}>
+        <div className="bg-background text-foreground min-h-screen">
+          <header className="border-b">
+            <div className="container mx-auto p-4 flex justify-between items-center">
+              <h1 className="text-2xl font-bold">Releases.Jetpack.Love</h1>
+              <ThemeToggle />
+            </div>
+          </header>
+          <Routes>
+            <Route path="/" element={<AppContent />} />
+            <Route path="/:libraryId" element={<AppContent />} />
+            <Route path="/:libraryId/:fromVersion" element={<AppContent />} />
+            <Route path="/:libraryId/:fromVersion/:toVersion" element={<AppContent />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </div>
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }

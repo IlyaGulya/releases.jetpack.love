@@ -160,32 +160,32 @@ export default function VersionSelector({
 
   return (
     <div className="h-full flex flex-col">
-      <div className="flex gap-2 mb-4 flex-shrink-0 flex-wrap">
-        <Input
-          type="search"
-          placeholder="Search versions..."
-          value={search}
-          onChange={handleSearchChange}
-          className="flex-1 min-w-[200px]"
-        />
-        <Button
-          variant="outline"
-          onClick={() => setAscending(!ascending)}
-          title={ascending ? "Newest Last" : "Newest First"}
-          className="whitespace-nowrap"
-        >
-          <ArrowUpDown
-            className="w-4 h-4 md:mr-2"
-            style={{transform: ascending ? 'rotate(180deg)' : ''}}
-          />
-          <span className="hidden md:inline">
-            {ascending ? "Oldest First" : "Newest First"}
-          </span>
-        </Button>
-      </div>
-
       {!selectedVersions.from || !selectedVersions.to ? (
         <div className="flex flex-col flex-1 overflow-hidden">
+          <div className="flex gap-2 mb-4 flex-shrink-0 flex-wrap">
+            <Input
+              type="search"
+              placeholder="Search versions..."
+              value={search}
+              onChange={handleSearchChange}
+              className="flex-1 min-w-[200px]"
+            />
+            <Button
+              variant="outline"
+              onClick={() => setAscending(!ascending)}
+              title={ascending ? "Newest Last" : "Newest First"}
+              className="whitespace-nowrap"
+            >
+              <ArrowUpDown
+                className="w-4 h-4 md:mr-2"
+                style={{transform: ascending ? 'rotate(180deg)' : ''}}
+              />
+              <span className="hidden md:inline">
+                {ascending ? "Oldest First" : "Newest First"}
+              </span>
+            </Button>
+          </div>
+
           <div className="flex flex-wrap gap-2 items-center mb-2 flex-shrink-0">
             <div className="text-sm bg-muted px-2 py-1 rounded-md">
               From: <span className="font-medium">{selectedVersions.from || 'Select version'}</span>
@@ -211,12 +211,14 @@ export default function VersionSelector({
                   key={version.version}
                   onClick={() => handleVersionSelect(version)}
                   className={`w-full p-3 text-left rounded-md transition-colors border
-                    ${selectedVersions.from === version.version ? 'bg-primary text-primary-foreground border-primary' : ''}
-                    ${selectedVersions.to === version.version ? 'bg-secondary text-secondary-foreground border-secondary' : ''}
-                    ${!selectedVersions.from && !selectedVersions.to ? 'hover:bg-accent border-border' : 'border-border hover:bg-accent/10'}`}
+                    ${selectedVersions.from === version.version ? 'bg-primary text-primary-foreground border-primary hover:bg-primary/90' : ''}
+                    ${selectedVersions.to === version.version ? 'bg-secondary text-secondary-foreground border-secondary hover:bg-secondary/90' : ''}
+                    ${!selectedVersions.from && !selectedVersions.to 
+                      ? 'border-input bg-background hover:bg-accent hover:text-accent-foreground' 
+                      : 'border-input bg-background hover:bg-accent hover:text-accent-foreground'}`}
                 >
-                  <div className="font-medium">{version.version}</div>
-                  <div className="text-sm text-muted-foreground">
+                  <div className="font-semibold text-foreground">{version.version}</div>
+                  <div className="text-sm text-foreground/70">
                     {version.date}
                   </div>
                 </button>
