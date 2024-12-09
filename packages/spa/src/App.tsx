@@ -1,8 +1,8 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
 import { useLibraryIndex } from './lib/api';
 import MainContent from './components/MainContent';
 import { Library } from './lib/types';
+import { Routes, Route, useNavigate, useParams, Navigate } from 'react-router';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -15,39 +15,32 @@ const queryClient = new QueryClient({
 
 function AppContent() {
   const { data: libraryIndex, isLoading, error } = useLibraryIndex();
-  const [selectedLibrary, setSelectedLibrary] = useState<Library | null>(null);
-  const [selectedVersions, setSelectedVersions] = useState<{
-    from: string | null;
-    to: string | null;
-  }>({ from: null, to: null });
+  const navigate = useNavigate();
+  const { libraryId, fromVersion, toVersion } = useParams();
 
-  // Handle URL state
-  useEffect(() => {
-    const hash = window.location.hash.slice(1);
-    if (hash && libraryIndex) {
-      const [libraryId, versions] = hash.split('/');
-      const library = libraryIndex[libraryId];
-      if (library) {
-        setSelectedLibrary(library);
-        if (versions) {
-          const [from, to] = versions.split('-');
-          setSelectedVersions({ from, to });
-        }
-      }
-    }
-  }, [libraryIndex]);
+  const selectedLibrary = libraryId && libraryIndex ? libraryIndex[libraryId] : null;
+  const selectedVersions = {
+    from: fromVersion || null,
+    to: toVersion || null,
+  };
 
-  // Update URL when selection changes
-  useEffect(() => {
-    let hash = '';
-    if (selectedLibrary) {
-      hash = selectedLibrary.id;
-      if (selectedVersions.from && selectedVersions.to) {
-        hash += `/${selectedVersions.from}-${selectedVersions.to}`;
-      }
+  const handleSelectLibrary = (library: Library | null) => {
+    if (library) {
+      navigate(`/${library.id}`);
+    } else {
+      navigate('/');
     }
-    window.location.hash = hash;
-  }, [selectedLibrary, selectedVersions]);
+  };
+
+  const handleSelectVersions = (versions: { from: string | null; to: string | null }) => {
+    if (versions.from && versions.to) {
+      navigate(`/${selectedLibrary?.id}/${versions.from}/${versions.to}`);
+    } else if (versions.from) {
+      navigate(`/${selectedLibrary?.id}/${versions.from}`);
+    } else {
+      navigate(`/${selectedLibrary?.id}`);
+    }
+  };
 
   if (isLoading) {
     return <div className="text-center p-8">Loading...</div>;
@@ -61,9 +54,9 @@ function AppContent() {
     <MainContent
       libraries={libraryIndex ? Object.values(libraryIndex) : []}
       selectedLibrary={selectedLibrary}
-      onSelectLibrary={setSelectedLibrary}
+      onSelectLibrary={handleSelectLibrary}
       selectedVersions={selectedVersions}
-      onSelectVersions={setSelectedVersions}
+      onSelectVersions={handleSelectVersions}
     />
   );
 }
@@ -77,7 +70,13 @@ export default function App() {
             <h1 className="text-2xl font-bold">Releases.Jetpack.Love</h1>
           </div>
         </header>
-        <AppContent />
+        <Routes>
+          <Route path="/" element={<AppContent />} />
+          <Route path="/:libraryId" element={<AppContent />} />
+          <Route path="/:libraryId/:fromVersion" element={<AppContent />} />
+          <Route path="/:libraryId/:fromVersion/:toVersion" element={<AppContent />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </div>
     </QueryClientProvider>
   );
