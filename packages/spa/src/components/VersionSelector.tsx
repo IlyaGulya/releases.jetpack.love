@@ -188,52 +188,54 @@ export default function VersionSelector({
   if (!library) return null;
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="h-full">
       {!selectedVersions.from || !selectedVersions.to ? (
-        <div className="flex flex-col flex-1 overflow-hidden">
-          <div className="flex gap-2 mb-4 flex-shrink-0 flex-wrap">
-            <Input
-              type="search"
-              placeholder="Search versions..."
-              value={search}
-              onChange={handleSearchChange}
-              className="flex-1 min-w-[200px]"
-            />
-            <Button
-              variant="outline"
-              onClick={() => setAscending(!ascending)}
-              title={ascending ? "Newest Last" : "Newest First"}
-              className="whitespace-nowrap"
-            >
-              <ArrowUpDown
-                className="w-4 h-4 md:mr-2"
-                style={{transform: ascending ? 'rotate(180deg)' : ''}}
+        <div className="h-full flex flex-col">
+          <div className="p-4 border-b bg-background">
+            <div className="flex gap-2 mb-4 flex-wrap">
+              <Input
+                type="search"
+                placeholder="Search versions..."
+                value={search}
+                onChange={handleSearchChange}
+                className="flex-1 min-w-[200px]"
               />
-              <span className="hidden md:inline">
-                {ascending ? "Oldest First" : "Newest First"}
-              </span>
-            </Button>
+              <Button
+                variant="outline"
+                onClick={() => setAscending(!ascending)}
+                title={ascending ? "Newest Last" : "Newest First"}
+                className="whitespace-nowrap"
+              >
+                <ArrowUpDown
+                  className="w-4 h-4 md:mr-2"
+                  style={{transform: ascending ? 'rotate(180deg)' : ''}}
+                />
+                <span className="hidden md:inline">
+                  {ascending ? "Oldest First" : "Newest First"}
+                </span>
+              </Button>
+            </div>
+
+            <div className="flex flex-wrap gap-2 items-center">
+              <div className="text-sm bg-muted px-2 py-1 rounded-md">
+                From: <span className="font-medium">{selectedVersions.from || 'Select version'}</span>
+              </div>
+              <div className="text-sm bg-muted px-2 py-1 rounded-md">
+                To: <span className="font-medium">{selectedVersions.to || 'Select version'}</span>
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={clearSelection}
+                disabled={!selectedVersions.from}
+                className={`text-sm ${selectedVersions.from ? 'text-destructive hover:text-destructive' : 'text-muted-foreground'}`}
+              >
+                Clear
+              </Button>
+            </div>
           </div>
 
-          <div className="flex flex-wrap gap-2 items-center mb-2 flex-shrink-0">
-            <div className="text-sm bg-muted px-2 py-1 rounded-md">
-              From: <span className="font-medium">{selectedVersions.from || 'Select version'}</span>
-            </div>
-            <div className="text-sm bg-muted px-2 py-1 rounded-md">
-              To: <span className="font-medium">{selectedVersions.to || 'Select version'}</span>
-            </div>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={clearSelection}
-              disabled={!selectedVersions.from}
-              className={`text-sm ${selectedVersions.from ? 'text-destructive hover:text-destructive' : 'text-muted-foreground'}`}
-            >
-              Clear
-            </Button>
-          </div>
-
-          <div className="flex-1 overflow-y-auto min-h-0 pr-2 custom-scrollbar">
+          <div className="p-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-2">
               {results.map((version) => (
                 <button
@@ -242,9 +244,9 @@ export default function VersionSelector({
                   className={`w-full p-3 text-left rounded-md transition-colors border
                     ${selectedVersions.from === version.version ? 'bg-primary text-primary-foreground border-primary hover:bg-primary/90' : ''}
                     ${selectedVersions.to === version.version ? 'bg-secondary text-secondary-foreground border-secondary hover:bg-secondary/90' : ''}
-                    ${!selectedVersions.from && !selectedVersions.to 
-                      ? 'border-input bg-background hover:bg-accent' 
-                      : 'border-input bg-background hover:bg-accent'}`}
+                    ${!selectedVersions.from && !selectedVersions.to
+                    ? 'border-input bg-background hover:bg-accent'
+                    : 'border-input bg-background hover:bg-accent'}`}
                 >
                   <div className="font-semibold">{version.version}</div>
                   <div className="text-sm">
@@ -257,77 +259,85 @@ export default function VersionSelector({
         </div>
       ) : (
         // Changelog display mode
-        <div className="flex-1 overflow-y-auto min-h-0 pr-2 custom-scrollbar">
-          {isLoading ? (
-            <div className="text-center p-8">
-              <div className="animate-spin w-6 h-6 border-2 border-primary border-t-transparent rounded-full mx-auto mb-2"></div>
-              Loading changelogs...
-            </div>
-          ) : error ? (
-            <div className="text-center text-destructive p-8">
-              <div className="mb-2">Error loading changelogs</div>
+        <div className="h-full flex flex-col">
+          <div className="p-4 border-b bg-background">
+            <div className="flex items-center justify-between flex-wrap gap-2">
+              <h2 className="m-0 text-lg md:text-xl font-semibold">Changes after {selectedVersions.from}</h2>
               <Button variant="outline" onClick={clearSelection}>
-                Try Different Versions
+                Change Versions
               </Button>
             </div>
-          ) : allVersionData.length > 0 ? (
-            <div className="prose max-w-none dark:prose-invert">
-              <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-                <h2 className="m-0 text-lg md:text-xl font-semibold">Changes after {selectedVersions.from}</h2>
+          </div>
+
+          <div className="overflow-y-auto flex-1 py-4 md:p-4 px-0">
+            {isLoading ? (
+              <div className="text-center p-8">
+                <div
+                  className="animate-spin w-6 h-6 border-2 border-primary border-t-transparent rounded-full mx-auto mb-2"></div>
+                Loading changelogs...
+              </div>
+            ) : error ? (
+              <div className="text-center text-destructive p-8">
+                <div className="mb-2">Error loading changelogs</div>
                 <Button variant="outline" onClick={clearSelection}>
-                  Change Versions
+                  Try Different Versions
                 </Button>
               </div>
+            ) : allVersionData.length > 0 ? (
+              <div className="prose max-w-full md:max-w-none overflow-x-hidden md:overflow-x-visible dark:prose-invert px-0 md:px-4
+    prose-p:my-2 prose-ul:my-2 prose-li:my-1 prose-headings:my-2"> {/* Control prose element margins */}
+                {allVersionData.map((version, index) => (
+                  <div key={index} className="relative border-l-[3px] md:border-l-4 border-primary/80 rounded-r-lg
+        pl-3 pr-2 py-3 md:p-6 mb-4 md:mb-8 bg-card shadow-sm -ml-[1px] md:ml-0">
+                    <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+                      <div className="flex items-center gap-3">
+                        <h3 className="m-0 text-base md:text-lg font-semibold text-primary">{version.version}</h3>
+                        {version.commitsUrl && (
+                          <>
+                            <div className="h-4 w-[2px] bg-border"/>
+                            <a
+                              href={version.commitsUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-sm text-primary hover:text-primary/90 inline-flex items-center gap-1 no-underline"
+                            >
+                              View Commits
+                              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                   strokeWidth="2">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                              </svg>
+                            </a>
+                          </>
+                        )}
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        {version.date}
+                      </div>
+                    </div>
 
-              {allVersionData.map((version, index) => (
-                <div key={index} className="border-l-4 border-primary/80 rounded-r-lg p-6 mb-8 bg-card shadow-sm">
-                  <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-                    <div className="flex items-center gap-3">
-                      <h3 className="m-0 text-base md:text-lg font-semibold text-primary">{version.version}</h3>
-                      {version.commitsUrl && (
-                        <>
-                          <div className="h-4 w-[2px] bg-border" />
-                          <a
-                            href={version.commitsUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-sm text-primary hover:text-primary/90 inline-flex items-center gap-1 no-underline"
-                          >
-                            View Commits
-                            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                              <path d="M7 17L17 7M17 7H7M17 7V17" />
-                            </svg>
-                          </a>
-                        </>
-                      )}
-                    </div>
-                    <div className="text-sm text-muted-foreground">
-                      {version.date}
-                    </div>
+                    <div
+                      className="prose dark:prose-invert
+                        prose-h3:text-lg prose-h3:text-primary/90 prose-h3:mt-0 prose-h3:border-b prose-h3:border-border/40 prose-h3:pb-2
+                        prose-h2:text-xl prose-h2:text-primary
+                        prose-ul:space-y-2
+                        prose-li:marker:text-muted-foreground
+                        [&_ul_ul]:mt-2 [&_ul_ul]:mb-0 [&_ul_ul]:ml-4
+                        max-w-none
+                        prose-code:before:hidden prose-code:after:hidden"
+                      dangerouslySetInnerHTML={{__html: version.changelogHtml}}
+                    />
                   </div>
-
-                  <div
-                    className="prose dark:prose-invert
-                      prose-h3:text-lg prose-h3:text-primary/90 prose-h3:mt-0 prose-h3:border-b prose-h3:border-border/40 prose-h3:pb-2
-                      prose-h2:text-xl prose-h2:text-primary
-                      prose-ul:space-y-2 
-                      prose-li:marker:text-muted-foreground
-                      [&_ul_ul]:mt-2 [&_ul_ul]:mb-0 [&_ul_ul]:ml-4
-                      max-w-none
-                      prose-code:before:hidden prose-code:after:hidden"
-                    dangerouslySetInnerHTML={{__html: version.changelogHtml}}
-                  />
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center text-muted-foreground p-8">
-              <div className="mb-4">No changes between selected versions</div>
-              <Button variant="outline" onClick={clearSelection}>
-                Try Different Versions
-              </Button>
-            </div>
-          )}
+                ))}
+              </div>
+            ) : (
+              <div className="text-center text-muted-foreground p-8">
+                <div className="mb-4">No changes between selected versions</div>
+                <Button variant="outline" onClick={clearSelection}>
+                  Try Different Versions
+                </Button>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>

@@ -91,7 +91,7 @@ export default function MainContent({
   };
 
   return (
-    <div className="h-[100vh] overflow-hidden">
+    <div className="min-h-screen">
       <div className="container mx-auto p-4 h-full">
         {/* Mobile Wizard Header */}
         <div className="md:hidden mb-4 flex items-center justify-between">
