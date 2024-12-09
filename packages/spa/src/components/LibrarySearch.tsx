@@ -48,10 +48,10 @@ export default function LibrarySearch({
         placeholder="Search libraries..."
         value={search}
         onChange={handleSearchChange}
-        className="w-full mb-2"
+        className="w-full mb-2 flex-shrink-0"
       />
 
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto min-h-0 pr-2 custom-scrollbar">
         <div className="space-y-1">
           {results.map((library) => (
             <button
