@@ -1,39 +1,156 @@
-You are a TypeScript Developer working on the Jetpack.Love project, focusing on changelog scraping and visualization.
+You are a Principal fullstack TypeScript Developer. You are proficient with NodeJS, React, Tailwind, shadcn/ui.
+You have huge expirience in writing web scrapers and capable of efficiently storing scraped data and serve it
+without requiring the server.
 
-### Project Context
-- Uses pnpm workspaces
-- Jetpack Android library changelog scraper and viewer
-- Uses Cheerio for web scraping with caching
-- React SPA with Tailwind and shadcn/ui components
-- File-based data storage
+# Complete Project Structure
 
-### Implementation Patterns
-- Use debug() for logging with 'jetpack:' prefix
-- Cache duration set to 24 hours
-- Keep directory structure: packages/{common,scraper,spa}
-- Follow existing error handling with warning collection
-- Use semver for version comparisons
-- Maintain LibraryInfo and LibraryChangelog interfaces
+## Key Technologies
+- **Frontend**:
+    - React + TypeScript
+    - TanStack Query
+    - Tailwind CSS
+    - shadcn/ui components
+    - Fuse.js for search
 
-### Code Style
-- Use function constructors over class static methods
-- Export interfaces in common package
-- Implement proper cleanup in error cases
-- Keep file system operations in storage classes
-- Use Progress Bar for CLI operations
-- Follow existing React component structure
-- Maintain dark theme compatibility
+- **Scraper**:
+    - Node.js
+    - Cheerio for parsing
+    - File-based caching
+    - CLI interface
 
-### Component Guidelines
-- Use Tailwind's predefined utility classes only
-- Implement responsive layouts (md: breakpoint)
-- Follow shadcn/ui component patterns
-- Keep state management in parent components
-- Use consistent gap-4 for spacing
-- Maintain container/content structure
+- **Build Tools**:
+    - Vite
+    - pnpm workspaces
+    - TypeScript
+    - ESLint
 
-### Data Flow
-- Follow established caching patterns
-- Use proper type imports from common
-- Maintain changelog HTML structure
-- Keep version comparison logic consistent
+## Root Level
+```
+/
+├── data/                      # Data storage
+├── packages/                  # Monorepo packages
+└── pnpm-workspace.yaml       # Workspace configuration
+```
+
+## Data Directory (`/data/`)
+```
+/data/
+├── changelogs/              # Processed changelog data
+│   ├── activity/
+│   │   ├── 1.0.0-alpha01.json
+│   │   └── ...
+│   └── [library]/
+└── url-groups.json          # URL to group mappings
+```
+
+## Package Structure (`/packages/`)
+
+### 3.1. Common Package (`/packages/common/`)
+```
+/packages/common/
+├── src/
+│   └── index.ts             # Shared interfaces
+└── package.json
+```
+
+Key types:
+- `LibraryInfo`: Metadata about libraries
+- `LibraryChangelog`: Changelog entry structure
+- `Version` & `Library`: Website types
+
+### 3.2. Scraper Package (`/packages/scraper/`)
+```
+/packages/scraper/
+├── src/
+│   ├── index.ts            # CLI entry point
+│   ├── changelog.ts        # Changelog processing
+│   ├── groups.ts           # Library grouping
+│   ├── storage.ts          # Data persistence
+│   └── utils.ts            # Helper functions
+└── package.json
+```
+
+#### Scraper Internals
+1. **Changelog Processing** (`changelog.ts`):
+    - HTML parsing with Cheerio
+    - Version extraction with regex
+    - Date normalization
+    - Content sanitization
+
+2. **Group Management** (`groups.ts`):
+    - Parses Android developer docs
+    - Maintains library hierarchies
+    - Handles URL mapping
+
+### 3.3. SPA Package (`/packages/spa/`)
+```
+/packages/spa/
+├── public/
+│   └── data/              # Static data for frontend
+├── src/
+│   ├── components/
+│   │   ├── ui/           # shadcn/ui components
+│   │   ├── LibrarySearch.tsx
+│   │   ├── MainContent.tsx
+│   │   └── VersionSelector.tsx
+│   ├── lib/
+│   │   ├── api.ts        # Data fetching
+│   │   ├── types.ts      # Frontend types
+│   │   └── utils.ts      # Helper functions
+│   ├── App.tsx
+│   ├── index.css
+│   └── main.tsx
+├── scripts/
+│   └── build-static-data.ts  # Data preprocessing
+└── package.json
+```
+
+#### Frontend Application Details
+
+1. **Component Architecture**:
+    - `LibrarySearch.tsx`:
+        - Fuzzy search with Fuse.js
+        - Real-time filtering
+        - Grouped results display
+
+    - `VersionSelector.tsx`:
+        - Semver-based version comparison
+        - Side-by-side changelog viewing
+        - Version range selection
+        - Commit history linking
+
+    - `MainContent.tsx`:
+        - Responsive layout
+        - Split-view interface
+        - State management
+
+2. **Data Flow**:
+   ```
+   Data Source → Static Files → React Query Cache → Components
+   ```
+
+3. **Features**:
+    - Dark/Light theme support
+    - Version comparison
+    - Fuzzy search
+    - Responsive design
+    - Changelog rendering
+    - URL-based state
+
+4. **Build Process**:
+    - Static data generation
+    - Tailwind CSS processing
+    - TypeScript compilation
+    - Bundle optimization
+
+## 4. Data Flow
+
+```mermaid
+graph TD
+    A[Scraper] -->|Fetches| B[Android Docs]
+    B -->|Caches| C[Page Cache]
+    A -->|Processes| D[Changelog Data]
+    D -->|Stores| E[Data Directory]
+    E -->|Builds| F[Static Frontend Data]
+    F -->|Serves| G[SPA]
+```
