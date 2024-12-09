@@ -50,9 +50,57 @@ export default {
     				'4': 'hsl(var(--chart-4))',
     				'5': 'hsl(var(--chart-5))'
     			}
-    		}
+    		},
+            typography: {
+                DEFAULT: {
+                    css: {
+                        maxWidth: 'none',
+                        color: 'hsl(var(--foreground))',
+                        hr: {
+                            borderColor: 'hsl(var(--border))',
+                            marginTop: '2em',
+                            marginBottom: '2em'
+                        },
+                        'h1, h2, h3, h4': {
+                            color: 'hsl(var(--foreground))'
+                        },
+                        a: {
+                            color: 'hsl(var(--primary))',
+                            textDecoration: 'none',
+                            '&:hover': {
+                                textDecoration: 'underline'
+                            }
+                        },
+                        strong: {
+                            color: 'hsl(var(--foreground))'
+                        },
+                        code: {
+                            color: 'hsl(var(--foreground))',
+                            backgroundColor: 'hsl(var(--muted))',
+                            borderRadius: '0.375rem',
+                            paddingTop: '0.125rem',
+                            paddingRight: '0.375rem',
+                            paddingBottom: '0.125rem',
+                            paddingLeft: '0.375rem'
+                        },
+                        pre: {
+                            backgroundColor: 'hsl(var(--muted))',
+                            code: {
+                                backgroundColor: 'transparent',
+                                borderWidth: '0',
+                                borderRadius: '0',
+                                padding: '0',
+                                color: 'inherit'
+                            }
+                        }
+                    }
+                }
+            }
     	}
     },
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+        require("tailwindcss-animate"),
+        require("@tailwindcss/typography")
+    ],
 }
 

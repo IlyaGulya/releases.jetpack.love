@@ -242,18 +242,18 @@ export default function VersionSelector({
           ) : allVersionData.length > 0 ? (
             <div className="prose max-w-none dark:prose-invert">
               <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-                <h2 className="m-0 text-lg md:text-xl">Changes after {selectedVersions.from}</h2>
+                <h2 className="m-0 text-lg md:text-xl font-semibold">Changes after {selectedVersions.from}</h2>
                 <Button variant="outline" onClick={clearSelection}>
                   Change Versions
                 </Button>
               </div>
 
               {allVersionData.map((version, index) => (
-                <div key={index} className="border-l-4 border-primary p-4 mb-8 bg-card/50">
+                <div key={index} className="border-l-4 border-primary/80 rounded-r-lg p-6 mb-8 bg-card shadow-sm">
                   <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-                    <h3 className="m-0 text-base md:text-lg">Version {version.version}</h3>
+                    <h3 className="m-0 text-base md:text-lg font-semibold text-primary">{version.version}</h3>
                     <div className="text-sm text-muted-foreground">
-                      Released: {version.date}
+                      {version.date}
                     </div>
                   </div>
 
@@ -262,7 +262,7 @@ export default function VersionSelector({
                       href={version.commitsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-primary hover:text-primary/90 mb-4 inline-flex items-center gap-1"
+                      className="text-sm text-primary hover:text-primary/90 mb-4 inline-flex items-center gap-1 no-underline"
                     >
                       View Commits
                       <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -272,7 +272,19 @@ export default function VersionSelector({
                   )}
 
                   <div
-                    className="changelog-content prose-sm md:prose-base"
+                    className="changelog-content prose-sm md:prose-base dark:prose-invert
+                      prose-headings:font-semibold prose-headings:mt-6 prose-headings:mb-4 
+                      prose-h3:text-lg prose-h3:text-primary/90 prose-h3:mt-0 prose-h3:border-b prose-h3:border-border/40 prose-h3:pb-2
+                      prose-h2:text-xl prose-h2:text-primary
+                      prose-p:my-3 prose-p:leading-relaxed
+                      prose-ul:my-4 prose-ul:space-y-2 
+                      prose-li:my-0.5 prose-li:marker:text-muted-foreground
+                      prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+                      prose-strong:text-foreground/90 prose-strong:font-semibold
+                      prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-sm prose-code:font-mono
+                      prose-pre:bg-muted/50 prose-pre:p-4 prose-pre:rounded-lg prose-pre:overflow-x-auto
+                      [&_ul_ul]:mt-2 [&_ul_ul]:mb-0 [&_ul_ul]:ml-4
+                      max-w-none"
                     dangerouslySetInnerHTML={{__html: version.changelogHtml}}
                   />
                 </div>
