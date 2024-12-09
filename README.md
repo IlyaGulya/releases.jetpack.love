@@ -126,12 +126,13 @@ Key types:
    ```
 
 3. **Features**:
-    - Dark/Light theme support
+    - Dark/Light theme support (using Catppuccin Latte-Mauve for light mode and Mocha-Mauve for dark mode - thanks to [@thinxc](https://github.com/Tnixc/shadcn-ui))
     - Version comparison
     - Fuzzy search
     - Responsive design
     - Changelog rendering
     - URL-based state
+    - Beautiful UI components powered by [shadcn/ui](https://ui.shadcn.com)
 
 4. **Build Process**:
     - Static data generation
