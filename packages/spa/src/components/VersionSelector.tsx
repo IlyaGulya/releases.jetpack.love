@@ -4,11 +4,11 @@ import {ChangeEvent, useEffect, useState} from 'react';
 import {Library} from '../lib/types.ts';
 import {Input} from '@/components/ui/input.tsx';
 import {Button} from '@/components/ui/button';
-import {Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter} from '@/components/ui/dialog';
-import Fuse from 'fuse.js';
 import {ArrowUpDown} from 'lucide-react';
+import Fuse from 'fuse.js';
 import semver from 'semver';
 import {useQueries} from '@tanstack/react-query';
+import {useNavigate} from 'react-router';
 
 interface Version {
   version: string;
@@ -23,7 +23,7 @@ interface LibraryVersion {
 }
 
 interface VersionSelectorProps {
-  library: Library;
+  library: Library | null;
   selectedVersions: {
     from: string | null;
     to: string | null;
@@ -36,81 +36,69 @@ export default function VersionSelector({
   selectedVersions,
   onSelectVersions,
 }: VersionSelectorProps) {
+  const navigate = useNavigate();
   const [search, setSearch] = useState('');
-  const [fuse, setFuse] = useState<Fuse<LibraryVersion>>();
-  const [results, setResults] = useState<LibraryVersion[]>(library.versions);
   const [ascending, setAscending] = useState(false);
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [tempVersions, setTempVersions] = useState<{ from: string | null; to: string | null }>({ from: null, to: null });
-
-  useEffect(() => {
-    if (dialogOpen) {
-      setTempVersions({ from: selectedVersions.from, to: selectedVersions.to });
-    }
-  }, [dialogOpen, selectedVersions]);
-
-  useEffect(() => {
-    setFuse(new Fuse(library.versions, {
+  const [results, setResults] = useState<LibraryVersion[]>([]);
+  const [fuse] = useState(() =>
+    library ? new Fuse(library.versions, {
       keys: ['version'],
       threshold: 0.2,
-    }));
-  }, [library.versions]);
-
-  const sortVersions = (vers: typeof library.versions, asc: boolean) => {
-    return [...vers].sort((a, b) => {
-      const comparison = semver.compare(a.version, b.version);
-      return asc ? comparison : -comparison;
-    });
-  };
+    }) : null
+  );
 
   useEffect(() => {
+    if (!library) {
+      navigate('/');
+    }
+  }, [library, navigate]);
+
+  useEffect(() => {
+    if (library) {
+      setResults(library.versions);
+    }
+  }, [library?.versions]);
+
+  useEffect(() => {
+    if (!library) return;
+
     if (search.trim() && fuse) {
       const searchResults = fuse.search(search);
       setResults(sortVersions(searchResults.map(result => result.item), ascending));
     } else {
       setResults(sortVersions(library.versions, ascending));
     }
-  }, [search, fuse, library.versions, ascending]);
+  }, [search, fuse, library?.versions, ascending]);
 
-  const getVersionsInRange = (fromVersion: string, toVersion: string) => {
-    const sortedVersions = library.versions
-      .map(v => v.version)
-      .filter(v => semver.valid(v))
-      .sort((a, b) => semver.compare(a, b));
-
-    const fromIndex = sortedVersions.indexOf(fromVersion);
-    const toIndex = sortedVersions.indexOf(toVersion);
-
-    if (fromIndex === -1 || toIndex === -1) return [];
-
-    const start = Math.min(fromIndex, toIndex);
-    const end = Math.max(fromIndex, toIndex);
-    return sortedVersions.slice(start, end + 1);
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
   };
 
-  const isVersionInRange = (version: string, range: { from: string | null; to: string | null }) => {
-    if (!range.from || !range.to) return false;
-    const sortedVersions = library.versions
-      .map(v => v.version)
-      .filter(v => semver.valid(v))
-      .sort((a, b) => semver.compare(a, b));
-
-    const fromIndex = sortedVersions.indexOf(range.from);
-    const toIndex = sortedVersions.indexOf(range.to);
-
-    if (fromIndex === -1 || toIndex === -1) return false;
-
-    const start = Math.min(fromIndex, toIndex);
-    const end = Math.max(fromIndex, toIndex);
-    return sortedVersions.slice(start, end + 1).includes(version);
+  const sortVersions = (versions: LibraryVersion[], asc: boolean) => {
+    return [...versions].sort((a, b) => {
+      const comparison = semver.compare(a.version, b.version);
+      return asc ? comparison : -comparison;
+    });
   };
 
-  const handleVersionSelect = (version: typeof library.versions[0]) => {
+  const handleVersionSelect = (version: LibraryVersion) => {
     if (!selectedVersions.from || !selectedVersions.to) {
+      // If clicking the already selected "from" version, deselect it
+      if (selectedVersions.from === version.version) {
+        onSelectVersions({ from: null, to: null });
+        return;
+      }
+
       // Initial selection without dialog
       if (!selectedVersions.from) {
         onSelectVersions({from: version.version, to: null});
       } else if (!selectedVersions.to) {
+        // If selecting the same version as "from", deselect "from"
+        if (version.version === selectedVersions.from) {
+          onSelectVersions({from: null, to: null});
+          return;
+        }
+
         const comparison = semver.compare(version.version, selectedVersions.from);
         if (comparison >= 0) {
           onSelectVersions({...selectedVersions, to: version.version});
@@ -119,35 +107,9 @@ export default function VersionSelector({
         }
       }
     } else {
-      // Open dialog for changing existing selection
-      setDialogOpen(true);
+      // Clear selection and return to version list
+      clearSelection();
     }
-  };
-
-  const handleDialogVersionSelect = (version: typeof library.versions[0]) => {
-    if (!tempVersions.from) {
-      setTempVersions({ from: version.version, to: null });
-    } else if (!tempVersions.to) {
-      const comparison = semver.compare(version.version, tempVersions.from);
-      if (comparison >= 0) {
-        setTempVersions({ ...tempVersions, to: version.version });
-      } else {
-        setTempVersions({ from: version.version, to: tempVersions.from });
-      }
-    } else {
-      setTempVersions({ from: version.version, to: null });
-    }
-  };
-
-  const handleAcceptVersions = () => {
-    if (tempVersions.from && tempVersions.to) {
-      onSelectVersions(tempVersions);
-      setDialogOpen(false);
-    }
-  };
-
-  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
   };
 
   const clearSelection = () => {
@@ -155,6 +117,7 @@ export default function VersionSelector({
   };
 
   const getVersionsToShow = (fromVersion: string, toVersion: string): string[] => {
+    if (!library) return [];
     const sortedVersions = library.versions
       .map(v => v.version)
       .filter(v => semver.valid(v))
@@ -193,59 +156,64 @@ export default function VersionSelector({
     .map((q) => q.data as Version)
     .sort((a, b) => (ascending ? 1 : -1) * semver.compare(a.version, b.version));
 
+  if (!library) return null;
+
   return (
     <div className="h-full flex flex-col">
-      <div className="flex gap-2 mb-4 flex-shrink-0">
+      <div className="flex gap-2 mb-4 flex-shrink-0 flex-wrap">
         <Input
           type="search"
           placeholder="Search versions..."
           value={search}
           onChange={handleSearchChange}
-          className="flex-1"
+          className="flex-1 min-w-[200px]"
         />
         <Button
           variant="outline"
           onClick={() => setAscending(!ascending)}
           title={ascending ? "Newest Last" : "Newest First"}
+          className="whitespace-nowrap"
         >
           <ArrowUpDown
-            className="w-4 h-4"
+            className="w-4 h-4 md:mr-2"
             style={{transform: ascending ? 'rotate(180deg)' : ''}}
           />
-          {ascending ? "Oldest First" : "Newest First"}
+          <span className="hidden md:inline">
+            {ascending ? "Oldest First" : "Newest First"}
+          </span>
         </Button>
       </div>
 
       {!selectedVersions.from || !selectedVersions.to ? (
-        // Version selection mode
         <div className="flex flex-col flex-1 overflow-hidden">
-          <div className="flex gap-2 items-center mb-2 flex-shrink-0">
-            <div className="text-sm">
-              From: {selectedVersions.from || 'Select version'}
+          <div className="flex flex-wrap gap-2 items-center mb-2 flex-shrink-0">
+            <div className="text-sm bg-muted px-2 py-1 rounded-md">
+              From: <span className="font-medium">{selectedVersions.from || 'Select version'}</span>
             </div>
-            <div className="text-sm">
-              To: {selectedVersions.to || 'Select version'}
+            <div className="text-sm bg-muted px-2 py-1 rounded-md">
+              To: <span className="font-medium">{selectedVersions.to || 'Select version'}</span>
             </div>
-            {selectedVersions.from && (
-              <button
-                className="text-sm text-blue-500 hover:text-blue-700"
-                onClick={clearSelection}
-              >
-                Clear
-              </button>
-            )}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={clearSelection}
+              disabled={!selectedVersions.from}
+              className={`text-sm ${selectedVersions.from ? 'text-destructive hover:text-destructive' : 'text-muted-foreground'}`}
+            >
+              Clear
+            </Button>
           </div>
 
           <div className="flex-1 overflow-y-auto min-h-0 pr-2 custom-scrollbar">
-            <div className="space-y-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-2">
               {results.map((version) => (
                 <button
                   key={version.version}
                   onClick={() => handleVersionSelect(version)}
-                  className={`w-full p-2 text-left rounded-md transition-colors
-                    ${selectedVersions.from === version.version ? 'bg-primary text-primary-foreground' : ''}
-                    ${selectedVersions.to === version.version ? 'bg-secondary text-secondary-foreground' : ''}
-                    ${!selectedVersions.from && !selectedVersions.to ? 'hover:bg-accent' : ''}`}
+                  className={`w-full p-3 text-left rounded-md transition-colors border
+                    ${selectedVersions.from === version.version ? 'bg-primary text-primary-foreground border-primary' : ''}
+                    ${selectedVersions.to === version.version ? 'bg-secondary text-secondary-foreground border-secondary' : ''}
+                    ${!selectedVersions.from && !selectedVersions.to ? 'hover:bg-accent border-border' : 'border-border hover:bg-accent/10'}`}
                 >
                   <div className="font-medium">{version.version}</div>
                   <div className="text-sm text-muted-foreground">
@@ -260,23 +228,31 @@ export default function VersionSelector({
         // Changelog display mode
         <div className="flex-1 overflow-y-auto min-h-0 pr-2 custom-scrollbar">
           {isLoading ? (
-            <div className="text-center">Loading changelogs...</div>
+            <div className="text-center p-8">
+              <div className="animate-spin w-6 h-6 border-2 border-primary border-t-transparent rounded-full mx-auto mb-2"></div>
+              Loading changelogs...
+            </div>
           ) : error ? (
-            <div className="text-center text-red-500">Error loading changelogs</div>
+            <div className="text-center text-destructive p-8">
+              <div className="mb-2">Error loading changelogs</div>
+              <Button variant="outline" onClick={clearSelection}>
+                Try Different Versions
+              </Button>
+            </div>
           ) : allVersionData.length > 0 ? (
             <div className="prose max-w-none dark:prose-invert">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="m-0">Changes after {selectedVersions.from}</h2>
-                <Button variant="outline" onClick={() => setDialogOpen(true)}>
+              <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+                <h2 className="m-0 text-lg md:text-xl">Changes after {selectedVersions.from}</h2>
+                <Button variant="outline" onClick={clearSelection}>
                   Change Versions
                 </Button>
               </div>
 
               {allVersionData.map((version, index) => (
-                <div key={index} className="border-l-4 border-primary p-4 mb-8">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="m-0">Version {version.version}</h3>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                <div key={index} className="border-l-4 border-primary p-4 mb-8 bg-card/50">
+                  <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+                    <h3 className="m-0 text-base md:text-lg">Version {version.version}</h3>
+                    <div className="text-sm text-muted-foreground">
                       Released: {version.date}
                     </div>
                   </div>
@@ -286,87 +262,32 @@ export default function VersionSelector({
                       href={version.commitsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-blue-500 hover:text-blue-700 mb-4 inline-block"
+                      className="text-sm text-primary hover:text-primary/90 mb-4 inline-flex items-center gap-1"
                     >
-                      View Commits →
+                      View Commits
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17" />
+                      </svg>
                     </a>
                   )}
 
                   <div
-                    className="changelog-content"
+                    className="changelog-content prose-sm md:prose-base"
                     dangerouslySetInnerHTML={{__html: version.changelogHtml}}
                   />
                 </div>
               ))}
             </div>
           ) : (
-            <div className="text-center text-muted-foreground">
-              No changes between selected versions
+            <div className="text-center text-muted-foreground p-8">
+              <div className="mb-4">No changes between selected versions</div>
+              <Button variant="outline" onClick={clearSelection}>
+                Try Different Versions
+              </Button>
             </div>
           )}
         </div>
       )}
-
-      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent className="bg-background border-border">
-          <DialogHeader>
-            <DialogTitle>Change Version Range</DialogTitle>
-          </DialogHeader>
-          
-          <div className="py-4 overflow-y-auto max-h-[60vh] pr-2 custom-scrollbar">
-            <div className="flex gap-2 items-center mb-4 flex-shrink-0">
-              <div className="text-sm text-foreground">
-                From: {tempVersions.from || 'Select version'}
-              </div>
-              <div className="text-sm text-foreground">
-                To: {tempVersions.to || 'Select version'}
-              </div>
-              {tempVersions.from && (
-                <button
-                  className="text-sm text-blue-500 hover:text-blue-700"
-                  onClick={() => setTempVersions({ from: null, to: null })}
-                >
-                  Clear
-                </button>
-              )}
-            </div>
-
-            <div className="max-h-[50vh] overflow-y-auto">
-              <div className="space-y-1">
-                {results.map((version) => (
-                  <button
-                    key={version.version}
-                    onClick={() => handleDialogVersionSelect(version)}
-                    className={`w-full p-2 text-left rounded-md transition-colors
-                      ${tempVersions.from === version.version ? 'bg-blue-600 text-white hover:bg-blue-700' : ''}
-                      ${tempVersions.to === version.version ? 'bg-green-600 text-white hover:bg-green-700' : ''}
-                      ${isVersionInRange(version.version, tempVersions) && !tempVersions.to ? 'bg-blue-100 dark:bg-blue-900/40' : ''}
-                      ${isVersionInRange(version.version, tempVersions) && tempVersions.to ? 'bg-blue-100 dark:bg-blue-900/40' : ''}
-                      ${!tempVersions.from || (!tempVersions.to && version.version !== tempVersions.from) ? 'hover:bg-accent/50' : ''}`}
-                  >
-                    <div className="font-medium">{version.version}</div>
-                    <div className={`text-sm ${tempVersions.from === version.version || tempVersions.to === version.version ? 'text-white/90' : 'text-muted-foreground'}`}>
-                      {version.date}
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setDialogOpen(false)}>
-              Cancel
-            </Button>
-            <Button 
-              onClick={handleAcceptVersions}
-              disabled={!tempVersions.from || !tempVersions.to}
-            >
-              Accept
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }
