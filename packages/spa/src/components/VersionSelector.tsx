@@ -214,11 +214,11 @@ export default function VersionSelector({
                     ${selectedVersions.from === version.version ? 'bg-primary text-primary-foreground border-primary hover:bg-primary/90' : ''}
                     ${selectedVersions.to === version.version ? 'bg-secondary text-secondary-foreground border-secondary hover:bg-secondary/90' : ''}
                     ${!selectedVersions.from && !selectedVersions.to 
-                      ? 'border-input bg-background hover:bg-accent hover:text-accent-foreground' 
-                      : 'border-input bg-background hover:bg-accent hover:text-accent-foreground'}`}
+                      ? 'border-input bg-background hover:bg-accent' 
+                      : 'border-input bg-background hover:bg-accent'}`}
                 >
-                  <div className="font-semibold text-foreground">{version.version}</div>
-                  <div className="text-sm text-foreground/70">
+                  <div className="font-semibold">{version.version}</div>
+                  <div className="text-sm">
                     {version.date}
                   </div>
                 </button>
