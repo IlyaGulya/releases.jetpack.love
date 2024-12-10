@@ -1,34 +1,88 @@
-# Complete Project Structure
+# Jetpack Releases Explorer
 
-## Key Technologies
-- **Frontend**:
-    - React + TypeScript
-    - TanStack Query
-    - Tailwind CSS
-    - shadcn/ui components
-    - Fuse.js for search
+A web application for exploring and comparing Android Jetpack library changelogs between two versions.
+Loads faster than developer.android.com and gives you an easy way to list changelogs between your
+current androidx library version and one you want to update to.
 
-- **Scraper**:
-    - Node.js
-    - Cheerio for parsing
-    - File-based caching
-    - CLI interface
+Live version is located here: https://releases.jetpack.love
 
-- **Build Tools**:
-    - Vite
-    - pnpm workspaces
-    - TypeScript
-    - ESLint
+## 🌟 Features
 
-## Root Level
-```
-/
-├── data/                      # Data storage
-├── packages/                  # Monorepo packages
-└── pnpm-workspace.yaml       # Workspace configuration
-```
+- 🔍 **Fuzzy search**: In library name or version
+- 📊 **Changelog comparison**: Vetween two versions
+- 🌓 **Dark/Light Theme**: Comfortable viewing in any environment
+- 📱 **Responsive Design**: Works on desktop and mobile
+- ⚡ **Static Generation**: Fast loading with no backend required
 
-## Data Directory (`/data/`)
+## 🚀 Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v22 or higher)
+- [pnpm](https://pnpm.io/) (v9 or higher)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/IlyaGulya/releases.jetpack.love.git
+   cd releases.jetpack.love
+   ```
+
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
+
+### Development
+
+1. Start the development server:
+   ```bash
+   pnpm dev
+   ```
+
+2. Open [http://localhost:5173](http://localhost:5173) in your browser
+
+### Building
+
+1. Generate static data and build the application:
+   ```bash
+   pnpm build
+   ```
+
+The built files will be in the `packages/spa/dist` directory.
+
+## 🏗️ Project Structure
+
+This is a monorepo using pnpm workspaces with the following packages:
+
+### `/packages/common`
+
+Shared TypeScript interfaces and utilities used across packages.
+
+### `/packages/scraper`
+
+Node.js scraper for fetching and processing Jetpack changelogs:
+
+- Fetches data from Android Developer documentation
+- Processes and normalizes changelog content
+- Manages library grouping and relationships
+- Provides CLI interface for data syncing
+
+### `/packages/spa`
+
+React-based Single Page Application:
+
+- Built with Vite and TypeScript
+- Uses TanStack Query for data management
+- Styled with Tailwind CSS and shadcn/ui
+- Implements fuzzy search with Fuse.js
+- Features responsive and accessible design
+
+### `/data`
+
+Storage for processed changelog data and URL mappings:
+
 ```
 /data/
 ├── changelogs/              # Processed changelog data
@@ -36,118 +90,58 @@
 │   │   ├── 1.0.0-alpha01.json
 │   │   └── ...
 │   └── [library]/
-└── url-groups.json          # URL to group mappings
+└── url-groups.json         # URL to group mappings
 ```
 
-## Package Structure (`/packages/`)
+## 🛠️ Available Scripts
 
-### 3.1. Common Package (`/packages/common/`)
-```
-/packages/common/
-├── src/
-│   └── index.ts             # Shared interfaces
-└── package.json
-```
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production
+- `pnpm sync-groups` - Update library groupings
+- `pnpm sync-changelogs` - Update changelog data
+- `pnpm sync-all` - Update both groups and changelogs
 
-Key types:
-- `LibraryInfo`: Metadata about libraries
-- `LibraryChangelog`: Changelog entry structure
-- `Version` & `Library`: Website types
+## 🤝 Contributing
 
-### 3.2. Scraper Package (`/packages/scraper/`)
-```
-/packages/scraper/
-├── src/
-│   ├── index.ts            # CLI entry point
-│   ├── changelog.ts        # Changelog processing
-│   ├── groups.ts           # Library grouping
-│   ├── storage.ts          # Data persistence
-│   └── utils.ts            # Helper functions
-└── package.json
-```
+We welcome contributions! Here's how you can help:
 
-#### Scraper Internals
-1. **Changelog Processing** (`changelog.ts`):
-    - HTML parsing with Cheerio
-    - Version extraction with regex
-    - Date normalization
-    - Content sanitization
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-2. **Group Management** (`groups.ts`):
-    - Parses Android developer docs
-    - Maintains library hierarchies
-    - Handles URL mapping
+## 📦 Tech Stack
 
-### 3.3. SPA Package (`/packages/spa/`)
-```
-/packages/spa/
-├── public/
-│   └── data/              # Static data for frontend
-├── src/
-│   ├── components/
-│   │   ├── ui/           # shadcn/ui components
-│   │   ├── LibrarySearch.tsx
-│   │   ├── MainContent.tsx
-│   │   └── VersionSelector.tsx
-│   ├── lib/
-│   │   ├── api.ts        # Data fetching
-│   │   ├── types.ts      # Frontend types
-│   │   └── utils.ts      # Helper functions
-│   ├── App.tsx
-│   ├── index.css
-│   └── main.tsx
-├── scripts/
-│   └── build-static-data.ts  # Data preprocessing
-└── package.json
-```
+### Frontend
 
-#### Frontend Application Details
+- React + TypeScript
+- TanStack Query
+- Tailwind CSS
+- shadcn/ui components
+- Fuse.js for search
+- react-router for routing
 
-1. **Component Architecture**:
-    - `LibrarySearch.tsx`:
-        - Fuzzy search with Fuse.js
-        - Real-time filtering
-        - Grouped results display
+### Build Tools
 
-    - `VersionSelector.tsx`:
-        - Semver-based version comparison
-        - Side-by-side changelog viewing
-        - Version range selection
-        - Commit history linking
+- Vite
+- pnpm workspaces
+- TypeScript
+- ESLint
 
-    - `MainContent.tsx`:
-        - Responsive layout
-        - Split-view interface
-        - State management
+### Scraper
 
-2. **Data Flow**:
-   ```
-   Data Source → Static Files → React Query Cache → Components
-   ```
+- Node.js
+- Cheerio for parsing
 
-3. **Features**:
-    - Dark/Light theme support (using Catppuccin Latte-Mauve for light mode and Mocha-Mauve for dark mode - thanks to [@thinxc](https://github.com/Tnixc/shadcn-ui))
-    - Version comparison
-    - Fuzzy search
-    - Responsive design
-    - Changelog rendering
-    - URL-based state
-    - Beautiful UI components powered by [shadcn/ui](https://ui.shadcn.com)
+## 📄 License
 
-4. **Build Process**:
-    - Static data generation
-    - Tailwind CSS processing
-    - TypeScript compilation
-    - Bundle optimization
+This project is licensed under the AGPLv3 License - see the [LICENSE](LICENSE) file for details.
 
-## 4. Data Flow
+## 🙏 Acknowledgments
 
-```mermaid
-graph TD
-    A[Scraper] -->|Fetches| B[Android Docs]
-    B -->|Caches| C[Page Cache]
-    A -->|Processes| D[Changelog Data]
-    D -->|Stores| E[Data Directory]
-    E -->|Builds| F[Static Frontend Data]
-    F -->|Serves| G[SPA]
-```
+- Android Jetpack team for maintaining excellent documentation
+
+---
+
+Built with ❤️ for the Android development community
