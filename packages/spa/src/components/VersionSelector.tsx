@@ -9,7 +9,7 @@ import Fuse from 'fuse.js';
 import semver from 'semver';
 import {useQueries} from '@tanstack/react-query';
 import {useNavigate} from 'react-router';
-import { usePostHog } from 'posthog-js/react'
+import {usePostHog} from 'posthog-js/react'
 
 interface Version {
   version: string;
@@ -33,10 +33,10 @@ interface VersionSelectorProps {
 }
 
 export default function VersionSelector({
-  library,
-  selectedVersions,
-  onSelectVersions,
-}: VersionSelectorProps) {
+                                          library,
+                                          selectedVersions,
+                                          onSelectVersions,
+                                        }: VersionSelectorProps) {
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
   const [ascending, setAscending] = useState(false);
@@ -45,7 +45,7 @@ export default function VersionSelector({
     library ? new Fuse(library.versions, {
       keys: ['version'],
       threshold: 0.2,
-    }) : null
+    }) : null,
   );
   const posthog = usePostHog()
 
@@ -89,9 +89,9 @@ export default function VersionSelector({
       if (selectedVersions.from === version.version) {
         posthog?.capture('deselect_version', {
           library: library?.id,
-          version: version.version
+          version: version.version,
         })
-        onSelectVersions({ from: null, to: null });
+        onSelectVersions({from: null, to: null});
         return;
       }
 
@@ -99,7 +99,7 @@ export default function VersionSelector({
       if (!selectedVersions.from) {
         posthog?.capture('select_from_version', {
           library: library?.id,
-          version: version.version
+          version: version.version,
         })
         onSelectVersions({from: version.version, to: null});
       } else if (!selectedVersions.to) {
@@ -114,7 +114,7 @@ export default function VersionSelector({
           posthog?.capture('select_to_version', {
             library: library?.id,
             from_version: selectedVersions.from,
-            to_version: version.version
+            to_version: version.version,
           })
           onSelectVersions({...selectedVersions, to: version.version});
         } else {
@@ -123,7 +123,7 @@ export default function VersionSelector({
       }
     } else {
       posthog?.capture('clear_version_selection', {
-        library: library?.id
+        library: library?.id,
       })
       clearSelection();
     }
@@ -180,7 +180,7 @@ export default function VersionSelector({
         library: library?.id,
         from_version: selectedVersions.from,
         to_version: selectedVersions.to,
-        versions_count: allVersionData.length
+        versions_count: allVersionData.length,
       })
     }
   }, [allVersionData.length, library?.id, selectedVersions.from, selectedVersions.to])
@@ -192,7 +192,7 @@ export default function VersionSelector({
       {!selectedVersions.from || !selectedVersions.to ? (
         <div className="h-full flex flex-col">
           <div className="p-4 border-b bg-background">
-            <div className="flex gap-2 mb-4 flex-wrap">
+            <div className="p-4 border-b bg-background flex-shrink-0">
               <Input
                 type="search"
                 placeholder="Search versions..."
@@ -215,45 +215,29 @@ export default function VersionSelector({
                 </span>
               </Button>
             </div>
-
-            <div className="flex flex-wrap gap-2 items-center">
-              <div className="text-sm bg-muted px-2 py-1 rounded-md">
-                From: <span className="font-medium">{selectedVersions.from || 'Select version'}</span>
-              </div>
-              <div className="text-sm bg-muted px-2 py-1 rounded-md">
-                To: <span className="font-medium">{selectedVersions.to || 'Select version'}</span>
-              </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={clearSelection}
-                disabled={!selectedVersions.from}
-                className={`text-sm ${selectedVersions.from ? 'text-destructive hover:text-destructive' : 'text-muted-foreground'}`}
-              >
-                Clear
-              </Button>
-            </div>
           </div>
 
-          <div className="p-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-2">
-              {results.map((version) => (
-                <button
-                  key={version.version}
-                  onClick={() => handleVersionSelect(version)}
-                  className={`w-full p-3 text-left rounded-md transition-colors border
+          <div className="flex-1 overflow-hidden">
+            <div className="h-full overflow-y-auto custom-scrollbar p-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-2">
+                {results.map((version) => (
+                  <button
+                    key={version.version}
+                    onClick={() => handleVersionSelect(version)}
+                    className={`w-full p-3 text-left rounded-md transition-colors border
                     ${selectedVersions.from === version.version ? 'bg-primary text-primary-foreground border-primary hover:bg-primary/90' : ''}
                     ${selectedVersions.to === version.version ? 'bg-secondary text-secondary-foreground border-secondary hover:bg-secondary/90' : ''}
                     ${!selectedVersions.from && !selectedVersions.to
-                    ? 'border-input bg-background hover:bg-accent'
-                    : 'border-input bg-background hover:bg-accent'}`}
-                >
-                  <div className="font-semibold">{version.version}</div>
-                  <div className="text-sm">
-                    {version.date}
-                  </div>
-                </button>
-              ))}
+                      ? 'border-input bg-background hover:bg-accent'
+                      : 'border-input bg-background hover:bg-accent'}`}
+                  >
+                    <div className="font-semibold">{version.version}</div>
+                    <div className="text-sm">
+                      {version.date}
+                    </div>
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -269,7 +253,7 @@ export default function VersionSelector({
             </div>
           </div>
 
-          <div className="overflow-y-auto flex-1 py-4 md:p-4 px-0">
+          <div className="overflow-y-auto custom-scrollbar flex-1 py-4 md:p-4 px-0">
             {isLoading ? (
               <div className="text-center p-8">
                 <div

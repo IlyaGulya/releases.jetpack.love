@@ -69,7 +69,7 @@ export default function App() {
   return (
     <ThemeProvider defaultTheme="system" storageKey="releases-theme">
       <QueryClientProvider client={queryClient}>
-        <div className="bg-background text-foreground min-h-screen">
+        <div className="bg-background text-foreground h-screen flex flex-col"> {/* Changed from min-h-screen */}
           <header className="border-b fixed top-0 left-0 right-0 bg-background z-50">
             <div className="container mx-auto px-3 py-2 md:p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
               <h1 className="text-lg md:text-2xl font-bold">Releases.Jetpack.Love</h1>
@@ -102,7 +102,7 @@ export default function App() {
               </div>
             </div>
           </header>
-          <div className="pt-[72px] md:pt-[64px]">
+          <div className="pt-[72px] md:pt-[64px] flex-1 overflow-hidden"> {/* Added flex-1 and overflow-hidden */}
             <Routes>
               <Route path="/" element={<AppContent />} />
               <Route path="/:libraryId" element={<AppContent />} />
