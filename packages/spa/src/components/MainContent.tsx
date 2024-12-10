@@ -91,7 +91,7 @@ export default function MainContent({
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="h-full md:overflow-hidden"> {/* Full height container */}
       <div className="container mx-auto p-4 h-full">
         {/* Mobile Wizard Header */}
         <div className="md:hidden mb-4 flex items-center justify-between">
@@ -113,7 +113,7 @@ export default function MainContent({
         </div>
 
         {/* Desktop Layout */}
-        <div className="hidden md:grid md:grid-cols-4 gap-4 h-[calc(100vh-96px)]">
+        <div className="hidden md:grid md:grid-cols-4 gap-4 h-full">
           <div className="md:col-span-1 h-full overflow-hidden">
             <LibrarySearch
               libraries={libraries}
@@ -138,7 +138,7 @@ export default function MainContent({
         </div>
 
         {/* Mobile Wizard Steps */}
-        <div className="md:hidden h-full">
+        <div className="md:hidden">
           {step === 'library' && (
             <div className="h-full">
               <LibrarySearch
