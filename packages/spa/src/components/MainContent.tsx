@@ -113,7 +113,7 @@ export default function MainContent({
         </div>
 
         {/* Desktop Layout */}
-        <div className="hidden md:grid md:grid-cols-4 gap-4 h-full">
+        <div className="hidden md:grid md:grid-cols-4 gap-4 h-[calc(100vh-96px)]">
           <div className="md:col-span-1 h-full overflow-hidden">
             <LibrarySearch
               libraries={libraries}
