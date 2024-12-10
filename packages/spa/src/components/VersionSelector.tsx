@@ -1,5 +1,3 @@
-'use client';
-
 import {ChangeEvent, useEffect, useState} from 'react';
 import {Library} from '../lib/types.ts';
 import {Input} from '@/components/ui/input.tsx';
@@ -191,8 +189,8 @@ export default function VersionSelector({
     <div className="h-full">
       {!selectedVersions.from || !selectedVersions.to ? (
         <div className="h-full flex flex-col">
-          {/* Search and Sort Controls - Updated layout */}
-          <div className="mb-2 md:bg-background">
+          {/* Search and Sort Controls - Fixed position */}
+          <div className="flex-shrink-0 bg-background">
             <div className="flex gap-2">
               <Input
                 type="search"
@@ -208,10 +206,10 @@ export default function VersionSelector({
                 className="md:whitespace-nowrap w-9 h-9 md:w-auto md:h-auto p-0 md:p-2"
               >
                 <ArrowUpDown
-                  className="w-4 h-4 md:mr-2"
+                  className="w-4 h-4"
                   style={{transform: ascending ? 'rotate(180deg)' : ''}}
                 />
-                <span className="hidden md:inline">
+                <span className="hidden md:inline text-xs">
                   {ascending ? "Oldest First" : "Newest First"}
                 </span>
               </Button>
@@ -220,8 +218,8 @@ export default function VersionSelector({
 
           {/* Versions List */}
           <div className="flex-1 overflow-hidden">
-            <div className="h-full overflow-y-auto custom-scrollbar md:p-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-2 md:px-0">
+            <div className="h-full overflow-y-auto custom-scrollbar scroll-pt-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-2 md:px-0 pt-4">
                 {results.map((version) => (
                   <button
                     key={version.version}
@@ -255,54 +253,55 @@ export default function VersionSelector({
             </div>
           </div>
 
-          <div className="overflow-y-auto custom-scrollbar flex-1 py-4 md:p-4 px-0">
-            {isLoading ? (
-              <div className="text-center p-8">
-                <div
-                  className="animate-spin w-6 h-6 border-2 border-primary border-t-transparent rounded-full mx-auto mb-2"></div>
-                Loading changelogs...
-              </div>
-            ) : error ? (
-              <div className="text-center text-destructive p-8">
-                <div className="mb-2">Error loading changelogs</div>
-                <Button variant="outline" onClick={clearSelection}>
-                  Try Different Versions
-                </Button>
-              </div>
-            ) : allVersionData.length > 0 ? (
-              <div className="prose max-w-full md:max-w-none overflow-x-hidden md:overflow-x-visible dark:prose-invert px-0 md:px-4
+          <div className="overflow-y-auto custom-scrollbar flex-1 scroll-pt-4">
+            <div className="pt-4 md:px-4">
+              {isLoading ? (
+                <div className="text-center p-8">
+                  <div
+                    className="animate-spin w-6 h-6 border-2 border-primary border-t-transparent rounded-full mx-auto mb-2"></div>
+                  Loading changelogs...
+                </div>
+              ) : error ? (
+                <div className="text-center text-destructive p-8">
+                  <div className="mb-2">Error loading changelogs</div>
+                  <Button variant="outline" onClick={clearSelection}>
+                    Try Different Versions
+                  </Button>
+                </div>
+              ) : allVersionData.length > 0 ? (
+                <div className="prose max-w-full md:max-w-none overflow-x-hidden md:overflow-x-visible dark:prose-invert px-0 md:px-4
     prose-p:my-2 prose-ul:my-2 prose-li:my-1 prose-headings:my-2"> {/* Control prose element margins */}
-                {allVersionData.map((version, index) => (
-                  <div key={index} className="relative border-l-[3px] md:border-l-4 border-primary/80 rounded-r-lg
+                  {allVersionData.map((version, index) => (
+                    <div key={index} className="relative border-l-[3px] md:border-l-4 border-primary/80 rounded-r-lg
         pl-3 pr-2 py-3 md:p-6 mb-4 md:mb-8 bg-card shadow-sm -ml-[1px] md:ml-0">
-                    <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-                      <div className="flex items-center gap-3">
-                        <h3 className="m-0 text-base md:text-lg font-semibold text-primary">{version.version}</h3>
-                        {version.commitsUrl && (
-                          <>
-                            <div className="h-4 w-[2px] bg-border"/>
-                            <a
-                              href={version.commitsUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-sm text-primary hover:text-primary/90 inline-flex items-center gap-1 no-underline"
-                            >
-                              View Commits
-                              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                   strokeWidth="2">
-                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                              </svg>
-                            </a>
-                          </>
-                        )}
+                      <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+                        <div className="flex items-center gap-3">
+                          <h3 className="m-0 text-base md:text-lg font-semibold text-primary">{version.version}</h3>
+                          {version.commitsUrl && (
+                            <>
+                              <div className="h-4 w-[2px] bg-border"/>
+                              <a
+                                href={version.commitsUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-sm text-primary hover:text-primary/90 inline-flex items-center gap-1 no-underline"
+                              >
+                                View Commits
+                                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                     strokeWidth="2">
+                                  <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                              </a>
+                            </>
+                          )}
+                        </div>
+                        <div className="text-sm text-muted-foreground">
+                          {version.date}
+                        </div>
                       </div>
-                      <div className="text-sm text-muted-foreground">
-                        {version.date}
-                      </div>
-                    </div>
 
-                    <div
-                      className="prose dark:prose-invert
+                      <div
+                        className="prose dark:prose-invert
                         prose-h3:text-lg prose-h3:text-primary/90 prose-h3:mt-0 prose-h3:border-b prose-h3:border-border/40 prose-h3:pb-2
                         prose-h2:text-xl prose-h2:text-primary
                         prose-ul:space-y-2
@@ -310,19 +309,20 @@ export default function VersionSelector({
                         [&_ul_ul]:mt-2 [&_ul_ul]:mb-0 [&_ul_ul]:ml-4
                         max-w-none
                         prose-code:before:hidden prose-code:after:hidden"
-                      dangerouslySetInnerHTML={{__html: version.changelogHtml}}
-                    />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center text-muted-foreground p-8">
-                <div className="mb-4">No changes between selected versions</div>
-                <Button variant="outline" onClick={clearSelection}>
-                  Try Different Versions
-                </Button>
-              </div>
-            )}
+                        dangerouslySetInnerHTML={{__html: version.changelogHtml}}
+                      />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center text-muted-foreground p-8">
+                  <div className="mb-4">No changes between selected versions</div>
+                  <Button variant="outline" onClick={clearSelection}>
+                    Try Different Versions
+                  </Button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}

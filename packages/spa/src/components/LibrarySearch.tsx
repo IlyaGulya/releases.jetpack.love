@@ -1,5 +1,3 @@
-'use client';
-
 import {ChangeEvent, useEffect, useState} from 'react';
 import Fuse from 'fuse.js';
 import {Input} from '@/components/ui/input';
