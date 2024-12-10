@@ -74,7 +74,7 @@ export default function App() {
           <header className="border-b fixed md:static top-0 left-0 right-0 bg-background z-50">
             <div
               className="container mx-auto px-3 py-2 md:p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
-              <h1 className="text-lg md:text-2xl font-bold">Releases.Jetpack.Love</h1>
+              <h1 className="text-lg md:text-2xl font-bold">Jetpack Releases Explorer</h1>
               <div className="flex items-center gap-2 md:gap-4">
                 <div className="flex items-center gap-2">
                   <Button
