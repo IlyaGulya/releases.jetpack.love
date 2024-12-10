@@ -48,13 +48,14 @@ export default function LibrarySearch({
         placeholder="Search libraries..."
         value={search}
         onChange={handleSearchChange}
-        className="w-full mb-4 flex-shrink-0"
+        className="w-full flex-shrink-0"
       />
 
       <div className="flex-1 overflow-hidden">
         <div
-          className="h-full overflow-y-auto md:custom-scrollbar md:pr-2"> {/* Added md: prefix to scrollbar and padding */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-2">
+          className="h-full overflow-y-auto md:custom-scrollbar md:pr-2 scroll-pt-4"> {/* Added scroll-pt-4 for 16px scroll padding */}
+          <div
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-2 pt-4"> {/* Added pt-4 to maintain visual spacing */}
             {results.map((library) => (
               <button
                 key={library.id}

@@ -2,9 +2,9 @@
 
 import LibrarySearch from './LibrarySearch.tsx';
 import VersionSelector from './VersionSelector.tsx';
-import { Library } from '@/lib/types.ts';
-import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
+import {Library} from '@/lib/types.ts';
+import {useEffect, useState} from 'react';
+import {Button} from '@/components/ui/button';
 
 interface MainContentProps {
   libraries: Library[];
@@ -18,12 +18,12 @@ interface MainContentProps {
 }
 
 export default function MainContent({
-  libraries,
-  selectedLibrary,
-  onSelectLibrary,
-  selectedVersions,
-  onSelectVersions,
-}: MainContentProps) {
+                                      libraries,
+                                      selectedLibrary,
+                                      onSelectLibrary,
+                                      selectedVersions,
+                                      onSelectVersions,
+                                    }: MainContentProps) {
   const [step, setStep] = useState<'library' | 'versions' | 'changelog'>('library');
   const [isMobileView, setIsMobileView] = useState(false);
 
@@ -66,7 +66,7 @@ export default function MainContent({
     if (step === 'changelog') {
       if (isMobileView) {
         setStep('versions');
-        onSelectVersions({ from: null, to: null });
+        onSelectVersions({from: null, to: null});
       }
     } else if (step === 'versions') {
       if (isMobileView) {
@@ -92,7 +92,7 @@ export default function MainContent({
 
   return (
     <div className="h-full md:overflow-hidden"> {/* Full height container */}
-      <div className="container mx-auto p-4 h-full">
+      <div className="container mx-auto p-2 md:p-0 pt-8 h-full">
         {/* Mobile Wizard Header */}
         <div className="md:hidden mb-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
