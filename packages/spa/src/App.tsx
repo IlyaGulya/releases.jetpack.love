@@ -1,12 +1,12 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useLibraryIndex } from './lib/api';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import {useLibraryIndex} from './lib/api';
 import MainContent from './components/MainContent';
-import { Library } from './lib/types';
-import { Routes, Route, useNavigate, useParams, Navigate } from 'react-router';
-import { ThemeProvider } from './components/theme-provider';
-import { ThemeToggle } from './components/theme-toggle';
-import { Button } from './components/ui/button';
-import { Github } from 'lucide-react';
+import {Library} from './lib/types';
+import {Navigate, Route, Routes, useNavigate, useParams} from 'react-router';
+import {ThemeProvider} from './components/theme-provider';
+import {ThemeToggle} from './components/theme-toggle';
+import {Button} from './components/ui/button';
+import {Github} from 'lucide-react';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,9 +18,9 @@ const queryClient = new QueryClient({
 });
 
 function AppContent() {
-  const { data: libraryIndex, isLoading, error } = useLibraryIndex();
+  const {data: libraryIndex, isLoading, error} = useLibraryIndex();
   const navigate = useNavigate();
-  const { libraryId, fromVersion, toVersion } = useParams();
+  const {libraryId, fromVersion, toVersion} = useParams();
 
   const selectedLibrary = libraryId && libraryIndex ? libraryIndex[libraryId] : null;
   const selectedVersions = {
@@ -69,9 +69,11 @@ export default function App() {
   return (
     <ThemeProvider defaultTheme="system" storageKey="releases-theme">
       <QueryClientProvider client={queryClient}>
-        <div className="bg-background text-foreground h-screen flex flex-col"> {/* Changed from min-h-screen */}
-          <header className="border-b fixed top-0 left-0 right-0 bg-background z-50">
-            <div className="container mx-auto px-3 py-2 md:p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
+        <div
+          className="bg-background text-foreground min-h-screen md:h-screen flex flex-col md:overflow-hidden">
+          <header className="border-b fixed md:static top-0 left-0 right-0 bg-background z-50">
+            <div
+              className="container mx-auto px-3 py-2 md:p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
               <h1 className="text-lg md:text-2xl font-bold">Releases.Jetpack.Love</h1>
               <div className="flex items-center gap-2 md:gap-4">
                 <div className="flex items-center gap-2">
@@ -91,26 +93,27 @@ export default function App() {
                     className="h-7 md:h-8"
                     asChild
                   >
-                    <a href="https://github.com/ilyagulya/releases.jetpack.love" target="_blank" rel="noopener noreferrer">
-                      <Github className="w-4 h-4" />
+                    <a href="https://github.com/ilyagulya/releases.jetpack.love" target="_blank"
+                       rel="noopener noreferrer">
+                      <Github className="w-4 h-4"/>
                     </a>
                   </Button>
                 </div>
                 <div className="border-l pl-2">
-                  <ThemeToggle />
+                  <ThemeToggle/>
                 </div>
               </div>
             </div>
           </header>
-          <div className="pt-[72px] md:pt-[64px] flex-1 overflow-hidden"> {/* Added flex-1 and overflow-hidden */}
+          <main className="pt-[72px] md:pt-0 flex-1 md:overflow-hidden"> {/* Padding top only on mobile */}
             <Routes>
-              <Route path="/" element={<AppContent />} />
-              <Route path="/:libraryId" element={<AppContent />} />
-              <Route path="/:libraryId/:fromVersion" element={<AppContent />} />
-              <Route path="/:libraryId/:fromVersion/:toVersion" element={<AppContent />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
+              <Route path="/" element={<AppContent/>}/>
+              <Route path="/:libraryId" element={<AppContent/>}/>
+              <Route path="/:libraryId/:fromVersion" element={<AppContent/>}/>
+              <Route path="/:libraryId/:fromVersion/:toVersion" element={<AppContent/>}/>
+              <Route path="*" element={<Navigate to="/" replace/>}/>
             </Routes>
-          </div>
+          </main>
         </div>
       </QueryClientProvider>
     </ThemeProvider>

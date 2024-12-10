@@ -191,20 +191,21 @@ export default function VersionSelector({
     <div className="h-full">
       {!selectedVersions.from || !selectedVersions.to ? (
         <div className="h-full flex flex-col">
-          <div className="p-4 border-b bg-background">
-            <div className="p-4 border-b bg-background flex-shrink-0">
+          {/* Search and Sort Controls - Updated layout */}
+          <div className="mb-2 md:bg-background">
+            <div className="flex gap-2">
               <Input
                 type="search"
                 placeholder="Search versions..."
                 value={search}
                 onChange={handleSearchChange}
-                className="flex-1 min-w-[200px]"
+                className="flex-1"
               />
               <Button
                 variant="outline"
                 onClick={() => setAscending(!ascending)}
                 title={ascending ? "Newest Last" : "Newest First"}
-                className="whitespace-nowrap"
+                className="md:whitespace-nowrap w-9 h-9 md:w-auto md:h-auto p-0 md:p-2"
               >
                 <ArrowUpDown
                   className="w-4 h-4 md:mr-2"
@@ -217,22 +218,23 @@ export default function VersionSelector({
             </div>
           </div>
 
+          {/* Versions List */}
           <div className="flex-1 overflow-hidden">
-            <div className="h-full overflow-y-auto custom-scrollbar p-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-2">
+            <div className="h-full overflow-y-auto custom-scrollbar md:p-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-2 md:px-0">
                 {results.map((version) => (
                   <button
                     key={version.version}
                     onClick={() => handleVersionSelect(version)}
-                    className={`w-full p-3 text-left rounded-md transition-colors border
-                    ${selectedVersions.from === version.version ? 'bg-primary text-primary-foreground border-primary hover:bg-primary/90' : ''}
-                    ${selectedVersions.to === version.version ? 'bg-secondary text-secondary-foreground border-secondary hover:bg-secondary/90' : ''}
-                    ${!selectedVersions.from && !selectedVersions.to
+                    className={`w-full p-2 text-left transition-colors border rounded-xl md:rounded-md
+                      ${selectedVersions.from === version.version ? 'bg-primary text-primary-foreground border-primary hover:bg-primary/90' : ''}
+                      ${selectedVersions.to === version.version ? 'bg-secondary text-secondary-foreground border-secondary hover:bg-secondary/90' : ''}
+                      ${!selectedVersions.from && !selectedVersions.to
                       ? 'border-input bg-background hover:bg-accent'
                       : 'border-input bg-background hover:bg-accent'}`}
                   >
-                    <div className="font-semibold">{version.version}</div>
-                    <div className="text-sm">
+                    <div className="font-semibold text-base">{version.version}</div>
+                    <div className="text-sm text-muted-foreground">
                       {version.date}
                     </div>
                   </button>
@@ -246,7 +248,7 @@ export default function VersionSelector({
         <div className="h-full flex flex-col">
           <div className="p-4 border-b bg-background">
             <div className="flex items-center justify-between flex-wrap gap-2">
-              <h2 className="m-0 text-lg md:text-xl font-semibold">Changes after {selectedVersions.from}</h2>
+              {/*<h2 className="m-0 text-lg md:text-xl font-semibold">Changes after {selectedVersions.from}</h2>*/}
               <Button variant="outline" onClick={clearSelection}>
                 Change Versions
               </Button>

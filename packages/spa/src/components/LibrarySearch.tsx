@@ -52,16 +52,17 @@ export default function LibrarySearch({
       />
 
       <div className="flex-1 overflow-hidden">
-        <div className="h-full overflow-y-auto custom-scrollbar pr-2">
+        <div
+          className="h-full overflow-y-auto md:custom-scrollbar md:pr-2"> {/* Added md: prefix to scrollbar and padding */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-2">
             {results.map((library) => (
               <button
                 key={library.id}
                 onClick={() => onSelect(library)}
                 className={`w-full p-3 text-left rounded-md transition-colors border
-                  ${selectedLibrary?.id === library.id 
-                    ? 'bg-primary text-primary-foreground border-primary' 
-                    : 'border-input bg-background hover:bg-accent hover:text-accent-foreground'}`}
+                  ${selectedLibrary?.id === library.id
+                  ? 'bg-primary text-primary-foreground border-primary'
+                  : 'border-input bg-background hover:bg-accent hover:text-accent-foreground'}`}
               >
                 <div className="font-semibold truncate">{library.id}</div>
                 {library.groupId && (
