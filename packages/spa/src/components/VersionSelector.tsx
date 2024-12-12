@@ -232,7 +232,7 @@ export default function VersionSelector({
                       : 'border-input bg-background hover:bg-accent'}`}
                   >
                     <div className="font-semibold text-base">{version.version}</div>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-sm">
                       {version.date}
                     </div>
                   </button>
