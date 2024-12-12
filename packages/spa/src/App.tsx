@@ -6,7 +6,9 @@ import {Navigate, Route, Routes, useNavigate, useParams} from 'react-router';
 import {ThemeProvider} from './components/theme-provider';
 import {ThemeToggle} from './components/theme-toggle';
 import {Button} from './components/ui/button';
-import {Github} from 'lucide-react';
+import {Github, Bug} from 'lucide-react';
+import { getIssueUrl } from './lib/utils';
+import { usePostHog } from 'posthog-js/react';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,6 +18,49 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+interface IssueLinkProps {
+  children: React.ReactNode;
+  className?: string;
+  title?: string;
+}
+
+function IssueLink({ children, className, title }: IssueLinkProps) {
+  const { libraryId, fromVersion, toVersion } = useParams();
+  const posthog = usePostHog();
+
+  const getContextualIssueUrl = () => {
+    return getIssueUrl({
+      library: libraryId,
+      fromVersion,
+      toVersion,
+      sessionId: posthog.get_session_id(),
+      recording: posthog.get_session_replay_url(),
+      userAgent: navigator.userAgent,
+      url: window.location.href
+    });
+  };
+
+  return (
+    <a
+      href={getContextualIssueUrl()}
+      target="_blank"
+      rel="noopener noreferrer"
+      title={title}
+      onClick={() => {
+        posthog.capture('issue_report_clicked', {
+          library: libraryId,
+          fromVersion,
+          toVersion,
+          location: window.location.href
+        });
+      }}
+      className={className}
+    >
+      {children}
+    </a>
+  );
+}
 
 function AppContent() {
   const {data: libraryIndex, isLoading, error} = useLibraryIndex();
@@ -98,6 +143,16 @@ export default function App() {
                       <Github className="w-4 h-4"/>
                     </a>
                   </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-7 md:h-8 text-muted-foreground hover:text-destructive"
+                    asChild
+                  >
+                    <IssueLink title="Report an issue">
+                      <Bug className="w-4 h-4"/>
+                    </IssueLink>
+                  </Button>
                 </div>
                 <div className="border-l pl-2">
                   <ThemeToggle/>
@@ -114,6 +169,30 @@ export default function App() {
               <Route path="*" element={<Navigate to="/" replace/>}/>
             </Routes>
           </main>
+          <div className="fixed top-2 right-2 md:top-4 md:right-4 z-[100]">
+            <IssueLink
+              className="
+                inline-flex items-center gap-1.5
+                px-2.5 py-1 rounded-full
+                bg-gradient-to-r from-destructive/90 to-destructive
+                text-destructive-foreground
+                shadow-lg shadow-destructive/20
+                border border-destructive-foreground/10
+                text-xs font-semibold
+                hover:from-destructive hover:to-destructive/90
+                transition-all
+                group
+              "
+            >
+              <span className="relative">
+                ALPHA
+                <span className="absolute inset-0 animate-ping bg-white/20 rounded-full"></span>
+              </span>
+              <span className="text-[10px] opacity-80 group-hover:opacity-100">
+                • Report Issues
+              </span>
+            </IssueLink>
+          </div>
         </div>
       </QueryClientProvider>
     </ThemeProvider>
