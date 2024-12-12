@@ -51,9 +51,9 @@ export default function LibrarySearch({
 
       <div className="flex-1 overflow-hidden">
         <div
-          className="h-full overflow-y-auto md:custom-scrollbar md:pr-2 scroll-pt-4"> {/* Added scroll-pt-4 for 16px scroll padding */}
+          className="h-full overflow-y-auto md:custom-scrollbar md:pr-2 scroll-pt-4 scroll-pb-4">
           <div
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-2 pt-4"> {/* Added pt-4 to maintain visual spacing */}
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-2 pt-4 pb-4">
             {results.map((library) => (
               <button
                 key={library.id}
