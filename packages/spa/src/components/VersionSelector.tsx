@@ -276,7 +276,7 @@ export default function VersionSelector({
         pl-3 pr-2 py-3 md:p-6 mb-4 md:mb-8 bg-card shadow-sm -ml-[1px] md:ml-0">
                       <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
                         <div className="flex items-center gap-3">
-                          <h3 className="m-0 text-base md:text-lg font-semibold text-primary">{version.version}</h3>
+                          <h3 className="m-0 text-base md:text-lg font-semibold text-primary">Version {version.version}</h3>
                           {version.commitsUrl && (
                             <>
                               <div className="h-4 w-[2px] bg-border"/>
