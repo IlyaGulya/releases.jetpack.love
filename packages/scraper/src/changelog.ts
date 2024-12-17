@@ -159,87 +159,78 @@ const CHANGELOG_PATTERNS: ChangelogPattern[] = [
         }
       }
 
-      // Then try to find date in the section's text content
-      const sectionText = $section.text().trim();
-      const datePatterns = [
-        /(\w+ \d{1,2},? \d{4})/, // December 25, 2023
-        /(\d{1,2} \w+ \d{4})/, // 25 December 2023
-        /(\w+ \d{4})/, // December 2023
-        /(\d{4}-\d{2}-\d{2})/, // 2023-12-25
-        /(\d{2}\/\d{2}\/\d{4})/ // 12/25/2023
-      ];
+      // Look for date in the next paragraph after the version header
+      let $nextP = $section.next('p');
+      if ($nextP.length && !$nextP.find('code').length) {
+        const pText = $nextP.text().trim();
+        // Try to parse various date formats
+        const datePatterns = [
+          // April 3rd, 2019
+          /([A-Z][a-z]+)\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(\d{4})/,
+          // July 2, 2019
+          /([A-Z][a-z]+)\s+(\d{1,2}),?\s+(\d{4})/,
+          // 2019-04-03
+          /(\d{4})-(\d{2})-(\d{2})/,
+          // 03/04/2019
+          /(\d{2})\/(\d{2})\/(\d{4})/
+        ];
 
-      for (const pattern of datePatterns) {
-        const dateMatch = sectionText.match(pattern);
-        if (dateMatch) {
-          const parsedDate = new Date(normalizeDate(dateMatch[1]));
-          if (!isNaN(parsedDate.getTime())) {
-            return parsedDate;
+        for (const pattern of datePatterns) {
+          const match = pText.match(pattern);
+          if (match) {
+            if (match[1].length === 4) {
+              // Handle YYYY-MM-DD format
+              const [_, year, month, day] = match;
+              const date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+              if (!isNaN(date.getTime())) {
+                return date;
+              }
+            } else if (match[3].length === 4) {
+              // Handle Month Day, Year format
+              const monthMap: Record<string, number> = {
+                'January': 0, 'February': 1, 'March': 2, 'April': 3,
+                'May': 4, 'June': 5, 'July': 6, 'August': 7,
+                'September': 8, 'October': 9, 'November': 10, 'December': 11
+              };
+              const month = monthMap[match[1]];
+              const day = parseInt(match[2]);
+              const year = parseInt(match[3]);
+              if (month !== undefined && !isNaN(day) && !isNaN(year)) {
+                const date = new Date(year, month, day);
+                if (!isNaN(date.getTime())) {
+                  return date;
+                }
+              }
+            }
           }
         }
       }
 
-      // Look in the next few elements
+      // If no date found in next paragraph, search in surrounding elements
       let $current = $section.next();
       let searchCount = 0;
       const maxSearchElements = 5;
 
-      const searchedTexts: string[] = [];
-
       while ($current.length && searchCount < maxSearchElements) {
         const text = $current.text().trim();
-        searchedTexts.push(text);
-
-        // Skip empty elements
-        if (!text) {
-          $current = $current.next();
-          continue;
-        }
-
-        // Try all date patterns
-        for (const pattern of datePatterns) {
-          const dateMatch = text.match(pattern);
-          if (dateMatch) {
-            const parsedDate = new Date(normalizeDate(dateMatch[1]));
-            if (!isNaN(parsedDate.getTime())) {
-              return parsedDate;
+        if (text) {
+          const normalizedDate = normalizeDate(text);
+          if (normalizedDate) {
+            const date = new Date(normalizedDate);
+            if (!isNaN(date.getTime())) {
+              return date;
             }
           }
         }
-
-        // Also check for data-release-date attribute in child elements
-        const $withDate = $current.find('[data-release-date]');
-        if ($withDate.length > 0) {
-          const attrDate = $withDate.attr('data-release-date');
-          if (attrDate) {
-            const parsedDate = new Date(attrDate);
-            if (!isNaN(parsedDate.getTime())) {
-              return parsedDate;
-            }
-          }
-        }
-
         $current = $current.next();
         searchCount++;
       }
 
-      // If no date found, log the context for debugging
-      log('Failed to find date for version section. Context:', {
+      log('Failed to find date for version section:', {
         sectionId: $section.attr('id'),
         sectionText: $section.text().trim(),
-        searchedTexts,
-        nextElements: searchedTexts
+        nextParagraph: $nextP.text().trim()
       });
-
-      // As a last resort, try to find any date-like string in the surrounding text
-      const allText = [$section.text(), ...searchedTexts].join(' ');
-      const anyDateMatch = allText.match(/\b\d{4}\b/); // At least find a year
-      if (anyDateMatch) {
-        const year = parseInt(anyDateMatch[0]);
-        if (year >= 2000 && year <= new Date().getFullYear()) {
-          return new Date(year, 0); // Default to January of the found year
-        }
-      }
 
       return null;
     },
