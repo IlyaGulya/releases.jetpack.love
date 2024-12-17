@@ -6,8 +6,9 @@ import debug from "debug";
 import {format} from 'date-fns';
 import {FsStorage} from "./storage";
 import type {PageCache} from "./cache";
-import {cleanVersionString, normalizeDate} from "./utils";
+import {cleanVersionString} from "./utils";
 import {LibraryChangelog} from "@jetpack.love/common";
+import {DATE_PATTERNS} from "@jetpack.love/common";
 
 const log = debug('jetpack:changelog');
 
@@ -288,6 +289,20 @@ const CHANGELOG_PATTERNS: ChangelogPattern[] = [
     }
   }
 ];
+
+function normalizeDate(text: string): string | null {
+  // Try each date pattern
+  for (const pattern of Object.values(DATE_PATTERNS)) {
+    const match = text.match(pattern);
+    if (match) {
+      const date = new Date(match[0]);
+      if (!isNaN(date.getTime())) {
+        return format(date, 'yyyy-MM-dd');
+      }
+    }
+  }
+  return null;
+}
 
 export class ChangelogScraper {
   private progressBar: ProgressBar;
