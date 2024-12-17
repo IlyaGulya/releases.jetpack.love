@@ -36,3 +36,34 @@ changelogHtml: |
       </ul>
     </li>
   </ul>
+  <p>June 24, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.test.services:test-services:1.5.0</code>
+    <code translate="no" dir="ltr">androidx.test.services:storage:1.5.0</code>
+    are released.
+  </p>
+  <p>Changes since last stable 1.4.2 release include:</p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>Make TestStorage an internal API from experimental</li>
+    <li>minSdkVersion is now 19, targetSdkVersion is now 34</li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>Reduce HostedFile log spam</li>
+    <li>Remove unused androidx.test.annotation dependency</li>
+    <li>TestStorage: use local cache dir to store output files when running as non system user</li>
+    <li>When files are opened for writing, TestStorage now truncates the file unless it is explicitly opened for appending. This prevents bytes from a prior write to the file from remaining at the end of the file.</li>
+    <li>Remove all support for Android SDKs &lt; 19. Minimum is API 19 (Android Kit Kat 4.4)</li>
+  </ul>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Major release toolchain update:
+      <ul>
+        <li>classes are now compiled to java8 bytecode</li>
+        <li>javac compiler switched to OpenJDK 17.</li>
+        <li>APK is now signed with a different key and you will need to uninstall any previous APK ('adb uninstall androidx.test.services')</li>
+      </ul>
+    </li>
+  </ul>

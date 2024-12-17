@@ -14,3 +14,59 @@ changelogHtml: |
     <a href="https://android.googlesource.com/platform/frameworks/support/+log/8c4071562bd7e22b937284d71fb7aca9c4cd662c..dfd74da8dfb752e0d0981903430e71ecb70097e1/recyclerview/recyclerview">these commits</a>
     .
   </p>
+  <h3 id="changes_since_132_2" data-text="Changes since 1.3.2" tabindex="-1">Changes since 1.3.2</h3>
+  <p>
+    <strong>Compatibility note</strong>
+    : This version will only compile against the API 35 (Vanilla Ice Cream) SDK or higher. If you see AGP (Android Gradle Plugin) warnings when you upgrade, you can suppress them.
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Variable refresh rate support:
+      <code translate="no" dir="ltr">RecyclerView</code>
+      now calls
+      <code translate="no" dir="ltr">setFrameContentVelocity</code>
+      when it is scrolling via
+      <code translate="no" dir="ltr">OverScroller</code>
+      (such as settling from a fling or smooth scroll). (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/a1e9ab3e5fd52e885731bd762ff7dd4a64b25505">I8f8a4</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">RecyclerView$LayoutManager#isLayoutReversed</code>
+      API. (
+      <a href="https://android-review.googlesource.com/#/q/I4970ed9322cf3786377e847be6e22400cbd5c2e2">I4970e</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Other changes</strong></p>
+  <ul>
+    <li>
+      Removed manual outlining of access to new platform APIs since this happens automatically via API modeling when using R8 with AGP 7.3 or later (e.g. R8 version 3.3) and for all builds when using AGP 8.1 or later (e.g. D8 version 8.1). Clients who are not using AGP are advised to update to D8 version 8.1 or later. See
+      <a href="https://medium.com/androiddevelopers/mitigating-soft-verification-issues-in-r8-and-d8-7e9e06827dfd">this article</a>
+      for more details. (
+      <a href="https://android-review.googlesource.com/#/q/Ia60e0ab9f0fd613883a772c8aa34e27cc986cae8">Ia60e0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/345472586">b/345472586</a>
+      )
+    </li>
+    <li>
+      Add item view type to
+      <code translate="no" dir="ltr">RecyclerView</code>
+      bind/create trace sections, and label RV prefetches as 'forced - needed next frame' if they are expected to be used by the next frame, and thus should start work as soon as possible. (
+      <a href="https://android-review.googlesource.com/#/q/I8ec3edb569d892fcb100c86e401d95a32e844d29">I8ec3e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/309523615">b/309523615</a>
+      )
+    </li>
+    <li>
+      Update
+      <code translate="no" dir="ltr">compileSdk</code>
+      to 35 (see "Compatibility note" above for details).
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/5dc41be792a8fa6b2488df3e780da1c0805b202f">5dc41be</a>
+    </li>
+  </ul>

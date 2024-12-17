@@ -26,3 +26,41 @@ changelogHtml: |
       )
     </li>
   </ul>
+  <h3 id="1.1.0-beta01" data-text="Version  1.1.0-beta01" tabindex="-1">Version 1.1.0-beta01</h3>
+  <p>April 3, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.collection:collection:1.1.0-beta01</code>
+    and
+    <code translate="no" dir="ltr">androidx.collection:collection-ktx:1.1.0-beta01</code>
+    are released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/79285e90f077844e4b3b1a72a4a051389e3c190a..a81cba4406e40dfca7ba3c37e629537c4840de95/collection">here</a>
+    .
+  </p>
+  <p><strong>API changes</strong></p>
+  <ul>
+    <li>
+      The method mentioned in
+      <a href="/jetpack/androidx/releases/collection#1.0.0-alpha03">the alpha03 release notes</a>
+      as having its
+      <code translate="no" dir="ltr">@RestrictTo</code>
+      value changed has been removed. It was unused by any AndroidX library (now or historically) and it did not offer any functionality that was missing from the public API.
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Change
+      <code translate="no" dir="ltr">SimpleArrayMap</code>
+      to synchronize its internal global cache of arrays on
+      <code translate="no" dir="ltr">SimpleArrayMap.class</code>
+      instead of
+      <code translate="no" dir="ltr">ArrayMap.class</code>
+      . This ensures that if you are only using
+      <code translate="no" dir="ltr">SimpleArrayMap</code>
+      ,
+      <code translate="no" dir="ltr">ArrayMap</code>
+      can be removed by code shrinking tools. (
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/934557">aosp/934557</a>
+      )
+    </li>
+  </ul>

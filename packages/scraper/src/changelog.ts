@@ -8,14 +8,21 @@ import {FsStorage} from "./storage";
 import type {PageCache} from "./cache";
 import {cleanVersionString, normalizeDate} from "./utils";
 import {LibraryChangelog} from "@jetpack.love/common";
-import * as prettier from 'prettier';
 
 const log = debug('jetpack:changelog');
 
-interface VersionInfo {
-  version: string;
-  date: Date;
-  content: string;
+interface PagePattern {
+  name: string;
+  detect: ($: CheerioAPI) => boolean;
+  extractVersionSections: ($: CheerioAPI) => cheerio.Cheerio<Element>;
+}
+
+interface ChangelogPattern {
+  name: string;
+  detect: ($: CheerioAPI, $section: cheerio.Cheerio<Element>) => boolean;
+  extractVersion: ($: CheerioAPI, $section: cheerio.Cheerio<Element>) => string | null;
+  extractDate: ($: CheerioAPI, $section: cheerio.Cheerio<Element>) => Date | null;
+  extractContent: ($: CheerioAPI, $section: cheerio.Cheerio<Element>) => string | null;
 }
 
 const expectedMissingChangelogs = new Set<string>([
@@ -33,9 +40,267 @@ const expectedMissingChangelogs = new Set<string>([
   "recommendation",
 ]);
 
+// Page patterns for different types of changelog pages
+const PAGE_PATTERNS: PagePattern[] = [
+  {
+    name: 'Android Docs Changelog',
+    detect: ($) => {
+      const $content = $('.devsite-article-body');
+
+      // Debug logging for page structure
+      log('Page structure:', {
+        hasArticleBody: $content.length > 0,
+        h2Count: $content.find('h2').length,
+        h3Count: $content.find('h3').length,
+        firstH2Text: $content.find('h2').first().text().trim(),
+        firstH3Text: $content.find('h3').first().text().trim(),
+        hasVersionButtons: $content.find('button.devsite-heading-link').length > 0,
+        articleText: $content.text().trim().substring(0, 200) + '...' // First 200 chars
+      });
+
+      // Check if we have the article body and any version-like headers
+      return $content.length > 0 && (
+        // Look for any version-like headers in h2 or h3
+        $content.find('h2,h3').filter((_, el) => {
+          const $el = $(el);
+          const text = $el.text().trim();
+          const hasVersionText = /Version \d+\.\d+\.\d+|^\d+\.\d+\.\d+/.test(text);
+          const hasVersionButton = $el.find('button.devsite-heading-link[data-id*="version"]').length > 0;
+          const hasVersionId = $el.attr('id')?.includes('version') || false;
+
+          // Debug logging for version detection
+          if (hasVersionText || hasVersionButton || hasVersionId) {
+            log('Found version section:', {
+              text,
+              hasVersionText,
+              hasVersionButton,
+              hasVersionId,
+              elementType: el.tagName,
+              id: $el.attr('id')
+            });
+          }
+
+          return hasVersionText || hasVersionButton || hasVersionId;
+        }).length > 0
+      );
+    },
+    extractVersionSections: ($) => {
+      const $content = $('.devsite-article-body');
+      const $sections = $content.find('h2,h3').filter((_, el) => {
+        const $el = $(el);
+
+        // Check for version number in text
+        const text = $el.text().trim();
+        if (/Version \d+\.\d+\.\d+|^\d+\.\d+\.\d+/.test(text)) {
+          return true;
+        }
+
+        // Check for version in button id
+        const $button = $el.find('button.devsite-heading-link');
+        if ($button.length > 0) {
+          const id = $button.attr('data-id') || '';
+          const dataText = $button.attr('data-text') || '';
+          return /-\d+\.\d+\.\d+/.test(id) ||
+                 /Version \d+\.\d+\.\d+/.test(dataText);
+        }
+
+        // Check for version in section id
+        const sectionId = $el.attr('id') || '';
+        return /version-\d+\.\d+\.\d+/.test(sectionId);
+      });
+
+      // Debug logging for found sections
+      log('Found version sections:', {
+        count: $sections.length,
+        sections: $sections.map((_, el) => ({
+          type: el.tagName,
+          id: $(el).attr('id'),
+          text: $(el).text().trim(),
+          buttonId: $(el).find('button.devsite-heading-link').attr('data-id')
+        })).get()
+      });
+
+      return $sections;
+    }
+  }
+];
+
+// Changelog patterns for different version section formats
+const CHANGELOG_PATTERNS: ChangelogPattern[] = [
+  {
+    name: 'Standard Version Format',
+    detect: ($, $section) => {
+      const text = $section.text().trim();
+      return /Version \d+\.\d+\.\d+|^\d+\.\d+\.\d+/.test(text);
+    },
+    extractVersion: ($, $section) => {
+      const text = $section.text().trim();
+      // Try different version patterns
+      const patterns = [
+        /Version (\d+\.\d+\.\d+(?:[-+][a-zA-Z0-9.-]+)?)/,
+        /^(\d+\.\d+\.\d+(?:[-+][a-zA-Z0-9.-]+)?)/
+      ];
+
+      for (const pattern of patterns) {
+        const match = text.match(pattern);
+        if (match) {
+          return cleanVersionString(match[1]);
+        }
+      }
+      return null;
+    },
+    extractDate: ($, $section) => {
+      // First, try to find date in the data-release-date attribute
+      const releaseDate = $section.attr('data-release-date');
+      if (releaseDate) {
+        const parsedDate = new Date(releaseDate);
+        if (!isNaN(parsedDate.getTime())) {
+          return parsedDate;
+        }
+      }
+
+      // Then try to find date in the section's text content
+      const sectionText = $section.text().trim();
+      const datePatterns = [
+        /(\w+ \d{1,2},? \d{4})/, // December 25, 2023
+        /(\d{1,2} \w+ \d{4})/, // 25 December 2023
+        /(\w+ \d{4})/, // December 2023
+        /(\d{4}-\d{2}-\d{2})/, // 2023-12-25
+        /(\d{2}\/\d{2}\/\d{4})/ // 12/25/2023
+      ];
+
+      for (const pattern of datePatterns) {
+        const dateMatch = sectionText.match(pattern);
+        if (dateMatch) {
+          const parsedDate = new Date(normalizeDate(dateMatch[1]));
+          if (!isNaN(parsedDate.getTime())) {
+            return parsedDate;
+          }
+        }
+      }
+
+      // Look in the next few elements
+      let $current = $section.next();
+      let searchCount = 0;
+      const maxSearchElements = 5;
+
+      const searchedTexts: string[] = [];
+
+      while ($current.length && searchCount < maxSearchElements) {
+        const text = $current.text().trim();
+        searchedTexts.push(text);
+
+        // Skip empty elements
+        if (!text) {
+          $current = $current.next();
+          continue;
+        }
+
+        // Try all date patterns
+        for (const pattern of datePatterns) {
+          const dateMatch = text.match(pattern);
+          if (dateMatch) {
+            const parsedDate = new Date(normalizeDate(dateMatch[1]));
+            if (!isNaN(parsedDate.getTime())) {
+              return parsedDate;
+            }
+          }
+        }
+
+        // Also check for data-release-date attribute in child elements
+        const $withDate = $current.find('[data-release-date]');
+        if ($withDate.length > 0) {
+          const attrDate = $withDate.attr('data-release-date');
+          if (attrDate) {
+            const parsedDate = new Date(attrDate);
+            if (!isNaN(parsedDate.getTime())) {
+              return parsedDate;
+            }
+          }
+        }
+
+        $current = $current.next();
+        searchCount++;
+      }
+
+      // If no date found, log the context for debugging
+      log('Failed to find date for version section. Context:', {
+        sectionId: $section.attr('id'),
+        sectionText: $section.text().trim(),
+        searchedTexts,
+        nextElements: searchedTexts
+      });
+
+      // As a last resort, try to find any date-like string in the surrounding text
+      const allText = [$section.text(), ...searchedTexts].join(' ');
+      const anyDateMatch = allText.match(/\b\d{4}\b/); // At least find a year
+      if (anyDateMatch) {
+        const year = parseInt(anyDateMatch[0]);
+        if (year >= 2000 && year <= new Date().getFullYear()) {
+          return new Date(year, 0); // Default to January of the found year
+        }
+      }
+
+      return null;
+    },
+    extractContent: ($, $section) => {
+      const content: string[] = [$section.toString()];
+      let $current = $section.next();
+
+      while ($current.length) {
+        // Stop if we hit another version section
+        if ($current.is('h2,h3') && (
+          /Version \d+\.\d+\.\d+|^\d+\.\d+\.\d+/.test($current.text().trim()) ||
+          $current.find('button.devsite-heading-link').length > 0
+        )) {
+          break;
+        }
+
+        const html = $current.toString();
+        if (html.trim()) {
+          content.push(html);
+        }
+        $current = $current.next();
+      }
+
+      return content.join('\n');
+    }
+  },
+  {
+    name: 'Button-Based Version Format',
+    detect: ($, $section) => {
+      return $section.find('button.devsite-heading-link').length > 0;
+    },
+    extractVersion: ($, $section) => {
+      const $button = $section.find('button.devsite-heading-link');
+      const id = $button.attr('data-id') || '';
+      const patterns = [
+        /-(\d+\.\d+\.\d+(?:[-+][a-zA-Z0-9.-]+)?)/,
+        /(\d+\.\d+\.\d+(?:[-+][a-zA-Z0-9.-]+)?)/
+      ];
+
+      for (const pattern of patterns) {
+        const match = id.match(pattern);
+        if (match) {
+          return cleanVersionString(match[1]);
+        }
+      }
+      return null;
+    },
+    extractDate: ($, $section) => {
+      // Use the same enhanced date extraction logic as Standard Version Format
+      return CHANGELOG_PATTERNS[0].extractDate($, $section);
+    },
+    extractContent: ($, $section) => {
+      // Use the same content extraction logic as Standard Version Format
+      return CHANGELOG_PATTERNS[0].extractContent($, $section);
+    }
+  }
+];
+
 export class ChangelogScraper {
   private progressBar: ProgressBar;
-  private warnings: Array<{ library: string; message: string }> = [];
+  private warnings: Array<{ library: string; message: string; context?: any }> = [];
 
   constructor(
     private storage: FsStorage,
@@ -70,169 +335,16 @@ export class ChangelogScraper {
     return cheerio.load(content);
   }
 
-  private extractVersionFromId(id: string): string | null {
-    // Try various version patterns from most specific to least
-    const patterns = [
-      // Pattern for prefixed versions like "camera-view-1.0.0-alpha09"
-      /-(\d+\.\d+\.\d+(?:[-+].+)?)$/,
-      // Pattern for versions in the text like "Version 1.0.0-alpha09"
-      /Version\s+(\d+\.\d+\.\d+(?:[-+].+)?)/i,
-      // Pattern for simple versions like "1.0.0-alpha09"
-      /^(\d+\.\d+\.\d+(?:[-+].+)?)$/,
-      // Pattern for version numbers anywhere
-      /(\d+\.\d+\.\d+(?:[-+][a-zA-Z0-9.-]+)?)/,
-    ];
-
-    for (const pattern of patterns) {
-      const match = id.match(pattern);
-      if (match && match[1]) {
-        // Clean the extracted version
-        const cleanVersion = cleanVersionString(match[1]);
-        if (cleanVersion) {
-          return cleanVersion;
-        }
-      }
-    }
-
-    return null;
-  }
-
-  private getVersionFromSection($: CheerioAPI, $section: cheerio.Cheerio<Element>): string | null {
-    // Try button pattern first
-    const $versionButton = $section.find('button.devsite-heading-link');
-    const buttonId = $versionButton.attr('data-id');
-    if (buttonId) {
-      const version = this.extractVersionFromId(buttonId);
-      if (version) return version;
-    }
-
-    // Try direct id pattern
-    const sectionId = $section.attr('id');
-    if (sectionId) {
-      const version = this.extractVersionFromId(sectionId);
-      if (version) return version;
-    }
-
-    // Try extracting from text content as last resort
-    const headerText = $section.text().trim();
-    const version = this.extractVersionFromId(headerText);
-    if (version) return version;
-
-    return null;
-  }
-
-  private async extractVersionInfo($: CheerioAPI, versionSection: Element, libraryId: string): Promise<VersionInfo | null> {
-    const $section = $(versionSection);
-    const versionText = this.getVersionFromSection($, $section);
-
-    if (!versionText) {
-      const sectionInfo = {
-        id: $section.attr('id'),
-        buttonId: $section.find('button.devsite-heading-link').attr('data-id'),
-        text: $section.text().trim(),
-      };
-
-      log(`Failed to extract version from section:`, sectionInfo);
-
-      this.warnings.push({
-        library: libraryId,
-        message: `Version section found but couldn't extract version number. Section ID: "${sectionInfo.id}", Button ID: "${sectionInfo.buttonId}", Text: "${sectionInfo.text}"`,
-      });
-      return null;
-    }
-
-    // Enhanced date parsing
-    let dateText = '';
-    let $current = $section.next();
-
-    // Look for date in the first paragraph or element
-    while ($current.length && !dateText) {
-      const text = $current.text().trim();
-      // Match date pattern and extract just the date part
-      const dateMatch = text.match(/(\w+ \d{1,2},? \d{4})/);
-      if (dateMatch) {
-        dateText = dateMatch[1];
-        break;
-      }
-      $current = $current.next();
-    }
-
-    if (!dateText) {
-      this.warnings.push({
-        library: libraryId,
-        message: `No date found for version ${versionText}`,
-      });
-      return null;
-    }
-
-    // Parse the normalized date
-    const normalizedDate = normalizeDate(dateText);
-    const parsedDate = new Date(normalizedDate);
-
-    if (isNaN(parsedDate.getTime())) {
-      this.warnings.push({
-        library: libraryId,
-        message: `Invalid date for version ${versionText}: "${dateText}"`,
-      });
-      return null;
-    }
-
-    // Collect content until next version section or end
-    const content: string[] = [];
-    $current = $section.next();
-
-    while ($current.length) {
-      // Check if we've hit the next version section
-      const isNextVersion = $current.is('h3') && this.getVersionFromSection($, $current);
-      if (isNextVersion) {
-        break;
-      }
-
-      const html = $current.toString();
-      if (html.trim()) {
-        content.push(html);
-      }
-
-      $current = $current.next();
-    }
-
-    // Include version header in content
-    content.unshift($section.toString());
-
-    if (content.length === 0) {
-      this.warnings.push({
-        library: libraryId,
-        message: `No content found for version ${versionText}`,
-      });
-      return null;
-    }
-
-    return {
-      version: versionText,
-      date: parsedDate,
-      content: content.join("\n"),
-    };
-  }
-
   private getLibraryIdFromUrl(url: string): string {
-    // Parse URL to get path segments
     try {
       const urlObj = new URL(url);
       const pathParts = urlObj.pathname.split('/');
-
-      // Find the position after 'releases' in the path
       const releasesIndex = pathParts.indexOf('releases');
       if (releasesIndex === -1) {
         throw new Error(`Invalid changelog URL format: ${url}`);
       }
-
-      // Get all parts after 'releases'
-      const libraryParts = pathParts.slice(releasesIndex + 1);
-
-      // Join parts with dots to form proper libraryId
-      return libraryParts.join('.');
+      return pathParts.slice(releasesIndex + 1).join('.');
     } catch (error) {
-      // Fallback to simple parsing if URL is malformed
       const matches = url.match(/releases\/(.+?)(?:\/|$)/);
       return matches?.[1] || '';
     }
@@ -241,11 +353,17 @@ export class ChangelogScraper {
   private async processChangelog(url: string, groupId: string): Promise<void> {
     const libraryId = this.getLibraryIdFromUrl(url);
     if (!libraryId) {
-      log(`Failed to parse library ID from URL: ${url}`);
       this.warnings.push({
-        library: url,  // Use URL as identifier since we couldn't parse libraryId
+        library: url,
         message: `Could not determine library ID from URL`,
+        context: { url }
       });
+      return;
+    }
+
+    // Skip processing if this is an expected missing changelog
+    if (expectedMissingChangelogs.has(libraryId)) {
+      log(`Skipping expected missing changelog: ${libraryId}`);
       return;
     }
 
@@ -254,19 +372,53 @@ export class ChangelogScraper {
     try {
       const $ = await this.fetchPage(url);
 
-      // Find all version sections using both patterns
-      const versionSections = $('h3').filter((_, el) => {
-        const $section = $(el);
-        return this.getVersionFromSection($, $section) !== null;
-      });
+      // Detect page pattern
+      const pagePattern = PAGE_PATTERNS.find(pattern => pattern.detect($));
+      if (!pagePattern) {
+        // Only add warning if it's not an expected missing changelog
+        if (!expectedMissingChangelogs.has(libraryId)) {
+          this.warnings.push({
+            library: libraryId,
+            message: "Unknown page pattern detected",
+            context: {
+              url,
+              pageTitle: $('title').text(),
+              h1Text: $('h1').map((_, el) => $(el).text()).get(),
+              articleBody: {
+                exists: $('.devsite-article-body').length > 0,
+                headers: $('.devsite-article-body h2, .devsite-article-body h3')
+                  .map((_, el) => ({
+                    type: el.tagName,
+                    id: $(el).attr('id'),
+                    text: $(el).text().trim(),
+                    hasVersionButton: $(el).find('button.devsite-heading-link').length > 0
+                  })).get()
+              }
+            }
+          });
+        }
+        return;
+      }
+
+      log(`Detected page pattern: ${pagePattern.name} for ${libraryId}`);
+      const versionSections = pagePattern.extractVersionSections($);
 
       if (versionSections.length === 0) {
         if (!expectedMissingChangelogs.has(libraryId)) {
           this.warnings.push({
             library: libraryId,
-            message: "No version sections found in changelog. The page might have a different structure or might be empty.",
+            message: "No version sections found",
+            context: {
+              pattern: pagePattern.name,
+              url,
+              pageStructure: {
+                headers: $('h1,h2,h3').map((_, el) => ({
+                  level: el.tagName,
+                  text: $(el).text().trim()
+                })).get()
+              }
+            }
           });
-          log(`Warning: No versions found for ${libraryId}`);
         }
         return;
       }
@@ -276,21 +428,50 @@ export class ChangelogScraper {
 
       // Process each version section
       for (const section of versionSections.toArray()) {
-        const versionInfo = await this.extractVersionInfo($, section, libraryId);
+        const $section = $(section);
 
-        if (versionInfo) {
-          const changelog: LibraryChangelog = {
-            libraryId,
-            groupId,
-            version: versionInfo.version,
-            releaseDate: format(versionInfo.date, 'yyyy-MM-dd'),
-            changelogHtml: versionInfo.content,
-          };
-
-          await this.storage.saveChangelog(changelog);
-          processedVersions++;
-          log(`Saved changelog for ${libraryId} version ${versionInfo.version}`);
+        // Detect changelog pattern
+        const changelogPattern = CHANGELOG_PATTERNS.find(pattern => pattern.detect($, $section));
+        if (!changelogPattern) {
+          this.warnings.push({
+            library: libraryId,
+            message: "Unknown changelog pattern detected",
+            context: {
+              sectionHtml: $section.toString(),
+              sectionText: $section.text().trim()
+            }
+          });
+          continue;
         }
+
+        const version = changelogPattern.extractVersion($, $section);
+        const date = changelogPattern.extractDate($, $section);
+        const content = changelogPattern.extractContent($, $section);
+
+        if (!version || !date || !content) {
+          this.warnings.push({
+            library: libraryId,
+            message: "Failed to extract version information",
+            context: {
+              pattern: changelogPattern.name,
+              extracted: { version, date, contentLength: content?.length },
+              sectionHtml: $section.toString()
+            }
+          });
+          continue;
+        }
+
+        const changelog: LibraryChangelog = {
+          libraryId,
+          groupId,
+          version,
+          releaseDate: format(date, 'yyyy-MM-dd'),
+          changelogHtml: content,
+        };
+
+        await this.storage.saveChangelog(changelog);
+        processedVersions++;
+        log(`Saved changelog for ${libraryId} version ${version}`);
       }
 
       // Log processing summary
@@ -298,23 +479,36 @@ export class ChangelogScraper {
         this.warnings.push({
           library: libraryId,
           message: "Found version sections but failed to process any versions successfully",
+          context: {
+            totalSections: versionSections.length,
+            pagePattern: pagePattern.name
+          }
         });
       } else if (processedVersions < versionSections.length) {
         this.warnings.push({
           library: libraryId,
           message: `Only processed ${processedVersions} out of ${versionSections.length} versions successfully`,
+          context: {
+            processedVersions,
+            totalSections: versionSections.length,
+            pagePattern: pagePattern.name
+          }
         });
       }
 
       log(`Completed processing ${libraryId}: ${processedVersions}/${versionSections.length} versions processed`);
 
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'Unknown error';
-      this.warnings.push({
-        library: libraryId,
-        message: `Failed to process changelog: ${message}`,
-      });
-      log(`Error processing ${libraryId}: ${message}`);
+      // Only add warning if it's not an expected missing changelog
+      if (!expectedMissingChangelogs.has(libraryId)) {
+        const message = error instanceof Error ? error.message : 'Unknown error';
+        this.warnings.push({
+          library: libraryId,
+          message: `Failed to process changelog: ${message}`,
+          context: { error }
+        });
+        log(`Error processing ${libraryId}: ${message}`);
+      }
     }
   }
 
@@ -346,6 +540,7 @@ export class ChangelogScraper {
         this.warnings.push({
           library: libraryId,
           message: `Failed to process changelog: ${message}`,
+          context: { error }
         });
       }
       this.progressBar.inc();
@@ -358,18 +553,23 @@ export class ChangelogScraper {
       console.log('\n⚠️  Warnings found during processing:');
 
       // Group warnings by library
-      const warningsByLibrary = this.warnings.reduce((acc, {library, message}) => {
+      const warningsByLibrary = this.warnings.reduce((acc, {library, message, context}) => {
         if (!acc[library]) {
           acc[library] = [];
         }
-        acc[library].push(message);
+        acc[library].push({ message, context });
         return acc;
-      }, {} as Record<string, string[]>);
+      }, {} as Record<string, Array<{ message: string; context?: any }>>);
 
-      // Print warnings grouped by library
-      Object.entries(warningsByLibrary).forEach(([library, messages]) => {
+      // Print warnings grouped by library with context
+      Object.entries(warningsByLibrary).forEach(([library, warnings]) => {
         console.log(`\n${library}:`);
-        messages.forEach(message => console.log(`  - ${message}`));
+        warnings.forEach(({message, context}) => {
+          console.log(`  - ${message}`);
+          if (context) {
+            console.log('    Context:', JSON.stringify(context, null, 2));
+          }
+        });
       });
     }
   }

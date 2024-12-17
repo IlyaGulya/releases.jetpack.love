@@ -65,3 +65,63 @@ changelogHtml: |
       </ul>
     </li>
   </ul>
+  <p>June 24, 2024</p>
+  <p>The following artifacts were released:</p>
+  <ul>
+    <li><code translate="no" dir="ltr">androidx.test.espresso:espresso-accessibility:3.6.0</code></li>
+    <li><code translate="no" dir="ltr">androidx.test.espresso:espresso-core:3.6.0</code></li>
+    <li><code translate="no" dir="ltr">androidx.test.espresso:espresso-contrib:3.6.0</code></li>
+    <li><code translate="no" dir="ltr">androidx.test.espresso:espresso-idling-resource:3.6.0</code></li>
+    <li><code translate="no" dir="ltr">androidx.test.espresso:espresso-intents:3.6.0</code></li>
+    <li><code translate="no" dir="ltr">androidx.test.espresso:espresso-remote:3.6.0</code></li>
+    <li><code translate="no" dir="ltr">androidx.test.espresso:espresso-web:3.6.0</code></li>
+    <li><code translate="no" dir="ltr">androidx.test.espresso.idling:idling-concurrent:3.6.0</code></li>
+    <li><code translate="no" dir="ltr">androidx.test.espresso.idling:idling-net:3.6.0</code></li>
+  </ul>
+  <p>Changes since last stable release 3.5.1 include:</p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>Remove unused androidx.test.annotation dependency</li>
+    <li>Fix slow inRoot operations in Robolectric</li>
+    <li>Use PlatformTestStorageRegistry.getInstance consistently instead of passing a reference around</li>
+    <li>Remove TODO from InteractionResponse public ref docs</li>
+    <li>Fix typo in AdapterDataLoaderAction error message</li>
+    <li>Replace use of guava with Java collections and inlining</li>
+    <li>Reference doc cleanup - document previously missing parameters, fix links, etc</li>
+    <li>Remove all support for Android SDKs &lt; 19. Minimum is API 19 (Android Kit Kat 4.4)</li>
+    <li>Stop posting empty tasks to background threads when running in non-remote mode</li>
+    <li>Better handle exceptions that may occur in DefaultFailureHandler's hierarchy capture and screenshot process.</li>
+    <li>Fix the description of IsPlatformPopup to match the behavior.</li>
+    <li>Fix deprecated obtainMovement impl that used the wrong coordinates.</li>
+    <li>Replace broken links to junit.org javadoc with @link.</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>Add ViewActions.captureToBitmap</li>
+    <li>Add waitForClose to DrawerActions.</li>
+    <li>Mark generated IInteractionExecutionStatus class as RestrictTo LIBRARY_GROUP</li>
+    <li>Remove ExperimentalTestApi from RuntimePermissionStubber</li>
+    <li>Adding a new IsActivatedMatcher to verify if it is activated or not.</li>
+    <li>Makes Espresso.onIdle() work on the main thread to allow for draining the main thread from the main thread.</li>
+    <li>minSdkVersion is now 19, targetSdkVersion is now 34</li>
+    <li>Add scrollTo variant that allows scrolling to 90+% displayed views</li>
+    <li>Deprecate EspressoOptional in favor of @Nullable.</li>
+    <li>Allow customizing espresso's default failure handler to disable screenshots on failures</li>
+  </ul>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Artifacts are now signed. See
+      <a href="https://developer.android.com/jetpack/getting-started#verify_dependencies">verify dependencies</a>
+      for more details.
+    </li>
+    <li>
+      Major release toolchain update:
+      <ul>
+        <li>classes are now compiled to java8 bytecode</li>
+        <li>javac compiler switched to OpenJDK 17. This should resolve IncompatibleClassChangeErrors (https://github.com/android/android-test/issues/1642)</li>
+        <li>remove internal guava usage, which resulted in a binary size reduction</li>
+        <li>release aars are no longer proguarded</li>
+      </ul>
+    </li>
+  </ul>

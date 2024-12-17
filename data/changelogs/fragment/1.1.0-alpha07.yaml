@@ -109,3 +109,107 @@ changelogHtml: |
       )
     </li>
   </ul>
+  <p>April 25, 2019</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment:1.1.0-alpha07</code>
+    ,
+    <code translate="no" dir="ltr">androidx.fragment:fragment-ktx:1.1.0-alpha07</code>
+    , and
+    <code translate="no" dir="ltr">androidx.fragment:fragment-testing:1.1.0-alpha07</code>
+    are released. The commits included in this version can be found
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ea6ef7b3e86be09ad7380887c0ddada0064cdee5..1d1a928881b4a7a75a85ab5b723cc81c829f1c83/fragment">here</a>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      You can now set a max Lifecycle state for a Fragment by calling
+      <code translate="no" dir="ltr">setMaxLifecycle()</code>
+      on a
+      <code translate="no" dir="ltr">FragmentTransaction</code>
+      . This replaces the now deprecated
+      <code translate="no" dir="ltr">setUserVisibleHint()</code>
+      .
+      <code translate="no" dir="ltr">FragmentPagerAdapter</code>
+      and
+      <code translate="no" dir="ltr">FragmentStatePagerAdapter</code>
+      have a new constructor that allows you to switch to the new behavior. (
+      <a href="https://issuetracker.google.com/issues/129780800">b/129780800</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">moveToState(STARTED)</code>
+      on
+      <code translate="no" dir="ltr">FragmentScenario</code>
+      can now only be called on API 24+ devices. (
+      <a href="https://issuetracker.google.com/issues/129880016">b/129880016</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      As a consequence of (
+      <a href="https://issuetracker.google.com/issues/129907905">b/129907905</a>
+      ), fragments on the back stack will
+      <strong>not</strong>
+      get a callback to
+      <code translate="no" dir="ltr">onCreateView()</code>
+      when the hosting activity is recreated.
+      <code translate="no" dir="ltr">onCreateView()</code>
+      will now only be called when the fragment becomes visible (i.e., the back stack is popped).
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue when using a
+      <code translate="no" dir="ltr">&lt;fragment&gt;</code>
+      tag in XML and the
+      <code translate="no" dir="ltr">contentLayoutId</code>
+      constructor of
+      <code translate="no" dir="ltr">FragmentActivity</code>
+      or
+      <code translate="no" dir="ltr">AppCompatActivity</code>
+      . (
+      <a href="https://issuetracker.google.com/issues/129907905">b/129907905</a>
+      )
+    </li>
+    <li>
+      Corrected an issue where fragments on the back stack would not be moved to at least
+      <code translate="no" dir="ltr">CREATED</code>
+      after a configuration change, causing ViewModels and child retained fragments to not be properly disposed. (
+      <a href="https://issuetracker.google.com/issues/129593351">b/129593351</a>
+      )
+    </li>
+    <li>
+      Fixed a crash in
+      <code translate="no" dir="ltr">restoreSaveState</code>
+      caused by a desync of the retained fragments after the instance state is saved. (
+      <a href="https://issuetracker.google.com/issues/130433793">b/130433793</a>
+      ) (
+      <a href="https://android-review.googlesource.com/947824">aosp/947824</a>
+      )
+    </li>
+    <li>
+      Fixed issues where an
+      <code translate="no" dir="ltr">OnBackPressedCallback</code>
+      added with a fragment lifecycle would not be called if the
+      <code translate="no" dir="ltr">FragmentManager</code>
+      had a back stack. See
+      <a href="/jetpack/androidx/releases/activity#1.0.0-alpha07">androidx.activity 1.0.0-alpha07</a>
+      for more details. (
+      <a href="https://android-review.googlesource.com/948209">aosp/948209</a>
+      )
+    </li>
+    <li>
+      Fragments no longer enforce
+      <code translate="no" dir="ltr">LAYER_TYPE_HARDWARE</code>
+      for animations. If you specifically need a hardware layer animation, please set it as part of your animation. (
+      <a href="https://issuetracker.google.com/issues/129486478">b/129486478</a>
+      )
+    </li>
+  </ul>
