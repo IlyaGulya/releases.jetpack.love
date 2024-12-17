@@ -18,8 +18,7 @@ Live version is located here: https://releases.jetpack.love
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (v22 or higher)
-- [pnpm](https://pnpm.io/) (v9 or higher)
+- [Bun](https://bun.sh/) (latest version)
 
 ### Installation
 
@@ -31,14 +30,14 @@ Live version is located here: https://releases.jetpack.love
 
 2. Install dependencies:
    ```bash
-   pnpm install
+   bun install
    ```
 
 ### Development
 
 1. Start the development server:
    ```bash
-   pnpm dev
+   bun dev
    ```
 
 2. Open [http://localhost:5173](http://localhost:5173) in your browser
@@ -47,14 +46,14 @@ Live version is located here: https://releases.jetpack.love
 
 1. Generate static data and build the application:
    ```bash
-   pnpm build
+   bun run build
    ```
 
 The built files will be in the `packages/spa/dist` directory.
 
 ## 🏗️ Project Structure
 
-This is a monorepo using pnpm workspaces with the following packages:
+This is a monorepo using Bun workspaces with the following packages:
 
 ### `/packages/common`
 
@@ -95,11 +94,11 @@ Storage for processed changelog data and URL mappings:
 
 ## 🛠️ Available Scripts
 
-- `pnpm dev` - Start development server
-- `pnpm build` - Build for production
-- `pnpm sync-groups` - Update library groupings
-- `pnpm sync-changelogs` - Update changelog data
-- `pnpm sync-all` - Update both groups and changelogs
+- `bun dev` - Start development server
+- `bun run build` - Build for production
+- `bun run sync-groups` - Update library groupings
+- `bun run sync-changelogs` - Update changelog data
+- `bun run sync-all` - Update both groups and changelogs
 
 ## 🤝 Contributing
 
@@ -125,13 +124,13 @@ We welcome contributions! Here's how you can help:
 ### Build Tools
 
 - Vite
-- pnpm workspaces
+- Bun workspaces
 - TypeScript
 - ESLint
 
 ### Scraper
 
-- Node.js
+- Bun
 - Cheerio for parsing
 
 ## 📄 License
