@@ -1,15 +1,12 @@
 {
   "name": "releases-jetpack-workspace",
   "private": true,
+  "workspaces": ["packages/*"],
   "scripts": {
-    "sync-groups": "pnpm --filter scraper sync-groups",
-    "sync-changelogs": "pnpm --filter scraper sync-changelogs",
-    "sync-all": "pnpm --filter scraper sync-all",
-    "dev": "pnpm --filter spa dev",
-    "build": "pnpm --filter spa generate-data && pnpm --filter spa build"
-  },
-  "dependencies": {
-    "@tailwindcss/typography": "^0.5.15",
-    "tailwindcss": "^3.4.16"
+    "sync-groups": "bun --cwd packages/scraper sync-groups",
+    "sync-changelogs": "bun --cwd packages/scraper sync-changelogs",
+    "sync-all": "bun --cwd packages/scraper sync-all",
+    "dev": "bun --cwd packages/spa dev",
+    "build": "bun --cwd packages/spa generate-data && bun --cwd packages/spa build"
   }
 }

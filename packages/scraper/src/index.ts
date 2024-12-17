@@ -4,9 +4,9 @@ import {FsStorage} from "./storage";
 import {fileURLToPath} from "node:url";
 import {PageCache} from "./cache";
 import {LibraryGroupParser} from "./groups";
-import {pnpmWorkspaceRootSync} from "@node-kit/pnpm-workspace-root";
+import {monorepoRootSync} from "monorepo-root";
 
-const baseDir = path.join(pnpmWorkspaceRootSync()!, 'data');
+const baseDir = path.join(monorepoRootSync()!, 'data');
 const storage = new FsStorage(baseDir);
 const pageCache = new PageCache(baseDir);
 const changelogScraper = new ChangelogScraper(storage, pageCache);

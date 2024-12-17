@@ -1,12 +1,12 @@
 import {mkdir, readdir, readFile, stat, writeFile} from 'fs/promises';
 import * as path from 'path';
-import {pnpmWorkspaceRootSync} from "@node-kit/pnpm-workspace-root";
 import {Library, LibraryChangelog} from '../src/lib/types';
 import {parse as parseYaml} from 'yaml';
 import {JSDOM} from 'jsdom';
 import {ProgressBar} from '@opentf/cli-pbar';
 import debug from 'debug';
 import {isExpectedDateFormat, isExpectedVersionFormat} from '@jetpack.love/common';
+import {monorepoRootSync} from "monorepo-root";
 
 const log = debug('jetpack:build');
 const ANDROID_DOCS_BASE = 'https://developer.android.com';
@@ -57,11 +57,11 @@ function makeUrlsAbsolute(html: string): string {
   ['href', 'src'].forEach(attr => {
     document.querySelectorAll(`[${attr}]`).forEach((element) => {
       const value = element.getAttribute(attr);
-      if (value && 
-          !value.startsWith('http') && 
-          !value.startsWith('mailto:') && 
-          !value.startsWith('#')) {  // Skip anchor links
-        const absoluteUrl = value.startsWith('/') 
+      if (value &&
+        !value.startsWith('http') &&
+        !value.startsWith('mailto:') &&
+        !value.startsWith('#')) {  // Skip anchor links
+        const absoluteUrl = value.startsWith('/')
           ? `${ANDROID_DOCS_BASE}${value}`
           : `${ANDROID_DOCS_BASE}/${value}`;
         element.setAttribute(attr, absoluteUrl);
@@ -75,7 +75,7 @@ function makeUrlsAbsolute(html: string): string {
 function extractCommitsUrl(html: string): string | undefined {
   const dom = new JSDOM(html);
   const document = dom.window.document;
-  
+
   // Look for the commits link which typically follows the pattern "Version X.X.X contains these commits"
   const commitsLink = document.querySelector('a[href*="android.googlesource.com"]');
   return commitsLink?.getAttribute('href') || undefined;
@@ -99,13 +99,13 @@ async function buildStaticData() {
   const outputDir = path.join(process.cwd(), 'public', 'data');
 
   // Always try to get the workspace root first
-  const workspaceRoot = pnpmWorkspaceRootSync(process.cwd());
-  if (!workspaceRoot) {
+  const monorepoRoot = monorepoRootSync();
+  if (!monorepoRoot) {
     throw new Error('Could not find workspace root');
   }
-  const sourceDir = path.join(workspaceRoot, 'data');
+  const sourceDir = path.join(monorepoRoot, 'data');
 
-  console.log('Workspace root:', workspaceRoot);
+  console.log('Workspace root:', monorepoRoot);
   console.log('Source directory:', sourceDir);
   console.log('Output directory:', outputDir);
 
@@ -159,10 +159,10 @@ async function buildStaticData() {
 
       // Convert relative URLs to absolute in changelog HTML
       let processedHtml = makeUrlsAbsolute(changelog.changelogHtml);
-      
+
       // Clean version and date from changelog HTML
       processedHtml = cleanChangelogHtml(processedHtml, changelog.version, library, removalStats);
-      
+
       // Extract commits URL from the changelog HTML
       const commitsUrl = extractCommitsUrl(processedHtml);
 

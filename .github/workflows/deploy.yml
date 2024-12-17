@@ -19,27 +19,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Fetch all history for data building
+          fetch-depth: 0
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - uses: oven-sh/setup-bun@v2
         with:
-          version: 9
-          run_install: false
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: 'pnpm'
+          bun-version-file: ".bun-version"
 
       - name: Install dependencies
-        run: pnpm install
+        run: bun install
 
       - name: Build data
         # language=shell
         run: |
-          pnpm build
+          bun run build
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
@@ -48,4 +40,4 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy dist --project-name=releases-jetpack-love --branch main
           workingDirectory: packages/spa
-          packageManager: pnpm
+          packageManager: bun
