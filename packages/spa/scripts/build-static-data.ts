@@ -29,6 +29,15 @@ function makeUrlsAbsolute(html: string): string {
   return document.body.innerHTML;
 }
 
+function extractCommitsUrl(html: string): string | undefined {
+  const dom = new JSDOM(html);
+  const document = dom.window.document;
+  
+  // Look for the commits link which typically follows the pattern "Version X.X.X contains these commits"
+  const commitsLink = document.querySelector('a[href*="android.googlesource.com"]');
+  return commitsLink?.getAttribute('href') || undefined;
+}
+
 async function ensureDir(dir: string) {
   await mkdir(dir, {recursive: true});
 }
@@ -89,6 +98,9 @@ async function buildStaticData() {
 
       // Convert relative URLs to absolute in changelog HTML
       const processedHtml = makeUrlsAbsolute(changelog.changelogHtml);
+      
+      // Extract commits URL from the changelog HTML
+      const commitsUrl = extractCommitsUrl(processedHtml);
 
       versionInfos.push({
         version: changelog.version,
@@ -100,8 +112,8 @@ async function buildStaticData() {
         JSON.stringify({
           version: changelog.version,
           date: changelog.releaseDate,
-          changelogHtml: processedHtml, // Use processed HTML with absolute URLs
-          commitsUrl: changelog.commitsUrl,
+          changelogHtml: processedHtml,
+          commitsUrl,
         }),
       );
     }
