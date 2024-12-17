@@ -16,6 +16,24 @@ interface RemovalStats {
   dateParagraphs: number;
 }
 
+function extractVersionFromHeader(headerText: string): string | null {
+  // Common patterns for version headers
+  const patterns = [
+    /Version (\d+\.\d+\.\d+(?:[-+][a-zA-Z0-9.-]+)?)/i,
+    /^(\d+\.\d+\.\d+(?:[-+][a-zA-Z0-9.-]+)?)/,
+    /Version\s+(\d+\.\d+\.\d+(?:[-+][a-zA-Z0-9.-]+)?)/i,
+    /.*?(\d+\.\d+\.\d+(?:[-+][a-zA-Z0-9.-]+)?)\s*$/
+  ];
+
+  for (const pattern of patterns) {
+    const match = headerText.match(pattern);
+    if (match) {
+      return match[1];
+    }
+  }
+  return null;
+}
+
 function cleanChangelogHtml(html: string, version: string, library: string, stats: RemovalStats): string {
   const dom = new JSDOM(html);
   const document = dom.window.document;
@@ -23,10 +41,13 @@ function cleanChangelogHtml(html: string, version: string, library: string, stat
   // Remove version header
   document.querySelectorAll('h2, h3').forEach((header) => {
     const headerText = header.textContent?.trim() || '';
+    const extractedVersion = extractVersionFromHeader(headerText);
+    
     // Only remove headers that contain our exact version
-    if (headerText.includes(version)) {
+    if (extractedVersion === version) {
+      // Still warn about unexpected formats even though we can handle them
       if (!isExpectedVersionFormat(headerText)) {
-        log(`[${library}@${version}] Unexpected version header format: "${headerText}"`);
+        log(`[${library}@${version}] Unexpected version header format: "${headerText}" (extracted: ${extractedVersion})`);
       }
       header.remove();
       stats.versionHeaders++;
@@ -39,6 +60,7 @@ function cleanChangelogHtml(html: string, version: string, library: string, stat
     const paragraphText = firstP.textContent?.trim() || '';
     const hasDatePattern = /(?:[A-Z][a-z]+\s+\d{1,2}(?:st|nd|rd|th)?,?\s+\d{4}|\d{4}-\d{2}-\d{2}|\d{2}\/\d{2}\/\d{4})/;
     if (hasDatePattern.test(paragraphText)) {
+      // Keep warning about unexpected date formats
       if (!isExpectedDateFormat(paragraphText)) {
         log(`[${library}@${version}] Unexpected date format: "${paragraphText}"`);
       }

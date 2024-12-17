@@ -1,53 +1,63 @@
+// Common version suffixes
+const VERSION_SUFFIX = '(?:-(?:alpha|beta|rc|dev)(?:\\d+)?)?';
+
+// Common version number pattern
+const VERSION_NUMBER = '\\d+\\.\\d+\\.\\d+' + VERSION_SUFFIX;
+
 // Date patterns used across the project
 export const DATE_PATTERNS = {
-  // January 1, 2020
-  MONTH_DAY_YEAR: /^(?:January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}, \d{4}$/,
-  // January 1st, 2020
-  MONTH_DAY_ORDINAL_YEAR: /^(?:January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}(?:st|nd|rd|th), \d{4}$/,
-  // 2020-01-01
+  // Basic date formats
+  STANDARD_DATE: /^(?:January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}(?:st|nd|rd|th)?,? \d{4}$/,
+  SHORT_DATE: /^(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec) \d{1,2}(?:,| )? \d{4}$/,
   ISO_DATE: /^\d{4}-\d{2}-\d{2}$/,
-  // 01/01/2020
   SLASH_DATE: /^\d{2}\/\d{2}\/\d{4}$/,
-  // Oct 4, 2021
-  SHORT_MONTH_DAY_YEAR: /^(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec) \d{1,2},? \d{4}$/,
-  // Apr 1, 2020 androidx.camera:camera-view:1.0.0-alpha09 is released.
-  RELEASE_DATE: /^(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec|January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2},? \d{4}(?:\s+androidx\..+?\s+is released\.)$/,
-  // April 19, 2018 Paging Release Candidate
-  RELEASE_CANDIDATE_DATE: /^(?:January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2},? \d{4}(?:\s+[A-Za-z\s]+)$/,
-  // May 16, 2018 We highly recommend using Room...
-  RECOMMENDATION_DATE: /^(?:January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2},? \d{4}(?:\s+We highly recommend.+)$/,
-  // Feb 11 2022 (no comma)
-  SHORT_DATE_NO_COMMA: /^(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec) \d{1,2} \d{4}$/,
-  // February 7, 2024 androidx.compose.ui:ui-*:1.6.1 is released. Version 1.6.1 contains these commits.
-  RELEASE_WITH_COMMITS: /^(?:January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2},? \d{4}(?:\s+androidx\..+?\s+is released\.\s+Version \d+\.\d+\.\d+(?:-(?:alpha|beta|rc|dev)\d+)? contains these commits\.)$/
+  // Date with additional content
+  DATE_WITH_CONTENT: /^(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec) \d{1,2}(?:st|nd|rd|th)?,? \d{4}(?:[\s\S]+)?$/,
 };
 
-export function isExpectedDateFormat(text: string): boolean {
-  return Object.values(DATE_PATTERNS).some(pattern => pattern.test(text.trim()));
-}
+// Known date format exclusions - these are valid dates that don't match our patterns
+export const DATE_EXCLUSIONS = new Set<string>([
+  // Add specific date strings that should be considered valid but don't match patterns
+]);
 
 // Version patterns used across the project
 export const VERSION_PATTERNS = {
-  // Version X.X.X
-  STANDARD: /^Version \d+\.\d+\.\d+(?:-(?:alpha|beta|rc|dev)\d+)?$/,
-  // Annotation-Experimental Version X.X.X
-  PREFIXED: /^[A-Za-z][A-Za-z0-9-]+ Version \d+\.\d+\.\d+(?:-(?:alpha|beta|rc|dev)\d+)?$/,
-  // X.X.X
-  PLAIN: /^\d+\.\d+\.\d+(?:-(?:alpha|beta|rc|dev)\d+)?$/,
-  // androidx.recyclerview 1.1.0-alpha01
-  ANDROIDX: /^androidx\.[a-z][a-z0-9-]+ \d+\.\d+\.\d+(?:-(?:alpha|beta|rc|dev)\d+)?$/,
-  // Multiple components in one version
-  MULTI_COMPONENT: /^(?:[A-Za-z][A-Za-z0-9-]+(?:(?:,| &| and | & ) [A-Za-z][A-Za-z0-9-]+)*) Version \d+\.\d+\.\d+(?:-(?:alpha|beta|rc|dev)\d+)?$/,
-  // Component name with version
-  COMPONENT: /^[A-Za-z][A-Za-z0-9-]+ \d+\.\d+\.\d+(?:-(?:alpha|beta|rc|dev)\d+)?$/,
-  // ext.junit 1.1.4-alpha01
-  EXT_COMPONENT: /^ext\.[a-z]+ \d+\.\d+\.\d+(?:-(?:alpha|beta|rc|dev)\d+)?$/,
-  // androidx.recyclerview-selection 1.1.0-alpha01
-  ANDROIDX_SELECTION: /^androidx\.[a-z][a-z0-9-]+-[a-z]+ \d+\.\d+\.\d+(?:-(?:alpha|beta|rc|dev)\d+)?$/,
-  // Camera Camera2, Core, & Lifecycle Version 1.0.0-beta12
-  MULTI_COMPONENT_WITH_COMMA: /^(?:[A-Za-z][A-Za-z0-9-]+(?:(?:,| &| and | & |, ) [A-Za-z][A-Za-z0-9-]+(?:\d+)?)*) Version \d+\.\d+\.\d+(?:-(?:alpha|beta|rc|dev)\d+)?$/
+  // Basic version formats
+  STANDARD: new RegExp('^Version ' + VERSION_NUMBER + '$', 'i'),
+  PLAIN: new RegExp('^' + VERSION_NUMBER + '$'),
+
+  // Component-based formats with any text before "Version"
+  WITH_VERSION: new RegExp('^[\\w\\s,&-]+ Version ' + VERSION_NUMBER + '$', 'i'),
+
+  // Framework-specific formats
+  ANDROIDX: new RegExp('^androidx\\.[a-z][a-z0-9-]+(?:-[a-z]+)? ' + VERSION_NUMBER + '$'),
+  EXT: new RegExp('^ext\\.[a-z]+ ' + VERSION_NUMBER + '$'),
+
+  // Simple component format (for components without "Version" keyword)
+  SIMPLE: new RegExp('^[\\w\\s-]+ ' + VERSION_NUMBER + '$', 'i'),
 };
 
+// Known version format exclusions - these are valid version headers that don't match our patterns
+export const VERSION_EXCLUSIONS = new Set<string>([
+  // Keep only truly exceptional cases that don't match our patterns
+]);
+
+export function isExpectedDateFormat(text: string): boolean {
+  const trimmedText = text.trim();
+  // First check exclusions
+  if (DATE_EXCLUSIONS.has(trimmedText)) {
+    return true;
+  }
+  // Then check patterns
+  return Object.values(DATE_PATTERNS).some(pattern => pattern.test(trimmedText));
+}
+
 export function isExpectedVersionFormat(text: string): boolean {
-  return Object.values(VERSION_PATTERNS).some(pattern => pattern.test(text.trim()));
+  const trimmedText = text.trim();
+  // First check exclusions
+  if (VERSION_EXCLUSIONS.has(trimmedText)) {
+    return true;
+  }
+  // Then check patterns
+  return Object.values(VERSION_PATTERNS).some(pattern => pattern.test(trimmedText));
 }
