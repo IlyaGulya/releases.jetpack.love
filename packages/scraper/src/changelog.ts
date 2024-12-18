@@ -4,11 +4,12 @@ import {Element} from "domhandler";
 import {ProgressBar} from '@opentf/cli-pbar';
 import debug from "debug";
 import {format} from 'date-fns';
+import {parse} from 'date-fns';
 import {FsStorage} from "./storage";
 import type {PageCache} from "./cache";
 import {cleanVersionString} from "./utils";
 import {LibraryChangelog} from "@jetpack.love/common";
-import {DATE_PATTERNS} from "@jetpack.love/common";
+import {DATE_PATTERNS, DATE_EXCLUSIONS} from "@jetpack.love/common";
 
 const log = debug('jetpack:changelog');
 
@@ -291,16 +292,77 @@ const CHANGELOG_PATTERNS: ChangelogPattern[] = [
 ];
 
 function normalizeDate(text: string): string | null {
-  // Try each date pattern
-  for (const pattern of Object.values(DATE_PATTERNS)) {
-    const match = text.match(pattern);
-    if (match) {
-      const date = new Date(match[0]);
-      if (!isNaN(date.getTime())) {
-        return format(date, 'yyyy-MM-dd');
+  // First check if text is in DATE_EXCLUSIONS
+  if (DATE_EXCLUSIONS.has(text.trim())) {
+    // Parse the excluded date format
+    const [month, day, year] = text.match(/(\w+)\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(\d{4})/)?.slice(1) || [];
+    if (month && day && year) {
+      const monthMap: Record<string, number> = {
+        'January': 0, 'February': 1, 'March': 2, 'April': 3,
+        'May': 4, 'June': 5, 'July': 6, 'August': 7,
+        'September': 8, 'October': 9, 'November': 10, 'December': 11,
+        'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3,
+        'Jun': 5, 'Jul': 6, 'Aug': 7, 'Sep': 8, 'Sept': 8,
+        'Oct': 9, 'Nov': 10, 'Dec': 11
+      };
+      const monthNum = monthMap[month];
+      if (monthNum !== undefined) {
+        const date = new Date(parseInt(year), monthNum, parseInt(day));
+        if (!isNaN(date.getTime())) {
+          return format(date, 'yyyy-MM-dd');
+        }
       }
     }
   }
+
+  // Try each date pattern
+  for (const [patternName, pattern] of Object.entries(DATE_PATTERNS)) {
+    const match = text.match(pattern);
+    if (match) {
+      let dateStr = match[0].trim();
+      
+      // Handle reverse date format (day month year)
+      if (patternName === 'REVERSE_DATE') {
+        const [_, day, month, year] = dateStr.match(/(\d{1,2})(?:st|nd|rd|th)?\s+(\w+),?\s+(\d{4})/) || [];
+        if (day && month && year) {
+          dateStr = `${month} ${day}, ${year}`;
+        }
+      }
+
+      // Remove ordinal indicators and normalize spaces
+      dateStr = dateStr
+        .replace(/(\d+)(?:st|nd|rd|th)/, '$1')
+        .replace(/\s+/g, ' ')
+        .replace(/,\s*/, ' ');
+
+      // Try parsing with different formats
+      const formats = [
+        // Full month name
+        'MMMM d yyyy',
+        'MMMM dd yyyy',
+        // Short month name
+        'MMM d yyyy',
+        'MMM dd yyyy',
+        // ISO format
+        'yyyy-MM-dd',
+        // Slash format
+        'MM/dd/yyyy'
+      ];
+
+      for (const fmt of formats) {
+        try {
+          const date = parse(dateStr, fmt, new Date());
+          if (!isNaN(date.getTime())) {
+            return format(date, 'yyyy-MM-dd');
+          }
+        } catch {
+          // Continue to next format if parsing fails
+          continue;
+        }
+      }
+    }
+  }
+
   return null;
 }
 

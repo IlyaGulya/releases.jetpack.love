@@ -28,6 +28,7 @@ export interface Library {
 
 export {
   DATE_PATTERNS,
+  DATE_EXCLUSIONS,
   VERSION_PATTERNS,
   isExpectedDateFormat,
   isExpectedVersionFormat

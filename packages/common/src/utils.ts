@@ -13,11 +13,19 @@ export const DATE_PATTERNS = {
   SLASH_DATE: /^\d{2}\/\d{2}\/\d{4}$/,
   // Date with additional content
   DATE_WITH_CONTENT: /^(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec) \d{1,2}(?:st|nd|rd|th)?,? \d{4}(?:[\s\S]+)?$/,
+  // Standalone date in paragraph
+  PARAGRAPH_DATE: /(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec) \d{1,2}(?:st|nd|rd|th)?,? \d{4}/,
+  // Reverse date format (day month year)
+  REVERSE_DATE: /^\d{1,2}(?:st|nd|rd|th)? (?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec),? \d{4}$/,
 };
 
 // Known date format exclusions - these are valid dates that don't match our patterns
 export const DATE_EXCLUSIONS = new Set<string>([
   // Add specific date strings that should be considered valid but don't match patterns
+  "February 22nd 2023",
+  "February 22nd, 2023",
+  "22nd February 2023",
+  "22nd February, 2023",
 ]);
 
 // Version patterns used across the project
