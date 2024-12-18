@@ -10,6 +10,7 @@ import type {PageCache} from "./cache";
 import {cleanVersionString} from "./utils";
 import {LibraryChangelog} from "@jetpack.love/common";
 import {DATE_PATTERNS, DATE_EXCLUSIONS} from "@jetpack.love/common";
+import {NoopProgressBar} from "@jetpack.love/common";
 
 const log = debug('jetpack:changelog');
 
@@ -367,18 +368,20 @@ function normalizeDate(text: string): string | null {
 }
 
 export class ChangelogScraper {
-  private progressBar: ProgressBar;
+  private progressBar: ProgressBar | NoopProgressBar;
   private warnings: Array<{ library: string; message: string; context?: any }> = [];
 
   constructor(
     private storage: FsStorage,
     private pageCache: PageCache,
   ) {
-    this.progressBar = new ProgressBar({
-      size: 'DEFAULT',
-      color: 'cyan',
-      prefix: '📚 Processing',
-    });
+    this.progressBar = process.stdout.isTTY
+      ? new ProgressBar({
+          size: 'DEFAULT',
+          color: 'cyan',
+          prefix: '📚 Processing',
+        })
+      : new NoopProgressBar();
   }
 
   private async fetchPage(url: string): Promise<CheerioAPI> {

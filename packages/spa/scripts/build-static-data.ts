@@ -7,6 +7,7 @@ import {ProgressBar} from '@opentf/cli-pbar';
 import debug from 'debug';
 import {isExpectedDateFormat, isExpectedVersionFormat} from '@jetpack.love/common';
 import {monorepoRootSync} from "monorepo-root";
+import {NoopProgressBar} from '@jetpack.love/common';
 
 const log = debug('jetpack:build');
 const ANDROID_DOCS_BASE = 'https://developer.android.com';
@@ -148,11 +149,13 @@ async function buildStaticData() {
   const libraryIndex: Record<string, Library> = {};
 
   // Initialize progress bar
-  const progressBar = new ProgressBar({
-    size: 'DEFAULT',
-    color: 'cyan',
-    prefix: ' Building static data',
-  });
+  const progressBar = process.stdout.isTTY
+    ? new ProgressBar({
+        size: 'DEFAULT',
+        color: 'cyan',
+        prefix: ' Building static data',
+      })
+    : new NoopProgressBar();
 
   progressBar.start({
     total: changelogs.length,
