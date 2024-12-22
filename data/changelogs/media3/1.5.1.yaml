@@ -1,0 +1,78 @@
+libraryId: media3
+groupId: androidx.media3
+version: 1.5.1
+releaseDate: 2024-12-19
+#language=html
+changelogHtml: |
+  <h3 id="1.5.1" data-text="Version 1.5.1" tabindex="-1">Version 1.5.1</h3>
+  <p>December 19, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.media3:media3-*:1.5.1</code>
+    is released. Version 1.5.1 contains
+    <a href="https://github.com/androidx/media/commits/1.5.1">these commits</a>
+    .
+  </p>
+  <ul>
+    <li>
+      ExoPlayer:
+      <ul>
+        <li>
+          Disable use of asynchronous decryption in MediaCodec to avoid reported codec timeout issues with this platform API (
+          <a href="https://github.com/androidx/media/issues/1641">#1641</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Extractors:
+      <ul>
+        <li>
+          MP3: Don't stop playback early when a
+          <code translate="no" dir="ltr">VBRI</code>
+          frame's table of contents doesn't cover all the MP3 data in a file (
+          <a href="https://github.com/androidx/media/issues/1904">#1904</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Video:
+      <ul>
+        <li>
+          Rollback of using
+          <code translate="no" dir="ltr">MediaCodecAdapter</code>
+          supplied pixel aspect ratio values when provided while processing
+          <code translate="no" dir="ltr">onOutputFormatChanged</code>
+          (
+          <a href="https://github.com/androidx/media/pull/1371">#1371</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Text:
+      <ul>
+        <li>
+          Fix bug in
+          <code translate="no" dir="ltr">ReplacingCuesResolver.discardCuesBeforeTimeUs</code>
+          where the cue active at
+          <code translate="no" dir="ltr">timeUs</code>
+          (started before but not yet ended) was incorrectly discarded (
+          <a href="https://github.com/androidx/media/issues/1939">#1939</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Metadata:
+      <ul>
+        <li>
+          Extract disc/track numbering and genre from Vorbis comments into
+          <code translate="no" dir="ltr">MediaMetadata</code>
+          (
+          <a href="https://github.com/androidx/media/issues/1958">#1958</a>
+          ).
+        </li>
+      </ul>
+    </li>
+  </ul>
