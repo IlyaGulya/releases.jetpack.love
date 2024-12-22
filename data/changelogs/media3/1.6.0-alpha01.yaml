@@ -1,0 +1,516 @@
+libraryId: media3
+groupId: androidx.media3
+version: 1.6.0-alpha01
+releaseDate: 2024-12-20
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-alpha01" data-text="Version 1.6.0-alpha01" tabindex="-1">Version 1.6.0-alpha01</h3>
+  <p>December 20, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.media3:media3-*:1.6.0-alpha01</code>
+    is released. Version 1.6.0-alpha01 contains
+    <a href="https://github.com/androidx/media/commits/1.6.0-alpha01">these commits</a>
+    .
+  </p>
+  <ul>
+    <li>
+      Common Library:
+      <ul>
+        <li>
+          Remove
+          <code translate="no" dir="ltr">Format.toBundle(boolean excludeMetadata)</code>
+          method, use
+          <code translate="no" dir="ltr">Format.toBundle()</code>
+          instead.
+        </li>
+        <li>
+          Add
+          <code translate="no" dir="ltr">AudioManagerCompat</code>
+          and
+          <code translate="no" dir="ltr">AudioFocusRequestCompat</code>
+          to replace the equivalent classes in
+          <code translate="no" dir="ltr">androidx.media</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      ExoPlayer:
+      <ul>
+        <li>
+          Consider language when selecting a video track. By default, select a 'main' video track that matches the language of the selected audio track, if available. Explicit video language preferences can be expressed with
+          <code translate="no" dir="ltr">TrackSelectionParameters.Builder.setPreferredVideoLanguage(s)</code>
+          .
+        </li>
+        <li>
+          Add
+          <code translate="no" dir="ltr">selectedAudioLanguage</code>
+          parameter to
+          <code translate="no" dir="ltr">DefaultTrackSelector.selectVideoTrack()</code>
+          method.
+        </li>
+        <li>
+          Add
+          <code translate="no" dir="ltr">retryCount</code>
+          parameter to
+          <code translate="no" dir="ltr">MediaSourceEventListener.onLoadStarted</code>
+          and corresponding
+          <code translate="no" dir="ltr">MediaSourceEventListener.EventDispatcher</code>
+          methods.
+        </li>
+        <li>
+          Fix bug where playlist items or periods in multi-period DASH streams with durations that don't match the actual content could cause frame freezes at the end of the item (
+          <a href="https://github.com/androidx/media/issues/1698">#1698</a>
+          ).
+        </li>
+        <li>
+          Reduce default values for
+          <code translate="no" dir="ltr">bufferForPlaybackMs</code>
+          and
+          <code translate="no" dir="ltr">bufferForPlaybackAfterRebufferMs</code>
+          in
+          <code translate="no" dir="ltr">DefaultLoadControl</code>
+          to 1000 and 2000 ms respectively.
+        </li>
+        <li>
+          Add
+          <code translate="no" dir="ltr">MediaExtractorCompat</code>
+          , a new class that provides equivalent features to platform
+          <code translate="no" dir="ltr">MediaExtractor</code>
+          .
+        </li>
+        <li>
+          Move
+          <code translate="no" dir="ltr">BasePreloadManager.Listener</code>
+          to a top-level
+          <code translate="no" dir="ltr">PreloadManagerListener</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">RenderersFactory.createSecondaryRenderer</code>
+          can be implemented to provide secondary renderers for pre-warming. Pre-warming enables quicker media item transitions during playback.
+        </li>
+        <li>
+          Enable sending
+          <code translate="no" dir="ltr">CmcdData</code>
+          for manifest requests in adaptive streaming formats DASH, HLS, and SmoothStreaming (
+          <a href="https://github.com/androidx/media/issues/1951">#1951</a>
+          ).
+        </li>
+        <li>
+          Provide
+          <code translate="no" dir="ltr">MediaCodecInfo</code>
+          of the codec that will be initialized in
+          <code translate="no" dir="ltr">MediaCodecRenderer.onReadyToInitializeCodec</code>
+          (
+          <a href="https://github.com/androidx/media/pull/1963">#1963</a>
+          ).
+        </li>
+        <li>
+          Change
+          <code translate="no" dir="ltr">AdsMediaSource</code>
+          to allow the
+          <code translate="no" dir="ltr">AdPlaybackStates</code>
+          to grow by appending ad groups. Invalid modifications are detected and throw an exception.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Transformer:
+      <ul>
+        <li>
+          Update parameters of
+          <code translate="no" dir="ltr">VideoFrameProcessor.registerInputStream</code>
+          and
+          <code translate="no" dir="ltr">VideoFrameProcessor.Listener.onInputStreamRegistered</code>
+          to use
+          <code translate="no" dir="ltr">Format</code>
+          .
+        </li>
+        <li>Add support for transmuxing into alternative backward compatible formats.</li>
+        <li>
+          Generate HDR static metadata when using
+          <code translate="no" dir="ltr">DefaultEncoderFactory</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      Extractors:
+      <ul>
+        <li>AVI: Fix handling of files with constant bitrate compressed audio where the stream header stores the number of bytes instead of the number of chunks.</li>
+      </ul>
+    </li>
+    <li>
+      Audio:
+      <ul>
+        <li>
+          Fix
+          <code translate="no" dir="ltr">onAudioPositionAdvancing</code>
+          to be called when playback resumes (previously it was called when playback was paused).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Video:
+      <ul>
+        <li>
+          Fix
+          <code translate="no" dir="ltr">MediaCodecVideoRenderer</code>
+          such that when without a
+          <code translate="no" dir="ltr">Surface</code>
+          , the renderer skips just-early frames only if the
+          <code translate="no" dir="ltr">VideoFrameReleaseControl.getFrameReleaseAction</code>
+          is not
+          <code translate="no" dir="ltr">FRAME_RELEASE_TRY_AGAIN_LATER</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      Text:
+      <ul>
+        <li>
+          Stop eagerly loading all subtitle files configured with
+          <code translate="no" dir="ltr">MediaItem.Builder.setSubtitleConfigurations</code>
+          , and instead only load one if it is selected by track selection (
+          <a href="https://github.com/androidx/media/issues/1721">#1721</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Effect:
+      <ul>
+        <li>
+          Moved the functionality of
+          <code translate="no" dir="ltr">OverlaySettings</code>
+          into
+          <code translate="no" dir="ltr">StaticOverlaySettings</code>
+          .
+          <code translate="no" dir="ltr">OverlaySettings</code>
+          can be subclassed to allow dynamic overlay settings.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Muxers:
+      <ul>
+        <li>
+          Moved
+          <code translate="no" dir="ltr">MuxerException</code>
+          out of
+          <code translate="no" dir="ltr">Muxer</code>
+          interface to avoid a very long fully qualified name.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Session:
+      <ul>
+        <li>
+          Add 'Context' as a parameter to 'MediaButtonReceiver.shouldStartForegroundService` (
+          <a href="https://github.com/androidx/media/issues/1887">#1887</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      UI:
+      <ul>
+        <li>
+          Add
+          <code translate="no" dir="ltr">PlayerSurface</code>
+          Composable to
+          <code translate="no" dir="ltr">media3-ui-compose</code>
+          module.
+        </li>
+        <li>
+          Add
+          <code translate="no" dir="ltr">PlayPauseButtonState</code>
+          ,
+          <code translate="no" dir="ltr">NextButtonState</code>
+          ,
+          <code translate="no" dir="ltr">PreviousButtonState</code>
+          ,
+          <code translate="no" dir="ltr">RepeatButtonState</code>
+          ,
+          <code translate="no" dir="ltr">ShuffleButtonState</code>
+          classes and the corresponding
+          <code translate="no" dir="ltr">rememberPlayPauseButtonState</code>
+          ,
+          <code translate="no" dir="ltr">rememberNextButtonState</code>
+          ,
+          <code translate="no" dir="ltr">rememberPreviousButtonState</code>
+          ,
+          <code translate="no" dir="ltr">rememberRepeatButtonState</code>
+          ,
+          <code translate="no" dir="ltr">rememberShuffleButtonState</code>
+          composables to
+          <code translate="no" dir="ltr">media3-ui-compose</code>
+          module.
+        </li>
+      </ul>
+    </li>
+    <li>
+      HLS Extension:
+      <ul>
+        <li>
+          Add a first version of
+          <code translate="no" dir="ltr">HlsInterstitialsAdsLoader</code>
+          . The ads loader reads the HLS interstitials of an HLS media playlist and maps them to the
+          <code translate="no" dir="ltr">AdPlaybackState</code>
+          that is passed to the
+          <code translate="no" dir="ltr">AdsMediaSource</code>
+          . This initial version only supports HLS VOD streams with
+          <code translate="no" dir="ltr">X-ASSET-URI</code>
+          attributes.
+        </li>
+        <li>
+          Add
+          <code translate="no" dir="ltr">HlsInterstitialsAdsLoader.AdsMediaSourceFactory</code>
+          . Apps can use it to create
+          <code translate="no" dir="ltr">AdsMediaSource</code>
+          instances that use an
+          <code translate="no" dir="ltr">HlsInterstitialsAdsLoader</code>
+          in a convenient and safe way.
+        </li>
+      </ul>
+    </li>
+    <li>
+      DASH Extension:
+      <ul>
+        <li>
+          Add AC-4 Level-4 format support for DASH (
+          <a href="https://github.com/androidx/media/pull/1898">#1898</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Decoder Extensions (FFmpeg, VP9, AV1, etc.):
+      <ul>
+        <li>
+          Add the MPEG-H decoder module which uses the native MPEG-H decoder module to decode MPEG-H audio (
+          <a href="https://github.com/androidx/media/pull/1826">#1826</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Demo app:
+      <ul>
+        <li>
+          Add
+          <code translate="no" dir="ltr">MinimalControls</code>
+          (
+          <code translate="no" dir="ltr">PlayPauseButton</code>
+          ,
+          <code translate="no" dir="ltr">NextButton</code>
+          ,
+          <code translate="no" dir="ltr">PreviousButton</code>
+          ) and
+          <code translate="no" dir="ltr">ExtraControls</code>
+          (
+          <code translate="no" dir="ltr">RepeatButton</code>
+          ,
+          <code translate="no" dir="ltr">ShuffleButton</code>
+          ) Composable UI elements to
+          <code translate="no" dir="ltr">demo-compose</code>
+          utilizing
+          <code translate="no" dir="ltr">PlayPauseButtonState</code>
+          ,
+          <code translate="no" dir="ltr">NextButtonState</code>
+          ,
+          <code translate="no" dir="ltr">PreviousButtonState</code>
+          ,
+          <code translate="no" dir="ltr">RepeatButtonState</code>
+          ,
+          <code translate="no" dir="ltr">ShuffleButtonState</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      Remove deprecated symbols:
+      <ul>
+        <li>
+          Remove deprecated
+          <code translate="no" dir="ltr">AudioMixer.create()</code>
+          method. Use
+          <code translate="no" dir="ltr">DefaultAudioMixer.Factory().create()</code>
+          instead.
+        </li>
+        <li>
+          Remove the following deprecated
+          <code translate="no" dir="ltr">Transformer.Builder</code>
+          methods:
+          <ul>
+            <li>
+              <code translate="no" dir="ltr">setTransformationRequest()</code>
+              , use
+              <code translate="no" dir="ltr">setAudioMimeType()</code>
+              ,
+              <code translate="no" dir="ltr">setVideoMimeType()</code>
+              , and
+              <code translate="no" dir="ltr">setHdrMode()</code>
+              instead.
+            </li>
+            <li>
+              <code translate="no" dir="ltr">setAudioProcessors()</code>
+              , set the audio processor in an
+              <code translate="no" dir="ltr">EditedMediaItem.Builder.setEffects()</code>
+              , and pass it to
+              <code translate="no" dir="ltr">Transformer.start()</code>
+              instead.
+            </li>
+            <li>
+              <code translate="no" dir="ltr">setVideoEffects()</code>
+              , set video effect in an
+              <code translate="no" dir="ltr">EditedMediaItem.Builder.setEffects()</code>
+              , and pass it to
+              <code translate="no" dir="ltr">Transformer.start()</code>
+              instead.
+            </li>
+            <li>
+              <code translate="no" dir="ltr">setRemoveAudio()</code>
+              , use
+              <code translate="no" dir="ltr">EditedMediaItem.Builder.setRemoveAudio()</code>
+              to remove the audio from the
+              <code translate="no" dir="ltr">EditedMediaItem</code>
+              passed to
+              <code translate="no" dir="ltr">Transformer.start()</code>
+              instead.
+            </li>
+            <li>
+              <code translate="no" dir="ltr">setRemoveVideo()</code>
+              , use
+              <code translate="no" dir="ltr">EditedMediaItem.Builder.setRemoveVideo()</code>
+              to remove the video from the
+              <code translate="no" dir="ltr">EditedMediaItem</code>
+              passed to
+              <code translate="no" dir="ltr">Transformer.start()</code>
+              instead.
+            </li>
+            <li>
+              <code translate="no" dir="ltr">setFlattenForSlowMotion()</code>
+              , use
+              <code translate="no" dir="ltr">EditedMediaItem.Builder.setFlattenForSlowMotion()</code>
+              to flatten the
+              <code translate="no" dir="ltr">EditedMediaItem</code>
+              passed to
+              <code translate="no" dir="ltr">Transformer.start()</code>
+              instead.
+            </li>
+            <li>
+              <code translate="no" dir="ltr">setListener()</code>
+              , use
+              <code translate="no" dir="ltr">addListener()</code>
+              ,
+              <code translate="no" dir="ltr">removeListener()</code>
+              or
+              <code translate="no" dir="ltr">removeAllListeners()</code>
+              instead.
+            </li>
+          </ul>
+        </li>
+        <li>
+          Remove the following deprecated
+          <code translate="no" dir="ltr">Transformer.Listener</code>
+          methods:
+          <ul>
+            <li>
+              <code translate="no" dir="ltr">onTransformationCompleted(MediaItem)</code>
+              , use
+              <code translate="no" dir="ltr">onCompleted(Composition, ExportResult)</code>
+              instead.
+            </li>
+            <li>
+              <code translate="no" dir="ltr">onTransformationCompleted(MediaItem, TransformationResult)</code>
+              , use
+              <code translate="no" dir="ltr">onCompleted(Composition, ExportResult)</code>
+              instead.
+            </li>
+            <li>
+              <code translate="no" dir="ltr">onTransformationError(MediaItem, Exception)</code>
+              , use
+              <code translate="no" dir="ltr">onError(Composition, ExportResult, ExportException)</code>
+              instead.
+            </li>
+            <li>
+              <code translate="no" dir="ltr">onTransformationError(MediaItem, TransformationException)</code>
+              , use
+              <code translate="no" dir="ltr">onError(Composition, ExportResult, ExportException)</code>
+              instead.
+            </li>
+            <li>
+              <code translate="no" dir="ltr">onTransformationError(MediaItem, TransformationResult, TransformationException)</code>
+              , use
+              <code translate="no" dir="ltr">onError(Composition, ExportResult, ExportException)</code>
+              instead.
+            </li>
+            <li>
+              <code translate="no" dir="ltr">onFallbackApplied(MediaItem, TransformationRequest, TransformationRequest)</code>
+              , use
+              <code translate="no" dir="ltr">onFallbackApplied(Composition, TransformationRequest, TransformationRequest)</code>
+              instead.
+            </li>
+          </ul>
+        </li>
+        <li>
+          Remove deprecated
+          <code translate="no" dir="ltr">TransformationResult</code>
+          class. Use
+          <code translate="no" dir="ltr">ExportResult</code>
+          instead.
+        </li>
+        <li>
+          Remove deprecated
+          <code translate="no" dir="ltr">TransformationException</code>
+          class. Use
+          <code translate="no" dir="ltr">ExportException</code>
+          instead.
+        </li>
+        <li>
+          Remove deprecated
+          <code translate="no" dir="ltr">Transformer.PROGRESS_STATE_NO_TRANSFORMATION</code>
+          . Use
+          <code translate="no" dir="ltr">Transformer.PROGRESS_STATE_NOT_STARTED</code>
+          instead.
+        </li>
+        <li>
+          Remove deprecated
+          <code translate="no" dir="ltr">Transformer.setListener()</code>
+          . Use
+          <code translate="no" dir="ltr">Transformer.addListener()</code>
+          ,
+          <code translate="no" dir="ltr">Transformer.removeListener()</code>
+          or
+          <code translate="no" dir="ltr">Transformer.removeAllListeners()</code>
+          instead.
+        </li>
+        <li>
+          Remove deprecated
+          <code translate="no" dir="ltr">Transformer.startTransformation()</code>
+          . Use
+          <code translate="no" dir="ltr">Transformer.start(MediaItem, String)</code>
+          instead.
+        </li>
+        <li>
+          Remove deprecated
+          <code translate="no" dir="ltr">SingleFrameGlShaderProgram</code>
+          . Use
+          <code translate="no" dir="ltr">BaseGlShaderProgram</code>
+          instead.
+        </li>
+        <li>
+          Remove
+          <code translate="no" dir="ltr">Transformer.flattenForSlowMotion</code>
+          . Use
+          <code translate="no" dir="ltr">EditedMediaItem.flattenForSlowMotion</code>
+          instead.
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <h2 id="version_15_2" data-text="Version 1.5" tabindex="-1">Version 1.5</h2>
