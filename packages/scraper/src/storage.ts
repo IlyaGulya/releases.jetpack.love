@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import {LibraryChangelog} from "@jetpack.love/common";
-import {Document, parse, stringify} from 'yaml';
+import {Document, parse, stringify, Pair, YAMLMap, Scalar} from 'yaml';
 import * as prettier from "prettier";
 
 interface UnprocessedNodesData {
@@ -11,23 +11,11 @@ interface UnprocessedNodesData {
   timestamp: string;
   nodeGroups: Array<{
     type: string;
-    text: string;
     html: string;
     location: {
       startIndex: number;
       endIndex: number;
-      parentSelector: string;
     };
-    siblingCount: number;
-    siblings: Array<{
-      type: string;
-      text: string;
-      html: string;
-      location: {
-        startIndex: number;
-        endIndex: number;
-      };
-    }>;
   }>;
 }
 
@@ -53,9 +41,36 @@ export class FsStorage {
 
     // Create a filename with timestamp
     const timestamp = data.timestamp.replace(/[:.]/g, '-');
-    const filePath = path.join(dir, `unprocessed-${timestamp}.json`);
+    const filePath = path.join(dir, `unprocessed-${timestamp}.yaml`);
 
-    await fs.writeFile(filePath, JSON.stringify(data, null, 2));
+    // Format HTML in each node group
+    const formattedData = {
+      libraryId: data.libraryId,
+      groupId: data.groupId,
+      url: data.url,
+      timestamp: data.timestamp,
+    };
+
+    const doc = new Document(formattedData);
+
+    const nodeGroups = await Promise.all(data.nodeGroups.map(async group => {
+      const groupDoc = new Document({
+        type: group.type,
+        location: group.location,
+      });
+      const node = groupDoc.createPair("html", await this.formatHtml(group.html));
+      node.key.commentBefore = "language=html";
+      if (node.value instanceof Scalar) {
+        node.value.type = 'BLOCK_LITERAL';
+      }
+      groupDoc.add(node);
+      return groupDoc;
+    }));
+
+    const nodeGroupsPair = doc.createPair("nodeGroups", nodeGroups);
+    doc.add(nodeGroupsPair);
+
+    await fs.writeFile(filePath, doc.toString());
   }
 
   async saveChangelog(changelog: LibraryChangelog) {
@@ -69,15 +84,15 @@ export class FsStorage {
       releaseDate: changelog.releaseDate,
     });
 
-    const node = doc.createPair("changelogHtml", await this.formatHtml(changelog.changelogHtml))
-    node.key.commentBefore = "language=html"
-    doc.add(node)
+    const node = doc.createPair("changelogHtml", await this.formatHtml(changelog.changelogHtml));
+    node.key.commentBefore = "language=html";
+    if (node.value instanceof Scalar) {
+      node.value.type = 'BLOCK_LITERAL';
+    }
+    doc.add(node);
 
     const filePath = path.join(dir, `${changelog.version}.yaml`);
-    const yamlContent = doc.toString({
-      blockQuote: 'literal',
-    });
-    await fs.writeFile(filePath, yamlContent);
+    await fs.writeFile(filePath, doc.toString());
   }
 
   private async formatHtml(html: string): Promise<string> {
