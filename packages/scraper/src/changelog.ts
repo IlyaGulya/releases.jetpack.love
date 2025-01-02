@@ -307,6 +307,12 @@ const CHANGELOG_PATTERNS: ChangelogPattern[] = [
           break;
         }
 
+        // Skip non-changelog content
+        if (isNonChangelogContent($, $current)) {
+          $current = $current.next();
+          continue;
+        }
+
         const html = $current.toString();
         if (html.trim()) {
           content.push(html);
@@ -424,9 +430,201 @@ function normalizeDate(text: string): string | null {
   return null;
 }
 
+function isNonChangelogContent($: CheerioAPI, $node: cheerio.Cheerio<Element>): boolean {
+  const text = $node.text().trim();
+  const html = $node.html() || '';
+
+  // Helper function to check if node is inside a changelog section
+  const isInChangelogSection = ($node: cheerio.Cheerio<Element>): boolean => {
+    // Check if we're in a version section by looking at previous h2/h3 headers
+    const $headers = $node.prevAll('h2, h3');
+    if ($headers.length) {
+      const headerText = $headers.first().text().trim();
+      if (/Version \d+\.\d+\.\d+|^\d+\.\d+\.\d+/.test(headerText)) {
+        return true;
+      }
+    }
+
+    // Check if we're in a list item or paragraph that's part of a changelog
+    if ($node.is('li, p')) {
+      const $prevHeaders = $node.prevAll('h2, h3');
+      if ($prevHeaders.length) {
+        const headerText = $prevHeaders.first().text().trim();
+        if (/Version \d+\.\d+\.\d+|^\d+\.\d+\.\d+/.test(headerText)) {
+          return true;
+        }
+      }
+    }
+
+    // Check if we're in a list that's part of a changelog
+    if ($node.closest('ul, ol').length) {
+      const $list = $node.closest('ul, ol');
+      const $prevHeaders = $list.prevAll('h2, h3');
+      if ($prevHeaders.length) {
+        const headerText = $prevHeaders.first().text().trim();
+        if (/Version \d+\.\d+\.\d+|^\d+\.\d+\.\d+/.test(headerText)) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  };
+
+  // Helper function to check if node is part of a code block sequence
+  const isCodeBlockSequence = ($node: cheerio.Cheerio<Element>): boolean => {
+    // Check if this node is near a code block
+    const hasNearbyCode = 
+      $node.next('devsite-code').length > 0 ||
+      $node.prev('devsite-code').length > 0 ||
+      $node.find('devsite-code').length > 0 ||
+      $node.closest('devsite-code').length > 0;
+
+    if (hasNearbyCode) {
+      return true;
+    }
+
+    // Check if this is a div between code blocks
+    if ($node.is('div') && !$node.text().trim()) {
+      const $prevCode = $node.prev('devsite-code');
+      const $nextCode = $node.next('devsite-code');
+      if ($prevCode.length || $nextCode.length) {
+        return true;
+      }
+    }
+
+    // Check if this is a paragraph between code blocks
+    if ($node.is('p')) {
+      const $prevCode = $node.prev('devsite-code');
+      const $nextCode = $node.next('devsite-code');
+      if ($prevCode.length || $nextCode.length) {
+        return true;
+      }
+    }
+
+    return false;
+  };
+
+  // Helper function to check if code block is dependency-related
+  const isDependencyCodeBlock = ($node: cheerio.Cheerio<Element>): boolean => {
+    const codeText = $node.text().trim();
+    
+    // Keep code blocks that are part of a sequence
+    if (isCodeBlockSequence($node)) {
+      return false;
+    }
+
+    // Only filter out dependency declarations in build configuration sections
+    return (
+      !$node.closest('ul, ol').length && // Keep if in a list
+      (
+        codeText.includes('build.gradle') ||
+        /implementation ['"]androidx\./.test(codeText) ||
+        /compile['"]androidx\./.test(codeText)
+      )
+    );
+  };
+
+  // Helper function to check if a link is documentation navigation
+  const isDocumentationLink = ($node: cheerio.Cheerio<Element>): boolean => {
+    const href = $node.attr('href') || '';
+    const linkText = $node.text().trim().toLowerCase();
+    
+    // Always keep these types of links
+    if (href.includes('android-review.googlesource.com') || 
+        href.includes('issuetracker.google.com') ||
+        href.includes('github.com') ||
+        href.includes('samples') ||
+        href.includes('youtube.com')) {
+      return false;
+    }
+
+    // Keep links in lists or code-related content
+    if ($node.closest('ul, ol').length > 0 || isCodeBlockSequence($node)) {
+      return false;
+    }
+
+    // Keep links in paragraphs unless they're clearly navigation
+    const $parentP = $node.closest('p');
+    if ($parentP.length) {
+      const pText = $parentP.text().trim().toLowerCase();
+      // Only filter out links in paragraphs that are clearly navigation
+      if (pText.startsWith('for more information') ||
+          pText.startsWith('see the') ||
+          pText.startsWith('read the') ||
+          pText.startsWith('refer to the')) {
+        return true;
+      }
+      return false;
+    }
+
+    // Filter documentation navigation links
+    return (
+      href.includes('#') ||
+      href.includes('/studio/build/dependencies')
+    );
+  };
+
+  // If the node is inside a changelog section, be more permissive
+  if (isInChangelogSection($node)) {
+    return (
+      // Skip empty nodes
+      !text ||
+      // Skip only specific documentation elements
+      ($node.is('div') && $node.hasClass('ds-selector-tabs')) ||
+      // Skip only dependency-related code blocks
+      ($node.is('pre') && isDependencyCodeBlock($node))
+      // Keep all links in changelog sections
+    );
+  }
+
+  // Outside changelog sections, use stricter filtering
+  return (
+    // Skip page title and structure
+    ($node.is('h1') && $node.hasClass('devsite-page-title')) ||
+    // Skip navigation elements
+    $node.hasClass('nocontent') ||
+    $node.find('.nocontent').length > 0 ||
+    // Skip version tables
+    ($node.is('table') && $node.find('th').text().includes('Stable Release')) ||
+    // Skip dependency sections and other documentation
+    ($node.is('h2,h3') && /dependencies|installation|setup|getting started|structure|feedback/i.test(text)) ||
+    // Skip code sample links outside of feature lists
+    ($node.find('a[href*="sample"]').length > 0 && !$node.closest('ul, ol').length && !isCodeBlockSequence($node)) ||
+    // Skip empty or whitespace-only nodes that aren't part of code sequences
+    (!text && !isCodeBlockSequence($node)) ||
+    // Skip library description divs
+    ($node.is('div') && !isCodeBlockSequence($node) && (
+      text.includes('Build Jetpack Compose') ||
+      text.includes('Fundamental building blocks') ||
+      text.includes('is combination of') ||
+      text.includes('Maven Group')
+    )) ||
+    // Skip structure/feedback related content
+    text.includes('Issue Tracker documentation') ||
+    text.includes('Google Maven repository') ||
+    text.includes('Add build dependencies') ||
+    // Skip library structure tables
+    ($node.is('table') && (
+      $node.find('th').text().includes('Group') ||
+      text.includes('release notes')
+    )) ||
+    // Skip build configuration sections
+    (text.includes('build.gradle') && !$node.closest('ul, ol').length && !isCodeBlockSequence($node)) ||
+    ($node.is('div') && $node.hasClass('ds-selector-tabs') && !$node.find('pre').length) ||
+    // Skip common documentation elements outside changelog sections
+    ($node.is('devsite-code') && isDependencyCodeBlock($node)) ||
+    // Skip documentation navigation links
+    ($node.is('a') && isDocumentationLink($node))
+  );
+}
+
 function groupSiblingNodes($: CheerioAPI, nodes: Element[]): UnprocessedNodeGroup[] {
   const groups: UnprocessedNodeGroup[] = [];
   let currentGroup: UnprocessedNodeGroup | null = null;
+
+  // Filter out nodes that are clearly not changelog content
+  nodes = nodes.filter(node => !isNonChangelogContent($, $(node)));
 
   for (let i = 0; i < nodes.length; i++) {
     const node = nodes[i];
