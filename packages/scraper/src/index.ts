@@ -1,20 +1,28 @@
 import {ChangelogScraper} from "./changelog";
-import path from 'path';
 import {FsStorage} from "./storage";
 import {fileURLToPath} from "node:url";
-import {PageCache} from "./cache";
 import {LibraryGroupParser} from "./groups";
+import NodeFetchCache, {FileSystemCache} from 'node-fetch-cache';
 import {monorepoRootSync} from "monorepo-root";
+import path from "path";
+
+const fetchCached = NodeFetchCache.create({
+  cache: new FileSystemCache({
+    cacheDirectory: path.join(monorepoRootSync()!, 'data', 'cache'),
+    ttl: 24 * 60 * 60 * 1000, // 24 hours
+  }),
+  shouldCacheResponse: (response) => response.ok,
+});
 
 const baseDir = path.join(monorepoRootSync()!, 'data');
 const storage = new FsStorage(baseDir);
-const pageCache = new PageCache(baseDir);
-const changelogScraper = new ChangelogScraper(storage, pageCache);
+const changelogScraper = new ChangelogScraper(storage, fetchCached);
 
 async function syncGroups() {
   try {
-    const hierarchy = await LibraryGroupParser.parseGroups();
-    await LibraryGroupParser.updateStorage(storage, hierarchy);
+    console.log('Starting library groups sync...');
+    const hierarchy = await new LibraryGroupParser(fetchCached).parseGroups();
+    await storage.saveUrlToGroupMapping(hierarchy);
 
     console.log('Library groups sync completed successfully.');
   } catch (error) {
@@ -23,38 +31,38 @@ async function syncGroups() {
   }
 }
 
-async function manageCacheOperation(operation: string) {
-  switch (operation) {
-    case '--clear':
-      await pageCache.clear();
-      console.log('Cache cleared successfully.');
-      break;
-    default:
-      console.error('Unknown cache operation. Available operations: --clear');
-      process.exitCode = 1;
+async function syncChangelogs() {
+  try {
+    await changelogScraper.syncChangelogs();
+  } catch (error) {
+    console.error('Error in changelog sync:', error);
+    throw error;
   }
 }
 
+async function runAllTasks() {
+  try {
+    console.log('Running all sync operations...');
+    await syncGroups();
+    await syncChangelogs();
+    console.log('\nAll operations completed successfully.');
+  } catch (error) {
+    console.error('Error in combined sync:', error);
+    throw error;
+  }
+}
+
+// Main CLI handler
 async function main() {
   try {
     // Initialize storage
     await storage.init();
 
-    const command = process.argv[2];
+    const command = process.argv[2]?.toLowerCase();
 
     switch (command) {
       case 'changelogs':
-        await changelogScraper.syncChangelogs();
-        break;
-
-      case 'cache':
-        const operation = process.argv[3];
-        if (!operation) {
-          console.error('Please specify a cache operation: --clear or --stats');
-          process.exitCode = 1;
-          return;
-        }
-        await manageCacheOperation(operation);
+        await syncChangelogs();
         break;
 
       case 'groups':
@@ -62,26 +70,30 @@ async function main() {
         break;
 
       case 'all':
-        await syncGroups();  // Add this line
-        await changelogScraper.syncChangelogs();
+        await runAllTasks();
         break;
 
       default:
-        console.error('Available commands:');
-        console.error('  releases     Sync releases');
-        console.error('  changelogs   Sync changelogs');
-        console.error('  cache        Manage cache (--clear, --stats)');
-        console.error('  all          Sync both releases and changelogs');
+        console.log('\nAvailable commands:');
+        console.log('  changelogs   Sync changelogs');
+        console.log('  groups       Sync library groups');
+        console.log('  all          Run all sync operations');
+        console.log('\nExample usage:');
+        console.log('  bun run src/index.ts patterns');
         process.exitCode = 1;
         return;
     }
   } catch (error) {
+    console.error('\nFatal error:', error);
     process.exitCode = 1;
   }
 }
 
-// Check if this file is being run directly
+// Run if called directly
 const isMainModule = process.argv[1] === fileURLToPath(import.meta.url);
 if (isMainModule) {
-  main();
+  main().catch(error => {
+    console.error('Unhandled error:', error);
+    process.exit(1);
+  });
 }

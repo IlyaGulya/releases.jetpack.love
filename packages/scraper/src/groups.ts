@@ -1,13 +1,15 @@
 import * as cheerio from 'cheerio';
 import {type CheerioAPI} from 'cheerio';
-import type {FsStorage} from "./storage";
 import {Element} from "domhandler";
 
 export class LibraryGroupParser {
   private static readonly BASE_URL = 'https://developer.android.com';
 
-  private static async fetchNavigation(): Promise<CheerioAPI> {
-    const response = await fetch(`${this.BASE_URL}/jetpack/androidx/explorer`, {
+  constructor(private fetch: ReturnType<typeof fetch>) {
+  }
+
+  private async fetchNavigation(): Promise<CheerioAPI> {
+    const response = await this.fetch(`${LibraryGroupParser.BASE_URL}/jetpack/androidx/explorer`, {
       headers: {
         'accept-language': 'en',
       },
@@ -18,7 +20,7 @@ export class LibraryGroupParser {
     return cheerio.load(await response.text());
   }
 
-  static async parseGroups(): Promise<Record<string, string>> {
+  async parseGroups(): Promise<Record<string, string>> {
     const $ = await this.fetchNavigation();
     const urlToGroup: Record<string, string> = {};
 
@@ -38,9 +40,5 @@ export class LibraryGroupParser {
       });
 
     return urlToGroup;
-  }
-
-  static async updateStorage(storage: FsStorage, urlToGroup: Record<string, string>) {
-    await storage.saveUrlToGroupMapping(urlToGroup);
   }
 }

@@ -3,14 +3,10 @@ import * as cheerio from 'cheerio';
 import {Element} from "domhandler";
 import {ProgressBar} from '@opentf/cli-pbar';
 import debug from "debug";
-import {format} from 'date-fns';
-import {parse} from 'date-fns';
+import {format, parse} from 'date-fns';
 import {FsStorage} from "./storage";
-import type {PageCache} from "./cache";
 import {cleanVersionString} from "./utils";
-import {LibraryChangelog} from "@jetpack.love/common";
-import {DATE_PATTERNS, DATE_EXCLUSIONS} from "@jetpack.love/common";
-import {NoopProgressBar} from "@jetpack.love/common";
+import {DATE_EXCLUSIONS, DATE_PATTERNS, LibraryChangelog, NoopProgressBar} from "@jetpack.love/common";
 
 const log = debug('jetpack:changelog');
 
@@ -58,7 +54,7 @@ const PAGE_PATTERNS: PagePattern[] = [
         firstH2Text: $content.find('h2').first().text().trim(),
         firstH3Text: $content.find('h3').first().text().trim(),
         hasVersionButtons: $content.find('button.devsite-heading-link').length > 0,
-        articleText: $content.text().trim().substring(0, 200) + '...' // First 200 chars
+        articleText: $content.text().trim().substring(0, 200) + '...', // First 200 chars
       });
 
       // Check if we have the article body and any version-like headers
@@ -79,7 +75,7 @@ const PAGE_PATTERNS: PagePattern[] = [
               hasVersionButton,
               hasVersionId,
               elementType: el.tagName,
-              id: $el.attr('id')
+              id: $el.attr('id'),
             });
           }
 
@@ -104,7 +100,7 @@ const PAGE_PATTERNS: PagePattern[] = [
           const id = $button.attr('data-id') || '';
           const dataText = $button.attr('data-text') || '';
           return /-\d+\.\d+\.\d+/.test(id) ||
-                 /Version \d+\.\d+\.\d+/.test(dataText);
+            /Version \d+\.\d+\.\d+/.test(dataText);
         }
 
         // Check for version in section id
@@ -119,13 +115,13 @@ const PAGE_PATTERNS: PagePattern[] = [
           type: el.tagName,
           id: $(el).attr('id'),
           text: $(el).text().trim(),
-          buttonId: $(el).find('button.devsite-heading-link').attr('data-id')
-        })).get()
+          buttonId: $(el).find('button.devsite-heading-link').attr('data-id'),
+        })).get(),
       });
 
       return $sections;
-    }
-  }
+    },
+  },
 ];
 
 // Changelog patterns for different version section formats
@@ -141,7 +137,7 @@ const CHANGELOG_PATTERNS: ChangelogPattern[] = [
       // Try different version patterns
       const patterns = [
         /Version (\d+\.\d+\.\d+(?:[-+][a-zA-Z0-9.-]+)?)/,
-        /^(\d+\.\d+\.\d+(?:[-+][a-zA-Z0-9.-]+)?)/
+        /^(\d+\.\d+\.\d+(?:[-+][a-zA-Z0-9.-]+)?)/,
       ];
 
       for (const pattern of patterns) {
@@ -175,7 +171,7 @@ const CHANGELOG_PATTERNS: ChangelogPattern[] = [
           // 2019-04-03
           /(\d{4})-(\d{2})-(\d{2})/,
           // 03/04/2019
-          /(\d{2})\/(\d{2})\/(\d{4})/
+          /(\d{2})\/(\d{2})\/(\d{4})/,
         ];
 
         for (const pattern of datePatterns) {
@@ -193,7 +189,7 @@ const CHANGELOG_PATTERNS: ChangelogPattern[] = [
               const monthMap: Record<string, number> = {
                 'January': 0, 'February': 1, 'March': 2, 'April': 3,
                 'May': 4, 'June': 5, 'July': 6, 'August': 7,
-                'September': 8, 'October': 9, 'November': 10, 'December': 11
+                'September': 8, 'October': 9, 'November': 10, 'December': 11,
               };
               const month = monthMap[match[1]];
               const day = parseInt(match[2]);
@@ -232,7 +228,7 @@ const CHANGELOG_PATTERNS: ChangelogPattern[] = [
       log('Failed to find date for version section:', {
         sectionId: $section.attr('id'),
         sectionText: $section.text().trim(),
-        nextParagraph: $nextP.text().trim()
+        nextParagraph: $nextP.text().trim(),
       });
 
       return null;
@@ -258,7 +254,7 @@ const CHANGELOG_PATTERNS: ChangelogPattern[] = [
       }
 
       return content.join('\n');
-    }
+    },
   },
   {
     name: 'Button-Based Version Format',
@@ -270,7 +266,7 @@ const CHANGELOG_PATTERNS: ChangelogPattern[] = [
       const id = $button.attr('data-id') || '';
       const patterns = [
         /-(\d+\.\d+\.\d+(?:[-+][a-zA-Z0-9.-]+)?)/,
-        /(\d+\.\d+\.\d+(?:[-+][a-zA-Z0-9.-]+)?)/
+        /(\d+\.\d+\.\d+(?:[-+][a-zA-Z0-9.-]+)?)/,
       ];
 
       for (const pattern of patterns) {
@@ -288,8 +284,8 @@ const CHANGELOG_PATTERNS: ChangelogPattern[] = [
     extractContent: ($, $section) => {
       // Use the same content extraction logic as Standard Version Format
       return CHANGELOG_PATTERNS[0].extractContent($, $section);
-    }
-  }
+    },
+  },
 ];
 
 function normalizeDate(text: string): string | null {
@@ -304,7 +300,7 @@ function normalizeDate(text: string): string | null {
         'September': 8, 'October': 9, 'November': 10, 'December': 11,
         'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3,
         'Jun': 5, 'Jul': 6, 'Aug': 7, 'Sep': 8, 'Sept': 8,
-        'Oct': 9, 'Nov': 10, 'Dec': 11
+        'Oct': 9, 'Nov': 10, 'Dec': 11,
       };
       const monthNum = monthMap[month];
       if (monthNum !== undefined) {
@@ -321,7 +317,7 @@ function normalizeDate(text: string): string | null {
     const match = text.match(pattern);
     if (match) {
       let dateStr = match[0].trim();
-      
+
       // Handle reverse date format (day month year)
       if (patternName === 'REVERSE_DATE') {
         const [_, day, month, year] = dateStr.match(/(\d{1,2})(?:st|nd|rd|th)?\s+(\w+),?\s+(\d{4})/) || [];
@@ -347,7 +343,7 @@ function normalizeDate(text: string): string | null {
         // ISO format
         'yyyy-MM-dd',
         // Slash format
-        'MM/dd/yyyy'
+        'MM/dd/yyyy',
       ];
 
       for (const fmt of formats) {
@@ -358,7 +354,6 @@ function normalizeDate(text: string): string | null {
           }
         } catch {
           // Continue to next format if parsing fails
-          continue;
         }
       }
     }
@@ -373,36 +368,30 @@ export class ChangelogScraper {
 
   constructor(
     private storage: FsStorage,
-    private pageCache: PageCache,
+    private fetch: ReturnType<typeof fetch>,
   ) {
     this.progressBar = process.stdout.isTTY
       ? new ProgressBar({
-          size: 'DEFAULT',
-          color: 'cyan',
-          prefix: '📚 Processing',
-        })
+        size: 'DEFAULT',
+        color: 'cyan',
+        prefix: '📚 Processing',
+      })
       : new NoopProgressBar();
   }
 
   private async fetchPage(url: string): Promise<CheerioAPI> {
-    const cachedContent = await this.pageCache.get(url);
-    if (cachedContent) {
-      log(`Using cached content for: ${url}`);
-      return cheerio.load(cachedContent);
-    }
-
     log(`Fetching page: ${url}`);
-    const response = await fetch(url, {
+    const response = await this.fetch(url, {
       headers: {
         'accept-language': 'en',
       },
     });
+
     if (!response.ok) {
       throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
     }
 
     const content = await response.text();
-    await this.pageCache.set(url, content);
     return cheerio.load(content);
   }
 
@@ -427,7 +416,7 @@ export class ChangelogScraper {
       this.warnings.push({
         library: url,
         message: `Could not determine library ID from URL`,
-        context: { url }
+        context: {url},
       });
       return;
     }
@@ -462,10 +451,10 @@ export class ChangelogScraper {
                     type: el.tagName,
                     id: $(el).attr('id'),
                     text: $(el).text().trim(),
-                    hasVersionButton: $(el).find('button.devsite-heading-link').length > 0
-                  })).get()
-              }
-            }
+                    hasVersionButton: $(el).find('button.devsite-heading-link').length > 0,
+                  })).get(),
+              },
+            },
           });
         }
         return;
@@ -485,10 +474,10 @@ export class ChangelogScraper {
               pageStructure: {
                 headers: $('h1,h2,h3').map((_, el) => ({
                   level: el.tagName,
-                  text: $(el).text().trim()
-                })).get()
-              }
-            }
+                  text: $(el).text().trim(),
+                })).get(),
+              },
+            },
           });
         }
         return;
@@ -509,8 +498,8 @@ export class ChangelogScraper {
             message: "Unknown changelog pattern detected",
             context: {
               sectionHtml: $section.toString(),
-              sectionText: $section.text().trim()
-            }
+              sectionText: $section.text().trim(),
+            },
           });
           continue;
         }
@@ -525,9 +514,9 @@ export class ChangelogScraper {
             message: "Failed to extract version information",
             context: {
               pattern: changelogPattern.name,
-              extracted: { version, date, contentLength: content?.length },
-              sectionHtml: $section.toString()
-            }
+              extracted: {version, date, contentLength: content?.length},
+              sectionHtml: $section.toString(),
+            },
           });
           continue;
         }
@@ -552,8 +541,8 @@ export class ChangelogScraper {
           message: "Found version sections but failed to process any versions successfully",
           context: {
             totalSections: versionSections.length,
-            pagePattern: pagePattern.name
-          }
+            pagePattern: pagePattern.name,
+          },
         });
       } else if (processedVersions < versionSections.length) {
         this.warnings.push({
@@ -562,8 +551,8 @@ export class ChangelogScraper {
           context: {
             processedVersions,
             totalSections: versionSections.length,
-            pagePattern: pagePattern.name
-          }
+            pagePattern: pagePattern.name,
+          },
         });
       }
 
@@ -576,7 +565,7 @@ export class ChangelogScraper {
         this.warnings.push({
           library: libraryId,
           message: `Failed to process changelog: ${message}`,
-          context: { error }
+          context: {error},
         });
         log(`Error processing ${libraryId}: ${message}`);
       }
@@ -611,7 +600,7 @@ export class ChangelogScraper {
         this.warnings.push({
           library: libraryId,
           message: `Failed to process changelog: ${message}`,
-          context: { error }
+          context: {error},
         });
       }
       this.progressBar.inc();
@@ -628,7 +617,7 @@ export class ChangelogScraper {
         if (!acc[library]) {
           acc[library] = [];
         }
-        acc[library].push({ message, context });
+        acc[library].push({message, context});
         return acc;
       }, {} as Record<string, Array<{ message: string; context?: any }>>);
 
