@@ -4,6 +4,33 @@ import {LibraryChangelog} from "@jetpack.love/common";
 import {Document, parse, stringify} from 'yaml';
 import * as prettier from "prettier";
 
+interface UnprocessedNodesData {
+  libraryId: string;
+  groupId: string;
+  url: string;
+  timestamp: string;
+  nodeGroups: Array<{
+    type: string;
+    text: string;
+    html: string;
+    location: {
+      startIndex: number;
+      endIndex: number;
+      parentSelector: string;
+    };
+    siblingCount: number;
+    siblings: Array<{
+      type: string;
+      text: string;
+      html: string;
+      location: {
+        startIndex: number;
+        endIndex: number;
+      };
+    }>;
+  }>;
+}
+
 export class FsStorage {
   constructor(
     private readonly dataDir: string = 'data',
@@ -17,6 +44,18 @@ export class FsStorage {
   async init() {
     await this.ensureDir(this.dataDir);
     await this.ensureDir(path.join(this.dataDir, 'changelogs'));
+    await this.ensureDir(path.join(this.dataDir, 'unprocessed'));
+  }
+
+  async saveUnprocessedNodes(data: UnprocessedNodesData) {
+    const dir = path.join(this.dataDir, 'unprocessed', data.libraryId);
+    await this.ensureDir(dir);
+
+    // Create a filename with timestamp
+    const timestamp = data.timestamp.replace(/[:.]/g, '-');
+    const filePath = path.join(dir, `unprocessed-${timestamp}.json`);
+
+    await fs.writeFile(filePath, JSON.stringify(data, null, 2));
   }
 
   async saveChangelog(changelog: LibraryChangelog) {

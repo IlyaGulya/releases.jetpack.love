@@ -5,7 +5,7 @@ import {Element} from "domhandler";
 export class LibraryGroupParser {
   private static readonly BASE_URL = 'https://developer.android.com';
 
-  constructor(private fetch: ReturnType<typeof fetch>) {
+  constructor(private fetch: typeof global.fetch) {
   }
 
   private async fetchNavigation(): Promise<CheerioAPI> {

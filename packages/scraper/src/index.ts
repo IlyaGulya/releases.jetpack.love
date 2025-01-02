@@ -33,7 +33,8 @@ async function syncGroups() {
 
 async function syncChangelogs() {
   try {
-    await changelogScraper.syncChangelogs();
+    const libraryGroupFilter = process.argv[3];
+    await changelogScraper.syncChangelogs(libraryGroupFilter);
   } catch (error) {
     console.error('Error in changelog sync:', error);
     throw error;
@@ -75,11 +76,12 @@ async function main() {
 
       default:
         console.log('\nAvailable commands:');
-        console.log('  changelogs   Sync changelogs');
-        console.log('  groups       Sync library groups');
-        console.log('  all          Run all sync operations');
+        console.log('  changelogs [group]  Sync changelogs. Optionally provide a group name to filter');
+        console.log('  groups              Sync library groups');
+        console.log('  all                 Run all sync operations');
         console.log('\nExample usage:');
-        console.log('  bun run src/index.ts patterns');
+        console.log('  bun run src/index.ts changelogs');
+        console.log('  bun run src/index.ts changelogs compose');
         process.exitCode = 1;
         return;
     }
@@ -92,6 +94,7 @@ async function main() {
 // Run if called directly
 const isMainModule = process.argv[1] === fileURLToPath(import.meta.url);
 if (isMainModule) {
+
   main().catch(error => {
     console.error('Unhandled error:', error);
     process.exit(1);
