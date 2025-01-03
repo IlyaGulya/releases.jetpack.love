@@ -983,6 +983,10 @@ export class ChangelogScraper {
       // Check for unprocessed nodes in devsite-article-body
       const $articleBody = $('.devsite-article-body');
       if ($articleBody.length) {
+        // Find the first version section
+        const firstVersionSection = versionSections.first();
+        const firstVersionIndex = firstVersionSection.length ? firstVersionSection.index() : -1;
+
         const unprocessedNodes = $articleBody.find('*').toArray().filter(node => {
           // Skip text nodes and nodes that were processed
           if (allProcessedNodes.has(node)) {
@@ -1000,7 +1004,21 @@ export class ChangelogScraper {
 
           // Skip empty nodes or nodes with only whitespace
           const text = $(node).text().trim();
-          return text.length > 0;
+          if (text.length === 0) {
+            return false;
+          }
+
+          // If we have a first version section, check if this node comes before it
+          if (firstVersionIndex !== -1) {
+            const nodeIndex = $(node).index();
+            if (nodeIndex < firstVersionIndex) {
+              // Node is before the first version section, mark it as intentionally unprocessed
+              allProcessedNodes.add(node);
+              return false;
+            }
+          }
+
+          return true;
         });
 
         // Sort nodes by their position in the DOM to maintain hierarchy and order
