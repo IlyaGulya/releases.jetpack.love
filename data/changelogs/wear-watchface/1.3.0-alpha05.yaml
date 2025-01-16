@@ -1,0 +1,80 @@
+libraryId: wear-watchface
+groupId: androidx.wear
+version: 1.3.0-alpha05
+releaseDate: 2025-01-15
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha05" data-text="Version 1.3.0-alpha05" tabindex="-1">Version 1.3.0-alpha05</h3>
+  <p>January 15, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.watchface:watchface-*:1.3.0-alpha05</code>
+    is released. Version 1.3.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/0431b84980e97d6bafdfda7c9038bc4d9529564f..ad66672b42ec1e9359219e82b7f8189d03df40f5/wear/watchface">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>
+    Watch faces commonly allow the user to select colors using a
+    <code translate="no" dir="ltr">ListUserStyle</code>
+    . While this works, it entails sending the icons over bluetooth to the companion editor which is inefficient, so we’ve introduced
+    <code translate="no" dir="ltr">ColorUserStyleSetting</code>
+    where the payload is a list of one or more color per style which has a significantly more compact wire format.
+  </p>
+  <p>We’ve added an OEM facing feature which allows OEM complication providers to add extras to ComplicationData for use by OEM watch faces.</p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">UserStyleSetting</code>
+      and
+      <code translate="no" dir="ltr">UserStyleOption</code>
+      classes now have builders which is the recommended way to construct them. (
+      <a href="https://android-review.googlesource.com/#/q/Iacd0336fd747dc354a60924e4195ad3d6c5c1b5b">Iacd03</a>
+      )
+    </li>
+    <li>
+      Support for passing extras in
+      <code translate="no" dir="ltr">ComplicationData</code>
+      . This is intended for use by OEMs where they control both the complication provider and the receiving watch face. Setting an extra requires the privileged
+      <code translate="no" dir="ltr">com.google.android.wearable.permission.COMPLICATION_EXTRAS</code>
+      permission. (
+      <a href="https://android-review.googlesource.com/#/q/I4e3b284dbbe0389a3a777f7f71adc2e9cbaf325b">I4e3b2</a>
+      )
+    </li>
+    <li>
+      Watch faces commonly allow the user to select colors using a
+      <code translate="no" dir="ltr">ListUserStyle</code>
+      , with an icon for each
+      <code translate="no" dir="ltr">ListOption</code>
+      . Since
+      <code translate="no" dir="ltr">UserStyle</code>
+      schemas are sent over bluetooth, it is important to keep the size of the schema down which can be a problem if many dozens of color options are given due to all those icons. To help with this we've added
+      <code translate="no" dir="ltr">ColorUserStyleSetting</code>
+      where the option contains a list of colors instead of an icon, which is much more compact. (
+      <a href="https://android-review.googlesource.com/#/q/Ib542e56a78ed0729795319a5b48447407cafc3a7">Ib542e</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ColorUserStyleSetting</code>
+      and
+      <code translate="no" dir="ltr">ColorOption</code>
+      require API 34 for use. (
+      <a href="https://android-review.googlesource.com/#/q/I8771d0012b5e64971ba21018c9ed3df6ddad517e">I8771d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      This library now uses
+      <a href="https://jspecify.dev/">JSpecify nullness annotations</a>
+      , which are type-use. Kotlin developers should use the following compiler arguments to enforce correct usage:
+      <code translate="no" dir="ltr">-Xjspecify-annotations=strict</code>
+      ,
+      <code translate="no" dir="ltr">-Xtype-enhancement-improvements-strict-mode</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ifd3632fe9756f9ba77e8191b82b816575e18c78e">Ifd363</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326456246">b/326456246</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,45 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.10.0
+releaseDate: 2025-01-15
+#language=html
+changelogHtml: |
+  <h3 id="1.10.0" data-text="Version 1.10.0" tabindex="-1">Version 1.10.0</h3>
+  <p>January 15, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.10.0</code>
+    ,
+    <code translate="no" dir="ltr">androidx.activity:activity-compose:1.10.0</code>
+    , and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.10.0</code>
+    are released. Version 1.10.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6164e1df97417c3dbf36eaf7c79975f1543fab3b..54846baa440355b8e6183df33fdad02e17566c75/activity">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.9.0</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">PhotoPicker</code>
+      now allows picking images in order and choosing which tab (either albums or images) should be initially visible.
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">PickVisualMedia</code>
+      and
+      <code translate="no" dir="ltr">PickMultipleVisualMedia</code>
+      Activity Result contracts that trigger the Photo Picker no longer directly delegates to Google Play services if the system Photo picker is not available, but uses the public
+      <code translate="no" dir="ltr">ACTION_SYSTEM_FALLBACK_PICK_IMAGES</code>
+      action and related extras to provide a consistent Photo Picker experience to OEMs and system apps as a fallback.
+    </li>
+    <li>
+      New
+      <code translate="no" dir="ltr">LocalActivity</code>
+      composition local that provides the
+      <code translate="no" dir="ltr">Activity</code>
+      for the current scope, removing the need for developers to get an
+      <code translate="no" dir="ltr">Activity</code>
+      from the
+      <code translate="no" dir="ltr">LocalContext</code>
+      .
+    </li>
+  </ul>

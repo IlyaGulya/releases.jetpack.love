@@ -1,0 +1,36 @@
+libraryId: exifinterface
+groupId: androidx.exifinterface
+version: 1.4.0-beta01
+releaseDate: 2025-01-15
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-beta01" data-text="Version 1.4.0-beta01" tabindex="-1">Version 1.4.0-beta01</h3>
+  <p>January 15, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.exifinterface:exifinterface:1.4.0-beta01</code>
+    is released. Version 1.4.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6f09cf2ae979e48fdb19485f757a033e4a34bb82..ad66672b42ec1e9359219e82b7f8189d03df40f5/exifinterface/exifinterface">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>Update HEIC XMP handling to prefer XMP data from a separate segment in the file, rather than tag 700 in the Exif data.</li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">ExifInterface.getThumbnail*()</code>
+      method to work correctly after a call to
+      <code translate="no" dir="ltr">saveAttributes()</code>
+      (previously the calls would succeed, but the result would be incorrect/undefined)
+    </li>
+    <li>Fix PNG XMP handling to read and write the separate iTXt XMP chunk instead of tag 700 inside the eXIf chunk.</li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">WebP</code>
+      image corruption when handling image files with trailing non-WebP data. (
+      <a href="https://issuetracker.google.com/385766064">b/385766064</a>
+      ).
+    </li>
+  </ul>

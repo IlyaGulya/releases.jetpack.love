@@ -1,0 +1,73 @@
+libraryId: compose-material
+groupId: androidx.compose
+version: 1.8.0-alpha08
+releaseDate: 2025-01-15
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0-alpha08" data-text="Version 1.8.0-alpha08" tabindex="-1">Version 1.8.0-alpha08</h3>
+  <p>January 15, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material:material-*:1.8.0-alpha08</code>
+    is released. Version 1.8.0-alpha08 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/46295bc0b75a16f452e8e0090e8de41073d4dbb6..c80a82c4ab50276ac6c1a8d9b9175c9fdbb0d1b8/compose/material">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">displayCutout</code>
+      to the group of insets that Material components take into account by default, to avoid content overlapping with the display cutout.
+      <ul>
+        <li>
+          This is a behavior change that will impact how inset-aware components behave around a display cutout. This includes the default value of the
+          <code translate="no" dir="ltr">WindowInsets</code>
+          parameter for inset-aware Material 3 components, and the
+          <code translate="no" dir="ltr">WindowInsets</code>
+          values provided in the component.
+        </li>
+        <li>
+          Defaults objects for both Material 2 and Material 3. If this change causes undesirable behavior, manually specify the
+          <code translate="no" dir="ltr">WindowInsets</code>
+          parameter on a per-component basis. (
+          <a href="https://android-review.googlesource.com/#/q/I43ee9ad12db0450ebb9c65ce10d5c39d12628b6c">I43ee9</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/362508045">b/362508045</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      The activity that is used as the host for the composable under test when using
+      <code translate="no" dir="ltr">ComposeContentTestRule.setContent</code>
+      now uses the theme
+      <code translate="no" dir="ltr">Theme.Material.Light.NoActionBar</code>
+      , to avoid the
+      <code translate="no" dir="ltr">ActionBar</code>
+      from overlapping with test content when targeting SDK 35. To opt out of this behavior, you can remove the dependency on
+      <code translate="no" dir="ltr">ui-test-manifest</code>
+      and add an activity entry in your test app's
+      <code translate="no" dir="ltr">AndroidManifest.xml</code>
+      for
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      with the theme of your choice. (
+      <a href="https://android-review.googlesource.com/#/q/I7ae1bd28f5e341dafc07442b35ee4249793d257d">I7ae1b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/383368165">b/383368165</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Expose
+      <code translate="no" dir="ltr">sheetGesturesEnabled</code>
+      in
+      <code translate="no" dir="ltr">ModalBottomSheetLayout</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3f032d9016b1730b1a90392209f7c07fa6617343">I3f032</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/329543529">b/329543529</a>
+      )
+    </li>
+  </ul>

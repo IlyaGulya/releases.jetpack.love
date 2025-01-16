@@ -1,0 +1,89 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.5.0-alpha05
+releaseDate: 2025-01-15
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha05" data-text="Version 1.5.0-alpha05" tabindex="-1">Version 1.5.0-alpha05</h3>
+  <p>January 15, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.5.0-alpha05</code>
+    is released. Version 1.5.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/619c6de87fe3f2c27da0045968f503c1bbd40ef6..74cbb818c9b3bfa4d09302a96cfde2c21c98d693/camera">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">VideoCapture.getSelectedQuality()</code>
+      to know the selected Quality based on the
+      <code translate="no" dir="ltr">QualitySelector</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7050868dea1f1654386c991d441c25af2e3f1fe4">I70508</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/204288986">b/204288986</a>
+      )
+    </li>
+    <li>
+      When an image capture is invoked with the
+      <code translate="no" dir="ltr">ImageCapture.OnImageCapturedCallback</code>
+      API, the ImageInfo at the returned
+      <code translate="no" dir="ltr">ImageProxy</code>
+      can now be used to know whether flash was fired through the new
+      <code translate="no" dir="ltr">ImageInfo.getFlashState()</code>
+      API. (
+      <a href="https://android-review.googlesource.com/#/q/Id2c61f898acee6e75acded80fc41872cd0edf764">Id2c61</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/380527406">b/380527406</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">OUTPUT_IMAGE_FORMAT_NV21</code>
+      output format support for
+      <code translate="no" dir="ltr">ImageAnalysis</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I484ab2358aae7522e8f62115e636cb2d5036e64e">I484ab</a>
+      )
+    </li>
+    <li>
+      Remove the experimental annotation of the
+      <code translate="no" dir="ltr">featurecombinationquery</code>
+      artifact (
+      <a href="https://android-review.googlesource.com/#/q/I4427f3d99be11e8f1823c7be81096590d363d595">I4427f</a>
+      )
+    </li>
+    <li>
+      Adjust the zoom ratio range allowed for
+      <code translate="no" dir="ltr">CameraControl</code>
+      by Extensions-specific characteristics when an extensions mode is enabled. (
+      <a href="https://android-review.googlesource.com/#/q/I85af16007a5bcbe7eef66b581a135bc4c8eb193c">I85af1</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Upgraded
+      <code translate="no" dir="ltr">compileSdk</code>
+      as 35 for using Android 15 related API. Apps using CameraX libraries will also need to upgrade their
+      <code translate="no" dir="ltr">compileSdk</code>
+      config setting. (
+      <a href="https://android-review.googlesource.com/#/q/Ic80cd9e0eea7adc72419a22c1ab5035e7fc5fb61">Ic80cd</a>
+      )
+    </li>
+    <li>
+      This library now uses
+      <a href="https://jspecify.dev/">JSpecify nullness annotations</a>
+      , which are type-use. Kotlin developers should use the following compiler arguments to enforce correct usage:
+      <code translate="no" dir="ltr">-Xjspecify-annotations=strict</code>
+      ,
+      <code translate="no" dir="ltr">-Xtype-enhancement-improvements-strict-mode</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Idc6c6616bb5cd6f37b6640eb03e99c215f67fc1b">Idc6c6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326456246">b/326456246</a>
+      )
+    </li>
+  </ul>

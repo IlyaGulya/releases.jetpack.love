@@ -1,0 +1,61 @@
+libraryId: webkit
+groupId: androidx.webkit
+version: 1.13.0-alpha03
+releaseDate: 2025-01-15
+#language=html
+changelogHtml: |
+  <h3 id="1.13.0-alpha03" data-text="Version 1.13.0-alpha03" tabindex="-1">Version 1.13.0-alpha03</h3>
+  <p>January 15, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.webkit:webkit:1.13.0-alpha03</code>
+    is released. Version 1.13.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/46295bc0b75a16f452e8e0090e8de41073d4dbb6..ad66672b42ec1e9359219e82b7f8189d03df40f5/webkit/webkit">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Introduce a new experimental API for Url prerendering to allow developers to speculative prerender candidate urls resulting in faster navigations. (
+      <a href="https://android-review.googlesource.com/#/q/I0cfe7ac389969422e56721db7a0cf67d6739d5af">I0cfe7</a>
+      )
+    </li>
+    <li>
+      Introducing a set of new APIs to delete browsing data stored by
+      <code translate="no" dir="ltr">WebView</code>
+      . The new APIs in
+      <code translate="no" dir="ltr">WebStorageCompat</code>
+      should be preferred over the existing APIs in
+      <code translate="no" dir="ltr">android.webkit.WebStorage</code>
+      , as they will guarantee deletion of all local storage, including the network cache and cookies, as well as any installed service workers. If new storage APIs are introduced in the future, then these new methods will be updated to include them in the storage deleted. (
+      <a href="https://android-review.googlesource.com/#/q/Iad54f46e2fbb2a7369f2b7191519af0b10525ed7">Iad54f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/382273208">b/382273208</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">setPartitionedCookiesEnabled</code>
+      API. This will allow developers to enable and disable partitioned cookies in
+      <code translate="no" dir="ltr">WebView</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic506a23471946d31b797397e2f71aef0f3ae481a">Ic506a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/364904765">b/364904765</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Change thread requirement for Prefetch API to only be called on the UI thread. (
+      <a href="https://android-review.googlesource.com/#/q/I866b5410e09ab0dd8865cc6a5592fda3af05eb02">I866b5</a>
+      )
+    </li>
+    <li>
+      Update
+      <code translate="no" dir="ltr">WebAuthn</code>
+      methods to highlight that they must be called on the UI thread. This requirement is enforced by the implementation already, and this change only adds the relevant annotation. (
+      <a href="https://android-review.googlesource.com/#/q/I6d6ba648648fe1274800b7beb27f2fa0e9961e19">I6d6ba</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,62 @@
+libraryId: health-connect
+groupId: androidx.health
+version: 1.1.0-alpha11
+releaseDate: 2025-01-15
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha11" data-text="Version 1.1.0-alpha11" tabindex="-1">Version 1.1.0-alpha11</h3>
+  <p>January 15, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.health.connect:connect-client:1.1.0-alpha11</code>
+    ,
+    <code translate="no" dir="ltr">androidx.health.connect:connect-client-external-protobuf:1.1.0-alpha11</code>
+    , and
+    <code translate="no" dir="ltr">androidx.health.connect:connect-client-proto:1.1.0-alpha11</code>
+    are released. Version 1.1.0-alpha11 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b8a68b0896897fa158508d73a31998a26161d9a7..ad66672b42ec1e9359219e82b7f8189d03df40f5/health/connect">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>Updated background and history read permissions to support Android 13 and below.</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added inline reified overloads for
+      <code translate="no" dir="ltr">HealthPermission.getReadPermission</code>
+      and
+      <code translate="no" dir="ltr">HealthPermission.getWritePermission</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I59a2e473760d2a464de937dd261f7aa22f79940c">I59a2e</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Remove legacy permission methods (
+      <a href="https://android-review.googlesource.com/#/q/Ifd080d1c35ded2a246fea165b2ab326a07358c31">Ifd080</a>
+      )
+    </li>
+    <li>
+      This library now uses
+      <a href="https://jspecify.dev/">JSpecify nullness annotations</a>
+      , which are type-use. Kotlin developers should use the following compiler arguments to enforce correct usage:
+      <code translate="no" dir="ltr">-Xjspecify-annotations=strict</code>
+      ,
+      <code translate="no" dir="ltr">-Xtype-enhancement-improvements-strict-mode</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Iaf73a787b8b07034e55d1ec8e3495728849dc127">Iaf73a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326456246">b/326456246</a>
+      )
+    </li>
+    <li>
+      Fixed documentation for
+      <code translate="no" dir="ltr">HealthPermission.READ_HEALTH_DATA_HISTORY</code>
+      , specifically by pointing out that reads without this permission only fail when attempting to read a single data point. (
+      <a href="https://android-review.googlesource.com/#/q/Id5b5a8f707faac0075bd7a9119cddf8ea8c63741">Id5b5a</a>
+      )
+    </li>
+  </ul>
