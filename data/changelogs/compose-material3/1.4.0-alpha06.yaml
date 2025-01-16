@@ -1,0 +1,136 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.4.0-alpha06
+releaseDate: 2025-01-15
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha06" data-text="Version 1.4.0-alpha06" tabindex="-1">Version 1.4.0-alpha06</h3>
+  <p>January 15, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.4.0-alpha06</code>
+    is released. Version 1.4.0-alpha06 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ce211eef13c32d283bb64f2db117d93783070672..ad66672b42ec1e9359219e82b7f8189d03df40f5/compose/material3">these commits</a>
+    .
+  </p>
+  <p><strong>Behavior Change</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">displayCutout</code>
+      to the group of insets that Material components take into account by default, to avoid content overlapping with the display cutout. This is a behavior change that will impact how inset-aware components behave around a display cutout. This includes the default value of the
+      <code translate="no" dir="ltr">WindowInsets</code>
+      parameter for inset-aware Material 3 components, and the
+      <code translate="no" dir="ltr">WindowInsets</code>
+      values provided in the component Defaults objects for both Material 2 and Material 3. If this change causes undesirable behavior, manually specify the
+      <code translate="no" dir="ltr">WindowInsets</code>
+      parameter on a per-component basis. (
+      <a href="https://android-review.googlesource.com/#/q/I43ee9ad12db0450ebb9c65ce10d5c39d12628b6c">I43ee9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/362508045">b/362508045</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Updates to the
+      <code translate="no" dir="ltr">TopAppBar</code>
+      API. Rename the medium and large top app bars with a subtitle to
+      <code translate="no" dir="ltr">*FlexibleTopAppBar</code>
+      . Unified the color variations into a single
+      <code translate="no" dir="ltr">TopAppBarDefault.topAppBarColors()</code>
+      function, and added a
+      <code translate="no" dir="ltr">subtitle</code>
+      color parameter to be applied for a provided subtitle Composable (
+      <a href="https://android-review.googlesource.com/#/q/I41b658469205cbb138f90fe0d35a1939c92b068f">I41b65</a>
+      )
+    </li>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">WideNavigationRailArrangement</code>
+      API in favor of
+      <code translate="no" dir="ltr">Arrangement.Vertical</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Id034135613504c56601b4101f95633c1e3089d08">Id0341</a>
+      )
+    </li>
+    <li>
+      Add a new
+      <code translate="no" dir="ltr">VerticalSlider @Composable</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2bfba20f1848252c3daabae8f5e944eef96af4b8">I2bfba</a>
+      )
+    </li>
+    <li>
+      Add a new Track
+      <code translate="no" dir="ltr">@Composable</code>
+      that allows specifying custom external track corners and track icons. (
+      <a href="https://android-review.googlesource.com/#/q/I436a423b79bf88f6243fa91e02797b509996a2dc">I436a4</a>
+      )
+    </li>
+    <li>
+      Update the floating toolbar APIs to use the
+      <code translate="no" dir="ltr">FloatingToolbarColors</code>
+      object instead of a single container color. (
+      <a href="https://android-review.googlesource.com/#/q/I9a054e407d8f3518c289a1a09924ce871ad0b400">I9a054</a>
+      )
+    </li>
+    <li>
+      Add and use new experimental annotation
+      <code translate="no" dir="ltr">ExperimentalMaterial3ComponentOverrideApi</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ia1eaf5578ad029fc94c5aee60146e6aebc36ca2a">Ia1eaf</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Modifier.indicatorLine</code>
+      now takes a shape for the text field to handle clipping. (
+      <a href="https://android-review.googlesource.com/#/q/I8c5f31cc77134107ae7895a273895f71ee6b2cc6">I8c5f3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/380704151">b/380704151</a>
+      )
+    </li>
+    <li>
+      Rename the experimental
+      <code translate="no" dir="ltr">FloatingAppBar</code>
+      functions to
+      <code translate="no" dir="ltr">FloatingToolbar</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I1dbf88e729754da6848ed3ad571c6854812bdd57">I1dbf8</a>
+      )
+    </li>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">floatingToolbarVerticalNestedScroll</code>
+      that can be attached to a scrollable container to update the floating toolbar expansion state based on a scroll motion that crosses a threshold. (
+      <a href="https://android-review.googlesource.com/#/q/I6d65f467fb88e31233dbb9a266d8aed70d5aea32">I6d65f</a>
+      )
+    </li>
+    <li>
+      Introducing a new API for creating a floating toolbar with an attached Floating Action Button (FAB). The API provides flexible customization options, allowing you to arrange the toolbar horizontally or vertically and place the FAB at the start or end of the toolbar. (
+      <a href="https://android-review.googlesource.com/#/q/I9e3508dd059b8f6d4c5fd220d9b756ea4829d962">I9e350</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix a Snackbar accessibility issue that caused it to announce itself on dismiss when
+      <code translate="no" dir="ltr">TalkBack</code>
+      is on. (
+      <a href="https://android-review.googlesource.com/#/q/I9db535aa1aadc875b1f9712c352e0d40c6f73fc5">/I9db53</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Commonized
+      <code translate="no" dir="ltr">BasicTooltip</code>
+      in foundation and
+      <code translate="no" dir="ltr">BasicTooltip/Tooltip</code>
+      in material3. (
+      <a href="https://android-review.googlesource.com/#/q/Ifc2e61bf8dac507072ec7e52a803f40422367c68">Ifc2e6</a>
+      )
+    </li>
+  </ul>

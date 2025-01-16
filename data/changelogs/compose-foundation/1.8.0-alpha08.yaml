@@ -1,0 +1,83 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.8.0-alpha08
+releaseDate: 2025-01-15
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0-alpha08" data-text="Version 1.8.0-alpha08" tabindex="-1">Version 1.8.0-alpha08</h3>
+  <p>January 15, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.8.0-alpha08</code>
+    is released. Version 1.8.0-alpha08 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/46295bc0b75a16f452e8e0090e8de41073d4dbb6..ad66672b42ec1e9359219e82b7f8189d03df40f5/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      AutoSize: Renamed
+      <code translate="no" dir="ltr">AutoSize</code>
+      to
+      <code translate="no" dir="ltr">TextAutoSize</code>
+      and published APIs that enable creating custom
+      <code translate="no" dir="ltr">TextAutoSize</code>
+      implementations. See
+      <code translate="no" dir="ltr">TextAutoSizeSample</code>
+      for an example of a custom text auto size implementation. (
+      <a href="https://android-review.googlesource.com/#/q/I85756591bf459504a338a1e42c18b2d175c4561a">I85756</a>
+      )
+    </li>
+    <li>
+      Moved the
+      <code translate="no" dir="ltr">DetectTapGesturesEnableNewDispatchingBehavior</code>
+      feature flag to
+      <code translate="no" dir="ltr">ComposeFoundationFlags</code>
+      and renamed it to
+      <code translate="no" dir="ltr">isDetectTapGesturesImmediateCoroutineDispatchEnabled</code>
+      . The old flag is deprecated and will now delegate to
+      <code translate="no" dir="ltr">ComposeFoundationFlags.isDetectTapGesturesImmediateCoroutineDispatchEnabled</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/I629321d209cfc727992fbb57db6f82d58e09771a">I62932</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Enabled
+      <code translate="no" dir="ltr">DetectTapGesturesEnableNewDispatchingBehavior</code>
+      by default.
+      <code translate="no" dir="ltr">TapGestureDetector</code>
+      APIs now use the new dispatching behavior (immediate dispatch) by default. (
+      <a href="https://android-review.googlesource.com/#/q/I9f2bc726cffd87500d10962c067541d8add69b63">I9f2bc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/369648479">b/369648479</a>
+      )
+    </li>
+    <li>
+      Fixed the
+      <code translate="no" dir="ltr">requiredWidth/Height/Size</code>
+      modifiers to properly handle intrinsic sizes. (
+      <a href="https://android-review.googlesource.com/#/q/Ie3d7dbd737fa3162a58feca8a596134a4baf201d">Ie3d7d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/368113212">b/368113212</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Commonized
+      <code translate="no" dir="ltr">BasicTooltip</code>
+      in foundation and
+      <code translate="no" dir="ltr">BasicTooltip/Tooltip</code>
+      in material3. (
+      <a href="https://android-review.googlesource.com/#/q/Ifc2e61bf8dac507072ec7e52a803f40422367c68">Ifc2e6</a>
+      )
+    </li>
+    <li>
+      Added a new Clipboard interface and a composition local for it. (
+      <a href="https://android-review.googlesource.com/#/q/I808099e232564d551aeeb8ed09e74ab62d9354ed">I80809</a>
+      )
+    </li>
+  </ul>

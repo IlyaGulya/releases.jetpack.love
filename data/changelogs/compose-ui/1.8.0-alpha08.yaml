@@ -1,0 +1,109 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.8.0-alpha08
+releaseDate: 2025-01-15
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0-alpha08" data-text="Version 1.8.0-alpha08" tabindex="-1">Version 1.8.0-alpha08</h3>
+  <p>January 15, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.8.0-alpha08</code>
+    is released. Version 1.8.0-alpha08 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/46295bc0b75a16f452e8e0090e8de41073d4dbb6..ad66672b42ec1e9359219e82b7f8189d03df40f5/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Making
+      <code translate="no" dir="ltr">AutofillManager</code>
+      an abstract class. (
+      <a href="https://android-review.googlesource.com/#/q/I0a3b0c533ca7d05ed2125c5657f1936f971e0991">I0a3b0</a>
+      )
+    </li>
+    <li>
+      Fixed several focus-related issues, including crashes when IME tries to focus on
+      <code translate="no" dir="ltr">ComposeView</code>
+      without focusable items, focus change within child
+      <code translate="no" dir="ltr">AndroidViews</code>
+      , and focus request leaving an
+      <code translate="no" dir="ltr">AndroidView</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia03c3c04dc9fd9d55d8fcae6b15e15cb2384f467">Ia03c3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/369256395">b/369256395</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/378570682">b/378570682</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/376142752">b/376142752</a>
+      )
+    </li>
+    <li>
+      Change
+      <code translate="no" dir="ltr">FocusEnterExitScope.cancelFocus()</code>
+      to
+      <code translate="no" dir="ltr">cancelFocusChange()</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I89959589e5302fbda9782426938cade81a96f65e">I89959</a>
+      )
+    </li>
+    <li>
+      You may now calculate Composable occlusions with
+      <code translate="no" dir="ltr">RectInfo.calculateOcclusions()</code>
+      .
+    </li>
+    <li>
+      Added extension function on
+      <code translate="no" dir="ltr">DelegatableNode</code>
+      to register a listener for global layout changes. (
+      <a href="https://android-review.googlesource.com/#/q/I68b59e47e171889766c809343a0126844c66d905">I68b59</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      The activity that is used as the host for the composable under test when using
+      <code translate="no" dir="ltr">ComposeContentTestRule.setContent</code>
+      now uses the theme
+      <code translate="no" dir="ltr">Theme.Material.Light.NoActionBar</code>
+      , to avoid the
+      <code translate="no" dir="ltr">ActionBar</code>
+      from overlapping with test content when targeting SDK 35. To opt out of this behavior, you can remove the dependency on
+      <code translate="no" dir="ltr">ui-test-manifest</code>
+      and add an activity entry in your test app's AndroidManifest.xml for
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      with the theme of your choice. (
+      <a href="https://android-review.googlesource.com/#/q/I7ae1bd28f5e341dafc07442b35ee4249793d257d">I7ae1b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/383368165">b/383368165</a>
+      )
+    </li>
+    <li>
+      Resource fonts with the same variation settings will now avoid over-caching causing the incorrect variation settings to be applied. (
+      <a href="https://android-review.googlesource.com/#/q/If3dff4ea44e33b1ed80bc7fb5057923a088f1678">If3dff</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/372044241">b/372044241</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AnnotatedString.fromHtml</code>
+      now supports
+      <code translate="no" dir="ltr">&lt;ul&gt;/&lt;li&gt;</code>
+      tags. (
+      <a href="https://android-review.googlesource.com/#/q/I7c2fe1717e72b66da4b2613efbeeb7b6f5ebb44e">I7c2fe</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/299662276">b/299662276</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/139326648">b/139326648</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Added a new Clipboard interface and a composition local for it. (
+      <a href="https://android-review.googlesource.com/#/q/I808099e232564d551aeeb8ed09e74ab62d9354ed">I80809</a>
+      )
+    </li>
+  </ul>
