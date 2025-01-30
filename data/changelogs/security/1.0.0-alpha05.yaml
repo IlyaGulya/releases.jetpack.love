@@ -1,0 +1,66 @@
+libraryId: security
+groupId: androidx.security
+version: 1.0.0-alpha05
+releaseDate: 2025-01-29
+#language=html
+changelogHtml: |
+  <h3 id="security-state-1.0.0-alpha05" data-text="Version 1.0.0-alpha05" tabindex="-1">Version 1.0.0-alpha05</h3>
+  <p>January 29, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.security:security-state:1.0.0-alpha05</code>
+    is released. Version 1.0.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9130b719318a69f2f3eaf82c32b131232fd721cb..4c47131cd5b50c3091fc0874eb606aaac5b168fa/security/security-state">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      The package names of the default system modules were added to the library's manifest to allow client apps to get the Device SPL for System Modules. (
+      <a href="https://android-review.googlesource.com/#/q/Ic259c7214ec22804c37f6bae2d48fa74579156b4">Ic259c</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">SecurityStateManager</code>
+      to
+      <code translate="no" dir="ltr">SecurityStateManagerCompat</code>
+      , added additional documentation for public properties and functions, and made
+      <code translate="no" dir="ltr">getComponentSecurityPatchLevel</code>
+      and
+      <code translate="no" dir="ltr">getVulnerabilityReportUrl</code>
+      static methods. (
+      <a href="https://android-review.googlesource.com/#/q/I44a0c76d7c91dc3a60f44758ce0d27e0432a1203">I44a0c</a>
+      )
+    </li>
+    <li>
+      The Update Availability functionality (
+      <code translate="no" dir="ltr">listAvailableUpdates()</code>
+      and
+      <code translate="no" dir="ltr">getAvailableSecurityPatchLevel()</code>
+      methods) has been removed from the API surface for now and is planned to return in a future update to the library. (
+      <a href="https://android-review.googlesource.com/#/q/Idbc5e5ec03b8434cb2f93e238ec1cc06fe1b1d04">Idbc5e</a>
+      )
+    </li>
+    <li>
+      Accessing Vendor SPL is now guarded by a compile-time flag that is disabled by default until a future update to the library. (
+      <a href="https://android-review.googlesource.com/#/q/I45b58d0673b66bbeb29faf12035e318c06dcccc8">I45b58</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">getGlobalSecurityState()</code>
+      now returns the global security state from the system service for SDK 35+. (
+      <a href="https://android-review.googlesource.com/#/q/I7b9dac324d0b24748e586c26600914037c2960c5">I7b9da</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a crash that occurred when trying to get the Published SPL for Kernel on older versions of Android where published Kernel LTS versions aren't available. (
+      <a href="https://android-review.googlesource.com/#/q/I93dff60460799818203a1272e5b1e1a0df970f00">I93dff</a>
+      )
+    </li>
+  </ul>

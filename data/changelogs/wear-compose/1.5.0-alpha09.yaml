@@ -1,0 +1,51 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.5.0-alpha09
+releaseDate: 2025-01-29
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha09" data-text="Version 1.5.0-alpha09" tabindex="-1">Version 1.5.0-alpha09</h3>
+  <p>January 29, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.5.0-alpha09</code>
+    is released. Version 1.5.0-alpha09 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ad66672b42ec1e9359219e82b7f8189d03df40f5..c9a90c7caa35af354574d7b598d32c9ae22b39de/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      On
+      <code translate="no" dir="ltr">CurvedTextStyle</code>
+      , we have split letter spacing into clockwise letter spacing and counter clockwise letter spacing. This is required because clockwise letters fan out from the baseline whereas counter-clockwise letters fan in (so larger letter spacing is needed) (
+      <a href="https://android-review.googlesource.com/#/q/I4b848bfc0b7603e5110798b6fa5c7c925d461e77">I4b848</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">CompositionLocal</code>
+      <code translate="no" dir="ltr">LocalReduceMotion</code>
+      has been simplified to return a Boolean instead of a
+      <code translate="no" dir="ltr">ReduceMotion</code>
+      object. The
+      <code translate="no" dir="ltr">ReduceMotion</code>
+      interface has now been deprecated. Previous invocations such as
+      <code translate="no" dir="ltr">LocalReduceMotion.current.enabled()</code>
+      can be replaced with
+      <code translate="no" dir="ltr">LocalReduceMotion.current</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I4937fdaa4f8e77d00530f860b57e83ffd17ee5b0">I4937f</a>
+      )
+    </li>
+    <li>
+      In
+      <code translate="no" dir="ltr">PagerDefaults</code>
+      ,
+      <code translate="no" dir="ltr">snapAnimationSpec</code>
+      has been renamed to
+      <code translate="no" dir="ltr">SnapAnimationSpec</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I20c9aa8c1bad2c91db546f25c450c45467703dc4">I20c9a</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,56 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.9.0-alpha09
+releaseDate: 2025-01-29
+#language=html
+changelogHtml: |
+  <h3 id="2.9.0-alpha09" data-text="Version 2.9.0-alpha09" tabindex="-1">Version 2.9.0-alpha09</h3>
+  <p>January 29, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.9.0-alpha09</code>
+    is released. Version 2.9.0-alpha09 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/46295bc0b75a16f452e8e0090e8de41073d4dbb6..3671eefdf920941dd90f135e8dd0caf9fd4cb14c/lifecycle">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">MutableStateSerializer</code>
+      for serializing
+      <code translate="no" dir="ltr">androidx.compose.runtime.MutableState</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Idfc489d9313461bddd0046052d0f6a41644e7712">Idfc48</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/378895074">b/378895074</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Replace overloaded
+      <code translate="no" dir="ltr">SavedStateHandle.saved()</code>
+      delegate functions with default parameters (
+      <a href="https://android-review.googlesource.com/#/q/Icd1c1e64c3df58fc7505bef99494ef168a0268bb">Icd1c1</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AbstractSavedStateViewModelFactory</code>
+      is deprecated as it creates a
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      for every
+      <code translate="no" dir="ltr">ViewModel</code>
+      , causing unnecessary overhead. Use
+      <code translate="no" dir="ltr">ViewModelProvider.Factory</code>
+      with
+      <code translate="no" dir="ltr">CreationExtras.createSavedStateHandle</code>
+      instead for more efficient
+      <code translate="no" dir="ltr">ViewModel</code>
+      creation. (
+      <a href="https://android-review.googlesource.com/#/q/Ia920b66ccabde85a105cf4e6f80aa980270098ee">Ia920b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/388590327">b/388590327</a>
+      )
+    </li>
+  </ul>

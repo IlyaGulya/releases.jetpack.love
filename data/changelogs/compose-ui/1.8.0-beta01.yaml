@@ -1,0 +1,104 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.8.0-beta01
+releaseDate: 2025-01-29
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0-beta01" data-text="Version 1.8.0-beta01" tabindex="-1">Version 1.8.0-beta01</h3>
+  <p>January 29, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.8.0-beta01</code>
+    is released. Version 1.8.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c80a82c4ab50276ac6c1a8d9b9175c9fdbb0d1b8..80c9eca8dc00a6ae7188bf5f2beaf129b79de243/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ContextualFlowRow</code>
+      and
+      <code translate="no" dir="ltr">ContextualFlowColumn</code>
+      have been marked as deprecated. This experimental component was introduced in 1.7 and had not yet been stabilized, and the implementation has been deemed undesirable. In the future, a component solving the use cases this component was meant to solve may be provided.
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">FlowRow</code>
+          and
+          <code translate="no" dir="ltr">FlowColumn</code>
+          have experimental overloads that were introduced in 1.7 that include an
+          <code translate="no" dir="ltr">overflow</code>
+          parameter. The use of this parameter has been deprecated, and the overloads without this parameter can be used instead. The default "overflow" behavior for these overloads will be "Clip", as it was since its introduction.
+        </li>
+        <li>
+          Many use cases for
+          <code translate="no" dir="ltr">ContextualFlowRow</code>
+          can be accomplished using FlowRow, but we acknowledge that is not true in full generality.
+          <code translate="no" dir="ltr">ContextualFlowRow</code>
+          is completely implementable in user-space, and one can attempt to copy its implementation and adapt if desired. In the future, we hope to solve these use cases in a different way. (
+          <a href="https://android-review.googlesource.com/#/q/Ibafec7f7926d2060f7551910264d5dd51637cafc">Ibafec</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SemanticsNodeInteraction.semanticsId()</code>
+      has been removed. Use
+      <code translate="no" dir="ltr">SemanticsNodeInteraction.fetchSemanticsNode().id</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/Ie397a87c7e8bfd754474ebbb03c26f4a3215ba52">Ie397a</a>
+      )
+    </li>
+    <li>
+      The old autofill APIs are deprecated. Use the new semantics based API instead. (
+      <a href="https://android-review.googlesource.com/#/q/I943fffca639a172cf1db71a57c7a4aa7e74883cb">I943ff</a>
+      )
+    </li>
+    <li>
+      Rewrite
+      <code translate="no" dir="ltr">requestAutofill</code>
+      API to exist outside of autofill manager. (
+      <a href="https://android-review.googlesource.com/#/q/Id1929e5264d1a4a86b937236ee9357529f79fc71">Id1929</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed focus issue where
+      <code translate="no" dir="ltr">requestFocus()</code>
+      with a nonsensical
+      <code translate="no" dir="ltr">previouslyFocusedRect</code>
+      parameter (related to the focus direction) would skip past a
+      <code translate="no" dir="ltr">ComposeView</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ifdc2f17b23620d1ae14848624f447f84cc1b0b5d">Ifdc2f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/388590015">b/388590015</a>
+      )
+    </li>
+    <li>
+      Fixed an occasional NPE when using
+      <code translate="no" dir="ltr">GraphicsLayer.record { this@ContentDrawScope.drawContent() }</code>
+      . If you are recording
+      <code translate="no" dir="ltr">drawContent()</code>
+      in this way, make sure to use the
+      <code translate="no" dir="ltr">GraphicsLayer#record</code>
+      extension function inside
+      <code translate="no" dir="ltr">DrawScope</code>
+      , and not the member function on
+      <code translate="no" dir="ltr">GraphicsLayer</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I75fc026069666b61cdd7e5c377fa4da706f985d8">I75fc0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/389046242">b/389046242</a>
+      )
+    </li>
+    <li>
+      Fix text layout with ellipsis sometimes translating incorrectly during animations, see
+      <a href="https://issuetracker.google.com/issues/389707025">b/389707025</a>
+      for more info (
+      <a href="https://android-review.googlesource.com/#/q/Ie55b173dee87596cd270788794b3c0e5e20a0dc6">Ie55b1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/389707025">b/389707025</a>
+      )
+    </li>
+  </ul>

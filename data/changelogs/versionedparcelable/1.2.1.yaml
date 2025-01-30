@@ -1,0 +1,46 @@
+libraryId: versionedparcelable
+groupId: androidx.versionedparcelable
+version: 1.2.1
+releaseDate: 2025-01-29
+#language=html
+changelogHtml: |
+  <h3 id="versionedparcelable-1.2.1" data-text="Version 1.2.1" tabindex="-1">Version 1.2.1</h3>
+  <p>January 29, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.versionedparcelable:versionedparcelable:1.2.1</code>
+    is released. Version 1.2.1 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5fad42d44b65dfac68191ccd49e22d418b82c625..bed62b26ea4f47707c9610421bfed533c6830c58/versionedparcelable/versionedparcelable">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">VersionedParcelable</code>
+      to avoid class init during the initial stages of unparceling, which prevents externally-controlled inputs from executing unexpected code in static initialization blocks for non-
+      <code translate="no" dir="ltr">VersionedParcelable</code>
+      classes already present in the application classpath. (
+      <a href="https://android-review.googlesource.com/#/q/Icceed9dfc7c78434d78336f2f606fc0530133d7c">Icceed</a>
+      )
+    </li>
+    <li>
+      This library now uses
+      <a href="https://jspecify.dev/">JSpecify nullness annotations</a>
+      , which are type-use. Kotlin developers should use the following compiler arguments to enforce correct usage:
+      <code translate="no" dir="ltr">-Xjspecify-annotations=strict, -Xtype-enhancement-improvements-strict-mode</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ibc3284a4b99a39636c4ec08e448ffbe434473e77">Ibc328</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326456246">b/326456246</a>
+      )
+    </li>
+    <li>
+      Removed manual outlining of access to new platform APIs since this happens automatically via API modeling when using R8 with AGP 7.3 or later (e.g. R8 version 3.3) and for all builds when using AGP 8.1 or later (e.g. D8 version 8.1). Clients who are not using AGP are advised to update to D8 version 8.1 or later. See
+      <a href="https://medium.com/androiddevelopers/mitigating-soft-verification-issues-in-r8-and-d8-7e9e06827dfd">this article</a>
+      for more details. (
+      <a href="https://android-review.googlesource.com/#/q/Ia60e0ab9f0fd613883a772c8aa34e27cc986cae8">Ia60e0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/345472586">b/345472586</a>
+      )
+    </li>
+  </ul>

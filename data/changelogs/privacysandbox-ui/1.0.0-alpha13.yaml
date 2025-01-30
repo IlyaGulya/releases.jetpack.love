@@ -1,0 +1,77 @@
+libraryId: privacysandbox-ui
+groupId: androidx.privacysandbox
+version: 1.0.0-alpha13
+releaseDate: 2025-01-29
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha13" data-text="Version 1.0.0-alpha13" tabindex="-1">Version 1.0.0-alpha13</h3>
+  <p>January 29, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.privacysandbox.ui:ui-client:1.0.0-alpha13</code>
+    ,
+    <code translate="no" dir="ltr">androidx.privacysandbox.ui:ui-core:1.0.0-alpha13</code>
+    , and
+    <code translate="no" dir="ltr">androidx.privacysandbox.ui:ui-provider:1.0.0-alpha13</code>
+    are released. Version 1.0.0-alpha13 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/46295bc0b75a16f452e8e0090e8de41073d4dbb6..4c47131cd5b50c3091fc0874eb606aaac5b168fa/privacysandbox/ui">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added a Composable object called
+      <code translate="no" dir="ltr">SandboxedSdkUi</code>
+      which can be used to display remote content within a Compose UI. This object utilizes existing
+      <code translate="no" dir="ltr">SandboxedSdkView</code>
+      concepts for session management and event listeners. (
+      <a href="https://android-review.googlesource.com/#/q/I009cfe94ac9e612dcbdfd95b05e5b703549ece1b">I009cf</a>
+      )
+    </li>
+    <li>
+      Changed the
+      <code translate="no" dir="ltr">SandboxedUiAdapter.openSession</code>
+      signature to include a new
+      <code translate="no" dir="ltr">SessionConstants</code>
+      parameter which replaces the previous
+      <code translate="no" dir="ltr">windowInputToken</code>
+      . This parameter is to be used to pass values which will be constant for the lifetime of the
+      <code translate="no" dir="ltr">SandboxedUiAdapter.Session</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ibc0df73a948497e97133a108dd1383d681e2b4d0">Ibc0df</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I2843561492332167c544cdbaa25748fb1cfb0233">I28435</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">SessionObserver</code>
+      events are not sent for
+      <code translate="no" dir="ltr">SandboxedSdkUi</code>
+      when it is scrolled.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SandboxedSdkUi</code>
+      is not clipped by parent views when it is in Z-above mode.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Remove deprecated
+      <code translate="no" dir="ltr">SDKActivityLauncher</code>
+      code (
+      <a href="https://android-review.googlesource.com/#/q/I49a4f10521bbbb602f04a6e2a1511eb73651c564">I49a4f</a>
+      )
+    </li>
+    <li>
+      Separated observer factory registration logic from
+      <code translate="no" dir="ltr">SandboxedUiAdapter</code>
+      by adding a new
+      <code translate="no" dir="ltr">SessionObserverFactoryRegistry</code>
+      interface. (
+      <a href="https://android-review.googlesource.com/#/q/I245ccecf4ca306dd070b63005ac58e5feaf3bd67">I245cc</a>
+      )
+    </li>
+  </ul>

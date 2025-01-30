@@ -1,0 +1,49 @@
+libraryId: sqlite
+groupId: androidx.sqlite
+version: 2.5.0-alpha13
+releaseDate: 2025-01-29
+#language=html
+changelogHtml: |
+  <h3 id="2.5.0-alpha13" data-text="Version 2.5.0-alpha13" tabindex="-1">Version 2.5.0-alpha13</h3>
+  <p>January 29, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.sqlite:sqlite-*:2.5.0-alpha13</code>
+    is released. Version 2.5.0-alpha13 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/46295bc0b75a16f452e8e0090e8de41073d4dbb6..f383921582ae43bfe6fb2f11d71b8ace3f9ceb65/sqlite">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">androidx.sqlite.use</code>
+      which is now replaced by Kotlin's
+      <code translate="no" dir="ltr">AutoCloseable.use</code>
+      in the stdlib. (
+      <a href="https://android-review.googlesource.com/#/q/I470f02620d43bbe641c58e3fc3637119e8c44532">I470f0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/315461431">b/315461431</a>
+      )
+    </li>
+    <li>
+      The library is now compiled with Kotlin 2.0 and will require at least 2.0 in projects to be used. (
+      <a href="https://android-review.googlesource.com/#/q/I8efb015c88682921780370c8bed5931d9933a319">I8efb0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/315461431">b/315461431</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/384600605">b/384600605</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Move the native library loading of
+      <code translate="no" dir="ltr">BundledSQLiteDriver</code>
+      to be lazy and when the first connection is opened to avoid the possibility of performing IO in the main thread. (
+      <a href="https://android-review.googlesource.com/#/q/4f69d19088dae47b6a7bcf454ea22f7e2da78e92">I78e92</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/363985585">b/363985585</a>
+      )
+    </li>
+  </ul>

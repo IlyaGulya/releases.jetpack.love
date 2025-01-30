@@ -1,0 +1,196 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.0.0-alpha32
+releaseDate: 2025-01-29
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha32" data-text="Version 1.0.0-alpha32" tabindex="-1">Version 1.0.0-alpha32</h3>
+  <p>January 29, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material3:1.0.0-alpha32</code>
+    is released. Version 1.0.0-alpha32 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ad66672b42ec1e9359219e82b7f8189d03df40f5..c9a90c7caa35af354574d7b598d32c9ae22b39de/wear/compose/compose-material3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      On
+      <code translate="no" dir="ltr">CurvedTextStyle</code>
+      , we have split letter spacing into clockwise letter spacing and counter clockwise letter spacing. This is required because clockwise letters fan out from the baseline whereas counter-clockwise letters fan in (so larger letter spacing is needed) (
+      <a href="https://android-review.googlesource.com/#/q/I4b848bfc0b7603e5110798b6fa5c7c925d461e77">I4b848</a>
+      )
+    </li>
+    <li>
+      We have updated
+      <code translate="no" dir="ltr">IconButtonShapes</code>
+      ,
+      <code translate="no" dir="ltr">IconToggleButtonShapes</code>
+      ,
+      <code translate="no" dir="ltr">TextButtonShapes</code>
+      and
+      <code translate="no" dir="ltr">TextToggleButtonShapes</code>
+      to improve consistency across Material3 libraries. This change also introduces shape caching to reduce the number of allocations. (
+      <a href="https://android-review.googlesource.com/#/q/I049fc4f322281710114b23fac428c772fde23952">I049fc</a>
+      )
+    </li>
+    <li>
+      We have removed the
+      <code translate="no" dir="ltr">pressedShapeCornerSizeFraction</code>
+      parameter from the
+      <code translate="no" dir="ltr">variantAnimatedShape</code>
+      method in
+      <code translate="no" dir="ltr">IconToggleButton</code>
+      and
+      <code translate="no" dir="ltr">TextToggleButton</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I58a6502478362e0aafdd287712f8a648659a1e7c">I58a65</a>
+      )
+    </li>
+    <li>
+      We are introducing improvements to curved text rendering (including
+      <code translate="no" dir="ltr">TimeText</code>
+      ) that are incompatible with non-round screens. Non-round screen support is also no longer part of the Wear OS requirements, see the
+      <a href="/design/ui/wear/guides/foundations/getting-started">Getting Started guide</a>
+      for more information. (
+      <a href="https://android-review.googlesource.com/#/q/I1cc1c7fb6f0d77bd51190a933556dd046ce179cf">I1cc1c</a>
+      )
+    </li>
+    <li>
+      We have updated
+      <code translate="no" dir="ltr">ButtonGroup</code>
+      ’s
+      <code translate="no" dir="ltr">ButtonGroupScope</code>
+      , replacing the DSL-based
+      <code translate="no" dir="ltr">ButtonGroupItem</code>
+      with
+      <code translate="no" dir="ltr">Modifier.weight</code>
+      ,
+      <code translate="no" dir="ltr">Modifier.minWidth</code>
+      and
+      <code translate="no" dir="ltr">Modifier.enlargeOnPress</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I16c3c2c9bccc7871b337f39d36c90875396fd530">I16c3c</a>
+      )
+    </li>
+    <li>
+      In the
+      <code translate="no" dir="ltr">ButtonGroup</code>
+      API, we have updated the new modifier-based
+      <code translate="no" dir="ltr">ButtonGroupScope</code>
+      :
+      <code translate="no" dir="ltr">enlargeOnPress</code>
+      is now called
+      <code translate="no" dir="ltr">animateWidth</code>
+      , and it takes an
+      <code translate="no" dir="ltr">InteractionSource</code>
+      , rather than
+      <code translate="no" dir="ltr">MutableInteractionSource</code>
+      because it is not necessary to mutate it. We have also added public constant
+      <code translate="no" dir="ltr">ButtonGroupDefaults.DefaultMinWidth</code>
+      , the default minimum width of buttons in a
+      <code translate="no" dir="ltr">ButtonGroup</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie27ec626de18bf944c727f4fb342a5f98024aa7d">Ie27ec</a>
+      )
+    </li>
+    <li>
+      We have updated
+      <code translate="no" dir="ltr">ListHeaderDefaults.contentColor</code>
+      to start with a lowercase letter as it is a composable property (
+      <a href="https://android-review.googlesource.com/#/q/I125a5e4185f253bf5001b7c57afceb40097a524f">I125a5</a>
+      )
+    </li>
+    <li>
+      We have added a content description parameter to
+      <code translate="no" dir="ltr">SliderDefaults.DecreaseIcon</code>
+      and
+      <code translate="no" dir="ltr">SliderDefaults.IncreaseIcon</code>
+      , with suitable default values (
+      <a href="https://android-review.googlesource.com/#/q/I2e1a715f294a477636e7ad4cbace002a88e1f9e5">I2e1a7</a>
+      )
+    </li>
+    <li>
+      We have renamed the
+      <code translate="no" dir="ltr">spacing</code>
+      parameter in
+      <code translate="no" dir="ltr">Picker</code>
+      and
+      <code translate="no" dir="ltr">PickerGroup</code>
+      to
+      <code translate="no" dir="ltr">verticalSpacing</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ib75cc51725e2215dbe7e71e7d4dcb3c49322716b">Ib75cc</a>
+      )
+    </li>
+    <li>
+      We have removed
+      <code translate="no" dir="ltr">ConfirmationDialogDefaults.successText</code>
+      and
+      <code translate="no" dir="ltr">failureText</code>
+      because it is expected that callers of
+      <code translate="no" dir="ltr">ConfirmationDialog</code>
+      will provide strings with more context. Also renamed
+      <code translate="no" dir="ltr">confirmationCurvedText</code>
+      to
+      <code translate="no" dir="ltr">confirmationDialogCurvedText</code>
+      . Finally, renamed the Dialog
+      <code translate="no" dir="ltr">show</code>
+      parameter to visible for consistency with other recent updates to dialogs. (
+      <a href="https://android-review.googlesource.com/#/q/I100744310090e84c5c68e994ca257fdf79d3431c">I10074</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">IconButton</code>
+      renamed
+      <code translate="no" dir="ltr">disabledImageOpacity</code>
+      to
+      <code translate="no" dir="ltr">DisabledImageOpacity</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I5f94a733a11dd685355e12be0c95d8c9ddc257df">I5f94a</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We have fixed a bug in
+      <code translate="no" dir="ltr">EdgeButton</code>
+      animation so that the correct size is used in each frame (
+      <a href="https://android-review.googlesource.com/#/q/Id3b585de3b160013f4690d9edfd9f1b51a18c427">Id3b58</a>
+      )
+    </li>
+    <li>
+      Fixed an issue with
+      <code translate="no" dir="ltr">animateContentSize</code>
+      not working with
+      <code translate="no" dir="ltr">Button</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib18a0fccadfec00160612b9491036eb153b151de">Ib18a0</a>
+      )
+    </li>
+    <li>
+      We have changed the Title Large type scale to have font size
+      <code translate="no" dir="ltr">18dp</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ic9d52e7563e79219c26e61460ebbc98b6ad90bbf">Ic9d52</a>
+      )
+    </li>
+    <li>
+      We have updated
+      <code translate="no" dir="ltr">AlertDialog</code>
+      spacing and icon size (
+      <a href="https://android-review.googlesource.com/#/q/Iac28cf56e885b8244af3338717a4e81e5235925b">Iac28c</a>
+      )
+    </li>
+    <li>
+      We have fixed inconsistencies in large screen breakpoints (screens at and above 225dp are large screen) (
+      <a href="https://android-review.googlesource.com/#/q/I364740bdaa47854557dcf9247e5ec8fb2ad04315">I36474</a>
+      )
+    </li>
+    <li>
+      Fixed a minor bug in button positioning (
+      <a href="https://android-review.googlesource.com/#/q/I952c26fd830a5f2fed8675e28a215c2d37948bfa">I952c2</a>
+      )
+    </li>
+  </ul>

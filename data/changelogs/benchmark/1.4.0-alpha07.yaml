@@ -1,0 +1,116 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.4.0-alpha07
+releaseDate: 2025-01-29
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha07" data-text="Version 1.4.0-alpha07" tabindex="-1">Version 1.4.0-alpha07</h3>
+  <p>January 29, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.4.0-alpha07</code>
+    is released. Version 1.4.0-alpha07 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4c47131cd5b50c3091fc0874eb606aaac5b168fa/benchmark">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">BaselineProfileRule</code>
+      now introduces a
+      <code translate="no" dir="ltr">collectWithResults(...)</code>
+      API which includes a list of paths to the computed profiles. (
+      <a href="https://android-review.googlesource.com/#/q/I056f8d0e0c339398b6bd6cc4dde922aa5178a475">I056f8</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">androidx.benchmark.measureRepeatedOnMainThread.throwOnDeadline</code>
+      instrumentation argument, which can be set to false to disable the throw on deadline behavior of
+      <code translate="no" dir="ltr">measureRepeatedOnMainThread</code>
+      for local testing. Not otherwise recommended, as this increases the likelihood of ANRs during tests. (
+      <a href="https://android-review.googlesource.com/#/q/Idbeecc1394b11395946d6e2bdf4187940a1099a0">Idbeec</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/353226476">b/353226476</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">@JvmOverloads</code>
+      to
+      <code translate="no" dir="ltr">MicrobenchmarkConfig</code>
+      constructor. (
+      <a href="https://android-review.googlesource.com/#/q/I13fd37e4c79e3c1262592712edb465f518c2440e">I13fd3</a>
+      )
+    </li>
+    <li>
+      Refactored
+      <code translate="no" dir="ltr">BenchmarkRule</code>
+      to be built on top of coroutines, and support better
+      <code translate="no" dir="ltr">yield()</code>
+      behavior. This refactor removed several experimental
+      <code translate="no" dir="ltr">BenchmarkState</code>
+      APIs, but will be followed by replacements as needed. Additionally, added
+      <code translate="no" dir="ltr">runWithMeasurementDisabled</code>
+      to clarify behavior (all measurement is paused). In the future,
+      <code translate="no" dir="ltr">runWithTimingDisabled</code>
+      will be deprecated. (
+      <a href="https://android-review.googlesource.com/#/q/I19837fc604b9e308957fc01ed009c0e921b8fe28">I19837</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/389149423">b/389149423</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/311242861">b/311242861</a>
+      )
+    </li>
+    <li>
+      Move
+      <code translate="no" dir="ltr">PerfettoTraceProcessor</code>
+      to
+      <code translate="no" dir="ltr">TraceProcessor</code>
+      in a new
+      <code translate="no" dir="ltr">androidx.benchmark:benchmark-traceprocessor</code>
+      artifact, and make most of its API non-experimental. Any custom
+      <code translate="no" dir="ltr">TraceMetric</code>
+      or anything reading from traces will need to update to the new
+      <code translate="no" dir="ltr">TraceProcessor</code>
+      import. The new
+      <code translate="no" dir="ltr">TraceProcessor</code>
+      API works exactly like the old one, but is a standalone interface library (somewhat analogous to the
+      <code translate="no" dir="ltr">androidx.sqlite</code>
+      layer from Room) with an Android-specific implementation built into macrobenchmark. The new artifact can be used on JVM as well, but currently you'll need to start your own copy of the
+      <code translate="no" dir="ltr">TraceProcessor</code>
+      binary and offer a port to connect to it on. (
+      <a href="https://android-review.googlesource.com/#/q/I3a7675f25f4425745b6f255dcd1a0cec81a068ba">I3a767</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I6256342f25d3f00ef864cf14b75a7159c6a40573">I62563</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/381134564">b/381134564</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Throw a clearer error message when
+      <code translate="no" dir="ltr">MacrobenchmarkScope.startActivityAndWait</code>
+      fails to launch the target process (potentially due to a crash in the target process), instead of the more ambiguous 'Unable to confirm activity launch completion' message (
+      <a href="https://android-review.googlesource.com/#/q/I3539b64f0ca064f6771bdbd8a92d374407e4a1d7">I3539b</a>
+      )
+    </li>
+    <li>
+      Fixed several syntax errors in Kotlin samples, and syntax highlighting in several Java / build.gradle samples. (
+      <a href="https://android-review.googlesource.com/#/q/Ib38080138d6eec79635262dd0713764c6468521a">Ib3808</a>
+      )
+    </li>
+    <li>
+      Clarified
+      <code translate="no" dir="ltr">ArtMetric</code>
+      and
+      <code translate="no" dir="ltr">CaptureInfo</code>
+      parameter docs. (
+      <a href="https://android-review.googlesource.com/#/q/I96e60d9c17bef4a4663b4318c52aa5a005f27de4">I96e60</a>
+      )
+    </li>
+  </ul>
