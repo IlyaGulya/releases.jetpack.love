@@ -1,0 +1,144 @@
+libraryId: browser
+groupId: androidx.browser
+version: 1.9.0-alpha01
+releaseDate: 2025-01-29
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0-alpha01" data-text="Version 1.9.0-alpha01" tabindex="-1">Version 1.9.0-alpha01</h3>
+  <p>January 29, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.browser:browser:1.9.0-alpha01</code>
+    is released. Version 1.9.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f1d7b329086e978fafe165ca234df67796d9a92e..4c47131cd5b50c3091fc0874eb606aaac5b168fa/browser/browser">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added browser connection/session support to Auth Tab. (
+      <a href="https://android-review.googlesource.com/#/q/I6e47b7a841c377f28cce259de332996500261133">I6e47b</a>
+      )
+    </li>
+    <li>
+      Added a new API
+      <code translate="no" dir="ltr">CustomTabsSession#isEphemeralBrowsingSupported</code>
+      that determines whether or not the ephemeral browsing is supported (
+      <a href="https://android-review.googlesource.com/#/q/Ie4deaf150c7383d103f35d53e8d2b58347c2a658">Ie4dea</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/384548523">b/384548523</a>
+      )
+    </li>
+    <li>
+      Added color scheme params support to Auth Tab APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I630e1b376ce3cd83f87dba53ab4b93c5c1d5ff5f">I630e1</a>
+      )
+    </li>
+    <li>
+      Added experimental ephemeral browsing option to Custom Tabs (
+      <a href="https://android-review.googlesource.com/#/q/I9549d6225412bc794c14a3287032dd05641e66dd">I9549d</a>
+      )
+    </li>
+    <li>
+      Updated experimental Auth Tab APIs (
+      <a href="https://android-review.googlesource.com/#/q/I8b6748d73a92c44e501b7a102e654391de068628">I8b674</a>
+      )
+    </li>
+    <li>
+      Add new API to check if the Custom Tabs provider supports multi-network. (
+      <a href="https://android-review.googlesource.com/#/q/I4307ac67e44c1a759dc8a9a26f71a11d957b5d5e">I4307a</a>
+      )
+    </li>
+    <li>
+      Add new service intent filter category to support multi-network. (
+      <a href="https://android-review.googlesource.com/#/q/I4354aab54371a98f7704f04628ec5600e88d24d3">I4354a</a>
+      )
+    </li>
+    <li>
+      Add new API to set/get the bound network when launching a URL over a custom tab. (
+      <a href="https://android-review.googlesource.com/#/q/I493e126cdc9ff645cc75d3ff5fa5ee3fb1a08f8f">I493e1</a>
+      )
+    </li>
+    <li>
+      Added experimental Auth Tab APIs (
+      <a href="https://android-review.googlesource.com/#/q/I9b4d43500679ee37e2c1b67db23f92f036122e17">I9b4d4</a>
+      )
+    </li>
+    <li>
+      New experimental APIs for
+      <code translate="no" dir="ltr">PendingSession</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ib40e5d1e94c4907e3757a6cbd39c6bab821e0fdf">Ib40e5</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Updated AuthTabIntent Javadocs (
+      <a href="https://android-review.googlesource.com/#/q/I2490cc67381b5ceb8291dfd46186975df5fe5032">I2490c</a>
+      )
+    </li>
+    <li>
+      Fixed session support in Auth Tab (
+      <a href="https://android-review.googlesource.com/#/q/I4e280651edcc598641d9fba7af08b11dac0c9fe9">I4e280</a>
+      )
+    </li>
+    <li>
+      This library now uses
+      <a href="https://jspecify.dev/">JSpecify nullness annotations</a>
+      , which are type-use. Kotlin developers should use the following compiler arguments to enforce correct usage:
+      <code translate="no" dir="ltr">-Xjspecify-annotations=strict, -Xtype-enhancement-improvements-strict-mode</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ic7bf5fdbbe82b84a4a02d6eb8f1d808eaf026479">Ic7bf5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326456246">b/326456246</a>
+      )
+    </li>
+    <li>
+      Removed manual outlining of access to new platform APIs since this happens automatically via API modeling when using R8 with AGP 7.3 or later (e.g. R8 version 3.3) and for all builds when using AGP 8.1 or later (e.g. D8 version 8.1). Clients who are not using AGP are advised to update to D8 version 8.1 or later. See
+      <a href="https://medium.com/androiddevelopers/mitigating-soft-verification-issues-in-r8-and-d8-7e9e06827dfd">this article</a>
+      for more details. (
+      <a href="https://android-review.googlesource.com/#/q/I9496cfaeb50a5c484fbee6521b74a0605fb013dc">I9496c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/345472586">b/345472586</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Introduce a new IPC call
+      <code translate="no" dir="ltr">ICustomTabsService#prefetchWithMultipleUrls</code>
+      to avoid multiple IPC calls for single URLs. (
+      <a href="https://android-review.googlesource.com/#/q/Ie502555df6938e94add4611b71d6b9496ee22c9c">Ie5025</a>
+      )
+    </li>
+    <li>
+      Make
+      <code translate="no" dir="ltr">CustomTabsSession#prefetch</code>
+      propagate
+      <code translate="no" dir="ltr">CustomTabsSession</code>
+      ’s session
+      <code translate="no" dir="ltr">id(mID)</code>
+      to
+      <code translate="no" dir="ltr">CustomTabsService</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4ec7b0410988299c9f2cedfa9a1e14f3d887f210">I4ec7b</a>
+      )
+    </li>
+    <li>
+      Add a new experimental API
+      <code translate="no" dir="ltr">CustomTabsSession#prefetch(List&lt;Uri&gt;, PrefetchOptions)</code>
+      , which overloads the existing API to accept multiple URLs. (
+      <a href="https://android-review.googlesource.com/#/q/I54f357cc4f070b666bbff75610bd72ac5ffef0d4">I54f35</a>
+      )
+    </li>
+    <li>
+      Add a new experimental API
+      <code translate="no" dir="ltr">CustomTabsSession#prefetch(Uri, PrefetchOptions)</code>
+      , which tries to prefetch the main page (without subresources) for future navigations. (
+      <a href="https://android-review.googlesource.com/#/q/I340cf20cf10d1fa124c07d609146de860b0d2cd6">I340cf</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_18_2" data-text="Version 1.8" tabindex="-1">Version 1.8</h2>
