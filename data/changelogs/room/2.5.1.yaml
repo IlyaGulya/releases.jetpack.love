@@ -28,8 +28,10 @@ changelogHtml: |
       )
     </li>
     <li>
-      Better handling of the reentrant case in Room's
+      Better handling of the reentrant case in
       <code translate="no" dir="ltr">acquireTransactionThread()</code>
+      of
+      <code translate="no" dir="ltr">Room</code>
       is now available. (
       <a href="https://android.googlesource.com/platform/frameworks/support/+/219f98b7526323e0fac23b6e84136419ba4768df">219f98b</a>
       ). During a suspending transaction, Room uses a thread from the transaction executor, starts an event loop in it and dispatches suspending database operations to it so they are all encapsulated within the transaction coroutine. It is usually expected that the transaction thread is different from the one starting the transaction, but in some cases they are the same. To handle such reentrant cases the
