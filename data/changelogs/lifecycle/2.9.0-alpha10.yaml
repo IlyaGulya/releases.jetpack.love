@@ -1,0 +1,42 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.9.0-alpha10
+releaseDate: 2025-02-12
+#language=html
+changelogHtml: |
+  <h3 id="2.9.0-alpha10" data-text="Version 2.9.0-alpha10" tabindex="-1">Version 2.9.0-alpha10</h3>
+  <p>February 12, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.9.0-alpha10</code>
+    is released. Version 2.9.0-alpha10 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3671eefdf920941dd90f135e8dd0caf9fd4cb14c..679b78391f81554a53123f7dfb1150b72c183307/lifecycle">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Move
+      <code translate="no" dir="ltr">MutableStateSerializer</code>
+      to
+      <code translate="no" dir="ltr">savedstate-compose</code>
+      from
+      <code translate="no" dir="ltr">lifecycle-viewmodel-compose</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4f690e41dc5619d185784409170943abeb0f0550">I4f690</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/378895074">b/378895074</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Adds a new Lint issue for calling
+      <code translate="no" dir="ltr">Lifecycle::currentState</code>
+      in composition, instead suggesting using
+      <code translate="no" dir="ltr">currentStateAsalue().value</code>
+      to ensure that changes in the Lifecycle state correctly cause recomposition. Thanks Steven Schoen! (
+      <a href="https://android-review.googlesource.com/#/q/Iad484fad72149f67f263fc3e0d4799e939e93f95">Iad484</a>
+      )
+    </li>
+  </ul>
