@@ -1,0 +1,100 @@
+libraryId: xr-compose
+groupId: androidx.xr
+version: 1.0.0-alpha02
+releaseDate: 2025-02-12
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha02" data-text="Version 1.0.0-alpha02" tabindex="-1">Version 1.0.0-alpha02</h3>
+  <p>February 12, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.compose:compose:1.0.0-alpha02</code>
+    and
+    <code translate="no" dir="ltr">androidx.xr.compose:compose-testing:1.0.0-alpha02</code>
+    are released. Version 1.0.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e2e2729abc59df52d40af80a8bbfe010c02455c6..a96c4899cab90642c7b1d722dc1f3b45f56e7b82/xr/compose">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>The Activity Panel can now scrim its content when a Spatial Dialog is activated.</li>
+    <li>
+      The
+      <code translate="no" dir="ltr">Orbiter</code>
+      API is now usable in
+      <code translate="no" dir="ltr">SubspaceComposable</code>
+      contexts and will attach Orbiters to their nearest
+      <code translate="no" dir="ltr">SubspaceLayout</code>
+      -based composable parent.
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">LayoutCoordinatesAwareModifierNode</code>
+      to allow custom positioning-based modifiers.
+    </li>
+    <li>
+      Added attach/detach lifecycle methods to
+      <code translate="no" dir="ltr">SubspaceModifier.Node</code>
+      .
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">scaleWithDistance</code>
+      to the movable modifier. When
+      <code translate="no" dir="ltr">scaleWithDistance</code>
+      is enabled, the subspace element moved will grow or shrink. It will also maintain any explicit scale that it had before movement.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">SessionCallbackProvider</code>
+      in favor of
+      <code translate="no" dir="ltr">SpatialCapabilities</code>
+      .
+    </li>
+  </ul>
+  <p><strong>Other changes</strong></p>
+  <ul>
+    <li>
+      Reduced
+      <code translate="no" dir="ltr">minSDK</code>
+      to 24. All Jetpack XR APIs continue to require API 34 at runtime.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Orbiter</code>
+      <code translate="no" dir="ltr">EdgeOffset.inner</code>
+      ,
+      <code translate="no" dir="ltr">EdgeOffset.outer</code>
+      , and
+      <code translate="no" dir="ltr">EdgeOffset.overlap</code>
+      constructors are no longer
+      <code translate="no" dir="ltr">@Composable</code>
+      methods, which allows them to be used in non-composable contexts.
+    </li>
+    <li>Update Spatial Elevation Levels to match the latest UX spec.</li>
+    <li>
+      Implement
+      <code translate="no" dir="ltr">SubspaceSemanticsInfo</code>
+      interface into
+      <code translate="no" dir="ltr">MeasurableLayout</code>
+      .
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">SubspaceModifierElement</code>
+      to
+      <code translate="no" dir="ltr">SubspaceModifierNodeElement</code>
+      .
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      Fixes to stabilize
+      <code translate="no" dir="ltr">SubspaceModifier</code>
+      ordering.
+      <code translate="no" dir="ltr">SubspaceModifier</code>
+      should behave more reliably. Offset, rotate, scale, movable, and resizable modifier should now be usable in any order.
+    </li>
+  </ul>

@@ -1,0 +1,256 @@
+libraryId: xr-scenecore
+groupId: androidx.xr
+version: 1.0.0-alpha02
+releaseDate: 2025-02-12
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha02" data-text="Version 1.0.0-alpha02" tabindex="-1">Version 1.0.0-alpha02</h3>
+  <p>February 12, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.scenecore:scenecore:1.0.0-alpha02</code>
+    and
+    <code translate="no" dir="ltr">androidx.xr.scenecore:scenecore-testing:1.0.0-alpha02</code>
+    are released. Version 1.0.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e2e2729abc59df52d40af80a8bbfe010c02455c6..a96c4899cab90642c7b1d722dc1f3b45f56e7b82/xr/scenecore">these commits</a>
+    .
+  </p>
+  <p><strong>Upcoming breaking change affecting apps built before 1.0.0-alpha02</strong></p>
+  <ul>
+    <li>
+      Factory methods have been moved from the
+      <code translate="no" dir="ltr">Session</code>
+      class to a companion method on each respective type:
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">Session.createActivityPanelEntity(Dimensions, String, Activity, Pose)</code>
+          has been deleted and replaced with
+          <code translate="no" dir="ltr">ActivityPanelEntity.create(Session, Dimensions, String, Pose)</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">Session.createAnchorEntity(Anchor)</code>
+          has been deleted and replaced with
+          <code translate="no" dir="ltr">AnchorEntity.create(Session, Anchor)</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">Session.createAnchorEntity(Dimensions, Int, Int, Duration)</code>
+          has been deleted and replaced with
+          <code translate="no" dir="ltr">AnchorEntity.create(Session, Dimensions, Int, Int, Duration)</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">Session.createEntity(String, Pose)</code>
+          has been deleted and replaced with
+          <code translate="no" dir="ltr">ContentlessEntity.create(Session, String, Pose)</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">Session.createExrImageResource(String)</code>
+          has been deleted and replaced with
+          <code translate="no" dir="ltr">ExrImage.create(Session, String)</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">Session.createGltfEntity(GltfModel, Pose)</code>
+          has been deleted and replaced with
+          <code translate="no" dir="ltr">GltfModelEntity.create(Session, GltfModel, Pose)</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">Session.createGltfModelResource(String)</code>
+          has been deleted and replaced with
+          <code translate="no" dir="ltr">GltfModel.create(Session, String)</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">Session.createInteractableComponent(Executor, InputEventListener)</code>
+          has been deleted and replaced with
+          <code translate="no" dir="ltr">InteractableComponent.create(Session, Executor, InputEventListener)</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">Session.createMovableComponent(Boolean, Boolean, Set&lt;AnchorPlacement&gt;, Boolean)</code>
+          has been deleted and replaced with
+          <code translate="no" dir="ltr">MovableComponent.create(Session, Boolean, Boolean, Set&lt;AnchorPlacement&gt;, Boolean)</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">Session.createPanelEntity(View, Dimensions, Dimensions, String, Pose)</code>
+          has been deleted and replaced with
+          <code translate="no" dir="ltr">PanelEntity.create(Session, View, Dimensions, Dimensions, String, Pose)</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">Session.createResizableComponent(Dimensions, Dimensions)</code>
+          has been deleted and replaced with
+          <code translate="no" dir="ltr">ResizableComponent.create(Session, Dimensions, Dimensions)</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">Session.createStereoSurfaceEntity(Int, Dimensions, Pose)</code>
+          has been deleted and replaced with
+          <code translate="no" dir="ltr">StereoSurface.create(Session, Int, Dimensions, Pose)</code>
+        </li>
+      </ul>
+    </li>
+    <li>
+      The following deprecated methods were removed:
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">Session.canEmbedActivityPanel(Activity)</code>
+          has been deleted. Use
+          <code translate="no" dir="ltr">getSpatialCapabilities.hasCapabilility(SPATIAL_CAPABILITY_EMBED_ACTIVITY)</code>
+          instead.
+        </li>
+        <li>
+          <code translate="no" dir="ltr">Session.hasSpatialCapability(Int)</code>
+          has been deleted. It has been replaced in favor of using
+          <code translate="no" dir="ltr">getSpatialCapabilities().hasCapability()</code>
+          as a more compartmentalized way to check for the presence of spatial capabilities since
+          <code translate="no" dir="ltr">getSpatialCapabilities()</code>
+          returns a
+          <code translate="no" dir="ltr">SpatialCapabilities</code>
+          object.
+        </li>
+        <li>
+          <code translate="no" dir="ltr">Session.requestFullSpaceMode()</code>
+          has been deleted and replaced with
+          <code translate="no" dir="ltr">SpatialEnvironment.requestFullSpaceMode()</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">Session.requestHomeSpaceMode()</code>
+          has been deleted and replaced with
+          <code translate="no" dir="ltr">SpatialEnvironment.requestHomeSpaceMode()</code>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Session.setFullSpaceMode(Bundle)</code>
+      and
+      <code translate="no" dir="ltr">Session.setFullSpaceModeWithEnvironmentInherited(Bundle)</code>
+      have been moved to extension functions. Developer files will need to add the new imports for access:
+      <ul>
+        <li><code translate="no" dir="ltr">import androidx.xr.scenecore.setFullSpaceMode</code></li>
+        <li><code translate="no" dir="ltr">import androidx.xr.scenecore.setFullSpaceModeWithEnvironmentInherited</code></li>
+      </ul>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Session.setPreferredAspectRatio(Activity, Float)</code>
+      has been moved to an extension function. Developer files will need to add the new import for access:
+      <ul>
+        <li><code translate="no" dir="ltr">import androidx.xr.scenecore.setPreferredAspectRatio</code></li>
+      </ul>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Session.getEntitiesOfType(Class&lt;out T&gt;)</code>
+      and
+      <code translate="no" dir="ltr">Session.getEntityForRtEntity(RtEntity)</code>
+      have been moved to extension functions. Developer files will need to add the new imports for access:
+      <ul>
+        <li><code translate="no" dir="ltr">import androidx.xr.scenecore.getEntitiesOfType</code></li>
+        <li><code translate="no" dir="ltr">import androidx.xr.scenecore.getEntityForRtEntity</code></li>
+      </ul>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Session.unpersistAnchor(Anchor)</code>
+      has been deleted
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Session.createPersistedAnchorEntity(UUID)</code>
+      has been deleted
+    </li>
+  </ul>
+  <p><strong>Known issues</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">PanelEntity.setCornerRadius()</code>
+      and
+      <code translate="no" dir="ltr">ActivityPanelEntity.setCornerRadius()</code>
+      may not take effect until the panel is next moved, this can be mitigated by moving the panel to its current position
+    </li>
+    <li>
+      When
+      <code translate="no" dir="ltr">BoundsChanged</code>
+      is called on the
+      <code translate="no" dir="ltr">ActivitySpace</code>
+      , some
+      <code translate="no" dir="ltr">ActivityPose</code>
+      s may not have been correctly updated. It will be updated on the following
+      <code translate="no" dir="ltr">OnSpaceUpdated</code>
+      call on the
+      <code translate="no" dir="ltr">ActivitySpace</code>
+    </li>
+  </ul>
+  <p><strong>Breaking &amp; behavioral changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">PanelEntity</code>
+      and
+      <code translate="no" dir="ltr">ActivityPanelEntity</code>
+      will have a default corner radius of 32dp or smaller if the panel has a width or height smaller than 32dp
+    </li>
+  </ul>
+  <p><strong>New APIs and capabilities</strong></p>
+  <ul>
+    <li>
+      Introduces
+      <code translate="no" dir="ltr">StereoSurface.CanvasShape</code>
+      , which allows for the creation of
+      <code translate="no" dir="ltr">Spherical</code>
+      and
+      <code translate="no" dir="ltr">Hemispherical</code>
+      canvases for rendering immersive media.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">StereoSurfaceEntity.create()</code>
+      now accepts a
+      <code translate="no" dir="ltr">CanvasShape</code>
+      parameter. (This parameter is currently ignored, but will be used in a future release)
+    </li>
+    <li>
+      <code translate="no" dir="ltr">StereoSurfaceEntity.create()</code>
+      no longer takes a
+      <code translate="no" dir="ltr">Dimensions</code>
+      parameter. Applications should control the size of the canvas through setting the
+      <code translate="no" dir="ltr">CanvasShape</code>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">StereoSurfaceEntity</code>
+      has a
+      <code translate="no" dir="ltr">CanvasShape</code>
+      member which can be set dynamically.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">StereoSurfaceEntity.dimensions</code>
+      is now a read-only property; applications should set the
+      <code translate="no" dir="ltr">CanvasShape</code>
+      to change dimensions.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">StereoSurfaceEntity</code>
+      now allows the
+      <code translate="no" dir="ltr">StereoMode</code>
+      to be re-set after construction.
+    </li>
+  </ul>
+  <p><strong>Other changes</strong></p>
+  <ul>
+    <li>Reduced compile-time minSDK to 24. All Jetpack XR APIs continue to require API 34 at runtime.</li>
+    <li>
+      <code translate="no" dir="ltr">SceneCore</code>
+      's Session factory (
+      <code translate="no" dir="ltr">Session.create</code>
+      ) no longer launches an intent to acquire the
+      <code translate="no" dir="ltr">SCENE_UNDERSTANDING</code>
+      permission. Instead, the client application must explicitly request the permissions from the user, before attempting to create the anchors. Anchor creation will fail if the permission is not granted by the user.
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">getActivitySpacePose()</code>
+      has been fixed to account for the
+      <code translate="no" dir="ltr">ActivitySpace</code>
+      scale by returning translation values in scaled meters rather than always returning non-scaled meters.
+      <code translate="no" dir="ltr">transformPoseTo</code>
+      now also uses the right units to compute coordinate changes when the
+      <code translate="no" dir="ltr">ActivitySpace</code>
+      is involved in the source or destination.
+    </li>
+    <li>
+      The skybox will now be set to an all-black skybox whenever a null skybox preference is passed using
+      <code translate="no" dir="ltr">setSpatialEnvironmentPreference(new SpatialEnvironmentPreference(null, geom))</code>
+      . To revert to the system default skybox and geometry, use
+      <code translate="no" dir="ltr">setSpatialEnvironmentPreference(null).</code>
+    </li>
+  </ul>

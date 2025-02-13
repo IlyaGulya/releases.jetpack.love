@@ -1,0 +1,146 @@
+libraryId: wear-protolayout
+groupId: androidx.wear
+version: 1.3.0-alpha08
+releaseDate: 2025-02-12
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha08" data-text="Version 1.3.0-alpha08" tabindex="-1">Version 1.3.0-alpha08</h3>
+  <p>February 12, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.protolayout:protolayout-*:1.3.0-alpha08</code>
+    is released. Version 1.3.0-alpha08 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4c47131cd5b50c3091fc0874eb606aaac5b168fa..24c00eb294d9cda579d8d6e48a29497fe0f8d3f7/wear/protolayout">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">FontSetting</code>
+      list parameter for Material3 text. (
+      <a href="https://android-review.googlesource.com/#/q/Ic102d8e67624b4379690dc6144f5f0a164ae60f4">Ic102d</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">DynamicDataMap</code>
+      class which
+      <code translate="no" dir="ltr">StateBuilder</code>
+      now supports for a better type safe Kotlin API for app states (
+      <a href="https://android-review.googlesource.com/#/q/I012ba7f0d41d0e9d7da410167857f06b55526f53">I012ba</a>
+      )
+    </li>
+    <li>
+      Added factory methods such as
+      <code translate="no" dir="ltr">intAppDataKey</code>
+      for easier creation of
+      <code translate="no" dir="ltr">AppDataKey</code>
+      objects (
+      <a href="https://android-review.googlesource.com/#/q/Icea2aef015631a8e5db95bf64369a721476f18d0">Icea2a</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">DynamicDataValue</code>
+      now has a
+      <code translate="no" dir="ltr">hasValueOfType(Class&lt;?&gt;)</code>
+      method in addition to
+      <code translate="no" dir="ltr">hasInt/hasColor/</code>
+      .... methods (
+      <a href="https://android-review.googlesource.com/#/q/I4f7a651b21960e8a490e344470ed87975887c7f3">I4f7a6</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">errorDim</code>
+      to the Material3 ProtoLayout
+      <code translate="no" dir="ltr">ColorScheme</code>
+      , for high priority errors or emergency actions such as safety alerts. (
+      <a href="https://android-review.googlesource.com/#/q/Ia17bbb91fbe327cc4ac0e57ba22c5cf2b445fac4">Ia17bb</a>
+      )
+    </li>
+    <li>
+      We have added a guard against a crash when accessing the global reducemotion setting, which was triggered on some platforms where that setting was not provided. (
+      <a href="https://android-review.git.corp.google.com/q/I01e2c1aa38cc435ff02c1364d337f33df057bd08">I01e2c</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">addKeyToValueMapping</code>
+      is renamed to
+      <code translate="no" dir="ltr">addToStateMap</code>
+      and
+      <code translate="no" dir="ltr">DynamicDataMap.put</code>
+      methods are removed as they were redundant. (
+      <a href="https://android-review.googlesource.com/#/q/Ibe9dd9e96cf53e7a394b8996fe3ef546d82317f6">Ibe9dd</a>
+      )
+    </li>
+    <li>
+      Material3 Typography now supports roundness variable axis for system fonts that support this axis. ProtoLayout
+      <code translate="no" dir="ltr">FontSetting</code>
+      supports roundness axis for fonts that support this axis. (
+      <a href="https://android-review.googlesource.com/#/q/I33eb569d1bb26e30fef2681af4ab8b1188a443e5">I33eb5</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">multilineAlignment</code>
+      to alignment in Material3 text method. (
+      <a href="https://android-review.googlesource.com/#/q/I2b66bf21eadebc88ccc4735fde94b895383be9f2">I2b66b</a>
+      )
+    </li>
+    <li>
+      Update the circular progress indicator to be Box type, also specify the
+      <code translate="no" dir="ltr">mainContent</code>
+      in
+      <code translate="no" dir="ltr">constructGraphic</code>
+      to be Box type (
+      <a href="https://android-review.googlesource.com/#/q/I5a3dc270edf5923bd471b1e99db45dc12eff6455">I5a3dc</a>
+      )
+    </li>
+    <li>
+      Better support for using circular progress indicator in graph (
+      <a href="https://android-review.googlesource.com/#/q/I039dbfd70937336db2423259963e78a4855aca8d">I039db</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Allow dynamic values in
+      <code translate="no" dir="ltr">ColorStop</code>
+      and also for start/end angles in
+      <code translate="no" dir="ltr">SweepGradient</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0146d14eaa17e10e6d3012d25348ecd9cc277baa">I0146d</a>
+      )
+    </li>
+    <li>
+      Docs fixes. (
+      <a href="https://android-review.googlesource.com/#/q/I4a63aeb399a23339446e116e09f4f7cf1395af5e">I4a63a</a>
+      )
+    </li>
+    <li>
+      Updated Material 3 components (
+      <code translate="no" dir="ltr">graphicCard</code>
+      and
+      <code translate="no" dir="ltr">avatarButton</code>
+      ) to provide fallback when
+      <code translate="no" dir="ltr">weight</code>
+      expand dimension is not supported (e.g. below API 33). Updated text component to fallback to
+      <code translate="no" dir="ltr">TEXT_OVERFLOW_ELLIPSIZE_END</code>
+      when
+      <code translate="no" dir="ltr">TEXT_OVERFLOW_ELLIPSIZE</code>
+      is not supported by the renderer. (
+      <a href="https://android-review.googlesource.com/#/q/I19e2cd328c6a6ff6022b51b9cab9347527f984ea">I19e2c</a>
+      )
+    </li>
+    <li>
+      Docs update for
+      <code translate="no" dir="ltr">PrimaryLayoutMargins</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ibaf7b9c9f8905d81ac6b89c76ac78e19e5494b1c">Ibaf7b</a>
+      )
+    </li>
+  </ul>

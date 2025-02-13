@@ -1,0 +1,48 @@
+libraryId: xr-arcore
+groupId: androidx.xr
+version: 1.0.0-alpha02
+releaseDate: 2025-02-12
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha02" data-text="Version 1.0.0-alpha02" tabindex="-1">Version 1.0.0-alpha02</h3>
+  <p>February 12, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.arcore:arcore:1.0.0-alpha02</code>
+    is released. Version 1.0.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e2e2729abc59df52d40af80a8bbfe010c02455c6..a96c4899cab90642c7b1d722dc1f3b45f56e7b82/xr/arcore/arcore">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added hand tracking support. Use
+      <code translate="no" dir="ltr">Hand.left</code>
+      and
+      <code translate="no" dir="ltr">Hand.right</code>
+      to access the tracking information.
+    </li>
+    <li>
+      APIs that generate an anchor (
+      <code translate="no" dir="ltr">Anchor.create</code>
+      ,
+      <code translate="no" dir="ltr">Anchor.load</code>
+      ,
+      <code translate="no" dir="ltr">Plane.createAnchor</code>
+      ) now all return
+      <code translate="no" dir="ltr">AnchorCreateResult</code>
+      and properly implement
+      <code translate="no" dir="ltr">AnchorCreateResourcesExhausted</code>
+      .
+    </li>
+  </ul>
+  <p><strong>Bug fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">Anchor.detach</code>
+      no longer causes a fatal crash due to a race condition with the Session update thread.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Anchor.create</code>
+      is more stable when running on an emulator
+    </li>
+  </ul>

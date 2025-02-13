@@ -1,0 +1,94 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.4.0-alpha08
+releaseDate: 2025-02-12
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha08" data-text="Version 1.4.0-alpha08" tabindex="-1">Version 1.4.0-alpha08</h3>
+  <p>February 12, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.4.0-alpha08</code>
+    is released. Version 1.4.0-alpha08 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4c47131cd5b50c3091fc0874eb606aaac5b168fa..f5b23e167495c326c77bb21a1cdada0298ed5599/benchmark">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Moved
+      <code translate="no" dir="ltr">TraceProcessor.runSession()</code>
+      extension APIs to be experimental, as they are likely to move to be concrete constructors eventually on Android. (
+      <a href="https://android-review.googlesource.com/#/q/Ib05284ba1b7250386a1993ae2e7a122b2b9c28d6">Ib0528</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/393640753">b/393640753</a>
+      )
+    </li>
+    <li>
+      Most of the implementation of Startup Insights are now public/experimental, and move to the
+      <code translate="no" dir="ltr">TraceProcessor</code>
+      artifact See
+      <code translate="no" dir="ltr">StartupInsights</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0aa00936ef8919aa2712958a7ea755f3d915ee99">I0aa00</a>
+      )
+    </li>
+    <li>
+      Deprecate
+      <code translate="no" dir="ltr">BenchmarkRule.runWithTimingDisabled {}</code>
+      in favor of
+      <code translate="no" dir="ltr">BenchmarkRule.runWithMeasurementDisabled {}</code>
+      , which more clearly describes the behavior - all metrics are paused. Additionally, expose the
+      <code translate="no" dir="ltr">MicrobenchmarkScope</code>
+      superclass since redeclaring the
+      <code translate="no" dir="ltr">runWithMeasurementDisabled</code>
+      function to open access isn't possible, since it's inline. (
+      <a href="https://android-review.googlesource.com/#/q/I9e23b0dfcff18f162ca0d2517734f3038870b59c">I9e23b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/389149423">b/389149423</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/149979716">b/149979716</a>
+      )
+    </li>
+    <li>
+      Benchmark libraries have moved to Kotlin 2.0. (
+      <a href="https://android-review.googlesource.com/#/q/I9d1e09ba06d9966236338b59cfdc86fc2971956f">I9d1e0</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">androidx.benchmark.startupProfiles.enable</code>
+      instrumentation argument. It is no longer useful, as it can be controlled by
+      <code translate="no" dir="ltr">includeInStartupProfile</code>
+      arg in
+      <code translate="no" dir="ltr">BaselineProfileRule.collect()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I39eb4a83d5d64a9dae4dcdc6db0ac8fc6e5f4121">I39eb4</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Reduced the amount of Microbenchmark internal functions called during profiling to make e.g. Method traces more clear (
+      <a href="https://android-review.googlesource.com/#/q/Ifaed8548554016a97280546473e38ed020ae0760">Ifaed8</a>
+      )
+    </li>
+    <li>
+      Speculative fix for crashes: 'Failed to stop [
+      <code translate="no" dir="ltr">ProcessPid(processName=perfetto, pid=...)</code>
+      ]'. Now Benchmark will log a message instead of crashing when a background Perfetto process isn't able to be stopped before running the benchmark. (
+      <a href="https://android-review.googlesource.com/#/q/I37d3e254f7f3e49c53387dae89bb5bed7d2c9bf5">I37d3e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/323601788">b/323601788</a>
+      )
+    </li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">IllegalStateExceptions</code>
+      with 'Expected
+      <code translate="no" dir="ltr">pm dump-profiles</code>
+      stdout' label that were caused by overly strict output format check. (
+      <a href="https://android-review.googlesource.com/#/q/I358dcbf377999586cea08254232f6b7850aec7bd">I358dc</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,38 @@
+libraryId: room
+groupId: androidx.room
+version: 2.7.0-beta01
+releaseDate: 2025-02-12
+#language=html
+changelogHtml: |
+  <h3 id="2.7.0-beta01" data-text="Version 2.7.0-beta01" tabindex="-1">Version 2.7.0-beta01</h3>
+  <p>February 12, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.7.0-beta01</code>
+    is released. Version 2.7.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f383921582ae43bfe6fb2f11d71b8ace3f9ceb65..24c00eb294d9cda579d8d6e48a29497fe0f8d3f7/room">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix an issue with
+      <code translate="no" dir="ltr">RoomDatabase.inTransaction()</code>
+      opening a closed database when it shouldn’t and should quickly return false if the database is closed (
+      <a href="https://issuetracker.google.com/issues/325432967">b/325432967</a>
+      ).
+    </li>
+    <li>
+      Fix a crash (
+      <code translate="no" dir="ltr">IllegalArgumentException: not a valid name</code>
+      ) in Room’s compiler when processing DAO functions with Kotlin inline / value classes (
+      <a href="https://issuetracker.google.com/issues/388299754">b/388299754</a>
+      ).
+    </li>
+    <li>
+      Include Proguard rules in the JVM artifact of
+      <code translate="no" dir="ltr">room-runtime</code>
+      so that the default constructor of the generated database implementation is not removed since it is used by Room’s default initialization that uses reflection (
+      <a href="https://issuetracker.google.com/issues/392657750">b/392657750</a>
+      ).
+    </li>
+  </ul>
