@@ -1,0 +1,258 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.0.0-alpha33
+releaseDate: 2025-02-26
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha33" data-text="Version 1.0.0-alpha33" tabindex="-1">Version 1.0.0-alpha33</h3>
+  <p>February 26, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material3:1.0.0-alpha33</code>
+    is released. Version 1.0.0-alpha33 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c9a90c7caa35af354574d7b598d32c9ae22b39de..fd7408b73d9aac0f18431c22580d9ab612278b1e/wear/compose/compose-material3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We have removed the label parameter from
+      <code translate="no" dir="ltr">SwipeToRevealScope</code>
+      's
+      <code translate="no" dir="ltr">primaryAction</code>
+      and
+      <code translate="no" dir="ltr">secondaryAction</code>
+      . Custom action semantics should be added to the content of the
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      component directly, by the developer. (
+      <a href="https://android-review.googlesource.com/#/q/Ia67f3a1a96e6bdf3787716a6c35685da9f3f5704">Ia67f3</a>
+      )
+    </li>
+    <li>
+      We have removed the 'Button' prefixes from sizes, text styles and color functions in
+      <code translate="no" dir="ltr">IconToggleButtonDefaults</code>
+      and
+      <code translate="no" dir="ltr">TextToggleButtonDefaults</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I5471df6897fcd89d8266813408e702b24528f24a">I5471d</a>
+      )
+    </li>
+    <li>
+      We have removed the experimental
+      <code translate="no" dir="ltr">LocalMinimumInteractiveComponentEnforcement</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I4ad8a126a765b814d37e5ca379cbb959e3de60fd">I4ad8a</a>
+      )
+    </li>
+    <li>
+      We have replaced the
+      <code translate="no" dir="ltr">PickerGroupScope</code>
+      DSL with a composable. As such, we removed the
+      <code translate="no" dir="ltr">pickerGroupItem</code>
+      method from
+      <code translate="no" dir="ltr">PickerGroupScope</code>
+      , and instead added
+      <code translate="no" dir="ltr">@Composable PickerGroupItem</code>
+      that should be used to add a Picker to
+      <code translate="no" dir="ltr">PickerGroup</code>
+      . We also updated the type of
+      <code translate="no" dir="ltr">PickerGroup</code>
+      'content' parameter to
+      <code translate="no" dir="ltr">@Composable PickerGroupScope.() -&gt; Unit</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic6aec8993bc2ca066610d9034091ef52ccc14fd3">Ic6aec</a>
+      )
+    </li>
+    <li>
+      We have added a
+      <code translate="no" dir="ltr">LevelIndicator</code>
+      overload for fractional values and added a Stepper prefix to those overloads that include a range parameter (which are suitable for use with the Stepper component). (
+      <a href="https://android-review.googlesource.com/#/q/If4234a153ae6219d01e688efa6b58a7e11c4526e">If4234</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      ’s
+      <code translate="no" dir="ltr">TransformationSpec</code>
+      to the API, which allows the definition of the exact transformations happening to the items as they are being scrolled through the TLC. (
+      <a href="https://android-review.googlesource.com/#/q/I21856ef3b85e81a5a493c56f80623a47e49fe661">I21856</a>
+      )
+    </li>
+    <li>
+      We have updated
+      <code translate="no" dir="ltr">IconButtonShapes</code>
+      ,
+      <code translate="no" dir="ltr">IconToggleButtonShapes</code>
+      ,
+      <code translate="no" dir="ltr">TextButtonShapes</code>
+      and
+      <code translate="no" dir="ltr">TextToggleButtonShapes</code>
+      to be consistent with the compose/material3 classes (
+      <a href="https://android-review.googlesource.com/#/q/I5a08132ae2f23ce7ebcac564976d375f432b5c2b">I5a081</a>
+      )
+    </li>
+    <li>
+      We have added an
+      <code translate="no" dir="ltr">overscrollEffect</code>
+      parameter added to
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      ,
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      and
+      <code translate="no" dir="ltr">ScreenScaffold</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0cee8f98e15b7eb79eb9d08314adb2cae465d85a">I0cee8</a>
+      )
+    </li>
+    <li>
+      We have renamed the
+      <code translate="no" dir="ltr">swipeDirection</code>
+      parameter to
+      <code translate="no" dir="ltr">revealDirection</code>
+      in
+      <code translate="no" dir="ltr">rememberRevealState</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7472fa6a6bcb115431b15e4468d8ea986ef9a750">I7472f</a>
+      )
+    </li>
+    <li>
+      Wear Pager now has its own
+      <code translate="no" dir="ltr">PagerScope</code>
+      instead of using Compose
+      <code translate="no" dir="ltr">PagerScope</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I9195b6dfac15785f72d54e0e125f614c2756a7fe">I9195b</a>
+      )
+    </li>
+    <li>
+      We have removed the
+      <code translate="no" dir="ltr">LinearProgressIndicatorContent</code>
+      composable, please use
+      <code translate="no" dir="ltr">LinearProgressIndicator</code>
+      directly so that changes to values are animated by default. (
+      <a href="https://android-review.googlesource.com/#/q/I2c4ad48dc4b5996995affc7642a9c6298b99d99c">I2c4ad</a>
+      )
+    </li>
+    <li>
+      We have removed the
+      <code translate="no" dir="ltr">CircularProgressIndicatorStatic</code>
+      composable and added a public
+      <code translate="no" dir="ltr">DrawScope</code>
+      function
+      <code translate="no" dir="ltr">drawCircularProgressIndicator</code>
+      with the same functionality. Please use
+      <code translate="no" dir="ltr">CircularProgressIndicator</code>
+      directly so that changes are animated by default, but build your own composable from
+      <code translate="no" dir="ltr">drawCircularProgressIndicator</code>
+      if custom animations are needed. (
+      <a href="https://android-review.googlesource.com/#/q/Ie762f09bf0f8b7a1fb26c1abbf1bce0291855ae0">Ie762f</a>
+      )
+    </li>
+    <li>
+      We have reordered the parameters in
+      <code translate="no" dir="ltr">DrawScope.drawCircularProgressIndicator</code>
+      to move up the
+      <code translate="no" dir="ltr">targetProgress</code>
+      parameter. (
+      <a href="https://android-review.googlesource.com/#/q/I8ab92f0c95c61c67a0b9f3d29ae6d01cff7b5b44">I8ab92</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">OpenOnPhoneDialog</code>
+      api was updated for better clarity and consistency with other Dialogs. The
+      <code translate="no" dir="ltr">show</code>
+      parameter was renamed to
+      <code translate="no" dir="ltr">visible</code>
+      and
+      <code translate="no" dir="ltr">curvedText</code>
+      is now provided by the caller instead of having a default value. (
+      <a href="https://android-review.googlesource.com/#/q/Idec2d959e1a9c3bab7ad193c159d68be8a23c194">Idec2d</a>
+      )
+    </li>
+    <li>
+      We have renamed
+      <code translate="no" dir="ltr">openOnPhoneCurvedText</code>
+      to
+      <code translate="no" dir="ltr">openOnPhoneDialogCurvedText</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I65bdd89b778cfdfdbba6f9247b0edbfd166ed66a">I65bdd</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">ScrollIndicatorColors</code>
+      for providing custom colors to
+      <code translate="no" dir="ltr">ScrollIndicator</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I9eb8ce449509ca2310279224d39ac9a7938726d7">I9eb8c</a>
+      )
+    </li>
+    <li>
+      Allow the configuration of the color used to draw a background behind
+      <code translate="no" dir="ltr">TimeText</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I9f5d98496c28d202f618617f4e84386f1c836c11">I9f5d9</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">ArcLarge</code>
+      ,
+      <code translate="no" dir="ltr">ArcMedium</code>
+      and
+      <code translate="no" dir="ltr">ArcSmall</code>
+      typographies to be
+      <code translate="no" dir="ltr">CurvedTextStyle</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Iffc417da1c28b8e67fb17beddbec064dab79c29e">Iffc41</a>
+      )
+    </li>
+    <li>
+      We have removed
+      <code translate="no" dir="ltr">ScreenScaffoldDefaults.contentPaddingWithEdgeButton</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia923ee458b8e84788c8e1a04509a3f5847a03c8e">Ia923e</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">errorDim</code>
+      to the
+      <code translate="no" dir="ltr">ColorScheme</code>
+      , for high priority errors or emergency actions such as safety alerts, failed dialog overlays or stop buttons. (
+      <a href="https://android-review.googlesource.com/#/q/I70998edcd786ed6aef967df3f3a6cd3dc137da25">I70998</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We have pinned
+      <code translate="no" dir="ltr">wear.compose.material3</code>
+      to version 1.15.0 of
+      <code translate="no" dir="ltr">androidx.core.core</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I132e92684b62227e5a676bd5fc160bf2e199d056">I132e9</a>
+      )
+    </li>
+    <li>
+      We have improved Dialog's performance by using the
+      <code translate="no" dir="ltr">AppScaffold</code>
+      to layer dialogs over other screen content (
+      <a href="https://android-review.googlesource.com/#/q/I1b9a418bca6f619ed3d63b339006f56554cc4d18">I1b9a4</a>
+      )
+    </li>
+    <li>
+      Reduced
+      <code translate="no" dir="ltr">EdgeButton</code>
+      's internal vertical padding. (
+      <a href="https://android-review.googlesource.com/#/q/I1a5bbce39d93c540587ea17649bc79f2b1a895ff">I1a5bb</a>
+      )
+    </li>
+    <li>
+      We have added Button semantics to Slider buttons. (
+      <a href="https://android-review.googlesource.com/#/q/I80cc6b76399a179f33888e889fab3c4e147eb459">I80cc6</a>
+      )
+    </li>
+  </ul>

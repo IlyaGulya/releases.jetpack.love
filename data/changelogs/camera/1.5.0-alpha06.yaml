@@ -1,0 +1,109 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.5.0-alpha06
+releaseDate: 2025-02-26
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha06" data-text="Version 1.5.0-alpha06" tabindex="-1">Version 1.5.0-alpha06</h3>
+  <p>February 26, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.5.0-alpha06</code>
+    is released. Version 1.5.0-alpha06 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/74cbb818c9b3bfa4d09302a96cfde2c21c98d693..824a6d81bccbc4bf5286a94e6476d35825adf198/camera">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">CameraInfo.getTorchStrengthLevel</code>
+      ,
+      <code translate="no" dir="ltr">CameraInfo.getMaxTorchStrengthLevel</code>
+      and
+      <code translate="no" dir="ltr">CameraControl.setTorchStrengthLevel</code>
+      to allow customizing the torch brightness (
+      <a href="https://android-review.googlesource.com/#/q/I0087884e137e5a09dc7833980b052a8eae8b85e0">I00878</a>
+      )
+    </li>
+    <li>
+      A new API
+      <code translate="no" dir="ltr">CameraController#setTapToFocusAutoCancelDuration</code>
+      has been added so that users can control the auto-cancellation behavior for
+      <code translate="no" dir="ltr">PreviewView</code>
+      tap-to-focus events. By default, CameraX cancels the focus events after 5 seconds (i.e. camera focus is reset) and this API allows to modify that duration or disable auto-cancellation altogether. (
+      <a href="https://android-review.googlesource.com/#/q/Icf59ac81f40cd7dd73ff431f9211d6bf0fbbaf82">Icf59a</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FLASH_STATE_READY</code>
+      has been renamed to
+      <code translate="no" dir="ltr">NOT_FIRED</code>
+      and the other
+      <code translate="no" dir="ltr">FlashState</code>
+      constant names are simplified for better readability. (
+      <a href="https://android-review.googlesource.com/#/q/I8771d1f6be4f7144de7605e3c07261011e1d4864">I8771d</a>
+      )
+    </li>
+    <li>
+      Exposed Low Light Boost API. Devices running Android 15 or higher can provide support for low-light boost. This feature can automatically adjust the brightness of the preview, video or image analysis streams in low-light conditions. Applications can use the new API to: 1. Use
+      <code translate="no" dir="ltr">CameraInfo#isLowLightBoostSupported</code>
+      to check the feature availability. 2. Use
+      <code translate="no" dir="ltr">CameraControl#enableLowLightBoostAsync</code>
+      to enable the mode when the devices can support it. 3. Use
+      <code translate="no" dir="ltr">CameraInfo#getLowLightBoostState</code>
+      to monitor the low-light boost state. (
+      <a href="https://android-review.googlesource.com/#/q/I937edfd0f715525acc2811c68314deeb40663f22">I937ed</a>
+      )
+    </li>
+    <li>
+      Add compat classes to allow faster non-camera2 querying in camera-feature-combination-query. (
+      <a href="https://android-review.googlesource.com/#/q/Ie97eeb6c1d5ec3b0369025d45c222c2f3a6fae6c">Ie97ee</a>
+      )
+    </li>
+    <li>
+      For
+      <code translate="no" dir="ltr">CameraController</code>
+      tap-to-focus events, a new API
+      <code translate="no" dir="ltr">getTapToFocusInfoState()</code>
+      now exposes the corresponding tap position too by returning a
+      <code translate="no" dir="ltr">LiveData</code>
+      of
+      <code translate="no" dir="ltr">TapToFocusInfo</code>
+      class while the previous
+      <code translate="no" dir="ltr">LiveData&lt;Integer&gt;</code>
+      returning
+      <code translate="no" dir="ltr">getTapToFocusState()</code>
+      API is deprecated in favor of the new API. (
+      <a href="https://android-review.googlesource.com/#/q/I238d26e82c2723c67e2b3add7a7110a5e5a4974f">I238d2</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed the issue that preview stabilization is not applied when preview stabilization is enabled with Extensions. (
+      <a href="https://android-review.googlesource.com/#/q/I24ad778f67fa1f30a3b45eef2682b80d89f3fbde">I24ad7</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">CameraController</code>
+      focus state event not resetting back to
+      <code translate="no" dir="ltr">TAP_TO_FOCUS_NOT_STARTED</code>
+      when CameraX auto-cancels a focus event which happens after 5 seconds by default. (
+      <a href="https://android-review.googlesource.com/#/q/I31954d6bc1d6a136157dc2294d6b08b6f6224db7">I31954</a>
+      )
+    </li>
+    <li>
+      Fixed preview freeze when using Zero Shutter Lag (ZSL) after multiple captures due to unreleased image resources. (
+      <a href="https://android-review.git.corp.google.com/q/Ic3c2a0c5c413ddace554bccbea22072bf82c501c">Ic3c2a</a>
+      )
+    </li>
+    <li>
+      Fixed issues that on some devices UHD videos are red tint when pipeline involves
+      <code translate="no" dir="ltr">OpenGL</code>
+      . (
+      <a href="https://android-review.git.corp.google.com/q/Idcedcb4dde38dc37f83006105a1f92b55979c60e">Idcedc</a>
+      )
+    </li>
+  </ul>
