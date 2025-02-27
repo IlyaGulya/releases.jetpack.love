@@ -1,0 +1,93 @@
+libraryId: privacysandbox-ui
+groupId: androidx.privacysandbox
+version: 1.0.0-alpha14
+releaseDate: 2025-02-26
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha14" data-text="Version 1.0.0-alpha14" tabindex="-1">Version 1.0.0-alpha14</h3>
+  <p>February 26, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.privacysandbox.ui:ui-client:1.0.0-alpha14</code>
+    ,
+    <code translate="no" dir="ltr">androidx.privacysandbox.ui:ui-core:1.0.0-alpha14</code>
+    , and
+    <code translate="no" dir="ltr">androidx.privacysandbox.ui:ui-provider:1.0.0-alpha14</code>
+    are released. Version 1.0.0-alpha14 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4c47131cd5b50c3091fc0874eb606aaac5b168fa..fd7408b73d9aac0f18431c22580d9ab612278b1e/privacysandbox/ui">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      You can now create ‘shared UI’, i.e. UI that can have elements that are client-owned and provider-owned. Shared UI can be hosted using
+      <code translate="no" dir="ltr">SharedUiContainer</code>
+      , which extends
+      <code translate="no" dir="ltr">ViewGroup</code>
+      . New APIs utilize the concept of session management similar to that of
+      <code translate="no" dir="ltr">SandboxedSdkView</code>
+      and
+      <code translate="no" dir="ltr">SandboxedUiAdapter</code>
+      .
+    </li>
+    <li>
+      All APIs added in this release are behind the
+      <code translate="no" dir="ltr">SharedUiPresentationApi</code>
+      <code translate="no" dir="ltr">@RequiresOptIn</code>
+      flag.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added session management and asset registration APIs to
+      <code translate="no" dir="ltr">SharedUiContainer</code>
+      . Session management is implemented using
+      <code translate="no" dir="ltr">SharedUiAdapter</code>
+      introduced in the same release. (
+      <a href="https://android-review.googlesource.com/#/q/Ic60b02e354b9b561732e914599269e06050405e5">Ic60b0</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">SharedUiContainer</code>
+      that can host client-owned and provider-owned UI. It places all of its child views in the top left corner. (
+      <a href="https://android-review.googlesource.com/#/q/Ia7310cc5be45e54912aebee0669aab6152de59bd">Ia7310</a>
+      )
+    </li>
+    <li>
+      Added backwards compatibility support for
+      <code translate="no" dir="ltr">SharedUiAdapter</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I56d7ab5ef8c1630d339b6f1f2375a8b780dc3f33">I56d7a</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">SharedUiAdapter</code>
+      for session management of View containers that can host client-owned and provider-owned UI. Session management logic is similar to that of
+      <code translate="no" dir="ltr">SandboxedUiAdapter</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I501f67b9a1562649e73c1295526c85a81e44580e">I501f6</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Compute viewability when
+      <code translate="no" dir="ltr">onVisibilityAggregated</code>
+      is called. (
+      <a href="https://android-review.googlesource.com/#/q/I91c69f41bbb779cfe4e72d7c3091b52cc627c40b">I91c69</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      When placed inside a
+      <code translate="no" dir="ltr">PoolingContainer</code>
+      ,
+      <code translate="no" dir="ltr">SharedUiContainer</code>
+      closes the session on window detachment.
+    </li>
+  </ul>

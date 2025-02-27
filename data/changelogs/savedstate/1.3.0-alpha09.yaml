@@ -1,0 +1,90 @@
+libraryId: savedstate
+groupId: androidx.savedstate
+version: 1.3.0-alpha09
+releaseDate: 2025-02-26
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha09" data-text="Version 1.3.0-alpha09" tabindex="-1">Version 1.3.0-alpha09</h3>
+  <p>February 26, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.savedstate:savedstate-*:1.3.0-alpha09</code>
+    is released. Version 1.3.0-alpha09 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a25ff290e492e331a1de2799475965f8c1ad8ca0..fd7408b73d9aac0f18431c22580d9ab612278b1e/savedstate">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Add fallback for built-in types, ensuring that all types supported by
+      <code translate="no" dir="ltr">Bundle</code>
+      can be used with
+      <code translate="no" dir="ltr">encodeAsSavedState</code>
+      /
+      <code translate="no" dir="ltr">decodeFromSavedState</code>
+      by default or, for properties in
+      <code translate="no" dir="ltr">@Serializable</code>
+      classes, via the
+      <code translate="no" dir="ltr">@Contextual</code>
+      annotation. (
+      <a href="https://android-review.googlesource.com/#/q/Ic01d267d1f3a18e7a23ec0866076bbd2c940e5e6">Ic01d2</a>
+      )
+    </li>
+    <li>
+      Include support for
+      <code translate="no" dir="ltr">classDiscriminator</code>
+      and
+      <code translate="no" dir="ltr">classDiscriminatorMode</code>
+      on
+      <code translate="no" dir="ltr">SavedStateConfig</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I69b66678ccae14507e0a6d1b8d7d11c5b564ba9f">I69b66</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/395104517">b/395104517</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">SavedStateConfig</code>
+      parameter to
+      <code translate="no" dir="ltr">saved()</code>
+      delegates (
+      <a href="https://android-review.googlesource.com/#/q/I39b3a73d139c1d4c2a5fd01151679252dab67ad0">I39b3a</a>
+      )
+    </li>
+    <li>
+      Makes built-in serializers singleton objects (
+      <a href="https://android-review.googlesource.com/#/q/Ifeee4e8598b390ec32c9ed32c34e3664314ffb73">Ifeee4</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SavedStateConfig</code>
+      properties are now public, enabling other modules to use these configurations. (
+      <a href="https://android-review.googlesource.com/#/q/Ie5f4997bc61932de390da3699339e01b2e91b514">Ie5f49</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/378897438">b/378897438</a>
+      )
+    </li>
+    <li>
+      Support
+      <code translate="no" dir="ltr">@Serializer(with = ...)</code>
+      for
+      <code translate="no" dir="ltr">MutableStateFlowSerializer</code>
+      and
+      <code translate="no" dir="ltr">MutableStateSerializer</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I909533ef1e3eb472677519d3a5590fc20ad1b839">I90953</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">contentDeepToString</code>
+      to
+      <code translate="no" dir="ltr">SavedStateReader</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I14d10bb8f695b786e48c0761f4ff5f1b308635a9">I14d10</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,239 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.5.0-alpha10
+releaseDate: 2025-02-26
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha10" data-text="Version 1.5.0-alpha10" tabindex="-1">Version 1.5.0-alpha10</h3>
+  <p>February 26, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.5.0-alpha10</code>
+    is released. Version 1.5.0-alpha10 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c9a90c7caa35af354574d7b598d32c9ae22b39de..fd7408b73d9aac0f18431c22580d9ab612278b1e/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Make
+      <code translate="no" dir="ltr">SwipeToRevealDefaults</code>
+      public. (
+      <a href="https://android-review.googlesource.com/#/q/I0c34cfd04c26aa9b043657cedcaeafffd84ba3ad">I0c34c</a>
+      )
+    </li>
+    <li>
+      We have replaced the
+      <code translate="no" dir="ltr">swipeToDismissEdgeZoneFraction</code>
+      parameter in
+      <code translate="no" dir="ltr">HorizontalPager</code>
+      . Instead a new parameter,
+      <code translate="no" dir="ltr">gestureInclusion</code>
+      has been introduced which can be used to achieve necessary swipe to dismiss behaviour.
+      <code translate="no" dir="ltr">gestureInclusion</code>
+      takes in an instance of
+      <code translate="no" dir="ltr">GestureInclusion</code>
+      which decides whether the subsequent scroll event should proceed or not. Allowing a gesture means that the Pager consumes it - otherwise, it will be handled elsewhere such as by a swipe-to-dismiss handler. The new default behaviour is to disallow gestures on the leftmost edge of the first page in the Pager, and hence allow swipe to dismiss in this region. All other pages will permit the Pager to consume all gestures, meaning Swipe to dismiss cannot be triggered from them. To achieve Swipe to dismiss behaviour on all pages, simply provide a custom
+      <code translate="no" dir="ltr">GestureInclusion</code>
+      instance (see
+      <code translate="no" dir="ltr">PagerDefaults.disableLeftEdgeOnFirstPage</code>
+      ) that ignores the current page. Another breaking change introduced here is that the Pager component is no longer full screen by default, instead add
+      <code translate="no" dir="ltr">Modifier.fillMaxSize()</code>
+      to achieve this behaviour. (
+      <a href="https://android-review.googlesource.com/#/q/I9d3aae01b9115c898e6994da9143fb499953d2b8">I9d3aa</a>
+      )
+    </li>
+    <li>
+      We have renamed
+      <code translate="no" dir="ltr">createAnchors</code>
+      to
+      <code translate="no" dir="ltr">createRevealAnchors</code>
+      in the swipe-to-reveal API(
+      <a href="https://android-review.googlesource.com/#/q/If599938c86f019ec6b9e9030aeb532fa7bc3bcdb">If5999</a>
+      )
+    </li>
+    <li>
+      We have removed
+      <code translate="no" dir="ltr">RevealScope</code>
+      from the swipe-to-reveal API. (
+      <a href="https://android-review.googlesource.com/#/q/Ie4ad5e77a528cc74b5de46d61892944f22063de2">Ie4ad5</a>
+      )
+    </li>
+    <li>
+      We have removed Revealing and Revealed from
+      <code translate="no" dir="ltr">RevealValue</code>
+      in the swipe-to-reveal API. (
+      <a href="https://android-review.googlesource.com/#/q/I8dbc5512c453eb1f1326c57cb27cca6704b9840e">I8dbc5</a>
+      )
+    </li>
+    <li>
+      We have renamed
+      <code translate="no" dir="ltr">SwipeDirection</code>
+      to
+      <code translate="no" dir="ltr">RevealDirection</code>
+      in the swipe-to-reveal API. (
+      <a href="https://android-review.googlesource.com/#/q/I7472fa6a6bcb115431b15e4468d8ea986ef9a750">I7472f</a>
+      )
+    </li>
+    <li>
+      We have changed the signature of the
+      <code translate="no" dir="ltr">positionalThreshold</code>
+      parameter of
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      's
+      <code translate="no" dir="ltr">rememberRevealState</code>
+      function. (
+      <a href="https://android-review.googlesource.com/#/q/I29c0a41c72f2bec4c7342908db8935f87ac30c89">I29c0a</a>
+      )
+    </li>
+    <li>
+      We have added a new
+      <code translate="no" dir="ltr">overscrollEffect</code>
+      parameter added to
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      ,
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      and
+      <code translate="no" dir="ltr">ScreenScaffold</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0cee8f98e15b7eb79eb9d08314adb2cae465d85a">I0cee8</a>
+      )
+    </li>
+    <li>
+      When using
+      <code translate="no" dir="ltr">PagerDefaults#snapFlingBehaviour</code>
+      , the
+      <code translate="no" dir="ltr">pagerSnapDistance</code>
+      parameter has been replaced with an Int parameter
+      <code translate="no" dir="ltr">maxFlingPages</code>
+      , which can be used to specify the max number of pages the Pager should fling. (
+      <a href="https://android-review.googlesource.com/#/q/I8cfc03982b9f75488c588303bf8da0e160af623b">I8cfc0</a>
+      )
+    </li>
+    <li>
+      Wear Pager now has its own
+      <code translate="no" dir="ltr">PagerScope</code>
+      instead of using Compose Foundation
+      <code translate="no" dir="ltr">PagerScope</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I9195b6dfac15785f72d54e0e125f614c2756a7fe">I9195b</a>
+      )
+    </li>
+    <li>
+      We have added support for
+      <code translate="no" dir="ltr">lineHeight</code>
+      on Curved text (
+      <a href="https://android-review.googlesource.com/#/q/I1c9365e54ae921d20857d43608778b3c82ba15c7">I1c936</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">initialAnchorItemIndex</code>
+      and
+      <code translate="no" dir="ltr">initialAnchorItemOffset</code>
+      to
+      <code translate="no" dir="ltr">TransformingLazyColumnState</code>
+      and
+      <code translate="no" dir="ltr">rememberTransformingLazyColumnState</code>
+      to that the initial scroll position can be specified in
+      <code translate="no" dir="ltr">TransformationLazyColumn</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0a0d5de1c58b18d74ebeb268878a2f90e7f75b90">I0a0d5</a>
+      )
+    </li>
+    <li>
+      Deprecate
+      <code translate="no" dir="ltr">runWithTimingDisabled</code>
+      in favor of
+      <code translate="no" dir="ltr">runWithMeasurementDisabled</code>
+      , which more clearly describes the behavior - all metrics are paused. Additionally, expose the
+      <code translate="no" dir="ltr">MicrobenchmarkScope</code>
+      superclass since redeclaring the
+      <code translate="no" dir="ltr">runWithMeasurementDisabled</code>
+      function to open access isn't possible, since it's inline. (
+      <a href="https://android-review.googlesource.com/#/q/I9e23b0dfcff18f162ca0d2517734f3038870b59c">I9e23b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/389149423">b/389149423</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/149979716">b/149979716</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">TransformingLazyColumnItemScrollProgress.Unspecified</code>
+      to the API to avoid boxing on
+      <code translate="no" dir="ltr">TransformingLazyColumnItemScrollProgress</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0835d09231217027790d80bee70d415b306da1f4">I0835d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Improve Kdoc for
+      <code translate="no" dir="ltr">CurvedTextStyle</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Id45e3b8fb2140bf3c18bb79b3c68a944c75e30da">Id45e3</a>
+      )
+    </li>
+    <li>
+      We have made
+      <code translate="no" dir="ltr">SwipeableV2</code>
+      (part of the
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      implementation) internal instead of public but restricted to library group. (
+      <a href="https://android-review.googlesource.com/#/q/Idbb9489a95105dc65512a977357c5644e13941b9">Idbb94</a>
+      )
+    </li>
+    <li>
+      We have added tests to
+      <code translate="no" dir="ltr">HierarchicalFocusCoordinator</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I1ce54d56ef24665053a6179816aefd70cb9d9453">I1ce54</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/395548918">b/395548918</a>
+      )
+    </li>
+    <li>
+      We have made improvements to
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      in wear compose foundation samples. (
+      <a href="https://android-review.googlesource.com/#/q/I5f307e763f393a6f1f3be8dcb5e10e0b94de3ed0">I5f307</a>
+      )
+    </li>
+    <li>
+      Fix scroll axis semantic data for
+      <code translate="no" dir="ltr">verticalScrollAxisRange</code>
+      in
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      for accessibility (
+      <a href="https://android-review.googlesource.com/#/q/I6812383db7e04a7ed13263915ed8034564b474f2">I68123</a>
+      )
+    </li>
+    <li>
+      Improve performance of rotary haptics on Wear4+ by removing unnecessary background threads (
+      <a href="https://android-review.googlesource.com/#/q/I39cfeaeced8043133254d16fddaf40bd863eca63">I39cfe</a>
+      )
+    </li>
+    <li>
+      Change
+      <code translate="no" dir="ltr">SwipeDismissableNavHost</code>
+      to use
+      <code translate="no" dir="ltr">PredictiveBackNavHost</code>
+      only on API 36 onwards. (
+      <a href="https://android-review.googlesource.com/#/q/I59bedc9a442a9a20deb4dc98c1475fc7c4e136cb">I59bed</a>
+      )
+    </li>
+    <li>
+      We have added a guard against a crash when accessing the reducemotion setting. (
+      <a href="https://android-review.googlesource.com/#/q/I01e2c1aa38cc435ff02c1364d337f33df057bd08">I01e2c</a>
+      )
+    </li>
+    <li>
+      We have implemented prefetching for
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      to reduce jank (
+      <a href="https://android-review.googlesource.com/#/q/Icca88c2ec1de6eeb899267f223585da1ec08fde6">Icca88</a>
+      )
+    </li>
+  </ul>
