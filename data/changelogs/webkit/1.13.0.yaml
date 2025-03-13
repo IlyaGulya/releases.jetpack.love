@@ -1,0 +1,84 @@
+libraryId: webkit
+groupId: androidx.webkit
+version: 1.13.0
+releaseDate: 2025-03-12
+#language=html
+changelogHtml: |
+  <h3 id="1.13.0" data-text="Version 1.13.0" tabindex="-1">Version 1.13.0</h3>
+  <p>March 12, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.webkit:webkit:1.13.0</code>
+    is released. Version 1.13.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/36051bdca2a2e600277c429b62ab94b263a4c49b..41a38e8ec90b022b61301d545a235195bc6a6f9a/webkit/webkit">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.12.0</strong></p>
+  <ul>
+    <li>
+      Introduce a new experimental API for Url prerendering to allow developers to speculative prerender candidate urls resulting in faster navigations. (
+      <a href="https://android-review.googlesource.com/#/q/I0cfe7ac389969422e56721db7a0cf67d6739d5af">I0cfe7</a>
+      )
+    </li>
+    <li>
+      Introducing a set of new APIs to delete browsing data stored by
+      <code translate="no" dir="ltr">WebView</code>
+      . The new APIs in
+      <code translate="no" dir="ltr">WebStorageCompat</code>
+      should be preferred over the existing APIs in
+      <code translate="no" dir="ltr">android.webkit.WebStorage</code>
+      , as they will guarantee deletion of all local storage, including the network cache and cookies, as well as any installed service workers. If new storage APIs are introduced in the future, then these new methods will be updated to include them in the storage deleted. (
+      <a href="https://android-review.googlesource.com/#/q/Iad54f46e2fbb2a7369f2b7191519af0b10525ed7">Iad54f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/382273208">b/382273208</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">setPartitionedCookiesEnabled</code>
+      API. This will allow developers to enable and disable partitioned cookies in
+      <code translate="no" dir="ltr">WebView</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic506a23471946d31b797397e2f71aef0f3ae481a">Ic506a</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ic506a23471946d31b797397e2f71aef0f3ae481a">b/364904765</a>
+      )
+    </li>
+    <li>
+      Add socket tagging API to
+      <code translate="no" dir="ltr">WebView</code>
+      for accounting of
+      <code translate="no" dir="ltr">WebView</code>
+      's network traffic using
+      <code translate="no" dir="ltr">NetworkStatsManager</code>
+      /
+      <code translate="no" dir="ltr">TrafficStats</code>
+      . This feature will only be available from
+      <code translate="no" dir="ltr">WebView</code>
+      M133. (
+      <a href="https://android-review.googlesource.com/#/q/Ica4412c9432ff479ea728c30c09b1d7bf359d0f0">Ica441</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/374932688">b/374932688</a>
+      )
+    </li>
+    <li>
+      Add experimental
+      <code translate="no" dir="ltr">WebView</code>
+      async startup API. (
+      <a href="https://android-review.googlesource.com/#/q/I94b8a3f0c6e11f9e9d157e162173db06d33fae94">I94b8a</a>
+      )
+    </li>
+    <li>
+      URL Prefetching in Profile: Introduced a new API in
+      <code translate="no" dir="ltr">Profile</code>
+      to allow developers to trigger URL prefetching. Prefetch Clearing: Added an API to clear ongoing prefetches.(
+      <a href="https://android-review.googlesource.com/#/q/I42c5c282a7114b8b72e62b2b24f917a0f9b47123">I42c5c</a>
+      )
+    </li>
+    <li>
+      Deprecate
+      <code translate="no" dir="ltr">WebView.startSafeBrowsing</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If5626d9f0bac4f1b04ee9a8f4ebc7f48598c9dac">If5626</a>
+      )
+    </li>
+  </ul>
