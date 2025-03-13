@@ -1,0 +1,71 @@
+libraryId: privacysandbox-ads
+groupId: androidx.privacysandbox
+version: 1.1.0-beta12
+releaseDate: 2025-03-12
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-beta12" data-text="Version 1.1.0-beta12" tabindex="-1">Version 1.1.0-beta12</h3>
+  <p>March 12, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.privacysandbox.ads:ads-adservices:1.1.0-beta12</code>
+    and
+    <code translate="no" dir="ltr">androidx.privacysandbox.ads:ads-adservices-java:1.1.0-beta12</code>
+    are released. Version 1.1.0-beta12 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ccd90a76bd7c4acf4f4f01eca76350e383bc441e..7a145e052ae61e272e91ffe285e9451b8ab71870/privacysandbox/ads">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Custom Audience Priority: We have added a priority field in the custom audience. This allows buyers to specify a priority value in a
+      <code translate="no" dir="ltr">CustomAudience</code>
+      . This value would be used to identify custom audiences which should be included in an auction if the set of buyer custom audiences exceed the per-buyer size limits
+    </li>
+    <li>
+      Seller Configuration: This feature allows sellers to define auction parameters to control payload size and auction participants. The seller auction configuration would allow sellers to specify:
+      <ul>
+        <li>Allowed buyer list</li>
+        <li>
+          For auctions initiated by the given seller, only the buyers in the allowlist would be able to contribute
+          <code translate="no" dir="ltr">CustomAudiences</code>
+          for the auction
+        </li>
+        <li>Per-buyer size limit</li>
+        <li>
+          Sellers could specify a per-buyer limit to regulate the data size uploaded by each buyer into the payload being sent to
+          <code translate="no" dir="ltr">SellerFrontendService</code>
+          . If the buyer exceeds the per-buyer size limit, the
+          <code translate="no" dir="ltr">CustomAudience</code>
+          priority set in buyer payload configuration would be used to get the data in the expected limits.
+        </li>
+        <li>Max size limit for the payload</li>
+        <li>
+          Different sellers might have different resource allocation and might want to set a max size limit for the per-request auction payload. The max size limit would respect the fixed size buckets set by the
+          <code translate="no" dir="ltr">ProtectedAudience</code>
+          API.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Delayed Custom Audience Updates: This feature enables buyers to schedule deferred updates for Custom Audiences. Each update request allows the caller to schedule a delayed update using the new
+      <code translate="no" dir="ltr">scheduleCustomAudienceUpdate()</code>
+      API. For each update, the user can specify sets of Custom Audiences to join or leave.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add Seller Configuration in
+      <code translate="no" dir="ltr">GetAdSelectionRequest</code>
+      API (
+      <a href="https://android-review.googlesource.com/#/q/Ibb5c7779ed444054b54552adf727597b7c31998f">Ibb5c7</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">ScheduleCustomAudienceUpdate</code>
+      API as experimental (
+      <a href="https://android-review.googlesource.com/#/q/I6b905a319902f77eed2a43e9f8a574f1e76a7429">I6b905</a>
+      )
+    </li>
+  </ul>

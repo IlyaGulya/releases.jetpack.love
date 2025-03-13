@@ -1,0 +1,81 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.4.0-alpha09
+releaseDate: 2025-03-12
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha09" data-text="Version 1.4.0-alpha09" tabindex="-1">Version 1.4.0-alpha09</h3>
+  <p>March 12, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.4.0-alpha09</code>
+    is released. Version 1.4.0-alpha09 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f5b23e167495c326c77bb21a1cdada0298ed5599..c4e614557adf2d01e2d5661255e947d10a6fcfad/benchmark">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">TraceProcessor</code>
+      and Session API with closable Handles, for easier usage with custom lifecycles. This is also a step towards enabling easier Coroutine and Java API usage. The extension functions to
+      <code translate="no" dir="ltr">TraceProcessor.runServer {}</code>
+      are now marked experimental, as they're likely to move, and be made non-experimental in the future. (
+      <a href="https://android-review.googlesource.com/#/q/I358b4256110d2b0c4b35bb9f0be4ae2f407f0791">I358b4</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed Benchmark and Baseline Profile capture not working with API 36 due to a change in
+      <code translate="no" dir="ltr">pgrep</code>
+      toybox that now requires
+      <code translate="no" dir="ltr">-a</code>
+      to print the full command line. (
+      <a href="https://android-review.googlesource.com/#/q/Idc991b87153516d5412d1086a74ba55463946b9d">Idc991</a>
+      )
+    </li>
+    <li>
+      Filter default tracing config to reduce risk of data loss in traces on newer API levels. (
+      <a href="https://android-review.googlesource.com/#/q/I54e8a0b3894bc4f209a772933e51fc36233ffcd3">I54e8a</a>
+      )
+    </li>
+    <li>
+      Added experimental
+      <code translate="no" dir="ltr">androidx.benchmark.killExistingPerfettoRecordings</code>
+      instrumentation argument, which can be set to
+      <code translate="no" dir="ltr">false</code>
+      to allow pre existing perfetto trace capture to continue. By default pre existing perfetto trace captures on device are killed to prevent interference. (
+      <a href="https://android-review.googlesource.com/#/q/I02a3c2ec686669715ebc6fb01f00555abde3401a">I02a3c</a>
+      )
+    </li>
+    <li>
+      The JSON field
+      <code translate="no" dir="ltr">context.osCodenameAbbreviated</code>
+      will now be
+      <code translate="no" dir="ltr">REL</code>
+      for released OS versions at and above API 35, as non-numeric code names are no longer supported by the underlying platform. (
+      <a href="https://android-review.googlesource.com/#/q/Ib17fda257618b373446bb87f7eb3d871e516d8f0">Ib17fd</a>
+      )
+    </li>
+    <li>
+      Fixes crash in
+      <code translate="no" dir="ltr">FrameTimingMetric</code>
+      when resynced frames occur. (
+      <a href="https://android-review.googlesource.com/#/q/I7c6f414e263eca6b6085b76e8801f64fa50586f0">I7c6f4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/394610806">b/394610806</a>
+      )
+    </li>
+    <li>
+      No longer assume
+      <code translate="no" dir="ltr">Choreographer#doFrame</code>
+      is the top of the stack frame on the main thread for
+      <code translate="no" dir="ltr">FrameTimingQuery</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iee0e0bec02e2af6f675b48384d14a59569b3dc57">Iee0e0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/340206285">b/340206285</a>
+      )
+    </li>
+  </ul>

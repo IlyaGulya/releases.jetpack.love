@@ -1,0 +1,146 @@
+libraryId: savedstate
+groupId: androidx.savedstate
+version: 1.3.0-alpha10
+releaseDate: 2025-03-12
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha10" data-text="Version 1.3.0-alpha10" tabindex="-1">Version 1.3.0-alpha10</h3>
+  <p>March 12, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.savedstate:savedstate-*:1.3.0-alpha10</code>
+    is released. Version 1.3.0-alpha10 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/fd7408b73d9aac0f18431c22580d9ab612278b1e..7a145e052ae61e272e91ffe285e9451b8ab71870/savedstate">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Add non-reified method variants for
+      <code translate="no" dir="ltr">get</code>
+      collections in
+      <code translate="no" dir="ltr">SavedStateReader</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0b641cba421761ee41bb8dc386cbc5db7cb67066">I0b641</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/399820614">b/399820614</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">encodeDefaults</code>
+      to
+      <code translate="no" dir="ltr">SavedStateConfiguration</code>
+      , allowing customizing whether properties with default values should be encoded. (
+      <a href="https://android-review.googlesource.com/#/q/I893cc44c323c972d388476bb7593259d595517af">I893cc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/395104517">b/395104517</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">SnapshotStateMapSerializer</code>
+      to support
+      <code translate="no" dir="ltr">mutableStateMapOf</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie6f1905cb2004c75efc4e962a6a6275773259af8">Ie6f19</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/378895074">b/378895074</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">SnapshotStateListSerializer</code>
+      to support
+      <code translate="no" dir="ltr">mutableStateListOf</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4d888f709797a1b2f87490af0758baa4da78660d">I4d888</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/378895074">b/378895074</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">getOrNull</code>
+      alternative methods for
+      <code translate="no" dir="ltr">SavedStateReader.get</code>
+      variants. These methods will auto-box primitive values. (
+      <a href="https://android-review.googlesource.com/#/q/I6228c173c45e6137de7d4885550285de5e50ae15">I6228c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/399820614">b/399820614</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">getOrElse</code>
+      from
+      <code translate="no" dir="ltr">SavedStateReader</code>
+      in favor of
+      <code translate="no" dir="ltr">getOrNull() ?: else()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I87317b0eaa0f6d0fad334cc3f81bfcc8a90e6313">I87317</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/399820614">b/399820614</a>
+      )
+    </li>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">inline</code>
+      modifier from
+      <code translate="no" dir="ltr">SavedStateReader</code>
+      and
+      <code translate="no" dir="ltr">SavedStateWriter</code>
+      methods. (
+      <a href="https://android-review.googlesource.com/#/q/If2a0264a865f5d1d0a1298903c83fa02cbd6a99e">If2a02</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/399820614">b/399820614</a>
+      )
+    </li>
+    <li>
+      Remove built-in Android-specific List and Array serializers out of public API (
+      <a href="https://android-review.googlesource.com/#/q/Ida2938fa2ad727ddfc985ff11d13b8840a383618">Ida293</a>
+      )
+    </li>
+    <li>
+      Replace
+      <code translate="no" dir="ltr">SparseParcelableArraySerializer</code>
+      with
+      <code translate="no" dir="ltr">SparseArraySerializer</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I91de872ff549b0262418cdb9c1e4d682c69f84ee">I91de8</a>
+      )
+    </li>
+    <li>
+      Make all
+      <code translate="no" dir="ltr">SavedStateReader.get</code>
+      behave consistently by throwing when value type doesn't match return type (
+      <a href="https://android-review.googlesource.com/#/q/I78c4adedf59bc93ae8851ef105b7ef362bd37a64">I78c4a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/399317598">b/399317598</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">SavedState*Delegates</code>
+      to
+      <code translate="no" dir="ltr">SavedState*Delegate</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I8589b62294646cb4529869228ea0185dac6087e6">I8589b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/399629301">b/399629301</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">SavedStateConfig</code>
+      to
+      <code translate="no" dir="ltr">SavedStateConfiguration</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I043a5be95276ef617588559f5e3fcdb15905b793">I043a5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/399629301">b/399629301</a>
+      )
+    </li>
+  </ul>
