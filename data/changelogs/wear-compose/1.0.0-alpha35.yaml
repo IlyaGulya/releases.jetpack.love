@@ -1,0 +1,154 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.0.0-alpha35
+releaseDate: 2025-03-26
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha35" data-text="Version 1.0.0-alpha35" tabindex="-1">Version 1.0.0-alpha35</h3>
+  <p>March 26, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material3:1.0.0-alpha35</code>
+    is released. Version 1.0.0-alpha35 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7a145e052ae61e272e91ffe285e9451b8ab71870..78132378b67c86698d1ade3dc368c9f15d738a71/wear/compose/compose-material3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">AlertDialog</code>
+      top padding is now reduced by default when an icon is provided - this makes best use of the screen size available. (
+      <a href="https://android-review.googlesource.com/#/q/Ief06c6cf25b0f651d2c5a6274af54d253b626339">Ief06c</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PagerScaffoldDefaults.FadeOutAnimation</code>
+      has been renamed to
+      <code translate="no" dir="ltr">PagerScaffoldDefaults.FadeOutAnimationSpec</code>
+      . The page parameter on
+      <code translate="no" dir="ltr">AnimatedPage</code>
+      has been renamed to
+      <code translate="no" dir="ltr">pageIndex</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I701f2cd0e28156c4fa7ceddcf885c74e508d73b4">I701f2</a>
+      )
+    </li>
+    <li>
+      Updated naming for
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      ’s
+      <code translate="no" dir="ltr">SurfaceTransformation</code>
+      -
+      <code translate="no" dir="ltr">applyTransformation</code>
+      split into
+      <code translate="no" dir="ltr">applyContainerTransformation</code>
+      and
+      <code translate="no" dir="ltr">applyContentTransformation</code>
+      , and renamed
+      <code translate="no" dir="ltr">createBackgroundPainter</code>
+      to
+      <code translate="no" dir="ltr">createContainerPainter</code>
+      . Further naming updates to
+      <code translate="no" dir="ltr">TransformationSpec</code>
+      and
+      <code translate="no" dir="ltr">ResponsiveTransformationSpec</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1c534b3cca373c0d035627c998b4a0f5c6f518d4">I1c534</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">AppScaffold backgroundColor</code>
+      has been renamed to
+      <code translate="no" dir="ltr">containerColor</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4e63f7cf6ab024cfd9fc96e66070ea7a13532aa9">I4e63f</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue in
+      <code translate="no" dir="ltr">FadingExpandingLabel</code>
+      where the text did not always expand correctly. (
+      <a href="https://android-review.googlesource.com/#/q/I0e7738ed93920bb0a33cdec51c653b3416f2a58b">I0e773</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ArcLarge</code>
+      has been reduced from 20sp to 18sp, and letter spacings on
+      <code translate="no" dir="ltr">ArcLarge</code>
+      and
+      <code translate="no" dir="ltr">ArcSmall</code>
+      have been updated.
+      <code translate="no" dir="ltr">ConfirmationDialog/OpenOnPhoneDialog</code>
+      now use the default
+      <code translate="no" dir="ltr">ArcLarge</code>
+      instead of overriding it to 18sp. (
+      <a href="https://android-review.googlesource.com/#/q/Id39a8d0270ce2e81c7fa8b4465e8182dbfd25994">Id39a8</a>
+      )
+    </li>
+    <li>
+      Updated the heading animation for
+      <code translate="no" dir="ltr">DatePicker</code>
+      and
+      <code translate="no" dir="ltr">TimePicker</code>
+      based, so that the fade-out and fade-in animation act as one Spring animation. (
+      <a href="https://android-review.googlesource.com/#/q/I6896359fa8a5637e7489c467fb0817b3c2a492f3">I68963</a>
+      )
+    </li>
+    <li>
+      Optimized
+      <code translate="no" dir="ltr">PagerScaffold</code>
+      by avoiding the reading of
+      <code translate="no" dir="ltr">currentPageOffsetFraction</code>
+      in the
+      <code translate="no" dir="ltr">AnimatedPage</code>
+      composable. (
+      <a href="https://android-review.googlesource.com/#/q/I433ef5bd0eb79664e7d040ed421b9f6f4d71ba61">I433ef</a>
+      )
+    </li>
+    <li>
+      All type scales have been updated to have proportional numerals by default, because that is seen as the most frequent use case and defaulting to tabular resulted in too much spacing between certain number pairings.
+      <code translate="no" dir="ltr">TimePicker</code>
+      and
+      <code translate="no" dir="ltr">DatePicker</code>
+      continue to apply
+      <code translate="no" dir="ltr">FontFeatureSetting=tnum</code>
+      for tabular numerals. (
+      <a href="https://android-review.googlesource.com/#/q/I88929c00e50727b2dd3cc9de5b27698f6f9f1f1a">I88929</a>
+      )
+    </li>
+    <li>
+      Corrected the initial RSB input focus for
+      <code translate="no" dir="ltr">TimePicker</code>
+      and
+      <code translate="no" dir="ltr">DatePicker</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1c7732e851ce85f1085e64176ad2862feee3f0d9">I1c773</a>
+      )
+    </li>
+    <li>
+      Updated the default text on
+      <code translate="no" dir="ltr">OpenOnPhoneDialog</code>
+      to "Check your phone". (
+      <a href="https://android-review.googlesource.com/#/q/I00a3f264337bb2186a7d143605f5d6b3bcc9ffa5">I00a3f</a>
+      )
+    </li>
+    <li>
+      Updated weights for
+      <code translate="no" dir="ltr">ArcLarge</code>
+      and
+      <code translate="no" dir="ltr">ArcMedium</code>
+      from 600 to 599 to workaround an issue where weight 600 is treated as bold (
+      <a href="https://android-review.googlesource.com/#/q/I2a51df05b2517af0f11c50b203832c7ae5258a05">I2a51d</a>
+      )
+    </li>
+    <li>
+      Update
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      paddings between content and action buttons, and also the padding between the icon and text of the action buttons. (
+      <a href="https://android-review.googlesource.com/#/q/Ic46cb9adb55f67734983b88880ff17fd8b4e37a6">Ic46cb</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,43 @@
+libraryId: privacysandbox-activity
+groupId: androidx.privacysandbox
+version: 1.0.0-alpha02
+releaseDate: 2025-03-26
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha02" data-text="Version 1.0.0-alpha02" tabindex="-1">Version 1.0.0-alpha02</h3>
+  <p>March 26, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.privacysandbox.activity:activity-client:1.0.0-alpha02</code>
+    ,
+    <code translate="no" dir="ltr">androidx.privacysandbox.activity:activity-core:1.0.0-alpha02</code>
+    , and
+    <code translate="no" dir="ltr">androidx.privacysandbox.activity:activity-provider:1.0.0-alpha02</code>
+    are released. Version 1.0.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/312eb9f1ddece3a18317f18515a877e0e745cb2c..78132378b67c86698d1ade3dc368c9f15d738a71/privacysandbox/activity">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      SDK activity launchers can now be created for lifecycle-unaware activities, i.e. activities that don’t implement the
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      interface. These launchers need to be manually disposed of by the caller.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">LocalUnmanagedSdkActivityLauncher</code>
+      and
+      <code translate="no" dir="ltr">createUnmanagedSdkActivityLauncher</code>
+      , a launcher class for lifecycle-unaware activities and a method to create such launchers.
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">LocalSdkActivityLauncher</code>
+      to
+      <code translate="no" dir="ltr">LocalManagedSdkActivityLauncher</code>
+      to highlight the distinction between this and lifecycle-unaware type of launchers.
+    </li>
+  </ul>
