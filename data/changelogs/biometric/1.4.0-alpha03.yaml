@@ -1,0 +1,150 @@
+libraryId: biometric
+groupId: androidx.biometric
+version: 1.4.0-alpha03
+releaseDate: 2025-03-26
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha03" data-text="Version 1.4.0-alpha03" tabindex="-1">Version 1.4.0-alpha03</h3>
+  <p>March 26, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.biometric:biometric:1.4.0-alpha03</code>
+    is released. Version 1.4.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/fcae1dc9e94201f2646e67b240aba31b52b964e9..78132378b67c86698d1ade3dc368c9f15d738a71/biometric/biometric">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Introduced a new authentication entry point
+      <code translate="no" dir="ltr">registerForAuthenticationResult()</code>
+      API to replace the
+      <code translate="no" dir="ltr">androidx.biometric:biometric-ktx</code>
+      module and
+      <code translate="no" dir="ltr">androidx.BiometricPrompt</code>
+      . This new API is modeled after the Activity Result API, and it provides seamless compatibility with both Kotlin and Java development.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">ERROR_MORE_OPTIONS_BUTTON</code>
+      to
+      <code translate="no" dir="ltr">ERROR_CONTENT_VIEW_MORE_OPTIONS_BUTTON</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I71d07855c221201e6770b325999b1546a7be446b">I71d07</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">@Deprecated</code>
+      annotation for
+      <code translate="no" dir="ltr">IdentityCredential</code>
+      to keep consistent with the framework. (
+      <a href="https://android-review.googlesource.com/#/q/I6ac906032150503829af6a4aca028037be7934af">I6ac90</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/140252778">b/140252778</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/217942278">b/217942278</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/251211046">b/251211046</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/239955609">b/239955609</a>
+      )
+    </li>
+    <li>
+      [1/3] Remove biometric.auth and kotlin library, which will be redesigned. (
+      <a href="https://android-review.googlesource.com/#/q/I2f67c9f8993063fa5d981db7ae6021747e1bf74a">I2f67c</a>
+      )
+    </li>
+    <li>
+      [2/3] Add
+      <code translate="no" dir="ltr">AuthenticationRequest</code>
+      as authentication input and
+      <code translate="no" dir="ltr">AuthenticationResult</code>
+      as authentication result type. There are two kinds of
+      <code translate="no" dir="ltr">AuthenticationRequest</code>
+      , with builders. (
+      <a href="https://android-review.googlesource.com/#/q/I50fd9dbbeeae0cfbff504773530189b0dda01146">I50fd9</a>
+      )
+      <ol>
+        <li>
+          <code translate="no" dir="ltr">BiometricRequest</code>
+          for biometric authentication with different
+          <code translate="no" dir="ltr">Strength</code>
+          and optional
+          <code translate="no" dir="ltr">Fallback</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">CredentialRequest</code>
+          for device credential only authentication.
+        </li>
+      </ol>
+    </li>
+    <li>
+      [3/3] Add new activity-result-pattern APIs for biometric module. Specifically, add a registration API called
+      <code translate="no" dir="ltr">registerForAuthenticationResult()</code>
+      , which registers the
+      <code translate="no" dir="ltr">AuthenticationResultCallback</code>
+      and the optional
+      <code translate="no" dir="ltr">onAuthenticationFailedCallback</code>
+      , and results a
+      <code translate="no" dir="ltr">AuthenticationResultLauncher</code>
+      to start authentication with all input. (
+      <a href="https://android-review.googlesource.com/#/q/I2b06ecabb29f328741a260f10c11dbbc5dddf18b">I2b06e</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      This library now uses
+      <a href="https://jspecify.dev/">JSpecify nullness annotations</a>
+      , which are type-use. Kotlin developers should use the following compiler arguments to enforce correct usage:
+      <code translate="no" dir="ltr">-Xjspecify-annotations=strict</code>
+      ,
+      <code translate="no" dir="ltr">-Xtype-enhancement-improvements-strict-mode</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ib49b42a617d1fa3db7a57d4473553806c685bbb8">Ib49b4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326456246">b/326456246</a>
+      )
+    </li>
+    <li>
+      Fixed an issue of being unable to instantiate fragment
+      <code translate="no" dir="ltr">androidx.biometric.FingerprintDialogFragment</code>
+      . (
+      <a href="https://android-review.git.corp.google.com/q/I51c4a339887a885fbe3d4e11bc75784aabde6957">I51c4a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/181805603">b/181805603</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">BiometricPrompt</code>
+      is not dismissed when the device’s home button is pressed. (
+      <a href="https://android-review.git.corp.google.com/q/I8c393f400d60f2b2af075671c4cf2727e63d82b8">I8c393</a>
+      ,
+      <a href="https://android-review.git.corp.google.com/q/I0ca8caa58e11fc2cab3bf574a761c00ad4f3ae8d">I0ca8c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/149770989">b/149770989</a>
+      )
+    </li>
+    <li>
+      Fixed error code inconsistencies for disabling biometric app auth on API 34/35. (
+      <a href="https://android-review.git.corp.google.com/q/Ice99d17108791cf093d033e16c32ccdb43222e4a">Ice99d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/386918213">b/386918213</a>
+      )
+    </li>
+    <li>
+      Apply forcing strong biometrics on older devices to combined authenticatiors too. (
+      <a href="https://android-review.git.corp.google.com/q/Ibb8532b5210407cfb530020f67d77210f58cfbc7">Ibb853</a>
+      ,
+      <a href="https://android-review.git.corp.google.com/q/I5cfb3b659781a1570ccd6aa607df3da61a559ebf">I5cfb3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/257670132">b/257670132</a>
+      )
+    </li>
+  </ul>

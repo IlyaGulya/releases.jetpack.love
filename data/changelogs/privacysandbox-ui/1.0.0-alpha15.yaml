@@ -1,0 +1,67 @@
+libraryId: privacysandbox-ui
+groupId: androidx.privacysandbox
+version: 1.0.0-alpha15
+releaseDate: 2025-03-26
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha15" data-text="Version 1.0.0-alpha15" tabindex="-1">Version 1.0.0-alpha15</h3>
+  <p>March 26, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.privacysandbox.ui:ui-client:1.0.0-alpha15</code>
+    ,
+    <code translate="no" dir="ltr">androidx.privacysandbox.ui:ui-core:1.0.0-alpha15</code>
+    , and
+    <code translate="no" dir="ltr">androidx.privacysandbox.ui:ui-provider:1.0.0-alpha15</code>
+    are released. Version 1.0.0-alpha15 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/fd7408b73d9aac0f18431c22580d9ab612278b1e..78132378b67c86698d1ade3dc368c9f15d738a71/privacysandbox/ui">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Set the default Z-ordering of
+      <code translate="no" dir="ltr">SandboxedSdkView</code>
+      and
+      <code translate="no" dir="ltr">SandboxedSdkUi</code>
+      to “below”, indicating that the provider’s surface is now placed below the client’s window. Added support for the UI provider to receive
+      <code translate="no" dir="ltr">MotionEvents</code>
+      in this mode after being received by the client window.
+    </li>
+    <li>
+      Added a
+      <code translate="no" dir="ltr">signalOptions</code>
+      field to the
+      <code translate="no" dir="ltr">SessionObserverFactory</code>
+      interface. This can be used to define a set of String options which will be used to determine which signals are collected for the associated
+      <code translate="no" dir="ltr">SessionObserver</code>
+      . The initial set of signals is defined in
+      <code translate="no" dir="ltr">SandboxedUiAdapterSignalOptions</code>
+      . If no signal options are set, only
+      <code translate="no" dir="ltr">SessionObserver.onSessionOpened()</code>
+      and
+      <code translate="no" dir="ltr">SessionObserver.onSessionClosed()</code>
+      will be called.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">SessionConstants</code>
+      to
+      <code translate="no" dir="ltr">SessionData</code>
+      in
+      <code translate="no" dir="ltr">SandboxedUiAdapter.openSession()</code>
+      .
+    </li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      When the SDK is loaded in the SDK Runtime and the Z-order of
+      <code translate="no" dir="ltr">SandboxedSdkView</code>
+      or
+      <code translate="no" dir="ltr">SandboxedSdkUi</code>
+      is “above”, the gesture is exclusively received by the provider window and not transferred to the client window anymore.
+    </li>
+  </ul>

@@ -1,0 +1,84 @@
+libraryId: datastore
+groupId: androidx.datastore
+version: 1.2.0-alpha01
+releaseDate: 2025-03-26
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha01" data-text="Version 1.2.0-alpha01" tabindex="-1">Version 1.2.0-alpha01</h3>
+  <p>March 26, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.datastore:datastore-*:1.2.0-alpha01</code>
+    is released. Version 1.2.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6dd3f37a049d4541eb239be0f5cfe7fd4ed86bcb..78132378b67c86698d1ade3dc368c9f15d738a71/datastore">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">datastore-guava</code>
+      module to expose APIs friendly to Java and Guava
+      <code translate="no" dir="ltr">ListenableFuture</code>
+      users via
+      <code translate="no" dir="ltr">GuavaDataStore</code>
+      . (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/81dab615341b8a98792ad39eb65fc0fa4e34f957">Iadd5e0</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">DataStore</code>
+      usage during
+      <code translate="no" dir="ltr">DirectBoot</code>
+      mode is now supported. To create a datastore to be used during direct boot mode it must be created within the Device Protected storage. This can be achieved by the following new
+      <code translate="no" dir="ltr">DataStore</code>
+      APIs:
+      <code translate="no" dir="ltr">createInDeviceProtectedStorage()</code>
+      in
+      <code translate="no" dir="ltr">DataStoreFactory</code>
+      and
+      <code translate="no" dir="ltr">deviceProtectedDataStore()</code>
+      in
+      <code translate="no" dir="ltr">DataStoreDelegate</code>
+      . (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/c68855c64e6a12a4b47d3082417b810f685a72c3">Ib90e56</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">PreferencesFileSerializer</code>
+      that implements
+      <code translate="no" dir="ltr">androidx.datastore.core.Serializer</code>
+      interface for use with
+      <code translate="no" dir="ltr">FileStorage</code>
+      . (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/804dd3b895f87f886331a9b359137e99205f83ff">I4c71f3</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Resolved
+      <code translate="no" dir="ltr">FileNotFoundException</code>
+      issue in
+      <code translate="no" dir="ltr">OkioStorage</code>
+      at startup by adding a second attempt to read data in the case of a race condition. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/3e2cc72ab89a0c011f99627a61eba045d7378cb5">I43b3fb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/337870543">b/337870543</a>
+      )
+    </li>
+    <li>
+      Defined the default constructor for
+      <code translate="no" dir="ltr">ReplaceFileCorruptionHandler</code>
+      for common code usage. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/0f39d9164b42a309a9a9fdb89d8ec0f9ef4c9eb8">I795b05</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/358138957">b/358138957</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_11_2" data-text="Version 1.1" tabindex="-1">Version 1.1</h2>
