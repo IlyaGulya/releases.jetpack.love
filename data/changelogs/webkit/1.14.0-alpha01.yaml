@@ -1,0 +1,115 @@
+libraryId: webkit
+groupId: androidx.webkit
+version: 1.14.0-alpha01
+releaseDate: 2025-04-09
+#language=html
+changelogHtml: |
+  <h3 id="1.14.0-alpha01" data-text="Version 1.14.0-alpha01" tabindex="-1">Version 1.14.0-alpha01</h3>
+  <p>April 9, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.webkit:webkit:1.14.0-alpha01</code>
+    is released. Version 1.14.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/41a38e8ec90b022b61301d545a235195bc6a6f9a..4c37298a97c16270c139eb812ddadaba03e23a52/webkit/webkit">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Introducing the
+      <code translate="no" dir="ltr">PaymentRequest</code>
+      API for invoking Android native payment apps through
+      <code translate="no" dir="ltr">org.chromium.intent.action.PAY</code>
+      intent.
+      <code translate="no" dir="ltr">PaymentRequest</code>
+      is disabled by default and WebView host apps can call
+      <code translate="no" dir="ltr">WebSettingsCompat.setPaymentRequestEnabled(settings, true)</code>
+      to enable it. In addition,
+      <code translate="no" dir="ltr">PaymentRequest</code>
+      requires a
+      <code translate="no" dir="ltr">&lt;queries&gt;</code>
+      tag in
+      <code translate="no" dir="ltr">AndroidManifest.xml</code>
+      . See documentation for
+      <code translate="no" dir="ltr">setPaymentRequestEnabled()</code>
+      for more information. (
+      <a href="https://android-review.googlesource.com/#/q/I3304e1745c01af08db25e4367fb579a388d496ea">I3304e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/404920055">b/404920055</a>
+      )
+    </li>
+    <li>
+      Introducing Experimental Navigation Callbacks. This release introduces experimental APIs for enhanced web navigation tracking and management within
+      <code translate="no" dir="ltr">WebView</code>
+      . These APIs provide detailed information about navigation events. Key Features:
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">WebNavigationClient</code>
+          Interface: Introduces a new interface,
+          <code translate="no" dir="ltr">WebNavigationClient</code>
+          , with callbacks for navigation events:
+        </li>
+        <li>
+          <code translate="no" dir="ltr">onNavigationStarted(Navigation navigation)</code>
+          : Notifies when a navigation begins.
+        </li>
+        <li>
+          <code translate="no" dir="ltr">onNavigationRedirected(Navigation navigation)</code>
+          : Notifies when a navigation is redirected.
+        </li>
+        <li>
+          <code translate="no" dir="ltr">onNavigationCompleted(Navigation navigation)</code>
+          : Notifies when a navigation completes.
+        </li>
+        <li>
+          <code translate="no" dir="ltr">Navigation</code>
+          Interface: Provides detailed information about a navigation, including: URL, page initiation status, same-document status, reload status, history status, back/forward status, commit status, error page status, status code, and session restore status. The
+          <code translate="no" dir="ltr">Navigation</code>
+          object serves as a unique identifier for each navigation, allowing developers to correlate related navigation events.
+        </li>
+        <li>
+          <code translate="no" dir="ltr">Page</code>
+          class: Introduces the
+          <code translate="no" dir="ltr">Page</code>
+          class, which serves as a key for page-associated data. (
+          <a href="https://android-review.googlesource.com/#/q/I351a6012bdba52adecacda05ebf9b5d6d53b1eae">I351a6</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Introduce a new experimental API to toggle the behaviour of caching provider objects. (
+      <a href="https://android-review.googlesource.com/#/q/I146361a920334de704be30bcc46569076516203e">I14636</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Updated the
+      <code translate="no" dir="ltr">PROFILE_URL_PREFETCH</code>
+      feature value in
+      <code translate="no" dir="ltr">WebViewFeature</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I606fd63c5425e96d196a72d5469c05a893669ac6">I606fd</a>
+      )
+    </li>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">WebViewCompat#saveState</code>
+      , akin to
+      <code translate="no" dir="ltr">WebView#saveState</code>
+      , but allows restricting the size of the returned state and deciding whether or not to save forward history entries. (
+      <a href="https://android-review.googlesource.com/#/q/Iea7d6f518e58aaf4c6e518c85c65271608904561">Iea7d6</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">maxPrerenders</code>
+      config to
+      <code translate="no" dir="ltr">SpeculativeLoadingConfig</code>
+      API (
+      <a href="https://android-review.googlesource.com/#/q/I67245b2f422f413b92829f7f6ea234bfd9390f74">I67245</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_113_2" data-text="Version 1.13" tabindex="-1">Version 1.13</h2>

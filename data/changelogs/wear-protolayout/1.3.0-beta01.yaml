@@ -1,0 +1,166 @@
+libraryId: wear-protolayout
+groupId: androidx.wear
+version: 1.3.0-beta01
+releaseDate: 2025-04-09
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-beta01" data-text="Version 1.3.0-beta01" tabindex="-1">Version 1.3.0-beta01</h3>
+  <p>April 9, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.protolayout:protolayout-*:1.3.0-beta01</code>
+    is released. Version 1.3.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7a145e052ae61e272e91ffe285e9451b8ab71870..4c37298a97c16270c139eb812ddadaba03e23a52/wear/protolayout">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>The 1.3.0-beta01 release of Wear ProtoLayout indicates that this release of the library is feature complete and the API is locked (except where marked as experimental). Wear ProtoLayout 1.3 includes the following new functionalities and APIs:</p>
+  <ul>
+    <li>
+      Material 3 design comes to the watch, with components and layouts that are optimized for the round display and scale appropriately from small to large screen sizes
+      <ul>
+        <li>
+          This includes Kotlin-only,
+          <code translate="no" dir="ltr">protolayout-material3</code>
+          library with more Compose-like APIs for the following components and features:
+        </li>
+        <li>Dynamic color theme coming from the system and watch face with the latest Material3 theme for colors, shapes and typography</li>
+        <li>
+          <code translate="no" dir="ltr">MaterialScope</code>
+          for taking care of all opinionated defaults and easier customization
+        </li>
+        <li>
+          <code translate="no" dir="ltr">iconEdgeButton</code>
+          ,
+          <code translate="no" dir="ltr">textEdgeButton</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">iconButton</code>
+          ,
+          <code translate="no" dir="ltr">textButton</code>
+          ,
+          <code translate="no" dir="ltr">button</code>
+          ,
+          <code translate="no" dir="ltr">imageButton</code>
+          ,
+          <code translate="no" dir="ltr">avatarButton</code>
+          ,
+          <code translate="no" dir="ltr">compactButton</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">titleCard</code>
+          ,
+          <code translate="no" dir="ltr">appCard</code>
+          ,
+          <code translate="no" dir="ltr">graphicDataCard</code>
+          ,
+          <code translate="no" dir="ltr">iconDataCard</code>
+          ,
+          <code translate="no" dir="ltr">textDataCard</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">circularProgressIndicator</code>
+          ,
+          <code translate="no" dir="ltr">segmentedCircularProgressIndicator</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">primaryLayout</code>
+          ,
+          <code translate="no" dir="ltr">buttonGroup</code>
+        </li>
+        <li>All components work across any SDK levels and ProtoLayout Renderer version, supplying sensible fallbacks where applicable</li>
+      </ul>
+    </li>
+    <li>
+      More Kotlin-friendly, Compose-like APIs for base ProtoLayout elements
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">LayoutModifier</code>
+          with ability to add the most of modifiers as chained functions (
+          <code translate="no" dir="ltr">padding</code>
+          ,
+          <code translate="no" dir="ltr">contentDescription</code>
+          (including
+          <code translate="no" dir="ltr">clearSemantics</code>
+          ),
+          <code translate="no" dir="ltr">background</code>
+          ,
+          <code translate="no" dir="ltr">clip</code>
+          ,
+          <code translate="no" dir="ltr">opacity</code>
+          etc.), convertible to the existing
+          <code translate="no" dir="ltr">Modifiers</code>
+          object
+        </li>
+        <li>
+          <code translate="no" dir="ltr">LayoutColors</code>
+          and
+          <code translate="no" dir="ltr">LayoutString</code>
+          as types with easier support for using dynamic fields and constraints
+        </li>
+        <li>
+          <code translate="no" dir="ltr">text</code>
+          and
+          <code translate="no" dir="ltr">fontStyle</code>
+        </li>
+        <li>
+          better map support for
+          <code translate="no" dir="ltr">StateBuilder</code>
+          , including
+          <code translate="no" dir="ltr">DynamicDataMap</code>
+          and factory methods such as
+          <code translate="no" dir="ltr">intAppDataKey</code>
+          for easier creation of
+          <code translate="no" dir="ltr">AppDataKey</code>
+          objects
+        </li>
+      </ul>
+    </li>
+    <li>
+      Lottie animations support including option to set different triggers on when animation should start, for example when layout is loaded or when layout becomes visible
+      <ul>
+        <li>Improved gradient support:</li>
+        <li>
+          Linear gradient API as part of
+          <code translate="no" dir="ltr">Brush</code>
+          that can be used in
+          <code translate="no" dir="ltr">Background</code>
+          modifiers for elements such as
+          <code translate="no" dir="ltr">Box</code>
+          ,
+          <code translate="no" dir="ltr">Spacer</code>
+          , etc. …
+        </li>
+        <li>
+          Allow dynamic color values in
+          <code translate="no" dir="ltr">ColorStop</code>
+          used for linear and sweep gradient
+        </li>
+        <li>Existing Sweep Gradient in arc objects now supports dynamic colors and start and end angles</li>
+      </ul>
+    </li>
+    <li>
+      Platform data binding in
+      <code translate="no" dir="ltr">protolayout-expression</code>
+      to receive information anytime that layout’s visibility is changed, which for example can be use to hide certain parts of the layout while tile is being swiped to
+    </li>
+    <li>
+      Testing library -
+      <code translate="no" dir="ltr">protolayout-testing</code>
+      - has been added to support easier Unit test coverage for any ProtoLayout elements
+    </li>
+    <li>
+      New element
+      <code translate="no" dir="ltr">DashedArcLine</code>
+      with improved set of features so that line can have dashes, as opposed to the existing
+      <code translate="no" dir="ltr">ArcLine</code>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ArcSpacer</code>
+      support for setting its length in DP dimension instead of degrees
+    </li>
+    <li>
+      Added roundness
+      <code translate="no" dir="ltr">FontSetting</code>
+      axis applicable to some fonts
+    </li>
+  </ul>

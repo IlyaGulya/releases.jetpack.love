@@ -1,0 +1,40 @@
+libraryId: wear-tiles
+groupId: androidx.wear
+version: 1.5.0-beta01
+releaseDate: 2025-04-09
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-beta01" data-text="Version 1.5.0-beta01" tabindex="-1">Version 1.5.0-beta01</h3>
+  <p>April 9, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.tiles:tiles-*:1.5.0-beta01</code>
+    is released. Version 1.5.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7a145e052ae61e272e91ffe285e9451b8ab71870..4c37298a97c16270c139eb812ddadaba03e23a52/wear/tiles">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>The 1.5.0-beta01 release of Wear Tiles indicates that this release of the library is feature complete and the API is locked (except where marked as experimental). Wear Tiles 1.5 includes the following new functionalities and APIs:</p>
+  <ul>
+    <li>
+      Added new API
+      <code translate="no" dir="ltr">TileService.onRecentInteractionEvents()</code>
+      for processing interaction tile events (Enter / Leave) in batches.
+      <ul>
+        <li>
+          The existing APIs in
+          <code translate="no" dir="ltr">TileService</code>
+          for
+          <code translate="no" dir="ltr">onEnterEvent</code>
+          and
+          <code translate="no" dir="ltr">onLeaveEvent</code>
+          are deprecated and won’t work from SDK 36+ for Apps targeting API 36 or more
+        </li>
+      </ul>
+    </li>
+    <li>
+      Critical bug fix for any clients targeting SDK higher than 34 and requesting a tile update on API 34 that would cause a
+      <code translate="no" dir="ltr">SecurityException</code>
+      .
+    </li>
+    <li>Starting from Wear 6 (SDK level 36+), all Tiles will be displayed in a system font that is defined by each device.</li>
+  </ul>
