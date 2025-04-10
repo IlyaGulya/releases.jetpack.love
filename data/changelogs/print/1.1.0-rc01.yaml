@@ -1,0 +1,39 @@
+libraryId: print
+groupId: androidx.print
+version: 1.1.0-rc01
+releaseDate: 2025-04-09
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-rc01" data-text="Version 1.1.0-rc01" tabindex="-1">Version 1.1.0-rc01</h3>
+  <p>April 9, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.print:print:1.1.0-rc01</code>
+    is released. Version 1.1.0-rc01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/234e23e470a5e7f81291f6acd12d538146dc010b..ebf16b28ce2d18fb383e00c130ce68ec1ffa1143/print/print">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      This library now uses
+      <a href="https://jspecify.dev/">JSpecify nullness annotations</a>
+      , which are type-use. Kotlin developers should use the following compiler arguments to enforce correct usage:
+      <code translate="no" dir="ltr">-Xjspecify-annotations=strict</code>
+      ,
+      <code translate="no" dir="ltr">-Xtype-enhancement-improvements-strict-mode</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/If585e20f8e06ac265ebe3238e697e2b9c108fc75">If585e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326456246">b/326456246</a>
+      )
+    </li>
+    <li>
+      Removed manual outlining of access to new platform APIs since this happens automatically via API modeling when using R8 with AGP 7.3 or later (e.g. R8 version 3.3) and for all builds when using AGP 8.1 or later (e.g. D8 version 8.1). Clients who are not using AGP are advised to update to D8 version 8.1 or later. See
+      <a href="https://medium.com/androiddevelopers/mitigating-soft-verification-issues-in-r8-and-d8-7e9e06827dfd">this article</a>
+      for more details. (
+      <a href="https://android-review.googlesource.com/#/q/If6b4ccfca0a943b45971a422b58949b13a10bada">If6b4c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/345472586">b/345472586</a>
+      )
+    </li>
+  </ul>
