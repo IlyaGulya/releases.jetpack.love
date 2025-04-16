@@ -1,0 +1,183 @@
+libraryId: media3
+groupId: androidx.media3
+version: 1.6.1
+releaseDate: 2025-04-14
+#language=html
+changelogHtml: |
+  <h3 id="1.6.1" data-text="1.6.1" tabindex="-1">1.6.1</h3>
+  <p>April 14th, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.media3:media3-*:1.6.1</code>
+    is released. Version 1.6.1 contains
+    <a href="https://github.com/androidx/media/commits/1.6.1">these commits</a>
+    .
+  </p>
+  <ul>
+    <li>
+      Common Library:
+      <ul>
+        <li>
+          Add
+          <code translate="no" dir="ltr">PlaybackParameters.withPitch(float)</code>
+          method for easily copying a
+          <code translate="no" dir="ltr">PlaybackParameters</code>
+          with a new
+          <code translate="no" dir="ltr">pitch</code>
+          value (
+          <a href="https://github.com/androidx/media/issues/2257">#2257</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      ExoPlayer:
+      <ul>
+        <li>
+          Fix issue where media item transition fails due to recoverable renderer error during initialization of the next media item (
+          <a href="https://github.com/androidx/media/issues/2229">#2229</a>
+          ).
+        </li>
+        <li>
+          Fix issue where
+          <code translate="no" dir="ltr">ProgressiveMediaPeriod</code>
+          throws an
+          <code translate="no" dir="ltr">IllegalStateException</code>
+          as
+          <code translate="no" dir="ltr">PreloadMediaSource</code>
+          attempts to call its
+          <code translate="no" dir="ltr">getBufferedDurationUs()</code>
+          before it is prepared (
+          <a href="https://github.com/androidx/media/issues/2315">#2315</a>
+          ).
+        </li>
+        <li>
+          Fix sending
+          <code translate="no" dir="ltr">CmcdData</code>
+          in manifest requests for DASH, HLS, and SmoothStreaming (
+          <a href="https://github.com/androidx/media/pull/2253">#2253</a>
+          ).
+        </li>
+        <li>
+          Ensure
+          <code translate="no" dir="ltr">AdPlaybackState.withAdDurationsUs(long[][])</code>
+          can be used after ad groups have been removed. The user still needs to pass in an array of durations for removed ad groups which can be empty or null (
+          <a href="https://github.com/androidx/media/issues/2267">#2267</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Extractors:
+      <ul>
+        <li>
+          MP4: Parse
+          <code translate="no" dir="ltr">alternate_group</code>
+          from the
+          <code translate="no" dir="ltr">tkhd</code>
+          box and expose it as an
+          <code translate="no" dir="ltr">Mp4AlternateGroupData</code>
+          entry in each track's
+          <code translate="no" dir="ltr">Format.metadata</code>
+          (
+          <a href="https://github.com/androidx/media/issues/2242">#2242</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Audio:
+      <ul>
+        <li>
+          Fix offload issue where the position might get stuck when playing a playlist of short content (
+          <a href="https://github.com/androidx/media/issues/1920">#1920</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Session:
+      <ul>
+        <li>
+          Lower aggregation timeout for platform
+          <code translate="no" dir="ltr">MediaSession</code>
+          callbacks from 500 to 100 milliseconds and add an experimental setter to allow apps to configure this value.
+        </li>
+        <li>
+          Fix issue where notifications reappear after they have been dismissed by the user (
+          <a href="https://github.com/androidx/media/issues/2302">#2302</a>
+          ).
+        </li>
+        <li>
+          Fix a bug where the session returned a single-item timeline when the wrapped player is actually empty. This happened when the wrapped player doesn't have
+          <code translate="no" dir="ltr">COMMAND_GET_TIMELINE</code>
+          available while
+          <code translate="no" dir="ltr">COMMAND_GET_CURRENT_MEDIA_ITEM</code>
+          is available and the wrapped player is empty (
+          <a href="https://github.com/androidx/media/issues/2320">#2320</a>
+          ).
+        </li>
+        <li>
+          Fix a bug where calling
+          <code translate="no" dir="ltr">MediaSessionService.setMediaNotificationProvider</code>
+          is silently ignored after other interactions with the service like
+          <code translate="no" dir="ltr">setForegroundServiceTimeoutMs</code>
+          (
+          <a href="https://github.com/androidx/media/issues/2305">#2305</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      UI:
+      <ul>
+        <li>
+          Enable
+          <code translate="no" dir="ltr">PlayerSurface</code>
+          to work with
+          <code translate="no" dir="ltr">ExoPlayer.setVideoEffects</code>
+          and
+          <code translate="no" dir="ltr">CompositionPlayer</code>
+          .
+        </li>
+        <li>
+          Fix bug where
+          <code translate="no" dir="ltr">PlayerSurface</code>
+          can't be recomposed with a new
+          <code translate="no" dir="ltr">Player</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      HLS extension:
+      <ul>
+        <li>
+          Fix issue where chunk duration wasn't set in
+          <code translate="no" dir="ltr">CmcdData</code>
+          for HLS media, causing an assertion failure when processing encrypted media segments (
+          <a href="https://github.com/androidx/media/issues/2312">#2312</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      RTSP extension:
+      <ul>
+        <li>
+          Add support for URI with RTSPT scheme as a way to configure the RTSP session to use TCP (
+          <a href="https://github.com/androidx/media/issues/1484">#1484</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Cast extension:
+      <ul>
+        <li>
+          Add support for playlist metadata (
+          <a href="https://github.com/androidx/media/pull/2235">#2235</a>
+          ).
+        </li>
+      </ul>
+    </li>
+  </ul>
