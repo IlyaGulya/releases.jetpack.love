@@ -1,0 +1,178 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.9.0-alpha01
+releaseDate: 2025-04-23
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0-alpha01" data-text="Version 1.9.0-alpha01" tabindex="-1">Version 1.9.0-alpha01</h3>
+  <p>April 23, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.9.0-alpha01</code>
+    is released. Version 1.9.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d6d9afca3dfa73c1b9ea74daf9d6ad49c56fe0e9..008cbd021e3a2b4d1f36ea7f48200c4692bfc169/compose/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">currentCompositeKeyHash</code>
+      is now deprecated. Use
+      <code translate="no" dir="ltr">currentCompositeKeyHashCode</code>
+      instead. The replacement API encodes the same hash with more bits, which exponentially reduces the chance of two random unrelated groups in the composition hierarchy from having the same hash key. (
+      <a href="https://android-review.googlesource.com/#/q/I4cb6a801d12447ac52bc92bb899ae84d69c4a6ed">I4cb6a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177562901">b/177562901</a>
+      )
+    </li>
+    <li>
+      Projects released with Kotlin 2.0 require KGP 2.0.0 or newer to be consumed (
+      <a href="https://android-review.googlesource.com/#/q/Idb6b5d6ae1625ab870ffe74f9790ffabc82a63b4">Idb6b5</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">@Stable</code>
+      ,
+      <code translate="no" dir="ltr">@Immutable</code>
+      , and
+      <code translate="no" dir="ltr">@StableMarker</code>
+      have been moved to runtime-annotation (in a compatible way). You can now depend on runtime-annotation if you want to use these annotations from libraries that do not depend on compose. (
+      <a href="https://android-review.googlesource.com/#/q/I23a16a27aaacc1a17c181d821e4a6fdcef2ea882">I23a16</a>
+      )
+    </li>
+    <li>
+      Removes
+      <code translate="no" dir="ltr">onCreating</code>
+      and
+      <code translate="no" dir="ltr">onDisposing</code>
+      as they were deprecated and renamed to
+      <code translate="no" dir="ltr">onPreCreate</code>
+      and
+      <code translate="no" dir="ltr">onPreDispose</code>
+      . This change completes the rename. (
+      <a href="https://android-review.googlesource.com/#/q/I9746116d7374dfc845d2769b19a6fca5b3a2bb3f">I97461</a>
+      )
+    </li>
+    <li>
+      Expose a composition local that allows to attach a compose stack trace based on a compose node location in composition. (
+      <a href="https://android-review.googlesource.com/#/q/Ie0bdaffb43a46328057c31e7fc9db51a80789b5e">Ie0bda</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/354163858">b/354163858</a>
+      )
+    </li>
+    <li>
+      Introduce diagnostic Compose stack traces based on source information stored in composition. (
+      <a href="https://android-review.googlesource.com/#/q/I3db9fb976f61c768e2d1cf11d69019e4d0a08330">I3db9f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/354163858">b/354163858</a>
+      )
+    </li>
+    <li>
+      Deprecate
+      <code translate="no" dir="ltr">runWithTimingDisabled</code>
+      in favor of
+      <code translate="no" dir="ltr">runWithMeasurementDisabled</code>
+      , which more clearly describes the behavior - all metrics are paused. Additionally, expose the
+      <code translate="no" dir="ltr">MicrobenchmarkScope</code>
+      superclass since redeclaring the
+      <code translate="no" dir="ltr">runWithMeasurementDisabled</code>
+      function to open access isn't possible, since it's inline. (
+      <a href="https://android-review.googlesource.com/#/q/I9e23b0dfcff18f162ca0d2517734f3038870b59c">I9e23b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/389149423">b/389149423</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/149979716">b/149979716</a>
+      )
+    </li>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">@FrequentlyChangingValue</code>
+      : an annotation that can mark functions, and property getters, to indicate that they should not be called directly inside composition, as this may cause frequent recompositions. For example, to mark scroll position values and animating values. Warnings are provided by a corresponding lint check. (
+      <a href="https://android-review.googlesource.com/#/q/I836300029e0806b203ea3145426f4c079494482e">I83630</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/234042500">b/234042500</a>
+      )
+    </li>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">@RememberInComposition</code>
+      : an annotation that can mark constructors, functions, and property getters, to indicate that they must not be called directly inside composition, without being remembered. Errors will be raised by a corresponding lint check. This annotation can be used to mark declarations that return stateful / mutable objects, objects whose identity is important to maintain across compositions, or objects that are expensive to instantiate and should be cached across compositions. (
+      <a href="https://android-review.googlesource.com/#/q/Ie7db088c6d601b39d7f0bbb5f877f961108b6c47">Ie7db0</a>
+      )
+    </li>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">rememberSaveable</code>
+      overload that supports
+      <code translate="no" dir="ltr">KSerializer</code>
+      for type-safe state persistence using KotlinX Serialization. The existing
+      <code translate="no" dir="ltr">Saver</code>
+      -based API remains supported. (
+      <a href="https://android-review.googlesource.com/#/q/Iea4ab073ae8d62fac18069e072cf5a8d11ba31b8">Iea4ab</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/376028110">b/376028110</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix dispatching of remember observers in pausable composition to avoid dispatching remembered/forgotten in the same apply (
+      <a href="https://android-review.googlesource.com/#/q/I570b2436b95c7f8fb88a6f9824dbb9b8bccbc0fa">I570b2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/404645679">b/404645679</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/407931790">b/407931790</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">SnapshotObserver</code>
+      methods onCreating to
+      <code translate="no" dir="ltr">onPreCreate</code>
+      and
+      <code translate="no" dir="ltr">onDisposing</code>
+      to
+      <code translate="no" dir="ltr">onPreDispose</code>
+      to match API guidelines. The previous methods are deprecated and the new methods default to call the old ones so existing implementations of this interface will continue to work until the methods are removed. These methods will be removed in 1.9.0 alpha in a follow-up CL that will shortly follow this one. They will be removed from 1.8 beta before 1.8 stable. (
+      <a href="https://android-review.googlesource.com/#/q/I6d753f73ac673337dcf5d35aa688b9dfc13ef24a">I6d753</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where remembered values could incorrectly be forgotten and re-computed when recomposing an elided group that appears after a movable group (
+      <a href="https://android-review.googlesource.com/#/q/I62cab3671fb6bf567e9f2c66996638247a8021f0">I62cab</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/383769314">b/383769314</a>
+      )
+    </li>
+    <li>
+      Added support for compose stack traces in
+      <code translate="no" dir="ltr">LaunchedEffect</code>
+      and
+      <code translate="no" dir="ltr">rememberCoroutineScope</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I705c0898bc527741d87cc9ff838016b87b14fb54">I705c0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/354163858">b/354163858</a>
+      )
+    </li>
+    <li>
+      Compose lint checks now require a minimum AGP version of 8.8.2 from command line, and at least Android Studio Ladybug for IDE support. If you are using an older version of AGP, you can set
+      <code translate="no" dir="ltr">android.experimental.lint.version=8.8.2</code>
+      in gradle.properties to upgrade the Lint version, without affecting AGP. (
+      <a href="https://android-review.googlesource.com/#/q/I6f2a8816d93bc7d9d2a24658d69baa0900abf4c6">I6f2a8</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">AnnotationTarget.FUNCTION</code>
+      to the
+      <code translate="no" dir="ltr">FunctionKeyMeta</code>
+      annotation. (
+      <a href="https://android-review.googlesource.com/#/q/I080216a2fde1be6d5f189608645e061a96fb83e6">I08021</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_18_2" data-text="Version 1.8" tabindex="-1">Version 1.8</h2>

@@ -1,0 +1,102 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.4.0-alpha13
+releaseDate: 2025-04-23
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha13" data-text="Version 1.4.0-alpha13" tabindex="-1">Version 1.4.0-alpha13</h3>
+  <p>April 23, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.4.0-alpha13</code>
+    is released. Version 1.4.0-alpha13 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/74a1f5957757ddb19a2ebe9bddd8b81a6f833844..008cbd021e3a2b4d1f36ea7f48200c4692bfc169/compose/material3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">isAppearanceLightStatusBars</code>
+      and
+      <code translate="no" dir="ltr">isAppearanceLightNavigationBars</code>
+      reintroduced to
+      <code translate="no" dir="ltr">ModalBottomSheetProperties</code>
+      as android only params. (
+      <a href="https://android-review.googlesource.com/#/q/Id4bc03e0f4b0a7c0cef3000e0d2904a4f743fd34">Id4bc0</a>
+      )
+    </li>
+    <li>
+      Add an
+      <code translate="no" dir="ltr">AppBarRow</code>
+      composable, that handles overflow of items that would fit outside its bounds. (
+      <a href="https://android-review.googlesource.com/#/q/I742bdfac6caf49e87853b993f3887813ab2e4139">I742bd</a>
+      )
+    </li>
+    <li>
+      Update the the
+      <code translate="no" dir="ltr">DatePicker</code>
+      and
+      <code translate="no" dir="ltr">DateRangePicker</code>
+      API for requesting a focus when switching to a date-input mode. We've replaced the
+      <code translate="no" dir="ltr">requestFocus</code>
+      boolean parameter with an optional
+      <code translate="no" dir="ltr">focusRequester</code>
+      param that takes a
+      <code translate="no" dir="ltr">FocusRequester</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I14b69b7502caafbe87f94e772e64150667300f99">I14b69</a>
+      )
+    </li>
+    <li>
+      Remove modifier and interaction source from the default clickable and toggleable items. Have it as an implementation detail instead. (
+      <a href="https://android-review.googlesource.com/#/q/I95ed632afc89e9feeb0d921964b1ed8cadc9fa14">I95ed6</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">ButtonGroup</code>
+      to overflow into a dropdown menu when there are too many buttons to fit on the screen. (
+      <a href="https://android-review.googlesource.com/#/q/I7b88b25ef4e3e803a41e942241f8d78edba0723a">I7b88b</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Bottomsheet now consumes top insets when smaller than current offset. This allows users to provide top insets for expanded behavior.
+      <code translate="no" dir="ltr">BottomSheetDefaults.windowInsets</code>
+      now includes
+      <code translate="no" dir="ltr">WindowInsets.safeDrawing.Top</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0ab67236576ae407a3bf9f6d6a64618aa7bfb465">I0ab67</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/321877275">b/321877275</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/336962418">b/336962418</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/342093067">b/342093067</a>
+      )
+    </li>
+    <li>
+      Enabled enter/exit animations (fade/slide) for Chip leading icons/avatars and trailing icons when they are added or removed. This primarily benefits selectable Chips (Filter, Input) but applies generally. (
+      <a href="https://android-review.googlesource.com/#/q/I9af21567e5a63ed456d8e9ebb9e66150a33a8a3d">I9af21</a>
+      )
+    </li>
+    <li>
+      Fix the broken RTL Slider behavior caused by
+      <code translate="no" dir="ltr">LookaheadScope</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ieb1528e77d3efb971302216b31398773ee347517">Ieb152</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/408118041">b/408118041</a>
+      )
+    </li>
+    <li>
+      Fix the Bottom
+      <code translate="no" dir="ltr">AppBar</code>
+      crash related to scrolling with a hidden system UI. (
+      <a href="https://android-review.googlesource.com/#/q/Ic61400fcd39b489a716683f3db3c6f07d200253d">Ic6140</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/405996228">b/405996228</a>
+      )
+    </li>
+  </ul>

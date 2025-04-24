@@ -1,0 +1,184 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.9.0-alpha01
+releaseDate: 2025-04-23
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0-alpha01" data-text="Version 1.9.0-alpha01" tabindex="-1">Version 1.9.0-alpha01</h3>
+  <p>April 23, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.9.0-alpha01</code>
+    is released. Version 1.9.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d6d9afca3dfa73c1b9ea74daf9d6ad49c56fe0e9..008cbd021e3a2b4d1f36ea7f48200c4692bfc169/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Introduce API for creating custom bullet lists through
+      <code translate="no" dir="ltr">AnnotatedString</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I1d066d3df73999bd3c771b72982fe8bbccc822ae">I1d066</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/383269496">b/383269496</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/139326648">b/139326648</a>
+      )
+    </li>
+    <li>
+      Allow Compose to trigger
+      <code translate="no" dir="ltr">ViewTreeObserver.OnScrollChanged</code>
+      . This behavior is introduced under the flag
+      <code translate="no" dir="ltr">isOnScrollChangedCallbackEnabled</code>
+      . We also introduced an extension function of
+      <code translate="no" dir="ltr">DelegatableNode dispatchOnScrollChanged</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I34b9d923ff1fb4a4e27a53e583a7b082bc99b158">I34b9d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/238109286">b/238109286</a>
+      )
+    </li>
+    <li>
+      Projects released with Kotlin 2.0 require KGP 2.0.0 or newer to be consumed (
+      <a href="https://android-review.googlesource.com/#/q/Idb6b5d6ae1625ab870ffe74f9790ffabc82a63b4">Idb6b5</a>
+      )
+    </li>
+    <li>
+      Added lint check support for
+      <code translate="no" dir="ltr">TextFieldState</code>
+      to make sure it is remembered inside composition. Consider using
+      <code translate="no" dir="ltr">rememberTextFieldState</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/I53d749ff2b2cad5e02c8f87940a36656d6437467">I53d74</a>
+      )
+    </li>
+    <li>
+      Added lint check support for
+      <code translate="no" dir="ltr">FocusRequester</code>
+      to make sure it is remembered inside composition (
+      <a href="https://android-review.googlesource.com/#/q/I6bf911348f006b4f04fe2c5633aba0a060ec4fd1">I6bf91</a>
+      )
+    </li>
+    <li>
+      Added lint check support for
+      <code translate="no" dir="ltr">BringIntoViewRequester</code>
+      to make sure it is remembered inside composition. (
+      <a href="https://android-review.googlesource.com/#/q/Ibfba6998dc6916bf409d8f4d6b142d715f89c29f">Ibfba6</a>
+      )
+    </li>
+    <li>
+      Introduced scopes for
+      <code translate="no" dir="ltr">schedulePrefetch</code>
+      calls in grids and lists strategies to align with the
+      <code translate="no" dir="ltr">LazyListPrefetchState</code>
+      capabilities of providing size and index info. (
+      <a href="https://android-review.googlesource.com/#/q/Iad80ca8c87d1d2823f87cb40fc81579c4f6f484c">Iad80c</a>
+      )
+    </li>
+    <li>
+      Breaking change:
+      <code translate="no" dir="ltr">clickable</code>
+      ,
+      <code translate="no" dir="ltr">combinedClickable</code>
+      ,
+      <code translate="no" dir="ltr">selectable</code>
+      ,
+      <code translate="no" dir="ltr">toggleable</code>
+      , and
+      <code translate="no" dir="ltr">triStateToggleable</code>
+      overloads without an Indication parameter now only support
+      <code translate="no" dir="ltr">IndicationNodeFactory</code>
+      instances provided using
+      <code translate="no" dir="ltr">LocalIndication</code>
+      . This change will apply when you recompile your usages of these modifiers using this version of Compose. Binary / transitive dependencies are not affected. If you are providing a deprecated Indication implementation to
+      <code translate="no" dir="ltr">LocalIndication</code>
+      , and using these APIs, this will introduce a crash at runtime. This behavior change is needed to enable improved performance, and allow Composable functions using these modifiers to skip during recomposition. You can use
+      <code translate="no" dir="ltr">ComposeFoundationFlags.isNonComposedClickableEnabled=false</code>
+      to temporarily opt-out of this behavior change, to enable upgrading Compose without being blocked on this migration. This flag will be removed after one stable release. To resolve, migrate any deprecated Indication implementations to use
+      <code translate="no" dir="ltr">IndicationNodeFactory</code>
+      instead. You can also use the overloads with an explicit Indication parameter - these overloads will continue to support non-
+      <code translate="no" dir="ltr">IndicationNodeFactory</code>
+      instances of Indication, although this is not recommended for performance reasons. (
+      <a href="https://android-review.googlesource.com/#/q/I6bcdc6ff82dd6ff5ea1a97688d5a1426b719df20">I6bcdc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/316914333">b/316914333</a>
+      )
+    </li>
+    <li>
+      Introduce a flag for controlling the automatic nested prefetch behavior:
+      <code translate="no" dir="ltr">isAutomaticNestedPrefetchEnabled</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I8d448db663c7733d7df9b5c24326371221aaaec6">I8d448</a>
+      )
+    </li>
+    <li>
+      Introduce an overload for
+      <code translate="no" dir="ltr">LazyGridState</code>
+      and
+      <code translate="no" dir="ltr">rememberLazyGridState</code>
+      that takes a
+      <code translate="no" dir="ltr">LazyLayoutCacheWindow</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I511510d5db20c6c810b1ff4872db6ff3af8738e5">I51151</a>
+      )
+    </li>
+    <li>
+      Adds Rulers for Window Insets. Adds
+      <code translate="no" dir="ltr">DerivedRuler</code>
+      to allow a Ruler to be calculated from another Ruler. Modifies
+      <code translate="no" dir="ltr">PlacmentScope</code>
+      to implement Density. (
+      <a href="https://android-review.googlesource.com/#/q/I658bc9f5e707d2b74b51790ff7541c10448e4c9b">I658bc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/359260964">b/359260964</a>
+      )
+    </li>
+    <li>
+      Added a zero arg
+      <code translate="no" dir="ltr">WindowInsets()</code>
+      factory function to easily create empty
+      <code translate="no" dir="ltr">WindowInsets</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I65f6296e8d870ac93dd38d086c41a7e9c04ba59d">I65f62</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/395311689">b/395311689</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">PaddingValues.Zero</code>
+      for an empty
+      <code translate="no" dir="ltr">PaddingValues</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If193e919401ab4350577e4f0d03be5e7eaa0f743">If193e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/386255688">b/386255688</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">state</code>
+      overload of
+      <code translate="no" dir="ltr">BasicTextField</code>
+      will keep the cursor scrolled into view when its size changes. (
+      <a href="https://android-review.googlesource.com/#/q/I0eb41276b627d49889d3aedb11b58ba4d2ec0b74">I0eb41</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/406187741">b/406187741</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">onVisibleItemsUpdated</code>
+      APIs in
+      <code translate="no" dir="ltr">LazyListPrefetchStrategy</code>
+      and
+      <code translate="no" dir="ltr">LazyGridPrefetchStrategy</code>
+      to inform about initial state. (
+      <a href="https://android-review.googlesource.com/#/q/If2cfa51541b20f0646131241beb215e6e8c1f671">If2cfa</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_18_2" data-text="Version 1.8" tabindex="-1">Version 1.8</h2>

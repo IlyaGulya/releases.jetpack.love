@@ -1,0 +1,47 @@
+libraryId: lint
+groupId: androidx.lint
+version: 1.0.0-alpha04
+releaseDate: 2025-04-23
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha04" data-text="Version 1.0.0-alpha04" tabindex="-1">Version 1.0.0-alpha04</h3>
+  <p>April 23, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lint:lint-gradle:1.0.0-alpha04</code>
+    is released. Version 1.0.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/2ffcbb08c7221e79b12c0ef234bcfb5517d10ece..7bbd2bffb18b5a7d6ab44019d31979acc72315a7/lint/lint-gradle">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Add a check for accidental
+      <code translate="no" dir="ltr">Provider&lt;String&gt;.toString</code>
+      calls as they are likely bugs.
+    </li>
+    <li>Add check to catch uses of methods, properties, fields coming from internal types.</li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">GradleProjectIsolation</code>
+      check to allow usage of
+      <code translate="no" dir="ltr">Project.isolated</code>
+      .
+    </li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">WithTypeWithoutConfigureEach</code>
+      check to catch uses of
+      <code translate="no" dir="ltr">Project.tasks.withType&lt;Task&gt;()</code>
+      without
+      <code translate="no" dir="ltr">configureEach</code>
+      .
+    </li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">InternalGradleApiUsage</code>
+      check to catch fully qualified usages of internal APIs.
+    </li>
+  </ul>
