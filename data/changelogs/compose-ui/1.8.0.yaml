@@ -1,0 +1,73 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.8.0
+releaseDate: 2025-04-23
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0" data-text="Version 1.8.0" tabindex="-1">Version 1.8.0</h3>
+  <p>April 23, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.8.0</code>
+    is released. Version 1.8.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1b6bba717628c4c8c633c9509bfc4e4d9b89f428..d6d9afca3dfa73c1b9ea74daf9d6ad49c56fe0e9/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.7.0</strong></p>
+  <ul>
+    <li>
+      Compose 1.8 contains newly added support for semantic autofill. Ensure that the versions of UI and Foundation that you use are version 1.8 or higher, as autofill for text components needs the latest versions of both modules. For API usage and examples, please refer to the autofill documentation for more details,
+      <a href="https://developer.android.com/develop/ui/compose/text/autofill">here</a>
+      .
+    </li>
+    <li>
+      Compose 1.8 supports additional types of haptic feedback:
+      <code translate="no" dir="ltr">Confirm</code>
+      ,
+      <code translate="no" dir="ltr">ContextClick</code>
+      ,
+      <code translate="no" dir="ltr">GestureEnd</code>
+      ,
+      <code translate="no" dir="ltr">GestureThresholdActivate</code>
+      ,
+      <code translate="no" dir="ltr">Reject</code>
+      ,
+      <code translate="no" dir="ltr">SegmentFrequentTick</code>
+      ,
+      <code translate="no" dir="ltr">SegmentTick</code>
+      ,
+      <code translate="no" dir="ltr">ToggleOn</code>
+      ,
+      <code translate="no" dir="ltr">ToggleOff</code>
+      ,
+      <code translate="no" dir="ltr">VirtualKey</code>
+      . This is accessible via
+      <code translate="no" dir="ltr">LocalHapticFeedback</code>
+      and on Android, this is available by default when the
+      <a href="https://developer.android.com/develop/ui/views/haptics/haptics-apis#vibration_effect_composition">Vibrator API</a>
+      indicates that haptics are supported.
+    </li>
+    <li>
+      Multiple Focus APIs are now stable, including
+      <code translate="no" dir="ltr">Modifier.focusRestorer()</code>
+      and
+      <code translate="no" dir="ltr">onEnter</code>
+      and
+      <code translate="no" dir="ltr">onExit</code>
+      <code translate="no" dir="ltr">FocusProperties</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I6e667ad84b51a525531f4902c1a0ac6ab8b4fba8">I6e667</a>
+      ). You can now specify a
+      <code translate="no" dir="ltr">FocusDirection</code>
+      when you call
+      <code translate="no" dir="ltr">requestFocus</code>
+      . We have added a
+      <code translate="no" dir="ltr">requestFocus(FocusDirection)</code>
+      API to both
+      <code translate="no" dir="ltr">focusRequester</code>
+      and
+      <code translate="no" dir="ltr">FocusTargetModifierNode</code>
+      to allow focusing with a specific direction. (I5d9ec][https://android-review.googlesource.com/#/q/I5d9eca3a2cd283c1b84ad6b77d929ef9a49ce4cc],
+      <a href="https://issuetracker.google.com/issues/245755256">b/245755256</a>
+      )
+    </li>
+  </ul>

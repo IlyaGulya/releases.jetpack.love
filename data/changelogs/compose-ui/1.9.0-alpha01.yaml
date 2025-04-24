@@ -1,0 +1,341 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.9.0-alpha01
+releaseDate: 2025-04-23
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0-alpha01" data-text="Version 1.9.0-alpha01" tabindex="-1">Version 1.9.0-alpha01</h3>
+  <p>April 23, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.9.0-alpha01</code>
+    is released. Version 1.9.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d6d9afca3dfa73c1b9ea74daf9d6ad49c56fe0e9..008cbd021e3a2b4d1f36ea7f48200c4692bfc169/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removes Flag to enable trace statements for hit path tracker (debug). (
+      <a href="https://android-review.googlesource.com/#/q/I1b2a1d14486d63395e6d8514a36aeea202fe23ce">I1b2a1</a>
+      )
+    </li>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">InnerRectRulers</code>
+      and
+      <code translate="no" dir="ltr">OuterRectRules</code>
+      to be methods instead. Removed name parameter from
+      <code translate="no" dir="ltr">RectRulers</code>
+      public API.
+      <code translate="no" dir="ltr">DerivedRulers</code>
+      is now a constructor option for Vertical and Horizontal Rulers.
+      <code translate="no" dir="ltr">MergedHorizontalRulers</code>
+      and
+      <code translate="no" dir="ltr">MergedVerticalRulers</code>
+      have been replaced with
+      <code translate="no" dir="ltr">minOf</code>
+      and
+      <code translate="no" dir="ltr">maxOf</code>
+      methods to generate instances. (
+      <a href="https://android-review.googlesource.com/#/q/Iee89f432021f21e79ef111a039c9fa4b8b78edc7">Iee89f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/408192133">b/408192133</a>
+      )
+    </li>
+    <li>
+      Deprecate
+      <code translate="no" dir="ltr">androidx.compose.ui.LocalSavedStateRegistryOwner</code>
+      in favor of
+      <code translate="no" dir="ltr">androidx.savedstate.compose.LocalSavedStateRegistryOwner</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I5439fa13b66fc524c423d63e3be635025af1e756">I5439f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/377946781">b/377946781</a>
+      )
+    </li>
+    <li>
+      Add a
+      <code translate="no" dir="ltr">Modifier.keepScreenOn</code>
+      to set the display to not sleep while present (
+      <a href="https://android-review.googlesource.com/#/q/Ib5af42c0d16e7d6b2d7a17c5e213f377778c98c8">Ib5af4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/408284174">b/408284174</a>
+      )
+    </li>
+    <li>
+      Add a new semantics property
+      <code translate="no" dir="ltr">Shape</code>
+      , which may be set when the shape of the UI element is different from its bounding rectangle, e.g., rounded corner rectangle. (
+      <a href="https://android-review.googlesource.com/#/q/I1376f00a3f739052d119bbbd8a5aab18ecb2131c">I1376f</a>
+      )
+    </li>
+    <li>
+      Fix issue with pointer event dispatching in
+      <code translate="no" dir="ltr">AndroidViews</code>
+      and added flag
+      <code translate="no" dir="ltr">isPointerInteropFilterDispatchingFixEnabled</code>
+      to protect changes. (
+      <a href="https://android-review.googlesource.com/#/q/I0e272fc05c7931c0e888a357d0a85e354dd32578">I0e272</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/372055500">b/372055500</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/408002332">b/408002332</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FocusRestorer</code>
+      no longer pins the previously focused item. Users should use a key to ensure that the previously focused item has the same composition hash, so that focus is successfully restored. (
+      <a href="https://android-review.googlesource.com/#/q/I4203b9aede7ed93d78a58fd330a807384142dc48">I4203b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/330696779">b/330696779</a>
+      )
+    </li>
+    <li>
+      Allow Compose to trigger
+      <code translate="no" dir="ltr">ViewTreeObserver.OnScrollChanged</code>
+      . This behavior is introduced under the flag
+      <code translate="no" dir="ltr">isOnScrollChangedCallbackEnabled</code>
+      . We also introduced an extension function of
+      <code translate="no" dir="ltr">DelegatableNode dispatchOnScrollChanged</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I34b9d923ff1fb4a4e27a53e583a7b082bc99b158">I34b9d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/238109286">b/238109286</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">currentCompositeKeyHash</code>
+      is now deprecated. Use
+      <code translate="no" dir="ltr">currentCompositeKeyHashCode</code>
+      instead. The replacement API encodes the same hash with more bits, which exponentially reduces the chance of two random unrelated groups in the composition hierarchy from having the same hash key. (
+      <a href="https://android-review.googlesource.com/#/q/I4cb6a801d12447ac52bc92bb899ae84d69c4a6ed">I4cb6a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177562901">b/177562901</a>
+      )
+    </li>
+    <li>
+      Projects released with Kotlin 2.0 require KGP 2.0.0 or newer to be consumed (
+      <a href="https://android-review.googlesource.com/#/q/Idb6b5d6ae1625ab870ffe74f9790ffabc82a63b4">Idb6b5</a>
+      )
+    </li>
+    <li>
+      Added lint check support for
+      <code translate="no" dir="ltr">FocusRequester</code>
+      to make sure it is remembered inside composition (
+      <a href="https://android-review.googlesource.com/#/q/I6bf911348f006b4f04fe2c5633aba0a060ec4fd1">I6bf91</a>
+      )
+    </li>
+    <li>
+      Added the ability to set preferred frame rate or frame rate category on the Composable should be rendered at (
+      <a href="https://android-review.googlesource.com/#/q/Ie52017587fbf70a60364c3ffe5f0a8fe575c9fd2">Ie5201</a>
+      )
+    </li>
+    <li>
+      Expose native
+      <code translate="no" dir="ltr">MotionEvent</code>
+      on Android. (
+      <a href="https://android-review.googlesource.com/#/q/I172860862ead5734c24091e1f377fd182a64ed82">I17286</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">getChecked() + setChecked(int)</code>
+      , deprecate
+      <code translate="no" dir="ltr">isChecked + setChecked(boolean)</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Iaac9dd3ee7b30896e282935a9599006450565f3e">Iaac9d</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">graphicsLayer</code>
+      modifier now accepts a
+      <code translate="no" dir="ltr">blendMode</code>
+      and a
+      <code translate="no" dir="ltr">colorFilter</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Iab0e65f3f26fd4cc81c69cbb9ecf4484e933b5d4">Iab0e6</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">LocalResources</code>
+      composition local to query Resources. Calling
+      <code translate="no" dir="ltr">LocalResources.current</code>
+      will recompose when the configuration changes, so calls to APIs such as
+      <code translate="no" dir="ltr">stringResource()</code>
+      will return updated values. (
+      <a href="https://android-review.googlesource.com/#/q/I50c13ee26bc440f3fe64c40271850e76e734a596">I50c13</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/274786917">b/274786917</a>
+      )
+    </li>
+    <li>
+      Expose experimental API for Composables to handle indirect touch events (
+      <a href="https://android-review.googlesource.com/#/q/Icff57d89af4f857abd2d37f41af8229f2e582b97">Icff57</a>
+      )
+    </li>
+    <li>
+      This release improves the reporting of unhandled exceptions thrown during the layout and draw phases of your composable content. Previously, an uncaught exception here would crash the test runner and prematurely end the test suite. These exceptions can now be reported more gracefully without ending the test suite. (
+      <a href="https://android-review.googlesource.com/#/q/I9928b954c197d7295faeea252cf87733d092ed17">I9928b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/314128080">b/314128080</a>
+      )
+    </li>
+    <li>
+      Deprecated the experimental
+      <code translate="no" dir="ltr">GlobalAssertions</code>
+      API. Its intended use was to run accessibility checks, see
+      <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/test/ComposeUiTest?hl=en#enableAccessibilityChecks()"><code translate="no" dir="ltr">enableAccessibilityChecks()</code></a>
+      for that purpose instead. (
+      <a href="https://android-review.googlesource.com/#/q/I50aa509889849f8772724f46d5849920cf4fd660">I50aa5</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SemanticsNodeInteraction.performTextInputSelection</code>
+      is no longer experimental and now supports an additional
+      <code translate="no" dir="ltr">relativeToOriginal</code>
+      parameter which allows you to apply the selection to either the original untransformed text or the transformed text. (
+      <a href="https://android-review.googlesource.com/#/q/I3a905087b0cd779910d09ff619d0a7e2c9e2a8ba">I3a905</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261561038">b/261561038</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/277018945">b/277018945</a>
+      )
+    </li>
+    <li>
+      Introduce API for creating custom bullet lists through
+      <code translate="no" dir="ltr">AnnotatedString</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I1d066d3df73999bd3c771b72982fe8bbccc822ae">I1d066</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/383269496">b/383269496</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/139326648">b/139326648</a>
+      )
+    </li>
+    <li>
+      Deprecate
+      <code translate="no" dir="ltr">runWithTimingDisabled</code>
+      in favor of
+      <code translate="no" dir="ltr">runWithMeasurementDisabled</code>
+      , which more clearly describes the behavior - all metrics are paused. Additionally, expose the
+      <code translate="no" dir="ltr">MicrobenchmarkScope</code>
+      superclass since redeclaring the
+      <code translate="no" dir="ltr">runWithMeasurementDisabled</code>
+      function to open access isn't possible, since it's inline. (
+      <a href="https://android-review.googlesource.com/#/q/I9e23b0dfcff18f162ca0d2517734f3038870b59c">I9e23b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/389149423">b/389149423</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/149979716">b/149979716</a>
+      )
+    </li>
+    <li>
+      Updated ui-tooling Devices API to include newer devices. (
+      <a href="https://android-review.googlesource.com/#/q/Ia2ac13b06f15228d65067c01f51f64fc2b8082ec">Ia2ac1</a>
+      )
+    </li>
+    <li>
+      Add Tablet Portrait in the collection of Preview Screen sizes to help the developer to consider bigger windows (
+      <a href="https://android-review.googlesource.com/#/q/Ia1976dfd73960d190004e59269e042ab5fbc457c">Ia1976</a>
+      )
+    </li>
+    <li>
+      Introduce trace value API for marking/logging trace with values at a given point in time. Trace values show in Prefetto as a new lane that can be seen through the timeline of a trace. On Android they're implemented using
+      <code translate="no" dir="ltr">Trace.setCounter</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Idcf48360d3bc608f6397a5ba7368ba7246c3712e">Idcf48</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix dispatching of remember observers in pausable composition to avoid dispatching remembered/forgotten in the same apply (
+      <a href="https://android-review.googlesource.com/#/q/I570b2436b95c7f8fb88a6f9824dbb9b8bccbc0fa">I570b2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/404645679">b/404645679</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/407931790">b/407931790</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">android:dialogTheme</code>
+      can now be set to control dialog properties when
+      <code translate="no" dir="ltr">decorFitsSystemWindows</code>
+      is false (
+      <a href="https://android-review.googlesource.com/#/q/I7922fcfff59df0d611d1c61bad3c309c75e8e635">I7922f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/246909281">b/246909281</a>
+      )
+    </li>
+    <li>
+      Fixed bug where any motion event caught outside of a dialog could dismiss the dialog. (
+      <a href="https://android-review.googlesource.com/#/q/Ia78fd1dc0284df3aefd5ef1dfa6b25d7942791e4">Ia78fd</a>
+      )
+    </li>
+    <li>
+      Compose lint checks now require a minimum AGP version of 8.8.2 from command line, and at least Android Studio Ladybug for IDE support. If you are using an older version of AGP, you can set
+      <code translate="no" dir="ltr">android.experimental.lint.version=8.8.2</code>
+      in gradle.properties to upgrade the Lint version, without affecting AGP. (
+      <a href="https://android-review.googlesource.com/#/q/I6f2a8816d93bc7d9d2a24658d69baa0900abf4c6">I6f2a8</a>
+      )
+    </li>
+    <li>
+      Added a new semantics property
+      <code translate="no" dir="ltr">InputText</code>
+      that captures a
+      <code translate="no" dir="ltr">textfield</code>
+      's value before output transformation is applied. (
+      <a href="https://android-review.googlesource.com/#/q/Iae46a52e7fbb1a3558e897c5afebd125089befbb">Iae46a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/395911609">b/395911609</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/176949051">b/176949051</a>
+      )
+    </li>
+    <li>
+      Moved
+      <code translate="no" dir="ltr">enableAccessibilityChecks()</code>
+      API that turns on the Accessibility Checks for Android to separate packages which are
+      <code translate="no" dir="ltr">compose:ui:ui-test-accessibility</code>
+      if you're not using the
+      <code translate="no" dir="ltr">TestRule</code>
+      and
+      <code translate="no" dir="ltr">compose:ui:ui-test-junit4-accessibility</code>
+      when calling on
+      <code translate="no" dir="ltr">TestRule</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I3c3183c7f06ced8c0ad4873b6262ea39e1ea1b16">I3c318</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/391560768">b/391560768</a>
+      )
+    </li>
+    <li>
+      Added support for compose stack traces in
+      <code translate="no" dir="ltr">LaunchedEffect</code>
+      and
+      <code translate="no" dir="ltr">rememberCoroutineScope</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I705c0898bc527741d87cc9ff838016b87b14fb54">I705c0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/354163858">b/354163858</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Changing the experimental
+      <code translate="no" dir="ltr">runComposeUiTest</code>
+      function to accept a suspend block. Also added a deprecated fun
+      <code translate="no" dir="ltr">runComposeUiTest</code>
+      for binary compatibility (
+      <a href="https://android-review.googlesource.com/#/q/I3b88cb2d89d06cba472ab9056cfae822c1a7dd4b">I3b88c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/361577328">b/361577328</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_18_2" data-text="Version 1.8" tabindex="-1">Version 1.8</h2>

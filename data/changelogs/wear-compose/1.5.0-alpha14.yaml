@@ -1,0 +1,107 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.5.0-alpha14
+releaseDate: 2025-04-23
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha14" data-text="Version 1.5.0-alpha14" tabindex="-1">Version 1.5.0-alpha14</h3>
+  <p>April 23, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.5.0-alpha14</code>
+    is released. Version 1.5.0-alpha14 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4c37298a97c16270c139eb812ddadaba03e23a52..008cbd021e3a2b4d1f36ea7f48200c4692bfc169/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      All the Material
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      dependencies on Foundation
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      were moved to Material package, e.g.
+      <code translate="no" dir="ltr">RevealValue</code>
+      ,
+      <code translate="no" dir="ltr">RevealDirection</code>
+      ,
+      <code translate="no" dir="ltr">RevealActionType</code>
+      ,
+      <code translate="no" dir="ltr">RevealState</code>
+      ,
+      <code translate="no" dir="ltr">rememberRevealState</code>
+      . Developers should change their imports of these classes and functions from
+      <code translate="no" dir="ltr">androidx.wear.compose.foundation</code>
+      to
+      <code translate="no" dir="ltr">androidx.wear.compose.material</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib7cb8af3a7437aa4a5baa1e164ec17461a3a4275">Ib7cb8</a>
+      )
+    </li>
+    <li>
+      Updated the API of
+      <code translate="no" dir="ltr">HierarchicalFocusCoordinator</code>
+      to be modifiers instead of composables.
+    </li>
+    <li>
+      Migration notes:
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">HierarchicalFocusCoordinator(function, content)</code>
+          can be replaced by adding a
+          <code translate="no" dir="ltr">Modifier.hierarchicalFocus(function())</code>
+          to
+          <code translate="no" dir="ltr">content</code>
+          , or the enclosing composable.
+        </li>
+        <li>
+          <code translate="no" dir="ltr">ActiveFocusListener { if (it) focusRequester.requestFocus() }</code>
+          can be replaced by adding
+          <code translate="no" dir="ltr">Modifier.hierarchicalFocusRequester(focusRequester)</code>
+        </li>
+        <li>
+          Other rarer uses of
+          <code translate="no" dir="ltr">ActiveFocusListener</code>
+          can use the new parameter on
+          <code translate="no" dir="ltr">Modifier.hierarchicalFocus</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">focusRequester(rememberActiveFocusRequester())</code>
+          can be replaced by
+          <code translate="no" dir="ltr">hierarchicalFocusRequester()</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">val focusRequester = rememberActiveFocusRequester()</code>
+          can be replaced by
+          <code translate="no" dir="ltr">remember { FocusRequester() }</code>
+          and adding
+          <code translate="no" dir="ltr">Modifier.hierarchicalFocusRequester(focusRequester)</code>
+          . (
+          <a href="https://android-review.googlesource.com/#/q/Ie319a1ffaf6c696b117253fe81ce3bdb96d0c90e">Ie319a</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      The velocity threshold that swipe gestures need to exceed to trigger a change of state has been increased for the following components:
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      ,
+      <code translate="no" dir="ltr">BasicSwipeToDismissBox</code>
+      and
+      <code translate="no" dir="ltr">SwipeDismissableNavHost</code>
+      (only for API 35 and below for
+      <code translate="no" dir="ltr">SwipeDismissableNavHost</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/If47bf30ee1dd8082a8a60b248a4f3d9a0898c23b">If47bf</a>
+      )
+    </li>
+    <li>
+      Fixed an animation issue when new items are added into
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I589b2eaf21995e35b003208549b6196750cd24d7">I589b2</a>
+      )
+    </li>
+  </ul>
