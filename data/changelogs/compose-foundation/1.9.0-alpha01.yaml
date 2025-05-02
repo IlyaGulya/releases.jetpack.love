@@ -12,6 +12,49 @@ changelogHtml: |
     <a href="https://android.googlesource.com/platform/frameworks/support/+log/d6d9afca3dfa73c1b9ea74daf9d6ad49c56fe0e9..008cbd021e3a2b4d1f36ea7f48200c4692bfc169/compose/foundation">these commits</a>
     .
   </p>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      <p>
+        Lint checks shipped with Compose now require a minimum AGP version of 8.8.2. If you are unable to upgrade AGP, you can instead upgrade Lint on its own by using
+        <code translate="no" dir="ltr">android.experimental.lint.version=8.8.2</code>
+        (or a newer version) in your
+        <code translate="no" dir="ltr">gradle.properties</code>
+        . To run Compose lint checks inside the IDE, Android Studio Ladybug or newer is required.
+      </p>
+    </li>
+    <li>
+      <p>
+        Breaking change:
+        <code translate="no" dir="ltr">clickable</code>
+        ,
+        <code translate="no" dir="ltr">combinedClickable</code>
+        ,
+        <code translate="no" dir="ltr">selectable</code>
+        ,
+        <code translate="no" dir="ltr">toggleable</code>
+        , and
+        <code translate="no" dir="ltr">triStateToggleable</code>
+        overloads without an Indication parameter now only support
+        <code translate="no" dir="ltr">IndicationNodeFactory</code>
+        instances provided using
+        <code translate="no" dir="ltr">LocalIndication</code>
+        . This change will apply when you recompile your usages of these modifiers using this version of Compose. Binary / transitive dependencies are not affected. If you are providing a deprecated Indication implementation to
+        <code translate="no" dir="ltr">LocalIndication</code>
+        , and using these APIs, this will introduce a crash at runtime. This behavior change is needed to enable improved performance, and allow Composable functions using these modifiers to skip during recomposition. You can use
+        <code translate="no" dir="ltr">ComposeFoundationFlags.isNonComposedClickableEnabled=false</code>
+        to temporarily opt-out of this behavior change, to enable upgrading Compose without being blocked on this migration. This flag will be removed after one stable release. To resolve, migrate any deprecated Indication implementations to use
+        <code translate="no" dir="ltr">IndicationNodeFactory</code>
+        instead. You can also use the overloads with an explicit Indication parameter - these overloads will continue to support non-
+        <code translate="no" dir="ltr">IndicationNodeFactory</code>
+        instances of Indication, although this is not recommended for performance reasons. (
+        <a href="https://android-review.googlesource.com/#/q/I6bcdc6ff82dd6ff5ea1a97688d5a1426b719df20">I6bcdc</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/316914333">b/316914333</a>
+        )
+      </p>
+    </li>
+  </ul>
   <p><strong>API Changes</strong></p>
   <ul>
     <li>
