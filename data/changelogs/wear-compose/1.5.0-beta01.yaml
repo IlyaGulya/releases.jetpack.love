@@ -1,0 +1,400 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.5.0-beta01
+releaseDate: 2025-05-07
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-beta01" data-text="Version 1.5.0-beta01" tabindex="-1">Version 1.5.0-beta01</h3>
+  <p>May 7, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.5.0-beta01</code>
+    is released. Version 1.5.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/008cbd021e3a2b4d1f36ea7f48200c4692bfc169..b6c541571b9fb5471f965fc52612cb280713e5e4/wear/compose">these commits</a>
+    .
+  </p>
+  <p>The 1.5.0-beta01 release of Compose for Wear OS indicates that this release of the library is feature complete and the API is locked (except where marked as experimental).</p>
+  <p>Wear Compose 1.5.0-beta01 includes the Wear Compose Material3 library, which supports the new UI design system called Material 3 Expressive. It is recommended to upgrade from Material to Material3 to embrace the new visual design in apps, and to benefit from the new components as follows:</p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">MaterialTheme</code>
+      for updated and extended color schemes, typography, and shapes to bring both depth and variety to your designs.
+    </li>
+    <li>Dynamic Color Theming which automatically generates a color scheme for your app to match the watch face colors.</li>
+    <li>New components automatically adapt to larger screen sizes by default</li>
+    <li>
+      Shape Morphing - round button components like
+      <code translate="no" dir="ltr">IconButton</code>
+      ,
+      <code translate="no" dir="ltr">TextButton</code>
+      ,
+      <code translate="no" dir="ltr">IconToggleButton</code>
+      and
+      <code translate="no" dir="ltr">TextToggleButton</code>
+      support variations that animate when pressed or checked.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">EdgeButton</code>
+      - a new edge-hugging button with a special shape designed for the bottom of the screen.
+    </li>
+    <li>
+      Scaffolds - introducing
+      <code translate="no" dir="ltr">AppScaffold</code>
+      and
+      <code translate="no" dir="ltr">ScreenScaffold</code>
+      to lay out the structure of the screen and coordinate
+      <code translate="no" dir="ltr">ScrollIndicator</code>
+      and
+      <code translate="no" dir="ltr">TimeText</code>
+      animations.
+    </li>
+    <li>
+      Buttons - numerous stadium-shaped buttons are supported with flexible, single-slot containers and multi-slot variations for buttons with icons and labels.
+      <code translate="no" dir="ltr">CheckboxButton</code>
+      and
+      <code translate="no" dir="ltr">SwitchButton</code>
+      are provided when toggle buttons are needed, whilst
+      <code translate="no" dir="ltr">RadioButton</code>
+      is the available selection button (‘Split’ variations of the toggle and selection buttons are also provided).
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ButtonGroup</code>
+      - implements an expressive group of buttons in a row that shape-morph when touched.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AlertDialog</code>
+      variations support ok/cancel buttons or an
+      <code translate="no" dir="ltr">EdgeButton</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ConfirmationDialog</code>
+      is available to display a message with a timeout, supporting special animations for success, failure and open-on-phone variations.
+    </li>
+    <li>
+      Pickers -
+      <code translate="no" dir="ltr">TimePicker</code>
+      and
+      <code translate="no" dir="ltr">DatePicker</code>
+      variations are supported as well as the Picker and
+      <code translate="no" dir="ltr">PickerGroup</code>
+      components for building your own picker screens.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ProgressIndicators</code>
+      - circular, and linear progress indicators are supported (the
+      <code translate="no" dir="ltr">CircularProgressIndicator</code>
+      has segmented and indeterminate variations).
+    </li>
+    <li>
+      Cards - a number of card variations are available, including
+      <code translate="no" dir="ltr">TitleCard</code>
+      which offers specific layouts for cards with title, time, subtitle or content slots.
+      <code translate="no" dir="ltr">TitleCard</code>
+      can also be given an image background to reinforce the meaning of the information in a card.
+    </li>
+    <li>
+      Pagers -
+      <code translate="no" dir="ltr">HorizontalPagerScaffold</code>
+      ,
+      <code translate="no" dir="ltr">VerticalPagerScaffold</code>
+      and
+      <code translate="no" dir="ltr">AnimatedPage</code>
+      components coordinate
+      <code translate="no" dir="ltr">HorizontalPageIndicator</code>
+      and
+      <code translate="no" dir="ltr">VerticalPagerIndicator</code>
+      animations.
+      <code translate="no" dir="ltr">HorizontalPager</code>
+      and
+      <code translate="no" dir="ltr">VerticalPager</code>
+      are released in the Wear Compose Foundation library.
+    </li>
+    <li>Placeholders - draws a skeleton shape over a component, for situations where no provisional content is available.</li>
+    <li>
+      Sliders and Steppers - both sliders and steppers allow users to make a selection from a range of values. Sliders are more compact and can be segmented, whereas Stepper is a full screen component typically paired with a
+      <code translate="no" dir="ltr">StepperLevelIndicator</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      - used to add additional actions to a composable when it is swiped right-to-left.
+    </li>
+  </ul>
+  <p>In addition, Wear Compose Foundation 1.5.0-beta01 includes these new components:</p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      - a lazy, vertically scrolling list the supports scaling and morphing animations
+    </li>
+    <li>Hierarchical Focus Groups - used to annotate composables in an application, to keep track of the active part of the composition and coordinate focus.</li>
+    <li>
+      Pagers -
+      <code translate="no" dir="ltr">HorizontalPager</code>
+      and
+      <code translate="no" dir="ltr">VerticalPager</code>
+      components, built on the Compose Foundation components with Wear-specific enhancements to improve performance and adherence to Wear OS guidelines.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Updated the Hierarchical Focus API - renamed
+      <code translate="no" dir="ltr">Modifier.hierarchicalFocus</code>
+      to
+      <code translate="no" dir="ltr">Modifier.hierarchicalFocusGroup</code>
+      and removed the callback parameter; removed the overload of
+      <code translate="no" dir="ltr">Modifier.hierarchicalFocusRequester</code>
+      with a
+      <code translate="no" dir="ltr">FocusRequester</code>
+      parameter; created a new
+      <code translate="no" dir="ltr">CompositionLocal</code>
+      ,
+      <code translate="no" dir="ltr">LocalScreenIsActive</code>
+      so that components can inform and check which screen is the active one. (
+      <a href="https://android-review.googlesource.com/#/q/I5ff7cecc4f8e50d3f1a198dae621b3e9545e41e9">I5ff7c</a>
+      ).
+    </li>
+    <li>
+      Deprecated
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      from Wear Compose Foundation in favor of
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      APIs in Wear Compose Material and Wear Compose Material3. Please replace Wear Foundation
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      imports with Wear Compose Material/ Wear Compose Material3 imports to continue using the APIs. (
+      <a href="https://android-review.googlesource.com/#/q/Ia147d058572f6f1082826b1848993177443780af">Ia147d</a>
+      ).
+    </li>
+    <li>
+      Wear Compose Material3
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      dependencies on Foundation were moved to the material3 package, e.g.
+      <code translate="no" dir="ltr">RevealValue</code>
+      ,
+      <code translate="no" dir="ltr">RevealDirection</code>
+      ,
+      <code translate="no" dir="ltr">RevealActionType</code>
+      ,
+      <code translate="no" dir="ltr">RevealState</code>
+      ,
+      <code translate="no" dir="ltr">rememberRevealState</code>
+      . Developers should change their imports of these classes and functions from
+      <code translate="no" dir="ltr">androidx.wear.compose.foundation</code>
+      to
+      <code translate="no" dir="ltr">androidx.wear.compose.material3</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I640e68aa8a8a55a08c052c01b16cdfefaecb1fa0">I640e6</a>
+      ).
+    </li>
+    <li>
+      Updated the Wear Compose Material3
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      API as follows: added
+      <code translate="no" dir="ltr">primaryAction</code>
+      ,
+      <code translate="no" dir="ltr">onFullSwipe</code>
+      ,
+      <code translate="no" dir="ltr">secondaryAction</code>
+      ,
+      <code translate="no" dir="ltr">undoPrimaryAction</code>
+      ,
+      <code translate="no" dir="ltr">undoSecondaryAction</code>
+      and
+      <code translate="no" dir="ltr">hasPartiallyRevealedState</code>
+      parameters to the
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      composable; removed the ability to customize
+      <code translate="no" dir="ltr">positionalThreshold</code>
+      and
+      <code translate="no" dir="ltr">animationSpec</code>
+      from
+      <code translate="no" dir="ltr">RevealState</code>
+      ; removed
+      <code translate="no" dir="ltr">lastActionType</code>
+      ,
+      <code translate="no" dir="ltr">revealThreshold</code>
+      and width from
+      <code translate="no" dir="ltr">RevealState</code>
+      ; changed the
+      <code translate="no" dir="ltr">RevealState</code>
+      constructor to accept a
+      <code translate="no" dir="ltr">RevealDirection</code>
+      instead of anchors; removed
+      <code translate="no" dir="ltr">createRevealAnchors</code>
+      , anchors, and
+      <code translate="no" dir="ltr">bidirectionalAnchors</code>
+      functions;
+      <code translate="no" dir="ltr">SwipeToRevealScope</code>
+      functions
+      <code translate="no" dir="ltr">primaryAction</code>
+      ,
+      <code translate="no" dir="ltr">secondaryAction</code>
+      ,
+      <code translate="no" dir="ltr">undoPrimaryAction</code>
+      and
+      <code translate="no" dir="ltr">undoSecondaryAction</code>
+      were renamed to
+      <code translate="no" dir="ltr">PrimaryActionButton</code>
+      ,
+      <code translate="no" dir="ltr">SecondaryActionButton</code>
+      ,
+      <code translate="no" dir="ltr">UndoActionButton</code>
+      and made into Composable functions; marked
+      <code translate="no" dir="ltr">RevealActionType</code>
+      as internal. (
+      <a href="https://android-review.googlesource.com/#/q/I885d03e3744af23ae8cf63118f7417df273bb888">I885d0</a>
+      ).
+    </li>
+    <li>
+      Further updated
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      API as follows: renamed
+      <code translate="no" dir="ltr">onFullSwipe</code>
+      to
+      <code translate="no" dir="ltr">onSwipePrimaryAction</code>
+      ; renamed
+      <code translate="no" dir="ltr">SwipeToRevealNonAnchoredSample</code>
+      to indicate the use of the
+      <code translate="no" dir="ltr">hasPartiallyRevealedState</code>
+      parameter; removed
+      <code translate="no" dir="ltr">actionButtonHeight</code>
+      , since the default is the Button's default height and the larger height can be set using a modifier; removed the
+      <code translate="no" dir="ltr">SmallActionButtonHeight</code>
+      from
+      <code translate="no" dir="ltr">SwipeToRevealDefaults</code>
+      ; made the value parameter in
+      <code translate="no" dir="ltr">RevealValue</code>
+      and
+      <code translate="no" dir="ltr">RevealDirection</code>
+      constructors private. (
+      <a href="https://android-review.googlesource.com/#/q/I465cede795a2c3042680176a8fda9c60cd1942d6">I465ce</a>
+      ).
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">ScreenScaffold</code>
+      ’s
+      <code translate="no" dir="ltr">EdgeButton</code>
+      handling so that, after a
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      item is removed, the
+      <code translate="no" dir="ltr">EdgeButton</code>
+      is animated into place. (
+      <a href="https://android-review.googlesource.com/#/q/I6d366fcdafa605cb89259bc650087b98109d60ca">I6d366</a>
+      ).
+    </li>
+    <li>
+      Updated Wear Compose dependencies on Compose libraries to version 1.8.0. (
+      <a href="https://android-review.googlesource.com/#/q/I2ef3fd8f7d7f5a31cfc25c5be0bcc169034a6ee1">I2ef3f</a>
+      ).
+    </li>
+    <li>
+      Updated the motion of the indeterminate
+      <code translate="no" dir="ltr">CircularProgressIndicator</code>
+      so that it no longer regresses temporarily. (
+      <a href="https://android-review.googlesource.com/#/q/Ieddb15c3e5b73c6e372ec91e5e34d18c98a7db79">Ieddb1</a>
+      ).
+    </li>
+    <li>
+      Fixed a
+      <code translate="no" dir="ltr">SwipeDismissableNavHost</code>
+      bug - the focus was not switching correctly after swiping back, causing rotary input to fail (this was for API 36+, which uses predictive back). (
+      <a href="https://android-review.googlesource.com/#/q/Ieddb15c3e5b73c6e372ec91e5e34d18c98a7db79">Ieddb1</a>
+      ).
+    </li>
+    <li>
+      Amended documentation for the Hierarchical Focus API (
+      <a href="https://android-review.googlesource.com/#/q/Idf2fff47b1ba1164e4c36ec108f6a897f492cd6b">Idf2ff</a>
+      ).
+    </li>
+    <li>
+      Updated the documentation for Button and Card to state how
+      <code translate="no" dir="ltr">containerPainter</code>
+      and
+      <code translate="no" dir="ltr">disabledContainerPainter</code>
+      override
+      <code translate="no" dir="ltr">containerColor</code>
+      and
+      <code translate="no" dir="ltr">disabledContainerColor</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I4a4534cdc6d5b7e0e86e4182a5be6ee5d3fffdb2">I4a453</a>
+      ).
+    </li>
+    <li>
+      Reverted a change to
+      <code translate="no" dir="ltr">TimeText</code>
+      in the previous
+      <a href="https://android-review.googlesource.com/#/q/I1cc5dbfe12675efd77c3fc332f1015d92a64f492">release</a>
+      which moved the
+      <code translate="no" dir="ltr">BroadcastReceiver</code>
+      to a worker thread, because it caused issues for apps that manage their own threading during navigation. (
+      <a href="https://android-review.googlesource.com/#/q/I34d0292abaa91f7e69524818a130c9c5aa527cfa">I34d02</a>
+      ).
+    </li>
+    <li>
+      Updated the Picker samples to remove unnecessary remember calls and instead use
+      <code translate="no" dir="ltr">rememberUpdatedState</code>
+      in Picker to remember the latest
+      <code translate="no" dir="ltr">contentDescription</code>
+      lambda function. (
+      <a href="https://android-review.googlesource.com/#/q/Icb5b1bd19f4cff6eeb0d1a57bcef688111bb6602">Icb5b1</a>
+      ).
+    </li>
+    <li>
+      Updated text styles in
+      <code translate="no" dir="ltr">TimePicker</code>
+      and
+      <code translate="no" dir="ltr">DatePicker</code>
+      so that font changes no longer result in truncation. (
+      <a href="https://android-review.googlesource.com/#/q/I261945c46f8fe90854c0fae3927de05fe7d5b8d3">I26194</a>
+      ).
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ListHeader</code>
+      and
+      <code translate="no" dir="ltr">ListSubHeader</code>
+      now default text alignment to center-aligned and start-aligned respectively. (
+      <a href="https://android-review.googlesource.com/#/q/I78339a880e04108644517e536e287f07fa1fd55a">I78339</a>
+      ).
+    </li>
+    <li>
+      Updated Foundation and Material Swipe to Reveal samples and demos to announce custom accessibility actions (the custom actions must be added as semantics on the content, not on the
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      composable itself). (
+      <a href="https://android-review.googlesource.com/#/q/Ie92a32ca21171abaf215289255651beb0b31e3f8">Ie92a3</a>
+      ).
+    </li>
+    <li>
+      Updated the default
+      <code translate="no" dir="ltr">MaxLines</code>
+      set on the
+      <code translate="no" dir="ltr">EdgeButton</code>
+      content according to its size - it is now 1 for extra small, 2 for small and medium, and 3 for large. (
+      <a href="https://android-review.googlesource.com/#/q/Ie35f687595255ec4c8daacaad91dbe0d4111b4a2">Ie35f6</a>
+      ).
+    </li>
+    <li>
+      Simplified
+      <code translate="no" dir="ltr">LocalReduceMotion</code>
+      so that the observer is only registered once, to improve performance. (
+      <a href="https://android-review.googlesource.com/#/q/Ib197945afc7955a58b76b9c56325b98f12ee46e1">Ib1979</a>
+      ).
+    </li>
+    <li>
+      Minimized the number of redraws in
+      <code translate="no" dir="ltr">ScrollIndicator</code>
+      , to improve performance. (
+      <a href="https://android-review.googlesource.com/#/q/Ia7a67feab96c1f654c9051eb464b4e1ddcf39aab">Ia7a67</a>
+      ).
+    </li>
+    <li>
+      Fixed a bug in
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      , where the top visible item in the list did not scale correctly when EdgeButton achieved its full height. (
+      <a href="https://android-review.googlesource.com/#/q/I30580339d0fa8d3940c62b6b9640570adf77235b">I30580</a>
+      ).
+    </li>
+  </ul>

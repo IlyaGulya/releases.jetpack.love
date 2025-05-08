@@ -1,0 +1,84 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.4.0-alpha14
+releaseDate: 2025-05-07
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha14" data-text="Version 1.4.0-alpha14" tabindex="-1">Version 1.4.0-alpha14</h3>
+  <p>May 7, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.4.0-alpha14</code>
+    is released. Version 1.4.0-alpha14 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/008cbd021e3a2b4d1f36ea7f48200c4692bfc169..b6c541571b9fb5471f965fc52612cb280713e5e4/compose/material3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">AppBarColumn</code>
+      composable working in the same fashion as
+      <code translate="no" dir="ltr">AppBarRow</code>
+      but for content laid out in a column. (
+      <a href="https://android-review.googlesource.com/#/q/Iaf6bdf5ca9b86266456705b18a314afa71f5479f">Iaf6bd</a>
+      )
+    </li>
+    <li>
+      Added max items to
+      <code translate="no" dir="ltr">AppBarRow</code>
+      , this is necessary to correctly implement the material spec for top app bars. (
+      <a href="https://android-review.googlesource.com/#/q/I92ce4f973aff14999947ddc290da1e2b98780e88">I92ce4</a>
+      )
+    </li>
+    <li>
+      Added a method in
+      <code translate="no" dir="ltr">TooltipScope</code>
+      to obtain the
+      <code translate="no" dir="ltr">layoutCoordinates</code>
+      of the anchor. Deprecating the
+      <code translate="no" dir="ltr">drawCaret</code>
+      method because developers can use this new method to obtain the anchor bounds
+      <code translate="no" dir="ltr">layoutCoordinates</code>
+      and create an appropriate shape that contains a caret. (
+      <a href="https://android-review.googlesource.com/#/q/Ia2e12291cc6316ec435a07ac033273dbe7826364">Ia2e12</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/329470609">b/329470609</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">java.time</code>
+      support for Date Pickers: Introduced
+      <code translate="no" dir="ltr">rememberDatePickerState/rememberDateRangePickerState</code>
+      overloads that accept java.time objects (e.g., initial
+      <code translate="no" dir="ltr">LocalDate</code>
+      ,
+      <code translate="no" dir="ltr">YearMonth</code>
+      ). Also added extension functions on the state objects to get/set values using types like
+      <code translate="no" dir="ltr">LocalDate</code>
+      and
+      <code translate="no" dir="ltr">YearMonth</code>
+      . Requires API 26+ or desugaring. (
+      <a href="https://android-review.googlesource.com/#/q/I70f29b86307c7186c20d4f412925a04bc8342d26">I70f29</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/266202516">b/266202516</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/281859606">b/281859606</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">CenteredTrack</code>
+      composable allowing using a Slider with a track that starts from the center. (
+      <a href="https://android-review.googlesource.com/#/q/I5b1d67e64cd64bfa6b2661df4803fc036e8eaa30">I5b1d6</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Enhanced the performance of Wavy Progress Indicators: Linear types now load ~8.5% faster with ~11% fewer allocations, while Circular types see a substantial ~47% speed boost and ~39% reduced allocations. (
+      <a href="https://android-review.googlesource.com/#/q/I595d869e0ac95737cf0b2a48e19c4a4eba984641">I595d8</a>
+      )
+    </li>
+  </ul>

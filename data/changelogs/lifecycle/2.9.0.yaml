@@ -1,0 +1,140 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.9.0
+releaseDate: 2025-05-07
+#language=html
+changelogHtml: |
+  <h3 id="2.9.0" data-text="Version 2.9.0" tabindex="-1">Version 2.9.0</h3>
+  <p>May 7, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.9.0</code>
+    is released. Version 2.9.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/79d624a3b7368c83b4706639bab22beed44ba338..ac0ac96d77785db18140c9bad8f1de95f2418806/lifecycle">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 2.8.0</strong></p>
+  <ul>
+    <li>
+      A new
+      <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-viewmodel-testing</code>
+      KMP artifact is available that provides a
+      <a href="/reference/kotlin/androidx/lifecycle/viewmodel/testing/ViewModelScenario"><code translate="no" dir="ltr">ViewModelScenario</code></a>
+      class for testing
+      <code translate="no" dir="ltr">ViewModels</code>
+      in isolation, with support for
+      <code translate="no" dir="ltr">onCleared</code>
+      and
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      as well as testing process death and recreation via
+      <code translate="no" dir="ltr">recreate()</code>
+      .
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">getMutableStateFlow</code>
+      to
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      to return a
+      <code translate="no" dir="ltr">MutableStateFlow</code>
+      . This new function is key-exclusive and cannot be used with
+      <code translate="no" dir="ltr">getLiveData</code>
+      . An exception will be thrown if you try to use both to access the same state.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">CreationExtras</code>
+      now includes map-like operator overloads to enable idiomatic manipulation of content in Kotlin. It allows the use of
+      <code translate="no" dir="ltr">in</code>
+      ,
+      <code translate="no" dir="ltr">+=</code>
+      , and
+      <code translate="no" dir="ltr">+</code>
+      with
+      <code translate="no" dir="ltr">CreationExtras</code>
+      .
+    </li>
+  </ul>
+  <p><strong>KotlinX Serialization Support</strong></p>
+  <ul>
+    <li>
+      <p>
+        With the support of KotlinX Serialization added in
+        <a href="/jetpack/androidx/releases/savedstate#1.3.0">
+          SavedState
+          <code translate="no" dir="ltr">1.3.0</code>
+        </a>
+        , we have introduced
+        <code translate="no" dir="ltr">saved</code>
+        , a lazy property delegate, to make it easy to store
+        <code translate="no" dir="ltr">@Serializable</code>
+        classes in a
+        <code translate="no" dir="ltr">SavedStateHandle</code>
+        and have those classes automatically be restored across process death and recreation. Please note the
+        <code translate="no" dir="ltr">saved</code>
+        delegate is lazy and will not call the
+        <code translate="no" dir="ltr">init</code>
+        lambda or save anything into the
+        <code translate="no" dir="ltr">SavedStateHandle</code>
+        until it is accessed.
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@Serializable</span>
+  <span class="devsite-syntax-kd">data</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">Person</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">firstName</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">String</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">lastName</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">String</span><span class="devsite-syntax-p">)</span>
+
+  <span class="devsite-syntax-kd">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">MyViewModel</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">handle</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">SavedStateHandle</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">ViewModel</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kd">var</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">person</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">by</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">handle</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">saved</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Person</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"John"</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Doe"</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">onPersonChanged</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">person</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Person</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-k">this</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">person</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">person</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+  </ul>
+  <p><strong>Kotlin Multiplatform</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">lifecycle-testing</code>
+      module is now KMP compatible including APIs like
+      <code translate="no" dir="ltr">TestLifecycleOwner</code>
+      .
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">lifecycle-viewmodel-savedstate</code>
+      module is now KMP compatible including APIs like
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      .
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">androidx.compose.ui.platform.LocalLifecycleOwner</code>
+      is now available in the common source set.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NewInstanceFactory</code>
+      is now available on JVM Desktop and Android targets.
+    </li>
+  </ul>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">Lifecycle.DESTROYED</code>
+      state is terminal, and any attempt to move a
+      <code translate="no" dir="ltr">Lifecycle</code>
+      from it to any other state will now result in an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      no longer includes any
+      <code translate="no" dir="ltr">SavedStateProvider.saveState()</code>
+      where the returned
+      <code translate="no" dir="ltr">Bundle</code>
+      is empty.
+    </li>
+  </ul>

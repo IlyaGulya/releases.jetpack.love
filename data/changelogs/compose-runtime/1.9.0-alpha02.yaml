@@ -1,0 +1,74 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.9.0-alpha02
+releaseDate: 2025-05-07
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0-alpha02" data-text="Version 1.9.0-alpha02" tabindex="-1">Version 1.9.0-alpha02</h3>
+  <p>May 7, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.9.0-alpha02</code>
+    is released. Version 1.9.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b6c541571b9fb5471f965fc52612cb280713e5e4/compose/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Deprecated
+      <code translate="no" dir="ltr">rememberSaveable</code>
+      with a custom 'key'. It bypasses positional scoping, leading to state bugs and inconsistent behavior (e.g., unintentional state sharing or loss, issues in nested
+      <code translate="no" dir="ltr">LazyLayouts</code>
+      ). Please remove the 'key' parameter to use positional scoping for consistent, locally-scoped state. See
+      <a href="https://r.android.com/3610053">the full commit message</a>
+      for more details. (
+      <a href="https://android-review.googlesource.com/#/q/I5e6ff7f527aafea4845f21a104500a902951fe10">I5e6ff</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/357685851">b/357685851</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">OffsetApplier</code>
+      now correctly overrides
+      <code translate="no" dir="ltr">apply()</code>
+      which was introduced with pausable composition. Not having this could cause pausable composition to throw throw an exception when updating virtual nodes. (
+      <a href="https://android-review.googlesource.com/#/q/Idbf314adbd64254dd4a4eb4e3a897930ece407c7">Idbf31</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/409291131">b/409291131</a>
+      )
+    </li>
+    <li>
+      Fixed a deadlock that may affect Molecule users when a suspended call to
+      <code translate="no" dir="ltr">FrameClock.withFrameNanos</code>
+      is cancelled while a frame is being dispatched. (
+      <a href="https://android-review.googlesource.com/#/q/I89cab8e3eab14ed9a85b36e151f11b5f526a01fd">I89cab</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/407027032">b/407027032</a>
+      )
+    </li>
+    <li>
+      The Recomposer could go idle with movable content state still pending to be discarded. This normally does not occur as movable content state is discarded in the main loop of the Recomposer. However, this can occur in pausable composition when the movable content is discarded during
+      <code translate="no" dir="ltr">resume()</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ie54168320625f09c9390d542caa625f1f0d1d896">Ie5416</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/409267170">b/409267170</a>
+      )
+    </li>
+    <li>
+      The order in which
+      <code translate="no" dir="ltr">onReuse</code>
+      and
+      <code translate="no" dir="ltr">onDeactivate</code>
+      could get inverted during pausable composition. They are now guaranteed to occur in order of
+      <code translate="no" dir="ltr">onDeactivate/onReuse</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I996e45fe97e2edbcceb776cf2fff009fe1b6ad8a">I996e4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/404058957">b/404058957</a>
+      )
+    </li>
+  </ul>
