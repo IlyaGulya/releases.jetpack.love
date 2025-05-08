@@ -1,0 +1,142 @@
+libraryId: xr-runtime
+groupId: androidx.xr
+version: 1.0.0-alpha04
+releaseDate: 2025-05-07
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha04" data-text="Version 1.0.0-alpha04" tabindex="-1">Version 1.0.0-alpha04</h3>
+  <p>May 7, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.runtime:runtime:1.0.0-alpha04</code>
+    ,
+    <code translate="no" dir="ltr">androidx.xr.runtime:runtime-openxr:1.0.0-alpha04</code>
+    , and
+    <code translate="no" dir="ltr">androidx.xr.runtime:runtime-testing:1.0.0-alpha04</code>
+    are released. Version 1.0.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/043342a8810f3356110a0afce48c662e841c428f..b6c541571b9fb5471f965fc52612cb280713e5e4/xr/runtime">these commits</a>
+    .
+  </p>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>You'll need Android Emulator version 35.6.7 or later to use this version of the library.</span>
+  </aside>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Session now implements
+      <code translate="no" dir="ltr">androidx.lifecycle.LifecycleOwner</code>
+      for more interoperability with existing Android lifecycle paradigms.
+    </li>
+    <li>Manifest strings for Android XR are specified and documented here.</li>
+    <li>Spatial Visibility Callback extension methods added to monitor when the scene content moves inside or outside the user's field of view.</li>
+    <li>
+      Added a stub version of the
+      <code translate="no" dir="ltr">JxrPlatformAdapter</code>
+      (and all its related classes).
+    </li>
+    <li>
+      Session will be used in both
+      <code translate="no" dir="ltr">SceneCore</code>
+      and Runtime instead of the Session in
+      <code translate="no" dir="ltr">SceneCore</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ActivityPose.hitTest</code>
+      was added, enabling a
+      <code translate="no" dir="ltr">hitTest</code>
+      against virtual content.
+    </li>
+    <li>Specifying multiple Runtime implementations at compile time is now supported. Only one will be loaded at execution time based on the current device's feature set.</li>
+    <li>
+      Added new Component type
+      <code translate="no" dir="ltr">SpatialPointerComponent</code>
+      , allowing clients to specify the icon rendered for the pointer, or to disable the icon. This Component can currently be attached to
+      <code translate="no" dir="ltr">PanelEntity</code>
+      instances only.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Make Config implementation public. (
+      <a href="https://android-review.googlesource.com/#/q/I9586042b11a9340a80deffa2f92e391bf59f6a58">I95860</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">HandJointType</code>
+      and
+      <code translate="no" dir="ltr">TrackingState</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I558802d9a78449829990c0792e5a1d1bf97ca69b">I55880</a>
+      )
+    </li>
+    <li>
+      Projects released with Kotlin 2.0 require KGP 2.0.0 or newer to be consumed (
+      <a href="https://android-review.googlesource.com/#/q/Idb6b5d6ae1625ab870ffe74f9790ffabc82a63b4">Idb6b5</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Hand.isActive (boolean)</code>
+      has been changed to
+      <code translate="no" dir="ltr">Hand.trackingState</code>
+      . The
+      <code translate="no" dir="ltr">OpenXR</code>
+      implementation has been modified accordingly.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">android.permission.SCENE_UNDERSTANDING</code>
+      permission requirement in
+      <code translate="no" dir="ltr">Session.configure</code>
+      has been changed to
+      <code translate="no" dir="ltr">android.permission.SCENE_UNDERSTANDING_COARSE</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LifecycleManager.configure</code>
+      is implemented and now passes in a
+      <code translate="no" dir="ltr">Config</code>
+      object which contains a property for each configurable runtime feature.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Session.configure</code>
+      can now be called with a
+      <code translate="no" dir="ltr">Config</code>
+      in order to configure the available runtime features.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Session.create</code>
+      now supports passing a
+      <code translate="no" dir="ltr">CoroutineContext</code>
+      instead of a
+      <code translate="no" dir="ltr">CoroutineDispatcher</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Session.create</code>
+      supports loading
+      <code translate="no" dir="ltr">ARCore</code>
+      for Jetpack XR and/or
+      <code translate="no" dir="ltr">SceneCore</code>
+      . At least one must be provided (testing versions are available).
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FakePerceptionManager</code>
+      throws an
+      <code translate="no" dir="ltr">AnchorInvalidUuidException</code>
+      when an invalid UUID is passed to
+      <code translate="no" dir="ltr">Anchor.load</code>
+      and
+      <code translate="no" dir="ltr">Anchor.unpersist</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">CoreState</code>
+      is no longer a data class.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>Fixed Runtime proguard configurations.</li>
+  </ul>

@@ -1,0 +1,122 @@
+libraryId: camera-viewfinder
+groupId: androidx.camera
+version: 1.5.0-beta01
+releaseDate: 2025-05-07
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-beta01" data-text="Version 1.5.0-beta01" tabindex="-1">Version 1.5.0-beta01</h3>
+  <p>May 7, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera.viewfinder:viewfinder-compose:1.5.0-beta01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.camera.viewfinder:viewfinder-core:1.5.0-beta01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.camera.viewfinder:viewfinder-view:1.5.0-beta01</code>
+    are released. Version 1.5.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/824a6d81bccbc4bf5286a94e6476d35825adf198..a99266d9ab8e4a0b6b8d4c11d8fc79524f59c314/camera/viewfinder">these commits</a>
+    .
+  </p>
+  <ul>
+    <li>
+      This is the first official beta release of the view-based and compose-based viewfinders that are flexible enough to be used with Camera2. If you’re looking for a View or composable to use with CameraX, see
+      <a href="/reference/androidx/camera/view/PreviewView"><code translate="no" dir="ltr">PreviewView</code></a>
+      and
+      <a href="/reference/kotlin/androidx/camera/compose/package-summary#CameraXViewfinder(androidx.camera.core.SurfaceRequest,androidx.camera.viewfinder.core.ImplementationMode,androidx.camera.viewfinder.core.TransformationInfo,androidx.compose.ui.Modifier,androidx.camera.viewfinder.compose.MutableCoordinateTransformer,androidx.compose.ui.Alignment,androidx.compose.ui.ContentScale)"><code translate="no" dir="ltr">CameraXViewfinder</code></a>
+      .
+    </li>
+  </ul>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ContentScale</code>
+      and
+      <code translate="no" dir="ltr">Alignment</code>
+      can now be used in the compose-based viewfinder to scale and place the displayed surface within its container, similar to how
+      <code translate="no" dir="ltr">androidx.compose.foundation.Image</code>
+      behaves. (
+      <a href="https://android-review.googlesource.com/#/q/Ibcea3e4d1ea1badc0134df3f328a1710dcb4c20e">Ibcea3</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">TransformationInfo</code>
+      now has default values for all args. This will allow Viewfinders to be created without any
+      <code translate="no" dir="ltr">TransformationInfo</code>
+      , which will default to a source rotation of 0, no source mirroring, and no crop rect. (
+      <a href="https://android-review.googlesource.com/#/q/I2b1b26e8f966363809a235424e0c19f2a6bd97b8">I2b1b2</a>
+      )
+    </li>
+    <li>
+      Composable Viewfinder now takes a trailing lambda to receive a Surface session, similar to
+      <code translate="no" dir="ltr">AndroidExternalSurface</code>
+      . The provided lambda uses
+      <code translate="no" dir="ltr">ViewfinderInitScope</code>
+      as a receiver, which allows installing a callback to receive new Surface sessions. These surface sessions automatically release resources held by the Viewfinder when they go out of scope. (
+      <a href="https://android-review.googlesource.com/#/q/Ib2b0d565883bbc4817d2dc77c12df198878b5770">Ib2b0d</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ViewfinderSurfaceRequest.Builder.populateFromCharacteristics</code>
+      has now been removed and is now replaced with an equivalent set of static APIs that can be used to generate
+      <code translate="no" dir="ltr">TransformationInfo</code>
+      which will produce the same transformation as
+      <code translate="no" dir="ltr">populateFromCharacteristics</code>
+      . These static methods are added to the
+      <code translate="no" dir="ltr">Camera2TransformationInfo</code>
+      class. (
+      <a href="https://android-review.googlesource.com/#/q/Idc6af2f22621d9a050d02bf18ef1f7daf6bd1742">Idc6af</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ViewfinderSurfaceRequest</code>
+      no longer includes async APIs for retrieving the surface. It is now an immutable data type. APIs for retrieving the Surface are now moved to the viewfinder. (
+      <a href="https://android-review.googlesource.com/#/q/I30127dff80267a5594c95b8d338cd96208035609">I30127</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">CameraViewfinder</code>
+      has been renamed to
+      <code translate="no" dir="ltr">ViewfinderView</code>
+      so that the naming aligns with the naming of the Viewfinder composable and to indicate that it can be used with more than just camera sources. (
+      <a href="https://android-review.googlesource.com/#/q/Id9e6bb2c7b8f9a14f19a24386e627c8c718fe02f">Id9e6b</a>
+      )
+    </li>
+    <li>
+      Classes from
+      <code translate="no" dir="ltr">viewfinder-view</code>
+      have been moved to the
+      <code translate="no" dir="ltr">androidx.camera.viewfinder.view</code>
+      subpackage from the
+      <code translate="no" dir="ltr">androidx.camera.viewfinder</code>
+      package. (
+      <a href="https://android-review.googlesource.com/#/q/I6cb440cb6cb801564a097d06e773374bbd4b7506">I6cb44</a>
+      )
+    </li>
+    <li>
+      New APIs are added to view-based Viewfinder that allow setting the source rotation, mirroring, and crop rectangle. This
+      <code translate="no" dir="ltr">TransformationInfo</code>
+      class is the same class used by the compose-based Viewfinder. (
+      <a href="https://android-review.googlesource.com/#/q/I907c307a2275447a370e6946c8aa030e268dad91">I907c3</a>
+      )
+    </li>
+    <li>
+      The view-based Viewfinder now uses new
+      <code translate="no" dir="ltr">ViewfinderSurfaceRequest</code>
+      APIs which no longer internally handle the Surface response. Instead of returning
+      <code translate="no" dir="ltr">ListenableFuture&lt;Surface&gt;</code>
+      , the
+      <code translate="no" dir="ltr">requestSurfaceSession()</code>
+      APIs now return
+      <code translate="no" dir="ltr">ListenableFuture&lt;ViewfinderSurfaceSession&gt;</code>
+      which returns an
+      <code translate="no" dir="ltr">AutoCloseable</code>
+      class that when closed behaves the same way as calling the old API of
+      <code translate="no" dir="ltr">ViewfinderSurfaceRequest.markSurfaceSafeToRelease()</code>
+      . This provides a clearer separation of responsibilities between the surface request and surface response. (
+      <a href="https://android-review.googlesource.com/#/q/I19041b515efec4e3f82b125f066b25a08703902b">I19041</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_14_2" data-text="Version 1.4" tabindex="-1">Version 1.4</h2>

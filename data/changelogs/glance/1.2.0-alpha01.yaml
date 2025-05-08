@@ -1,0 +1,99 @@
+libraryId: glance
+groupId: androidx.glance
+version: 1.2.0-alpha01
+releaseDate: 2025-05-07
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha01" data-text="Version 1.2.0-alpha01" tabindex="-1">Version 1.2.0-alpha01</h3>
+  <p>May 7, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.glance:glance-*:1.2.0-alpha01</code>
+    is released. Version 1.2.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/54a06695b700f449577a763921b8d75c1a59578a..c9f159488663c9bc1798b1526ee7e2b8b3cf0d49/glance">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">currentCompositeKeyHash</code>
+      is now deprecated. Use
+      <code translate="no" dir="ltr">currentCompositeKeyHashCode</code>
+      instead. The replacement API encodes the same hash with more bits, which exponentially reduces the chance of two random unrelated groups in the composition hierarchy from having the same hash key.(
+      <a href="https://android-review.googlesource.com/#/q/I4cb6a801d12447ac52bc92bb899ae84d69c4a6ed">I4cb6a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177562901">b/177562901</a>
+      )
+    </li>
+    <li>
+      Adds a new api to specify alpha (
+      <code translate="no" dir="ltr">0f</code>
+      to
+      <code translate="no" dir="ltr">1f</code>
+      ) for the glance Image composable and the background image modifier. When not specified, retains the alpha from the source image. (
+      <a href="https://android-review.googlesource.com/#/q/I8ad0585ccf7c7c641de4380e6d9e73322c68db80">I8ad05</a>
+      )
+    </li>
+    <li>
+      Add Glance APIs for generated previews. Override
+      <code translate="no" dir="ltr">GlanceAppWidget.providePreview</code>
+      to provide a preview layout for your widget. Then, call
+      <code translate="no" dir="ltr">GlanceAppWidgetManager.setWidgetPreview</code>
+      to set your preview. (
+      <a href="https://android-review.googlesource.com/#/q/Iced163063939f2c3bc2c12bbcfd6cd45bc33df9b">Iced16</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">MultiProcessGlanceAppWidget</code>
+      to support multiprocess configurations (
+      <a href="https://android-review.googlesource.com/#/q/Idbb90ba663c1b469462077017548f3dae230906a">Idbb90</a>
+      )
+    </li>
+    <li>
+      Removes experimental tag, we now support lambdas (
+      <a href="https://android-review.googlesource.com/#/q/I74d983d9a0022e9cd67d39ebb3187f581f406355">I74d98</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/299361317">b/299361317</a>
+      )
+    </li>
+    <li>
+      Allow specifying the lambda receiver for
+      <code translate="no" dir="ltr">GlanceAppWidget.runComposition</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I848294da1379aa3c9e4a4ee0d80e584265cd930b">I84829</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">previewSize</code>
+      parameter to
+      <code translate="no" dir="ltr">requestPinGlanceAppWidget</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I9f8f0822428208e2be3eed5a837692debab078ad">I9f8f0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/303256067">b/303256067</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Removed manual outlining of access to new platform APIs since this happens automatically via API modeling when using R8 with AGP 7.3 or later (e.g. R8 version 3.3) and for all builds when using AGP 8.1 or later (e.g. D8 version 8.1). Clients who are not using AGP are advised to update to D8 version 8.1 or later. See
+      <a href="https://medium.com/androiddevelopers/mitigating-soft-verification-issues-in-r8-and-d8-7e9e06827dfd">this article</a>
+      for more details. (
+      <a href="https://android-review.googlesource.com/#/q/If6b4ccfca0a943b45971a422b58949b13a10bada">If6b4c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/345472586">b/345472586</a>
+      )
+    </li>
+    <li>
+      Update
+      <code translate="no" dir="ltr">glance-appwidget</code>
+      libraries to
+      <code translate="no" dir="ltr">compileSdk 35</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I2e26b04663cbbd9670009e9620a0428fb10a1bb4">I2e26b</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_11_2" data-text="Version 1.1" tabindex="-1">Version 1.1</h2>

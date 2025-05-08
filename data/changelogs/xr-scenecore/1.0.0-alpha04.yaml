@@ -1,0 +1,247 @@
+libraryId: xr-scenecore
+groupId: androidx.xr
+version: 1.0.0-alpha04
+releaseDate: 2025-05-07
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha04" data-text="Version 1.0.0-alpha04" tabindex="-1">Version 1.0.0-alpha04</h3>
+  <p>May 7, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.scenecore:scenecore:1.0.0-alpha04</code>
+    and
+    <code translate="no" dir="ltr">androidx.xr.scenecore:scenecore-testing:1.0.0-alpha04</code>
+    are released. Version 1.0.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/043342a8810f3356110a0afce48c662e841c428f..b6c541571b9fb5471f965fc52612cb280713e5e4/xr/scenecore">these commits</a>
+    .
+  </p>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>You'll need Android Emulator version 35.6.7 or later to use this version of the library.</span>
+  </aside>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Backhandling will now work on panel entities without embedded activities. For backhandling to work you need to specify
+      <code translate="no" dir="ltr">android:enableOnBackInvokedCallback= "true"</code>
+      in the android manifest.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">StereoSurfaceEntity</code>
+      now supports MV-HEVC playback through two new
+      <code translate="no" dir="ltr">StereoMode</code>
+      values: MULTIVIEW_LEFT_PRIMARY and MULTIVIEW_RIGHT_PRIMARY.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PanelEntity.setSize</code>
+      and
+      <code translate="no" dir="ltr">PanelEntity.getSize</code>
+      now return sizes in parent space.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Entity.setPose</code>
+      ,
+      <code translate="no" dir="ltr">Entity.getPose</code>
+      ,
+      <code translate="no" dir="ltr">Entity.setScale</code>
+      ,
+      <code translate="no" dir="ltr">Entity.getScale</code>
+      ,
+      <code translate="no" dir="ltr">Entity.setAlpha</code>
+      and
+      <code translate="no" dir="ltr">Entity.getAlpha</code>
+      now take a new param
+      <code translate="no" dir="ltr">relativeTo</code>
+      , which allows get/set values relative to different spaces. The supported values are Parent, Activity and Real World spaces, and the default value for this param is Parent.
+    </li>
+    <li>
+      Spatial Visibility Callback extension methods added to
+      <code translate="no" dir="ltr">SessionExt.kt</code>
+      to monitor when the scene content moves inside or outside the user's field of view.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">setPointSourceParams</code>
+      has been added to
+      <code translate="no" dir="ltr">SpatialAudioTrack</code>
+      , allowing the params to be updated after the track has been built.
+    </li>
+    <li>
+      Added a new class, Scene, with references to
+      <code translate="no" dir="ltr">Scenecore</code>
+      APIs. Scene will be accessible as an extension property of Session. Functions inside of
+      <code translate="no" dir="ltr">SessionExt</code>
+      have been moved to Scene so imports will be need to be adjusted; for example,
+      <code translate="no" dir="ltr">SessionExt.getScene(session)</code>
+      .
+      <code translate="no" dir="ltr">addSpatialCapababilitiesChangedListener</code>
+      versus
+      <code translate="no" dir="ltr">SessionExt.addSpatialCapabilitiesChangedListener</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ActivityPose.hitTestAsync</code>
+      was added, enabling a
+      <code translate="no" dir="ltr">hitTest</code>
+      against virtual content.
+    </li>
+    <li>
+      Added new Component type
+      <code translate="no" dir="ltr">SpatialPointerComponent</code>
+      , allowing clients to specify the icon rendered for the pointer, or to disable the icon. This Component can currently be attached to
+      <code translate="no" dir="ltr">PanelEntity</code>
+      instances only.
+    </li>
+    <li>
+      Introducing new
+      <code translate="no" dir="ltr">PanelEntity</code>
+      factory, which takes panel dimensions in either meters or pixels. Older
+      <code translate="no" dir="ltr">PanelEntity</code>
+      factory taking two Dimension type params for panel removed.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">RequiresApi(34)</code>
+      restriction on all Jetpack XR packages. This restriction was redundant as Jetpack XR is currently only available on devices with API level 34+. (
+      <a href="https://android-review.googlesource.com/#/q/Iae0f8f1c0de1d62609ed0dcad6cf2731756054dd">Iae0f8</a>
+      )
+    </li>
+    <li>
+      Projects released with Kotlin 2.0 require KGP 2.0.0 or newer to be consumed (
+      <a href="https://android-review.googlesource.com/#/q/Idb6b5d6ae1625ab870ffe74f9790ffabc82a63b4">Idb6b5</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PermissionHelper</code>
+      class has been removed.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PanelEntity.getPixelDensity</code>
+      is deprecated.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PanelEntity.setPixelDimensions</code>
+      and
+      <code translate="no" dir="ltr">PanelEntity.getPixelDimension</code>
+      are removed, replaced by
+      <code translate="no" dir="ltr">setSizeInPixels</code>
+      and
+      <code translate="no" dir="ltr">getSizeInPixels</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Entity.getActivitySpaceAlpha</code>
+      removed. Can be replaced with
+      <code translate="no" dir="ltr">Entity.getAlpha(Space.Activity)</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Entity.getWorldSpaceScale</code>
+      removed. Can be replaced with
+      <code translate="no" dir="ltr">Entity.getScale(Space.REAL\_WORLD)</code>
+      .
+    </li>
+    <li>
+      The Session class in
+      <code translate="no" dir="ltr">SceneCore</code>
+      has been deleted in favor of the Session in XR Runtime.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">StereoSurfaceEntity</code>
+      has been renamed to
+      <code translate="no" dir="ltr">SurfaceEntity</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Entity.setSize</code>
+      and
+      <code translate="no" dir="ltr">Entity.getSize</code>
+      are removed, and the same methods were added to
+      <code translate="no" dir="ltr">PanelEntity</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PointSourceAttributes</code>
+      has been renamed to
+      <code translate="no" dir="ltr">PointSourceParams</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SpatializerConstants.SOURCE\_TYPE\_BYPASS</code>
+      has been renamed to
+      <code translate="no" dir="ltr">SpatializerConstants.SOURCE\_TYPE\_DEFAULT</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">PointSourceParams</code>
+      entity has been modified from public to internal access.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AnchorEntity.create</code>
+      now requires
+      <code translate="no" dir="ltr">PlaneTrackingMode</code>
+      to be configured in
+      <code translate="no" dir="ltr">Session.configure()</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SpatialUser</code>
+      APIs now require
+      <code translate="no" dir="ltr">HeadTrackingMode</code>
+      to be configured in
+      <code translate="no" dir="ltr">Session.configure()</code>
+      .
+    </li>
+    <li>
+      When
+      <code translate="no" dir="ltr">ResizableComponent</code>
+      is not attached, it will give INFO-level log instead of ERROR-level log.
+    </li>
+    <li>Fov class is now a regular Kotlin class.</li>
+    <li>
+      Split
+      <code translate="no" dir="ltr">Entity.kt</code>
+      to place each concrete entity type into its own file.
+    </li>
+    <li>
+      When creating a new
+      <code translate="no" dir="ltr">PanelEntity</code>
+      , most Views will be reparented to a
+      <code translate="no" dir="ltr">FrameLayout</code>
+      . This facilitates the use of
+      <code translate="no" dir="ltr">LayoutInspector</code>
+      with Spatial Panels.
+    </li>
+    <li>
+      The currently used
+      <code translate="no" dir="ltr">XrExtensions</code>
+      instance is now registered with the platform, in a best effort way, to help with app debugging.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      A fix was added to prevent a crash that could occur when a
+      <code translate="no" dir="ltr">PanelEntity</code>
+      with
+      <code translate="no" dir="ltr">MovableComponent</code>
+      and
+      <code translate="no" dir="ltr">AnchorPlacement</code>
+      was moved
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">ResizableComponent</code>
+      was providing stale sizes in
+      <code translate="no" dir="ltr">onResizeStart</code>
+      callback.
+    </li>
+    <li>
+      Fixed crash when
+      <code translate="no" dir="ltr">JxrPlatformAdapterAxr</code>
+      's
+      <code translate="no" dir="ltr">dispose()</code>
+      was called multiple times.
+    </li>
+  </ul>

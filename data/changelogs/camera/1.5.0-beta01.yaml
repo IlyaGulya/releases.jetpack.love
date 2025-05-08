@@ -1,0 +1,88 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.5.0-beta01
+releaseDate: 2025-05-07
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-beta01" data-text="Version 1.5.0-beta01" tabindex="-1">Version 1.5.0-beta01</h3>
+  <p>May 7, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.5.0-beta01</code>
+    is released. Version 1.5.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/824a6d81bccbc4bf5286a94e6476d35825adf198..a99266d9ab8e4a0b6b8d4c11d8fc79524f59c314/camera">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Projects released with Kotlin 2.0 require KGP 2.0.0 or newer to be consumed (
+      <a href="https://android-review.googlesource.com/#/q/Idb6b5d6ae1625ab870ffe74f9790ffabc82a63b4">Idb6b5</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ContentScale</code>
+      and Alignment can now be used in the viewfinder to scale and place the displayed surface within its container, similar to how
+      <code translate="no" dir="ltr">androidx.compose.foundation.Image</code>
+      behaves. (
+      <a href="https://android-review.googlesource.com/#/q/Ibcea3e4d1ea1badc0134df3f328a1710dcb4c20e">Ibcea3</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TransformationInfo</code>
+      now has default values for all args. This will allow Viewfinders to be created without any
+      <code translate="no" dir="ltr">TransformationInfo</code>
+      , which will default to a source rotation of 0, no source mirroring, and no crop rect. (
+      <a href="https://android-review.googlesource.com/#/q/I2b1b26e8f966363809a235424e0c19f2a6bd97b8">I2b1b2</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">LifecycleCameraProvider</code>
+      , which is a camera provider that can be instantiated with different configurations for features such as accessing the camera of a virtual device by configuring with a customized context. (
+      <a href="https://android-review.googlesource.com/#/q/Ia29928816ac5750f2875473fe600b62d99185047">Ia2992</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed preview freeze issue when using
+      <code translate="no" dir="ltr">ImageAnalysis</code>
+      with another stream that uses
+      <code translate="no" dir="ltr">TEMPLATE_RECORD</code>
+      on Samsung SM-E556B device. (
+      <a href="https://android-review.googlesource.com/#/q/Ic0e62cdec6dae778f7fab85e13a1b8790446de2f">Ic0e62</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/409478042">b/409478042</a>
+      )
+    </li>
+    <li>
+      Fixed preview freeze issue when using
+      <code translate="no" dir="ltr">ImageAnalysis</code>
+      with another stream that uses
+      <code translate="no" dir="ltr">TEMPLATE_RECORD</code>
+      on Samsung SM-M556B device. (
+      <a href="https://android-review.googlesource.com/#/q/Ic1a6a019c1525f30d7b863f732d421e36e5c978c">Ic1a6a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/395822788">b/395822788</a>
+      )
+    </li>
+    <li>
+      Fixed Extensions NIGHT mode
+      <code translate="no" dir="ltr">AssertError</code>
+      issue on Android 15 Pixel devices when doing zoom related operations. (
+      <a href="https://android-review.googlesource.com/#/q/I27a5d514948d205a3dee80e7412c755261fb2bd0">I27a5d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/401460276">b/401460276</a>
+      )
+    </li>
+    <li>
+      Fix ML Kit Analyzer incorrect bounding box coordinates issue when using
+      <code translate="no" dir="ltr">CameraController</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iae91b2322e0c70ccd932060eddafacd06e29ee7f">Iae91b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/409808510">b/409808510</a>
+      )
+    </li>
+  </ul>

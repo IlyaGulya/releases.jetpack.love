@@ -1,0 +1,64 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.9.0
+releaseDate: 2025-05-07
+#language=html
+changelogHtml: |
+  <h3 id="2.9.0" data-text="Version 2.9.0" tabindex="-1">Version 2.9.0</h3>
+  <p>May 7, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.9.0</code>
+    is released. Version 2.9.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4eb62506f8e9a7f12ec551b42b5ded5874990416..69bddec17be2c4afeb216869d5f4e1e8e6cc52cc/navigation">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 2.8.0</strong></p>
+  <ul>
+    <li>
+      Navigation Safe Args actions are now generated with the
+      <code translate="no" dir="ltr">@CheckResult</code>
+      annotation to ensure they are used.
+    </li>
+  </ul>
+  <p><strong>SupportingPane Interface</strong></p>
+  <ul>
+    <li>
+      Custom Navigators can now mark their destinations as implementing the
+      <code translate="no" dir="ltr">SupportingPane</code>
+      interface which indicates to the
+      <code translate="no" dir="ltr">NavController</code>
+      that these destinations will be shown alongside other destinations. By using this interface, multiple destinations can be
+      <code translate="no" dir="ltr">RESUMED</code>
+      at the same time, for instance.
+    </li>
+  </ul>
+  <p><strong>Compose Kotlin Multiplatform</strong></p>
+  <ul>
+    <li>
+      Navigation now offers a new common
+      <code translate="no" dir="ltr">NavController.handleDeepLink()</code>
+      function that takes a
+      <code translate="no" dir="ltr">NavDeepLinkRequest</code>
+      instead of an
+      <code translate="no" dir="ltr">Intent</code>
+      . This allows platforms other than Android to properly handle deep links. Thanks Konstantin Tskhovrebov!
+    </li>
+    <li>
+      Navigation now offers
+      <code translate="no" dir="ltr">NavUri</code>
+      , a new common parser function that is a compatible API for Android’s URI on other platforms. This makes it possible to create a URI in a platform agnostic way. Thanks Konstantin Tskhovrebov!
+    </li>
+  </ul>
+  <p><strong>Type Safe functions</strong></p>
+  <ul>
+    <li>
+      The type safe APIs that were previously only accessible via
+      <code translate="no" dir="ltr">reified</code>
+      methods i.e.,
+      <code translate="no" dir="ltr">composable&lt;YourScreen&gt;</code>
+      now have non-reified versions that directly take a
+      <code translate="no" dir="ltr">KClass</code>
+      instance.
+    </li>
+    <li>Navigation type safety now supports value classes as a route or as the argument type of a route.</li>
+  </ul>

@@ -1,0 +1,87 @@
+libraryId: test-uiautomator
+groupId: androidx.test
+version: 2.4.0-alpha02
+releaseDate: 2025-05-07
+#language=html
+changelogHtml: |
+  <h3 id="2.4.0-alpha02" data-text="Version 2.4.0-alpha02" tabindex="-1">Version 2.4.0-alpha02</h3>
+  <p>May 7, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.test.uiautomator:uiautomator:2.4.0-alpha02</code>
+    is released. Version 2.4.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/948119be341fa4affc055418e695d8c4c7e5e2e4..5bd5ca55a22a1deb5f07f8c3c02e9db8b59b9729/test/uiautomator/uiautomator">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Initial shape of new
+      <code translate="no" dir="ltr">Uiautomator</code>
+      Api.
+      <code translate="no" dir="ltr">UiAutomatorTestScope</code>
+      can be created through the factory
+      <code translate="no" dir="ltr">uiAutomator</code>
+      that gives access to the new
+      <code translate="no" dir="ltr">onView</code>
+      apis.
+    </li>
+    <li>
+      Initial Lint Rules for warning about usage of
+      <code translate="no" dir="ltr">AccessibilityNodeInfo#getText</code>
+      and suggest usage of
+      <code translate="no" dir="ltr">textAsString</code>
+      .
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Configurator#setDefaultDisplayId</code>
+      to set a display ID to restrict all searches to (
+      <a href="https://android-review.googlesource.com/#/q/Icdf17c781faebf3fe3ca2197e6717e75240b3a06">Icdf17</a>
+      ).
+    </li>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">Searchable</code>
+      (interface shared by
+      <code translate="no" dir="ltr">UiDevice</code>
+      and
+      <code translate="no" dir="ltr">UiObject2</code>
+      ) to public for convenience (
+      <a href="https://android-review.googlesource.com/#/q/I67f18bfc4a61c412c5ca2c15073980204a0643a8">I67f18</a>
+      ).
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed handling of meta keys in
+      <code translate="no" dir="ltr">UiDevice#pressKeyCodes</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I73f809e7f198c83933f12b265b83662b214e02e6">I73f80</a>
+      ).
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">UiDevice#getWindowRoots</code>
+      to always return roots in Z order (
+      <a href="https://android-review.googlesource.com/#/q/I874266f868d541420dde15cce2d240523dbf5276">I87426</a>
+      ).
+    </li>
+    <li>
+      Fixed issue where certain gestures were incomplete (
+      <a href="https://android-review.googlesource.com/#/q/I60dd322923a2146fcfcaadf881f7701c3457e772">I60dd3</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/If4edd9dfa2e2a84039778b33eb4a1bf3f49e3672">If4edd</a>
+      ).
+    </li>
+    <li>
+      Fixed rare infinite loop when calling
+      <code translate="no" dir="ltr">UiDevice#scrollUntil</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I39989a26744a16dadb4fb339b2a756a6f9964282">I39989</a>
+      ).
+    </li>
+  </ul>

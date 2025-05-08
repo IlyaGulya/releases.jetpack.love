@@ -1,0 +1,225 @@
+libraryId: xr-compose
+groupId: androidx.xr
+version: 1.0.0-alpha04
+releaseDate: 2025-05-07
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha04" data-text="Version 1.0.0-alpha04" tabindex="-1">Version 1.0.0-alpha04</h3>
+  <p>May 7, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.compose:compose:1.0.0-alpha04</code>
+    and
+    <code translate="no" dir="ltr">androidx.xr.compose:compose-testing:1.0.0-alpha04</code>
+    are released. Version 1.0.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/043342a8810f3356110a0afce48c662e841c428f..b6c541571b9fb5471f965fc52612cb280713e5e4/xr/compose">these commits</a>
+    .
+  </p>
+  <aside class="note">
+    <strong>Note:</strong>
+    <span>You'll need Android Emulator version 35.6.7 or later to use this version of the library.</span>
+  </aside>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">CompositionLocalConsumerSubspaceModifierNode</code>
+      interface to allow custom
+      <code translate="no" dir="ltr">SubspaceModifier</code>
+      types to access composition local values.
+    </li>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">SpatialPanel</code>
+      API that follows the compose
+      <code translate="no" dir="ltr">AndroidView</code>
+      implementation style and deprecates the previous
+      <code translate="no" dir="ltr">ViewBased SpatialPanel</code>
+      .
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">VolumeConstraints.Unbounded</code>
+      companion object which represents unbounded constraints.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">SubspaceModifier.onPointSourceParams</code>
+      to allow a spatialized audio source.
+    </li>
+    <li>
+      A public
+      <code translate="no" dir="ltr">ApplicationSubspace</code>
+      has been added, offering optional
+      <code translate="no" dir="ltr">VolumeConstraints</code>
+      to define a 3D area where the app can render spatial content. By default, if no constraints are specified, the Subspace will be bounded by the
+      <code translate="no" dir="ltr">SpatialUser</code>
+      's current field of view in width and height. Users can provide constraints to be used if the field of view cannot be determined. Otherwise, the default field of view width and height values are used.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">SpatialExternalSurface</code>
+      , which can be used to render stereoscopic content.
+      <code translate="no" dir="ltr">SpatialExternalSurface</code>
+      is customizable with modifiers (except alpha), and an edge feathering effect.
+    </li>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">pointerHoverIcon</code>
+      Subspace Modifier that allows users to set the icon for the spatial pointer.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">RequiresApi(34)</code>
+      restriction on all Jetpack XR packages. This restriction was redundant as Jetpack XR is currently only available on devices with API level 34+. (
+      <a href="https://android-review.googlesource.com/#/q/Iae0f8f1c0de1d62609ed0dcad6cf2731756054dd">Iae0f8</a>
+      )
+    </li>
+    <li>
+      Projects released with Kotlin 2.0 require KGP 2.0.0 or newer to be consumed. (
+      <a href="https://android-review.googlesource.com/#/q/Idb6b5d6ae1625ab870ffe74f9790ffabc82a63b4">Idb6b5</a>
+      )
+    </li>
+    <li>
+      Back handling will now work on spatial panels without embedded activities. For back handling to work you need to specify
+      <code translate="no" dir="ltr">android:enableOnBackInvokedCallback="true"</code>
+      in the android manifest.
+    </li>
+    <li>
+      Backhandling will now work on spatial dialogs. For backhandling to work you need to specify
+      <code translate="no" dir="ltr">android:enableOnBackInvokedCallback="true"</code>
+      in the android manifest.
+    </li>
+    <li>
+      Compose-based and View-based
+      <code translate="no" dir="ltr">SpatialPanel</code>
+      s can now size themselves based on their contents.
+    </li>
+    <li>
+      Developers may now set their own custom
+      <code translate="no" dir="ltr">SpatialElevationLevel</code>
+      values and are not limited to the predefined levels.
+    </li>
+    <li>
+      Orbiter elevation level may now be customized via the
+      <code translate="no" dir="ltr">elevation</code>
+      parameter.
+    </li>
+    <li>
+      Subspace can now be bounded by the
+      <code translate="no" dir="ltr">SpatialUser</code>
+      's field of view in width and height by default. If the field of view cannot be determined, the default field of view width and height values are used.
+    </li>
+    <li>
+      Added new callbacks
+      <code translate="no" dir="ltr">onMoveStart</code>
+      and
+      <code translate="no" dir="ltr">onMoveEnd</code>
+      to the
+      <code translate="no" dir="ltr">Movable</code>
+      modifier. The
+      <code translate="no" dir="ltr">onMoveStart</code>
+      and
+      <code translate="no" dir="ltr">onMoveEnd</code>
+      callbacks are called when the user starts and ends moving a subspace composable with the movable modifier.
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">name</code>
+      parameter has been removed from spatial APIs such as
+      <code translate="no" dir="ltr">SpatialRow</code>
+      and
+      <code translate="no" dir="ltr">SpatialPanel</code>
+      . For debugging spatial compose trees use
+      <code translate="no" dir="ltr">SubspaceModifier.testTag</code>
+      instead.
+    </li>
+    <li>
+      Removed an unsupported overload of
+      <code translate="no" dir="ltr">SpatialPopup</code>
+      that only has
+      <code translate="no" dir="ltr">spatialElevationLevel</code>
+      and
+      <code translate="no" dir="ltr">content</code>
+      . Please use the interface that supports
+      <code translate="no" dir="ltr">onDimissRequest</code>
+      .
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">onPoseChange</code>
+      callback from the Movable modifier has been removed. Use
+      <code translate="no" dir="ltr">onMove</code>
+      instead.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SubspaceModifiers</code>
+      will no longer apply their effects if they are detached or currently detaching.
+    </li>
+    <li>
+      The existing
+      <code translate="no" dir="ltr">SpatialRow</code>
+      API has been split into
+      <code translate="no" dir="ltr">SpatialRow</code>
+      and
+      <code translate="no" dir="ltr">SpatialCurvedRow</code>
+      . If previously using
+      <code translate="no" dir="ltr">SpatialRow</code>
+      's
+      <code translate="no" dir="ltr">curveRadius</code>
+      parameter, use
+      <code translate="no" dir="ltr">SpatialCurvedRow</code>
+      now instead which offers the same behavior.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">MainPanel</code>
+      and
+      <code translate="no" dir="ltr">ActivityPanel</code>
+      no longer have title bars when run on a similarly recent system image.
+    </li>
+    <li>Alpha and scale modifiers are now stackable and will multiply their values for the final applied alpha or scale value.</li>
+    <li>
+      The
+      <code translate="no" dir="ltr">onPoseChange</code>
+      callback from the Movable modifier has been optimized to perform smoother pose movement.
+    </li>
+    <li>The movable and resizable modifiers will now perform their callbacks on the main thread to ensure that state changes will trigger recomposition.</li>
+    <li>
+      Added state observation to the layout and measure phases to ensure that state changes in
+      <code translate="no" dir="ltr">SubspaceLayout</code>
+      will trigger relayout.
+    </li>
+    <li>Optimized modifier chain updates to better reuse existing modifiers.</li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Stopped scrimming when a
+      <code translate="no" dir="ltr">SpatialDialog</code>
+      is shown. (
+      <a href="https://android-review.googlesource.com/#/q/Ic4594fc7a668877b4c32652f2929962c3512cc64">Ic4594</a>
+      )
+    </li>
+    <li>Relayout requests made while modifier nodes are detached will now be ignored.</li>
+    <li>Removed relayout phases triggered by Movable and Resizable modifiers.</li>
+    <li>
+      Fixed a crash in
+      <code translate="no" dir="ltr">MainPanel()</code>
+      composable that occurred when either dimension was set to zero, either directly or during a layout calculation, e.g., a
+      <code translate="no" dir="ltr">SpatialRow/SpatialColumn</code>
+      calculation. The panel will now be hidden instead. Note that this fix specifically addresses crashes during the layout phase; resizing the panel to zero via user interaction will be handled separately. The hidden panel lacks UI affordances.
+    </li>
+    <li>
+      Fixed issue with
+      <code translate="no" dir="ltr">maintainAspectRatio</code>
+      from the resizable modifier. The aspect ratio should be kept now.
+    </li>
+    <li>Fixed an issue with nested Subspaces where they would be incorrectly positioned for a single frame.</li>
+    <li>Fixed issue where rounded corners were sometimes not applied when they should be.</li>
+    <li>
+      <code translate="no" dir="ltr">NestedSubspaces</code>
+      will no longer appear for one frame in the wrong location.
+    </li>
+  </ul>
