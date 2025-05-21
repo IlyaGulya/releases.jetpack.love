@@ -1,0 +1,33 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.8.7
+releaseDate: 2025-05-20
+#language=html
+changelogHtml: |
+  <h3 id="1.8.7" data-text="Version 1.8.7" tabindex="-1">Version 1.8.7</h3>
+  <p>May 20, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment-*:1.8.7</code>
+    is released. Version 1.8.7 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e22fa33d22862979c7905e12ed76e74412dc41d2..7edaa16f0a4d8d4afbe11d4d62aca84635ff839a/fragment">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue with
+      <code translate="no" dir="ltr">FragmentManager</code>
+      not being in the proper state after pop and replace operations in the same frame that could cause a crash in conjunction with popping the backstack either via
+      <code translate="no" dir="ltr">popBackStack</code>
+      or the predictive back gesture. (
+      <a href="https://android-review.googlesource.com/#/q/I50ad1d46b1bb080b2006883874ee68ae27e98cc7">I50ad1</a>
+      )
+    </li>
+    <li>
+      Fixed a crash caused by using AndroidX Transitions and getting into a case where quick consecutive fragment transactions attempt to cancel an unstarted transition and the AndroidX Transition library does not properly clear the transition state. (see
+      <a href="https://issuetracker.google.com/414612221">b/414612221</a>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/Ib52354b924286b12feda99b49fae09a18b8cb45f">Ib5235</a>
+      )
+    </li>
+  </ul>

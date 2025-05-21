@@ -1,0 +1,84 @@
+libraryId: appsearch
+groupId: androidx.appsearch
+version: 1.1.0-rc01
+releaseDate: 2025-05-20
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-rc01" data-text="Version 1.1.0-rc01" tabindex="-1">Version 1.1.0-rc01</h3>
+  <p>May 20, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.appsearch:appsearch-*:1.1.0-rc01</code>
+    is released. Version 1.1.0-rc01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/526ee99f5544977319165add70bf02aef2b565e5..bfcc16b55545366a116d37026ec4fe09c76be5dc/appsearch">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">AppSearch</code>
+      module enters RC.
+    </li>
+    <li>
+      Adds a new experimental API to accumulate actions for the
+      <code translate="no" dir="ltr">PutDocumentsRequest#addTakenAction</code>
+      method (
+      <a href="https://android-review.googlesource.com/#/q/I7b726181412bd1213e46efee73a8e8e08bb61163">I7b726</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">SearchResult#TextMatchInfo</code>
+      ,
+      <code translate="no" dir="ltr">SearchResult#EmbeddingMatchInfo</code>
+      ; restructure
+      <code translate="no" dir="ltr">SearchResult#MatchInfo</code>
+      for providing match information for embeddings matches (
+      <a href="https://android-review.googlesource.com/#/q/I8f78d8d18bcb5fcb208eba9c9e6a393ef084a183">I8f78d</a>
+      )
+    </li>
+    <li>
+      Introduce ranking functions for list manipulation (
+      <a href="https://android-review.googlesource.com/#/q/Ifa4abb9e3443b9609f2fc7b9891dfd3e3928e936">Ifa4ab</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Support
+      <code translate="no" dir="ltr">AppSearch</code>
+      annotation processor for blob handle property. (
+      <a href="https://android-review.googlesource.com/#/q/I9520b94835913c640fa5e8bc6c24fc407f8e48c5">I9520b</a>
+      )
+    </li>
+    <li>
+      Update
+      <code translate="no" dir="ltr">AppSearch</code>
+      annotation processor to support quantization. (
+      <a href="https://android-review.googlesource.com/#/q/Ie0c855518e12777217ad59fd3b70b7c52d62b48d">Ie0c85</a>
+      )
+    </li>
+    <li>
+      Adds a static
+      <code translate="no" dir="ltr">getFeatures()</code>
+      method to both
+      <code translate="no" dir="ltr">PlatformStorage</code>
+      and
+      <code translate="no" dir="ltr">LocalStorage</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I5a20604fe044b2897e200477e09f52e1a8bc009a">I5a206</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      This library now uses
+      <a href="https://jspecify.dev/">JSpecify nullness annotations</a>
+      , which are type-use. Kotlin developers should use the following compiler arguments to enforce correct usage: -Xjspecify-annotations=strict, -Xtype-enhancement-improvements-strict-mode (
+      <a href="https://android-review.googlesource.com/#/q/I91f42df892eec57a57a0ffdc8d42a3563fcab8c3">I91f42</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326456246">b/326456246</a>
+      )
+    </li>
+  </ul>

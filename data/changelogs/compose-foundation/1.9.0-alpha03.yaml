@@ -1,0 +1,102 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.9.0-alpha03
+releaseDate: 2025-05-20
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0-alpha03" data-text="Version 1.9.0-alpha03" tabindex="-1">Version 1.9.0-alpha03</h3>
+  <p>May 20, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.9.0-alpha03</code>
+    is released. Version 1.9.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b6c541571b9fb5471f965fc52612cb280713e5e4..5fd8d5a2f883c1cdd7f712b200d5a4fedf342136/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">AnnotatedOutputTransformation</code>
+      that provides a way to add annotations to
+      <code translate="no" dir="ltr">TextField</code>
+      before rendering. (
+      <a href="https://android-review.googlesource.com/#/q/Ibc6f08a54bf25e0c6352839df7c2acc6607db482">Ibc6f0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/389978748">b/389978748</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">LazyLayoutMeasurePolicy</code>
+      and make
+      <code translate="no" dir="ltr">LazyLayoutMeasureScope</code>
+      stable. (
+      <a href="https://android-review.googlesource.com/#/q/I8c5dfa6083fb7d5faf58229556f6b2231386b276">I8c5df</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/252853717">b/252853717</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BasicSecureTextField</code>
+      now hoists ScrollState of its internal
+      <code translate="no" dir="ltr">BasicTextField</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6e576357e0fefca548697f83bef17f5e3c3b9648">I6e576</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Modifier.onFirstVisible</code>
+      and
+      <code translate="no" dir="ltr">Modifier.onVisibilityChanged</code>
+      modifiers were introduced, which are high level modifiers built on top of
+      <code translate="no" dir="ltr">Modifier.onLayoutRectChanged</code>
+      . These modifiers are built specifically to handle a lot of common application requirements such as logging impressions, auto playing videos, etc. These have been built with performance in mind so that they can be used in critical list-based scenarios without risk of sacrificing scroll performance. In addition to these modifier APIs, additional APIs to
+      <code translate="no" dir="ltr">RelativeLayoutBounds</code>
+      have been added in order to support these use cases, as well as make it easier for developers to easily create similar custom modifiers that suit their use case exactly. (
+      <a href="https://android-review.googlesource.com/#/q/I759b8256fd7797ad9a10a955368231b70470dd7c">I759b8</a>
+      )
+    </li>
+    <li>
+      Introduced a
+      <code translate="no" dir="ltr">detectDragGestures</code>
+      overload that has touch slop and orientation lock control. (
+      <a href="https://android-review.googlesource.com/#/q/Iadb0d52c5faf9d37a294f5ea6b529615a0ec8c0e">Iadb0d</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">Modifier.scrollable2D</code>
+      ,
+      <code translate="no" dir="ltr">Scrollable2DState</code>
+      and companion APIs for state creation. Also introduced common scroll extension functions. (
+      <a href="https://android-review.googlesource.com/#/q/Ic61c8f14451090f441b009bf8f86e7566c27c782">Ic61c8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/214410040">b/214410040</a>
+      )
+    </li>
+    <li>
+      Compose 64-bit color values are not directly comparable to Android
+      <code translate="no" dir="ltr">ColorLongs</code>
+      because the color space IDs are out of order for some color spaces. To convert to and from Android color spaces, two new APIs are added:
+      <code translate="no" dir="ltr">toColorLong()</code>
+      and
+      <code translate="no" dir="ltr">fromColorLong()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I368990c572cebb2895f87291e9b966ba96b73961">I36899</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Text copied from multiple Text composables in a
+      <code translate="no" dir="ltr">SelectionContainer</code>
+      now will have a line separator
+      <code translate="no" dir="ltr">\n</code>
+      added between text coming from the separate Text composables. (
+      <a href="https://android-review.googlesource.com/#/q/I25332168924ca35574bb8c5e7094ad8010ab5927">I25332</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/285036739">b/285036739</a>
+      )
+    </li>
+  </ul>
