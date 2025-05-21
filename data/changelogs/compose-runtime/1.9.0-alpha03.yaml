@@ -1,0 +1,61 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.9.0-alpha03
+releaseDate: 2025-05-20
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0-alpha03" data-text="Version 1.9.0-alpha03" tabindex="-1">Version 1.9.0-alpha03</h3>
+  <p>May 20, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.9.0-alpha03</code>
+    is released. Version 1.9.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b6c541571b9fb5471f965fc52612cb280713e5e4..5fd8d5a2f883c1cdd7f712b200d5a4fedf342136/compose/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Change
+      <code translate="no" dir="ltr">setDiagnosticStackTraceEnabled</code>
+      to experimental to account for future development of this feature. (
+      <a href="https://android-review.googlesource.com/#/q/I11db30dfc2e0922aa4da13bc9769ab33f3e94f65">I11db3</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed the reusing state when a composition was paused and restarted but some previously paused state needed to be recomposed because some state it read changed while the composition was paused. (
+      <a href="https://android-review.googlesource.com/#/q/I441d17b0bcca7b7073347a9b7cea89333cff2c93">I441d1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/416209738">b/416209738</a>
+      )
+    </li>
+    <li>
+      Completed the pausable composition remember dispatch fix for issue b/404058957 previous fix was incomplete. (
+      <a href="https://android-review.googlesource.com/#/q/I1afd4981c6dadda8f61b02fe42d146f6f5d3c52e">I1afd4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/404058957">b/404058957</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SaveableStateHolder.SaveableStateProvider</code>
+      now provides a
+      <code translate="no" dir="ltr">LocalSavedStateRegistryOwner</code>
+      to its content via composition. (
+      <a href="https://android-review.googlesource.com/#/q/Ia276100065156c4fa15d0d813cf5766302f26c82">Ia2761</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/413108878">b/413108878</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">androidx.compose.runtime.saveable</code>
+      now depends on
+      <code translate="no" dir="ltr">androidx.lifecycle.runtime.compose</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I53228e5401011b619ac4cab06b2fa9cbadda6d09">I53228</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/413108878">b/413108878</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,98 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.9.0-alpha03
+releaseDate: 2025-05-20
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0-alpha03" data-text="Version 1.9.0-alpha03" tabindex="-1">Version 1.9.0-alpha03</h3>
+  <p>May 20, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.9.0-alpha03</code>
+    is released. Version 1.9.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b6c541571b9fb5471f965fc52612cb280713e5e4..5fd8d5a2f883c1cdd7f712b200d5a4fedf342136/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Flag
+      <code translate="no" dir="ltr">ComposeUiFlags.isGetFocusedRectReturnEmptyEnabled</code>
+      makes it so that when nothing is focusable in a
+      <code translate="no" dir="ltr">ComposeView</code>
+      , it sets the rect to an Empty value. This prevents a focus search from choosing the View to focus on. This is especially important for when an IME has a NEXT option where it might try to focus on the
+      <code translate="no" dir="ltr">ComposeView</code>
+      and
+      <code translate="no" dir="ltr">requestFocus()</code>
+      fails. (
+      <a href="https://android-review.googlesource.com/#/q/Ibd0e260624d662b36c846bd0b2fa6e7b0f5ad08e">Ibd0e2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/369256395">b/369256395</a>
+      )
+    </li>
+    <li>
+      Introduce flag
+      <code translate="no" dir="ltr">isNestedScrollDispatcherNodeFixEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0d24ad6c222a319c9a9fb0356309a3b99fa15418">I0d24a</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">DialogProperties</code>
+      '
+      <code translate="no" dir="ltr">dialogContentTitle</code>
+      to
+      <code translate="no" dir="ltr">windowTitle</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ibd27b029ffa636af03a26a1bd73e90aa96ae3574">Ibd27b</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Modifier.onFirstVisible</code>
+      and
+      <code translate="no" dir="ltr">Modifier.onVisibilityChanged</code>
+      modifiers were introduced, which are high level modifiers built on top of
+      <code translate="no" dir="ltr">Modifier.onLayoutRectChanged</code>
+      . These modifiers are built specifically to handle a lot of common application requirements such as logging impressions, auto playing videos, etc. These have been built with performance in mind so that they can be used in critical list-based scenarios without risk of sacrificing scroll performance. In addition to these modifier APIs, additional APIs to
+      <code translate="no" dir="ltr">RelativeLayoutBounds</code>
+      have been added in order to support these use cases, as well as make it easier for developers to easily create similar custom modifiers that suit their use case exactly. (
+      <a href="https://android-review.googlesource.com/#/q/I759b8256fd7797ad9a10a955368231b70470dd7c">I759b8</a>
+      )
+    </li>
+    <li>
+      Change
+      <code translate="no" dir="ltr">setDiagnosticStackTraceEnabled</code>
+      to experimental to account for future development of this feature. (
+      <a href="https://android-review.googlesource.com/#/q/I11db30dfc2e0922aa4da13bc9769ab33f3e94f65">I11db3</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">Modifier.scrollable2D</code>
+      ,
+      <code translate="no" dir="ltr">Scrollable2DState</code>
+      and companion APIs for state creation. Also introduced common scroll extension functions. (
+      <a href="https://android-review.googlesource.com/#/q/Ic61c8f14451090f441b009bf8f86e7566c27c782">Ic61c8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/214410040">b/214410040</a>
+      )
+    </li>
+    <li>
+      Compose 64-bit color values are not directly comparable to Android
+      <code translate="no" dir="ltr">ColorLongs</code>
+      because the color space IDs are out of order for some color spaces. To convert to and from Android color spaces, two new APIs are added:
+      <code translate="no" dir="ltr">toColorLong()</code>
+      and
+      <code translate="no" dir="ltr">fromColorLong()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I368990c572cebb2895f87291e9b966ba96b73961">I36899</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">ViewConfiguration.minimumFlingVelocity</code>
+      to allow lower bound fling velocity control. (
+      <a href="https://android-review.googlesource.com/#/q/I11aab07292b0c3545149da8b4ac88bdc24154ae1">I11aab</a>
+      )
+    </li>
+  </ul>

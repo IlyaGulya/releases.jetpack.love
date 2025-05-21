@@ -1,0 +1,51 @@
+libraryId: navigation3
+groupId: androidx.navigation3
+version: 1.0.0-alpha01
+releaseDate: 2025-05-20
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha01" data-text="Version 1.0.0-alpha01" tabindex="-1">Version 1.0.0-alpha01</h3>
+  <p>May 20, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation3:navigation3-*:1.0.0-alpha01</code>
+    is released. Version 1.0.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1c211305886d70caa42620facce1b97ed7e47bf5/navigation3">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>
+    <a href="https://developer.android.com/guide/navigation/navigation-3">Navigation3</a>
+    is a new navigation library built specifically to handle Jetpack Compose in-app navigation. The
+    <code translate="no" dir="ltr">androidx.navigation3.runtime</code>
+    artifact provides the building blocks, while the
+    <code translate="no" dir="ltr">androidx.navigation3.ui</code>
+    artifact provides the UI layer via the
+    <code translate="no" dir="ltr">NavDisplay</code>
+    API. Developers can provide their own state directly to the
+    <code translate="no" dir="ltr">NavDisplay</code>
+    composable function, which changes the content based on changes in the developer state.
+  </p>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@Serialiable</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">object</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">Home</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">NavKey</span>
+  <span class="devsite-syntax-nd">@Serialiable</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">object</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">Chat</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">NavKey</span>
+
+  <span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">backStack</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">rememberNavBackStack</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">Home</span><span class="devsite-syntax-p">)</span>
+
+  <span class="devsite-syntax-n">NavDisplay</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">backStack</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">entryProvider</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">entryProvider</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">entry&lt;Home&gt;</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">Column</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-n">Text</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-err">“</span><span class="devsite-syntax-n">Home</span><span class="devsite-syntax-err">”</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-n">Button</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">onClick</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">backStack</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">add</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">Chat</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">Text</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-err">“</span><span class="devsite-syntax-n">Go</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">to</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Chat</span><span class="devsite-syntax-err">”</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-p">}</span><span class="devsite-syntax-w"> </span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">entry&lt;Chat&gt;</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-cm">/* My Composable Content */</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">})</span>
+  </code></pre>
+  </devsite-code>
+  <p>
+    For more information, see the
+    <a href="http://goo.gle/nav3">Navigation3 guide</a>
+    .
+  </p>
