@@ -1,0 +1,488 @@
+libraryId: media3
+groupId: androidx.media3
+version: 1.8.0-alpha01
+releaseDate: 2025-05-19
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0-alpha01" data-text="Version 1.8.0-alpha01" tabindex="-1">Version 1.8.0-alpha01</h3>
+  <p>May 19th, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.media3:media3-*:1.8.0-alpha01</code>
+    is released. Version 1.8.0-alpha01 contains
+    <a href="https://github.com/androidx/media/commits/1.8.0-alpha01">these commits</a>
+    .
+  </p>
+  <ul>
+    <li>
+      ExoPlayer:
+      <ul>
+        <li>
+          Add
+          <code translate="no" dir="ltr">ExoPlayer.setScrubbingModeEnabled(boolean)</code>
+          method. This optimizes the player for many frequent seeks (for example, from a user dragging a scrubber bar around). The behavior of scrubbing mode can be customized with
+          <code translate="no" dir="ltr">setScrubbingModeParameters(..)</code>
+          on
+          <code translate="no" dir="ltr">ExoPlayer</code>
+          and
+          <code translate="no" dir="ltr">ExoPlayer.Builder</code>
+          .
+        </li>
+        <li>Allow customizing fractional seek tolerance in scrubbing mode.</li>
+        <li>Increase codec operating rate in scrubbing mode.</li>
+        <li>
+          Fix bug where prepare errors in the content of
+          <code translate="no" dir="ltr">AdsMediaSource</code>
+          may be never reported (
+          <a href="https://github.com/androidx/media/issues/2337">#2337</a>
+          ).
+        </li>
+        <li>
+          Fix memory leak in
+          <code translate="no" dir="ltr">MergingMediaSource</code>
+          , for example used when sideloading subtitles (
+          <a href="https://github.com/androidx/media/issues/2338">#2338</a>
+          ).
+        </li>
+        <li>
+          Allow
+          <code translate="no" dir="ltr">CmcdConfiguration.Factory</code>
+          to return
+          <code translate="no" dir="ltr">null</code>
+          to disable CMCD logging for specific media items (
+          <a href="https://github.com/androidx/media/pull/2386">#2386</a>
+          ).
+        </li>
+        <li>
+          Increase default image buffer size from 128kB (copy-paste mistake from text tracks) to 26MB, which is large enough for 50MP Ultra HDR images (
+          <a href="https://github.com/androidx/media/issues/2417">#2417</a>
+          ).
+        </li>
+        <li>
+          Add
+          <code translate="no" dir="ltr">PreCacheHelper</code>
+          that allows apps to pre-cache a single media with specified start position and duration.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Transformer:
+      <ul>
+        <li>
+          Filling an initial gap (added via
+          <code translate="no" dir="ltr">addGap()</code>
+          ) with silent audio now requires explicitly setting
+          <code translate="no" dir="ltr">experimentalSetForceAudioTrack(true)</code>
+          in
+          <code translate="no" dir="ltr">EditedMediaItemSequence.Builder</code>
+          . If the gap is in the middle of the sequence, then this flag is not required.
+        </li>
+        <li>
+          Move
+          <code translate="no" dir="ltr">Muxer</code>
+          interface from
+          <code translate="no" dir="ltr">media3-transformer</code>
+          to
+          <code translate="no" dir="ltr">media3-muxer</code>
+          .
+        </li>
+        <li>
+          Make setting
+          <code translate="no" dir="ltr">MediaItem.Builder().setImageDuration(long)</code>
+          mandatory to import a media item as an image.
+        </li>
+        <li>
+          Add
+          <code translate="no" dir="ltr">Transformer.Builder().experimentalSetMp4EditListTrimEnabled(boolean)</code>
+          which includes an MP4 edit list when trimming to instruct players to ignore samples between the key frame before the trim start point, and the trim start point.
+        </li>
+        <li>
+          Update Composition Demo app to use Kotlin and Jetpack Compose, and add a custom
+          <code translate="no" dir="ltr">VideoCompositorSettings</code>
+          to arrange sequences into a 2x2 or PiP layout.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Extractors:
+      <ul>
+        <li>
+          MP3: Use duration and data size from unseekable Xing, VBRI and similar variable bitrate metadata when falling back to constant bitrate seeking due to
+          <code translate="no" dir="ltr">FLAG_ENABLE_CONSTANT_BITRATE_SEEKING(_ALWAYS)</code>
+          (
+          <a href="https://github.com/androidx/media/issues/2194">#2194</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Audio:
+      <ul>
+        <li>Allow constant power upmixing/downmixing in DefaultAudioMixer.</li>
+        <li>
+          Make
+          <code translate="no" dir="ltr">ChannelMappingAudioProcessor</code>
+          ,
+          <code translate="no" dir="ltr">TrimmingAudioProcessor</code>
+          and
+          <code translate="no" dir="ltr">ToFloatPcmAudioProcessor</code>
+          public (
+          <a href="https://github.com/androidx/media/issues/2339">#2339</a>
+          ).
+        </li>
+        <li>
+          Use
+          <code translate="no" dir="ltr">AudioTrack#getUnderrunCount()</code>
+          in
+          <code translate="no" dir="ltr">AudioTrackPositionTracker</code>
+          to detect underruns in
+          <code translate="no" dir="ltr">DefaultAudioSink</code>
+          instead of best-effort estimation.
+        </li>
+        <li>Improve audio timestamp smoothing for unexpected position drift from the audio output device.</li>
+        <li>Fix bug where A/V sync is broken for the first 10 seconds after resuming from pause when connected to Bluetooth devices.</li>
+        <li>
+          Fix bug that
+          <code translate="no" dir="ltr">AnalyticsListener.onAudioPositionAdvancing</code>
+          was not reporting the time when the audio started advancing but the time of the first measurement.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Video:
+      <ul>
+        <li>
+          Add experimental
+          <code translate="no" dir="ltr">ExoPlayer</code>
+          API to include the
+          <code translate="no" dir="ltr">MediaCodec.BUFFER_FLAG_DECODE_ONLY</code>
+          flag when queuing decode-only input buffers. This flag will signal the decoder to skip the decode-only buffers thereby resulting in faster seeking. Enable it with
+          <code translate="no" dir="ltr">DefaultRenderersFactory.experimentalSetEnableMediaCodecBufferDecodeOnlyFlag</code>
+          .
+        </li>
+        <li>
+          Improve codec performance checks for software video codecs. This may lead to some additional tracks being marked as
+          <code translate="no" dir="ltr">EXCEEDS_CAPABILITIES</code>
+          .
+        </li>
+        <li>
+          Fix VP9 Widevine playback errors on some devices (
+          <a href="https://github.com/androidx/media/issues/2408">#2408</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Text:
+      <ul>
+        <li>
+          Fix SSA and SubRip to display an in-progress cue when enabling subtitles (
+          <a href="https://github.com/androidx/media/issues/2309">#2309</a>
+          ).
+        </li>
+        <li>
+          Fix playback getting stuck when switching from a stream with a subtitle error to a live stream with an empty subtitle track (
+          <a href="https://github.com/androidx/media/issues/2328">#2328</a>
+          ).
+        </li>
+        <li>
+          Fix garbled CEA-608 subtitles when playing H.262 streams containing B-frames (
+          <a href="https://github.com/androidx/media/issues/2372">#2372</a>
+          ).
+        </li>
+        <li>
+          Add support for SSA subtitles with
+          <code translate="no" dir="ltr">CodecId = S_TEXT/SSA</code>
+          in Matroska files. Previously
+          <code translate="no" dir="ltr">MatroskaExtractor</code>
+          only supported
+          <code translate="no" dir="ltr">CodecId = S_TEXT/ASS</code>
+          which is meant to represent the 'advanced' (v4+) variant of SubStation Alpha subtitles (but ExoPlayer's parsing logic is the same for both variants) (
+          <a href="https://github.com/androidx/media/issues/2384">#2384</a>
+          ).
+        </li>
+        <li>
+          Add support for the
+          <code translate="no" dir="ltr">layer</code>
+          property in SubStation Alpha (SSA) subtitle files which is used to define the z-order of cues when more than one is shown on screen at the same time (
+          <a href="https://github.com/androidx/media/issues/2124">#2124</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Effect:
+      <ul>
+        <li>
+          Add
+          <code translate="no" dir="ltr">Presentation.createForShortSide(int)</code>
+          that creates a
+          <code translate="no" dir="ltr">Presentation</code>
+          that ensures the shortest side always matches the given value, regardless of input orientation.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Muxers:
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">writeSampleData()</code>
+          API now uses muxer specific
+          <code translate="no" dir="ltr">BufferInfo</code>
+          class instead of
+          <code translate="no" dir="ltr">MediaCodec.BufferInfo</code>
+          .
+        </li>
+        <li>
+          Add
+          <code translate="no" dir="ltr">Muxer.Factory#supportsWritingNegativeTimestampsInEditList</code>
+          which defaults to false.
+        </li>
+      </ul>
+    </li>
+    <li>
+      IMA extension:
+      <ul>
+        <li>Fix a bug where a load error in one ad may accidentally invalidate another ad group.</li>
+        <li>
+          Fix bug where ad groups after the end of a VOD window stalled playback. Ads groups with a start time after the window are not enqueued into the
+          <code translate="no" dir="ltr">MediaPeriodQueue</code>
+          anymore (
+          <a href="https://github.com/androidx/media/issues/2215">#2215</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Session:
+      <ul>
+        <li>
+          Fix a bug where passing null into
+          <code translate="no" dir="ltr">getLibraryRoot</code>
+          of a
+          <code translate="no" dir="ltr">MediaBrowser</code>
+          connected to a legacy
+          <code translate="no" dir="ltr">MediaBrowserServiceCompat</code>
+          produced a
+          <code translate="no" dir="ltr">NullPointerException</code>
+          .
+        </li>
+        <li>
+          Fix a bug where where sending custom actions, a search result or a getItem request crashed the legacy session app with a
+          <code translate="no" dir="ltr">ClassNotFoundException</code>
+          .
+        </li>
+        <li>
+          Fix a bug where
+          <code translate="no" dir="ltr">MediaItem.LocalConfiguration.uri</code>
+          was shared to the platform sessions's
+          <code translate="no" dir="ltr">MediaMetadata</code>
+          . To intentionally share a URI to allow controllers to re-request the media, set
+          <code translate="no" dir="ltr">MediaItem.RequestMetadata.mediaUri</code>
+          instead.
+        </li>
+      </ul>
+    </li>
+    <li>
+      UI:
+      <ul>
+        <li>
+          Fix a Compose bug which resulted in a gap between setting the initial button states and observing the change in state (e.g. icon shapes or being enabled). Any changes made to the Player outside of the observation period are now picked up (
+          <a href="https://github.com/androidx/media/issues/2313">#2313</a>
+          ).
+        </li>
+        <li>
+          Add state holders and composables to the
+          <code translate="no" dir="ltr">media3-ui-compose</code>
+          module for
+          <code translate="no" dir="ltr">SeekBackButtonState</code>
+          and
+          <code translate="no" dir="ltr">SeekForwardButtonState</code>
+          .
+        </li>
+        <li>
+          Add support for ExoPlayer's scrubbing mode to
+          <code translate="no" dir="ltr">PlayerControlView</code>
+          . When enabled, this puts the player into scrubbing mode when the user starts dragging the scrubber bar, issues a
+          <code translate="no" dir="ltr">player.seekTo</code>
+          call for every movement, and then exits scrubbing mode when the touch is lifted from the screen. This integration can be enabled with either
+          <code translate="no" dir="ltr">time_bar_scrubbing_enabled = true</code>
+          in XML or the
+          <code translate="no" dir="ltr">setTimeBarScrubbingEnabled(boolean)</code>
+          method from Java/Kotlin.
+        </li>
+        <li>
+          Make
+          <code translate="no" dir="ltr">PlayerSurface</code>
+          accept a nullable
+          <code translate="no" dir="ltr">Player</code>
+          argument.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Downloads:
+      <ul>
+        <li>
+          Add partial download support for progressive streams. Apps can prepare a progressive stream with
+          <code translate="no" dir="ltr">DownloadHelper</code>
+          , and request a
+          <code translate="no" dir="ltr">DownloadRequest</code>
+          from the helper with specifying the time-based media start and end positions that the download should cover. The returned
+          <code translate="no" dir="ltr">DownloadRequest</code>
+          carries the resolved byte range, with which a
+          <code translate="no" dir="ltr">ProgressiveDownloader</code>
+          can be created and download the content correspondingly.
+        </li>
+        <li>
+          Add
+          <code translate="no" dir="ltr">DownloadHelper.Factory</code>
+          with which the static
+          <code translate="no" dir="ltr">DownloadHelper.forMediaItem()</code>
+          methods are replaced.
+        </li>
+        <li>
+          Add
+          <code translate="no" dir="ltr">Factory</code>
+          for
+          <code translate="no" dir="ltr">SegmentDownloader</code>
+          implementations.
+        </li>
+        <li>
+          Add partial download support for adaptive streams. Apps can prepare an adaptive stream with
+          <code translate="no" dir="ltr">DownloadHelper</code>
+          , and request a
+          <code translate="no" dir="ltr">DownloadRequest</code>
+          from the helper with specifying the time-based media start and end positions that the download should cover. The returned
+          <code translate="no" dir="ltr">DownloadRequest</code>
+          carries the resolved time range, with which a concrete
+          <code translate="no" dir="ltr">SegmentDownloader</code>
+          can be created and download the content correspondingly.
+        </li>
+      </ul>
+    </li>
+    <li>
+      HLS extension:
+      <ul>
+        <li>
+          Support X-ASSET-LIST and live streams with
+          <code translate="no" dir="ltr">HlsInterstitialsAdsLoader</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      RTSP extension:
+      <ul>
+        <li>
+          Add parsing support for SessionDescriptions containing lines with trailing whitespace characters (
+          <a href="https://github.com/androidx/media/issues/2357">#2357</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Cast extension:
+      <ul>
+        <li>
+          Add support for
+          <code translate="no" dir="ltr">getDeviceVolume()</code>
+          ,
+          <code translate="no" dir="ltr">setDeviceVolume()</code>
+          ,
+          <code translate="no" dir="ltr">getDeviceMuted()</code>
+          , and
+          <code translate="no" dir="ltr">setDeviceMuted()</code>
+          (
+          <a href="https://github.com/androidx/media/issues/2089">#2089</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Test Utilities:
+      <ul>
+        <li>
+          Removed
+          <code translate="no" dir="ltr">transformer.TestUtil.addAudioDecoders(String...)</code>
+          ,
+          <code translate="no" dir="ltr">transformer.TestUtil.addAudioEncoders(String...)</code>
+          , and
+          <code translate="no" dir="ltr">transformer.TestUtil.addAudioEncoders(ShadowMediaCodec.CodecConfig, String...)</code>
+          . Use
+          <code translate="no" dir="ltr">ShadowMediaCodecConfig</code>
+          to configure shadow encoders and decoders instead.
+        </li>
+        <li>
+          Replaced the "exotest" prefix with "media3" in codec names reported by
+          <code translate="no" dir="ltr">ShadowMediaCodecConfig</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      Remove deprecated symbols:
+      <ul>
+        <li>
+          Removed deprecated
+          <code translate="no" dir="ltr">SegmentDownloader</code>
+          constructor
+          <code translate="no" dir="ltr">SegmentDownloader(MediaItem, Parser&lt;M&gt;, CacheDataSource.Factory, Executor)</code>
+          and the corresponding constructors in its subclasses
+          <code translate="no" dir="ltr">DashDownloader</code>
+          ,
+          <code translate="no" dir="ltr">HlsDownloader</code>
+          and
+          <code translate="no" dir="ltr">SsDownloader</code>
+          .
+        </li>
+        <li>
+          Removed deprecated
+          <code translate="no" dir="ltr">Player.hasNext()</code>
+          ,
+          <code translate="no" dir="ltr">Player.hasNextWindow()</code>
+          . Use
+          <code translate="no" dir="ltr">Player.hasNextMediaItem()</code>
+          instead.
+        </li>
+        <li>
+          Removed deprecated
+          <code translate="no" dir="ltr">Player.next()</code>
+          . Use
+          <code translate="no" dir="ltr">Player.seekToNextMediaItem()</code>
+          instead.
+        </li>
+        <li>
+          Removed deprecated
+          <code translate="no" dir="ltr">Player.seekToPreviousWindow()</code>
+          . Use
+          <code translate="no" dir="ltr">Player.seekToPreviousMediaItem()</code>
+          instead.
+        </li>
+        <li>
+          Removed deprecated
+          <code translate="no" dir="ltr">Player.seekToNextWindow()</code>
+          . Use
+          <code translate="no" dir="ltr">Player.seekToNextMediaItem()</code>
+          instead.
+        </li>
+        <li>
+          Removed deprecated
+          <code translate="no" dir="ltr">BaseAudioProcessor</code>
+          in
+          <code translate="no" dir="ltr">exoplayer</code>
+          module. Use
+          <code translate="no" dir="ltr">BaseAudioProcessor</code>
+          under
+          <code translate="no" dir="ltr">common</code>
+          module.
+        </li>
+        <li>
+          Remove deprecated
+          <code translate="no" dir="ltr">MediaCodecVideoRenderer</code>
+          constructor
+          <code translate="no" dir="ltr">MediaCodecVideoRenderer(Context, MediaCodecAdapter.Factor, MediaCodecSelector, long, boolean, @Nullable Handler, @Nullable VideoRendererEventListener, int, float, @Nullable VideoSinkProvider)</code>
+          .
+        </li>
+      </ul>
+    </li>
+  </ul>
