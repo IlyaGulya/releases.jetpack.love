@@ -12,3 +12,98 @@ changelogHtml: |
     <a href="https://android.googlesource.com/platform/frameworks/support/+log/b6c541571b9fb5471f965fc52612cb280713e5e4..cd41781824511ce4d5c4a05d2df4aaaee669f0bc/compose/material3">these commits</a>
     .
   </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">MotionTheme.LocalMotionScheme</code>
+      , composition local. This allows access to the theme motion scheme from
+      <code translate="no" dir="ltr">CompositionLocalConsumerModifierNodes</code>
+      , with
+      <code translate="no" dir="ltr">currentValueOf(MotionTheme.LocalMotionScheme)</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I014b19111ca39ee99fabbbd4c64e02ee2bad3240">I014b1</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ColorScheme</code>
+      constructor without Fixed color roles is now deprecated. Please migrate to constructor that includes fixed roles. (
+      <a href="https://android-review.googlesource.com/#/q/Iad0ee3cda230dc25f3e31a0c2853200c71a53a37">Iad0ee</a>
+      )
+    </li>
+    <li>
+      M3 Text component now supports
+      <code translate="no" dir="ltr">TextAutoSize</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7f52466da732f4413392203e92950598085995c0">I7f524</a>
+      )
+    </li>
+    <li>
+      Add api for constructing split button size variants and add samples. (
+      <a href="https://android-review.googlesource.com/#/q/Ice30bdc1fb4345e9de9efc92973ae2cb7067c100">Ice30b</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">Snackbar</code>
+      and
+      <code translate="no" dir="ltr">FloatingActionButton</code>
+      were incorrectly positioned when edge-to-edge was enabled. Scaffold now correctly applies horizontal insets to these components. (
+      <a href="https://android-review.googlesource.com/#/q/Ib7c305b334fa739b9201dd6d5ca66ef66db88f1b">Ib7c30</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/244400727">b/244400727</a>
+      )
+    </li>
+    <li>
+      Fix the
+      <code translate="no" dir="ltr">BottomSheet</code>
+      motion from fully expanded to partially expanded. The
+      <code translate="no" dir="ltr">BottomSheet</code>
+      now uses the
+      <code translate="no" dir="ltr">MotionScheme</code>
+      's fast-effect when hiding or collapsing, and default-spatial when expanding. (
+      <a href="https://android-review.googlesource.com/#/q/Ifa46f46838ce467bc5e7d98b350adebb3bc8990b">Ifa46f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/416063171">b/416063171</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ColorScheme</code>
+      constructor without surface container roles has been marked hidden and no longer recommended for use. (
+      <a href="https://android-review.googlesource.com/#/q/Ia7237e02d795e5173f900f224ab1c83d7e2d7309">Ia7237</a>
+      )
+    </li>
+    <li>
+      Removed a
+      <code translate="no" dir="ltr">CircularWavyProgressIndicator</code>
+      <code translate="no" dir="ltr">Size.minDimension &gt; 0</code>
+      requirement, which used to throw an exception, to allow more flexibility. (
+      <a href="https://android-review.googlesource.com/#/q/Ic9418a95bb919e27118bf1d34e325d7e14e56d5c">Ic9418</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/377531195">b/377531195</a>
+      )
+    </li>
+    <li>
+      Hyperlinks in
+      <code translate="no" dir="ltr">Text(AnnotatedString)</code>
+      now have Material styling by default. (
+      <a href="https://android-review.googlesource.com/#/q/I782887c4bf08d3be9e53df8af308c5879144c37c">I78288</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/339843816">b/339843816</a>
+      )
+    </li>
+    <li>
+      Fix an issue where the
+      <code translate="no" dir="ltr">toShape()</code>
+      function in the
+      <code translate="no" dir="ltr">RoundedPolygon</code>
+      is caching a Path and causing an issue when multiple
+      <code translate="no" dir="ltr">createOutline</code>
+      calls are made with different sizes. (
+      <a href="https://android-review.googlesource.com/#/q/I4026db55ff35bf1adb02b8e9e74951b312abad49">I4026d</a>
+      )
+    </li>
+  </ul>
