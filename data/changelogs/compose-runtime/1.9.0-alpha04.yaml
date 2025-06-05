@@ -1,0 +1,104 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.9.0-alpha04
+releaseDate: 2025-06-04
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0-alpha04" data-text="Version 1.9.0-alpha04" tabindex="-1">Version 1.9.0-alpha04</h3>
+  <p>June 4, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.9.0-alpha04</code>
+    is released. Version 1.9.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5fd8d5a2f883c1cdd7f712b200d5a4fedf342136..786176dc2284c87a0e620477608e0aca9adeff15/compose/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">SnapshotStateSet</code>
+      now implements Parcelable on Android, it is now supported to be used as part
+      <code translate="no" dir="ltr">rememberSaveable { ... }</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I755dd7d20ed39545a1b7805b28b676fcff019fff">I755dd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/378623803">b/378623803</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SnapshotStateList</code>
+      now implements Parcelable on Android, it is now supported to be used as part
+      <code translate="no" dir="ltr">rememberSaveable { ... }</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id18be0bf1ad0bf5c7de580f5289629b838c76876">Id18be</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/378623803">b/378623803</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">movableContentOf()</code>
+      is now marked with
+      <code translate="no" dir="ltr">@RememberInComposition</code>
+      annotation, which allows lint to catch incorrect usages (
+      <a href="https://android-review.googlesource.com/#/q/I2738d6889fdf3aea8a6017d30c8a8f53c7915e9d">I2738d</a>
+      )
+    </li>
+    <li>
+      Updated experimental composition observers API to allow for more comprehensive observation of recomposition causes (
+      <a href="https://android-review.googlesource.com/#/q/I32b6ac0ac3c4c584e03c755a1651b28882ae4a37">I32b6a</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an ordering issue with the dispatching of
+      <code translate="no" dir="ltr">onForgotton</code>
+      that could, for example, cause the
+      <code translate="no" dir="ltr">onDispose</code>
+      of disposable effects to execute in the wrong order. (
+      <a href="https://android-review.googlesource.com/#/q/Ic1c9127c3faf980e373eaa2c162a6cc49d55ff28">Ic1c91</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/417450712">b/417450712</a>
+      )
+    </li>
+    <li>
+      Fix for for reusing state handling in pausable composition (
+      <a href="https://android-review.googlesource.com/#/q/Ife96e7e011daa3644cdda2f112bbe7bbedb49ae4">Ife96e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/404058957">b/404058957</a>
+      )
+    </li>
+    <li>
+      Minor bug fix to make mutable collection detection compatible for both K1 and K2 (
+      <a href="https://android-review.googlesource.com/#/q/Ie48784d814683fa1a73ab7c41d3225fc84d3b14c">Ie4878</a>
+      )
+    </li>
+    <li>
+      Minor bug fix to make annotation lookup on overridden property accessors compatible for both K1 and K2 (
+      <a href="https://android-review.googlesource.com/#/q/I9900dbc6263666591db1dfe1c9d2ca21f26319f3">I9900d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Fixed a bug affecting Molecule users where using
+      <code translate="no" dir="ltr">RecompositionMode.Immediate</code>
+      could cause missed recompositions. (
+      <a href="https://android-review.googlesource.com/#/q/I9f3a9b3d879aef23a73eb4110f2efed6cca81dfa">I9f3a9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/419527812">b/419527812</a>
+      )
+    </li>
+    <li>
+      Exposed
+      <code translate="no" dir="ltr">PausableComposition</code>
+      isApplied and
+      <code translate="no" dir="ltr">isCancelled</code>
+      getters which allow for checking the state of the
+      <code translate="no" dir="ltr">PausableComposition</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I994aa9f48fcdb5eeb551bc7db4cba917af408d23">I994aa</a>
+      )
+    </li>
+  </ul>
