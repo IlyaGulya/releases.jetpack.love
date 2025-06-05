@@ -1,0 +1,30 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.8.8
+releaseDate: 2025-06-04
+#language=html
+changelogHtml: |
+  <h3 id="1.8.8" data-text="Version 1.8.8" tabindex="-1">Version 1.8.8</h3>
+  <p>June 4, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment-*:1.8.8</code>
+    is released. Version 1.8.8 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7edaa16f0a4d8d4afbe11d4d62aca84635ff839a..d008d0faccfc0ad192d2b2df27e3c61227f381f6/fragment">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">FragmentManager</code>
+      would crash while trying to save the state of Fragments that were added with
+      <code translate="no" dir="ltr">setMaxLifecycle(Lifecycle.State.INITIALIZED)</code>
+      . These fragments, since they never when through
+      <code translate="no" dir="ltr">onCreate()</code>
+      , no longer have any state saved or
+      <code translate="no" dir="ltr">onSaveInstanceState()</code>
+      called. (
+      <a href="https://android-review.googlesource.com/#/q/I6e37a01551008636d6b5ccafa65f03fcbd19321f">I6e37a</a>
+      )
+    </li>
+  </ul>

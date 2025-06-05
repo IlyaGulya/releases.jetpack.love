@@ -1,0 +1,45 @@
+libraryId: navigationevent
+groupId: androidx.navigationevent
+version: 1.0.0-alpha02
+releaseDate: 2025-06-04
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha02" data-text="Version 1.0.0-alpha02" tabindex="-1">Version 1.0.0-alpha02</h3>
+  <p>June 4, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigationevent:navigationevent-*:1.0.0-alpha02</code>
+    is released. Version 1.0.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cd41781824511ce4d5c4a05d2df4aaaee669f0bc..4fb12d1b1dc4dcae8ca603c7a5db938cc1abe39c/navigationevent/navigationevent">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Replace
+      <code translate="no" dir="ltr">NavigationEventDispatcher</code>
+      's secondary constructor with default arguments. (
+      <a href="https://android-review.googlesource.com/#/q/I716a05450ebb11d7360f4a9c09a3cd89205d542a">I716a0</a>
+      )
+    </li>
+    <li>
+      Remove priority property from
+      <code translate="no" dir="ltr">NavigationEventCallback</code>
+      . Pass priority to
+      <code translate="no" dir="ltr">NavigationEventDispatcher.addCallback()</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/I13caecd84220bf919549958d79e424d1fc2cd3ab">I13cae</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a
+      <code translate="no" dir="ltr">ConcurrentModificationException</code>
+      that could occur when
+      <code translate="no" dir="ltr">NavigationEventCallback.remove()</code>
+      was called due to simultaneously modifying the internal list of closeables. (
+      <a href="https://issuetracker.google.com/issues/420919815">b/420919815</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,123 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.9.0-alpha04
+releaseDate: 2025-06-04
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0-alpha04" data-text="Version 1.9.0-alpha04" tabindex="-1">Version 1.9.0-alpha04</h3>
+  <p>June 4, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.9.0-alpha04</code>
+    is released. Version 1.9.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5fd8d5a2f883c1cdd7f712b200d5a4fedf342136..786176dc2284c87a0e620477608e0aca9adeff15/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">PrefetchScheduler</code>
+      and customisation have been deprecated in favor of the internal implementation that does all the work automatically. (
+      <a href="https://android-review.googlesource.com/#/q/I3a9a678918c7ce33174b9c330142a650cc9e3b2a">I3a9a6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/420551535">b/420551535</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">Scrollable2DState</code>
+      to use an offset in the
+      <code translate="no" dir="ltr">canScroll</code>
+      method instead of an angle. (
+      <a href="https://android-review.googlesource.com/#/q/I28694cebf0b29b236eea1eaa6e072c7cf7dad623">I28694</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/417268474">b/417268474</a>
+      )
+    </li>
+    <li>
+      Replaced
+      <code translate="no" dir="ltr">addAnnotation</code>
+      in
+      <code translate="no" dir="ltr">AnnotatedOutputTransformation</code>
+      with
+      <code translate="no" dir="ltr">addStyle</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I91c6f52917074ecfecdeadcb96a5da4f14592f8e">I91c6f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/417991824">b/417991824</a>
+      )
+    </li>
+    <li>
+      Stabilized
+      <code translate="no" dir="ltr">LazyLayout</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If5db4170daec197e39612bcfb5f8b5d4cdd8db52">If5db4</a>
+      )
+    </li>
+    <li>
+      Stabilized an empty constructor for
+      <code translate="no" dir="ltr">LazyLayoutPrefetchState</code>
+      and it's scheduling method
+      <code translate="no" dir="ltr">schedulePrecomposition</code>
+      and
+      <code translate="no" dir="ltr">schedulePrecompositionAndPremeasure</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4362f3417ebe652d967463a474e4ba799967930d">I4362f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/252853717">b/252853717</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">ProcessTextKey</code>
+      on Android used for context menu items that's added for
+      <code translate="no" dir="ltr">PROCESS_TEXT</code>
+      intent actions. (
+      <a href="https://android-review.googlesource.com/#/q/If0ac40e1a2c4e385de4ebeb0e41afc5f09b00187">If0ac4</a>
+      )
+    </li>
+    <li>
+      Make context menu APIs public. Exposed
+      <code translate="no" dir="ltr">Modifier.addTextContextMenuComponents</code>
+      and
+      <code translate="no" dir="ltr">Modifier.filterTextContextMenuComponents</code>
+      to add and remove items in context menu. And also made the following elementary APIs public so that one can build a customized context menu:
+      <ul>
+        <li><code translate="no" dir="ltr">TextContextMenuProvider</code></li>
+        <li><code translate="no" dir="ltr">TextContextMenuDataProvider</code></li>
+        <li><code translate="no" dir="ltr">TextContextMenuData</code></li>
+        <li><code translate="no" dir="ltr">TextContextMenuComponent</code></li>
+        <li><code translate="no" dir="ltr">LocalTextContextMenuDropdownProvider</code></li>
+        <li>
+          <code translate="no" dir="ltr">LocalTextContextMenuToolbarProvider</code>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I1b7b0fd6744fbae808a3e142cca4ad53bd3731f1">I1b7b0</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Make
+      <code translate="no" dir="ltr">LazyLayoutItemProvider</code>
+      stable (
+      <a href="https://android-review.googlesource.com/#/q/Icce09a01e2668ea0a93678ec84d189aa4769e26c">Icce09</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261565751">b/261565751</a>
+      )
+    </li>
+    <li>
+      Introduced android smart selection features that can be enable/disabled via
+      <code translate="no" dir="ltr">ComposeFoundationFlags.isSmartSelectionEnabled</code>
+      . It also exposed a static
+      <code translate="no" dir="ltr">compositionLocal</code>
+      <code translate="no" dir="ltr">LocalTextClassifierCoroutineContext</code>
+      that can be used to specify the
+      <code translate="no" dir="ltr">CoroutineContext</code>
+      in which the
+      <code translate="no" dir="ltr">TextClassification</code>
+      job is launched. (
+      <a href="https://android-review.googlesource.com/#/q/I1dbaa65e254cc11c1217d2c8ff551c92f7f642f6">I1dbaa</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/139321320">b/139321320</a>
+      )
+    </li>
+  </ul>

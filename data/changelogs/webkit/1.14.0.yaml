@@ -1,0 +1,49 @@
+libraryId: webkit
+groupId: androidx.webkit
+version: 1.14.0
+releaseDate: 2025-06-04
+#language=html
+changelogHtml: |
+  <h3 id="1.14.0" data-text="Version 1.14.0" tabindex="-1">Version 1.14.0</h3>
+  <p>June 4, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.webkit:webkit:1.14.0</code>
+    is released. Version 1.14.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/dca78d01925c289445e3fc462a376b774107cbbc..e0db6d8bb2835e53b913e6bf0a913b68f6aaf6d7/webkit/webkit">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.13.0</strong></p>
+  <ul>
+    <li>
+      Introducing the
+      <code translate="no" dir="ltr">PaymentRequest</code>
+      API for invoking Android native payment apps through
+      <code translate="no" dir="ltr">org.chromium.intent.action.PAY</code>
+      intent.
+      <code translate="no" dir="ltr">PaymentRequest</code>
+      is disabled by default and
+      <code translate="no" dir="ltr">WebView</code>
+      host apps can call
+      <a href="https://developer.android.com/reference/androidx/webkit/WebSettingsCompat#setPaymentRequestEnabled(android.webkit.WebSettings,boolean)">WebSettingsCompat.setPaymentRequestEnabled(settings, true)</a>
+      to enable it. In addition,
+      <code translate="no" dir="ltr">PaymentRequest</code>
+      requires a
+      <code translate="no" dir="ltr">&lt;queries&gt;</code>
+      tag in
+      <code translate="no" dir="ltr">AndroidManifest.xml</code>
+      . See documentation for
+      <code translate="no" dir="ltr">setPaymentRequestEnabled()</code>
+      for more information.
+    </li>
+    <li>
+      Introducing the experimental Navigation API for enhanced web navigation tracking and management within
+      <code translate="no" dir="ltr">WebView</code>
+      . These APIs provide detailed information about navigation events. Get started by calling
+      <a href="https://developer.android.com/reference/androidx/webkit/WebViewCompat#setWebNavigationClient(android.webkit.WebView,androidx.webkit.WebNavigationClient)">WebViewCompat.setNavigationClient</a>
+      with an implementation of the new
+      <a href="https://developer.android.com/reference/androidx/webkit/WebNavigationClient">WebNaviagationClient</a>
+      interface to get detailed information about page navigation. For more information about the navigation lifecycle, please see the
+      <a href="https://docs.google.com/presentation/d/1YVqDmbXI0cllpfXD7TuewiexDNZYfwk6fRdmoXJbBlM">Life of a Navigation Presentation</a>
+      .
+    </li>
+  </ul>

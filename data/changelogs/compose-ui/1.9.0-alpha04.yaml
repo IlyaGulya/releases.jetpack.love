@@ -1,0 +1,99 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.9.0-alpha04
+releaseDate: 2025-06-04
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0-alpha04" data-text="Version 1.9.0-alpha04" tabindex="-1">Version 1.9.0-alpha04</h3>
+  <p>June 4, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.9.0-alpha04</code>
+    is released. Version 1.9.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5fd8d5a2f883c1cdd7f712b200d5a4fedf342136..786176dc2284c87a0e620477608e0aca9adeff15/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added modifier APIs for customizable shadows. (
+      <a href="https://android-review.googlesource.com/#/q/I2058d6641d5d0747f1455034a4300776035985b2">I2058d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/160665122">b/160665122</a>
+      )
+    </li>
+    <li>
+      Add a
+      <code translate="no" dir="ltr">SemanticsModifierNode.isImportantForBounds</code>
+      property that determines whether the node should be taken into account when computing bounds. The property is true by default and can be set to false to indicate that the node should not be taken into account for bounds. (
+      <a href="https://android-review.googlesource.com/#/q/I7ebec06c2af89f7890743b4ff4c2388fc0ebbde7">I7ebec</a>
+      )
+    </li>
+    <li>
+      Add a
+      <code translate="no" dir="ltr">SemanticsPropertyKey</code>
+      factory function for declaring Android-specific semantics properties that are made available as accessibility extras exposed via
+      <code translate="no" dir="ltr">AccessibilityNodeInfo.getExtras</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2ed511dc37b144196a911e7e55b56ea35205a5a2">I2ed51</a>
+      )
+    </li>
+    <li>
+      Removed usages of
+      <code translate="no" dir="ltr">ComposeUiFlags.isRemoveFocusedViewFixEnabled</code>
+      and deprecated the flag. (
+      <a href="https://android-review.googlesource.com/#/q/I5032840c5419ce8802619df0cfc5226d9fdd62ea">I50328</a>
+      )
+    </li>
+    <li>
+      Introduce new customizable shadow framework. This includes
+      <code translate="no" dir="ltr">DropShadowPainter</code>
+      and
+      <code translate="no" dir="ltr">InnerShadowPainter</code>
+      as well as the
+      <code translate="no" dir="ltr">DropShadow/InnerShadow</code>
+      dependencies. Shadow infrastructure is shared such that the same generated shadows can be shared at multiple callsites without having to re-generate the shadows n-times. (
+      <a href="https://android-review.googlesource.com/#/q/I24f7a227d0bcb3886682ff05d6f77ca6d2a133bd">I24f7a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/160665122">b/160665122</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">CompositeShader</code>
+      and
+      <code translate="no" dir="ltr">CompositeShaderBrush</code>
+      which creates a composited result between two shaders. Also add
+      <code translate="no" dir="ltr">ShaderBrush#transform</code>
+      to set a transformation matrix for the shader. (
+      <a href="https://android-review.googlesource.com/#/q/I2621aeede742c15964faefa927631208a98ff1a2">I2621a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/160665122">b/160665122</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a bug in
+      <code translate="no" dir="ltr">NestedScrollInteropConnection</code>
+      where fling methods were being in the wrong order with respect to views. (
+      <a href="https://android-review.googlesource.com/#/q/I56ad4f04e5b29aceb7d7ceeb40976ad17aaf9ce0">I56ad4</a>
+      )
+    </li>
+    <li>
+      Previously, dialogs that drew full screen were not drawing within the display cutout region. This bug is fixed so that dialogs with
+      <code translate="no" dir="ltr">decorFitsSystemWindows = false</code>
+      and
+      <code translate="no" dir="ltr">usePlatformDefaultWidth = false</code>
+      can take the display cutout region. (
+      <a href="https://android-review.googlesource.com/#/q/I9e9758a01b07a7943030f33c20720fe24186e0d6">I9e975</a>
+      )
+    </li>
+    <li>
+      Fixed a bug where
+      <code translate="no" dir="ltr">TalkBack</code>
+      ’s green focus indicator was not drawn after being turned on while the Compose app is in the background. (
+      <a href="https://android-review.googlesource.com/#/q/Ifd12a124dc56036a06136583a75fb142a76de3d3">Ifd12a</a>
+      )
+    </li>
+  </ul>

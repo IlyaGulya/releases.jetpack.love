@@ -1,0 +1,105 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.5.0-beta03
+releaseDate: 2025-06-04
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-beta03" data-text="Version 1.5.0-beta03" tabindex="-1">Version 1.5.0-beta03</h3>
+  <p>June 4, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.5.0-beta03</code>
+    is released. Version 1.5.0-beta03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cd41781824511ce4d5c4a05d2df4aaaee669f0bc..786176dc2284c87a0e620477608e0aca9adeff15/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">OpenOnPhoneDialog</code>
+      now announces only the message text under TalkBack, and skips the icon semantics. The
+      <code translate="no" dir="ltr">OpenOnPhoneDialogDefaults</code>
+      have been updated to remove the
+      <code translate="no" dir="ltr">iconContentDescription</code>
+      and the
+      <code translate="no" dir="ltr">contentDescription</code>
+      parameter from
+      <code translate="no" dir="ltr">icon()</code>
+      . Also,
+      <code translate="no" dir="ltr">ConfirmationDialogDefaults</code>
+      now has modifier parameters on
+      <code translate="no" dir="ltr">SuccessIcon</code>
+      and
+      <code translate="no" dir="ltr">FailureIcon</code>
+      composables. (
+      <a href="https://android-review.googlesource.com/#/q/Id2ae2a01db6a94ce63a448693922d92beac10c01">Id2ae2</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Changed the order in which we apply the effect of
+      <code translate="no" dir="ltr">SurfaceTransformation</code>
+      parameters. Before, the transformations applied to Wear Material3 components were done as follows: background painter, container transformation, content transformation. Now, the first 2 are inverted, and we apply any passed in modifier between them, so it is affected by container transformations. This fixes cases like using a placeholder shimmer effect with elements in a TLC using the transformation parameter. (
+      <a href="https://android-review.googlesource.com/#/q/I786cfe1468d88d9c0f36b200d69362b46abdad55">I786cf</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">RevealState.Saver</code>
+      was added to be used to restore the state of
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      when activity or process is recreated.
+      <code translate="no" dir="ltr">rememberRevealState</code>
+      function now uses this Saver by default. (
+      <a href="https://android-review.googlesource.com/#/q/Ie0ecb5568107b73d31ab34f0b47156478cbe06a5">Ie0ecb</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      primary and secondary actions buttons should default to
+      <code translate="no" dir="ltr">ButtonDefault.Height</code>
+      (fixed bug where these were filling the maximum height for taller buttons). (
+      <a href="https://android-review.googlesource.com/#/q/Ibfba1e8afb8b2886bc9f4264fe39789c4e8759d7">Ibfba1</a>
+      )
+    </li>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      to reset the last component interacted with, when the swipe right gesture is performed. (
+      <a href="https://android-review.googlesource.com/#/q/Ia8450d487b714a753af628bb8d2d8a5a42d65a73">Ia8450</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      was changed to settle on the
+      <code translate="no" dir="ltr">Revealing</code>
+      state when the end position of the swipe is in between the revealing and revealed anchors, and is closer to the Revealing anchor. (
+      <a href="https://android-review.googlesource.com/#/q/If445848ae32cce0a0d28ca35360967ed07b1bf42">If4458</a>
+      )
+    </li>
+    <li>
+      Now
+      <code translate="no" dir="ltr">ButtonGroup</code>
+      's content is properly inverted in a RTL layout (
+      <a href="https://android-review.googlesource.com/#/q/Ib378dab6a641f32bb97adefb9b3440703f747707">Ib378d</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AnimatedText</code>
+      now supports RTL text direction (
+      <a href="https://android-review.googlesource.com/#/q/I4533cbdc3ce9b1118920e933e2aa89524d9d68a5">I4533c</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      now resizes items correctly when the bottom item is removed (
+      <a href="https://android-review.googlesource.com/#/q/Idacab201ec5dbb09886cd08666785f1850117aee">Idacab</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      now makes just one measuring pass, which improves performance by reducing frame times. (
+      <a href="https://android-review.googlesource.com/#/q/I501a1ac8048d0b718919a4be042e66e84a22d2de">I501a1</a>
+      )
+    </li>
+  </ul>
