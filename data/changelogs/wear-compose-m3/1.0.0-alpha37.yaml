@@ -1,0 +1,97 @@
+libraryId: wear-compose-m3
+groupId: androidx.wear
+version: 1.0.0-alpha37
+releaseDate: 2025-04-23
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha37" data-text="Version 1.0.0-alpha37" tabindex="-1">Version 1.0.0-alpha37</h3>
+  <p>April 23, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material3:1.0.0-alpha37</code>
+    is released. Version 1.0.0-alpha37 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4c37298a97c16270c139eb812ddadaba03e23a52..008cbd021e3a2b4d1f36ea7f48200c4692bfc169/wear/compose/compose-material3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">scrollTransform</code>
+      from the public API surface. Use the combination of
+      <code translate="no" dir="ltr">transformedHeight</code>
+      and
+      <code translate="no" dir="ltr">graphicsLayer</code>
+      modifiers if you need to get the same functionality. (
+      <a href="https://android-review.googlesource.com/#/q/Ie181dbca319aa0c676435e96dfea6203ff7b0e36">Ie181d</a>
+      )
+    </li>
+    <li>
+      Replaced
+      <code translate="no" dir="ltr">ImageButton</code>
+      and
+      <code translate="no" dir="ltr">ImageCard</code>
+      composables with
+      <code translate="no" dir="ltr">Button</code>
+      and
+      <code translate="no" dir="ltr">Card/TitleCard</code>
+      overloads respectively. Renamed
+      <code translate="no" dir="ltr">imageButtonColors</code>
+      to
+      <code translate="no" dir="ltr">buttonWithContainerPainterColors</code>
+      and
+      <code translate="no" dir="ltr">imageCardColors</code>
+      to
+      <code translate="no" dir="ltr">cardWithContainerPainterColors</code>
+      . Added public
+      <code translate="no" dir="ltr">ButtonDefaults.scrimBrush</code>
+      and
+      <code translate="no" dir="ltr">CardDefaults.scrimBrush</code>
+      . Renamed button
+      <code translate="no" dir="ltr">imageBackgroundGradientStartColor</code>
+      and
+      <code translate="no" dir="ltr">imageBackgroundGradientEndColor</code>
+      to
+      <code translate="no" dir="ltr">scrimGradientStartColor</code>
+      and
+      <code translate="no" dir="ltr">scrimGradientEndColor</code>
+      . Renamed
+      <code translate="no" dir="ltr">CardDefaults.ImageContentPadding</code>
+      to
+      <code translate="no" dir="ltr">CardDefaults.CardWithContainerPainterContentPadding</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I7b8b6e861e4cab02dfb5e10288a45a1d4f7a03e6">I7b8b6</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Picker</code>
+      and
+      <code translate="no" dir="ltr">PickerGroup</code>
+      now take the
+      <code translate="no" dir="ltr">contentDescription</code>
+      as a lambda to avoid unnecessary recompositions. (
+      <a href="https://android-review.googlesource.com/#/q/I002ddc35c8177181e6f06e90cf4c0f48a7b474af">I002dd</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where indeterminate
+      <code translate="no" dir="ltr">CircularProgressIndicator</code>
+      would wobble during animation if width is not equal to height. (
+      <a href="https://android-review.googlesource.com/#/q/I76bfeaa09cd88a407a30428c7c2a084451f7f6a6">I76bfe</a>
+      )
+    </li>
+    <li>
+      Fixed an issue with edge button layout on invalid size. Now prevents updating the layout of the edge button when the height is NaN. (
+      <a href="https://android-review.googlesource.com/#/q/I32b936d214a77c8181087c4e8bce0a7f2377ce61">I32b93</a>
+      )
+    </li>
+    <li>
+      Increased the max sweep angle in
+      <code translate="no" dir="ltr">OpenOnPhoneDialog</code>
+      so that the default ‘Check your phone’ text is not clipped with the largest font size. (
+      <a href="https://android-review.googlesource.com/#/q/I90af92234d23fe4352c35759124204993f0ec808">I90af9</a>
+      )
+    </li>
+  </ul>

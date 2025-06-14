@@ -1,0 +1,131 @@
+libraryId: wear-compose-m3
+groupId: androidx.wear
+version: 1.0.0-alpha08
+releaseDate: 2023-07-26
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha08" data-text="Version 1.0.0-alpha08" tabindex="-1">Version 1.0.0-alpha08</h3>
+  <p>July 26, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material3:1.0.0-alpha08</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3b5b931546a48163444a9eddc533489fcddd7494..4aed940027a19667e67d155563fc5fa8b7279313/wear/compose/compose-material3">Version 1.0.0-alpha08 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      We have added the following selection controls for Material3 -
+      <code translate="no" dir="ltr">Switch</code>
+      ,
+      <code translate="no" dir="ltr">Checkbox</code>
+      ,
+      <code translate="no" dir="ltr">RadioButton</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib918caf8afcc96b280efc3b99ea31ad7e870522b">Ib918c</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">IconToggleButton</code>
+      and
+      <code translate="no" dir="ltr">TextToggleButton</code>
+      to Material3, a circular toggle button with a single slot for icon and text respectively. For different sizes of
+      <code translate="no" dir="ltr">ToggleButton</code>
+      , we recommend using
+      <code translate="no" dir="ltr">Modifier.touchTargetAwareSize</code>
+      with the sizes provided in respective toggle buttons. (
+      <a href="https://android-review.googlesource.com/#/q/I9f0157a37ca42988afc898eddff84d2b4a048926">I9f015</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">ListHeader</code>
+      and
+      <code translate="no" dir="ltr">ListSubheader</code>
+      to our Material3 components. (
+      <a href="https://android-review.googlesource.com/#/q/Ibaefe0204c4afbfd5dfa80565b1cce99cdd47391">Ibaefe</a>
+      )
+    </li>
+    <li>
+      We have added Material3
+      <code translate="no" dir="ltr">SwipeToDismissBox</code>
+      , which calls the new Foundation
+      <code translate="no" dir="ltr">SwipeToDismissBox</code>
+      and supplies default color values from its theme. (
+      <a href="https://android-review.googlesource.com/#/q/I275fbd752435e183fd99594ae16bca5a8c92f864">I275fb</a>
+      )
+    </li>
+    <li>
+      We have added the Material3
+      <code translate="no" dir="ltr">InlineSlider</code>
+      to Wear Compose. It allows users to make a selection from a range of values. The range of selections is shown as a bar between the minimum and maximum values of the range, from which users may select a single value.
+      <code translate="no" dir="ltr">InlineSlider</code>
+      is ideal for adjusting settings such as volume or brightness. (
+      <a href="https://android-review.googlesource.com/#/q/I7085f3340fcc76556fadb06ff81c598ae84eacdc">I7085f</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We have updated the Shapes in Wear Material 3 theme to use
+      <code translate="no" dir="ltr">RoundedCornerShape</code>
+      based instead of Shape. (
+      <a href="https://android-review.googlesource.com/#/q/Idb133928caec559027d0151d96e86f955edccb4a">Idb133</a>
+      )
+    </li>
+    <li>
+      We have made the height constants for Button public (
+      <a href="https://android-review.googlesource.com/#/q/Idbfdecfdc391dd2591724d3e6ba9c34f0e20878a">Idbfde</a>
+      )
+    </li>
+    <li>
+      Updated API files to annotate compatibility suppression (
+      <a href="https://android-review.googlesource.com/#/q/I8e87ae292b38fac1886001f5317acda1592f174b">I8e87a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/287516207">b/287516207</a>
+      )
+    </li>
+    <li>
+      We have updated
+      <code translate="no" dir="ltr">InlineSliderColors</code>
+      in Wear Compose Material 3 to have public constructor and public properties. (
+      <a href="https://android-review.googlesource.com/#/q/I6b6326d898fc4d96078ecab413e21306c8f7c37d">I6b632</a>
+      )
+    </li>
+    <li>
+      We have updated all color classes in Wear Compose Material 3 to have public constructors and public properties. (
+      <a href="https://android-review.googlesource.com/#/q/I177024b33ad10c324871c75c25e64ecef480e895">I17702</a>
+      )
+    </li>
+    <li>
+      We have made Button horizontal and vertical padding constants public. (
+      <a href="https://android-review.googlesource.com/#/q/Ieeaf7e002e40394df0b591e8ff1e8d92e55a061f">Ieeaf7</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Button will now adjust its height to accommodate content that has grown due to large fonts for accessibility, when required (
+      <a href="https://android-review.googlesource.com/#/q/Iaf3026bfb19a261821878927b0e0e3aaacca57c1">Iaf302</a>
+      )
+    </li>
+    <li>
+      We have updated a number of Button demos to address accessibility issues. (
+      <a href="https://android-review.googlesource.com/#/q/I61ce9c80437224e210d39be789d775163f140ca8">I61ce9</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Stepper</code>
+      and
+      <code translate="no" dir="ltr">InlineSlider</code>
+      now support repeated clicks on long press so that you can quickly increase/decrease value of
+      <code translate="no" dir="ltr">Stepper</code>
+      and
+      <code translate="no" dir="ltr">InlineSlider</code>
+      by holding the + or - buttons (
+      <a href="https://android-review.googlesource.com/#/q/I2735993c5721f8a4142b3ca09bca42364da69059">I27359</a>
+      )
+    </li>
+  </ul>
