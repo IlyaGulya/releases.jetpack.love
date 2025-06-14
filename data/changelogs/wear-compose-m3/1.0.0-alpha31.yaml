@@ -1,0 +1,202 @@
+libraryId: wear-compose-m3
+groupId: androidx.wear
+version: 1.0.0-alpha31
+releaseDate: 2025-01-15
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha31" data-text="Version 1.0.0-alpha31" tabindex="-1">Version 1.0.0-alpha31</h3>
+  <p>January 15, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material3:1.0.0-alpha31</code>
+    is released. Version 1.0.0-alpha31 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/46295bc0b75a16f452e8e0090e8de41073d4dbb6..ad66672b42ec1e9359219e82b7f8189d03df40f5/wear/compose/compose-material3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We have updated all Wear Compose libraries to ‘explicit API’ mode. (
+      <a href="https://android-review.googlesource.com/#/q/Iebf9ff548336a522274175ab9911ad2643f5cc75">Iebf9f</a>
+      )
+    </li>
+    <li>
+      We have updated the
+      <code translate="no" dir="ltr">ScreenScaffold</code>
+      and
+      <code translate="no" dir="ltr">EdgeButton</code>
+      APIs, so that it is easier to specify content paddings on screens that include an
+      <code translate="no" dir="ltr">EdgeButton</code>
+      . In the new API the
+      <code translate="no" dir="ltr">EdgeButton</code>
+      's
+      <code translate="no" dir="ltr">size</code>
+      is only passed to the
+      <code translate="no" dir="ltr">EdgeButton</code>
+      , and the
+      <code translate="no" dir="ltr">ScreenScaffold</code>
+      takes an
+      <code translate="no" dir="ltr">edgeButtonSpacing</code>
+      parameter for the spacing between
+      <code translate="no" dir="ltr">EdgeButton</code>
+      and list content. (
+      <a href="https://android-review.googlesource.com/#/q/I424fde25849e97a3f500d09642209159893505c9">I424fd</a>
+      )
+    </li>
+    <li>
+      In
+      <code translate="no" dir="ltr">DatePicker</code>
+      , we have renamed parameters
+      <code translate="no" dir="ltr">minDate</code>
+      to
+      <code translate="no" dir="ltr">maxDate</code>
+      , and
+      <code translate="no" dir="ltr">minValidDate</code>
+      to
+      <code translate="no" dir="ltr">maxValidDate</code>
+      . In
+      <code translate="no" dir="ltr">DatePickerColors</code>
+      , we have renamed parameter
+      <code translate="no" dir="ltr">selectedPickerContentColor</code>
+      to
+      <code translate="no" dir="ltr">activePickerContentColor</code>
+      , and
+      <code translate="no" dir="ltr">unselectedPickerContentColor</code>
+      to
+      <code translate="no" dir="ltr">inactivePickerContentColor</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Iba17bb5dd0dadc7927774097c5afac2d46ab53b7">Iba17b</a>
+      )
+    </li>
+    <li>
+      We have updated the
+      <code translate="no" dir="ltr">ArcProgressIndicator</code>
+      defaults to
+      <code translate="no" dir="ltr">strokeWidth=6dp</code>
+      and recommended
+      <code translate="no" dir="ltr">diameter = 81.24%</code>
+      of screen height (
+      <a href="https://android-review.googlesource.com/#/q/I6f248aabb032146489e3c8ea7f7a52cb14474070">I6f248</a>
+      )
+    </li>
+    <li>
+      We have updated the Confirmation API to reflect its usage as a dialog. The composable is now called
+      <code translate="no" dir="ltr">ConfirmationDialog</code>
+      , with associated updates to the naming of colors and defaults classes. We have also renamed the
+      <code translate="no" dir="ltr">show</code>
+      parameter to
+      <code translate="no" dir="ltr">visible</code>
+      for compatibility with other Compose animation APIs. In addition, we have made
+      <code translate="no" dir="ltr">ConfirmationDialogContent</code>
+      ,
+      <code translate="no" dir="ltr">SuccessConfirmationDialogContent</code>
+      ,
+      <code translate="no" dir="ltr">FailureConfirmationDialogContent</code>
+      available for situations where developers need to customize the intro/outro dialog animations. (
+      <a href="https://android-review.googlesource.com/#/q/Iaeb33d3e9bb5c802ddb4b4c10ff564681772bb83">Iaeb33</a>
+      )
+    </li>
+    <li>
+      We have updated
+      <code translate="no" dir="ltr">CircularProgressIndicatorContent</code>
+      to
+      <code translate="no" dir="ltr">CircularProgressIndicatorStatic</code>
+      (the non-animated variation of
+      <code translate="no" dir="ltr">CircularProgressIndicator</code>
+      ) so that it can now be used to build
+      <code translate="no" dir="ltr">CircularProgressIndicator</code>
+      with custom animations. (
+      <a href="https://android-review.googlesource.com/#/q/I1346f787f2d5c7394b5db88f6c89cfa749409713">I1346f</a>
+      )
+    </li>
+    <li>
+      We have fixed the parameter ordering on the
+      <code translate="no" dir="ltr">ArcProgressIndicator</code>
+      , putting the modifier parameter first (
+      <a href="https://android-review.googlesource.com/#/q/I4656a4de5af568844527bef6d2a2cca3576d6cc9">I4656a</a>
+      )
+    </li>
+    <li>
+      Improved the
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      API to receive a text slot parameter for the labels of the actions (except secondary action) and to remove label parameters from undo action (
+      <a href="https://android-review.googlesource.com/#/q/I5b3db2932d289be8ce084714390d62c1f52fdf67">I5b3db</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      We have fixed a bug where
+      <code translate="no" dir="ltr">LongPress</code>
+      haptics were triggered more than once in
+      <code translate="no" dir="ltr">Button</code>
+      ,
+      <code translate="no" dir="ltr">Card</code>
+      ,
+      <code translate="no" dir="ltr">IconButton</code>
+      ,
+      <code translate="no" dir="ltr">TextButton</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ia8b0f52581934fbf3448df6609111c3ebfb55c94">Ia8b0f</a>
+      )
+    </li>
+    <li>
+      Changes to the UX of
+      <code translate="no" dir="ltr">AlertDialog</code>
+      - on large screens the confirm and dismiss buttons are now smaller. There is also increased spacing below the confirm and dismiss buttons. (
+      <a href="https://android-review.googlesource.com/#/q/I4f06620d79f6265e012791fb080d65d7cd9e4a89">I4f066</a>
+      )
+    </li>
+    <li>
+      We have changed the animation specs of the action button label of the
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      component. (
+      <a href="https://android-review.googlesource.com/#/q/Ib87fb2557d31964bd1451bed9aced2bdf0c53f07">Ib87fb</a>
+      )
+    </li>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      to expand the container at the same time that the text is displayed. (
+      <a href="https://android-review.googlesource.com/#/q/I44cf8bd1cb93e02cac49b6399685164b70956174">I44cf8</a>
+      )
+    </li>
+    <li>
+      Improved
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      to perform haptic feedback when the swipe passes the threshold where the primary action is committed. (
+      <a href="https://android-review.googlesource.com/#/q/I23efe779286f40922b7d620aa245d96429ca838d">I23efe</a>
+      )
+    </li>
+    <li>
+      We have updated
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      to display ellipsis on text overflow by default, for primary and undo actions. (
+      <a href="https://android-review.googlesource.com/#/q/I71f5ad74e5c3dc78d84bf909fff3b7db90aeb6a9">I71f5a</a>
+      )
+    </li>
+    <li>
+      We have fixed an issue causing jitter on
+      <code translate="no" dir="ltr">ButtonGroup</code>
+      animations. (
+      <a href="https://android-review.googlesource.com/#/q/I63f8f7ab52153a29f56ffb8db007d300a08fbca9">I63f8f</a>
+      )
+    </li>
+    <li>
+      We have added text semantics to
+      <code translate="no" dir="ltr">AnimatedText</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I6063cbed541e794cc5bdaf1490fe30f906cbbbdf">I6063c</a>
+      )
+    </li>
+    <li>
+      Dialog now resets background scaling when the dialog is removed from the composition (without this fix, the launching screen may have been left in a scaled down state) (
+      <a href="https://android-review.googlesource.com/#/q/Id24ac4160b58c23d4cd09c8027e0654087742951">Id24ac</a>
+      )
+    </li>
+    <li>
+      We have added a shape morph animation to the buttons in the Stepper component (
+      <a href="https://android-review.googlesource.com/#/q/Id6ed3477bd40807821e793477d067e89f513828c">Id6ed3</a>
+      )
+    </li>
+  </ul>

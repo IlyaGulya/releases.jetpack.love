@@ -1,0 +1,133 @@
+libraryId: wear-compose-m3
+groupId: androidx.wear
+version: 1.0.0-alpha28
+releaseDate: 2024-10-30
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha28" data-text="Version 1.0.0-alpha28" tabindex="-1">Version 1.0.0-alpha28</h3>
+  <p>October 30, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material3:1.0.0-alpha28</code>
+    is released. Version 1.0.0-alpha28 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b8a68b0896897fa158508d73a31998a26161d9a7..ccd90a76bd7c4acf4f4f01eca76350e383bc441e/wear/compose/compose-material3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We have added an arc variation on the indeterminate circular progress indicator (
+      <a href="https://android-review.googlesource.com/#/q/I2efc1df6f9cde6bbee25505b0a45c43246de6986">I2efc1</a>
+      )
+    </li>
+    <li>
+      We have made public the
+      <code translate="no" dir="ltr">AlertDialogContent</code>
+      and
+      <code translate="no" dir="ltr">Dialog</code>
+      composables that make up the
+      <code translate="no" dir="ltr">AlertDialog</code>
+      API, so that it is possible to add customization if necessary (such as customizing
+      <code translate="no" dir="ltr">AlertDialog</code>
+      animation whilst keeping the recommended content layout). In addition, we have added
+      <code translate="no" dir="ltr">Modifier</code>
+      and
+      <code translate="no" dir="ltr">Color</code>
+      parameters to the
+      <code translate="no" dir="ltr">EdgeButton</code>
+      ,
+      <code translate="no" dir="ltr">ConfirmButton</code>
+      and
+      <code translate="no" dir="ltr">DismissButton</code>
+      members of
+      <code translate="no" dir="ltr">AlertDialogDefaults</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4eb71abb2f29170154475aa707c915b55b2fec0e">I4eb71</a>
+      )
+    </li>
+    <li>
+      We have updated the
+      <code translate="no" dir="ltr">Placeholder</code>
+      API as follows: renamed
+      <code translate="no" dir="ltr">PlaceholderState.startPlaceholderAnimation</code>
+      to
+      <code translate="no" dir="ltr">PlaceholderState.animatePlaceholder</code>
+      ,
+      <code translate="no" dir="ltr">PlaceholderState.isShowContent</code>
+      to
+      <code translate="no" dir="ltr">PlaceholderState.isHidden</code>
+      , and
+      <code translate="no" dir="ltr">PlaceholderDefaults.shape</code>
+      to
+      <code translate="no" dir="ltr">PlaceholderDefaults.Shape</code>
+      ; renamed the
+      <code translate="no" dir="ltr">painter</code>
+      parameter in
+      <code translate="no" dir="ltr">painterWithPlaceholderOverlayBackgroundBrush</code>
+      to
+      <code translate="no" dir="ltr">originalPainter</code>
+      ; changed visibility of
+      <code translate="no" dir="ltr">PlaceholderState.placeholderProgression</code>
+      from public to internal and renamed it to
+      <code translate="no" dir="ltr">placeholderShimmerProgression</code>
+      ; added placeholder animation duration constants to
+      <code translate="no" dir="ltr">PlaceholderDefaults</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie5a59415e93c4ff0c8f87940ab48990d250941e1">Ie5a59</a>
+      )
+    </li>
+    <li>
+      We have updated the
+      <code translate="no" dir="ltr">EdgeButton</code>
+      API as follows: renamed the parameter on
+      <code translate="no" dir="ltr">ScreenScaffold</code>
+      from
+      <code translate="no" dir="ltr">bottomButton</code>
+      to
+      <code translate="no" dir="ltr">edgeButton</code>
+      ; made
+      <code translate="no" dir="ltr">EdgeButtonSize</code>
+      a value class. (
+      <a href="https://android-review.googlesource.com/#/q/Ieef158ef737bf89a3acc22ff7cadf7929672167e">Ieef15</a>
+      )
+    </li>
+    <li>
+      We have changed the visibility of
+      <code translate="no" dir="ltr">copy()</code>
+      to public in wear material3 Colors classes (
+      <a href="https://android-review.googlesource.com/#/q/I0287ff4d034bcb64d8ac96e804e288a8d161b7af">I0287f</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Added minimum animation duration for
+      <code translate="no" dir="ltr">IconToggleButton</code>
+      and
+      <code translate="no" dir="ltr">TextToggleButton</code>
+      on click (
+      <a href="https://android-review.googlesource.com/#/q/Ieb333b849bcf0bd44ce3834cef71428d0aa14055">Ieb333</a>
+      )
+    </li>
+    <li>
+      Added minimum duration on
+      <code translate="no" dir="ltr">IconButton</code>
+      and
+      <code translate="no" dir="ltr">TextButton</code>
+      shape animation (
+      <a href="https://android-review.googlesource.com/#/q/Iebcee6af7d6620af372cb081012085ad8a9bd40b">Iebcee</a>
+      )
+    </li>
+    <li>
+      Corrected the repeat option state of
+      <code translate="no" dir="ltr">DatePicker</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3587c44541f655b48bc5240dc47c8a276c7aa38d">I3587c</a>
+      )
+    </li>
+    <li>
+      Added motion for Alert and Confirmation dialogs. (
+      <a href="https://android-review.googlesource.com/#/q/I173b19c21fe1386c0336530ad8b9c881a401e20c">I173b1</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,249 @@
+libraryId: wear-compose-m3
+groupId: androidx.wear
+version: 1.0.0-alpha34
+releaseDate: 2025-03-12
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha34" data-text="Version 1.0.0-alpha34" tabindex="-1">Version 1.0.0-alpha34</h3>
+  <p>March 12, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-material3:1.0.0-alpha34</code>
+    is released. Version 1.0.0-alpha34 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/fd7408b73d9aac0f18431c22580d9ab612278b1e..7a145e052ae61e272e91ffe285e9451b8ab71870/wear/compose/compose-material3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">PagerScaffold</code>
+      no longer emits a
+      <code translate="no" dir="ltr">Pager</code>
+      component - instead this must be provided via the
+      <code translate="no" dir="ltr">content</code>
+      Composable.
+      <code translate="no" dir="ltr">AnimatedPage</code>
+      and
+      <code translate="no" dir="ltr">snapWithSpringFlingBehaviour</code>
+      are now public and can be used along with Wear Foundation
+      <code translate="no" dir="ltr">Pager</code>
+      to achieve previous M3
+      <code translate="no" dir="ltr">PagerScaffold</code>
+      behaviour. (See updated samples). (
+      <a href="https://android-review.googlesource.com/#/q/Ia4724b64f9c922ce8b28a0a437c9437c08951d7b">Ia4724</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">PagerState</code>
+      , removing the Compose Foundation
+      <code translate="no" dir="ltr">PagerState</code>
+      as the base class and adding
+      <code translate="no" dir="ltr">currentPage</code>
+      ,
+      <code translate="no" dir="ltr">currentPageOffsetFraction</code>
+      and
+      <code translate="no" dir="ltr">pageCount</code>
+      properties. Updated the
+      <code translate="no" dir="ltr">GestureInclusion</code>
+      interface, renaming the method to
+      <code translate="no" dir="ltr">ignoreGestureStart</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4ae07629b92378473247bd20f37b03b07ef8541a">I4ae07</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LevelIndicator</code>
+      sweep angle parameters are now annotated with
+      <code translate="no" dir="ltr">FloatRange(0, 360)</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I7e636d88d159e6841ef8cc78d3cd9c79b6f810e6">I7e636</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">CurvedModifier.clearAndSetSemantics</code>
+      to provide a means by which curved semantics can be turned off.
+      <code translate="no" dir="ltr">CurvedText</code>
+      continues to default the content description to the text, but
+      <code translate="no" dir="ltr">timeTextCurvedText</code>
+      and
+      <code translate="no" dir="ltr">timeTextSeparator</code>
+      do not now announce their contents. (
+      <a href="https://android-review.googlesource.com/#/q/I4b568e3cced9e028b6efefce3c9f6150172ee05b">I4b568</a>
+      )
+    </li>
+    <li>
+      Added a background and default content color parameters to
+      <code translate="no" dir="ltr">AppScaffold</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I5665220b825c7c2e887c27a8b347c49e0d40c85d">I56652</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">HorizontalPager</code>
+      ’s default handling of swipe gestures has been renamed to
+      <code translate="no" dir="ltr">PagerDefaults.gestureInclusion</code>
+      . The default behavior is now to only ignore swipe gestures that start on the left edge of the first page, and only then when Talkback is turned off. In other cases, the default behavior is that swipe gestures will not be ignored by the pager, so they will not be available to swipe-to-dismiss handlers. (
+      <a href="https://android-review.googlesource.com/#/q/Iee486edeae3111a069959bc5f516ff20f4652747">Iee486</a>
+      )
+    </li>
+    <li>
+      Added a
+      <code translate="no" dir="ltr">SurfaceTransformation</code>
+      parameter to button, card and list header components, so that they can apply different background and content transformations when used in containers that change items appearance based on their position, such as
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iabe3f396c8c0135e5d2d2587c617e1b71ad42d2e">Iabe3f</a>
+      )
+    </li>
+    <li>
+      We have updated 'public const val' properties in our Wear Compose Material3 API to 'public val', to avoid the values being inlined. (
+      <a href="https://android-review.googlesource.com/#/q/Ib0f3289c949f7053088ce71ff21fd67fd001e5fd">Ib0f32</a>
+      )
+    </li>
+    <li>
+      Added support for an edge-swipe zone to
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      . Foundation
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      ’s default behavior is now to disallow swiping when the gesture starts from the edge. Material3
+      <code translate="no" dir="ltr">SwipeToReveal’</code>
+      s default behavior is now to disallow swiping when the gesture starts from the edge, when the
+      <code translate="no" dir="ltr">SwipeDirection</code>
+      is set to single direction. (
+      <a href="https://android-review.googlesource.com/#/q/I32ef0e9e201fc71cb5c9830c766a933a84b99c74">I32ef0</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">FadingExpandingLabel</code>
+      composable, which allows it to fade in text with animation line by line. (
+      <a href="https://android-review.googlesource.com/#/q/Ic60fa9c3283eb74cc194af448a4a13a08b455415">Ic60fa</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      now uses empty
+      <code translate="no" dir="ltr">contentPadding</code>
+      by default instead of putting first and last items into center. (
+      <a href="https://android-review.googlesource.com/#/q/I77ab73d6005a2013cfc14cf2f4399d4a61427507">I77ab7</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      ’s
+      <code translate="no" dir="ltr">rememberRevealState</code>
+      from the Wear Compose Material3 library. (
+      <a href="https://android-review.googlesource.com/#/q/I8c0e0f7a8732a4303cab637858ba7481cb5cae6b">I8c0e0</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Wear Compose libraries have been updated to the Kotlin 2.0 compiler. (
+      <a href="https://android-review.googlesource.com/#/q/I2de793d3fa8fb38c7b55f6e26700df5d8a3c3dfc">I2de79</a>
+      )
+    </li>
+    <li>
+      Support for non-round
+      <code translate="no" dir="ltr">ScrollIndicator</code>
+      and
+      <code translate="no" dir="ltr">PageIndicator</code>
+      has been removed from Material3. Square screen support is also no longer part of the Wear OS requirements, see the
+      <a href="/design/ui/wear/guides/foundations/getting-started">Getting Started guide</a>
+      for more information. (
+      <a href="https://android-review.googlesource.com/#/q/I9a852eb2312d4cd892f28836211db0aa79b3e9e4">I9a852</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">CurvedTextStyle</code>
+      used in
+      <code translate="no" dir="ltr">ConfirmationDialogDefaults</code>
+      and
+      <code translate="no" dir="ltr">OpenOnPhoneDialogDefaults</code>
+      has been updated to use
+      <code translate="no" dir="ltr">ArcLarge</code>
+      typography with size
+      <code translate="no" dir="ltr">18sp</code>
+      and letter spacing
+      <code translate="no" dir="ltr">1.8sp</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic9cedecdf1f5d22fec104f56db63dbccd15dde0d">Ic9ced</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Card</code>
+      ,
+      <code translate="no" dir="ltr">ListHeader</code>
+      ,
+      <code translate="no" dir="ltr">RadioButton</code>
+      ,
+      <code translate="no" dir="ltr">CheckboxButton</code>
+      ,
+      <code translate="no" dir="ltr">SwitchButton</code>
+      no longer constrain the height of its contents by default. Where necessary, use
+      <code translate="no" dir="ltr">Modifier.height(IntrinsicSize.Min)</code>
+      to restore the previous behavior if needed. (
+      <a href="https://android-review.googlesource.com/#/q/I80bb803f65d08f41a71e2b4d794cea6db6c2b24c">I80bb8</a>
+      )
+    </li>
+    <li>
+      We have updated the default
+      <code translate="no" dir="ltr">TimeText</code>
+      and
+      <code translate="no" dir="ltr">ScrollIndicator</code>
+      colors to include more gray tones, because using
+      <code translate="no" dir="ltr">OnBackground</code>
+      (white) directly carried too much visual weight when competing with other content on screen like titles. (
+      <a href="https://android-review.googlesource.com/#/q/I8b36f5580924c0182ae558f92c8301dd033d4b1a">I8b36f</a>
+      )
+    </li>
+    <li>
+      We have reduced the timeout for animating the
+      <code translate="no" dir="ltr">TimeText</code>
+      and
+      <code translate="no" dir="ltr">ScrollIndicator</code>
+      in scaffold components to 2 seconds. (
+      <a href="https://android-review.googlesource.com/#/q/I52021e681c055083503d8d55c0731898745209f3">I52021</a>
+      )
+    </li>
+    <li>
+      We have updated the motion of Dialog so that the scale of the background of the Dialog is synchronised with swiping to dismiss. (
+      <a href="https://android-review.googlesource.com/#/q/I925a9679ecc8f67397902c2f2ea23c8fa142c5ff">I925a9</a>
+      )
+    </li>
+    <li>
+      Add demo of M3
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      using
+      <code translate="no" dir="ltr">edgeSwipeToDismiss</code>
+      modifier. (
+      <a href="https://android-review.googlesource.com/#/q/I02b0702c8938b0c0cdb8a5037e71390726f43e74">I02b07</a>
+      )
+    </li>
+    <li>
+      We have added a heading to
+      <code translate="no" dir="ltr">DatePicker</code>
+      and
+      <code translate="no" dir="ltr">TimePicker</code>
+      under TalkBack so that the user is informed to scroll to set date/time. (
+      <a href="https://android-review.googlesource.com/#/q/Id738d0351026170504486670a1d885ced362ef58">Id738d</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AnimatedText</code>
+      now follows the reduce motion setting. (
+      <a href="https://android-review.googlesource.com/#/q/Ib6578b921e414ad057850c1cf6b48dce8b3633b5">Ib6578</a>
+      )
+    </li>
+    <li>
+      The optimisation to use
+      <code translate="no" dir="ltr">AppScaffold</code>
+      for display Dialog content has been improved to allow multiple dialogs to be displayed on top of each other (
+      <a href="https://android-review.googlesource.com/#/q/I1209c2bdf8bde521c1530dd0a0251b20998d35d2">I1209c</a>
+      )
+    </li>
+  </ul>
