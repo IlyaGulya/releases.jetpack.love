@@ -1,0 +1,66 @@
+libraryId: activity
+groupId: androidx.activity
+version: 1.12.0-alpha03
+releaseDate: 2025-06-18
+#language=html
+changelogHtml: |
+  <h3 id="1.12.0-alpha03" data-text="Version 1.12.0-alpha03" tabindex="-1">Version 1.12.0-alpha03</h3>
+  <p>June 18, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.activity:activity:1.12.0-alpha03</code>
+    ,
+    <code translate="no" dir="ltr">androidx.activity:activity-compose:1.12.0-alpha03</code>
+    , and
+    <code translate="no" dir="ltr">androidx.activity:activity-ktx:1.12.0-alpha03</code>
+    are released. Version 1.12.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/786176dc2284c87a0e620477608e0aca9adeff15..e8af6ab7417811bf386c52a59ab5d0b94d194eeb/activity">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">OnBackPressedDispatcher</code>
+        and
+        <code translate="no" dir="ltr">NavigationEventDispatcher</code>
+        are now both initialized lazily in
+        <code translate="no" dir="ltr">ComponentActivity</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/I710e6cc0ef99009aff88c09a594e8c31bf204464">I710e6</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Fixed issues with
+        <code translate="no" dir="ltr">OnBackPressedDistpatcher</code>
+        that caused the following:
+      </p>
+
+      <ul>
+        <li>
+          Only the latest dispatcher an
+          <code translate="no" dir="ltr">OnBackPressedCallback</code>
+          was added to being notified of its enabled state (
+          <a href="https://issuetracker.google.com/issues/418715930">b/418715930</a>
+          )
+        </li>
+        <li>
+          <code translate="no" dir="ltr">OnBackPressedDispatcher</code>
+          removes the wrong callback when using the
+          <code translate="no" dir="ltr">addCallback</code>
+          function that takes a lifecycle. (
+          <a href="https://issuetracker.google.com/issues/422714753">b/422714753</a>
+          )
+        </li>
+        <li>
+          <code translate="no" dir="ltr">OnBackPressedDispatcher.remove()</code>
+          does not remove all instances of a registered
+          <code translate="no" dir="ltr">OnBackPressedCallback</code>
+          . (
+          <a href="https://issuetracker.google.com/issues/423024414">b/423024414</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>

@@ -1,0 +1,92 @@
+libraryId: navigationevent
+groupId: androidx.navigationevent
+version: 1.0.0-alpha03
+releaseDate: 2025-06-18
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha03" data-text="Version 1.0.0-alpha03" tabindex="-1">Version 1.0.0-alpha03</h3>
+  <p>June 18, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigationevent:navigationevent-*:1.0.0-alpha03</code>
+    is released. Version 1.0.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4fb12d1b1dc4dcae8ca603c7a5db938cc1abe39c..5f155b8946feeab0c4075d645f88769de2577a43/navigationevent">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Introduced a new
+      <code translate="no" dir="ltr">navigationevent-compose</code>
+      module to support Jetpack Compose features in the
+      <code translate="no" dir="ltr">navigationevent</code>
+      library. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+log/4fb12d1b1dc4dcae8ca603c7a5db938cc1abe39c..5f155b8946feeab0c4075d645f88769de2577a43/navigationevent">980d78</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavigationEvent</code>
+      Compose has added a new
+      <code translate="no" dir="ltr">LocalNavigationEventDispatcherOwner</code>
+      local composition. It returns a nullable value to better determine whether it is available in the current composition.
+      <code translate="no" dir="ltr">NavigationEventHandler</code>
+      will now throw an error if the underlying owner is not found. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/62ffdad22b37dfa8bc2de4cf9bc6914af27d96f6">62ffda</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavigationEvent</code>
+      Compose has added a new
+      <code translate="no" dir="ltr">NavigationEventHandler</code>
+      Composable to handle (predictive back gesture) events. It provides a
+      <code translate="no" dir="ltr">Flow</code>
+      of
+      <code translate="no" dir="ltr">NavigationEvent</code>
+      objects that must be collected in the suspending lambda you provide
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/c42ba6444b7080918681fe97cb652d0456308df6">c42ba6</a>
+      :
+    </li>
+  </ul>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-n">NavigationEventHandler</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">progress</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Flow&lt;NavigationEvent&gt;</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// This block is executed when the back gesture begins.</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-k">try</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">progress</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">collect</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">backEvent</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-c1">// Handle gesture progress updates here.</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// This block is executed if the gesture completes successfully.</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">catch</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">e</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">CancellationException</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// This block is executed if the gesture is cancelled</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-k">throw</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">e</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">finally</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// This block is executed either the gesture is completed or cancelled</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+  </devsite-code>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Each
+      <code translate="no" dir="ltr">NavigationEventCallback</code>
+      can now be registered with only one
+      <code translate="no" dir="ltr">NavigationEventDispatcher</code>
+      at a time; adding it to multiple dispatchers throws an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      . Note that this behavior differs from
+      <code translate="no" dir="ltr">OnBackPressedDispatcher</code>
+      , which allows multiple dispatchers. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/e82c19efe12f6bcb856bbb83522496b02b609bff">e82c19</a>
+      )
+    </li>
+    <li>
+      Made
+      <code translate="no" dir="ltr">isPassThrough</code>
+      a
+      <code translate="no" dir="ltr">val</code>
+      to prevent mutation during navigation, which could break
+      <code translate="no" dir="ltr">NavigationEvent</code>
+      's dispatching. (
+      <a href="https://android-review.googlesource.com/#/q/I0b287fd51b316c9199c8f1ff4a2b8fa6bafd4e94">I0b287</a>
+      )
+    </li>
+  </ul>

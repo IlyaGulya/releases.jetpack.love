@@ -1,0 +1,292 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.9.0-beta01
+releaseDate: 2025-06-18
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0-beta01" data-text="Version 1.9.0-beta01" tabindex="-1">Version 1.9.0-beta01</h3>
+  <p>June 18, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.9.0-beta01</code>
+    is released. Version 1.9.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/2483fff136f4442bcaab608b3194ffe0b58565ef/compose/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added a tooling API for parsing source information added by Compose compiler. (
+      <a href="https://android-review.googlesource.com/#/q/Iceaf954bf1d09a8ada7b908ceb2909c7f4652819">Iceaf9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/408492167">b/408492167</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SnapshotStateSet</code>
+      now implements
+      <code translate="no" dir="ltr">Parcelable</code>
+      on Android, it is now supported to be used as part
+      <code translate="no" dir="ltr">rememberSaveable { ... }</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I755dd7d20ed39545a1b7805b28b676fcff019fff">I755dd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/378623803">b/378623803</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SnapshotStateList</code>
+      now implements
+      <code translate="no" dir="ltr">Parcelable</code>
+      on Android, it is now supported to be used as part
+      <code translate="no" dir="ltr">rememberSaveable { ... }</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id18be0bf1ad0bf5c7de580f5289629b838c76876">Id18be</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/378623803">b/378623803</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">movableContentOf()</code>
+      is now marked with
+      <code translate="no" dir="ltr">@RememberInComposition</code>
+      annotation, which allows lint to catch incorrect usages (
+      <a href="https://android-review.googlesource.com/#/q/I2738d6889fdf3aea8a6017d30c8a8f53c7915e9d">I2738d</a>
+      )
+    </li>
+    <li>
+      Updated experimental composition observers API to allow for more comprehensive observation of recomposition causes (
+      <a href="https://android-review.googlesource.com/#/q/I32b6ac0ac3c4c584e03c755a1651b28882ae4a37">I32b6a</a>
+      )
+    </li>
+    <li>
+      Change
+      <code translate="no" dir="ltr">setDiagnosticStackTraceEnabled</code>
+      to experimental to account for future development of this feature. (
+      <a href="https://android-review.googlesource.com/#/q/I11db30dfc2e0922aa4da13bc9769ab33f3e94f65">I11db3</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">currentCompositeKeyHash</code>
+      is now deprecated. Use
+      <code translate="no" dir="ltr">currentCompositeKeyHashCode</code>
+      instead. The replacement API encodes the same hash with more bits, which exponentially reduces the chance of two random unrelated groups in the composition hierarchy from having the same hash key. (
+      <a href="https://android-review.googlesource.com/#/q/I4cb6a801d12447ac52bc92bb899ae84d69c4a6ed">I4cb6a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177562901">b/177562901</a>
+      )
+    </li>
+    <li>
+      Projects released with Kotlin 2.0 require KGP 2.0.0 or newer to be consumed (
+      <a href="https://android-review.googlesource.com/#/q/Idb6b5d6ae1625ab870ffe74f9790ffabc82a63b4">Idb6b5</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">@Stable</code>
+      ,
+      <code translate="no" dir="ltr">@Immutable</code>
+      , and
+      <code translate="no" dir="ltr">@StableMarker</code>
+      have been moved to runtime-annotation (in a compatible way). You can now depend on runtime-annotation if you want to use these annotations from libraries that do not depend on compose. (
+      <a href="https://android-review.googlesource.com/#/q/I23a16a27aaacc1a17c181d821e4a6fdcef2ea882">I23a16</a>
+      )
+    </li>
+    <li>
+      Renamed the
+      <code translate="no" dir="ltr">rememberSaveable</code>
+      overload that accepts a
+      <code translate="no" dir="ltr">KSerializer</code>
+      to
+      <code translate="no" dir="ltr">rememberSerializable</code>
+      . This change clarifies its intended use with
+      <code translate="no" dir="ltr">kotlinx.serialization</code>
+      . Supporting general
+      <code translate="no" dir="ltr">kotlinx.Serializable</code>
+      classes directly in
+      <code translate="no" dir="ltr">rememberSaveable</code>
+      would require a
+      <code translate="no" dir="ltr">reified</code>
+      type parameter, which would break source compatibility by requiring all call sites to provide reified type information at compile time. (
+      <a href="https://android-review.googlesource.com/#/q/Idb875617dfef959fa3200de01524580f19d35dbe">Idb875</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I38627f58f4aa77af80e68f4a2925a379d9157c23">I38627</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/376028110">b/376028110</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Compositions that was set with pausable content that was cancelled must be disposed of. This is now checked by the composition and will throw if it is reused. (
+      <a href="https://android-review.googlesource.com/#/q/I2daa59af4c943aaab3d2b656341a28735bdb5d83">I2daa5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/406792785">b/406792785</a>
+      )
+    </li>
+    <li>
+      Fixed pausable composition to no longer send a spurious
+      <code translate="no" dir="ltr">onForgotten</code>
+      to remember observers when the pausable composition is disposed of.
+      <code translate="no" dir="ltr">RememberObservers</code>
+      in a cancelled pausable composition should only be sent an onAbandoned. (
+      <a href="https://android-review.googlesource.com/#/q/I26f5486a9d563a6d17937224adaeb4e8a2d928a0">I26f54</a>
+      )
+    </li>
+    <li>
+      Fixed a movable content issue where invalidations that arrive late stages of the processing movable content are added to the composer but these invalidations are not updated when the content is moved causing the content to be recomposed in the wrong place. (
+      <a href="https://android-review.googlesource.com/#/q/Icd2fa594f8e701b98b7241bf3279c3a92861099d">Icd2fa</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/409439507">b/409439507</a>
+      )
+    </li>
+    <li>
+      Fixed an issue when movable content was invalidated after it was composed but before it was moved. (
+      <a href="https://android-review.googlesource.com/#/q/I99eac55ca58f7addfdee0cbb5088d365e7ff4644">I99eac</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/229001114">b/229001114</a>
+      )
+    </li>
+    <li>
+      Calling
+      <code translate="no" dir="ltr">remove()</code>
+      of a list iterator produced by
+      <code translate="no" dir="ltr">SnapshotStateList</code>
+      after calling
+      <code translate="no" dir="ltr">previous()</code>
+      could removed the wrong element from the list and didn't match what the
+      <code translate="no" dir="ltr">ArrayList</code>
+      does for the same sequence of calls. (
+      <a href="https://android-review.googlesource.com/#/q/I05ab7c8d15a88652badb021fc65c4fb103556788">I05ab7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/417493222">b/417493222</a>
+      )
+    </li>
+    <li>
+      Fixed an ordering issue with the dispatching of
+      <code translate="no" dir="ltr">onForgotton</code>
+      that could, for example, cause the
+      <code translate="no" dir="ltr">onDispose</code>
+      of disposable effects to execute in the wrong order. (
+      <a href="https://android-review.googlesource.com/#/q/Ic1c9127c3faf980e373eaa2c162a6cc49d55ff28">Ic1c91</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/417450712">b/417450712</a>
+      )
+    </li>
+    <li>
+      Fix for for reusing state handling in pausable composition (
+      <a href="https://android-review.googlesource.com/#/q/Ife96e7e011daa3644cdda2f112bbe7bbedb49ae4">Ife96e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/404058957">b/404058957</a>
+      )
+    </li>
+    <li>
+      Fixed the reusing state when a composition was paused and restarted but some previously paused state needed to be recomposed because some state it read changed while the composition was paused. (
+      <a href="https://android-review.googlesource.com/#/q/I441d17b0bcca7b7073347a9b7cea89333cff2c93">I441d1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/416209738">b/416209738</a>
+      )
+    </li>
+    <li>
+      Completed the pausable composition remember dispatch fix for issue
+      <a href="https://issuetracker.google.com/issues/404058957">b/404058957</a>
+      previous fix was incomplete. (
+      <a href="https://android-review.googlesource.com/#/q/I1afd4981c6dadda8f61b02fe42d146f6f5d3c52e">I1afd4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/404058957">b/404058957</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">OffsetApplier</code>
+      now correctly overrides
+      <code translate="no" dir="ltr">apply()</code>
+      which was introduced with pausable composition. Not having this could cause pausable composition to throw an exception when updating virtual nodes. (
+      <a href="https://android-review.googlesource.com/#/q/Idbf314adbd64254dd4a4eb4e3a897930ece407c7">Idbf31</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/409291131">b/409291131</a>
+      )
+    </li>
+    <li>
+      Fixed a deadlock that may affect Molecule users when a suspended call to
+      <code translate="no" dir="ltr">FrameClock.withFrameNanos</code>
+      is cancelled while a frame is being dispatched. (
+      <a href="https://android-review.googlesource.com/#/q/I89cab8e3eab14ed9a85b36e151f11b5f526a01fd">I89cab</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/407027032">b/407027032</a>
+      )
+    </li>
+    <li>
+      The Recomposer could go idle with movable content (
+      <a href="https://android-review.googlesource.com/#/q/Ie54168320625f09c9390d542caa625f1f0d1d896">Ie5416</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/409267170">b/409267170</a>
+      )
+    </li>
+    <li>
+      The order in which
+      <code translate="no" dir="ltr">onReuse</code>
+      and
+      <code translate="no" dir="ltr">onDeactivate</code>
+      could get inverted during pausable composition. They are now guaranteed to occur in order of
+      <code translate="no" dir="ltr">onDeactivate</code>
+      /
+      <code translate="no" dir="ltr">onReuse</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I996e45fe97e2edbcceb776cf2fff009fe1b6ad8a">I996e4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/404058957">b/404058957</a>
+      )
+    </li>
+    <li>
+      Fix dispatching of remember observers in pausable composition to avoid dispatching remembered/forgotten in the same apply (
+      <a href="https://android-review.googlesource.com/#/q/I570b2436b95c7f8fb88a6f9824dbb9b8bccbc0fa">I570b2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/404645679">b/404645679</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/407931790">b/407931790</a>
+      )
+    </li>
+    <li>
+      Switched
+      <code translate="no" dir="ltr">LifecycleRegistry</code>
+      to unsafe mode in Compose Multiplatform to disable
+      <code translate="no" dir="ltr">MainThread</code>
+      checks and fix threading issues. See
+      <a href="https://youtrack.jetbrains.com/issue/CMP-8227/Support-LocalSavedStateRegistryOwner-locals-in-runtime-saveable">CMP-8227</a>
+      for details. (
+      <a href="https://android-review.googlesource.com/#/q/Icee87874a5b186f5947d9fe97dd2ff67061359b3">Icee87</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Fixed a bug affecting Molecule users where using
+      <code translate="no" dir="ltr">RecompositionMode.Immediate</code>
+      could cause missed recompositions. (
+      <a href="https://android-review.googlesource.com/#/q/I9f3a9b3d879aef23a73eb4110f2efed6cca81dfa">I9f3a9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/419527812">b/419527812</a>
+      )
+    </li>
+    <li>
+      Exposed
+      <code translate="no" dir="ltr">PausableComposition</code>
+      <code translate="no" dir="ltr">isApplied</code>
+      and
+      <code translate="no" dir="ltr">isCancelled</code>
+      getters which allow for checking the state of the
+      <code translate="no" dir="ltr">PausableComposition</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I994aa9f48fcdb5eeb551bc7db4cba917af408d23">I994aa</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">AnnotationTarget.FUNCTION</code>
+      to the
+      <code translate="no" dir="ltr">FunctionKeyMeta</code>
+      annotation. (
+      <a href="https://android-review.googlesource.com/#/q/I080216a2fde1be6d5f189608645e061a96fb83e6">I08021</a>
+      )
+    </li>
+  </ul>

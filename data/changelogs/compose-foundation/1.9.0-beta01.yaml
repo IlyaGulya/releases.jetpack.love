@@ -1,0 +1,146 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.9.0-beta01
+releaseDate: 2025-06-18
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0-beta01" data-text="Version 1.9.0-beta01" tabindex="-1">Version 1.9.0-beta01</h3>
+  <p>June 18, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.9.0-beta01</code>
+    is released. Version 1.9.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/786176dc2284c87a0e620477608e0aca9adeff15..e1d81d156ec778ff4b8bc291aa661d780576ea4c/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>Breaking Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">background</code>
+      and
+      <code translate="no" dir="ltr">border</code>
+      modifier nodes now implement
+      <code translate="no" dir="ltr">SemanticsModifierNode</code>
+      . This can result in new
+      <code translate="no" dir="ltr">SemanticsNodes</code>
+      added to the semantics tree and, therefore, lead to test failures in tests that make assumptions about the semantics tree structure. For example, tests that use
+      <code translate="no" dir="ltr">onChild</code>
+      ,
+      <code translate="no" dir="ltr">onParent</code>
+      ,
+      <code translate="no" dir="ltr">onSibling</code>
+      , and other similar methods to make assertions can fail if a new node is added between the current and target nodes. The preferred way to fix these failures is to add a
+      <code translate="no" dir="ltr">testTag</code>
+      to the target node directly. Another approach is to use a looser matcher, such as
+      <code translate="no" dir="ltr">onNode(hasAnyAncestor(hasText(“ancestor”)) and hasText(“target”))</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I638b56cb3aa3f4f68a354dfa5a42201febee61bc">I638b5</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">Modifier.addTextContextMenuComponents</code>
+      to
+      <code translate="no" dir="ltr">appendTextContextMenuComponents</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4c43fe5bda562755f85823ae6a53cd1030237319">I4c43f</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">AnnotatedOutputTransformation</code>
+      and carried
+      <code translate="no" dir="ltr">addStyle</code>
+      functions to
+      <code translate="no" dir="ltr">TextFieldBuffer</code>
+      .
+      <code translate="no" dir="ltr">addStyle</code>
+      can still only be called from
+      <code translate="no" dir="ltr">OutputTransformation</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I9930a56b2444939e5ab2cce66b4c8a442c6f30ec">I9930a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/417991824">b/417991824</a>
+      )
+    </li>
+    <li>
+      Clickable is rewritten to not use suspend pointer input as an optimization. This feature is enabled by a flag - you can disable if you encounter a bug in the new implementation -
+      <code translate="no" dir="ltr">ComposeFoundationFlags.isNonSuspendingPointerInputInClickableEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I85b65452be174df2c548a2c4cf7d96b702596c23">I85b65</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">isFlingCancellationWithNestedScrollFixEnabled</code>
+      to fix an issue with fling propagation in nested scrolling. In this CL we are restoring the fling continuation behavior removed in
+      <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/3260391">aosp/3260391</a>
+      . We will still cancel the fling animation in case the child is removed from composition. (
+      <a href="https://android-review.googlesource.com/#/q/I467f4a8974a752d63bd3d6ab62e6eb751f5e2ccc">I467f4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/405910180">b/405910180</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/419049142">b/419049142</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/416784125">b/416784125</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">WindowInsetsRulers</code>
+      : changed
+      <code translate="no" dir="ltr">rulersIgnoringVisibility</code>
+      to maximum. Changed
+      <code translate="no" dir="ltr">getDisplayCutoutBounds()</code>
+      to be an extension function of
+      <code translate="no" dir="ltr">PlacementScope</code>
+      .
+      <code translate="no" dir="ltr">WindowInsetsAnimationProperties</code>
+      has been changed to
+      <code translate="no" dir="ltr">WindowInsetsAnimation</code>
+      and the
+      <code translate="no" dir="ltr">getAnimationProperties()</code>
+      has been changed to
+      <code translate="no" dir="ltr">getAnimation()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3816f062168c83c7bb9e320cfa59a6a4ce1637e8">I3816f</a>
+      )
+    </li>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">InsetsRulers</code>
+      to be in common code with the name
+      <code translate="no" dir="ltr">WindowInsetsRulers</code>
+      . Simplified the API so all insets are
+      <code translate="no" dir="ltr">WindowInsetsRulers</code>
+      . Extracted non-rulers animation properties to an
+      <code translate="no" dir="ltr">AnimationProperties</code>
+      class.
+      <code translate="no" dir="ltr">WindowInsetsRulers.innermostOf()</code>
+      can be used to merge multiple
+      <code translate="no" dir="ltr">WindowInsetsRulers</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2f0c6aebeca80fc181e843da78743bf2a5289501">I2f0c6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/415012444">b/415012444</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Re-add usage of
+      <code translate="no" dir="ltr">scrollAnimationSpec</code>
+      in
+      <code translate="no" dir="ltr">ContentInViewNode</code>
+      . The behavior was removed during the
+      <code translate="no" dir="ltr">scrollAnimationSpec</code>
+      deprecation which caused use cases to be broken. (
+      <a href="https://android-review.googlesource.com/#/q/I1436a3212c8f637935259243253f70db1163e584">I1436a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/403301605">b/403301605</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,133 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.9.0-beta01
+releaseDate: 2025-06-18
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0-beta01" data-text="Version 1.9.0-beta01" tabindex="-1">Version 1.9.0-beta01</h3>
+  <p>June 18, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.9.0-beta01</code>
+    is released. Version 1.9.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/786176dc2284c87a0e620477608e0aca9adeff15..e1d81d156ec778ff4b8bc291aa661d780576ea4c/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">ShadowContext</code>
+      to be a sealed interface (
+      <a href="https://android-review.googlesource.com/#/q/I3ce40f0d8f261362250238462ae7a409e91b1ea4">I3ce40</a>
+      )
+    </li>
+    <li>
+      Adds a cross module way to create an Indirect Touch Event (for testing) (
+      <a href="https://android-review.googlesource.com/#/q/I22e4caba5d68a869f5c63a715f517cae659e9e79">I22e4c</a>
+      )
+    </li>
+    <li>
+      Makes
+      <code translate="no" dir="ltr">IndirectTouchEvent.nativeEvent</code>
+      experimental. (
+      <a href="https://android-review.googlesource.com/#/q/I6fda5888d1edf6d30dc5c7f47b3a3e89b5faab17">I6fda5</a>
+      )
+    </li>
+    <li>
+      Revises API surface based on API council feedback. (
+      <a href="https://android-review.googlesource.com/#/q/Ibf378bc0b6c6d1c83572c58ce921b58cec219b57">Ibf378</a>
+      )
+    </li>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">FrameRateCategory.NoPreference</code>
+      constant. Rename
+      <code translate="no" dir="ltr">Modifier.requestedFrameRate</code>
+      to
+      <code translate="no" dir="ltr">Modifier.preferredFrameRate</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2f9763092dbcff5fe06bda1fb514d4a5df1b9d21">I2f976</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">WindowInsetsRulers</code>
+      : changed
+      <code translate="no" dir="ltr">rulersIgnoringVisibility</code>
+      to maximum. Changed
+      <code translate="no" dir="ltr">getDisplayCutoutBounds()</code>
+      to be an extension function of
+      <code translate="no" dir="ltr">PlacementScope</code>
+      .
+      <code translate="no" dir="ltr">WindowInsetsAnimationProperties</code>
+      has been changed to
+      <code translate="no" dir="ltr">WindowInsetsAnimation</code>
+      and the
+      <code translate="no" dir="ltr">getAnimationProperties()</code>
+      has been changed to
+      <code translate="no" dir="ltr">getAnimation()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3816f062168c83c7bb9e320cfa59a6a4ce1637e8">I3816f</a>
+      )
+    </li>
+    <li>
+      Changed class
+      <code translate="no" dir="ltr">ShadowParams</code>
+      to
+      <code translate="no" dir="ltr">Shadow</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I11cca9bd6406196d010ab92d398426812919d6a3">I11cca</a>
+      )
+    </li>
+    <li>
+      Change the package for frame rate API from
+      <code translate="no" dir="ltr">androidx.compose.ui.ui</code>
+      to
+      <code translate="no" dir="ltr">androidx.compose.ui</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I8994e38b954940a3e5a7669b2828011e37d0e112">I8994e</a>
+      )
+    </li>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">InsetsRulers</code>
+      to be in common code with the name
+      <code translate="no" dir="ltr">WindowInsetsRulers</code>
+      . Simplified the API so all insets are
+      <code translate="no" dir="ltr">WindowInsetsRulers</code>
+      . Extracted non-rulers animation properties to an
+      <code translate="no" dir="ltr">AnimationProperties</code>
+      class.
+      <code translate="no" dir="ltr">WindowInsetsRulers.innermostOf()</code>
+      can be used to merge multiple
+      <code translate="no" dir="ltr">WindowInsetsRulers</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2f0c6aebeca80fc181e843da78743bf2a5289501">I2f0c6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/415012444">b/415012444</a>
+      )
+    </li>
+    <li>
+      Added a tooling API for parsing source information added by Compose compiler. (
+      <a href="https://android-review.googlesource.com/#/q/Iceaf954bf1d09a8ada7b908ceb2909c7f4652819">Iceaf9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/408492167">b/408492167</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Flag for
+      <code translate="no" dir="ltr">isGetFocusedRectReturnEmptyEnabled</code>
+      has been removed now that the feature has been fully verified. (
+      <a href="https://android-review.googlesource.com/#/q/Ife72212763d29d3f9792447a4c76a6edf66c21a6">Ife722</a>
+      )
+    </li>
+    <li>
+      Fixes a bug in
+      <code translate="no" dir="ltr">performScrollToNode</code>
+      , which in some cases was not reaching the target node. With this fix, it should always reach the target node in those cases. A side effect of this change is that the exact scroll position at the end of the action may now be different, which affects screenshot tests and tests that make assumptions about the exact scroll position. (
+      <a href="https://android-review.googlesource.com/#/q/I2c8a1ac37b4f14814f65697d397091749129caca">I2c8a1</a>
+      )
+    </li>
+  </ul>

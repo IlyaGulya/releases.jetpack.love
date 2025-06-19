@@ -1,0 +1,62 @@
+libraryId: navigation3
+groupId: androidx.navigation3
+version: 1.0.0-alpha04
+releaseDate: 2025-06-18
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha04" data-text="Version 1.0.0-alpha04" tabindex="-1">Version 1.0.0-alpha04</h3>
+  <p>June 18, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation3:navigation3-*:1.0.0-alpha04</code>
+    is released. Version 1.0.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4fb12d1b1dc4dcae8ca603c7a5db938cc1abe39c..b454ea392cd18cccb078ef60a3221719164f7bbc/navigation3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">NavEntry.content</code>
+      is now private. To invoke
+      <code translate="no" dir="ltr">NavEntry</code>
+      content, call the new
+      <code translate="no" dir="ltr">NavEntry.Content()</code>
+      api which no longer requires a
+      <code translate="no" dir="ltr">key</code>
+      parameter to invoke. (
+      <a href="https://android-review.googlesource.com/#/q/Icd0fd2244c3d29557b0803ef2abb199c18cbdbdc">Icd0fd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/420991203">b/420991203</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavEntry.key</code>
+      is now a private field. The
+      <code translate="no" dir="ltr">NavEntry</code>
+      and its relevant states should be identified by the new
+      <code translate="no" dir="ltr">contentKey</code>
+      field which is generated from the new
+      <code translate="no" dir="ltr">contentKeyFactory</code>
+      lambda and defaults to a saveable hash generated from
+      <code translate="no" dir="ltr">NavEntry.key</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I81a6ced3a7bebf561c7206fcdf9402bc80c12752">I81a6c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/422001357">b/422001357</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/420991203">b/420991203</a>
+      <a href="https://android-review.googlesource.com/#/q/I2d7d4daba257e19bc9abe5ea64540126af18adf0">I2d7d4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/420991203">b/420991203</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/422841812">b/422841812</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Changes</strong></p>
+  <ul>
+    <li>
+      Navigation3 now depends on the new
+      <code translate="no" dir="ltr">androidx.navigationevent.compose</code>
+      artifact.
+    </li>
+  </ul>
