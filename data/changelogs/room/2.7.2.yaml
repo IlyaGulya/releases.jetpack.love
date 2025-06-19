@@ -1,0 +1,39 @@
+libraryId: room
+groupId: androidx.room
+version: 2.7.2
+releaseDate: 2025-06-18
+#language=html
+changelogHtml: |
+  <h3 id="2.7.2" data-text="Version 2.7.2" tabindex="-1">Version 2.7.2</h3>
+  <p>June 18, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.7.2</code>
+    is released. Version 2.7.2 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/db199fa1cdf3ee91ee0a9aa2dc9c38c67fe1bf91..74f1496f0be2b5b29f86d368ea726c587d9981b7/room">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix an issue where annotation values would be incorrectly read when processing native sources with KSP, sometimes missing schema exports. (
+      <a href="https://issuetracker.google.com/416549580">b/416549580</a>
+      )
+    </li>
+    <li>
+      Fix a bug where leading comments in a SQL would cause statements to be executed as if they were non-read queries. (
+      <a href="https://issuetracker.google.com/413061402">b/413061402</a>
+      )
+    </li>
+    <li>
+      Fix an issue with Room’s Gradle Plugin failing to configure due to the schema directory being empty. (
+      <a href="https://issuetracker.google.com/417823384">b/417823384</a>
+      )
+    </li>
+    <li>
+      No longer throw a
+      <code translate="no" dir="ltr">SQLiteException</code>
+      when obtaining a connection takes too long, instead a log message will be sent by the library. Logging instead of throwing works around iOS suspending loopers causing Room to misinterpret the timeout that occurs in the Kotlin Coroutine acquiring the connection and thus preventing the exception from being thrown when an iOS app is backgrounded and later resumed in the middle of a database operation. (
+      <a href="https://issuetracker.google.com/422448815">b/422448815</a>
+      )
+    </li>
+  </ul>

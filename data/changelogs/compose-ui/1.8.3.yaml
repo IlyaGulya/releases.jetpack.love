@@ -1,0 +1,39 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.8.3
+releaseDate: 2025-06-18
+#language=html
+changelogHtml: |
+  <h3 id="1.8.3" data-text="Version 1.8.3" tabindex="-1">Version 1.8.3</h3>
+  <p>June 18, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.8.3</code>
+    is released. Version 1.8.3 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/754896be0859599f16ed264d79a04ee337bac777..13362f65a9c0649415fe57052ea0e3932d2303d1/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Flag for
+      <code translate="no" dir="ltr">isGetFocusedRectReturnEmptyEnabled</code>
+      has been removed now that the feature has been fully verified. (
+      <a href="https://android-review.googlesource.com/#/q/Ife72212763d29d3f9792447a4c76a6edf66c21a6">Ife722</a>
+      )
+    </li>
+    <li>
+      Flag
+      <code translate="no" dir="ltr">ComposeUiFlags.isGetFocusedRectReturnEmptyEnabled</code>
+      makes it so that when nothing is focusable in a
+      <code translate="no" dir="ltr">ComposeView</code>
+      , it sets the rect to an Empty value. This prevents a focus search from choosing the View to focus on. This is especially important for when an IME has a NEXT option where it might try to focus on the
+      <code translate="no" dir="ltr">ComposeView</code>
+      and
+      <code translate="no" dir="ltr">requestFocus()</code>
+      fails. (
+      <a href="https://android-review.googlesource.com/#/q/Ibd0e260624d662b36c846bd0b2fa6e7b0f5ad08e">Ibd0e2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/369256395">b/369256395</a>
+      )
+    </li>
+  </ul>
