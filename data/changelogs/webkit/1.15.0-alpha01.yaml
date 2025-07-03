@@ -1,0 +1,88 @@
+libraryId: webkit
+groupId: androidx.webkit
+version: 1.15.0-alpha01
+releaseDate: 2025-07-02
+#language=html
+changelogHtml: |
+  <h3 id="1.15.0-alpha01" data-text="Version 1.15.0-alpha01" tabindex="-1">Version 1.15.0-alpha01</h3>
+  <p>July 2, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.webkit:webkit:1.15.0-alpha01</code>
+    is released. Version 1.15.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e0db6d8bb2835e53b913e6bf0a913b68f6aaf6d7..1b437892629a2cdedb46d9b7232575987b2cc6b5/webkit/webkit">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      A new API to set HTTP header name-value pairs on requests to specific origins.
+      <br />
+      The
+      <code translate="no" dir="ltr">Profile.setOriginMatchedHeader</code>
+      method lets the application specify that the header name and value should be set on all HTTP/HTTPS requests to the origins that match the provided allowlist when sent from WebViews and service workers that use the given Profile. The API only allows a single mapping for each header name, and will throw an exception if the header name is already set.
+      <br />
+      Use
+      <code translate="no" dir="ltr">Profile.clearOriginMatchedHeader</code>
+      to remove an existing mapping, and
+      <code translate="no" dir="ltr">Profile.clearAllOriginMatchedHeaders</code>
+      to remove all mappings. (
+      <a href="https://android-review.googlesource.com/#/q/Ida7f131d30731734b9ca29f9e67fca95f9a429d3">Ida7f1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/419469873">b/419469873</a>
+      )
+    </li>
+    <li>
+      A new API to access and set cookies as part of
+      <code translate="no" dir="ltr">shouldInterceptRequest</code>
+      callbacks for WebView and Service Workers.
+      <br />
+      App developers who currently access the
+      <code translate="no" dir="ltr">CookieManager</code>
+      API as part of their
+      <code translate="no" dir="ltr">shouldInterceptRequest</code>
+      can now enable cookie headers directly by calling
+      <code translate="no" dir="ltr">setIncludeCookiesOnShouldInterceptRequest</code>
+      . This will then cause WebView to add a
+      <code translate="no" dir="ltr">Cookie</code>
+      header to the
+      <a href="https://developer.android.com/reference/android/webkit/WebResourceRequest#getRequestHeaders()">WebResourceRequest.getRequestHeaders()</a>
+      map which will be the exact cookies that apply to the request. This will also correctly handle any partitioned cookies.
+      <br />
+      Apps can provide
+      <code translate="no" dir="ltr">Set-Cookie</code>
+      header values through the newly added
+      <code translate="no" dir="ltr">WebResourceResponseCompat.setCookies</code>
+      API. The
+      <code translate="no" dir="ltr">Set-Cookie</code>
+      values added there will be processed by WebView as part of the response handling. (
+      <a href="https://android-review.googlesource.com/#/q/Idbfd14469ebc1eb0278a3eae3ea18ee4272cb2c6">Idbfd1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/414769380">b/414769380</a>
+      )
+    </li>
+    <li>
+      A new experimental API to warm up the renderer process for a
+      <code translate="no" dir="ltr">Profile</code>
+      .
+      <br />
+      This API can be used by applications with complex WebView lifecycles to ensure that the renderer process is running, even if all WebView instances have been destroyed. (
+      <a href="https://android-review.googlesource.com/#/q/Ia8fc858b9b26de3abe9168c47e82cf382638cd05">Ia8fc8</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add a new method to the experimental
+      <a href="https://developer.android.com/reference/androidx/webkit/Navigation">Navigation</a>
+      interface to provide the URL of the navigation. (
+      <a href="https://android-review.googlesource.com/#/q/I1c6c0ee582cb4a6855adc9cd224569fc8bef4aef">I1c6c0</a>
+      )
+    </li>
+    <li>
+      Update the Profile Prefetch feature name to clarify that the Prefetch API can now be invoked on a background thread. (
+      <a href="https://android-review.googlesource.com/#/q/I7c83ad4effc502e1b19cc4b44e608f5e42bbe793">I7c83a</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_114_2" data-text="Version 1.14" tabindex="-1">Version 1.14</h2>
