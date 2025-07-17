@@ -1,0 +1,165 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.5.0-beta02
+releaseDate: 2025-07-16
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-beta02" data-text="Version 1.5.0-beta02" tabindex="-1">Version 1.5.0-beta02</h3>
+  <p>July 16, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.5.0-beta02</code>
+    is released. Version 1.5.0-beta02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a99266d9ab8e4a0b6b8d4c11d8fc79524f59c314..f22a8ba695b5a3d975f57d279262d9d39444d990/camera">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added new APIs to set or query groups of high-quality features more intuitively and accurately as these features may not be supported as a combination across all devices.
+      <code translate="no" dir="ltr">SessionConfig</code>
+      now contains new APIs to denote a group of features as either required or preferred. The
+      <code translate="no" dir="ltr">CameraInfo.isFeatureGroupSupported</code>
+      API allows to know if a feature group is supported before binding a
+      <code translate="no" dir="ltr">SessionConfig</code>
+      .
+      <code translate="no" dir="ltr">SessionConfig</code>
+      also allows setting a listener to know which features are finally selected when a session config is bound. (
+      <a href="https://android-review.googlesource.com/#/q/Ie4d60e3ef392ae7e5016cc9c102e5c72bb6a10fd">Ie4d60</a>
+      )
+    </li>
+    <li>
+      Added new API
+      <code translate="no" dir="ltr">SessoinConfig.Builder.setFrameRateRange(Range&lt;Integer&gt;)</code>
+      and
+      <code translate="no" dir="ltr">CameraInfo.getSupportedFrameRateRanges(SessionConfig)</code>
+      , enabling developers to query guaranteed supported frame rates constrained by a specific
+      <code translate="no" dir="ltr">SessionConfig</code>
+      and then apply the frame rate on
+      <code translate="no" dir="ltr">SessionConfig</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ieacf7814313cb735ef17d34cc5bbf23c6a3fe917">Ieacf7</a>
+      )
+    </li>
+    <li>
+      Introduced the new
+      <code translate="no" dir="ltr">SessionConfig</code>
+      API, which includes a better abstraction for configuring use cases, session parameters,
+      <code translate="no" dir="ltr">CameraEffect</code>
+      ,
+      <code translate="no" dir="ltr">ViewPort</code>
+      and etc. Binding a
+      <code translate="no" dir="ltr">SessionConfig</code>
+      to a LifecycleOwner opens the camera session, configures it using the specified use cases and session parameters, and applies the designated
+      <code translate="no" dir="ltr">CameraEffect</code>
+      and
+      <code translate="no" dir="ltr">ViewPort</code>
+      . When updating a new
+      <code translate="no" dir="ltr">SessionConfig</code>
+      to the same
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      , you can just bind a new
+      <code translate="no" dir="ltr">Sessionconfig</code>
+      without the need of invoking unbind or
+      <code translate="no" dir="ltr">unbindAll</code>
+      first. (
+      <a href="https://android-review.googlesource.com/#/q/Iedfc38a69cd6d67e2791381700545ebd2d4ba4ca">Iedfc3</a>
+      )
+    </li>
+    <li>
+      Added new APIs to record high-speed/slow-motion video. See
+      <code translate="no" dir="ltr">HighSpeedVideoSessionConfig</code>
+      API for more details. (
+      <a href="https://android-review.googlesource.com/#/q/Ia16f391118003b964e26c47b7c4e1a291010538c">Ia16f3</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">ImageCaptureCapabilities#getSupportedOutputFormats()</code>
+      API reporting RAW formats as supported in some devices which doesn't actually have RAW capability. (
+      <a href="https://android-review.googlesource.com/#/q/Ibcadbc1b08383e58842f6c860f3b663a1ba649ff">Ibcadb</a>
+      )
+    </li>
+    <li>
+      Fixed the memory leak that happens when
+      <code translate="no" dir="ltr">PreviewView</code>
+      is used,
+      <code translate="no" dir="ltr">CameraEffect</code>
+      is enabled or binding 4 use cases(StreamSharing) (
+      <a href="https://android-review.googlesource.com/#/q/I874686eceab882ea96c5096b38c7e65c681c1830">I87468</a>
+      )
+    </li>
+    <li>
+      Fixed a video recording crash by
+      <code translate="no" dir="ltr">AssertionError</code>
+      : Invalid internal audio state: IDLING. (
+      <a href="https://android-review.googlesource.com/#/q/I38d4ba14fc11793d7f4ec2bf7d58ae9645a0fed3">I38d4b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/414259796">b/414259796</a>
+      )
+    </li>
+    <li>
+      Fixed the issue when the app runs in an external display and the device is landscape, the preview in
+      <code translate="no" dir="ltr">PreviewView</code>
+      becomes stretched or sideway (
+      <a href="https://android-review.googlesource.com/#/q/Ia917ae4c5b33df7c0f9626e2cbd202a938747059">Ia917a</a>
+      )
+    </li>
+    <li>
+      Fixed the issue that Preview Stabilization settings are not correctly applied when the camera stream is sharing between Preview and VideoCapture.(
+      <a href="https://android-review.googlesource.com/#/q/I5430e4053e4e53357c5959377147a495daf439f7">I5430e</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">CameraXViewfinder</code>
+      now properly handles surface replacement in the underlying
+      <code translate="no" dir="ltr">Viewfinder</code>
+      . This covers scenarios such as when an
+      <code translate="no" dir="ltr">EXTERNAL</code>
+      viewfinder on API level 28 or lower moves off screen or if a
+      <code translate="no" dir="ltr">CameraXViewfinder</code>
+      (with any
+      <code translate="no" dir="ltr">ImplementationMode</code>
+      ) is part of
+      <code translate="no" dir="ltr">moveableContentOf()</code>
+      . In cases where the underlying
+      <code translate="no" dir="ltr">ViewfinderSurfaceSession</code>
+      cannot be kept alive, the
+      <code translate="no" dir="ltr">CameraXViewfinder</code>
+      will invalidate the current CameraX
+      <code translate="no" dir="ltr">SurfaceRequest</code>
+      , allowing CameraX to use the new
+      <code translate="no" dir="ltr">Surface</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I79432d3ad761fce4db134297c6057f357d9a7cf0">I79432</a>
+      )
+    </li>
+    <li>
+      Fixes an issue on Android 10/11 where the
+      <code translate="no" dir="ltr">EXTERNAL</code>
+      <code translate="no" dir="ltr">CameraXViewfinder</code>
+      could appear stretched or incorrect due to transformation operations (like scale or translate) being applied too early. The system now waits for the Surface to be created before applying these transformations in the layout phase, ensuring correct output. (
+      <a href="https://android-review.googlesource.com/#/q/Icc77c83b338df1828014f8fe27703d90e62cdea5">Icc77c</a>
+      )
+    </li>
+    <li>
+      Composable
+      <code translate="no" dir="ltr">CameraXViewfinder</code>
+      now works correctly with Compose's
+      <code translate="no" dir="ltr">Pager</code>
+      . This change ensures that the Composable can be successfully reset by implementing the
+      <code translate="no" dir="ltr">onReset</code>
+      callback of
+      <code translate="no" dir="ltr">AndroidView</code>
+      , supporting both
+      <code translate="no" dir="ltr">EMBEDDED</code>
+      and
+      <code translate="no" dir="ltr">EXTERNAL</code>
+      implementations. (
+      <a href="https://android-review.googlesource.com/#/q/I0d9be911aea9fed574dde8ba988af7882dfc2dc9">I0d9be</a>
+      )
+    </li>
+    <li>Fixed a lifecycle owner leak that happens when unbinding use cases from a lifecycle owner without shutting down the camera provider.</li>
+  </ul>

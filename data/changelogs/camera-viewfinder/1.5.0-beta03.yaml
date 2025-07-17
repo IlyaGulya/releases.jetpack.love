@@ -1,0 +1,98 @@
+libraryId: camera-viewfinder
+groupId: androidx.camera
+version: 1.5.0-beta03
+releaseDate: 2025-07-16
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-beta03" data-text="Version 1.5.0-beta03" tabindex="-1">Version 1.5.0-beta03</h3>
+  <p>July 16, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera.viewfinder:viewfinder-compose:1.5.0-beta03</code>
+    ,
+    <code translate="no" dir="ltr">androidx.camera.viewfinder:viewfinder-core:1.5.0-beta03</code>
+    , and
+    <code translate="no" dir="ltr">androidx.camera.viewfinder:viewfinder-view:1.5.0-beta03</code>
+    are released. Version 1.5.0-beta03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7442ed2cb3111f2187694f18723b4fbd1c9efa69..f22a8ba695b5a3d975f57d279262d9d39444d990/camera/viewfinder">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      The default
+      <code translate="no" dir="ltr">ImplementationMode</code>
+      for
+      <code translate="no" dir="ltr">Viewfinder</code>
+      (both Compose and View-based) now intelligently selects between
+      <code translate="no" dir="ltr">EXTERNAL</code>
+      (for performance) and
+      <code translate="no" dir="ltr">EMBEDDED</code>
+      (for compatibility on older APIs/quirky devices). This behavior can still be overridden by explicit settings in
+      <code translate="no" dir="ltr">ViewfinderSurfaceRequest</code>
+      or XML attributes (on the View-based API). (
+      <a href="https://android-review.googlesource.com/#/q/Iecd3a80941ccbd4ace9b246fc7dcf713c4714259">Iecd3a</a>
+      )
+    </li>
+    <li>
+      Improved Surface session management by allowing the
+      <code translate="no" dir="ltr">ViewfinderSurfaceSession</code>
+      to be kept alive across surface create/destroy lifecycles when using TextureView or SurfaceView on API 29+. (
+      <a href="https://android-review.googlesource.com/#/q/I112d96bf0d5cc70aa9f9694f8158a098f9d63b74">I112d9</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">Viewfinder</code>
+      now ensures Surfaces are released at the proper time, only when no longer in use by the session, rather than always releasing when the Composable is disposed. For
+      <code translate="no" dir="ltr">EXTERNAL</code>
+      (
+      <code translate="no" dir="ltr">SurfaceView</code>
+      ) this behavior is currently only available on API 29+. For
+      <code translate="no" dir="ltr">EMBEDDED</code>
+      (
+      <code translate="no" dir="ltr">TextureView</code>
+      ), this behavior is present on all API levels. (
+      <a href="https://android-review.googlesource.com/#/q/I9a03fee7a06b7fa8f6b7748c0e71dc7ee522de28">I9a03f</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">Viewfinder</code>
+      now properly handles surface replacement in scenarios such as when an
+      <code translate="no" dir="ltr">EXTERNAL</code>
+      viewfinder on API level 28 or lower moves off screen or if a
+      <code translate="no" dir="ltr">Viewfinder</code>
+      (with any
+      <code translate="no" dir="ltr">ImplementationMode</code>
+      ) is part of
+      <code translate="no" dir="ltr">moveableContentOf()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I79432d3ad761fce4db134297c6057f357d9a7cf0">I79432</a>
+      )
+    </li>
+    <li>
+      Composable
+      <code translate="no" dir="ltr">Viewfinder</code>
+      now works correctly with Compose's
+      <code translate="no" dir="ltr">Pager</code>
+      . This change ensures that the Composable can be successfully reset by implementing the
+      <code translate="no" dir="ltr">onReset</code>
+      callback of
+      <code translate="no" dir="ltr">AndroidView</code>
+      , supporting both
+      <code translate="no" dir="ltr">EMBEDDED</code>
+      and
+      <code translate="no" dir="ltr">EXTERNAL</code>
+      implementations. (
+      <a href="https://android-review.googlesource.com/#/q/I0d9be911aea9fed574dde8ba988af7882dfc2dc9">I0d9be</a>
+      )
+    </li>
+    <li>
+      Fixes an issue on Android 10/11 where the
+      <code translate="no" dir="ltr">EXTERNAL</code>
+      <code translate="no" dir="ltr">Viewfinder</code>
+      could appear stretched or incorrect due to transformation operations (like scale or translate) being applied too early. The system now waits for the Surface to be created before applying these transformations in the layout phase, ensuring correct output. (
+      <a href="https://android-review.googlesource.com/#/q/Icc77c83b338df1828014f8fe27703d90e62cdea5">Icc77c</a>
+      )
+    </li>
+  </ul>
