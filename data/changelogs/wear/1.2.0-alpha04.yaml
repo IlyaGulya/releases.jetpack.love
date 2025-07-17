@@ -1,53 +1,50 @@
 libraryId: wear
 groupId: androidx.wear
 version: 1.2.0-alpha04
-releaseDate: 2020-12-16
+releaseDate: 2025-07-16
 #language=html
 changelogHtml: |
-  <h3 id="wear-1.2.0-alpha04" data-text="Version 1.2.0-alpha04" tabindex="-1">Version 1.2.0-alpha04</h3>
-  <p>December 16, 2020</p>
+  <h3 id="1.2.0-alpha04" data-text="Version 1.2.0-alpha04" tabindex="-1">Version 1.2.0-alpha04</h3>
+  <p>July 16, 2025</p>
   <p>
-    <code translate="no" dir="ltr">androidx.wear:wear:1.2.0-alpha04</code>
-    is released.
-    <a href="https://android.googlesource.com/platform/frameworks/support/+log/38a668d3ef95f40ad28d6e735a2c3eb95ae4cf63..dd3c8e9c2424b78e44f55db599251891fd1cadb4/wear/wear">Version 1.2.0-alpha04 contains these commits.</a>
+    <code translate="no" dir="ltr">androidx.wear:wear-input:1.2.0-alpha04</code>
+    and
+    <code translate="no" dir="ltr">androidx.wear:wear-input-testing:1.2.0-alpha04</code>
+    are released. Version 1.2.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1f6bc4d47b7be46a5af151ed726e84db0a1cf9f9..98552a7cab42f1d19ee63ca0b2cd5f5bb862510d/wear">these commits</a>
+    .
   </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Account for screen rotation when calculating the location of physical buttons relative to the screen. (
+      <a href="https://android-review.git.corp.google.com/c/platform/frameworks/support/+/3396375">87a57e</a>
+      )
+    </li>
+  </ul>
   <p><strong>API Changes</strong></p>
   <ul>
     <li>
-      Added support for indicating that an Activity can be “auto-resumed” when the device leaves ambient mode in the AmbientModeSupport class. This functionality was previously available in the deprecated WearableActivity class from WearableSupportLibrary. (
-      <a href="https://android-review.googlesource.com/#/q/I336abf5db96568ea75f421990301cfa383f54285">I336ab</a>
+      Rename LOC
+      <em>* to LOCATION</em>
+      * in wear-input. (
+      <a href="https://android-review.googlesource.com/#/q/I5e87996a7783a7fdf4abf9c4ea1357ac7bcc4590">I5e879</a>
       )
     </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
     <li>
-      OngoingActivity
-      <ul>
-        <li>
-          Category can now be set when creating an OngoingActivity, e.g.
-          <code translate="no" dir="ltr">OngoingActivitiy.Builder.getCategory(String)</code>
-        </li>
-        <li>
-          OngoingActivityData now has a timestamp of when the OngoingActivity was built -
-          <code translate="no" dir="ltr">OngoingActivityData.getTimestamp()</code>
-        </li>
-        <li>
-          (
-          <a href="https://android-review.googlesource.com/#/q/I91cb49fc7325b2deae05b58ab9b29468992d150e">I91cb4</a>
-          )
-        </li>
-      </ul>
-    </li>
-    <li>
-      Added support for setting margins on children of WearArcLayout by changing the layout params to extend MarginLayoutParams, i.e. WearArcLayout.LayoutParams extends android.view.ViewGroup.MarginLayoutParams. (
-      <a href="https://android-review.googlesource.com/#/q/I2cd88c276ab6b548a7fe068aecc74133b5300e3f">I2cd88</a>
-      )
-    </li>
-    <li>
-      Change WearCurvedTextView's anchor type default to
-      <code translate="no" dir="ltr">WearArcLayout.ANCHOR_CENTER</code>
-      (was
-      <code translate="no" dir="ltr">WearArcLayout.ANCHOR_START</code>
-      ). This simplifies the contract between the arc layout and the curved text as the curved text by default draws itself x-centered at the top, and the parent arc layout can rotate it to where it needs to be. (
-      <a href="https://android-review.googlesource.com/#/q/I105ff40f39488f960582a7cba799e47b6b7086ee">I105ff</a>
+      This library now uses
+      <a href="https://jspecify.dev/">JSpecify nullness annotations</a>
+      , which are type-use. Kotlin developers should use the following compiler arguments to enforce correct usage:
+      <code translate="no" dir="ltr">-Xjspecify-annotations=strict</code>
+      ,
+      <code translate="no" dir="ltr">-Xtype-enhancement-improvements-strict-mode</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Icbfb9996a30b4decc85ee8a9bc4211a25adfcfe3">Icbfb9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326456246">b/326456246</a>
       )
     </li>
   </ul>

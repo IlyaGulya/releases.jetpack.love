@@ -1,0 +1,78 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.5.0-beta06
+releaseDate: 2025-07-16
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-beta06" data-text="Version 1.5.0-beta06" tabindex="-1">Version 1.5.0-beta06</h3>
+  <p>July 16, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.5.0-beta06</code>
+    is released. Version 1.5.0-beta06 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1b437892629a2cdedb46d9b7232575987b2cc6b5..98552a7cab42f1d19ee63ca0b2cd5f5bb862510d/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">EdgeButton</code>
+      animation when
+      <code translate="no" dir="ltr">LazyColumn</code>
+      or
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      have
+      <code translate="no" dir="ltr">reverseLayout = true</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I46a1a10fde27a640469d8712fbf6893293507b08">I46a1a</a>
+      )
+    </li>
+    <li>
+      Fixed a bug in
+      <code translate="no" dir="ltr">ScreenScaffold</code>
+      where touch-to-explore was not working under Talkback if a
+      <code translate="no" dir="ltr">ScrollIndicator/PageIndicator</code>
+      was provided. (
+      <a href="https://android-review.googlesource.com/#/q/I6dcee875e99665133102526ddbed79b60c4562b0">I6dcee</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      now allows for custom morphing from
+      <code translate="no" dir="ltr">TransformationSpec</code>
+      by reading
+      <code translate="no" dir="ltr">itemHeight</code>
+      value provided by
+      <code translate="no" dir="ltr">TransformationSpec</code>
+      in the background painter. (
+      <a href="https://android-review.googlesource.com/#/q/I6a5998e29f2394a79c77d81a2c3f9d61ae5c3c6c">I6a599</a>
+      )
+    </li>
+    <li>
+      Animated enabled/disabled color transitions for
+      <code translate="no" dir="ltr">IconButton</code>
+      , to be consistent with
+      <code translate="no" dir="ltr">IconToggleButton</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ife10ab316ba981d305782a210767a54a2c4c3b76">Ife10a</a>
+      )
+    </li>
+    <li>
+      Removed the minimum section clamping in
+      <code translate="no" dir="ltr">CircularProgressIndicator</code>
+      to avoid a noticeable jump to the minimum dot size when animating. As part of this change, the
+      <code translate="no" dir="ltr">targetProgress</code>
+      parameter in
+      <code translate="no" dir="ltr">drawCircularProgressIndicator</code>
+      is now unused. (
+      <a href="https://android-review.googlesource.com/#/q/I333099e618dba74a4ead2dafafa3793e216c2306">I33309</a>
+      )
+    </li>
+    <li>
+      Picker now has the semantic role
+      <code translate="no" dir="ltr">ValuePicker</code>
+      which can be used by screen readers to make pickers more accessible. Picker also has updated accessibility click labels which differentiate between adjusting the value in read-only mode and selecting the current value otherwise. (
+      <a href="https://android-review.googlesource.com/#/q/I333099e618dba74a4ead2dafafa3793e216c2306">I33309</a>
+      )
+    </li>
+  </ul>
