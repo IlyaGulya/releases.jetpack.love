@@ -12,3 +12,21 @@ changelogHtml: |
     <a href="https://android.googlesource.com/platform/frameworks/support/+log/64e37c2d3d42028c9ab14070feedcab6b5a9e982..79d624a3b7368c83b4706639bab22beed44ba338/lifecycle">these commits</a>
     .
   </p>
+  <p><strong>Lint API Compatibility Warning</strong></p>
+  <ul>
+    <li>
+      JetBrains changed
+      <code translate="no" dir="ltr">KaCallableMemberCall</code>
+      from
+      <a href="https://cs.android.com/android-studio/kotlin/+/110e9e27b760bdf6902642926998f94f4afea800">a class to an interface</a>
+      , which breaks binary compatibility. This can cause crashes if your project’s AGP version differs from the version used to compile lint checks. This update was made in
+      <a href="https://r.android.com/3577172">aosp/3577172</a>
+      but was missing from the release notes — we’re clarifying it here.
+      <strong>Recommended fix:</strong>
+      Update to the latest stable AGP. If you can’t fully update, use
+      <code translate="no" dir="ltr">android.experimental.lint.version</code>
+      to align lint checks with your AGP version — see
+      <a href="https://developer.android.com/jetpack/androidx/releases/compose-runtime#1.9.0-alpha01">Compose Runtime behavior changes</a>
+      for details.
+    </li>
+  </ul>
