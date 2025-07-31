@@ -1,0 +1,72 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.10.0-alpha01
+releaseDate: 2025-07-30
+#language=html
+changelogHtml: |
+  <h3 id="2.10.0-alpha01" data-text="Version 2.10.0-alpha01" tabindex="-1">Version 2.10.0-alpha01</h3>
+  <p>July 30, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.10.0-alpha01</code>
+    is released. Version 2.10.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a4f6bbd05dfc763e954251490e19be98bcf05360..90f45005ac103f49af0dfc59047d2aab9752b957/lifecycle">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>
+        Add a
+        <code translate="no" dir="ltr">LifecycleOwner</code>
+        composable to enable creating scoped lifecycles directly within the UI. This is useful for components that need to manage their own lifecycles independently. For an example of how Navigation3 integrates this new composable, see
+        <a href="https://r.android.com/3708610">aosp/3708610</a>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/I70c9c6206ac3f3e1447e4e722e8e5f9861cb880e">76cbf7</a>
+        )
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@Composable</span>
+  <span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">MyComposable</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">LifecycleOwner</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">maxLifecycle</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">RESUMED</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">parentLifecycleOwner</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">LocalLifecycleOwner</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">current</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">childLifecycleOwner</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">LocalLifecycleOwner</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">current</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add a builder factory function for
+      <code translate="no" dir="ltr">CreationExtras</code>
+      , providing a more convenient and idiomatic Kotlin API. (
+      <a href="https://android-review.googlesource.com/#/q/Iab2bd8bfb3cac673f88aa78e25de27044984271d">Iab2bd</a>
+      )
+    </li>
+    <li>
+      Add native support for nullable types in
+      <code translate="no" dir="ltr">SavedStateHandle.saved</code>
+      , simplifying saving and restoring nullable properties. (
+      <a href="https://android-review.googlesource.com/#/q/I54d690589fd099b565edc31df73bbdb7ed16f738">I54d69</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/421325690">b/421325690</a>
+      )
+    </li>
+    <li>
+      Mark
+      <code translate="no" dir="ltr">SavedStateHandle</code>
+      constructors as
+      <code translate="no" dir="ltr">@VisibleForTesting</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iff0e06b2805ff423e496b56369814f6acfeec50b">Iff0e0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/408002794">b/408002794</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_29_2" data-text="Version 2.9" tabindex="-1">Version 2.9</h2>

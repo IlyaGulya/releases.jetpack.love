@@ -1,0 +1,134 @@
+libraryId: xr-arcore
+groupId: androidx.xr
+version: 1.0.0-alpha05
+releaseDate: 2025-07-30
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha05" data-text="Version 1.0.0-alpha05" tabindex="-1">Version 1.0.0-alpha05</h3>
+  <p>July 30, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.arcore:arcore:1.0.0-alpha05</code>
+    ,
+    <code translate="no" dir="ltr">androidx.xr.arcore:arcore-guava:1.0.0-alpha05</code>
+    , and
+    <code translate="no" dir="ltr">androidx.xr.arcore:arcore-rxjava3:1.0.0-alpha05</code>
+    are released. Version 1.0.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1180fa76699d16f2ed6497faf92089ff851636ff/xr/arcore">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">getPrimaryHandSide</code>
+      so the developer could get the hand side info (
+      <a href="https://android-review.googlesource.com/#/q/I270bd96a51c22a0b881b10dc3f63ab498a91027e">I270bd</a>
+      )
+    </li>
+    <li>
+      Add geospatial check VPS availability API (
+      <a href="https://android-review.googlesource.com/#/q/I585737ac31e4de16cd8f0c4bf39449e0e83043ec">I58573</a>
+      )
+    </li>
+    <li>
+      Add ARCore API for
+      <code translate="no" dir="ltr">checkVpsAvailability</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Idbded3e077a1c5cde660cc064c67ebdb4fd5cca9">Idbded</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">stateFlowable</code>
+      extension functions added to
+      <code translate="no" dir="ltr">:xr:arcore:arcore-rxjava3</code>
+      for usage by Java developers. (
+      <a href="https://android-review.googlesource.com/#/q/I083aafc4e99d0ce2c8c815a05950b8f47af7ee8d">I083aa</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/427247794">b/427247794</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Config
+      <code translate="no" dir="ltr">*Mode</code>
+      vals have been renamed to reflect their behavior. (
+      <a href="https://android-review.googlesource.com/#/q/I6d24772f4456d4a2409adbaf6162fabb4f5756ef">I6d247</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/414648065">b/414648065</a>
+      )
+    </li>
+    <li>
+      The main ARCore artifact (xr:arcore:arcore) will only contain Kotlin-style async APIs. Java developers can depend on the
+      <code translate="no" dir="ltr">xr:arcore:arcore-rxjava3</code>
+      library to access compatible APIs. (
+      <a href="https://android-review.googlesource.com/#/q/Ia525e08c0a79a9b97af3983a0b582ad8d9e38077">Ia525e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/422794329">b/422794329</a>
+      )
+    </li>
+    <li>
+      The main ARCore artifact (
+      <code translate="no" dir="ltr">xr:scenecore:scenecore</code>
+      ) will only contain Kotlin-style async APIs. Java developers can depend on the
+      <code translate="no" dir="ltr">xr:arcore:arcore-guava</code>
+      library to access compatible APIs. (
+      <a href="https://android-review.googlesource.com/#/q/Iffcb48c1fe842ed1fe1342969a50fac6ba38eb6a">Iffcb4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/422773524">b/422773524</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Anchor.persistAsync()</code>
+      added to
+      <code translate="no" dir="ltr">AnchorGuava</code>
+      for usage by Java developers. (
+      <a href="https://android-review.googlesource.com/#/q/I4af1c265e2a60f804ed13042e2f1a9b31c6136fd">I4af1c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/425984631">b/425984631</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Earth.createAnchorOnSurfaceAsync(Session, Double, Double, Double, Quaternion, Surface)</code>
+      added to
+      <code translate="no" dir="ltr">EarthGuava</code>
+      for usage by Java developers. (
+      <a href="https://android-review.googlesource.com/#/q/I6635792821a1c766bca4c838800b071c11fff9a6">I66357</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/425992992">b/425992992</a>
+      )
+    </li>
+    <li>
+      Java developers will use the extension functions for
+      <code translate="no" dir="ltr">GltfModel.createAsync</code>
+      in
+      <code translate="no" dir="ltr">GltfModel.kt</code>
+      . Async functions in
+      <code translate="no" dir="ltr">GltfModel</code>
+      will be deleted. (
+      <a href="https://android-review.googlesource.com/#/q/I0af609e44a3aaa6122ebf8c8ca2783c121cce094">I0af60</a>
+      )
+    </li>
+    <li>
+      This library now uses
+      <a href="https://jspecify.dev/">JSpecify nullness annotations</a>
+      , which are type-use. Kotlin developers should use the following compiler argument to enforce correct usage:
+      <code translate="no" dir="ltr">-Xjspecify-annotations=strict</code>
+      (this is the default starting with version 2.1.0 of the Kotlin compiler) (
+      <a href="https://android-review.googlesource.com/#/q/Ia84200c477b50c79761005fffb0d44c001009cca">Ia8420</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326456246">b/326456246</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">subscribeAsFlowable</code>
+      extension functions added to
+      <code translate="no" dir="ltr">:xr:arcore:arcore-rxjava3</code>
+      for usage by Java developers. (
+      <a href="https://android-review.googlesource.com/#/q/Id3e496e8cd4ef7c4757295d939de46f2b96898e4">Id3e49</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/427277298">b/427277298</a>
+      )
+    </li>
+  </ul>
