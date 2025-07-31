@@ -1,0 +1,361 @@
+libraryId: xr-compose
+groupId: androidx.xr
+version: 1.0.0-alpha05
+releaseDate: 2025-07-30
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha05" data-text="Version 1.0.0-alpha05" tabindex="-1">Version 1.0.0-alpha05</h3>
+  <p>July 30, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.compose:compose:1.0.0-alpha05</code>
+    and
+    <code translate="no" dir="ltr">androidx.xr.compose:compose-testing:1.0.0-alpha05</code>
+    are released. Version 1.0.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b6c541571b9fb5471f965fc52612cb280713e5e4..102c5e13657cf0731ff209d71be7248a2aec274d/xr/compose">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Made
+      <code translate="no" dir="ltr">SubspaceComposable</code>
+      annotation class public. (
+      <a href="https://android-review.googlesource.com/#/q/Ic2a34011e1f648b62102ad117b673858d10c16fa">Ic2a34</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/399432430">b/399432430</a>
+      )
+    </li>
+    <li>
+      Two new
+      <code translate="no" dir="ltr">SpatialExternalSurface</code>
+      Composables representing 180 and 360 degree spheres. (
+      <a href="https://android-review.googlesource.com/#/q/I40ef2b289ec1e956e2979e37ca17b7bdbf999f18">I40ef2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/391705799">b/391705799</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">SubspaceModifier.aspectRatio</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ide5abb4689db0ad03abe5de42f97357788f6c5a4">Ide5ab</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/399729509">b/399729509</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/414762147">b/414762147</a>
+      )
+    </li>
+    <li>
+      Added the
+      <code translate="no" dir="ltr">SceneCoreEntity</code>
+      API to improve interoperability between
+      <code translate="no" dir="ltr">SceneCore</code>
+      and Compose for XR. (
+      <a href="https://android-review.googlesource.com/#/q/I50bb3781c764042066f95c7c11f15be6456ad48b">I50bb3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/423020989">b/423020989</a>
+      )
+    </li>
+    <li>
+      Provided
+      <code translate="no" dir="ltr">GravityAlignedsubspace</code>
+      API to support the unscaled And
+      <code translate="no" dir="ltr">GravityAligned</code>
+      feature (
+      <a href="https://android-review.googlesource.com/#/q/I073595e109e3f3bbd88fef8872c4f7d0c654fe3c">I07359</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">SpatialDialog()</code>
+      will follow
+      <code translate="no" dir="ltr">SpatialDialogProperties.dismissOnBack</code>
+      press configuration. (
+      <a href="https://android-review.googlesource.com/#/q/Ib453b669d962f0d1287249b497dbf6a9e65f84ce">Ib453b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/416797132">b/416797132</a>
+      )
+    </li>
+    <li>
+      Update
+      <code translate="no" dir="ltr">minimumPanelDimension</code>
+      to a new default Dimension size of
+      <code translate="no" dir="ltr">Dimensions(0.1f, 0.1f, 0.1f)</code>
+      due its representation in Meters. (
+      <a href="https://android-review.googlesource.com/#/q/Ib852a9a946e2fdc0168cea12d8e1f9039bdc31cc">Ib852a</a>
+      )
+    </li>
+    <li>
+      Subspaces and Orbiters will now retain their internal state in home space and when the app is in the background. In home space mode, Subspace will still set up its scene in preparation for the switch to full space mode. (
+      <a href="https://android-review.googlesource.com/#/q/I403176b040bbeb62ea0c4ab098992a6232da1c1d">I40317</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/416037751">b/416037751</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SpatialDialogs</code>
+      will now retain their state when the app is in the background. (
+      <a href="https://android-review.googlesource.com/#/q/I6aa56cb52092904678ad6bfea68e2002a09fe5ce">I6aa56</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ApplicationSubspace</code>
+      will now inherit its recommended scale and position from the system. (
+      <a href="https://android-review.googlesource.com/#/q/I4565f833ebba43fd643af2c5c0ae18f80a62fe0d">I4565f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/418834194">b/418834194</a>
+      )
+    </li>
+    <li>
+      Added a better error message and trigger the error earlier when a
+      <code translate="no" dir="ltr">SubspaceComposable</code>
+      is used in a non-
+      <code translate="no" dir="ltr">SubspaceComposable</code>
+      context. (
+      <a href="https://android-review.googlesource.com/#/q/Iee2ae9bb02fca1f14e52238871663ce709fa9bc4">Iee2ae</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/416484684">b/416484684</a>
+      )
+    </li>
+    <li>
+      Updating
+      <code translate="no" dir="ltr">ExperimentalSubspaceVolumeApi</code>
+      from Warning to Error because warnings are often overlooked when misusing composable APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I427aad29f283d9df21cd6f2582f78bd3024f90f6">I427aa</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/424864286">b/424864286</a>
+      )
+    </li>
+    <li>
+      Subspace and
+      <code translate="no" dir="ltr">ApplicationSubspace</code>
+      are now constrained by
+      <code translate="no" dir="ltr">recommendedContentBoxInFullSpace</code>
+      . Previously it was constrained by
+      <code translate="no" dir="ltr">SpatialUser</code>
+      's Field of View. (
+      <a href="https://android-review.googlesource.com/#/q/I410151b4d76b8485e9e1ec276e0f32b9a2cd9680">I41015</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/423074142">b/423074142</a>
+      )
+    </li>
+    <li>
+      Update
+      <code translate="no" dir="ltr">SpatialElevation</code>
+      to use min size to no longer use hard coded size (
+      <a href="https://android-review.googlesource.com/#/q/I2dbe6650fa3a8f4e0e023e5d742140767903de11">I2dbe6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/427785338">b/427785338</a>
+      )
+    </li>
+    <li>
+      Update how we scrim the
+      <code translate="no" dir="ltr">SpatialAcitivityPanel</code>
+      to update when a key variable is modified. (
+      <a href="https://android-review.googlesource.com/#/q/I0f64d7b9885283db7a5a320785e586f1afd73405">I0f64d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/427999029">b/427999029</a>
+      )
+    </li>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">VolumeConstraints.Unbounded</code>
+      in favor of setting the default constraint values to the equivalent. (
+      <a href="https://android-review.googlesource.com/#/q/Ie24ec47de60979cdf5375325fb13bb8b2db36294">Ie24ec</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/407938414">b/407938414</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SpatialFeatheringSize</code>
+      is no longer public (
+      <a href="https://android-review.googlesource.com/#/q/I1c15bd5ec258ad5f45490dd786ded7f80f00ac8a">I1c15b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/399432430">b/399432430</a>
+      )
+    </li>
+    <li>
+      Renamed the XR
+      <code translate="no" dir="ltr">Placeable</code>
+      to
+      <code translate="no" dir="ltr">SubspacePlaceable</code>
+      to distinguish it from Compose's
+      <code translate="no" dir="ltr">Placeable</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I748741bebe814381cc90cdace5f2dfcb4234572e">I74874</a>
+      )
+    </li>
+    <li>
+      Removing Orbiter settings and adding
+      <code translate="no" dir="ltr">shouldRenderInNonSpatial</code>
+      as a new param. In addition, removing class
+      <code translate="no" dir="ltr">EdgeOffset</code>
+      and adding
+      <code translate="no" dir="ltr">orbiterOffsetType</code>
+      as a new param to consolidate
+      <code translate="no" dir="ltr">Orbiter()</code>
+      Functions. As well as renaming
+      <code translate="no" dir="ltr">OrbiterEdge</code>
+      to
+      <code translate="no" dir="ltr">ContentEdge</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iebf3d87a149f8a8b691758ca86da2b51ebcb480b">Iebf3d</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">Measurable</code>
+      to
+      <code translate="no" dir="ltr">SubspaceMeasurable</code>
+      to differentiate the type from Compose's
+      <code translate="no" dir="ltr">Measurable</code>
+      type. (
+      <a href="https://android-review.googlesource.com/#/q/I9726cb6ab1f7fe925296e5f0a4be383ddd1c8d19">I9726c</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">MeasureResult</code>
+      to
+      <code translate="no" dir="ltr">SubspaceMeasureResult</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I9f34d7542efa8941c050933ddf64e905cf830f52">I9f34d</a>
+      )
+    </li>
+    <li>
+      Removed the
+      <code translate="no" dir="ltr">setSubspaceContent</code>
+      API in favor of using Compose's
+      <code translate="no" dir="ltr">setContent</code>
+      with a
+      <code translate="no" dir="ltr">Subspace</code>
+      composable. (
+      <a href="https://android-review.googlesource.com/#/q/Ifff4ccd5e05510e9d7966a5b9a3d3ea98926ff09">Ifff4c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/421427391">b/421427391</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/421427391">b/421427391</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">MeasurePolicy</code>
+      is renamed to
+      <code translate="no" dir="ltr">SubspaceMeasurePolicy</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I37a9b4e5ff3fbaca78888adbd1a3ca6b2f202c86">I37a9b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/422553904">b/422553904</a>
+      )
+    </li>
+    <li>
+      Turn
+      <code translate="no" dir="ltr">SubspaceSemanticsInfo</code>
+      into a sealed interface because we won't be able to add members without the defaults. (
+      <a href="https://android-review.googlesource.com/#/q/I372f989d2fa779aa304d354bcd2d53a39d3a267c">I372f9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/423704068">b/423704068</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">SpatialExternalSurface</code>
+      documentation, renamed
+      <code translate="no" dir="ltr">ContentSecurityLevel</code>
+      to
+      <code translate="no" dir="ltr">SurfaceProtection</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I3c4602fe56b8a88c8c1398354517c7ee04287a95">I3c460</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/420982808">b/420982808</a>
+      )
+    </li>
+    <li>
+      Provided overloaded constructor for movable modifier which allows anchoring. (
+      <a href="https://android-review.googlesource.com/#/q/Ic0c70e86c0be734b7f8bdda14f5501a4a57cd5e4">Ic0c70</a>
+      )
+    </li>
+    <li>
+      Add more position provider for tooltips so now developers can control if the tooltip is placed above, below, left, or right of the anchor. Add an API that takes in a Shape for carets, so more custom shapes can be provided. (
+      <a href="https://android-review.googlesource.com/#/q/Ie513c947d881a2afc8dea1f09929dc58bacf29d5">Ie513c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/374766087">b/374766087</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/418854637">b/418854637</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">CoreEntity</code>
+      as a
+      <code translate="no" dir="ltr">PublishedApi</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ifee0510597f39cad2b21f781c1965aa8f138b15a">Ifee05</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed issue where
+      <code translate="no" dir="ltr">SpatialDialog</code>
+      would flash when being rendered. (
+      <a href="https://android-review.googlesource.com/#/q/Ife73c018a39141e0d1d524709d4577b1372c09e3">Ife73c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/401619909">b/401619909</a>
+      )
+    </li>
+    <li>
+      Fixes issue where
+      <code translate="no" dir="ltr">SpatialDialog</code>
+      could not scrim the Activity Panel. (
+      <a href="https://android-review.googlesource.com/#/q/I8ca6cdec18e09dad6b93dcdc4c730e722c789594">I8ca6c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/367442109">b/367442109</a>
+      )
+    </li>
+    <li>
+      Fix XR dialog not showing some content (
+      <a href="https://android-review.googlesource.com/#/q/I17cd55c3a6d6dd5b36efb7b3f893b684701cd262">I17cd5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/418062437">b/418062437</a>
+      )
+    </li>
+    <li>
+      Fixed issue where
+      <code translate="no" dir="ltr">SpatialPopup</code>
+      was being dismissed when clicked inside of the content. (
+      <a href="https://android-review.googlesource.com/#/q/If262c68747574f6cc986f23189ee2f67ad779af2">If262c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/417245722">b/417245722</a>
+      )
+    </li>
+    <li>
+      Fixed the issue where when chaining
+      <code translate="no" dir="ltr">resizable().movable()</code>
+      the SpatialPanel failed to resize correctly to the new size. (
+      <a href="https://android-review.googlesource.com/#/q/I02ee3379dbc0632c22635f2511e6416593c66e8c">I02ee3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/422264230">b/422264230</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">topBar</code>
+      overlapping with menu in
+      <code translate="no" dir="ltr">SpatialComposeVideoPlayer</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Id33bca8c50ddf46a49030de88b8367dd82c5e8a6">Id33bc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/427168167">b/427168167</a>
+      )
+    </li>
+    <li>
+      Fixed corner radius not rendering (
+      <a href="https://android-review.googlesource.com/#/q/I975fe535847f49784982cc0483720df778f185dd">I975fe</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/428261830">b/428261830</a>
+      )
+    </li>
+  </ul>

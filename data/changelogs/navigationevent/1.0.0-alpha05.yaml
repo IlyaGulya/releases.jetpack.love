@@ -1,0 +1,199 @@
+libraryId: navigationevent
+groupId: androidx.navigationevent
+version: 1.0.0-alpha05
+releaseDate: 2025-07-30
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha05" data-text="Version 1.0.0-alpha05" tabindex="-1">Version 1.0.0-alpha05</h3>
+  <p>July 30, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigationevent:navigationevent-*:1.0.0-alpha05</code>
+    is released. Version 1.0.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1b437892629a2cdedb46d9b7232575987b2cc6b5..b4562c71af5649ad7262ba4c7925899e6e93bdff/navigationevent">these commits</a>
+    .
+  </p>
+  <p><strong>Parent-Child Hierarchy Support:</strong></p>
+  <p>
+    A
+    <code translate="no" dir="ltr">NavigationEventDispatcher</code>
+    can now have parent and child dispatchers, forming a hierarchical tree structure. This enables navigation events to propagate and be managed more flexibly across complex Compose UI components by reflecting the UI’s structural hierarchy through chained dispatchers. (
+    <a href="https://android-review.googlesource.com/#/q/I194acc61f09116048ab048e3f84cb6c58d34bbb6">I194ac</a>
+    )
+  </p>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// Create a parent dispatcher that will manage navigation events at a higher level.</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">parentDispatcher</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">NavigationEventDispatcher</span><span class="devsite-syntax-p">()</span>
+
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// Create a child dispatcher linked to the parent, forming a hierarchy.</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">childDispatcher</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">NavigationEventDispatcher</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">parentDispatcher</span><span class="devsite-syntax-p">)</span>
+  </code></pre>
+  </devsite-code>
+  <p>
+    The hierarchical
+    <code translate="no" dir="ltr">isEnabled</code>
+    property allows for top-down control of a dispatcher. When
+    <code translate="no" dir="ltr">isEnabled</code>
+    is set to
+    <code translate="no" dir="ltr">false</code>
+    on a dispatcher, it automatically disables all its descendant dispatchers. This feature enables entire branches of the navigation event system to be toggled off efficiently. (
+    <a href="https://android-review.googlesource.com/#/q/I9e985d5571ea07b9e2c0223ad2b4aaeab5266ab8">I9e985</a>
+    )
+  </p>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// Disabling the child dispatcher disables all its callbacks and any of its children recursively.</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">childDispatcher</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">isEnabled</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kc">false</span>
+  </code></pre>
+  </devsite-code>
+  <p>
+    Moreover, the
+    <code translate="no" dir="ltr">isEnabled</code>
+    property on
+    <code translate="no" dir="ltr">NavigationEventCallback</code>
+    now respects the enabled state of its associated dispatcher. This means a callback is considered enabled only if both the callback itself and its dispatcher (including its ancestors) are enabled, ensuring consistent hierarchical control over callback activation. (
+    <a href="https://android-review.googlesource.com/#/q/I1799a02884a3167abf74e67b35fd10cc02cc9486">I1799a</a>
+    )
+  </p>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// Create a test callback and add it to the child dispatcher.</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">callback1</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">TestNavigationEventCallback</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">isEnabled</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kc">true</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">childDispatcher</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">addCallback</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">callback1</span><span class="devsite-syntax-p">)</span>
+
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// Since the childDispatcher is disabled, the callback is effectively disabled as well.</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">assertThat</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">callback1</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">isEnabled</span><span class="devsite-syntax-p">).</span><span class="devsite-syntax-na">isFalse</span><span class="devsite-syntax-p">()</span>
+  </code></pre>
+  </devsite-code>
+  <p>
+    A new
+    <code translate="no" dir="ltr">dispose()</code>
+    method has been introduced for proper cleanup of dispatchers and their children. Calling
+    <code translate="no" dir="ltr">dispose()</code>
+    stops listeners to prevent memory leaks, recursively disposes all child dispatchers, removes all callbacks registered to the dispatcher, and unlinks it from its parent. This guarantees resources are released correctly when dispatchers are no longer needed. (
+    <a href="https://android-review.googlesource.com/#/q/I9e985d5571ea07b9e2c0223ad2b4aaeab5266ab8">I9e985</a>
+    )
+  </p>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// Dispose the child dispatcher to clean up resources.</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">childDispatcher</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">dispose</span><span class="devsite-syntax-p">()</span>
+  </code></pre>
+  </devsite-code>
+  <p>
+    If any public method is called on a disposed dispatcher, an
+    <code translate="no" dir="ltr">IllegalStateException</code>
+    is thrown immediately. This prevents silent failures and helps developers identify improper usage during development. (
+    <a href="https://android-review.googlesource.com/#/q/Ic2dc36f3de36bed58eeef3ff2cfb185bc7f9df59">Ic2dc3</a>
+    )
+  </p>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-w">  </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">callback2</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">TestNavigationEventCallback</span><span class="devsite-syntax-p">()</span>
+
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// Attempting to use a disposed dispatcher will throw an exception.</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">assertThrows&lt;IllegalStateException&gt;</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-n">childDispatcher</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">addCallback</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">callback2</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+  </code></pre>
+  </devsite-code>
+  <p>
+    <strong>Note:</strong>
+    We will introduce a new
+    <code translate="no" dir="ltr">NavigationEventDispatcherOwner</code>
+    Composable that automatically manages a child dispatcher within Compose UI in
+    <a href="https://r.android.com/3692572">aosp/3692572</a>
+    . However, this change did not make it into the current release cut and is planned for the next one.
+  </p>
+  <p><strong>Navigation Testing Library</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">navigationevent-testing</code>
+      module to provide dedicated testing utilities for the
+      <code translate="no" dir="ltr">navigationevent</code>
+      library. (
+      <a href="https://android-review.googlesource.com/#/q/I8a03eb9822202392f70866b31f9114a8695dbec7">0e50b6</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">TestNavigationEventCallback</code>
+      fake utility class for testing. It records callback method calls and stores received
+      <code translate="no" dir="ltr">NavigationEvent</code>
+      items to support verification. (
+      <a href="https://android-review.googlesource.com/#/q/Id7cf5f541cc80c5760554ed9d4ea933056612eef">4a0246</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">TestNavigationEvent</code>
+      fake utility function to create
+      <code translate="no" dir="ltr">NavigationEvent</code>
+      instances with default values, simplifying unit tests for navigation event processing. (
+      <a href="https://android-review.googlesource.com/#/q/Ia292be73ece193a7f64e8edc1c4dd3d05918bd86">3b63f5</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">TestNavigationEventDispatcherOwner</code>
+      fake utility class for testing. It tracks fallback and enabled-state-changed event counts to support interaction verification in tests. (
+      <a href="https://android-review.googlesource.com/#/q/I4bf2258f6e505df6b6f2b2644f0e489047334863">c8753e</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Move
+      <code translate="no" dir="ltr">NavigationEventInputHandler</code>
+      from
+      <code translate="no" dir="ltr">androidMain</code>
+      to
+      <code translate="no" dir="ltr">commonMain</code>
+      to make it available in KMP common code. Add new
+      <code translate="no" dir="ltr">public send*</code>
+      methods for dispatching events. Change dispatch functions on
+      <code translate="no" dir="ltr">NavigationEventDispatcher</code>
+      from
+      <code translate="no" dir="ltr">public</code>
+      to
+      <code translate="no" dir="ltr">internal</code>
+      ; users must now use
+      <code translate="no" dir="ltr">NavigationEventInputHandler</code>
+      to send events. (
+      <a href="https://android-review.googlesource.com/#/q/Ia71147cb1e9b3268427965952cb2bedbedc47394">Ia7114</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">NavigationInputHandler</code>
+      to
+      <code translate="no" dir="ltr">OnBackInvokedInputHandler</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I63405b0c1465c2f87a6463c5d88a5b06d870e323">I63405</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Refactor
+      <code translate="no" dir="ltr">NavigationEventDispatcher</code>
+      to reduce overhead by avoiding intermediate list allocations and improving callback dispatch performance. (
+      <a href="https://android-review.googlesource.com/#/q/I8270264bf37616837729bf0cb2f3f2e0e5cf1fa7">I82702</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I1a9d94ca010cfa6565b294aa95e44afa2d9eac2b">I1a9d9</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">@FloatRange</code>
+      annotations to
+      <code translate="no" dir="ltr">touchX</code>
+      ,
+      <code translate="no" dir="ltr">touchY</code>
+      , and
+      <code translate="no" dir="ltr">progress</code>
+      fields in
+      <code translate="no" dir="ltr">NavigationEvent</code>
+      to enforce valid value ranges at compile time and improve API safety. (
+      <a href="https://android-review.googlesource.com/#/q/Iac0ec1abcf81d854147f35478eb68961bed34bd4">Iac0ec</a>
+      )
+    </li>
+  </ul>

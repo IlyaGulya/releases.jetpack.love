@@ -1,0 +1,215 @@
+libraryId: xr-runtime
+groupId: androidx.xr
+version: 1.0.0-alpha05
+releaseDate: 2025-07-30
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha05" data-text="Version 1.0.0-alpha05" tabindex="-1">Version 1.0.0-alpha05</h3>
+  <p>July 30, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.runtime:runtime-*:1.0.0-alpha05</code>
+    is released. Version 1.0.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b6c541571b9fb5471f965fc52612cb280713e5e4..8fe87e902b8acd3de17bd55d6ec0ef4b5188212e/xr/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">HandJointType</code>
+      and
+      <code translate="no" dir="ltr">TrackingState</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I558802d9a78449829990c0792e5a1d1bf97ca69b">I55880</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/334645808">b/334645808</a>
+      )
+    </li>
+    <li>
+      Make Config implementation public. (
+      <a href="https://android-review.googlesource.com/#/q/I9586042b11a9340a80deffa2f92e391bf59f6a58">I95860</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/334645808">b/334645808</a>
+      )
+    </li>
+    <li>
+      Introduced new
+      <code translate="no" dir="ltr">SessionCreateResult</code>
+      and
+      <code translate="no" dir="ltr">SessionConfigureResult</code>
+      types. (
+      <a href="https://android-review.googlesource.com/#/q/Icb8cba8fcd89822929ff845d6d2e0408cef632af">Icb8cb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/334645808">b/334645808</a>
+      )
+    </li>
+    <li>
+      Add a new
+      <code translate="no" dir="ltr">BoundingBox</code>
+      class that represents an axis-aligned bounding box in 3D space, defined by its minimum and maximum corner points. (
+      <a href="https://android-review.googlesource.com/#/q/Ic68c5e60f6443e12d4142cf8c69ecfc3d7d99844">Ic68c5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/423073468">b/423073468</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Renamed and moved
+      <code translate="no" dir="ltr">androidx.xr.scenecore.PixelDimensions</code>
+      to
+      <code translate="no" dir="ltr">androidx.xr.runtime.math.IntSize2d</code>
+      . Renamed and moved
+      <code translate="no" dir="ltr">androidx.xr.scenecore.Dimensions</code>
+      to
+      <code translate="no" dir="ltr">androidx.xr.runtime.math.FloatSize3d</code>
+      . Renamed
+      <code translate="no" dir="ltr">androidx.xr.scenecore.PlaneType</code>
+      to
+      <code translate="no" dir="ltr">androidx.xr.scenecore.PlaneOrientation</code>
+      . Renamed
+      <code translate="no" dir="ltr">androidx.xr.scenecore.PlaneSemantic</code>
+      to
+      <code translate="no" dir="ltr">androidx.xr.scenecore.PlaneSemanticType</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ifd40559bd3ffaccfc1782c81af39be1c5e7922a1">Ifd405</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/416456228">b/416456228</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">androidx.xr.runtime.FoV</code>
+      class. Use
+      <code translate="no" dir="ltr">androidx.xr.runtime.FieldOfView</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/I9ae27bc07ce8b2fad5371be283b7dad3f70296e6">I9ae27</a>
+      )
+    </li>
+    <li>
+      Added an additional overload for
+      <code translate="no" dir="ltr">Session.create</code>
+      which can provide a
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      for the Session to attach to. Note that an Activity will still need to be provided for resource ownership and the
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      must be scoped within the Activity. (
+      <a href="https://android-review.googlesource.com/#/q/I1690b7d8b5935492fde2940615e87e0ed592ca82">I1690b</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">FakeRuntimeAnchor.anchorsCreated</code>
+      to
+      <code translate="no" dir="ltr">anchorsCreatedCount</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I96df9bd731f3e859d473d3dd95ce08e06554c89f">I96df9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/424441218">b/424441218</a>
+      )
+    </li>
+    <li>
+      Config
+      <code translate="no" dir="ltr">*Mode</code>
+      vals have been renamed to reflect their behavior. (
+      <a href="https://android-review.googlesource.com/#/q/I6d24772f4456d4a2409adbaf6162fabb4f5756ef">I6d247</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/414648065">b/414648065</a>
+      )
+    </li>
+    <li>
+      Projects released with Kotlin 2.0 require KGP 2.0.0 or newer to be consumed (
+      <a href="https://android-review.googlesource.com/#/q/Idb6b5d6ae1625ab870ffe74f9790ffabc82a63b4">Idb6b5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/344563182">b/344563182</a>
+      )
+    </li>
+    <li>
+      APIs related to manifest strings have been moved from
+      <code translate="no" dir="ltr">:xr:runtime:runtime</code>
+      to
+      <code translate="no" dir="ltr">:xr:runtime:runtime-manifest</code>
+      . The package name has changed from
+      <code translate="no" dir="ltr">androidx.xr.runtime</code>
+      to
+      <code translate="no" dir="ltr">androidx.xr.runtime.manifest</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I610ad63853c8223ee0352b719eb5991047f71e84">I610ad</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/418800249">b/418800249</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Session.resume()</code>
+      ,
+      <code translate="no" dir="ltr">Session.pause()</code>
+      , and
+      <code translate="no" dir="ltr">Session.destroy()</code>
+      have been removed from the API surface. Session is no longer a
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      . The Session's lifecycle will now be attached to the lifecycle of the Activity passed in
+      <code translate="no" dir="ltr">Session.create()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I28a0392c9e1a5bb1a02cc12b392442125f1d8cac">I28a03</a>
+      )
+    </li>
+    <li>
+      This library now uses
+      <a href="https://jspecify.dev/">JSpecify nullness annotations</a>
+      , which are type-use. Kotlin developers should use the following compiler argument to enforce correct usage:
+      <code translate="no" dir="ltr">-Xjspecify-annotations=strict</code>
+      (this is the default starting with version 2.1.0 of the Kotlin compiler) (
+      <a href="https://android-review.googlesource.com/#/q/Ia84200c477b50c79761005fffb0d44c001009cca">Ia8420</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326456246">b/326456246</a>
+      )
+    </li>
+    <li>
+      The main Runtime artifact (
+      <code translate="no" dir="ltr">:xr:runtime:runtime</code>
+      ) will only contain Kolin-style async APIs. Java developers can depend on
+      <code translate="no" dir="ltr">:xr:runtime:runtime-guava</code>
+      to access compatible APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I05d4a527394b5666eb2da7e52968354fd605c393">I05d4a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/426639315">b/426639315</a>
+      )
+    </li>
+    <li>
+      The main Runtime artifact (
+      <code translate="no" dir="ltr">:xr:runtime:runtime</code>
+      ) will only contain Kotlin-style async APIs. Java developers can depend on the
+      <code translate="no" dir="ltr">xr:runtime:runtime-rxjava3</code>
+      library to access compatible APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I64122394dba159947b344aefebe741df3129e9c0">I64122</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/426639775">b/426639775</a>
+      )
+    </li>
+    <li>
+      Move Coroutines to
+      <code translate="no" dir="ltr">:xr:runtime:runtime-guava</code>
+      and Flows to
+      <code translate="no" dir="ltr">:xr:runtime:runtime-rxjava3</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I60ae9d8bbe1de2ae5b08a2227028c80cb4fd3772">I60ae9</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Session.create</code>
+      and
+      <code translate="no" dir="ltr">Session.configure</code>
+      now throw
+      <code translate="no" dir="ltr">SecurityException</code>
+      when sufficient permissions have not been granted instead of returning
+      <code translate="no" dir="ltr">SessionCreatePermissionsNotGranted</code>
+      or
+      <code translate="no" dir="ltr">SessionConfigurePermissionsNotGranted</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7c48826f858c9934949093ed8b52446153967761">I7c488</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/430651879">b/430651879</a>
+      )
+    </li>
+  </ul>

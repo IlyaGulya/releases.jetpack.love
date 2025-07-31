@@ -1,0 +1,87 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.5.0-rc01
+releaseDate: 2025-07-30
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-rc01" data-text="Version 1.5.0-rc01" tabindex="-1">Version 1.5.0-rc01</h3>
+  <p>July 30, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.5.0-rc01</code>
+    is released. Version 1.5.0-rc01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/98552a7cab42f1d19ee63ca0b2cd5f5bb862510d..28fb1203e01e0641625f00bce1005f140dd5c198/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">TimePicker</code>
+      is now fully driven by the user's locale, using
+      <code translate="no" dir="ltr">DateFormat.getBestDateTimePattern</code>
+      to determine the order and content of its pickers and separators. This fixes incorrect column ordering for CJK languages, resolves RTL layout issues in languages like Arabic, uses localized separators, and supports both 0-11 and 1-12 hour formats based on the locale (
+      <a href="https://android-review.googlesource.com/#/q/I5d5437ecd195af1c0306f8d06554a700153d6d34">I5d543</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">DatePicker</code>
+      now displays a numeric month in some locales, such as CJK, to avoid mixing numeric and linguistic formats (e.g., 2025 | 07 | 02 instead of 2025 | 7月 | 02). This change applies a heuristic that checks if the locale uses linguistic suffixes for the year and, if so, switches the month format from textual (MMM) to numeric (MM) for consistency. (
+      <a href="https://android-review.googlesource.com/#/q/Ia93fe26435d110c341074108ba73dc11a8343834">Ia93fe</a>
+      )
+    </li>
+    <li>
+      The vertical space for the heading in the Picker component is now constant, preventing a visible shift when a picker column is selected, especially in
+      <code translate="no" dir="ltr">Talkback</code>
+      mode. (
+      <a href="https://android-review.googlesource.com/#/q/I7f8b76d8a59c88e20dc96248ec30f3b8aa4f1494">I7f8b7</a>
+      )
+    </li>
+    <li>
+      Fixed an accessibility bug caused by
+      <code translate="no" dir="ltr">HorizontalPageIndicator</code>
+      and
+      <code translate="no" dir="ltr">VerticalPageIndicator</code>
+      being drawn full screen. The page indicators are no longer full-screen, and will be positioned automatically when used with
+      <code translate="no" dir="ltr">HorizontalPagerScaffold</code>
+      or
+      <code translate="no" dir="ltr">VerticalPagerScaffold</code>
+      . When not using a pager scaffold, specify the alignment explicitly using
+      <code translate="no" dir="ltr">modifier = Modifier.align(Alignment.BottomCenter)</code>
+      with
+      <code translate="no" dir="ltr">HorizontalPageIndicator</code>
+      and
+      <code translate="no" dir="ltr">modifier =Modifier.align(Alignment.CenterEnd)</code>
+      with
+      <code translate="no" dir="ltr">VerticalPageIndicator</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3a0ad217842220f2b14b02264750ab0d9a5da1da">I3a0ad</a>
+      )
+    </li>
+    <li>
+      The swipe direction in
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      is now consistent for both LTR and RTL
+      <code translate="no" dir="ltr">LayoutDirections</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6d42771b5865d6fe51cfc1954baef581584d7a4a">I6d427</a>
+      )
+    </li>
+    <li>
+      Reinstated
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      vertical centering for actions. If
+      <code translate="no" dir="ltr">hasPartiallyRevealedState = true</code>
+      ,
+      <code translate="no" dir="ltr">RevealState</code>
+      should be reset to
+      <code translate="no" dir="ltr">RevealValue.Covered</code>
+      by the caller when scrolling occurs. (
+      <a href="https://android-review.googlesource.com/#/q/I6473d355cbf845fb4e707e4004a9dc6c3f07a485">I6473d</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SwipeDismissableNavHost</code>
+      now correctly clips content for API 36 onwards. (
+      <a href="https://android-review.googlesource.com/#/q/Ib9a444c322e2e2d8e742f578a47967a4cbcc2ffb">Ib9a44</a>
+      )
+    </li>
+  </ul>
