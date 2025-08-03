@@ -7,64 +7,7 @@ changelogHtml: |
   <h3 id="1.8.0-rc02" data-text="Version 1.8.0-rc02" tabindex="-1">Version 1.8.0-rc02</h3>
   <p>July 24, 2025</p>
   <p>
-    Version 1.8.0-rc02 contains
-    <a href="https://github.com/androidx/media/commits/1.8.0-rc02">these commits</a>
+    Use the 1.8.0
+    <a href="#1.8.0">stable version</a>
     .
   </p>
-  <ul>
-    <li>
-      ExoPlayer:
-      <ul>
-        <li>
-          Add getter for shuffle mode to the
-          <code translate="no" dir="ltr">ExoPlayer</code>
-          interface (
-          <a href="https://github.com/androidx/media/pull/2522">#2522</a>
-          ).
-        </li>
-        <li>
-          More clearly throw an exception if
-          <code translate="no" dir="ltr">DefaultAudioSink</code>
-          is accessed from multiple threads. If this happens due to a call to
-          <code translate="no" dir="ltr">RendererCapabilities.getFormatSupport</code>
-          outside of the player, make sure to call this method on the same thread as ExoPlayer's playback thread or use a different instance than the one used for playback (
-          <a href="https://github.com/androidx/media/issues/1191">#1191</a>
-          ).
-        </li>
-      </ul>
-    </li>
-    <li>
-      Audio:
-      <ul>
-        <li>
-          Fix bug where
-          <code translate="no" dir="ltr">AnalyticsListener.onAudioPositionAdvancing</code>
-          is not called when the audio playback is started very close to the end of the media.
-        </li>
-      </ul>
-    </li>
-    <li>
-      Session:
-      <ul>
-        <li>Fix bug where connections from third-party non-privileged Media3 controllers are ignored.</li>
-        <li>
-          Remove check for available commands when sending custom commands to a legacy
-          <code translate="no" dir="ltr">MediaBrowserServiceCompat</code>
-          . This is in parity with the behavior of legacy controllers/browsers when connected to a legacy app.
-        </li>
-        <li>Fix a bug that causes a player's first playback error to be incorrectly treated as a persistent custom exception. This prevents the application from recovering.</li>
-      </ul>
-    </li>
-    <li>
-      HLS extension:
-      <ul>
-        <li>
-          Fix bug where
-          <code translate="no" dir="ltr">HlsSampleStreamWrapper</code>
-          attempts to seek inside buffer when there are no chunks available in the buffer
-          <a href="https://github.com/androidx/media/issues/2598">#2598</a>
-          .
-        </li>
-      </ul>
-    </li>
-  </ul>
