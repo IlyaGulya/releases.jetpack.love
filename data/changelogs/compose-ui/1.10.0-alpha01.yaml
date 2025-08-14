@@ -1,0 +1,265 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.10.0-alpha01
+releaseDate: 2025-08-13
+#language=html
+changelogHtml: |
+  <h3 id="1.10.0-alpha01" data-text="Version 1.10.0-alpha01" tabindex="-1">Version 1.10.0-alpha01</h3>
+  <p>August 13, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.10.0-alpha01</code>
+    is released. Version 1.10.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c30d03ab9e19dcf35e8b79438f0d91ee74cae557..c359e97fece91f3767a7d017e9def23c7caf1f53/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Pointer downs with a mouse or touchpad in a
+      <code translate="no" dir="ltr">ComposeView</code>
+      will now clear focus automatically if the pointer down doesn't occur in the bounds of the focused node. This results in a "tap-to-clear focus" UX that is more expected than current behavior when using pointer input devices. This behavior can be opt-ed out of with a new
+      <code translate="no" dir="ltr">AbstractComposeView.isClearFocusOnPointerDownEnabled</code>
+      API. (
+      <a href="https://android-review.googlesource.com/#/q/I6322b0a63e80042f6a558104d0684443e5dc161f">I6322b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/282963174">b/282963174</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">FillableData</code>
+      interface to support various autofill component types, in addition to Text. (
+      <a href="https://android-review.googlesource.com/#/q/If9bd2e0df45654b5c33bc7d46a6535169197aeb1">If9bd2</a>
+      )
+    </li>
+    <li>
+      New API to allow dynamically enable and disable shared elements that also allows accounting for whether there is already an ongoing shared element transition. New API to set up an alternative target bounds when the target shared element is disposed during the transition. New API to obtain the
+      <code translate="no" dir="ltr">LayoutCoordinates</code>
+      of a
+      <code translate="no" dir="ltr">LookaheadScope</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I18dd441208500dbd29276f834421db3134047390">I18dd4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/409819304">b/409819304</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/395670637">b/395670637</a>
+      )
+    </li>
+    <li>
+      Introduce flag
+      <code translate="no" dir="ltr">isNestedScrollInteropIntegerPropagationEnabled</code>
+      to control the experiment of dispatching correct integers to nested scroll interop. (
+      <a href="https://android-review.googlesource.com/#/q/If83167b8ea1aff41f6dd6ff823a2d43c6bb86f65">If8316</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">requestFocusForChildInRootBounds()</code>
+      to
+      <code translate="no" dir="ltr">DelegatableNode</code>
+      to move focus to a child that overlaps with the given rect. (
+      <a href="https://android-review.googlesource.com/#/q/I001efed653d1b06a11257ae7f79f51e8e6d31ad2">I001ef</a>
+      )
+    </li>
+    <li>
+      Removed flags
+      <code translate="no" dir="ltr">isOnScrollChangedCallbackEnabled</code>
+      ,
+      <code translate="no" dir="ltr">isAdjustPointerInputChangeOffsetForVelocityTrackerEnabled</code>
+      ,
+      <code translate="no" dir="ltr">isFlingContinuationAtBoundsEnabled</code>
+      ,
+      <code translate="no" dir="ltr">isAutomaticNestedPrefetchEnabled</code>
+      ,
+      <code translate="no" dir="ltr">DragGesturePickUpEnabled</code>
+      ,
+      <code translate="no" dir="ltr">isPointerInteropFilterDispatchingFixEnabled</code>
+      ,
+      <code translate="no" dir="ltr">isNestedScrollInteropPostFlingFixEnabled</code>
+      ,
+      <code translate="no" dir="ltr">isNestedScrollDispatcherNodeFixEnabled</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I36c18840c708660e9cbad345024299bfd80cde3c">I36c18</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">@CheckResult</code>
+      annotation on the
+      <code translate="no" dir="ltr">SemanticsNode</code>
+      finder and selector functions to enforce usage of returned values. (
+      <a href="https://android-review.googlesource.com/#/q/I6f86e14a50de6cc72d71b5872fad78bda7706072">I6f86e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/201652748">b/201652748</a>
+      )
+    </li>
+    <li>
+      Improve the performance of the content capture process (
+      <a href="https://android-review.googlesource.com/#/q/I3c7c05f87eb2306ab39be829e838d5b10df2a7c3">I3c7c0</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">CompositionLocal</code>
+      that can be used to modify the brush of Autofill's successful filling highlight. (
+      <a href="https://android-review.googlesource.com/#/q/I52329ea7905c1a0a2db56caa36f4b9d53f3dd0d9">I52329</a>
+      )
+    </li>
+    <li>
+      Introduced new Interpolatable interface which allows for automatic interpolation between different types, assuming one type knows how to convert from the other. This interface is leveraged in several compose types like Brush and Shape, but can be utilized externally as well. (
+      <a href="https://android-review.googlesource.com/#/q/I58eab524eadd08c41f1809a2815a6311ad179aee">I58eab</a>
+      )
+    </li>
+    <li>
+      Now Scrollable supports 2 dimensional mouse wheel scroll events better. A new test API landed to help test use cases in
+      <code translate="no" dir="ltr">MouseInjectionScope</code>
+      . We also introduced a new overload for scroll methods in
+      <code translate="no" dir="ltr">MouseInjectionScope</code>
+      and a flag to control the new behavior called
+      <code translate="no" dir="ltr">isMouseWheel1DAxisLockingEnabled</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I136dfe2d0887c1900fb1896599ec4b4aa1b31ac7">I136df</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">DeviceConfigurationOverrides</code>
+      for keyboard type &amp; state, navigation type and state, touchscreen state, and UI mode type (
+      <a href="https://android-review.googlesource.com/#/q/I282f0e65200637c02636d6e385d8ca4fde97b974">I282f0</a>
+      )
+    </li>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">LineHeightStyle.Mode</code>
+      called
+      <code translate="no" dir="ltr">Tight</code>
+      . This mode helps enforce smaller line heights even when they may possibly cut taller glyphs. (
+      <a href="https://android-review.googlesource.com/#/q/Id38495accc4fe059f6e2318eaafb648f36fe0f99">Id3849</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BaselineShift</code>
+      now has an Unspecified value to prevent boxing
+      <code translate="no" dir="ltr">BaselineShift</code>
+      ,
+      <code translate="no" dir="ltr">Hyphens</code>
+      ,
+      <code translate="no" dir="ltr">LineBreak</code>
+      ,
+      <code translate="no" dir="ltr">TextAlign</code>
+      , and
+      <code translate="no" dir="ltr">TextDirection</code>
+      now have
+      <code translate="no" dir="ltr">isSpecified</code>
+      helper functions
+      <code translate="no" dir="ltr">Hyphens</code>
+      ,
+      <code translate="no" dir="ltr">TextAlign</code>
+      ,
+      <code translate="no" dir="ltr">TextDecoration</code>
+      , and
+      <code translate="no" dir="ltr">TextDirection</code>
+      now have
+      <code translate="no" dir="ltr">valueOf()</code>
+      and value methods enabling efficient serialization/deserialization. (
+      <a href="https://android-review.googlesource.com/#/q/I8d44cb45591118b5f8b0074f347cbd1d23a94501">I8d44c</a>
+      )
+    </li>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">getDisplayName</code>
+      method interface to allow custom display names for preview parameter instances. (
+      <a href="https://android-review.googlesource.com/#/q/I19bdfbff9392179ebb9d033bcfb11d124c0f366e">I19bdf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/241699422">b/241699422</a>
+      )
+    </li>
+    <li>
+      When Dp values are compared with Unspecified using less-than or greater-than, it now always returns false. Using
+      <code translate="no" dir="ltr">Dp.compareTo(Unspecified)</code>
+      always returns 0. Setting the flag
+      <code translate="no" dir="ltr">ComposeUiUnitFlags.isDpCompareToChanged</code>
+      to false will return
+      <code translate="no" dir="ltr">Dp.compareTo()</code>
+      to is former behavior, where comparing Unspecified with less-than and greater-than don't always return false, and
+      <code translate="no" dir="ltr">compareTo()</code>
+      with Unspecified matches the behavior of
+      <code translate="no" dir="ltr">Float.compareTo()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ifa88bbc81f180694728ab8f4418a698c836330ba">Ifa88b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/429221319">b/429221319</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Moving the default minSdk from API 21 to API 23 (
+      <a href="https://android-review.googlesource.com/#/q/Ibdfca5942dbb414ca07594ba240093db14aad4df">Ibdfca</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/380448311">b/380448311</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/435705964">b/435705964</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/435705223">b/435705223</a>
+      )
+    </li>
+    <li>
+      Fixes an issue that prevented the creation of new
+      <code translate="no" dir="ltr">AndroidComposeViews</code>
+      while a transition is ongoing. (
+      <a href="https://android-review.googlesource.com/#/q/I2e23e3f220761547b505655534d8fda37f9154b4">I2e23e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/340894487">b/340894487</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/287484338">b/287484338</a>
+      )
+    </li>
+    <li>
+      Fixes a color bug when using a vector drawable that uses one color and the
+      <code translate="no" dir="ltr">fillColor</code>
+      is neither fully opaque nor fully transparent. (
+      <a href="https://android-review.googlesource.com/#/q/I3b04195622a5c24dab6e7f4f201dc7c27092a3d5">I3b041</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/328677973">b/328677973</a>
+      )
+    </li>
+    <li>
+      Fixes an issue where icons loaded via
+      <code translate="no" dir="ltr">painterResource</code>
+      with theme-specific colors didn't update on theme changes. (
+      <a href="https://android-review.googlesource.com/#/q/I85ea086649ec3fd9d9170dbdd3ae64630cc44651">I85ea0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/424416571">b/424416571</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">onFillData</code>
+      and
+      <code translate="no" dir="ltr">fillableData</code>
+      semantics (
+      <a href="https://android-review.googlesource.com/#/q/I45d9e14d93785392eaba5df39e1077d85e19a522">I45d9e</a>
+      )
+    </li>
+    <li>
+      Platform-specific state encoding is now always enabled in
+      <code translate="no" dir="ltr">StateRestorationTester</code>
+      . This aligns test behavior with real application state restoration, such as Parcelization on Android. (
+      <a href="https://android-review.googlesource.com/#/q/I38211a72d5d553fad43564c97aa2798296981f04">I38211</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/408154192">b/408154192</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/382294247">b/382294247</a>
+      )
+    </li>
+    <li>
+      Fixes occasional crashes when requesting focus. (
+      <a href="https://android-review.googlesource.com/#/q/57b31a11cc34d3bc7624d89e30475326625cc66e">57b31a11</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/408154192">b/431111149</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_19_2" data-text="Version 1.9" tabindex="-1">Version 1.9</h2>

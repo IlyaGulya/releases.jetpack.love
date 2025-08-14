@@ -1,0 +1,85 @@
+libraryId: compose-animation
+groupId: androidx.compose
+version: 1.10.0-alpha01
+releaseDate: 2025-08-13
+#language=html
+changelogHtml: |
+  <h3 id="1.10.0-alpha01" data-text="Version 1.10.0-alpha01" tabindex="-1">Version 1.10.0-alpha01</h3>
+  <p>August 13, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.animation:animation-*:1.10.0-alpha01</code>
+    is released. Version 1.10.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c30d03ab9e19dcf35e8b79438f0d91ee74cae557..c359e97fece91f3767a7d017e9def23c7caf1f53/compose/animation">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>New API to allow dynamically enable and disable shared elements that also allows accounting for whether there is already an ongoing shared element transition.</li>
+    <li>New API to set up an alternative target bounds when the target shared element is disposed during the transition.</li>
+    <li>
+      New API to obtain the
+      <code translate="no" dir="ltr">LayoutCoordinates</code>
+      of a
+      <code translate="no" dir="ltr">LookaheadScope</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I18dd441208500dbd29276f834421db3134047390">I18dd4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/409819304">b/409819304</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/395670637">b/395670637</a>
+      )
+    </li>
+    <li>
+      New modifier
+      <code translate="no" dir="ltr">Modifier.skipToLookaheadPosition</code>
+      in
+      <code translate="no" dir="ltr">SharedTransitionScope</code>
+      for anchoring a layout at the target position during a shared transition. (
+      <a href="https://android-review.googlesource.com/#/q/I887347cb86f334564d938300eb81d277a9c4be4b">I88734</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Simplified
+      <code translate="no" dir="ltr">renderInSharedTransitionOverlay</code>
+      by removing the
+      <code translate="no" dir="ltr">clipInOverlayDuringTransition</code>
+      lambda as this has been rarely used. Introduced new factory method for
+      <code translate="no" dir="ltr">SharedContentConfig</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id01b23ce2acd97cd5c2fdd41ed39c85f1d835192">Id01b2</a>
+      )
+    </li>
+    <li>
+      Added a set of Defaults for shared element, shared bounds,
+      <code translate="no" dir="ltr">renderInSharedTransitionOverlay</code>
+      configurations. These defaults are now accessible through public APIs. (
+      <a href="https://android-review.googlesource.com/#/q/Id23cc7f8e55f83d2128ff6e51de754e659923a15">Id23cc</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ScaleToBounds</code>
+      ResizeMode has been renamed to
+      <code translate="no" dir="ltr">scaleToBounds</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I5ac508eed2c833f0c091584b5b929b50ce1f9825">I5ac50</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Moving the default minSdk from API 21 to API 23 (
+      <a href="https://android-review.googlesource.com/#/q/Ibdfca5942dbb414ca07594ba240093db14aad4df">Ibdfca</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/380448311">b/380448311</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/435705964">b/435705964</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/435705223">b/435705223</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_19_2" data-text="Version 1.9" tabindex="-1">Version 1.9</h2>
