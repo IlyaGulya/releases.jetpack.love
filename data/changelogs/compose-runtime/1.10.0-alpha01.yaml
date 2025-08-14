@@ -1,0 +1,108 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.10.0-alpha01
+releaseDate: 2025-08-13
+#language=html
+changelogHtml: |
+  <h3 id="1.10.0-alpha01" data-text="Version 1.10.0-alpha01" tabindex="-1">Version 1.10.0-alpha01</h3>
+  <p>August 13, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.10.0-alpha01</code>
+    is released. Version 1.10.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c30d03ab9e19dcf35e8b79438f0d91ee74cae557..c359e97fece91f3767a7d017e9def23c7caf1f53/compose/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Introduces the retain API. Like
+      <code translate="no" dir="ltr">rememberSaveable</code>
+      , retain can persist and save remembered values that leave the composition hierarchy. Retained values are not serialized and have a shorter lifespan than saved values, and behave similarly to an androidx
+      <code translate="no" dir="ltr">ViewModel</code>
+      . See the documentation for more details. (
+      <a href="https://android-review.googlesource.com/#/q/Ia31056d0ea23d6358a11d8ad9f472b51f41879d8">Ia3105</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177562901">b/177562901</a>
+      )
+    </li>
+    <li>
+      Added an
+      <code translate="no" dir="ltr">awaitOrScheduleNextCompositionEnd()</code>
+      API, which issues a callback when the Recomposer finishes composing the current frame. If the Recomposer isn't currently composing a frame, this API suspends until the next frame's composition finishes and schedules a new frame to be composed. (
+      <a href="https://android-review.googlesource.com/#/q/Ib873cd7d64e63f6337232634faf04ee9e711f7fd">Ib873c</a>
+      )
+    </li>
+    <li>
+      Add a non-unit returning composition local provider API (
+      <a href="https://android-review.googlesource.com/#/q/I22521efe847f230577e3b00311221677060d9d20">I22521</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/271871288">b/271871288</a>
+      )
+    </li>
+    <li>
+      Added a feature flag,
+      <code translate="no" dir="ltr">isMovableContentUsageTrackingEnabled</code>
+      , that allows tracking the usage of movable content to avoid some overhead when initially creating the content. This feature flags is currently disabled by default. (
+      <a href="https://android-review.googlesource.com/#/q/Ia713da2a0882b134a4819f98a73caf97b994b64a">Ia713d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixes a crash in movable content when it is moved between subcompositions. (
+      <a href="https://android-review.googlesource.com/#/q/I3fa1e3aec35022431b7579bf7b41458c5d53e636">I3fa1e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/436858107">b/436858107</a>
+      )
+    </li>
+    <li>
+      Fixes a bug with part of a composable stack trace missing when inside multiple nested subcompositions. (
+      <a href="https://android-review.googlesource.com/#/q/I98c6ffd441e8ac999a11c9bcfd902411ba37055f">I98c6f</a>
+      )
+    </li>
+    <li>
+      Moving the default minSdk from API 21 to API 23 (
+      <a href="https://android-review.googlesource.com/#/q/Ibdfca5942dbb414ca07594ba240093db14aad4df">Ibdfca</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/380448311">b/380448311</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/435705964">b/435705964</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/435705223">b/435705223</a>
+      )
+    </li>
+    <li>
+      Fixed a race condition when internal state of a pausable composition was being updated from multiple threads. (
+      <a href="https://android-review.googlesource.com/#/q/I0389587852f5758890d594c1b5466433c458bfe7">I03895</a>
+      )
+    </li>
+    <li>
+      Updates composition registration observer to be called before initial composition. (
+      <a href="https://android-review.googlesource.com/#/q/I4adcae354abb1c55c66d213812b10830614f8e9c">I4adca</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/430600932">b/430600932</a>
+      )
+    </li>
+    <li>
+      Minor bug fix to make
+      <code translate="no" dir="ltr">AutoboxingStateValuePropertyDetector</code>
+      compatible for both K1 and K2. (
+      <a href="https://android-review.googlesource.com/#/q/Ie81c19fdfb3d88da4b56ae251a3a462dbe927923">Ie81c1</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Make the runtime-rxjava2 artifact multiplatform and add the JVM as a supported target. (
+      <a href="https://android-review.googlesource.com/#/q/I5409efb25f70afcb01d3532df3087609d835991b">I5409e</a>
+      )
+    </li>
+    <li>
+      Make the runtime-rxjava3 artifact multiplatform and add the JVM as a supported target. (
+      <a href="https://android-review.googlesource.com/#/q/I97e841cbb23a687fbeb7b2808200c4899aa34037">I97e84</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_19_2" data-text="Version 1.9" tabindex="-1">Version 1.9</h2>

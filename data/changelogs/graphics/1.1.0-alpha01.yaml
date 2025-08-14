@@ -1,124 +1,21 @@
 libraryId: graphics
 groupId: androidx.graphics
 version: 1.1.0-alpha01
-releaseDate: 2024-12-11
+releaseDate: 2025-08-13
 #language=html
 changelogHtml: |
-  <h3 id="graphics-shapes-1.1.0-alpha01" data-text="Version 1.1.0-alpha01" tabindex="-1">Version 1.1.0-alpha01</h3>
-  <p>December 11, 2024</p>
+  <h3 id="graphics-path-1.1.0-alpha01" data-text="Version 1.1.0-alpha01" tabindex="-1">Version 1.1.0-alpha01</h3>
+  <p>August 13, 2025</p>
   <p>
-    <code translate="no" dir="ltr">androidx.graphics:graphics-*:1.1.0-alpha01</code>
+    <code translate="no" dir="ltr">androidx.graphics:graphics-path:1.1.0-alpha01</code>
     is released. Version 1.1.0-alpha01 contains
-    <a href="https://android.googlesource.com/platform/frameworks/support/+log/17aea5b083ca354fcad646462e8d3d0c211f1eae..46295bc0b75a16f452e8e0090e8de41073d4dbb6/graphics/graphics-shapes">these commits</a>
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/8a05a22af450d589ef911d772a001a49dcb05b71..c359e97fece91f3767a7d017e9def23c7caf1f53/graphics/graphics-path">these commits</a>
     .
   </p>
-  <p><strong>New Features</strong></p>
-  <ul>
-    <li>
-      Reworked the main demo into a generic Shape Editor. This allows you to import shapes from a svg path, manually edit the detected features in case of misses in the automatic process, and export the result into code that can be used in production code. (
-      <a href="https://android-review.googlesource.com/#/q/I1ac13e43844a89d4fd9c3f59d8ce93fd3c8c45d2">I1ac13</a>
-      )
-    </li>
-    <li>
-      Replace angle measurements for shape outline progress with curve length measurements, this allows more complex shapes to be used for morphing. (
-      <a href="https://android-review.googlesource.com/#/q/I75478ac712c29895c073aa7b5c29f1799192a9fd">I75478</a>
-      ) ,
-      <a href="https://android-review.googlesource.com/#/q/I390ddc7a26b83c10a60d8f75ea8a1d4b640e0e07">I390dd</a>
-    </li>
-    <li>
-      Improved the feature mapping algorithm, so more morphs should look more natural. (
-      <a href="https://android-review.googlesource.com/#/q/I83287a0bd2a470f8a38b67c77bd19a957c054046">I83287</a>
-      )
-    </li>
-  </ul>
-  <p><strong>API Changes</strong></p>
-  <ul>
-    <li>
-      Add SVG path import and feature serializer. The usual flow is:
-      <ul>
-        <li>
-          Use the new
-          <code translate="no" dir="ltr">SvgPathParser.parseFeatures()</code>
-          to convert a svg path (the value of the
-          <code translate="no" dir="ltr">d</code>
-          attribute on the
-          <code translate="no" dir="ltr">path</code>
-          element of a svg) into a
-          <code translate="no" dir="ltr">List&lt;Feature&gt;</code>
-          .
-        </li>
-        <li>
-          That can be modified, then serialized into a string with
-          <code translate="no" dir="ltr">FeatureSerializer.serialize()</code>
-          .
-        </li>
-        <li>
-          The resulted string can be used in production code, importing it with
-          <code translate="no" dir="ltr">FeatureSerializer.parse()</code>
-        </li>
-        <li>
-          Note that the steps 1 &amp; 2 are done once, and can be done with the new app. Production code should only need to do step 3. (
-          <a href="https://android-review.googlesource.com/#/q/I9bd005781c68a241ce3af2eca4655cf6bb166613">I9bd00</a>
-          ,
-          <a href="https://issuetracker.google.com/issues/371196190">b/371196190</a>
-          ), (
-          <a href="https://android-review.googlesource.com/#/q/Ic3842e71c464d42e8bd4295e16eff8c8f26c78ca">Ic3842</a>
-          ), (
-          <a href="https://android-review.googlesource.com/#/q/If68edad7e838351be9e8e8be9e5977adb4f4f7e3">If68ed</a>
-          ), (
-          <a href="https://android-review.googlesource.com/#/q/I1025182593d5a82dab88ddda067a55bf82b281fa">I10251</a>
-          )
-        </li>
-      </ul>
-    </li>
-    <li>
-      Expose polygon features and feature types. More generic
-      <code translate="no" dir="ltr">RoundedPolygons</code>
-      can now be created with the base constructor that takes a
-      <code translate="no" dir="ltr">List&lt;Features&gt;</code>
-      . Features are mainly a list of Cubic bezier curves, but they are tagged to help the Morph algorithm match between the start and end shapes (convex corners are mapped to convex corners and concave corners are mapped to concave corners). (
-      <a href="https://android-review.googlesource.com/#/q/I61e769ebad7b07c35b4ce28221364d022ab34978">I61e76</a>
-      ), (
-      <a href="https://android-review.googlesource.com/#/q/I1fc5c5d42d41f1be5eb46b7d49fc3631a02144cf">I1fc5c</a>
-      )
-    </li>
-    <li>
-      Adds support for
-      <code translate="no" dir="ltr">watchosDeviceArm64</code>
-      KMP target and target kotlin 1.9. (
-      <a href="https://android-review.googlesource.com/#/q/Icf15d056ce2380ca3c733fb1a93fd502f60b40e4">Icf15d</a>
-      ,
-      <a href="https://issuetracker.google.com/issues/364652024">b/364652024</a>
-      )
-    </li>
-  </ul>
   <p><strong>Bug Fixes</strong></p>
   <ul>
     <li>
-      Fixed edge case when the last feature was empty. (
-      <a href="https://android-review.googlesource.com/#/q/I390ddc7a26b83c10a60d8f75ea8a1d4">I390dd</a>
-      )
-    </li>
-    <li>
-      Make
-      <code translate="no" dir="ltr">RoundedPolygon</code>
-      creation more robust. (
-      <a href="https://android-review.googlesource.com/#/q/Ib862c9c59537f28a2cd3ac469ce883734add1269">Ib862c</a>
-      ,
-      <a href="https://issuetracker.google.com/issues/360888486">b/360888486</a>
-      )
-    </li>
-    <li>
-      Fix a bug on
-      <code translate="no" dir="ltr">RoundedPolygon</code>
-      initialization. (
-      <a href="https://android-review.googlesource.com/#/q/I83ddb2f481dc6cdbbe77f03f7b9ecd4be9462026">I83ddb</a>
-      )
-    </li>
-    <li>
-      Fix an error in the algorithm to estimate the center of the polygon. (
-      <a href="https://android-review.googlesource.com/#/q/Ida1477637391618c3437521f53809dd140e10c36">Ida147</a>
-      )
+      Add implementation for conversion from conic to quadratic and use it on host platforms.
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/f059b1080eb84c623ac43156c5361b53020156de">f059b1</a>
     </li>
   </ul>
-  <h2 id="graphics_shapes_version_10_2" data-text="Graphics Shapes Version 1.0" tabindex="-1">Graphics Shapes Version 1.0</h2>

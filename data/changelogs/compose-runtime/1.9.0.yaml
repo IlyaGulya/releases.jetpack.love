@@ -1,0 +1,45 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.9.0
+releaseDate: 2025-08-13
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0" data-text="Version 1.9.0" tabindex="-1">Version 1.9.0</h3>
+  <p>August 13, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.9.0</code>
+    is released. Version 1.9.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5735a11c1798c2f8b419dfdc02347578a6ebf870..44da9aeaf3fa617c6f81f887691b37fe901109aa/compose/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.8.0</strong></p>
+  <ul>
+    <li>
+      Lint checks shipped with Compose now require a minimum AGP version of 8.8.2. If you are unable to upgrade AGP, you can instead upgrade Lint on its own by using
+      <code translate="no" dir="ltr">android.experimental.lint.version=8.8.2</code>
+      (or a newer version) in your gradle.properties. To run Compose lint checks inside the IDE, Android Studio Ladybug or newer is required.
+    </li>
+    <li>
+      A new runtime-annotation library has been created. This contains annotation definitions without a dependency on Compose runtime, so it can be used from non-Compose modules.
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">@Stable</code>
+          ,
+          <code translate="no" dir="ltr">@Immutable</code>
+          , and
+          <code translate="no" dir="ltr">@StableMarker</code>
+          have been moved to runtime-annotation, to allow annotating non-Compose modules
+        </li>
+        <li>
+          <code translate="no" dir="ltr">@FrequentlyChangingValue</code>
+          and
+          <code translate="no" dir="ltr">@RememberInComposition</code>
+          have been added to runtime-annotation.
+          <code translate="no" dir="ltr">@FrequentlyChangingValue</code>
+          marks declarations that can cause frequent recompositions, and
+          <code translate="no" dir="ltr">@RememberInComposition</code>
+          marks declarations that should be remembered in composition. Corresponding lint checks warn for incorrect usage.
+        </li>
+      </ul>
+    </li>
+  </ul>

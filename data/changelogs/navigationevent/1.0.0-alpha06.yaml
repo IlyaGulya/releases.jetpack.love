@@ -1,0 +1,318 @@
+libraryId: navigationevent
+groupId: androidx.navigationevent
+version: 1.0.0-alpha06
+releaseDate: 2025-08-13
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha06" data-text="Version 1.0.0-alpha06" tabindex="-1">Version 1.0.0-alpha06</h3>
+  <p>August 13, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigationevent:navigationevent-*:1.0.0-alpha06</code>
+    is released. Version 1.0.0-alpha06 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b4562c71af5649ad7262ba4c7925899e6e93bdff..c359e97fece91f3767a7d017e9def23c7caf1f53/navigationevent">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <p><strong>Passive Listeners API</strong></p>
+  <p>
+    You can now pass
+    <strong>custom contextual information</strong>
+    from any navigation host and
+    <strong>passively listen</strong>
+    to gesture state changes from anywhere in your UI. This enables context-aware animations for predictive back and other gesture-driven navigation.
+  </p>
+  <p>This feature has two parts:</p>
+  <ol>
+    <li>
+      <strong>Providing Info</strong>
+      - Use
+      <code translate="no" dir="ltr">NavigationEventInfo</code>
+      to carry custom data.
+    </li>
+    <li>
+      <strong>Consuming State</strong>
+      - Use
+      <code translate="no" dir="ltr">dispatcher.state</code>
+      (
+      <code translate="no" dir="ltr">NavigationEventState</code>
+      ) to observe gesture progress and context.
+    </li>
+  </ol>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">NavigationEventCallback</code>
+      now exposes
+      <code translate="no" dir="ltr">setInfo(currentInfo, previousInfo)</code>
+      method to set gesture context in one call (
+      <a href="https://android-review.googlesource.com/#/q/I1d5e7e5ce95016448869088b18fd9ac5c775b469">I1d5e7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/424470518">b/424470518</a>
+      ).
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavigationEventHandler</code>
+      adds a new overload that accepts
+      <code translate="no" dir="ltr">currentInfo</code>
+      and
+      <code translate="no" dir="ltr">previousInfo</code>
+      , making it the primary API for supplying context in Compose apps (
+      <a href="https://android-review.googlesource.com/#/q/I6ecd3707a3f521b9e1d828f658b27ffdd856e516">I6ecd3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/424470518">b/424470518</a>
+      ).
+    </li>
+  </ul>
+  <p>Example:</p>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-w">  </span><span class="devsite-syntax-kd">data</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">MyScreenInfo</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">screenName</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kt">String</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">NavigationEventInfo</span>
+
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">NavigationEventHandler</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-n">enabled</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kc">true</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-n">currentInfo</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">MyScreenInfo</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"Details Screen"</span><span class="devsite-syntax-p">),</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-n">previousInfo</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">MyScreenInfo</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"Home Screen"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-cm">/* Handle back completion */</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  </code></pre>
+  </devsite-code>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">NavigationEventDispatcher</code>
+      now exposes
+      <code translate="no" dir="ltr">dispatcher.state</code>
+      and
+      <code translate="no" dir="ltr">dispatcher.getState&lt;T&gt;()</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/If7faebaedefbc51a0dcec6ac7e1e08c858b4014d">If7fae</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ia90ca93bf3030c059bf4d63a817e182d59d10c2f">Ia90ca</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/424470518">b/424470518</a>
+      ). These
+      <code translate="no" dir="ltr">StateFlow</code>
+      -based APIs let any UI observe gesture progress and contextual data without handling the event directly.
+    </li>
+  </ul>
+  <p>Example:</p>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-w">  </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">gestureState</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">by</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">LocalNavigationEventDispatcherOwner</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">current</span><span class="devsite-syntax-o">!!</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">navigationEventDispatcher</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">state</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">collectAsState</span><span class="devsite-syntax-p">()</span>
+
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">progress</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">gestureState</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">progress</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-c1">// Returns latestEvent.progress or 0F</span>
+
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-k">when</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">state</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">gestureState</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-k">is</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">InProgress</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;<span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">toScreen</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">state</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">currentInfo</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">as</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">MyScreenInfo</span>
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">fromScreen</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">state</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">previousInfo</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">as</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">MyScreenInfo</span>
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-n">println</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"Navigating from </span><span class="devsite-syntax-si">${</span><span class="devsite-syntax-n">fromScreen</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">screenName</span><span class="devsite-syntax-si">}</span><span class="devsite-syntax-s"> to </span><span class="devsite-syntax-si">${</span><span class="devsite-syntax-n">toScreen</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">screenName</span><span class="devsite-syntax-si">}</span><span class="devsite-syntax-s">"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-k">is</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Idle</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;<span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-cm">/* Idle state */</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+  </code></pre>
+  </devsite-code>
+  <ul>
+    <li>
+      <p>
+        Add
+        <code translate="no" dir="ltr">progress</code>
+        property to
+        <code translate="no" dir="ltr">NavigationEventState</code>
+        (
+        <a href="https://android-review.googlesource.com/#/q/I7b196d925d66d6aafbfb4cf7032fab9bc470e41b">I7b196</a>
+        ) that returns
+        <code translate="no" dir="ltr">latestEvent.progress</code>
+        when in progress, or
+        <code translate="no" dir="ltr">0F</code>
+        otherwise:
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">progress</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">state</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">progress</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        Add
+        <code translate="no" dir="ltr">NavigationEventDispatcherOwner</code>
+        composable to create, link, and dispose of
+        <code translate="no" dir="ltr">NavigationEventDispatcher</code>
+        instances hierarchically. Enable dynamic control of the dispatcher's enabled state and automatic cleanup.
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@Composable</span>
+  <span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">Sample</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">NavigationEventDispatcherOwner</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">enabled</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kc">true</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">localDispatcherOwner</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">LocalNavigationEventDispatcherOwner</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">current</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">isPassthrough</code>
+      parameter has been removed from the
+      <code translate="no" dir="ltr">NavigationEventCallback</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I99028e7813d04b4cefca5fcae9d17da38514afd3">I99028</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/424470518">b/424470518</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavigationEventState</code>
+      constructors are now internal. For testing, update the state (defaults to
+      <code translate="no" dir="ltr">Idle</code>
+      ) via the
+      <code translate="no" dir="ltr">DirectNavigationEventInputHandler</code>
+      . Call
+      <code translate="no" dir="ltr">handleOnStarted</code>
+      or
+      <code translate="no" dir="ltr">handleOnProgressed</code>
+      to set state to
+      <code translate="no" dir="ltr">InProgress</code>
+      , and
+      <code translate="no" dir="ltr">handleOnCompleted</code>
+      or
+      <code translate="no" dir="ltr">handleOnCancelled</code>
+      to return it to
+      <code translate="no" dir="ltr">Idle</code>
+      . To update
+      <code translate="no" dir="ltr">NavigationEventInfo</code>
+      , use
+      <code translate="no" dir="ltr">NavigationEventCallback.setInfo</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I93dca447718f45cbcceb79367ec422c647660c71">I93dca</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/424470518">b/424470518</a>
+      )
+    </li>
+    <li>
+      Added default parameters to
+      <code translate="no" dir="ltr">NavigationEvent</code>
+      to allow for easier instantiation and to simplify testing which should be used in place of
+      <code translate="no" dir="ltr">TestNavigationEvent</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I5dc49bfda688c13287343d711eb30424925b00ff">I5dc49</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I232f4e164c4fc370dbce5fec7d990de6e0de4daa">I232f4</a>
+      )
+    </li>
+    <li>
+      Added a
+      <code translate="no" dir="ltr">TestNavigationEventCallback</code>
+      for testing navigation events with specific current/previous states. (
+      <a href="https://android-review.googlesource.com/#/q/Idd22eb663641e57e0bbd22a4f6373d81d9c5bd09">Idd22e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/424470518">b/424470518</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavigationEventInputHandler</code>
+      has been made into an abstract class to replace the previous
+      <code translate="no" dir="ltr">AbstractNavigationEventInputHandler</code>
+      with an implementation in
+      <code translate="no" dir="ltr">DirectNavigationEventInputHandler</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Iadde55d642f71285a8887ae4145f36eb801bbb6e">Iadde5</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ifed405ac4658fbfac889bed991266cc04e65cdd0">Ifed40</a>
+      <a href="https://android-review.googlesource.com/#/q/I3897cdedbeabbb22174560595413e215b9237d95">I3897c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/432616296">b/432616296</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/435416924">b/435416924</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">send*</code>
+      functions in
+      <code translate="no" dir="ltr">NavigationEventInputHandler</code>
+      have had their prefixes renamed to
+      <code translate="no" dir="ltr">handle*</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iffcaf608654332925a0506698a2b0b2857b267f1">Iffcaf</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">OnBackInvokedInputHandler</code>
+      now extends the newly
+      <code translate="no" dir="ltr">abstract</code>
+      <code translate="no" dir="ltr">NavigationInputHandler</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib45aa401c332a5414269eacd29277bf10fbd3d82">Ib45aa</a>
+      )
+    </li>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">NavigationEventDispatcherOwner</code>
+      to require a parent dispatcher where you must explicitly pass
+      <code translate="no" dir="ltr">null</code>
+      to create a root dispatcher. (
+      <a href="https://android-review.googlesource.com/#/q/Ia6f647f5d4aa22ebf2cf31315084100b90ada6d3">Ia6f64</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/431534103">b/431534103</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Improved efficiency by avoiding collection copies in
+      <code translate="no" dir="ltr">NavigationEventDispatcher.dispose()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4ab09c1236714c1d1e81c89bd25b47738ca419dc">I4ab09</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where the
+      <code translate="no" dir="ltr">NavigationEventHandler</code>
+      did not correctly respond to changes in its enabled state. (
+      <a href="https://android-review.googlesource.com/#/q/Ia5268cc686cac9eab03fa4d430cf1171d49083f2">Ia5268</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I19bece87be51a3f34896323f0c8dc0f8e18a3659">I19bec</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I5be5c49bc7b430b16c7a7c9a86b1b18820682be4">I5be5c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/431534103">b/431534103</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Docs Updates</strong></p>
+  <ul>
+    <li>
+      KDocs for
+      <code translate="no" dir="ltr">NavigationEvent</code>
+      expanded to clarify its role as a unified event wrapper and detail property behavior across different navigation types (gestures, clicks). (
+      <a href="https://android-review.googlesource.com/#/q/I91e8d1d7fddb0b2b329422d3344a59c2dc506201">I91e8d</a>
+      )
+    </li>
+    <li>
+      Updated documentation for system back handling Compose APIs (
+      <code translate="no" dir="ltr">BackHandler</code>
+      ,
+      <code translate="no" dir="ltr">PredictiveBackHandler</code>
+      ,
+      <code translate="no" dir="ltr">NavigationEventHandler</code>
+      ) to call out behavior specifically around callback order. (
+      <a href="https://android-review.googlesource.com/#/q/I7ab943c77b627402cb2cbfbca4fe790be35934cf">I7ab94</a>
+      , )
+    </li>
+  </ul>
+  <p><strong>Dependency Update</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">NavigationEvent</code>
+      now depends on Compose Runtime 1.9.0-beta03 which allows the
+      <code translate="no" dir="ltr">navigationevent-compose</code>
+      artifact to support all KMP targets. (
+      <a href="https://android-review.googlesource.com/#/q/Ia1b87ca8925ce4d58de6895853e26b821984ea46">Ia1b87</a>
+      )
+    </li>
+  </ul>

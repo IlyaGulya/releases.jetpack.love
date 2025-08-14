@@ -1,0 +1,255 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.10.0-alpha01
+releaseDate: 2025-08-13
+#language=html
+changelogHtml: |
+  <h3 id="1.10.0-alpha01" data-text="Version 1.10.0-alpha01" tabindex="-1">Version 1.10.0-alpha01</h3>
+  <p>August 13, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.10.0-alpha01</code>
+    is released. Version 1.10.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c30d03ab9e19dcf35e8b79438f0d91ee74cae557..c359e97fece91f3767a7d017e9def23c7caf1f53/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Update Pager's prefetch strategy to use Cache Window instead of the default 1 item in the direction of the scroll. Now initial prefetching is enabled by default in Pager and prefetching will be based on the size of the window worth 1 viewport, that is, we will try to fill 1 whole view port with prefetched items. Items will be kept around longer as well. (
+      <a href="https://android-review.googlesource.com/#/q/I4d45ece5bab78dc241618d29d3701e5463789aa6">I4d45e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/292136289">b/292136289</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ComposeFoundationLayoutFlags.isWindowInsetsOptimizationEnabled</code>
+      flag has been added to allow disabling a
+      <code translate="no" dir="ltr">WindowInsets</code>
+      performance optimization should the new implementation cause a behavioral change. (
+      <a href="https://android-review.googlesource.com/#/q/I8e9129e7cdafc6bc4da61c0b3c0883dbf5376ef5">I8e912</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SnapFlingBehavior</code>
+      now allows snap animation specs to overshoot during snapping. This allows enables e.g. a bouncy spring spec as the
+      <code translate="no" dir="ltr">snapAnimationSpec</code>
+      to produce a bouncy snap animation. Overshooting values continue to be ignored when performing an approach with the snap spec. (
+      <a href="https://android-review.googlesource.com/#/q/I373c2f58fe859a25014c707913041eeb5975f63d">I373c2</a>
+      )
+    </li>
+    <li>
+      Pointer downs with a mouse or touchpad in a
+      <code translate="no" dir="ltr">ComposeView</code>
+      will now clear focus automatically if the pointer down doesn't occur in the bounds of the focused node. This results in a "tap-to-clear focus" UX that is more expected than current behavior when using pointer input devices. This behavior can be opt-ed out of with a new
+      <code translate="no" dir="ltr">AbstractComposeView.isClearFocusOnPointerDownEnabled</code>
+      API. (
+      <a href="https://android-review.googlesource.com/#/q/I6322b0a63e80042f6a558104d0684443e5dc161f">I6322b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/282963174">b/282963174</a>
+      )
+    </li>
+    <li>
+      Now Scrollable supports 2 dimensional mouse wheel scroll events better. A new test API landed to help test use cases in
+      <code translate="no" dir="ltr">MouseInjectionScope</code>
+      . We also introduced a new overload for scroll methods in
+      <code translate="no" dir="ltr">MouseInjectionScope</code>
+      and a flag to control the new behavior called
+      <code translate="no" dir="ltr">isMouseWheel1DAxisLockingEnabled</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I136dfe2d0887c1900fb1896599ec4b4aa1b31ac7">I136df</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">DragGestureNode</code>
+      to use raw pointer input instead of suspending pointer input for optimization. The changes are added behind the flag
+      <code translate="no" dir="ltr">isNonSuspendingPointerInputInDraggableEnabled</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I0fa4b8cedc216b227542f67984796cd02ffc008f">I0fa4b</a>
+      )
+    </li>
+    <li>
+      Annotated some
+      <code translate="no" dir="ltr">AnchoredDraggable</code>
+      APIs with
+      <code translate="no" dir="ltr">@FrequentlyChangingValue</code>
+      .
+      <code translate="no" dir="ltr">offset</code>
+      ,
+      <code translate="no" dir="ltr">requireOffset</code>
+      and
+      <code translate="no" dir="ltr">progress</code>
+      change often and should not be read in composition. Please access these values from the layout and draw phases, effects or otherwise outside of composition instead. (
+      <a href="https://android-review.googlesource.com/#/q/I0553910e71876e3354ee4f94080d5fecfd8cb032">I05539</a>
+      )
+    </li>
+    <li>
+      Removed flags
+      <code translate="no" dir="ltr">isOnScrollChangedCallbackEnabled</code>
+      ,
+      <code translate="no" dir="ltr">isAdjustPointerInputChangeOffsetForVelocityTrackerEnabled</code>
+      ,
+      <code translate="no" dir="ltr">isFlingContinuationAtBoundsEnabled</code>
+      ,
+      <code translate="no" dir="ltr">isAutomaticNestedPrefetchEnabled</code>
+      ,
+      <code translate="no" dir="ltr">DragGesturePickUpEnabled</code>
+      ,
+      <code translate="no" dir="ltr">isPointerInteropFilterDispatchingFixEnabled</code>
+      ,
+      <code translate="no" dir="ltr">isNestedScrollInteropPostFlingFixEnabled</code>
+      ,
+      <code translate="no" dir="ltr">isNestedScrollDispatcherNodeFixEnabled</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I36c18840c708660e9cbad345024299bfd80cde3c">I36c18</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">CompositionLocal</code>
+      that can be used to modify the brush of Autofill's successful filling highlight. (
+      <a href="https://android-review.googlesource.com/#/q/I52329ea7905c1a0a2db56caa36f4b9d53f3dd0d9">I52329</a>
+      )
+    </li>
+    <li>
+      Added customizable focus rect to
+      <code translate="no" dir="ltr">FocusProperties</code>
+      . You can now define a custom focus area instead of defaulting the bounding box of the focusable. This information is used by the focus traversal system and the keep in view logic of scrollable containers. (
+      <a href="https://android-review.googlesource.com/#/q/Id6555453fe54b4a11db6a6ff90ebaa486b02f395">Id6555</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/368378073">b/368378073</a>
+      )
+    </li>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">LineHeightStyle.Mode</code>
+      called
+      <code translate="no" dir="ltr">Tight</code>
+      . This mode helps enforce smaller line heights even when they may possibly cut taller glyphs. (
+      <a href="https://android-review.googlesource.com/#/q/Id38495accc4fe059f6e2318eaafb648f36fe0f99">Id3849</a>
+      )
+    </li>
+    <li>
+      Introduced new Interpolatable interface which allows for automatic interpolation between different types, assuming one type knows how to convert from the other. This interface is leveraged in several compose types like Brush and Shape, but can be utilized externally as well. (
+      <a href="https://android-review.googlesource.com/#/q/I58eab524eadd08c41f1809a2815a6311ad179aee">I58eab</a>
+      )
+    </li>
+    <li>
+      Adds indirect input events and a way to specify coordinate axis to use for scrolling. (
+      <a href="https://android-review.googlesource.com/#/q/I58e7c4acc58c38d1690d5267f7f26b7d5cb83d13">I58e7c</a>
+      )
+    </li>
+    <li>
+      Adds new
+      <code translate="no" dir="ltr">WindowInsets.cutoutPath</code>
+      API to get the path for the display cutout (
+      <a href="https://android-review.googlesource.com/#/q/Ib90b14ad65463a23805a44c7531ae2bdbb49f8df">Ib90b1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/279636456">b/279636456</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">isWindowInsetsDefaultPassThroughEnabled</code>
+      flag has been removed, defaulting WindowInsets to not consuming so that child Views can receive
+      <code translate="no" dir="ltr">WindowInsets</code>
+      by default. (
+      <a href="https://android-review.googlesource.com/#/q/I888e0e284b5f089d19b340258fbe6f2d1f34c7c5">I888e0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/412469666">b/412469666</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">isNonSuspendingPointerInputInDraggableEnabled</code>
+      should be disabled for now. (
+      <a href="https://android-review.googlesource.com/#/q/Ia41c43344d70a63105a5a10e1d83d86551194e97">Ia41c4</a>
+      )
+    </li>
+    <li>
+      Moving the default minSdk from API 21 to API 23 (
+      <a href="https://android-review.googlesource.com/#/q/Ibdfca5942dbb414ca07594ba240093db14aad4df">Ibdfca</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/380448311">b/380448311</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/435705964">b/435705964</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/435705223">b/435705223</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">DraggableAnchors</code>
+      '
+      <code translate="no" dir="ltr">minPosition/maxPosition</code>
+      documentation to indicate these APIs should return Float.NaN in line with other
+      <code translate="no" dir="ltr">DraggableAnchors</code>
+      APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I0460ae646ea59d3fae68fd2f8c27266b1ed7f779">I0460a</a>
+      )
+    </li>
+    <li>
+      Fixed a bug where
+      <code translate="no" dir="ltr">DraggableAnchors#closestAnchor</code>
+      would crash if the anchors were empty (
+      <a href="https://android-review.googlesource.com/#/q/I4e646c562b0d2b3538230ec0474c02f296763a72">I4e646</a>
+      )
+    </li>
+    <li>
+      Performance improvements for
+      <code translate="no" dir="ltr">DraggableAnchors</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/If40650e0a3b70b8402eaf606f159342c5232c68f">If4065</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I0460ae646ea59d3fae68fd2f8c27266b1ed7f779">I0460a</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TextFieldState.edit { }</code>
+      no longer clears the undo history. Instead it creates a standalone undo entry. If the desired behavior is to clear the undo stack after an
+      <code translate="no" dir="ltr">edit</code>
+      call, please use
+      <code translate="no" dir="ltr">TextFieldState.undoState.clearHistory()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I12c14696947b577ffb42d33094b89dedb76dc34b">I12c14</a>
+      )
+    </li>
+    <li>
+      Added support for double-tap to select word in
+      <code translate="no" dir="ltr">SelectionContainer</code>
+      and
+      <code translate="no" dir="ltr">BasicTextField(value, onValueChange)</code>
+      overload. (
+      <a href="https://android-review.googlesource.com/#/q/Ibb06abaa0342a3ccd7483b831f35a2db1b7c27a2">Ibb06a</a>
+      )
+    </li>
+    <li>
+      Minor bug fix to make
+      <code translate="no" dir="ltr">AutoboxingStateValuePropertyDetector</code>
+      compatible for both K1 and K2 (
+      <a href="https://android-review.googlesource.com/#/q/Ie81c19fdfb3d88da4b56ae251a3a462dbe927923">Ie81c1</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">requestRectangleOnScreen</code>
+      requests made by AndroidViews now properly propagates to Compose. This helps views like
+      <code translate="no" dir="ltr">EditText</code>
+      to stay on screen when interacted with. (
+      <a href="https://android-review.googlesource.com/#/q/Ibbf4c7255eff71357780058986ded41dbff03c48">Ibbf4c</a>
+      )
+    </li>
+    <li>
+      Column and Row now correctly pass the item's actual size to
+      <code translate="no" dir="ltr">Alignment.Vertical.align</code>
+      and
+      <code translate="no" dir="ltr">Alignment.Horizontal.align</code>
+      , resolving an issue where custom alignment implementations received an incorrect 0 value. (
+      <a href="https://android-review.googlesource.com/#/q/I3e460b688b02cce7b1d90ac0949aa185a96a88a3">I3e460</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/349722072">b/349722072</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_19_2" data-text="Version 1.9" tabindex="-1">Version 1.9</h2>
