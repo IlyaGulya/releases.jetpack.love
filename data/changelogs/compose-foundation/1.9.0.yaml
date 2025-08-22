@@ -185,4 +185,27 @@ changelogHtml: |
       <a href="https://issuetracker.google.com/issues/406187741">b/406187741</a>
       )
     </li>
+    <li>
+      Breaking change: the
+      <code translate="no" dir="ltr">background</code>
+      and
+      <code translate="no" dir="ltr">border</code>
+      modifier nodes now implement
+      <code translate="no" dir="ltr">SemanticsModifierNode</code>
+      . This can result in new
+      <code translate="no" dir="ltr">SemanticsNodes</code>
+      added to the semantics tree and, therefore, lead to test failures in tests that make assumptions about the semantics tree structure. For example, tests that use
+      <code translate="no" dir="ltr">onChild</code>
+      ,
+      <code translate="no" dir="ltr">onParent</code>
+      ,
+      <code translate="no" dir="ltr">onSibling</code>
+      , and other similar methods to make assertions can fail if a new node is added between the current and target nodes. The preferred way to fix these failures is to add a
+      <code translate="no" dir="ltr">testTag</code>
+      to the target node directly. Another approach is to use a looser matcher, such as
+      <code translate="no" dir="ltr">onNode(hasAnyAncestor(hasText("ancestor")) and hasText("target"))</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I638b56cb3aa3f4f68a354dfa5a42201febee61bc">I638b5</a>
+      )
+    </li>
   </ul>
