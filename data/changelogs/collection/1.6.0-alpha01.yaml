@@ -1,0 +1,100 @@
+libraryId: collection
+groupId: androidx.collection
+version: 1.6.0-alpha01
+releaseDate: 2025-08-27
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-alpha01" data-text="Version 1.6.0-alpha01" tabindex="-1">Version 1.6.0-alpha01</h3>
+  <p>August 27, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.collection:collection-*:1.6.0-alpha01</code>
+    is released. Version 1.6.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/fb376ee6d05727045f41e320bd36923eb385c5f8..cd8ce2bdb21194a81a76325a8e65dad5d7e28681/collection">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Projects released with Kotlin 2.0 require KGP 2.0.0 or newer to be consumed (
+      <a href="https://android-review.googlesource.com/#/q/Idb6b5d6ae1625ab870ffe74f9790ffabc82a63b4">Idb6b5</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Previously
+      <code translate="no" dir="ltr">SparseArrayCompat</code>
+      was returning
+      <code translate="no" dir="ltr">null</code>
+      for valueAt and
+      <code translate="no" dir="ltr">keyAt</code>
+      when passed an index that was within the allocated range, but outside the inserted range
+      <code translate="no" dir="ltr">0..size -1</code>
+      . As documented, this behavior was never expected and outside the valid input range and this change fixes this behavior to instead throw
+      <code translate="no" dir="ltr">IndexOutOfBounds</code>
+      when passed an invalid index. (
+      <a href="https://android-review.googlesource.com/#/q/I684530a49eec7ef915ad227b954a28f0d0913734">I68453</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <p>Thanks Jake Wharton for the following contributions:</p>
+  <ul>
+    <li>
+      Align
+      <code translate="no" dir="ltr">joinToString</code>
+      behavior with platform collections by adding a separator before and the postfix after the truncation indicator when limiting included elements. (
+      <a href="https://android-review.googlesource.com/#/q/I1b7e858a5b777b450dea7d77d8886427305dcce5">I1b7e8</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ScatterSet.hashCode</code>
+      no longer defends against recursion (i.e., the set being added to itself). This brings its behavior in line with
+      <code translate="no" dir="ltr">ScatterMap</code>
+      ,
+      <code translate="no" dir="ltr">HashSet</code>
+      , and the primitive scatter-based sets (e.g.,
+      <code translate="no" dir="ltr">LongSet</code>
+      ). Note that the
+      <code translate="no" dir="ltr">equals</code>
+      method was already susceptible to recursion and
+      <code translate="no" dir="ltr">toString</code>
+      defends against it—both behaviors which align with the other collections. (
+      <a href="https://android-review.googlesource.com/#/q/I9c84afff4c6844addd7b301000efbccc76176df0">I9c84a</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ScatterSet.retainAll</code>
+      function is now inline to avoid creating a lambda instance. (
+      <a href="https://android-review.googlesource.com/#/q/Ifa4b73c85270bfdb7df99806d51aa2101f59a84a">Ifa4b7</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ScatterSet.hashCode</code>
+      no longer uses its capacity in the hash calculation ensuring equal contents but different capacities still produce the same value. (
+      <a href="https://android-review.googlesource.com/#/q/Ic863be0ca47d572f075d2597b46e3131168b3111">Ic863b</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      is now thrown if you call
+      <code translate="no" dir="ltr">remove()</code>
+      before
+      <code translate="no" dir="ltr">next()</code>
+      on an iterator of the
+      <code translate="no" dir="ltr">keys</code>
+      ,
+      <code translate="no" dir="ltr">values</code>
+      , or
+      <code translate="no" dir="ltr">entries</code>
+      collections of
+      <code translate="no" dir="ltr">ScatterMap.asMap()</code>
+      or
+      <code translate="no" dir="ltr">ScatterSet.asSet()</code>
+      . This brings its behavior into alignment with the regular map and set behavior. (
+      <a href="https://android-review.googlesource.com/#/q/I71694ce62de699e461336aa4e71b6059bbc91990">I71694</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_15_2" data-text="Version 1.5" tabindex="-1">Version 1.5</h2>

@@ -1,0 +1,50 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.10.0-alpha02
+releaseDate: 2025-08-27
+#language=html
+changelogHtml: |
+  <h3 id="1.10.0-alpha02" data-text="Version 1.10.0-alpha02" tabindex="-1">Version 1.10.0-alpha02</h3>
+  <p>August 27, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.10.0-alpha02</code>
+    is released. Version 1.10.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c359e97fece91f3767a7d017e9def23c7caf1f53..cd8ce2bdb21194a81a76325a8e65dad5d7e28681/compose/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">@DoNotRetain</code>
+      , which can be used to annotate types that should not be used with the
+      <code translate="no" dir="ltr">retain</code>
+      API, possibly because they will leak resources. (
+      <a href="https://android-review.googlesource.com/#/q/Ie5435ce4b51204035a9ecfb52945d7bc7356f181">Ie5435</a>
+      )
+    </li>
+    <li>
+      Projects released with Kotlin 2.0 require KGP 2.0.0 or newer to be consumed. (
+      <a href="https://android-review.googlesource.com/#/q/Idb6b5d6ae1625ab870ffe74f9790ffabc82a63b4">Idb6b5</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed movable content to correctly compute the operations to the Applier when the content modifies the root node of a composition. When computing changes for movable content an
+      <code translate="no" dir="ltr">up()</code>
+      call could be left pending and undispatched to the applier causing the applier state to be incorrectly positioned for any subsequent use. (
+      <a href="https://android-review.googlesource.com/#/q/I7c5835bab1e6565813567c985f574907cc1d4d56">I7c583</a>
+      ), (
+      <a href="https://android-review.googlesource.com/#/q/I47b70ec2f90273a55aa7d794a58280cf513b66ff">I47b70</a>
+      )
+    </li>
+    <li>
+      Marks
+      <code translate="no" dir="ltr">CheckResult</code>
+      as deprecated because it is not meant to be used. (
+      <a href="https://android-review.googlesource.com/#/q/I329342171d0e1081acaf7929a82895b9c985c71e">I32934</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,150 @@
+libraryId: navigationevent
+groupId: androidx.navigationevent
+version: 1.0.0-alpha07
+releaseDate: 2025-08-27
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha07" data-text="Version 1.0.0-alpha07" tabindex="-1">Version 1.0.0-alpha07</h3>
+  <p>August 27, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigationevent:navigationevent-*:1.0.0-alpha07</code>
+    is released. Version 1.0.0-alpha07 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c359e97fece91f3767a7d017e9def23c7caf1f53..cd8ce2bdb21194a81a76325a8e65dad5d7e28681/navigationevent">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">NavigationEventDispatcher.onHasEnabledCallbacksChanged</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I50e97e80900417fc9f5146b848d3c307e1c694d1">I50e97</a>
+      )
+    </li>
+    <li>
+      Make
+      <code translate="no" dir="ltr">NavigationEventCallback.onEventCompleted()</code>
+      abstract. (
+      <a href="https://android-review.googlesource.com/#/q/I36b3822adb62fa441b70e88c990f36a4f05cfe4d">I36b38</a>
+      )
+    </li>
+    <li>
+      Change
+      <code translate="no" dir="ltr">NavigationEventCallback#on*</code>
+      methods to
+      <code translate="no" dir="ltr">protected</code>
+      . Update calling code to override them. (
+      <a href="https://android-review.googlesource.com/#/q/I6b691b4da8c359af29f1467ba1a894e25f04ecee">I6b691</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">DirectNavigationEventInput</code>
+      functions. (
+      <a href="https://android-review.googlesource.com/#/q/Iffb628a961cd1ce071c2e54d9a5e7e7c922c2cdf">Iffb62</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">NavigationEventInput.onAttach</code>
+      to
+      <code translate="no" dir="ltr">onAdded</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2d0b8f57e75a444c937c9de36e698c5f3a9c1427">I2d0b8</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">NavigationEventInput.onDetach</code>
+      to
+      <code translate="no" dir="ltr">onRemoved</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2d0b8f57e75a444c937c9de36e698c5f3a9c1427">I2d0b8</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">NavigationEventInputHandler</code>
+      to
+      <code translate="no" dir="ltr">NavigationEventInput</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I676a416c9aab3e04937ffd51d8bfe21eddc5eec5">I676a4</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">@EmptySuper</code>
+      to
+      <code translate="no" dir="ltr">NavigationEventInput.onHasEnabledCallbacksChanged</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If9853409eeb41f613bf26013f19687b45f9b9972">If9853</a>
+      )
+    </li>
+    <li>
+      Implement
+      <code translate="no" dir="ltr">onAttach</code>
+      in
+      <code translate="no" dir="ltr">NavigationEventInputHandler</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I036484db882de61e358c5d2d8b1945531766a02e">I03648</a>
+      )
+    </li>
+    <li>
+      Implement
+      <code translate="no" dir="ltr">onDetach</code>
+      in
+      <code translate="no" dir="ltr">NavigationEventInputHandler</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I036484db882de61e358c5d2d8b1945531766a02e">I03648</a>
+      )
+    </li>
+    <li>
+      Default
+      <code translate="no" dir="ltr">NavigationEventCallback</code>
+      to enabled upon creation. (
+      <a href="https://android-review.googlesource.com/#/q/Ic0188530a10913977db57ae6471fdc75d6fa1ba8">Ic0188</a>
+      )
+    </li>
+    <li>
+      Replace
+      <code translate="no" dir="ltr">NavigationEventInput.addOnHasEnabledCallbacksChangedCallback</code>
+      with
+      <code translate="no" dir="ltr">NavigationEventInput.onHasEnabledCallbacksChanged</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I64e934d5393cfce042a86348c8cd0453d10cd353">I64e93</a>
+      )
+    </li>
+    <li>
+      Require the main thread for
+      <code translate="no" dir="ltr">NavigationEventDispatcher.addInput</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic293003eb2a459347cdb599529ee4307a4fb005e">Ic2930</a>
+      )
+    </li>
+    <li>
+      Require the main thread for
+      <code translate="no" dir="ltr">NavigationEventDispatcher.removeInput</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic293003eb2a459347cdb599529ee4307a4fb005e">Ic2930</a>
+      )
+    </li>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">Dispatcher.addOnHasEnabledCallbacksChangedCallback</code>
+      . Replace with
+      <code translate="no" dir="ltr">Dispatcher.onHasEnabledCallbacksChanged</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ida3e3883f7b03395351b3e78b4cf9c2e2cb309db">Ida3e3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/436530096">b/436530096</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix bug where adding an already-attached handler or removing an unattached one triggered incorrect lifecycle logic. (
+      <a href="https://android-review.googlesource.com/#/q/I9e47bf34fd73248d8e5514af04638055752997b5">I9e47b</a>
+      )
+    </li>
+  </ul>

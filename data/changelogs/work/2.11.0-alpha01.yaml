@@ -1,0 +1,77 @@
+libraryId: work
+groupId: androidx.work
+version: 2.11.0-alpha01
+releaseDate: 2025-08-27
+#language=html
+changelogHtml: |
+  <h3 id="2.11.0-alpha01" data-text="Version 2.11.0-alpha01" tabindex="-1">Version 2.11.0-alpha01</h3>
+  <p>August 27, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.11.0-alpha01</code>
+    is released. Version 2.11.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f1db959e4b5791abbb290ef4b40786c998b481ea..cd8ce2bdb21194a81a76325a8e65dad5d7e28681/work">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The minSdk has been updated from API 21 to API 23 (
+      <a href="https://android-review.googlesource.com/#/q/Ibdfca5942dbb414ca07594ba240093db14aad4df">Ibdfca</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/380448311">b/380448311</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/435705964">b/435705964</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/435705223">b/435705223</a>
+      )
+    </li>
+    <li>
+      The API
+      <code translate="no" dir="ltr">setRemoteSessionTimeoutMillis</code>
+      in WorkManager’s Configuration builder has been added to enable configuring the amount of time a RemoteWorkManager session is alive from its last usage. (
+      <a href="https://android-review.googlesource.com/#/q/Ib23c8c189ea4e5a72e0add5fc6fa0eaf0ee274d4">Ib23c8</a>
+      )
+    </li>
+    <li>
+      Add an experimental API in
+      <code translate="no" dir="ltr">WorkRequest.Builder</code>
+      to apply backoff when work is interrupted by the system. (
+      <a href="https://android-review.googlesource.com/#/q/Ie2dc722282f520427d1758cd3d108e0147ed4646">Ie2dc7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/335513480">b/335513480</a>
+      )
+    </li>
+    <li>
+      Add test API to pass in a different worker class to
+      <code translate="no" dir="ltr">TestListenableWorkerBuilder</code>
+      than the one being built to support custom
+      <code translate="no" dir="ltr">WorkerFactory</code>
+      implementations (
+      <a href="https://android-review.googlesource.com/#/q/If6bffd90f15ecacbbec8734a9649b1dc2dc4fd21">If6bff</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/389154854">b/389154854</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Cache network capabilities in
+      <code translate="no" dir="ltr">SharedNetworkCallback</code>
+      to prevent unnecessary IPCs (
+      <a href="https://android-review.googlesource.com/#/q/Ie40279799b98b888bc15fbc51a9ca48d4c6b0bde">Ie4027</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/427115602">b/427115602</a>
+      )
+    </li>
+    <li>
+      Fix an issue with network constraint evaluation where work items after the first would not get the current network capabilities and would instead hit
+      <code translate="no" dir="ltr">ConstraintsNotMet</code>
+      after a timeout (
+      <a href="https://android-review.googlesource.com/#/q/Ib6a66aab60bc960481cb6eca4c9e9a83fa0cee20">Ib6a66</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/427115602">b/427115602</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_210_4" data-text="Version 2.10" tabindex="-1">Version 2.10</h2>
