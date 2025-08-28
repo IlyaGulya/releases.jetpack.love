@@ -1,0 +1,135 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.10.0-alpha02
+releaseDate: 2025-08-27
+#language=html
+changelogHtml: |
+  <h3 id="1.10.0-alpha02" data-text="Version 1.10.0-alpha02" tabindex="-1">Version 1.10.0-alpha02</h3>
+  <p>August 27, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.10.0-alpha02</code>
+    is released. Version 1.10.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c359e97fece91f3767a7d017e9def23c7caf1f53..cd8ce2bdb21194a81a76325a8e65dad5d7e28681/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Update
+      <code translate="no" dir="ltr">FillableData</code>
+      to support non-text components such as toggles and lists, including boolean and integer values inside
+      <code translate="no" dir="ltr">FillableData</code>
+      and factory constructors to create boolean and list instances of
+      <code translate="no" dir="ltr">FillableData</code>
+      that translate to the platform’s
+      <code translate="no" dir="ltr">AutofillValue</code>
+      . The relevant semantic property and action also are added. (
+      <a href="https://android-review.googlesource.com/#/q/Ia810576b70c559f828102e0280612aed79fb1c65">Ia8105</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Icc5cf69cdec326bf9f12fdcb541d79e362793dfc">Icc5cf</a>
+      )
+    </li>
+    <li>
+      In non-touch mode, the view system assigns initial/default focus to one of the focusable items on the screen. This feature is added to Compose and can be enabled by enabling
+      <code translate="no" dir="ltr">ComposeUiFlags.isInitialFocusOnFocusableAvailable</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib9178bdb9380090a7fadbee553d8a6d6603938e9">Ib9178</a>
+      )
+    </li>
+    <li>
+      Removed flag
+      <code translate="no" dir="ltr">isPointerInteropFilterDispatchingFixEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iaa58900d980303b9f51fc96f5fd5d9422780cda3">Iaa589</a>
+      )
+    </li>
+    <li>
+      Removed flag
+      <code translate="no" dir="ltr">isNestedScrollInteropPostFlingFixEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2a756541e431ebf6e9e3452547dc2b09f4baa0d0">I2a756</a>
+      )
+    </li>
+    <li>
+      Add in
+      <code translate="no" dir="ltr">isHiddenFromAccessibility()</code>
+      and
+      <code translate="no" dir="ltr">isInHiddenAccessibilitySubtree()</code>
+      semantics matchers. (
+      <a href="https://android-review.googlesource.com/#/q/I9f5a1e1b68eead720c37a1eaed91777e00cd5a0c">I9f5a1</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">runCurrent()</code>
+      to
+      <code translate="no" dir="ltr">MainTestClock</code>
+      to run all due tasks on the underlying scheduler. This is to support running tests on a
+      <code translate="no" dir="ltr">StandardTestDispatcher</code>
+      , where tasks are added to the scheduler rather than executed immediately when they have a delay of 0ms. A test can be setup to use a
+      <code translate="no" dir="ltr">StandardTestDispatcher</code>
+      by
+      <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/test/junit4/package-summary#createComposeRule(kotlin.coroutines.CoroutineContext)">creating</a>
+      a
+      <code translate="no" dir="ltr">ComposeTestRule</code>
+      and passing a
+      <code translate="no" dir="ltr">StandardTestDispatcher</code>
+      to it. By default, tests are run on an
+      <code translate="no" dir="ltr">UnconfinedTestDispatcher</code>
+      , in which case
+      <code translate="no" dir="ltr">runCurrent()</code>
+      will never have to be called.
+    </li>
+    <li>
+      Added support for running tests on a
+      <code translate="no" dir="ltr">StandardTestDispatcher</code>
+      . Historically, the test framework was (and still is) set up using an
+      <code translate="no" dir="ltr">UnconfinedTestDispatcher</code>
+      , which differs from a production environment in subtle ways. You can now change this setup by creating your own
+      <code translate="no" dir="ltr">StandardTestDispatcher</code>
+      and adding it to the
+      <code translate="no" dir="ltr">effectContext</code>
+      when
+      <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/test/junit4/package-summary#createComposeRule(kotlin.coroutines.CoroutineContext)">creating</a>
+      your
+      <code translate="no" dir="ltr">ComposeTestRule</code>
+      (or when calling
+      <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/test/package-summary#runComposeUiTest(kotlin.coroutines.CoroutineContext,kotlin.Function1)">runComposeUiTest</a>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/I334d0d149d263eb65c327f3dbba4fad154e8a559">I334d0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/254115946">b/254115946</a>
+      )
+    </li>
+    <li>
+      Update code for creating a tree of nodes from
+      <code translate="no" dir="ltr">SlotTree</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I997d32b63f7c4170dc02671537b18d5b3867a382">I997d3</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Compose UI now installs lifecycle-aware
+      <code translate="no" dir="ltr">RetainScopes</code>
+      on Android. The default behavior will now persist
+      <code translate="no" dir="ltr">retain</code>
+      -ed values across configuration changes. (
+      <a href="https://android-review.googlesource.com/#/q/Id4a09d6fafacf8cfcee149c4bce74ec335449ca8">Id4a09</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177562901">b/177562901</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Adds the ability for
+      <code translate="no" dir="ltr">VelocityTracker</code>
+      to calculate the velocity of a pointer based on tracked pointer events using platform-specific behavior. (
+      <a href="https://android-review.googlesource.com/#/q/I621e880bd3e77128aa546ec87e92fbff8c22f548">I621e8</a>
+      )
+    </li>
+  </ul>

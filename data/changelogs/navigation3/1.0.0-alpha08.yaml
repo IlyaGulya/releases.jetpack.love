@@ -1,0 +1,89 @@
+libraryId: navigation3
+groupId: androidx.navigation3
+version: 1.0.0-alpha08
+releaseDate: 2025-08-27
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha08" data-text="Version 1.0.0-alpha08" tabindex="-1">Version 1.0.0-alpha08</h3>
+  <p>August 27, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation3:navigation3-*:1.0.0-alpha08</code>
+    is released. Version 1.0.0-alpha08 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c359e97fece91f3767a7d017e9def23c7caf1f53..cd8ce2bdb21194a81a76325a8e65dad5d7e28681/navigation3">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added new Kotlin MultiPlatform (KMP) targets to
+      <code translate="no" dir="ltr">Navigation3 Runtime</code>
+      artifacts.
+      <code translate="no" dir="ltr">Navigation3 Runtime</code>
+      now supports the following platforms in total: JVM (Android and Desktop), Native (Linux, iOS, watchOS, macOS, MinGW), and Web (JavaScript, WasmJS). (
+      <a href="https://android-review.googlesource.com/#/q/I550788ff38851e1fec7f44a687a1a69734374e4f">I55078</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/424410398">b/424410398</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/419294028">b/419294028</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/419046226">b/419046226</a>
+      ). Note: This does not provide KMP targets for
+      <code translate="no" dir="ltr">Navigation3 UI</code>
+      artifact. On other platforms, you will need to implement your own custom
+      <code translate="no" dir="ltr">NavDisplay</code>
+      . If you would like to see it supported, please vote on the Jetbrains issue
+      <a href="https://youtrack.jetbrains.com/issue/CMP-7646">here</a>
+      and track the progress for additional support there.
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">NavDisplayInfo</code>
+      object is now public and can be used to retrieve the list of visible entries from the
+      <code translate="no" dir="ltr">NavDisplay</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ibc91ff7504b0e26f9a1ccf43000b786cbf48b74d">Ibc91f</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">NavBackStackSerializer</code>
+      to be used in conjunction with
+      <code translate="no" dir="ltr">rememberNavBackStack</code>
+      to perform state restoration.
+      <code translate="no" dir="ltr">rememberNavBackStack()</code>
+      now also takes a
+      <a href="/reference/androidx/savedstate/serialization/SavedStateConfiguration"><code translate="no" dir="ltr">SavedStateConfiguration</code></a>
+      that can be used to provide your own configuration. (
+      <a href="https://android-review.googlesource.com/#/q/I2f4d2073eff82f88b476a9765a0e69729e77179e">I2f4d2</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I4cd58dca08625e7ecafac9f0a1e479e558604b7e">I4cd58</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/420443609">b/420443609</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where navigating would cause incorrect Lifecycle events to fire. (
+      <a href="https://android-review.googlesource.com/#/q/I8bf6d9491c1bb242a8c2f195204a174f310b7f03">I8bf6d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/425901162">b/425901162</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/434109022">b/434109022</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      There was a bug introduced by
+      <a href="https://android-review.googlesource.com/#/q/I8bf6d9491c1bb242a8c2f195204a174f310b7f03">I8bf6d</a>
+      that caused Lifecycles to be based on scenes instead of individual entries, which broke Lifecycle for scenes with multiple screens that has been fixed for the next release. (
+      <a href="https://issuetracker.google.com/issues/440145700">b/440145700</a>
+      )
+    </li>
+  </ul>

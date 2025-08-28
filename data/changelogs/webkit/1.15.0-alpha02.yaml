@@ -1,0 +1,167 @@
+libraryId: webkit
+groupId: androidx.webkit
+version: 1.15.0-alpha02
+releaseDate: 2025-08-27
+#language=html
+changelogHtml: |
+  <h3 id="1.15.0-alpha02" data-text="Version 1.15.0-alpha02" tabindex="-1">Version 1.15.0-alpha02</h3>
+  <p>August 27, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.webkit:webkit:1.15.0-alpha02</code>
+    is released. Version 1.15.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1b437892629a2cdedb46d9b7232575987b2cc6b5..cd8ce2bdb21194a81a76325a8e65dad5d7e28681/webkit/webkit">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">Profile#preconnect</code>
+      which allows apps to open a connection to an origin before navigating to it in order to speed up future loads. (
+      <a href="https://android-review.googlesource.com/#/q/I8db410905622dea61d31322d4ad88afe30dccabc">I8db41</a>
+      )
+    </li>
+    <li>
+      A new
+      <a href="/reference/androidx/webkit/WebViewCompat#prerenderUrlAsync(android.webkit.WebView,java.lang.String,android.os.CancellationSignal,java.util.concurrent.Executor,androidx.webkit.PrerenderOperationCallback)"><code translate="no" dir="ltr">prerenderUrlAsync</code></a>
+      API has been added to
+      <code translate="no" dir="ltr">WebViewCompat</code>
+      , allowing applications to speculatively prerender URLs before they are displayed in a WebView.
+      <br />
+      Prerendering can dramatically improve loading performance by fetching the page ahead of time. When the user navigates to the URL, the prerendered page is displayed instantly.
+      <br />
+      These APIs were previously released as experimental, and can now be used without the
+      <code translate="no" dir="ltr">@OptIn</code>
+      annotation. (
+      <a href="https://android-review.googlesource.com/#/q/Ie14f5e58ccf53e28bfbf63a0e071d62f991b9a70">Ie14f5</a>
+      )
+    </li>
+    <li>
+      You can now specify a set of profiles to load synchronously when calling the
+      <code translate="no" dir="ltr">startUpWebView</code>
+      API. This is configured by passing the profile names to a new method in
+      <code translate="no" dir="ltr">WebViewStartUpConfig.Builder</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I9a6e6a25f3f19d79a6b5a5bbbfbe2214559acf9c">I9a6e6</a>
+      )
+    </li>
+    <li>
+      Add a new API to
+      <code translate="no" dir="ltr">WebSettingsCompat</code>
+      to enabled/disable
+      <a href="https://developer.chrome.com/blog/back-forward-cache">BackForwardCache</a>
+      on the
+      <code translate="no" dir="ltr">WebSettings</code>
+      object. This API was previously released as experimental, and can now be used without the
+      <code translate="no" dir="ltr">@OptIn</code>
+      annotation. (
+      <a href="https://android-review.googlesource.com/#/q/Ie413ba37340e467e8949d2281b6bd313fc4b3a0d">Ie413b</a>
+      )
+    </li>
+    <li>
+      Add support for overriding User-Agent form factors, The
+      <code translate="no" dir="ltr">UserAgentMetadata</code>
+      class has new methods to get and set user-agent metadata form factors. The
+      <code translate="no" dir="ltr">UserAgentMetadata.Builder</code>
+      has a new
+      <code translate="no" dir="ltr">setFormFactors()</code>
+      method for overriding the
+      <code translate="no" dir="ltr">Sec-CH-UA-Form-Factors</code>
+      User-Agent client hint. The current override values can be retrieved via the new
+      <code translate="no" dir="ltr">getFormFactors()</code>
+      method. (
+      <a href="https://android-review.googlesource.com/#/q/I6d08c9c7403bead863182cbbde93fcae809d2d9f">I6d08c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/430554841">b/430554841</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add API to
+      <code translate="no" dir="ltr">ProcessGlobalConfig</code>
+      to configure
+      <code translate="no" dir="ltr">WebView</code>
+      's UI thread initialization (
+      <a href="https://android-review.googlesource.com/#/q/I5e85a13fd0e0378bcb09b1f9ddc2d2510a3a2018">I5e85a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/433273850">b/433273850</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/397372092">b/397372092</a>
+      )
+    </li>
+    <li>
+      Add a new feature name for
+      <code translate="no" dir="ltr">WebViewStartupConfig.Builder#setProfilesToLoadDuringStartup</code>
+      API (
+      <a href="https://android-review.googlesource.com/#/q/I36451e15092610c874e99e9a7d209a79438ed0ae">I36451</a>
+      )
+    </li>
+    <li>
+      Moving the default minSdk from API 21 to API 23 (
+      <a href="https://android-review.googlesource.com/#/q/Ibdfca5942dbb414ca07594ba240093db14aad4df">Ibdfca</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/380448311">b/380448311</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/435705964">b/435705964</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/435705223">b/435705223</a>
+      )
+    </li>
+    <li>
+      Update origin matched header API to allow overwriting header values by calling
+      <code translate="no" dir="ltr">setOriginMatchedHeader</code>
+      multiple times for the same header name. Also adds a new
+      <code translate="no" dir="ltr">hasOriginMatchedHeader</code>
+      method to check if the header name is already in use.
+      <br />
+      This change also marks the API as experimental, as it currently only supports setting a single value and origin mapping for each header value, and it will likely undergo changes in the future to make it support multiple values mapped to different origins. (
+      <a href="https://android-review.googlesource.com/#/q/I033651e3ea50a4263da7438f7522af7052a85ec5">I03365</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/419469873">b/419469873</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/429269470">b/429269470</a>
+      )
+    </li>
+    <li>
+      The UI thread requirement for
+      <code translate="no" dir="ltr">Profile#prefetchUrlAsync()</code>
+      has been removed. It can now be called from any thread. (
+      <a href="https://android-review.googlesource.com/#/q/I83d5761e5d2384b66415d770bf0c0dfc54d299be">I83d57</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">OutcomeReceiverCompat</code>
+      interface has been removed in favor of the official
+      <code translate="no" dir="ltr">androidx.core.os.OutcomeReceiverCompat</code>
+      version. The library now requires
+      <code translate="no" dir="ltr">compileSdk</code>
+      35 or higher. (
+      <a href="https://android-review.googlesource.com/#/q/Ie1ea50e6945402b245416145048213d389c2159e">Ie1ea5</a>
+      )
+    </li>
+    <li>
+      Renames
+      <code translate="no" dir="ltr">[is/set]IncludeCookiesOnShouldInterceptRequestEnabled</code>
+      to
+      <code translate="no" dir="ltr">[are/set]CookiesIncludedInShouldInterceptRequest</code>
+      in
+      <code translate="no" dir="ltr">WebSettingsCompat</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ife9e9932b14fd630f41f67168c78c852d4e46a86">Ife9e9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/428924452">b/428924452</a>
+      )
+    </li>
+    <li>
+      Adding experimental API annotations to
+      <code translate="no" dir="ltr">Profile.ExperimentalUrlPrefetch</code>
+      that had previously been omitted. (
+      <a href="https://android-review.googlesource.com/#/q/Ic54eb7fc6176a032820f13cf46627d76197e2cc7">Ic54eb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/417458061">b/417458061</a>
+      )
+    </li>
+  </ul>
