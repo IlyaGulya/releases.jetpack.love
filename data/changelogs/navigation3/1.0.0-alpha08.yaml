@@ -82,7 +82,21 @@ changelogHtml: |
     <li>
       There was a bug introduced by
       <a href="https://android-review.googlesource.com/#/q/I8bf6d9491c1bb242a8c2f195204a174f310b7f03">I8bf6d</a>
-      that caused Lifecycles to be based on scenes instead of individual entries, which broke Lifecycle for scenes with multiple screens that has been fixed for the next release. (
+      that caused Lifecycles to be based on scenes instead of individual entries, which broke Lifecycle for any cases where the
+      <code translate="no" dir="ltr">key</code>
+      provided to the
+      <code translate="no" dir="ltr">NavEntry</code>
+      is not a
+      <code translate="no" dir="ltr">String</code>
+      or your
+      <code translate="no" dir="ltr">NavEntry</code>
+      has not overridden the
+      <code translate="no" dir="ltr">contentKey</code>
+      and set it equal to the
+      <code translate="no" dir="ltr">key</code>
+      (note that doing this enforces that your key can be saved into a
+      <code translate="no" dir="ltr">Bundle</code>
+      ). This has been fixed for the next release. (
       <a href="https://issuetracker.google.com/issues/440145700">b/440145700</a>
       )
     </li>
