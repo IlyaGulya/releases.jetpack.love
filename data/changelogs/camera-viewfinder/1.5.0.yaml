@@ -1,0 +1,109 @@
+libraryId: camera-viewfinder
+groupId: androidx.camera
+version: 1.5.0
+releaseDate: 2025-09-10
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0" data-text="Version 1.5.0" tabindex="-1">Version 1.5.0</h3>
+  <p>September 10, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera.viewfinder:viewfinder-compose:1.5.0</code>
+    ,
+    <code translate="no" dir="ltr">androidx.camera.viewfinder:viewfinder-core:1.5.0</code>
+    , and
+    <code translate="no" dir="ltr">androidx.camera.viewfinder:viewfinder-view:1.5.0</code>
+    are released. Version 1.5.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3496263efa2133a8c8cd25f4ae6509b9d28a788f..bf14d325dfcbc73bf18b092f0435beaaf465e126/camera/viewfinder">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.4.0:</strong></p>
+  <p>This is the first stable release of the Camera Viewfinder library, providing robust, lifecycle-aware, and easy-to-use View and Compose-based APIs. These components are designed to serve as a camera viewfinder and can be integrated directly with Camera2.</p>
+  <p>
+    This release also establishes the foundation for the new
+    <code translate="no" dir="ltr">androidx.camera:camera-compose</code>
+    artifact, which introduces
+    <code translate="no" dir="ltr">CameraXViewfinder</code>
+    , a Compose-idiomatic viewfinder that integrates seamlessly with CameraX
+    <code translate="no" dir="ltr">SurfaceRequest</code>
+    s, similar to how
+    <code translate="no" dir="ltr">PreviewView</code>
+    works for View-based layouts. Some of the most important changes include:
+  </p>
+  <ul>
+    <li>
+      <strong>Artifact Relocation:</strong>
+      To improve modularity, the Viewfinder artifacts have been moved to their own library group. Developers previously using
+      <code translate="no" dir="ltr">androidx.camera:camera-viewfinder*</code>
+      dependencies should migrate to
+      <code translate="no" dir="ltr">androidx.camera.viewfinder:viewfinder-*</code>
+      .
+    </li>
+    <li>
+      <strong>API Stabilization and Refinements:</strong>
+      The API surface has been polished for this stable release. This includes renaming
+      <code translate="no" dir="ltr">CameraViewfinder</code>
+      to
+      <code translate="no" dir="ltr">ViewfinderView</code>
+      to better reflect its versatility, reorganizing packages for clarity, and making
+      <code translate="no" dir="ltr">ViewfinderSurfaceRequest</code>
+      an immutable data type for more predictable state management.
+    </li>
+    <li>
+      <strong>Compose API Updates:</strong>
+      The Compose
+      <code translate="no" dir="ltr">Viewfinder</code>
+      API now supports
+      <code translate="no" dir="ltr">ContentScale</code>
+      and
+      <code translate="no" dir="ltr">Alignment</code>
+      for fine-grained control over how the camera stream is displayed within its container, mirroring the behavior of the standard
+      <code translate="no" dir="ltr">androidx.compose.foundation.Image</code>
+      composable.
+    </li>
+    <li>
+      <strong>Surface Lifecycle Management:</strong>
+      <code translate="no" dir="ltr">ViewfinderSurfaceSession</code>
+      is now kept alive across configuration changes and lifecycle events on API 29+. This change is designed to reduce dropped frames and provide a smoother user experience.
+    </li>
+    <li>
+      <strong>Implementation Mode Defaults:</strong>
+      The
+      <code translate="no" dir="ltr">Viewfinder</code>
+      now defaults to an intelligent
+      <code translate="no" dir="ltr">ImplementationMode</code>
+      that automatically selects the best underlying implementation. It prioritizes the high-performance
+      <code translate="no" dir="ltr">SurfaceView</code>
+      (
+      <code translate="no" dir="ltr">EXTERNAL</code>
+      mode) and gracefully falls back to the more compatible
+      <code translate="no" dir="ltr">TextureView</code>
+      (
+      <code translate="no" dir="ltr">EMBEDDED</code>
+      mode) on older API levels or devices with known compatibility issues. This behavior can still be overridden for full developer control.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      The composable
+      <code translate="no" dir="ltr">Viewfinder</code>
+      now works correctly within Compose's
+      <code translate="no" dir="ltr">Pager</code>
+      and with
+      <code translate="no" dir="ltr">movableContentOf()</code>
+      , ensuring the surface is properly reset and managed in complex UI scenarios. (
+      <a href="https://android-review.googlesource.com/#/q/I0d9be911aea9fed574dde8ba988af7882dfc2dc9">I0d9be</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I79432d3ad761fce4db134297c6057f357d9a7cf0">I79432</a>
+      )
+    </li>
+    <li>
+      Fixed an issue on Android 10 and 11 where the
+      <code translate="no" dir="ltr">SurfaceView</code>
+      -based
+      <code translate="no" dir="ltr">Viewfinder</code>
+      could appear stretched when transformations were applied. (
+      <a href="https://android-review.googlesource.com/#/q/Icc77c83b338df1828014f8fe27703d90e62cdea5">Icc77c</a>
+      )
+    </li>
+  </ul>

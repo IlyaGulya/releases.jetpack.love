@@ -1,0 +1,168 @@
+libraryId: navigationevent
+groupId: androidx.navigationevent
+version: 1.0.0-alpha08
+releaseDate: 2025-09-10
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha08" data-text="Version 1.0.0-alpha08" tabindex="-1">Version 1.0.0-alpha08</h3>
+  <p>September 10, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigationevent:navigationevent-*:1.0.0-alpha08</code>
+    is released. Version 1.0.0-alpha08 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cd8ce2bdb21194a81a76325a8e65dad5d7e28681..cf4bc156e75473f159aa2536c8948d273ac67d97/navigationevent">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Introduce a lambda-based
+      <code translate="no" dir="ltr">NavigationEventHandler</code>
+      API that replaces the Flow-based handler. Handle back and forward gestures with simple callbacks instead of collecting flows, reducing boilerplate and avoiding cancellation issues. Provide
+      <code translate="no" dir="ltr">NavigationBackHandler</code>
+      and
+      <code translate="no" dir="ltr">NavigationForwardHandler</code>
+      as targeted convenience APIs. Remove the Flow-based
+      <code translate="no" dir="ltr">NavigationEventHandler</code>
+      ; migrate to the new callbacks. (
+      <a href="https://android-review.googlesource.com/#/q/I23bac6d64348c368fc9f9019a98f2c6ca25f91be">I23bac</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/436248277">b/436248277</a>
+      )
+    </li>
+    <li>
+      Allow passive listeners to access the full navigation back stack through combined back info. Enable UIs to render previews and nested navigation history instead of being limited to the top-most callback. (
+      <a href="https://android-review.googlesource.com/#/q/I7a510c5d6a859b41783e4a39252a06da2ed2e01b">I7a510</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/436248277">b/436248277</a>
+      )
+    </li>
+    <li>
+      Introduce an explicit back/current/forward model to clarify navigation state and support forward navigation with nested handlers. (
+      <a href="https://android-review.googlesource.com/#/q/Ib86dadd128eafd5776aa23b409eacdce373ecf4a">Ib86da</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/420443609">b/420443609</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">onForward*</code>
+      methods and
+      <code translate="no" dir="ltr">isForwardEnabled</code>
+      to
+      <code translate="no" dir="ltr">NavigationEventCallback</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic100f8dcb5f409e36e8a765a5738e033bf11133b">Ic100f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/436248290">b/436248290</a>
+      )
+    </li>
+    <li>
+      Add forward navigation support to
+      <code translate="no" dir="ltr">NavigationEventInput</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I5734b10639303368931db205739eef542fba37f3">I5734b</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Enable testing of forward navigation events with
+      <code translate="no" dir="ltr">TestNavigationEventCallback</code>
+      . Use
+      <code translate="no" dir="ltr">isForwardEnabled</code>
+      and
+      <code translate="no" dir="ltr">onForward*</code>
+      hooks. (
+      <a href="https://android-review.googlesource.com/#/q/I21fb5ef4d42f2e2efa4bf42506402cd4c6dd4bd8">I21fb5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/420443609">b/420443609</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">onEvent*</code>
+      callbacks to
+      <code translate="no" dir="ltr">onBack*</code>
+      in
+      <code translate="no" dir="ltr">NavEvent</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I228b3b938b7ac21a58a679ab05d7748bfc71284f">I228b3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/436248290">b/436248290</a>
+      )
+    </li>
+    <li>
+      Convert
+      <code translate="no" dir="ltr">SwipeEdge</code>
+      to an inline class. (
+      <a href="https://android-review.googlesource.com/#/q/Id5e016cb25d1637b307073237822924d58d4f9dc">Id5e01</a>
+      )
+    </li>
+    <li>
+      Make the
+      <code translate="no" dir="ltr">navigationevent</code>
+      library interoperable with Java. All public APIs are now fully accessible from Java code, enabling seamless integration into mixed-language or Java-only projects. (
+      <a href="https://android-review.googlesource.com/#/q/Ibc94437d208193d6cb83c70619bf520b09f746ec">Ibc944</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I5465fba44ca981cbf7d951ff6bdba78d36dd52f6">I5465f</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I9fb1e8a610dbe79ee012ced6a88354f3590b608d">I9fb1e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/440532890">b/440532890</a>
+      <a href="https://issuetracker.google.com/issues/443040294">b/443040294</a>
+      )
+    </li>
+    <li>
+      Clarify API roles by renaming
+      <code translate="no" dir="ltr">NavigationEventCallback</code>
+      to
+      <code translate="no" dir="ltr">NavigationEventHandler</code>
+      . This change better reflects the class's purpose of handling multi-stage navigation gestures. The corresponding
+      <code translate="no" dir="ltr">addCallback</code>
+      method is now
+      <code translate="no" dir="ltr">addHandler</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2492a768cfdc3bfc8dcac1691fbf6ebfe0f44b37">I2492a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/443040331">b/443040331</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Prevent back fallback from running on forward navigation. (
+      <a href="https://android-review.googlesource.com/#/q/I74814834de47d152973ceb7ec69a53f46d99713a">I74814</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/436248290">b/436248290</a>
+      )
+    </li>
+    <li>
+      Add support for predictive forward navigation.
+      <code translate="no" dir="ltr">NavigationEvent</code>
+      APIs now handle both back and forward gestures, enabling consistent animations for both navigation directions. (
+      <a href="https://android-review.googlesource.com/#/q/Idc98c5057f97e17dba5b22f37f3ff585e9627170">Idc98c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/436248290">b/436248290</a>
+      )
+    </li>
+    <li>
+      Prevent an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      crash during recomposition when a child
+      <code translate="no" dir="ltr">NavigationEventDispatcherOwner</code>
+      is removed. (
+      <a href="https://android-review.googlesource.com/#/q/Iff50cb18253caeb809c1c25dc1cdea11f701a081">Iff50c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/412629020">b/412629020</a>
+      )
+    </li>
+    <li>
+      Passive listeners can now access the full navigation back stack through combined back info, enabling UIs to render previews and nested navigation history instead of being limited to the top-most callback. (
+      <a href="https://android-review.googlesource.com/#/q/I7a510c5d6a859b41783e4a39252a06da2ed2e01b">I7a510</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/436248277">b/436248277</a>
+      )
+    </li>
+  </ul>

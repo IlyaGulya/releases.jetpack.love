@@ -1,0 +1,95 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.5.0
+releaseDate: 2025-09-10
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0" data-text="Version 1.5.0" tabindex="-1">Version 1.5.0</h3>
+  <p>September 10, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.5.0</code>
+    is released. Version 1.5.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3496263efa2133a8c8cd25f4ae6509b9d28a788f..bf14d325dfcbc73bf18b092f0435beaaf465e126/camera">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.4.0:</strong></p>
+  <ul>
+    <li>
+      High-speed and Slow-motion Recording: Easily integrate high-speed (120/240 fps) and slow-motion video recording with minimal code. Refer to
+      <code translate="no" dir="ltr">Recorder#getHighSpeedVideoCapabilities(CameraInfo)</code>
+      and
+      <code translate="no" dir="ltr">HighSpeedVideoSessionConfig</code>
+      for details.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SessionConfig</code>
+      and
+      <code translate="no" dir="ltr">FeatureGroup</code>
+      API: The new
+      <code translate="no" dir="ltr">SessionConfig</code>
+      API allows you to configure the camera session and enable multiple features together safely, including HLG (HDR), UltraHDR, 60 FPS, and Preview stabilization. You can also set a preferable feature group with priority, letting CameraX determine the optimal supported combination. See
+      <code translate="no" dir="ltr">SessionConfig.Builder#setPreferredFeatureGroup</code>
+      ,
+      <code translate="no" dir="ltr">SessionConfig.Builder#setRequiredFeatureGroup</code>
+      , and
+      <code translate="no" dir="ltr">CameraInfo#isFeatureGroupSupported(SessionConfig)</code>
+      for more information.
+    </li>
+    <li>
+      Deterministic Frame Rate API: Address previous limitations with
+      <code translate="no" dir="ltr">setTargetFrameRate</code>
+      by using
+      <code translate="no" dir="ltr">CameraInfo.getSupportedFrameRateRanges(sessionConfig)</code>
+      to query and
+      <code translate="no" dir="ltr">SessionConfig.setExpectedFrameRateRange</code>
+      to set precise and supported frame rates.
+    </li>
+    <li>
+      Camera Extensions: UltraHDR format is now supported with Extensions. Check
+      <code translate="no" dir="ltr">ImageCapture.getImageCaptureCapabilities(cameraInfo).getSupportedOutputFormats()</code>
+      and enable it in
+      <code translate="no" dir="ltr">ImageCapture.Builder.setOutputFormat</code>
+      . Zoom ratio and preview stabilization capabilities are now reflected when Extensions are enabled.
+    </li>
+    <li>
+      Torch Strength: Adjust torch strength using
+      <code translate="no" dir="ltr">CameraControl.setTorchStrengthLevel</code>
+      .
+    </li>
+    <li>
+      Low Light Boost Mode: You can enable the low light boost mode(
+      <code translate="no" dir="ltr">CONTROL_AE_MODE_ON_LOW_LIGHT_BOOST_BRIGHTNESS_PRIORITY</code>
+      ) by the following APIs: Refer to
+      <code translate="no" dir="ltr">CameraInfo#isLowLightBoostSupported</code>
+      ,
+      <code translate="no" dir="ltr">CameraInfo#getLowLightBoostState</code>
+      , and
+      <code translate="no" dir="ltr">CameraControl#enableLowLightBoostAsync</code>
+      .
+    </li>
+    <li>
+      Video Capture:
+      <code translate="no" dir="ltr">VideoRecordEvent.Finalize.ERROR_INSUFFICIENT_STORAGE</code>
+      is now triggered for insufficient storage during recording.
+      <code translate="no" dir="ltr">PendingRecording.withAudioEnabled(boolean initialMuted)</code>
+      allows controlling the initial mute state for audio recording.
+    </li>
+    <li>
+      Image Capture: Support for DNG (RAW) and JPEG + DNG (RAW) formats in
+      <code translate="no" dir="ltr">ImageCapture</code>
+      . Check
+      <code translate="no" dir="ltr">ImageCaptureCapabilities(CameraInfo).getSupportedOutputFormats()</code>
+      for RAW support. Use overloaded
+      <code translate="no" dir="ltr">takePicture</code>
+      APIs with multiple
+      <code translate="no" dir="ltr">OutputFileOptions</code>
+      for RAW+DNG capture.
+    </li>
+    <li>
+      Image Analysis: Support for NV21 format in
+      <code translate="no" dir="ltr">ImageAnalysis</code>
+      . Enable it with
+      <code translate="no" dir="ltr">ImageAnalysis.Builder.setOutputImageFormat(OUTPUT_IMAGE_FORMAT_NV21)</code>
+      .
+    </li>
+  </ul>

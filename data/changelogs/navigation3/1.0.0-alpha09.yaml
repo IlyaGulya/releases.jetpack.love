@@ -1,0 +1,98 @@
+libraryId: navigation3
+groupId: androidx.navigation3
+version: 1.0.0-alpha09
+releaseDate: 2025-09-10
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha09" data-text="Version 1.0.0-alpha09" tabindex="-1">Version 1.0.0-alpha09</h3>
+  <p>September 10, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation3:navigation3-*:1.0.0-alpha09</code>
+    is released. Version 1.0.0-alpha09 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cd8ce2bdb21194a81a76325a8e65dad5d7e28681..cf4bc156e75473f159aa2536c8948d273ac67d97/navigation3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">DecoratedNavEntryProvider</code>
+      has been replaced with
+      <code translate="no" dir="ltr">rememberDecoratedNavEntries</code>
+      that creates and return NavEntries decorated with the list of provided decorators (
+      <a href="https://android-review.googlesource.com/#/q/I0fe1ce4618e337102a3daa01b5bca94a592dd6f8">I0fe1c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/441328236">b/441328236</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavBackStack</code>
+      is now generic over the
+      <code translate="no" dir="ltr">NavKey</code>
+      type. This allows apps and libraries to define custom key types for their back stacks, rather than being restricted to
+      <code translate="no" dir="ltr">NavKey</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4d19087dadab3a6796d15a067cac907597c76e11">I4d190</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Iad2f46e30ac62e5367304cec20fa5ae3a657402e">Iad2f4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/420443609">b/420443609</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavBackStack</code>
+      is now
+      <code translate="no" dir="ltr">@kotlinx.serialization.Serializable</code>
+      , making it possible to save and restore navigation state across process death and configuration changes without extra boilerplate. (
+      <a href="https://android-review.googlesource.com/#/q/I2c3cfd6c6af1a7e46233e703ba86629bf5271634">I2c3cf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/420443609">b/420443609</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">RememberNavBackStack</code>
+      has been moved to
+      <code translate="no" dir="ltr">commonMain</code>
+      to ensure it is provided on all platform targets. (
+      <a href="https://android-review.googlesource.com/#/q/Id69e75758ff2d6078dbd06cdecb1621b42607630">Id69e7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/420443609">b/420443609</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">NavDisplay</code>
+      now correctly moves each individual
+      <code translate="no" dir="ltr">NavEntry</code>
+      to the correct
+      <code translate="no" dir="ltr">Lifecycle.State</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I30aac4627d43c1a85f580887a4c36f1543a97e2c">I30aac</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/440145700">b/440145700</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">NavDisplay</code>
+      would ignore any nested
+      <code translate="no" dir="ltr">NavigationEventDispatcherOwner</code>
+      set via the
+      <code translate="no" dir="ltr">NavigationEvent</code>
+      library's
+      <code translate="no" dir="ltr">LocalNavigationEventDispatcherOwner</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6224a3448b71d2532bf5692e520ccaf540824b8f">I6224a</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Changes</strong></p>
+  <ul>
+    <li>
+      Navigation3 now depends on
+      <a href="/jetpack/androidx/releases/navigationevent#1.0.0-alpha08">NavigationEvent Alpha08</a>
+      .
+    </li>
+  </ul>
