@@ -1,0 +1,80 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.10.0-alpha03
+releaseDate: 2025-09-10
+#language=html
+changelogHtml: |
+  <h3 id="1.10.0-alpha03" data-text="Version 1.10.0-alpha03" tabindex="-1">Version 1.10.0-alpha03</h3>
+  <p>September 10, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.10.0-alpha03</code>
+    is released. Version 1.10.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cd8ce2bdb21194a81a76325a8e65dad5d7e28681..cf4bc156e75473f159aa2536c8948d273ac67d97/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removes
+      <code translate="no" dir="ltr">ComposeFoundationFlags.isNonComposedClickableEnabled</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I0dfc069e0c53be41a043df36c111bacdd09fbcd8">I0dfc0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/406228525">b/406228525</a>
+      )
+    </li>
+    <li>
+      Move factory functions for creating
+      <code translate="no" dir="ltr">FillableData</code>
+      instances to companion object. Instead of calling
+      <code translate="no" dir="ltr">FillableData(value)</code>
+      , use the new factory methods:
+      <code translate="no" dir="ltr">FillableData.createFrom(value)</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2e2000938dacc674805868e2030813575892b26d">I2e200</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/441719650">b/441719650</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">BeyondBoundsLayoutModifierNode</code>
+      a new Modifier node to perform beyond bound layout for focus search. (
+      <a href="https://android-review.googlesource.com/#/q/I39be1741cebd0b7df56c8e034cc3189b2135e664">I39be1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/416133658">b/416133658</a>
+      )
+    </li>
+    <li>
+      Marked
+      <code translate="no" dir="ltr">ScrollState.value</code>
+      as
+      <code translate="no" dir="ltr">@FrequentlyChangingValue</code>
+      property. (
+      <a href="https://android-review.googlesource.com/#/q/I4723d9d1e5c39731f5a3110e1d76948e8f606e7a">I4723d</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">LazyLayoutKeyIndexMap</code>
+      and a factory for a default implementation. (
+      <a href="https://android-review.googlesource.com/#/q/I4fd0c2861acc2d0eb69d3be619a5fa9c3464d539">I4fd0c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/415038029">b/415038029</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Column and Row now correctly pass the item's actual size to
+      <code translate="no" dir="ltr">Modifier.align</code>
+      , resolving an issue where custom
+      <code translate="no" dir="ltr">Modifier.align</code>
+      implementation received an incorrect 0 value. (
+      <a href="https://android-review.googlesource.com/#/q/I8194f5e3538ec16cf750d4f109f4d9a071ba2a33">I8194f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/439716351">b/439716351</a>
+      )
+    </li>
+  </ul>

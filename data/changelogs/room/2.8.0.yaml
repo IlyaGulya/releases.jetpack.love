@@ -1,0 +1,42 @@
+libraryId: room
+groupId: androidx.room
+version: 2.8.0
+releaseDate: 2025-09-10
+#language=html
+changelogHtml: |
+  <h3 id="2.8.0" data-text="Version 2.8.0" tabindex="-1">Version 2.8.0</h3>
+  <p>September 10, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.8.0</code>
+    is released. Version 2.8.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cae482df887aba2cf7d8b0d016366955f3856895..0cf53e68a1c9a8a88886b1efd1aacc3f791351c9/room">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 2.7.0:</strong></p>
+  <ul>
+    <li>
+      Added a new artifact
+      <code translate="no" dir="ltr">androidx.room:room-sqlite-wrapper</code>
+      which contains APIs to get a
+      <code translate="no" dir="ltr">SupportSQLiteDatabase</code>
+      wrapper from a
+      <code translate="no" dir="ltr">RoomDatabase</code>
+      with a configured
+      <code translate="no" dir="ltr">SQLiteDriver</code>
+      . To get the wrapper use the new extension function
+      <code translate="no" dir="ltr">RoomDatabase.getSupportWrapper()</code>
+      . This is a compatibility artifact to maintain usages of
+      <code translate="no" dir="ltr">SupportSQLiteDatabase</code>
+      , usually obtained from
+      <code translate="no" dir="ltr">roomDatabase.openHelper.writableDatabase</code>
+      , even if the Room database is configured with a
+      <code translate="no" dir="ltr">SQLiteDriver</code>
+      . This wrapper is useful for incremental migration of codebases who wish to adopt SQLiteDriver APIs but have extensive usages of the SupportSQLite APIs yet they want to take advantage of the
+      <code translate="no" dir="ltr">BundledSQLiteDriver</code>
+      . Checkout the
+      <a href="https://developer.android.com/kotlin/multiplatform/room#migrate-from-support-sqlite">migration guide</a>
+      for more information.
+    </li>
+    <li>Added support for KMP targets Watch OS and Tv OS.</li>
+    <li>Updated the library’s Android minSDK from API 21 to API 23</li>
+  </ul>
