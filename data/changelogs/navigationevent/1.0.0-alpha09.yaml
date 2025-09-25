@@ -1,0 +1,424 @@
+libraryId: navigationevent
+groupId: androidx.navigationevent
+version: 1.0.0-alpha09
+releaseDate: 2025-09-24
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha09" data-text="Version 1.0.0-alpha09" tabindex="-1">Version 1.0.0-alpha09</h3>
+  <p>September 24, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigationevent:navigationevent-*:1.0.0-alpha09</code>
+    is released. Version 1.0.0-alpha09 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cf4bc156e75473f159aa2536c8948d273ac67d97..eda15c8d8b0e8a4cdb256c81b44499364dbf0fcd/navigationevent">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Use the
+      <code translate="no" dir="ltr">NavigationEventTransitionState.Idle</code>
+      singleton object directly instead of instantiating
+      <code translate="no" dir="ltr">Idle()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic7d9ec5eb9a1c426cd78342a9244df324f3147bd">Ic7d9e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444734264">b/444734264</a>
+      )
+    </li>
+    <li>
+      Make convenience constructors internal; obtain instances via public
+      <code translate="no" dir="ltr">NavigationEventDispatcher.history</code>
+      instead of direct construction. (
+      <a href="https://android-review.googlesource.com/#/q/I3b7e077aa3da0494ba56b3b02a257b92e13d65c5">I3b7e0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444734264">b/444734264</a>
+      )
+    </li>
+    <li>
+      Require creating
+      <code translate="no" dir="ltr">NavigationEventState</code>
+      via
+      <code translate="no" dir="ltr">rememberNavigationEventState</code>
+      ; constructor is now internal. (
+      <a href="https://android-review.googlesource.com/#/q/Ie143c5d25a50ff66f3f22571e4d82bd8dae602c2">Ie143c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444734264">b/444734264</a>
+      )
+    </li>
+    <li>
+      Adopt
+      <code translate="no" dir="ltr">onBackCompletedFallback</code>
+      replace
+      <code translate="no" dir="ltr">fallbackOnBackPressed</code>
+      usages and constructor parameter. Behavior is unchanged; invoked only on completed, unhandled back events. (
+      <a href="https://android-review.googlesource.com/#/q/Idabe94c36cb1cb78fa1770fb90dd02a914456d63">Idabe9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444734264">b/444734264</a>
+      )
+    </li>
+    <li>
+      The primary constructor of
+      <code translate="no" dir="ltr">NavigationEventHistory(mergedHistory, currentIndex)</code>
+      is now
+      <code translate="no" dir="ltr">internal</code>
+      . External consumers must use the public constructors (either the empty constructor or the partition-based constructor) to create instances. (
+      <a href="https://android-review.googlesource.com/#/q/I1c0478b0039f8a89b79c4c2b7d655abd4d201722">I1c047</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444734264">b/444734264</a>
+      )
+    </li>
+    <li>
+      Make
+      <code translate="no" dir="ltr">View.setViewTreeNavigationEventDispatcherOwner</code>
+      accept nullable owner (
+      <a href="https://android-review.googlesource.com/#/q/Ic9eb6e2b8687caea3d6b852881289c3f0a209cd4">Ic9eb6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444436762">b/444436762</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavigationEventInfo</code>
+      is now an
+      <code translate="no" dir="ltr">abstract class</code>
+      instead of an
+      <code translate="no" dir="ltr">interface</code>
+      . Update all custom implementations to inherit from the class (e.g,
+      <code translate="no" dir="ltr">data class MyInfo : NavigationEventInfo()</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/I1e59c844ec7c68a2824d0215af228e47fa6bc4e1">I1e59c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444734264">b/444734264</a>
+      )
+    </li>
+    <li>
+      The legacy
+      <code translate="no" dir="ltr">NavigationEventDispatcher.state</code>
+      property and
+      <code translate="no" dir="ltr">getState&lt;T&gt;()</code>
+      function have been removed. Use the new, separate
+      <code translate="no" dir="ltr">dispatcher.transitionState</code>
+      (for gesture progress) and
+      <code translate="no" dir="ltr">dispatcher.history</code>
+      (for the navigation stack) flows. (
+      <a href="https://android-review.googlesource.com/#/q/Ic2cebbcf1eabc3253e4511763896b6cf8d5d45e6">Ic2ceb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444734264">b/444734264</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">NavigationEventInput.onInfoChanged(...)</code>
+      callback is replaced. Implement the new
+      <code translate="no" dir="ltr">onHistoryChanged(history: NavigationEventHistory)</code>
+      callback to receive updates as a single
+      <code translate="no" dir="ltr">NavigationEventHistory</code>
+      object. (
+      <a href="https://android-review.googlesource.com/#/q/I23e0b6df2350c0b834af9a478d42dfef7aedeece">I23e0b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444734264">b/444734264</a>
+      )
+    </li>
+    <li>
+      Introduce a new global
+      <code translate="no" dir="ltr">NavigationEventDispatcher.history</code>
+      <code translate="no" dir="ltr">StateFlow</code>
+      . This non-generic flow allows observers to subscribe only to changes to the navigation stack and remains stable during gesture progress. This is the counterpart to
+      <code translate="no" dir="ltr">transitionState</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1db107a184a1b58a55b4dead0b66509761ab100d">I1db10</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444734264">b/444734264</a>
+      )
+    </li>
+    <li>
+      Introduce a new global
+      <code translate="no" dir="ltr">NavigationEventDispatcher.transitionState</code>
+      <code translate="no" dir="ltr">StateFlow</code>
+      . This non-generic flow allows observers to subscribe only to the physical gesture state (Idle/InProgress), separate from history. (
+      <a href="https://android-review.googlesource.com/#/q/I171fa229d494eba01aa36f33435c68bc58f10b23">I171fa</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444734264">b/444734264</a>
+      )
+    </li>
+    <li>
+      Introduce the
+      <code translate="no" dir="ltr">NavigationEventHistoryState</code>
+      class. This will serve as the core API for observing navigation information history, separate from gesture state. (
+      <a href="https://android-review.googlesource.com/#/q/I81ca52511003f31e9240b021b011ebaa7dac568f">I81ca5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444734264">b/444734264</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavigationEvent</code>
+      is now marked as
+      <code translate="no" dir="ltr">@Immutable</code>
+      , allowing the Compose Compiler to optimize recompositions. (
+      <a href="https://android-review.googlesource.com/#/q/If78c70d5fdc0ab87142546f6bbe3c77d9833d7ae">If78c7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444734264">b/444734264</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">navigationevent-compose</code>
+      handler APIs are updated.
+      <code translate="no" dir="ltr">NavigationEventHandler</code>
+      and
+      <code translate="no" dir="ltr">NavigationBackHandler</code>
+      (and variants) now support a new overload that accepts a hoisted
+      <code translate="no" dir="ltr">NavigationEventState</code>
+      s. The simple overloads (taking
+      <code translate="no" dir="ltr">currentInfo</code>
+      ) are preserved and now use this new state model internally. (
+      <a href="https://android-review.googlesource.com/#/q/Ic32511e845d8b2ca72f9d97aa01d1a3c319f5705">Ic3251</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444734264">b/444734264</a>
+      )
+    </li>
+    <li>
+      Add the new
+      <code translate="no" dir="ltr">@Stable</code>
+      <code translate="no" dir="ltr">NavigationEventState&lt;T&gt;</code>
+      state holder to the
+      <code translate="no" dir="ltr">navigationevent-compose</code>
+      library. This object combines local history with local gesture state and will be the primary link between
+      <code translate="no" dir="ltr">rememberNavigationEventState</code>
+      and
+      <code translate="no" dir="ltr">NavigationEventHandler</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ifb69f6b7d4cebd1a0020cbacce7dece9c5c38acb">Ifb69f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444734264">b/444734264</a>
+      )
+    </li>
+    <li>
+      Add a new public, read-only
+      <code translate="no" dir="ltr">transitionState: TransitionState</code>
+      property to
+      <code translate="no" dir="ltr">NavigationEventHandler</code>
+      . Handlers now maintain their own transition state, which external systems can observe. (
+      <a href="https://android-review.googlesource.com/#/q/I9acd2b09de191f33cb200169fc1b4d3bb74dd17a">I9acd2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444734264">b/444734264</a>
+      )
+    </li>
+    <li>
+      Introduce the new
+      <code translate="no" dir="ltr">TransitionState</code>
+      sealed class. This will serve as the core API for observing gesture state, separate from navigation history. (
+      <a href="https://android-review.googlesource.com/#/q/Id4beb114ebc4ca33b8810de2d1cf9d57f7ec2336">Id4beb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444734264">b/444734264</a>
+      )
+    </li>
+    <li>
+      Expose
+      <code translate="no" dir="ltr">currentInfo</code>
+      ,
+      <code translate="no" dir="ltr">backInfo</code>
+      , and
+      <code translate="no" dir="ltr">forwardInfo</code>
+      as public, read-only properties on
+      <code translate="no" dir="ltr">NavigationEventHandler</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia76361b27c742a3c84266603067a3e28578f2ec6">Ia7636</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444734264">b/444734264</a>
+      )
+    </li>
+    <li>
+      Implementations of
+      <code translate="no" dir="ltr">NavigationEventHandler</code>
+      must now provide an
+      <code translate="no" dir="ltr">initialInfo: T</code>
+      value to the base constructor. (
+      <a href="https://android-review.googlesource.com/#/q/Idcfea61cc16825aa6e78fe19557d604ea874a2d6">Idcfea</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444734264">b/444734264</a>
+      )
+    </li>
+    <li>
+      Replace
+      <code translate="no" dir="ltr">OnBackInvokedInput</code>
+      with
+      <code translate="no" dir="ltr">OnBackInvokedOverlayInput</code>
+      or
+      <code translate="no" dir="ltr">OnBackInvokedDefaultInput</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I5323ff1b5410c8c42bfa841447ac32bf10ad2a21">I5323f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/428948766">b/428948766</a>
+      )
+    </li>
+    <li>
+      Mark
+      <code translate="no" dir="ltr">NavigationEventState</code>
+      as
+      <code translate="no" dir="ltr">@Immutable</code>
+      . This improves Compose performance by ensuring Composables observing this state can correctly skip recomposition. (
+      <a href="https://android-review.googlesource.com/#/q/I399c8aded046b6fcf0bee919210b169f9fd4f7cb">I399c8</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">NavigationEventInfo.NotProvided</code>
+      to
+      <code translate="no" dir="ltr">NavigationEventInfo.None;</code>
+      update references. No behavior change. (
+      <a href="https://android-review.googlesource.com/#/q/I5e2d4dfb80dc76d86aae55e5fa9fef60e6c9b732">I5e2d4</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavigationEventInfo</code>
+      is now marked as
+      <code translate="no" dir="ltr">@Immutable</code>
+      , allowing the Compose Compiler to optimize recompositions. (
+      <a href="https://android-review.googlesource.com/#/q/I7c112c4867cb7dcc926c2e6ff32c4cdad5f16df2">I7c112</a>
+      )
+    </li>
+    <li>
+      Improve Java ergonomics with fun interface for back completion fallback. (
+      <a href="https://android-review.googlesource.com/#/q/I8a860e0aa944a9cafd1f22380ba25fe28c0b2c80">I8a860</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">onHasEnabledHandlerChanged</code>
+      to
+      <code translate="no" dir="ltr">onHasEnabledHandlersChanged</code>
+      . This clarifies that the callback reports on the collective enablement state of all handlers, not just one. (
+      <a href="https://android-review.googlesource.com/#/q/I1af6102d35775732a52674267d8e29adf5ccd96a">I1af61</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/443711297">b/443711297</a>
+      )
+    </li>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">hasEnabledHandler()</code>
+      from
+      <code translate="no" dir="ltr">NavigationEventDispatcher;</code>
+      use
+      <code translate="no" dir="ltr">NavigationEventInput.onHasEnabledHandlersChanged</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/Idef72ed7d18c4d8fe885b264b4a935c6d9ddaba8">Idef72</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/443711297">b/443711297</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">onInfoChanged</code>
+      callback to
+      <code translate="no" dir="ltr">NavigationEventInput</code>
+      to notify listeners of changes to the navigation history. This provides the full context of the current, back, and forward stacks, enabling Inputs to react to the contextual information. (
+      <a href="https://android-review.googlesource.com/#/q/I69a8bf349e514983b821ab9905d66ac5d9889ac9">I69a8b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/443282983">b/443282983</a>
+      )
+    </li>
+    <li>
+      Make
+      <code translate="no" dir="ltr">NavigationEvent</code>
+      's
+      <code translate="no" dir="ltr">swipeEdge</code>
+      an
+      <code translate="no" dir="ltr">@IntDef</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Icee542915f6b4c5a37bd663caaec983417498349">Icee54</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/443950342">b/443950342</a>
+      )
+    </li>
+    <li>
+      Add a
+      <code translate="no" dir="ltr">priority</code>
+      parameter to
+      <code translate="no" dir="ltr">NavigationEventDispatcher.addInput</code>
+      to scope a dispatcher to one priority; events such as
+      <code translate="no" dir="ltr">onHasEnabledCallbacksChanged</code>
+      now fire only when callbacks at that priority change. (
+      <a href="https://android-review.googlesource.com/#/q/I3e488ca02d5707635bafb0680875e2b34f4911ee">I3e488</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/443711297">b/443711297</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">NavigationEventDispatcher</code>
+      param from
+      <code translate="no" dir="ltr">parentDispatcher</code>
+      to parent for clarity. (
+      <a href="https://android-review.googlesource.com/#/q/Id4f1f6f0cd10e3942281d1d0995b96defd1d16bd">Id4f1f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/443801782">b/443801782</a>
+      )
+    </li>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">NavigationEventPriority</code>
+      in favor of
+      <code translate="no" dir="ltr">@IntDef</code>
+      for Java users (
+      <a href="https://android-review.googlesource.com/#/q/I10a9f6b83a76331a9298fdb57bb1fb6299311ff3">I10a9f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/440514265">b/440514265</a>
+      )
+    </li>
+    <li>
+      Enforce navigation handler contract. If your
+      <code translate="no" dir="ltr">NavigationEventHandler</code>
+      sets
+      <code translate="no" dir="ltr">isBackEnabled</code>
+      or
+      <code translate="no" dir="ltr">isForwardEnabled</code>
+      to
+      <code translate="no" dir="ltr">true</code>
+      , you must now override
+      <code translate="no" dir="ltr">onBackCompleted</code>
+      or
+      <code translate="no" dir="ltr">onForwardCompleted</code>
+      respectively. The default implementations now throw an exception to prevent silent failures. (
+      <a href="https://android-review.googlesource.com/#/q/I17c62db53c2bf15ac24960be90283e93b7d892c8">I17c62</a>
+      )
+    </li>
+    <li>
+      Enforce valid priority values when adding navigation event handlers. Calling
+      <code translate="no" dir="ltr">addHandler</code>
+      with an unsupported priority will now throw an
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      , providing immediate feedback for incorrect usage across all target platforms. (
+      <a href="https://android-review.googlesource.com/#/q/I3c4744d651322d23e08e2fb22f33fd04c3a67ee5">I3c474</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Make
+      <code translate="no" dir="ltr">addHandler</code>
+      idempotent; ignore duplicate registrations. (
+      <a href="https://android-review.googlesource.com/#/q/I052aafc576e5d75bcbead2987cb75c8c31c98f18">I052aa</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444734264">b/444734264</a>
+      )
+    </li>
+    <li>
+      Keep
+      <code translate="no" dir="ltr">NavigationEventState</code>
+      properties in sync during recomposition. (
+      <a href="https://android-review.googlesource.com/#/q/Ib3b4d9a838687fc488f33162c7c8569466bc2cd0">Ib3b4d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444734264">b/444734264</a>
+      )
+    </li>
+    <li>
+      Ensure
+      <code translate="no" dir="ltr">NavigationEventInputs</code>
+      receive the current contextual info (current, back, forward) immediately upon registration. (
+      <a href="https://android-review.googlesource.com/#/q/Ie65bf030ad245e76639b46616e37306206cb2f38">Ie65bf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/443282983">b/443282983</a>
+      )
+    </li>
+  </ul>

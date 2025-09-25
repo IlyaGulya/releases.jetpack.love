@@ -1,0 +1,88 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.10.0-alpha04
+releaseDate: 2025-09-24
+#language=html
+changelogHtml: |
+  <h3 id="1.10.0-alpha04" data-text="Version 1.10.0-alpha04" tabindex="-1">Version 1.10.0-alpha04</h3>
+  <p>September 24, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.10.0-alpha04</code>
+    is released. Version 1.10.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cf4bc156e75473f159aa2536c8948d273ac67d97..6ef9c81cf7222a390e0a467d8c8b48d04362fd3d/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The Compose test rule variant that accepts a
+      <code translate="no" dir="ltr">CoroutineContext</code>
+      parameter has been promoted to stable. The experimental annotation has been removed, and developers no longer need to opt-in to use this API. (
+      <a href="https://android-review.googlesource.com/#/q/I74e6e9fe59d583cad1f1015a0032059a4b97db65">I74e6e</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ComposeUiFlags.isRectTrackingEnabled</code>
+      was removed. This logic is not always enabled. (
+      <a href="https://android-review.googlesource.com/#/q/Id78dfb5fb5b2dd2f786492cb455321240df5d704">Id78df</a>
+      )
+    </li>
+    <li>
+      Deprecated inline overload of
+      <code translate="no" dir="ltr">Updater#set</code>
+      as they were boxing provided value too many times (
+      <a href="https://android-review.googlesource.com/#/q/Id679eefb099cbf45c00ba01338af5c1cfa2f8782">Id679e</a>
+      )
+    </li>
+    <li>
+      Mark
+      <code translate="no" dir="ltr">onAutofillText</code>
+      semantic property as deprecated. (
+      <a href="https://android-review.googlesource.com/#/q/I6f81cdef315162eca07fde512429620704fb6b4f">I6f81c</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">UnplacedStateAwareModifierNode</code>
+      was introduced. It provides a callback called when the previously placed layout is not placed anymore. (
+      <a href="https://android-review.googlesource.com/#/q/I8fdd82ad7b8b750209b07ba4b54af4152910be8e">I8fdd8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/309776096">b/309776096</a>
+      )
+    </li>
+    <li>
+      Corrected documentation of
+      <code translate="no" dir="ltr">RetainObserver.onRetained</code>
+      and added
+      <code translate="no" dir="ltr">RetainObserver.onUnused</code>
+      , which mirrors
+      <code translate="no" dir="ltr">RememberObserver.onAbandoned</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia6fc517b08308e53e8742202c3cc5525d173e077">Ia6fc5</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">onVisibilityChangedNode()</code>
+      , which is producing a
+      <code translate="no" dir="ltr">Modifier.Node</code>
+      , used by
+      <code translate="no" dir="ltr">Modifier.onVisibilityChanged()</code>
+      via delegation, which allows to expand on top of this functionality in your custom
+      <code translate="no" dir="ltr">Modifier.Node</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I70d84b97ebdd52f1c7b547f4909e8c3b3a11543d">I70d84</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/443001320">b/443001320</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where inline content failed to render when positioned on the final line of multi-line ellipsized text, despite the placeholder preceding the ellipsized region. (
+      <a href="https://android-review.googlesource.com/#/q/I76aaf69b402e3efd8e7c759fc4ba0e082882a85e">I76aaf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/441829208">b/441829208</a>
+      )
+    </li>
+  </ul>

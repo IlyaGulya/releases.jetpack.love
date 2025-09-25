@@ -1,0 +1,67 @@
+libraryId: xr-runtime
+groupId: androidx.xr
+version: 1.0.0-alpha06
+releaseDate: 2025-09-24
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha06" data-text="Version 1.0.0-alpha06" tabindex="-1">Version 1.0.0-alpha06</h3>
+  <p>September 24, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.runtime:runtime-*:1.0.0-alpha06</code>
+    is released. Version 1.0.0-alpha06 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/8fe87e902b8acd3de17bd55d6ec0ef4b5188212e..cce22de903e4193a54e2143da843b8d98e84b59a/xr/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">HandJointType</code>
+      has been moved to
+      <code translate="no" dir="ltr">xr:arcore:arcore</code>
+      from
+      <code translate="no" dir="ltr">xr:runtime:runtime</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iadb9cd5da1d2a6025980c07999da7f24830f8623">Iadb9c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/409058039">b/409058039</a>
+      )
+    </li>
+    <li>
+      Changing the times operator for
+      <code translate="no" dir="ltr">componentWiseMultiplication</code>
+      for
+      <code translate="no" dir="ltr">Vector2</code>
+      ,
+      <code translate="no" dir="ltr">Vector3</code>
+      ,
+      <code translate="no" dir="ltr">Vector4</code>
+      to scale and removing the operator symbol for consistency with other math libraries. Also removing
+      <code translate="no" dir="ltr">componentWiseDivision</code>
+      from the Vector classes in lieu of using
+      <code translate="no" dir="ltr">Vector.scale(otherVector.inverse())</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I8e1f688576ca45f7666908f79db8d24ee6d916f0">I8e1f6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/399146447">b/399146447</a>
+      )
+    </li>
+    <li>
+      Adding [unscaled] to return a Matrix with a scale of one. (
+      <a href="https://android-review.googlesource.com/#/q/I6381d310a9950a7a4e46cf2cd99cfbdc27db6ce6">I6381d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/434928658">b/434928658</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">:xr:runtime:runtime-guava</code>
+      will be removed as
+      <code translate="no" dir="ltr">Coroutines.kt</code>
+      has been replaced with
+      <code translate="no" dir="ltr">SuspendtoFutureAdapter</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0cd3c5f7659d3f2667f3b0f9e0717191977d5391">I0cd3c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/406597902">b/406597902</a>
+      )
+    </li>
+  </ul>

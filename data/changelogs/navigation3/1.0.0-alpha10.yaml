@@ -1,0 +1,196 @@
+libraryId: navigation3
+groupId: androidx.navigation3
+version: 1.0.0-alpha10
+releaseDate: 2025-09-24
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha10" data-text="Version 1.0.0-alpha10" tabindex="-1">Version 1.0.0-alpha10</h3>
+  <p>September 24, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation3:navigation3-*:1.0.0-alpha10</code>
+    is released. Version 1.0.0-alpha10 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cf4bc156e75473f159aa2536c8948d273ac67d97..eda15c8d8b0e8a4cdb256c81b44499364dbf0fcd/navigation3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add new
+      <code translate="no" dir="ltr">NavDisplay</code>
+      overload that takes a list of
+      <code translate="no" dir="ltr">NavEntry&lt;T&gt;</code>
+      that has been decorated by
+      <code translate="no" dir="ltr">rememberDecoratedNavEntries</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4025be493bd837d96a56894370b4f4eb0227143a">I4025b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/441940314">b/441940314</a>
+      )
+    </li>
+    <li>
+      Moved
+      <code translate="no" dir="ltr">DialogScene</code>
+      to a new package. (
+      <a href="https://android-review.googlesource.com/#/q/Ia58400aa23e85e37872e3f2cdce661b52379d2a8">Ia5840</a>
+      )
+    </li>
+    <li>
+      Remove public API
+      <code translate="no" dir="ltr">DecorateNavEntry</code>
+      . Instead use
+      <code translate="no" dir="ltr">rememberDecoratedNavEntries</code>
+      to wrap a NavEntry with a list of decorators. (
+      <a href="https://android-review.googlesource.com/#/q/Id8c099a0b03f9da15a3f0ef3c49308e45e35aaae">Id8c09</a>
+      )
+    </li>
+    <li>
+      Navigation3 UI now provides new default
+      <code translate="no" dir="ltr">transitionSpec</code>
+      properties. (
+      <a href="https://android-review.googlesource.com/#/q/Ibcabd125b19ad4ecb7044b23cbcf80c714cf2094">Ibcabd</a>
+      )
+    </li>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">SceneState</code>
+      object to help manage scenes. This also provides a new
+      <code translate="no" dir="ltr">NavDisplay</code>
+      overload that takes the
+      <code translate="no" dir="ltr">SceneState</code>
+      and the
+      <code translate="no" dir="ltr">NavigationEventState</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Idfb4648b798e71000277448e355a00e0fb1e4fd1">Idfb46</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444479133">b/444479133</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavDisplay</code>
+      now allows you to customize the transitions based on what
+      <code translate="no" dir="ltr">Scene</code>
+      you are going to and from by looking at the
+      <code translate="no" dir="ltr">Transition</code>
+      's
+      <code translate="no" dir="ltr">currentState</code>
+      and
+      <code translate="no" dir="ltr">targetState</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I906cc1a8305e1d6cabfdfe8a4ac555e330863fbf">I906cc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/443872322">b/443872322</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavigationEventInfo</code>
+      is now an
+      <code translate="no" dir="ltr">abstract class</code>
+      instead of an
+      <code translate="no" dir="ltr">interface</code>
+      . Update all custom implementations to inherit from the class (e..g,
+      <code translate="no" dir="ltr">data class MyInfo : NavigationEventInfo()</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/I1e59c844ec7c68a2824d0215af228e47fa6bc4e1">I1e59c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444734264">b/444734264</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">navigationevent-compose</code>
+      handler APIs are updated.
+      <code translate="no" dir="ltr">NavigationEventHandler</code>
+      and
+      <code translate="no" dir="ltr">NavigationBackHandler</code>
+      (and variants) now support a new overload that accepts a hoisted
+      <code translate="no" dir="ltr">NavigationEventState</code>
+      s. The simple overloads (taking
+      <code translate="no" dir="ltr">currentInfo</code>
+      ) are preserved and now use this new state model internally. (
+      <a href="https://android-review.googlesource.com/#/q/Ic32511e845d8b2ca72f9d97aa01d1a3c319f5705">Ic3251</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444734264">b/444734264</a>
+      )
+    </li>
+    <li>
+      All of the Scene APIs have been moved out of navigation3-ui to navigation3-runtime. This means they are now available on all platforms supported by navigation3-runtime. (
+      <a href="https://android-review.googlesource.com/#/q/I431d043c8b1fd6cc52f86e7747093b78f285e2d2">I431d0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444449993">b/444449993</a>
+      )
+    </li>
+    <li>
+      Added new
+      <code translate="no" dir="ltr">rememberDecoratedNavEntries</code>
+      overload that takes a list of
+      <code translate="no" dir="ltr">NavEntry</code>
+      to decorate. The input entries can be already decorated with other entry decorators. (
+      <a href="https://android-review.googlesource.com/#/q/I5a034a05db2f4c5e5510e21711a66f2cbe693a40">I5a034</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444230270">b/444230270</a>
+      )
+    </li>
+    <li>
+      Remove navigation3 wildcard type parameters (
+      <a href="https://android-review.googlesource.com/#/q/I0254058ade649e023bd4c68e1067cbf8e5c31b09">I02540</a>
+      )
+    </li>
+    <li>
+      Improved the handling of generics for the
+      <code translate="no" dir="ltr">entryProvider</code>
+      DSL. If you were previously importing
+      <code translate="no" dir="ltr">androidx.navigation3.runtime.entry</code>
+      , this is no longer required. (
+      <a href="https://android-review.googlesource.com/#/q/I299fc79a5e1ade5136d8ff6e1184adb1820851fe">I299fc</a>
+      )
+    </li>
+    <li>
+      Restrict the reflection-based
+      <code translate="no" dir="ltr">NavBackStackSerializer</code>
+      overload to Android. This prevents implicit runtime serialization failures on non-Android platforms by enforcing the use of the explicit
+      <code translate="no" dir="ltr">SavedStateConfiguration</code>
+      overload in multiplatform code. (
+      <a href="https://android-review.googlesource.com/#/q/I733133f455bb8244d5df78f845b74d54fdcb8ad7">I73313</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/420443609">b/420443609</a>
+      )
+    </li>
+    <li>
+      Make
+      <code translate="no" dir="ltr">NavigationEvent</code>
+      's
+      <code translate="no" dir="ltr">swipeEdge</code>
+      an
+      <code translate="no" dir="ltr">@IntDef</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Icee542915f6b4c5a37bd663caaec983417498349">Icee54</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/443950342">b/443950342</a>
+      )
+    </li>
+    <li>
+      Restrict
+      <code translate="no" dir="ltr">NavBackStack</code>
+      serialization to Android. This prevents runtime failures on non-Android platforms. For multiplatform state saving, use the
+      <code translate="no" dir="ltr">rememberNavBackStack</code>
+      overload with an explicit
+      <code translate="no" dir="ltr">SavedStateConfiguration</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1e4183622beb615f3e2ad0a7b87ef2f42e127f62">I1e418</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/420443609">b/420443609</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix crash during predictive back when nested
+      <code translate="no" dir="ltr">NavDisplay</code>
+      has a single child entry. (
+      <a href="https://android-review.googlesource.com/#/q/I2cdc01c8f7fa73b96833520173cb618dfffac819">I2cdc0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/441933162">b/441933162</a>
+      )
+    </li>
+  </ul>

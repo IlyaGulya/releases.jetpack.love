@@ -1,0 +1,243 @@
+libraryId: wear-protolayout
+groupId: androidx.wear
+version: 1.4.0-alpha01
+releaseDate: 2025-09-24
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha01" data-text="Version 1.4.0-alpha01" tabindex="-1">Version 1.4.0-alpha01</h3>
+  <p>September 24, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.protolayout:protolayout-*:1.4.0-alpha01</code>
+    is released. Version 1.4.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/90062705131fa122cdd8d9bed30380b183dc48bd..0c132271cd448b355c7c853ce868820bbb8acbbd/wear/protolayout">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added helper method for
+      <code translate="no" dir="ltr">LayoutModifier</code>
+      that makes an element fade in as the tile is becoming visible. (
+      <a href="https://android-review.googlesource.com/#/q/I38531e66bb598e141f317dea07df21fa94932b7d">I38531</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/390345969">b/390345969</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">materialScopeWithResources</code>
+      to support M3
+      <code translate="no" dir="ltr">MaterialScope</code>
+      concept that also takes care of automatic resource registration. Within it, added new helper methods for images (
+      <code translate="no" dir="ltr">backgroundImage</code>
+      <code translate="no" dir="ltr">avatarImage</code>
+      and icon) that remove the need for manually registering resources in
+      <code translate="no" dir="ltr">onTileResourceRequest</code>
+      when used. (
+      <a href="https://android-review.googlesource.com/#/q/I525bd14639347178af77677e48b306f7fe937d6b">I525bd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/428692714">b/428692714</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ProtoLayout</code>
+      Kotlin helpers for
+      <code translate="no" dir="ltr">Image</code>
+      and
+      <code translate="no" dir="ltr">ImageResources</code>
+      for usage with
+      <code translate="no" dir="ltr">ProtoLayoutScope</code>
+      and automatic resource registration. (
+      <a href="https://android-review.googlesource.com/#/q/Iada82004deba3b3f30762c8f8d4a10d580614ae0">Iada82</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/430584304">b/430584304</a>
+      )
+    </li>
+    <li>
+      Added getter for how many Lottie properties are allowed in customization of one Lottie animation. (
+      <a href="https://android-review.googlesource.com/#/q/I73733ededc4c7f2b2e53d76cc2da6c93ffe74006">I73733</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/436532706">b/436532706</a>
+      )
+    </li>
+    <li>
+      Add API in
+      <code translate="no" dir="ltr">AndroidLottieResourceByResId</code>
+      to allow customizing Lottie animation via properties and add API for creating property for theming slot with the slot ID to the specified color. (
+      <a href="https://android-review.googlesource.com/#/q/I301b306474eb909a4949f648a9aba2c3dc603f09">I301b3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/423581481">b/423581481</a>
+      )
+    </li>
+    <li>
+      Add provider APIs for accepting
+      <code translate="no" dir="ltr">PendingIntent</code>
+      as click action (
+      <a href="https://android-review.googlesource.com/#/q/I019786be77ba4a959d43da286dc05e52531238e0">I01978</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/433802488">b/433802488</a>
+      )
+    </li>
+    <li>
+      Add new API in
+      <code translate="no" dir="ltr">Image.Builder</code>
+      -
+      <code translate="no" dir="ltr">setImageResource</code>
+      to set resource object directly to the Image in
+      <code translate="no" dir="ltr">onTileRequest</code>
+      , without a need to register it in mapping in
+      <code translate="no" dir="ltr">onTileResourcesRequest</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ifa69afec0f50789934af2b6d7f5dd9a6853eef01">Ifa69a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/428693523">b/428693523</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ProtoLayoutScope</code>
+      concept in preparation for better resources handling in Tiles. (
+      <a href="https://android-review.googlesource.com/#/q/I132ce6910147839f15c95c14ccc4f354b819f387">I132ce</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/428692423">b/428692423</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ProtoLayout</code>
+      Material3
+      <code translate="no" dir="ltr">MaterialScope</code>
+      now exposes
+      <code translate="no" dir="ltr">Context</code>
+      field as public, for use in methods within the scope, without the need to pass it around. (
+      <a href="https://android-review.googlesource.com/#/q/I0e5ccaf7605cb50373ee9b8d862a72b57a60bb26">I0e5cc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/414559956">b/414559956</a>
+      )
+    </li>
+    <li>
+      Make heading semantic APIs public (
+      <a href="https://android-review.googlesource.com/#/q/I752994155174f5dafbefecd8e8a2eed550a197b2">I75299</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/413653475">b/413653475</a>
+      )
+    </li>
+    <li>
+      Expose
+      <code translate="no" dir="ltr">ARC_DIRECTION_*</code>
+      consts as public for use in
+      <code translate="no" dir="ltr">Arc/ArcLine/ArcText/DashedArcLine</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I83959aafc7577b3086ce547197bdeea00cbbe567">I83959</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/427556439">b/427556439</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We have deprecated
+      <code translate="no" dir="ltr">Image.Builder()</code>
+      and
+      <code translate="no" dir="ltr">Image.Builder.setResourceId</code>
+      methods in favour of the new automatic resource registration API, available in
+      <code translate="no" dir="ltr">Image.Builder(ProtoLayoutScope)</code>
+      and
+      <code translate="no" dir="ltr">Image.Builder.setImageResource</code>
+      APIs that remove the need for overriding
+      <code translate="no" dir="ltr">onTileResourcesRequest</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7bfe6ecc4e5849a27eda55dd993273e440ba69ae">I7bfe6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/432758526">b/432758526</a>
+      )
+    </li>
+    <li>
+      Move APIs for creating
+      <code translate="no" dir="ltr">ProtoLayoutScope</code>
+      from restricted to public. However, they shouldn't be used as the system already handles those calls. (
+      <a href="https://android-review.googlesource.com/#/q/I1d8e8d1da2f50eeb9c644b50aa605c42a44fee36">I1d8e8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/432758251">b/432758251</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Add implementation for supporting
+      <code translate="no" dir="ltr">PendingIntent</code>
+      in
+      <code translate="no" dir="ltr">ProtoTiles</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I38167189ae91141338112412e5f7e90edb7f7e46">I38167</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/430610429">b/430610429</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">invalidateLayout</code>
+      method. (
+      <a href="https://android-review.googlesource.com/#/q/Ief898a3d891f979937866b5d0208d5b38ead05fa">Ief898</a>
+      )
+    </li>
+    <li>
+      Moving the default minSdk from API 21 to API 23 (
+      <a href="https://android-review.googlesource.com/#/q/Ibdfca5942dbb414ca07594ba240093db14aad4df">Ibdfca</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/380448311">b/380448311</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/435705964">b/435705964</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/435705223">b/435705223</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ImageResource</code>
+      now has
+      <code translate="no" dir="ltr">hashCode</code>
+      and
+      <code translate="no" dir="ltr">equals</code>
+      methods. (
+      <a href="https://android-review.googlesource.com/#/q/I650eece74a9494253f75839454bef2f35bb8c7e6">I650ee</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/428692423">b/428692423</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/428693523">b/428693523</a>
+      )
+    </li>
+    <li>
+      Add new proto message
+      <code translate="no" dir="ltr">PendingIntentAction</code>
+      and its wrapper builder (
+      <a href="https://android-review.googlesource.com/#/q/Ie2aca02e235b09b72bf7cf5879fc5158e78b179e">Ie2aca</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/427643502">b/427643502</a>
+      )
+    </li>
+    <li>
+      Reduce how often
+      <code translate="no" dir="ltr">ZoneId</code>
+      instance is created. (
+      <a href="https://android-review.googlesource.com/#/q/I284d34506ef0436cec5b25b18eda47c031531966">I284d3</a>
+      )
+    </li>
+    <li>
+      Apply default content description to the single slot
+      <code translate="no" dir="ltr">textButton</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0dc8adb271c72f53b7133df4e01d6f44149d8456">I0dc8a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/415001534">b/415001534</a>
+      )
+    </li>
+    <li>
+      Fix calculations for adjusting max lines in the renderer side. (
+      <a href="https://android-review.googlesource.com/#/q/I933bc3969a34c5de4eb320225f3f695db88db4ff">I933bc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/414353620">b/414353620</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_13_2" data-text="Version 1.3" tabindex="-1">Version 1.3</h2>
