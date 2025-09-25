@@ -1,0 +1,281 @@
+libraryId: xr-scenecore
+groupId: androidx.xr
+version: 1.0.0-alpha07
+releaseDate: 2025-09-24
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha07" data-text="Version 1.0.0-alpha07" tabindex="-1">Version 1.0.0-alpha07</h3>
+  <p>September 24, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.scenecore:scenecore:1.0.0-alpha07</code>
+    ,
+    <code translate="no" dir="ltr">androidx.xr.scenecore:scenecore-guava:1.0.0-alpha07</code>
+    , and
+    <code translate="no" dir="ltr">androidx.xr.scenecore:scenecore-testing:1.0.0-alpha07</code>
+    are released. Version 1.0.0-alpha07 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a54f47329f5dd47722a43b92814d5c7278a434ce..9dcef8caadcc3ef1c1eb670d1da2553621a5017b/xr/scenecore">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">fixedAspectRatio</code>
+      to
+      <code translate="no" dir="ltr">isFixedAspectRatioEnabled</code>
+      and made it a boolean property (
+      <a href="https://android-review.googlesource.com/#/q/I5c4e8c1026afdccc8f6b40eb2f595261febaf71c">I5c4e8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/440588971">b/440588971</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Scenecore</code>
+      Fakes are now located in
+      <code translate="no" dir="ltr">xr:scenecore:scenecore-testing</code>
+      module. (
+      <a href="https://android-review.googlesource.com/#/q/Idd951597c65a2104ba1e02e1a388abfafec15664">Idd951</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">shouldAutoHideContent</code>
+      to
+      <code translate="no" dir="ltr">isAutoHideContentWhileResizingEnabled</code>
+      and
+      <code translate="no" dir="ltr">shouldAlwaysShowOverlay</code>
+      to
+      <code translate="no" dir="ltr">isAlwaysShowOverlayEnabled</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I97c36d70477b1606e5962c077e332d1ca9080396">I97c36</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/432335421">b/432335421</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">SceneCore</code>
+      <code translate="no" dir="ltr">TextureSampler</code>
+      constants for readability, for example
+      <code translate="no" dir="ltr">TextureSampler.MinFilter.LINEAR</code>
+      is now
+      <code translate="no" dir="ltr">TextureSampler.MIN_FILTER_LINEAR</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ib159cfad20d3da673016475afa4b9dc4ae3b2905">Ib159c</a>
+      )
+    </li>
+    <li>
+      Scene's
+      <code translate="no" dir="ltr">setKeyEntity</code>
+      setter has been merged into the
+      <code translate="no" dir="ltr">keyEntity</code>
+      variable. Setting the
+      <code translate="no" dir="ltr">keyEntity</code>
+      to an unmovable Entity such as
+      <code translate="no" dir="ltr">AnchorEntity</code>
+      will throw an
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      instead of returning a boolean false. (
+      <a href="https://android-review.googlesource.com/#/q/I620806e7d64aad4c03a6727ea3a7d9b171572025">I62080</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/428721695">b/428721695</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/422215745">b/422215745</a>
+      )
+    </li>
+    <li>
+      Scene's
+      <code translate="no" dir="ltr">SpatialModeChangeListener</code>
+      variable was replaced with
+      <code translate="no" dir="ltr">setSpatialModeChangedListener</code>
+      . It takes in a
+      <code translate="no" dir="ltr">Consumer&lt;SpatialModeChangeEvent&gt;</code>
+      instead of a
+      <code translate="no" dir="ltr">SpatialModeChangedListener</code>
+      .
+      <code translate="no" dir="ltr">setSpatialModeChangedListener</code>
+      can now optionally take in an Executor. (
+      <a href="https://android-review.googlesource.com/#/q/I620806e7d64aad4c03a6727ea3a7d9b171572025">I62080</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/428721695">b/428721695</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/422215745">b/422215745</a>
+      )
+    </li>
+    <li>
+      Removed the
+      <code translate="no" dir="ltr">bundle</code>
+      parameter from
+      <code translate="no" dir="ltr">ActivityPanelEntity.startActivity</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I64344057bfa3097a232dc3b5d0ae005b436c17bf">I64344</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/430332856">b/430332856</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/430333040">b/430333040</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">SpatializerConstants.SOURCE_TYPE_BYPASS</code>
+      to
+      <code translate="no" dir="ltr">SpatializerConstants.SOURCE_TYPE_DEFAULT</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ifc7fed07b28f5177d711184711f524b42cd4c14e">Ifc7fe</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/422215565">b/422215565</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">SpatialSoundPool.PLAY_FAILED</code>
+      constant. (
+      <a href="https://android-review.googlesource.com/#/q/Ifc7fed07b28f5177d711184711f524b42cd4c14e">Ifc7fe</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/422215565">b/422215565</a>
+      )
+    </li>
+    <li>
+      Added default arguments to
+      <code translate="no" dir="ltr">SpatialSoundPool.play</code>
+      methods. (
+      <a href="https://android-review.googlesource.com/#/q/Ifc7fed07b28f5177d711184711f524b42cd4c14e">Ifc7fe</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/422215565">b/422215565</a>
+      )
+    </li>
+    <li>
+      Removed return value of setters in
+      <code translate="no" dir="ltr">SpatialAudioTrackBuilder</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ifc7fed07b28f5177d711184711f524b42cd4c14e">Ifc7fe</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/422215565">b/422215565</a>
+      )
+    </li>
+    <li>
+      SurfaceEntity changes
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">SurfaceEntity.CanvasShape</code>
+          renamed
+          <code translate="no" dir="ltr">Shape</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">SurfaceEntity.CanvasShape.Vr180Hemisphere</code>
+          renamed
+          <code translate="no" dir="ltr">Hemisphere</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">SurfaceEntity.CanvasShape.Vr360Sphere</code>
+          renamed
+          <code translate="no" dir="ltr">Sphere</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">SurfaceEntity.EdgeFeatheringParams.SmoothFeather</code>
+          renamed
+          <code translate="no" dir="ltr">RectangleFeather</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">SurfaceEntity.EdgeFeathingParams.SolidEdge</code>
+          renamed
+          <code translate="no" dir="ltr">NoFeathering</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">SurfaceEntity.ContentSecurityLevel</code>
+          renamed
+          <code translate="no" dir="ltr">SurfaceProtection</code>
+        </li>
+        <li>
+          <code translate="no" dir="ltr">SurfaceEntity.ContentSecurityLevel.{values}</code>
+          added a
+          <code translate="no" dir="ltr">SURFACE_PROTECTION_</code>
+          prefix.
+        </li>
+        <li>
+          <code translate="no" dir="ltr">SurfaceEntity.SuperSampling.{$values}</code>
+          added a
+          <code translate="no" dir="ltr">SUPER_SAMPLING_</code>
+          prefix
+        </li>
+        <li>
+          <code translate="no" dir="ltr">SurfaceEntity.StereoMode.{values}</code>
+          added a
+          <code translate="no" dir="ltr">STEREO_MODE_</code>
+          prefix
+        </li>
+        <li>
+          <code translate="no" dir="ltr">SurfaceEntity.ContentColorMetadata.maxCLL</code>
+          renamed
+          <code translate="no" dir="ltr">maxContentLightLevel</code>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I7eb5fa6e22e7e8e9514293b66de30d4c6bc545b0">I7eb5f</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/422216050">b/422216050</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/427529950">b/427529950</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">launchActivity</code>
+      to
+      <code translate="no" dir="ltr">startActivity</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I7db907769a5e26f9cb5346ba63f63afb0a0ea31d">I7db90</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/430332856">b/430332856</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">Scene.activitySpaceRoot</code>
+      . Use
+      <code translate="no" dir="ltr">Scene.activitySpace</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/I05ee8971d2208203b660045aca43453e2bf8249b">I05ee8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/378706624">b/378706624</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/422215745">b/422215745</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">configureBundleForFullSpaceModeLaunch</code>
+      and
+      <code translate="no" dir="ltr">configureBundleForFullSpaceModeLaunchWithEnvironmentInherited</code>
+      renamed to
+      <code translate="no" dir="ltr">createBundleForFullSpaceModeLaunch</code>
+      and
+      <code translate="no" dir="ltr">createBundleForFullSpaceModeLaunchWithEnvironmentInherited</code>
+      respectively, and moved to LaunchUtils.kt file as top-level methods and take Session as first param (
+      <a href="https://android-review.googlesource.com/#/q/I64a2c9cf37fa14a1c46a99592e00fd9b25c1373b">I64a2c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/437186050">b/437186050</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">GroupEntity</code>
+      factory now returns
+      <code translate="no" dir="ltr">GroupEntity</code>
+      type instead of Entity. (
+      <a href="https://android-review.googlesource.com/#/q/I660420712026424ec806f39477ff0ddec284a6d3">I66042</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Throw an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      when an entity instance is used after dispose. (
+      <a href="https://android-review.googlesource.com/#/q/I90990152de00b78c2d9f36efafe347cac1f1dccc">I90990</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/427314036">b/427314036</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/432063442">b/432063442</a>
+      )
+    </li>
+  </ul>

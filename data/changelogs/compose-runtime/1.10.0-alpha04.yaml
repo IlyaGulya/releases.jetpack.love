@@ -1,0 +1,91 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.10.0-alpha04
+releaseDate: 2025-09-24
+#language=html
+changelogHtml: |
+  <h3 id="1.10.0-alpha04" data-text="Version 1.10.0-alpha04" tabindex="-1">Version 1.10.0-alpha04</h3>
+  <p>September 24, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.10.0-alpha04</code>
+    is released. Version 1.10.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cf4bc156e75473f159aa2536c8948d273ac67d97..6ef9c81cf7222a390e0a467d8c8b48d04362fd3d/compose/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">RetainScopeHolder</code>
+      API to manage a collection of
+      <code translate="no" dir="ltr">RetainScopes</code>
+      . This can be used to implement retention for containers and navigation hosts that compose many children with different retention lifespans. (
+      <a href="https://android-review.googlesource.com/#/q/I10e0faa45a33ef4fc34c77428dfb24e4c49233de">I10e0f</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">RetainedContentHost</code>
+      and
+      <code translate="no" dir="ltr">retainControlledRetainScope</code>
+      APIs, which can be used to create automatically managed
+      <code translate="no" dir="ltr">RetainScopes</code>
+      for disappearing content like collapsing panes (
+      <a href="https://android-review.googlesource.com/#/q/If81f63ae07c9080dc05bd3c5c5b99372a34b0766">If81f6</a>
+      )
+    </li>
+    <li>
+      Deprecated inline overload of
+      <code translate="no" dir="ltr">Updater#set</code>
+      as it was boxing the provided value too many times. Added an overload of
+      <code translate="no" dir="ltr">Updater#init</code>
+      which takes a parameter which avoids requiring a capturing lambda. (
+      <a href="https://android-review.googlesource.com/#/q/Id679eefb099cbf45c00ba01338af5c1cfa2f8782">Id679e</a>
+      )
+    </li>
+    <li>
+      Introduces
+      <code translate="no" dir="ltr">RetainedEffect</code>
+      , a side-effect API similar to
+      <code translate="no" dir="ltr">DisposableEffect</code>
+      that follows the retention lifecycle instead of the composition lifecycle. This API is intended to be used for effects tied to the retention of another object that doesn't or can't implement
+      <code translate="no" dir="ltr">RetainObserver</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1c61f7f644a99e2ca57bec4f617e443c2c0ac480">I1c61f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/177562901">b/177562901</a>
+      )
+    </li>
+    <li>
+      Corrected documentation of
+      <code translate="no" dir="ltr">RetainObserver.onRetained</code>
+      and added
+      <code translate="no" dir="ltr">RetainObserver.onUnused</code>
+      , which mirrors
+      <code translate="no" dir="ltr">RememberObserver.onAbandoned</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ia6fc517b08308e53e8742202c3cc5525d173e077">Ia6fc5</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed dispatching remember after the first group in a function (such as a composable call) and before a group that can be removed (such as an
+      <code translate="no" dir="ltr">if</code>
+      statement) that could dispatch
+      <code translate="no" dir="ltr">onForgotten</code>
+      in incorrect order. (
+      <a href="https://android-review.googlesource.com/#/q/I453f64705cc4dd092c14f0027d837b00760b80f7">I453f6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/346821372">b/346821372</a>
+      )
+    </li>
+    <li>
+      Avoid coroutine context traversal when initializing
+      <code translate="no" dir="ltr">LaunchedEffect</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I8d2c3b65feffb9cd388e64b3facab5dcd2853e1a">I8d2c3b</a>
+      )
+    </li>
+  </ul>

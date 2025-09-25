@@ -1,0 +1,148 @@
+libraryId: xr-compose
+groupId: androidx.xr
+version: 1.0.0-alpha07
+releaseDate: 2025-09-24
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha07" data-text="Version 1.0.0-alpha07" tabindex="-1">Version 1.0.0-alpha07</h3>
+  <p>September 24, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.compose:compose:1.0.0-alpha07</code>
+    and
+    <code translate="no" dir="ltr">androidx.xr.compose:compose-testing:1.0.0-alpha07</code>
+    are released. Version 1.0.0-alpha07 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e21507177b82f0dd17c8323b7362ac89fede28ce..5e032601bca53b499bd4725e4cdb975643bc3c2a/xr/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Improved KDocs for
+      <code translate="no" dir="ltr">SpatialMainPanel</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I27b70fac09898875d52441edfab06cf14137fcd7">I27b70</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444467891">b/444467891</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">SpatialArrangement</code>
+      for arranging children along the main axis in 3D layouts like
+      <code translate="no" dir="ltr">SpatialRow</code>
+      and
+      <code translate="no" dir="ltr">SpatialColumn</code>
+      . This new API provides familiar arrangement options from 2D Compose, including
+      <code translate="no" dir="ltr">Start</code>
+      ,
+      <code translate="no" dir="ltr">End</code>
+      ,
+      <code translate="no" dir="ltr">Center</code>
+      ,
+      <code translate="no" dir="ltr">SpaceBetween</code>
+      ,
+      <code translate="no" dir="ltr">SpaceAround</code>
+      , and
+      <code translate="no" dir="ltr">SpaceEvenly</code>
+      , with full support for both LTR and RTL layout directions. (
+      <a href="https://android-review.googlesource.com/#/q/I7db38a094fa3fb7d5920e3a17d14e19f4d9eb38d">I7db38</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/436289959">b/436289959</a>
+      )
+    </li>
+    <li>
+      Added a base interface for
+      <code translate="no" dir="ltr">SubspaceModifier.Node</code>
+      to improve type safety and usability of extension interfaces; such as
+      <ul>
+        <li><code translate="no" dir="ltr">CompositionLocalConsumerSubspaceModifierNode</code></li>
+        <li><code translate="no" dir="ltr">LayoutCoordinatesAwareModifierNode</code></li>
+        <li><code translate="no" dir="ltr">SubspaceLayoutModifierNode</code></li>
+        <li>
+          <code translate="no" dir="ltr">CoreEntityNode</code>
+          (internal) (
+          <a href="https://android-review.googlesource.com/#/q/Iede00f60a7bdf6cfec12a6d60c806431a119de58">Iede00</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/440599394">b/440599394</a>
+          ,
+          <a href="https://issuetracker.google.com/issues/440599394">b/440599394</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Unrestrict
+      <code translate="no" dir="ltr">SpatialExternalSurface</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I33315c3dd13629c3e3695423412b821ad2f22f9e">I33315</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/439646773">b/439646773</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">SubspaceModifier</code>
+      to Subspace composables and replace constraints parameter with
+      <code translate="no" dir="ltr">SubspaceModifier</code>
+      with size-related
+      <code translate="no" dir="ltr">SubspaceModifiers</code>
+      . If
+      <code translate="no" dir="ltr">allowUnboundedSubspace</code>
+      is true, Subspaces can still have unbounded constraints. (
+      <a href="https://android-review.googlesource.com/#/q/Ib06e6d268a161e8e132766668df5a48c9659bd6b">Ib06e6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/433331675">b/433331675</a>
+      )
+    </li>
+    <li>
+      Deprecating movable and resizable
+      <code translate="no" dir="ltr">SubspaceModifiers</code>
+      now that
+      <code translate="no" dir="ltr">DragPolicy()</code>
+      and
+      <code translate="no" dir="ltr">ResizePolicy()</code>
+      are a part of the
+      <code translate="no" dir="ltr">SpatialPanel</code>
+      and
+      <code translate="no" dir="ltr">SpatialExternalSurface</code>
+      API (
+      <a href="https://android-review.googlesource.com/#/q/I397bfdf44df081865b27b7aeb67e278ea3d025ac">I397bf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/437924639">b/437924639</a>
+      )
+    </li>
+    <li>
+      Added support for
+      <code translate="no" dir="ltr">LayoutDirection</code>
+      in spatial layouts. Composable using
+      <code translate="no" dir="ltr">SpatialAlignment</code>
+      will now correctly position elements in both LTR and RTL contexts. (
+      <a href="https://android-review.googlesource.com/#/q/I964bb0096283b2ab16b69d3b5d51453eb9c6523d">I964bb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/436300273">b/436300273</a>
+      )
+    </li>
+    <li>
+      Add Resizable and Movable parameters to the
+      <code translate="no" dir="ltr">Panel</code>
+      APIs to ensure that these behaviors can only be applied to supported containers. (
+      <a href="https://android-review.googlesource.com/#/q/Id491cf18ef769997914f493dcfa8ce8bcd146c03">Id491c</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">sizeIn</code>
+      ,
+      <code translate="no" dir="ltr">widthIn</code>
+      ,
+      <code translate="no" dir="ltr">heightIn</code>
+      ,
+      <code translate="no" dir="ltr">depthIn</code>
+      <code translate="no" dir="ltr">SubspaceModifiers</code>
+      that let you set exact minimum and maximum constraints for width, height and depth. (
+      <a href="https://android-review.googlesource.com/#/q/I1af0960b4a616d3144773df278c6db2c8de27b2e">I1af09</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/433330761">b/433330761</a>
+      )
+    </li>
+  </ul>
