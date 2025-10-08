@@ -13,42 +13,61 @@ changelogHtml: |
     .
   </p>
   <p><strong>Important changes since 1.3.0:</strong></p>
+  <p><strong>Library change announcements</strong></p>
+  <p>
+    The
+    <code translate="no" dir="ltr">androidx.compose.material.icons</code>
+    library is
+    <strong>no longer recommended</strong>
+    for displaying Material Icons in Compose, as Material Symbols are the new way forward. We have stopped publishing updates to this library and it has been removed from the latest Material 3 library release, you can still manually reference it if you cannot migrate yet.
+  </p>
+  <p>Instead, we recommend downloading a Vector Drawable XML file from the Android tab of https://fonts.google.com/icons to get access to the latest styled icons: Material Symbols.</p>
+  <p>Why are we not recommending the library anymore? The icons library ("Material Icons") have been superseded by the newer look of Material Symbols and we've seen that the library can increase the build time of your apps significantly as it includes all the various icons that may not be needed.</p>
+  <p>For more information: https://developer.android.com/develop/ui/compose/graphics/images/material</p>
   <p><strong>Behavior Changes</strong></p>
   <ul>
     <li>
-      This library no longer adds a dependency to
-      <code translate="no" dir="ltr">material-icons-core</code>
-      so if your project relied on that, you will have to explicitly add that dependency in your build.gradle[.kts] files. (
-      <a href="https://android-review.googlesource.com/#/q/I735ffb809330e77356492b3f63ad4bd5081cdd8e">I735ff</a>
-      ,
-      <a href="https://issuetracker.google.com/issues/349894318">b/349894318</a>
-      )
+      <p>
+        This library no longer adds a dependency to
+        <code translate="no" dir="ltr">material-icons-core</code>
+        so if your project relied on that, you will have to explicitly add that dependency in your build.gradle[.kts] files. (
+        <a href="https://android-review.googlesource.com/#/q/I735ffb809330e77356492b3f63ad4bd5081cdd8e">I735ff</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/349894318">b/349894318</a>
+        )
+      </p>
     </li>
     <li>
-      <code translate="no" dir="ltr">NavigationBarItem</code>
-      and
-      <code translate="no" dir="ltr">NavigationRailItem</code>
-      's active label color change from
-      <code translate="no" dir="ltr">onSurface</code>
-      to secondary in order to improve usability, color contrast and improve coherence within the system (
-      <a href="https://android-review.googlesource.com/q/Ibc29737146ee5534ad192db1fe7f0dfaa7a39b88">Ibc297</a>
-      ), to revert to the previous behavior, copy the default colors and change the
-      <code translate="no" dir="ltr">selectedTextColor</code>
-      to
-      <code translate="no" dir="ltr">MaterialTheme.colorScheme.onSurface</code>
-      .
+      <p>
+        <code translate="no" dir="ltr">NavigationBarItem</code>
+        and
+        <code translate="no" dir="ltr">NavigationRailItem</code>
+        's active label color change from
+        <code translate="no" dir="ltr">onSurface</code>
+        to secondary in order to improve usability, color contrast and improve coherence within the system (
+        <a href="https://android-review.googlesource.com/q/Ibc29737146ee5534ad192db1fe7f0dfaa7a39b88">Ibc297</a>
+        ), to revert to the previous behavior, copy the default colors and change the
+        <code translate="no" dir="ltr">selectedTextColor</code>
+        to
+        <code translate="no" dir="ltr">MaterialTheme.colorScheme.onSurface</code>
+        .
+      </p>
     </li>
     <li>
-      Material 3 components are now using the new
-      <code translate="no" dir="ltr">MotionScheme</code>
-      to define their motion. (
-      <a href="https://android-review.googlesource.com/#/q/Ie0f93b23b9623ea8f33310606359291fc6fd2b1d">Ie0f93</a>
-      )
+      <p>
+        Material 3 components are now using the new
+        <code translate="no" dir="ltr">MotionScheme</code>
+        to define their motion. (
+        <a href="https://android-review.googlesource.com/#/q/Ie0f93b23b9623ea8f33310606359291fc6fd2b1d">Ie0f93</a>
+        )
+      </p>
     </li>
     <li>
-      Indeterminate circular Progress Indicator motion changes (
-      <a href="https://android-review.googlesource.com/#/q/I3c07e932ab6ef5bcf6fb44f136dcabd03cc830b9">I3c07e</a>
-      )
+      <p>
+        Indeterminate circular Progress Indicator motion changes (
+        <a href="https://android-review.googlesource.com/#/q/I3c07e932ab6ef5bcf6fb44f136dcabd03cc830b9">I3c07e</a>
+        )
+      </p>
     </li>
   </ul>
   <p><strong>New Material Design 3 Components</strong></p>
