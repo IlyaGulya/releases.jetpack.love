@@ -1,0 +1,36 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.10.0-alpha05
+releaseDate: 2025-10-08
+#language=html
+changelogHtml: |
+  <h3 id="1.10.0-alpha05" data-text="Version 1.10.0-alpha05" tabindex="-1">Version 1.10.0-alpha05</h3>
+  <p>October 08, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.10.0-alpha05</code>
+    is released. Version 1.10.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6ef9c81cf7222a390e0a467d8c8b48d04362fd3d..4350deab5806bf95370a4d012d7eeaa70a10be44/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">PaddingValues</code>
+      now support addition and subtraction to simplify common padding calculations. (
+      <a href="https://android-review.googlesource.com/#/q/I327e1036702074612ff4614490ea7c095a30708c">I327e1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/244468479">b/244468479</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ComposeFoundationFlags.isPausableCompositionInPrefetchEnabled</code>
+      is enabled by default. It is a performance optimization, which allows us to distribute work we need to do during the prefetch better, for example we can only perform the composition for parts of the
+      <code translate="no" dir="ltr">LazyColumn</code>
+      's next item during one ui frame, and then continue composing the rest of it in the next frames. (
+      <a href="https://android-review.googlesource.com/#/q/I4c7feb6cff8b812e75cbf0a1d4e512b3c42ee412">I4c7fe</a>
+      )
+    </li>
+  </ul>

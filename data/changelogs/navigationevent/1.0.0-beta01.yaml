@@ -1,0 +1,47 @@
+libraryId: navigationevent
+groupId: androidx.navigationevent
+version: 1.0.0-beta01
+releaseDate: 2025-10-08
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta01" data-text="Version 1.0.0-beta01" tabindex="-1">Version 1.0.0-beta01</h3>
+  <p>October 08, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigationevent:navigationevent-*:1.0.0-beta01</code>
+    is released. Version 1.0.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/eda15c8d8b0e8a4cdb256c81b44499364dbf0fcd..56e97d713c63942b89d95099730e3650408e0321/navigationevent">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Correct the
+      <code translate="no" dir="ltr">FloatRange</code>
+      annotation for
+      <code translate="no" dir="ltr">NavigationEvent.touchX</code>
+      and
+      <code translate="no" dir="ltr">NavigationEvent.touchY</code>
+      . These values represent absolute pixel coordinates and do not have a
+      <code translate="no" dir="ltr">1.0</code>
+      upper bound. (
+      <a href="https://android-review.googlesource.com/#/q/I4b2055b824447deda3abeca459c0ef9a2572ce5d">I4b205</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/445989313">b/445989313</a>
+      )
+    </li>
+    <li>
+      Refactor the
+      <code translate="no" dir="ltr">NavigationEventDispatcherOwner</code>
+      composable to
+      <code translate="no" dir="ltr">rememberNavigationEventDispatcherOwner</code>
+      . The function now returns the
+      <code translate="no" dir="ltr">NavigationEventDispatcherOwner</code>
+      directly. To provide this owner to a sub-composition, use
+      <code translate="no" dir="ltr">CompositionLocalProvider</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I874b285c7b4592fca533f86f9d57aa676b25b9b2">I874b2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444446629">b/444446629</a>
+      )
+    </li>
+  </ul>

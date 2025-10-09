@@ -1,0 +1,147 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.5.1
+releaseDate: 2025-10-08
+#language=html
+changelogHtml: |
+  <h3 id="1.5.1" data-text="Version 1.5.1" tabindex="-1">Version 1.5.1</h3>
+  <p>October 08, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.5.1</code>
+    is released. Version 1.5.1 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/bf14d325dfcbc73bf18b092f0435beaaf465e126..e7bb7786b42348603fed2825d18815e6dfa9bd4b/camera">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Support
+      <code translate="no" dir="ltr">CameraEffect</code>
+      in concurrent camera composition mode. The effect will be applied on the composition output. Please note that
+      <code translate="no" dir="ltr">mirrorMode</code>
+      in
+      <code translate="no" dir="ltr">VideoCapture</code>
+      will be ignored when effect is set in concurrent camera composition mode. (
+      <a href="https://android-review.googlesource.com/#/q/If3d00d1463fe07a983f28d4355f822c0679db9bb">If3d00</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/425565129">b/425565129</a>
+      )
+    </li>
+    <li>
+      Fixed the issue where
+      <code translate="no" dir="ltr">mirrorMode</code>
+      is not applied correctly to the secondary camera in concurrent camera composition mode. (
+      <a href="https://android-review.googlesource.com/#/q/I686cde569e4cd5f4081b7a9d82ff6992fd3bf595">I686cd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/446430827">b/446430827</a>
+      )
+    </li>
+    <li>
+      Support binding
+      <code translate="no" dir="ltr">Preview</code>
+      ,
+      <code translate="no" dir="ltr">ImageCapture</code>
+      and
+      <code translate="no" dir="ltr">VideoCapture</code>
+      together in concurrent camera non-composition mode. (
+      <a href="https://android-review.googlesource.com/#/q/Ib410aea04d264e6dc07ddc73a69bfa36a34f386e">Ib410a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/443009871">b/443009871</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where UseCases such as
+      <code translate="no" dir="ltr">ImageCapture</code>
+      and
+      <code translate="no" dir="ltr">VideoCapture</code>
+      would lose their target rotation information if they were recreated. This could cause images or videos to have an incorrect orientation if a setting like
+      <code translate="no" dir="ltr">imageCaptureMode</code>
+      was changed after the device had been rotated. (
+      <a href="https://android-review.googlesource.com/#/q/I477c811394b7e9cc9849903683dc6d8dd6560643">I477c8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444734537">b/444734537</a>
+      )
+    </li>
+    <li>
+      Fixed an issue that prevented Preview from selecting 16:9 resolutions and
+      <code translate="no" dir="ltr">VideoCapture</code>
+      from recording at QUALITY_1080P. This problem occurred when using a default Preview resolution configuration while the internal
+      <code translate="no" dir="ltr">StreamSharing</code>
+      feature was active (e.g., when four UseCases are bound simultaneously). (
+      <a href="https://android-review.googlesource.com/#/q/I493cb6d91d717ad47bdfd5db99c23dd9399c8672">I493cb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/440364875">b/440364875</a>
+      )
+    </li>
+    <li>
+      Fixed the crash when effect is being activated after
+      <code translate="no" dir="ltr">SurfaceProcessor</code>
+      is shut down (
+      <a href="https://android-review.googlesource.com/#/q/I2c450c1a94806acea25038dcc3ab1ea8348e166c">I2c450</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/414150174">b/414150174</a>
+      )
+    </li>
+    <li>
+      Fixed a bug in
+      <code translate="no" dir="ltr">CameraController</code>
+      that caused an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      when an initial UseCase selected the maximum resolution, which subsequently prevented other UseCases from being bound. (
+      <a href="https://android-review.googlesource.com/#/q/Ifb758bef1582b20717a64b67657a9358e5600034">Ifb758</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/440374234">b/440374234</a>
+      )
+    </li>
+    <li>
+      Excludes problematic YUV_420_888 output sizes for Nokia 7 Plus that will cause the silent fail problem without any error messages reported. (
+      <a href="https://android-review.googlesource.com/#/q/I3af47fafb152e0b4227731740cd1434578abca96">I3af47</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/436524501">b/436524501</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">CameraInfo#isFeatureGroupSupported</code>
+      could incorrectly return true for the
+      <code translate="no" dir="ltr">PREVIEW_STABILIZATION</code>
+      feature. This could sometimes occur when querying with a
+      <code translate="no" dir="ltr">SessionConfig</code>
+      that was already configured with other features. (
+      <a href="https://android-review.googlesource.com/#/q/I2c355c533f737d1797a7427d37661781cd1480b2">I2c355</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/437816469">b/437816469</a>
+      )
+    </li>
+    <li>
+      Improved
+      <code translate="no" dir="ltr">CameraXViewfinder</code>
+      stability on older API levels and devices with
+      <code translate="no" dir="ltr">SurfaceView</code>
+      issues by defaulting to
+      <code translate="no" dir="ltr">TextureView</code>
+      in such scenarios. This fallback mechanism is the new default but can be programmatically overridden. (
+      <a href="https://android-review.googlesource.com/#/q/Ieb4763c1e6102059a553900fea0557e1a443f6bb">Ieb476</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/437496463">b/437496463</a>
+      )
+    </li>
+    <li>
+      Fixed a memory leak in
+      <code translate="no" dir="ltr">PreviewView</code>
+      where it could prevent its Activity from being garbage collected. This happens if a new
+      <code translate="no" dir="ltr">SurfaceRequest</code>
+      arrives before the previous one is handled. (
+      <a href="https://android-review.git.corp.google.com/q/I4aa0b3b2d742268394c7bfeb66be3ab448a278b5">I4aa0b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/443112512">b/443112512</a>
+      )
+    </li>
+    <li>
+      Fixed high-speed/slow-motion recording failed on Huawei P smart, Infinix Hot 40i and Realme C53. (
+      <a href="https://android-review.git.corp.google.com/c/platform/frameworks/support/+/3756548">40a668e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/442984200">b/442984200</a>
+      )
+    </li>
+  </ul>

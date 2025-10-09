@@ -1,0 +1,199 @@
+libraryId: navigation3
+groupId: androidx.navigation3
+version: 1.0.0-alpha11
+releaseDate: 2025-10-08
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha11" data-text="Version 1.0.0-alpha11" tabindex="-1">Version 1.0.0-alpha11</h3>
+  <p>October 08, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation3:navigation3-*:1.0.0-alpha11</code>
+    is released. Version 1.0.0-alpha11 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/eda15c8d8b0e8a4cdb256c81b44499364dbf0fcd..7b8a27d59a3cd5d0aa8259755193aadbd5c119da/navigation3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">calculateScene</code>
+      method on
+      <code translate="no" dir="ltr">SceneStrategy</code>
+      is no longer
+      <code translate="no" dir="ltr">@Composable</code>
+      . Instead, consider moving this work to the construction of your
+      <code translate="no" dir="ltr">SceneStrategy</code>
+      method (i.e., in a
+      <code translate="no" dir="ltr">rememberMySceneStrategy()</code>
+      method) that fully allows you to define the lifetime of any
+      <code translate="no" dir="ltr">rememberSaveable</code>
+      values or key
+      <code translate="no" dir="ltr">remember</code>
+      statements off of the correct values. (
+      <a href="https://android-review.googlesource.com/#/q/If17337d860c1d3a8b048639f2c929e8d4f9a2b10">If1733</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/448709506">b/448709506</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">onBack</code>
+      parameter for
+      <code translate="no" dir="ltr">SceneStrategy.calculateScene</code>
+      has been moved into the new receiver scope of
+      <code translate="no" dir="ltr">SceneStrategyScope</code>
+      to make it more clear that this is an optional parameter and provide an extension point for future Navigation3 features. (
+      <a href="https://android-review.googlesource.com/#/q/I3aea32521ce10121fbe931885bd9d2f04a75c389">I3aea3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/448460407">b/448460407</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">onBack</code>
+      lambda passed into
+      <code translate="no" dir="ltr">NavDisplay</code>
+      and to your
+      <code translate="no" dir="ltr">SceneStrategy</code>
+      no longer provides a
+      <code translate="no" dir="ltr">count: Int</code>
+      parameter to indicate when multiple entries should be popped. Instead, the
+      <code translate="no" dir="ltr">() -&gt; Unit</code>
+      lambda will now be called multiple times in a row in the rare case where your Scene requests popping multiple entries. (
+      <a href="https://android-review.googlesource.com/#/q/Idedb5b579a9589523bedad8d7ed687ac224d09d1">Idedb5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/446989346">b/446989346</a>
+      )
+    </li>
+    <li>
+      Remove the
+      <code translate="no" dir="ltr">NavEntryWrapper</code>
+      class and replace its functionality with a final
+      <code translate="no" dir="ltr">NavEntry</code>
+      class with a new secondary constructor that takes a
+      <code translate="no" dir="ltr">NavEntry</code>
+      with new content. This will allow continued support for wrapping an entry with new content. (
+      <a href="https://android-review.googlesource.com/#/q/I7da2aa71f3dad927b964b9fd34e59d8eb7e252ab">I7da2a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444447130">b/444447130</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">navEntryDecorator</code>
+      function which creates and returns a
+      <code translate="no" dir="ltr">NavEntryDecorator</code>
+      has been removed and replaced by the
+      <code translate="no" dir="ltr">NavEntryDecorator</code>
+      class which is now made public and open for subclassing. (
+      <a href="https://android-review.googlesource.com/#/q/If81f85846a52e8f70708e51932b4ff132ec6222b">If81f8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444447434">b/444447434</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/447381176">b/447381176</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SavedStateNavEntryDecorator</code>
+      has been renamed to
+      <code translate="no" dir="ltr">SaveableStateHolderNavEntryDecorator</code>
+      since it decorates entries with a
+      <code translate="no" dir="ltr">SaveableStateHolder</code>
+      . The decorator has also been refactored from a function to a class since it is functionally a factory for
+      <code translate="no" dir="ltr">NavEntryDecorator</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie60132e292e0d8ffb4c0c7b5ac219c37822e2028">Ie6013</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/447381176">b/447381176</a>
+      )
+    </li>
+    <li>
+      Custom displays using
+      <code translate="no" dir="ltr">SceneState</code>
+      as an alternative to using
+      <code translate="no" dir="ltr">NavDisplay</code>
+      no longer are required to use the
+      <code translate="no" dir="ltr">LocalEntriesToRenderInCurrentScene</code>
+      composition local, which is now internal. (
+      <a href="https://android-review.googlesource.com/#/q/Ic40ef603fd633af7aca1a4f3ec945f12764b09cf">Ic40ef</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/414668196">b/414668196</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">SceneSetupNavEntryDecorator</code>
+      and
+      <code translate="no" dir="ltr">rememberSceneSetupNavEntryDecorator()</code>
+      from the public API surface. This functionality now is included by default without requiring you to manually include it. (
+      <a href="https://android-review.googlesource.com/#/q/Ieae4287893db27dbec2fdb463775af35886c010a">Ieae42</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444479133">b/444479133</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavEntry</code>
+      ,
+      <code translate="no" dir="ltr">DialogScene</code>
+      ,
+      <code translate="no" dir="ltr">SinglePaneScene</code>
+      , and
+      <code translate="no" dir="ltr">SceneState</code>
+      now all implement equals. (
+      <a href="https://android-review.googlesource.com/#/q/I96121c5865c3484f00aaf09d4b74a07be90b720a">I96121</a>
+      )
+    </li>
+    <li>
+      Scene interface has a new metadata field to attach scene-specific metadata for NavDisplay. This allows a Scene to override the metadata on the
+      <code translate="no" dir="ltr">NavDisplay</code>
+      , for instance with transitions. (
+      <a href="https://android-review.googlesource.com/#/q/I1fd96ad077055e27e5b090f3ae948b402902140b">I1fd96</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/443955625">b/443955625</a>
+      )
+    </li>
+    <li>
+      Simplify
+      <code translate="no" dir="ltr">rememberNavBackStack</code>
+      signature by removing the redundant generic type parameter. The function now accepts
+      <code translate="no" dir="ltr">vararg elements: NavKey</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I03e45a8cfbb0bb90671bd12c4efc3520ff20ae7e">I03e45</a>
+      )
+    </li>
+    <li>
+      The default animations for
+      <code translate="no" dir="ltr">NavDisplay</code>
+      are now part of the common API which allows them to be called from all platforms. (
+      <a href="https://android-review.googlesource.com/#/q/I71af90046145cb574e65063dd0167b93f5509d2f">I71af9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/447147159">b/447147159</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">EntryProviderBuilder</code>
+      to
+      <code translate="no" dir="ltr">EntryProviderScope</code>
+      to accurately reflect that the class is a Kotlin DSL providing a scope to build
+      <code translate="no" dir="ltr">NavEntries</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia74653a4a69625b92621534ca30cf284ec01b9a0">Ia7465</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">rememberNavBackStack()</code>
+      now enforces polymorphic serialization for NavKey and requires a custom
+      <code translate="no" dir="ltr">SavedStateConfiguration</code>
+      that is configured to ensure correct state restoration. KDoc have been updated to reflect the requirement that all NavKey subtypes must be registered in the provided SerializersModule. (
+      <a href="https://android-review.googlesource.com/#/q/I6de3767a8052e15bca9fe68d3bd794decb997f77">I6de37</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I782f2734974d9c959501654a9c50d0c363b5d9dd">I782f2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/446664383">b/446664383</a>
+      )
+    </li>
+  </ul>
