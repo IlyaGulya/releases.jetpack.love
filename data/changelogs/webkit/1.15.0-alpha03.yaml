@@ -1,0 +1,70 @@
+libraryId: webkit
+groupId: androidx.webkit
+version: 1.15.0-alpha03
+releaseDate: 2025-10-08
+#language=html
+changelogHtml: |
+  <h3 id="1.15.0-alpha03" data-text="Version 1.15.0-alpha03" tabindex="-1">Version 1.15.0-alpha03</h3>
+  <p>October 08, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.webkit:webkit:1.15.0-alpha03</code>
+    is released. Version 1.15.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cd8ce2bdb21194a81a76325a8e65dad5d7e28681..4350deab5806bf95370a4d012d7eeaa70a10be44/webkit/webkit">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Introduces a new API to set custom request headers. This is an iteration on the previous experimental API, and now allows the application to set multiple values for each header, each mapped to a different set of origin patterns. The new API also allows the application to inspect the configured headers. (
+      <a href="https://android-review.googlesource.com/#/q/Id7d30b9a4a8b6c0eab21f081e2ba3d3dea21d0dd">Id7d30</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/419469873">b/419469873</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/429269470">b/429269470</a>
+      )
+    </li>
+    <li>
+      Removal of the X-Requested-With header in
+      <code translate="no" dir="ltr">WebView</code>
+      has been cancelled, and the header will again be sent on all requests by default. The allowlist API is no longer necessary, and has been deprecated. (
+      <a href="https://android-review.googlesource.com/#/q/I884c3108ca9632273953fe34e800ec2299d5b6ac">I884c3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/447094379">b/447094379</a>
+      )
+    </li>
+    <li>
+      Add a new API to
+      <code translate="no" dir="ltr">WebSettingsCompat</code>
+      to allow developers to configure
+      <code translate="no" dir="ltr">WebView</code>
+      's back-forward cache, such as setting the timeout in seconds or page cache limits. (
+      <a href="https://android-review.googlesource.com/#/q/I642b28af6201473584001d8987072ae8b80ac9af">I642b2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/432395269">b/432395269</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">HyperlinkContextMenu</code>
+      API to allow item customisation in
+      <code translate="no" dir="ltr">WebView</code>
+      hyperlink context menu (
+      <a href="https://android-review.googlesource.com/#/q/Idb809ae860d33e08371bff1a86bd769d103f01e8">Idb809</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/382654667">b/382654667</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">getAsyncStartUpLocations</code>
+      API for debugging cases where
+      <code translate="no" dir="ltr">WebView</code>
+      was started up asynchronously without using the
+      <code translate="no" dir="ltr">startUpWebView</code>
+      API. (
+      <a href="https://android-review.googlesource.com/#/q/I6bf4bd21d02a243bac3a85e96198bec5c4265e3a">I6bf4b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/417434566">b/417434566</a>
+      )
+    </li>
+  </ul>

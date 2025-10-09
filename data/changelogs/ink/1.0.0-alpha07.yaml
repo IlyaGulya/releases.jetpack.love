@@ -1,0 +1,67 @@
+libraryId: ink
+groupId: androidx.ink
+version: 1.0.0-alpha07
+releaseDate: 2025-10-08
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha07" data-text="Version 1.0.0-alpha07" tabindex="-1">Version 1.0.0-alpha07</h3>
+  <p>October 08, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.ink:ink-*:1.0.0-alpha07</code>
+    is released. Version 1.0.0-alpha07 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c359e97fece91f3767a7d017e9def23c7caf1f53..4350deab5806bf95370a4d012d7eeaa70a10be44/ink">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">SelfOverlap</code>
+      parameter for
+      <code translate="no" dir="ltr">StockBrushes</code>
+      <code translate="no" dir="ltr">highlighter</code>
+      and
+      <code translate="no" dir="ltr">emojiHighlighter</code>
+      , which replaces
+      <code translate="no" dir="ltr">InProgressStrokesView</code>
+      <code translate="no" dir="ltr">rendererFactory</code>
+    </li>
+    <li>Improved implementation of stroke input smoothing, which eliminates device measurement noise but which more accurately reflects user input than the previous stroke input smoothing implementation</li>
+    <li>Improved consistency with other Android/Jetpack APIs for angle units (degrees vs. radians), transforms (skew vs. shear), and more</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Change angle-related API to use degrees and include unit in names, be clear about units in Angle conversion utilities and support both degrees and radians, change
+      <code translate="no" dir="ltr">StockBrushes</code>
+      API to take stock brush version as a factory function parameter and expose self-overlap behavior control for highlighter brushes, rename
+      <code translate="no" dir="ltr">MutableAffineTransform.populateFromTranslate</code>
+      to
+      <code translate="no" dir="ltr">populateFromTranslation</code>
+      , remove
+      <code translate="no" dir="ltr">InProgressStrokesView.setRenderFactory/getRenderFactory</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id9eab6301d2ca1803452cd8a1eb2dcf0a3cd357d">Id9eab</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/436656418">b/436656418</a>
+      )
+    </li>
+    <li>
+      Rename shear to skew, clarify some documentation, remove
+      <code translate="no" dir="ltr">CanvasStrokeRenderer.strokeModifiedRegionOutsetPx</code>
+      , add
+      <code translate="no" dir="ltr">InProgressStroke.changesWithTime</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ia5e70048d15787a54bf4c848b715484366e5c629">Ia5e70</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/436656418">b/436656418</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Improve input modeling to make strokes more accurately reflect input. (
+      <a href="https://android-review.googlesource.com/#/q/I9309760022de0c30a0bc5e960da4c2467f663e9f">I93097</a>
+      )
+    </li>
+  </ul>
