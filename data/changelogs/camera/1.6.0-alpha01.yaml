@@ -1,0 +1,80 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.6.0-alpha01
+releaseDate: 2025-10-22
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-alpha01" data-text="Version 1.6.0-alpha01" tabindex="-1">Version 1.6.0-alpha01</h3>
+  <p>October 22, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.6.0-alpha01</code>
+    is released. Version 1.6.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e7bb7786b42348603fed2825d18815e6dfa9bd4b..dacd36e7413e15947cdd89e21c189fead769bfab/camera">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      CameraX has migrated to a unified, high-performance camera stack, which is also used by the Pixel camera app. Known as
+      <code translate="no" dir="ltr">CameraPipe</code>
+      , this new stack is a collaboration between the CameraX and Pixel Camera teams. It ensures that all improvements are shared, benefiting both CameraX users and the Pixel camera app.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added new APIs for dynamic camera add/removal detection. See the
+      <code translate="no" dir="ltr">CameraPresenceListener</code>
+      API for more details. (
+      <a href="https://android-review.googlesource.com/#/q/I41ead2e9c432bc8507951e598f04369aad8a9f54">I41ead</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/427182232">b/427182232</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/419441394">b/419441394</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      The feature group API now provides consistent results when
+      <code translate="no" dir="ltr">PREVIEW_STABILIZATION</code>
+      is used with
+      <code translate="no" dir="ltr">VideoCapture</code>
+      . This corrects a bug that caused inconsistent results when a
+      <code translate="no" dir="ltr">Preview</code>
+      use case was not also active. (
+      <a href="https://android-review.googlesource.com/#/q/Ifed82d0d9ce2cfdb407523535d9e4c8c4a51f46d">Ifed82</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/449913903">b/449913903</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where unsupported preferred features were incorrectly made available. Features are now correctly filtered when their required use cases are not met. (
+      <a href="https://android-review.googlesource.com/#/q/I38db88ca0ae9c2cd87b49ceffddd7980b3178576">I38db8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/449532342">b/449532342</a>
+      )
+    </li>
+    <li>
+      Fixed glitchy video result on Samsung Galaxy S6. (
+      <a href="https://android-review.git.corp.google.com/#/q/I612d902c2aa36dfd5b77a53a59a5646cadf96272">I612d9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/235127608">b/235127608</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">CameraInfo#isFeatureGroupSupported</code>
+      could incorrectly return true for
+      <code translate="no" dir="ltr">PREVIEW_STABILIZATION</code>
+      if the
+      <code translate="no" dir="ltr">SessionConfig</code>
+      in the query was already configured with other features. (
+      <a href="https://android-review.googlesource.com/#/q/I2c355c533f737d1797a7427d37661781cd1480b2">I2c355c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/437816469">b/437816469</a>
+      )
+    </li>
+  </ul>
+  <h2 id="camera_version_15_2" data-text="Camera Version 1.5" tabindex="-1">Camera Version 1.5</h2>

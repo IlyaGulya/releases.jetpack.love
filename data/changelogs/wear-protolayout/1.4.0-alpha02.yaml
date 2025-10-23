@@ -1,0 +1,65 @@
+libraryId: wear-protolayout
+groupId: androidx.wear
+version: 1.4.0-alpha02
+releaseDate: 2025-10-22
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha02" data-text="Version 1.4.0-alpha02" tabindex="-1">Version 1.4.0-alpha02</h3>
+  <p>October 22, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.protolayout:protolayout-*:1.4.0-alpha02</code>
+    is released. Version 1.4.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3ee4b76dd7f79cd4ce3fbe7aa76816fec0b8186a..46bcdef6281ae0f03c3a2bb2812edfc2c0e66d05/wear/protolayout">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added new Platform event source (
+      <code translate="no" dir="ltr">isInAmbientMode</code>
+      ) describing whether the device is in ambient mode or not (
+      <a href="https://android-review.googlesource.com/#/q/Ief832d113049af76507d9186ea50b00f274929da">Ief832</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">PendingIntent</code>
+      <code translate="no" dir="ltr">clickable</code>
+      now accepts a fallback action (
+      <code translate="no" dir="ltr">LoadAction</code>
+      /
+      <code translate="no" dir="ltr">LaunchAction</code>
+      ) to be used when
+      <code translate="no" dir="ltr">PendingIntent</code>
+      is not supported by the
+      <code translate="no" dir="ltr">ProtoLayout</code>
+      Renderer. Fallback action will automatically be picked up and placed in the layout when the version of the Renderer is lower than the one supporting
+      <code translate="no" dir="ltr">PendingIntent</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6eee26a6f710e00ee264e6ab4842766ff87c17fe">I6eee2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/450259727">b/450259727</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">protoLayoutScope</code>
+      field within
+      <code translate="no" dir="ltr">MaterialScope</code>
+      is now made
+      <code translate="no" dir="ltr">NonNull</code>
+      for easier usage when
+      <code translate="no" dir="ltr">MaterialScope</code>
+      is created via
+      <code translate="no" dir="ltr">materialScopeWithResources</code>
+      . In addition, there is a
+      <code translate="no" dir="ltr">hasProtoLayoutScope</code>
+      function to check for the presence of it. (
+      <a href="https://android-review.googlesource.com/#/q/I1858f9cb4ee014f2147ced6487368b5b891b8b80">I1858f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/450067019">b/450067019</a>
+      )
+    </li>
+  </ul>

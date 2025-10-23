@@ -1,0 +1,46 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.5.4
+releaseDate: 2025-10-22
+#language=html
+changelogHtml: |
+  <h3 id="1.5.4" data-text="Version 1.5.4" tabindex="-1">Version 1.5.4</h3>
+  <p>October 22, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.5.4</code>
+    is released. Version 1.5.4 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3e6ff5ea0a2d7e8f262dd7e3356cba69905967eb..d600d4f1409804d07c6a4d50c71c333822ed8b03/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Improved performance of Picker by refactoring the use of
+      <code translate="no" dir="ltr">LaunchedEffect</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I94519c8c5308dbc82e1912939091d992db3a27be">I94519</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/418192973">b/418192973</a>
+      )
+    </li>
+    <li>
+      Fixed a bug in
+      <code translate="no" dir="ltr">SwipeDismissableNavHost</code>
+      on API36+, where pressing the back button during predictive back animation interrupted and restarted the animation. The implementation now uses
+      <code translate="no" dir="ltr">SeakableTransitionState.animateTo</code>
+      instead of Animatable, which has a slight performance benefit. (
+      <a href="https://android-review.googlesource.com/#/q/I2241f27642374e0fa16c88d245286ded80296473">I2241f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/428156670">b/428156670</a>
+      )
+    </li>
+    <li>
+      Fixed a bug for accessibility announcement ordering in
+      <code translate="no" dir="ltr">AlertDialog</code>
+      , where the confirm button was announced as 'Button. Confirm' rather than the standard 'Confirm. Button'. (
+      <a href="https://android-review.googlesource.com/#/q/Ic2381c9b63446ad1586d804078318b6d276c9bae">Ic2381</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/429378202">b/429378202</a>
+      )
+    </li>
+  </ul>
