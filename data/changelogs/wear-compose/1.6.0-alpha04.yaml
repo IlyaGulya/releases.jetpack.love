@@ -1,0 +1,91 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.6.0-alpha04
+releaseDate: 2025-10-22
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-alpha04" data-text="Version 1.6.0-alpha04" tabindex="-1">Version 1.6.0-alpha04</h3>
+  <p>October 22, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.6.0-alpha04</code>
+    is released. Version 1.6.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4350deab5806bf95370a4d012d7eeaa70a10be44..46bcdef6281ae0f03c3a2bb2812edfc2c0e66d05/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Implement
+      <code translate="no" dir="ltr">reverseLayout</code>
+      for
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I19f9ee983ef07aa43a15c6effb27605e02378c11">I19f9e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/352513793">b/352513793</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ConfirmationDialogDefaults.VariantFailureIcon</code>
+      for use in
+      <code translate="no" dir="ltr">FailureConfirmationDialog</code>
+      . This new generic error icon may be preferred in some cases, compared to
+      <code translate="no" dir="ltr">ConfirmationDialogDefaults.FailureIcon</code>
+      which shows a broken connection to the phone. (
+      <a href="https://android-review.googlesource.com/#/q/Ifc8518e2b3d082a93538f3cc5ac12edf61f704e8">Ifc851</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/443115305">b/443115305</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Improved performance of Picker by refactoring the use of
+      <code translate="no" dir="ltr">LaunchedEffect</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I94519c8c5308dbc82e1912939091d992db3a27be">I94519</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/418192973">b/418192973</a>
+      )
+    </li>
+    <li>
+      Fixed a bug in
+      <code translate="no" dir="ltr">SwipeDismissableNavHost</code>
+      on API36+, where pressing the back button during predictive back animation interrupted and restarted the animation. The implementation now uses
+      <code translate="no" dir="ltr">SeakableTransitionState.animateTo</code>
+      instead of Animatable, which has a slight performance benefit. (
+      <a href="https://android-review.googlesource.com/#/q/I2241f27642374e0fa16c88d245286ded80296473">I2241f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/428156670">b/428156670</a>
+      )
+    </li>
+    <li>
+      Fixed a bug for accessibility announcement ordering in
+      <code translate="no" dir="ltr">AlertDialog</code>
+      , where the confirm button was announced as 'Button. Confirm' rather than the standard 'Confirm. Button'. (
+      <a href="https://android-review.googlesource.com/#/q/Ic2381c9b63446ad1586d804078318b6d276c9bae">Ic2381</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/429378202">b/429378202</a>
+      )
+    </li>
+    <li>
+      Improve
+      <code translate="no" dir="ltr">TimePicker</code>
+      number visibility on small screens. (
+      <a href="https://android-review.googlesource.com/#/q/I6838637608393328da734ca3af537886adf57d44">I68386</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/447625365">b/447625365</a>
+      )
+    </li>
+    <li>
+      Removed Lazy Layout fork from Wear Compose Foundation - this means that
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      now uses the Compose Foundation Lazy Layout implementation, including prefetching, and benefits from a performance improvement on frame timings in most cases. (
+      <a href="https://android-review.googlesource.com/#/q/Idd743dca6cc1590270b6db5691a810a272b5a7bf">Idd743</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/445911630">b/445911630</a>
+      )
+    </li>
+  </ul>

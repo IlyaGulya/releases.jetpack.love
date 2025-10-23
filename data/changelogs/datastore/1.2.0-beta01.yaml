@@ -1,0 +1,73 @@
+libraryId: datastore
+groupId: androidx.datastore
+version: 1.2.0-beta01
+releaseDate: 2025-10-22
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-beta01" data-text="Version 1.2.0-beta01" tabindex="-1">Version 1.2.0-beta01</h3>
+  <p>October 22, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.datastore:datastore-*:1.2.0-beta01</code>
+    is released. Version 1.2.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b6c541571b9fb5471f965fc52612cb280713e5e4..86834fc8081b293eb0510226f68608d1688b9b99/datastore">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Make
+      <code translate="no" dir="ltr">CorruptionHandler</code>
+      public. (
+      <a href="https://android-review.googlesource.com/#/q/I9ac35e246746353251965c34b8de3bb2a5ea09aa">I9ac35</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/452406457">b/452406457</a>
+      )
+    </li>
+    <li>
+      Use
+      <code translate="no" dir="ltr">androidx.core.util.Function</code>
+      in
+      <code translate="no" dir="ltr">GuavaDataStore</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I71eae3f48a2efe3cfaf8f2be93ec442296f6e4f1">I71eae</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/448563999">b/448563999</a>
+      )
+    </li>
+    <li>
+      Add an overload for
+      <code translate="no" dir="ltr">GuavaDataStore.from</code>
+      that takes in an Executor instead of a
+      <code translate="no" dir="ltr">CoroutineContext</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I989fa6ac8ed8179c96371dd5ecfd3441f7729cc2">I989fa</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/448563183">b/448563183</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">java.lang.UnsatisfiedLinkError</code>
+      when using
+      <code translate="no" dir="ltr">DataStore</code>
+      in an app which is optimized with R8, but which is not using
+      <code translate="no" dir="ltr">getDefaultProguardFile('android-proguard-optimize.txt')</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I27d0dfeffe7956af04f8b49f8893d3edd38ac440">I27d0d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/434696293">b/434696293</a>
+      )
+    </li>
+    <li>
+      Fix issue where
+      <code translate="no" dir="ltr">GuavaDataStore</code>
+      operations could incorrectly run on the calling thread (e.g., the main thread) instead of the specified IO dispatcher. (
+      <a href="https://android-review.googlesource.com/#/q/Ic91eab1f61907b2c3d97bca18b43ce7c9d7658a3">Ic91ea</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/441801112">b/441801112</a>
+      )
+    </li>
+  </ul>

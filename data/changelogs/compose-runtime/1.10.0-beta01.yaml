@@ -1,0 +1,67 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.10.0-beta01
+releaseDate: 2025-10-22
+#language=html
+changelogHtml: |
+  <h3 id="1.10.0-beta01" data-text="Version 1.10.0-beta01" tabindex="-1">Version 1.10.0-beta01</h3>
+  <p>October 22, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.10.0-beta01</code>
+    is released. Version 1.10.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4350deab5806bf95370a4d012d7eeaa70a10be44..784e4a2de372f09d49c65fbc1ca64681a25a5f06/compose/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">RetainedValuesStore.getExitedValueOrDefault</code>
+      is renamed to
+      <code translate="no" dir="ltr">RetainedValuesStore.getExitedValueOrElse</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/If9653ebe8d634c1cfb6e255cc7f82bb295965cf9">If9653</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/452340613">b/452340613</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">isKeepingExitedValues</code>
+      has been renamed to
+      <code translate="no" dir="ltr">isRetainingExitedValues</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I660bfbab80322e06092195fbc5e02fec10b19fdb">I660bf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/437095756">b/437095756</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">RetainScope</code>
+      has been renamed to
+      <code translate="no" dir="ltr">RetainedValuesStore</code>
+      .
+      <code translate="no" dir="ltr">RetainScopeHolder</code>
+      has been renamed to
+      <code translate="no" dir="ltr">RetainedValuesStoreRegistry</code>
+      .
+      <code translate="no" dir="ltr">RetainScopeHolder.RetainScopeProvider</code>
+      has been renamed to
+      <code translate="no" dir="ltr">RetainedValuesStoreRegistry.ProvideChildRetainedValuesStore</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Idf23a7b7c1ede2e4f980b97b391364891f6261e4">Idf23a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/437095756">b/437095756</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Delayed initialization of
+      <code translate="no" dir="ltr">SavedState</code>
+      in
+      <code translate="no" dir="ltr">SaveableStateRegistry</code>
+      until the first usage. (
+      <a href="https://android-review.googlesource.com/#/q/Ic0a93f45587427a02351bf7320bddc8cc660d2f5">Ic0a93</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,120 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.10.0-beta01
+releaseDate: 2025-10-22
+#language=html
+changelogHtml: |
+  <h3 id="1.10.0-beta01" data-text="Version 1.10.0-beta01" tabindex="-1">Version 1.10.0-beta01</h3>
+  <p>October 22, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.10.0-beta01</code>
+    is released. Version 1.10.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4350deab5806bf95370a4d012d7eeaa70a10be44..784e4a2de372f09d49c65fbc1ca64681a25a5f06/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Adds an optimization for focus change dispatching. This can be disabled with
+      <code translate="no" dir="ltr">isOptimizedFocusEventDispatchEnabled = false</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I919fb47196d36a3d7425e082098b0ce0b3d3b0e6">I919fb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/449228515">b/449228515</a>
+      )
+    </li>
+    <li>
+      Updates all indirect touch APIs to use the name indirect pointer APIs to match pointer input APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I238ced063c4f54959abf1c07a1b93bbf1c6efa78">I238ce</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/451607214">b/451607214</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TextDirection</code>
+      ,
+      <code translate="no" dir="ltr">TextAlign</code>
+      ,
+      <code translate="no" dir="ltr">Hyphens</code>
+      ,
+      <code translate="no" dir="ltr">FontSynthesis</code>
+      <code translate="no" dir="ltr">valueOf</code>
+      functions now throw
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      when they receive an unknown value. (
+      <a href="https://android-review.googlesource.com/#/q/I07c671cbd0a9fe4fe0b10d615d0aab98ee04cd52">I07c67</a>
+      )
+    </li>
+    <li>
+      Update
+      <code translate="no" dir="ltr">CompositionDataTree.makeTree</code>
+      to pass default values instead of wrapper function. (
+      <a href="https://android-review.googlesource.com/#/q/Id64a699b00fb73464cfa7b4f7e18e793f12f677c">Id64a6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/445229688">b/445229688</a>
+      )
+    </li>
+    <li>
+      The test rule APIs
+      <code translate="no" dir="ltr">createComposeRule</code>
+      ,
+      <code translate="no" dir="ltr">createAndroidComposeRule</code>
+      and
+      <code translate="no" dir="ltr">createEmptyComposeRule</code>
+      which accept the
+      <code translate="no" dir="ltr">effectContext</code>
+      parameter are stable and the parameter defaults to
+      <code translate="no" dir="ltr">EmptyCoroutineContext</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If400c15315dc5f1ed6e5bc3717dd4bbbb2e2f015">If400c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/450540702">b/450540702</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">UnplacedStateAwareModifierNode</code>
+      was renamed to
+      <code translate="no" dir="ltr">UnplacedAwareModifierNode</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I6a551ec37d6ad1d6d6647e6a215a9f49ff5c0ed1">I6a551</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/449719932">b/449719932</a>
+      )
+    </li>
+    <li>
+      Undo the Content Capture Optimization (
+      <a href="https://android-review.googlesource.com/#/q/Ic000b4d15811c5cdae44341f9bae72d91f03925e">Ic000b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/442364065">b/442364065</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ComposeUiFlags.isRectManagerOffsetUsageFromLayoutCoordinatesEnabled</code>
+      feature flag. It enabled performance optimization where coordinates requests like
+      <code translate="no" dir="ltr">LayoutCoordinates.positionInRoot()</code>
+      are using the cached offsets we already have in
+      <code translate="no" dir="ltr">RectManager</code>
+      , instead of traversing the whole tree on each call. (
+      <a href="https://android-review.googlesource.com/#/q/Ieaadca92a3d320dbc81663b7a357c8867e5cc814">Ieaadc</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">PlaceholderSpan</code>
+      now correctly uses non-linear font scaling for sizing (
+      <a href="https://android-review.googlesource.com/#/q/Id2ead31ea5f608657561eff3748b75abf21b73af">Id2ead</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/324462728">b/324462728</a>
+      )
+    </li>
+    <li>
+      Use
+      <code translate="no" dir="ltr">ViewCompat</code>
+      to perform haptic feedback constants supported at the platform level, relying on its fallback support for newer constants. (
+      <a href="https://android-review.googlesource.com/#/q/Ib5a00de6fb838ff6501d5c6a0213aa9badf59cdf">Ib5a00</a>
+      )
+    </li>
+  </ul>

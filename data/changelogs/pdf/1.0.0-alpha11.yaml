@@ -1,0 +1,188 @@
+libraryId: pdf
+groupId: androidx.pdf
+version: 1.0.0-alpha11
+releaseDate: 2025-10-22
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha11" data-text="Version 1.0.0-alpha11" tabindex="-1">Version 1.0.0-alpha11</h3>
+  <p>October 22, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.pdf:pdf-*:1.0.0-alpha11</code>
+    is released. Version 1.0.0-alpha11 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c87a48a9ee2d6fbb166a58dfe61264062da0e6a4..46bcdef6281ae0f03c3a2bb2812edfc2c0e66d05/pdf">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>Enabling Smart Menu Items on pdf content selection.</li>
+    <li>Enabling hyperlink selection and GoTo link selection in pdf.</li>
+    <li>
+      Exposing selection menu api
+      <code translate="no" dir="ltr">fromPdfView</code>
+      and
+      <code translate="no" dir="ltr">PdfViewer</code>
+      Composable, which allows developers to add selection menu items.
+    </li>
+    <li>Adding page alignment api in PdfView and PdfViewer Composable which allows developers to choose the page alignment when the content height &lt; viewport height.</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Made
+      <code translate="no" dir="ltr">contentDesc</code>
+      nullable and removed default value. (
+      <a href="https://android-review.googlesource.com/#/q/I86f8c8cb5e67ba5654b55b5fbdd63ebe9c3166c9">I86f8c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/441973880">b/441973880</a>
+      )
+    </li>
+    <li>
+      Expose
+      <code translate="no" dir="ltr">PdfSelectionMenuKeys</code>
+      for Link Selection Menu Items (
+      <a href="https://android-review.googlesource.com/#/q/Ic9b05c000a346a61c695bbf2b0a4a7a318994a00">Ic9b05</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/447079082">b/447079082</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">PageAlignment</code>
+      API to
+      <code translate="no" dir="ltr">PdfView</code>
+      and
+      <code translate="no" dir="ltr">PdfViewer</code>
+      into androidx-main
+    </li>
+    <li>
+      Change angle-related API to use degrees and include unit in names, be clear about units in Angle conversion utilities and support both degrees and radians, change
+      <code translate="no" dir="ltr">StockBrushes</code>
+      API to take stock brush version as a factory function parameter and expose self-overlap behavior control for highlighter brushes, rename
+      <code translate="no" dir="ltr">MutableAffineTransform.populateFromTranslate</code>
+      to
+      <code translate="no" dir="ltr">populateFromTranslation</code>
+      , remove
+      <code translate="no" dir="ltr">InProgressStrokesView.setRenderFactory/getRenderFactory</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id9eab6301d2ca1803452cd8a1eb2dcf0a3cd357d">Id9eab</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/436656418">b/436656418</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">PageAlignment</code>
+      API to
+      <code translate="no" dir="ltr">PdfView</code>
+      and
+      <code translate="no" dir="ltr">PdfViewer</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I9c9a55df56046dcfadd51efbf658d3ba69e563a0">I9c9a5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/438065228">b/438065228</a>
+      )
+    </li>
+    <li>
+      Expose Selection Menu API from
+      <code translate="no" dir="ltr">PdfViewer</code>
+      Composable (
+      <a href="https://android-review.googlesource.com/#/q/Id9b0f795a4071a8e6a2bb8197b0d3326ec7a521e">Id9b0f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/407663999">b/407663999</a>
+      )
+    </li>
+    <li>
+      Make
+      <code translate="no" dir="ltr">PdfView</code>
+      a
+      <code translate="no" dir="ltr">ViewGroup</code>
+      . No support for arbitrary children. (
+      <a href="https://android-review.googlesource.com/#/q/Ib51d899b17b1867dd32566fbbf4e33d5a64313cb">Ib51d8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/410008792">b/410008792</a>
+      )
+    </li>
+    <li>
+      Expose
+      <code translate="no" dir="ltr">HyperLinkSelection</code>
+      and
+      <code translate="no" dir="ltr">GoToLinkSelection</code>
+      from
+      <code translate="no" dir="ltr">PdfView</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I378c4a8aff7fefc00bf4eac31438f69ea19db9ee">I378c4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/441280002">b/441280002</a>
+      )
+    </li>
+    <li>
+      Refactor
+      <code translate="no" dir="ltr">PdfPageContent</code>
+      to support generic selections (
+      <a href="https://android-review.googlesource.com/#/q/I28f167f9501ff9b78e883794d0e33fc9ac26a655">I28f16</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/437845185">b/437845185</a>
+      )
+    </li>
+    <li>
+      Expose Selection Menu API from
+      <code translate="no" dir="ltr">PdfView</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Idd547773529c416ef20d1d8adf9a20ec57b24d20">Idd547</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/407663737">b/407663737</a>
+      )
+    </li>
+    <li>
+      Move selection-related classes to a dedicated package (
+      <a href="https://android-review.googlesource.com/#/q/I953cbda59914fcfe9a172b68677e2c9141d4d138">I953cb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/436157691">b/436157691</a>
+      )
+    </li>
+    <li>
+      Introduce experimental
+      <code translate="no" dir="ltr">onPdfViewCreated</code>
+      for PdfView access in
+      <code translate="no" dir="ltr">PdfViewerFragment</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I86715dcaef62f0eb8e32dc172814c6db7eda43d5">I86715</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/422620454">b/422620454</a>
+      )
+    </li>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">FileDescriptor</code>
+      API to
+      <code translate="no" dir="ltr">PdfLoader</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I60b8dfa37b4c3800392f2d14992375b9d2581f05">I60b8d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Improve input modeling to make strokes more accurately reflect input (
+      <a href="https://android-review.googlesource.com/#/q/I9309760022de0c30a0bc5e960da4c2467f663e9f">I93097</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Expose
+      <code translate="no" dir="ltr">PdfSelectionMenuKeys</code>
+      for Link Selection Menu Items
+    </li>
+    <li>
+      Expose Selection Menu API from
+      <code translate="no" dir="ltr">PdfViewer</code>
+      Composable
+    </li>
+    <li>
+      Expose Selection Menu API from
+      <code translate="no" dir="ltr">PdfView</code>
+    </li>
+  </ul>
