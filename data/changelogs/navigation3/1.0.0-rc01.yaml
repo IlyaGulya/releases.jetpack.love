@@ -1,0 +1,43 @@
+libraryId: navigation3
+groupId: androidx.navigation3
+version: 1.0.0-rc01
+releaseDate: 2025-11-05
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-rc01" data-text="Version 1.0.0-rc01" tabindex="-1">Version 1.0.0-rc01</h3>
+  <p>November 05, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation3:navigation3-*:1.0.0-rc01</code>
+    is released. Version 1.0.0-rc01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/46bcdef6281ae0f03c3a2bb2812edfc2c0e66d05..ebd829d61998c48ea35b0e2adbc801d9c5ae36cc/navigation3">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">NavDisplay</code>
+      now sets a
+      <code translate="no" dir="ltr">LocalLifecycleOwner</code>
+      at the
+      <code translate="no" dir="ltr">Scene</code>
+      level that allows scene authors to determine whether all transitions have finished by checking that the
+      <code translate="no" dir="ltr">Lifecycle.State</code>
+      is
+      <code translate="no" dir="ltr">RESUMED</code>
+      . The behavior of the
+      <code translate="no" dir="ltr">LocalLifecycleOwner</code>
+      at the
+      <code translate="no" dir="ltr">NavEntry</code>
+      level is unchanged: it also remains capped at
+      <code translate="no" dir="ltr">STARTED</code>
+      if a transition is in progress and is additionally capped at
+      <code translate="no" dir="ltr">CREATED</code>
+      if that
+      <code translate="no" dir="ltr">NavEntry</code>
+      has been popped from the back stack and is in the process of animating out. (
+      <a href="https://android-review.googlesource.com/#/q/I03113a4729d59a9d2bc09d4422d41615f60ab935">I03113</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/454045829">b/454045829</a>
+      )
+    </li>
+  </ul>
