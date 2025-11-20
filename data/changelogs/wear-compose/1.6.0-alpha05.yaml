@@ -1,0 +1,130 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.6.0-alpha05
+releaseDate: 2025-11-19
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-alpha05" data-text="Version 1.6.0-alpha05" tabindex="-1">Version 1.6.0-alpha05</h3>
+  <p>November 19, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.6.0-alpha05</code>
+    is released. Version 1.6.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/46bcdef6281ae0f03c3a2bb2812edfc2c0e66d05..105aaabed738991983882996b606775c33a1a821/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">RotarySnapSensitivity</code>
+      for rotary snap behavior and
+      <code translate="no" dir="ltr">PagerSensitivity</code>
+      for pager fling behavior, to allow applications to adjust the sensitivity level of rotary and fling behavior, especially for pagers. (
+      <a href="https://android-review.googlesource.com/#/q/Ic3a83af628c1a6917cd903b6fe6671ae01564392">Ic3a83</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/449949891">b/449949891</a>
+      )
+    </li>
+    <li>
+      Simplified changes to
+      <code translate="no" dir="ltr">rememberTransformingLazyColumnState</code>
+      that were made with the introduction of reverse layout for
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      , consolidating to a single function and using a sentinel value to use the default anchor index. (
+      <a href="https://android-review.googlesource.com/#/q/I093022d57818322126049a6577a327d6314a2db6">I09302</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/453731755">b/453731755</a>
+      )
+    </li>
+    <li>
+      Added a new default
+      <code translate="no" dir="ltr">GenericFailureIcon</code>
+      to be used in
+      <code translate="no" dir="ltr">FailureConfirmationDialog</code>
+      , which shows a generic error icon. Renamed existing
+      <code translate="no" dir="ltr">FailureIcon</code>
+      to
+      <code translate="no" dir="ltr">ConnectionFailureIcon</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I8e965334a1d419481debcf5481fde0b4e560678b">I8e965</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/453730430">b/453730430</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Made
+      <code translate="no" dir="ltr">TimePicker</code>
+      more robust when parsing complex locale patterns. (
+      <a href="https://android-review.googlesource.com/#/q/I7b169fb5fae5c787c6a9d1b486234b1aba288b54">I7b169</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/456538838">b/456538838</a>
+      )
+    </li>
+    <li>
+      Fixed the initial
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      layout when
+      <code translate="no" dir="ltr">verticalArrangement</code>
+      is
+      <code translate="no" dir="ltr">Arrangement.Center</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id18ef7cf84654c3cd5996fc100f39a95d8280b1c">Id18ef</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/451481233">b/451481233</a>
+      )
+    </li>
+    <li>
+      Aligned
+      <code translate="no" dir="ltr">TransformingLazyColumnState</code>
+      constructor with
+      <code translate="no" dir="ltr">rememberTransformingLazyColumnState</code>
+      function (
+      <a href="https://android-review.googlesource.com/#/q/I36d6a5fd775f294392bbbf343fb6e4923d1d3e4d">I36d6a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/453731755">b/453731755</a>
+      )
+    </li>
+    <li>
+      Updated the tick icon for
+      <code translate="no" dir="ltr">CheckboxButton</code>
+      to be rounded. (
+      <a href="https://android-review.googlesource.com/#/q/Ie645e402e9778ff54e305a51455411262bfdcbd2">Ie645e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/378645751">b/378645751</a>
+      )
+    </li>
+    <li>
+      Updated the tick icon for
+      <code translate="no" dir="ltr">SwitchButton</code>
+      to be rounded. (
+      <a href="https://android-review.googlesource.com/#/q/I31fbfdb376d27e2c2caf019eef39ae6d2673d816">I31fbf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/378642590">b/378642590</a>
+      )
+    </li>
+    <li>
+      Corrected
+      <code translate="no" dir="ltr">scrollToItem</code>
+      offset in
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      which was inverting the scrolling direction. (
+      <a href="https://android-review.googlesource.com/#/q/Ib2c930e8f4c207df16c2a1aafa81911827191566">Ib2c93</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/451481233">b/451481233</a>
+      )
+    </li>
+    <li>
+      Improved
+      <code translate="no" dir="ltr">SwitchButton</code>
+      and
+      <code translate="no" dir="ltr">SplitSwitchButton</code>
+      performance. (
+      <a href="https://android-review.googlesource.com/#/q/I708deadaae92927510203479ad9e70d852d27242">I708de</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/448781327">b/448781327</a>
+      )
+    </li>
+  </ul>

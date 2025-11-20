@@ -1,0 +1,175 @@
+libraryId: navigationevent
+groupId: androidx.navigationevent
+version: 1.0.0
+releaseDate: 2025-11-19
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0" data-text="Version 1.0.0" tabindex="-1">Version 1.0.0</h3>
+  <p>November 19, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigationevent:navigationevent-*:1.0.0</code>
+    is released. Version 1.0.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cd41781824511ce4d5c4a05d2df4aaaee669f0bc..a336be7aa59aced2a87c402849988939d848fee3/navigationevent">these commits</a>
+    .
+  </p>
+  <p><strong>Major features of 1.0.0:</strong></p>
+  <p>
+    The
+    <code translate="no" dir="ltr">Navigation Event</code>
+    library is now stable!
+    <code translate="no" dir="ltr">Navigation Event</code>
+    is the AndroidX library for handling system level interactions such as system-back and predictive back in Android (and other platforms).
+  </p>
+  <ul>
+    <li>
+      <p>
+        To handle
+        <code translate="no" dir="ltr">NavigationEvent</code>
+        s, you can implement your own
+        <code translate="no" dir="ltr">NavigationEventHandler</code>
+        that overrides the desired functions. You then need to add the handler to a
+        <code translate="no" dir="ltr">NavigationEventDispatcher</code>
+        . Starting with the
+        <a href="/jetpack/androidxactivity#1.12.0">
+          Activity
+          <code translate="no" dir="ltr">1.12.0</code>
+        </a>
+        release,
+        <code translate="no" dir="ltr">ComponentActivity</code>
+        implements the new
+        <code translate="no" dir="ltr">NavigationEventDispatcherOwner</code>
+        interface, which provides a dispatcher that is ready to use :
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-c1">// The NavigationEventInfo provides information about a navigation state</span>
+  <span class="devsite-syntax-kd">object</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">CurrentInfo</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">NavigationEventInfo</span><span class="devsite-syntax-p">()</span>
+
+  <span class="devsite-syntax-c1">// you can retrieve this from any component that is a NavigationEventDispatcherOwner</span>
+  <span class="devsite-syntax-c1">// or you can instantiate your own custom dispatcher</span>
+  <span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">dispatcher</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">myActivity</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">navigationEventDispatcher</span>
+
+  <span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">myHandler</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">object</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">NavigationEventHandler&lt;NavigationEventInfo&gt;</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">initialInfo</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">CurrentInfo</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">isBackEnabled</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kc">true</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-kd">override</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">onBackStarted</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">event</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">NavigationEvent</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-c1">// Prepare for the back event</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-p">}</span>
+
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-kd">override</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">onBackProgressed</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">event</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">NavigationEvent</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-c1">// Use event.progress for predictive animations</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-p">}</span>
+
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-c1">// This is the required method for final event handling</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-kd">override</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">onBackCompleted</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-c1">// Complete the back event</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-p">}</span>
+
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-kd">override</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">onBackCancelled</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-c1">// Cancel the back event</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">}</span>
+
+  <span class="devsite-syntax-n">dispatcher</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">addHandler</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">myHandler</span><span class="devsite-syntax-p">)</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        The
+        <code translate="no" dir="ltr">navigationevent:navigationevent-compose</code>
+        module provides a convenient compose function
+        <code translate="no" dir="ltr">NavigationBackHandler</code>
+        that automatically hooks up the handler to the closest
+        <code translate="no" dir="ltr">LocalNavigationEventDispatcherOwner</code>
+        ’s
+        <code translate="no" dir="ltr">NavigationEventDispatcher</code>
+        and allows developers to provide the desired behavior as parameters:
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">object</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">CurrentInfo</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">NavigationEventInfo</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-kd">object</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">PreviousInfo</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">NavigationEventInfo</span><span class="devsite-syntax-p">()</span>
+
+  <span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">navEventState</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">rememberNavigationEventState</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">currentInfo</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">CurrentInfo</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">backInfo</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">PreviousInfo</span>
+  <span class="devsite-syntax-p">)</span>
+
+  <span class="devsite-syntax-c1">// Inside composition</span>
+  <span class="devsite-syntax-n">NavigationBackHandler</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">State</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">navEventState</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">isBackEnabled</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kc">true</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// optional</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">onBackCancelled</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-c1">// Cancel the back event },</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// required</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">onBackCompleted</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-c1">// Complete the back event } ,</span>
+  <span class="devsite-syntax-p">)</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+  </ul>
+  <p>
+    Using this pattern in Compose makes it very easy to hoist the
+    <code translate="no" dir="ltr">NavigationEventState</code>
+    and allow it to be observed by different Composable (i.e. in the case of Navigation3, where you can hoist the state out of the
+    <code translate="no" dir="ltr">NavDisplay</code>
+    ).
+  </p>
+  <ul>
+    <li>
+      <p>
+        Each
+        <code translate="no" dir="ltr">NavigationEventDispatcher</code>
+        has the ability to provide a parent dispatcher, for both the compose and non-compose cases. This allows developers to create a hierarchical structure where several dispatchers can be managed by a single parent. Having a parent makes handling groups of dispatchers that might need to be disabled or disposed, relatively simple:
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-c1">// Non-Compose</span>
+  <span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">parentDispatcher</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">NavigationEventDispatcher</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">childDispatcher</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">NavigationEventDispatcher</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">parent</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">parentDispatcher</span><span class="devsite-syntax-p">)</span>
+
+  <span class="devsite-syntax-c1">// Compose</span>
+  <span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">composeChildDispatcher</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">rememberNavigationEventDispatcher</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// This defaults to `LocalNavigationEventDispatcherOwner.current`</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// Must explicitly provide null to have an unparented dispatcher created here</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">parent</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">NavigationEventDispatch</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span>
+  <span class="devsite-syntax-p">)</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        The library also makes it possible to provide signals directly to the
+        <code translate="no" dir="ltr">NavigationEventDispatcher</code>
+        via a
+        <code translate="no" dir="ltr">NavigationEventInput</code>
+        .
+        <code translate="no" dir="ltr">NavigationEventInput</code>
+        s acts as the "input" side of the navigation system, translating platform-specific events (like system back gestures or button clicks) into standardized events that can be sent to a
+        <code translate="no" dir="ltr">NavigationEventDispatcher</code>
+        . The
+        <code translate="no" dir="ltr">navigationevent:navigationevent</code>
+        module currently provides 2
+        <code translate="no" dir="ltr">NavigationEventInput</code>
+        s: a more generic
+        <code translate="no" dir="ltr">DirectNavigationEventInput</code>
+        to allow any event to be dispatched and an Android specific
+        <code translate="no" dir="ltr">OnBackInvokedInput</code>
+        that allows a
+        <code translate="no" dir="ltr">NavigationEventDispatcher</code>
+        to support system back and the predictive back gesture. If you implement your own dispatcher (instead of using the one provided by
+        <code translate="no" dir="ltr">ComponentActivity</code>
+        ) you must manually add your input:
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">dispatcher</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">NavigationEventDispatcher</span><span class="devsite-syntax-p">()</span>
+
+  <span class="devsite-syntax-n">dispatcher</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">addInput</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">DirectNavigationEventInput</span><span class="devsite-syntax-p">())</span>
+  <span class="devsite-syntax-n">dispatcher</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">addInput</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">OnBackInvokedDefaultInput</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">invoker</span><span class="devsite-syntax-p">))</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+  </ul>
