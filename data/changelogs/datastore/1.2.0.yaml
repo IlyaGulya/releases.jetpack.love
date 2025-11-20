@@ -1,0 +1,99 @@
+libraryId: datastore
+groupId: androidx.datastore
+version: 1.2.0
+releaseDate: 2025-11-19
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0" data-text="Version 1.2.0" tabindex="-1">Version 1.2.0</h3>
+  <p>November 19, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.datastore:datastore-*:1.2.0</code>
+    is released. Version 1.2.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/420da5f291449f11801e378c6789a328a06ec6cb..9c556fd714d249b153cbe3ddce61e9eb43f77ffc/datastore">these commits</a>
+    .
+  </p>
+  <h3 id="major_changes_since_110_release_2" data-text="Major changes since 1.1.0 release" tabindex="-1">Major changes since 1.1.0 release</h3>
+  <p><strong>Java/Guava Support:</strong></p>
+  <ul>
+    <li>
+      Added the new
+      <code translate="no" dir="ltr">datastore-guava</code>
+      module to expose APIs friendly to Java and Guava
+      <code translate="no" dir="ltr">ListenableFuture</code>
+      users via
+      <strong><code translate="no" dir="ltr">GuavaDataStore</code></strong>
+      .
+    </li>
+    <li>
+      Added
+      <strong>multiprocess support</strong>
+      within
+      <code translate="no" dir="ltr">GuavaDataStore</code>
+      .
+    </li>
+    <li>
+      Added an overload for
+      <code translate="no" dir="ltr">GuavaDataStore.from</code>
+      that accepts a Java
+      <code translate="no" dir="ltr">Executor</code>
+      (instead of a
+      <code translate="no" dir="ltr">CoroutineContext</code>
+      ) and uses
+      <code translate="no" dir="ltr">androidx.core.util.Function</code>
+      .
+    </li>
+  </ul>
+  <p><strong>Direct Boot Support:</strong></p>
+  <ul>
+    <li>
+      <strong>DataStore usage during Direct Boot mode is now supported.</strong>
+      New APIs like
+      <strong><code translate="no" dir="ltr">createInDeviceProtectedStorage()</code></strong>
+      in
+      <code translate="no" dir="ltr">DataStoreFactory</code>
+      and
+      <strong><code translate="no" dir="ltr">deviceProtectedDataStore()</code></strong>
+      in
+      <code translate="no" dir="ltr">DataStoreDelegate</code>
+      allows creating the DataStore within the Device Protected storage.
+    </li>
+  </ul>
+  <p><strong>Storage and API Changes:</strong></p>
+  <ul>
+    <li>
+      Added
+      <strong><code translate="no" dir="ltr">PreferencesFileSerializer</code></strong>
+      that implements
+      <code translate="no" dir="ltr">androidx.datastore.core.Serializer</code>
+      for use with
+      <code translate="no" dir="ltr">FileStorage</code>
+      .
+    </li>
+    <li>
+      Defined the default constructor for
+      <strong><code translate="no" dir="ltr">ReplaceFileCorruptionHandler</code></strong>
+      for common code usage.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes:</strong></p>
+  <ul>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">java.lang.UnsatisfiedLinkError</code>
+      when using
+      <code translate="no" dir="ltr">DataStore</code>
+      in an app optimized with R8 but not using the standard ProGuard file.
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">GuavaDataStore</code>
+      operations could incorrectly run on the calling thread (e.g., the main thread) instead of the specified IO dispatcher.
+    </li>
+    <li>
+      Resolved a
+      <code translate="no" dir="ltr">FileNotFoundException</code>
+      issue in
+      <code translate="no" dir="ltr">OkioStorage</code>
+      at startup by adding a second attempt to read data in case of a race condition.
+    </li>
+  </ul>

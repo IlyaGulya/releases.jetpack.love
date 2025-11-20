@@ -1,0 +1,53 @@
+libraryId: room
+groupId: androidx.room
+version: 2.8.4
+releaseDate: 2025-11-19
+#language=html
+changelogHtml: |
+  <h3 id="2.8.4" data-text="Version 2.8.4" tabindex="-1">Version 2.8.4</h3>
+  <p>November 19, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room:room-*:2.8.4</code>
+    is released. Version 2.8.4 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/84011c8ceb69163ef306a69e7f317202675eeb4b..75ef81cced187631f0dd74666188bd9d4cd3358f/room">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Added a prepared statement cache to Room’s connection pool when using a
+      <code translate="no" dir="ltr">SQLiteDriver</code>
+      that does not internally have a pool, such as the
+      <code translate="no" dir="ltr">BundledSQLiteDriver</code>
+      . This improves performance on repeated execution of the same SQL statement. (
+      <a href="https://android-review.googlesource.com/#/q/5f43bc4fa8ad4e19a1db2f2c9c1e7c5cd09e2c87">5f43bc</a>
+      ,
+      <a href="https://issuetracker.google.com/319653917">b/319653917</a>
+      )
+    </li>
+    <li>
+      Fix an issue where the actual / expected error message on schema validation was missing information. (
+      <a href="https://android-review.googlesource.com/#/q/8b23da648c05461fb66b3f227db5f93259da417c">8b23da</a>
+      ,
+      <a href="https://issuetracker.google.com/454531083">b/454531083</a>
+      )
+    </li>
+    <li>
+      Fix an issue with Room’s Kotlin code generation missing
+      <code translate="no" dir="ltr">@Transaction</code>
+      DAO functions with type variables. (
+      <a href="https://android-review.googlesource.com/#/q/a8365de1779bdc7901f34ab4c6186fffea4acc75">a8365d</a>
+      ,
+      <a href="https://issuetracker.google.com/251316420">b/251316420</a>
+      )
+    </li>
+    <li>
+      Improve Room’s
+      <code translate="no" dir="ltr">SupportSQLite</code>
+      Wrapper performance by avoiding thread hops maintaining the same blocking behaviour as the
+      <code translate="no" dir="ltr">SupportSQLiteDatabase</code>
+      APIs. (
+      <a href="https://android-review.googlesource.com/#/q/fc70e487b804f94e5b5a1296213c14450e5582fb">fc70e4</a>
+      )
+    </li>
+  </ul>

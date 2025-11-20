@@ -1,0 +1,46 @@
+libraryId: tracing
+groupId: androidx.tracing
+version: 1.0.1
+releaseDate: 2025-11-19
+#language=html
+changelogHtml: |
+  <h3 id="perfetto-1.0.1" data-text="Version 1.0.1" tabindex="-1">Version 1.0.1</h3>
+  <p>November 19, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.tracing:tracing-perfetto:1.0.1</code>
+    ,
+    <code translate="no" dir="ltr">androidx.tracing:tracing-perfetto-binary:1.0.1</code>
+    , and
+    <code translate="no" dir="ltr">androidx.tracing:tracing-perfetto-handshake:1.0.1</code>
+    are released. Version 1.0.1 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/120ca6e0a3f4f240334c74efe9f9da0038522135..262b8e77a141e4b20a5656688137c1a1a89492b0/tracing">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Support for 16KB page sizes (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/f42a711fe12a08550d75e8ca3bb6d6834db7a7dd">b7a7dd</a>
+      )
+    </li>
+    <li>
+      Removed manual outlining of access to new platform APIs since this happens automatically via API modeling when using R8 with AGP 7.3 or later (e.g. R8 version 3.3) and for all builds when using AGP 8.1 or later (e.g. D8 version 8.1). Clients who are not using AGP are advised to update to D8 version 8.1 or later. See
+      <a href="https://medium.com/androiddevelopers/mitigating-soft-verification-issues-in-r8-and-d8-7e9e06827dfd">this article</a>
+      for more details. (
+      <a href="https://android-review.googlesource.com/#/q/Ia60e0ab9f0fd613883a772c8aa34e27cc986cae8">Ia60e0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/345472586">b/345472586</a>
+      )
+    </li>
+    <li>
+      Avoid bundling copies of
+      <code translate="no" dir="ltr">FastNative/CriticalNative</code>
+      in the library, and use the stable platform copies. (
+      <a href="https://android-review.googlesource.com/#/q/I8238a3ec6e2f3563ee6262857e4978de1d176768">I8238a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/35664282">b/35664282</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/280878596">b/280878596</a>
+      )
+    </li>
+  </ul>

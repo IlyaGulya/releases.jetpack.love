@@ -1,0 +1,87 @@
+libraryId: emoji
+groupId: androidx.emoji
+version: 1.2.0-beta01
+releaseDate: 2025-11-19
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-beta01" data-text="Version 1.2.0-beta01" tabindex="-1">Version 1.2.0-beta01</h3>
+  <p>November 19, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.emoji:emoji:1.2.0-beta01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.emoji:emoji-appcompat:1.2.0-beta01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.emoji:emoji-bundled:1.2.0-beta01</code>
+    are released. Version 1.2.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c432e3c08f7a59f114989dbcefaa1e18fb555df3..e5dc00768ba5e06b850928bd526e1a0a0337c8a2/emoji">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">EmojiMetadata</code>
+      typeface specified as non null. (
+      <a href="https://android-review.googlesource.com/#/q/Ic727f852ab6a1ca1e799eea8b1e2919473613ac5">Ic727f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/236341259">b/236341259</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">EmojiCompat</code>
+      correctly sets
+      <code translate="no" dir="ltr">EditorInfo.extras</code>
+      on Android R (
+      <a href="https://android-review.googlesource.com/#/q/I1ea9bdd579e64139d98bc1298ad2d9c5ade65045">I1ea9b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/196452690">b/196452690</a>
+      )
+    </li>
+    <li>
+      Custom widgets that use IME not subclassing
+      <code translate="no" dir="ltr">EditText</code>
+      may call
+      <code translate="no" dir="ltr">EmojiCompat.updateEditorInfo</code>
+      to inform IME that they support
+      <code translate="no" dir="ltr">EmojiCompat</code>
+      processing. (
+      <a href="https://android-review.googlesource.com/#/q/I1ea9bdd579e64139d98bc1298ad2d9c5ade65045">I1ea9b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/196452690">b/196452690</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Moving the default
+      <code translate="no" dir="ltr">minSdk</code>
+      from API 21 to API 23 (
+      <a href="https://android-review.googlesource.com/#/q/Ibdfca5942dbb414ca07594ba240093db14aad4df">Ibdfca</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/380448311">b/380448311</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/435705964">b/435705964</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/435705223">b/435705223</a>
+      )
+    </li>
+    <li>
+      This library now uses
+      <a href="https://jspecify.dev/">JSpecify nullness annotations</a>
+      , which are type-use. Kotlin developers should use the following compiler arguments to enforce correct usage:
+      <code translate="no" dir="ltr">-Xjspecify-annotations=strict, -Xtype-enhancement-improvements-strict-mode</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ibb74cbbb710f914213543cc1c6a8273e0e19c4e4">Ibb74c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326456246">b/326456246</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">EmojiCompat</code>
+      init callbacks will now use the handler from each view, respecting views not on the main thread. (
+      <a href="https://android-review.googlesource.com/#/q/Iccbcfb16840662f348cb632cfba9b263fb7ad963">Iccbcf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/278897602">b/278897602</a>
+      )
+    </li>
+  </ul>

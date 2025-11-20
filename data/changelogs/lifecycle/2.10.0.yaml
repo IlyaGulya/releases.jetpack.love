@@ -1,0 +1,113 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.10.0
+releaseDate: 2025-11-19
+#language=html
+changelogHtml: |
+  <h3 id="2.10.0" data-text="Version 2.10.0" tabindex="-1">Version 2.10.0</h3>
+  <p>November 19, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.10.0</code>
+    is released. Version 2.10.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/de92a2e4117ed83ceccc5bf636358c1df27d4bd6..ee621bea3237b1eab3c48eef4cf7ef7c7943b4bb/lifecycle">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 2.9.0:</strong></p>
+  <ul>
+    <li>
+      <p>
+        Add a
+        <code translate="no" dir="ltr">rememberLifecycleOwner</code>
+        composable to enable creating scoped lifecycles directly within the UI. This is useful for components that need to manage their own lifecycles independently such as a
+        <code translate="no" dir="ltr">HorizontalPager</code>
+        that wants to only make the current page
+        <code translate="no" dir="ltr">RESUMED</code>
+        or libraries like
+        <a href="/jetpack/androidx/releases/navigation3#1.0.0">Navigation3</a>
+        :
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@Composable</span>
+  <span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">MyComposable</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// This LifecycleOwner is automatically moved to DESTROYED when</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// it leaves composition and its maxLifecycle is the maximum of either</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// the maxLifecycle you set or the Lifecycle.State of the parentLifecycleOwner</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">lifecycleOwner</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">rememberLifecycleOwner</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">maxLifecycle</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">RESUMED</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">parentLifecycleOwner</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">LocalLifecycleOwner</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">current</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">CompositionLocalProvider</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">LocalLifecycleOwner</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">provides</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">lifecycleOwner</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">childLifecycleOwner</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">LocalLifecycleOwner</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">current</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        The
+        <code translate="no" dir="ltr">lifecycle-viewmodel-navigation3</code>
+        artifact provides a prebuilt integration for
+        <a href="/jetpack/androidx/releases/navigation3#1.0.0">Navigation3</a>
+        , allowing you to enable scoping
+        <code translate="no" dir="ltr">ViewModel</code>
+        instances to individual screens (‘entries’) by using the
+        <code translate="no" dir="ltr">rememberViewModelStoreNavEntryDecorator()</code>
+        API:
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@Composable</span>
+  <span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">MyComposable</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">NavDisplay</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">backStack</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">backStack</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">entryDecorators</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">listOf</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-n">rememberSaveableStateHolderNavEntryDecorator</span><span class="devsite-syntax-p">(),</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-c1">// Add this line to automatically scope ViewModels to each entry</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-n">rememberViewModelStoreNavEntryDecorator</span><span class="devsite-syntax-p">(),</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-p">),</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">entryProvider</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">entryProvider</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-c1">// Add your entries here</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        Add a builder factory function for
+        <code translate="no" dir="ltr">CreationExtras</code>
+        , providing a more convenient and idiomatic Kotlin API.
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">override</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">defaultViewModelCreationExtras</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">CreationExtras</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// Use the CreationExtras builder to add in a custom value to the default</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// CreationExtras in your Activity or Fragment</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-k">get</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">super</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">defaultViewModelCreationExtras</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">+</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">CreationExtras</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-k">this</span><span class="devsite-syntax-o">[</span><span class="devsite-syntax-n">CustomKey</span><span class="devsite-syntax-o">]</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"customValue"</span>
+  <span class="devsite-syntax-w">   </span><span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        Add native support for nullable types in
+        <code translate="no" dir="ltr">SavedStateHandle.saved</code>
+        , simplifying saving and restoring nullable properties.
+      </p>
+    </li>
+    <li>
+      <p>
+        Mark
+        <code translate="no" dir="ltr">SavedStateHandle</code>
+        constructors as
+        <code translate="no" dir="ltr">@VisibleForTesting</code>
+        .
+      </p>
+    </li>
+    <li><p>The minSdk has changed from API 21 to API 23.</p></li>
+  </ul>
