@@ -1,0 +1,142 @@
+libraryId: media3
+groupId: androidx.media3
+version: 1.9.0-beta01
+releaseDate: 2025-11-20
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0-beta01" data-text="1.9.0-beta01" tabindex="-1">1.9.0-beta01</h3>
+  <p>November 20, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.media3:media3-*:1.9.0-beta01</code>
+    is released. Version 1.9.0-beta01 contains
+    <a href="https://github.com/androidx/media/commits/1.9.0-beta01">these commits</a>
+    .
+  </p>
+  <ul>
+    <li>
+      ExoPlayer:
+      <ul>
+        <li>
+          Add
+          <code translate="no" dir="ltr">cloneAndSet(int, int)</code>
+          to
+          <code translate="no" dir="ltr">ShuffleOrder</code>
+          with a default implementation (
+          <a href="https://github.com/androidx/media/pull/2834">#2834</a>
+          ).
+        </li>
+        <li>
+          Append content resume offset when skipping ad playback after seek adjustment or auto transition (
+          <a href="https://github.com/androidx/media/issues/2484">2484</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Extractors:
+      <ul>
+        <li>
+          MP3: Increase sniffing limit to 128kB to match the existing search limit for a sync byte (
+          <a href="https://github.com/androidx/media/issues/2713">#2713</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Video:
+      <ul>
+        <li>
+          Re-enable workaround for wrongly reported performance points for secure codecs (
+          <a href="https://github.com/androidx/media/issues/2856">#2856</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Effect:
+      <ul>
+        <li>
+          Add
+          <code translate="no" dir="ltr">Presentation.copyWithUnsetSideRoundedTo</code>
+          to round the unset output side when
+          <code translate="no" dir="ltr">Presentation</code>
+          is created with a single side length.
+        </li>
+      </ul>
+    </li>
+    <li>
+      IMA extension:
+      <ul>
+        <li>
+          Fix issue where content preparation error for content after an ad would be wrongly reported as an ad playback error (
+          <a href="https://github.com/androidx/media/issues/2656">#2656</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Session:
+      <ul>
+        <li>
+          Add
+          <code translate="no" dir="ltr">CommandButton.executeAction</code>
+          so that controllers can more easily trigger the intended action. Also allow to specify parameters for some player and session commands to define which action to trigger.
+        </li>
+        <li>
+          Add backwards-compatibility for
+          <code translate="no" dir="ltr">CommandButton</code>
+          instances using
+          <code translate="no" dir="ltr">Player.Command</code>
+          or non-custom
+          <code translate="no" dir="ltr">SessionCommand</code>
+          to define their action. These are now correctly represented in platform media sessions, for example for System UI or Android Auto.
+        </li>
+        <li>
+          Fix issue where the same
+          <code translate="no" dir="ltr">Bitmap</code>
+          is compressed multiple times when connecting a
+          <code translate="no" dir="ltr">MediaController</code>
+          to a platform media session.
+        </li>
+      </ul>
+    </li>
+    <li>
+      UI:
+      <ul>
+        <li>
+          Use
+          <code translate="no" dir="ltr">BidiFormatter</code>
+          to correctly display punctuation in RTL text subtitles (
+          <a href="https://github.com/google/ExoPlayer/issues/11214">#11214</a>
+          ).
+        </li>
+        <li>
+          Add
+          <code translate="no" dir="ltr">TimeText</code>
+          composable to
+          <code translate="no" dir="ltr">media3-ui-compose-material3</code>
+          for displaying player progress in a textual form. It can be configured to show the current position, duration, or remaining time.
+        </li>
+      </ul>
+    </li>
+    <li>
+      HLS extension:
+      <ul>
+        <li>
+          Add
+          <code translate="no" dir="ltr">HlsInterstitialsAdsLoader.skipCurrentAd()</code>
+          and
+          <code translate="no" dir="ltr">skipCurrentAdGroup()</code>
+          and corresponding methods to skip ads and ad groups by index.
+        </li>
+        <li>
+          Add
+          <code translate="no" dir="ltr">HlsInterstitialsAdsLoader.Listener.onAdStarted</code>
+          to report the start of an ad period (
+          <a href="https://github.com/androidx/media/issues/2859">#2859</a>
+          ).
+        </li>
+        <li>Accept space as a date/time separator in ISO 8601 date-time strings.</li>
+      </ul>
+    </li>
+  </ul>
