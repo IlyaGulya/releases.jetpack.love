@@ -1,0 +1,72 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.11.0-alpha01
+releaseDate: 2025-12-03
+#language=html
+changelogHtml: |
+  <h3 id="1.11.0-alpha01" data-text="Version 1.11.0-alpha01" tabindex="-1">Version 1.11.0-alpha01</h3>
+  <p>December 03, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.11.0-alpha01</code>
+    is released. Version 1.11.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b48588febd37d5947dfa0f2827d2b5ca6af2ed90..deb96499dfe95073f5c1215c1287787683cb1e92/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removes
+      <code translate="no" dir="ltr">isSemanticAutofillEnabled</code>
+      UI flag as semantic autofill has been enabled by default. (
+      <a href="https://android-review.googlesource.com/#/q/I849cfb0385e8677a2798c8212b262e1e6d60aef5">I849cf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/455587954">b/455587954</a>
+      )
+    </li>
+    <li>
+      Changed how traversable method find
+      <code translate="no" dir="ltr">findNearestAncestor</code>
+      discovers relevant nodes. Now delegates of the same type (NodeKind) will be visible during the traversal. The change is guarded by the flag
+      <code translate="no" dir="ltr">isTraversableDelegatesFixEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia316505eae1fad10e5b4455ad6a219bf0894f8d5">Ia3165</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/280804097">b/280804097</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">TextEntryKey</code>
+      mapping for
+      <code translate="no" dir="ltr">ANI#isTextEntryKey</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ifde7be87fb32dca55b9b7c4ccc72bc729d76c59a">Ifde7b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/399540654">b/399540654</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Modifier.onFirstVisible()</code>
+      is deprecated as its behavior is misleading and doesn't always follow the contract claimed by the name. For example, when it is added on an item of
+      <code translate="no" dir="ltr">LazyColumn</code>
+      , this callback will be called everytime this item became visible after scrolling. It is not what the users of the modifier with this name might have expected. It is recommended to use
+      <code translate="no" dir="ltr">Modifier.onVisibilityChanged()</code>
+      instead and manually track if the layout was visible already previously based on the requirement of the specific use case. (
+      <a href="https://android-review.googlesource.com/#/q/Ia709566717edbdfe5717bedfa74d1334a78f8964">Ia7095</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/447601783">b/447601783</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">MeasuredSizeAwareModifierNode</code>
+      , which is needed when you need
+      <code translate="no" dir="ltr">onRemeasured()</code>
+      callback. Please use this interface directly instead of using more generic
+      <code translate="no" dir="ltr">LayoutAwareModifierNode</code>
+      when you don't need other callbacks. (
+      <a href="https://android-review.googlesource.com/#/q/If6fb04b74840d08274d01a41d84bd14507d190b8">If6fb0</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_110_3" data-text="Version 1.10" tabindex="-1">Version 1.10</h2>

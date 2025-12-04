@@ -1,0 +1,82 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.11.0-alpha01
+releaseDate: 2025-12-03
+#language=html
+changelogHtml: |
+  <h3 id="1.11.0-alpha01" data-text="Version 1.11.0-alpha01" tabindex="-1">Version 1.11.0-alpha01</h3>
+  <p>December 03, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.11.0-alpha01</code>
+    is released. Version 1.11.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b48588febd37d5947dfa0f2827d2b5ca6af2ed90..deb96499dfe95073f5c1215c1287787683cb1e92/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">Modifier.scrollIndicator</code>
+      to allow adding custom scroll indicators to scrollable containers. The
+      <code translate="no" dir="ltr">ScrollIndicatorFactory</code>
+      interface enables creating scroll indicators by defining their appearance and behavior. (
+      <a href="https://android-review.googlesource.com/#/q/I893224c108519428fe4579fa8d20133462b95d58">I89322</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">ComposeFoundationFlags.isTextFieldDpadNavigationEnabled</code>
+      . The new behavior is now enabled at all times. (
+      <a href="https://android-review.googlesource.com/#/q/I3f0347185d3590f9b7442a5fd44b06016f4c381e">I3f034</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">isCacheWindowRefillFixEnabled</code>
+      to control the roll out of the cache window refill fix. (
+      <a href="https://android-review.googlesource.com/#/q/I4e52baefd57b178834444a60cf43a016ec193e52">I4e52b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/454439658">b/454439658</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">ComposeFoundationFlags.isKeepInViewFocusObservationChangeEnabled</code>
+      . The new behavior is now enabled at all times. (
+      <a href="https://android-review.googlesource.com/#/q/I7cbd45779b72807426875ab6efd05e391ed1f111">I7cbd4</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Modifier.onFirstVisible()</code>
+      is deprecated as its behavior is misleading and doesn't always follow the contract claimed by the name. For example, when it is added on an item of
+      <code translate="no" dir="ltr">LazyColumn</code>
+      , this callback will be called everytime this item became visible after scrolling. It is not what the users of the modifier with this name might have expected. It is recommended to use
+      <code translate="no" dir="ltr">Modifier.onVisibilityChanged()</code>
+      instead and manually track if the layout was visible already previously based on the requirement of the specific use case. (
+      <a href="https://android-review.googlesource.com/#/q/Ia709566717edbdfe5717bedfa74d1334a78f8964">Ia7095</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/447601783">b/447601783</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">MeasuredSizeAwareModifierNode</code>
+      , which is needed when you need
+      <code translate="no" dir="ltr">onRemeasured()</code>
+      callback. Please use this interface directly instead of using more generic
+      <code translate="no" dir="ltr">LayoutAwareModifierNode</code>
+      when you don't need other callbacks. (
+      <a href="https://android-review.googlesource.com/#/q/If6fb04b74840d08274d01a41d84bd14507d190b8">If6fb0</a>
+      )
+    </li>
+    <li>
+      Introduces a
+      <code translate="no" dir="ltr">visible</code>
+      Modifier which can be used to skip drawing the content of a Composable without affecting the space it occupies. (
+      <a href="https://android-review.googlesource.com/#/q/Ia687178fc4299c10a19bd5fad63394c45f81b170">Ia6871</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/158837937">b/158837937</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_110_3" data-text="Version 1.10" tabindex="-1">Version 1.10</h2>
