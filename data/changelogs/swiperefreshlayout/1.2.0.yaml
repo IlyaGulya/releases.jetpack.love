@@ -1,7 +1,44 @@
 libraryId: swiperefreshlayout
 groupId: androidx.swiperefreshlayout
 version: 1.2.0
-releaseDate: 2025-11-19
+releaseDate: 2025-12-03
 #language=html
 changelogHtml: |
-  <h2 id="version_120_2" data-text="Version 1.2.0" tabindex="-1">Version 1.2.0</h2>
+  <h3 id="swiperefreshlayout-1.2.0" data-text="Version 1.2.0" tabindex="-1">Version 1.2.0</h3>
+  <p>December 03, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.swiperefreshlayout:swiperefreshlayout:1.2.0</code>
+    is released. Version 1.2.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6b97b146b743340c9d9b6fa54e735404374f2a5f..fb5a38f0bb473e1249b111faeeaf4dca679d3b5a/swiperefreshlayout/swiperefreshlayout">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.1.0:</strong></p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      If the refresh icon has already been retracted, just remove the arrow completely so that its shadow doesn't show. (
+      <a href="https://android-review.googlesource.com/#/q/162932951d7d4153eb8483ea97b7f8ec0b5350ff">5350ff</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/186557635">b/186557635</a>
+      )
+    </li>
+    <li>
+      The refresh icon must reset its position and all of its properties after retracting so that it is in the right state when it is shown again. Previously, the progress arrow was being hidden, but the rest of the state wasn't being reset. (
+      <a href="https://android-review.googlesource.com/#/q/5a883c7021c58ee8defd8f5b4169b8f59c766241">766241</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/190379246">b/190379246</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">requestDisallowInterceptTouchEvent(boolean)</code>
+      now honors the request like any other
+      <code translate="no" dir="ltr">ViewGroup</code>
+      . While strongly discouraged, new behavior can be disabled with
+      <code translate="no" dir="ltr">setLegacyRequestDisallowInterceptTouchEventEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I968da769d8400caf6f52c8a12595ee19fb4c0773">I968da</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/141855018">b/141855018</a>
+      )
+    </li>
+  </ul>

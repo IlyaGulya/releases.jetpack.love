@@ -1,0 +1,139 @@
+libraryId: xr-compose
+groupId: androidx.xr
+version: 1.0.0-alpha09
+releaseDate: 2025-12-03
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha09" data-text="Version 1.0.0-alpha09" tabindex="-1">Version 1.0.0-alpha09</h3>
+  <p>December 03, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.compose:compose:1.0.0-alpha09</code>
+    and
+    <code translate="no" dir="ltr">androidx.xr.compose:compose-testing:1.0.0-alpha09</code>
+    are released. Version 1.0.0-alpha09 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/91b842c20be0cfd3185e2953615ea38c4707bf34..7e4042dc841f56cd0fc47060f4a1efbf76486ca2/xr/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Adding
+      <code translate="no" dir="ltr">LookAtUser</code>
+      and Billboard modifiers which allows content to always face the user. (
+      <a href="https://android-review.googlesource.com/#/q/I49b995ac13d1a33c83da7b24bccc0e825da8e8bb">I49b99</a>
+      )
+    </li>
+    <li>
+      Adds the ability to set an
+      <code translate="no" dir="ltr">InteractionPolicy</code>
+      to
+      <code translate="no" dir="ltr">SpatialExternalSurfaces</code>
+      and
+      <code translate="no" dir="ltr">SpatialPanels</code>
+      , allowing the detection of clicks and other 3D input events. (
+      <a href="https://android-review.googlesource.com/#/q/Iae15522cfe9f52dece5adeb87696dc8fdffba6bb">Iae155</a>
+      )
+    </li>
+    <li>
+      Added size and
+      <code translate="no" dir="ltr">requiredSize</code>
+      modifier overload with width, height, and depth as Dp values. (
+      <a href="https://android-review.googlesource.com/#/q/I92f79139e762989340bbf53c7150d00466ea7d78">I92f79</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ParentLayoutParamsModifier</code>
+      interface now extends
+      <code translate="no" dir="ltr">DelegatableSubspaceNode</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1a6d4ef5caa69dce5173b6d65a534bb333972ad4">I1a6d4</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ApplicationSubspace</code>
+      is deprecated in favor of the Subspace API.
+      <ul>
+        <li>Subspace API behavior is changed to only provide an application-wide subspace at the recommended pose and scale.</li>
+        <li>
+          <code translate="no" dir="ltr">PlanarEmbeddedSubspace</code>
+          API is introduced to provide embedded subspaces in 2D contexts. (
+          <a href="https://android-review.googlesource.com/#/q/Id3343f593b0d32c447d5f51d4c75044928621216">Id3343</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">shouldAutoInvalidate</code>
+      flag to
+      <code translate="no" dir="ltr">SubspaceModifier.Node</code>
+      API. (
+      <a href="https://android-review.googlesource.com/#/q/I9390208186737d34d042ec1c7ae7ce6b270a064c">I93902</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">required(Size|Width|Depth|Height)</code>
+      In APIs that allow developers to constrain a
+      <code translate="no" dir="ltr">@SubspaceComposable</code>
+      's size to a specific range, disregarding the parent's incoming measurement constraints. (
+      <a href="https://android-review.googlesource.com/#/q/Ifaa78911b26c5bc2eecfbb31ab5e8b531da42270">Ifaa78</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">SubspaceModifier.onSizeChanged</code>
+      that provides a simple, focused callback for developers to react when a
+      <code translate="no" dir="ltr">@SubspaceComposable</code>
+      's size changes. (
+      <a href="https://android-review.googlesource.com/#/q/I994f926cd7189e37ab37aac2a38430052922ec07">I994f9</a>
+      )
+    </li>
+    <li>
+      Removed the Volume API. The
+      <code translate="no" dir="ltr">SceneCoreEntity</code>
+      API should be used instead of the Volume API. (
+      <a href="https://android-review.googlesource.com/#/q/I4162b33bd22244d38e9593a658127a6aa5f2047a">I4162b</a>
+      )
+    </li>
+    <li>
+      Split
+      <code translate="no" dir="ltr">SubspaceLayoutModifierNode.requestRelayout</code>
+      into
+      <code translate="no" dir="ltr">invalidateMeasurement/invalidatePlacement</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I14805caba6baa1f4055aacc8c1c47015f8b14d78">I14805</a>
+      )
+    </li>
+    <li>
+      Added the
+      <code translate="no" dir="ltr">SpatialGltfModel</code>
+      API that allows developers to render glTFs in compose. (
+      <a href="https://android-review.googlesource.com/#/q/Icc91f672f13622c9c136d41bad9f9b09b055b541">Icc91f</a>
+      )
+    </li>
+    <li>
+      Introduced the
+      <code translate="no" dir="ltr">SpatialGltfModel</code>
+      composable API for easily rendering glTFs (
+      <a href="https://android-review.googlesource.com/#/q/Iade67a7e07440f85c62779b6a75ce9be07f5754c">Iade67</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a layout bug in
+      <code translate="no" dir="ltr">SceneCoreEntity</code>
+      . It should now properly respect its constraints. (
+      <a href="https://android-review.googlesource.com/#/q/I11bb838de7fd357f09febfa63a743bf78aa78a2e">I11bb8</a>
+      )
+    </li>
+    <li>
+      Lower jxr-compose modules to
+      <code translate="no" dir="ltr">Compile sdk = 34</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I2d5db3bfc2acd903fbd76d7fb677170aa3de84ee">I2d5db</a>
+      )
+    </li>
+  </ul>
