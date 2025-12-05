@@ -1,0 +1,192 @@
+libraryId: media3
+groupId: androidx.media3
+version: 1.9.0-rc01
+releaseDate: 2025-12-01
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0-rc01" data-text="1.9.0-rc01" tabindex="-1">1.9.0-rc01</h3>
+  <p>December 1, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.media3:media3-*:1.9.0-rc01</code>
+    is released. Version 1.9.0-rc01 contains
+    <a href="https://github.com/androidx/media/commits/1.9.0-rc01">these commits</a>
+    .
+  </p>
+  <ul>
+    <li>
+      Common Library:
+      <ul>
+        <li>
+          Fix auto-detection of
+          <code translate="no" dir="ltr">TrackGroup</code>
+          track type by not ignoring custom sample MIME type and falling back to using the potentially wrong track type from the container MIME type (
+          <a href="https://github.com/androidx/media/issues/2860">#2860</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      ExoPlayer:
+      <ul>
+        <li>
+          Add API to set and observe codec parameters for audio and video tracks. This feature is implemented for
+          <code translate="no" dir="ltr">MediaCodec</code>
+          based renderers and requires API 29+.
+          <ul>
+            <li>
+              Use
+              <code translate="no" dir="ltr">ExoPlayer.setAudioCodecParameters()</code>
+              and
+              <code translate="no" dir="ltr">ExoPlayer.setVideoCodecParameters()</code>
+              to apply parameters.
+            </li>
+            <li>
+              Use
+              <code translate="no" dir="ltr">ExoPlayer.addAudioCodecParametersChangeListener()</code>
+              and
+              <code translate="no" dir="ltr">ExoPlayer.addVideoCodecParametersChangeListener()</code>
+              to listen for changes. Observing vendor-specific keys requires API 31+.
+            </li>
+          </ul>
+        </li>
+        <li>
+          Fix
+          <code translate="no" dir="ltr">IllegalStateException</code>
+          caused by setting an empty media source after seeking to a non-zero position and then preparing the player with a non-empty media source.
+        </li>
+        <li>
+          Fix bug where seeking into other media items while in scrubbing mode could cause
+          <code translate="no" dir="ltr">IllegalStateException</code>
+          .
+        </li>
+        <li>
+          Fix potential
+          <code translate="no" dir="ltr">NullPointerException</code>
+          in
+          <code translate="no" dir="ltr">DefaultPlaybackSessionManager</code>
+          (
+          <a href="https://github.com/androidx/media/issues/2885">#2885</a>
+          ).
+        </li>
+        <li>Enable improvements in seeking performance for eligible videos.</li>
+        <li>
+          Re-enable use of asynchronous decryption in MediaCodec on API 36+ where timeout issues with this platform API have been fixed (
+          <a href="https://github.com/androidx/media/issues/1641">#1641</a>
+          ).
+        </li>
+        <li>
+          Change the default value of
+          <code translate="no" dir="ltr">MediaCodecVideoRenderer.experimentalSetLateThresholdToDropDecoderInputUs</code>
+          to 15ms and enable more efficient dropping of video frames before decoding for eligible videos.
+        </li>
+        <li>
+          Add maximum memory limit to the automatic memory calculation in
+          <code translate="no" dir="ltr">DefaultLoadControl</code>
+          . This should only take effect if an excessive number of tracks get selected (
+          <a href="https://github.com/androidx/media/issues/2860">#2860</a>
+          ).
+        </li>
+        <li>Fix bug where, if playing in a playlist or repeat mode, seeking in scrub mode near the end could cause a seek to the next media item.</li>
+      </ul>
+    </li>
+    <li>
+      Extractors:
+      <ul>
+        <li>
+          MP3: Change
+          <code translate="no" dir="ltr">Mp3Extractor</code>
+          to default to a constant bitrate (CBR) assumption when no seeking metadata (e.g., Xing, VBRI) is found, even when
+          <code translate="no" dir="ltr">FLAG_ENABLE_INDEX_SEEKING</code>
+          is set. This is based on the MP3 specification's history, where CBR was standard and VBR requires explicit headers. This improves immediate seekability for files without metadata at the cost of potential accuracy for VBR files lacking headers. Index seeking is now used as a fallback if the CBR assumption is not seekable (e.g., for streams of unknown length) (
+          <a href="https://github.com/androidx/media/issues/2848">#2848</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Inspector:
+      <ul>
+        <li>
+          Add
+          <code translate="no" dir="ltr">androidx.media3.inspector.MediaExtractorCompat</code>
+          , a drop-in replacement for the platform's
+          <code translate="no" dir="ltr">android.media.MediaExtractor</code>
+          that provides a way to extract raw, encoded media samples from a media file. The existing
+          <code translate="no" dir="ltr">androidx.media3.exoplayer.MediaExtractorCompat</code>
+          is now deprecated in favor of this new class.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Session:
+      <ul>
+        <li>
+          Add backwards-compatibility for
+          <code translate="no" dir="ltr">CommandButton</code>
+          instances using
+          <code translate="no" dir="ltr">Player.Command</code>
+          or non-custom
+          <code translate="no" dir="ltr">SessionCommand</code>
+          to define their action. These are now correctly represented in platform media sessions, for example for System UI or Android Auto.
+        </li>
+        <li>
+          Fix issue where the same
+          <code translate="no" dir="ltr">Bitmap</code>
+          is compressed multiple times when connecting a
+          <code translate="no" dir="ltr">MediaController</code>
+          to a platform media session.
+        </li>
+      </ul>
+    </li>
+    <li>
+      HLS extension:
+      <ul>
+        <li>
+          Properly handle fetching the next chunk for an
+          <code translate="no" dir="ltr">HlsMediaPlaylist</code>
+          with no segments (
+          <a href="https://github.com/androidx/media/issues/2821">#2821</a>
+          ).
+        </li>
+        <li>Use the default start position for pre rolls with live streams.</li>
+      </ul>
+    </li>
+    <li>
+      Decoder extensions (FFmpeg, VP9, AV1, etc.):
+      <ul>
+        <li>
+          FFmpeg extension: Fix an issue that prevented some FLAC files from playing by ensuring the
+          <code translate="no" dir="ltr">STREAMINFO</code>
+          block is correctly parsed and passed to the decoder (
+          <a href="https://github.com/androidx/media/issues/2887">#2887</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Remove deprecated symbols:
+      <ul>
+        <li>
+          Remove
+          <code translate="no" dir="ltr">BitmapFactoryImageDecoder.BitmapDecoder</code>
+          . Use
+          <code translate="no" dir="ltr">ExternallyLoadedImageDecoder</code>
+          instead.
+        </li>
+        <li>
+          Remove deprecated
+          <code translate="no" dir="ltr">ShadowMediaCodecConfig.forAllSupportedMimeTypes()</code>
+          . Use
+          <code translate="no" dir="ltr">ShadowMediaCodecConfig.withAllDefaultSupportedCodecs()</code>
+          instead.
+        </li>
+        <li>
+          Remove deprecated
+          <code translate="no" dir="ltr">ShadowMediaCodecConfig.withNoDefaultSupportedMimeTypes()</code>
+          . Use
+          <code translate="no" dir="ltr">ShadowMediaCodecConfig.withNoDefaultSupportedCodecs()</code>
+          instead.
+        </li>
+      </ul>
+    </li>
+  </ul>
