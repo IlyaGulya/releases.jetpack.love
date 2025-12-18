@@ -1,0 +1,173 @@
+libraryId: webkit
+groupId: androidx.webkit
+version: 1.15.0
+releaseDate: 2025-12-17
+#language=html
+changelogHtml: |
+  <h3 id="1.15.0" data-text="Version 1.15.0" tabindex="-1">Version 1.15.0</h3>
+  <p>December 17, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.webkit:webkit:1.15.0</code>
+    is released. Version 1.15.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e0db6d8bb2835e53b913e6bf0a913b68f6aaf6d7..f35ed15ba0388327d2b70a31d141da182ff721c8/webkit/webkit">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.14.0</strong></p>
+  <p>
+    This release increases the
+    <code translate="no" dir="ltr">minSdk</code>
+    from API 21 to API 23. It also introduces the following new API capabilities:
+  </p>
+  <ul>
+    <li>
+      Access and set cookies as part of
+      <code translate="no" dir="ltr">shouldInterceptRequest</code>
+      callbacks for WebView and Service Workers. App developers who currently access the
+      <code translate="no" dir="ltr">CookieManager</code>
+      API as part of their
+      <code translate="no" dir="ltr">shouldInterceptRequest</code>
+      can now instead enable cookie headers directly by calling
+      <a href="https://developer.android.com/reference/androidx/webkit/WebSettingsCompat#setCookiesIncludedInShouldInterceptRequest(android.webkit.WebSettings,boolean)">WebViewCompat#setCookiesIncludedInShouldInterceptRequest</a>
+      . This will then cause
+      <code translate="no" dir="ltr">WebView</code>
+      to add a
+      <code translate="no" dir="ltr">Cookie</code>
+      header to the
+      <a href="https://developer.android.com/reference/android/webkit/WebResourceRequest#getRequestHeaders()">WebResourceRequest.getRequestHeaders()</a>
+      map which will be the exact cookies that apply to the request. This will also correctly handle any partitioned cookies. Apps can provide
+      <code translate="no" dir="ltr">Set-Cookie</code>
+      header values through the newly added
+      <a href="https://developer.android.com/reference/androidx/webkit/WebResourceResponseCompat#setCookies(java.util.List%3Cjava.lang.String%3E)">WebResourceResponseCompat#setCookies</a>
+      API. The
+      <code translate="no" dir="ltr">Set-Cookie</code>
+      values added there will be processed by
+      <code translate="no" dir="ltr">WebView</code>
+      as part of the response handling.
+    </li>
+    <li>
+      Set custom request headers. The
+      <a href="https://developer.android.com/reference/androidx/webkit/Profile#addCustomHeader(androidx.webkit.CustomHeader)">Profile#addCustomHeader</a>
+      API allows app developers to set a list of static header name-value pairs, which will be sent on any requests that match the specified origin pattern.
+    </li>
+    <li>
+      Allow item customization in WebView hyperlink context menu. By calling
+      <a href="https://developer.android.com/reference/androidx/webkit/WebSettingsCompat#setHyperlinkContextMenuItems(android.webkit.WebSettings,int)">WebViewCompat#setHyperlinkContextMenuItems</a>
+      , app developers can specify which items appear in the context menu when a user long-presses a hyperlink.
+    </li>
+    <li>
+      Trigger
+      <a href="https://developer.chrome.com/docs/web-platform/prerender-pages">prerendering</a>
+      .
+      <a href="https://developer.android.com/reference/androidx/webkit/WebViewCompat#prerenderUrlAsync(android.webkit.WebView,java.lang.String,android.os.CancellationSignal,java.util.concurrent.Executor,androidx.webkit.PrerenderOperationCallback)">WebViewCompat#prerenderUrlAsync</a>
+      allows applications to speculatively prerender URLs before they are displayed in a
+      <code translate="no" dir="ltr">WebView</code>
+      . Prerendering can dramatically improve loading performance by fetching the page ahead of time. When the user navigates to the URL, the prerendered page is displayed instantly.
+    </li>
+    <li>
+      Control the specifics of the
+      <a href="https://developer.chrome.com/blog/back-forward-cache">BackForwardCache</a>
+      in
+      <code translate="no" dir="ltr">WebView</code>
+      by calling the
+      <a href="http://setBackForwardCacheSettings">WebSettingsCompat#setBackForwardCacheSettings</a>
+      API. This API allows you to set the timeout in seconds or adjust the page cache limits.
+    </li>
+    <li>
+      Finally, the removal of the
+      <code translate="no" dir="ltr">X-Requested-With</code>
+      header in
+      <code translate="no" dir="ltr">WebView</code>
+      has been canceled, and the header will again be sent on all requests. The
+      <a href="https://developer.android.com/reference/androidx/webkit/WebSettingsCompat#setRequestedWithHeaderOriginAllowList(android.webkit.WebSettings,java.util.Set%3Cjava.lang.String%3E)">allowlist API</a>
+      is thus no longer necessary, and has been deprecated.
+    </li>
+  </ul>
+  <p><strong>Experimental APIs added since 1.14.0</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">WebView</code>
+      library has also introduced a number of APIs that currently have experimental status. You can read more about these APIs in the
+      <a href="https://developer.android.com/reference/kotlin/androidx/webkit/package-summary#experimental-apis">package summary</a>
+      . If you have any feedback on these APIs, please share it either by sending an email to
+      <a href="mailto:android-webview-dev@chromium.org">android-webview-dev@chromium.org</a>
+      or by submitting feedback in our
+      <a href="https://issuetracker.google.com/issues/new?component=460423">issue tracker</a>
+      .
+    </li>
+  </ul>
+  <p>The following features are experimental:</p>
+  <ul>
+    <li>
+      <a href="https://developer.android.com/reference/androidx/webkit/ProcessGlobalConfig#setUiThreadStartupMode(android.content.Context,int)">ProcessGlobalConfig#setUiThreadStartupMode</a>
+      allows you to configure WebView's UI thread initialization. In particular, this will let you choose whether startup should run as a single task, or should be split into smaller tasks that yield control to the UI thread Looper.
+    </li>
+    <li>
+      Create
+      <code translate="no" dir="ltr">WebView</code>
+      instances with a restricted configuration that cannot be changed afterwards with the
+      <a href="https://developer.android.com/reference/androidx/webkit/WebViewBuilder">WebViewBuilder</a>
+      API. Initially, this means that it is now possible to add JavaScript interface objects that are only injected in a specified list of origins, which greatly improves the security of using it. This will then also disable any further calls to
+      <code translate="no" dir="ltr">addJavascriptInterface</code>
+      on the constructed
+      <code translate="no" dir="ltr">WebView</code>
+      instance, which ensures an immutable configuration.
+    </li>
+    <li>
+      Expanded on the
+      <a href="https://developer.android.com/reference/androidx/webkit/WebViewCompat#startUpWebView(android.content.Context,androidx.webkit.WebViewStartUpConfig,androidx.webkit.WebViewCompat.WebViewStartUpCallback)">WebViewCompat#startUpWebView</a>
+      API:
+      <ul>
+        <li>
+          You can now specify a
+          <a href="https://developer.android.com/reference/androidx/webkit/WebViewStartUpConfig.Builder#setProfilesToLoadDuringStartup(java.util.Set%3Cjava.lang.String%3E)">set of profiles to load</a>
+          synchronously. This allows app developers to skip loading any profiles at all, or specify the exact set of profiles the app uses, to ensure they are all loaded.
+        </li>
+        <li>
+          Debugging async startup is now easier by using the
+          <a href="https://developer.android.com/reference/androidx/webkit/WebViewStartUpResult#getUiThreadBlockingStartUpLocations()">getUiThreadBlockingStartUpLocations</a>
+          and
+          <a href="https://developer.android.com/reference/androidx/webkit/WebViewStartUpResult#getNonUiThreadBlockingStartUpLocations()">getNonUiThreadBlockingStartUpLocations</a>
+          callbacks to determine locations in the app where WebView startup blocks either the UI thread or a background thread.
+        </li>
+        <li>
+          You can configure how
+          <code translate="no" dir="ltr">WebView</code>
+          's
+          <a href="https://developer.android.com/reference/androidx/webkit/ProcessGlobalConfig#setUiThreadStartupModeV2(android.content.Context,int)">UI thread initialization</a>
+          should be run.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Warm up the renderer process for a Profile by calling
+      <a href="https://developer.android.com/reference/androidx/webkit/Profile#warmUpRendererProcess()">Profile#warmUpRendererProcess</a>
+      . This API can be used by applications with complex
+      <code translate="no" dir="ltr">WebView</code>
+      lifecycles to ensure that the renderer process is running, even if all WebView instances have been destroyed.
+    </li>
+    <li>
+      <a href="https://developer.android.com/reference/kotlin/androidx/webkit/Profile#addQuicHints(java.util.Set%3Cjava.lang.String%3E)">Profile#addQuicHints</a>
+      allows apps to tell
+      <code translate="no" dir="ltr">WebView</code>
+      to prefer QUIC / HTTP3 when connecting to the provided origins.
+    </li>
+    <li>
+      <a href="https://developer.android.com/reference/androidx/webkit/Profile#preconnect(java.lang.String)">Profile#preconnect</a>
+      allows apps to open a connection to an origin before navigating to it in order to speed up future loads.
+    </li>
+  </ul>
+  <p><strong>Experimental APIs updated since 1.14.0</strong></p>
+  <ul>
+    <li>
+      The
+      <a href="https://developer.android.com/reference/androidx/webkit/NavigationListener">Navigation Listener API</a>
+      has been updated to allow applications to
+      <a href="https://developer.android.com/reference/androidx/webkit/WebViewCompat#addNavigationListener(android.webkit.WebView,java.util.concurrent.Executor,androidx.webkit.NavigationListener)">provide multiple listener instances</a>
+      , which can optionally be configured with a custom Executor for background thread callbacks. This was previously the
+      <a href="https://developer.android.com/reference/androidx/webkit/WebViewCompat#setWebNavigationClient(android.webkit.WebView,androidx.webkit.WebNavigationClient)">WebNavigationClient API</a>
+      , which has been deprecated in favour of the new API. Additionally, this update also adds timing information to the
+      <a href="https://developer.android.com/reference/androidx/webkit/WebNavigationClient#onFirstContentfulPaint(androidx.webkit.Page)">onFirstContentfulPaint</a>
+      callback, providing the time information from navigation start to the paint event.
+    </li>
+  </ul>

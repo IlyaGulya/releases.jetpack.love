@@ -1,0 +1,49 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.11.0-alpha02
+releaseDate: 2025-12-17
+#language=html
+changelogHtml: |
+  <h3 id="1.11.0-alpha02" data-text="Version 1.11.0-alpha02" tabindex="-1">Version 1.11.0-alpha02</h3>
+  <p>December 17, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.11.0-alpha02</code>
+    is released. Version 1.11.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/deb96499dfe95073f5c1215c1287787683cb1e92..ec985eed3cba8444e5aaa52a748333397a1298f3/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">MultiModalInjectionScope</code>
+      APIs are now stable. This includes
+      <code translate="no" dir="ltr">performKeyInput</code>
+      and
+      <code translate="no" dir="ltr">performRotaryScrollInput</code>
+      , and their underlying key and rotary APIs. The experimental annotation has been removed. (
+      <a href="https://android-review.googlesource.com/#/q/Ie8bbc60afddb304113b0e9c35d1a39f010c242df">Ie8bbc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261561237">b/261561237</a>
+      )
+    </li>
+    <li>
+      Adds trackpad testing APIs. These are similar to the mouse testing APIs, and inject events that mimic the behavior of a tablet or laptop trackpad. The primary entry points are
+      <code translate="no" dir="ltr">SemanticsNodeInteraction.performTrackpadInput</code>
+      and
+      <code translate="no" dir="ltr">MultiModalInjectionScope.trackpad</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I2ce67fba9c0571ddf3ca97d5994e17062967e61b">I2ce67</a>
+      ),
+      <a href="https://issuetracker.google.com/432326139">b/432326139</a>
+      .
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixes mouse wheel scroll input interoperability to only consume if consumed in Compose, not if they were dispatched in Compose. (
+      <a href="https://android-review.googlesource.com/#/q/I5e0c4c048f3cc3888e43d5c8288d1f120e6d9c5a">I5e0c4</a>
+      ),
+    </li>
+  </ul>

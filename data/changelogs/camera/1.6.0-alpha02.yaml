@@ -1,0 +1,192 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.6.0-alpha02
+releaseDate: 2025-12-17
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-alpha02" data-text="Version 1.6.0-alpha02" tabindex="-1">Version 1.6.0-alpha02</h3>
+  <p>December 17, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.6.0-alpha02</code>
+    is released. Version 1.6.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/dacd36e7413e15947cdd89e21c189fead769bfab..84753047f87d847904220ad53b1c78d1a98189c4/camera">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added a groupable feature to denote the video stabilization feature in a session config. Developers can now request video stabilization as a required or preferred feature, aligning it with other groupable features like UHD_RECORDING, PREVIEW_STABILIZATION. (
+      <a href="https://android-review.googlesource.com/#/q/Ic6757a2a1de6c66a1471ee0a32743cc041eaa3b5">Ic6757</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/419766630">b/419766630</a>
+      )
+    </li>
+    <li>
+      Added groupable features to denote the video recording quality in a session config. Developers can now request a specific quality (e.g., UHD, FHD) as a required or preferred feature, aligning it with other groupable features like HDR and 60 FPS. (
+      <a href="https://android-review.googlesource.com/#/q/Ib5cd349f4995661d9aa753c8dacfcbc85e8d9144">Ib5cd3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/437820285">b/437820285</a>
+      )
+    </li>
+    <li>
+      Added support for using both the
+      <code translate="no" dir="ltr">CameraEffect</code>
+      and the feature groups API in
+      <code translate="no" dir="ltr">SessionConfig</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I17f18f71e99f46d8c63d95da364cc3f8e7d4ce7c">I17f18</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/406370934">b/406370934</a>
+      )
+    </li>
+    <li>
+      Added support for using both the
+      <code translate="no" dir="ltr">ImageAnalysis</code>
+      and the feature groups API in
+      <code translate="no" dir="ltr">SessionConfig</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I87833dab66b27899d9c8740caa85c5427a45bcc1">I87833</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/406371720">b/406371720</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">addUseCase</code>
+      setter function for
+      <code translate="no" dir="ltr">ExtensionSessionConfig.Builder</code>
+      and added the lacking getters for
+      <code translate="no" dir="ltr">ExtensionSessionConfig</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I71e077c85a32b7dd9a2279747fb509e8c8d0220b">I71e07</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/453988621">b/453988621</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ExtensionsManager.getInstance</code>
+      API which is a suspending version of
+      <code translate="no" dir="ltr">ExtensionsManager.getInstanceAsync</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I3a0a9d3f7790740cb9dc55beb61368f217ea19eb">I3a0a9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/452208792">b/452208792</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">isFeatureGroupSupported</code>
+      to
+      <code translate="no" dir="ltr">isSessionConfigSupported</code>
+      , and make it support any types of
+      <code translate="no" dir="ltr">SessionConfig</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2161610a0e067756efd906284bfe4c69a3029c1a">I21616</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/448781299">b/448781299</a>
+      )
+    </li>
+    <li>
+      Converted
+      <code translate="no" dir="ltr">ExtensionsManager</code>
+      into Kotlin implementation. (
+      <a href="https://android-review.googlesource.com/#/q/I730915ebb9015743aa298874211c79dd3abcfe5b">I73091</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/452208792">b/452208792</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">CameraProvider#getCameraInfo(CameraSelector, SessionConfig)</code>
+      to retrieve
+      <code translate="no" dir="ltr">CameraInfo</code>
+      when the
+      <code translate="no" dir="ltr">SessionConfig</code>
+      can affect camera selection. For example, when using an
+      <code translate="no" dir="ltr">ExtensionSessionConfig</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic548c97cbe916f8085c04f5642982608c294b6d1">Ic548c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/451891648">b/451891648</a>
+      )
+    </li>
+    <li>
+      Exposed
+      <code translate="no" dir="ltr">ExtensionSessionConfig</code>
+      API. Apps can create an
+      <code translate="no" dir="ltr">ExtensionSessionConfig</code>
+      and use it to create an extensions session now. (
+      <a href="https://android-review.googlesource.com/#/q/I6354c9e14343bd62e19554044c537d25de90adb5">I6354c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/448524373">b/448524373</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">androidx.camera.video.HighSpeedVideoSessionConfig</code>
+      API is no longer experimental and is now a fully stable public API. (
+      <a href="https://android-review.googlesource.com/#/q/I492d493fa9b8e372b7251de3790d2f974782f5f8">I492d4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/447558239">b/447558239</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">androidx.camera.core.SessionConfig</code>
+      API is no longer experimental and is now a fully stable public API. (
+      <a href="https://android-review.googlesource.com/#/q/Idc87ad64f1c2914bdca85d4b6d5ae60f6bfbd966">Idc87a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/447558437">b/447558437</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a crash due to an
+      <code translate="no" dir="ltr">IllegalArgumentException: Dynamic range profile cannot be converted to a DynamicRange object:</code>
+      on Android 17 or higher. (
+      <a href="https://android-review.googlesource.com/#/q/Ibd7b5f532f7af0f43415aaef09cc9ce5f26763f6">Ibd7b5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/463465353">b/463465353</a>
+      )
+    </li>
+    <li>
+      Excluded problematic YUV format output sizes from Samsung Z Fold 4 device. The received images have distortion issue when using those output sizes. (
+      <a href="https://android-review.googlesource.com/#/q/I776bf1f9447fba5b6354b597fb8067d25419756a">I776bf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/460322307">b/460322307</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">CaptureRequest.FLASH_MODE</code>
+      not being applied when set through the
+      <code translate="no" dir="ltr">Camera2Interop</code>
+      API. (
+      <a href="https://android-review.googlesource.com/#/q/I0004c7346db74b7e42a44bcd40d68e16320ce724">I0004c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/459608684">b/459608684</a>
+      )
+    </li>
+    <li>
+      Fixed a device-specific issue on Samsung A53 where image capture with torch enabled would fail sometimes if
+      <code translate="no" dir="ltr">VideoCapture</code>
+      use case is bound. (
+      <a href="https://android-review.googlesource.com/#/q/I0f183808184febdcb203e8f5658e7663d8dc44b9">I0f183</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/458197367">b/458197367</a>
+      )
+    </li>
+    <li>
+      Fixes an issue on some devices where using the flash with the ultra-wide camera may result in underexposed images. (
+      <a href="https://android-review.googlesource.com/#/q/Ib75308343ede2999677ffce021affa013d175668">Ib7530</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444590340">b/444590340</a>
+      )
+    </li>
+  </ul>

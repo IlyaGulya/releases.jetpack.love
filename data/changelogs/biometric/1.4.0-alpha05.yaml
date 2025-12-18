@@ -1,0 +1,108 @@
+libraryId: biometric
+groupId: androidx.biometric
+version: 1.4.0-alpha05
+releaseDate: 2025-12-17
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha05" data-text="Version 1.4.0-alpha05" tabindex="-1">Version 1.4.0-alpha05</h3>
+  <p>December 17, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.biometric:biometric:1.4.0-alpha05</code>
+    and
+    <code translate="no" dir="ltr">androidx.biometric:biometric-compose:1.4.0-alpha05</code>
+    are released. Version 1.4.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cd41781824511ce4d5c4a05d2df4aaaee669f0bc..ec985eed3cba8444e5aaa52a748333397a1298f3/biometric">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      A new
+      <code translate="no" dir="ltr">biometric-compose</code>
+      library
+      <ul>
+        <li>
+          The new
+          <code translate="no" dir="ltr">biometric-compose</code>
+          library simplifies biometric integration in Compose-based UIs. Developers can now use the
+          <code translate="no" dir="ltr">rememberAuthenticationLauncher</code>
+          function to handle authentication requests and callbacks within their composables.(
+          <a href="https://android-review.git.corp.google.com/q/I4a88dcfb2422ade2a7efd1370198acfaa17193c5">I4a88d</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <a href="https://developer.android.com/reference/androidx/biometric/AuthenticationUtils">activity-result-pattern Biometric library</a>
+      introduces new API changes:
+      <ul>
+        <li>
+          The
+          <code translate="no" dir="ltr">onAuthFailure</code>
+          callback has been moved to
+          <code translate="no" dir="ltr">AuthenticationResultCallback</code>
+          and renamed to
+          <code translate="no" dir="ltr">onAuthAttemptFailed</code>
+          . (
+          <a href="https://android-review.googlesource.com/#/q/Ied96b1a29c9e82347f08e947fb56da81356d5c5d">Ied96b</a>
+          ,
+          <a href="https://android-review.git.corp.google.com/#/q/Id6a7379e2ca6a2ad1a135ca751214957a2be8df7">/Id6a73</a>
+          )
+        </li>
+        <li>
+          Allow apps to provide an executor for their callbacks. (
+          <a href="https://android-review.googlesource.com/#/q/Id6a7379e2ca6a2ad1a135ca751214957a2be8df7">Id6a73</a>
+          )
+        </li>
+        <li>
+          Support multiple authentication launchers in a single Activity/Fragment: This is enabled by a new internal tracking mechanism (
+          <code translate="no" dir="ltr">currentAuthenticationKey</code>
+          ) that correctly routes results to the specific launcher instance that requested them. (
+          <a href="https://android-review.git.corp.google.com/q/I2848c6591f953b853f68efa152823ad959f1daee">I2848c</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Deprecate
+      <code translate="no" dir="ltr">androidx.core.hardware.fingerprint.FingerprintManagerCompat</code>
+      :
+      <code translate="no" dir="ltr">androidx.core.hardware.fingerprint.FingerprintManagerCompat</code>
+      now is a no-op, doing nothing or returning false. A new internal
+      <code translate="no" dir="ltr">androidx.biometric.FingerprintManagerCompat</code>
+      is used within
+      <code translate="no" dir="ltr">androidx.biometric</code>
+      library for backward compatibility. (
+      <a href="https://android-review.git.corp.google.com/q/I0360b3ef856865097df80d3d98953978d1e86de7">I0360b</a>
+      ,
+      <a href="https://android-review.git.corp.google.com/q/If56875d905a17971b48d30aa07e25c5ee468792e">If5687</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix an issue of returning lock out error in
+      <code translate="no" dir="ltr">canAuthenticate()</code>
+      unintentionally (
+      <a href="https://android-review.git.corp.google.com/q/I33ae17cb46aec1e6aa0e9b5013cf5e4a61f4ca42">I33ae1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/431824303">b/431824303</a>
+      )
+    </li>
+    <li>
+      Moving the default minSdk from API 21 to API 23 (
+      <a href="https://android-review.googlesource.com/#/q/Ibdfca5942dbb414ca07594ba240093db14aad4df">Ibdfca</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/380448311">b/380448311</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/435705964">b/435705964</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/435705223">b/435705223</a>
+      )
+    </li>
+  </ul>

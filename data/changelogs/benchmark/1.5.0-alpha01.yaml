@@ -1,0 +1,88 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.5.0-alpha01
+releaseDate: 2025-12-17
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha01" data-text="Version 1.5.0-alpha01" tabindex="-1">Version 1.5.0-alpha01</h3>
+  <p>December 17, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.5.0-alpha01</code>
+    is released. Version 1.5.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/53b1ca0749c57eeb0aaab2bef8b2afaede083710..ec985eed3cba8444e5aaa52a748333397a1298f3/benchmark">these commits</a>
+    .
+  </p>
+  <ul>
+    <li>
+      Macrobenchmark 1.5 uses
+      <code translate="no" dir="ltr">UiAutomator</code>
+      2.4 to simplify interacting with the measured application. The
+      <a href="https://developer.android.com/reference/kotlin/androidx/benchmark/macro/MacrobenchmarkScope">MacrobenchmarkScope</a>
+      object now extends
+      <a href="https://developer.android.com/reference/kotlin/androidx/test/uiautomator/UiAutomatorTestScope">UiAutomatorTestScope</a>
+      , which allows you to use the modern
+      <code translate="no" dir="ltr">UiAutomator</code>
+      APIs such as
+      <code translate="no" dir="ltr">onElement { ... }.click()</code>
+      .
+    </li>
+    <li>
+      For more information on
+      <code translate="no" dir="ltr">UiAutomator</code>
+      2.4, see
+      <a href="https://developer.android.com/training/testing/other-components/ui-automator">the docs</a>
+      .
+    </li>
+  </ul>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Baseline Profile Gradle Plugin no longer requires
+      <code translate="no" dir="ltr">newDsl=false</code>
+      in AGP 9.0 (
+      <a href="https://android-review.googlesource.com/#/q/Iaaac770074ef8177aec6c337a16b256467185bc9">Iaaac7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/443311090">b/443311090</a>
+      )
+    </li>
+    <li>
+      Extend trace config to include core size (e.g. little/big) in benchmark captured system/perfetto traces. (
+      <a href="https://android-review.googlesource.com/#/q/I8e39736b28b1ddd48aa5509fd71e9cecdfa1dc87">I8e397</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/457469959">b/457469959</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      (In UiAutomator) Changed
+      <code translate="no" dir="ltr">startActivity</code>
+      wait to wait for new window. (
+      <a href="https://android-review.googlesource.com/#/q/I35da611a69d95bdbd58830387f4fe423bbb17f84">I35da6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/440021797">b/440021797</a>
+      )
+    </li>
+    <li>
+      Stabilize
+      <code translate="no" dir="ltr">BlackHole</code>
+      APIs in androidx.benchmark. (
+      <a href="https://android-review.googlesource.com/#/q/I2b67e946c722511244434954a53e9b2f06b631db">I2b67e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/451749438">b/451749438</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">@JvmOverloads</code>
+      for convenience constructors for
+      <code translate="no" dir="ltr">PerfettoTraceRule</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1510a7f13a1ed0e86533ed2d8dfc9aede0ccd0c1">I1510a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/443763207">b/443763207</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_14_2" data-text="Version 1.4" tabindex="-1">Version 1.4</h2>
