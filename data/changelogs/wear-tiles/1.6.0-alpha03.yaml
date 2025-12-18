@@ -1,0 +1,38 @@
+libraryId: wear-tiles
+groupId: androidx.wear
+version: 1.6.0-alpha03
+releaseDate: 2025-12-17
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-alpha03" data-text="Version 1.6.0-alpha03" tabindex="-1">Version 1.6.0-alpha03</h3>
+  <p>December 17, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.tiles:tiles-*:1.6.0-alpha03</code>
+    is released. Version 1.6.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/46bcdef6281ae0f03c3a2bb2812edfc2c0e66d05..ec985eed3cba8444e5aaa52a748333397a1298f3/wear/tiles">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      We introduced
+      <code translate="no" dir="ltr">METADATA_GROUP_KEY</code>
+      to allow specifying an optional group name in the service’s manifest to which the corresponding
+      <code translate="no" dir="ltr">TileService</code>
+      belongs. This can be used to dynamically switch between different services that correspond to the same tile. (
+      <a href="https://android-review.googlesource.com/#/q/Ic9e71b555948035e77cb96ae87d3be0359cda0d5">Ic9e71</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/451988130">b/451988130</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Unbinding from service when requesting an update for the Tile is now moved to the background thread to avoid potential ANRs. (
+      <a href="https://android-review.googlesource.com/#/q/Ifc9f9b12c418122b594af8157117f4aa5552c1c2">Ifc9f9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/460017465">b/460017465</a>
+      )
+    </li>
+  </ul>

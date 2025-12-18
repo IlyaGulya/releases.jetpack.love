@@ -1,0 +1,38 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.4.0-beta01
+releaseDate: 2025-12-17
+#language=html
+changelogHtml: |
+  <h3 id="3.4.0-beta01" data-text="Version 3.4.0-beta01" tabindex="-1">Version 3.4.0-beta01</h3>
+  <p>December 17, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.4.0-beta01</code>
+    is released. Version 3.4.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/68ced4a5279f8eedb21eeb26aeb4cd8fda9dfc55..6796a2af8e90dcd826dae7bd8ab99abe5d95bdda/paging">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix race between
+      <code translate="no" dir="ltr">RecyclerView</code>
+      and
+      <code translate="no" dir="ltr">Refresh</code>
+      loads leading to
+      <code translate="no" dir="ltr">IndexOutOfBoundsException</code>
+      in
+      <code translate="no" dir="ltr">RecyclerView</code>
+      . Interrupted UI updates due to continuous
+      <code translate="no" dir="ltr">Refresh</code>
+      loads can cause Paging state to desync with
+      <code translate="no" dir="ltr">RecyclerView</code>
+      . This is fixed by resetting Paging to its pre-Refresh state if a Refresh is interrupted (i.e. by a consecutive
+      <code translate="no" dir="ltr">Refresh</code>
+      load). (
+      <a href="https://android-review.googlesource.com/#/q/I771b04c781c0f8eae79d0cacf60075add91bafee">I771b0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/409809768">b/409809768</a>
+      )
+    </li>
+  </ul>
