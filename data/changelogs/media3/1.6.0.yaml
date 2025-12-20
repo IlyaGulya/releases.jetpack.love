@@ -383,10 +383,7 @@ changelogHtml: |
           <code translate="no" dir="ltr">MediaCodecVideoRenderer</code>
           decoder input buffers that are not depended on. Enable it with
           <code translate="no" dir="ltr">DefaultRenderersFactory.experimentalSetLateThresholdToDropDecoderInputUs</code>
-          .
-        </li>
-        <li>
-          Fix issue where a player without a surface was ready immediately and very slow decoding any pending frames (
+          . * Fix issue where a player without a surface was ready immediately and very slow decoding any pending frames (
           <a href="https://github.com/androidx/media/issues/1973">#1973</a>
           ).
         </li>
@@ -951,16 +948,16 @@ changelogHtml: |
               <code translate="no" dir="ltr">DefaultRendererCapabilitiesList.getRendererCapabilities()</code>
               .
             </li>
+            <li>
+              Removed
+              <code translate="no" dir="ltr">PlayerNotificationManager.setMediaSessionToken(MediaSessionCompat)</code>
+              method. Use
+              <code translate="no" dir="ltr">PlayerNotificationManager.setMediaSessionToken(MediaSession.Token)</code>
+              and pass in
+              <code translate="no" dir="ltr">(MediaSession.Token) compatToken.getToken()</code>
+              instead.
+            </li>
           </ul>
-        </li>
-        <li>
-          Removed
-          <code translate="no" dir="ltr">PlayerNotificationManager.setMediaSessionToken(MediaSessionCompat)</code>
-          method. Use
-          <code translate="no" dir="ltr">PlayerNotificationManager.setMediaSessionToken(MediaSession.Token)</code>
-          and pass in
-          <code translate="no" dir="ltr">(MediaSession.Token) compatToken.getToken()</code>
-          instead.
         </li>
       </ul>
     </li>
