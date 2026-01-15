@@ -1,0 +1,66 @@
+libraryId: collection
+groupId: androidx.collection
+version: 1.6.0-beta01
+releaseDate: 2026-01-14
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-beta01" data-text="Version 1.6.0-beta01" tabindex="-1">Version 1.6.0-beta01</h3>
+  <p>January 14, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.collection:collection-*:1.6.0-beta01</code>
+    is released. Version 1.6.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cd8ce2bdb21194a81a76325a8e65dad5d7e28681..56689f09bddc07bd2faa0f271c8eb917a4ebc4c7/collection">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">.toScatterSet()</code>
+      and
+      <code translate="no" dir="ltr">.toScatterMap()</code>
+      extensions. These provide a read-only alternative to the mutable conversion functions and return allocation-free singletons when the source collection is empty. (
+      <a href="https://android-review.googlesource.com/#/q/I1769a123ac8dc55978808b1c3220605148fe69da">I1769a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/459867876">b/459867876</a>
+      )
+    </li>
+    <li>
+      Replace the
+      <code translate="no" dir="ltr">MutableScatterMap(source)</code>
+      and
+      <code translate="no" dir="ltr">MutableScatterSet(source)</code>
+      pseudo-constructors with standard
+      <code translate="no" dir="ltr">.toMutableScatterMap()</code>
+      and
+      <code translate="no" dir="ltr">.toMutableScatterSet()</code>
+      extension functions. This aligns with Kotlin conventions for collection conversions. (
+      <a href="https://android-review.googlesource.com/#/q/Ic9ca625b616fa52e2294f8ac59dc8882e883018e">Ic9ca6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/459867876">b/459867876</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">MutableScatterMap(Map)</code>
+      and
+      <code translate="no" dir="ltr">MutableScatterSet(Set)</code>
+      factory functions. Use these functions to easily create a scatter collection pre-filled with the contents of an existing collection. (
+      <a href="https://android-review.googlesource.com/#/q/I51d70d426606f4deeb2124ee5c51723915d4d3a0">I51d70</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      This library now uses
+      <a href="https://jspecify.dev/">JSpecify nullness annotations</a>
+      , which are type-use. Kotlin developers should use the following compiler argument to enforce correct usage:
+      <code translate="no" dir="ltr">-Xjspecify-annotations=strict</code>
+      (this is the default starting with version 2.1.0 of the Kotlin compiler) (
+      <a href="https://android-review.googlesource.com/#/q/I05181b94cb05ed6d35268673106faf6e6f18b219">I05181</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326456246">b/326456246</a>
+      )
+    </li>
+  </ul>

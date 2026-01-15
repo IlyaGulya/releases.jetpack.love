@@ -1,0 +1,123 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.11.0-alpha03
+releaseDate: 2026-01-14
+#language=html
+changelogHtml: |
+  <h3 id="1.11.0-alpha03" data-text="Version 1.11.0-alpha03" tabindex="-1">Version 1.11.0-alpha03</h3>
+  <p>January 14, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.11.0-alpha03</code>
+    is released. Version 1.11.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ec985eed3cba8444e5aaa52a748333397a1298f3..adeb519268e4eeff7d0a5a9d024dbe26d88bb6ad/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removed the
+      <code translate="no" dir="ltr">ComposeUiTestFlags.isStandardTestDispatcherSupportEnabled</code>
+      flag. The v2
+      <code translate="no" dir="ltr">run*ComposeUiTest</code>
+      and
+      <code translate="no" dir="ltr">create*ComposeRule</code>
+      APIs now use
+      <code translate="no" dir="ltr">StandardTestDispatcher</code>
+      by default. To continue using
+      <code translate="no" dir="ltr">UnconfinedTestDispatcher</code>
+      , you can use the deprecated API variants; however, we strongly recommend migrating to the v2 APIs for better control over coroutine execution. (
+      <a href="https://android-review.googlesource.com/#/q/Iecc9cea0a3669832923e3a3603f06b6aae5cb83a">Iecc9c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/455601592">b/455601592</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">androidx.compose.ui.test.junit4.v2.create*ComposeRule</code>
+      APIs. These new APIs use a
+      <code translate="no" dir="ltr">StandardTestDispatcher</code>
+      by default to better simulate production behavior where coroutines are queued rather than executed immediately. See the migration guidance for more information. (
+      <a href="https://android-review.googlesource.com/#/q/I1870e29d6b5e79ce2e64d7fc4c3634557bb85947">I1870e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/254115946">b/254115946</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">androidx.compose.ui.test.v2.run*ComposeUiTest</code>
+      APIs. These new APIs use a
+      <code translate="no" dir="ltr">StandardTestDispatcher</code>
+      by default to better simulate production behavior where coroutines are queued rather than executed immediately. See the migration guidance for more information. (
+      <a href="https://android-review.googlesource.com/#/q/I4f782e6905a33e11258e1dcabf3970f0f8a77cb3">I4f782</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/254115946">b/254115946</a>
+      )
+    </li>
+    <li>
+      Common structures within
+      <code translate="no" dir="ltr">ComposeView</code>
+      can now be shared. When
+      <code translate="no" dir="ltr">ComposeUiFlags.isSharedComposeViewContextEnabled</code>
+      is true, values are automatically shared. When false, they are not shared. (
+      <a href="https://android-review.googlesource.com/#/q/I0d1b40edd5a2f6cde3734a8af6e5a8114cafb8ce">I0d1b4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/463540495">b/463540495</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/460468959">b/460468959</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/461503366">b/461503366</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/463641813">b/463641813</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixes bug where removing all content from the
+      <code translate="no" dir="ltr">ComposeView</code>
+      doesn't remove the drawn content. (
+      <a href="https://android-review.googlesource.com/#/q/I8b3820ded1d89a3b4968384e6965ca47075cedff">I8b382</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/299503084">b/299503084</a>
+      )
+    </li>
+    <li>
+      Fix a crash with pausable composition when animated with
+      <code translate="no" dir="ltr">LookaheadScope</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7e64960ec594e7fbe8a8345b9061d40bf5b440ab">I7e649</a>
+      ,
+      <a href="https://issuetracker.google.com/469669851">b/469669851</a>
+      )
+    </li>
+    <li>Resolved an issue where transmitting excessively long strings to the Autofill service triggered a crash. To prevent this, text is now automatically truncated to a valid length prior to being sent.</li>
+    <li>
+      Fixes bug where a hover exit can cause a click under very specific conditions (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/a3d5a0fae6074ffd08ef2a61f063272877f1bcb9">a3d5a0f</a>
+      )
+    </li>
+    <li>
+      Fixes stylus hover event dispatching for tests and preps mouse tests for new stylus tests. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/9ca9bc91f311069bbaf6f591d65ad8fb5943b8b6">9ca9bc9</a>
+      )
+    </li>
+    <li>
+      Adds support for unplacing/placing UI elements with pointer input. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/d0742b05497028e54cb3ccddc5a666e976c82825">d0742b0</a>
+      ,
+      <a href="/jetpack/androidx/releases/TODO_ISSUE_TRACKER_LINK">b/BUD_ID</a>
+      )
+    </li>
+    <li>
+      Fixed a bug in Jetpack Compose
+      <code translate="no" dir="ltr">Popup</code>
+      where absolute coordinates of the anchor bounds were being passed to the
+      <code translate="no" dir="ltr">PopupPositionProvider</code>
+      , leading to incorrect popup placements. Popup positioning calculations now use the correct relative coordinates.(
+      <a href="https://android-review.googlesource.com/#/q/1f7edfefb8598d91e225fa89440b70408de018c4">1f7edf</a>
+      ,
+      <a href="https://issuetracker.google.com/469940907">b/469940907</a>
+      )
+    </li>
+  </ul>

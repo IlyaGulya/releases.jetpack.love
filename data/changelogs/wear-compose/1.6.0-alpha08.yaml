@@ -1,0 +1,78 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.6.0-alpha08
+releaseDate: 2026-01-14
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-alpha08" data-text="Version 1.6.0-alpha08" tabindex="-1">Version 1.6.0-alpha08</h3>
+  <p>January 14, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.6.0-alpha08</code>
+    is released. Version 1.6.0-alpha08 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ec985eed3cba8444e5aaa52a748333397a1298f3..adeb519268e4eeff7d0a5a9d024dbe26d88bb6ad/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">RotaryScrollableDefaults.snapBehavior</code>
+      has been updated to take a float
+      <code translate="no" dir="ltr">snapSensitivity</code>
+      parameter, and
+      <code translate="no" dir="ltr">PagerScaffoldDefaults</code>
+      now makes public the recommended default
+      <code translate="no" dir="ltr">SnapPositionalThreshold</code>
+      and
+      <code translate="no" dir="ltr">HighSnapPositionalThreshold</code>
+      values for use with
+      <code translate="no" dir="ltr">PagerDefaults.snapFlingBehavior</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7e11c2cf9571603d57318b66585b40dafdd936c6">I7e11c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/449949891">b/449949891</a>
+      )
+    </li>
+    <li>
+      Added snapping support to
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      for both touch and rotary input. When configuring snapping, It is recommended to provide both
+      <code translate="no" dir="ltr">flingBehavior</code>
+      using
+      <code translate="no" dir="ltr">TransformingLazyColumnDefaults.snapFlingBehavior</code>
+      and
+      <code translate="no" dir="ltr">rotaryScrollableBehavior</code>
+      using
+      <code translate="no" dir="ltr">RotaryScrollableDefaults.snapBehavior</code>
+      for a consistent experience. (
+      <a href="https://android-review.googlesource.com/#/q/I5326f82ebd8a7809157caea7715dced8221e1b26">I5326f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/422455104">b/422455104</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">LocalAmbientModeManager</code>
+      , a new composable to easily define different UI and behavior for interactive and ambient modes. (
+      <a href="https://android-review.googlesource.com/#/q/I0016170b1ef44293d526654ed8aeadd4204415ae">I00161</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/427724331">b/427724331</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where lists with rotary snap behavior would not bounce back after overscrolling. (
+      <a href="https://android-review.googlesource.com/#/q/I05216800c49a85e196668bea0ccf3803fb132625">I05216</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/470317969">b/470317969</a>
+      )
+    </li>
+    <li>
+      Fixed an issue with the ripple effect for the increment and decrement buttons in Material3 Slider. The ripple now correctly extends the full width of the slider component. (
+      <a href="https://android-review.googlesource.com/#/q/I8c0c4b66b176ed7ed2837f0397e49c1c4a41bb1d">I8c0c4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/378658409">b/378658409</a>
+      )
+    </li>
+  </ul>
