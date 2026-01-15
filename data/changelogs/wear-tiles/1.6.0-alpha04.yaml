@@ -1,0 +1,43 @@
+libraryId: wear-tiles
+groupId: androidx.wear
+version: 1.6.0-alpha04
+releaseDate: 2026-01-14
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-alpha04" data-text="Version 1.6.0-alpha04" tabindex="-1">Version 1.6.0-alpha04</h3>
+  <p>January 14, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.tiles:tiles-*:1.6.0-alpha04</code>
+    is released. Version 1.6.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ec985eed3cba8444e5aaa52a748333397a1298f3..adeb519268e4eeff7d0a5a9d024dbe26d88bb6ad/wear/tiles">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      A new service for creating tiles called
+      <code translate="no" dir="ltr">Material3TileService</code>
+      has been added to the Tiles library.
+    </li>
+    <li>
+      This provides better experience in creating
+      <code translate="no" dir="ltr">TileService</code>
+      , as it automatically creates
+      <code translate="no" dir="ltr">MaterialScope</code>
+      needed for Material3 components and layout, which includes
+      <code translate="no" dir="ltr">ProtoLayoutScope</code>
+      for
+      <strong>better resources handling</strong>
+      and
+      <strong>performance improvements</strong>
+      .
+    </li>
+    <li>It is more Kotlin friendly, with 1 suspend function to provide both tile layout and resources inlined within the layout components.</li>
+    <li>
+      In order to support new service for Tiles with better resources handling, the compile SDK version is increased to 35. (
+      <a href="https://android-review.googlesource.com/#/q/I1ff2955c528db8e5133393f52b997e9353272a0f">I1ff29</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/470048768">b/470048768</a>
+      )
+    </li>
+  </ul>
