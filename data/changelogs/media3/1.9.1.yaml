@@ -1,0 +1,233 @@
+libraryId: media3
+groupId: androidx.media3
+version: 1.9.1
+releaseDate: 2026-01-26
+#language=html
+changelogHtml: |
+  <h3 id="1.9.1" data-text="1.9.1" tabindex="-1">1.9.1</h3>
+  <p>January 26, 2026</p>
+  <p>
+    Version 1.9.1 contains
+    <a href="https://github.com/androidx/media/commits/1.9.1">these commits</a>
+    .
+  </p>
+  <ul>
+    <li>
+      Common Library:
+      <ul>
+        <li>
+          Support date-time strings with only hours in the timezone offset (
+          <a href="https://github.com/androidx/media/issues/2929">#2929</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      ExoPlayer:
+      <ul>
+        <li>
+          Allow dynamic scheduling to slow
+          <code translate="no" dir="ltr">doSomeWork</code>
+          interval only after audio starts to support smoother A/V sync at beginning of playback.
+        </li>
+        <li>
+          Fix bug in
+          <code translate="no" dir="ltr">DefaultLoadErrorHandlingPolicy</code>
+          where
+          <code translate="no" dir="ltr">FileNotFoundException</code>
+          and similar exception types were retried multiple times.
+        </li>
+        <li>
+          Fix bug with dynamic scheduling where the calculated time for the next
+          <code translate="no" dir="ltr">doSomeWork</code>
+          was mistakenly reduced by the elapsed time of the current iteration of
+          <code translate="no" dir="ltr">doSomeWork</code>
+          . Addressing this hopefully extends CPU idle time and saves power.
+        </li>
+        <li>Fix issue where some playbacks of Dolby Vision files fail when attempting to use a fallback AVC or HEVC codec.</li>
+        <li>
+          Fix bug where loading continues after playback ended when removing the currently playing item from a playlist (
+          <a href="https://github.com/androidx/media/issues/2873">#2873</a>
+          ).
+        </li>
+        <li>
+          Avoid leaking
+          <code translate="no" dir="ltr">MediaItem</code>
+          instances when repeatedly using
+          <code translate="no" dir="ltr">ExoPlayer.replaceMediaItem</code>
+          on the same item (
+          <a href="https://github.com/androidx/media/issues/2993">#2993</a>
+          ).
+        </li>
+        <li>
+          Prevent potential ANRs caused by emergency wake lock releases (
+          <a href="https://github.com/androidx/media/issues/2979">#2979</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Extractors:
+      <ul>
+        <li>
+          MP3: Parse LAME ReplayGain data (
+          <a href="https://github.com/androidx/media/pull/2840">#2840</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Audio:
+      <ul>
+        <li>
+          Correctly remove support for
+          <code translate="no" dir="ltr">AC4Profile22</code>
+          and other legacy profiles when assessing AC-4 decoder support in Automotive scenarios (
+          <a href="https://github.com/androidx/media/pull/2609">#2609</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Video:
+      <ul>
+        <li>
+          Discard video codecs on devices below API 30 when the content frame rate changes to avoid stuttering playback (
+          <a href="https://github.com/androidx/media/issues/2941">#2941</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Text:
+      <ul>
+        <li>
+          VobSub: Fix some missing subtitles by correctly handling SPUs that either contain only a single control sequence, or have critical info split across multiple control sequences (
+          <a href="https://github.com/androidx/media/issues/2935">#2935</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      IMA extension:
+      <ul>
+        <li>Bug fix: Corrected an issue where the ad MIME type did not match the MIME type provided in the IMA LOADED event. The fix now maps the ad MIME type using the ad pod index and ad position.</li>
+        <li>
+          Add a null check before accessing result of
+          <code translate="no" dir="ltr">getAdsManager()</code>
+          and
+          <code translate="no" dir="ltr">AdEvent.getAd()</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      Session:
+      <ul>
+        <li>
+          Fix bug where stopping a
+          <code translate="no" dir="ltr">MediaController</code>
+          connected to a platform session crashed the app if stop happened during ad playback (
+          <a href="https://github.com/androidx/media/issues/2948">#2948</a>
+          ).
+        </li>
+        <li>
+          Add additional verifications on
+          <code translate="no" dir="ltr">extras</code>
+          <code translate="no" dir="ltr">Bundle</code>
+          instances in various classes to guard against malformed
+          <code translate="no" dir="ltr">Bundle</code>
+          instances sent from other processes.
+        </li>
+        <li>
+          Fix issue where missing commands for
+          <code translate="no" dir="ltr">COMMAND_SEEK_NEXT</code>
+          or
+          <code translate="no" dir="ltr">COMMAND_SEEK_BACK</code>
+          can cause gaps in the system media notification (
+          <a href="https://github.com/androidx/media/issues/2976">#2976</a>
+          ).
+        </li>
+        <li>
+          Move bitmap scaling for notification icon off the main thread (
+          <a href="https://github.com/androidx/media/issues/2829">#2829</a>
+          ).
+        </li>
+        <li>
+          Fix bug where author, writer and composer were not used as a fallback when converting from legacy
+          <code translate="no" dir="ltr">MediaMetadataCompat</code>
+          and
+          <code translate="no" dir="ltr">MediaDescriptionCompat</code>
+          (
+          <a href="https://github.com/androidx/media/issues/3018">#3018</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Downloads:
+      <ul>
+        <li>
+          Fix potential infinite loops when a
+          <code translate="no" dir="ltr">PriorityTooLowException</code>
+          is handled by
+          <code translate="no" dir="ltr">SegmentDownloader</code>
+          (for DASH, HLS and SmoothStreaming). Custom overrides of
+          <code translate="no" dir="ltr">SegmentDownloader</code>
+          using the protected
+          <code translate="no" dir="ltr">execute</code>
+          method need to provide their task wrapped in a
+          <code translate="no" dir="ltr">Supplier</code>
+          so it can be recreated (
+          <a href="https://github.com/androidx/media/issues/2931">#2931</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      HLS extension:
+      <ul>
+        <li>
+          Pass the raw asset list JSON document to
+          <code translate="no" dir="ltr">Listener.onAssetListLoadCompleted</code>
+          callback. This is a breaking change in an unstable API that requires apps that implement this callback to add an additional argument of type
+          <code translate="no" dir="ltr">JSONObject</code>
+          (
+          <a href="https://github.com/androidx/media/issues/2950">#2950</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      RTSP extension:
+      <ul>
+        <li>
+          Correctly handle RTP Packets with timestamps that wrap around (
+          <a href="https://github.com/androidx/media/issues/2930">#2930</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Decoder extensions (FFmpeg, VP9, AV1, etc.):
+      <ul>
+        <li>
+          Fix potential
+          <code translate="no" dir="ltr">NullPointerException</code>
+          that can occur when seeking prior to processing the first video frame (
+          <a href="https://github.com/androidx/media/issues/2965">#2965</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Cast extension:
+      <ul>
+        <li>
+          Fix bug preventing the
+          <code translate="no" dir="ltr">RemoteCastPlayer</code>
+          timeline from updating correctly when replacing the playlist.
+        </li>
+      </ul>
+    </li>
+  </ul>
