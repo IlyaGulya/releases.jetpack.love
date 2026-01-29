@@ -1,0 +1,253 @@
+libraryId: tracing
+groupId: androidx.tracing
+version: 2.0.0-alpha01
+releaseDate: 2026-01-28
+#language=html
+changelogHtml: |
+  <h3 id="2.0.0-alpha01" data-text="Version 2.0.0-alpha01" tabindex="-1">Version 2.0.0-alpha01</h3>
+  <p>January 28, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.tracing:tracing-*:2.0.0-alpha01</code>
+    is released. Version 2.0.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/120ca6e0a3f4f240334c74efe9f9da0038522135..715e22619094effc2ba1fd528cd9a07b1f5d0046/tracing">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>
+    AndroidX Tracing 2.0 introduces a significant new API surface for low-overhead, in-process tracing, as a complement to the existing
+    <code translate="no" dir="ltr">android.os.Tracing</code>
+    -based APIs in Tracing 1.0. The new APIs are available both on Android and host JVM, which enables host tools to emit low overhead traces for performance analysis, using the same standard Perfetto trace format.
+  </p>
+  <p>Emitted traces are supported both by Android Studio and Perfetto, and can be recorded with an expanded feature set including tagging slices with metadata (such as function arguments!), and coroutine context trace propagation.</p>
+  <p>This initial alpha is only meant for in-process tracing workflows, and does not yet integrate with Android OS tracing or Studio Profiler System Tracing - these will be coming in a future alpha.</p>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="MySQL"><code translate="no" dir="ltr"><span class="devsite-syntax-w">  </span><span class="devsite-syntax-cm">/**</span>
+  <span class="devsite-syntax-cm">  * A [TraceSink] defines how traces are serialized.</span>
+  <span class="devsite-syntax-cm">  *</span>
+  <span class="devsite-syntax-cm">  * [androidx.tracing.wire.TraceSink] uses the `Perfetto` trace packet format.</span>
+  <span class="devsite-syntax-cm">  */</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">createSink</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-o">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">TraceSink</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-err">{</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-n">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">outputDirectory</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">File</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-cm">/* pathname = */</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s2">"/tmp/perfetto"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-o">//</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">We</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">are</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">using</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">the</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">factory</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">function</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">defined</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">in</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">androidx</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-n">tracing</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-n">wire</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-k">return</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">TraceSink</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-n">sequenceId</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">1</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-k">directory</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">outputDirectory</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-err">}</span>
+
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-cm">/**</span>
+  <span class="devsite-syntax-cm">  * Creates a new instance of [androidx.tracing.TraceDriver].</span>
+  <span class="devsite-syntax-cm">  */</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">createTraceDriver</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-o">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">TraceDriver</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-err">{</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-o">//</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">We</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">are</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">using</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">a</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">factory</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">function</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">from</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">androidx</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-n">tracing</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-n">wire</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">here</span><span class="devsite-syntax-p">.</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-o">//</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n devsite-syntax-n-Quoted">`isEnabled`</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">controls</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">whether</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">tracing</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">is</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">enabled</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">for</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">the</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">application</span><span class="devsite-syntax-p">.</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-n">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">driver</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">TraceDriver</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">sink</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">createSink</span><span class="devsite-syntax-p">(),</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">isEnabled</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-no">true</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-k">return</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">driver</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-err">}</span>
+
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">main</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-err">{</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-n">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">driver</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">createTraceDriver</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-n">driver</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-k">use</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-err">{</span>
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-n">driver</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-n">tracer</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-n">trace</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">category</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">CATEGORY_MAIN</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">name</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s2">"basic"</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-err">{</span>
+  <span class="devsite-syntax-w">              </span><span class="devsite-syntax-n">Thread</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-nf">sleep</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">100L</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">          </span><span class="devsite-syntax-err">}</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-err">}</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-err">}</span>
+  </code></pre>
+  </devsite-code>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Make
+      <code translate="no" dir="ltr">Tracer</code>
+      a property of the
+      <code translate="no" dir="ltr">TraceDriver</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iabd9ba2480899caead685ac8de6eb5bda9acbcf5">Iabd9b</a>
+      )
+    </li>
+    <li>
+      Add support for manual context propagation. (
+      <a href="https://android-review.googlesource.com/#/q/I899ff885093bc3e8f833f7bce9dad0b6fcff4f22">I899ff</a>
+      )
+    </li>
+    <li>
+      Add the ability to add call stack information in a trace section. (
+      <a href="https://android-review.googlesource.com/#/q/If6a1bb6e42067edb07407f50f3b21f76f92050d5">If6a1b</a>
+      )
+    </li>
+    <li>
+      Introduce the new
+      <code translate="no" dir="ltr">androidx.tracing</code>
+      APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I5102b729b491fc5e1504cd35e3f2ec36ae7e956c">I5102b</a>
+      )
+    </li>
+    <li>
+      Allow instant events to contain metadata, and add counters to instants &amp; counters. (
+      <a href="https://android-review.googlesource.com/#/q/Ia2ed354e4d089af676f2a1afb4bb91a0240d291c">Ia2ed3</a>
+      )
+    </li>
+    <li>
+      Reduce the surface area of the API annotated with
+      <code translate="no" dir="ltr">@DelicateTracingApi</code>
+      . Nothing in the top level API should require the use of
+      <code translate="no" dir="ltr">@DelicateTracingApi</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I565e0af46c42ce679c9bc519bb1dad9abb51aba4">I565e0</a>
+      )
+    </li>
+    <li>
+      Simplify context propagation by unifying
+      <code translate="no" dir="ltr">PropagationToken</code>
+      s. (
+      <a href="https://android-review.googlesource.com/#/q/Iab83943fadb3f1be4daad0ae2df73d1237bfcec0">Iab839</a>
+      )
+    </li>
+    <li>
+      Stabilize
+      <code translate="no" dir="ltr">BlackHole</code>
+      APIs in
+      <code translate="no" dir="ltr">androidx.benchmark</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2b67e946c722511244434954a53e9b2f06b631db">I2b67e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/451749438">b/451749438</a>
+      )
+    </li>
+    <li>
+      Add the ability to annotate the trace section as a root span. (
+      <a href="https://android-review.googlesource.com/#/q/Ic836578e5a3804a1b1d556e2471ba20038331394">Ic8365</a>
+      )
+    </li>
+    <li>
+      Allow the developer to explicit about propagation tokens. (
+      <a href="https://android-review.googlesource.com/#/q/I06bb1f7fc5325729bfb57fc64b252b0e99a35a1c">I06bb1</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">MetadataHandleCloseable</code>
+      to
+      <code translate="no" dir="ltr">EventMetadataCloseable</code>
+      , and
+      <code translate="no" dir="ltr">MetadataHandle</code>
+      to
+      <code translate="no" dir="ltr">EventMetadata</code>
+      . Also added an optional
+      <code translate="no" dir="ltr">CoroutinePropagationToken</code>
+      argument to
+      <code translate="no" dir="ltr">Tracer.traceCoroutine</code>
+      to allow the developer to explicitly specify the propagation token to use. (
+      <a href="https://android-review.googlesource.com/#/q/I219f7c761508f9684501cbfe2d647b01a771846c">I219f7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/454147392">b/454147392</a>
+      )
+    </li>
+    <li>
+      Introduced a new
+      <code translate="no" dir="ltr">Tracer</code>
+      entry point which gives developers a lot more control on how to trace. (
+      <a href="https://android-review.googlesource.com/#/q/I24a7beebedc49000a9692fb8f261c9bb52e6b8b6">I24a7b</a>
+      )
+    </li>
+    <li>
+      Add the ability to control how context propagation happens in a
+      <code translate="no" dir="ltr">SliceTrack</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ieb8fc64f524236d7e1ae7f66e90f6943e7cd1e89">Ieb8fc</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">fillCount</code>
+      in
+      <code translate="no" dir="ltr">PooledTracePacketArray</code>
+      is now correctly marked volatile. (
+      <a href="https://android-review.googlesource.com/#/q/I75d2c61941fff6b1c63aef5093052d32ce17ac74">I75d2c</a>
+      )
+    </li>
+    <li>
+      Mark
+      <code translate="no" dir="ltr">MetadataEntry</code>
+      <code translate="no" dir="ltr">@DelicateTracingApi</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I8c723b68800f7d935d0f9f00290257be7a6e933a">I8c723</a>
+      )
+    </li>
+    <li>
+      Add the ability for a
+      <code translate="no" dir="ltr">TraceSink</code>
+      to be able to handle lost trace events (when the pool is exhausted). (
+      <a href="https://android-review.googlesource.com/#/q/I3b374096285623722e234ae41294f92ed98c6766">I3b374</a>
+      )
+    </li>
+    <li>
+      Add the ability to conditionally emit trace events based on a predicate. (
+      <a href="https://android-review.googlesource.com/#/q/I621b4bfc7f92543860287d68f3db9d61d1e7fb1e">I621b4</a>
+      )
+    </li>
+    <li>
+      Add the ability to add categories to a trace event. (
+      <a href="https://android-review.googlesource.com/#/q/I449c20d2db21cb97872542d1645f8315ba73bcf1">I449c2</a>
+      )
+    </li>
+    <li>
+      Mark
+      <code translate="no" dir="ltr">TraceEvent</code>
+      ,
+      <code translate="no" dir="ltr">PooledTracePacketArray</code>
+      as
+      <code translate="no" dir="ltr">DelicateTracingApi</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iaac6d4636f8279cc4f1fb7ad45ea5844eea6061c">Iaac6d</a>
+      )
+    </li>
+    <li>
+      Make
+      <code translate="no" dir="ltr">ProcessTrack.id</code>
+      ,
+      <code translate="no" dir="ltr">ThreadTrack.id</code>
+      ,
+      <code translate="no" dir="ltr">ThreadTrack.name</code>
+      ,
+      <code translate="no" dir="ltr">CounterTrack.name</code>
+      and
+      <code translate="no" dir="ltr">CounterTrack.parent</code>
+      public. (
+      <a href="https://android-review.googlesource.com/#/q/I8121061710c8068c60beabad6aca5302a11723e2">I81210</a>
+      )
+    </li>
+    <li>
+      Renamed the
+      <code translate="no" dir="ltr">SliceTrack.traceFlow()</code>
+      API to
+      <code translate="no" dir="ltr">traceCoroutine()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I79ad05e8bad90e629d9c9d6706d874ef1066e371">I79ad0</a>
+      )
+    </li>
+    <li>
+      Add the ability to add contextual information to slices via debug annotations in a Perfetto trace. (
+      <a href="https://android-review.googlesource.com/#/q/Ic2b563d405a62139cadaefcb3a20de0e26512712">Ic2b56</a>
+      )
+    </li>
+    <li>
+      Make it possible to construct an instance of
+      <code translate="no" dir="ltr">WireTraceSink</code>
+      with a
+      <code translate="no" dir="ltr">File</code>
+      /
+      <code translate="no" dir="ltr">OutputStream</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iecea0d0f72b8a31ca68dd1c6d046bd06249cae94">Iecea0</a>
+      )
+    </li>
+    <li>
+      Removing obsolete
+      <code translate="no" dir="ltr">@RequiresApi(21)</code>
+      annotations (
+      <a href="https://android-review.googlesource.com/#/q/Ic47923dcc82f4b7c4638fadb10c2c0268b414fcd">Ic4792</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_13_2" data-text="Version 1.3" tabindex="-1">Version 1.3</h2>

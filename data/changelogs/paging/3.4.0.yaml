@@ -1,0 +1,49 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.4.0
+releaseDate: 2026-01-28
+#language=html
+changelogHtml: |
+  <h3 id="3.4.0" data-text="Version 3.4.0" tabindex="-1">Version 3.4.0</h3>
+  <p>January 28, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.4.0</code>
+    is released. Version 3.4.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1e6b87e344c28f71f464996b0d753a971aa1b83d..f9bfc2c700440f809fc6b8a9565788c078861187/paging">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 3.3.0:</strong></p>
+  <ul>
+    <li>
+      Added more KMP targets to
+      <code translate="no" dir="ltr">paging-common</code>
+      ,
+      <code translate="no" dir="ltr">paging-testing</code>
+      , and
+      <code translate="no" dir="ltr">paging-compose</code>
+      . In total they all now support JVM(Android and Desktop), Native (Linux, iOS, watchOS, tvOS, macOS, MinGW), and Web (JavaScript, WasmJS)
+    </li>
+    <li>
+      <code translate="no" dir="ltr">paging-common</code>
+      ,
+      <code translate="no" dir="ltr">paging-testing</code>
+      , and
+      <code translate="no" dir="ltr">paging-compose</code>
+      has removed support for
+      <code translate="no" dir="ltr">macosX64</code>
+      ,
+      <code translate="no" dir="ltr">iosX64</code>
+      ,
+      <code translate="no" dir="ltr">watchosX64</code>
+      , and
+      <code translate="no" dir="ltr">tvosX64</code>
+      to align with Jetbrains deprecation of the macosX64 targets.
+    </li>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">PagingState</code>
+      API
+      <code translate="no" dir="ltr">closestItemAroundPosition</code>
+      to retrieve the loaded item that is closest to the target position and matches the input predicate. This can be used to generate item-based refresh keys where the ideal anchorable item is around but not at the exact target position.
+    </li>
+  </ul>

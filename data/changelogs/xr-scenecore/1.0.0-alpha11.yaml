@@ -1,0 +1,74 @@
+libraryId: xr-scenecore
+groupId: androidx.xr
+version: 1.0.0-alpha11
+releaseDate: 2026-01-28
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha11" data-text="Version 1.0.0-alpha11" tabindex="-1">Version 1.0.0-alpha11</h3>
+  <p>January 28, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.scenecore:scenecore-*:1.0.0-alpha11</code>
+    is released. Version 1.0.0-alpha11 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/bac172b1818f60ee3cd443ab6ae6596338aa5215..858c4795b789900a14f261bc90ed7e375af2b9be/xr/scenecore">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Renames
+      <code translate="no" dir="ltr">PerceivedResolutionResult.InvalidCameraView</code>
+      to
+      <code translate="no" dir="ltr">PerceivedResolutionResult.InvalidRenderViewpoint</code>
+      as the
+      <code translate="no" dir="ltr">getPerceivedResolution</code>
+      APIs now rely on ARCore's
+      <code translate="no" dir="ltr">RenderViewpoint</code>
+      API instead of
+      <code translate="no" dir="ltr">CameraViewScenePose</code>
+      . This name better reflects the new implementation. (
+      <a href="https://android-review.googlesource.com/#/q/I8c967b7b3091f445716aae2d7ca552a0ae4bdb9b">I8c967</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/446989745">b/446989745</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/419311998">b/419311998</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">PanelEntity</code>
+      /
+      <code translate="no" dir="ltr">SurfaceEntity.getPerceivedResolution</code>
+      methods now take a
+      <code translate="no" dir="ltr">RenderViewpoint</code>
+      provided by the developer as an argument. Before, the runtime arbitrarily chose the
+      <code translate="no" dir="ltr">RenderViewpoint</code>
+      used in the perceived resolution calculation. (
+      <a href="https://android-review.googlesource.com/#/q/I8c967b7b3091f445716aae2d7ca552a0ae4bdb9b">I8c967</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/446989745">b/446989745</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/419311998">b/419311998</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">SpatialUser</code>
+      ,
+      <code translate="no" dir="ltr">ScenePose.Head</code>
+      , and
+      <code translate="no" dir="ltr">ScenePose.CameraView</code>
+      . The functionality of these APIs is covered by the
+      <code translate="no" dir="ltr">ArDevice</code>
+      and
+      <code translate="no" dir="ltr">RenderViewpoint</code>
+      APIs within ARCore for Jetpack XR. To obtain a
+      <code translate="no" dir="ltr">ScenePose</code>
+      corresponding to the user's head or left or right eye, developers can use
+      <code translate="no" dir="ltr">PerceptionSpace.getScenePoseFromPerceptionPose</code>
+      with the appropriate pose obtained using ARCore APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I2f69c3d74f123f64efe2c7c9d41826a2f0f1ae28">I2f69c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/446989745">b/446989745</a>
+      )
+    </li>
+  </ul>
