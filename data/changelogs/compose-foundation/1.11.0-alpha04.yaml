@@ -1,0 +1,74 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.11.0-alpha04
+releaseDate: 2026-01-28
+#language=html
+changelogHtml: |
+  <h3 id="1.11.0-alpha04" data-text="Version 1.11.0-alpha04" tabindex="-1">Version 1.11.0-alpha04</h3>
+  <p>January 28, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.11.0-alpha04</code>
+    is released. Version 1.11.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/adeb519268e4eeff7d0a5a9d024dbe26d88bb6ad..715e22619094effc2ba1fd528cd9a07b1f5d0046/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Fixed a bug where
+      <code translate="no" dir="ltr">AnchoredDraggableState</code>
+      's
+      <code translate="no" dir="ltr">targetValue</code>
+      was incorrect in some scenarios with multiple anchors at the same offset. When settled at an anchor that had the same offset as another anchor,
+      <code translate="no" dir="ltr">targetValue</code>
+      incorrectly returned the last of the anchors at this offset. It now returns the
+      <code translate="no" dir="ltr">currentValue</code>
+      when settled at the
+      <code translate="no" dir="ltr">currentValue</code>
+      's offset. (
+      <a href="https://android-review.googlesource.com/#/q/I66a7a227dbb1df035eb81d30f9e7b54d502e2d90">I66a7a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/476365336">b/476365336</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">FlexBox</code>
+      , a configurable layout system that is a superset of
+      <code translate="no" dir="ltr">Row</code>
+      ,
+      <code translate="no" dir="ltr">Column</code>
+      ,
+      <code translate="no" dir="ltr">FlowRow</code>
+      , and
+      <code translate="no" dir="ltr">FlowColumn</code>
+      . It supports features like flex-grow, flex-shrink, custom wrapping, direction change and detailed alignment control via
+      <code translate="no" dir="ltr">FlexBoxConfig</code>
+      and
+      <code translate="no" dir="ltr">Modifier.flex</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I44780b3c90e0a36f4095ed83e73c9b0984ecd6f6">I44780</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">Grid</code>
+      , a new non-lazy 2D layout composable inspired by CSS Grid. This initial version allows defining explicit grid structures with various track sizes including
+      <code translate="no" dir="ltr">Fixed</code>
+      ,
+      <code translate="no" dir="ltr">Percentage</code>
+      ,
+      <code translate="no" dir="ltr">Flex</code>
+      , and content-based options via the
+      <code translate="no" dir="ltr">config</code>
+      block. The core layout logic supports explicit item placement within the grid using
+      <code translate="no" dir="ltr">Modifier.gridItem()</code>
+      . All Grid related APIs are currently experimental and require opt-in with
+      <code translate="no" dir="ltr">@OptIn(ExperimentalGridApi::class)</code>
+      . We are actively seeking feedback on this new layout! (
+      <a href="https://android-review.googlesource.com/#/q/I04907884457dbffb9653b09807c03b96506517c0">I04907</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/462550392">b/462550392</a>
+      )
+    </li>
+  </ul>

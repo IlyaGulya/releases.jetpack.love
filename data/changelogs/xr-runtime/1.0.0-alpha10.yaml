@@ -1,0 +1,63 @@
+libraryId: xr-runtime
+groupId: androidx.xr
+version: 1.0.0-alpha10
+releaseDate: 2026-01-28
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha10" data-text="Version 1.0.0-alpha10" tabindex="-1">Version 1.0.0-alpha10</h3>
+  <p>January 28, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.runtime:runtime-*:1.0.0-alpha10</code>
+    is released. Version 1.0.0-alpha10 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5dd54df7c7f82386d2da53e696750df346d47550..6d802bc724002ae38712673fb300c314f88fdd9e/xr/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ConfigMode.HeadTrackingMode</code>
+      is replaced with
+      <code translate="no" dir="ltr">ConfigMode.HeadTrackingMode</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie273ef58cbd8187d33e91b344d37107187002990">le273e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/467150206">b/467150206</a>
+      )
+    </li>
+    <li>
+      Removed Quaternion's
+      <code translate="no" dir="ltr">toNormalized</code>
+      ,
+      <code translate="no" dir="ltr">times(float)</code>
+      ,
+      <code translate="no" dir="ltr">div(float)</code>
+      methods. These methods are redundant given that all Quaternions are normalized at construction time and given that the class is immutable. (
+      <a href="https://android-review.googlesource.com/#/q/I558fcff3211fc4a9122262b548936b2b877735e4">l558fc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/460210457">b/460210457</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Added documentation to
+      <code translate="no" dir="ltr">Session.create</code>
+      that illustrates how to avoid creating a session on the application’s main thread. (
+      <a href="https://android-review.googlesource.com/#/q/Ie5554bace05cf2c51ee824d381fdff8f676500fa">le5554</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/463687170">b/463687170</a>
+      )
+    </li>
+    <li>
+      Prevented applications from creating a
+      <code translate="no" dir="ltr">BoundingBox</code>
+      with a
+      <code translate="no" dir="ltr">NaN</code>
+      value. (
+      <a href="https://android-review.googlesource.com/#/q/I58c146fae497ce72857f7547df157eaeff9d7081">l58c14</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/464025895">b/464025895</a>
+      )
+    </li>
+  </ul>
