@@ -9,8 +9,48 @@ changelogHtml: |
   <p>
     <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.11.0-alpha04</code>
     is released. Version 1.11.0-alpha04 contains
-    <a href="https://android.googlesource.com/platform/frameworks/support/+log/adeb519268e4eeff7d0a5a9d024dbe26d88bb6ad..715e22619094effc2ba1fd528cd9a07b1f5d0046/compose/runtime">these commits</a>
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/adeb519268e4eeff7d0a5a9d024dbe26d88bb6ad..c26c6f088b95903b7b9cd5e6f2092988f1e64dc3/compose/runtime">these commits</a>
     .
+  </p>
+  <p>
+    <strong>API Changes</strong>
+    .
+  </p>
+  <p>We've rewritten the SlotTable, which is the internal data structure used by the Compose Runtime to track your composition hierarchy, determine the changes caused by a recomposition, and store remembered values. This rewrite is focused on improving recomposition performance and does so primarily by using substantially fewer memory copy operations than the gap buffer SlotTable. Certain changes to your composition hierarchy, like reordering a long list of items, can recompose over twice as fast compared to the former SlotTable. Most other operations are on the order of 10% faster to recompose under the new SlotTable implementation. The SlotTable implementation used by the runtime affects all Composable methods and requires no recompilation. Using the new SlotTable is an app-wide change, including for dependencies.</p>
+  <p>
+    This SlotTable implementation is currently disabled by default and can be enabled by setting
+    <code translate="no" dir="ltr">ComposeRuntimeFlags.isLinkBufferComposerEnabled</code>
+    to
+    <code translate="no" dir="ltr">true</code>
+    .
+  </p>
+  <p>
+    In release builds with minification enabled, this value is assumed to be
+    <code translate="no" dir="ltr">false</code>
+    in the default
+    <code translate="no" dir="ltr">proguard-rules.pro</code>
+    file supplied with the runtime. To enable the new SlotTable in production, this assumption needs to be changed to
+    <code translate="no" dir="ltr">true</code>
+    in the application's
+    <code translate="no" dir="ltr">proguard-rules.pro</code>
+    file. See the documentation on
+    <code translate="no" dir="ltr">ComposeRuntimeFlags.isLinkBufferComposerEnabled</code>
+    for more information.
+  </p>
+  <p>
+    (
+    <a href="https://android-review.googlesource.com/#/q/Ib741df400f1035c79df9ce3d34c39dd35fb9445e">Ib741d</a>
+    ,
+    <a href="https://issuetracker.google.com/issues/268366116">b/268366116</a>
+    )
+  </p>
+  <p>
+    <strong>New Features</strong>
+    - Added
+    <code translate="no" dir="ltr">compositionLocalWithHostDefaultOf</code>
+    which allows defining CompositionLocals that fallback to the hosting environment (e.g. Android View tags) for their default values. (
+    <a href="https://android-review.googlesource.com/#/q/I15b81bf6a9cb50575ba37d0061bead8b1a09b2a0">I15b81</a>
+    )
   </p>
   <p><strong>Bug Fixes</strong></p>
   <ul>
