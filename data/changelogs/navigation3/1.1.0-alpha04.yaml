@@ -1,0 +1,100 @@
+libraryId: navigation3
+groupId: androidx.navigation3
+version: 1.1.0-alpha04
+releaseDate: 2026-02-11
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha04" data-text="Version 1.1.0-alpha04" tabindex="-1">Version 1.1.0-alpha04</h3>
+  <p>February 11, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation3:navigation3-*:1.1.0-alpha04</code>
+    is released. Version 1.1.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c26c6f088b95903b7b9cd5e6f2092988f1e64dc3..628cb9b293c226198b42c59be36a956491f36133/navigation3">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Navigation3 now provides a new type-safe metadata DSL. The DSL uses a new
+      <code translate="no" dir="ltr">MetadataKey</code>
+      interface that allows for defining the key and value types that they wish to provide to the metadata map. This also added new
+      <code translate="no" dir="ltr">NavMetadataKey</code>
+      s for
+      <code translate="no" dir="ltr">NavDisplay</code>
+      transitions so that they can be used with the new
+      <code translate="no" dir="ltr">metadata</code>
+      DSL to add transitions to
+      <code translate="no" dir="ltr">NavDisplay</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic10ef1857ca440f4579a81995897f677cd664674">Ic10ef</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ic049c029a3aff96319dcacb506efebd44b1bd097">Ic049c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/476213928">b/476213928</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">OverlayScene</code>
+      interface has a new
+      <code translate="no" dir="ltr">onRemoved</code>
+      suspending callback. This callback is invoked after a key associated with the scene is removed from the backstack, but before it leaves composition. This allows exit animations called within
+      <code translate="no" dir="ltr">onRemoved</code>
+      to complete before the overlay scene is removed from composition. (
+      <a href="https://android-review.googlesource.com/#/q/I29a728f2bc10ff4c0126ddf912907140a49676f9">I29a72</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/440558061">b/440558061</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an error where passing a
+      <code translate="no" dir="ltr">SharedTransitionLayout</code>
+      into either the
+      <code translate="no" dir="ltr">NavDisplay</code>
+      or
+      <code translate="no" dir="ltr">rememberSceneState</code>
+      and using any
+      <code translate="no" dir="ltr">OverlayScene</code>
+      would cause a crash because using
+      <code translate="no" dir="ltr">SharedTransitionLayout</code>
+      only works with
+      <code translate="no" dir="ltr">NavEntries</code>
+      that are rendered as part of the
+      <code translate="no" dir="ltr">AnimatedContent</code>
+      and
+      <code translate="no" dir="ltr">OverlayScene</code>
+      are rendered in their own windows separately. (
+      <a href="https://android-review.googlesource.com/#/q/I1bb76dd63bc11f84eaeffb3bcb61cd3e8cb795e8">I1bb76</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/478664101">b/478664101</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Update</strong></p>
+  <ul>
+    <li>
+      From
+      <code translate="no" dir="ltr">Navigation3</code>
+      1.0.1:
+      <code translate="no" dir="ltr">Navigation3</code>
+      now depends on
+      <code translate="no" dir="ltr">NavigationEvent</code>
+      1.0.2. This fixes an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      caused by using
+      <code translate="no" dir="ltr">NavDisplay</code>
+      during
+      <code translate="no" dir="ltr">AndroidStudio</code>
+      Previews. (
+      <a href="https://android-review.googlesource.com/#/q/Id72127281dd27ad9d53d2fc38704ea81c9a05b20">Id7212</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/477149762">b/477149762</a>
+      )
+    </li>
+  </ul>

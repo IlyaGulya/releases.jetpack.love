@@ -1,0 +1,100 @@
+libraryId: compose-remote
+groupId: androidx.compose
+version: 1.0.0-alpha04
+releaseDate: 2026-02-11
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha04" data-text="Version 1.0.0-alpha04" tabindex="-1">Version 1.0.0-alpha04</h3>
+  <p>February 11, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.remote:remote-*:1.0.0-alpha04</code>
+    is released. Version 1.0.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c26c6f088b95903b7b9cd5e6f2092988f1e64dc3..2e98d140740558dc55710bde96311d2e0e8d5cfd/compose/remote">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Enable using the
+      <code translate="no" dir="ltr">RemoteApplier</code>
+      by default, which prevents using non-Remote Composable functions when creating a Remote UI. This can be disabled by changing
+      <code translate="no" dir="ltr">isRemoteApplierEnabled</code>
+      in
+      <code translate="no" dir="ltr">RemoteComposeCreationComposeFlags</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I10b57b6fee4d9f3cba75be4cab6976123a8c347e">67a405f</a>
+      )
+    </li>
+    <li>
+      Add Glyph spacing for bitmap fonts (
+      <a href="https://android-review.googlesource.com/#/q/I96311972f59b562c44845860e67c39c8346a826d">0852657</a>
+      )
+    </li>
+    <li>
+      Rotate with pivot in
+      <code translate="no" dir="ltr">RemoteCanvas</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I96311972f59b562c44845860e67c39c8346a826d">9a292b3</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">RemoteSpacer</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I603e0995d933a68220fd72b595a42c98329db31a">12beb72</a>
+      )
+    </li>
+    <li>
+      Avoid
+      <code translate="no" dir="ltr">java.time</code>
+      dependency, allowing the
+      <code translate="no" dir="ltr">minSdk</code>
+      of the creation libraries to be lowered to 23 (
+      <a href="https://android-review.googlesource.com/#/q/I7edfc82475f2472673844d9eb5ca0a5214518e2f">59e30d0</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FlowLayout</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I176532d6d4bddfcf360787f83dcef4b3f0833ef8">7efef02</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix evaluation for non global
+      <code translate="no" dir="ltr">ColorExpression</code>
+      and computed String. (
+      <a href="https://android-review.googlesource.com/#/q/I2085fcf66281fe05f2c37140786c614902ca03d5">c08d0bd</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">androidx.compose.ui.graphics.NativePaint</code>
+      typealias is deprecated, use
+      <code translate="no" dir="ltr">android.graphics.Paint</code>
+      directly instead (
+      <a href="https://android-review.googlesource.com/#/q/I6303c742f80887649d1a77e837ab0ff93ddff212">I6303c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/477394763">b/477394763</a>
+      )
+    </li>
+    <li>
+      Replace
+      <code translate="no" dir="ltr">Paint.asFrameworkPaint()</code>
+      to
+      <code translate="no" dir="ltr">Paint.nativePaint</code>
+      extension to avoid exposing platform type into
+      <code translate="no" dir="ltr">commonMain</code>
+      sourceset via
+      <code translate="no" dir="ltr">typealias</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I6303c742f80887649d1a77e837ab0ff93ddff212">I6303c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/477394763">b/477394763</a>
+      )
+    </li>
+  </ul>

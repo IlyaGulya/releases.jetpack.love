@@ -1,0 +1,159 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.5.0-alpha14
+releaseDate: 2026-02-11
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha14" data-text="Version 1.5.0-alpha14" tabindex="-1">Version 1.5.0-alpha14</h3>
+  <p>February 11, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.5.0-alpha14</code>
+    is released. Version 1.5.0-alpha14 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c26c6f088b95903b7b9cd5e6f2092988f1e64dc3..cdf076c6abd0f3125cb0302756fcb77fe981ab7c/compose/material3">these commits</a>
+    .
+  </p>
+  <p><strong>Workaround</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">isAnchoredDraggableComponentsStrictOffsetCheckEnabled</code>
+      . This flag controls whether
+      <code translate="no" dir="ltr">BottomSheetScaffold</code>
+      ,
+      <code translate="no" dir="ltr">ModalBottomSheet</code>
+      ,
+      <code translate="no" dir="ltr">SwipeToDismissBox</code>
+      and
+      <code translate="no" dir="ltr">WideNavigation</code>
+      rail strictly require their internal offsets to be initialized. When disabled, the components won't place their content until the offset is initialized. This flag can help temporarily work around a bug where these components throw an exception due to the offset not being initialized. (
+      <a href="https://android-review.googlesource.com/#/q/I368705ceaf1c74785c552f1448257acd1267907f">I36870</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/477038695">b/477038695</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/478210200">b/478210200</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/471818801">b/471818801</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/475249572">b/475249572</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/475598146">b/475598146</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">isTextButtonContentPaddingFixEnabled</code>
+      that when true makes
+      <code translate="no" dir="ltr">TextButton</code>
+      have correct paddings specs. (
+      <a href="https://android-review.googlesource.com/#/q/Ib986e0ffd0c55fe04a47696749f2922c0d7c856a">Ib986e</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">indicatorPadding</code>
+      param for
+      <code translate="no" dir="ltr">WideNavigationRailItem</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3d5dc893a2a5112c972b9dcf13ff996d85450096">I3d5dc</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">contentPadding</code>
+      and
+      <code translate="no" dir="ltr">horizontalArrangement</code>
+      parameters to
+      <code translate="no" dir="ltr">SuggestionChip</code>
+      and
+      <code translate="no" dir="ltr">ElevatedSuggestionChip</code>
+      . Add
+      <code translate="no" dir="ltr">horizontalArrangement</code>
+      and
+      <code translate="no" dir="ltr">ContentPadding</code>
+      defaults to
+      <code translate="no" dir="ltr">SuggestionChipDefaults</code>
+      . Create
+      <code translate="no" dir="ltr">ChipArrangement</code>
+      class. (
+      <a href="https://android-review.googlesource.com/#/q/Ida8740cbd48eab366fa86fbdcea966c594215499">Ida874</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/304853782">b/304853782</a>
+      )
+    </li>
+    <li>
+      Update the selectable menu items to contain a parameter for supporting text. Deprecate the previous APIs that didn't include the supporting text parameter. Also add the recommended default icon sizes for the leading and trailing icons. (
+      <a href="https://android-review.googlesource.com/#/q/I89e4b9622847ac95f54a10118feb434b407a8762">I89e4b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/417731599">b/417731599</a>
+      )
+    </li>
+    <li>
+      Updated the Snackbar layout to improve multi-line text alignment. To minimize UI disruption, the
+      <code translate="no" dir="ltr">isSnackbarStylingFixEnabled</code>
+      flag has been introduced to assist with migration. Please enable this flag manually in your application, it will be removed in a future release. (
+      <a href="https://android-review.googlesource.com/#/q/I37d6306d8ca13aeff670af79631a45138ea84ec2">I37d63</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/322866101">b/322866101</a>
+      )
+    </li>
+    <li>
+      Fixed a bug in
+      <code translate="no" dir="ltr">BottomSheetScaffold</code>
+      ,
+      <code translate="no" dir="ltr">ModalBottomSheet</code>
+      ,
+      <code translate="no" dir="ltr">SwipeToDismissBox</code>
+      and
+      <code translate="no" dir="ltr">WideNavigationRail</code>
+      where the anchors were not recalculated in some cases. This fix is behind a feature flag,
+      <code translate="no" dir="ltr">ComposeMaterial3Flags#isAnchoredDraggableComponentsInvalidationFixEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I9acb1dfdcac30d07d7bed9d5032142f718103296">I9acb1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/478210200">b/478210200</a>
+      )
+    </li>
+    <li>
+      Add content padding param to the
+      <code translate="no" dir="ltr">WideNavigationRail</code>
+      and
+      <code translate="no" dir="ltr">ModalWideNavigationRail</code>
+      so that the default paddings are customizable. (
+      <a href="https://android-review.googlesource.com/#/q/I491062cf9abbb6aeb851918efad919c061e93320">I49106</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Setting
+      <code translate="no" dir="ltr">BottomSheetScaffold sheetPeekHeight</code>
+      to 0 disables
+      <code translate="no" dir="ltr">partiallyExpanded</code>
+      anchor.
+      <code translate="no" dir="ltr">PartiallyExpanded</code>
+      anchor is preserved in its first layout pass to allow for layout calculation. (
+      <a href="https://android-review.googlesource.com/#/q/Ia33a48c9c625c11d25a7fd208ffa8f1c04eaa3e9">Ia33a4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/465158677">b/465158677</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SheetState#targetValue</code>
+      prefers it's current anchor if the current offset is valid. This prevents initialValue from immediately updating. (
+      <a href="https://android-review.googlesource.com/#/q/Ied2c47456acd9118bac9faec21017fcb35ff9441">Ied2c4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/477279704">b/477279704</a>
+      )
+    </li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">WideNavigationRailItem</code>
+      's icon not being vertically centered if item height changes. (
+      <a href="https://android-review.googlesource.com/#/q/Ib8c83416eee15d41b9f5d96e272b157c2302af67">Ib8c83</a>
+      )
+    </li>
+  </ul>

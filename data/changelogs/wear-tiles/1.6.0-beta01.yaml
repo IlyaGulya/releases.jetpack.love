@@ -1,0 +1,157 @@
+libraryId: wear-tiles
+groupId: androidx.wear
+version: 1.6.0-beta01
+releaseDate: 2026-02-11
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-beta01" data-text="Version 1.6.0-beta01" tabindex="-1">Version 1.6.0-beta01</h3>
+  <p>February 11, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.tiles:tiles-*:1.6.0-beta01</code>
+    is released. Version 1.6.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c26c6f088b95903b7b9cd5e6f2092988f1e64dc3..2e98d140740558dc55710bde96311d2e0e8d5cfd/wear/tiles">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>The 1.6.0-beta01 release of Wear Tiles indicates that this release of the library is feature-complete and the API is locked (except where marked as experimental). Wear Tiles 1.6 includes the following new functionalities and APIs:</p>
+  <ul>
+    <li>
+      <strong>Inlined Resource Handling and performance improvements:</strong>
+      Tiles now support automatic resource collection through
+      <code translate="no" dir="ltr">ProtoLayoutScope</code>
+      .
+      <ul>
+        <li>
+          This significantly improves Tiles loading time by removing the need for two binder calls as only the
+          <code translate="no" dir="ltr">onTileResourcesRequest</code>
+          method can be implemented.
+        </li>
+        <li>
+          When using image resources directly in the layout, there is no longer a need to manually override
+          <code translate="no" dir="ltr">onTileResourcesRequest</code>
+          or specify resources in
+          <code translate="no" dir="ltr">TilePreviewData</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        <strong>Material3TileService:</strong>
+        Introduced a new, Kotlin-friendly service for creating tiles. It simplifies development by providing a single
+        <code translate="no" dir="ltr">suspend</code>
+        function to return both tile layout and resources. It automatically manages the
+        <code translate="no" dir="ltr">MaterialScope</code>
+        and
+        <code translate="no" dir="ltr">ProtoLayoutScope</code>
+        for better resource handling and performance improvements on faster Tiles loading.
+      </p>
+
+      <ul>
+        <li>Simplified code snippet:</li>
+      </ul>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">MyTileService</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Material3TileService</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kd">override</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">suspend</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-err">**</span><span class="devsite-syntax-n">MaterialScope</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-nf">tileResponse</span><span class="devsite-syntax-o">**</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">requestParams</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">RequestBuilders</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">TileRequest</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">):</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">TileBuilders</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">Tile</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">tile</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-n">timeline</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">timeline</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">timelineEntry</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-n">primaryLayout</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// layout setup here</span>
+  <span class="devsite-syntax-n">iconContent</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">**</span><span class="devsite-syntax-n">icon</span><span class="devsite-syntax-o">**</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-o">**</span><span class="devsite-syntax-n">imageResource</span><span class="devsite-syntax-o">**</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-o">**</span><span class="devsite-syntax-n">androidImageResource</span><span class="devsite-syntax-o">**</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">R</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">drawable</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">myIcon</span><span class="devsite-syntax-p">)))})</span>
+  <span class="devsite-syntax-c1">//…</span>
+  <span class="devsite-syntax-p">)))</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        <strong>Tile Previews Update:</strong>
+        Tooling for Tile Previews has been updated to support the new
+        <code translate="no" dir="ltr">ProtoLayoutScope</code>
+        automatic resource handling, ensuring previews reflect inlined resources correctly without extra configuration.
+      </p>
+    </li>
+    <li>
+      <p>
+        <strong>Many Kotlin DSL Improvements:</strong>
+        Added specialized Kotlin helpers for
+        <code translate="no" dir="ltr">Tile</code>
+        and all other APIs needed to build a tile (such as
+        <code translate="no" dir="ltr">Timeline</code>
+        ) to improve the developer experience for Kotlin users.
+      </p>
+    </li>
+    <li>
+      <p>
+        <strong>Dynamic Service Switching:</strong>
+        Introduced
+        <code translate="no" dir="ltr">METADATA_GROUP_KEY</code>
+        , allowing developers to group multiple
+        <code translate="no" dir="ltr">TileService</code>
+        instances in the manifest. This enables dynamic switching between different services that represent the same tile on new OS versions.
+      </p>
+    </li>
+    <li>
+      <p>
+        <strong>Tile ID in Updates:</strong>
+        Developers can now specify a particular
+        <code translate="no" dir="ltr">tileId</code>
+        in update requests, allowing for more granular control over which tile instances are refreshed.
+      </p>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <strong>Increased Compile SDK:</strong>
+      To support the new
+      <code translate="no" dir="ltr">Material3TileService</code>
+      and advanced resource handling, the
+      <code translate="no" dir="ltr">compileSdk</code>
+      version requirement has been increased to
+      <strong>35</strong>
+      .
+    </li>
+    <li>
+      <strong>Minimum SDK Update:</strong>
+      The default
+      <code translate="no" dir="ltr">minSdk</code>
+      for the library has been moved from API 21 to
+      <strong>API 23</strong>
+      .
+    </li>
+    <li>
+      <strong>Optional Resource Overrides:</strong>
+      Overriding
+      <code translate="no" dir="ltr">onTileResourcesRequest</code>
+      is now optional when using the new
+      <code translate="no" dir="ltr">ProtoLayoutScope</code>
+      APIs.
+    </li>
+    <li>
+      <strong>Schema Metadata:</strong>
+      Added metadata keys for major/minor Tiles Renderer schema versions as XML tags for better platform compatibility tracking.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <strong>ANR Prevention:</strong>
+      Moved the unbinding logic during Tile update requests to a background thread to prevent "Application Not Responding" (ANR) errors.
+    </li>
+    <li>
+      <strong>Version Awareness:</strong>
+      The internal
+      <code translate="no" dir="ltr">ProtoLayoutScope</code>
+      includes the
+      <code translate="no" dir="ltr">ProtoLayout Renderer</code>
+      ’s
+      <code translate="no" dir="ltr">VersionInfo</code>
+      , allowing for better backward compatibility checks.
+    </li>
+  </ul>
