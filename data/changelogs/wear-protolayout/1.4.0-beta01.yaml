@@ -1,0 +1,201 @@
+libraryId: wear-protolayout
+groupId: androidx.wear
+version: 1.4.0-beta01
+releaseDate: 2026-02-11
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-beta01" data-text="Version 1.4.0-beta01" tabindex="-1">Version 1.4.0-beta01</h3>
+  <p>February 11, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.protolayout:protolayout-*:1.4.0-beta01</code>
+    is released. Version 1.4.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c26c6f088b95903b7b9cd5e6f2092988f1e64dc3..2e98d140740558dc55710bde96311d2e0e8d5cfd/wear/protolayout">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>The 1.4.0-beta01 release of Wear ProtoLayout indicates that this release of the library is feature-complete and the API is locked (except where marked as experimental). Wear ProtoLayout 1.4 includes the following new functionalities and APIs:</p>
+  <ul>
+    <li>
+      <strong>Inlined Image Resources and performance improvements:</strong>
+      Introduced an improved resource handling concept where
+      <code translate="no" dir="ltr">ImageResource</code>
+      can be directly inlined within the layout itself.
+      <ul>
+        <li>
+          This significantly simplifies development by removing the need for manual resource mapping in the
+          <code translate="no" dir="ltr">onTileResourcesRequest</code>
+          and overriding that method.
+        </li>
+        <li>
+          This significantly improves Tiles loading time by removing the need for two binder calls as only the
+          <code translate="no" dir="ltr">onTileResourcesRequest</code>
+          method can be implemented.
+        </li>
+        <li>
+          All
+          <code translate="no" dir="ltr">Image</code>
+          APIs now support this concept by providing new methods that accept
+          <code translate="no" dir="ltr">ProtoLayoutScope</code>
+          responsible for this.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        <strong>Material3 Scope &amp; Resources Auto-Registration:</strong>
+        Added
+        <code translate="no" dir="ltr">materialScopeWithResources</code>
+        to support the Material3
+        <code translate="no" dir="ltr">MaterialScope</code>
+        concept with the Inline Image Resources. This scope handles automatic resource registration and includes new helper methods for images (
+        <code translate="no" dir="ltr">backgroundImage</code>
+        ,
+        <code translate="no" dir="ltr">avatarImage</code>
+        , and
+        <code translate="no" dir="ltr">icon</code>
+        ) to streamline components usage.
+      </p>
+
+      <ul>
+        <li>
+          <p>Simplified code snippet:</p>
+          <div></div>
+          <devsite-code>
+            <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-n">materialScopeWithResources</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-n">context</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">context</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-n">deviceConfiguration</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">deviceParameters</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">protoLayoutScope</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">protoLayoutScope</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">primaryLayout</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-c1">// layout setup here</span>
+  <span class="devsite-syntax-n">iconContent</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">**</span><span class="devsite-syntax-n">icon</span><span class="devsite-syntax-o">**</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-o">**</span><span class="devsite-syntax-n">imageResource</span><span class="devsite-syntax-o">**</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-o">**</span><span class="devsite-syntax-n">androidImageResource</span><span class="devsite-syntax-o">**</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">R</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">drawable</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">myIcon</span><span class="devsite-syntax-p">)))})</span>
+  <span class="devsite-syntax-c1">//…</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+          </devsite-code>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        <strong>PendingIntent support:</strong>
+        Added support for
+        <code translate="no" dir="ltr">PendingIntent</code>
+        for Tiles. The
+        <code translate="no" dir="ltr">PendingIntent</code>
+        clickables accept fallback actions (
+        <code translate="no" dir="ltr">LoadAction</code>
+        or
+        <code translate="no" dir="ltr">LaunchAction</code>
+        ). This ensures that if the
+        <code translate="no" dir="ltr">ProtoLayout</code>
+        Renderer is an older version that doesn't support
+        <code translate="no" dir="ltr">PendingIntent</code>
+        , a valid fallback action is automatically used.
+      </p>
+    </li>
+    <li>
+      <p><strong>Many Kotlin DSL Improvements:</strong></p>
+
+      <ul>
+        <li>
+          Added specialized Kotlin helpers for
+          <code translate="no" dir="ltr">Image</code>
+          and all
+          <code translate="no" dir="ltr">ImageResources</code>
+          types to improve the developer experience for Kotlin users.
+        </li>
+        <li>
+          Added helpers for container types such as
+          <code translate="no" dir="ltr">Box</code>
+          ,
+          <code translate="no" dir="ltr">Row</code>
+          ,
+          <code translate="no" dir="ltr">Column</code>
+          , etc. to adhere more with modern Android development.
+        </li>
+        <li>
+          Added a new Kotlin
+          <code translate="no" dir="ltr">Transformation</code>
+          modifier and helper methods for fade in animation.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        <strong>Customizing Lottie animation:</strong>
+        Added API in
+        <code translate="no" dir="ltr">AndroidLottieResourceByResId</code>
+        to allow customizing Lottie animation via properties and added concrete support and API for creating property to theme a slot based on slot ID with the specified color.
+      </p>
+    </li>
+    <li>
+      <p>
+        <strong>Ambient Mode Awareness:</strong>
+        Added a new Platform event source,
+        <code translate="no" dir="ltr">isInAmbientMode</code>
+        , allowing layouts to react and update expressions based on whether the device is in ambient mode.
+      </p>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <strong>Material3 Image Helpers:</strong>
+      Deprecated existing Material3 image helpers in favor of new overloads that utilize
+      <code translate="no" dir="ltr">ProtoLayoutScope</code>
+      and the new Inlined Resource handling.
+    </li>
+    <li>
+      <strong>MaterialScope Updates:</strong>
+      The
+      <code translate="no" dir="ltr">protoLayoutScope</code>
+      field within
+      <code translate="no" dir="ltr">MaterialScope</code>
+      is
+      <code translate="no" dir="ltr">NonNull</code>
+      for easier usage when created via
+      <code translate="no" dir="ltr">materialScopeWithResources</code>
+      . A new
+      <code translate="no" dir="ltr">hasProtoLayoutScope</code>
+      function has been added to check for its presence. The
+      <code translate="no" dir="ltr">MaterialScope</code>
+      also exposes the public field for
+      <code translate="no" dir="ltr">Context</code>
+      .
+    </li>
+    <li>
+      <strong>Semantics heading</strong>
+      is available as an API in
+      <code translate="no" dir="ltr">LayoutModifier</code>
+      .
+    </li>
+    <li>
+      <strong>Arc direction support</strong>
+      The
+      <code translate="no" dir="ltr">ARC_DIRECTION_*</code>
+      consts are now exposed as public for use in
+      <code translate="no" dir="ltr">Arc</code>
+      /
+      <code translate="no" dir="ltr">ArcLine</code>
+      /
+      <code translate="no" dir="ltr">ArcText</code>
+      /
+      <code translate="no" dir="ltr">DashedArcLine</code>
+      elements.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <strong>Resource Comparison:</strong>
+      Optimized performance by implementing improved
+      <code translate="no" dir="ltr">hash</code>
+      and
+      <code translate="no" dir="ltr">equals</code>
+      methods for comparing resource types.
+    </li>
+    <li>Apply default content description to the single slot textButton.</li>
+    <li>Fix calculations for adjusting max lines in the renderer side.</li>
+  </ul>

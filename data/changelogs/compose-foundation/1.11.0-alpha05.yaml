@@ -1,0 +1,102 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.11.0-alpha05
+releaseDate: 2026-02-11
+#language=html
+changelogHtml: |
+  <h3 id="1.11.0-alpha05" data-text="Version 1.11.0-alpha05" tabindex="-1">Version 1.11.0-alpha05</h3>
+  <p>February 11, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.11.0-alpha05</code>
+    is released. Version 1.11.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c26c6f088b95903b7b9cd5e6f2092988f1e64dc3..2e98d140740558dc55710bde96311d2e0e8d5cfd/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">isNestedDraggablesTouchConflictFixEnabled</code>
+      to resolve nested draggable conflicts. We will favor vertical drags over horizontal drags more because UX-wise there's more freedom and uncertainty when a user performs a vertical gesture vs. a horizontal gesture. (
+      <a href="https://android-review.googlesource.com/#/q/I273c7a603dcbbd0fe302c7e4589343bbdae26bb9">I273c7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/252334353">b/252334353</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/269627294">b/269627294</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/363198504">b/363198504</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/442390269">b/442390269</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/419580124">b/419580124</a>
+      )
+    </li>
+    <li>
+      Adds support for trackpad gestures and conversion from trackpad input events to mouse. With this change, trackpad pointer events that control a cursor like on tablets or laptops will generally be reported as mouse pointers. Pan and scale gestures will also be reported with additional information available in the pointer event changes, with a new
+      <code translate="no" dir="ltr">PointerEventType.Pan</code>
+      and
+      <code translate="no" dir="ltr">PointerEventType.Scale</code>
+      indicating that these values will be set (
+      <a href="https://android-review.googlesource.com/#/q/Id071af573d5710d7d3aca73bd1c8037bdb0ea701">Id071a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/315527861">b/315527861</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/459831570">b/459831570</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">isDelayPressesUsingGestureConsumptionEnabled</code>
+      . When this flag is enabled, containers with drag gesture will delay press. This includes a behavior change for containers based off
+      <code translate="no" dir="ltr">Modifier.draggable</code>
+      which didn't delay press previously. (
+      <a href="https://android-review.googlesource.com/#/q/I53f242a2161ea4c540e44c615a20581075ac61a6">I53f24</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/203141462">b/203141462</a>
+      )
+    </li>
+    <li>
+      Removed the flag
+      <code translate="no" dir="ltr">isDetectTapGesturesImmediateCoroutineDispatchEnabled</code>
+      and deprecated flag
+      <code translate="no" dir="ltr">DetectTapGesturesEnableNewDispatchingBehavior</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I9bba3ed7a354147cb6f1cad4f1275a5ec6c1157d">I9bba3</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an
+      <code translate="no" dir="ltr">IndexOutOfBoundsException</code>
+      in
+      <code translate="no" dir="ltr">BasicTextField</code>
+      when using ``OutputTransformation and deleting text. (
+      <a href="https://android-review.googlesource.com/#/q/I20ee17de095ffb2c598267bd7b1450651d2ce1f1">I20ee1</a>
+      )
+    </li>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">GridTrackSize.Auto</code>
+      behavior. It now sizes tracks from
+      <code translate="no" dir="ltr">min-content</code>
+      up to
+      <code translate="no" dir="ltr">max-content</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ifa22e11e512ad779f99228b1ba9d0749369e34ac">Ifa22e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/477748472">b/477748472</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Add support for
+      <code translate="no" dir="ltr">NumPad</code>
+      movement keys (
+      <a href="https://android-review.googlesource.com/#/q/I1ff128370417cc7b837ae09a4f47521473cca698">I1ff12</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,108 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.11.0-alpha05
+releaseDate: 2026-02-11
+#language=html
+changelogHtml: |
+  <h3 id="1.11.0-alpha05" data-text="Version 1.11.0-alpha05" tabindex="-1">Version 1.11.0-alpha05</h3>
+  <p>February 11, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.11.0-alpha05</code>
+    is released. Version 1.11.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c26c6f088b95903b7b9cd5e6f2092988f1e64dc3..2e98d140740558dc55710bde96311d2e0e8d5cfd/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">AndroidComposeUiFlags.isSharedWindowInfoEnabled</code>
+      moves the
+      <code translate="no" dir="ltr">WindowInfo</code>
+      information to
+      <code translate="no" dir="ltr">ComposeViewContext</code>
+      . Disabling the flag leaves
+      <code translate="no" dir="ltr">WindowInfo</code>
+      controlled by
+      <code translate="no" dir="ltr">AndroidComposeView</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I3b364aecc1ff6966a5e3d7f3dc88281e40d26b18">I3b364</a>
+      )
+    </li>
+    <li>
+      Common structures within
+      <code translate="no" dir="ltr">ComposeView</code>
+      will be moved to the shared
+      <code translate="no" dir="ltr">ComposeViewContext</code>
+      . This is the first change that moves the
+      <code translate="no" dir="ltr">CoroutineContext</code>
+      to
+      <code translate="no" dir="ltr">ComposeViewContext</code>
+      . When
+      <code translate="no" dir="ltr">AndroidComposeUiFlags.isSharedComposeViewContextEnabled</code>
+      is true, values are automatically shared. When false, they are not shared. (
+      <a href="https://android-review.googlesource.com/#/q/I9364d1ce727c0ebbdad7aa29ae454bed0ae418c5">I9364d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/461566955">b/461566955</a>
+      )
+    </li>
+    <li>
+      Adds support for trackpad gestures and conversion from trackpad input events to mouse. With this change, trackpad pointer events that control a cursor like on tablets or laptops will generally be reported as mouse pointers, which improves behavior around pointer slop, scrolling, and hovering. Pan and scale gestures will also be reported with additional information available in the pointer event changes, with a new PointerEventType.Pan and PointerEventType.Scale indicating that these values will be set (
+      <a href="https://android-review.googlesource.com/#/q/Id071af573d5710d7d3aca73bd1c8037bdb0ea701">Id071a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/315527861">b/315527861</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/459831570">b/459831570</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Send
+      <code translate="no" dir="ltr">CONTENT_CHANGE_TYPE_CHECKED</code>
+      for Toggleable property change. (
+      <a href="https://android-review.googlesource.com/#/q/I6ac64bd51c781e596678ed33546de8a4dd1ddb31">I6ac64</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/476894689">b/476894689</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/474538004">b/474538004</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/475754416">b/475754416</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">androidx.compose.ui.graphics.NativePaint</code>
+      typealias is deprecated, use
+      <code translate="no" dir="ltr">android.graphics.Paint</code>
+      directly instead (
+      <a href="https://android-review.googlesource.com/#/q/I6303c742f80887649d1a77e837ab0ff93ddff212">I6303c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/477394763">b/477394763</a>
+      )
+    </li>
+    <li>
+      Replace
+      <code translate="no" dir="ltr">Paint.asFrameworkPaint()</code>
+      to
+      <code translate="no" dir="ltr">Paint.nativePaint</code>
+      extension to avoid exposing platform type into
+      <code translate="no" dir="ltr">commonMain</code>
+      sourceset via
+      <code translate="no" dir="ltr">typealias</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I6303c742f80887649d1a77e837ab0ff93ddff212">I6303c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/477394763">b/477394763</a>
+      )
+    </li>
+    <li>
+      Add support for
+      <code translate="no" dir="ltr">NumPad</code>
+      movement keys (
+      <a href="https://android-review.googlesource.com/#/q/I1ff128370417cc7b837ae09a4f47521473cca698">I1ff12</a>
+      )
+    </li>
+  </ul>

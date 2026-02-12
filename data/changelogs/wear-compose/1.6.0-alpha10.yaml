@@ -1,0 +1,168 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.6.0-alpha10
+releaseDate: 2026-02-11
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-alpha10" data-text="Version 1.6.0-alpha10" tabindex="-1">Version 1.6.0-alpha10</h3>
+  <p>February 11, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.6.0-alpha10</code>
+    is released. Version 1.6.0-alpha10 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c26c6f088b95903b7b9cd5e6f2092988f1e64dc3..cdf076c6abd0f3125cb0302756fcb77fe981ab7c/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">Modifier.responsiveVerticalPadding</code>
+      to
+      <code translate="no" dir="ltr">Modifier.minimumVerticalContentPadding</code>
+      , with padding parameters as Dp, instead of the
+      <code translate="no" dir="ltr">ResponsiveVerticalPadding</code>
+      interface. Moved recommended defaults from
+      <code translate="no" dir="ltr">ResponsiveVerticalPaddingDefaults</code>
+      into component specific defaults objects such as
+      <code translate="no" dir="ltr">ButtonDefaults</code>
+      ,
+      <code translate="no" dir="ltr">CardDefaults</code>
+      and so on (
+      <a href="https://android-review.googlesource.com/#/q/Icaab26777db438f177380afb83b7c989d8f59f2d">Icaab2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/426154225">b/426154225</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">WearComposeFoundationFlags.isTransformingLazyColumnClickableThresholdEnabled</code>
+      to control new functionality introduced for
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      , which now ignores clicks beyond a 20dp threshold at the top and bottom of the layout, to prevent accidental taps where the item is only partially visible. Also, updated the change to only intercept edge-item clicks on events that are within the touch slop, to avoid ignoring drag gestures. (
+      <a href="https://android-review.googlesource.com/#/q/I1ba28f4f8538b0eeae1baeaca3f8a0de1a08e1af">I1ba28</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/480910891">b/480910891</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">rememberAmbientModeManager</code>
+      now uses
+      <code translate="no" dir="ltr">LocalActivity</code>
+      in its implementation to obtain the current Activity, rather than taking the Activity as a parameter (
+      <a href="https://android-review.googlesource.com/#/q/Idf114816e579b3748d30f439264761b9fc93e40f">Idf114</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/473603258">b/473603258</a>
+      )
+    </li>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">AmbientMode</code>
+      to be non-exhaustive for extensibility (
+      <a href="https://android-review.googlesource.com/#/q/I92cc32e8d599ca61bfc4365ddd6eba1580c964c0">I92cc3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/473603258">b/473603258</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">rememberSwipeDismissableSceneStrategyState</code>
+      to remove the
+      <code translate="no" dir="ltr">swipeToDismissBoxState</code>
+      parameter, as that is an implementation detail for up to API 35 only (
+      <a href="https://android-review.googlesource.com/#/q/I5907c25f81d607f39a318f8469fa7d1f062c1998">I5907c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/476105162">b/476105162</a>
+      )
+    </li>
+    <li>
+      [TLC] Added
+      <code translate="no" dir="ltr">Modifier.responsiveVerticalPadding</code>
+      to
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      , enabling automatic content padding adjustments to align with Wear OS Material 3 design guidelines. (
+      <a href="https://android-review.googlesource.com/#/q/Ia7e73c79c53b104864b368e6d61e22586c18ce3f">Ia7e73</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/426154225">b/426154225</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      prefetching condition so that urgency is calculated based on the viewport edges without padding (
+      <a href="https://android-review.googlesource.com/#/q/I48d8504d45569752a56b622de4f69ea7a8d097f0">I48d85</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/476420552">b/476420552</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Picker</code>
+      now supports seamless transparency over custom backgrounds like gradients or images, by passing
+      <code translate="no" dir="ltr">Color.Unspecified</code>
+      as the Picker’s
+      <code translate="no" dir="ltr">gradientColor</code>
+      . For
+      <code translate="no" dir="ltr">TimePicker</code>
+      and
+      <code translate="no" dir="ltr">DatePicker</code>
+      , this effect can be achieved by locally overriding
+      <code translate="no" dir="ltr">MaterialTheme.colorScheme.background</code>
+      to
+      <code translate="no" dir="ltr">Color.Unspecified</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Icc476424cc830eed6abad5abecd2a934ecaa1619">Icc476</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/458429791">b/458429791</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/458429791">b/458429791</a>
+      )
+    </li>
+    <li>
+      Introduced a 20dp clickability threshold for
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      items at the top and bottom of the screen, to prevent accidental taps when items are largely hidden. (
+      <a href="https://android-review.googlesource.com/#/q/I2c9cb56f11ca884cbc3764aad51331770b1f8854">I2c9cb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/443285887">b/443285887</a>
+      )
+    </li>
+    <li>
+      Improved reduced motion handling in
+      <code translate="no" dir="ltr">OpenOnPhoneDialog</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib1d123ba5b1639299458d3b297974f3aca515509">Ib1d12</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/48558283">b/48558283</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">androidx.compose.ui.graphics.NativePaint</code>
+      typealias is deprecated, use
+      <code translate="no" dir="ltr">android.graphics.Paint</code>
+      directly instead. (
+      <a href="https://android-review.googlesource.com/#/q/I6303c742f80887649d1a77e837ab0ff93ddff212">I6303c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/477394763">b/477394763</a>
+      )
+    </li>
+    <li>
+      Replace
+      <code translate="no" dir="ltr">Paint.asFrameworkPaint()</code>
+      to
+      <code translate="no" dir="ltr">Paint.nativePaint</code>
+      extension to avoid exposing platform type into
+      <code translate="no" dir="ltr">commonMain</code>
+      sourceset via
+      <code translate="no" dir="ltr">typealias</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I6303c742f80887649d1a77e837ab0ff93ddff212">I6303c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/477394763">b/477394763</a>
+      )
+    </li>
+  </ul>
