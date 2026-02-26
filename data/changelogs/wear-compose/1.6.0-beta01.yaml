@@ -1,0 +1,154 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.6.0-beta01
+releaseDate: 2026-02-25
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-beta01" data-text="Version 1.6.0-beta01" tabindex="-1">Version 1.6.0-beta01</h3>
+  <p>February 25, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.6.0-beta01</code>
+    is released. Version 1.6.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cdf076c6abd0f3125cb0302756fcb77fe981ab7c..6e23fc0c137022098ae2d043778ffdc56402ba5e/wear/compose">these commits</a>
+    .
+  </p>
+  <p>The 1.6.0-beta01 release of Compose for Wear OS indicates that this release of the library is feature complete and the API is locked (except where marked as experimental). Wear Compose 1.6.0-beta01 includes the following new functionality:</p>
+  <ul>
+    <li>
+      Wear Compose Navigation3 library, which integrates with the Navigation 3 library’s
+      <code translate="no" dir="ltr">NavDisplay</code>
+      and
+      <code translate="no" dir="ltr">SceneStrategy</code>
+      components, adding Wear-specific swipe-to-dismiss logic using our new
+      <code translate="no" dir="ltr">SwipeDismissableSceneStrategy</code>
+      .
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      support for
+      <code translate="no" dir="ltr">reverseLayout</code>
+      , snapping using
+      <code translate="no" dir="ltr">TransformingLazyColumnDefaults.snapFlingBehavior</code>
+      and
+      <code translate="no" dir="ltr">Modifier.minimumVerticalContentPadding</code>
+      , which allows defining a preferred content padding for items in the list when they are at the top or bottom edges.
+    </li>
+    <li>
+      Added new overloads for
+      <code translate="no" dir="ltr">AlertDialog</code>
+      which use a
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      for consistency with scrolling in other Material3 screens.
+    </li>
+    <li>
+      Improved curved text rendering, particularly for cursive fonts, with the introduction of text-warping via the new
+      <code translate="no" dir="ltr">CurvedTextStyle</code>
+      parameter
+      <code translate="no" dir="ltr">warpOffset</code>
+      , which is turned on by default for API 34 onwards.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">LocalAmbientModeManager</code>
+      , a new
+      <code translate="no" dir="ltr">CompositionLocal</code>
+      that supports defining different UI and behavior for interactive and ambient modes.
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">TimePicker</code>
+      to support a new
+      <code translate="no" dir="ltr">MinutesSeconds</code>
+      type and include a new
+      <code translate="no" dir="ltr">initialSelection</code>
+      parameter to specify the initially selected time component.
+    </li>
+    <li>New overloads on Cards to provide non-clickable variants where the cards are presentational only and are not intended to respond to user clicks.</li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">LocalRippleConfiguration</code>
+      to provide control over ripple appearance.
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">snapSensitivity</code>
+      parameter for
+      <code translate="no" dir="ltr">RotaryScrollableDefaults.snapBehavior</code>
+      and
+      <code translate="no" dir="ltr">PagerScaffoldDefaults</code>
+      now includes the recommended default values for
+      <code translate="no" dir="ltr">SnapPositionalThreshold</code>
+      and
+      <code translate="no" dir="ltr">HighSnapPositionalThreshold</code>
+      for use with
+      <code translate="no" dir="ltr">PagerDefaults.snapFlingBehavior</code>
+      .
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Renamed recommended default values for
+      <code translate="no" dir="ltr">Modifier.minimumVerticalContentPadding</code>
+      from
+      <code translate="no" dir="ltr">minimumListVerticalContentPadding</code>
+      to
+      <code translate="no" dir="ltr">minimumVerticalListContentPadding</code>
+      to emphasize that this content padding refers to the list, and updated associated documentation. (
+      <a href="https://android-review.googlesource.com/#/q/I496cabbf46edeed0f448988f58f83c1beb52db00">I496ca</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/426154225">b/426154225</a>
+      )
+    </li>
+    <li>
+      Curved text now does warping by default, improving curved text rendering, especially for cursive fonts. (
+      <a href="https://android-review.googlesource.com/#/q/I6979d3f250fb7c3aa46173fd8d65d46189cbce3d">I6979d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/450526792">b/450526792</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/481617443">b/481617443</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix interaction between TLCs
+      <code translate="no" dir="ltr">animateItem</code>
+      and
+      <code translate="no" dir="ltr">minimumVerticalContentPadding</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia865c567bb306703810edd7d7c77c4aeda806a34">Ia865c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/483663045">b/483663045</a>
+      )
+    </li>
+    <li>
+      Warped offset for curved text is now only on by default for API 34 onwards, due to dependency on
+      <code translate="no" dir="ltr">PathIterator</code>
+      from the
+      <code translate="no" dir="ltr">androidx.graphics.path</code>
+      library which is unavailable for developer testing under Robolectric before API 34 (hence breaking existing developer tests). (
+      <a href="https://android-review.googlesource.com/#/q/Ie5bae9f6e721379e374f6aa59421998271db9f66">Ie5bae</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/484319336">b/484319336</a>
+      )
+    </li>
+    <li>
+      Make warped curved text more robust. (
+      <a href="https://android-review.googlesource.com/#/q/If2b349ca76d299d3a28b234ea37d2790bdc8b663">If2b34</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/483390353">b/483390353</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">ConfirmationDialogDefaults.SuccessIcon</code>
+      to ignore RTL layout direction so that the check mark is not reversed. (
+      <a href="https://android-review.googlesource.com/#/q/Ic6add6188923840823635367fdf6361010aac66e">Ic6add</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/481966029">b/481966029</a>
+      )
+    </li>
+  </ul>

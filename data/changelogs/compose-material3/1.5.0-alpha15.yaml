@@ -1,0 +1,217 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.5.0-alpha15
+releaseDate: 2026-02-25
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha15" data-text="Version 1.5.0-alpha15" tabindex="-1">Version 1.5.0-alpha15</h3>
+  <p>February 25, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.5.0-alpha15</code>
+    is released. Version 1.5.0-alpha15 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cdf076c6abd0f3125cb0302756fcb77fe981ab7c..6e23fc0c137022098ae2d043778ffdc56402ba5e/compose/material3">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Scrim component introduced for use alongside Modal components. (
+      <a href="https://android-review.googlesource.com/#/q/I2955549d37aa4a851db38265c562b8f7975c7541">I29555</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/455862212">b/455862212</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/372395682">b/372395682</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/375853129">b/375853129</a>
+      )
+    </li>
+    <li>
+      Introduces standalone static sheet component. (
+      <a href="https://android-review.googlesource.com/#/q/I0ef95ed8717bb1cb4ece596b8e6730026e082a95">I0ef95</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/455862212">b/455862212</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/350779977">b/350779977</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444176963">b/444176963</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/336349080">b/336349080</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">MaterialTheme</code>
+      has been refactored to use a single
+      <code translate="no" dir="ltr">CompositionLocal</code>
+      for theme data. Composition locals can now be accessed through
+      <code translate="no" dir="ltr">MaterialTheme.LocalMaterialTheme.current</code>
+      , or
+      <code translate="no" dir="ltr">currentValueOf(MaterialTheme.LocalMaterialTheme)</code>
+      in
+      <code translate="no" dir="ltr">CompositionLocalAccessorScope</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Idee2e8c3dcc0db95341a59c50a58b6718a4d5b93">Idee2e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/483676974">b/483676974</a>
+      )
+    </li>
+    <li>
+      Update default content padding of the expressive text button to correct specs. Also remove deprecation of
+      <code translate="no" dir="ltr">TextButtonContentPadding</code>
+      and
+      <code translate="no" dir="ltr">TextButtonWithIconContentPadding</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6728315f2e6df3550118201bae7a639985a71eb4">I67283</a>
+      )
+    </li>
+    <li>
+      Introduce parameter to disable backhandler from
+      <code translate="no" dir="ltr">BottomSheet</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Iff81e33d4b6a5753298d6cdc550a836993c1c1b4">Iff81e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/483763626">b/483763626</a>
+      )
+    </li>
+    <li>
+      Graduate motion scheme from experimental (
+      <a href="https://android-review.googlesource.com/#/q/If822f61b9496387e84900f9e39b586d8ffb33788">If822f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/484003769">b/484003769</a>
+      )
+    </li>
+    <li>
+      Added 'enabled' and 'threshold' parameters to
+      <code translate="no" dir="ltr">PullToRefreshBox</code>
+      in Material3. (
+      <a href="https://android-review.googlesource.com/#/q/I5610bd5380e75382dc6cb2f1596fc363ca2621aa">I5610b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/369044003">b/369044003</a>
+      )
+    </li>
+    <li>
+      Replace
+      <code translate="no" dir="ltr">horizontalSpacing</code>
+      with
+      <code translate="no" dir="ltr">horizontalArrangement</code>
+      in
+      <code translate="no" dir="ltr">FilterChip</code>
+      and
+      <code translate="no" dir="ltr">ElevatedFilterChip</code>
+      . Add
+      <code translate="no" dir="ltr">horizontalArrangement</code>
+      defaults to
+      <code translate="no" dir="ltr">FilterChipDefaults</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If3d6a9ee91fae7070f187e371f3317cbf4c750ca">If3d6a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/304853782">b/304853782</a>
+      )
+    </li>
+    <li>
+      Improved KDoc for
+      <code translate="no" dir="ltr">TopAppBarDefaults</code>
+      scroll behaviors to better explain usage with reversed and pre-scrolled content. (
+      <a href="https://android-review.googlesource.com/#/q/I247dd205b0fd7bd8e5aa1cc72a001b8c9cbd5f03">I247dd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/405129274">b/405129274</a>
+      )
+    </li>
+    <li>
+      Replace
+      <code translate="no" dir="ltr">horizontalSpacing</code>
+      parameter with
+      <code translate="no" dir="ltr">horizontalArrangmenet</code>
+      parameter. Add
+      <code translate="no" dir="ltr">horizontalArrangement</code>
+      defaults to
+      <code translate="no" dir="ltr">AssistChipDefaults</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I15cecb376a9024674fcebe18c7432fe0759c7bad">I15cec</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/304853782">b/304853782</a>
+      )
+    </li>
+    <li>
+      Add getter for
+      <code translate="no" dir="ltr">shouldUsePrecisionPointerComponentSizing</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I234cefcb6a0f3c82b15c5a5ca35daf09e6b33a32">I234ce</a>
+      )
+    </li>
+    <li>
+      Added overloads to
+      <code translate="no" dir="ltr">TopAppBarDefaults.enterAlwaysScrollBehavior</code>
+      and
+      <code translate="no" dir="ltr">TopAppBarDefaults.pinnedScrollBehavior</code>
+      that accept an
+      <code translate="no" dir="ltr">isAtTopState</code>
+      parameter. This allows for custom
+      <code translate="no" dir="ltr">at top state</code>
+      detection when using the scroll behaviors. (
+      <a href="https://android-review.googlesource.com/#/q/I785b977d3981b20a2158302f9b4a10ab52265722">I785b9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/405129274">b/405129274</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">contentPadding</code>
+      and
+      <code translate="no" dir="ltr">horizontalArrangement</code>
+      parameters to
+      <code translate="no" dir="ltr">InputChip</code>
+      and
+      <code translate="no" dir="ltr">ElevatedInputChip</code>
+      . Add
+      <code translate="no" dir="ltr">horizontalArrangement</code>
+      and
+      <code translate="no" dir="ltr">contentPadding</code>
+      defaults to
+      <code translate="no" dir="ltr">InputChipDefaults</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iae39c91a1227d3557b007eff2776cccc6642d661">Iae39c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/304853782">b/304853782</a>
+      )
+    </li>
+    <li>
+      Added precision pointer sizing and paddings for Buttons and deprecated obsolete
+      <code translate="no" dir="ltr">TextButtonContentPadding</code>
+      val. (
+      <a href="https://android-review.googlesource.com/#/q/I6d7b634f2ee907588c7ae055d5278477263bb8c9">I6d7b6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/479879803">b/479879803</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">rememberWithGapSearchBarState</code>
+      to be used with
+      <code translate="no" dir="ltr">ExpandedDockedSearchBarWithGap</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia336100f392864316472b9107f4ab019bf8950cb">Ia3361</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixes the issue shadows are not showing for levitated panes (
+      <a href="https://android-review.googlesource.com/#/q/Ie61088ab5a283291a0f16060ff935e421afbf6c3">Ie6108</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/470517507">b/470517507</a>
+      )
+    </li>
+    <li>
+      Update
+      <code translate="no" dir="ltr">TextButtons</code>
+      to have correct material3 paddings specs. In order to opt out and revert to the old behavior you should set
+      <code translate="no" dir="ltr">isTextButtonContentPaddingFixEnabled</code>
+      to false in your application. (
+      <a href="https://android-review.googlesource.com/#/q/I66c8e7f63fd431ab067d388aec4fd436c30e697a">I66c8e</a>
+      )
+    </li>
+  </ul>
