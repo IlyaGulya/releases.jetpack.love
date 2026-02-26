@@ -1,0 +1,102 @@
+libraryId: pdf
+groupId: androidx.pdf
+version: 1.0.0-alpha14
+releaseDate: 2026-02-25
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha14" data-text="Version 1.0.0-alpha14" tabindex="-1">Version 1.0.0-alpha14</h3>
+  <p>February 25, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.pdf:pdf-*:1.0.0-alpha14</code>
+    is released. Version 1.0.0-alpha14 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7a88bc76ceeb1bab5f6dc6f0c8a314230e5dde3b..c2de33678eded3b9c19c57db09706e737f17929d/pdf">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      External Hardware Interaction: Full support for keyboard shortcuts and mouse events is now available in the
+      <code translate="no" dir="ltr">PdfViewer</code>
+      library .
+      <ul>
+        <li>Keyboard Navigation &amp; Controls:</li>
+        <li>Zooming: Use Ctrl + + or Ctrl + = to zoom in, Ctrl + - to zoom out, and Ctrl + 0 to snap the document to "fit to width".</li>
+        <li>Scrolling: Standard arrow keys (D-pad) allow for scrolling up, down, left, and right, including jumping to the next or previous page when at boundaries.</li>
+        <li>Selection: Use Ctrl + C to quickly copy currently selected content.</li>
+        <li>Enhanced Mouse Support:</li>
+        <li>Scroll Wheel: Support for vertical and horizontal scrolling. Use Ctrl + Scroll Wheel to zoom the document relative to the mouse cursor position.</li>
+        <li>Selection: Click and drag with the primary mouse button to select text.</li>
+        <li>Form &amp; Widget Improvements:</li>
+        <li>Added a Custom choice option for Comboboxes.</li>
+        <li>The form widget edit callback now triggers for all edit text updates</li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Expose
+      <code translate="no" dir="ltr">PdfDocument</code>
+      from
+      <code translate="no" dir="ltr">PdfViewerFragment</code>
+      via
+      <code translate="no" dir="ltr">onDocumentLoadSuccess(pdfDocument)</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4b47d0634e2b16aaff6f1d39cfa3b0eb7a13f2c7">I4b47d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/481616017">b/481616017</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Avoid parceling Bitmap in
+      <code translate="no" dir="ltr">ImageSelection</code>
+      to prevent
+      <code translate="no" dir="ltr">RuntimeException</code>
+      when saving instance state (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/02faffa3a8d9b0e701c5c03d6ac65b17e2c3de5c">I07bab</a>
+      ).
+    </li>
+    <li>
+      Disable annotation features while PDF search is active to improve focus
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/2435c8283887ff3b5fe818c44d03f7fc079e2c87">Ia9866</a>
+      .
+    </li>
+    <li>
+      Ensure highlight start/finish requests are always processed (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/0b1f2838ec565e955f00ca98b53dbc303e2582a1">I9a863</a>
+      ).
+    </li>
+    <li>
+      Focus the selected color palette item or brush slider when opened (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/bb255a13875695bad1ded80cdb5a8393c09b79da">Ie7a75</a>
+      ).
+    </li>
+    <li>
+      Update form widget edit callback to trigger for all edit text updates (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/c3702092399de65254ec42688e3fb2a904975948">Icebe6</a>
+      ).
+    </li>
+    <li>
+      Fix discard dialog disappearing after configuration changes (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/19546683a3a273447300e20d023d815a7815bf89">I71a39</a>
+      ).
+    </li>
+    <li>
+      Fix drawing extending outside of page boundaries (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/e5349f14a0bc2876c075dd8af7b40ac7dccff769">I88bd5</a>
+      ).
+    </li>
+    <li>
+      Clear text selection when entering edit mode (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/5c6e35bb38d943f16262cfff924c099ab5d3be7d">I26fb9</a>
+      ).
+    </li>
+    <li>
+      Fix text widget not updated after tap on another widget (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/d597a5ab2231c7278e11087a555559a001f30761">I5dffc</a>
+      ).
+    </li>
+  </ul>

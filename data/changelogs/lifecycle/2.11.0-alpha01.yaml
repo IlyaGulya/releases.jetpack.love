@@ -1,0 +1,65 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.11.0-alpha01
+releaseDate: 2026-02-25
+#language=html
+changelogHtml: |
+  <h3 id="2.11.0-alpha01" data-text="Version 2.11.0-alpha01" tabindex="-1">Version 2.11.0-alpha01</h3>
+  <p>February 25, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.11.0-alpha01</code>
+    is released. Version 2.11.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ee621bea3237b1eab3c48eef4cf7ef7c7943b4bb..c640b9aa8e30b5db9ee258561ad1fc4bc947e69d/lifecycle">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Support all Kotlin Multiplatform (KMP) targets in ViewModel-Compose. Decouple owner resolution from
+      <code translate="no" dir="ltr">LocalView</code>
+      to allow platform hosts to provide a default
+      <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+      while maintaining
+      <code translate="no" dir="ltr">LocalView</code>
+      as a safe fallback on Android. (
+      <a href="https://android-review.googlesource.com/#/q/I09fab05e9ab9f8fb3a6fdbdf4247e5201710fe34">I09fab</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/434940570">b/434940570</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ic8526f7e8ab9ffe58997333808a93bec7f9f2380">Ic8526</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/478146897">b/478146897</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add a
+      <code translate="no" dir="ltr">toString</code>
+      implementation to
+      <code translate="no" dir="ltr">ViewModelStore</code>
+      that lists all stored keys to help streamline debugging. (
+      <a href="https://android-review.googlesource.com/#/q/I0a6f48651211c317fca47e1491837bde2e0f4e34">I0a6f4</a>
+      )
+    </li>
+    <li>
+      Add a default implementation for
+      <code translate="no" dir="ltr">HasDefaultViewModelProviderFactory.defaultViewModelProviderFactory</code>
+      , meaning you no longer need to override this property explicitly when implementing the interface. (
+      <a href="https://android-review.googlesource.com/#/q/Ia709580f9344ae5e77eabcc840a384c4bd516e1c">Ia7095</a>
+      )
+    </li>
+    <li>
+      Annotate
+      <code translate="no" dir="ltr">ViewModel.onCleared</code>
+      with
+      <code translate="no" dir="ltr">@EmptySuper</code>
+      to explicitly indicate that overriding methods do not need to call
+      <code translate="no" dir="ltr">super.onCleared()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I8c226596b028fd4bf39b9f440d047fdc82ff2eee">I8c226</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_210_4" data-text="Version 2.10" tabindex="-1">Version 2.10</h2>

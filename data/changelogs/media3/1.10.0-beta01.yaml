@@ -1,0 +1,208 @@
+libraryId: media3
+groupId: androidx.media3
+version: 1.10.0-beta01
+releaseDate: 2026-02-25
+#language=html
+changelogHtml: |
+  <h3 id="1.10.0-beta01" data-text="1.10.0-beta01" tabindex="-1">1.10.0-beta01</h3>
+  <p>February 25, 2026</p>
+  <p>
+    Version 1.10.0-beta01 contains the following
+    <a href="https://github.com/androidx/media/commits/1.10.0-beta01">commits</a>
+    .
+  </p>
+  <ul>
+    <li>
+      Common library:
+      <ul>
+        <li>
+          Add
+          <code translate="no" dir="ltr">Format.primaryTrackGroupId</code>
+          to identify the primary group of embedded
+          <code translate="no" dir="ltr">Format</code>
+          instances (
+          <a href="https://github.com/androidx/media/issues/294">#294</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      ExoPlayer:
+      <ul>
+        <li>Fix issue where ExoPlayer would not request delayed audio focus when playback is requested during phone calls.</li>
+        <li>
+          Fix bug where transitions from on-demand to live content may cause re-buffers at the end of the on-demand content (
+          <a href="https://github.com/androidx/media/issues/3052">#3052</a>
+          ).
+        </li>
+        <li>
+          Add support for Dolby Vision Profile 10 (
+          <a href="https://github.com/androidx/media/pull/2830">#2830</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Track selection:
+      <ul>
+        <li>
+          Change signature of
+          <code translate="no" dir="ltr">DefaultTrackSelector.selectAllTracks</code>
+          to include the output array as a parameter, pre-populated with track overrides.
+        </li>
+        <li>
+          Fix issue where embedded metadata tracks are selected irrespective of whether the corresponding primary track is selected (
+          <a href="https://github.com/androidx/media/issues/294">#294</a>
+          ).
+        </li>
+        <li>
+          Stabilize
+          <code translate="no" dir="ltr">TrackSelectionParameters</code>
+          options for
+          <code translate="no" dir="ltr">preferredVideoLanguages</code>
+          ,
+          <code translate="no" dir="ltr">preferredVideoLabels</code>
+          ,
+          <code translate="no" dir="ltr">preferredAudioLabels</code>
+          ,
+          <code translate="no" dir="ltr">preferredTextLabels</code>
+          and
+          <code translate="no" dir="ltr">selectTextByDefault</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      Extractors:
+      <ul>
+        <li>
+          MP4: Support files with large
+          <code translate="no" dir="ltr">uuid</code>
+          boxes before other boxes like
+          <code translate="no" dir="ltr">moov</code>
+          (
+          <a href="https://github.com/androidx/media/issues/3046">#3046</a>
+          ).
+        </li>
+        <li>MP4: Add support for Versatile Video Coding (VVC) tracks in MP4 containers.</li>
+      </ul>
+    </li>
+    <li>
+      Audio:
+      <ul>
+        <li>
+          Improve the retry logic of
+          <code translate="no" dir="ltr">AudioOutput</code>
+          initialization in
+          <code translate="no" dir="ltr">DefaultAudioSink</code>
+          (
+          <a href="https://github.com/androidx/media/issues/2905">#2905</a>
+          ).
+        </li>
+        <li>Attempt to match the output layout of the speakers (or Spatializer if applicable) when decoding IAMF, both with the IAMF extension and media codec decoders, supported by new fields and logic in AudioCapabilities and AudioCapabilitiesReceiver.</li>
+      </ul>
+    </li>
+    <li>
+      Metadata:
+      <ul>
+        <li>
+          Increase default count of metadata renderers to four to cover all potential metadata tracks published by HLS variants and renditions (
+          <a href="https://github.com/androidx/media/issues/3043">#3043</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Session:
+      <ul>
+        <li>
+          Fix issue where system UI button placement workaround negatively affects other UI surface like Android Auto or manufacturers not needing the workaround (
+          <a href="https://github.com/androidx/media/issues/3041">#3041</a>
+          ).
+        </li>
+        <li>
+          Fix issue where access to subscriptions was not synchronized (
+          <a href="https://github.com/androidx/media/issues/3056">#3056</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      UI:
+      <ul>
+        <li>
+          Add
+          <code translate="no" dir="ltr">Player</code>
+          Composable to
+          <code translate="no" dir="ltr">media3-ui-compose-material3</code>
+          which combines a
+          <code translate="no" dir="ltr">ContentFrame</code>
+          with customizable controls aligned to top, center, and bottom.
+        </li>
+      </ul>
+    </li>
+    <li>
+      HLS extension:
+      <ul>
+        <li>
+          Expose ID3 (EMSG) metadata track in audio renditions (
+          <a href="https://github.com/androidx/media/issues/3043">#3043</a>
+          ).
+        </li>
+        <li>
+          Allow location fallback upon encountering load errors, if redundant streams from different locations are available (
+          <a href="https://github.com/androidx/media/issues/1988">#1988</a>
+          ).
+        </li>
+        <li>
+          Fix X-SNAP behaviour for HLS interstitials to correctly calculate start and resumption position (
+          <a href="https://github.com/androidx/media/issues/3013">#3013</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      DASH extension:
+      <ul>
+        <li>
+          Fix issue where tracks with unaligned segment start times cause delays or missed samples at the beginning of playback (
+          <a href="https://github.com/androidx/media/issues/3057">#3057</a>
+          ).
+        </li>
+        <li>
+          Fix bug where timestamps of inband EMSG v0 metadata are not set correctly (
+          <a href="https://github.com/androidx/media/issues/3024">#3024</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Decoder extensions (FFmpeg, VP9, AV1, etc.):
+      <ul>
+        <li>
+          Add MPEG-H UI manager support to the MPEG-H decoder extension (
+          <a href="https://github.com/androidx/media/pull/3066">#3066</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Remove deprecated symbols:
+      <ul>
+        <li>
+          Remove
+          <code translate="no" dir="ltr">androidx.media3.extractor.metadata.flac.VorbisComment</code>
+          . Use
+          <code translate="no" dir="ltr">androidx.media3.extractor.metadata.vorbis.VorbisComment</code>
+          instead.
+        </li>
+        <li>
+          Remove
+          <code translate="no" dir="ltr">MediaSource.prepareSource(MediaSourceCaller, TransferListener)</code>
+          . Use
+          <code translate="no" dir="ltr">MediaSource.prepareSource(MediaSourceCaller, TransferListener, PlayerId)</code>
+          instead.
+        </li>
+      </ul>
+    </li>
+  </ul>
