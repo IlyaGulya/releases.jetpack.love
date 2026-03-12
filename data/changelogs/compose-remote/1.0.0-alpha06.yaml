@@ -1,0 +1,127 @@
+libraryId: compose-remote
+groupId: androidx.compose
+version: 1.0.0-alpha06
+releaseDate: 2026-03-11
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha06" data-text="Version 1.0.0-alpha06" tabindex="-1">Version 1.0.0-alpha06</h3>
+  <p>March 11, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.remote:remote-*:1.0.0-alpha06</code>
+    is released. Version 1.0.0-alpha06 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c129dd3005b507bbf2c535f70d7329ed14d6804b..1a508f033de883ba2853b9f9ae1853eec7010638/compose/remote">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Add a new experimental operation for
+      <code translate="no" dir="ltr">TextStyle</code>
+      .
+      <code translate="no" dir="ltr">TextStyle</code>
+      enables commonly used typography styling to be written to the document once, and reused by several text runs (
+      <a href="https://android-review.googlesource.com/#/q/Iee502480ea5a68e0021e777028f77230ee473d0c">bfc6487</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Expose
+      <code translate="no" dir="ltr">RemoteTextStyle</code>
+      merge (
+      <a href="https://android-review.googlesource.com/#/q/I971cef03b78c66e2cb9577b04081c0e878bd5315">I971ce</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/446824085">b/446824085</a>
+      )
+    </li>
+    <li>
+      Expose
+      <code translate="no" dir="ltr">RemotePainter</code>
+      as public API (
+      <a href="https://android-review.googlesource.com/#/q/I252c112a5379185b30116f523726941eacc23123">I252c1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/446824085">b/446824085</a>
+      )
+    </li>
+    <li>
+      Expose
+      <code translate="no" dir="ltr">Border/Clip</code>
+      Modifiers and
+      <code translate="no" dir="ltr">RemoteShape</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id26dd4c3ac5617ce391b71a8eb6a70c7712c30d7">Id26dd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/446824085">b/446824085</a>
+      )
+    </li>
+    <li>
+      Expose
+      <code translate="no" dir="ltr">RemoteColor</code>
+      APIs in
+      <code translate="no" dir="ltr">remote-creation-compose</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I4ab002dc1de755cb3284ef0fe1f2c047d605bb9d">I4ab00</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/446824085">b/446824085</a>
+      )
+    </li>
+    <li>
+      Expose
+      <code translate="no" dir="ltr">RemoteText</code>
+      API (
+      <a href="https://android-review.googlesource.com/#/q/I6b019c35f925af55d13ea32f7cc6e34ee19388e0">I6b019</a>
+      )
+    </li>
+    <li>
+      Expose
+      <code translate="no" dir="ltr">RemoteImage</code>
+      API (
+      <a href="https://android-review.googlesource.com/#/q/Ided3150fdcf6fada8f0f9e019421a733421be30f">Ided31</a>
+      )
+    </li>
+    <li>
+      Expose
+      <code translate="no" dir="ltr">RemoteBoolean</code>
+      ,
+      <code translate="no" dir="ltr">RemoteString</code>
+      , and
+      <code translate="no" dir="ltr">RemoteFloat</code>
+      APIs (
+      <a href="https://android-review.googlesource.com/#/q/Id9ee6a32db042b4dfde15e26bde8fd333488e2e6">Id9ee6</a>
+      )
+    </li>
+    <li>
+      Remote Composable from
+      <code translate="no" dir="ltr">WidthIn</code>
+      annotation (
+      <a href="https://android-review.googlesource.com/#/q/I8078494aa5de54d000d97f9b40e076c72454ac56">I80784</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Moves libraries to use Java 11 target. This means produced bytecode will be Java 11 (class file version 55) and might require desugaring to use the library (
+      <a href="https://android-review.googlesource.com/#/q/If4c2a6fdda1278f42ea080fa365e8b437b2c2ae6">If4c2a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/457821470">b/457821470</a>
+      )
+      <ul>
+        <li>
+          Ensure length and textlookup update correctly. Previously the length of
+          <code translate="no" dir="ltr">RemoteStrings</code>
+          would be calculated on the first frame, and not updated afterwards (
+          <a href="https://android-review.googlesource.com/#/q/I04122ee502170ae46aee4b83cbe4aa5669fe14a1">e49cb53</a>
+          )
+        </li>
+        <li>
+          Support
+          <code translate="no" dir="ltr">TextFromFloat</code>
+          for numbers with large fractional components. Previously large "digitsAfter" values could result in the float evaluating to 0 (
+          <a href="https://android-review.googlesource.com/#/q/Ib4f9819a138824a4dc88b524f32bbc1d152da78b">5080bc54</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>

@@ -1,0 +1,132 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.11.0-alpha02
+releaseDate: 2026-03-11
+#language=html
+changelogHtml: |
+  <h3 id="2.11.0-alpha02" data-text="Version 2.11.0-alpha02" tabindex="-1">Version 2.11.0-alpha02</h3>
+  <p>March 11, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.11.0-alpha02</code>
+    is released. Version 2.11.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c640b9aa8e30b5db9ee258561ad1fc4bc947e69d..a15c668d4bb2e00cfa8ed1af96895a84c3e7e2d5/lifecycle">these commits</a>
+    .
+  </p>
+  <p><strong>Scoped ViewModels</strong></p>
+  <ul>
+    <li>
+      <p>
+        This release introduces APIs to create scoped
+        <code translate="no" dir="ltr">ViewModelStore</code>
+        instances in Compose. This allows
+        <code translate="no" dir="ltr">ViewModels</code>
+        to be tied to specific UI scopes (such as individual
+        <code translate="no" dir="ltr">Pager</code>
+        pages or
+        <code translate="no" dir="ltr">LazyList</code>
+        items). These
+        <code translate="no" dir="ltr">ViewModels</code>
+        survive configuration changes and are automatically cleared when their corresponding Composable is permanently removed from the hierarchy.
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-c1">// Hoist the parent provider outside the Pager.</span>
+  <span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">provider</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">rememberViewModelStoreProvider</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">pagerState</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">rememberPagerState</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">pageCount</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-m">5</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">})</span>
+
+  <span class="devsite-syntax-n">HorizontalPager</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">state</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">pagerState</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">page</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// Create an owner scoped to the current page.</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">storeOwner</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">rememberViewModelStoreOwner</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">provider</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">key</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">page</span><span class="devsite-syntax-p">)</span>
+
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// Provide the scoped owner to this composition.</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">CompositionLocalProvider</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">LocalViewModelStoreOwner</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">provides</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">storeOwner</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-c1">// ViewModel is now scoped specifically to this page.</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">viewModel</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">PageViewModel</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">viewModel</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+  </ul>
+  <p>
+    Note that
+    <code translate="no" dir="ltr">ViewModelStoreProvider</code>
+    is available outside of Compose and can be used with Activities, Fragments and/or Views.
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Add support for all KMP targets to ViewModel Navigation3. (
+      <a href="https://android-review.googlesource.com/#/q/I60fa5d3ddd456c9834038da562c2c7b367702d65">I60fa5</a>
+      )
+    </li>
+    <li>
+      Add factory functions for
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      ,
+      <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+      , and
+      <code translate="no" dir="ltr">SavedStateRegistryOwner</code>
+      to reduce boilerplate when composing custom owner components. (
+      <a href="https://android-review.googlesource.com/#/q/I9682c335efa683b00f36d4e4423780d45a33f320">I9682c</a>
+      )
+    </li>
+    <li>
+      Add a lambda-based
+      <code translate="no" dir="ltr">Lifecycle.addObserver</code>
+      extension function to allow observing lifecycle events without instantiating an anonymous object. (
+      <a href="https://android-review.googlesource.com/#/q/I94f384c239eef10153952b6364d8ba1ed6324197">I94f38</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">defaultViewModelProviderFactory</code>
+      and
+      <code translate="no" dir="ltr">defaultViewModelCreationExtras</code>
+      extensions to
+      <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+      . These provide safe access to defaults without requiring manual type checks against
+      <code translate="no" dir="ltr">HasDefaultViewModelProviderFactory</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ifa83de66169a63ca6edb8bd453018f3021fa2a0d">Ifa83d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">rememberViewModelStoreOwner</code>
+      to easily create scoped
+      <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+      s in Compose. This function returns an owner that is tied to the Composable's lifecycle, automatically clearing its ViewModels when the Composable is removed from the UI. (
+      <a href="https://android-review.googlesource.com/#/q/I2a15b678b1c2996d53316dd6b68e383c03039f61">I2a15b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/165642391">b/165642391</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">rememberViewModelStoreProvider</code>
+      to allow creating scoped
+      <code translate="no" dir="ltr">ViewModelStore</code>
+      instances in Compose. This function links a child store to a parent owner, ensuring ViewModels survive configuration changes while automatically clearing them when the Composable is removed from the hierarchy. (
+      <a href="https://android-review.googlesource.com/#/q/I0f57a493f15eefd5f02cbc5cc3086dffe21fc1d2">I0f57a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/165642391">b/165642391</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">ViewModelStoreProvider</code>
+      to manage scoped
+      <code translate="no" dir="ltr">ViewModelStore</code>
+      instances. This class enables the creation of child scopes that survive configuration changes but can be independently cleared. It also provides
+      <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+      wrappers that inherit default factories and creation extras from the parent. (
+      <a href="https://android-review.googlesource.com/#/q/I87f4f0f3e78e131a1a68b170304824c83c524536">I87f4f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/434651920">b/434651920</a>
+      )
+    </li>
+  </ul>
