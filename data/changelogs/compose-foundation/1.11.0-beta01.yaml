@@ -1,0 +1,163 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.11.0-beta01
+releaseDate: 2026-03-11
+#language=html
+changelogHtml: |
+  <h3 id="1.11.0-beta01" data-text="Version 1.11.0-beta01" tabindex="-1">Version 1.11.0-beta01</h3>
+  <p>March 11, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.11.0-beta01</code>
+    is released. Version 1.11.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6e23fc0c137022098ae2d043778ffdc56402ba5e..a15c668d4bb2e00cfa8ed1af96895a84c3e7e2d5/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Optimized
+      <code translate="no" dir="ltr">BasicTextField</code>
+      's internal min size calculations. These are controlled by
+      <code translate="no" dir="ltr">ComposeFoundationFlags#isBasicTextFieldMinSizeOptimizationEnabled</code>
+      , should you need to disable them. (
+      <a href="https://android-review.googlesource.com/#/q/I70ade2488b5f1add0d22fa359ab5b850a7bfa16f">I70ade</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">rememberUpdatedStyleState</code>
+      which is part of the experimental Style API.
+      <code translate="no" dir="ltr">rememberUpdated</code>
+      should be used when createing instances of
+      <code translate="no" dir="ltr">StyleState</code>
+      when parameters of the composable component (such as
+      <code translate="no" dir="ltr">enabled</code>
+      ) are copied into the style state (
+      <a href="https://android-review.googlesource.com/#/q/Idf7ffd2c21f089f112b8d9c17a7d9b64a0bcb85b">Idf7ff</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/485510967">b/485510967</a>
+      )
+    </li>
+    <li>
+      Renames
+      <code translate="no" dir="ltr">PointerInputChange</code>
+      and
+      <code translate="no" dir="ltr">HistoricalChange</code>
+      properties for retrieving scale and pan values. (
+      <a href="https://android-review.googlesource.com/#/q/I989a80bdac8c64ce1faacc04bc9ff560fcd963e3">I989a8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/481333653">b/481333653</a>
+      )
+    </li>
+    <li>
+      Adds more functionality for trackpad testing APIs, to simulate different curves and inputs for a trackpad gesture. (
+      <a href="https://android-review.googlesource.com/#/q/I290fb4dea339278201099d0192a7f617b0aaeed0">I290fb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/473603145">b/473603145</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/479213358">b/479213358</a>
+      )
+    </li>
+    <li>
+      Splits the new
+      <code translate="no" dir="ltr">PointerEventType.Pan</code>
+      and into
+      <code translate="no" dir="ltr">PointerEventType.PanStart</code>
+      ,
+      <code translate="no" dir="ltr">PointerEventType.PanMove</code>
+      and
+      <code translate="no" dir="ltr">PointerEventType.PanEnd</code>
+      . Similarly,
+      <code translate="no" dir="ltr">PointerEventType.Scale</code>
+      is split into
+      <code translate="no" dir="ltr">PointerEventType.ScaleStart</code>
+      ,
+      <code translate="no" dir="ltr">PointerEventType.ScaleChange</code>
+      and
+      <code translate="no" dir="ltr">PointerEventType.ScaleEnd</code>
+      . This split allows passing through additional information about the start and end of platform-interpreted pan and scale gestures, which then allows pointer input handlers in Compose to use this information to detect events appropriately, and especially know when a pan or scale is done. (
+      <a href="https://android-review.googlesource.com/#/q/I4daf682c6cb3624bdbe935115a60fdb9edca19eb">I4daf6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/479285849">b/479285849</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/481333653">b/481333653</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">constraints</code>
+      to
+      <code translate="no" dir="ltr">GridConfigurationScope</code>
+      to allow defining grid tracks based on the available size. (
+      <a href="https://android-review.googlesource.com/#/q/I80a4176b781c6d5fdae07b02a663f25f3fae7c1b">I80a41</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/481205205">b/481205205</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/481205205">b/481205205</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">FlexBox</code>
+      DSL now uses functions (e.g., grow(1f)) instead of properties (e.g., grow = 1f) for configuration within
+      <code translate="no" dir="ltr">FlexBoxConfig</code>
+      and Modifier.flex. (
+      <a href="https://android-review.googlesource.com/#/q/I8dbae079f930c57307ef90970323c31015dca1cc">I8dbae</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/475491619">b/475491619</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a bug where
+      <code translate="no" dir="ltr">OutputTransformation</code>
+      causes duplicate character insertion on some IMEs. (
+      <a href="https://android-review.googlesource.com/#/q/I9fdc0a0b7e74197b0141c49bb8750d59d8b956d3">I9fdc0</a>
+      )
+    </li>
+    <li>
+      Adds fling support to trackpad scrolling gestures (
+      <a href="https://android-review.googlesource.com/#/q/I55f8a17d6c2578003c20f263ae459acfc155406a">I55f8a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/479285849">b/479285849</a>
+      )
+    </li>
+    <li>
+      Add benchmarks for the experimental Style API (
+      <a href="https://android-review.googlesource.com/#/q/I67437ed15c8a32839014cdf2a49b86a9a4f2fa73">I67437</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Add a
+      <code translate="no" dir="ltr">InputTextSuggestionState</code>
+      property to help identify the different states a transliteration input can be in when text replacement suggestions are available. Also introduces
+      <code translate="no" dir="ltr">TextCompositionRange</code>
+      to track the range of the current transliteration text composition range; a null value indicates no composition in place. (
+      <a href="https://android-review.googlesource.com/#/q/I7a67fc9413c1b856af1c8a41ff25cbc0648c5e97">I7a67f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/476472318">b/476472318</a>
+      )
+    </li>
+    <li>
+      Added a new overload to
+      <code translate="no" dir="ltr">BasicTooltipBox</code>
+      that allows configuring
+      <code translate="no" dir="ltr">propagateMinConstraints</code>
+      , similar to Box's parameter with the same name. This allows passing the minimum constraints directly to the children of the
+      <code translate="no" dir="ltr">BasicTooltipBox</code>
+      , without them being relaxed by
+      <code translate="no" dir="ltr">BasicTooltipBox</code>
+      . Thanks Steven Schoen! (
+      <a href="https://android-review.googlesource.com/#/q/Ib145f4c9698cc6aec344235e3e03df494ff02409">Ib145f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/467532639">b/467532639</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/301605744">b/301605744</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,73 @@
+libraryId: savedstate
+groupId: androidx.savedstate
+version: 1.5.0-alpha01
+releaseDate: 2026-03-11
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha01" data-text="Version 1.5.0-alpha01" tabindex="-1">Version 1.5.0-alpha01</h3>
+  <p>March 11, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.savedstate:savedstate-*:1.5.0-alpha01</code>
+    is released. Version 1.5.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/56090e32a2b7028588a6dd0c73d706c6dd8dd1ee..1a508f033de883ba2853b9f9ae1853eec7010638/savedstate">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Enable generic serialization for
+      <code translate="no" dir="ltr">SavedState</code>
+      objects, allowing them to be encoded and decoded using standard formats like CBOR or JSON across all platforms. (
+      <a href="https://android-review.googlesource.com/#/q/Iafda41cf33e694b72f38acf2dfaf34d156b73709">Iafda4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/425919375">b/425919375</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">putKotlinSerializable</code>
+      and
+      <code translate="no" dir="ltr">getKotlinSerializable</code>
+      extension functions to
+      <code translate="no" dir="ltr">SavedStateWriter</code>
+      and
+      <code translate="no" dir="ltr">SavedStateReader</code>
+      to allow directly storing and retrieving Kotlin Serializable objects using keys, streamlining the integration with
+      <code translate="no" dir="ltr">SavedState</code>
+      APIs. (
+      <a href="https://android-review.googlesource.com/#/q/Iba02ed1a48285a26dd5910b98849175bbf11e8cf">Iba02e</a>
+      )
+    </li>
+    <li>
+      Add factory functions for
+      <code translate="no" dir="ltr">LifecycleOwner</code>
+      ,
+      <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+      , and
+      <code translate="no" dir="ltr">SavedStateRegistryOwner</code>
+      to reduce boilerplate when composing custom owner components. (
+      <a href="https://android-review.googlesource.com/#/q/I9682c335efa683b00f36d4e4423780d45a33f320">I9682c</a>
+      )
+    </li>
+    <li>
+      Enable saving and restoring
+      <code translate="no" dir="ltr">SnapshotStateSet</code>
+      (created via
+      <code translate="no" dir="ltr">mutableStateSetOf()</code>
+      ) with
+      <code translate="no" dir="ltr">rememberSerializable</code>
+      . You can now use
+      <code translate="no" dir="ltr">SnapshotStateSet</code>
+      in
+      <code translate="no" dir="ltr">rememberSerializable</code>
+      without requiring a custom saver. (
+      <a href="https://android-review.googlesource.com/#/q/I9a4ed31c263ad4f66f6510acb20bec559905612e">I9a4ed</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/449498367">b/449498367</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_14_2" data-text="Version 1.4" tabindex="-1">Version 1.4</h2>

@@ -1,0 +1,132 @@
+libraryId: paging
+groupId: androidx.paging
+version: 3.5.0-alpha01
+releaseDate: 2026-03-11
+#language=html
+changelogHtml: |
+  <h3 id="3.5.0-alpha01" data-text="Version 3.5.0-alpha01" tabindex="-1">Version 3.5.0-alpha01</h3>
+  <p>March 11, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.paging:paging-*:3.5.0-alpha01</code>
+    is released. Version 3.5.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/302478513a01447578462b168226f9de5a26ed10..1a508f033de883ba2853b9f9ae1853eec7010638/paging">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>
+        The
+        <code translate="no" dir="ltr">paging-common</code>
+        artifact now contains a new
+        <code translate="no" dir="ltr">asState</code>
+        flow operator on
+        <code translate="no" dir="ltr">Flow&lt;PagingData&gt;</code>
+        to convert it into a
+        <code translate="no" dir="ltr">Flow&lt;ItemSnapshotList&gt;</code>
+        . This unlocks capabilities such as:
+      </p>
+
+      <ul>
+        <li>
+          combine Flow of
+          <code translate="no" dir="ltr">ItemSnapshotList</code>
+          with other data sources
+        </li>
+        <li>
+          share flow with multiple collectors without
+          <code translate="no" dir="ltr">cachedIn</code>
+        </li>
+        <li>cache paged data locally</li>
+        <li>modify paged data in memory</li>
+        <li>expose paged data as part of a UI state</li>
+      </ul>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-c1">// In your ViewModel</span>
+  <span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">pager</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Pager</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">pagingConfig</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">pagingSourceFactory</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">pagerFlow</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">pager</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">flow</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">asState</span><span class="devsite-syntax-p">()</span>
+
+  <span class="devsite-syntax-c1">// alterantively convert the flow to a SharedFlow</span>
+  <span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">pagerFlow</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">pager</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">flow</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">asState</span><span class="devsite-syntax-p">().</span><span class="devsite-syntax-na">stateIn</span><span class="devsite-syntax-p">()</span>
+
+  <span class="devsite-syntax-c1">// In presenter layer</span>
+  <span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">snapshotFlow</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">viewModel</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">pagerFlow</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">collectAsStateWithLifecycle</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">initialList</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">snapshot</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">itemsFlow</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">value</span>
+
+  <span class="devsite-syntax-n">LazyColumn</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-n">items</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">items</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">snapshot</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">items</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">...</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        The
+        <code translate="no" dir="ltr">paging-common</code>
+        artifact has also added
+        <code translate="no" dir="ltr">Pager.append</code>
+        and
+        <code translate="no" dir="ltr">Pager.prepend</code>
+        APIs to manually trigger loads at either edge of loaded items.
+      </p>
+
+      <ul>
+        <li>
+          When used with
+          <code translate="no" dir="ltr">paging-runtime</code>
+          or
+          <code translate="no" dir="ltr">paging-compose</code>
+          , provides an alternative to load more data besides scrolling
+        </li>
+        <li>
+          When used with the new
+          <code translate="no" dir="ltr">asState</code>
+          API, it is the only way to load more data
+        </li>
+      </ul>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-n">LazyColumn</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-n">item</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">       </span><span class="devsite-syntax-cm">/**</span>
+  <span class="devsite-syntax-cm">       * Load more items when users scroll near the top of loaded items.</span>
+  <span class="devsite-syntax-cm">       */</span>
+  <span class="devsite-syntax-w">       </span><span class="devsite-syntax-n">LaunchedEffect</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">viewModel</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">viewModel</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">prepend</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-n">items</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">snapshot</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">items</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">item</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;<span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Text</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"Item: </span><span class="devsite-syntax-si">$</span><span class="devsite-syntax-n">item</span><span class="devsite-syntax-s">"</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-n">item</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-cm">/**</span>
+  <span class="devsite-syntax-cm">        * Load more items when users scroll near the bottom of loaded items.</span>
+  <span class="devsite-syntax-cm">        */</span>
+  <span class="devsite-syntax-w">      </span><span class="devsite-syntax-n">LaunchedEffect</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">viewModel</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">viewModel</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">append</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">Pager.refresh</code>
+        and
+        <code translate="no" dir="ltr">Pager.retry</code>
+        to recover from load errors when using
+        <code translate="no" dir="ltr">asState</code>
+        API. See
+        <a href="https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:paging/samples/src/main/java/androidx/paging/samples/PagerAsStateSamples.kt?q=pagerasstatesample">this document</a>
+        for more sample usages of the new APIs. (
+        <a href="https://android-review.googlesource.com/#/q/I1e1e9544dd3786b9b778daed2995db04734defdf">I1e1e9</a>
+        ,
+        <a href="https://android-review.googlesource.com/#/q/If3c8768f87a35e6271479b853b637fa60520bd9b">If3c87</a>
+        ,
+        <a href="https://android-review.googlesource.com/#/q/Idbd4853898c0c3d6199914c8c0637b97e337c1f0">Idbd48</a>
+        ,
+        <a href="https://android-review.googlesource.com/#/q/Id1e1d4de0a64ffa6297fa9e6d9901a5cacfaad2e">Id1e1d</a>
+        ,
+        <a href="https://android-review.googlesource.com/#/q/I816febd0a51413c9e8102f9c32cf8dc4dc67892f">I816fe</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <h2 id="version_34_2" data-text="Version 3.4" tabindex="-1">Version 3.4</h2>

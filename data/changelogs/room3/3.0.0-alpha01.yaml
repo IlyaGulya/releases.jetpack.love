@@ -1,0 +1,442 @@
+libraryId: room3
+groupId: androidx.room3
+version: 3.0.0-alpha01
+releaseDate: 2026-03-11
+#language=html
+changelogHtml: |
+  <h3 id="3.0.0-alpha01" data-text="Version 3.0.0-alpha01" tabindex="-1">Version 3.0.0-alpha01</h3>
+  <p>March 11, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room3:room3-*:3.0.0-alpha01</code>
+    is released.
+  </p>
+  <p>
+    Room 3.0 (package
+    <code translate="no" dir="ltr">androidx.room3</code>
+    ) is a major version update of Room 2.x package (
+    <code translate="no" dir="ltr">androidx.room</code>
+    ) that focuses on Kotlin Multiplatform (KMP).
+  </p>
+  <p>The core annotation APIs are kept the same along with the main components:</p>
+  <ul>
+    <li>
+      An abstract class that extends
+      <code translate="no" dir="ltr">androidx.room3.RoomDatabase</code>
+      and is annotated with
+      <code translate="no" dir="ltr">@Database</code>
+      is the entry point for Room's annotation processor.
+    </li>
+    <li>
+      The database declaration has one or more data classes describing the database schema and are annotated with
+      <code translate="no" dir="ltr">@Entity</code>
+      .
+    </li>
+    <li>
+      Database operations are defined in
+      <code translate="no" dir="ltr">@Dao</code>
+      declarations that contains query functions whose SQL statements are defined via the
+      <code translate="no" dir="ltr">@Query</code>
+      annotation.
+    </li>
+    <li>
+      At runtime, the database implementation can be obtained via a
+      <code translate="no" dir="ltr">RoomDatabase.Builder</code>
+      which is also used to configure the database.
+    </li>
+  </ul>
+  <p>
+    Most of the documentation in the
+    <a href="https://developer.android.com/training/data-storage/room">Save data in a local database using Room</a>
+    guide is still relevant to Room 3.0.
+  </p>
+  <p>The major breaking differences between Room 2.x are as follows:</p>
+  <ul>
+    <li>
+      New package,
+      <code translate="no" dir="ltr">androidx.room3</code>
+      .
+    </li>
+    <li>
+      SupportSQLite APIs are no longer supported, unless you are using the
+      <code translate="no" dir="ltr">androidx.room3:room3-sqlite-wrapper</code>
+      .
+    </li>
+    <li>All database operations are now Coroutine APIs based.</li>
+    <li>Kotlin code generation only.</li>
+    <li>Kotlin Symbol Processing (KSP) is required.</li>
+  </ul>
+  <p>Along with breaking changes, Room 3.0 brings in new functionality compared to 2.x:</p>
+  <ul>
+    <li>JS and WasmJS Support</li>
+    <li>Custom DAO Return Types</li>
+  </ul>
+  <p><strong>New Package</strong></p>
+  <p>
+    To prevent compatibility issues with existing Room 2.x implementations and for libraries with transitive dependencies to Room (for example, WorkManager), Room 3.0 resides in a new package, which means it also has a new maven group and artifact ids. For example,
+    <code translate="no" dir="ltr">androidx.room:room-runtime</code>
+    has become
+    <code translate="no" dir="ltr">androidx.room3:room3-runtime</code>
+    and classes such as
+    <code translate="no" dir="ltr">androidx.room.RoomDatabase</code>
+    will now be located at
+    <code translate="no" dir="ltr">androidx.room3.RoomDatabase</code>
+    .
+  </p>
+  <p><strong>No SupportSQLite APIs</strong></p>
+  <p>
+    Room 3.0 is fully backed by the
+    <a href="https://developer.android.com/kotlin/multiplatform/sqlite#sqlite-driver">SQLiteDriver APIs</a>
+    and no longer references
+    <code translate="no" dir="ltr">SupportSQLite</code>
+    types such as
+    <code translate="no" dir="ltr">SupportSQLiteDatabase</code>
+    or Android types such as
+    <code translate="no" dir="ltr">Cursor</code>
+    . This is the most significant change between Room 3.0 and 2.x since the
+    <code translate="no" dir="ltr">RoomDatabase</code>
+    APIs that mirrored
+    <code translate="no" dir="ltr">SupportSQLiteDatabase</code>
+    along with the API to get a
+    <code translate="no" dir="ltr">SupportSQLiteOpenHelper</code>
+    have been removed. A
+    <code translate="no" dir="ltr">SQLiteDriver</code>
+    is now
+    <em>required</em>
+    to build a
+    <code translate="no" dir="ltr">RoomDatabase</code>
+    .
+  </p>
+  <p>For example, APIs for direct database operations are replaced by driver equivalents:</p>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-c1">// Room 2.x</span>
+  <span class="devsite-syntax-n">roomDatabase</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">runInTransaction</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">...</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+
+  <span class="devsite-syntax-c1">// Room 3.x</span>
+  <span class="devsite-syntax-n">roomDatabase</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">withWriteTransaction</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">...</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  </code></pre>
+  </devsite-code>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-c1">// Room 2.x</span>
+  <span class="devsite-syntax-n">roomDatabase</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">query</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"SELECT * FROM Song"</span><span class="devsite-syntax-p">).</span><span class="devsite-syntax-na">use</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">cursor</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;<span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">...</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+
+  <span class="devsite-syntax-c1">// Room 3.x</span>
+  <span class="devsite-syntax-n">roomDatabase</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">useReaderConnection</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">connection</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">connection</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">usePrepared</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"SELECT * FROM Song"</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">stmt</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;<span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">...</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+  </devsite-code>
+  <p>
+    Callback APIs that had as argument a
+    <code translate="no" dir="ltr">SupportSQLiteDatabase</code>
+    have also been replaced by their equivalent API that has a
+    <code translate="no" dir="ltr">SQLiteConnection</code>
+    as argument. These are migrations callback functions such as
+    <code translate="no" dir="ltr">Migration.onMigrate()</code>
+    and
+    <code translate="no" dir="ltr">AutoMigrationSpec.onPostMigrate()</code>
+    along with database callbacks such as
+    <code translate="no" dir="ltr">RoomDatabase.Callback.onCreate()</code>
+    ,
+    <code translate="no" dir="ltr">RoomDatabase.Callback.onOpen()</code>
+    , etc.
+  </p>
+  <p>
+    If Room was being used in a KMP project, then migrating to 3.0 is simpler as it mostly involves updating import references, otherwise the same migration strategy from Room in Android-only to KMP applies, see the
+    <a href="https://developer.android.com/kotlin/multiplatform/room#migrate">Room KMP Migration Guide</a>
+    .
+  </p>
+  <p><strong>SupportSQLite Wrapper</strong></p>
+  <p>
+    Room 3.x preserves the SupportSQLite wrapper created in 2.x to ease migrations and is now located in a new artifact
+    <code translate="no" dir="ltr">androidx.room3:room3-sqlite-wrapper</code>
+    . The compatibility API allows you to convert a
+    <code translate="no" dir="ltr">RoomDatabase</code>
+    into a
+    <code translate="no" dir="ltr">SupportSQLiteDatabase</code>
+    . Invocations of
+    <code translate="no" dir="ltr">roomDatabase.openHelper.writableDatabase</code>
+    can be replaced by
+    <code translate="no" dir="ltr">roomDatabase.getSupportWrapper()</code>
+    .
+  </p>
+  <p><strong>Kotlin and Coroutines First</strong></p>
+  <p>To better evolve the library, Room 3.0 only generates Kotlin code and is only a Kotlin Symbol Processor (KSP). Compared to Room 2.x there is no Java code generation and configuration of annotation processor via KAPT or JavaAP is no longer possible in Room 3.0. Note that KSP is able to process Java sources and the Room compiler will generate code for database, entities or DAOs whose source declarations are in Java. It is recommended to have a multi-module project where Room usage is concentrated and the Kotlin Gradle Plugin and KSP can be applied without affecting the rest of the codebase.</p>
+  <p>
+    Room 3.0 also requires the use of Coroutines, and more specifically DAO functions have to be suspending unless they are returning a reactive type, such as a
+    <code translate="no" dir="ltr">Flow</code>
+    or a custom DAO return type. Room APIs to perform database operations are also suspend functions, such as
+    <code translate="no" dir="ltr">RoomDatabase.useReaderConnection</code>
+    and
+    <code translate="no" dir="ltr">RoomDatabase.useWriterConnection</code>
+    .
+  </p>
+  <p>
+    As opposed to Room 2.x it is no longer possible to configure a
+    <code translate="no" dir="ltr">RoomDatabase</code>
+    with an
+    <code translate="no" dir="ltr">Executor</code>
+    , instead a
+    <code translate="no" dir="ltr">CoroutineContext</code>
+    along with a dispatcher can be provided via the database's builder.
+  </p>
+  <p>
+    <code translate="no" dir="ltr">InvalidationTracker</code>
+    APIs in Room 3.0 are
+    <code translate="no" dir="ltr">Flow</code>
+    based,
+    <code translate="no" dir="ltr">InvalidationTracker.Observer</code>
+    is removed along with its relevant APIs
+    <code translate="no" dir="ltr">addObserver</code>
+    and
+    <code translate="no" dir="ltr">removeObserver</code>
+    . The mechanism to react to database operation is through Coroutine Flows that can be created via the
+    <code translate="no" dir="ltr">createFlow()</code>
+    API in the
+    <code translate="no" dir="ltr">InvalidationTracker</code>
+    .
+  </p>
+  <p>Example usage:</p>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">getArtistTours</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">from</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Date</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">to</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Date</span><span class="devsite-syntax-p">):</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Flow&lt;Map&lt;Artist</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">TourState</span>&gt;&gt;<span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-k">return</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">db</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">invalidationTracker</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">createFlow</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"Artist"</span><span class="devsite-syntax-p">).</span><span class="devsite-syntax-na">map</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">_</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">artists</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">artistsDao</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">getAllArtists</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">tours</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">tourService</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">fetchStates</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">artists</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">map</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nb">it</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">id</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">})</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">associateTours</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">artists</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">tours</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">from</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">to</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+  </devsite-code>
+  <p><strong>Web Support</strong></p>
+  <p>
+    The Room 3.0 release adds JavaScript and WasmJs as KMP targets. Combined with the release of the
+    <code translate="no" dir="ltr">SQLiteDriver</code>
+    interfaces (
+    <code translate="no" dir="ltr">androidx.sqlite:sqlite</code>
+    ) that also target JavaScript and WasmJs and a new driver
+    <code translate="no" dir="ltr">WebWorkerSQLiteDriver</code>
+    located in the new artifact
+    <code translate="no" dir="ltr">androidx.sqlite:sqlite-web</code>
+    , it is possible to use Room in common code that targets all major KMP platforms.
+  </p>
+  <p>
+    Due to the asynchronous nature of the web platforms, Room APIs that took
+    <code translate="no" dir="ltr">SQLiteStatement</code>
+    as argument are now suspend functions. Example of these functions are
+    <code translate="no" dir="ltr">Migration.onMigrate()</code>
+    ,
+    <code translate="no" dir="ltr">RoomDatabase.Callback.onCreate()</code>
+    ,
+    <code translate="no" dir="ltr">PooledConnection.usePrepared()</code>
+    and others. In the driver APIs the asynchronous APIs are common on all platforms and the synchronous are common for non-web targets. Therefore a project that does not target web can continue to use the synchronous APIs (
+    <code translate="no" dir="ltr">SQLiteDriver.open()</code>
+    ,
+    <code translate="no" dir="ltr">SQLiteConnection.prepare()</code>
+    and
+    <code translate="no" dir="ltr">SQLiteStatement.step()</code>
+    ) in common code. Meanwhile a project that only targets web must use the asynchronous APIs (
+    <code translate="no" dir="ltr">SQLiteDriver.openAsync()</code>
+    ,
+    <code translate="no" dir="ltr">SQLiteConnection.prepareAsync()</code>
+    and
+    <code translate="no" dir="ltr">SQLiteStatement.stepAsync()</code>
+    ).
+  </p>
+  <p>
+    For convenience the
+    <code translate="no" dir="ltr">androidx.sqlite</code>
+    package also added suspend extension functions with the synchronous names of the mentioned APIs (with the addition of
+    <code translate="no" dir="ltr">SQLiteConnection.executeSQL</code>
+    ), these APIs are recommended when the project targets both web and non-web platforms since the APIs are expect / actual declarations that will call the right variant based on the platforms. These are the APIs Room's runtime use and enable driver usage in common code for all supported platforms.
+  </p>
+  <p>Example usage:</p>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-k">import</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nn">androidx.sqlite.executeSQL</span>
+  <span class="devsite-syntax-k">import</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nn">androidx.sqlite.step</span>
+
+  <span class="devsite-syntax-n">roomDatabase</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">useWriterConnection</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">connection</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">deletedSongs</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">connection</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">usePrepared</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-s">"SELECT count(*) FROM Song"</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">stmt</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">stmt</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">step</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">stmt</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">getLong</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-m">0</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">connection</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">executeSQL</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"DELETE FROM Song"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">deletedSongs</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+  </devsite-code>
+  <p>
+    The
+    <code translate="no" dir="ltr">WebWorkerSQLiteDriver</code>
+    is an implementation of a
+    <code translate="no" dir="ltr">SQLiteDriver</code>
+    that communicates with a
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API">Web Worker</a>
+    for performing database operation off the main thread and enables storing the database in the Origin Private File System (OPFS). To instantiate the driver a worker that implements a simple communication protocol is required, the protocol is described in the
+    <a href="https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:sqlite/sqlite-web/src/commonMain/kotlin/androidx/sqlite/driver/web/WebWorkerSQLiteDriver.kt">WebWorkerSQLiteDriver KDoc</a>
+    .
+  </p>
+  <p>
+    Currently the
+    <code translate="no" dir="ltr">WebWorkerSQLiteDriver</code>
+    does not ship with a default worker that implements the communication protocol, but as an example, the androidx codebase contains a
+    <a href="https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:sqlite/sqlite-web-worker-test/web-worker/worker.js">worker implementation</a>
+    that can be used in your project. It uses
+    <a href="https://sqlite.org/wasm/doc/trunk/index.md">SQLite's WASM</a>
+    and stores the database in OPFS. The example worker is published as a local NPM package and thanks to
+    <a href="https://kotlinlang.org/docs/using-packages-from-npm.html">Kotlin's support for NPM dependencies</a>
+    , a small KMP module can be created to serve the worker.
+  </p>
+  <p>
+    See the following
+    <a href="https://github.com/danysantiago/room-web-demo/">GitHub project</a>
+    demonstrating the usage of a local web worker for Room.
+  </p>
+  <p>Once a worker is set up in the project, then configuring Room for the Web is similar to other platforms:</p>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">createDatabase</span><span class="devsite-syntax-p">():</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">MusicDatabase</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-k">return</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Room</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">databaseBuilder&lt;MusicDatabase&gt;</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"music.db"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">setDriver</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">WebWorkerSQLiteDriver</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">createWorker</span><span class="devsite-syntax-p">()))</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">build</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-p">}</span>
+
+  <span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">createWorker</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">Worker</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">js</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"""new URL("sqlite-web-worker/worker.js", import.meta.url)"""</span><span class="devsite-syntax-p">))</span>
+  </code></pre>
+  </devsite-code>
+  <p>A future version of the Web driver might contain a default worker published in NPM, making the web setup simpler.</p>
+  <p><strong>Custom DAO Return Types</strong></p>
+  <p>
+    Various DAO return type integrations such as those for RxJava and Paging have been transformed to use a new API in Room 3.0 called DAO return type converters. A DAO return type converter function (
+    <code translate="no" dir="ltr">@DaoReturnTypeConverter</code>
+    ) enables transforming the result of a DAO function into a custom type defined by the annotated function. These functions enable participating in Room's generated code that transforms query results into data objects. Classes that contain DAO return type converters have to be registered via the
+    <code translate="no" dir="ltr">@DaoReturnTypeConverters</code>
+    annotations in the
+    <code translate="no" dir="ltr">@Database</code>
+    or
+    <code translate="no" dir="ltr">@Dao</code>
+    declarations.
+  </p>
+  <p>
+    For example, to have a DAO query return a
+    <code translate="no" dir="ltr">PagingSource</code>
+    , the converter class located in
+    <code translate="no" dir="ltr">androidx.room3:room3-paging</code>
+    must now be registered:
+  </p>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@Dao</span>
+  <span class="devsite-syntax-nd">@DaoReturnTypeConverters</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">PagingSourceDaoReturnTypeConverter</span><span class="devsite-syntax-o">::</span><span class="devsite-syntax-n">class</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-kd">interface</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">MusicDao</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nd">@Query</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"SELECT * FROM Song)</span>
+  <span class="devsite-syntax-s">    fun getSongsPaginated(): PagingSource&lt;Int, Song&gt;</span>
+  <span class="devsite-syntax-s">}</span>
+  </code></pre>
+  </devsite-code>
+  <p>Existing integrations have been moved to DAO return type converters:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Return Type</th>
+        <th>Converter class</th>
+        <th>Artifact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>PagingSource</td>
+        <td>PagingSourceDaoReturnTypeConverter</td>
+        <td>androidx.room3:room3-paging</td>
+      </tr>
+      <tr>
+        <td>Observable, Flowable, Completable, Single, Maybe</td>
+        <td>RxDaoReturnTypeConverters</td>
+        <td>androidx.room3:room3-rxjava3</td>
+      </tr>
+      <tr>
+        <td>ListenableFuture</td>
+        <td>GuavaDaoReturnTypeConverter</td>
+        <td>androidx.room3:room3-guava</td>
+      </tr>
+      <tr>
+        <td>LiveData</td>
+        <td>LiveDataDaoReturnTypeConverter</td>
+        <td>androidx.room3:room3-livedata</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    Like column type converters, DAO return type converters can be defined by the application. For example, an application could declare a
+    <code translate="no" dir="ltr">@DaoReturnTypeConverter</code>
+    for the web type
+    <code translate="no" dir="ltr">kotlin.js.Promise</code>
+    .
+  </p>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">object</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">PromiseDaoReturnTypeConverter</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nd">@DaoReturnTypeConverter</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-o">[</span><span class="devsite-syntax-n">OperationType</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">READ</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">OperationType</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">WRITE</span><span class="devsite-syntax-o">]</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span>&lt;<span class="devsite-syntax-nf">T</span>&gt;<span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">convert</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">db</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">RoomDatabase</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">executeAndConvert</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">suspend</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;<span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">T</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">):</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Promise&lt;T&gt;</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-k">return</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">db</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">getCoroutineScope</span><span class="devsite-syntax-p">().</span><span class="devsite-syntax-na">promise</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">executeAndConvert</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+  </devsite-code>
+  <p>
+    The above converter then allows DAO query functions to return
+    <code translate="no" dir="ltr">Promise</code>
+    :
+  </p>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@Dao</span>
+  <span class="devsite-syntax-nd">@DaoReturnTypeConverters</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">PromiseDaoReturnTypeConverter</span><span class="devsite-syntax-o">::</span><span class="devsite-syntax-n">class</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-kd">interface</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">MusicDao</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-nd">@Query</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"SELECT * FROM Song"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">getAllSongs</span><span class="devsite-syntax-p">():</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Promise&lt;List&lt;Song&gt;</span>&gt;
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+  </devsite-code>
+  <p>
+    A
+    <code translate="no" dir="ltr">@DaoReturnTypeConverter</code>
+    function has a few requirements in the amount of parameter it must have and its types. The possible parameters are:
+  </p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">db: RoomDatabase</code>
+      : (Optional) Provides access to the
+      <code translate="no" dir="ltr">RoomDatabase</code>
+      instance, which can be useful for performing additional database operations or accessing the coroutine scope.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">tableNames: Array&lt;String&gt;</code>
+      : (Optional) Contains the accessed tables of the query, useful for supporting observable / reactive types when combined with Room's
+      <code translate="no" dir="ltr">InvalidationTracker.createFlow()</code>
+      API.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">rawQuery: RoomRawQuery</code>
+      : (Optional) Contains at runtime an instance of the query, enabling transformations such as the
+      <code translate="no" dir="ltr">LIMIT</code>
+      /
+      <code translate="no" dir="ltr">OFFSET</code>
+      strategy implemented by the
+      <code translate="no" dir="ltr">PagingSourceDaoReturnTypeConverter</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">executeAndConvert: suspend () -&gt; T</code>
+      : (Required) The Room generated function that will execute the query and parse its result into data objects.
+    </li>
+  </ul>
+  <p>
+    For more information about the requirements for creating a DAO return type converter, see the
+    <a href="https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:room3/room3-common/src/commonMain/kotlin/androidx/room3/DaoReturnTypeConverter.kt">
+      KDoc on the
+      <code translate="no" dir="ltr">@DaoReturnTypeConverter</code>
+      API
+    </a>
+    .
+  </p>

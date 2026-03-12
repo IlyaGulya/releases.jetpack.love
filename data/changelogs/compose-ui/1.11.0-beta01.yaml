@@ -1,0 +1,203 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.11.0-beta01
+releaseDate: 2026-03-11
+#language=html
+changelogHtml: |
+  <h3 id="1.11.0-beta01" data-text="Version 1.11.0-beta01" tabindex="-1">Version 1.11.0-beta01</h3>
+  <p>March 11, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.11.0-beta01</code>
+    is released. Version 1.11.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6e23fc0c137022098ae2d043778ffdc56402ba5e..a15c668d4bb2e00cfa8ed1af96895a84c3e7e2d5/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Support for custom
+      <code translate="no" dir="ltr">windowToken</code>
+      has been added to Jetpack Compose Dialog (
+      <a href="https://android-review.googlesource.com/#/q/Ic7728a66758224271f18e97c8b359a36ffde526c">Ic7728</a>
+      )
+    </li>
+    <li>
+      Support for custom
+      <code translate="no" dir="ltr">windowToken</code>
+      and
+      <code translate="no" dir="ltr">windowType</code>
+      has been added to Jetpack Compose Popups. (
+      <a href="https://android-review.googlesource.com/#/q/I0a04fd45db8e521250c414764d78f901d1302120">I0a04f</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">PreviewWrapper</code>
+      interface and an annotation provider. This will allow developers to seamlessly wrap their previews with custom behavior. (
+      <a href="https://android-review.googlesource.com/#/q/I29f540ccb829f1982b0843199d02099443a5692d">I29f54</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/484306729">b/484306729</a>
+      )
+    </li>
+    <li>
+      When
+      <code translate="no" dir="ltr">AndroidComposeUiFlags.isSharedFontEnabled</code>
+      is true, font-related object instances, like
+      <code translate="no" dir="ltr">FontLoader</code>
+      and
+      <code translate="no" dir="ltr">FontFamilyResolver</code>
+      , can be shared across
+      <code translate="no" dir="ltr">ComposeView</code>
+      instances inside
+      <code translate="no" dir="ltr">ComposeViewContext</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I403e84c15266e6711b0aa2ea8c6777ac1efc2c1c">I403e8</a>
+      )
+    </li>
+    <li>
+      Compose semantics processors will use view.handler instead of the
+      <code translate="no" dir="ltr">mainLooper</code>
+      , avoiding crashes in views that use non-main handlers. (
+      <a href="https://android-review.googlesource.com/#/q/I671c3184af463668f930d8696fd1dad8733c2ebe">I671c3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/486235925">b/486235925</a>
+      )
+    </li>
+    <li>
+      Added a
+      <code translate="no" dir="ltr">isSkipNonImportantSemanticsNodesHitTestEnabled</code>
+      flag that guards a bug fix for semantics hit testing, which affects
+      <code translate="no" dir="ltr">TalkBack</code>
+      's touch-to-explore. (
+      <a href="https://android-review.googlesource.com/#/q/I2933f69e8eb092c4707d4f03b7344af754b8ebac">I2933f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/481011169">b/481011169</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/454377558">b/454377558</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/461360154">b/461360154</a>
+      )
+    </li>
+    <li>
+      Support for displaying Jetpack Compose Dialogs from Android Services has been added. By providing a custom window type through the new
+      <code translate="no" dir="ltr">windowType</code>
+      parameter in
+      <code translate="no" dir="ltr">DialogProperties</code>
+      , developers can now show Dialogs in overlay windows. (
+      <a href="https://android-review.googlesource.com/#/q/I7c504278664f1eb5ed804776c88f956958b2dbe4">I7c504</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/478214962">b/478214962</a>
+      )
+    </li>
+    <li>
+      Renames
+      <code translate="no" dir="ltr">PointerInputChange</code>
+      and
+      <code translate="no" dir="ltr">HistoricalChange</code>
+      properties for retrieving scale and pan values. (
+      <a href="https://android-review.googlesource.com/#/q/I989a80bdac8c64ce1faacc04bc9ff560fcd963e3">I989a8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/481333653">b/481333653</a>
+      )
+    </li>
+    <li>
+      Adds more functionality for trackpad testing APIs, to simulate different curves and inputs for a trackpad gesture. (
+      <a href="https://android-review.googlesource.com/#/q/I290fb4dea339278201099d0192a7f617b0aaeed0">I290fb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/473603145">b/473603145</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/479213358">b/479213358</a>
+      )
+    </li>
+    <li>
+      Splits the new
+      <code translate="no" dir="ltr">PointerEventType.Pan</code>
+      and into
+      <code translate="no" dir="ltr">PointerEventType.PanStart</code>
+      ,
+      <code translate="no" dir="ltr">PointerEventType.PanMove</code>
+      and
+      <code translate="no" dir="ltr">PointerEventType.PanEnd</code>
+      . Similarly,
+      <code translate="no" dir="ltr">PointerEventType.Scale</code>
+      is split into
+      <code translate="no" dir="ltr">PointerEventType.ScaleStart</code>
+      ,
+      <code translate="no" dir="ltr">PointerEventType.ScaleChange</code>
+      and
+      <code translate="no" dir="ltr">PointerEventType.ScaleEnd</code>
+      . This split allows passing through additional information about the start and end of platform-interpreted pan and scale gestures, which then allows pointer input handlers in Compose to use this information to detect events appropriately, and especially know when a pan or scale is done. (
+      <a href="https://android-review.googlesource.com/#/q/I4daf682c6cb3624bdbe935115a60fdb9edca19eb">I4daf6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/479285849">b/479285849</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/481333653">b/481333653</a>
+      )
+    </li>
+    <li>
+      When
+      <code translate="no" dir="ltr">AndroidComposeUiFlags.isSharedHapticsEnabled</code>
+      is true,
+      <code translate="no" dir="ltr">ComposeViewContext</code>
+      contains the shared haptics controller instance. (
+      <a href="https://android-review.googlesource.com/#/q/Icd79a696376678e8dd748c682284ffc19dec8c41">Icd79a</a>
+      )
+    </li>
+    <li>
+      Introduced experimental
+      <code translate="no" dir="ltr">mediaQuery</code>
+      ,
+      <code translate="no" dir="ltr">derivedMediaQuery</code>
+      and
+      <code translate="no" dir="ltr">UiMediaScope</code>
+      APIs (marked as
+      <code translate="no" dir="ltr">@ExperimentalMediaQueryApi</code>
+      ) to enable declarative adaptive UI development based on window dimensions, window posture, and other device and environment capabilities. (
+      <a href="https://android-review.googlesource.com/#/q/I2d21e6c3b11c8eebd5abc740facff6b3dc115c6a">I2d21e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/479800750">b/479800750</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where the block-scoped
+      <code translate="no" dir="ltr">Modifier.dropShadow</code>
+      and
+      <code translate="no" dir="ltr">Modifier.innerShadow</code>
+      would not redraw when the Shape parameter was dynamically changed. (
+      <a href="https://android-review.googlesource.com/#/q/Ida2622c84ff1a5098f71fb1e34aa6c140fd18ab5">Ida262</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/486202623">b/486202623</a>
+      )
+    </li>
+    <li>
+      Fixed a bug that causes an inline content to be misplaced in RTL layouts with LTR text or LTR layouts with RTL text. (
+      <a href="https://android-review.googlesource.com/#/q/I09789979bbcda98fbc248337fe24f788b55be01f">I09789</a>
+      )
+    </li>
+    <li>
+      Fixes a bug where a
+      <code translate="no" dir="ltr">ComposeView</code>
+      is used in a fragment transition, an exception was being thrown. (
+      <a href="https://android-review.googlesource.com/#/q/Ia425fd55b8c369d2661925238fe674520713bb52">Ia425f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/484100557">b/484100557</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Add a
+      <code translate="no" dir="ltr">InputTextSuggestionState</code>
+      property to help identify the different states a transliteration input can be in when text replacement suggestions are available. Also introduces
+      <code translate="no" dir="ltr">TextCompositionRange</code>
+      to track the range of the current transliteration text composition range; a null value indicates no composition in place. (
+      <a href="https://android-review.googlesource.com/#/q/I7a67fc9413c1b856af1c8a41ff25cbc0648c5e97">I7a67f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/476472318">b/476472318</a>
+      )
+    </li>
+  </ul>

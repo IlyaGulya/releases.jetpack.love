@@ -1,0 +1,50 @@
+libraryId: tracing
+groupId: androidx.tracing
+version: 2.0.0-alpha03
+releaseDate: 2026-03-11
+#language=html
+changelogHtml: |
+  <h3 id="2.0.0-alpha03" data-text="Version 2.0.0-alpha03" tabindex="-1">Version 2.0.0-alpha03</h3>
+  <p>March 11, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.tracing:tracing-*:2.0.0-alpha03</code>
+    is released. Version 2.0.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6e23fc0c137022098ae2d043778ffdc56402ba5e..1a508f033de883ba2853b9f9ae1853eec7010638/tracing">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added an experimental
+      <code translate="no" dir="ltr">InMemoryRingBufferTraceSink</code>
+      implementation which allows setting a capacity restriction and avoids writing to disk unless explicitly asking for it. (
+      <a href="https://android-review.googlesource.com/#/q/I1dc44239f70fed9fea47a2acf8adb291b2a32f35">I1dc44</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/484409653">b/484409653</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I65a37ef9675beed85e525729cdcb116274938678">I65a37</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/484409653">b/484409653</a>
+      )
+    </li>
+    <li>
+      Fix race condition when emitting trace events for coroutine suspends and resumes. (
+      <a href="https://android-review.googlesource.com/#/q/Ie145e2ae7de1960fa4036e0c05a5a69a1f0ee407">Ie145e</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">androidx.tracing</code>
+      no longer attempts to draw connections from parent to child coroutines in traces by default. This has been confusing, since the underlying trace format doesn't support
+      <code translate="no" dir="ltr">1:N</code>
+      and
+      <code translate="no" dir="ltr">N:1</code>
+      connections, resulting in a nest of arrows due to ambiguity about which coroutine slice connects to what. You can still manually opt-in to propagation with the
+      <code translate="no" dir="ltr">tokenForManualPropagation()</code>
+      API when it's important for your use case. (
+      <a href="https://android-review.googlesource.com/#/q/Ib2cf9d39bff63c8584da36e32e43f244c817794b">Ib2cf9</a>
+      )
+    </li>
+  </ul>
