@@ -76,35 +76,97 @@ changelogHtml: |
   <p><strong>API Changes</strong></p>
   <ul>
     <li>
-      Introduced the new
-      <code translate="no" dir="ltr">androidx.datastore:datastore-tink</code>
-      artifact for
-      <code translate="no" dir="ltr">DataStore</code>
-      encryption support. (
-      <a href="https://android-review.googlesource.com/#/q/Ic106dfa3322d538294919a945086533b287e44a2">Ic106d</a>
-      ,
-      <a href="https://issuetracker.google.com/issues/167697691">b/167697691</a>
-      )
+      <p>
+        Introduced the new
+        <code translate="no" dir="ltr">androidx.datastore:datastore-tink</code>
+        artifact for
+        <code translate="no" dir="ltr">DataStore</code>
+        encryption support. (
+        <a href="https://android-review.googlesource.com/#/q/Ic106dfa3322d538294919a945086533b287e44a2">Ic106d</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/167697691">b/167697691</a>
+        )
+      </p>
+
+      <p>To encrypt data using Tink, follow these steps:</p>
+
+      <ol>
+        <li>
+          <p>Create a key using Tink APIs:</p>
+          <div></div>
+          <devsite-code>
+            <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">keysetHandle</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">AndroidKeysetManager</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">Builder</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">withSharedPref</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">applicationContext</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"keyset"</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"keyset_prefs"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">withKeyTemplate</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">KeyTemplate</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">createFrom</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">PredefinedAeadParameters</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">AES256_GCM</span><span class="devsite-syntax-p">))</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">withMasterKeyUri</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"android-keystore://master_key"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">build</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">keysetHandle</span>
+  </code></pre>
+          </devsite-code>
+        </li>
+        <li>
+          <p>
+            Create an
+            <code translate="no" dir="ltr">AeadSerializer</code>
+            that wraps an existing serializer:
+          </p>
+          <div></div>
+          <devsite-code>
+            <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">aeadSerializer</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">AeadSerializer</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// Use tink APIs to create an Aead object to encrypt/decrypt data.</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">aead</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">keysetHandle</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">getPrimitive</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">RegistryConfiguration</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">get</span><span class="devsite-syntax-p">(),</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">Aead</span><span class="devsite-syntax-o">::</span><span class="devsite-syntax-n">class</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">java</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">),</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// AeadSerializer can wrap an existing serializer.</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">wrappedSerializer</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">ExistingSerializer</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-c1">// Specify a unique name to prevent a ciphertext swapping attack.</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">associatedData</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"settings.json"</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">encodeToByteArray</span><span class="devsite-syntax-p">(),</span>
+  <span class="devsite-syntax-p">)</span>
+  </code></pre>
+          </devsite-code>
+        </li>
+        <li>
+          <p>
+            Use this
+            <code translate="no" dir="ltr">aeadSerializer</code>
+            in place of your serializer when creating the datastore instance:
+          </p>
+          <div></div>
+          <devsite-code>
+            <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">dataStore</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">dataStore</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">fileName</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"settings.json"</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">serializer</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">aeadSerializer</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">scope</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">scope</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-p">)</span>
+  </code></pre>
+          </devsite-code>
+        </li>
+      </ol>
     </li>
     <li>
-      Introduced
-      <code translate="no" dir="ltr">DataStore.Builder&lt;T&gt;</code>
-      as the modern, scalable alternative to
-      <code translate="no" dir="ltr">DataStoreFactory</code>
-      . (
-      <a href="https://android-review.googlesource.com/#/q/I3b11004afdbb271da03aa410fb884191734bf182">I3b110</a>
-      ,
-      <a href="https://issuetracker.google.com/issues/267785821">b/267785821</a>
-      ,
-      <a href="https://issuetracker.google.com/issues/400507108">b/400507108</a>
-      ,
-      <a href="https://issuetracker.google.com/issues/368385681">b/368385681</a>
-      ,
-      <a href="https://issuetracker.google.com/issues/427722902">b/427722902</a>
-      ,
-      <a href="https://issuetracker.google.com/issues/370838564">b/370838564</a>
-      ,
-      <a href="https://issuetracker.google.com/issues/167697691">b/167697691</a>
-      )
+      <p>
+        Introduced
+        <code translate="no" dir="ltr">DataStore.Builder&lt;T&gt;</code>
+        as the modern, scalable alternative to
+        <code translate="no" dir="ltr">DataStoreFactory</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/I3b11004afdbb271da03aa410fb884191734bf182">I3b110</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/267785821">b/267785821</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/400507108">b/400507108</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/368385681">b/368385681</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/427722902">b/427722902</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/370838564">b/370838564</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/167697691">b/167697691</a>
+        )
+      </p>
     </li>
   </ul>
