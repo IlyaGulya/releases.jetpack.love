@@ -1,0 +1,155 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.6.0
+releaseDate: 2026-03-25
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0" data-text="Version 1.6.0" tabindex="-1">Version 1.6.0</h3>
+  <p>March 25, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.6.0</code>
+    is released. Version 1.6.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/2afad3835627a7fdd11578788696f14b7aff6017..18899702605001b396c92fe1f50666948ce85048/camera">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.5.0:</strong></p>
+  <p><strong>1. Migrated to a High-Performance, Unified Camera Stack</strong></p>
+  <ul>
+    <li>
+      CameraX now uses
+      <code translate="no" dir="ltr">CameraPipe</code>
+      —the same modern, high-performance stack powering the Pixel camera. This transition streamlines architectural efficiency and provides a scalable foundation for bringing advanced computational photography features to the developer ecosystem.
+    </li>
+  </ul>
+  <p><strong>2. Media3 Muxer Integration</strong></p>
+  <ul>
+    <li>
+      CameraX now integrates the Media3 Muxer by default within the
+      <a href="https://developer.android.com/media/camera/camerax/video-capture#videocapture-api-overview">VideoCapture</a>
+      API. This migration provides several benefits:
+      <ul>
+        <li>
+          <strong>Enhanced Performance:</strong>
+          More efficient video processing and muxing.
+        </li>
+        <li>
+          <strong>Crash Resilience:</strong>
+          Improved protection against video file corruption, ensuring that data is preserved even if the application crashes during recording.
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>3. Feature Group improvement</strong></p>
+  <ul>
+    <li>
+      <a href="https://developer.android.com/reference/androidx/camera/core/SessionConfig.Builder#setPreferredFeatureGroup(kotlin.Array)">Feature Group</a>
+      API now supports Video Stabilization and 4K recording.
+      <a href="https://developer.android.com/reference/kotlin/androidx/camera/video/GroupableFeatures?hl=en"><code translate="no" dir="ltr">GroupableFeatures</code></a>
+      includes
+      <a href="https://developer.android.com/reference/kotlin/androidx/camera/video/GroupableFeatures?hl=en#VIDEO_STABILIZATION()"><code translate="no" dir="ltr">VIDEO_STABILIZATION</code></a>
+      ,
+      <a href="https://developer.android.com/reference/kotlin/androidx/camera/video/GroupableFeatures?hl=en#UHD_RECORDING()"><code translate="no" dir="ltr">UHD_RECORDING</code></a>
+      to allow apps to enable them together with other features.
+      <a href="https://developer.android.com/reference/androidx/camera/core/CameraEffect"><code translate="no" dir="ltr">CameraEffect</code></a>
+      and
+      <a href="https://developer.android.com/reference/androidx/camera/core/ImageAnalysis"><code translate="no" dir="ltr">ImageAnalysis</code></a>
+      in
+      <a href="https://developer.android.com/reference/androidx/camera/core/SessionConfig"><code translate="no" dir="ltr">SessionConfig</code></a>
+      is supported when the feature group is enabled.
+    </li>
+  </ul>
+  <p><strong>4. Stabilized SessionConfig API</strong></p>
+  <ul>
+    <li>
+      <a href="https://developer.android.com/reference/androidx/camera/core/SessionConfig"><code translate="no" dir="ltr">SessionConfig</code></a>
+      has graduated from experimental to a fully stable public API including
+      <a href="https://developer.android.com/reference/androidx/camera/core/SessionConfig"><code translate="no" dir="ltr">SessionConfig</code></a>
+      and
+      <a href="https://developer.android.com/reference/androidx/camera/video/HighSpeedVideoSessionConfig"><code translate="no" dir="ltr">HighSpeedVideoSessionConfig</code></a>
+      . CameraX Extensions can now be implemented with a new
+      <a href="https://developer.android.com/reference/androidx/camera/extensions/ExtensionSessionConfig"><code translate="no" dir="ltr">ExtensionSessionConfig</code></a>
+      AP. A new
+      <a href="https://developer.android.com/reference/androidx/camera/core/CameraInfo?hl=en#isSessionConfigSupported(androidx.camera.core.SessionConfig)"><code translate="no" dir="ltr">isSessionConfigSupported</code></a>
+      API is introduced, allowing developers to query whether a specific combination of use cases and features (such as HDR, stabilization, specific resolutions, CameraX Extensions or slow motion) is supported by the device before binding to the lifecycle.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a crash that happens in all CameraX apps that run on the upcoming Android 17 devices due to a unknown dynamic range mode being added which CameraX didn't handle it appropriately. The same fix is also cherry picked in 1.5.2.
+      <strong>Please DO update your CameraX version to either 1.5.2 or 1.6.0 to avoid the crash when Android 17 is published</strong>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ibd7b5f532f7af0f43415aaef09cc9ce5f26763f6">Ibd7b5</a>
+      )
+    </li>
+    <li>
+      The feature group API now provides consistent results when
+      <code translate="no" dir="ltr">PREVIEW_STABILIZATION</code>
+      is used with
+      <code translate="no" dir="ltr">VideoCapture</code>
+      . This corrects a bug that caused inconsistent results when a Preview use case was not also active. (
+      <a href="https://android-review.googlesource.com/#/q/Ifed82d0d9ce2cfdb407523535d9e4c8c4a51f46d">Ifed82</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/449913903">b/449913903</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where unsupported preferred features were incorrectly made available. Features are now correctly filtered when their required use cases are not met. (
+      <a href="https://android-review.googlesource.com/#/q/I38db88ca0ae9c2cd87b49ceffddd7980b3178576">I38db8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/449532342">b/449532342</a>
+      )
+    </li>
+    <li>
+      Fixed glitchy video result on Samsung Galaxy S6. (
+      <a href="https://android-review.git.corp.google.com/#/q/I612d902c2aa36dfd5b77a53a59a5646cadf96272">I612d9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/235127608">b/235127608</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">CameraInfo#isFeatureGroupSupported</code>
+      could incorrectly return true for
+      <code translate="no" dir="ltr">PREVIEW_STABILIZATION</code>
+      if the
+      <code translate="no" dir="ltr">SessionConfig</code>
+      in the query was already configured with other features. (
+      <a href="https://android-review.googlesource.com/#/q/I2c355c533f737d1797a7427d37661781cd1480b2">I2c355c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/437816469">b/437816469</a>
+      )
+    </li>
+    <li>
+      Excluded problematic YUV format output sizes from Samsung Z Fold 4 device. The received images have distortion issue when using those output sizes. (
+      <a href="https://android-review.googlesource.com/#/q/I776bf1f9447fba5b6354b597fb8067d25419756a">I776bf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/460322307">b/460322307</a>
+      )
+    </li>
+    <li>
+      Fixed a device-specific issue on Samsung A53 where image capture with torch enabled would fail sometimes if
+      <code translate="no" dir="ltr">VideoCapture</code>
+      use case is bound. (
+      <a href="https://android-review.googlesource.com/#/q/I0f183808184febdcb203e8f5658e7663d8dc44b9">I0f183</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/458197367">b/458197367</a>
+      )
+    </li>
+    <li>
+      Fixes an issue on some devices where using the flash with the ultra-wide camera may result in underexposed images. (
+      <a href="https://android-review.googlesource.com/#/q/Ib75308343ede2999677ffce021affa013d175668">Ib7530</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444590340">b/444590340</a>
+      )
+    </li>
+    <li>
+      Updated the
+      <code translate="no" dir="ltr">ExifInterface</code>
+      dependency to include a fix for parsing JPEGs with
+      <code translate="no" dir="ltr">0xFF</code>
+      padding, which resolves image capture failures on devices where the JPEG encoder adds fill bytes before markers. (
+      <a href="https://android-review.googlesource.com/#/q/I0eb49797f167c36511bc5a2ea5c31a920f598b6d">I0eb49</a>
+      )
+    </li>
+  </ul>

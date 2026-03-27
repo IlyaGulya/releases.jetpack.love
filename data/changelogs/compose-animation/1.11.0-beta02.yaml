@@ -1,0 +1,50 @@
+libraryId: compose-animation
+groupId: androidx.compose
+version: 1.11.0-beta02
+releaseDate: 2026-03-25
+#language=html
+changelogHtml: |
+  <h3 id="1.11.0-beta02" data-text="Version 1.11.0-beta02" tabindex="-1">Version 1.11.0-beta02</h3>
+  <p>March 25, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.animation:animation-*:1.11.0-beta02</code>
+    is released. Version 1.11.0-beta02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a15c668d4bb2e00cfa8ed1af96895a84c3e7e2d5..4f1927c2c3b66d0c3a6b9118974d818d2dc5a06a/compose/animation">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">SeekableTransitionState</code>
+      now properly handles off-thread state changes. Previously, if the state was modified off the UI thread using
+      <code translate="no" dir="ltr">Snapshot.withMutableSnapshot()</code>
+      , the transition incorrectly tried to handle the update off of the UI thread.(
+      <a href="https://android-review.googlesource.com/#/q/0aba38e">0aba38</a>
+      )
+    </li>
+    <li>
+      Validate duration in
+      <code translate="no" dir="ltr">InfiniteRepeatableSpec</code>
+      to prevent 0-duration cycles (
+      <a href="https://android-review.googlesource.com/#/q/151b6d9">151b6d</a>
+      )
+    </li>
+    <li>
+      Respect
+      <code translate="no" dir="ltr">visibilityThreshold</code>
+      in custom
+      <code translate="no" dir="ltr">AnimationSpec</code>
+      for
+      <code translate="no" dir="ltr">animateFloatAsState</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/3a1cdc0">3a1cdc</a>
+      )
+    </li>
+    <li>
+      Fixed the corner case interruption handling when a child exit animation finishes while the parent transition is still running in
+      <code translate="no" dir="ltr">AnimatedContent</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/ad9b4f2">ad9b4f</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,104 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.11.0-alpha03
+releaseDate: 2026-03-25
+#language=html
+changelogHtml: |
+  <h3 id="2.11.0-alpha03" data-text="Version 2.11.0-alpha03" tabindex="-1">Version 2.11.0-alpha03</h3>
+  <p>March 25, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.11.0-alpha03</code>
+    is released. Version 2.11.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/bd862928108d81f550188a7da80f932d5c6039b4..3268ea760d665cee25941f7245395b2ebdf5bb50/lifecycle">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Make
+      <code translate="no" dir="ltr">parentKey</code>
+      an optional parameter in
+      <code translate="no" dir="ltr">ViewModelStoreProvider</code>
+      constructors, defaulting to
+      <code translate="no" dir="ltr">null</code>
+      , and move it after
+      <code translate="no" dir="ltr">parentStore</code>
+      or
+      <code translate="no" dir="ltr">parentOwner</code>
+      . This simplifies instantiation when a shared scope key is not needed. (
+      <a href="https://android-review.googlesource.com/#/q/I66b67a475a9df59e2d4b7ebf7ca8c41e5ff62adc">I66b67</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ViewModelStoreNavEntryDecorator</code>
+      now accepts a
+      <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+      instead of a
+      <code translate="no" dir="ltr">ViewModelStore</code>
+      . This allows Navigation3 to propagate the parent's default
+      <code translate="no" dir="ltr">CreationExtras</code>
+      and
+      <code translate="no" dir="ltr">ViewModelProvider.Factory</code>
+      to nested ViewModels, ensuring support for application-level dependencies. (
+      <a href="https://android-review.googlesource.com/#/q/Ia601870901e167997fc456b8d56e63c256226a9e">Ia6018</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/434651920">b/434651920</a>
+      )
+    </li>
+    <li>
+      Isolate
+      <code translate="no" dir="ltr">ViewModelStoreProvider</code>
+      state using a unique key. This prevents sibling providers from unintentionally clearing each other's ViewModels during disposal. (
+      <a href="https://android-review.googlesource.com/#/q/I59c0bf1a836702a756bb2f7584d6c7d41086728c">I59c0b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/434651920">b/434651920</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">ViewModelProvider.get&lt;VM&gt;(key: String)</code>
+      extension function. This enables developers to more cleanly retrieve ViewModels using a custom
+      <code translate="no" dir="ltr">key</code>
+      with Kotlin reified type parameters, removing the need to explicitly pass the class type. (
+      <a href="https://android-review.googlesource.com/#/q/Ic1f591ef8f849d62359ea9ad9e0b1a5260dd28af">Ic1f59</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">defaultArgs</code>
+      support to
+      <code translate="no" dir="ltr">ViewModelStoreProvider</code>
+      to allow initializing ViewModels with default
+      <code translate="no" dir="ltr">SavedState</code>
+      values. (
+      <a href="https://android-review.googlesource.com/#/q/I1e93307590753da3c5da8a2f1b47ca1f5daa9d73">I1e933</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/434651920">b/434651920</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/165642391">b/165642391</a>
+      )
+    </li>
+    <li>
+      Deprecate
+      <code translate="no" dir="ltr">removeViewModelStoreOnPop</code>
+      and the associated
+      <code translate="no" dir="ltr">ViewModelStoreNavEntryDecoratorDefaults</code>
+      . This API was a workaround for configuration changes, which are now handled internally. All decorator state, including ViewModels, must now be cleared at the same time on pop. To keep decorator state around outside of when that back stack is passed to a NavDisplay, use the
+      <code translate="no" dir="ltr">rememberDecoratedNavEntries</code>
+      API. (
+      <a href="https://android-review.googlesource.com/#/q/I852d9064f47684fef8cefc2427035d9982295412">I852d9</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">toString()</code>
+      to
+      <code translate="no" dir="ltr">CreationExtras.Key</code>
+      to display the class name. (
+      <a href="https://android-review.googlesource.com/#/q/I5de52311acd87c527657bcf3ad6ecc630aaee66f">I5de52</a>
+      )
+    </li>
+  </ul>

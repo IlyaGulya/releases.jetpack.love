@@ -1,0 +1,111 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.11.0-beta02
+releaseDate: 2026-03-25
+#language=html
+changelogHtml: |
+  <h3 id="1.11.0-beta02" data-text="Version 1.11.0-beta02" tabindex="-1">Version 1.11.0-beta02</h3>
+  <p>March 25, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.11.0-beta02</code>
+    is released. Version 1.11.0-beta02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a15c668d4bb2e00cfa8ed1af96895a84c3e7e2d5..4f1927c2c3b66d0c3a6b9118974d818d2dc5a06a/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added flag
+      <code translate="no" dir="ltr">isReverseLayoutNestedScrollConnectionInPagerFixEnabled</code>
+      to control the rollout of this fix. (
+      <a href="https://android-review.googlesource.com/#/q/I07404a4390573e7b338e7a971060199a2d32f58e">I07404</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/399800244">b/399800244</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">isSkipItemPlacementAnimationFixEnabled</code>
+      to control the rollout of this feature. (
+      <a href="https://android-review.googlesource.com/#/q/Id665db8c134a0351439b941b3dfff35485bfb744">Id665d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/455884472">b/455884472</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/352584409">b/352584409</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/410487464">b/410487464</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/372509998">b/372509998</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">MinMax(min: Dp, max: Fr)</code>
+      to
+      <code translate="no" dir="ltr">GridTrackSize</code>
+      . This allows developers to explicitly define the minimum bounds of a flexible track. Using
+      <code translate="no" dir="ltr">MinMax(0.dp, 1.fr)</code>
+      successfully bypasses intrinsic measurement queries, making it safe to place
+      <code translate="no" dir="ltr">SubcomposeLayout</code>
+      components like
+      <code translate="no" dir="ltr">LazyColumn</code>
+      and
+      <code translate="no" dir="ltr">LazyRow</code>
+      inside flexible grid tracks without crashing. (
+      <a href="https://android-review.googlesource.com/#/q/Ieb8c2c3332819661bb99ab61b30f16d68fbc0fa4">Ieb8c2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/483822148">b/483822148</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a bug in
+      <code translate="no" dir="ltr">FlexBox</code>
+      where items shrank incorrectly when hitting their minimum intrinsic sizes. Items now correctly share unconsumed shrink space to siblings. Additionally,
+      <code translate="no" dir="ltr">FlexBox</code>
+      will no longer artificially clamp items on main axis; if items cannot shrink enough to fit the container, they will now visually overflow the main axis. Use
+      <code translate="no" dir="ltr">Modifier.clipToBounds()</code>
+      if clipping is desired. (
+      <a href="https://android-review.googlesource.com/#/q/Ief75108a72990e8cc369ffea557b9e454252cb58">Ief751</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/480797591">b/480797591</a>
+      )
+    </li>
+    <li>
+      Prevent keep around from accessing illegal indices. (
+      <a href="https://android-review.googlesource.com/#/q/I1912166042c5882901e7619a4461a3b885025d72">I19121</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/485626636">b/485626636</a>
+      )
+    </li>
+    <li>
+      Fixed an issue in Grid where gaps between implicitly created rows or columns were omitted from the container's total size calculation, which resulted in clipped content. (
+      <a href="https://android-review.googlesource.com/#/q/Ib9df849850b4ce1516cffbc63592d3f7b296bce7">Ib9df8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/480372415">b/480372415</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Clipboard</code>
+      and
+      <code translate="no" dir="ltr">ClipboardManager</code>
+      now request the system service on the first method call (
+      <a href="https://android-review.googlesource.com/#/q/If0016b703b6f2b465c8e7cee444077888393177e">If0016</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/487947860">b/487947860</a>
+      )
+    </li>
+    <li>
+      Fixed an issue in
+      <code translate="no" dir="ltr">Row</code>
+      with
+      <code translate="no" dir="ltr">Arrangement.spacedBy</code>
+      in RTL where overflowing items would result in incorrect layout and spacing. (
+      <a href="https://android-review.googlesource.com/#/q/I44e5314948787b0c6bcba0c7a7ddac33a1819e67">I44e53</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/476006478">b/476006478</a>
+      )
+    </li>
+  </ul>

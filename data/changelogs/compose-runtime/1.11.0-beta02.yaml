@@ -1,0 +1,57 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.11.0-beta02
+releaseDate: 2026-03-25
+#language=html
+changelogHtml: |
+  <h3 id="1.11.0-beta02" data-text="Version 1.11.0-beta02" tabindex="-1">Version 1.11.0-beta02</h3>
+  <p>March 25, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.11.0-beta02</code>
+    is released. Version 1.11.0-beta02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a15c668d4bb2e00cfa8ed1af96895a84c3e7e2d5..4f1927c2c3b66d0c3a6b9118974d818d2dc5a06a/compose/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixes an issue in WASM where identity hash codes would always return 0 (
+      <a href="https://android-review.googlesource.com/#/q/I9d70c347a3324037b036c0b7b87279700c3fa679">I9d70c</a>
+      )
+    </li>
+    <li>
+      Fixes an issue where a parent derived state might fail to invalidate correctly when the dependencies of a nested derived state change (
+      <a href="https://android-review.googlesource.com/#/q/Ia7981a9d88d0f27c1420946b12bf435fb62308e2">Ia7981</a>
+      ,
+      <a href="https://issuetracker.google.com/481750019">b/481750019</a>
+      )
+    </li>
+    <li>
+      Fixes an issue in the
+      <code translate="no" dir="ltr">LinkTable</code>
+      that can cause invalid writes after disposing a composition. (
+      <a href="https://android-review.googlesource.com/#/q/I5c97a76606c122a5a78d14a3007f4d3f8a126a34">I5c97a</a>
+      )
+    </li>
+    <li>
+      Fixes an issue in the
+      <code translate="no" dir="ltr">LinkTable</code>
+      that can cause invalid writes when the table resizes during a copy operation (
+      <a href="https://android-review.googlesource.com/#/q/Ie7edf54b96d618664eb5723cf92a7b034c89c04b">Ie7edf</a>
+      )
+    </li>
+    <li>
+      Fixes an issue in the
+      <code translate="no" dir="ltr">LinkTable</code>
+      that incorrectly updates the stored value of a node (
+      <a href="https://android-review.googlesource.com/#/q/I58a4a26a27b6ebbcd1567fb21842376c23b33e62">I58a4a</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">LinkTable</code>
+      now initializes to a smaller capacity, which prevents OOM errors when creating many subcompositions on devices with smaller heap sizes (
+      <a href="https://android-review.googlesource.com/#/q/I112b9285de5da8007b11768fa41bda5ec2f8b109">I112b9</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,105 @@
+libraryId: webkit
+groupId: androidx.webkit
+version: 1.16.0-alpha04
+releaseDate: 2026-03-25
+#language=html
+changelogHtml: |
+  <h3 id="1.16.0-alpha04" data-text="Version 1.16.0-alpha04" tabindex="-1">Version 1.16.0-alpha04</h3>
+  <p>March 25, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.webkit:webkit:1.16.0-alpha04</code>
+    is released. Version 1.16.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1a508f033de883ba2853b9f9ae1853eec7010638..4f1927c2c3b66d0c3a6b9118974d818d2dc5a06a/webkit/webkit">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      The
+      <a href="https://developer.android.com/reference/androidx/webkit/WebViewCompat#startUpWebView(android.content.Context,androidx.webkit.WebViewStartUpConfig,androidx.webkit.WebViewOutcomeReceiver)"><code translate="no" dir="ltr">startUpWebView</code></a>
+      API and related async startup configuration APIs in
+      <code translate="no" dir="ltr">ProcessGlobalConfig</code>
+      and
+      <code translate="no" dir="ltr">WebViewStartUpConfig</code>
+      have been graduated from experimental to stable.
+      <br />
+      WebView startup can be a time-consuming process, so these APIs allow applications to trigger WebView startup at the right time, ensuring that portions of WebView startup which are able to run in the background will do so, improving the responsiveness of the first WebView usage.
+      <br />
+      These APIs were previously released as experimental, and can now be used without an
+      <code translate="no" dir="ltr">@OptIn</code>
+      annotation. The
+      <a href="https://developer.android.com/reference/androidx/webkit/WebViewCompat#startUpWebView(android.content.Context,androidx.webkit.WebViewStartUpConfig,androidx.webkit.WebViewCompat.WebViewStartUpCallback)">
+        previous version of
+        <code translate="no" dir="ltr">startUpWebView</code>
+      </a>
+      has been deprecated, and users of that API should migrate to the new version, which takes a
+      <code translate="no" dir="ltr">WebViewOutcomeReceiver</code>
+      to facilitate failure callbacks. (
+      <a href="https://android-review.googlesource.com/#/q/Iebb606901c73244f24f9d9f78bfa8dde6e8f791f">Iebb60</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I56bf73694714021668fd6e3497c68020f2983b17">I56bf7</a>
+      )
+    </li>
+    <li>
+      Navigation APIs no longer require the use of
+      <code translate="no" dir="ltr">@OptIn</code>
+      annotations.
+      <br />
+      This covers
+      <a href="https://developer.android.com/reference/androidx/webkit/WebViewCompat#addNavigationListener(android.webkit.WebView,java.util.concurrent.Executor,androidx.webkit.NavigationListener)"><code translate="no" dir="ltr">WebViewCompat#addNavigationListener</code></a>
+      , as well as the
+      <a href="http://go/android-dev/reference/androidx/webkit/NavigationListener"><code translate="no" dir="ltr">NavigationListener</code></a>
+      interface, and the
+      <a href="http://go/android-dev/reference/androidx/webkit/Navigation">Navigation</a>
+      and
+      <a href="https://developer.android.com/reference/androidx/webkit/Page">Page</a>
+      classes. Note that the
+      <code translate="no" dir="ltr">Navigation</code>
+      and
+      <code translate="no" dir="ltr">Page</code>
+      types are now classes instead of interfaces.
+      <br />
+      These APIs should now be feature checked using the new
+      <code translate="no" dir="ltr">WebViewFeature#NAVIGATION_LISTENER</code>
+      feature constant. (
+      <a href="https://android-review.googlesource.com/#/q/I410c8377e6139cbb5f6e65999701fec8f1ce5907">I410c8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/474625648">b/474625648</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/448580228">b/448580228</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/479792864">b/479792864</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/432696062">b/432696062</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/474625648">b/474625648</a>
+      )
+    </li>
+    <li>
+      Removes the experimental annotation from
+      <a href="https://developer.android.com/reference/androidx/webkit/WebViewCompat#saveState(android.webkit.WebView,android.os.Bundle,int,boolean)"><code translate="no" dir="ltr">WebViewCompat#saveState</code></a>
+      . This API is similar to
+      <a href="https://developer.android.com/reference/android/webkit/WebView#saveState(android.os.Bundle)"><code translate="no" dir="ltr">WebView#saveState</code></a>
+      , but allows the developer to specify a maximum size for the state, and whether forward history entries should be included. (
+      <a href="https://android-review.googlesource.com/#/q/Ie3fe1e984db78d359f3f4c7d2a46f1be62d8f30b">Ie3fe1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/389076708">b/389076708</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Profile#setSpeculativeLoadingConfig</code>
+      is deprecated. Use
+      <code translate="no" dir="ltr">Profile#setMaxPrerenders</code>
+      ,
+      <code translate="no" dir="ltr">PrefetchCache#setMaxPrefetches</code>
+      ,
+      <code translate="no" dir="ltr">PrefetchCache#setPrefetchTtlSeconds</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/I9f0f744d0fb419be6f2505d68695ba77a0de82de">I9f0f7</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I9b97740a1c0826132cd0b6dabb7d6f2a34958285">I9b977</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/466301565">b/466301565</a>
+      )
+    </li>
+  </ul>

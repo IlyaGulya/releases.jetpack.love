@@ -1,0 +1,40 @@
+libraryId: navigation3
+groupId: androidx.navigation3
+version: 1.1.0-rc01
+releaseDate: 2026-03-25
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-rc01" data-text="Version 1.1.0-rc01" tabindex="-1">Version 1.1.0-rc01</h3>
+  <p>March 25, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation3:navigation3-*:1.1.0-rc01</code>
+    is released. Version 1.1.0-rc01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3722e3daaddb618f2b0e21170f3a0dc441509696..b339de0fdb19def23789c373c5f8ab239e179099/navigation3">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">NavDisplay</code>
+      now ensures that entries that are displayed underneath overlays have their
+      <code translate="no" dir="ltr">Lifecycle</code>
+      capped at
+      <code translate="no" dir="ltr">STARTED</code>
+      . This ensures APIs like
+      <code translate="no" dir="ltr">dropUnlessResumed</code>
+      continue to work when using dialogs. (
+      <a href="https://android-review.googlesource.com/#/q/If209fac7b1228a008aa238a43ea108191c89fe6c">If209f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/483966071">b/483966071</a>
+      )
+    </li>
+    <li>
+      Fixed an issue in
+      <code translate="no" dir="ltr">NavDisplay</code>
+      where navigating back and forth between the same screens and interrupting the animations between the two could cause the z-order of the screens to be incorrect. (
+      <a href="https://android-review.googlesource.com/#/q/I4d491182a42a2f3ce12748f81c54cdbf25e995a8">I4d491</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/459419800">b/459419800</a>
+      )
+    </li>
+  </ul>

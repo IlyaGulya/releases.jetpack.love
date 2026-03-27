@@ -1,0 +1,129 @@
+libraryId: room3
+groupId: androidx.room3
+version: 3.0.0-alpha02
+releaseDate: 2026-03-25
+#language=html
+changelogHtml: |
+  <h3 id="3.0.0-alpha02" data-text="Version 3.0.0-alpha02" tabindex="-1">Version 3.0.0-alpha02</h3>
+  <p><strong>March 25, 2026</strong></p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room3:room3-*:3.0.0-alpha02</code>
+    is released. Version 3.0.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1a508f033de883ba2853b9f9ae1853eec7010638..4f1927c2c3b66d0c3a6b9118974d818d2dc5a06a/room3">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <strong>FTS5 Support:</strong>
+      Added FTS5 support to Room via the
+      <code translate="no" dir="ltr">@Fts5</code>
+      annotation. This includes new constants for FTS5 tokenizers (
+      <code translate="no" dir="ltr">TOKENIZER_ASCII</code>
+      and
+      <code translate="no" dir="ltr">TOKENIZER_TRIGRAM</code>
+      ) and an enum for the 'detail' FTS option (
+      <code translate="no" dir="ltr">FULL</code>
+      ,
+      <code translate="no" dir="ltr">COLUMN</code>
+      , and
+      <code translate="no" dir="ltr">NONE</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/I9093495ed7cd148547a9c4e8dae40aa7e970cc09">I90934</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/146824830">b/146824830</a>
+      )
+    </li>
+    <li>
+      <strong>Room Paging Targets:</strong>
+      Added
+      <code translate="no" dir="ltr">js</code>
+      ,
+      <code translate="no" dir="ltr">wasmJs</code>
+      ,
+      <code translate="no" dir="ltr">tvOS</code>
+      , and
+      <code translate="no" dir="ltr">watchOS</code>
+      targets to
+      <code translate="no" dir="ltr">room3-paging</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Icffd3956badc794581ef484bef64440e5d73c230">Icffd3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/432783733">b/432783733</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <strong>
+        Multi-platform
+        <code translate="no" dir="ltr">clearAllTables()</code>
+        :
+      </strong>
+      Commonized
+      <code translate="no" dir="ltr">clearAllTables()</code>
+      , making it available across all platforms. It has also been converted into a
+      <code translate="no" dir="ltr">suspend</code>
+      function. (
+      <a href="https://android-review.googlesource.com/#/q/I434aed65dabee6ce969ee9b3cdc39fd514368b66">I434ae</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/322846465">b/322846465</a>
+      )
+    </li>
+    <li>
+      <strong>Destructive Migration:</strong>
+      Added a default parameter value to
+      <code translate="no" dir="ltr">dropAllTables</code>
+      in the
+      <code translate="no" dir="ltr">fallbackToDestructiveMigration</code>
+      APIs. (
+      <a href="https://android-review.googlesource.com/#/q/Ica88b160bd3977d90a4f6317f93045088cf9075c">Ica88b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/438041176">b/438041176</a>
+      )
+    </li>
+    <li>
+      <p><strong>Experimental API Changes:</strong></p>
+
+      <ol>
+        <li>
+          <p>
+            Moved
+            <code translate="no" dir="ltr">@ExperimentalRoomApi</code>
+            to
+            <code translate="no" dir="ltr">room-common</code>
+            to allow annotation-based APIs to be marked as experimental.
+          </p>
+        </li>
+        <li>
+          <p>
+            Added an experimental
+            <code translate="no" dir="ltr">RoomWarning</code>
+            to suppress the requirement for
+            <code translate="no" dir="ltr">@ConstructedBy</code>
+            in a Room database declaration. In this case,
+            <code translate="no" dir="ltr">DatabaseConstructor</code>
+            will not be generated, and a factory implementation must be provided via
+            <code translate="no" dir="ltr">DatabaseBuilder</code>
+            . (
+            <a href="https://android-review.googlesource.com/#/q/If5443fde88d9055be41d97de769b3187877c0ec1">If5443</a>
+            )
+          </p>
+        </li>
+      </ol>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <strong>Paging Source:</strong>
+      Updated
+      <code translate="no" dir="ltr">PagingSourceDaoReturnTypeConverter</code>
+      to correctly indicate that its convert function is intended for READ queries. (
+      <a href="https://android-review.googlesource.com/#/q/I3b0675860f6d5d40dc6aa0ce0eff86ce8b970c08">I3b067</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/139872302">b/139872302</a>
+      )
+    </li>
+  </ul>

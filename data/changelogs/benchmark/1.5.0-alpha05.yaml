@@ -1,0 +1,42 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.5.0-alpha05
+releaseDate: 2026-03-25
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha05" data-text="Version 1.5.0-alpha05" tabindex="-1">Version 1.5.0-alpha05</h3>
+  <p>March 25, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.5.0-alpha05</code>
+    is released. Version 1.5.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1a508f033de883ba2853b9f9ae1853eec7010638..4f1927c2c3b66d0c3a6b9118974d818d2dc5a06a/benchmark">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">ArtMetric</code>
+      to account for top-level packages, especially important when using AGP/R8 9.1+, or
+      <code translate="no" dir="ltr">-repackageclasses</code>
+      global option. Previously,
+      <code translate="no" dir="ltr">ArtMetric</code>
+      would fail to detect these classloads in its
+      <code translate="no" dir="ltr">artClassLoad...</code>
+      measurements. (
+      <a href="https://android-review.googlesource.com/#/q/If8a35bdc3e37c707424413d935d1d051dade6eee">If8a35</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/487402058">b/487402058</a>
+      )
+    </li>
+  </ul>
+  <p>
+    <strong>New Features</strong>
+    - Added a new instrumentation argument
+    <code translate="no" dir="ltr">androidx.benchmark.requireLockedClocks</code>
+    that allows enabling a check for whether the CPU clocks are locked for rooted devices. (
+    <a href="https://android-review.googlesource.com/#/q/Id82e868b44fb191152427f880e027585210b7472">Id82e8</a>
+    ,
+    <a href="https://issuetracker.google.com/issues/468039042">b/468039042</a>
+    )
+  </p>

@@ -1,0 +1,80 @@
+libraryId: xr-compose
+groupId: androidx.xr
+version: 1.0.0-alpha12
+releaseDate: 2026-03-25
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha12" data-text="Version 1.0.0-alpha12" tabindex="-1">Version 1.0.0-alpha12</h3>
+  <p>March 25, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.compose:compose:1.0.0-alpha12</code>
+    and
+    <code translate="no" dir="ltr">androidx.xr.compose:compose-testing:1.0.0-alpha12</code>
+    are released. Version 1.0.0-alpha12 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a34b6c25f6fbb862348d1696a3ac8806f66842c5..0121e6a2cc0e61e205e8b6dd6cbf762caa1dcb86/xr/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add the
+      <code translate="no" dir="ltr">SpatialGltfModel</code>
+      API and the
+      <code translate="no" dir="ltr">SpatialGltfModelAnimation</code>
+      APIs to render glTFs and control animations. Changed
+      <code translate="no" dir="ltr">SpatialGltfModelState</code>
+      to be
+      <code translate="no" dir="ltr">AutoCloseable</code>
+      , it will now need to be closed to free its resources. (
+      <a href="https://android-review.googlesource.com/#/q/I11fde1dc7fbb60dc4929bf7f66358085b73d9853">I11fde</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/466065486">b/466065486</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/481379924">b/481379924</a>
+      ). However, the
+      <code translate="no" dir="ltr">SpatialGltfModel</code>
+      API is marked as restricted for this release pending additional testing. (
+      <a href="https://android-review.googlesource.com/#/q/Ibf003499d9a4c284ad6ad1abe3bff58e428ff87e">Ibf003</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/466090694">b/466090694</a>
+      )
+    </li>
+    <li>
+      Added a deprecated empty overload for
+      <code translate="no" dir="ltr">SubspaceModifier.rotate</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Idceb66c6c14ec3525cdbb777325cee010f23de06">Idceb6</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">SpatialSmoothFeatheringEffect</code>
+      function to
+      <code translate="no" dir="ltr">spatialSmoothFeatheringEffect</code>
+      and moved it to a draw module. Updated
+      <code translate="no" dir="ltr">SpatialExternalSurface</code>
+      default feathering value to null, which mimics the old ZeroFeatheringEffect functionality. (
+      <a href="https://android-review.googlesource.com/#/q/I5fdaaf4c09671ad5443a7d51cf68307548547b91">I5fdaa</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/460426800">b/460426800</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">onPointSourceParamsAvailable</code>
+      . A different audio spatialization API will be available in the near future. (
+      <a href="https://android-review.googlesource.com/#/q/I8650740c0468b4ce5a83f681d0b58cc91b48ad8a">I86507</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/458513439">b/458513439</a>
+      )
+    </li>
+    <li>
+      Added RTL behavior for offset subspace modifiers. Also added
+      <code translate="no" dir="ltr">absoluteOffset</code>
+      to ignore layout direction. (
+      <a href="https://android-review.googlesource.com/#/q/I30e4b9dbabd510c8505de14621bc7b9a838dbe6f">I30e4b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/474409165">b/474409165</a>
+      )
+    </li>
+  </ul>
