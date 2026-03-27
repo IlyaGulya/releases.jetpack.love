@@ -1,0 +1,93 @@
+libraryId: biometric
+groupId: androidx.biometric
+version: 1.4.0-alpha06
+releaseDate: 2026-03-25
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-alpha06" data-text="Version 1.4.0-alpha06" tabindex="-1">Version 1.4.0-alpha06</h3>
+  <p>March 25, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.biometric:biometric:1.4.0-alpha06</code>
+    and
+    <code translate="no" dir="ltr">androidx.biometric:biometric-compose:1.4.0-alpha06</code>
+    are released. Version 1.4.0-alpha06 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ec985eed3cba8444e5aaa52a748333397a1298f3..8fc7d4fb5903eb70538401e5e147bd05b4a2d345/biometric">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Multiple Fallback Options Support (
+      <a href="https://android-review.googlesource.com/#/q/Ib078e8ba84214aeb580972001f0a8a06961c9c52">Ib078e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/349218025">b/349218025</a>
+      )
+    </li>
+    <li>
+      Starting with Android 36.1 (Baklava), biometric prompt now supports up to four custom fallback options instead of a single negative button. Developers can provide multiple custom fallback options with associated icons (on supported Android versions) via
+      <code translate="no" dir="ltr">AuthenticationRequest.Biometric.Fallback</code>
+      . Clicks on these options are now delivered via
+      <code translate="no" dir="ltr">AuthenticationResult.CustomFallbackSelected</code>
+      instead of an error code.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">JvmSynthetic</code>
+      from
+      <code translate="no" dir="ltr">AuthenticationRequest</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia2dcb84cbc315264889929498ba5e747468b40df">Ia2dcb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/434257610">b/434257610</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">KeyAgreement</code>
+      support to
+      <code translate="no" dir="ltr">BiometricPrompt.CryptoObject</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7302920f722bba7a360efb93fcdae74274d710ef">I73029</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/400115331">b/400115331</a>
+      )
+    </li>
+    <li>
+      Update
+      <code translate="no" dir="ltr">registerForAuthenticationResult()</code>
+      to use
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      instead
+      <code translate="no" dir="ltr">FragmentActivity</code>
+      for broader compatibility. (
+      <a href="https://android-review.googlesource.com/#/q/Id5db612b62fe6758ea095d7e816f0afb6de26c9d">Id5db6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/349213716">b/349213716</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where the fingerprint icon would disappear during device rotation. (
+      <a href="https://android-review.googlesource.com/#/q/I366f22df766ea29e8fad74e7370e692e37971382">I366f2</a>
+      )
+    </li>
+    <li>
+      Moved fingerprint dialog destruction to
+      <code translate="no" dir="ltr">onDestroy()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I619b06b436a165bd3722968bc65dbd383af25898">I619b0</a>
+      )
+    </li>
+    <li>
+      Updated the
+      <code translate="no" dir="ltr">compileSdk</code>
+      to version 36.1 to support new Baklava platform features. (
+      <a href="https://android-review.googlesource.com/#/q/I9da037a654393c4c7e9eb3cdbc808a4d51bd69d5">I9da03</a>
+      )
+    </li>
+  </ul>

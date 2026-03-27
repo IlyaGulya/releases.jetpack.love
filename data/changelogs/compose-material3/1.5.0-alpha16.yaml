@@ -1,0 +1,148 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.5.0-alpha16
+releaseDate: 2026-03-25
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha16" data-text="Version 1.5.0-alpha16" tabindex="-1">Version 1.5.0-alpha16</h3>
+  <p>March 25, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.5.0-alpha16</code>
+    is released. Version 1.5.0-alpha16 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6e23fc0c137022098ae2d043778ffdc56402ba5e..4f1927c2c3b66d0c3a6b9118974d818d2dc5a06a/compose/material3">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Promote
+      <code translate="no" dir="ltr">Typography</code>
+      constructors and attrs, Added a
+      <code translate="no" dir="ltr">Typography</code>
+      constructor that accepts a default
+      <code translate="no" dir="ltr">FontFamily</code>
+      to be applied to all
+      <code translate="no" dir="ltr">TextStyles</code>
+      in the scale. (
+      <a href="https://android-review.googlesource.com/#/q/I3f6f1a6c9524d78c30a7a6cd648caeedd6593c8f">I3f6f1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/236358112">b/236358112</a>
+      )
+    </li>
+    <li>
+      Promote experimental APIs for sliders to stable. (
+      <a href="https://android-review.googlesource.com/#/q/I5efb3368a55e4ce1be530bbd64e8a0fe99d0f859">I5efb3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/304811984">b/304811984</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">isAnchoredDraggableComponentsAnchorRecoveryEnabled</code>
+      feature flag introduced for draggable components experiencing ambiguous target errors. Components include
+      <code translate="no" dir="ltr">ModalBottomSheet</code>
+      ,
+      <code translate="no" dir="ltr">BottomSheetScaffold</code>
+      ,
+      <code translate="no" dir="ltr">SwipeToDismissBox</code>
+      and
+      <code translate="no" dir="ltr">WideNavigationRail</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I5b0e588c072344c3a6d714684b6c9f73adeafc98">I5b0e5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/487941042">b/487941042</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/478210200">b/478210200</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/477038695">b/477038695</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">DropdownMenuItemTrailingLabel</code>
+      default function and pointer optimized UI paddings for segmented menus (
+      <a href="https://android-review.googlesource.com/#/q/I289775c0d6f6b7752ae2bf422b511d94ae73aba8">I28977</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/485937388">b/485937388</a>
+      )
+    </li>
+    <li>
+      Added paddings for dialogs for when
+      <code translate="no" dir="ltr">ComposeMaterial3Flags.isPrecisionPointerComponentSizingEnabled</code>
+      is true, and added
+      <code translate="no" dir="ltr">AlertDialogDefaults.IconSize</code>
+      for the icon. (
+      <a href="https://android-review.googlesource.com/#/q/Ib96525c4b2d3e8877ee0fd89d2489c15b00dc20a">Ib9652</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/485932651">b/485932651</a>
+      )
+    </li>
+    <li>
+      Optimized
+      <code translate="no" dir="ltr">BasicTextField</code>
+      's internal min size calculations. These are controlled by
+      <code translate="no" dir="ltr">ComposeFoundationFlags#isBasicTextFieldMinSizeOptimizationEnabled</code>
+      , should you need to disable them. (
+      <a href="https://android-review.googlesource.com/#/q/I70ade2488b5f1add0d22fa359ab5b850a7bfa16f">I70ade</a>
+      )
+    </li>
+    <li>
+      Updated parameter order in
+      <code translate="no" dir="ltr">SearchBarDefaults.InputField</code>
+      to maintain source code compatibility. (
+      <a href="https://android-review.googlesource.com/#/q/I20e3b208f3326302d539befa8f738cd909e8e9a9">I20e3b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/486964336">b/486964336</a>
+      )
+    </li>
+    <li>
+      Remove deprecated
+      <code translate="no" dir="ltr">FilterChip</code>
+      and
+      <code translate="no" dir="ltr">AssistChip</code>
+      api that have a horizontalSpacing parameter (
+      <a href="https://android-review.googlesource.com/#/q/Iec623b93584f3f26368d89755b814150ebd13c2d">Iec623</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/483762893">b/483762893</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">isAtTop</code>
+      parameter in
+      <code translate="no" dir="ltr">TopAppBarDefaults.pinnedScrollBehavior</code>
+      and
+      <code translate="no" dir="ltr">TopAppBarDefaults.enterAlwaysScrollBehavior</code>
+      has been renamed to
+      <code translate="no" dir="ltr">isAtStart</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/If7323dd80acd06912f56bef5c4e69e7f690be342">If7323</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/405129274">b/405129274</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">BottomSheet</code>
+      components now respect
+      <code translate="no" dir="ltr">MaterialTheme.motionScheme</code>
+      during nested scroll and drag gestures. (
+      <a href="https://android-review.googlesource.com/#/q/I5fe22dfd62c7fe144d0f68b3d528facdddc72d6c">I5fe22</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/452071842">b/452071842</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/384959324">b/384959324</a>
+      )
+    </li>
+    <li>
+      Fixed icon-label padding being applied when the item has a
+      <code translate="no" dir="ltr">selectedLeadingIcon</code>
+      that is not currently displayed (
+      <a href="https://android-review.googlesource.com/#/q/Iba820e6a78b1e0a4e322cfe1ee89574ca065d4e9">Iba820</a>
+      )
+    </li>
+  </ul>

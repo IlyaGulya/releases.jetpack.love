@@ -1,0 +1,94 @@
+libraryId: wear-protolayout
+groupId: androidx.wear
+version: 1.4.0
+releaseDate: 2026-03-25
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0" data-text="Version 1.4.0" tabindex="-1">Version 1.4.0</h3>
+  <p>March 25, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.protolayout:protolayout-*:1.4.0</code>
+    is released. Version 1.4.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/90062705131fa122cdd8d9bed30380b183dc48bd..c09828fdac182a17e5c9410b518c3c7e6f35a88a/wear/protolayout">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.3.0:</strong></p>
+  <ul>
+    <li>
+      For full details of changes since 1.3.0, see
+      <a href="https://developer.android.com/jetpack/androidx/releases/wear-protolayout#1.4.0-beta01">the 1.4.0-beta01 release notes</a>
+      .
+    </li>
+  </ul>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      The 1.4.0-beta01 release of Wear ProtoLayout indicates that this release of the library is feature-complete and the API is locked (except where marked as experimental). Wear ProtoLayout 1.4 includes the following new functionalities and APIs:
+      <ul>
+        <li>
+          <strong>Inlined Image Resources and performance improvements:</strong>
+          Introduced an improved resource handling concept where
+          <code translate="no" dir="ltr">ImageResource</code>
+          can be directly inlined within the layout itself.
+        </li>
+        <li>
+          <strong>Material3TileService:</strong>
+          Introduced a new, Kotlin-friendly service for creating tiles. It simplifies development by providing a single suspend function to return both tile layout and resources. It automatically manages the
+          <code translate="no" dir="ltr">MaterialScope</code>
+          and
+          <code translate="no" dir="ltr">ProtoLayoutScope</code>
+          for better resource handling and performance improvements on faster Tiles loading.
+        </li>
+        <li>
+          <strong>Tile Previews Update:</strong>
+          Tooling for Tile Previews has been updated to support the new
+          <code translate="no" dir="ltr">ProtoLayoutScope</code>
+          automatic resource handling, ensuring previews reflect inlined resources correctly without extra configuration.
+        </li>
+        <li>
+          <strong>Many Kotlin DSL Improvements:</strong>
+          Added specialized Kotlin helpers for
+          <code translate="no" dir="ltr">Tile</code>
+          and all other APIs needed to build a tile (such as
+          <code translate="no" dir="ltr">Timeline</code>
+          ) to improve the developer experience for Kotlin users.
+        </li>
+        <li>
+          <strong>Dynamic Service Switching:</strong>
+          Introduced
+          <code translate="no" dir="ltr">METADATA_GROUP_KEY</code>
+          , allowing developers to group multiple
+          <code translate="no" dir="ltr">TileService</code>
+          instances in the manifest. This enables dynamic switching between different services that represent the same tile on new OS versions.
+        </li>
+        <li>
+          <strong>Tile ID in Updates:</strong>
+          Developers can now specify a particular tileId in update requests, allowing for more granular control over which tile instances are refreshed.
+        </li>
+        <li>
+          <strong>Increased Compile SDK:</strong>
+          To support the new
+          <code translate="no" dir="ltr">Material3TileService</code>
+          and advanced resource handling, the
+          <code translate="no" dir="ltr">compileSdk</code>
+          version requirement has been increased to
+          <strong>35</strong>
+          .
+        </li>
+        <li>
+          <strong>ANR Prevention:</strong>
+          Moved the unbinding logic during Tile update requests to a background thread to prevent "Application Not Responding" (ANR) errors.
+        </li>
+        <li>
+          <strong>Proper RequiresPermission annotation for heart rate data:</strong>
+          Starting from API 36, calling
+          <code translate="no" dir="ltr">PlatformHealthSources.heartRateBpm</code>
+          or
+          <code translate="no" dir="ltr">PlatformHealthSources.heartRateAccuracy</code>
+          needs
+          <strong><code translate="no" dir="ltr">android.health.connect.HealthPermissions.READ_HEART_RATE</code></strong>
+          permission to be granted to the calling App.
+        </li>
+      </ul>
+    </li>
+  </ul>

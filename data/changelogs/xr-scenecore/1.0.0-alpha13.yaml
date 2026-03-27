@@ -1,0 +1,111 @@
+libraryId: xr-scenecore
+groupId: androidx.xr
+version: 1.0.0-alpha13
+releaseDate: 2026-03-25
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha13" data-text="Version 1.0.0-alpha13" tabindex="-1">Version 1.0.0-alpha13</h3>
+  <p>March 25, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.scenecore:scenecore-*:1.0.0-alpha13</code>
+    is released. Version 1.0.0-alpha13 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/bf48d1095789789d9d62bfd42bb4f8c9a335ecea..0731bcada85ff22cf1ddd54167e83f02bbd022be/xr/scenecore">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">unscaledGravityAlignedActivitySpace</code>
+      flag from
+      <code translate="no" dir="ltr">Session.create</code>
+      .
+      <code translate="no" dir="ltr">ActivitySpace</code>
+      is always unscaled and gravity-aligned now. (
+      <a href="https://android-review.googlesource.com/#/q/If6f11877880f649ecf7a4844db3e809064cc10fb">If6f11</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/458173423">b/458173423</a>
+      )
+    </li>
+    <li>
+      Removed deprecated
+      <code translate="no" dir="ltr">setMaterialOverride</code>
+      and
+      <code translate="no" dir="ltr">clearMaterialOverride</code>
+      functions from
+      <code translate="no" dir="ltr">GltfModelEntity</code>
+      which are now called on the individual
+      <code translate="no" dir="ltr">GltfModelNode</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2e5d2dd560845113bf20b2b0d339e602b062123c">I2e5d2</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">transformPixelCoordinatesToLocalPosition</code>
+      and
+      <code translate="no" dir="ltr">transformNormalizedCoordinatesToLocalPosition</code>
+      to
+      <code translate="no" dir="ltr">PanelEntity</code>
+      and removed equivalent experimental methods that used to return poses instead of
+      <code translate="no" dir="ltr">Vector3</code>
+      positions. (
+      <a href="https://android-review.googlesource.com/#/q/Ib6960082962b970caabf9e8fca1bee7c9e0909a2">Ib6960</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/460123106">b/460123106</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/458333591">b/458333591</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">GltfAnimation</code>
+      APIs for controlling glTF animations in
+      <code translate="no" dir="ltr">SceneCore</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2c172cc173fb9f65376ff3116f00f8dea8990b68">I2c172</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/466065486">b/466065486</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/465819070">b/465819070</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/465818617">b/465818617</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">ScenePose.activitySpacePose</code>
+      to
+      <code translate="no" dir="ltr">ScenePose.poseInActivitySpace</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I8f17516589bbd7630c2b93d3a2a04e06a5b1cf72">I8f175</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/427822261">b/427822261</a>
+      )
+    </li>
+    <li>
+      Added Scenecore Projected Runtime Implementation (
+      <a href="https://android-review.googlesource.com/#/q/I9c4ab3407e40ccdc04699381e58366d64c188cb8">I9c4ab</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/476440158">b/476440158</a>
+      )
+    </li>
+    <li>
+      When resizing the main panel entity, it may reposition itself to the
+      <code translate="no" dir="ltr">ActivitySpace</code>
+      origin. There is no workaround other than manually or programmatically repositioning the panel back to its original location. This bug will be fixed in a future release. (
+      <a href="https://issuetracker.google.com/issues/489427007">b/489427007</a>
+      ).
+    </li>
+    <li>
+      In some cases, the affordance for
+      <code translate="no" dir="ltr">MovableComponent</code>
+      may not appear for
+      <code translate="no" dir="ltr">SurfaceEntity</code>
+      and other non-Panel entity types. Explicitly setting
+      <code translate="no" dir="ltr">MovableComponent.size</code>
+      will cause the affordance to appear. This bug will be fixed in a future release (
+      <a href="https://issuetracker.google.com/issues/490983469">b/490983469</a>
+      ).
+    </li>
+  </ul>

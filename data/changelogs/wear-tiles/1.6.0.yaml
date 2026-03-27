@@ -1,0 +1,80 @@
+libraryId: wear-tiles
+groupId: androidx.wear
+version: 1.6.0
+releaseDate: 2026-03-25
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0" data-text="Version 1.6.0" tabindex="-1">Version 1.6.0</h3>
+  <p>March 25, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.tiles:tiles-*:1.6.0</code>
+    is released. Version 1.6.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/90062705131fa122cdd8d9bed30380b183dc48bd..c09828fdac182a17e5c9410b518c3c7e6f35a88a/wear/tiles">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.5.0:</strong></p>
+  <p>
+    For full details of changes since 1.5.0, see
+    <a href="https://developer.android.com/jetpack/androidx/releases/wear-tiles#1.6.0-beta01">the 1.6.0-beta01 release notes</a>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <p>The 1.6.0-beta01 release of Wear Tiles indicates that this release of the library is feature-complete and the API is locked (except where marked as experimental). Wear Tiles 1.6 includes the following new functionalities and APIs:</p>
+  <ul>
+    <li>
+      <strong>Inlined Resource Handling and performance improvements:</strong>
+      Tiles now support automatic resource collection through
+      <code translate="no" dir="ltr">ProtoLayoutScope</code>
+      .
+    </li>
+    <li>
+      <strong>Material3TileService:</strong>
+      Introduced a new, Kotlin-friendly service for creating tiles. It simplifies development by providing a single suspend function to return both tile layout and resources. It automatically manages the
+      <code translate="no" dir="ltr">MaterialScope</code>
+      and
+      <code translate="no" dir="ltr">ProtoLayoutScope</code>
+      for better resource handling and performance improvements on faster Tiles loading.
+    </li>
+    <li>
+      <strong>Tile Previews Update:</strong>
+      Tooling for Tile Previews has been updated to support the new
+      <code translate="no" dir="ltr">ProtoLayoutScope</code>
+      automatic resource handling, ensuring previews reflect inlined resources correctly without extra configuration.
+    </li>
+    <li>
+      <strong>Many Kotlin DSL Improvements:</strong>
+      Added specialized Kotlin helpers for
+      <code translate="no" dir="ltr">Tile</code>
+      and all other APIs needed to build a tile (such as
+      <code translate="no" dir="ltr">Timeline</code>
+      ) to improve the developer experience for Kotlin users.
+    </li>
+    <li>
+      <strong>Dynamic Service Switching:</strong>
+      Introduced
+      <code translate="no" dir="ltr">METADATA_GROUP_KEY</code>
+      , allowing developers to group multiple
+      <code translate="no" dir="ltr">TileService</code>
+      instances in the manifest. This enables dynamic switching between different services that represent the same tile on new OS versions.
+    </li>
+    <li>
+      <strong>Tile ID in Updates:</strong>
+      Developers can now specify a particular
+      <code translate="no" dir="ltr">tileId</code>
+      in update requests, allowing for more granular control over which tile instances are refreshed.
+    </li>
+    <li>
+      <strong>Increased Compile SDK:</strong>
+      To support the new
+      <code translate="no" dir="ltr">Material3TileService</code>
+      and advanced resource handling, the
+      <code translate="no" dir="ltr">compileSdk</code>
+      version requirement has been increased to
+      <strong>35</strong>
+      .
+    </li>
+    <li>
+      <strong>ANR Prevention:</strong>
+      Moved the unbinding logic during Tile update requests to a background thread to prevent "Application Not Responding" (ANR) errors.
+    </li>
+  </ul>
