@@ -1,0 +1,47 @@
+libraryId: room3
+groupId: androidx.room3
+version: 3.0.0-alpha03
+releaseDate: 2026-04-08
+#language=html
+changelogHtml: |
+  <h3 id="3.0.0-alpha03" data-text="Version 3.0.0-alpha03" tabindex="-1">Version 3.0.0-alpha03</h3>
+  <p>April 08, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room3:room3-*:3.0.0-alpha03</code>
+    is released. Version 3.0.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4f1927c2c3b66d0c3a6b9118974d818d2dc5a06a..ec20b1544fe91db83862ce16c68a099d18d31b10/room3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Make
+      <code translate="no" dir="ltr">RoomDatabase</code>
+      's no-arg constructor public to avoid a Lint warning when the constructor is referenced in the @Database declaration. (
+      <a href="https://android-review.googlesource.com/#/q/I9bac2bbc467fb02362ce52711299c45062ebb214">I9bac2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/494722261">b/494722261</a>
+      )
+    </li>
+    <li>
+      Add a version of
+      <code translate="no" dir="ltr">Room.inMemoryDatabaseBuilder</code>
+      and
+      <code translate="no" dir="ltr">Room.databaseBuilder</code>
+      that doesn't take in an Android Context. The need for a Context has been greatly reduced in Room 3.0 and therefore making it an optional value for the Builder allows creating in-memory databases in common code more easily. (
+      <a href="https://android-review.googlesource.com/#/q/I5d50201b8470fa7473fb59008542994b33075001">I5d502</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/438041176">b/438041176</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix a 'code too large' error on JVM and Android generated code when the
+      <code translate="no" dir="ltr">onValidateSchema</code>
+      function's body was too big (
+      <a href="https://issuetracker.google.com/issues/493708172">b/493708172</a>
+      ).
+    </li>
+  </ul>
