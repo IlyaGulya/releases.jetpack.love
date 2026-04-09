@@ -1,0 +1,36 @@
+libraryId: lint
+groupId: androidx.lint
+version: 1.0.0-alpha06
+releaseDate: 2026-04-08
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha06" data-text="Version 1.0.0-alpha06" tabindex="-1">Version 1.0.0-alpha06</h3>
+  <p>April 08, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lint:lint-gradle:1.0.0-alpha06</code>
+    is released. Version 1.0.0-alpha06 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/53e45a278722a68b9218cdc0c1bef1b01bc12998..d2ceddae2daa525785f5f17a9460d86c5a959d0b/lint/lint-gradle">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added check for calls to
+      <code translate="no" dir="ltr">mustRunAfter</code>
+      and
+      <code translate="no" dir="ltr">shouldRunAfter</code>
+      as they are expensive due to Gradle having to rearrange the task graphs.
+    </li>
+    <li>
+      Added check for calls to
+      <code translate="no" dir="ltr">System.getenv()</code>
+      and
+      <code translate="no" dir="ltr">System.getenv("key")</code>
+      that should be going through Provider API instead
+    </li>
+    <li>
+      External contribution from
+      <code translate="no" dir="ltr">josh@fueledbycaffeine.com</code>
+      to add a check to detect string concatenation of Provider
+    </li>
+  </ul>

@@ -1,0 +1,49 @@
+libraryId: sqlite
+groupId: androidx.sqlite
+version: 2.7.0-alpha03
+releaseDate: 2026-04-08
+#language=html
+changelogHtml: |
+  <h3 id="2.7.0-alpha03" data-text="Version 2.7.0-alpha03" tabindex="-1">Version 2.7.0-alpha03</h3>
+  <p>April 08, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.sqlite:sqlite-*:2.7.0-alpha03</code>
+    is released. Version 2.7.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4f1927c2c3b66d0c3a6b9118974d818d2dc5a06a..ec20b1544fe91db83862ce16c68a099d18d31b10/sqlite">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">openAsync()</code>
+      ,
+      <code translate="no" dir="ltr">prepareAsync()</code>
+      and
+      <code translate="no" dir="ltr">stepAsync()</code>
+      from the common interfaces, keeping the suspend APIs only on the web source set interfaces. The suspend APIs are renamed, dropping the 'async' suffix since they no longer conflict with their blocking counterparts in the non-web source set.
+    </li>
+    <li>
+      The top-level suspend extension functions are moved into a new artifact
+      <code translate="no" dir="ltr">andriodx.sqlite:sqlite-async</code>
+      and a new package
+      <code translate="no" dir="ltr">androidx.sqlite.async</code>
+      . This is done in order to avoid sub-optimal usages of these extension functions on common sources that do not target web. They should also be avoided if the targets are only web. However, if targeting both web and non-web platforms, then the top-level functions are useful and allow writing common code for all platforms that uses the
+      <code translate="no" dir="ltr">SQLiteDriver</code>
+      interfaces. (
+      <a href="https://android-review.googlesource.com/#/q/I63c2c815d8baeb8335812977c7e684fefda05421">I63c2c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/336758416">b/336758416</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/493837704">b/493837704</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Merge sqlite-ktx into the sqlite library. All Kotlin extensions are now part of the main sqlite artifact. sqlite-ktx is now an empty artifact for compatibility. (
+      <a href="https://android-review.googlesource.com/#/q/Ib9512812d09ba74dcfbed0c073095af5f620854e">Ib9512</a>
+      )
+    </li>
+  </ul>

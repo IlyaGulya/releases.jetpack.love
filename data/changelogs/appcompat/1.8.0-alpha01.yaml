@@ -1,0 +1,144 @@
+libraryId: appcompat
+groupId: androidx.appcompat
+version: 1.8.0-alpha01
+releaseDate: 2026-04-08
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0-alpha01" data-text="Version 1.8.0-alpha01" tabindex="-1">Version 1.8.0-alpha01</h3>
+  <p>April 08, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.appcompat:appcompat:1.8.0-alpha01</code>
+    and
+    <code translate="no" dir="ltr">androidx.appcompat:appcompat-resources:1.8.0-alpha01</code>
+    are released. Version 1.8.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e144631ecabce2e5206abae98d8f18101bac88e0..951845221205b7a428a9d779107760fc929863ee/appcompat">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removing obsolete
+      <code translate="no" dir="ltr">@RequiresApi(21)</code>
+      annotations (
+      <a href="https://android-review.googlesource.com/#/q/I44f333e358250a0e34b15ed7192ce75ef7af1b9d">I44f33</a>
+      )
+    </li>
+    <li>
+      New
+      <code translate="no" dir="ltr">TextAppearanceSpanCompat</code>
+      API for working with downloadable font feature (
+      <a href="https://android-review.googlesource.com/#/q/I9c1c89c4b5dae828717ecb4619eead5f9afbfe4e">I9c1c8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/197242546">b/197242546</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/393805627">b/393805627</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Moving the default
+      <code translate="no" dir="ltr">minSdk</code>
+      from API 21 to API 23 (
+      <a href="https://android-review.googlesource.com/#/q/Ibdfca5942dbb414ca07594ba240093db14aad4df">Ibdfca</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/380448311">b/380448311</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/435705964">b/435705964</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/435705223">b/435705223</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AppCompat</code>
+      has been updated to use Activity 1.8.0 to allow it to use the
+      <code translate="no" dir="ltr">initializeViewTreeOwners()</code>
+      API from
+      <code translate="no" dir="ltr">ComponentActivity</code>
+      to ensure that it always has the correct
+      <code translate="no" dir="ltr">ViewTreeOwners</code>
+      set. (
+      <a href="https://android-review.googlesource.com/#/q/I969192dacdbae2c6feb9734cafc21cd0ee352680">I96919</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/419208471">b/419208471</a>
+      )
+    </li>
+    <li>
+      Refine
+      <code translate="no" dir="ltr">ActionBarContextView</code>
+      and
+      <code translate="no" dir="ltr">AppCompatDelegateImpl</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ia83b3929cbf046c4a5c0f701037ce1b22f717dc7">Ia83b3</a>
+      )
+    </li>
+    <li>
+      This library now uses
+      <a href="https://jspecify.dev/">JSpecify nullness annotations</a>
+      , which are type-use. Kotlin developers should use the following compiler arguments to enforce correct usage:
+      <code translate="no" dir="ltr">-Xjspecify-annotations=strict</code>
+      ,
+      <code translate="no" dir="ltr">-Xtype-enhancement-improvements-strict-mode</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Id9081d31f121b80ce0001f7b54a79b58b8b79f0c">Id9081</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326456246">b/326456246</a>
+      )
+    </li>
+    <li>
+      Set the window title of
+      <code translate="no" dir="ltr">AlertDialogs</code>
+      for a11y purposes (
+      <a href="https://android-review.googlesource.com/#/q/I8bbdd10d076f6b44c82c10098ed5c9368dcae4a4">I8bbdd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/347729115">b/347729115</a>
+      )
+    </li>
+    <li>
+      Removed manual outlining of access to new platform APIs since this happens automatically via API modeling when using R8 with AGP 7.3 or later (e.g. R8 version 3.3) and for all builds when using AGP 8.1 or later (e.g. D8 version 8.1). Clients who are not using AGP are advised to update to D8 version 8.1 or later. See
+      <a href="https://medium.com/androiddevelopers/mitigating-soft-verification-issues-in-r8-and-d8-7e9e06827dfd">this article</a>
+      for more details. (
+      <a href="https://android-review.googlesource.com/#/q/I9496cfaeb50a5c484fbee6521b74a0605fb013dc">I9496c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/345472586">b/345472586</a>
+      )
+    </li>
+    <li>
+      Correctly set
+      <code translate="no" dir="ltr">fontVariationSettings</code>
+      from
+      <code translate="no" dir="ltr">textAppearance</code>
+      in
+      <code translate="no" dir="ltr">AppCompat</code>
+      views. (
+      <a href="https://android-review.googlesource.com/#/q/I20d066b24224d8e291d9bbdf3803389027b28bf0">I20d06</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/264321145">b/264321145</a>
+      )
+    </li>
+    <li>
+      Dispatch configuration changes in
+      <code translate="no" dir="ltr">AppCompatActivity</code>
+      to the view tree (
+      <a href="https://android-review.googlesource.com/#/q/Ibece86c046444bec0182d6bd8d6e713378cf3cce">Ibece8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/321896385">b/321896385</a>
+      )
+    </li>
+    <li>
+      Projects released with Kotlin 2.0 require KGP 2.0.0 or newer to be consumed (
+      <a href="https://android-review.googlesource.com/#/q/Idb6b5d6ae1625ab870ffe74f9790ffabc82a63b4">Idb6b5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/344563182">b/344563182</a>
+      )
+    </li>
+    <li>
+      Fix Toolbar height calculation to include title/subtitle vertical margins (
+      <a href="https://android-review.googlesource.com/#/q/Ia58468bff99a07cd3650f028fbfe15dbda1817d0">Ia5846</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/267200424">b/267200424</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_17_2" data-text="Version 1.7" tabindex="-1">Version 1.7</h2>

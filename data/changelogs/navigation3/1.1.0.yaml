@@ -1,0 +1,70 @@
+libraryId: navigation3
+groupId: androidx.navigation3
+version: 1.1.0
+releaseDate: 2026-04-08
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0" data-text="Version 1.1.0" tabindex="-1">Version 1.1.0</h3>
+  <p>April 08, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation3:navigation3-*:1.1.0</code>
+    is released. Version 1.1.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/add6a0ae146bc8a21394e7a83e0fea2e8dc31b5a..65530abc6f586edfe303825bb9b94c9fb64c4a0f/navigation3">these commits</a>
+    .
+  </p>
+  <p><strong>1.1.0 is now stable!</strong></p>
+  <p><strong>Important changes since 1.0.0</strong></p>
+  <p>
+    <strong>Shared Elements between Scenes</strong>
+    - Navigation3 now supports treating scenes as shared element object. This means that when the scenes change, it is possible to ensure they have a smooth transition. You can enable this by passing a
+    <code translate="no" dir="ltr">SharedTransitionScope</code>
+    to either the
+    <code translate="no" dir="ltr">NavDisplay</code>
+    or to
+    <code translate="no" dir="ltr">rememberSceneState</code>
+    .
+  </p>
+  <p>
+    <strong>SceneDecoratorStrategy</strong>
+    - Introduction of
+    <code translate="no" dir="ltr">SceneDecoratorStrategy</code>
+    to support uses cases such as decorating scenes with common UI components or sharing state across scenes.
+  </p>
+  <p>
+    <strong>NavMetadata DSL</strong>
+    - Navigation3 now provides a new type-safe metadata DSL. The DSL uses a new
+    <code translate="no" dir="ltr">MetadataKey</code>
+    interface that allows for defining the key and value types that they wish to provide to the metadata map. This also added new
+    <code translate="no" dir="ltr">NavMetadataKeys</code>
+    for
+    <code translate="no" dir="ltr">NavDisplay</code>
+    transitions so that they can be used with the new metadata DSL to add transitions to
+    <code translate="no" dir="ltr">NavDisplay</code>
+    .
+  </p>
+  <p>
+    <strong>OverlayScene Animations</strong>
+    - The
+    <code translate="no" dir="ltr">OverlayScene</code>
+    interface has a new
+    <code translate="no" dir="ltr">onRemoved</code>
+    suspending callback. This callback is invoked after a key associated with the scene is removed from the backstack, but before it leaves composition. This allows exit animations called within
+    <code translate="no" dir="ltr">onRemoved</code>
+    to complete before the overlay scene is removed from composition.
+  </p>
+  <p>
+    <strong>Other Changes</strong>
+    -
+    <code translate="no" dir="ltr">NavDisplay</code>
+    and
+    <code translate="no" dir="ltr">rememberSceneState</code>
+    now take a
+    <code translate="no" dir="ltr">List&lt;SceneStrategy&gt;</code>
+    instead of the previous single
+    <code translate="no" dir="ltr">SceneStrategy</code>
+    parameter that was chained by the
+    <code translate="no" dir="ltr">then</code>
+    infix. - You can now dynamically add metadata with consideration for the entry key via the
+    <code translate="no" dir="ltr">EntryProvider</code>
+    DSL.
+  </p>

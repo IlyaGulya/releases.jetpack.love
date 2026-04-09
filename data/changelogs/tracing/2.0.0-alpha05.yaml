@@ -1,0 +1,53 @@
+libraryId: tracing
+groupId: androidx.tracing
+version: 2.0.0-alpha05
+releaseDate: 2026-04-08
+#language=html
+changelogHtml: |
+  <h3 id="2.0.0-alpha05" data-text="Version 2.0.0-alpha05" tabindex="-1">Version 2.0.0-alpha05</h3>
+  <p>April 08, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.tracing:tracing-*:2.0.0-alpha05</code>
+    is released. Version 2.0.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4f1927c2c3b66d0c3a6b9118974d818d2dc5a06a..43ba8bda1ec01d3d9d4ab6a1ea0cc20d41a80019/tracing">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">TraceSink</code>
+      factory functions now return
+      <code translate="no" dir="ltr">TraceSink</code>
+      and not
+      <code translate="no" dir="ltr">AbstractTraceSink</code>
+      . Files now have a unique suffix. We make sure that we can atomically create a
+      <strong>new</strong>
+      file that will be used to store trace packets. (
+      <a href="https://android-review.googlesource.com/#/q/I4c4aadbaf2259ec49e8c3a446a9bbeb64f4c5bb1">I4c4aa</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/496298726">b/496298726</a>
+      )
+    </li>
+    <li>
+      Simplify and make coroutine context propagation faster. (
+      <a href="https://android-review.googlesource.com/#/q/Ia62dba4bdfad3dad667b09a17e1e6c70013f788d">Ia62db</a>
+      )
+    </li>
+    <li>
+      Introduce the optional
+      <code translate="no" dir="ltr">attributes()</code>
+      when constructing a
+      <code translate="no" dir="ltr">TraceDriver</code>
+      that provides a way to add metadata pertaining to a trace. (
+      <a href="https://android-review.googlesource.com/#/q/Ia147ec79e079068718942d902f54bec6671999d4">Ia147e</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Process threads and counter tracks are now synchronized. This fixes exceptions of the form:
+      <code translate="no" dir="ltr">java.lang.NullPointerException: Cannot invoke "androidx.tracing.ThreadTrack.flush$tracing()" because "threadTrack" is null</code>
+    </li>
+    <li>Avoid emitting sink events when tracing is disabled.</li>
+  </ul>
