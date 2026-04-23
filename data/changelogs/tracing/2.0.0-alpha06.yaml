@@ -1,0 +1,68 @@
+libraryId: tracing
+groupId: androidx.tracing
+version: 2.0.0-alpha06
+releaseDate: 2026-04-22
+#language=html
+changelogHtml: |
+  <h3 id="2.0.0-alpha06" data-text="Version 2.0.0-alpha06" tabindex="-1">Version 2.0.0-alpha06</h3>
+  <p>April 22, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.tracing:tracing-*:2.0.0-alpha06</code>
+    is released. Version 2.0.0-alpha06 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/43ba8bda1ec01d3d9d4ab6a1ea0cc20d41a80019..6d3a1c7bf300b8737528ebd4d68d583550a3d084/tracing">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Unrestrict
+      <code translate="no" dir="ltr">File.createPerfettoFile()</code>
+      so others can safely create sinks. When a
+      <code translate="no" dir="ltr">block()</code>
+      throws an exception in
+      <code translate="no" dir="ltr">trace</code>
+      /
+      <code translate="no" dir="ltr">traceCoroutine</code>
+      create an
+      <code translate="no" dir="ltr">instant</code>
+      event for the exception with the metadata representing the corresponding stack trace elements. (
+      <a href="https://android-review.googlesource.com/#/q/I682e5ead8bef323eeb2d36063bf19f5cd8e37cf0">I682e5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/501536851">b/501536851</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/437166283">b/437166283</a>
+      )
+    </li>
+    <li>
+      Add a
+      <code translate="no" dir="ltr">setCounter(...)</code>
+      overload that takes a Java
+      <code translate="no" dir="ltr">Long</code>
+      type. (
+      <a href="https://android-review.googlesource.com/#/q/Ic0469f059bc7464cde0504e1a9707ec33f406b81">Ic0469</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/356082604">b/356082604</a>
+      )
+    </li>
+    <li>
+      Tracing 2.0 now uses
+      <code translate="no" dir="ltr">Long</code>
+      for platform specific
+      <code translate="no" dir="ltr">Thread</code>
+      identifiers. (
+      <a href="https://android-review.googlesource.com/#/q/I6727760e6de05981d11ee66b64809ee4faa1a0e2">I67277</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Improve documentation for
+      <code translate="no" dir="ltr">AttributeEntry.reset()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I5d3a14f867f229964c4ce1320bc7f6a647b64797">I5d3a1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/496079439">b/496079439</a>
+      )
+    </li>
+  </ul>

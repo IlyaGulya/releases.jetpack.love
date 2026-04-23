@@ -1,0 +1,79 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.11.0
+releaseDate: 2026-04-22
+#language=html
+changelogHtml: |
+  <h3 id="1.11.0" data-text="Version 1.11.0" tabindex="-1">Version 1.11.0</h3>
+  <p>April 22, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.11.0</code>
+    is released. Version 1.11.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/deab088e55dabc3db4d0638d62ea3132fc51d69b..6ce2d81339d3380e021df09daaa55acb307ee912/compose/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.10.0:</strong></p>
+  <p><strong>New Experimental SlotTable</strong></p>
+  <ul>
+    <li>
+      We've rewritten the
+      <code translate="no" dir="ltr">SlotTable</code>
+      , which is the internal data structure used by the Compose Runtime to track your composition hierarchy, determine the changes caused by a recomposition, and store remembered values. This rewrite is focused on improving recomposition performance and does so primarily by using substantially fewer memory copy operations than the gap buffer
+      <code translate="no" dir="ltr">SlotTable</code>
+      . Certain changes to your composition hierarchy, like reordering a long list of items, can recompose over twice as fast compared to the former
+      <code translate="no" dir="ltr">SlotTable</code>
+      . Most other operations are on the order of 10% faster to recompose under the new
+      <code translate="no" dir="ltr">SlotTable</code>
+      implementation. The
+      <code translate="no" dir="ltr">SlotTable</code>
+      implementation used by the runtime affects all Composable methods and requires no recompilation. Using the new
+      <code translate="no" dir="ltr">SlotTable</code>
+      is an app-wide change, including for dependencies.
+    </li>
+    <li>
+      This
+      <code translate="no" dir="ltr">SlotTable</code>
+      implementation is still experimental and currently disabled by default. It can be enabled by setting
+      <code translate="no" dir="ltr">ComposeRuntimeFlags.isLinkBufferComposerEnabled</code>
+      to
+      <code translate="no" dir="ltr">true</code>
+      . In release builds with minification enabled, this value is assumed to be false in the default proguard-rules.pro file supplied with the runtime. To enable the new
+      <code translate="no" dir="ltr">SlotTable</code>
+      in production, this assumption needs to be changed to true in the application's
+      <code translate="no" dir="ltr">proguard-rules.pro</code>
+      file. See the documentation on
+      <code translate="no" dir="ltr">ComposeRuntimeFlags.isLinkBufferComposerEnabled</code>
+      for more information.
+    </li>
+  </ul>
+  <p><strong>Host-default composition locals</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">compositionLocalWithHostDefaultOf</code>
+      which allows defining CompositionLocals that fallback to the hosting environment (e.g. Android
+      <code translate="no" dir="ltr">View</code>
+      tags) for their default values.
+    </li>
+  </ul>
+  <p>
+    <strong>
+      More efficient
+      <code translate="no" dir="ltr">snapshotFlow</code>
+      observation with
+      <code translate="no" dir="ltr">SnapshotFlowManager</code>
+    </strong>
+  </p>
+  <ul>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">SnapshotFlowManager</code>
+      API for more efficient observations of
+      <code translate="no" dir="ltr">snapshotFlow</code>
+      . Reusing the same
+      <code translate="no" dir="ltr">SnapshotFlowManager</code>
+      for multiple
+      <code translate="no" dir="ltr">snapshotFlow</code>
+      instances registers fewer snapshot apply observers, processing state updates faster.
+    </li>
+  </ul>

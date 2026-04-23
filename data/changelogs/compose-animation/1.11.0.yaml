@@ -1,0 +1,118 @@
+libraryId: compose-animation
+groupId: androidx.compose
+version: 1.11.0
+releaseDate: 2026-04-22
+#language=html
+changelogHtml: |
+  <h3 id="1.11.0" data-text="Version 1.11.0" tabindex="-1">Version 1.11.0</h3>
+  <p>April 22, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.animation:animation-*:1.11.0</code>
+    is released. Version 1.11.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/deab088e55dabc3db4d0638d62ea3132fc51d69b..6ce2d81339d3380e021df09daaa55acb307ee912/compose/animation">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.10.0:</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">androidx.compose.animation:animation-*:1.11.0</code>
+      is released. This stable release consolidates improvements and fixes from the 1.11.0 development cycle, focusing on shared element stability, threading reliability, and new developer tooling.
+    </li>
+  </ul>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <strong>Visual Debugging for Lookahead:</strong>
+      Introduced a new set of visual debugging capabilities that allows visualizations of information related to shared elements and
+      <code translate="no" dir="ltr">Modifier.animatedBounds</code>
+      . Such information includes: target bounds, the trajectory of the bounds animation, number of matches found, whether the transition is active, etc.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added new APIs
+      <code translate="no" dir="ltr">LookaheadAnimationVisualDebugging</code>
+      ,
+      <code translate="no" dir="ltr">CustomizedLookaheadAnimationVisualDebugging</code>
+      , and
+      <code translate="no" dir="ltr">LookaheadAnimationVisualDebugConfig</code>
+      to help debug animated bounds and shared element animations. (
+      <a href="https://android-review.googlesource.com/#/q/Id5575">Id5575</a>
+      ,
+      <a href="https://issuetracker.google.com/390011686">b/390011686</a>
+      ,
+      <a href="https://issuetracker.google.com/466169919">b/466169919</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <strong>Thread Safety:</strong>
+      <code translate="no" dir="ltr">SeekableTransitionState</code>
+      now properly handles off-thread state changes. Previously, if the state was modified off the UI thread using
+      <code translate="no" dir="ltr">Snapshot.withMutableSnapshot()</code>
+      , the transition incorrectly tried to handle the update off of the UI thread. (
+      <a href="https://android-review.googlesource.com/#/q/0aba38">0aba38</a>
+      )
+    </li>
+    <li>
+      <strong>Performance:</strong>
+      Improved performance of
+      <code translate="no" dir="ltr">sharedElements</code>
+      map access. (
+      <a href="https://android-review.googlesource.com/#/q/93f57d">93f57d</a>
+      )
+    </li>
+    <li>
+      <strong>State Reporting:</strong>
+      Fixed
+      <code translate="no" dir="ltr">isTransitionActive</code>
+      so that it only reports true when there are active animations from matched shared elements. (
+      <a href="https://android-review.googlesource.com/#/q/d3426a">d3426a</a>
+      ,
+      <a href="https://issuetracker.google.com/474385510">b/474385510</a>
+      )
+    </li>
+    <li>
+      <strong>Stability:</strong>
+      Required shared transition root to be placed before querying bounds (
+      <a href="https://android-review.googlesource.com/#/q/77d59c">77d59c</a>
+      ) and ensured positions for
+      <code translate="no" dir="ltr">sharedElements</code>
+      are only acquired if
+      <code translate="no" dir="ltr">SharedTransitionLayout</code>
+      is attached. (
+      <a href="https://android-review.googlesource.com/#/q/I2a035">I2a035</a>
+      )
+    </li>
+    <li>
+      <strong>Interruption Handling:</strong>
+      Fixed the corner case interruption handling when a child exit animation finishes while the parent transition is still running in
+      <code translate="no" dir="ltr">AnimatedContent</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/ad9b4f">ad9b4f</a>
+      )
+    </li>
+    <li>
+      <strong>Validation:</strong>
+      Validated duration in
+      <code translate="no" dir="ltr">InfiniteRepeatableSpec</code>
+      to prevent 0-duration cycles. (
+      <a href="https://android-review.googlesource.com/#/q/151b6d">151b6d</a>
+      )
+    </li>
+    <li>
+      <strong>Customization:</strong>
+      Respect
+      <code translate="no" dir="ltr">visibilityThreshold</code>
+      in custom
+      <code translate="no" dir="ltr">AnimationSpec</code>
+      for
+      <code translate="no" dir="ltr">animateFloatAsState</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/3a1cdc">3a1cdc</a>
+      )
+    </li>
+  </ul>

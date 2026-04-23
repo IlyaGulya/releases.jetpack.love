@@ -1,0 +1,133 @@
+libraryId: webgpu
+groupId: androidx.webgpu
+version: 1.0.0-alpha05
+releaseDate: 2026-04-22
+#language=html
+changelogHtml: |
+  <h3 id="webgpu-1.0.0-alpha05" data-text="Version 1.0.0-alpha05" tabindex="-1">Version 1.0.0-alpha05</h3>
+  <p>April 22, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.webgpu:webgpu:1.0.0-alpha05</code>
+    is released. Version 1.0.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/109ce75edc35d51a0e01eee5396841d7a29fd865..c48b772dd76241af6af60bee13d3cad0e4520306/webgpu/webgpu">these commits</a>
+    .
+  </p>
+  <h3 id="new_features_constants_2" data-text="New Features &amp; Constants" tabindex="-1">New Features &amp; Constants</h3>
+  <ul>
+    <li>
+      <p><strong>Compatibility Mode Limits</strong></p>
+
+      <ul>
+        <li>
+          Added
+          <code translate="no" dir="ltr">GPUCompatibilityModeLimits</code>
+          (and its corresponding
+          <code translate="no" dir="ltr">Builder</code>
+          ) to define limits specifically for compatibility mode.
+        </li>
+        <li>
+          Includes specific limits such as
+          <code translate="no" dir="ltr">maxStorageBuffersInVertexStage</code>
+          and
+          <code translate="no" dir="ltr">maxStorageTexturesInFragmentStage</code>
+          .
+        </li>
+        <li>
+          This object has been integrated as an optional property within
+          <code translate="no" dir="ltr">GPULimits</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p><strong>Texture Binding View Dimensions</strong></p>
+
+      <ul>
+        <li>
+          Added
+          <code translate="no" dir="ltr">GPUTextureBindingViewDimension</code>
+          to provide more granular control over texture view bindings.
+        </li>
+        <li>
+          These can now be specified within
+          <code translate="no" dir="ltr">GPUTextureDescriptor</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p><strong>New Constants and Supported Features</strong></p>
+
+      <ul>
+        <li>
+          <strong>TextureUsage:</strong>
+          Added
+          <code translate="no" dir="ltr">TransientAttachment</code>
+          .
+        </li>
+        <li>
+          <strong>WGSLLanguageFeatureName:</strong>
+          <ul>
+            <li>
+              Added
+              <code translate="no" dir="ltr">SubgroupUniformity</code>
+              .
+            </li>
+            <li>
+              Added
+              <code translate="no" dir="ltr">TextureFormatsTier1</code>
+              .
+            </li>
+          </ul>
+        </li>
+        <li>
+          <strong>SType:</strong>
+          Added the following:
+          <ul>
+            <li><code translate="no" dir="ltr">ExternalTextureBindingLayout</code></li>
+            <li><code translate="no" dir="ltr">ExternalTextureBindingEntry</code></li>
+            <li><code translate="no" dir="ltr">CompatibilityModeLimits</code></li>
+            <li><code translate="no" dir="ltr">TextureBindingViewDimension</code></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <h3 id="api_changes_2" data-text="API Changes" tabindex="-1">API Changes</h3>
+  <ul>
+    <li>
+      <strong>IntDef Annotation Refactoring:</strong>
+      The structural definition of all enums (such as
+      <code translate="no" dir="ltr">AdapterType</code>
+      ,
+      <code translate="no" dir="ltr">TextureFormat</code>
+      ,
+      <code translate="no" dir="ltr">BufferUsage</code>
+      ,
+      <code translate="no" dir="ltr">LoadOp</code>
+      , etc.) are refactored. They have transitioned from public annotation classes to private constructor classes containing a nested
+      <code translate="no" dir="ltr">.Type</code>
+      annotation class. Consequently, parameter annotations across the library have been updated from
+      <code translate="no" dir="ltr">@FormatName</code>
+      to
+      <code translate="no" dir="ltr">@FormatName.Type</code>
+      (e.g., changing
+      <code translate="no" dir="ltr">@TextureFormat</code>
+      to
+      <code translate="no" dir="ltr">@TextureFormat.Type</code>
+      ).
+    </li>
+    <li>
+      <strong>Texture View Descriptor Updates:</strong>
+      <code translate="no" dir="ltr">GPUTextureViewDescriptor</code>
+      now accepts a
+      <code translate="no" dir="ltr">usage</code>
+      parameter (
+      <code translate="no" dir="ltr">@TextureUsage.Type</code>
+      ), allowing specific usages to be defined directly on the texture view.
+    </li>
+  </ul>
+  <p>
+    <strong>Important Note:</strong>
+    The documentation provided in this library release has been generated utilizing Google Gemini and may contain errors.
+  </p>
