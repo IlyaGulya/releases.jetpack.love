@@ -1,0 +1,293 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.12.0-alpha01
+releaseDate: 2026-04-22
+#language=html
+changelogHtml: |
+  <h3 id="1.12.0-alpha01" data-text="Version 1.12.0-alpha01" tabindex="-1">Version 1.12.0-alpha01</h3>
+  <p>April 22, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.12.0-alpha01</code>
+    is released. Version 1.12.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ecc44700355708734de3756bf5e677323ae14ed1..df4b49eda6f6834b6bc4c8aa30a581fa577a511e/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removes feature flag
+      <code translate="no" dir="ltr">ComposeUiFlags.isIndirectPointerNavigationGestureDetectorEnabled</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I82be398ae4b272d986c150e35f786a319ce1028e">I82be3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/455601135">b/455601135</a>
+      )
+    </li>
+    <li>
+      Made
+      <code translate="no" dir="ltr">mediaQuery</code>
+      an inline function (
+      <a href="https://android-review.googlesource.com/#/q/Ie94575295ba12008e82db3394b84373f70cd473c">Ie9457</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/498698350">b/498698350</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ComposeViewContext</code>
+      has moved out of the experimental stage and the
+      <code translate="no" dir="ltr">ExperimentalComposeViewContextApi</code>
+      annotation was removed (
+      <a href="https://android-review.googlesource.com/#/q/I32eca0ca231b38241e6b46ba6b222a8f183cb968">I32eca</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ComposeView.disableWindowInsetsRulers()</code>
+      is now not experimental (
+      <a href="https://android-review.googlesource.com/#/q/Ia81a51bcc17a5447dbc8683926ca4dd973e1b46c">Ia81a5</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">hasPendingWork()</code>
+      API to allow passively checking if the Compose UI currently has pending work without triggering a wait or advancing the clock. This is useful for manual clock tests to determine when animations or other background work have finished. (
+      <a href="https://android-review.googlesource.com/#/q/Ic54e3a857dc2a3f28bce9db2cb665254072e046a">Ic54e3</a>
+      )
+    </li>
+    <li>
+      Removed the feature flag
+      <code translate="no" dir="ltr">AndroidComposeUiFlags.isForceChildLayoutAfterMeasurementEnabled</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I7fd257b27134a6855328919afb98c427f016be50">I7fd25</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/491111451">b/491111451</a>
+      )
+    </li>
+    <li>
+      Removed feature flag
+      <code translate="no" dir="ltr">AndroidComposeUiFlags.isSharedFontEnabled</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I2cebecf97c89bba9250d524862f13c5f4d6d0d17">I2cebe</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/479898293">b/479898293</a>
+      )
+    </li>
+    <li>
+      Adds additional
+      <code translate="no" dir="ltr">KeyboardType</code>
+      options to complete the set of supported keyboard options on Android, including date, time, datetime, signed decimal, and more. (
+      <a href="https://android-review.googlesource.com/#/q/I3713e4fd9c4201aca7ae18debf22728cd08b598e">I3713e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/202353328">b/202353328</a>
+      )
+    </li>
+    <li>
+      Removed the
+      <code translate="no" dir="ltr">AndroidComposeUiFlags.isSharedHapticsEnabled</code>
+      flag (
+      <a href="https://android-review.googlesource.com/#/q/I6a1d44bdfefc67b4b5264050b12d95f82ee6c145">I6a1d4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/479895628">b/479895628</a>
+      )
+    </li>
+    <li>
+      Removed the
+      <code translate="no" dir="ltr">AndroidComposeUiFlags.isSharedClipboardManagerEnabled</code>
+      flag (
+      <a href="https://android-review.googlesource.com/#/q/I41e3cc31b342eaf9c5efa0f9e9cf3712ebeccbec">I41e3c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/479895130">b/479895130</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">AndroidComposeUiFlags.isSharedViewConfigurationEnabled</code>
+      flag (
+      <a href="https://android-review.googlesource.com/#/q/I6d3aa9694a7cf53bc4f40af95bda9f7187689d15">I6d3aa</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/479890645">b/479890645</a>
+      )
+    </li>
+    <li>
+      Removed the feature flag
+      <code translate="no" dir="ltr">AndroidComposeUiFlags.isSharedDrawingEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I279124b3c73e349b3b8cd7d0b9e7d62c869e6e1a">I27912</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/479849019">b/479849019</a>
+      )
+    </li>
+    <li>
+      Removed the feature flag
+      <code translate="no" dir="ltr">AndroidComposeUiFlags.isSharedAccessibilityManagerEnabled</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I6b726c2190f959567f26ab4c9dfa8d9eed7390d7">I6b726</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/479845566">b/479845566</a>
+      )
+    </li>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">AndroidComposeUiFlags.isSharedWindowInfoEnabled</code>
+      flag (
+      <a href="https://android-review.googlesource.com/#/q/Ife9a9c79777b0544d681d26128489dc32840d82a">Ife9a9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/479837249">b/479837249</a>
+      )
+    </li>
+    <li>
+      Remove the
+      <code translate="no" dir="ltr">AndroidComposeUiFlags.isSharedComposeViewContextEnabled</code>
+      flag. (
+      <a href="https://android-review.googlesource.com/#/q/Ic522a536ac97f70ecc26b9827608da02019cf2c2">Ic522a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/479834257">b/479834257</a>
+      )
+    </li>
+    <li>
+      Add variation settings to customize downloadable variable fonts (
+      <a href="https://android-review.googlesource.com/#/q/Ifdc9339f5b4f1ed9146807742705fc8d7d84b0b4">Ifdc93</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/223262013">b/223262013</a>
+      )
+    </li>
+    <li>
+      Add variation settings to customize downloadable variable fonts (
+      <a href="https://android-review.googlesource.com/#/q/I390af395ea9ec47f1d7293e2eca4c97db37905bf">I390af</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/223262013">b/223262013</a>
+      )
+    </li>
+    <li>
+      Remove flag
+      <code translate="no" dir="ltr">isTraversableDelegatesFixEnabled</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ia7dfe8bd1b12c83b9c4c8bedd7c8f86bf035a527">Ia7dfe</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/485962494">b/485962494</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">runWhenIdle</code>
+      and its suspending variant
+      <code translate="no" dir="ltr">awaitAndRunWhenIdle</code>
+      on
+      <code translate="no" dir="ltr">ComposeTestRule</code>
+      and
+      <code translate="no" dir="ltr">ComposeUiTest</code>
+      to improve test performance and state stability. These APIs synchronize the UI once, then execute a block of code without the overhead of repeated synchronizations for each operation. This results in significantly faster and less flaky test execution, especially for tests that sample many properties, such as in animation testing. (
+      <a href="https://android-review.googlesource.com/#/q/Iabf66f0e12327bd2eed9feb0cff09a6d2a59bc2d">Iabf66</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/490270394">b/490270394</a>
+      )
+    </li>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">LayerOutsets</code>
+      to
+      <code translate="no" dir="ltr">GraphicsLayer</code>
+      &amp;
+      <code translate="no" dir="ltr">Modifier.graphicsLayer</code>
+      which can be used to increase the visual bounds of the layer beyond its measured size. This can be used to avoid the implicit
+      <code translate="no" dir="ltr">clipToBounds</code>
+      behavior when the layer is promoted to an Offscreen buffer. (
+      <a href="https://android-review.googlesource.com/#/q/Ic1189399d9e43795fe013dee10cca2562ab4e7bb">Ic1189</a>
+      )
+    </li>
+    <li>
+      Disabled logging autofill input events by default. They are now enabled by calling
+      <code translate="no" dir="ltr">ComposeView.setAutofillDebugEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I5b43001bbfabccdf922094bca7c2d6f64b51987f">I5b430</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/487947860">b/487947860</a>
+      )
+    </li>
+    <li>
+      Changed the VelocityTracker to use the implementation provided by the Android Framework (configurable with
+      <code translate="no" dir="ltr">AndroidComposeUiFlags.isFrameworkVelocityTrackerEnabled</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/Ibc7e24c4840a9e6235240642945db374b8068e10">Ibc7e2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/359962905">b/359962905</a>
+      )
+    </li>
+    <li>
+      When
+      <code translate="no" dir="ltr">AndroidComposeUiFlags.isForceChildLayoutAfterMeasurementEnabled</code>
+      is true, child Views will always have layout called after measurement during a layout pass. Compose doesn't always layout a child after measurement, but Views require it for proper state management. (
+      <a href="https://android-review.googlesource.com/#/q/Ib4fe9663b7b13312cb9258a65edddd45016eaeec">Ib4fe9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/430974758">b/430974758</a>
+      )
+    </li>
+    <li>
+      Adding
+      <code translate="no" dir="ltr">isVirtual</code>
+      to
+      <code translate="no" dir="ltr">LayoutInfo</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I3e5cdcd0437b1bdb54bb2a12302dcb99421fe218">I3e5cd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/494243978">b/494243978</a>
+      )
+    </li>
+    <li>
+      Cleaned up the
+      <code translate="no" dir="ltr">isGraphicsLayerShapeSemanticsEnabled</code>
+      flag. (
+      <a href="https://android-review.googlesource.com/#/q/I44be05e25252a75049ff1ac45eb76f27e160cab9">I44be0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/455600081">b/455600081</a>
+      )
+    </li>
+    <li>
+      Added a new Font API to use downloadable without a manual step of adding font certificates to the codebase. (
+      <a href="https://android-review.googlesource.com/#/q/I30b868b30ce881605879b4645ca73ed4ad03c2a2">I30b86</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/479454159">b/479454159</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">onRootWithViewInteraction</code>
+      to scope Compose semantic searches to specific Android Views . This simplifies testing hybrid UIs, such as
+      <code translate="no" dir="ltr">RecyclerViews</code>
+      , without requiring unique test tags in production code . (
+      <a href="https://android-review.googlesource.com/#/q/Ic02c4648a4813c698205c0fc5800ebf8655da7e7">Ic02c4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/175226753">b/175226753</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">captureToImage()</code>
+      API now allows you to capture a popup or dialog together with its anchor in a single bitmap. (
+      <a href="https://android-review.googlesource.com/#/q/I9b83a05040887d3a18d569376f89f9d8f30593a5">I9b83a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/443137545">b/443137545</a>
+      )
+    </li>
+    <li>
+      Updated Compose
+      <code translate="no" dir="ltr">compileSdk</code>
+      to API 37. This means that a minimum AGP version of 9.2.0 is required when using Compose. (
+      <a href="https://android-review.googlesource.com/#/q/Id45cdca34ef948e06259b2dd9adc901b7c930492">Id45cd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/413674743">b/413674743</a>
+      )
+    </li>
+    <li>
+      Setting
+      <code translate="no" dir="ltr">ContentDataType.None</code>
+      in semantics now prevents autofill events from being sent by Compose. This should prevent initialization costs associated with requesting autofill services. (
+      <a href="https://android-review.googlesource.com/#/q/I8fbda79955e6f83135bcfee5450cb4d0da07f6d2">I8fbda</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/487947860">b/487947860</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_111_3" data-text="Version 1.11" tabindex="-1">Version 1.11</h2>

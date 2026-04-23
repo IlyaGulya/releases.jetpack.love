@@ -1,0 +1,142 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.5.0-alpha18
+releaseDate: 2026-04-22
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha18" data-text="Version 1.5.0-alpha18" tabindex="-1">Version 1.5.0-alpha18</h3>
+  <p>April 22, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.5.0-alpha18</code>
+    is released. Version 1.5.0-alpha18 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/be2c7c8bda728bbe318cc54c05b93ca77a2a7c74..df4b49eda6f6834b6bc4c8aa30a581fa577a511e/compose/material3">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">FilterChip</code>
+      ,
+      <code translate="no" dir="ltr">ElevatedFilterChip</code>
+      , and
+      <code translate="no" dir="ltr">InputChip</code>
+      overloads with shape morphing. Add new shape, spacing, and color defaults for these overloads. (
+      <a href="https://android-review.googlesource.com/#/q/I847178aa1f2dbda2e4971832085251ccfefa43ac">I84717</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/442678355">b/442678355</a>
+      )
+    </li>
+    <li>
+      Adds inset focus ring support via an opt-in API, using the new
+      <code translate="no" dir="ltr">LocalRippleThemeConfiguration</code>
+      composition local. (
+      <a href="https://android-review.googlesource.com/#/q/I0551ae78abc7faae4afcf3e9ccfbff622b015bd9">I0551a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/282184440">b/282184440</a>
+      ).
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">rememberWithGapSearchBarState</code>
+      to
+      <code translate="no" dir="ltr">rememberSearchBarWithGapState</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I5f54b0a8c2ba9dccb19aa3cc586c3a15412c845d">I5f54b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/498697243">b/498697243</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">RippleThemeConfiguration</code>
+      and
+      <code translate="no" dir="ltr">LocalRippleThemeConfiguration</code>
+      APIs are graduated to stable, adding the ability to configure ripples to be drawn with an inset focus ring appearance, instead of the opacity-based focus indication. APIs using the material-ripple configuration APIs are deprecated. (
+      <a href="https://android-review.googlesource.com/#/q/Ide5d0bbd2c05620b30fb1e9d0f74c5f4acc3c10f">Ide5d0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/485893129">b/485893129</a>
+      )
+    </li>
+    <li>
+      Promote
+      <code translate="no" dir="ltr">WavyProgressIndicator</code>
+      apis (
+      <a href="https://android-review.googlesource.com/#/q/Id72a36a60fa393b26f9e91239b70b9d369928db7">Id72a3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/497877853">b/497877853</a>
+      )
+    </li>
+    <li>
+      Promote
+      <code translate="no" dir="ltr">materialExpressTheme</code>
+      ,
+      <code translate="no" dir="ltr">expressiveLightColorScheme</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I40eab704c0bb7c7a4fd015ed0e57650fa7f6acef">I40eab</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/497876844">b/497876844</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BottomSheet</code>
+      composable has been moved to
+      <code translate="no" dir="ltr">BottomSheet.kt</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/If7e3334b6e912ef797cce0acfa18bd89693baebc">If7e33</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/500091309">b/500091309</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">Material3ExpressiveApi</code>
+      annotation that doesn't require
+      <code translate="no" dir="ltr">OptIn</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib9f2ed4648540d58800fa25b3c9a1f7265ea8cc7">Ib9f2e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/499994043">b/499994043</a>
+      )
+    </li>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">DropdownMenuPopupPositionProviders</code>
+      to
+      <code translate="no" dir="ltr">DropdownMenuPopup</code>
+      , so developers can now configure the position of the menu is placed relative to the anchor. This allows for submenu support within Dropdown Menus. You can now create cascading submenus using new anchor-relative positionings. Pass these new positioning options into
+      <code translate="no" dir="ltr">rememberDropdownMenuPopupPositionProvider</code>
+      to configure your menu. For a complete implementation, refer to the catalog menu sample. (
+      <a href="https://android-review.googlesource.com/#/q/Ic1ace6a9d9e84b2eeb7bc737b046003224c0eb6d">Ic1ace</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/476161294">b/476161294</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Update material3 components to support inset focus ring indications (
+      <a href="https://android-review.googlesource.com/#/q/I8800643c049f6b63fd5ac90d1290bfeb59b3edfb">I88006</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/498610244">b/498610244</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/467984300">b/467984300</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/498281359">b/498281359</a>
+      )
+    </li>
+    <li>
+      Resolved an issue in
+      <code translate="no" dir="ltr">TimePicker</code>
+      samples where
+      <code translate="no" dir="ltr">TalkBack</code>
+      focus moved, allowing invalid time entry (
+      <a href="https://android-review.googlesource.com/#/q/I516902c572c6b1dcdaa9b2dd2ebebbc98ec82474">I51690</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/498364606">b/498364606</a>
+      )
+    </li>
+  </ul>

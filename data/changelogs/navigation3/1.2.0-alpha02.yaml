@@ -1,0 +1,62 @@
+libraryId: navigation3
+groupId: androidx.navigation3
+version: 1.2.0-alpha02
+releaseDate: 2026-04-22
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha02" data-text="Version 1.2.0-alpha02" tabindex="-1">Version 1.2.0-alpha02</h3>
+  <p>April 22, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation3:navigation3-*:1.2.0-alpha02</code>
+    is released. Version 1.2.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/08c0997a220e855b5c82a220cf3cc68ce0ff144b..7804308bb549f1108db1aa9904c26730ee84b34b/navigation3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">onBack</code>
+      to
+      <code translate="no" dir="ltr">onBackCompleted</code>
+      and add
+      <code translate="no" dir="ltr">onBackCancelled</code>
+      to NavigationBackHandler to support handling cancelled back gestures. (
+      <a href="https://android-review.googlesource.com/#/q/I927415da0ce7df0b288658fba54d7141e0aa0b11">I92741</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">NavigationBackHandler</code>
+      to simplify handling back gestures and predictive back when using
+      <code translate="no" dir="ltr">SceneState</code>
+      . This allows developers to more easily create custom UI components that support standard back navigation and predictive gestures without manually calculating back stack deltas. (
+      <a href="https://android-review.googlesource.com/#/q/I6a0550626b92ac59b23a6fd143489c5e249340b6">I6a055</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">rememberNavigationEventState</code>
+      to simplify connecting
+      <code translate="no" dir="ltr">SceneState</code>
+      with predictive back handling. (
+      <a href="https://android-review.googlesource.com/#/q/Iae49c95601b58c8bc5752335cf0254d7e0805fb1">Iae49c</a>
+      )
+    </li>
+  </ul>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added a
+      <code translate="no" dir="ltr">ResultEventBus</code>
+      API to allow for passing results between NavEntries with the
+      <code translate="no" dir="ltr">LocalResultEventBus</code>
+      provided by the new
+      <code translate="no" dir="ltr">ResultEventBusNavEntryDecorator</code>
+      . Passed in results can be assessed as a state with
+      <code translate="no" dir="ltr">ResultEventBus#conflateAsState</code>
+      or as a flow of results with
+      <code translate="no" dir="ltr">ResultEffect</code>
+      .
+    </li>
+  </ul>
