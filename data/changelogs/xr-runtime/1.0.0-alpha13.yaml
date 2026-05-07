@@ -1,0 +1,152 @@
+libraryId: xr-runtime
+groupId: androidx.xr
+version: 1.0.0-alpha13
+releaseDate: 2026-05-06
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha13" data-text="Version 1.0.0-alpha13" tabindex="-1">Version 1.0.0-alpha13</h3>
+  <p>May 06, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.runtime:runtime-*:1.0.0-alpha13</code>
+    is released. Version 1.0.0-alpha13 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e7913eae74f4112f4fbb22ea1a5037cd8b0e73f0..f0d77f65175480acff2718b61a7c34c502a1802e/xr/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">TrackingState</code>
+      and
+      <code translate="no" dir="ltr">VpsAvailabilityResult</code>
+      have moved to the
+      <code translate="no" dir="ltr">androidx.xr.arcore package</code>
+      , and the types in
+      <code translate="no" dir="ltr">androidx.xr.runtime</code>
+      are now deprecated. (
+      <a href="https://android-review.googlesource.com/#/q/Ic79303427f1301f722efb7f624033f9f11b49544">Ic7930</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/480462213">b/480462213</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Session.getNativeData()</code>
+      is now defined the
+      <code translate="no" dir="ltr">xr:runtime:runtime</code>
+      module and provides [
+      <code translate="no" dir="ltr">nativeFunctionTablePointer</code>
+      ] for OpenXR-backed runtimes. (
+      <a href="https://android-review.googlesource.com/#/q/Ifa8620c5df2e78985bb4c6ea36461e2c5ae7c20f">Ifa862</a>
+      )
+    </li>
+    <li>
+      Moved
+      <code translate="no" dir="ltr">NativeData</code>
+      API to
+      <code translate="no" dir="ltr">xr:runtime:runtime</code>
+      library. (
+      <a href="https://android-review.googlesource.com/#/q/I87954b9811c11c019f9a256dacd11c352b79cc56">I87954</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/494251500">b/494251500</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Session.create</code>
+      and
+      <code translate="no" dir="ltr">Session.configure</code>
+      are now non-exhaustive and require else clauses in when statements. (
+      <a href="https://android-review.googlesource.com/#/q/I9885e2b6bdb6da77988d04402f0df73380f6807a">I9885e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/495805998">b/495805998</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/495805998">b/495805998</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">androidx.xr.runtime.FieldOfView</code>
+      has been deprecated. Use
+      <code translate="no" dir="ltr">androidx.xr.runtime.math.FieldOfView</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/Ia01a0ac228dc4a93c1bb2979b26d4f400be4fe99">Ia01a0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/480233045">b/480233045</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Matrix4.pose</code>
+      has been renamed to
+      <code translate="no" dir="ltr">Matrix4.toPose()</code>
+      . The pose property is now deprecated. (
+      <a href="https://android-review.googlesource.com/#/q/I329b4d05fc0757359864a2762f76422d2154c37e">I329b4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/493383490">b/493383490</a>
+      )
+    </li>
+    <li>
+      Added the
+      <code translate="no" dir="ltr">XrServiceAvailability</code>
+      API (
+      <a href="https://android-review.googlesource.com/#/q/If379eefa6e058cd4c90c7efc5e27787e79350ecc">If379e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/493558010">b/493558010</a>
+      )
+    </li>
+    <li>
+      Added the
+      <code translate="no" dir="ltr">ExperimentalXrServiceAvailabilityApi</code>
+      annotation (
+      <a href="https://android-review.googlesource.com/#/q/Icab49610d9967f0c3c1e34b3ef25872bdceb42ea">Icab49</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/491069725">b/491069725</a>
+      )
+    </li>
+    <li>
+      Remove the suffix for
+      <code translate="no" dir="ltr">@PreviewSpatialApi</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/If5242d7000a9514c7d0952e39f9eb170d534ccfd">If5242</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/491939311">b/491939311</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">DeviceTrackingMode.LAST_KNOWN</code>
+      to
+      <code translate="no" dir="ltr">SPATIAL_LAST_KNOWN</code>
+      (with a deprecated fallback), added
+      <code translate="no" dir="ltr">INERTIAL_LAST_KNOWN</code>
+      for 3DoF tracking, and added
+      <code translate="no" dir="ltr">TRACKING_DEGRADED</code>
+      to
+      <code translate="no" dir="ltr">TrackingState</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie661cfd441521987dcebd7e1fd1e7cfc3ef5ab9d">Ie661c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/445466590">b/445466590</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">XrLog</code>
+      API. Set
+      <code translate="no" dir="ltr">XrLog.isEnabled</code>
+      to
+      <code translate="no" dir="ltr">true</code>
+      to enable logging in JetpackXR, and use [
+      <code translate="no" dir="ltr">XrLog.Level</code>
+      ] to set the log level. (
+      <a href="https://android-review.googlesource.com/#/q/I76a1f066b96ab6f07016d57c7e8e83518cb67de6">I76a1f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/463460895">b/463460895</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/487378441">b/487378441</a>
+      )
+    </li>
+    <li>
+      Adding
+      <code translate="no" dir="ltr">DISPLAY_CATEGORY_XR_PROJECTED</code>
+      , this constant is used in the Manifest file to indicate the activity is meant for a XR projected display (
+      <a href="https://android-review.googlesource.com/#/q/I26d8b14946a4f523044486b1ad56f860d0423363">I26d8b</a>
+      )
+    </li>
+  </ul>

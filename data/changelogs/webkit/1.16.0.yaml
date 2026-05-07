@@ -1,0 +1,157 @@
+libraryId: webkit
+groupId: androidx.webkit
+version: 1.16.0
+releaseDate: 2026-05-06
+#language=html
+changelogHtml: |
+  <h3 id="1.16.0" data-text="Version 1.16.0" tabindex="-1">Version 1.16.0</h3>
+  <p>May 06, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.webkit:webkit:1.16.0</code>
+    is released. Version 1.16.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f35ed15ba0388327d2b70a31d141da182ff721c8..5744fa6296a0f6147952e836b3d92dd87ff7d4dd/webkit/webkit">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.15.0:</strong></p>
+  <p>
+    The 1.16.0 stable release brings multiple APIs out of experimental status, significantly improving stability and developer experience for features like async
+    <code translate="no" dir="ltr">WebView</code>
+    startup and navigation listening.
+    <br />
+    The minimum supported SDK (minSdk) for this library has been increased to 24.
+  </p>
+  <ul>
+    <li>
+      The
+      <a href="https://developer.android.com/reference/androidx/webkit/WebViewCompat#startUpWebView(android.content.Context,androidx.webkit.WebViewStartUpConfig,androidx.webkit.WebViewOutcomeReceiver%3Candroidx.webkit.WebViewStartUpResult,androidx.webkit.WebViewStartupException%3E)"><code translate="no" dir="ltr">startUpWebView</code></a>
+      API and related async startup configuration APIs in
+      <code translate="no" dir="ltr">ProcessGlobalConfig</code>
+      and
+      <code translate="no" dir="ltr">WebViewStartUpConfig</code>
+      have been graduated from experimental to stable. These APIs let applications trigger WebView startup earlier, ensuring portions of the startup run in the background to improve responsiveness. The previous version of
+      <code translate="no" dir="ltr">startUpWebView</code>
+      has been deprecated, and users should migrate to the new version, which takes a
+      <code translate="no" dir="ltr">WebViewOutcomeReceiver</code>
+      to facilitate failure callbacks.
+    </li>
+    <li>
+      The navigation APIs, including
+      <a href="https://developer.android.com/reference/androidx/webkit/WebViewCompat#addNavigationListener(android.webkit.WebView,java.util.concurrent.Executor,androidx.webkit.NavigationListener)"><code translate="no" dir="ltr">WebViewCompat\#addNavigationListener</code></a>
+      ,
+      <a href="https://developer.android.com/reference/androidx/webkit/NavigationListener"><code translate="no" dir="ltr">NavigationListener</code></a>
+      ,
+      <a href="https://developer.android.com/reference/androidx/webkit/Navigation"><code translate="no" dir="ltr">Navigation</code></a>
+      , and
+      <a href="https://developer.android.com/reference/androidx/webkit/Page"><code translate="no" dir="ltr">Page</code></a>
+      have been graduated to stable. These APIs let app developers receive callbacks from WebView during the different stages of page navigation through the
+      <a href="http://go/android-dev/reference/androidx/webkit/NavigationListener"><code translate="no" dir="ltr">NavigationListener</code></a>
+      interface. This also includes the option to receive performance metrics from the page, which makes it easier for app developers to measure performance of first-party pages in their apps. The
+      <a href="https://developer.android.com/reference/androidx/webkit/Navigation"><code translate="no" dir="ltr">Navigation</code></a>
+      and
+      <a href="https://developer.android.com/reference/androidx/webkit/Page"><code translate="no" dir="ltr">Page</code></a>
+      objects serve as unique identifiers that serve as the link between the different callbacks when multiple WebViews or navigations might be happening concurrently. The
+      <code translate="no" dir="ltr">Navigation</code>
+      object also provides more information about the specific nature of the ongoing navigation, including how it was started, and whether it succeeded or resulted in an error page, while the
+      <code translate="no" dir="ltr">Page</code>
+      object provides the specific URL.
+    </li>
+    <li>
+      <a href="https://developer.android.com/reference/androidx/webkit/WebViewCompat#saveState(android.webkit.WebView,android.os.Bundle,int,boolean)"><code translate="no" dir="ltr">WebViewCompat\#saveState</code></a>
+      extends the
+      <a href="https://developer.android.com/reference/android/webkit/WebView.html#saveState(android.os.Bundle)"><code translate="no" dir="ltr">WebView\#saveState</code></a>
+      method with more controls that allow developers to specify a maximum size for the state and whether forward history entries should be included. The saved state object is still compatible with
+      <a href="https://developer.android.com/reference/android/webkit/WebView.html#restoreState(android.os.Bundle)"><code translate="no" dir="ltr">WebView\#restoreState</code></a>
+    </li>
+    <li>
+      This version of the library introduces
+      <a href="https://developer.android.com/reference/androidx/webkit/WebViewOutcomeReceiver"><code translate="no" dir="ltr">WebViewOutcomeReceiver</code></a>
+      as a library-specific implementation of
+      <a href="https://developer.android.com/reference/android/os/OutcomeReceiver"><code translate="no" dir="ltr">android.os.OutcomeReceiver</code></a>
+      , which allows this library to provide a similar mechanism for asynchronous callback result handling without a need to depend on higher
+      <code translate="no" dir="ltr">targetSdk</code>
+      values. This class was named
+      <code translate="no" dir="ltr">androidx.webkit.OutcomeReceiverCompat</code>
+      while in experimental status but has been renamed to avoid any name clashes.
+    </li>
+    <li>
+      <p>
+        <strong>External Contribution:</strong>
+        New APIs were introduced to inject persistent
+        <code translate="no" dir="ltr">JavaScript</code>
+        as part of the document loaded event (
+        <a href="https://developer.android.com/reference/androidx/webkit/WebViewCompat#addJavaScriptOnEvent(android.webkit.WebView,java.lang.String,int,java.util.Set%3Cjava.lang.String%3E,androidx.webkit.JavaScriptExecutionWorld)"><code translate="no" dir="ltr">WebViewCompat#addJavaScriptOnEvent</code></a>
+        ), inject
+        <code translate="no" dir="ltr">JavaScript</code>
+        and
+        <code translate="no" dir="ltr">WebMessageListeners</code>
+        into
+        <a href="https://developer.android.com/reference/androidx/webkit/JavaScriptExecutionWorld">isolated worlds</a>
+        to prevent collisions with existing page
+        <code translate="no" dir="ltr">JavaScript</code>
+        , and execute
+        <code translate="no" dir="ltr">JavaScript</code>
+        as a response to a web message (
+        <a href="http://go/android-dev/reference/androidx/webkit/JavaScriptReplyProxy#executeJavaScript(java.lang.String,androidx.webkit.WebViewOutcomeReceiver%3Cjava.lang.String,androidx.webkit.JavaScriptExecutionException%3E)"><code translate="no" dir="ltr">JavaScriptReplyProxy#executeJavaScript</code></a>
+        ).
+      </p>
+
+      <p><strong>Experimental APIs added since 1.15.0</strong></p>
+    </li>
+    <li>
+      <p>
+        Added
+        <a href="https://developer.android.com/reference/androidx/webkit/WebViewBuilder#applyTo(T)"><code translate="no" dir="ltr">WebViewBuilder.applyTo</code></a>
+        API for applying builder configurations to pre-constructed
+        <code translate="no" dir="ltr">WebViews</code>
+        . This lets you use the configuration capabilities of the
+        <code translate="no" dir="ltr">WebViewBuilder</code>
+        API, and the corresponding guarantees that settings won't change, with pre-existing
+        <code translate="no" dir="ltr">WebView</code>
+        objects. This is intended to be used with
+        <code translate="no" dir="ltr">WebView</code>
+        instances created from layout inflation, or with subclasses of
+        <code translate="no" dir="ltr">WebView</code>
+        .
+      </p>
+    </li>
+  </ul>
+  <p><strong>Experimental APIs updated since 1.15.0</strong></p>
+  <ul>
+    <li>
+      The
+      <a href="https://developer.android.com/reference/androidx/webkit/BackForwardCacheSettings"><code translate="no" dir="ltr">BackForwardCacheSettings</code></a>
+      object has been changed from a configuration object that is provided through
+      <code translate="no" dir="ltr">WebSettingsCompat</code>
+      to a live object that can be obtained by calling
+      <a href="https://developer.android.com/reference/androidx/webkit/WebSettingsCompat#getBackForwardCacheSettings(android.webkit.WebSettings)">WebSettingsCompat#getBackForwardCacheSettings</a>
+      . The object now has setter methods that update the settings directly. The previous
+      <code translate="no" dir="ltr">Builder</code>
+      nested class has been removed, as has
+      <code translate="no" dir="ltr">WebSettingsCompat#setBackForwardCacheSettings.</code>
+      Apps that previously used these methods will experience build errors when upgrading.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Profile#setSpeculativeLoadingConfig</code>
+      is deprecated. Use
+      <code translate="no" dir="ltr">Profile#setMaxPrerenders</code>
+      ,
+      <code translate="no" dir="ltr">PrefetchCache#setMaxPrefetches</code>
+      , and
+      <code translate="no" dir="ltr">PrefetchCache#setPrefetchTtlSeconds</code>
+      instead.
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">Profile#clearPrefetchAsync</code>
+      as it was a no-op.
+    </li>
+    <li>
+      Changed the return type of
+      <code translate="no" dir="ltr">StartUpLocation.getStackInformation()</code>
+      from
+      <code translate="no" dir="ltr">String</code>
+      to
+      <code translate="no" dir="ltr">Throwable</code>
+      to allow apps to process the information better.
+    </li>
+  </ul>

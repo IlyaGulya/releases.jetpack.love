@@ -1,0 +1,85 @@
+libraryId: core
+groupId: androidx.core
+version: 1.19.0-alpha02
+releaseDate: 2026-05-06
+#language=html
+changelogHtml: |
+  <h3 id="1.19.0-alpha02" data-text="Version 1.19.0-alpha02" tabindex="-1">Version 1.19.0-alpha02</h3>
+  <p>May 06, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core:1.19.0-alpha02</code>
+    ,
+    <code translate="no" dir="ltr">androidx.core:core-ktx:1.19.0-alpha02</code>
+    , and
+    <code translate="no" dir="ltr">androidx.core:core-testing:1.19.0-alpha02</code>
+    are released. Version 1.19.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/951845221205b7a428a9d779107760fc929863ee..f5d3df649a48687b0e609c7430ce92e6a66c3fec/core">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Deprecate
+      <code translate="no" dir="ltr">BuildCompat.isAtLeastB*</code>
+      . Callers should check
+      <code translate="no" dir="ltr">SDK_INT(_FULL)</code>
+      directly instead (
+      <a href="https://android-review.googlesource.com/#/q/I09666cdd6e54fe19c5dee6577dd6d2155955b277">I09666</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/505015815">b/505015815</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a test failure in
+      <code translate="no" dir="ltr">CallSessionTest</code>
+      on Android 17 (SDK 37) by suppressing version-specific bug mitigation tests on unaffected platform versions. (
+      <a href="https://android-review.googlesource.com/#/q/I970a73a2cf0d0240f3b24dc0c58d2720d86298b6">I970a7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/502732317">b/502732317</a>
+      )
+    </li>
+    <li>
+      Fixed an issue on Android 14-16 where audio calls might unexpectedly route to speaker on the call start (
+      <a href="https://android-review.googlesource.com/#/q/Ic7000c50f1817065c25538abe7274018367662cc">Ic7000</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/491932378">b/491932378</a>
+      )
+    </li>
+    <li>
+      Fixed a crash (
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      ) in
+      <code translate="no" dir="ltr">core-telecom</code>
+      that could occur if the Telecom framework or a remote service dispatched connection events multiple times during extension setup. (
+      <a href="https://android-review.googlesource.com/#/q/I00f829a4a2317d4a9d136df2712df450257f3681">I00f82</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/476724351">b/476724351</a>
+      )
+    </li>
+    <li>
+      Telecom will now use a fallback heuristic to identify wearable devices for audio routing decisions when the
+      <code translate="no" dir="ltr">BLUETOOTH_CONNECT</code>
+      permission is denied. (
+      <a href="https://android-review.googlesource.com/#/q/Iec271c4a9a56a02bfd15824cae1bd25debe14e00">Iec271</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/499302063">b/499302063</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">TextAttributeCompat</code>
+      as a backwards compatible variant of
+      <code translate="no" dir="ltr">TextAttribute</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib4a46c1a99aa2f2723e3e5ac4778039f2cdd5b75">Ib4a46</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/460301602">b/460301602</a>
+      )
+    </li>
+  </ul>
