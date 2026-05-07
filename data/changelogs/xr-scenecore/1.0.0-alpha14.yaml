@@ -1,0 +1,177 @@
+libraryId: xr-scenecore
+groupId: androidx.xr
+version: 1.0.0-alpha14
+releaseDate: 2026-05-06
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha14" data-text="Version 1.0.0-alpha14" tabindex="-1">Version 1.0.0-alpha14</h3>
+  <p>May 06, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.scenecore:scenecore-*:1.0.0-alpha14</code>
+    is released. Version 1.0.0-alpha14 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/0731bcada85ff22cf1ddd54167e83f02bbd022be..c335dd6f34a8575245fc6d8139e95871bea35e9f/xr/scenecore">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">TrackingState</code>
+      and
+      <code translate="no" dir="ltr">VpsAvailabilityResult</code>
+      have moved to the
+      <code translate="no" dir="ltr">androidx.xr.arcore package</code>
+      , and the types in
+      <code translate="no" dir="ltr">androidx.xr.runtime</code>
+      are now deprecated. (
+      <a href="https://android-review.googlesource.com/#/q/Ic79303427f1301f722efb7f624033f9f11b49544">Ic7930</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/480462213">b/480462213</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">Plane.Type</code>
+      to
+      <code translate="no" dir="ltr">PlaneType</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I8c90cccb087dd6bf0d5342d39db5e6eca210e572">I8c90c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/482675376">b/482675376</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">Plane.Label</code>
+      to
+      <code translate="no" dir="ltr">PlaneLabel</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic6b67074e9a22f44cd2ec30dad0c5f17fc9631af">Ic6b67</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/482675376">b/482675376</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">androidx.xr.runtime.FieldOfView</code>
+      has been deprecated. Use
+      <code translate="no" dir="ltr">androidx.xr.runtime.math.FieldOfView</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/Ia01a0ac228dc4a93c1bb2979b26d4f400be4fe99">Ia01a0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/480233045">b/480233045</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Matrix4.pose</code>
+      has been renamed to
+      <code translate="no" dir="ltr">Matrix4.toPose()</code>
+      . The pose property is now deprecated. (
+      <a href="https://android-review.googlesource.com/#/q/I329b4d05fc0757359864a2762f76422d2154c37e">I329b4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/493383490">b/493383490</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">HandJointType</code>
+      enum values. (
+      <a href="https://android-review.googlesource.com/#/q/Ifbc83b1141960fc83d32a08e6b8a65c7091ce612">Ifbc83</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/482670596">b/482670596</a>
+      )
+    </li>
+    <li>
+      Expose
+      <code translate="no" dir="ltr">Component.onAttach</code>
+      and
+      <code translate="no" dir="ltr">onDetach</code>
+      as public API to allow custom
+      <code translate="no" dir="ltr">Component</code>
+      implementations. (
+      <a href="https://android-review.googlesource.com/#/q/I0ca1f8d0f5e50616339d2f73143c1dc6521cf724">I0ca1f</a>
+      )
+    </li>
+    <li>
+      Adding spatial audio components (
+      <a href="https://android-review.googlesource.com/#/q/I39dddfdcb6c55e5d5e760381bed283636ec2df0f">I39ddd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/489421980">b/489421980</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/436642086">b/436642086</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/436642499">b/436642499</a>
+      )
+    </li>
+    <li>
+      Remove Entity from
+      <code translate="no" dir="ltr">PointSourceParams</code>
+      . Instead the Entity will be used directly with
+      <code translate="no" dir="ltr">SpatialAudioTrack</code>
+      ,
+      <code translate="no" dir="ltr">SpatialSoundPool</code>
+      , and
+      <code translate="no" dir="ltr">SpatialMediaPlayer</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ib3685c5b2dc0afb0e99e9cdfe02b23ae712e25f7">Ib3685</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/489421980">b/489421980</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/436634048">b/436634048</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">DeviceTrackingMode.LAST_KNOWN</code>
+      to
+      <code translate="no" dir="ltr">SPATIAL_LAST_KNOWN</code>
+      (with a deprecated fallback), added
+      <code translate="no" dir="ltr">INERTIAL_LAST_KNOWN</code>
+      for 3DoF tracking, and added
+      <code translate="no" dir="ltr">TRACKING_DEGRADED</code>
+      to
+      <code translate="no" dir="ltr">TrackingState</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie661cfd441521987dcebd7e1fd1e7cfc3ef5ab9d">Ie661c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/445466590">b/445466590</a>
+      )
+    </li>
+    <li>
+      Deprecated
+      <code translate="no" dir="ltr">GroupEntity</code>
+      . To have an Entity with only the base Entity functionality, call
+      <code translate="no" dir="ltr">Entity.create</code>
+      which will return and Entity interface. (
+      <a href="https://android-review.googlesource.com/#/q/I4c45068d0b8f9a15a2b2ce29bc3523cf93463446">I4c450</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/473867483">b/473867483</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">XrLog</code>
+      API. Set
+      <code translate="no" dir="ltr">XrLog.isEnabled</code>
+      to
+      <code translate="no" dir="ltr">true</code>
+      to enable logging in JetpackXR, and use
+      <code translate="no" dir="ltr">XrLog.Level</code>
+      to set the log level. (
+      <a href="https://android-review.googlesource.com/#/q/I76a1f066b96ab6f07016d57c7e8e83518cb67de6">I76a1f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/463460895">b/463460895</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/487378441">b/487378441</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">Scene.keyEntity</code>
+      now defaults to
+      <code translate="no" dir="ltr">mainPanelEntity</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6a3ef4236bb5645462b089531ca6292653ddfffc">I6a3ef</a>
+      )
+    </li>
+  </ul>

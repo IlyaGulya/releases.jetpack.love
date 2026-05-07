@@ -1,0 +1,77 @@
+libraryId: compose-remote
+groupId: androidx.compose
+version: 1.0.0-alpha010
+releaseDate: 2026-05-06
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha010" data-text="Version 1.0.0-alpha010" tabindex="-1">Version 1.0.0-alpha010</h3>
+  <p>May 06, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.remote:remote-*:1.0.0-alpha010</code>
+    is released. Version 1.0.0-alpha010 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/df4b49eda6f6834b6bc4c8aa30a581fa577a511e..5ec3fd7563f4f9b2ba745aac0ad7770cc4cd087f/compose/remote">these commits</a>
+    .
+  </p>
+  <p><strong>Features</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">EnforceCleanRecomposition</code>
+      flag (
+      <a href="https://android-review.googlesource.com/#/q/I6e440881d4de7ef752442b23f4b12f6ffd6b43f0">I6e4408</a>
+      ). As a step towards supporting recomposition in
+      <code translate="no" dir="ltr">RemoteCompose</code>
+      , we have prevented anything from writing to the document before the composition has finished. This prevents documents from being partially written during recomposition. If this behavior causes issues with existing code, it can be disabled by setting
+      <code translate="no" dir="ltr">isEnforceCleanRecompositionEnabled</code>
+      to
+      <code translate="no" dir="ltr">false</code>
+      .
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      A testing library for Remote Compose is added. (
+      <a href="https://android-review.googlesource.com/#/q/I78746942783763478acff95ea9d635368b22e4f5">I78746</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/504687418">b/504687418</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix background clipping when using a
+      <code translate="no" dir="ltr">RemoteColor</code>
+      (instead of static color) as the background color (
+      <a href="https://android-review.googlesource.com/#/q/If708420fcc1d160ca4fbdc0a4e856e2d6a6a6964">If70842</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/505116577">b/505116577</a>
+      )
+    </li>
+    <li>
+      Support providing an explicit size for bitmaps loaded from URI. Previously the size would be calculated as 1x1, and that pixel would be scaled to the container size (
+      <a href="https://android-review.googlesource.com/#/q/Id4fff053338a3746406ba8cdf9e48c3797e8da2f">Id4fff</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/487936996">b/487936996</a>
+      )
+    </li>
+    <li>
+      Prevent crash bug on devices that don't have
+      <code translate="no" dir="ltr">SensorManager</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I1fc9477f982831193ca5d8f29b60c97a52842472">I1fc947</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/498302479">b/498302479</a>
+      )
+    </li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">TIME_FROM</code>
+      expressions not using the provided clock (preventing reliable tests for duration expressions) (
+      <a href="https://android-review.googlesource.com/#/q/I5f81682686005816b1668c475df9cac010dc461d">I5f816</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/501405389">b/501405389</a>
+      )
+    </li>
+  </ul>
