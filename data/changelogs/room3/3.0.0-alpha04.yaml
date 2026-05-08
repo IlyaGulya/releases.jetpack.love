@@ -37,3 +37,20 @@ changelogHtml: |
       )
     </li>
   </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Restrict Web targets to use a single connection pool to avoid 'database locked' issues that arise with OPFS (
+      <a href="https://issuetracker.google.com/issues/496255935">b/496255935</a>
+      ).
+    </li>
+    <li>
+      Attempt to fix (again) a 'Method too large' error that occurs due to Room generating a
+      <code translate="no" dir="ltr">onValidateSchema</code>
+      that is too large. The function is split based on the amount of statements, but the measuring is not precise. If you still encounter this error you can adjust the amount of statements Room will count towards a split via the annotation processor option
+      <code translate="no" dir="ltr">room.validationSplitSize</code>
+      . The default value is currently set to 300 statements, therefore use a lower number if the issue is still present (
+      <a href="https://issuetracker.google.com/issues/493708172">b/493708172</a>
+      ).
+    </li>
+  </ul>
