@@ -1,0 +1,241 @@
+libraryId: xr-scenecore
+groupId: androidx.xr
+version: 1.0.0-alpha15
+releaseDate: 2026-05-19
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha15" data-text="Version 1.0.0-alpha15" tabindex="-1">Version 1.0.0-alpha15</h3>
+  <p>May 19, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.scenecore:scenecore-*:1.0.0-alpha15</code>
+    is released. Version 1.0.0-alpha15 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c335dd6f34a8575245fc6d8139e95871bea35e9f..581011b7bddfd705223b2db47dc1abde16055506/xr/scenecore">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">Entity.dispose()</code>
+      is now removed as public API. Instead of calling
+      <code translate="no" dir="ltr">dispose()</code>
+      on Entity instances, apps can make instances cleanable by setting the
+      <code translate="no" dir="ltr">parent</code>
+      to
+      <code translate="no" dir="ltr">null</code>
+      and by clearing any strong references to those instances. (
+      <a href="https://android-review.googlesource.com/#/q/I396c9b9d0472b1ff1a07336c830ecd9cab958e71">I396c9</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SoundEffectPool</code>
+      's
+      <code translate="no" dir="ltr">set/clearOnLoadCompleteListener</code>
+      methods have been deleted. Use
+      <code translate="no" dir="ltr">add/removeLoadCompleteListener</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/Iae78df658401d7bd908efeb59894066c8f602769">Iae78d</a>
+      )
+    </li>
+    <li>
+      Scene's
+      <code translate="no" dir="ltr">set/clearSpatialVisibilityChangedListener</code>
+      was replaced with
+      <code translate="no" dir="ltr">add/removeSpatialVisibilityChangedListener</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I67dff8728c2ddd127a8f091337f23c3a794573a2">I67dff</a>
+      )
+    </li>
+    <li>
+      All SceneCore
+      <code translate="no" dir="ltr">add/removeOnFooListener</code>
+      methods have been renamed
+      <code translate="no" dir="ltr">add/removeFooListener</code>
+      , removing
+      <code translate="no" dir="ltr">On</code>
+      from the name. (
+      <a href="https://android-review.googlesource.com/#/q/Ibe50bf749270afbbd2af1f902ec4efe2c6c223d6">Ibe50b</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AnchorEntity.setOnOriginChangedListener</code>
+      and
+      <code translate="no" dir="ltr">AnchorEntity.setOnStateChangedListener</code>
+      methods have been replaced with
+      <code translate="no" dir="ltr">add/removeFooListener</code>
+      methods, to support multiple simultaneous Listeners. (
+      <a href="https://android-review.googlesource.com/#/q/I137494e69eb9d575c440f0aab4227ebef28416c2">I13749</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">AnchorEntity.State.TIMEDOUT</code>
+      to
+      <code translate="no" dir="ltr">State.TIMED_OUT</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id2b8d573def3211846827259e598f40b04762b3c">Id2b8d</a>
+      )
+    </li>
+    <li>
+      The Component API has been refactored for improved safety and extensibility.
+      <code translate="no" dir="ltr">Component</code>
+      is now an abstract class. The
+      <code translate="no" dir="ltr">onAttach()</code>
+      and
+      <code translate="no" dir="ltr">onDetach()</code>
+      methods are now
+      <code translate="no" dir="ltr">protected</code>
+      to prevent direct calls. Please use
+      <code translate="no" dir="ltr">Entity.addComponent()</code>
+      and
+      <code translate="no" dir="ltr">Entity.removeComponent()</code>
+      to manage component lifecycles. (
+      <a href="https://android-review.googlesource.com/#/q/Id04e8b9863eb027b18118616609ab1928350f81f">Id04e8</a>
+      )
+    </li>
+    <li>
+      SceneCore's
+      <code translate="no" dir="ltr">PlaneSemanticType</code>
+      <code translate="no" dir="ltr">PlaneOrientation</code>
+      constants have been migrated from Ints to custom types. Their
+      <code translate="no" dir="ltr">ANY</code>
+      constants will be removed, clients should explicitly enumerate all desired constants instead, or use the new
+      <code translate="no" dir="ltr">.ALL</code>
+      immutable Set constants. The
+      <code translate="no" dir="ltr">AnchorEntity</code>
+      factory method now accepts a Set of these types, instead of a single value. (
+      <a href="https://android-review.googlesource.com/#/q/Ib10339399d6255907dad0ed135c20f245c967c48">Ib1033</a>
+      )
+    </li>
+    <li>
+      Added support for skeletal animation (skinning) to the experimental Custom Mesh API. Developers can now animate custom meshes by specifying a
+      <code translate="no" dir="ltr">boneCount</code>
+      when creating a
+      <code translate="no" dir="ltr">MeshEntity</code>
+      and updating the animation in real-time using
+      <code translate="no" dir="ltr">MeshEntity.setBoneTransforms()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id8ba2c7e9a6f817535d7664fdfece2d254dd9438">Id8ba2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/496692490">b/496692490</a>
+      )
+    </li>
+    <li>
+      Introduced the experimental
+      <code translate="no" dir="ltr">CustomMesh</code>
+      API. Developers can now programmatically create and render 3D geometry in their scenes using
+      <code translate="no" dir="ltr">CustomMesh</code>
+      ,
+      <code translate="no" dir="ltr">MeshBuffer</code>
+      , and
+      <code translate="no" dir="ltr">MeshEntity</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I946174656bae1f0cbc72078aa04263e2c726d4c5">I94617</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">androidx.xr.scenecore.SpatializerConstants.SourceType.SOURCE_TYPE_SOUND_FIELD</code>
+      . Use
+      <code translate="no" dir="ltr">SourceType.SOUND_FIELD</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/Ia68b9e4e0b3a5bddb8cd30e180e672ca1ac40de9">Ia68b9</a>
+      )
+    </li>
+    <li>
+      Adding spatial audio components:
+      <code translate="no" dir="ltr">PositionalAudioComponent</code>
+      ,
+      <code translate="no" dir="ltr">SoundEffectPoolComponent</code>
+      and
+      <code translate="no" dir="ltr">SoundFieldAudioComponent</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ieda8940773fed0362142f7137592f31e6b18d66e">Ieda89</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AnchorEntity.getAnchor</code>
+      was replaced with
+      <code translate="no" dir="ltr">AnchorEntity.anchor</code>
+      and will now return an
+      <code translate="no" dir="ltr">Anchor</code>
+      when the
+      <code translate="no" dir="ltr">AnchorEntity</code>
+      was created from an ARCore
+      <code translate="no" dir="ltr">Anchor</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I5c7c8c9457e4590d4652dd0199c079fa24b3066f">I5c7c8</a>
+      )
+    </li>
+    <li>
+      The default value for the
+      <code translate="no" dir="ltr">parent</code>
+      parameter in the
+      <code translate="no" dir="ltr">ActivityPanelEntity</code>
+      ,
+      <code translate="no" dir="ltr">GltfModelEntity</code>
+      ,
+      <code translate="no" dir="ltr">GroupEntity</code>
+      ,
+      <code translate="no" dir="ltr">PanelEntity</code>
+      , and
+      <code translate="no" dir="ltr">SurfaceEntity</code>
+      factory methods has been changed from
+      <code translate="no" dir="ltr">ActivitySpace</code>
+      to
+      <code translate="no" dir="ltr">null</code>
+      . To attach an entity to the scene graph and render it visible, developers must now explicitly set its parent during instantiation or via
+      <code translate="no" dir="ltr">Entity.parent = ...</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ie7cc180a57771230d2cf2362c1b891fa18fb8103">Ie7cc1</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">SceneCore</code>
+      now automatically reclaims
+      <code translate="no" dir="ltr">Entity</code>
+      instances when they become phantom reachable, removing the need for developers to explicitly invoke
+      <code translate="no" dir="ltr">dispose()</code>
+      to free resources. To ensure an [Entity] instance is properly reclaimed, developers should:
+      <ul>
+        <li>
+          Detach it from the scene graph by setting its
+          <code translate="no" dir="ltr">parent</code>
+          to
+          <code translate="no" dir="ltr">null</code>
+          .
+        </li>
+        <li>Relinquish all strong references to the instance in their code.</li>
+        <li>
+          Note on Special Entity Types: For entities that cannot be parented (such as
+          <code translate="no" dir="ltr">AnchorEntity</code>
+          ), developers must maintain a strong reference while the instance is in use. If all references are released, these instances will become phantom reachable and will be automatically reclaimed. (
+          <a href="https://android-review.googlesource.com/#/q/I83fe4ff089e4d324c0a1fb20527a7d3e11127b86">I83fe4</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Narrowed Proguard keep rules for all
+      <code translate="no" dir="ltr">SceneCore</code>
+      libraries. (
+      <a href="https://android-review.googlesource.com/#/q/I9844789d80bcbe0465712a48db271654912b305f">I98447</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      Attaching a
+      <code translate="no" dir="ltr">PositionalAudioComponent</code>
+      to an
+      <code translate="no" dir="ltr">Entity</code>
+      with an inactive
+      <code translate="no" dir="ltr">ExoPlayer</code>
+      instance will cause a crash. Do not call
+      <code translate="no" dir="ltr">setPointSourceParams</code>
+      or attach/detach the spatial audio components while ExoPlayer is stopped. This will be fixed in the next release.
+    </li>
+  </ul>

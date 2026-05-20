@@ -1,0 +1,61 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.11.0-beta02
+releaseDate: 2026-05-19
+#language=html
+changelogHtml: |
+  <h3 id="2.11.0-beta02" data-text="Version 2.11.0-beta02" tabindex="-1">Version 2.11.0-beta02</h3>
+  <p>May 19, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.11.0-beta02</code>
+    is released. Version 2.11.0-beta02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/35ca96cc1f129a6cc9d6650029cd6155668f4e7a..2539c25fdfa11866cf01ef266f0ddc10b0143658/lifecycle">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add a
+      <code translate="no" dir="ltr">rememberViewModelStoreNavEntryDecorator</code>
+      overload that accepts a
+      <code translate="no" dir="ltr">ViewModelStoreProvider</code>
+      . This allows developers to hoist the provider above the decorator's composition scope, enabling use cases such as supporting multiple back stacks where the same entry exists in both but requires separate state. (
+      <a href="https://android-review.googlesource.com/#/q/Ibbbfe2e140be936eddcdf925076b025b95553475">Ibbbfe</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/503420425">b/503420425</a>
+      )
+    </li>
+    <li>
+      Prevent premature clearance of shared
+      <code translate="no" dir="ltr">ViewModels</code>
+      when a sibling provider is removed from the composition. (
+      <a href="https://android-review.googlesource.com/#/q/Ib321a6d3efeecda89852935d1e489e43a6bb8c09">Ib321a</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Require Compose UI 1.7.0+ to use
+      <code translate="no" dir="ltr">LocalLifecycleOwner</code>
+      . This removes internal reflection fallbacks, improving performance but enforcing a strict dependency upgrade for clients. (
+      <a href="https://android-review.googlesource.com/#/q/I48e65eafaa32b285c08c17975c14b3d7c2517790">I48e65</a>
+      )
+    </li>
+    <li>
+      Prevent symbol duplication with older JetBrains fork versions when upgrading to Compose Multiplatform 1.11.0. (
+      <a href="https://android-review.googlesource.com/#/q/Iccd64a783bd089a2953ce50815176c5ccc2c1b38">Iccd64</a>
+      )
+    </li>
+    <li>
+      Fix an issue where
+      <code translate="no" dir="ltr">ViewModels</code>
+      were incorrectly cleared during recomposition when using
+      <code translate="no" dir="ltr">rememberViewModelStoreProvider</code>
+      with unstable default parameters. The provider now only recreates when the parent owner or the explicit key changes. (
+      <a href="https://android-review.googlesource.com/#/q/Ibe2967e374f26a709a129a54ea1e39aa359422cd">Ibe296</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/501792448">b/501792448</a>
+      )
+    </li>
+  </ul>

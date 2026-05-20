@@ -1,0 +1,109 @@
+libraryId: xr-runtime
+groupId: androidx.xr
+version: 1.0.0-alpha14
+releaseDate: 2026-05-19
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha14" data-text="Version 1.0.0-alpha14" tabindex="-1">Version 1.0.0-alpha14</h3>
+  <p>May 19, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.runtime:runtime-*:1.0.0-alpha14</code>
+    is released. Version 1.0.0-alpha14 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f0d77f65175480acff2718b61a7c34c502a1802e..e2cf81ac79d4a2cf6fe7d512d38c94b6b01ee384/xr/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Deprecating
+      <code translate="no" dir="ltr">GeospatialMode.VPS_AND_GPS</code>
+      in favor of
+      <code translate="no" dir="ltr">GeospatialMode.SPATIAL</code>
+      and introducing a new lower-power tracking mode,
+      <code translate="no" dir="ltr">GeospatialMode.INERTIAL</code>
+      , which uses only IMU and GPS. (
+      <a href="https://android-review.googlesource.com/#/q/I1e6cde5e98a05f7e52c6c107d596a004d8158022">I1e6cd</a>
+      )
+    </li>
+    <li>
+      Removes deprecation tag on
+      <code translate="no" dir="ltr">androidx.xr.runtime.FieldOfView</code>
+      . Makes
+      <code translate="no" dir="ltr">androidx.xr.runtime.math.FieldOfView</code>
+      a type aliaas of
+      <code translate="no" dir="ltr">androidx.xr.runtime.FieldOfView</code>
+      in preparation for the latter's removal in the next release. Clients must migrate to the
+      <code translate="no" dir="ltr">androidx.xr.runtime.math</code>
+      version wherever they are using the
+      <code translate="no" dir="ltr">androidx.xr.runtime</code>
+      version. (
+      <a href="https://android-review.googlesource.com/#/q/I6ce156340a5b990016ed60d330e0e673d799246e">I6ce15</a>
+      )
+    </li>
+    <li>
+      Added the
+      <code translate="no" dir="ltr">PreviewProjectedApi</code>
+      annotation (
+      <a href="https://android-review.googlesource.com/#/q/Ic49f60a65d71050f38b5c4df4eaafc4b6dd010c6">Ic49f6</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">AugmentedObjectCategory.allSupported</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I0865696cf9a8f07b6a4557ed6642006af685cb4e">I08656</a>
+      )
+    </li>
+    <li>
+      Adding APIs in
+      <code translate="no" dir="ltr">XrDevice</code>
+      for determining device support for hand tracking, eye tracking, depth estimation, geospatial, and rendering. (
+      <a href="https://android-review.googlesource.com/#/q/I006964e70e8301fffa08cd470a6f4460995b5bec">I00696</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Session.getNativeData</code>
+      has been replaced with
+      <code translate="no" dir="ltr">XrDevice.getNativeInstanceData</code>
+      and
+      <code translate="no" dir="ltr">Session.getNativeSessionData</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ieb07742f2bb95f097afc598f22d273e8f464f74b">Ieb077</a>
+      )
+    </li>
+    <li>
+      Annotated
+      <code translate="no" dir="ltr">DeviceTrackingMode.INERTIAL_LAST_KNOWN</code>
+      with
+      <code translate="no" dir="ltr">@PreviewSpatialApi</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I99868a9f3894e87040b453f109d3a8efb90b4a41">I99868</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">XrDeviceTestRule</code>
+      for its use in unit tests. (
+      <a href="https://android-review.googlesource.com/#/q/I87584e28a51edfc2b5832e0ed4e533a8ca73f55d">I87584</a>
+      )
+    </li>
+    <li>
+      Adding
+      <code translate="no" dir="ltr">CATEGORY_XR_PROJECTED_LAUNCHER</code>
+      , this constant is used in the Manifest file to indicate the activity should be discovered as a launcher by the system. (
+      <a href="https://android-review.googlesource.com/#/q/Ia306924431e6681173d177f95c63195e8510a8f6">Ia3069</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">AugmentedImageMode</code>
+      to the
+      <code translate="no" dir="ltr">Config</code>
+      API (
+      <a href="https://android-review.googlesource.com/#/q/I0cf0953c17e691b1501e08182b3d027efa891753">I0cf09</a>
+      )
+    </li>
+  </ul>

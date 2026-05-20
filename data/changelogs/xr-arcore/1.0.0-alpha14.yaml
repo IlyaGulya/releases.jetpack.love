@@ -1,0 +1,121 @@
+libraryId: xr-arcore
+groupId: androidx.xr
+version: 1.0.0-alpha14
+releaseDate: 2026-05-19
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha14" data-text="Version 1.0.0-alpha14" tabindex="-1">Version 1.0.0-alpha14</h3>
+  <p>May 19, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.arcore:arcore-*:1.0.0-alpha14</code>
+    is released. Version 1.0.0-alpha14 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/0671e372f2168396421338583e76edca824d7d22..9ddf57f5b4ce98e7df261a3de947540f143fe26c/xr/arcore">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Deprecating
+      <code translate="no" dir="ltr">GeospatialMode.VPS_AND_GPS</code>
+      in favor of
+      <code translate="no" dir="ltr">GeospatialMode.SPATIAL</code>
+      and introducing a new lower-power tracking mode,
+      <code translate="no" dir="ltr">GeospatialMode.INERTIAL</code>
+      , which uses only IMU and GPS. (
+      <a href="https://android-review.googlesource.com/#/q/I1e6cde5e98a05f7e52c6c107d596a004d8158022">I1e6cd</a>
+      )
+    </li>
+    <li>
+      Custom anchor exception classes:
+      <code translate="no" dir="ltr">AnchorInvalidUuidException</code>
+      ,
+      <code translate="no" dir="ltr">AnchorNotAuthorizedException</code>
+      ,
+      <code translate="no" dir="ltr">AnchorUnsupportedLocationException</code>
+      ,
+      <code translate="no" dir="ltr">AnchorRuntimeFailureException</code>
+      , and
+      <code translate="no" dir="ltr">AnchorUnsupportedObjectException</code>
+      are now
+      <code translate="no" dir="ltr">RuntimeException</code>
+      instances, not intended to be checked. (
+      <a href="https://android-review.googlesource.com/#/q/I9356e4ac3a9d0e612e1c21fd319d7c18460f6c30">I9356e</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ArCoreTestRule</code>
+      API, including
+      <code translate="no" dir="ltr">TestArDevice</code>
+      ,
+      <code translate="no" dir="ltr">TestAugmentableObject</code>
+      ,
+      <code translate="no" dir="ltr">TestDepthMap</code>
+      ,
+      <code translate="no" dir="ltr">TestEye</code>
+      ,
+      <code translate="no" dir="ltr">TestFace</code>
+      ,
+      <code translate="no" dir="ltr">TestGeospatial</code>
+      ,
+      <code translate="no" dir="ltr">TestHand</code>
+      ,
+      <code translate="no" dir="ltr">TestPlane</code>
+      ,
+      <code translate="no" dir="ltr">TestRenderViewpoint</code>
+      , &amp;
+      <code translate="no" dir="ltr">TestTrackable</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I0ad3c7a75510b0078696558fa2e275785c0f3cc5">I0ad3c</a>
+      )
+    </li>
+    <li>
+      Removes
+      <code translate="no" dir="ltr">AnchorLoadInvalidUuid</code>
+      ,
+      <code translate="no" dir="ltr">AnchorCreateUnsupportedObject</code>
+      ,
+      <code translate="no" dir="ltr">AnchorCreateUnsupportedLocation</code>
+      , and
+      <code translate="no" dir="ltr">AnchorCreateNotAuthorized</code>
+      . All of these errors are now exceptions in the runtime. Removes
+      <code translate="no" dir="ltr">AnchorCreateIllegalState</code>
+      . This has been replaced with
+      <code translate="no" dir="ltr">AnchorCreateTrackingUnavailable</code>
+      in most cases. Adds
+      <code translate="no" dir="ltr">AnchorException</code>
+      and derived classes
+      <code translate="no" dir="ltr">AnchorInvalidUuidException</code>
+      ,
+      <code translate="no" dir="ltr">AnchorNotAuthorizedException</code>
+      ,
+      <code translate="no" dir="ltr">AnchorUnsupportedLocationException</code>
+      ,
+      <code translate="no" dir="ltr">AnchorRuntimeFailureException</code>
+      , and
+      <code translate="no" dir="ltr">AnchorUnsupportedObjectException</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4c4dd34e8154e9a793160c3c081122b178694108">I4c4dd</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      Geospatial tracking might be lost during challenging connectivity scenarios when using the
+      <code translate="no" dir="ltr">arcore-projected</code>
+      runtime implementation. Removing this runtime implementation from your application and using
+      <code translate="no" dir="ltr">arcore-play-services</code>
+      instead should address the issue. This will be the default configuration in the next release.
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">AugmentedImage</code>
+      API for custom marker tracking (
+      <a href="https://android-review.googlesource.com/#/q/I0cf0953c17e691b1501e08182b3d027efa891753">I0cf09</a>
+      )
+    </li>
+  </ul>
