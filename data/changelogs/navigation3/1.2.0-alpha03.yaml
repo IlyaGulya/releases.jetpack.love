@@ -1,0 +1,131 @@
+libraryId: navigation3
+groupId: androidx.navigation3
+version: 1.2.0-alpha03
+releaseDate: 2026-05-19
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha03" data-text="Version 1.2.0-alpha03" tabindex="-1">Version 1.2.0-alpha03</h3>
+  <p>May 19, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation3:navigation3-*:1.2.0-alpha03</code>
+    is released. Version 1.2.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/26c899ea5b979b9ccfa4661a8e5482de3f13bcab..ed0627453f51baab21d30d8ca8f74a50ff1cfa7a/navigation3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">UriMatchResult</code>
+      now extends Comparable to sort multiple match results. (
+      <a href="https://android-review.googlesource.com/#/q/I2f65b6e5037c0158ba7dc49d4c7f487bed73da9f">I2f65b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/470282247">b/470282247</a>
+      )
+    </li>
+    <li>
+      All deep link related APIs are now repackaged to
+      <code translate="no" dir="ltr">androidx.navigation3.runtime.deeplink</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I114e9b285453312ce5bf17cf425a6588a9840fd2">I114e9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/470282247">b/470282247</a>
+      )
+    </li>
+    <li>
+      Add abstract
+      <code translate="no" dir="ltr">DeepLinkMatcher</code>
+      class that represents a single deep link that can be matched with a
+      <code translate="no" dir="ltr">DeepLinkRequest</code>
+      . Calling
+      <code translate="no" dir="ltr">DeepLinkMatcher.match</code>
+      will return a
+      <code translate="no" dir="ltr">MatchResult</code>
+      that contains the associated navigation key if match succeeds. There are two default
+      <code translate="no" dir="ltr">DeepLinkMatcher</code>
+      implementations for matching deep links based on Uri, and for matching deep links with only filters that match by a
+      <code translate="no" dir="ltr">Boolean</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3798e89108f17fcde2ff80be6bed9fc4e7a039ef">I3798e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/470282247">b/470282247</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">rememberBottomSheetState</code>
+      as the unified API for
+      <code translate="no" dir="ltr">BottomSheet</code>
+      state. Deprecated
+      <code translate="no" dir="ltr">rememberModalBottomSheetState</code>
+      and
+      <code translate="no" dir="ltr">rememberStandardBottomSheetState</code>
+      in favor of the new unified API. (
+      <a href="https://android-review.googlesource.com/#/q/I2724e00fd21f52c1653d2c893135e88c7ec73ac5">I2724e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/500005697">b/500005697</a>
+      )
+    </li>
+    <li>
+      Added these functions to
+      <code translate="no" dir="ltr">DeepLinkUri</code>
+      classes:
+      <code translate="no" dir="ltr">getScheme</code>
+      ,
+      <code translate="no" dir="ltr">isHierarhical</code>
+      , and
+      <code translate="no" dir="ltr">getAuthority</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie949a77f2f84797b46860a42297e00745161e95c">Ie949a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/470282247">b/470282247</a>
+      )
+    </li>
+    <li>
+      Added the
+      <code translate="no" dir="ltr">DeepLinkRequest</code>
+      class to store the components of a requested deep link. Along with the new class is companion functions to create an instance with either a uri, a
+      <code translate="no" dir="ltr">mimeType</code>
+      , or an action. The android platform also has a helper to build a request from an Intent. (
+      <a href="https://android-review.googlesource.com/#/q/Iaaac9c02bc9ae16b5127256ad4ef2910c93f84b5">Iaaac9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/470282247">b/470282247</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">DeepLinkUri</code>
+      which is a kotlin-multiplatform version of
+      <code translate="no" dir="ltr">android.net.Uri</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Id47259e21dafd72dd7ef127cc75713a886a93844">Id4725</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/470282247">b/470282247</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">UriDeepLinkMatcher</code>
+      now suppports deep link arguments of primitive Collection types such as Lists, Arrays, and Sets. (
+      <a href="https://android-review.googlesource.com/#/q/I1520b129d23f79f51843501a0468c02dc453b566">I1520b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/470282247">b/470282247</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">AnimatedBottomSheetSample</code>
+      's
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      when displaying multiple overlays. The sample
+      <code translate="no" dir="ltr">SceneStrategy</code>
+      will now correctly calculate the last non-
+      <code translate="no" dir="ltr">OverlayScene</code>
+      and display it under all the overlay scenes. (
+      <a href="https://android-review.googlesource.com/#/q/If2281f0e4b7f1d5995dc49fa08a76f38b96fcdd3">If2281</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/506733412">b/506733412</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,61 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.12.0-alpha03
+releaseDate: 2026-05-19
+#language=html
+changelogHtml: |
+  <h3 id="1.12.0-alpha03" data-text="Version 1.12.0-alpha03" tabindex="-1">Version 1.12.0-alpha03</h3>
+  <p>May 19, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.12.0-alpha03</code>
+    is released. Version 1.12.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e29a10982f4299b1fa812e229d76792092a62814..8dbbb98c1e39cf64f9d1d51bf26d9347a1a5c447/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      In the experimental Style API, added support for creating custom style types that can have custom style scopes. This allows subsetting the properties settable by a style (such as removing the graphics layer or text properties entirely) as well as allowing the scope to be extended independently of other styles (such as only supporting the
+      <code translate="no" dir="ltr">playing { }</code>
+      syntax in a
+      <code translate="no" dir="ltr">MediaPlayer</code>
+      composable). This change breaks binary and source compatibility. The primary change that breaks source compatibility is that helper functions in the
+      <code translate="no" dir="ltr">StyleScope</code>
+      have moved to be extension functions (e.g.
+      <code translate="no" dir="ltr">fun contentProperty(all: Dp)</code>
+      is now an extension function). Either importing the required extension functions or by importing all symbols from androidx.compose.foundation.styles should be all that is required get code that calls these methods to compile correctly. (
+      <a href="https://android-review.googlesource.com/#/q/I1ef2747803fb7ee7474aebe21af3968fe25d5c40">I1ef27</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/493676648">b/493676648</a>
+      ).
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ScrollIndicatorState</code>
+      implementations now correctly return the scroll offset from the visual start for reversed layouts, ensuring correct visual presentation of indicators. (
+      <a href="https://android-review.googlesource.com/#/q/Ia3fae3a69fd207a3338f7063bafaefb44b164a69">Ia3fae</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/503604996">b/503604996</a>
+      )
+    </li>
+    <li>
+      Added flag
+      <code translate="no" dir="ltr">isClearNestedScrollCoroutineScopeFixEnabled</code>
+      to control the fix. (
+      <a href="https://android-review.googlesource.com/#/q/Ibd394d3e330fc12b4ed3e12813118cf791eb743b">Ibd394</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/505343254">b/505343254</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Enabled auto-scrolling when dragging text selection beyond the viewport in
+      <code translate="no" dir="ltr">SelectionContainer</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ibcb0802936c852a05fc6c7a05786c4fb6b085bff">Ibcb08</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/424433794">b/424433794</a>
+      )
+    </li>
+  </ul>

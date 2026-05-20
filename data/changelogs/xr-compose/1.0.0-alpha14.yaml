@@ -1,0 +1,72 @@
+libraryId: xr-compose
+groupId: androidx.xr
+version: 1.0.0-alpha14
+releaseDate: 2026-05-19
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha14" data-text="Version 1.0.0-alpha14" tabindex="-1">Version 1.0.0-alpha14</h3>
+  <p>May 19, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.compose:compose:1.0.0-alpha14</code>
+    and
+    <code translate="no" dir="ltr">androidx.xr.compose:compose-testing:1.0.0-alpha14</code>
+    are released. Version 1.0.0-alpha14 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/27d0d096d63fb669b5bb4658ca4ce53ecb44e8d5..618d7807a412756a751a7ad875c655a3bd51b9cc/xr/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">transformingMovable</code>
+      for default system-handled 3D movement and introduced a new overload for
+      <code translate="no" dir="ltr">movable</code>
+      to handle custom movement behaviors. (
+      <a href="https://android-review.googlesource.com/#/q/I50960f49e700b093b0ab4a7b6986f68b9f2822fe">I50960</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SpatialGltfModel.fromData()</code>
+      was removed. (
+      <a href="https://android-review.googlesource.com/#/q/I4d0834d0a80879ca0e5a8b672451a0dd6f25bf6a">I4d083</a>
+      )
+    </li>
+    <li>
+      Added a new modifier node interface,
+      <code translate="no" dir="ltr">SubspaceMeasuredSizeAwareModifierNode</code>
+      , which provides an
+      <code translate="no" dir="ltr">onRemeasured</code>
+      callback after the measure pass.
+      <code translate="no" dir="ltr">SubspaceLayoutAwareModifierNode</code>
+      now extends this new interface. The
+      <code translate="no" dir="ltr">onSizeChanged</code>
+      modifier has been updated to use
+      <code translate="no" dir="ltr">onRemeasured</code>
+      , ensuring the callback is triggered right after measurement, not after placement. (
+      <a href="https://android-review.googlesource.com/#/q/Iafbaee534960c2d6556ccc12aeccc86fc6836fcb">Iafbae</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">InteractionPolicy</code>
+      to an
+      <code translate="no" dir="ltr">Interface</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I0ff30555d2835d29ce75cd7d729dd5b936bf6631">I0ff30</a>
+      )
+    </li>
+    <li>
+      Updated Compose
+      <code translate="no" dir="ltr">compileSdk</code>
+      to API 37. This means that a minimum AGP version of 9.2.0 is required when using Compose. (
+      <a href="https://android-review.googlesource.com/#/q/Id45cdca34ef948e06259b2dd9adc901b7c930492">Id45cd</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">Size</code>
+      kdocs (
+      <a href="https://android-review.googlesource.com/#/q/Iefa9aea16f0719e66dab6146de3790d106476896">Iefa9a</a>
+      )
+    </li>
+  </ul>
