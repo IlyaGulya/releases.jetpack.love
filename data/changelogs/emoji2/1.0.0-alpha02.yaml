@@ -1,31 +1,41 @@
 libraryId: emoji2
 groupId: androidx.emoji2
 version: 1.0.0-alpha02
-releaseDate: 2021-06-02
+releaseDate: 2023-02-22
 #language=html
 changelogHtml: |
-  <h3 id="1.0.0-alpha02" data-text="Version 1.0.0-alpha02" tabindex="-1">Version 1.0.0-alpha02</h3>
-  <p>June 2, 2021</p>
+  <h3 id="emojipicker-1.0.0-alpha02" data-text="Version 1.0.0-alpha02" tabindex="-1">Version 1.0.0-alpha02</h3>
+  <p>February 22, 2023</p>
   <p>
-    <code translate="no" dir="ltr">androidx.emoji2:emoji2:1.0.0-alpha02</code>
-    ,
-    <code translate="no" dir="ltr">androidx.emoji2:emoji2-views:1.0.0-alpha02</code>
-    , and
-    <code translate="no" dir="ltr">androidx.emoji2:emoji2-views-helper:1.0.0-alpha02</code>
-    are released.
-    <a href="https://android.googlesource.com/platform/frameworks/support/+log/66681ad83c328d0dd821b943bb3d375f02c1db61..86ff5b4bb956431ec884586ce0aea0127e189ec4/emoji2">Version 1.0.0-alpha02 contains these commits.</a>
+    <code translate="no" dir="ltr">androidx.emoji2:emoji2-emojipicker:1.0.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e5dad1e7d1c225f89f7c2d5a39a7a0de8d637d7b..87533b4ff06971ed59028936cd9b6da988cd4522/emoji2/emoji2-emojipicker">Version 1.0.0-alpha02 contains these commits.</a>
   </p>
   <p><strong>API Changes</strong></p>
   <ul>
     <li>
-      Renamed package in
-      <code translate="no" dir="ltr">emoji2-views-helper</code>
-      to
-      <code translate="no" dir="ltr">androidx.emoji2.viewsintegration</code>
-      . This is a breaking change for AppCompat
-      <code translate="no" dir="ltr">1.4.0-alpha01</code>
-      , and apps must ensure AppCompat dependency is updated to use the new emoji2 version. (
-      <a href="https://android-review.googlesource.com/#/q/Ie83972affa2281616923620e1642964eead49b4e">Ie8397</a>
+      Added new API for java clients to be able to provide recent emojis. (
+      <a href="https://android-review.googlesource.com/#/q/I39d1054670ddadeba062810de9b36418843d7c19">I39d10</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Update emoji resources to support emoji 15.0 (
+      <a href="https://android-review.googlesource.com/#/q/Ib4eb3565f7cf2f4c4f72268e5b04001b181136e7">Ib4eb3</a>
+      )
+    </li>
+    <li>
+      When picking an emoji from the popup window, update all identical emojis to the newly picked emoji (except the recent emoji row). Also announce the emoji when clicking. (
+      <a href="https://android-review.googlesource.com/#/q/I892c6e734ee5be608b2dd632234553bb0d2093f9">I892c6</a>
+      )
+    </li>
+    <li>
+      Wait for emojicompat to load before showing the
+      <code translate="no" dir="ltr">EmojiPickerView</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I29e030aa682ddb59add4280d27cac241cbdcdbe2">I29e03</a>
       )
     </li>
   </ul>
