@@ -1,0 +1,126 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.7.0-alpha04
+releaseDate: 2026-06-03
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha04" data-text="Version 1.7.0-alpha04" tabindex="-1">Version 1.7.0-alpha04</h3>
+  <p>June 03, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.7.0-alpha04</code>
+    is released. Version 1.7.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ba1ad80843e7ebc1cd4308ee040181e82066ba73..9b1298adf7e57b8ba7d6b360e5101ab73973afdb/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">RevealState</code>
+      .drag(),
+      <code translate="no" dir="ltr">SwipeToRevealDragScope</code>
+      , and exposed custom
+      <code translate="no" dir="ltr">flingBehavior</code>
+      in
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      to enable programmatic control over swipe gestures, offsets, and settling animations. (
+      <a href="https://android-review.googlesource.com/#/q/Ibfe560061482f812fdcf4034502ef28298fad1f0">Ibfe56</a>
+      , [b/484185090]
+    </li>
+    <li>
+      Expanded
+      <code translate="no" dir="ltr">OneHandedGestureIndicator</code>
+      to support both Primary and Dismiss actions, migrating its binding architecture to
+      <code translate="no" dir="ltr">InteractionSource</code>
+      for automated lifecycle management. (
+      <a href="https://android-review.googlesource.com/#/q/I7e893bf4d2361009e1191a6f067f2a49eddf9b52">I7e893</a>
+      , [b/512836472]
+    </li>
+    <li>
+      Added new gesture-based scrolling for ScalingLazyColumn-based components and Alert Dialogs. This update introduces a default 50% screen scroll for better predictability and includes an optional snap-to-item mode for precise navigation. (
+      <a href="https://android-review.googlesource.com/#/q/Ie9cfb41d40d8768f7efd2e5b6b79891d9268252d">Ie9cfb</a>
+      , [b/509639667]
+    </li>
+    <li>
+      Replace Wear Compose Material3's
+      <code translate="no" dir="ltr">isOneHandedGesturesInAlertDialogEnabled</code>
+      flag with
+      <code translate="no" dir="ltr">LocalOneHandedGestureEnabled</code>
+      <code translate="no" dir="ltr">CompositionLocal</code>
+      , which can be used to disable one-handed gestures across component hierarchies. (
+      <a href="https://android-review.googlesource.com/#/q/Ib9240dbca32f4ec7e530366d72159f653985b94e">Ib9240</a>
+      , [b/516777416]
+    </li>
+    <li>
+      Deprecated
+      <code translate="no" dir="ltr">ButtonDefaults</code>
+      .
+      <code translate="no" dir="ltr">ExtraSmallIconSize</code>
+      and
+      <code translate="no" dir="ltr">ButtonDefaults</code>
+      .
+      <code translate="no" dir="ltr">SmallIconSize</code>
+      . These defaults were specific to
+      <code translate="no" dir="ltr">CompactButton</code>
+      and have been moved to
+      <code translate="no" dir="ltr">CompactButtonDefaults</code>
+      .
+      <code translate="no" dir="ltr">ExtraSmallIconSize</code>
+      and
+      <code translate="no" dir="ltr">CompactButtonDefaults</code>
+      .
+      <code translate="no" dir="ltr">SmallIconSize</code>
+      respectively. (
+      <a href="https://android-review.googlesource.com/#/q/Id747c86188b7f7df01c58f77a7d12e532fbe76d1">Id747c</a>
+      , [b/513588028]
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">EdgeButton</code>
+      animation on fast fling. (
+      <a href="https://android-review.googlesource.com/#/q/I88215003236bed78f01f7976b749dd73b25246f9">I88215</a>
+      , [b/512700520]
+    </li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">AppScaffold</code>
+      <code translate="no" dir="ltr">TimeText</code>
+      not updating on recomposition. (
+      <a href="https://android-review.googlesource.com/#/q/Iecea5050f981342ad18034a2bf800647f5a1b019">Iecea5</a>
+      , [b/512439755]
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ScreenScaffold</code>
+      should explicitly use the
+      <code translate="no" dir="ltr">PaddingValues</code>
+      provided by the inner content lambda. (
+      <a href="https://android-review.googlesource.com/#/q/I20d71f391cd7a44a7efc583a5b563efc191dcc36">I20d71</a>
+      , [b/512355364]
+    </li>
+    <li>
+      Introduced @
+      <code translate="no" dir="ltr">FrequentlyChangingValue</code>
+      and @
+      <code translate="no" dir="ltr">RememberInComposition</code>
+      annotations to provide lint warnings to prevent performance issues caused by reading high-frequency state updates or failing to remember objects during composition. (
+      <a href="https://android-review.googlesource.com/#/q/I955f46838ba9be2cb45ef156f2f5b56bd7a3cf15">I955f4</a>
+      , [b/409488336]
+    </li>
+    <li>
+      Ensure the ripple effect originates from the center of the button when a one-handed gesture is triggered for
+      <code translate="no" dir="ltr">Button</code>
+      composables. (
+      <a href="https://android-review.googlesource.com/#/q/Ie61ec20ba4c34f6cc1cd9cf9ce1e8df2ced4be03">Ie61ec</a>
+      , [b/514600304]
+    </li>
+    <li>
+      Resolved a key collision issue in
+      <code translate="no" dir="ltr">Modifier.oneHandedGesture</code>
+      by incorporating gesture action and priority into the auto-generated key. (
+      <a href="https://android-review.googlesource.com/#/q/I4976095af42d4f44383840972bc6a3ae6ba9b279">I49760</a>
+      , [b/517045657]
+    </li>
+  </ul>
