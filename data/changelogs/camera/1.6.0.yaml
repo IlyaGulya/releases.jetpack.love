@@ -76,8 +76,18 @@ changelogHtml: |
   <p><strong>Bug Fixes</strong></p>
   <ul>
     <li>
-      Fixed a crash that happens in all CameraX apps that run on the upcoming Android 17 devices due to a unknown dynamic range mode being added which CameraX didn't handle it appropriately. The same fix is also cherry picked in 1.5.2.
-      <strong>Please DO update your CameraX version to either 1.5.2 or 1.6.0 to avoid the crash when Android 17 is published</strong>
+      Fixed a crash that occurs on certain Android 17 (API 37) devices or higher. When these devices expose new dynamic range profiles (e.g.,
+      <a href="https://developer.android.com/reference/android/hardware/camera2/params/DynamicRangeProfiles#STANDARD_SMPTE_2094_50">STANDARD_SMPTE_2094_50(ID 8192)</a>
+      ) that were unknown to CameraX version 1.5.1 and earlier, the library previously failed to handle these IDs appropriately, resulting in a
+      <code translate="no" dir="ltr">NullPointerException</code>
+      or
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      during
+      <code translate="no" dir="ltr">ProcessCameraProvider.bindToLifecycle()</code>
+      . This fix allows CameraX to gracefully ignore unrecognized dynamic range profiles, preventing the crash and maintaining forward compatibility.
+      <strong>Please update your CameraX dependency to version 1.5.2 or 1.6.0 (or higher) to avoid this issue on devices exposing these new profiles</strong>
+      . For more details, see
+      <a href="https://issuetracker.google.com/519796838#comment2">issue 519796838</a>
       . (
       <a href="https://android-review.googlesource.com/#/q/Ibd7b5f532f7af0f43415aaef09cc9ce5f26763f6">Ibd7b5</a>
       )
