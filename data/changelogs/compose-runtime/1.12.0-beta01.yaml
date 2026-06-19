@@ -1,0 +1,65 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.12.0-beta01
+releaseDate: 2026-06-17
+#language=html
+changelogHtml: |
+  <h3 id="1.12.0-beta01" data-text="Version 1.12.0-beta01" tabindex="-1">Version 1.12.0-beta01</h3>
+  <p>June 17, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.12.0-beta01</code>
+    is released. Version 1.12.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ed0627453f51baab21d30d8ca8f74a50ff1cfa7a..40b1610b08564489b3f6a426cd8833f8615bfc68/compose/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where snapshot apply observers were not notified if a state object was created in one snapshot and then modified in a concurrent snapshot before the first one was applied. (
+      <a href="https://android-review.googlesource.com/#/q/Ide27f443a221c18387d02dd55a94d55091a2dcdb">Ide27f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/451479063">b/451479063</a>
+      )
+    </li>
+    <li>
+      Fixed a potential memory leak in how
+      <code translate="no" dir="ltr">derivedStateOf()</code>
+      values are tracked in composition. Forward writes to objects read by a derived state caused the
+      <code translate="no" dir="ltr">derivedStateOf()</code>
+      instance to be retained by the composition until the composition is disposed. If the
+      <code translate="no" dir="ltr">derivedStateOf()</code>
+      is not remembered correctly this leak can be significant as each composition may create a new one. (
+      <a href="https://android-review.googlesource.com/#/q/Ib5d87d722b40fd65697babab124771e1736eee19">Ib5d87</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/516904513">b/516904513</a>
+      )
+    </li>
+    <li>
+      Fixed an issue in the
+      <code translate="no" dir="ltr">LinkComposer</code>
+      that could cause composables to skip instead of recompose when invalidated during composition. (
+      <a href="https://android-review.googlesource.com/#/q/Ie29fe654c682ea4307d411104dcb5bfa87017b18">Ie29fe</a>
+      )
+    </li>
+    <li>
+      Fixed an issue with the vararg overload of
+      <code translate="no" dir="ltr">remember</code>
+      that would prevent the remembered value from being invalidated and cause an incorrect value to be returned from remember. This occurred when
+      <code translate="no" dir="ltr">remember</code>
+      is recomposed with fewer keys that are the same as the previous keys minus elements from the end of the array. Affected code must be recompiled to receive this fix. (
+      <a href="https://android-review.googlesource.com/#/q/I0736b2f93a4f9d147876eae5714afb6e1e32ac09">I0736b</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Added verbose tracing for
+      <code translate="no" dir="ltr">DisposableEffect</code>
+      and
+      <code translate="no" dir="ltr">SideEffect</code>
+      work in Compose runtime. (
+      <a href="https://android-review.googlesource.com/#/q/Ie451f3df34dc893a480cc0e37163c3963e8c528f">Ie451f</a>
+      )
+    </li>
+  </ul>

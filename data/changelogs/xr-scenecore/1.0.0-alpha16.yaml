@@ -1,0 +1,347 @@
+libraryId: xr-scenecore
+groupId: androidx.xr
+version: 1.0.0-alpha16
+releaseDate: 2026-06-17
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha16" data-text="Version 1.0.0-alpha16" tabindex="-1">Version 1.0.0-alpha16</h3>
+  <p>June 17, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.scenecore:scenecore-*:1.0.0-alpha16</code>
+    is released. Version 1.0.0-alpha16 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/581011b7bddfd705223b2db47dc1abde16055506..fc052f5a502bd14589b077e9b2ac185512f8cf5f/xr/scenecore">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added overloads for
+      <code translate="no" dir="ltr">addVertexData</code>
+      ,
+      <code translate="no" dir="ltr">setIndexData</code>
+      , and
+      <code translate="no" dir="ltr">addSubset</code>
+      to
+      <code translate="no" dir="ltr">CustomMesh.BuilderFromMeshData</code>
+      and
+      <code translate="no" dir="ltr">CustomMesh.BuilderFromMeshBuffer</code>
+      . These overloads allow developers to pass raw data and parameters directly (e.g.,
+      <code translate="no" dir="ltr">ByteBuffer</code>
+      ,
+      <code translate="no" dir="ltr">offset</code>
+      ,
+      <code translate="no" dir="ltr">size</code>
+      ,
+      <code translate="no" dir="ltr">topology</code>
+      ,
+      <code translate="no" dir="ltr">indexOffset</code>
+      ,
+      <code translate="no" dir="ltr">indexCount</code>
+      ) without needing to wrap them in intermediary objects like
+      <code translate="no" dir="ltr">ByteBufferRegion</code>
+      or
+      <code translate="no" dir="ltr">MeshSubset</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I84d5cb5d04daacbb6d97f98ad99e70ea4c24d94d">I84d5c</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Scene.requestFullSpaceMode()</code>
+      and
+      <code translate="no" dir="ltr">Scene.requestHomeSpaceMode()</code>
+      have been renamed to
+      <code translate="no" dir="ltr">requestFullSpace()</code>
+      and
+      <code translate="no" dir="ltr">requestHomeSpace()</code>
+      , respectively. Other methods and documentation referring to "Home Space Mode" and "Full Space Mode" have been similarly updated. (
+      <a href="https://android-review.googlesource.com/#/q/I457519e36cf4dcfc2f839c522eaefe1cccaf8922">I45751</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">PanelEntityTester</code>
+      and
+      <code translate="no" dir="ltr">MainPanelEntityTester</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I961e4f650fe916d6aca259d7ac567d735cefb44f">I961e4</a>
+      )
+    </li>
+    <li>
+      Adding
+      <code translate="no" dir="ltr">pointSourceParams</code>
+      property to
+      <code translate="no" dir="ltr">SoundEffectPoolComponent</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I4a750ee3f920f6562b7e5710b3f8849d48b0b1cb">I4a750</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">MovableComponentTester</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I0c97202e5d9691ed7b72268015b530ff5041eb88">I0c972</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">PointerCaptureComponentTester</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ic0d4f0c5240679ff1cf5edf915b9e253e06108e1">Ic0d4f</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">ActivityPanelEntityTester</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I837c4f5edcc673946734bcf56d32c6acbe5aea95">I837c4</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">ResizableComponentTester</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I0a3a4af9ec6c5edcd544faeb33ede40ef990550d">I0a3a4</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">BoundsComponentTester.</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Iefd53522cdc82019d20965f52e3154fb2608acb3">Iefd53</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">SpatialMediaPlayerTester</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ia3e0998962fbd316b85643fca44afaf9d36daf33">Ia3e09</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">SpatialEnvironmentTester</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Icf60f62baca225034f63b00665d13c0b620aee71">Icf60f</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">GltfModelTester</code>
+      and
+      <code translate="no" dir="ltr">SceneCoreTestRule.getGltfModelTester</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I33fcbeec53f319846b82453b188c14d814c3622b">I33fcb</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">InteractableComponentTester</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia70961c70e4e228a11d1288f4faf38b9a6faa9a6">Ia7096</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">SurfaceEntityTester</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic0740e9e4a32530877e4d40de97d8290db83a4ba">Ic0740</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">GltfModelEntityTester</code>
+      ,
+      <code translate="no" dir="ltr">TestGltfModelNode</code>
+      and
+      <code translate="no" dir="ltr">TestGltfAnimation</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I72c4d5243a2d8acfe4d8aaaa287b0bd909c195a6">I72c4d</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">SceneTester</code>
+      and
+      <code translate="no" dir="ltr">SceneCoreTestRule.sceneTester</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib4ec524143a66b573076b8216194c39fabadad69">Ib4ec5</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">PerceptionSpaceTester</code>
+      and
+      <code translate="no" dir="ltr">SceneCoreTestRule.perceptionSpaceTester</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Icf7398cd3dc3377fa3257ed9e1f7c8e43c26a42c">Icf739</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">MeshEntityTester</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I63801080fc0da6267c105b057dac7e0d5338d221">I63801</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">ImageBasedLightingAssetTester</code>
+      and
+      <code translate="no" dir="ltr">SceneCoreTestRule.getTester</code>
+      overloads. (
+      <a href="https://android-review.googlesource.com/#/q/I57ec4d727a1221af62d3c156fe439c30af731206">I57ec4</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">TextureTester</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ia865b483a42abcbe2307a4c581cc89acb5e89c6c">Ia865b</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">PositionalAudioComponentTester</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Icd96e67c7e7b12cd0d269785e648061dfcb48e98">Icd96e</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">SpatialSoundPoolTester</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ia3531a40c1d34be1fcbde1a08ed7784defa9a5b3">Ia3531</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">SoundEffectPoolTester</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/If349a4ddba15773c6ee9fbf639253fb243c714c4">If349a</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">ActivitySpaceTester</code>
+      and
+      <code translate="no" dir="ltr">SceneCoreTestRule.activitySpaceTester</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2d5c2da89432a33177e92c456b521c33e7f096ed">I2d5c2</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">SpatialWindowTester</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I41837933243b373fca425091d1470cddda05f25b">I41837</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">AnchorEntityTester</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I68404e27d534414c54c06c2c963ceae24a06cd03">I68404</a>
+      )
+    </li>
+    <li>
+      Provides the public test API interface
+      <code translate="no" dir="ltr">SceneCoreTestRule</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic72d3d535ba618c725716e41f476ee9588c241b9">Ic72d3</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">PixelDensity</code>
+      class and exposed it via
+      <code translate="no" dir="ltr">Scene#virtualPixelDensity</code>
+      to provide a hardware-based pixel-per-meter ratio for accurate physical dimension mapping in
+      <code translate="no" dir="ltr">ActivitySpace</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0e3ac02d66f74d1096a5cfdd0a29003829501ea1">I0e3ac</a>
+      )
+    </li>
+    <li>
+      Added public APIs for creating and rendering Custom Meshes. (
+      <a href="https://android-review.googlesource.com/#/q/I7ad2fc781c8cb50c16a553f78d795295c518860d">I7ad2f</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">VertexLayout</code>
+      API has been updated to use a list of
+      <code translate="no" dir="ltr">VertexBufferLayout</code>
+      s, where each
+      <code translate="no" dir="ltr">VertexBufferLayout</code>
+      describes the attributes within a single vertex buffer. This allows for more flexible vertex data arrangements, including interleaved attributes with custom strides and offsets. (
+      <a href="https://android-review.googlesource.com/#/q/Ic426ba50be6a06997c52ba6d4274770048ddfaeb">Ic426b</a>
+      )
+    </li>
+    <li>
+      Provides
+      <code translate="no" dir="ltr">MovableComponent.createTrackingMovable</code>
+      to transform an ARCore Trackable to a pose relative to Activity Space. (
+      <a href="https://android-review.googlesource.com/#/q/I122491aae36dcb415247da6bcb7076ef62461405">I12249</a>
+      )
+    </li>
+    <li>
+      The default value for the parent in
+      <code translate="no" dir="ltr">Entity.create</code>
+      has been updated to null. (
+      <a href="https://android-review.googlesource.com/#/q/Ic3145a464ed7b422179ed5d54e1715e28620571f">Ic3145</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Entity</code>
+      was updated to be a class instead of an interface and is now the base class for all Entity types. As part of this change
+      <code translate="no" dir="ltr">BaseEntity</code>
+      was removed. (
+      <a href="https://android-review.googlesource.com/#/q/I7fbc96497e6318e6bc8fdc16f2c242f28e60733e">I7fbc9</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">GltfModel</code>
+      ,
+      <code translate="no" dir="ltr">ExrImage</code>
+      , and
+      <code translate="no" dir="ltr">ImageBasedLightingAsset</code>
+      now implement
+      <code translate="no" dir="ltr">AutoCloseable</code>
+      to allow for idiomatic resource management using Kotlin's
+      <code translate="no" dir="ltr">use</code>
+      block. (
+      <a href="https://android-review.googlesource.com/#/q/I1ac79656d8b710bd46cbb30bf115cd10fa584f22">I1ac79</a>
+      )
+    </li>
+    <li>
+      Introduced the
+      <code translate="no" dir="ltr">ImageBasedLightingAsset</code>
+      class to replace
+      <code translate="no" dir="ltr">ExrImage</code>
+      for defining spatial environment lighting.
+      <code translate="no" dir="ltr">ExrImage</code>
+      has been deprecated and removed from the public API.
+      <code translate="no" dir="ltr">SpatialEnvironmentPreference</code>
+      has been updated to use
+      <code translate="no" dir="ltr">ImageBasedLightingAsset</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6c92a9fde5425069eb8e769a00d477decd47a046">I6c92a</a>
+      )
+    </li>
+    <li>
+      Renamed the
+      <code translate="no" dir="ltr">skybox</code>
+      parameter in
+      <code translate="no" dir="ltr">SpatialEnvironment</code>
+      to
+      <code translate="no" dir="ltr">imageBasedLightingAsset</code>
+      to better reflect its purpose, and clarified that visual skybox textures should be included in the geometry parameter. (
+      <a href="https://android-review.googlesource.com/#/q/I24d4aba70303dff0742f955e9df6f2e2917f0ab0">I24d4a</a>
+      )
+    </li>
+    <li>
+      Spatial entities now use a stable device density for pixel-to-meter calculations on Spatial API levels 1 and 2, ensuring consistent sizing regardless of system display density changes. (
+      <a href="https://android-review.googlesource.com/#/q/I37051988437749eaaf89306389d6ed915749e6ba">I37051</a>
+      )
+    </li>
+  </ul>

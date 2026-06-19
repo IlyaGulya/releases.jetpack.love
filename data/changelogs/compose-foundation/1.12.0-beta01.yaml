@@ -1,0 +1,139 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.12.0-beta01
+releaseDate: 2026-06-17
+#language=html
+changelogHtml: |
+  <h3 id="1.12.0-beta01" data-text="Version 1.12.0-beta01" tabindex="-1">Version 1.12.0-beta01</h3>
+  <p>June 17, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.12.0-beta01</code>
+    is released. Version 1.12.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b5d2acb5ad0a36c9d2aba8feb4c7951165f30fbe..40b1610b08564489b3f6a426cd8833f8615bfc68/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Renames test function for triggering indirect pointer events (
+      <a href="https://android-review.googlesource.com/#/q/I3ee350b89fa866f7d4446eacd0ccaa76c31008a7">I3ee35</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/509618414">b/509618414</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">TextObfuscationMode.Default</code>
+      to
+      <code translate="no" dir="ltr">System</code>
+      .
+      <code translate="no" dir="ltr">TextObfuscationMode.RevealLastTyped</code>
+      now acts as an absolute override and always reveals the last typed character. The default argument of
+      <code translate="no" dir="ltr">BasicSecureTextField</code>
+      is updated to
+      <code translate="no" dir="ltr">System</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If26d388fdefadc7626cd60fa8e4a8cc375941311">If26d3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/425658491">b/425658491</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/453647378">b/453647378</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">getSpanStyles</code>
+      and
+      <code translate="no" dir="ltr">getParagraphStyles</code>
+      to take a
+      <code translate="no" dir="ltr">TextRange</code>
+      instead of separate start/end indices. Relaxed bounds checking on style queries to no longer throw exceptions, and prevented crashes when querying properties of invalidated
+      <code translate="no" dir="ltr">TrackedRanges</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I62a9a619da7f19ce8d97466c8555326e1df88e87">I62a9a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/514404697">b/514404697</a>
+      )
+    </li>
+    <li>
+      Added Named Areas feature to Grid layout. Developers can now define semantic areas using
+      <code translate="no" dir="ltr">GridConfigurationScope.area()</code>
+      and place items into them using the new
+      <code translate="no" dir="ltr">Modifier.gridItem(area)</code>
+      overload, decoupling semantic intent from physical coordinates. (
+      <a href="https://android-review.googlesource.com/#/q/Id93037b0f8048754d39f4326b32c465cd78070ba">Id9303</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/487503921">b/487503921</a>
+      )
+    </li>
+    <li>
+      Added then operators and combination factory functions for
+      <code translate="no" dir="ltr">FlexBoxConfig</code>
+      and
+      <code translate="no" dir="ltr">FlexConfig</code>
+      to allow merging and overriding of layout configurations. (
+      <a href="https://android-review.googlesource.com/#/q/Icfdd86d161acfde2cae9bd46f5564ecbb56fb24d">Icfdd8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/475491619">b/475491619</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">RevealState</code>
+      .drag(),
+      <code translate="no" dir="ltr">SwipeToRevealDragScope</code>
+      , and exposed custom
+      <code translate="no" dir="ltr">flingBehavior</code>
+      in
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      to enable programmatic control over swipe gestures, offsets, and settling animations. (
+      <a href="https://android-review.googlesource.com/#/q/Ibfe560061482f812fdcf4034502ef28298fad1f0">Ibfe56</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/484185090">b/484185090</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where the text selection toolbar might fail to update its position or items. (
+      <a href="https://android-review.googlesource.com/#/q/Ib25668aa15122fe0c26fc0b00fa5aedb3a47b318">Ib2566</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      In
+      <code translate="no" dir="ltr">SelectionContainer</code>
+      , allow selection (via the mouse) to start in empty areas between
+      <code translate="no" dir="ltr">Text</code>
+      selectables. (
+      <a href="https://android-review.googlesource.com/#/q/I93f69ba5eebf95c8830749cf5a8f033b915f0df1">I93f69</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/502151445">b/502151445</a>
+      )
+    </li>
+    <li>
+      Expose
+      <code translate="no" dir="ltr">AndroidClipboard</code>
+      interface for testing to provide a way to mock clipboard implementation (
+      <a href="https://android-review.googlesource.com/#/q/Ie4d72947de357862f85a963066b06021a5342441">Ie4d72</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/512924975">b/512924975</a>
+      )
+    </li>
+    <li>
+      Add backwards compatibility for
+      <code translate="no" dir="ltr">TextAttribute</code>
+      variants of
+      <code translate="no" dir="ltr">commitText()</code>
+      and
+      <code translate="no" dir="ltr">setComposingText()</code>
+      . For SDK&gt;=37, accessibility services will be able to announce whether or not a suggestion replacement text is selected. For SDK&lt;37, will not affect spoken feedback (i.e. existing behavior). (
+      <a href="https://android-review.googlesource.com/#/q/I90e3d069dd377326b72516fd1c5a8dc8c4734660">I90e3d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/439879822">b/439879822</a>
+      )
+    </li>
+  </ul>

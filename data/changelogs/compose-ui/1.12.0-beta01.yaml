@@ -1,0 +1,122 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.12.0-beta01
+releaseDate: 2026-06-17
+#language=html
+changelogHtml: |
+  <h3 id="1.12.0-beta01" data-text="Version 1.12.0-beta01" tabindex="-1">Version 1.12.0-beta01</h3>
+  <p>June 17, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.12.0-beta01</code>
+    is released. Version 1.12.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b5d2acb5ad0a36c9d2aba8feb4c7951165f30fbe..40b1610b08564489b3f6a426cd8833f8615bfc68/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      N/A (moving internal developer feature flag) (
+      <a href="https://android-review.googlesource.com/#/q/Iaf2c42807e373e7d647893dc012bac68f30a5590">Iaf2c4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/368702588">b/368702588</a>
+      )
+    </li>
+    <li>
+      N/A - Moved a feature flag. (
+      <a href="https://android-review.googlesource.com/#/q/I24668ffd2667645ef468412e452ff288190a24a1">I24668</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/521811270">b/521811270</a>
+      )
+    </li>
+    <li>
+      Added experimental feature flag
+      <code translate="no" dir="ltr">ComposeUiFlags</code>
+      .
+      <code translate="no" dir="ltr">isTrackpadPinchReinterpretationEnabled</code>
+      to re-interpret trackpad pinch gestures as mouse events with scale factors. (
+      <a href="https://android-review.googlesource.com/#/q/Id3477870fc26b8d516044a0a9ab015a3ff21e3f9">Id3477</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/478053727">b/478053727</a>
+      )
+    </li>
+    <li>
+      Renames test function for triggering indirect pointer events (
+      <a href="https://android-review.googlesource.com/#/q/I3ee350b89fa866f7d4446eacd0ccaa76c31008a7">I3ee35</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/509618414">b/509618414</a>
+      )
+    </li>
+    <li>
+      Add optimisation to the
+      <code translate="no" dir="ltr">BasicText</code>
+      and
+      <code translate="no" dir="ltr">BasicTextField</code>
+      where setting a line height for a text with softwrap=false is now calculating more optimally (
+      <a href="https://android-review.googlesource.com/#/q/I2150ac694edc14244437fc72ee356cc761e53cda">I2150a</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Optimized scroll capture state propagation across subcompositions to prevent unnecessary UI recomposition. (
+      <a href="https://android-review.googlesource.com/#/q/I05830c14f2e9ea6d51bb1a10d4e9a54c6264df63">I05830</a>
+      )
+    </li>
+    <li>
+      Enabled experimental feature flag
+      <code translate="no" dir="ltr">ComposeUiFlags</code>
+      .
+      <code translate="no" dir="ltr">isTrackpadPinchReinterpretationEnabled</code>
+      by default. (
+      <a href="https://android-review.googlesource.com/#/q/I35ab87bdf9e09007f8f01dd6a65413b0770c5910">I35ab8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/478053727">b/478053727</a>
+      )
+    </li>
+    <li>
+      Fixed an issue in vector drawable resource parsing where parent
+      <code translate="no" dir="ltr">&lt;clip-path&gt;</code>
+      elements were ignored if they contained nested
+      <code translate="no" dir="ltr">&lt;group&gt;</code>
+      elements. (
+      <a href="https://android-review.googlesource.com/#/q/Id4ea9691c41bf48ee1a30e828a6d895cffdda8ca">Id4ea9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/474530439">b/474530439</a>
+      )
+    </li>
+    <li>
+      Added support for standard JUnit 4 test retry rules in
+      <code translate="no" dir="ltr">AndroidComposeTestRule</code>
+      by regenerating the internal test environment and coroutine scope between execution attempts. (
+      <a href="https://android-review.googlesource.com/#/q/Iafaa7adb1f56931803f08f85114df3b6ab2c2df2">Iafaa7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/235383900">b/235383900</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Expose
+      <code translate="no" dir="ltr">AndroidClipboard</code>
+      interface for testing to provide a way to mock clipboard implementation (
+      <a href="https://android-review.googlesource.com/#/q/Ie4d72947de357862f85a963066b06021a5342441">Ie4d72</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/512924975">b/512924975</a>
+      )
+    </li>
+    <li>
+      Add backwards compatibility for
+      <code translate="no" dir="ltr">TextAttribute</code>
+      variants of
+      <code translate="no" dir="ltr">commitText()</code>
+      and
+      <code translate="no" dir="ltr">setComposingText()</code>
+      . For SDK&gt;=37, accessibility services will be able to announce whether or not a suggestion replacement text is selected. For SDK&lt;37, will not affect spoken feedback (i.e. existing behavior). (
+      <a href="https://android-review.googlesource.com/#/q/I90e3d069dd377326b72516fd1c5a8dc8c4734660">I90e3d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/439879822">b/439879822</a>
+      )
+    </li>
+  </ul>

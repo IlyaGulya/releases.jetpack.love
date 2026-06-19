@@ -1,0 +1,129 @@
+libraryId: glance-wear
+groupId: androidx.glance
+version: 1.0.0-alpha12
+releaseDate: 2026-06-17
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha12" data-text="Version 1.0.0-alpha12" tabindex="-1">Version 1.0.0-alpha12</h3>
+  <p>June 17, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.glance.wear:wear:1.0.0-alpha12</code>
+    ,
+    <code translate="no" dir="ltr">androidx.glance.wear:wear-core:1.0.0-alpha12</code>
+    , and
+    <code translate="no" dir="ltr">androidx.glance.wear:wear-tooling-preview:1.0.0-alpha12</code>
+    are released. Version 1.0.0-alpha12 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3fad9a116191a476216752005ae5752c236e4faf..14c2f2ed81d0f61a3227641684cd875e95dd6529/glance/wear">these commits</a>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>
+      <p>
+        <strong>
+          Added
+          <code translate="no" dir="ltr">AssociateWithGlanceWearWidget</code>
+          that
+          <em>must</em>
+          be used on the
+          <code translate="no" dir="ltr">GlanceWearWidgetService</code>
+          to provide which implementation of
+          <code translate="no" dir="ltr">GlanceWearWidget</code>
+          it is associated to.
+        </strong>
+        (
+        <a href="https://android-review.googlesource.com/#/q/Ifcabb316a0dc3fcd5fc0d5a5878fe8ad281ed8ad">Ifcabb</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/514679763">b/514679763</a>
+        )
+      </p>
+
+      <ul>
+        <li>For example:</li>
+      </ul>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Transact-SQL" syntax-guessed=""><code translate="no" dir="ltr"><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">@AssociateWithGlanceWearWidget</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-nl">MyGlanceWearWidget</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-err">:</span><span class="devsite-syntax-k">class</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">MyGlanceWearWidgetService</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-err">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">GlanceWearWidgetService</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-err">{</span>
+  <span class="devsite-syntax-w">   </span><span class="devsite-syntax-n">override</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">widget</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">MyGlanceWearWidget</span><span class="devsite-syntax-p">()</span>
+  <span class="devsite-syntax-w"> </span><span class="devsite-syntax-err">}</span>
+  <span class="devsite-syntax-w"> </span><span class="devsite-syntax-err">```</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        We have added
+        <code translate="no" dir="ltr">image</code>
+        brush to
+        <code translate="no" dir="ltr">WearWidgetBrush</code>
+        to support bitmap backgrounds in Wear Widgets. (
+        <a href="https://android-review.googlesource.com/#/q/I9a22801ae1d5e5d5fe473a51b153f3e0e8e97312">I9a228</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/513481558">b/513481558</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        We have introduced a
+        <code translate="no" dir="ltr">@Composable</code>
+        helper function,
+        <code translate="no" dir="ltr">WearWidgetPreview</code>
+        , to simplify the development of Glance Wear widgets by removing the boilerplate required for IDE previews.
+      </p>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">androidx.glance.wear.health.DataType</code>
+      to
+      <code translate="no" dir="ltr">androidx.glance.wear.health.HealthData</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I4cb0b961829680053b1611b153d0c5ce9f5dcb0c">I4cb0b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/516746689">b/516746689</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">isHeartRateBpmAvailable</code>
+      is exposed to determine if
+      <code translate="no" dir="ltr">heartRateBpm</code>
+      is available on the host. (
+      <a href="https://android-review.googlesource.com/#/q/I5999d40f4cd432e921a7b10ecdff67d566f0d06c">I5999d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/514641567">b/514641567</a>
+      )
+    </li>
+    <li>
+      Exposed
+      <code translate="no" dir="ltr">RemoteInt</code>
+      compare operators. (
+      <a href="https://android-review.googlesource.com/#/q/I5fe3d4e06e25650003dcea04cdef1c252612bf06">I5fe3d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/513228889">b/513228889</a>
+      )
+    </li>
+    <li>
+      Exposed
+      <code translate="no" dir="ltr">captureRemoteDocument</code>
+      Flow API and a new
+      <code translate="no" dir="ltr">captureSingleRemoteDocument</code>
+      overload (which takes
+      <code translate="no" dir="ltr">RemoteCreationDisplayInfo</code>
+      ) as public APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I87b0ef46ca9cbaae9375053ab8d0618921aa1957">I87b0e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/513228889">b/513228889</a>
+      )
+    </li>
+    <li>
+      We have added
+      <code translate="no" dir="ltr">@CallSuper</code>
+      to
+      <code translate="no" dir="ltr">GlanceWearWidgetService</code>
+      lifecycle methods
+    </li>
+  </ul>

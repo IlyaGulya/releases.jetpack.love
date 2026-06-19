@@ -1,0 +1,171 @@
+libraryId: compose-remote
+groupId: androidx.compose
+version: 1.0.0-alpha13
+releaseDate: 2026-06-17
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha13" data-text="Version 1.0.0-alpha13" tabindex="-1">Version 1.0.0-alpha13</h3>
+  <p>June 17, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.remote:remote-*:1.0.0-alpha13</code>
+    is released. Version 1.0.0-alpha13 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d0d5e8b902b1ded8854df7d27fa1d1ee14e3bb4c..14c2f2ed81d0f61a3227641684cd875e95dd6529/compose/remote">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">RemoteBitmap</code>
+      to
+      <code translate="no" dir="ltr">RemoteImageBitmap</code>
+      to improve naming consistency. (
+      <a href="https://android-review.googlesource.com/#/q/I4fde13afb0f60eae9e47e651d02c964ec7773433">I4fde1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/513228889">b/513228889</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">RemoteBitmapShader</code>
+      to
+      <code translate="no" dir="ltr">RemoteImageBrush</code>
+      and expose to public API. (
+      <a href="https://android-review.googlesource.com/#/q/I7adaf75ee3225dce51717908a24e190d727ca894">I7adaf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/513228889">b/513228889</a>
+      )
+    </li>
+    <li>
+      Expose
+      <code translate="no" dir="ltr">RemoteInt</code>
+      compare operators. (
+      <a href="https://android-review.googlesource.com/#/q/I5fe3d4e06e25650003dcea04cdef1c252612bf06">I5fe3d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/513228889">b/513228889</a>
+      )
+    </li>
+    <li>
+      Exposed
+      <code translate="no" dir="ltr">captureRemoteDocument</code>
+      Flow API and a new
+      <code translate="no" dir="ltr">captureSingleRemoteDocument</code>
+      overload (which takes
+      <code translate="no" dir="ltr">RemoteCreationDisplayInfo</code>
+      ) as public APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I87b0ef46ca9cbaae9375053ab8d0618921aa1957">I87b0e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/513228889">b/513228889</a>
+      )
+    </li>
+    <li>
+      Rename comparison operators (eq, ne) on
+      <code translate="no" dir="ltr">RemoteBoolean</code>
+      to
+      <code translate="no" dir="ltr">isEqualTo</code>
+      ,
+      <code translate="no" dir="ltr">isNotEqualTo</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia05b9b0f78834764994b42cfaf42d3232ff4f966">Ia05b9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/513228889">b/513228889</a>
+      )
+    </li>
+    <li>
+      Expose
+      <code translate="no" dir="ltr">RemoteEnum</code>
+      and
+      <code translate="no" dir="ltr">RemoteStateLayout</code>
+      as public APIs (
+      <a href="https://android-review.googlesource.com/#/q/I5c6ec503db7681b1024ee650b6f9a5fc41f1b32f">I5c6ec</a>
+      )
+    </li>
+    <li>
+      Exposed
+      <code translate="no" dir="ltr">fontVariationSettings</code>
+      property in the
+      <code translate="no" dir="ltr">RemotePaint</code>
+      interface as public API. (
+      <a href="https://android-review.googlesource.com/#/q/Ic3c4624c749d2983012f084508037aa7597498e4">Ic3c46</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/513228889">b/513228889</a>
+      )
+    </li>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">RemoteInt</code>
+      and
+      <code translate="no" dir="ltr">RemoteFloat</code>
+      <code translate="no" dir="ltr">toRemoteString</code>
+      methods. (
+      <a href="https://android-review.googlesource.com/#/q/I62a6b5ea0e50352409a374a430764cd14e626820">I62a6b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/513228889">b/513228889</a>
+      )
+    </li>
+    <li>
+      Exposed
+      <code translate="no" dir="ltr">RemoteTypeface</code>
+      API. (
+      <a href="https://android-review.googlesource.com/#/q/Iadfdb9f55fd7f5d7c5523971c8bc6d816a6a6964">Iadfdb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/502907551">b/502907551</a>
+      )
+    </li>
+    <li>
+      Renamed existing
+      <code translate="no" dir="ltr">ValueChange</code>
+      factory functions to lowercase
+      <code translate="no" dir="ltr">valueChange</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I812b92fed6b9edfb9e489dbf6ceb5382cd68a80e">I812b9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/513228889">b/513228889</a>
+      )
+    </li>
+    <li>
+      Made
+      <code translate="no" dir="ltr">PendingIntentAction</code>
+      safe for IDE previews by deferring
+      <code translate="no" dir="ltr">PendingIntent</code>
+      access via a lambda and returning a no-op action in preview mode. (
+      <a href="https://android-review.googlesource.com/#/q/I43b37f5d603065a63f99e3e41d0e0a1b76ad6c53">I43b37</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/512403924">b/512403924</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">TypefaceResolver</code>
+      and
+      <code translate="no" dir="ltr">DefaultTypefaceResolver</code>
+      internal abstractions to modularize font resolution. (
+      <a href="https://android-review.googlesource.com/#/q/Ia1df709e611b334567beeee93887fe33779f02f3">Ia1df7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/513228889">b/513228889</a>
+      )
+    </li>
+    <li>
+      Removed obsolete
+      <code translate="no" dir="ltr">RemoteIntReference</code>
+      and
+      <code translate="no" dir="ltr">RemoteStringList</code>
+      APIs, and added
+      <code translate="no" dir="ltr">RemoteStringArray</code>
+      to support arrays of remote strings. (
+      <a href="https://android-review.googlesource.com/#/q/I129313120535c1cd48aae1fb17583253c6442311">I12931</a>
+      )
+    </li>
+    <li>
+      Propagate
+      <code translate="no" dir="ltr">LocalInspectionMode</code>
+      to Remote Compose capture phase (
+      <a href="https://android-review.googlesource.com/#/q/I6a56b8d53fd8b094bbd40db648b9dd116b129859">I6a56b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/512403924">b/512403924</a>
+      )
+    </li>
+  </ul>

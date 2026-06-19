@@ -1,0 +1,62 @@
+libraryId: room3
+groupId: androidx.room3
+version: 3.0.0-rc01
+releaseDate: 2026-06-17
+#language=html
+changelogHtml: |
+  <h3 id="3.0.0-rc01" data-text="Version 3.0.0-rc01" tabindex="-1">Version 3.0.0-rc01</h3>
+  <p>June 17, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room3:room3-*:3.0.0-rc01</code>
+    is released. Version 3.0.0-rc01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d0d5e8b902b1ded8854df7d27fa1d1ee14e3bb4c..640800e451c095d1f2a2542027735e19aa8b8ae4/room3">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added support for parameters with default values in data classes used in DAO query results. A property that represents a column and is part of a constructor with a default value will be considered optional and a column in the result won't be required for it. (
+      <a href="https://android-review.googlesource.com/#/q/34279ac0537b29f0be6c73ee5d4c5c8d973c8ea7">34279a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/70762008">b/70762008</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/193531601">b/193531601</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">@TypeConverter</code>
+      to
+      <code translate="no" dir="ltr">@ColumnTypeConverter</code>
+      to better distinguish the scope of the conversion and to have symmetry with
+      <code translate="no" dir="ltr">@DaoReturnTypeConverter</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I24420e0c78a8a928dd148071185ade700e1ac8b2">I24420</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/438041176">b/438041176</a>
+      )
+    </li>
+    <li>
+      Added an API for provided custom DAO return types
+      <code translate="no" dir="ltr">@ProvidedDaoReturnTypeConveter</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2a8ad54ddf5cb1adccb41dcd64fbfc57786ff7e7">I2a8ad</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/517485682">b/517485682</a>
+      )
+    </li>
+    <li>
+      Added the
+      <code translate="no" dir="ltr">PrimaryKey.algorihtm</code>
+      property to specify the primary key generating algorithm when
+      <code translate="no" dir="ltr">PrimaryKey.autoGenerate</code>
+      is set to true. (
+      <a href="https://android-review.googlesource.com/#/q/I57944a499ed7d66dc6eac4616039e1989b5254b0">I57944</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/70053837">b/70053837</a>
+      )
+    </li>
+  </ul>

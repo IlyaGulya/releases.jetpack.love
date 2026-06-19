@@ -1,0 +1,73 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.11.0
+releaseDate: 2026-06-17
+#language=html
+changelogHtml: |
+  <h3 id="2.11.0" data-text="Version 2.11.0" tabindex="-1">Version 2.11.0</h3>
+  <p>June 17, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.11.0</code>
+    is released. Version 2.11.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ee621bea3237b1eab3c48eef4cf7ef7c7943b4bb..a01f1a6c29523dd9b046b7f2a383d7d24559e316/lifecycle">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 2.10.0:</strong></p>
+  <p>
+    <strong>Scoped ViewModels in Compose</strong>
+    - Introduction of
+    <code translate="no" dir="ltr">ViewModelStoreProvider</code>
+    ,
+    <code translate="no" dir="ltr">rememberViewModelStoreProvider</code>
+    , and
+    <code translate="no" dir="ltr">rememberViewModelStoreOwner</code>
+    to tie ViewModels to specific UI scopes (like Pager pages). These survive configuration changes and automatically clear when the Composable is removed from the hierarchy.
+  </p>
+  <p>
+    <strong>KMP Support</strong>
+    -
+    <code translate="no" dir="ltr">ViewModel-Compose</code>
+    and
+    <code translate="no" dir="ltr">ViewModel-Navigation3</code>
+    now support all Kotlin Multiplatform targets.
+  </p>
+  <p>
+    <strong>Navigation3 Integration</strong>
+    -
+    <code translate="no" dir="ltr">ViewModelStoreNavEntryDecorator</code>
+    now accepts a
+    <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+    to propagate
+    <code translate="no" dir="ltr">CreationExtras</code>
+    and factories to nested ViewModels. You can also hoist providers using the new
+    <code translate="no" dir="ltr">rememberViewModelStoreNavEntryDecorator</code>
+    overload to support multiple back stacks.
+    <code translate="no" dir="ltr">removeViewModelStoreOnPop</code>
+    is deprecated.
+  </p>
+  <p>
+    <strong>Lifecycle Utilities</strong>
+    - Added a reified
+    <code translate="no" dir="ltr">ViewModelProvider.get&lt;VM&gt;(key)</code>
+    extension, a lambda-based
+    <code translate="no" dir="ltr">Lifecycle.addObserver</code>
+    , and default factory extensions for
+    <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+    .
+    <code translate="no" dir="ltr">ViewModel.onCleared</code>
+    is now annotated with
+    <code translate="no" dir="ltr">@EmptySuper</code>
+    .
+  </p>
+  <p>
+    <strong>Other Changes</strong>
+    - Compose UI
+    <code translate="no" dir="ltr">1.7.0+</code>
+    is now required for
+    <code translate="no" dir="ltr">LocalLifecycleOwner</code>
+    to remove reflection fallbacks. Updates to the Compose
+    <code translate="no" dir="ltr">compileSdk</code>
+    require a minimum AGP version of
+    <code translate="no" dir="ltr">9.2.0</code>
+    .
+  </p>
