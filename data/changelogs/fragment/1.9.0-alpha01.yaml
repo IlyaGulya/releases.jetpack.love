@@ -1,0 +1,216 @@
+libraryId: fragment
+groupId: androidx.fragment
+version: 1.9.0-alpha01
+releaseDate: 2026-06-17
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0-alpha01" data-text="Version 1.9.0-alpha01" tabindex="-1">Version 1.9.0-alpha01</h3>
+  <p>June 17, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.fragment:fragment-*:1.9.0-alpha01</code>
+    is released. Version 1.9.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f39ca3510efb2347ebfef231e25a3e804922450d..14c2f2ed81d0f61a3227641684cd875e95dd6529/fragment">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Fragment now implements the
+      <code translate="no" dir="ltr">ContextAware</code>
+      interface and can be used to execute code when the fragment is attached. (
+      <a href="https://android-review.googlesource.com/#/q/I38019669dd4bfb7973f28da371427ec8098fce86">I38019</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/477255355">b/477255355</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a crash in Fragment that was caused when the Activity is sent to the background during a predictive back gesture. (
+      <a href="https://android-review.googlesource.com/#/q/I55734af5e6f1e4ef8c25f64a762a048871cae364">I55734</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/389589678">b/389589678</a>
+      )
+    </li>
+    <li>
+      UnsafeFragmentLifecycleObserverDetector no longer runs within composition. (
+      <a href="https://android-review.googlesource.com/#/q/Ic4176cf196952a82776dd1b27f3b2002b79a3b29">Ic4176</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/501504696">b/501504696</a>
+      )
+    </li>
+    <li>
+      [From
+      <a href="/jetpack/androidx/releases/fragment#1.8.9">Fragment 1.8.9</a>
+      ] Fixed an issue where cancelling a predictive back gesture that pops a hide operation will cause the subsequent gesture not to animate correctly when using animators. (
+      <a href="https://android-review.googlesource.com/#/q/I0a4003096caf30f8185e1a9bd2b493f7d1d0c875">I0a400</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/384765586">b/384765586</a>
+      )
+    </li>
+    <li>
+      [From
+      <a href="/jetpack/androidx/releases/fragment#1.8.9">Fragment 1.8.9</a>
+      ] Fixed an error where a combination of setMaxLifecycle and popBackStack could fail to move the top fragment to RESUMED. (
+      <a href="https://android-review.googlesource.com/#/q/I3448b3c372f318b399ce93f74326fbfda87475d9">I3448b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/406127576">b/406127576</a>
+      )
+    </li>
+    <li>
+      [From
+      <a href="/jetpack/androidx/releases/fragment#1.8.8">Fragment 1.8.8</a>
+      ] Fixed an issue where FragmentManager would crash while trying to save the state of Fragments that were added with
+      <code translate="no" dir="ltr">setMaxLifecycle(Lifecycle.State.INITIALIZED)</code>
+      . These fragments, since they never when through
+      <code translate="no" dir="ltr">onCreate()</code>
+      , no longer have any state saved or
+      <code translate="no" dir="ltr">onSaveInstanceState()</code>
+      called. (
+      <a href="https://android-review.googlesource.com/#/q/I6e37a01551008636d6b5ccafa65f03fcbd19321f">I6e37a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/408163315">b/408163315</a>
+      )
+    </li>
+    <li>
+      [From
+      <a href="/jetpack/androidx/releases/fragment#1.8.7">Fragment 1.8.7</a>
+      ] Fixed an issue with FragmentManager no being in the proper state after pop and replace operations in the same frame that could cause a crash in conjunction with predictive back. (
+      <a href="https://android-review.googlesource.com/#/q/I50ad1d46b1bb080b2006883874ee68ae27e98cc7">I50ad1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/380288461">b/380288461</a>
+      )
+    </li>
+    <li>
+      [From
+      <a href="/jetpack/androidx/releases/fragment#1.8.6">Fragment 1.8.6</a>
+      ] FragmentContainerView's
+      <code translate="no" dir="ltr">setOnApplyWindowInsetsListener</code>
+      override now takes a null listener. (
+      <a href="https://android-review.googlesource.com/#/q/I575f0b5da72d096b14393afd9819ab66e061b002">I575f0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/282790626">b/282790626</a>
+      )
+    </li>
+    <li>
+      [From
+      <a href="/jetpack/androidx/releases/fragment#1.8.5">Fragment 1.8.5</a>
+      ] Fixed an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      triggered by
+      <code translate="no" dir="ltr">saveBackStack</code>
+      only after a Predictive Back gesture was cancelled or interrupted. (
+      <a href="https://android-review.googlesource.com/#/q/I3387d9d02495112f211448d7f3c9f862299da697">I3387d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/342419080">b/342419080</a>
+      )
+    </li>
+    <li>
+      [From
+      <a href="/jetpack/androidx/releases/fragment#1.8.4">Fragment 1.8.4</a>
+      ] Fixed an
+      <code translate="no" dir="ltr">UninitializedPropertyAccessException</code>
+      in
+      <code translate="no" dir="ltr">AndroidFragment</code>
+      when dynamically swapping out the Class your
+      <code translate="no" dir="ltr">AndroidFragment</code>
+      instance is using. (
+      <a href="https://android-review.googlesource.com/#/q/I12dea04016d1f68583acb1265ca0a937a7ebd75d">I12dea</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/365578408">b/365578408</a>
+      )
+    </li>
+    <li>
+      [From
+      <a href="/jetpack/androidx/releases/fragment#1.8.4">Fragment 1.8.4</a>
+      ] Fixed an issue where quickly pressing system back or doing fast gesture back will cause Fragments to crash. (
+      <a href="https://android-review.googlesource.com/#/q/Ibc038d8db7c3e7903a4dc8bfa556883705d27ee8">Ibc038</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/364804225">b/364804225</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/364914301">b/364914301</a>
+      )
+    </li>
+    <li>
+      [From
+      <a href="/jetpack/androidx/releases/fragment#1.8.4">Fragment 1.8.4</a>
+      ] Fixed an issue in fragments where interrupting a predictive back gesture would send the fragment manager into an undefined state and even up showing the wrong fragment. (
+      <a href="https://android-review.googlesource.com/#/q/If82e2cd540a5319faa2e40d4a28ce31026e2e19d">If82e2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/338624457">b/338624457</a>
+      )
+    </li>
+    <li>
+      [From
+      <a href="/jetpack/androidx/releases/fragment#1.8.3">Fragment 1.8.3</a>
+      ]
+      <code translate="no" dir="ltr">AndroidFragment</code>
+      no longer crashes if it is added to composition while the containing activity/fragment's state is already saved. (
+      <a href="https://android-review.googlesource.com/#/q/I985e91e6d654815c99e97927154d0fd8f2228c0b">I985e9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/356643968">b/356643968</a>
+      )
+    </li>
+    <li>
+      [From
+      <a href="/jetpack/androidx/releases/fragment#1.8.2">Fragment 1.8.2</a>
+      ] Triggering a system back while the FragmentManager has pending operations will no longer cause an out of bound exception. (
+      <a href="https://android-review.googlesource.com/#/q/I9ba32fe0583d13618c1eac3f13fdbd8992a3b7ad">I9ba32</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/342316801">b/342316801</a>
+      )
+    </li>
+    <li>
+      [From
+      <a href="/jetpack/androidx/releases/fragment#1.8.2">Fragment 1.8.2</a>
+      ]
+      <code translate="no" dir="ltr">AndroidFragment</code>
+      now properly handles cases where the parent fragment is put on the Fragment back stack, avoiding 'No view found for id' issues when popping back to that fragment. (
+      <a href="https://android-review.googlesource.com/#/q/I94608fed9ada006e5e601ede8adb8be81fae29a0">I94608</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/347706985">b/347706985</a>
+      )
+    </li>
+    <li>
+      [From
+      <a href="/jetpack/androidx/releases/fragment#1.8.2">Fragment 1.8.2</a>
+      ] Fragments added via the
+      <code translate="no" dir="ltr">FragmentTransaction.add</code>
+      method that takes a
+      <code translate="no" dir="ltr">ViewGroup</code>
+      now wait for
+      <code translate="no" dir="ltr">onContainerAvailable</code>
+      before progressing to
+      <code translate="no" dir="ltr">onStart()</code>
+      . This affects users of that API, such as
+      <code translate="no" dir="ltr">AndroidFragment</code>
+      , which now waits for the
+      <code translate="no" dir="ltr">AndroidFragment</code>
+      to re-enter composition before moving it through
+      <code translate="no" dir="ltr">onStart()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I94608fed9ada006e5e601ede8adb8be81fae29a0">I94608</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/347706985">b/347706985</a>
+      )
+    </li>
+    <li>
+      [From
+      <a href="/jetpack/androidx/releases/fragment#1.8.1">Fragment 1.8.1</a>
+      ] Fixed an issue where fragment without a container were immediately DESTROYED when starting a predictive back gesture. (
+      <a href="https://android-review.googlesource.com/#/q/If6b83f7dbb655e0bebc99c3c769625626a7c4e8d">If6b83</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/345244539">b/345244539</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Merge fragment-ktx into the fragment library. All Kotlin extensions are now part of the main fragment artifact. fragment-ktx is now an empty artifact for compatibility. Thank you Jake Wharton! (
+      <a href="https://android-review.googlesource.com/#/q/Idabaa63ce89a664f40767c5034cafa69d18c4156">Idabaa</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_18_2" data-text="Version 1.8" tabindex="-1">Version 1.8</h2>

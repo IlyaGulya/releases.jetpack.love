@@ -1,0 +1,640 @@
+libraryId: core
+groupId: androidx.core
+version: 1.1.0-alpha06
+releaseDate: 2026-06-17
+#language=html
+changelogHtml: |
+  <h3 id="core-telecom-1.1.0-alpha06" data-text="Version 1.1.0-alpha06" tabindex="-1">Version 1.1.0-alpha06</h3>
+  <p>June 17, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core-telecom:1.1.0-alpha06</code>
+    is released. Version 1.1.0-alpha06 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3edf226b37ade9712d8cb1590622d1c4500f5f0d..36e054a434241b1a13950458560fac44bac6ba35/core/core-telecom">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Remove the
+      <code translate="no" dir="ltr">ExperimentalAppActions</code>
+      annotation from stable extensions (
+      <a href="https://android-review.googlesource.com/#/q/I25ab240a315affc39c7b694242a05766c6d519dd">I25ab2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/501448256">b/501448256</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix video calls route to earpiece instead of speaker bug when using the backwards compat path on sdk=34+ (
+      <a href="https://android-review.googlesource.com/#/q/I9f2bd0ac012555277e189543fe6eda3a6bbd0854">I9f2bd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/519599698">b/519599698</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where incoming audio-only
+      <code translate="no" dir="ltr">VoIP</code>
+      calls were incorrectly treated as video calls by the platform, causing them to route to the speakerphone instead of the earpiece (
+      <a href="https://android-review.googlesource.com/#/q/I959025dfd4231ca7beea7287a19e8094608a7d3a">I95902</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/517616475">b/517616475</a>
+      )
+    </li>
+    <li>
+      Fixed a bug in Core-Telecom where an intentional user switch to speakerphone during call initialization would be incorrectly reverted to the earpiece. (
+      <a href="https://android-review.googlesource.com/#/q/I9e251ce4c81b60e3e1712984483981682eb837e7">I9e251</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/478022476">b/478022476</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where redundant audio state updates in core-telecom could lead to main thread congestion and potential ANRs. (
+      <a href="https://android-review.googlesource.com/#/q/Ibd794ea1e1c326a7e17075293142170d35fc74e8">Ibd794</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/491873537">b/491873537</a>
+      )
+    </li>
+    <li>
+      Fix NPE in
+      <code translate="no" dir="ltr">BlueoothProfileListener#onServiceConnected</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Idbd57d31151d1d30f7190c305b91d13408e40485">Idbd57</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/513341034">b/513341034</a>
+      )
+    </li>
+    <li>
+      Fixed a test failure in CallSessionTest on Android 17 (SDK 37) by suppressing version-specific bug mitigation tests on unaffected platform versions. (
+      <a href="https://android-review.googlesource.com/#/q/I970a73a2cf0d0240f3b24dc0c58d2720d86298b6">I970a7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/502732317">b/502732317</a>
+      )
+    </li>
+  </ul>
+  <h4 id="core-telecom-1.1.0-alpha05" data-text="Version 1.1.0-alpha05" tabindex="-1">Version 1.1.0-alpha05</h4>
+  <p>April 22, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core-telecom:1.1.0-alpha05</code>
+    is released. Version 1.1.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7660321fb775ac566c4dba19331d3778097c68bd..3edf226b37ade9712d8cb1590622d1c4500f5f0d/core/core-telecom">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue on Android 14-16 where audio calls might unexpectedly route to speaker on the call start (
+      <a href="https://android-review.googlesource.com/#/q/Ic7000c50f1817065c25538abe7274018367662cc">Ic7000</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/491932378">b/491932378</a>
+      )
+    </li>
+    <li>
+      Fixed a crash (
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      ) in
+      <code translate="no" dir="ltr">core-telecom</code>
+      that could occur if the Telecom framework or a remote service dispatched connection events multiple times during extension setup. (
+      <a href="https://android-review.googlesource.com/#/q/I00f829a4a2317d4a9d136df2712df450257f3681">I00f82</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/476724351">b/476724351</a>
+      )
+    </li>
+    <li>
+      Telecom will now use a fallback heuristic to identify wearable devices for audio routing decisions when the
+      <code translate="no" dir="ltr">BLUETOOTH_CONNECT</code>
+      permission is denied. (
+      <a href="https://android-review.googlesource.com/#/q/Iec271c4a9a56a02bfd15824cae1bd25debe14e00">Iec271</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/499302063">b/499302063</a>
+      )
+    </li>
+  </ul>
+  <h4 id="core-telecom-1.1.0-alpha04" data-text="Version 1.1.0-alpha04" tabindex="-1">Version 1.1.0-alpha04</h4>
+  <p>March 25, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core-telecom:1.1.0-alpha04</code>
+    is released. Version 1.1.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d70b7e8d1b45adbfec4334c6db491905b0b6534e..7660321fb775ac566c4dba19331d3778097c68bd/core/core-telecom">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue on older Android versions where incoming or upgraded video calls would sometimes incorrectly route audio to the earpiece. The library now enforces a switch to the speaker if this misrouting is detected. (
+      <a href="https://android-review.git.corp.google.com/q/I0fc797186e4d22c29f3a45f9cf584015472597d7">I0fc797</a>
+      ,
+      <a href="https://android-review.git.corp.google.com/q/I29fd225926d4830b36e09e7e15e7e66471eff7da">I29fd22</a>
+      )
+    </li>
+    <li>
+      Removed A2DP Bluetooth devices from the list of available endpoints shown in the pre-call screen, as these devices are not supported for voice communication by the Android platform Telecom framework. This aligns the available devices with platform behavior. (
+      <a href="https://android-review.git.corp.google.com/q/I98b729e518cca5b4f9087236838f50469350bfed">I98b729</a>
+      )
+    </li>
+    <li>
+      Skipped running call extensions logic for managed calls to prevent potential crashes or unexpected behavior. (
+      <a href="https://android-review.git.corp.google.com/q/I17790599cd36b50bff9acda031f6736ea82a0f5d">I177905</a>
+      )
+    </li>
+  </ul>
+  <h4 id="core-telecom-1.1.0-alpha03" data-text="Version 1.1.0-alpha03" tabindex="-1">Version 1.1.0-alpha03</h4>
+  <p>February 11, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core-telecom:1.1.0-alpha03</code>
+    is released. Version 1.1.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4f5e69af57ade617fcc3ab8b81eaa75d72916276..d70b7e8d1b45adbfec4334c6db491905b0b6534e/core/core-telecom">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <strong>Opt-out of Premium Network Slicing:</strong>
+      Introduced a new capability,
+      <code translate="no" dir="ltr">CAPABILITY_OPT_OUT_OF_PREMIUM_NETWORK</code>
+      , in
+      <code translate="no" dir="ltr">CallsManager</code>
+      . This allows VoIP applications to signal that they wish to opt-out of the system's default behavior of requesting premium network slices for voice and video calls. By default, the system may automatically request a premium network slice to improve call quality. This capability can be passed during
+      <code translate="no" dir="ltr">registerAppWithTelecom</code>
+      . (
+      <a href="https://android-review.git.corp.google.com/c/platform/frameworks/support/+/3885722">I2dfdb</a>
+      )
+    </li>
+    <li>
+      <strong>Control Microphone Mute Capability:</strong>
+      Added APIs to allow VoIP apps to inform remote surfaces (like Android Auto, wearables) whether the user should be able to control the microphone state. This is useful in scenarios where the user is restricted from changing their mute state, such as being in a moderated meeting, joining as a passive viewer, or using Companion Mode. (
+      <a href="https://android-review.git.corp.google.com/c/platform/frameworks/support/+/3872444">I55acf</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">CallsManager.CAPABILITY_OPT_OUT_OF_PREMIUM_NETWORK</code>
+      : Use this flag with
+      <code translate="no" dir="ltr">registerAppWithTelecom(int)</code>
+      to prevent the system from automatically requesting premium network capabilities.
+      <code translate="no" dir="ltr">kotlin val callsManager = CallsManager(context) // Register with Telecom, opting out of premium network requests callsManager.registerAppWithTelecom(CallsManager.CAPABILITY_OPT_OUT_OF_PREMIUM_NETWORK)</code>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">onCanUserUpdateSilence</code>
+      is now an optional (
+      <a href="https://android-review.googlesource.com/#/q/Ibb0c2f91ee510704d38f1fc7f8620e5475bac9bb">Ibb0c2</a>
+      )
+    </li>
+    <li>
+      Add APIs to inform surfaces on whether the mic should be shown or not (
+      <a href="https://android-review.googlesource.com/#/q/I55acff5d35fdfff83d4bba83fc7adcd97d826c05">I55acf</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a
+      <code translate="no" dir="ltr">NullPointerException</code>
+      in
+      <code translate="no" dir="ltr">JetpackConnectionService</code>
+      caused by a race condition when accessing pending connection requests. This was resolved by switching to a
+      <code translate="no" dir="ltr">CopyOnWriteArrayList</code>
+      for thread-safe iterations. (
+      <a href="https://android-review.git.corp.google.com/c/platform/frameworks/support/+/3858239">I24306</a>
+      )
+    </li>
+    <li>
+      Corrected an issue in the Meeting Summary extension where a literal string "null" was emitted instead of a true
+      <code translate="no" dir="ltr">null</code>
+      value for the current speaker. (
+      <a href="https://android-review.git.corp.google.com/c/platform/frameworks/support/+/3890913">Idae9a</a>
+      )
+    </li>
+  </ul>
+  <h4 id="core-telecom-1.1.0-alpha01" data-text="Version 1.1.0-alpha01" tabindex="-1">Version 1.1.0-alpha01</h4>
+  <p>October 8th, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core-telecom:1.1.0-alpha01</code>
+    is released. Version 1.1.0-alpha01 contains
+    <a href="https://googleplex-android.googlesource.com/platform/frameworks/support/+/d14695b2d4f8520f39b9d2089f1de48d99ac1e27">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added the ability for applications to request that a specific call not be saved in the system call log, even if the app has generally opted into call logging. This feature is only effective on devices running
+      <code translate="no" dir="ltr">Build.VERSION.SDK_INT_FULL &gt;= Build.VERSION_CODES_FULL.BAKLAVA_1</code>
+      .
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Introduced the optional
+      <code translate="no" dir="ltr">isLogExcluded</code>
+      Boolean property to the
+      <code translate="no" dir="ltr">CallAttributesCompat</code>
+      data class. Setting this to true requests the system to exclude the call from the call log. On older platform versions, this property has no effect. Please note that VoIP calls are not logged to the system call log by default. Developers must first explicitly opt-in their application to participate in system call logging. This requires declaring an intent handler for
+      <code translate="no" dir="ltr">android.telecom.action.CALL_BACK</code>
+      in the app's manifest. The new
+      <code translate="no" dir="ltr">isLogExcluded</code>
+      property provides a per-call exclusion option for apps that have already enabled this integration. (
+      <a href="https://googleplex-android.googlesource.com/platform/frameworks/support/+/d14695b2d4f8520f39b9d2089f1de48d99ac1e27">d14695</a>
+      )
+    </li>
+  </ul>
+  <h3 id="version_10_25" data-text="Version 1.0" tabindex="-1">Version 1.0</h3>
+  <h4 id="core-telecom-1.0.1" data-text="Version 1.0.1" tabindex="-1">Version 1.0.1</h4>
+  <p>August 27, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core-telecom:1.0.1</code>
+    is released. Version 1.0.1 is a bug-fix release that includes the following improvements which can be found in the
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/74f25b8b4e5983806db47125f343cb9f08eaa2e9..40e5626dcdec536576fecb4158c54e929329f682/core/core-telecom">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Audio Routing and Endpoint Handling
+      <ul>
+        <li>
+          Resolved an issue where a user's selected pre-call audio endpoint (e.g., Earpiece) would be incorrectly switched to Speaker when a video call starts. The library now ensures the user's preferred audio route is maintained. (
+          <a href="https://android.googlesource.com/platform/frameworks/support/+/8fa4ba7643d7ed03002da528a965952da94e1a54">8fa4ba7</a>
+          ,
+          <a href="https://android.googlesource.com/platform/frameworks/support/+/71d7be876fa581cf746522ad67b6025eb322e942">71d7be8</a>
+          )
+        </li>
+        <li>
+          Improved the audio switching logic to prevent calls from automatically switching from Bluetooth headset to Speaker, especially when the Bluetooth device takes a moment to connect. This check requires the BLUETOOTH_CONNECT permission to differentiate between device types.(
+          <a href="https://android.googlesource.com/platform/frameworks/support/+/de83f3ea42b9ef590c16dcd4ffeff85f7bc90c1f">de83f3e</a>
+          )
+        </li>
+        <li>
+          Optimized the auto-speaker functionality for video calls for users without Bluetooth devices. The library now performs a less intrusive check for Bluetooth devices before requesting the BLUETOOTH_CONNECT permission, improving the experience for non-Bluetooth users. (
+          <a href="https://android.googlesource.com/platform/frameworks/support/+/721f4e2e03ae9f304be58cd835c8757d7068b947">721f4e2</a>
+          )
+        </li>
+      </ul>
+    </li>
+    <li>
+      Stability and Crash Fixes
+      <ul>
+        <li>
+          Fixed
+          <code translate="no" dir="ltr">NullPointerException</code>
+          crashes that could occur during audio endpoint processing. The library now correctly handles inconsistent state management in
+          <code translate="no" dir="ltr">PreCallEndpointsUpdater</code>
+          and filters null elements from the system's
+          <code translate="no" dir="ltr">AudioDeviceInfo</code>
+          array to improve stability. (
+          <a href="https://android.googlesource.com/platform/frameworks/support/+/23dd0751f76d709cafb0110a75cd7c988d59011c">23dd075</a>
+          ,
+          <a href="https://android.googlesource.com/platform/frameworks/support/+/03eb616249d1803fe7d1abf1249132c58d04c71a">03eb616</a>
+          )
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <h4 id="core-telecom-1.0.0" data-text="Version 1.0.0" tabindex="-1">Version 1.0.0</h4>
+  <p>May 7, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core-telecom:1.0.0</code>
+    is released. Version 1.0.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/bb8fdda78902ccbcb2fa68a04d02e52ce8f424ba..74f25b8b4e5983806db47125f343cb9f08eaa2e9/core/core-telecom">these commits</a>
+    .
+  </p>
+  <p><strong>Major features of 1.0.0</strong></p>
+  <ul>
+    <li>
+      Initial stable release of core-telecom API, focusing on
+      <code translate="no" dir="ltr">CallsManager</code>
+      API surface for integration of VoIP calls into the Android platform.
+    </li>
+  </ul>
+  <h4 id="core-telecom-1.0.0-rc01" data-text="Version 1.0.0-rc01" tabindex="-1">Version 1.0.0-rc01</h4>
+  <p>April 9, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core-telecom:1.0.0-rc01</code>
+    is released. Version 1.0.0-rc01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/46295bc0b75a16f452e8e0090e8de41073d4dbb6..bb8fdda78902ccbcb2fa68a04d02e52ce8f424ba/core/core-telecom">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>New experimental API call extensions. The new experimental extensions added in this release are:</p>
+  <ul>
+    <li>
+      Support for a Meeting Summary Remote Extension, allowing a remote surface to receive meeting summary information (current speaker and participant count) from the connected VoIP application. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/7cf095f23e31d90c04dcc4738e53528a2b7a1833">7cf095f</a>
+      )
+    </li>
+    <li>
+      Support for a Call Icon Extension that allows a VoIP app to send an Icon Uri to a remote
+      <code translate="no" dir="ltr">InCallService</code>
+      (auto, watch face, etc.). The Icon can be updated throughout the call and can have the same URI value. (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/8e1813ebb18a7104fe85c0e8884f0c5ffd029ca4">8e1813e</a>
+      )
+    </li>
+  </ul>
+  <h4 id="core-telecom-1.0.0-beta01" data-text="Version 1.0.0-beta01" tabindex="-1">Version 1.0.0-beta01</h4>
+  <p>December 11, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core-telecom:1.0.0-beta01</code>
+    is released. Version 1.0.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/67004410fdbff19f90caa4cc43965ab21dca1943..46295bc0b75a16f452e8e0090e8de41073d4dbb6/core/core-telecom">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>Beta release for the following new features:</p>
+  <ul>
+    <li>Fetching available audio endpoints before a call is added. App developers can now display all the available endpoints before initiating a call which allows users to seamlessly select their preferred audio endpoint and optimize their setup. This eliminates the need for in-call adjustments at the start of the call, providing a smoother experience.</li>
+    <li>
+      Experimental API support for VOIP application call extensions. Call extensions allow an application to provide more details about an ongoing call, such as the list of participants in a group call or meeting. Supported remote surfaces such as Android Auto can then show this information to the user and allow them to interact with the supported extensions. The new experimental extensions added in this release are:
+      <ul>
+        <li>
+          Support for showing the participants in a group call or meeting and describing which participant is active. Support for the following optional actions on participants:
+          <ul>
+            <li>Raising and lowering the hands of participants.</li>
+            <li>Kicking participants.</li>
+          </ul>
+        </li>
+        <li>Support for call silence, which allows remote surfaces to silence a VOIP call without also globally muting the mic.</li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">addLocalSilenceExtension</code>
+      to
+      <code translate="no" dir="ltr">addLocalCallsilenceExtension</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/If4a9cd364e72e9280fabddfe35a09e4a3f38cc73">If4a9c</a>
+      )
+    </li>
+    <li>
+      Change
+      <code translate="no" dir="ltr">preferredStartingCallEndpoint</code>
+      from
+      <code translate="no" dir="ltr">var</code>
+      to
+      <code translate="no" dir="ltr">val</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iab6b75ce5c3c729a8582a27a112ab1c3119b5949">Iab6b7</a>
+      )
+    </li>
+    <li>
+      Add local call silence APIs (
+      <a href="https://android-review.googlesource.com/#/q/I29dd0df846a3e075d8469e1e066c93516264a028">I29dd0</a>
+      )
+    </li>
+    <li>
+      Implement the
+      <code translate="no" dir="ltr">compareTo</code>
+      function for the
+      <code translate="no" dir="ltr">CallEndpointCompat</code>
+      class (
+      <a href="https://android-review.googlesource.com/#/q/Ia06b71919ac067bd77d22d7751fb9992d54c1b8b">Ia06b7</a>
+      )
+    </li>
+    <li>
+      Adds experimental app actions API. (
+      <a href="https://android-review.googlesource.com/#/q/Ifb796f222bc58126867dc8486b26a51ddcf226f8">Ifb796</a>
+      )
+    </li>
+    <li>
+      Add new
+      <code translate="no" dir="ltr">CallsManager</code>
+      API
+      <code translate="no" dir="ltr">getAvailableStartingCallEndpoints</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ia8bcf70d3a8e6c9f6a96d96bdd12204aabfff3df">Ia8bcf</a>
+      )
+    </li>
+    <li>
+      Update
+      <code translate="no" dir="ltr">ExperimentalAppActions</code>
+      annotation to ensure that it is accurately tracking all usages of the experimental feature. (
+      <a href="https://android-review.googlesource.com/#/q/Id5ea546ca3d9bb2f2904882b712e423cea04e1db">Id5ea5</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Add global mute state receiver for Android API level 28 through 33. (
+      <a href="https://android-review.googlesource.com/#/q/I75e6671a62e44825fbb1eea25e6756ec8125b7bb">I75e66</a>
+      )
+    </li>
+    <li>
+      Fixes an issue where only the latest connected
+      <code translate="no" dir="ltr">InCallService</code>
+      would be able to send action events (
+      <a href="https://android-review.googlesource.com/#/q/I39599e2b65e54fd43bdee97254a2d43c1825b1cb">I39599</a>
+      )
+    </li>
+    <li>
+      Implements ICS Extensions API for voip app actions. (
+      <a href="https://android-review.googlesource.com/#/q/I1274ca5cc898b0bd20ad90a1b97ee0ae8c90861b">I1274c</a>
+      )
+    </li>
+    <li>
+      Rejecting a call before API level 34 will now correctly destroy the call in Telecom. (
+      <a href="https://android-review.googlesource.com/#/q/I635b7b3667afe7d00ce9d68515f55833c4840a72">I635b7</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">addCall</code>
+      now properly throws Exceptions through the API instead of the parent coroutine (
+      <a href="https://android-review.googlesource.com/#/q/I83334efe4aa28bd3f1e6e1a23056d84bd841929a">I83334</a>
+      )
+    </li>
+    <li>
+      Add a placeholder value to extras bundle (
+      <a href="https://android-review.googlesource.com/#/q/Iebf7fdfb5bab35ec429dabb093d351868ca3edcc">Iebf7f</a>
+      )
+    </li>
+    <li>
+      Removed manual outlining of access to new platform APIs since this happens automatically via API modeling when using R8 with AGP 7.3 or later (e.g. R8 version 3.3) and for all builds when using AGP 8.1 or later (e.g. D8 version 8.1). Clients who are not using AGP are advised to update to D8 version 8.1 or later. See
+      <a href="https://medium.com/androiddevelopers/mitigating-soft-verification-issues-in-r8-and-d8-7e9e06827dfd">this article</a>
+      for more details. (
+      <a href="https://android-review.googlesource.com/#/q/Ieb9aecd2af5587c5b82833146fee6e912693ab7b">Ieb9ae</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/345472586">b/345472586</a>
+      )
+    </li>
+    <li>
+      Adds experimental support for extensions to
+      <code translate="no" dir="ltr">CallsManager#addCall</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I24d9281b2e837b5f7480901d35216d15cd23e4a5">I24d92</a>
+      )
+    </li>
+    <li>
+      Core-Telecom will now throw a
+      <code translate="no" dir="ltr">CallException</code>
+      if the platform failed to add the call due to an exception, reaching max call count, etc. (
+      <a href="https://android-review.googlesource.com/#/q/I41f27f24423e0c735f2ff2c4d203a07674877b9b">I41f27</a>
+      )
+    </li>
+  </ul>
+  <h4 id="core-telecom-1.0.0-alpha03" data-text="Version 1.0.0-alpha03" tabindex="-1">Version 1.0.0-alpha03</h4>
+  <p>April 17, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core-telecom:1.0.0-alpha03</code>
+    is released. Version 1.0.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1f7407d4293384a1b91bc142880e3525048b3443..67004410fdbff19f90caa4cc43965ab21dca1943/core/core-telecom">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Refactor of
+      <code translate="no" dir="ltr">JetpackConnectionService</code>
+      to correct an issue which occurs on SDK 33 and below when the address passed in is empty. The refactored
+      <code translate="no" dir="ltr">JetpackConnectionService</code>
+      is also resilient to unexpected NULL values from Telecom platform APIs.
+    </li>
+    <li>
+      Improvements to
+      <code translate="no" dir="ltr">addCall/CallControlScope</code>
+      API documentation.
+    </li>
+    <li>Test reliability improvements.</li>
+  </ul>
+  <h4 id="core-telecom-1.0.0-alpha02" data-text="Version 1.0.0-alpha02" tabindex="-1">Version 1.0.0-alpha02</h4>
+  <p>October 4, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core-telecom:1.0.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ab43e1b522d2e81d0bf105d62a8e22edadd70b61..1f7407d4293384a1b91bc142880e3525048b3443/core/core-telecom">Version 1.0.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>Revamped the API signatures for methods that returned boolean to indicate success/failure to instead return a result class that clearly indicates why an operation succeeded or failed.</li>
+    <li>
+      Moved the
+      <code translate="no" dir="ltr">CallControlCallback</code>
+      methods as lambda args to
+      <code translate="no" dir="ltr">addCall</code>
+      to remove the need to explicitly provide a callback in the call scope.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a bug in the
+      <code translate="no" dir="ltr">ConnectionService</code>
+      compatibility layer which would have resulted in no call audio when running against pre-U SDKs.
+    </li>
+    <li>Improve API documentation.</li>
+  </ul>
+  <h4 id="core-telecom-1.0.0-alpha01" data-text="Version 1.0.0-alpha01" tabindex="-1">Version 1.0.0-alpha01</h4>
+  <p>May 10, 2023</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core-telecom:1.0.0-alpha01</code>
+    is released. This version is developed in an internal branch and should be used with Android 14 Beta 2.
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>
+        Introduces the
+        <code translate="no" dir="ltr">CallsManager</code>
+        API which VoIP apps can use for integrating with the Telecom framework on a device. Calls notified to the platform benefit from foreground execution priority, visibility on Bluetooth, wearable and automotive devices, and simplified audio routing.
+      </p>
+
+      <p>
+        The
+        <code translate="no" dir="ltr">CallsManager</code>
+        API wraps the legacy
+        <code translate="no" dir="ltr">ConnectionService</code>
+        API for devices running older versions of Android.
+      </p>
+    </li>
+  </ul>
+  <h2 id="core-viewtree_2" data-text="Core-viewtree" tabindex="-1">Core-viewtree</h2>
+  <h3 id="version_10_26" data-text="Version 1.0" tabindex="-1">Version 1.0</h3>
+  <h4 id="core-viewtree-1.0.0" data-text="Version 1.0.0" tabindex="-1">Version 1.0.0</h4>
+  <p>February 26, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core-viewtree:1.0.0</code>
+    has been promoted to its first stable release with no changes since its previous RC version.
+  </p>
+  <p>
+    This library introduces the concept of a View being able to have a disjoint parent. A disjoint parent of a view is a separate
+    <code translate="no" dir="ltr">View</code>
+    object that acts as the view’s parent, but is not set via the
+    <code translate="no" dir="ltr">View.parent</code>
+    property. Examples of Views with disjoint parents are
+    <code translate="no" dir="ltr">ViewOverlays</code>
+    , popups, and dialogs, which all appear outside of the main view hierarchy. A View can only have a disjoint parent if it does not have a direct parent via the platform’s
+    <code translate="no" dir="ltr">View.parent</code>
+    property. Currently, androidx only sets the disjoint parent for
+    <code translate="no" dir="ltr">ViewOverlays</code>
+    created by
+    <a href="/jetpack/androidx/releases/transition#1.6.0-alpha01">
+      Transition
+      <code translate="no" dir="ltr">1.6.0-alpha01</code>
+    </a>
+    and higher. You can also specify your own disjoint parents for views. See the documentation for more information.
+  </p>
+  <h4 id="core-viewtree-1.0.0-rc01" data-text="Version 1.0.0-rc01" tabindex="-1">Version 1.0.0-rc01</h4>
+  <p>February 12, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core-viewtree:1.0.0-rc01</code>
+    is released with no changes since the beta.
+  </p>
+  <h4 id="core-viewtree-1.0.0-beta01" data-text="Version 1.0.0-beta01" tabindex="-1">Version 1.0.0-beta01</h4>
+  <p>January 29, 2025</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core-viewtree:1.0.0-beta01</code>
+    is released with no changes since the alpha. Version 1.0.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/46295bc0b75a16f452e8e0090e8de41073d4dbb6..d70c42c692a5ce230394b651ac975fc7d03519c8/core/core-viewtree">these commits</a>
+    .
+  </p>
+  <h4 id="core-viewtree-1.0.0-alpha01" data-text="Version 1.0.0-alpha01" tabindex="-1">Version 1.0.0-alpha01</h4>
+  <p>December 11, 2024</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core-viewtree:1.0.0-alpha01</code>
+    is released. Version 1.0.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/46295bc0b75a16f452e8e0090e8de41073d4dbb6/core/core-viewtree">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>
+        Initial release of
+        <code translate="no" dir="ltr">core-viewtree</code>
+        , transitively exposed by androidx core.
+      </p>
+    </li>
+    <li>
+      <p>
+        This initial release introduces the concept of a View being able to have a disjoint parent. A disjoint parent of a view is a separate
+        <code translate="no" dir="ltr">View</code>
+        object that acts as the view’s parent, but is not set via the
+        <code translate="no" dir="ltr">View.parent</code>
+        property. Examples of Views with disjoint parents are
+        <code translate="no" dir="ltr">ViewOverlays</code>
+        , popups, and dialogs, which all appear outside of the main view hierarchy. A View can only have a disjoint parent if it does not have a direct parent via the platform’s
+        <code translate="no" dir="ltr">View.parent</code>
+        property. Currently, androidx only sets the disjoint parent for
+        <code translate="no" dir="ltr">ViewOverlays</code>
+        created by transition. You can also specify your own disjoint parents for views. See the documentation for more information.
+      </p>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">ViewParent.getParentOrViewTreeDisjointParent()</code>
+      and
+      <code translate="no" dir="ltr">ViewParent.setViewTreeDisjointParent(View, ViewParent?)</code>
+      methods (
+      <a href="https://android-review.googlesource.com/#/q/Ib295041b91c759b403d01fd9cb46bb189549a104">Ib2950</a>
+      )
+    </li>
+  </ul>
