@@ -1,28 +1,131 @@
 libraryId: annotation
 groupId: androidx.annotation
 version: 1.4.0
-releaseDate: 2024-01-24
+releaseDate: 2022-06-15
 #language=html
 changelogHtml: |
-  <h3 id="annotation-experimental-1.4.0" data-text="Version 1.4.0" tabindex="-1">Version 1.4.0</h3>
-  <p>January 24, 2024</p>
+  <h3 id="version_140_4" data-text="Version 1.4.0" tabindex="-1">Version 1.4.0</h3>
+  <h4 id="annotation-1.4.0" data-text="Version 1.4.0" tabindex="-1">Version 1.4.0</h4>
+  <p>June 15, 2022</p>
   <p>
-    <code translate="no" dir="ltr">androidx.annotation:annotation-experimental:1.4.0</code>
+    <code translate="no" dir="ltr">androidx.annotation:annotation:1.4.0</code>
     is released.
-    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b23f311a4abd047c9b02d5585e80ac7884c1967f..d25969e764bee00b0d8bb519bdd1487ef71e94de/annotation/annotation-experimental">Version 1.4.0 contains these commits.</a>
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/c8fdb47aa3e1bb0f108b7e8dabb71ea66d06f2f9..d0a827d2d2415ef04c0c9538af087321d1fc58d8/annotation/annotation">Version 1.4.0 contains these commits.</a>
   </p>
   <p><strong>Important changes since 1.3.0</strong></p>
   <ul>
-    <li>Add support for Kotlin multi-platform</li>
-    <li>Fix compatibility with Kotlin 2.0</li>
     <li>
-      Show warnings for Java usages of experimentally-annotated Kotlin properties (
-      <a href="https://android-review.googlesource.com/#/q/I8bd43b972619c8622a7d57e923951079712b9ace">I8bd43</a>
-      )
+      <code translate="no" dir="ltr">@RestrictTo</code>
+      has been migrated to Kotlin sources and now supports
+      <code translate="no" dir="ltr">@file</code>
+      usage site. As a result, the Annotation library now depends on the Kotlin standard library.
     </li>
     <li>
-      Fix placement of autofix annotation on Kotlin methods (
-      <a href="https://android-review.googlesource.com/#/q/Id7a41679a7262c63c1e4c2f59fd8394283963785">Id7a41</a>
+      <code translate="no" dir="ltr">@ReturnThis</code>
+      (b/140249763): Ensures that overriding methods of this method must return the same instance (intended for builders etc)
+    </li>
+    <li>
+      <code translate="no" dir="ltr">@OpenForTesting</code>
+      (b/141539024): Kotlin classes and methods marked "open" can be annotated with this annotation, and lint will make sure that this class is only subclassed (and methods only overridden) from unit tests
+    </li>
+    <li>
+      <code translate="no" dir="ltr">@DeprecatedSinceApi</code>
+      (b/37116481): Indicates that the annotated method (or class or field) is part of a backport library for a platform API, which is no longer needed as of the given API level.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">@EmptySuper</code>
+      : Indicates that this method is defined to be empty, so when overriding you do not need to call it (and in fact you shouldn't; for example, it can contain backwards compatibility checking.)
+    </li>
+  </ul>
+  <h4 id="annotation-1.4.0-rc01" data-text="Version 1.4.0-rc01" tabindex="-1">Version 1.4.0-rc01</h4>
+  <p>June 1, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.annotation:annotation:1.4.0-rc01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/59f5332a9fc2dc4bae1733a97b9518103d068d19..c8fdb47aa3e1bb0f108b7e8dabb71ea66d06f2f9/annotation/annotation">Version 1.4.0-rc01 contains these commits.</a>
+  </p>
+  <ul>
+    <li>API surface and functionality have been finalized for release.</li>
+  </ul>
+  <h4 id="annotation-1.4.0-beta01" data-text="Version 1.4.0-beta01" tabindex="-1">Version 1.4.0-beta01</h4>
+  <p>May 18, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.annotation:annotation:1.4.0-beta01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/db2ecbef194afcddfaede22e1d884a8959a9277c..59f5332a9fc2dc4bae1733a97b9518103d068d19/annotation/annotation">Version 1.4.0-beta01 contains these commits.</a>
+  </p>
+  <ul>
+    <li>No changes since the last alpha. API surface has been locked down for Beta release.</li>
+  </ul>
+  <h4 id="annotation-1.4.0-alpha02" data-text="Version 1.4.0-alpha02" tabindex="-1">Version 1.4.0-alpha02</h4>
+  <p>February 9, 2022</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.annotation:annotation:1.4.0-alpha02</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/301586664b5aad60548f21866cad502d524dbf9f..db2ecbef194afcddfaede22e1d884a8959a9277c/annotation/annotation">Version 1.4.0-alpha02 contains these commits.</a>
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">@ReturnThis</code>
+        ,
+        <code translate="no" dir="ltr">@OpenForTesting</code>
+        ,
+        <code translate="no" dir="ltr">@EmptySuper</code>
+        and
+        <code translate="no" dir="ltr">@DeprecatedSinceApi</code>
+        annotations. (
+        <a href="https://android-review.googlesource.com/#/q/I33e85ff4bed137b61b4f264d1993633dcd1a7015">21946a2</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">@ReturnThis</code>
+        (
+        <a href="https://issuetracker.google.com/issues/140249763">b/140249763</a>
+        ): Ensures that overriding methods of this method must return the same instance (intended for builders etc)
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">@OpenForTesting</code>
+        (
+        <a href="https://issuetracker.google.com/issues/141539024">b/141539024</a>
+        ): Kotlin classes and methods marked "open" can be annotated with this annotation, and lint will make sure that this class is only subclassed (and methods only overridden) from unit tests
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">@DeprecatedSinceApi</code>
+        (
+        <a href="https://issuetracker.google.com/issues/37116481">b/37116481</a>
+        ): Indicates that the annotated method (or class or field) is part of a backport library for a platform API, which is no longer needed as of the given API level.
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">@EmptySuper</code>
+        : Indicates that this method is defined to be empty, so when overriding you do not need to call it (and in fact you shouldn't; for example, it can contain backwards compatibility checking.)
+      </p>
+    </li>
+  </ul>
+  <h4 id="annotation-1.4.0-alpha01" data-text="Version 1.4.0-alpha01" tabindex="-1">Version 1.4.0-alpha01</h4>
+  <p>December 15, 2021</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.annotation:annotation:1.4.0-alpha01</code>
+    is released.
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cbe56bb68421125805e82cc6ecb60a7701518e07..301586664b5aad60548f21866cad502d524dbf9f/annotation/annotation">Version 1.4.0-alpha01 contains these commits.</a>
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Migrated
+      <code translate="no" dir="ltr">RestrictTo</code>
+      annotation to Kotlin sources (
+      <a href="https://android-review.googlesource.com/#/q/Ia6336418ab834ab1666ce2d56f108706b6ac1498">Ia6336</a>
       )
     </li>
   </ul>
