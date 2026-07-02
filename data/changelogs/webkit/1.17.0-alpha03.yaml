@@ -1,0 +1,53 @@
+libraryId: webkit
+groupId: androidx.webkit
+version: 1.17.0-alpha03
+releaseDate: 2026-07-01
+#language=html
+changelogHtml: |
+  <h3 id="webkit-1.17.0-alpha03" data-text="Version 1.17.0-alpha03" tabindex="-1">Version 1.17.0-alpha03</h3>
+  <p>July 01, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.webkit:webkit:1.17.0-alpha03</code>
+    is released. Version 1.17.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/14c2f2ed81d0f61a3227641684cd875e95dd6529..f7668b81600bdf22bc975d3fc38e6fd22c94b585/webkit/webkit">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added an
+      <code translate="no" dir="ltr">HttpCache</code>
+      API, accessible via
+      <code translate="no" dir="ltr">Profile#getHttpCache</code>
+      , providing the ability to query and manage the HTTP cache quota for a profile. This can benefit the performance and availability of apps which rely heavily on web-served static content, or alternatively reduce cache directory usage where HTTP caching is not needed. This feature requires
+      <code translate="no" dir="ltr">WebView</code>
+      version M151 or higher. (
+      <a href="https://android-review.googlesource.com/#/q/I40a7fcc6370a80afab7e825ec6ec1ce7bca6950f">I40a7f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/501449506">b/501449506</a>
+      )
+    </li>
+    <li>
+      Removed incorrect
+      <code translate="no" dir="ltr">@RequiresFeature</code>
+      annotations on
+      <code translate="no" dir="ltr">ScriptHandler</code>
+      and
+      <code translate="no" dir="ltr">UserAgentMetadata#getFormFactors</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib955074b281a2f2f0ea92c31e5a9807ded2c5e4c">Ib9550</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Lint Checks</strong></p>
+  <ul>
+    <li>
+      Introduced a lint warning for unhandled
+      <code translate="no" dir="ltr">onRenderProcessGone</code>
+      callback. This callback gives developers an opportunity to gracefully recover from a render process shutting down rather than crashing their app. A warning will be linted if a
+      <code translate="no" dir="ltr">WebViewClient</code>
+      has been used but it has not overridden this callback. (
+      <a href="https://android-review.googlesource.com/#/q/Ia4e4117807bfb34dad392d774a4041682059eb73">Ia4e41</a>
+      )
+    </li>
+  </ul>

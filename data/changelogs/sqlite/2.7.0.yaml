@@ -1,0 +1,48 @@
+libraryId: sqlite
+groupId: androidx.sqlite
+version: 2.7.0
+releaseDate: 2026-07-01
+#language=html
+changelogHtml: |
+  <h3 id="2.7.0" data-text="Version 2.7.0" tabindex="-1">Version 2.7.0</h3>
+  <p>July 01, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.sqlite:sqlite-*:2.7.0</code>
+    is released. Version 2.7.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/fe30df161d480829efb21f37ff67a9f8cac9c620..190a3431c064ca5e90e451b3443714ae684b8127/sqlite">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 2.6.0:</strong></p>
+  <ul>
+    <li>
+      Add js and wasmJs targets to
+      <code translate="no" dir="ltr">androidx.sqlite:sqlite</code>
+      along with asynchronous version of the driver APIs:
+      <code translate="no" dir="ltr">SQLiteDriver.open()</code>
+      ,
+      <code translate="no" dir="ltr">SQLiteConnection.prepare()</code>
+      and
+      <code translate="no" dir="ltr">SQLiteStatement.step()</code>
+      for the web targets.
+    </li>
+    <li>
+      Existing projects that don't target web can continue using the synchronous APIs in common code, but once a project targets web then only the asynchronous APIs are available. For convenience a new artifact
+      <code translate="no" dir="ltr">andriodx.sqlite:sqlite-async</code>
+      includes top-level suspend functions that use the synchronous naming scheme (along with
+      <code translate="no" dir="ltr">executeSQL</code>
+      ) and are expect / actual declarations that will invoke the right variant based on the platform. It is recommended to use these APIs for common code targeting both web and non-web targets.
+    </li>
+    <li>
+      This release also includes a new artifact
+      <code translate="no" dir="ltr">androidx.sqlite:sqlite-web</code>
+      which contains
+      <code translate="no" dir="ltr">WebWorkerSQLiteDriver</code>
+      , a
+      <code translate="no" dir="ltr">SQLiteDriver</code>
+      implementation for the web that communicates with a Web Worker to perform database operation via a simple messaging protocol. The protocol is documented in the
+      <code translate="no" dir="ltr">WebWorkerSQLiteDriver</code>
+      and even though there is no default worker implementation with the artifact, one can be provided via the constructor. For a more concrete example on how this new artifact can be used, check out the
+      <a href="https://developer.android.com/jetpack/androidx/releases/room3#3.0.0-alpha01">Room 3.0 release notes</a>
+      .
+    </li>
+  </ul>
