@@ -1,0 +1,153 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.5.0-alpha23
+releaseDate: 2026-07-01
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha23" data-text="Version 1.5.0-alpha23" tabindex="-1">Version 1.5.0-alpha23</h3>
+  <p>July 01, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.5.0-alpha23</code>
+    is released. Version 1.5.0-alpha23 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/14c2f2ed81d0f61a3227641684cd875e95dd6529..b65b78b30c22d688ff24192747e67d1acca21fb7/compose/material3">these commits</a>
+    .
+  </p>
+  <p>
+    <strong>Features</strong>
+    -
+    <em>expressive timepicker</em>
+    component (
+    <a href="https://android-review.googlesource.com/#/q/Iaa45fd694328fce77fb45628672edb1d33135d8d">Iaa45f</a>
+    ) - Added new non-interactive variants of standard list item and segmented list item which follow Material Expressive specifications. The non-expressive version has been deprecated. (
+    <a href="https://android-review.googlesource.com/#/q/Ide4de27c32c25243b6b0a7d38cabce1a582bc56f">Ide4de</a>
+    ,
+    <a href="https://issuetracker.google.com/issues/491994186">b/491994186</a>
+    )
+  </p>
+  <p>
+    <strong>Behavioral Change</strong>
+    - Fix issue where minimum height of expressive list items did not change based on lines of content. The feature flag
+    <code translate="no" dir="ltr">isExpressiveListItemHeightBasedOnTextLinesFixEnabled</code>
+    has been introduced to aid migration. (
+    <a href="https://android-review.googlesource.com/#/q/Ibbb91f82e91a31eeee578da5f2242f500952ce1a">Ibbb91</a>
+    ,
+    <a href="https://issuetracker.google.com/issues/484693233">b/484693233</a>
+    )
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Expressive list item APIs are no longer experimental. (
+      <a href="https://android-review.googlesource.com/#/q/I2836a6d2eebbdb98e97eb4038b3b2bd50e8873bd">I2836a</a>
+      )
+    </li>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">ComponentOverride</code>
+      APIs (
+      <a href="https://android-review.googlesource.com/#/q/I820c4aec6fad21ed544189b2dfbaeb6d6a6a6964">I820c4</a>
+      )
+    </li>
+    <li>
+      Remove unused offset parameter from
+      <code translate="no" dir="ltr">DropdownMenuPopup</code>
+      . Added the default menu properties into the menu defaults. Updated the naming for groups label from
+      <code translate="no" dir="ltr">MenuDefaults.Label</code>
+      to
+      <code translate="no" dir="ltr">MenuDefaults.DropdownMenuGroupLabel</code>
+      . Added
+      <code translate="no" dir="ltr">disabledContainerColor</code>
+      into
+      <code translate="no" dir="ltr">MenuDefaults.selectableItemColors</code>
+      and
+      <code translate="no" dir="ltr">MenuDefaults.selectableItemVibrantColors</code>
+      . Added
+      <code translate="no" dir="ltr">Modifier</code>
+      parameter to composable functions in
+      <code translate="no" dir="ltr">MenuDefaults</code>
+      that return a layout. (
+      <a href="https://android-review.googlesource.com/#/q/I3d2b19381f46df852d6290b39b199d44fbfde480">I3d2b1</a>
+      )
+    </li>
+    <li>
+      Added a public
+      <code translate="no" dir="ltr">flingAnimationSpec</code>
+      getter to
+      <code translate="no" dir="ltr">TopAppBarDefaults</code>
+      to expose the default fling animation spec. (
+      <a href="https://android-review.googlesource.com/#/q/Ic1daa778e40e6800ceabe55a69934efb9b3e6590">Ic1daa</a>
+      )
+    </li>
+    <li>
+      Graduate
+      <code translate="no" dir="ltr">TopAppBar</code>
+      ,
+      <code translate="no" dir="ltr">MediumFlexibleTopAppBar</code>
+      ,
+      <code translate="no" dir="ltr">LargeTopAppBar</code>
+      ,
+      <code translate="no" dir="ltr">LargeFlexibleTopAppBar</code>
+      ,
+      <code translate="no" dir="ltr">TwoRowsTopAppBar</code>
+      ,
+      <code translate="no" dir="ltr">FlexibleBottomAppBar</code>
+      ,
+      <code translate="no" dir="ltr">FlexibleContentPadding</code>
+      ,
+      <code translate="no" dir="ltr">FlexibleBottomAppBarHeight</code>
+      ,
+      <code translate="no" dir="ltr">FlexibleHorizontalArrangement</code>
+      ,
+      <code translate="no" dir="ltr">FlexibleFixedHorizontalArrangement</code>
+      to non-experimental. These APIs and variables no longer require the @
+      <code translate="no" dir="ltr">ExperimentalMaterial3ExpressiveApi</code>
+      opt-in. (
+      <a href="https://android-review.googlesource.com/#/q/Ia4af6dae6ed1456102e3eaaf785d0d19c37182cb">Ia4af6</a>
+      )
+    </li>
+    <li>
+      Graduate
+      <code translate="no" dir="ltr">ExpandedDockedSearchBarWithGap</code>
+      and
+      <code translate="no" dir="ltr">ExpandedFullScreenContainedSearchBar</code>
+      to non-experimental (
+      <a href="https://android-review.googlesource.com/#/q/Ie152d5cd5129bab9c7b103a81c96420d7195f58e">Ie152d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Cleans up API information (
+      <a href="https://android-review.googlesource.com/#/q/Ia8066818f7e33220445aaeafa9ecc0668cc4818b">Ia8066</a>
+      )
+    </li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">Scaffold</code>
+      's keyboard navigation order. (
+      <a href="https://android-review.googlesource.com/#/q/I77194c764667a8299eb6348c62aea118295ecb33">I77194</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/462577176">b/462577176</a>
+      )
+    </li>
+    <li>
+      Remove requirement for
+      <code translate="no" dir="ltr">compileSdk 37</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/If78b4fbdec15e6b1d6ad34a487ae10b2e2494325">If78b4</a>
+      )
+    </li>
+    <li>
+      Add a11y support for ScrollField component. More specifically, ScrollField now implements selectable and animates to the selected item on click with selected/unselected announcements in Talkback. (
+      <a href="https://android-review.googlesource.com/#/q/I7bdb7b4570771b82ddc36eed830c9a797c2b825b">I7bdb7</a>
+      )
+    </li>
+    <li>
+      Fix bug where there is extra bottom padding if the nav suite scaffold's content has ime padding set. (
+      <a href="https://android-review.googlesource.com/#/q/I86d9d14f60eb60390e6edf946b9b8c00be8878ac">I86d9d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/389467593">b/389467593</a>
+      )
+    </li>
+  </ul>

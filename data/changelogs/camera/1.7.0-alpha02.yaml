@@ -1,0 +1,224 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.7.0-alpha02
+releaseDate: 2026-07-01
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha02" data-text="Version 1.7.0-alpha02" tabindex="-1">Version 1.7.0-alpha02</h3>
+  <p>July 01, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.7.0-alpha02</code>
+    is released. Version 1.7.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1a508f033de883ba2853b9f9ae1853eec7010638..01f3396e92df911805f22836f27c7057324e40ff/camera">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">CameraXViewfinder</code>
+      now supports built-in gestures for pinch-to-zoom and tap-to-focus, and adds support for screen flash and stream state.
+      <code translate="no" dir="ltr">FocusState</code>
+      is now public in viewfinder-core to allow monitoring tap-to-focus results. (
+      <a href="https://android-review.googlesource.com/#/q/I66a17527c5faa563006f6807a33c757a6f35588d">I66a17</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/522549890">b/522549890</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">isAutoRotationEnabled</code>
+      to
+      <code translate="no" dir="ltr">SessionConfig.Builder</code>
+      ,
+      <code translate="no" dir="ltr">HighSpeedVideoSessionConfig.Builder</code>
+      ,
+      <code translate="no" dir="ltr">ExtensionSessionConfig.Builder</code>
+      and introduced a Kotlin DSL factory functions for them. This allows setting the appropriate rotation automatically based on device sensors. (
+      <a href="https://android-review.googlesource.com/#/q/I5b4a358e049ec7b70a8a356941fcd52c423a22eb">I5b4a3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/510752515">b/510752515</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">TransformationMode</code>
+      property to
+      <code translate="no" dir="ltr">TransformationInfo</code>
+      to support apps to use
+      <code translate="no" dir="ltr">OpenGL</code>
+      pipeline in
+      <code translate="no" dir="ltr">EMBEDDED</code>
+      mode. (
+      <a href="https://android-review.googlesource.com/#/q/Id1de19ff50ddf96e0045e39344c99d08bb773d76">Id1de1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/487826941">b/487826941</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">isNightModeIndicatorSupported()</code>
+      and
+      <code translate="no" dir="ltr">getNightModeIndicator()</code>
+      to
+      <code translate="no" dir="ltr">CameraInfo</code>
+      to determine when the environment conditions meet the criteria for Night Mode. (
+      <a href="https://android-review.googlesource.com/#/q/Iae47b9dc4c84a7a28d128a699d70a91f33cbfa10">Iae47b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/499389465">b/499389465</a>
+      )
+    </li>
+    <li>
+      Exposed ImageAnalysis.OUTPUT_IMAGE_FORMAT_PRIVATE and ImageProxy.getHardwareBuffer() as public API to support GPU based ImageAnalysis. (
+      <a href="https://android-review.googlesource.com/#/q/I41cb33fd1088845381917bf1cb1c4549aa1a81f0">I41cb3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/496022391">b/496022391</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/492934501">b/492934501</a>
+      )
+    </li>
+    <li>
+      ExtensionsManager#getExtensionEnabledCameraSelector is now deprecated. Please use the new ExtensionSessionConfig API for enabling extension modes. (
+      <a href="https://android-review.googlesource.com/#/q/I2b33690421bc67f641e75a07677a44f90ad6415b">I2b336</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/473715607">b/473715607</a>
+      )
+    </li>
+    <li>Added support for visual styling of camera frames during concurrent camera composition. You can now customize:</li>
+    <li>Rounded Corners: Use setRoundedCornerRatio(float) to apply normalized rounding (0.0 to 1.0) to frame edges.</li>
+    <li>
+      Borders: Use setBorderWidthRatio(float) and setBorderColor(int) to add a decorative frame with consistent thickness (
+      <a href="https://android-review.googlesource.com/#/q/I18a07232c32cec03c8870af11dff906cc7f0432c">I18a07</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/366349205">b/366349205</a>
+      )
+    </li>
+    <li>
+      Updated CompositionSettings to enforce non-negative z-order and added validation to ConcurrentCamera.setCompositionSettings to ensure it's called with the correct number of settings in a valid composition mode. (
+      <a href="https://android-review.googlesource.com/#/q/If660d93ccec6bb7b392b8dadd8e31099d6de8462">If660d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/496951658">b/496951658</a>
+      )
+    </li>
+    <li>
+      Added getNightModeIndicator() and isNightModeIndicatorAvailable() to CameraExtensionsInfo to allow applications to monitor whether the current environment is in a night mode condition when using camera extensions. (
+      <a href="https://android-review.googlesource.com/#/q/I62bb4fa008ce4741a7d3aaf0c4baf84e2760c3fe">I62bb4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/499389465">b/499389465</a>
+      )
+    </li>
+    <li>
+      Added support for
+      <code translate="no" dir="ltr">QHD</code>
+      video quality in VideoCapture. (
+      <a href="https://android-review.googlesource.com/#/q/I0ac20e49bc483837aa7b75202d66027e35702a0e">I0ac20</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/501305592">b/501305592</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Recorder.Builder.setTargetAudioChannelCount(int)</code>
+      and
+      <code translate="no" dir="ltr">Recorder.getTargetAudioChannelCount()</code>
+      to allow developers to set an explicit audio channel count. (
+      <a href="https://android-review.googlesource.com/#/q/I6bee0f5529b0197f29da3d38afe78e1a953f1b11">I6bee0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/441895100">b/441895100</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Recorder.Builder.setTargetAudioEncodingBitRate(int)</code>
+      to allow setting a target audio encoding bitrate. (
+      <a href="https://android-review.googlesource.com/#/q/I290629fec64c929312b463dff10c1661a321979f">I29062</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/241151504">b/241151504</a>
+      )
+    </li>
+    <li>
+      Added the ConcurrentCamera.setCompositionSettings API to allow apps to update composition of the current camera dynamically after the lifecycle has been bound. Additionally, a new setZOrder API in CompositionSettings.Builder enables precise control over the rendering order of overlapping camera streams. (
+      <a href="https://android-review.googlesource.com/#/q/I90528a4854fee1ae1ca35f2ed2c8525041530359">I90528</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/473702287">b/473702287</a>
+      )
+    </li>
+    <li>
+      Introduced APIs for granular control over encoding formats. Developers can now discover device-supported formats using
+      <code translate="no" dir="ltr">Recorder.getSupportedVideoMimeTypes()</code>
+      and
+      <code translate="no" dir="ltr">getSupportedAudioMimeTypes()</code>
+      , which are currently experimental. Preferred formats can be explicitly configured via
+      <code translate="no" dir="ltr">Recorder.Builder.setVideoMimeType()</code>
+      and
+      <code translate="no" dir="ltr">setAudioMimeType()</code>
+      . Additionally,
+      <code translate="no" dir="ltr">Recorder.getVideoCapabilities(CameraInfo, String)</code>
+      allows querying camera-specific capabilities, such as supported qualities and dynamic ranges, for a chosen codec. (
+      <a href="https://android-review.googlesource.com/#/q/I4620ee6da2c7d9dbe9df0d1733ea15ad0f63178b">I4620e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/491319384">b/491319384</a>
+      )
+    </li>
+    <li>
+      Added CameraController.setAutoRotationEnabled(boolean) to allow disabling the automatic device rotation listener. (
+      <a href="https://android-review.googlesource.com/#/q/Ia0c03f7f818de36595e55cd437a78e22b9a3eb3b">Ia0c03</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/449573627">b/449573627</a>
+      )
+    </li>
+    <li>
+      Added AE/AWB locking support in FocusMeteringAction via a new setLockingMode API. This also allows updating 3A regions without locking focus, enabling the camera to remain in continuous autofocus mode while updating the focus area. (
+      <a href="https://android-review.googlesource.com/#/q/I6416f818d2c99e2f98ee545be51b8ce38cce6cd2">I6416f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/481624745">b/481624745</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Remove requirement for
+      <code translate="no" dir="ltr">compileSdk 37</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/If78b4fbdec15e6b1d6ad34a487ae10b2e2494325">If78b4</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">CameraXViewfinder</code>
+      transformation issues in
+      <code translate="no" dir="ltr">EMBEDDED</code>
+      mode when
+      <code translate="no" dir="ltr">OpenGL</code>
+      pipeline is enabled by
+      <code translate="no" dir="ltr">CameraX</code>
+      for binding more
+      <code translate="no" dir="ltr">UseCases</code>
+      or surface processing. (
+      <a href="https://android-review.googlesource.com/#/q/I3e637c4985ff2d82aeea4856cd51cd02b4ae5f39">I3e637</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/487826941">b/487826941</a>
+      )
+    </li>
+    <li>
+      Updated tests and activities to use ExtensionSessionConfig instead of the deprecated getExtensionEnabledCameraSelector API. (
+      <a href="https://android-review.googlesource.com/#/q/I765d8a105b98dc5b360a54fa5b9dc912818581b5">I765d8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/473715607">b/473715607</a>
+      )
+    </li>
+    <li>
+      Fixed a compilation error "Cannot access class 'ListenableFuture'". (
+      <a href="https://android-review.googlesource.com/#/q/Ic8cba6ae5318d3e6098cc54042c6aebba837996e">Ic8cba</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/497571473">b/497571473</a>
+      )
+    </li>
+    <li>
+      Updated Compose compileSdk to API 37. This means that a minimum AGP version of 9.2.0 is required when using Compose. (
+      <a href="https://android-review.googlesource.com/#/q/Id45cdca34ef948e06259b2dd9adc901b7c930492">Id45cd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/413674743">b/413674743</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,65 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.5.0-alpha07
+releaseDate: 2026-07-01
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha07" data-text="Version 1.5.0-alpha07" tabindex="-1">Version 1.5.0-alpha07</h3>
+  <p>July 01, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.5.0-alpha07</code>
+    is released. Version 1.5.0-alpha07 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e29a10982f4299b1fa812e229d76792092a62814..9f8ede00031b52b69e66d6e8c646ea5f79999279/benchmark">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Simplified Perfetto trace capture on device. (
+      <a href="https://android-review.googlesource.com/#/q/I488105051127008a7f6f75134b5355746f86d5f2">I48810</a>
+      )
+    </li>
+    <li>
+      Move the experimental
+      <code translate="no" dir="ltr">TraceProcessor.runServer</code>
+      extension APIs from
+      <code translate="no" dir="ltr">androidx.benchmark:benchmark-macro</code>
+      to
+      <code translate="no" dir="ltr">androidx.benchmark:benchmark-common</code>
+      , and to the
+      <code translate="no" dir="ltr">androidx.benchmark</code>
+      package. This will enable their use in microbenchmarks in the future. (
+      <a href="https://android-review.googlesource.com/#/q/Ie25bb43b47988ed2c21cf6ca886a606eb7163ded">Ie25bb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/393640753">b/393640753</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Update traceprocessor implementation (as well as unbundled Perfetto Trace capture) to use Perfetto v56.0 (
+      <a href="https://android-review.googlesource.com/#/q/I8fb9d610c519232f0eacb4f8884cb028f831db06">I8fb9d</a>
+      )
+    </li>
+    <li>
+      Set
+      <code translate="no" dir="ltr">androidx.benchmark.requireAot</code>
+      and
+      <code translate="no" dir="ltr">androidx.benchmark.requireAot</code>
+      to true by default. These safer defaults ensure that compilation is performed ahead of running microbenchmarks (on by default with the benchmark gradle plugin when using AGP 8.4+), and that
+      <code translate="no" dir="ltr">measureRepeated</code>
+      is not used on the main thread, where it can cause ANRs. (
+      <a href="https://android-review.googlesource.com/#/q/I1bc3c293625765d568a35fb9efdfec3a59706285">I1bc3c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/379115078">b/379115078</a>
+      )
+    </li>
+    <li>
+      Increased perfetto kill timeout from 5 to 30 seconds (for benchmark captured Perfetto sessions only). Added clearer error logging when the issue occurs. (
+      <a href="https://android-review.googlesource.com/#/q/If188f2f5f9319f7e26c4df1899e7da4ce399988d">If188f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/435589290">b/435589290</a>
+      )
+    </li>
+  </ul>
