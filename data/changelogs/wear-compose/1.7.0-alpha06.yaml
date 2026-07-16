@@ -1,0 +1,126 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.7.0-alpha06
+releaseDate: 2026-07-15
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha06" data-text="Version 1.7.0-alpha06" tabindex="-1">Version 1.7.0-alpha06</h3>
+  <p>July 15, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.7.0-alpha06</code>
+    is released. Version 1.7.0-alpha06 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ba3014c143b9c9782fe30bc766c5dced55e13453..f0448c3c760549b58cec3a154536649d03078780/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Move
+      <code translate="no" dir="ltr">ButtonContent</code>
+      ,
+      <code translate="no" dir="ltr">AppCardContent</code>
+      and
+      <code translate="no" dir="ltr">TitleCardContent</code>
+      composables for Material3 into
+      <code translate="no" dir="ltr">ButtonDefaults</code>
+      and
+      <code translate="no" dir="ltr">CardDefaults</code>
+      objects respectively. (
+      <a href="https://android-review.googlesource.com/#/q/I8d589304d2af298a0ebbb86d8bd346b5d32efd12">I8d589</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/527889640">b/527889640</a>
+      )
+    </li>
+    <li>
+      Remove default value from
+      <code translate="no" dir="ltr">Modifier.oneHandedGesture</code>
+      <code translate="no" dir="ltr">gestureLabel</code>
+      parameter (
+      <a href="https://android-review.googlesource.com/#/q/Ica100638b932aa61419cdfb71b02fa80c4255b1d">Ica100</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/527068051">b/527068051</a>
+      )
+    </li>
+    <li>
+      Rename
+      <code translate="no" dir="ltr">gestureLabel</code>
+      to
+      <code translate="no" dir="ltr">onGestureLabel</code>
+      in
+      <code translate="no" dir="ltr">Modifier.oneHandedGesture</code>
+      and make it nullable, for consistency with other
+      <code translate="no" dir="ltr">contentDescription</code>
+      parameters (
+      <a href="https://android-review.googlesource.com/#/q/I952a8af7a5344b1d322e130e18be84f4068b3341">I952a8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/527068051">b/527068051</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">OneHandedGestureIndicatorState</code>
+      to coordinate visibility and animation between
+      <code translate="no" dir="ltr">Modifier.oneHandedGesture()</code>
+      and gesture indicators. Replace
+      <code translate="no" dir="ltr">InteractionSource</code>
+      with this state-driven approach for improved lifecycle control. Add
+      <code translate="no" dir="ltr">wrapAround</code>
+      parameter to
+      <code translate="no" dir="ltr">OneHandedGestureDefaults.scrollToNextPage</code>
+      for consistency with other default gesture scroll functions. (
+      <a href="https://android-review.googlesource.com/#/q/I9e1e3ea538da7af52047a82415c5964b1a0e0b49">I9e1e3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/522761843">b/522761843</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Clarify
+      <code translate="no" dir="ltr">interactionSource</code>
+      documentation for
+      <code translate="no" dir="ltr">Modifier.oneHandedGesture</code>
+      to state which interactions are emitted (
+      <a href="https://android-review.googlesource.com/#/q/I2dc8da17849ae01bd456539ee07608eed93c1893">I2dc8d</a>
+      )
+    </li>
+    <li>
+      Support for one-handed gestures in
+      <code translate="no" dir="ltr">AlertDialog</code>
+      by default has been removed temporarily, due to issues with the dependency on the Wear SDK in consumers that are otherwise not using the Wear SDK or one-handed gestures. (
+      <a href="https://android-review.googlesource.com/#/q/Ib19e0bc4f208dafb97a9acc21a037928cc313b5b">Ib19e0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/503841738">b/503841738</a>
+      )
+    </li>
+    <li>
+      Enhanced
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      to support placement animations for items moving out of the viewport, allowing them to slide off-screen instead of fading out. Also fixed a visual snapping issue where dynamically scaled items would instantly snap to their target height during placement animations (
+      <a href="https://android-review.googlesource.com/#/q/I89d847676e315b7a4b2b0f6ec9e93fe8a08a3ccf">I89d84</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/525071281">b/525071281</a>
+      )
+    </li>
+    <li>
+      Use index-based
+      <code translate="no" dir="ltr">ItemInfo</code>
+      in
+      <code translate="no" dir="ltr">firstVisibleItemLayoutItemInfo</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I256e3f53fc129e4e83cf060ae57e210ff7e3253d">I256e3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/527881678">b/527881678</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">TimePicker</code>
+      animation behavior when Reduce Motion is enabled. (
+      <a href="https://android-review.googlesource.com/#/q/Ic9150cba0d88eb04d5c4b1a28bf2995f24091eba">Ic9150</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/467288916">b/467288916</a>
+      )
+    </li>
+  </ul>

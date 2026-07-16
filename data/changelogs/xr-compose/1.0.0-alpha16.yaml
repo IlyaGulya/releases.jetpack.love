@@ -1,0 +1,325 @@
+libraryId: xr-compose
+groupId: androidx.xr
+version: 1.0.0-alpha16
+releaseDate: 2026-07-15
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha16" data-text="Version 1.0.0-alpha16" tabindex="-1">Version 1.0.0-alpha16</h3>
+  <p>July 15, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.compose:compose:1.0.0-alpha16</code>
+    and
+    <code translate="no" dir="ltr">androidx.xr.compose:compose-testing:1.0.0-alpha16</code>
+    are released. Version 1.0.0-alpha16 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/6843009ab4a83565ff22c97fa2b27471b6c5c5d7..427389dd0c83c185068abb457041c78de4699495/xr/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">ComponentOverride</code>
+      APIs (
+      <a href="https://android-review.googlesource.com/#/q/I820c4aec6fad21ed544189b2dfbaeb6d6a6a6964">I820c4</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">GltfAnimation</code>
+      and
+      <code translate="no" dir="ltr">SpatialGltfModelAnimation</code>
+      APIs have been marked as experimental. Some properties were turned into getters. (
+      <a href="https://android-review.googlesource.com/#/q/I8d689ae01daec91cf15291fa37dcf279bb5555c7">I8d689</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/524771027">b/524771027</a>
+      )
+    </li>
+    <li>
+      Fixed overall density behavior by establishing the conversion between Meter and pixels to be constant. Deprecated Meter.kt,
+      <code translate="no" dir="ltr">Session.scene.virtualPixelDensity</code>
+      can now be used as an alternative. (
+      <a href="https://android-review.googlesource.com/#/q/I122ff0865850ecd7ec33282f77f3e8e0bf75f22c">I122ff</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/430097855">b/430097855</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/474168798">b/474168798</a>
+      )
+    </li>
+    <li>
+      Update resizable modifier to use a
+      <code translate="no" dir="ltr">ResizePolicy</code>
+      instead of two modifiers (
+      <a href="https://android-review.googlesource.com/#/q/I7fb0fff7c7abe5ab3cffe2a118fec42cf61f4684">I7fb0f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/496257436">b/496257436</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/519672992">b/519672992</a>
+      )
+    </li>
+    <li>
+      Added a tolerance:
+      <code translate="no" dir="ltr">Dp = Dp(0.5f)</code>
+      parameter to all public floating-point dimension and position equality assertions in
+      <code translate="no" dir="ltr">SubspaceAssertions.kt</code>
+      . The default tolerance behavior (
+      <code translate="no" dir="ltr">0.5.dp</code>
+      ) is fully documented. (
+      <a href="https://android-review.googlesource.com/#/q/I266cbf4d1cc817e2159490f05d1995285fde3709">I266cb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/521491915">b/521491915</a>
+      )
+    </li>
+    <li>
+      Added movable overload with
+      <code translate="no" dir="ltr">movePolicy</code>
+      param and deprecate
+      <code translate="no" dir="ltr">transformingMovable</code>
+      and
+      <code translate="no" dir="ltr">movable</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ic88c1d6acf919b741f6f50bca3f61da958caab70">Ic88c1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/481781189">b/481781189</a>
+      )
+    </li>
+    <li>
+      Added new non-interactive variants of standard list item and segmented list item which follow Material Expressive specifications. The non-expressive version has been deprecated. (
+      <a href="https://android-review.googlesource.com/#/q/Ide4de27c32c25243b6b0a7d38cabce1a582bc56f">Ide4de</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/491994186">b/491994186</a>
+      )
+    </li>
+    <li>
+      For Subspace, the
+      <code translate="no" dir="ltr">allowUnboundedSubspace</code>
+      parameter is now deprecated and hidden. Unbounded behavior should now be achieved by using
+      <code translate="no" dir="ltr">SubspaceModifier.requiredSizeIn</code>
+      (
+      <code translate="no" dir="ltr">maxWidth</code>
+      =
+      <code translate="no" dir="ltr">Dp.Infinity</code>
+      ,
+      <code translate="no" dir="ltr">maxHeight</code>
+      =
+      <code translate="no" dir="ltr">Dp.Infinity</code>
+      ,
+      <code translate="no" dir="ltr">maxDepth</code>
+      =
+      <code translate="no" dir="ltr">Dp.Infinity</code>
+      ) on the Subspace modifier. The
+      <code translate="no" dir="ltr">allowUnboundedSubspace</code>
+      parameter has been removed from
+      <code translate="no" dir="ltr">FollowingSubspace</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia72aee259147a9aa88fbe7e251b02d4dc1d214aa">Ia72ae</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/433624021">b/433624021</a>
+      )
+    </li>
+    <li>
+      Converted
+      <code translate="no" dir="ltr">Session.create</code>
+      to a suspend function. (
+      <a href="https://android-review.googlesource.com/#/q/I5d27fd6399fc5fe35f28ddf9c0c488a12eb23115">I5d27f</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">SubspaceModifier.spatializedAudioOutput</code>
+      which allows spatializing audio playback through
+      <code translate="no" dir="ltr">ExoPlayer</code>
+      or through a
+      <code translate="no" dir="ltr">SoundEffectPlayer</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I46697a674a84645a44d1bf6b148e68f99ca6c149">I46697</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/489421980">b/489421980</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/497867019">b/497867019</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">ComponentActivity.requestHomeSpace()</code>
+      and
+      <code translate="no" dir="ltr">requestFullSpace()</code>
+      to return
+      <code translate="no" dir="ltr">SpaceRequestResult</code>
+      for status verification. (
+      <a href="https://android-review.googlesource.com/#/q/If167217054f3aba0b37533a427c7e5a9aa6a7944">If1672</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">AnchorEntity</code>
+      to be called
+      <code translate="no" dir="ltr">AnchorSpace</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ifa95ebf5c1da2b4413723835db4c0e5f9a2e52fb">Ifa95e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/513619219">b/513619219</a>
+      )
+    </li>
+    <li>
+      Unrestricted
+      <code translate="no" dir="ltr">fromResource</code>
+      method from
+      <code translate="no" dir="ltr">SpatialGltfModelSource</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I1f5a134ee2e9c0b9a271bb255f4792c463f410e1">I1f5a1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/503047416">b/503047416</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SubspaceSemanticsMatcher</code>
+      members are public: the
+      <code translate="no" dir="ltr">description</code>
+      property, companion factory methods (
+      <code translate="no" dir="ltr">expectValue</code>
+      ,
+      <code translate="no" dir="ltr">keyIsDefined</code>
+      ,
+      <code translate="no" dir="ltr">keyNotDefined</code>
+      ), member functions (
+      <code translate="no" dir="ltr">matches</code>
+      ,
+      <code translate="no" dir="ltr">matchesAny</code>
+      ), and operators (
+      <code translate="no" dir="ltr">and</code>
+      ,
+      <code translate="no" dir="ltr">or</code>
+      ,
+      <code translate="no" dir="ltr">not</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/I972a4c5e7bd2142fd1d0de379517d4c15f40cf3f">I972a4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/460427288">b/460427288</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">SubspaceModifier.semantics</code>
+      ,
+      <code translate="no" dir="ltr">SubspaceModifier.testTag</code>
+      ,
+      <code translate="no" dir="ltr">SubspaceSemanticsInfo</code>
+      ,
+      <code translate="no" dir="ltr">SubspaceSemanticsModifierNode</code>
+      to use curated spatial semantics types. (
+      <a href="https://android-review.googlesource.com/#/q/I80dea0efd484aeeca0564b423c771ed7633aaffe">I80dea</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/460427288">b/460427288</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">position</code>
+      to
+      <code translate="no" dir="ltr">align</code>
+      in
+      <code translate="no" dir="ltr">SpatialAlignment</code>
+      and removed individual directional offset methods in favor of a unified
+      <code translate="no" dir="ltr">align</code>
+      API. (
+      <a href="https://android-review.googlesource.com/#/q/I9bdb2a69f416f28ad2390151a97e5ff7fee97c0a">I9bdb2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/479805937">b/479805937</a>
+      )
+    </li>
+    <li>
+      Removed Deprecated Space Mode APIs from
+      <code translate="no" dir="ltr">SpatialConfiguration</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1ef5cb8200ee2450136d5347b5f07a79bfb0c55e">I1ef5c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/458712461">b/458712461</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">SubspaceSemanticsConfiguration</code>
+      . This is a configuration of semantics properties for a Spatial node. This class safely exposes query methods for 3D semantics without leaking foundational 2D semantic capabilities to external consumers. (
+      <a href="https://android-review.googlesource.com/#/q/Id025e31885a84d762a1b2d6c493c2892cf2138d6">Id025e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/460427288">b/460427288</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">SubspaceSemanticsPropertyReceiver</code>
+      : a dedicated wrapper that limits 3D layout container properties to valid fields (initially
+      <code translate="no" dir="ltr">testTag</code>
+      and
+      <code translate="no" dir="ltr">contentDescription</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/I5cf5cbf8dd1ca4a2d25b8c4e1fbf2b3a2bad8973">I5cf5c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/460427288">b/460427288</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Updated the Semantic modifier's
+      <code translate="no" dir="ltr">hasContentDescription</code>
+      to default to substring matching. (
+      <a href="https://android-review.googlesource.com/#/q/I082143ce42e8ae505e08216d5e9013cbd5a0abd6">I08214</a>
+      )
+    </li>
+    <li>
+      Added restricted
+      <code translate="no" dir="ltr">FollowBehavior.ExponentialDecay()</code>
+      which provides a soft follow behavior guided by elastic physics. (
+      <a href="https://android-review.googlesource.com/#/q/I7449c781d97e7438f01561ce7f7bbfceec769e80">I7449c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/485639909">b/485639909</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/500493335">b/500493335</a>
+      )
+    </li>
+  </ul>
+  <p>
+    Most APIs will be affected by this. Specifically, the
+    <code translate="no" dir="ltr">LocalSession</code>
+    <code translate="no" dir="ltr">CompositionLocal</code>
+    and all
+    <code translate="no" dir="ltr">CompositionLocals</code>
+    that are dependent on
+    <code translate="no" dir="ltr">LocalSession</code>
+    (e.g.
+    <code translate="no" dir="ltr">LocalSpatialConfiguration</code>
+    ,
+    <code translate="no" dir="ltr">LocalSpatialCapabilities</code>
+    , etc.) will now resolve to
+    <code translate="no" dir="ltr">null</code>
+    or its non-XR versions before the
+    <code translate="no" dir="ltr">Session</code>
+    is initialized.
+  </p>
+  <p>
+    Once the
+    <code translate="no" dir="ltr">Session</code>
+    is available, recomposition will be triggered with the correct state. (
+    <a href="https://android-review.googlesource.com/#/q/I0cfa4a85834c911ef3d8fb76d5074c45fdefb0ca">I0cfa4</a>
+    ,
+    <a href="https://issuetracker.google.com/issues/514712835">b/514712835</a>
+    ,
+    <a href="https://issuetracker.google.com/issues/514712835">b/514712835</a>
+    )
+  </p>
+  <ul>
+    <li>
+      Clarified documentation for
+      <code translate="no" dir="ltr">ComponentActivity.requestHomeSpace</code>
+      and
+      <code translate="no" dir="ltr">ComponentActivity.requestFullSpace</code>
+      regarding suspend behavior, cancellation, and concurrency. Updated tests to verify
+      <code translate="no" dir="ltr">CancellationException</code>
+      propagation. (
+      <a href="https://android-review.googlesource.com/#/q/I22f75c130494bb346e29bec67b1e23c63fffe3ac">I22f75</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/493289528">b/493289528</a>
+      )
+    </li>
+  </ul>

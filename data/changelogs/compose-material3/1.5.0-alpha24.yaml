@@ -1,0 +1,163 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.5.0-alpha24
+releaseDate: 2026-07-15
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha24" data-text="Version 1.5.0-alpha24" tabindex="-1">Version 1.5.0-alpha24</h3>
+  <p>July 15, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.5.0-alpha24</code>
+    is released. Version 1.5.0-alpha24 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ba3014c143b9c9782fe30bc766c5dced55e13453..0680abb04eba98b757faf2814527dcc637581b9d/compose/material3">these commits</a>
+    .
+  </p>
+  <p><strong>Features</strong></p>
+  <ul>
+    <li>
+      Add new scroll variant for expressive
+      <code translate="no" dir="ltr">TimePicker</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I46f6b6acc6888933b7561e5f52d31e2714f5b83f">I46f6b</a>
+      )
+    </li>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">material3-ripple</code>
+      library (
+      <a href="https://android-review.git.corp.google.com/q/I1b3a3e310538661ae4f1bc36bcbd6dd88f044f28">I1b3a3</a>
+      ), which adds support for drawing ripples that visually display focus using inset focus rings instead of an opacity layer. This new library acts as a replacement for
+      <code translate="no" dir="ltr">material-ripple</code>
+      , and expected usage is similar:
+      <ul>
+        <li>
+          If you are using
+          <code translate="no" dir="ltr">material3</code>
+          itself, use the built-in
+          <code translate="no" dir="ltr">material3</code>
+          ripple configuration that integrates with the theme and uses
+          <code translate="no" dir="ltr">material3-ripple</code>
+          internally as an implementation detail.
+        </li>
+        <li>
+          If you were using
+          <code translate="no" dir="ltr">material-ripple</code>
+          directly or want to support inset focus rings without depending on
+          <code translate="no" dir="ltr">material3</code>
+          , use the new
+          <code translate="no" dir="ltr">material3-ripple</code>
+          library directly.
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Changed scrollbar
+      <code translate="no" dir="ltr">ScrollIndicatorState</code>
+      parameter to be non-nullable. (
+      <a href="https://android-review.googlesource.com/#/q/Iab7c76f3a910583b1e828acfbf8f55ddf878842b">Iab7c7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/529445739">b/529445739</a>
+      )
+    </li>
+    <li>
+      Re-add
+      <code translate="no" dir="ltr">@ExperimentalMaterial3Api</code>
+      annotation to
+      <code translate="no" dir="ltr">AppBarWithSearch</code>
+      APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I0b61a5782183b9df5ef88c56a958b9d49aad4821">I0b61a</a>
+      )
+    </li>
+    <li>
+      Promoted
+      <code translate="no" dir="ltr">SearchBarState</code>
+      and slot-based
+      <code translate="no" dir="ltr">SearchBar</code>
+      APIs to stable. Deprecated older
+      <code translate="no" dir="ltr">SearchBar</code>
+      APIs using expanded/
+      <code translate="no" dir="ltr">onExpandedChange</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia3793ca2a54aba1de5897d33518875e457466e8e">Ia3793</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a rendering delay issue where the
+      <code translate="no" dir="ltr">RichTooltip</code>
+      and
+      <code translate="no" dir="ltr">PlainTooltip</code>
+      carets would appear late during the entrance animation. (
+      <a href="https://android-review.googlesource.com/#/q/I874b60d7587cfc8d44e44912b1966329656c4f09">I874b6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/395753083">b/395753083</a>
+      )
+    </li>
+    <li>
+      Update margin values for Input/Scroll variant of
+      <code translate="no" dir="ltr">TimePicker</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I83f00833fdd7175fcf8fc33760e3095868180caa">I83f00</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SplitButton</code>
+      measure trailing button first to guarantee space. (
+      <a href="https://android-review.googlesource.com/#/q/Id3a1e039f1ec86cc4cd1dbf3b2b45671923b44fb">Id3a1e</a>
+      )
+    </li>
+    <li>
+      Fixed an accessibility issue where Switch Access users could not activate editable text fields inside
+      <code translate="no" dir="ltr">ExposedDropdownMenuBox</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0ea17b51fb634b59552c7b7bb2dfbc7b615d7a40">I0ea17</a>
+      )
+    </li>
+    <li>
+      Fixed talkback announcement order in
+      <code translate="no" dir="ltr">TextField</code>
+      and
+      <code translate="no" dir="ltr">OutlinedTextField</code>
+      when a prefix or suffix is present. (
+      <a href="https://android-review.googlesource.com/#/q/Ie79e7451927370e8e6f811b2aa7c4213ff4f698b">Ie79e7</a>
+      )
+    </li>
+    <li>
+      Update
+      <code translate="no" dir="ltr">TimePicker</code>
+      margins and colon placement (
+      <a href="https://android-review.googlesource.com/#/q/I6bfeb3f6decf71c49edf96f545c704e698c5ad62">I6bfeb</a>
+      )
+    </li>
+    <li>
+      Fix focus order in Talkback for
+      <code translate="no" dir="ltr">ScrollField</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4ca9fd55e485e60cd1e776c1d35688f82555621a">I4ca9f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/526870141">b/526870141</a>
+      )
+    </li>
+    <li>
+      Updated Compose dependencies in Material 3 to 1.12.0-beta01. (
+      <a href="https://android-review.googlesource.com/#/q/Ie941729c323cb8f05884a3a38253fb7de1578273">Ie9417</a>
+      )
+    </li>
+    <li>
+      Tooltips are now clamped to the window boundaries to prevent them from being cut off on small screens or under large font configurations. (
+      <a href="https://android-review.googlesource.com/#/q/I421ff39c3f5cc3f84992f2102ebe5bac8ad008f9">I421ff</a>
+      )
+    </li>
+    <li>
+      Update
+      <code translate="no" dir="ltr">ScrollField</code>
+      with more expressive number transitions and adjust sizing/typography (
+      <a href="https://android-review.googlesource.com/#/q/Ic16146879fbcd9fa024198afcecd374bfd2a18c3">Ic1614</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,106 @@
+libraryId: xr-scenecore
+groupId: androidx.xr
+version: 1.0.0-beta01
+releaseDate: 2026-07-15
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta01" data-text="Version 1.0.0-beta01" tabindex="-1">Version 1.0.0-beta01</h3>
+  <p>July 15, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.scenecore:scenecore-*:1.0.0-beta01</code>
+    is released. Version 1.0.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/fc052f5a502bd14589b077e9b2ac185512f8cf5f..488730ed565c7b9ac4839ff66aa93313d1e662e6/xr/scenecore">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">GltfAnimation</code>
+      and
+      <code translate="no" dir="ltr">SpatialGltfModelAnimation</code>
+      APIs have been marked as experimental. Some properties were turned into getters. (
+      <a href="https://android-review.googlesource.com/#/q/I8d689ae01daec91cf15291fa37dcf279bb5555c7">I8d689</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/524771027">b/524771027</a>
+      )
+    </li>
+    <li>
+      Removed the public
+      <code translate="no" dir="ltr">MovableComponent.createTrackingMovable</code>
+      factory method. (
+      <a href="https://android-review.googlesource.com/#/q/I00912cf98f347c26d764e04df2d44cf507c55625">I00912</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/477169015">b/477169015</a>
+      )
+    </li>
+    <li>
+      Converted Session.create to a suspend function. (
+      <a href="https://android-review.googlesource.com/#/q/I5d27fd6399fc5fe35f28ddf9c0c488a12eb23115">I5d27f</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ActivitySpace</code>
+      and
+      <code translate="no" dir="ltr">AnchorSpace</code>
+      now extend a common
+      <code translate="no" dir="ltr">SpaceEntity</code>
+      class which contains common behavior for entities whose positions are controlled by the system (
+      <a href="https://android-review.googlesource.com/#/q/I506ecb36b6d73440b9f44845812e8b042fb6e270">I506ec</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/513619219">b/513619219</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">AnchorEntity</code>
+      to be called
+      <code translate="no" dir="ltr">AnchorSpace</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ifa95ebf5c1da2b4413723835db4c0e5f9a2e52fb">Ifa95e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/513619219">b/513619219</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">SoundEffectPoolComponentTester</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I87df71d5e551cc1dd93b7c8ca87280d36e3b9bfd">I87df7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/498104417">b/498104417</a>
+      )
+    </li>
+    <li>
+      Added an optional
+      <code translate="no" dir="ltr">cornerRadius</code>
+      parameter to the
+      <code translate="no" dir="ltr">SurfaceEntity.Shape.Quad</code>
+      constructor and made the
+      <code translate="no" dir="ltr">cornerRadius</code>
+      property public. Developers can now specify a corner radius when creating a Quad shape to render
+      <code translate="no" dir="ltr">SurfaceEntity</code>
+      canvases with rounded corners, and query the radius of existing Quads. (
+      <a href="https://android-review.googlesource.com/#/q/Ia78090bcf03c94d84f60c0cbdf51c8bd3f5368fe">Ia7809</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/474681085">b/474681085</a>
+      )
+    </li>
+    <li>
+      Provides public test API
+      <code translate="no" dir="ltr">SpatialAudioTrackBuilderTester</code>
+      ,
+      <code translate="no" dir="ltr">SpatialAudioTrackTester</code>
+      and
+      <code translate="no" dir="ltr">SceneCoreTestRule.getTester</code>
+      overloads. (
+      <a href="https://android-review.googlesource.com/#/q/I378c6953233b2400ada20260442c7a866c6c205d">I378c6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/496333938">b/496333938</a>
+      )
+    </li>
+    <li>
+      Add specialized overrides of
+      <code translate="no" dir="ltr">toString()</code>
+      for a number of ARCore types. These types are intended to provide additional information to developers for debugging purposes and are not intended to be used in production or shipped applications.
+    </li>
+  </ul>

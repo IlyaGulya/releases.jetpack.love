@@ -1,0 +1,59 @@
+libraryId: ink
+groupId: androidx.ink
+version: 1.1.0-alpha05
+releaseDate: 2026-07-15
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha05" data-text="Version 1.1.0-alpha05" tabindex="-1">Version 1.1.0-alpha05</h3>
+  <p>July 15, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.ink:ink-*:1.1.0-alpha05</code>
+    is released. Version 1.1.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/54300995fb997ea31a64ab9de0daf6580692612d..e37cf4eae99bdc35def1209921d658612e2edbc3/ink">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Experimental release of new eraser type, known as "partial stroke", "mesh editing", or "pixel" eraser, that edits stroke geometry and splits strokes rather than deleting entire strokes or masking them with the background color. Known issues include a lack of anti-aliasing on the cut edges, and no serialization APIs to save the erased
+      <code translate="no" dir="ltr">PartitionedMesh</code>
+      results, which will both come in future releases.
+    </li>
+    <li>
+      Add missing Throws annotation to
+      <code translate="no" dir="ltr">StrokeInputBatchSerialization.decode</code>
+      , requiring update from Java consumers of that method. (
+      <a href="https://android-review.googlesource.com/#/q/I83473b1537aafad235707c9c69b2525e08edeb99">I83473</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/522256938">b/522256938</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix native crash from numerical precision issue (
+      <a href="https://android-review.googlesource.com/#/q/I2e1f0cdab93b829f755580d00d811f953201009b">I2e1f0</a>
+      ,
+      <a href="https://github.com/google/ink/commit/6618e6957ebb7ef764ac58a746671f176f08549d">6618e69</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/523190724">b/523190724</a>
+      )
+    </li>
+    <li>
+      Discard degenerate extrusions in
+      <code translate="no" dir="ltr">BrushTipExtruder</code>
+      (
+      <a href="https://github.com/google/ink/commit/469b629913e2828aa8ac123e90d3a90a6eb0941b">469b629</a>
+      )
+    </li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">RejectedExecutionException</code>
+      in
+      <code translate="no" dir="ltr">InProgressStrokesView</code>
+      (
+      <a href="https://issuetracker.google.com/526696762">b/526696762</a>
+      )
+    </li>
+  </ul>
