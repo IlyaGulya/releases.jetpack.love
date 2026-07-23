@@ -1,0 +1,122 @@
+libraryId: media3
+groupId: androidx.media3
+version: 1.11.0-rc01
+releaseDate: 2026-07-22
+#language=html
+changelogHtml: |
+  <h3 id="1.11.0-rc01" data-text="1.11.0-rc01" tabindex="-1">1.11.0-rc01</h3>
+  <p>July 22, 2026</p>
+  <ul>
+    <li>
+      ExoPlayer:
+      <ul>
+        <li>Fix potential scrubbing mode issue where scrubbing could stall when seeking to 'end of stream'.</li>
+        <li>
+          Revert: Add support for ads in multi-period content (e.g., DASH) by splitting and offsetting the
+          <code translate="no" dir="ltr">AdPlaybackState</code>
+          for each period.
+        </li>
+      </ul>
+    </li>
+    <li>
+      DataSource:
+      <ul>
+        <li>
+          Fix
+          <code translate="no" dir="ltr">KtorDataSource</code>
+          loading the entire HTTP response body into memory when opening a connection (
+          <a href="https://github.com/androidx/media/issues/3305">#3305</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Session:
+      <ul>
+        <li>
+          Fix crash by catching
+          <code translate="no" dir="ltr">ForegroundServiceStartNotAllowedException</code>
+          in
+          <code translate="no" dir="ltr">MediaSessionService.stopSelfSafely()</code>
+          (
+          <a href="https://github.com/androidx/media/issues/3310">#3310</a>
+          ).
+        </li>
+        <li>
+          Fix unexpected
+          <code translate="no" dir="ltr">onMediaItemTransition()</code>
+          callback on
+          <code translate="no" dir="ltr">MediaController</code>
+          when seeking inside the same media item (
+          <a href="https://github.com/androidx/media/issues/3248">#3248</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Downloads:
+      <ul>
+        <li>
+          Resolve HLS variables in media playlist when fetched for download (
+          <a href="https://github.com/androidx/media/issues/3258">#3258</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      HLS extension:
+      <ul>
+        <li>
+          Fix calculation of content resume offset when resolving interstitial asset lists (
+          <a href="https://github.com/androidx/media/issues/3322">#3322</a>
+          ).
+        </li>
+        <li>
+          Fix unexpected audio track timestamp discontinuity when resuming low latency live playback after a playlist request failure (
+          <a href="https://github.com/androidx/media/issues/3311">#3311</a>
+          ).
+        </li>
+        <li>
+          Fix bug in
+          <code translate="no" dir="ltr">HlsMediaPeriod.getStreamKeys()</code>
+          where the ID3 track in audio renditions is considered as subtitles (
+          <a href="https://github.com/androidx/media/issues/3333">#3333</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      DASH extension:
+      <ul>
+        <li>
+          Fix crash (
+          <code translate="no" dir="ltr">IndexOutOfBoundsException</code>
+          ) when opening manifests with an empty
+          <code translate="no" dir="ltr">&lt;SegmentTimeline/&gt;</code>
+          element (
+          <a href="https://github.com/androidx/media/issues/3326">#3326</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Decoder extensions (FFmpeg, VP9, AV1, etc.):
+      <ul>
+        <li>Revert monochrome video support to bundled dav1d JNI.</li>
+      </ul>
+    </li>
+    <li>
+      Cast extension:
+      <ul>
+        <li>
+          Fix bug where unconfigured live streams (
+          <code translate="no" dir="ltr">liveConfiguration == UNSET</code>
+          ) were queued as
+          <code translate="no" dir="ltr">STREAM_TYPE_BUFFERED</code>
+          (
+          <a href="https://github.com/androidx/media/issues/3318">#3318</a>
+          ).
+        </li>
+      </ul>
+    </li>
+  </ul>
