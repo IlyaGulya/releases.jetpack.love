@@ -1,0 +1,91 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.7.0-alpha07
+releaseDate: 2026-07-29
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha07" data-text="Version 1.7.0-alpha07" tabindex="-1">Version 1.7.0-alpha07</h3>
+  <p>July 29, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.7.0-alpha07</code>
+    is released. Version 1.7.0-alpha07 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e37cf4eae99bdc35def1209921d658612e2edbc3..61ee8cd421d0c0252d8db0253b739de537999371/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Refactored
+      <code translate="no" dir="ltr">OneHandedGesture</code>
+      APIs, replacing Boolean indicator state (that required a reset after showing the indicator) with a suspend function to run the animation. Each type of indicator now has its own indicator state class, encapsulating the animation logic for that indicator. Renamed from from
+      <code translate="no" dir="ltr">key</code>
+      to
+      <code translate="no" dir="ltr">gestureId</code>
+      in
+      <code translate="no" dir="ltr">GestureConfiguration</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7974f98ae3a48d8c0a227c93383e1f3b28f37304">I7974f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/522761843">b/522761843</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">CompactButton</code>
+      single-slot content overload (
+      <a href="https://android-review.googlesource.com/#/q/Idaffc82f883572f173e79b15d795db86e18baa2f">Idaffc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/527889640">b/527889640</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">PinnableContainer</code>
+      support to
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Id3dc9beac8153789e2dad81c3c50f67f72556f40">Id3dc9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/492418172">b/492418172</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Added and updated module-level documentation for Wear Compose Foundation, Material 3, and Navigation 3. (
+      <a href="https://android-review.googlesource.com/#/q/I111d783450d1151d4136fc95f671aa12b4ca9500">I111d7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/498153783">b/498153783</a>
+      )
+    </li>
+    <li>
+      Fixed an issue in
+      <code translate="no" dir="ltr">ScreenScaffold</code>
+      where recompositions could cause un-remembered
+      <code translate="no" dir="ltr">ScrollInfoProvider</code>
+      to reset scroll tracking state. (
+      <a href="https://android-review.googlesource.com/#/q/I8be022e72c802774951705a52a1422c8b73b3d7b">I8be02</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/524620765">b/524620765</a>
+      )
+    </li>
+    <li>
+      Address
+      <code translate="no" dir="ltr">IllegalArgumentException: maxWidth must be &gt;= than minWidth</code>
+      error caused by large horizontal paddings (
+      <a href="https://android-review.googlesource.com/#/q/I014e86730f10f1dfa662e3851d1e69389bbbf339">I014e8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/531192734">b/531192734</a>
+      )
+    </li>
+    <li>
+      Fix
+      <code translate="no" dir="ltr">EdgeButton</code>
+      animation on fast fling. (
+      <a href="https://android-review.googlesource.com/#/q/I9657f75fdd3730e604d716b541e6f39fd778be9c">I9657f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/512700520">b/512700520</a>
+      )
+    </li>
+  </ul>
