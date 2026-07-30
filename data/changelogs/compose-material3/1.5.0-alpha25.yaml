@@ -1,0 +1,155 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.5.0-alpha25
+releaseDate: 2026-07-29
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha25" data-text="Version 1.5.0-alpha25" tabindex="-1">Version 1.5.0-alpha25</h3>
+  <p>July 29, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.5.0-alpha25</code>
+    is released. Version 1.5.0-alpha25 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/37844e101325a1b2e5782da1a1b8684e55e1a887..719db51c3b4d823ef6e680e62b6dbe272c5ef936/compose/material3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">trailingIcon</code>
+      parameter to
+      <code translate="no" dir="ltr">trailingContent</code>
+      in the shape, checked, and selected
+      <code translate="no" dir="ltr">DropdownMenuItem</code>
+      overloads while maintaining binary compatibility. (
+      <a href="https://android-review.googlesource.com/#/q/I2ecbd7c5812731db0fb72b5ecf4c4c43483d754e">I2ecbd</a>
+      )
+    </li>
+    <li>
+      Added new selection and container color properties to
+      <code translate="no" dir="ltr">MenuItemColors</code>
+      , and renamed
+      <code translate="no" dir="ltr">trailingIcon</code>
+      to
+      <code translate="no" dir="ltr">trailingContent</code>
+      in the new colors constructor while maintaining binary compatibility. (
+      <a href="https://android-review.googlesource.com/#/q/I20b92bdcddd4a8fb5a90f63e5da97e82f5b7b3df">I20b92</a>
+      )
+    </li>
+    <li>
+      Improved
+      <code translate="no" dir="ltr">ScrollField</code>
+      accessibility and keyboard navigation support. (
+      <a href="https://android-review.googlesource.com/#/q/If7477b017aba524c27df6cacb16d8071e40631c5">If7477</a>
+      )
+    </li>
+    <li>
+      Remove
+      <code translate="no" dir="ltr">ComponentOverride</code>
+      APIs (
+      <a href="https://android-review.googlesource.com/#/q/I3784b34708b1721a9b866f7ae808431a6a6a6964">I3784b</a>
+      )
+    </li>
+    <li>
+      Deprecated 2-parameter
+      <code translate="no" dir="ltr">SliderState.Saver</code>
+      and
+      <code translate="no" dir="ltr">RangeSliderState.Saver</code>
+      in favor of new overloads taking steps.
+      <code translate="no" dir="ltr">SliderState</code>
+      no longer publicly implements
+      <code translate="no" dir="ltr">DraggableState</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7c91b322dd0252ca0022ed0a0284b966d8cde953">I7c91b</a>
+      )
+    </li>
+    <li>
+      Graduate
+      <code translate="no" dir="ltr">BasicAlertDialog</code>
+      API from Experimental (
+      <a href="https://android-review.googlesource.com/#/q/If157c5fd4972a9e9cfdd95bda85389f100b2816c">If157c</a>
+      )
+    </li>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">ButtonGroupScope</code>
+      in
+      <code translate="no" dir="ltr">ButtonGroup</code>
+      to a
+      <code translate="no" dir="ltr">sealed interface</code>
+      . Split
+      <code translate="no" dir="ltr">Modifier.animateWidth</code>
+      into two overloads to allow omitting
+      <code translate="no" dir="ltr">compressionLimit</code>
+      and dynamically resolving the layout direction, and changed the
+      <code translate="no" dir="ltr">compressionLimit</code>
+      parameter type from
+      <code translate="no" dir="ltr">PaddingValues</code>
+      to
+      <code translate="no" dir="ltr">Dp</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I8ef3946c7a7e41b6bb6540290c8475720fcbb665">I8ef39</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">TonalToggleButton</code>
+      to
+      <code translate="no" dir="ltr">FilledTonalToggleButton</code>
+      . Added smooth border stroke animations to
+      <code translate="no" dir="ltr">OutlinedToggleButton</code>
+      . Deprecated
+      <code translate="no" dir="ltr">ToggleButtonDefaults.shapes</code>
+      in favor of
+      <code translate="no" dir="ltr">shapesFor</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Icb433de38e52f2ab7aae21e5e9aa177289c12a4f">Icb433</a>
+      )
+    </li>
+    <li>
+      Promote
+      <code translate="no" dir="ltr">LinearTrackStopIndicatorSize</code>
+      ,
+      <code translate="no" dir="ltr">LinearIndicatorTrackGapSize</code>
+      , and
+      <code translate="no" dir="ltr">CircularIndicatorTrackGapSize</code>
+      to stable. (
+      <a href="https://android-review.googlesource.com/#/q/I794d0879a74d7ac18ee51d8da5940a4bfdc71cce">I794d0</a>
+      )
+    </li>
+    <li>
+      Deprecated
+      <code translate="no" dir="ltr">SplitButtonLayout</code>
+      Api to use
+      <code translate="no" dir="ltr">SplitButton</code>
+      instead (
+      <a href="https://android-review.googlesource.com/#/q/Ic984059c127afda448f3981ebb56471f409456f8">Ic9840</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Update focus switching in case of error for
+      <code translate="no" dir="ltr">TimePickerTextField</code>
+      input in
+      <code translate="no" dir="ltr">TimePicker.kt</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ieceec5017cf73f9de1f415bfd9eb307acb90c9f8">Ieceec</a>
+      )
+    </li>
+    <li>
+      Fixed shape of segmented list item when the list only has a single item. (
+      <a href="https://android-review.googlesource.com/#/q/I2ea1cf9edbb68737ff33b6ea9c4f4793eee22eb0">I2ea1c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/479721696">b/479721696</a>
+      )
+    </li>
+    <li>
+      Update KDocs for
+      <code translate="no" dir="ltr">TimePickerDialog.kt</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia5fb8cf2372325b85f41ee4078beeee8a3f3ec07">Ia5fb8</a>
+      )
+    </li>
+  </ul>

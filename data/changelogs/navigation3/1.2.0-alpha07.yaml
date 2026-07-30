@@ -1,0 +1,163 @@
+libraryId: navigation3
+groupId: androidx.navigation3
+version: 1.2.0-alpha07
+releaseDate: 2026-07-29
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-alpha07" data-text="Version 1.2.0-alpha07" tabindex="-1">Version 1.2.0-alpha07</h3>
+  <p>July 29, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation3:navigation3-*:1.2.0-alpha07</code>
+    is released. Version 1.2.0-alpha07 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e37cf4eae99bdc35def1209921d658612e2edbc3..61ee8cd421d0c0252d8db0253b739de537999371/navigation3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added an abstract
+      <code translate="no" dir="ltr">WrappedMatchResult</code>
+      class to wrap another
+      <code translate="no" dir="ltr">DeepLinkMatcher.MatchResult</code>
+      . This allows customized match results layered on top of another one. (
+      <a href="https://android-review.googlesource.com/#/q/I7d4dc9e3d7318c7786cbc5e9627ccc491dbca3a7">I7d4dc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/470282247">b/470282247</a>
+      )
+    </li>
+    <li>
+      <p>
+        Added new
+        <code translate="no" dir="ltr">BackStackMatcher</code>
+        class which takes two parameters: a matcher instance, and a builder lambda that provides the input matcher's match result and returns a back stack. Upon a successful match,
+        <code translate="no" dir="ltr">BackStackMatcher</code>
+        returns a
+        <code translate="no" dir="ltr">BackStackMatchResult</code>
+        which extends
+        <code translate="no" dir="ltr">WrappedMatchResult</code>
+        containing the original match result along with the back stack built with the lambda. The
+        <code translate="no" dir="ltr">BackStackMatcher</code>
+        can only be created with the new
+        <code translate="no" dir="ltr">DeepLinkMatcher.withBackStack</code>
+        extension function. (
+        <a href="https://android-review.googlesource.com/#/q/Ibf987fa512a042479cbc09a74bd371e6b461b83b">Ibf987</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/470282247">b/470282247</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added an abstract
+        <code translate="no" dir="ltr">DeepLinkSerializer</code>
+        class that extends
+        <code translate="no" dir="ltr">KSerializer</code>
+        to encode and decode
+        <code translate="no" dir="ltr">value : T</code>
+        as a
+        <code translate="no" dir="ltr">String</code>
+        .
+        <code translate="no" dir="ltr">DeepLinkSerializer</code>
+        can be used to serialize non-primitive deep link arguments. Compatible with
+        <code translate="no" dir="ltr">rememberSaveable</code>
+        and
+        <code translate="no" dir="ltr">rememberNavBackStack</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/Id3c9f3195b5a99051308467d4ec94262a9fba687">Id3c9f</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/470282247">b/470282247</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">DeepLinkMatcher</code>
+        has added a second type parameter
+        <code translate="no" dir="ltr">out R : DeepLinkMatcher.MatchResult&lt;T&gt;</code>
+        so that developers can access the properties of the subclassed
+        <code translate="no" dir="ltr">MatchResult</code>
+        returned by
+        <code translate="no" dir="ltr">DeepLinkMatcher.match()</code>
+        without type casting. (
+        <a href="https://android-review.googlesource.com/#/q/I693d30f4aa653e2e8d42e2a401381adb945147c4">I693d3</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/470282247">b/470282247</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">DeepLinkMatcher.MatchResult's</code>
+        T upper bound has changed from
+        <code translate="no" dir="ltr">Any?</code>
+        to
+        <code translate="no" dir="ltr">Any</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/I6bf1a88e3c3e9dd4b8026806772199c919a3732c">I6bf1a</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">DeepLinkRequest</code>
+        constructor field
+        <code translate="no" dir="ltr">uri</code>
+        now defaults to null. The secondary constructor's
+        <code translate="no" dir="ltr">uriString</code>
+        has been renamed to
+        <code translate="no" dir="ltr">uri</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/Ia0f140a9c8def67c5fd3ae6563f906db7cb03795">Ia0f14</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/522194187">b/522194187</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ResultEffect</code>
+      now uses
+      <code translate="no" dir="ltr">rememberUpdatedState</code>
+      to capture the latest
+      <code translate="no" dir="ltr">onResult</code>
+      lambda. (
+      <a href="https://android-review.googlesource.com/#/q/I7d2a3ac4ba979af2b85b988cf1cbaeb4126b495e">I7d2a3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/531709234">b/531709234</a>
+      )
+    </li>
+    <li>
+      Fixed deep link matching for empty path segments. If the argument type is String, the empty path will be treated as an empty string value. Otherwise, the empty path is treated as no value provided and will fall back to defautl value. If there is no defautl value, matching will fail. (
+      <a href="https://android-review.googlesource.com/#/q/I56575a2c29a14f20449c0a6650e50d44f5cec4d0">I56575</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/535298128">b/535298128</a>
+      )
+    </li>
+    <li>
+      Added support for empty query values in
+      <code translate="no" dir="ltr">DeepLinkRequest.uri</code>
+      . If the argument is of String type, the empty value will be treated as a literal empty string. Otherwise, the empty value is treated as no value provided and matching will attempt to fallback to default value. If there is no default value, matching will fail. (
+      <a href="https://android-review.googlesource.com/#/q/I303438db4b503b050981e4256fe2815fb6f07768">I30343</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/535127459">b/535127459</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">EntryProvider</code>
+      now prioritizes matching based on key instances over key types. (
+      <a href="https://android-review.googlesource.com/#/q/Ib5ec9345e801b63cb67ecfac821428163b1b0f13">Ib5ec9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/533331924">b/533331924</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SceneState</code>
+      now correctly calculates previous scenes starting from the top-most non-overlay scene. (
+      <a href="https://android-review.googlesource.com/#/q/I91915d482b60246e978ac8b71c9696e98e57439f">I91915</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/513630541">b/513630541</a>
+      )
+    </li>
+  </ul>

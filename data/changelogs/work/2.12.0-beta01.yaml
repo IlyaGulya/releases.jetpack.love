@@ -1,0 +1,35 @@
+libraryId: work
+groupId: androidx.work
+version: 2.12.0-beta01
+releaseDate: 2026-07-29
+#language=html
+changelogHtml: |
+  <h3 id="2.12.0-beta01" data-text="Version 2.12.0-beta01" tabindex="-1">Version 2.12.0-beta01</h3>
+  <p>July 29, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.12.0-beta01</code>
+    is released. Version 2.12.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e37cf4eae99bdc35def1209921d658612e2edbc3..62e3578368f1c3075a575002cfbffdb0eefac813/work">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix memory leak when catching executor exceptions (
+      <a href="https://android-review.googlesource.com/#/q/I3404ed8cda5133f9c9c604c38067c02fa9c26b0a">I3404e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/532588487">b/532588487</a>
+      )
+    </li>
+    <li>
+      Improved cancellation propagation for
+      <code translate="no" dir="ltr">RemoteListenableWorker</code>
+      so that system-initiated worker stops properly cancel remote coroutines and reschedule work, while self-cancelling remote workers correctly mark work as FAILED. Note: This behavior is currently gated behind the library-group restricted flag
+      <code translate="no" dir="ltr">Configuration.isRemoteCancellationPropagationFixEnabled</code>
+      (default false) to allow experimental verification and ensure that reliability metrics remain stable before removing the flag permanently. (
+      <a href="https://android-review.googlesource.com/#/q/I387f385d21e94436652924d6479c4d5acbe3df5f">I387f3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/420724435">b/420724435</a>
+      )
+    </li>
+  </ul>
