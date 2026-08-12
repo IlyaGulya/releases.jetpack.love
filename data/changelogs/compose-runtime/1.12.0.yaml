@@ -1,0 +1,49 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.12.0
+releaseDate: 2026-08-12
+#language=html
+changelogHtml: |
+  <h3 id="1.12.0" data-text="Version 1.12.0" tabindex="-1">Version 1.12.0</h3>
+  <p>August 12, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.12.0</code>
+    is released. Version 1.12.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/854220f44ea8ea80fee824a6c5a045f39bede289..963bf914f78b389bdddef0da7f36bee19d897274/compose/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.11.0:</strong></p>
+  <p><strong>Updates to the Experimental Slot Table</strong></p>
+  <ul>
+    <li>
+      We've made progress towards stabilizing the experimental
+      <code translate="no" dir="ltr">LinkTable</code>
+      implementation introduced in 1.11. The new implementation is designed to improve recomposition performance, especially with small random changes. We encourage users to try the new
+      <code translate="no" dir="ltr">SlotTable</code>
+      and report any issues you encounter. See
+      <code translate="no" dir="ltr">ComposeRuntimeFlags.isLinkBufferComposerEnabled</code>
+      for more information.
+    </li>
+  </ul>
+  <p><strong>Side Effect with Keys API</strong></p>
+  <ul>
+    <li>
+      Added an overload to
+      <code translate="no" dir="ltr">SideEffect</code>
+      that accepts key arguments. The new API can be used to fire one-shot
+      <code translate="no" dir="ltr">SideEffect</code>
+      s without the need for a
+      <code translate="no" dir="ltr">LaunchedEffect</code>
+      or
+      <code translate="no" dir="ltr">DisposableEffect</code>
+      whose
+      <code translate="no" dir="ltr">CoroutineScope</code>
+      or
+      <code translate="no" dir="ltr">onDispose</code>
+      block are unused. (
+      <a href="https://android-review.googlesource.com/#/q/I528b214d6fc40d3436c178e9a23cd897443f8f0c">I528b2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/476108743">b/476108743</a>
+      )
+    </li>
+  </ul>

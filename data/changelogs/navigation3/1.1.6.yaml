@@ -1,0 +1,46 @@
+libraryId: navigation3
+groupId: androidx.navigation3
+version: 1.1.6
+releaseDate: 2026-08-12
+#language=html
+changelogHtml: |
+  <h3 id="1.1.6" data-text="Version 1.1.6" tabindex="-1">Version 1.1.6</h3>
+  <p>August 12, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation3:navigation3-*:1.1.6</code>
+    is released. Version 1.1.6 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5ff1c339d0aff2ca5a06b8ee0de282ba9cd95268..bc33726aa2025e67bbf11ac9142b3e33e29596a3/navigation3">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">NavEntry.contentKey</code>
+      now defaults to a composite of
+      <code translate="no" dir="ltr">key.toString()</code>
+      and
+      <code translate="no" dir="ltr">key::class.toString()</code>
+      . This ensures that data objects that share the same name but implement different interfaces will no longer have the same
+      <code translate="no" dir="ltr">contentKey</code>
+      . However, JS platform's
+      <code translate="no" dir="ltr">key::class</code>
+      only returns simple class name instead of fully qualified name, so JS platform should still implement custom
+      <code translate="no" dir="ltr">contentKey</code>
+      for data objects with duplicate names. (
+      <a href="https://android-review.googlesource.com/#/q/I1fbbb4eabf2e1ab60a7789d8a7abb66d29d7f286">I1fbbb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/512534342">b/512534342</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      thrown by
+      <code translate="no" dir="ltr">SaveableStateHolder</code>
+      for key reuse when multiple pop transitions are in-flight simulatenously due to rapid popping from the back stack. (
+      <a href="https://android-review.googlesource.com/#/q/I4d728a85e74fdc35e26ea621b809c03813f0806d">I4d728</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/516312097">b/516312097</a>
+      )
+    </li>
+  </ul>
