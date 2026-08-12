@@ -1,0 +1,86 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.7.0-beta01
+releaseDate: 2026-08-12
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-beta01" data-text="Version 1.7.0-beta01" tabindex="-1">Version 1.7.0-beta01</h3>
+  <p>August 12, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.7.0-beta01</code>
+    is released. Version 1.7.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/61ee8cd421d0c0252d8db0253b739de537999371..73e22c60975d7fb8491f51f0de9d82843e170f82/wear/compose">these commits</a>
+    .
+  </p>
+  <p>The 1.7.0-beta01 release of Compose for Wear OS indicates that this release of the library is feature complete and the API is locked. Wear Compose 1.7.0-beta01 includes the following new functionality:</p>
+  <ul>
+    <li>One-handed gesture support, consisting of gesture handlers for primary action (e.g. double-pinch) and dismiss action (e.g. wrist-turn) and animated indicators that show when the gestures are available on clickable UI elements (like buttons and cards), scrollable lists and pagers.</li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">PinnableContainer</code>
+      support to
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      , for holding an item in memory instead of disposing when the item is scrolled out of the viewport.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      now has support for animating items as they move out of the viewport, allowing them to smoothly slide off-screen instead of fading out.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">firstLayoutItemProvider</code>
+      to
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      as an optional customization for the first layout item. When specified, the provider defines the item and its edge used as the initial placement reference, which is useful for controlling the direction of content-shifting when items are dynamically updated.
+    </li>
+    <li>
+      Improvements to
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      to support nested scroll, fast flings, a second haptic at the partial reveal state and
+      <code translate="no" dir="ltr">actionContentSpacing</code>
+      for the distance between the main content and the action buttons.
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">@FrequentlyChangingValue</code>
+      and
+      <code translate="no" dir="ltr">@RememberInComposition</code>
+      annotations that provide lint warnings to prevent performance issues caused by reading high-frequency state updates or failing to remember objects during composition.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">GestureAction</code>
+      to
+      <code translate="no" dir="ltr">OneHandedGestureAction</code>
+      ,
+      <code translate="no" dir="ltr">GesturePriority</code>
+      to
+      <code translate="no" dir="ltr">OneHandedGesturePriority</code>
+      and
+      <code translate="no" dir="ltr">GestureIndicatorSize</code>
+      to
+      <code translate="no" dir="ltr">OneHandedGestureIndicatorSize</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ifc7f4a79a156d12144352629de14d757655540fb">Ifc7f4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/522761843">b/522761843</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue in
+      <code translate="no" dir="ltr">ScrollInfoProvider</code>
+      which caused
+      <code translate="no" dir="ltr">TimeText</code>
+      to flash or disappear when list items change or resized. (
+      <a href="https://android-review.googlesource.com/#/q/Ief7620f204a3addbb051e30d921fd05cdf5b209c">Ief762</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/537433564">b/537433564</a>
+      )
+    </li>
+  </ul>

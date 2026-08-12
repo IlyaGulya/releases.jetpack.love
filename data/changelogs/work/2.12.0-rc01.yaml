@@ -1,0 +1,46 @@
+libraryId: work
+groupId: androidx.work
+version: 2.12.0-rc01
+releaseDate: 2026-08-12
+#language=html
+changelogHtml: |
+  <h3 id="2.12.0-rc01" data-text="Version 2.12.0-rc01" tabindex="-1">Version 2.12.0-rc01</h3>
+  <p>August 12, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.12.0-rc01</code>
+    is released. Version 2.12.0-rc01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/61ee8cd421d0c0252d8db0253b739de537999371..7e17ecb7290ccdd0d3225a8da7848c578289cb2e/work">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed typo in
+      <code translate="no" dir="ltr">WorkConstraintsDaoTest</code>
+      class and file name. (
+      <a href="https://android-review.googlesource.com/#/q/I0868d040fdaccac081482199fe43ec36e79ecda4">I0868d</a>
+      )
+    </li>
+    <li>
+      Reduced lock contention in
+      <code translate="no" dir="ltr">PackageManagerService</code>
+      during
+      <code translate="no" dir="ltr">WorkManager</code>
+      startup by querying and caching component manifest default enablement states in
+      <code translate="no" dir="ltr">PackageManagerHelper</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id84ba0eecc3f37eee92b4a6d087e43485a6541ca">Id84ba</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/528755807">b/528755807</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where calling
+      <code translate="no" dir="ltr">WorkManager.updateWork</code>
+      while a worker was actively running caused execution lifecycle event hooks and telemetry tracking to immediately shift to the post-update generation. (
+      <a href="https://android-review.googlesource.com/#/q/Ie80e811dff2b4bdf1d33be80afc4cae3a2a2e2e8">Ie80e8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/511074795">b/511074795</a>
+      )
+    </li>
+  </ul>

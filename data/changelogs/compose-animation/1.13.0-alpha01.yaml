@@ -1,0 +1,158 @@
+libraryId: compose-animation
+groupId: androidx.compose
+version: 1.13.0-alpha01
+releaseDate: 2026-08-12
+#language=html
+changelogHtml: |
+  <h3 id="1.13.0-alpha01" data-text="Version 1.13.0-alpha01" tabindex="-1">Version 1.13.0-alpha01</h3>
+  <p>August 12, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.animation:animation-*:1.13.0-alpha01</code>
+    is released. Version 1.13.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/963bf914f78b389bdddef0da7f36bee19d897274..e9a673661e45bb2eaea8dd43632ce3e1ea6a2094/compose/animation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Restored
+      <code translate="no" dir="ltr">EnterTransition.with</code>
+      as deprecated with
+      <code translate="no" dir="ltr">DeprecationLevel.HIDDEN</code>
+      for binary compatibility. (
+      <a href="https://android-review.googlesource.com/#/q/I712145adfcbf90868fdffa667e5c21d29bd911e1">I71214</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/535291175">b/535291175</a>
+      )
+    </li>
+    <li>
+      Annotated overridable empty base methods across Compose with
+      <code translate="no" dir="ltr">@EmptySuper</code>
+      to denote that overriding implementations should not invoke super. (
+      <a href="https://android-review.googlesource.com/#/q/Id407ba2271cefe08c55717409ca22dbf23922c9e">Id407b</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">CapturedAnimatedVisibility</code>
+      , an alternative to
+      <code translate="no" dir="ltr">AnimatedVisibility</code>
+      that immediately disposes child composition on exit and animates the last rendered frame via a
+      <code translate="no" dir="ltr">GraphicsLayer</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6c5b336a2dd8303e5e4fa78b927ce4491ec13410">I6c5b3</a>
+      )
+    </li>
+    <li>
+      Renamed the
+      <code translate="no" dir="ltr">rememberTransition</code>
+      overload that accepts a
+      <code translate="no" dir="ltr">DeferredTransitionState</code>
+      to
+      <code translate="no" dir="ltr">rememberDeferredTransition</code>
+      to disambiguate it from the standard
+      <code translate="no" dir="ltr">TransitionState</code>
+      variants. (
+      <a href="https://android-review.googlesource.com/#/q/I7bb7e398e092853a33ce0fc5bc79529b70e3d1d4">I7bb7e</a>
+      )
+    </li>
+    <li>
+      Made
+      <code translate="no" dir="ltr">EnterExitTransitionConfig</code>
+      public for
+      <code translate="no" dir="ltr">EnterTransition</code>
+      and
+      <code translate="no" dir="ltr">ExitTransition</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Idd5a4854816746d1ac74f7b75d6292d145d79002">Idd5a4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/330152398">b/330152398</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Transition.Crossfade</code>
+      and
+      <code translate="no" dir="ltr">createChildTransition</code>
+      are now stable.
+      <code translate="no" dir="ltr">EnterTransition.with</code>
+      has been removed (use
+      <code translate="no" dir="ltr">togetherWith</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/I38f6697b35453a94229dca76718c25bfc1792638">I38f66</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">createChildTransition</code>
+      is now stable. (
+      <a href="https://android-review.googlesource.com/#/q/Ied832a863cfd89eed556e03fda451d8373cd5cda">Ied832</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/261422996">b/261422996</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">androidx.benchmark</code>
+      now has a
+      <code translate="no" dir="ltr">minSdk</code>
+      of 24. (
+      <a href="https://android-review.googlesource.com/#/q/Ic2a8500af8a2bf092fcc1b27d9a599aa5f3b81d7">Ic2a85</a>
+      )
+    </li>
+    <li>
+      Exposed the current animated value on
+      <code translate="no" dir="ltr">DeferredTargetAnimation</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie4f6e751a0a5d118111b1c04d9b0a5ee7217d220">Ie4f6e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/434659224">b/434659224</a>
+      )
+    </li>
+    <li>
+      Replace experimental
+      <code translate="no" dir="ltr">@AnimationToolingApi</code>
+      with
+      <code translate="no" dir="ltr">@RestrictTo</code>
+      API that has stricter tracking guarantees. (
+      <a href="https://android-review.googlesource.com/#/q/Ia4fd1311bd4c978d73c8af53208152879143b603">Ia4fd1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/524317805">b/524317805</a>
+      )
+    </li>
+    <li>
+      Made
+      <code translate="no" dir="ltr">unveilIn</code>
+      and
+      <code translate="no" dir="ltr">veilOut</code>
+      APIs stable (
+      <a href="https://android-review.googlesource.com/#/q/I9e3a3441119894f6c82c1be32c43890991b42490">I9e3a3</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Optimized file-level initialization of
+      <code translate="no" dir="ltr">animation</code>
+      top-level value class properties by using dynamic getters. (
+      <a href="https://android-review.googlesource.com/#/q/I88b861656fcd8436370a287b85eaaf6e8ceec41f">I88b86</a>
+      )
+    </li>
+    <li>
+      Optimized companion object initialization of
+      <code translate="no" dir="ltr">compose:animation</code>
+      value classes (
+      <code translate="no" dir="ltr">StartOffsetType</code>
+      ,
+      <code translate="no" dir="ltr">ArcMode</code>
+      ,
+      <code translate="no" dir="ltr">SlideDirection</code>
+      ) by using dynamic getters. (
+      <a href="https://android-review.googlesource.com/#/q/I4162e1b6751e1ebd387207c77e86622e3078c60c">I4162e</a>
+      )
+    </li>
+    <li>
+      Cleans up API information (
+      <a href="https://android-review.googlesource.com/#/q/Ia8066818f7e33220445aaeafa9ecc0668cc4818b">Ia8066</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_112_2" data-text="Version 1.12" tabindex="-1">Version 1.12</h2>

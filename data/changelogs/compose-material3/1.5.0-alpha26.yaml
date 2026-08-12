@@ -1,0 +1,149 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.5.0-alpha26
+releaseDate: 2026-08-12
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0-alpha26" data-text="Version 1.5.0-alpha26" tabindex="-1">Version 1.5.0-alpha26</h3>
+  <p>August 12, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.5.0-alpha26</code>
+    is released. Version 1.5.0-alpha26 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/61ee8cd421d0c0252d8db0253b739de537999371..4d087bd6f764b8425a70fd94102f855aa382d94b/compose/material3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ElevatedToggleButtonDefaults</code>
+      ,
+      <code translate="no" dir="ltr">FilledTonalToggleButtonDefaults</code>
+      , and
+      <code translate="no" dir="ltr">OutlinedToggleButtonDefaults</code>
+      , and cleaned up non-semantic shape properties in
+      <code translate="no" dir="ltr">ToggleButtonDefaults</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia0a85049faad6c4d8ee40f2914a15f7dba6600f9">Ia0a85</a>
+      )
+    </li>
+    <li>
+      Fixed a11y contrast issue for the horizontal
+      <code translate="no" dir="ltr">NavigationItem</code>
+      's label in high contrast themes. The label's color is now specified via
+      <code translate="no" dir="ltr">selectedTextColorTopIconPosition</code>
+      (vertical item's label color, which has not changed) and
+      <code translate="no" dir="ltr">selectedTextColorStartIconPosition</code>
+      (horizontal item's label color, now set to match
+      <code translate="no" dir="ltr">selectedIconColor</code>
+      ). To revert this update, pass in
+      <code translate="no" dir="ltr">ShortNavigationBarItemDefaults</code>
+      /
+      <code translate="no" dir="ltr">WideNavigationRailItemDefaults</code>
+      .colors().copy(
+      <code translate="no" dir="ltr">selectedTextColorStartIconPosition</code>
+      =
+      <code translate="no" dir="ltr">MaterialTheme</code>
+      .
+      <code translate="no" dir="ltr">colorScheme</code>
+      .secondary) (
+      <a href="https://android-review.googlesource.com/#/q/I858557f11ab08313701b24d3eb36ad4e82aa9d6d">I85855</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/490910896">b/490910896</a>
+      )
+    </li>
+    <li>
+      Scroll offset variables have been removed from
+      <code translate="no" dir="ltr">SearchBarScrollBehavior</code>
+      and should now be accessed via the new class
+      <code translate="no" dir="ltr">SearchBarScrollState</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib24e4c9fe816ea9fc2d3e27fd77929b75a688048">Ib24e4</a>
+      )
+    </li>
+    <li>
+      Promoted
+      <code translate="no" dir="ltr">BottomAppBar</code>
+      and its associated methods to stable. These APIs no longer require the @
+      <code translate="no" dir="ltr">ExperimentalMaterial3Api</code>
+      opt-in. (
+      <a href="https://android-review.googlesource.com/#/q/I42c61cd5206432c0cc61f3effbbf96566d4ad271">I42c61</a>
+      )
+    </li>
+    <li>
+      Saved active selection mode in
+      <code translate="no" dir="ltr">TimePickerState</code>
+      across state restorations and added
+      <code translate="no" dir="ltr">initialSelection</code>
+      parameter to
+      <code translate="no" dir="ltr">TimePickerState</code>
+      factory function. (
+      <a href="https://android-review.googlesource.com/#/q/Iad9051244ec30787c66dcd97117c117cae87c27b">Iad905</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ExposedDropdownMenu</code>
+      is now an extension function on
+      <code translate="no" dir="ltr">ExposedDropdownMenuBoxScope</code>
+      instead of a member. You may need to update your code with a new import. (
+      <a href="https://android-review.googlesource.com/#/q/Ie8a65e982bcc6ee222ce0a84ed63ad9445760f6d">Ie8a65</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/356452026">b/356452026</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where partial color customization in
+      <code translate="no" dir="ltr">MenuDefaults.itemColors</code>
+      overwrote unprovided colors with
+      <code translate="no" dir="ltr">Color.Unspecified</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iea847ef041dddb07cf56d502fe54215c344a7c0b">Iea847</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">TalkBack</code>
+      announcements to read formatted time values in the scrollable
+      <code translate="no" dir="ltr">TimePicker</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ice981f51427a1e0ecdb597b2011cfda3f10a0de0">Ice981</a>
+      )
+    </li>
+    <li>
+      Fixed a crash in
+      <code translate="no" dir="ltr">ExposedDropdownMenu</code>
+      when screen height is smaller than menu height. (
+      <a href="https://android-review.googlesource.com/#/q/I6adf1591ede0e755c7d8d94b4d52549a1d9d00ad">I6adf1</a>
+      )
+    </li>
+    <li>
+      Fixed wrong content padding of wide navigation rail. Bottom padding is now 0. To revert this update you can set
+      <code translate="no" dir="ltr">contentPadding = PaddingValues(0.dp,44.dp,0.dp,44.dp)</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I572bb9f18fcb772426dcd09ece5f9663c1fbc6da">I572bb</a>
+      )
+    </li>
+    <li>
+      Updated the public API surface to align with recent API review feedback. (
+      <a href="https://android-review.googlesource.com/#/q/I71aff5d529bc7bdc45ae2161d0d15658b18f1571">I71aff</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/532657001">b/532657001</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Fixed Material3
+      <code translate="no" dir="ltr">Slider</code>
+      <code translate="no" dir="ltr">Label</code>
+      not showing while dragging the slider by its thumb with a mouse. (
+      <a href="https://android-review.googlesource.com/#/q/I97a6d289dca13068ce0d8879e3ce348d4f36cbf2">I97a6d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/533483487">b/533483487</a>
+      )
+    </li>
+  </ul>

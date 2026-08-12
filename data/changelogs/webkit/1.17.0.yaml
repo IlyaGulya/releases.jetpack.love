@@ -1,0 +1,85 @@
+libraryId: webkit
+groupId: androidx.webkit
+version: 1.17.0
+releaseDate: 2026-08-12
+#language=html
+changelogHtml: |
+  <h3 id="webkit-1.17.0" data-text="Version 1.17.0" tabindex="-1">Version 1.17.0</h3>
+  <p>August 12, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.webkit:webkit:1.17.0</code>
+    is released. Version 1.17.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5744fa6296a0f6147952e836b3d92dd87ff7d4dd..86a006fbdf97644dbc4072bf0ee700e15ce02986/webkit/webkit">these commits</a>
+    .
+  </p>
+  <p><strong>Important Changes Since 1.16.0</strong></p>
+  <ul>
+    <li>
+      <strong>
+        Enhanced Navigation Capabilities (
+        <a href="https://developer.android.com/reference/kotlin/androidx/webkit/WebViewCompat#navigate(android.webkit.WebView,java.lang.String,androidx.webkit.NavigationParameters)"><code translate="no" dir="ltr">WebViewCompat#navigate</code></a>
+        ):
+      </strong>
+      Introduces a modern replacement for
+      <a href="https://developer.android.com/reference/android/webkit/WebView#loadUrl(java.lang.String,%20java.util.Map%3Cjava.lang.String,java.lang.String%3E)"><code translate="no" dir="ltr">WebView#loadUrl</code></a>
+      . Key capabilities include replacing history entries, returning a trackable
+      <code translate="no" dir="ltr">Navigation</code>
+      object, and consistent header persistence during state save/restore.
+    </li>
+    <li>
+      <strong>
+        HTTP Cache Quota Control (
+        <a href="https://developer.android.com/reference/kotlin/androidx/webkit/Profile#getHttpCache()"><code translate="no" dir="ltr">Profile#getHttpCache</code></a>
+        ):
+      </strong>
+      Provides APIs to inspect and adjust profile-level HTTP cache quotas, benefiting static-content-heavy applications and reducing cache directory footprint when unused.
+    </li>
+    <li>
+      <strong>
+        Preconnection Queueing (
+        <a href="https://developer.android.com/reference/kotlin/androidx/webkit/Profile#enqueuePreconnect(java.lang.String)"><code translate="no" dir="ltr">Profile#enqueuePreconnect</code></a>
+        ):
+      </strong>
+      Allows enqueuing preconnect requests in advance without forcing an immediate startup WebView.
+    </li>
+    <li>
+      <strong>
+        Favicon Download Optimization (
+        <a href="https://developer.android.com/reference/kotlin/androidx/webkit/WebSettingsCompat#setDownloadFaviconsEnabled(android.webkit.WebSettings,boolean)"><code translate="no" dir="ltr">WebSettingsCompat#setDownloadFaviconsEnabled</code></a>
+        ):
+      </strong>
+      Enables apps to disable automatic Favicon fetching on navigation to reduce memory consumption and network bandwidth.
+    </li>
+    <li>
+      <strong>
+        Prerender Management (
+        <a href="https://developer.android.com/reference/kotlin/androidx/webkit/Profile#getMaxPrerenders()"><code translate="no" dir="ltr">Profile#getMaxPrerenders</code></a>
+        /
+        <code translate="no" dir="ltr">clearMaxPrerenders</code>
+        ):
+      </strong>
+      Introduces methods to retrieve and reset maximum allowed concurrent prerenders.
+    </li>
+    <li>
+      <strong>API Modernization &amp; Cleanups:</strong>
+      Deprecated
+      <code translate="no" dir="ltr">SpeculativeLoadingParameters</code>
+      in favor of
+      <code translate="no" dir="ltr">PrerenderParameters</code>
+      /
+      <code translate="no" dir="ltr">PrefetchParameters</code>
+      . Removed experimental
+      <code translate="no" dir="ltr">Profile#setOriginMatchedHeader</code>
+      (superseded by
+      <a href="https://developer.android.com/reference/androidx/webkit/Profile#addCustomHeader(androidx.webkit.CustomHeader)"><code translate="no" dir="ltr">Profile#addCustomHeader</code></a>
+      in 1.15.0).
+    </li>
+    <li>
+      <strong>Proactive Crash Prevention Lint Rule:</strong>
+      Adds an AndroidX lint check that flags missing
+      <a href="https://developer.android.com/reference/android/webkit/WebViewClient#onRenderProcessGone(android.webkit.WebView,%20android.webkit.RenderProcessGoneDetail)"><code translate="no" dir="ltr">onRenderProcessGone</code></a>
+      implementations when a custom
+      <code translate="no" dir="ltr">WebViewClient</code>
+      is attached, encouraging developers to handle renderer crashes gracefully.
+    </li>
+  </ul>

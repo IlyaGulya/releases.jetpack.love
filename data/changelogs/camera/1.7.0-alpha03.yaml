@@ -1,0 +1,202 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.7.0-alpha03
+releaseDate: 2026-08-12
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha03" data-text="Version 1.7.0-alpha03" tabindex="-1">Version 1.7.0-alpha03</h3>
+  <p>August 12, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.7.0-alpha03</code>
+    is released. Version 1.7.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/01f3396e92df911805f22836f27c7057324e40ff..bb117e26ce89b888d6f928ff7b604913a1da43f2/camera">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Deprecated legacy Camera2Interop APIs (
+      <code translate="no" dir="ltr">Camera2Interop.Extender</code>
+      ,
+      <code translate="no" dir="ltr">Camera2CameraControl</code>
+      ,
+      <code translate="no" dir="ltr">Camera2CameraInfo</code>
+      , and
+      <code translate="no" dir="ltr">CaptureRequestOptions</code>
+      ) in favor of
+      <code translate="no" dir="ltr">Camera2Interop</code>
+      configurator factory methods and Kotlin extension functions. (
+      <a href="https://android-review.googlesource.com/#/q/Ib084541e51100bde3afc9e2936f4ac318e468685">Ib0845</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/529609261">b/529609261</a>
+      )
+    </li>
+    <li>
+      Added Kotlin DSL
+      <code translate="no" dir="ltr">camera2Interop</code>
+      extension blocks for
+      <code translate="no" dir="ltr">preview</code>
+      ,
+      <code translate="no" dir="ltr">imageAnalysis</code>
+      ,
+      <code translate="no" dir="ltr">videoCapture</code>
+      ,
+      <code translate="no" dir="ltr">imageCapture</code>
+      , and
+      <code translate="no" dir="ltr">SessionConfig.Builder</code>
+      , as well as
+      <code translate="no" dir="ltr">CameraControl.applyCamera2InteropAsync</code>
+      extension function. (
+      <a href="https://android-review.googlesource.com/#/q/I51af9f5ba6610b2004db2387d8389a3df9d331d4">I51af9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/529609261">b/529609261</a>
+      )
+    </li>
+    <li>
+      Added new
+      <code translate="no" dir="ltr">Camera2Interop</code>
+      configurator factory methods (
+      <code translate="no" dir="ltr">forUseCase</code>
+      ,
+      <code translate="no" dir="ltr">forImageCapture</code>
+      ,
+      <code translate="no" dir="ltr">forSessionConfig</code>
+      ,
+      <code translate="no" dir="ltr">forCameraControl</code>
+      ) and corresponding
+      <code translate="no" dir="ltr">setInterop</code>
+      /
+      <code translate="no" dir="ltr">applyInteropAsync</code>
+      methods on
+      <code translate="no" dir="ltr">Preview.Builder</code>
+      ,
+      <code translate="no" dir="ltr">ImageCapture.Builder</code>
+      ,
+      <code translate="no" dir="ltr">ImageAnalysis.Builder</code>
+      ,
+      <code translate="no" dir="ltr">VideoCapture.Builder</code>
+      ,
+      <code translate="no" dir="ltr">SessionConfig.Builder</code>
+      , and
+      <code translate="no" dir="ltr">CameraControl</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0007be820431fb2f1f3097e32fb1464de87ee493">I0007b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/529609261">b/529609261</a>
+      )
+    </li>
+    <li>
+      Added helper methods to
+      <code translate="no" dir="ltr">Camera2Interop</code>
+      and equivalent Kotlin extension properties (
+      <code translate="no" dir="ltr">CameraInfo.cameraId</code>
+      ,
+      <code translate="no" dir="ltr">CameraInfo.cameraCharacteristics</code>
+      , and
+      <code translate="no" dir="ltr">String.toCameraSelector()</code>
+      ) to retrieve Camera2 camera ID and characteristics from
+      <code translate="no" dir="ltr">CameraInfo</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I118033c739e656b9991e40a8c3d82bf559655d06">I11803</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/529609261">b/529609261</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Preview.setMirrorMode</code>
+      ,
+      <code translate="no" dir="ltr">Preview.getMirrorMode</code>
+      and
+      <code translate="no" dir="ltr">VideoCapture.setMirrorMode</code>
+      to public APIs, and removed the
+      <code translate="no" dir="ltr">ExperimentalMirrorMode</code>
+      annotation. (
+      <a href="https://android-review.googlesource.com/#/q/I4ed60c216e3af602b136402499806ea85b9d881a">I4ed60</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/519794349">b/519794349</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/470629643">b/470629643</a>
+      )
+    </li>
+    <li>
+      Added Kotlin DSL builders
+      <code translate="no" dir="ltr">preview</code>
+      { ... },
+      <code translate="no" dir="ltr">imageCapture</code>
+      { ... },
+      <code translate="no" dir="ltr">imageAnalysis</code>
+      { ... }, and
+      <code translate="no" dir="ltr">videoCapture</code>
+      { ... } for creating
+      <code translate="no" dir="ltr">UseCases</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I91df9571b9c9a3216fa778c17b7a89d816c75958">I91df9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/530013719">b/530013719</a>
+      )
+    </li>
+    <li>
+      Modified ImagePlane.buffer to be non-nullable ByteBuffer. (
+      <a href="https://android-review.googlesource.com/#/q/I9859312ceb34b89e32a39924a8549c3ccdf0bb89">I98593</a>
+      )
+    </li>
+    <li>
+      Deprecated the property getters on
+      <code translate="no" dir="ltr">SessionConfig.Builder</code>
+      ,
+      <code translate="no" dir="ltr">HighSpeedVideoSessionConfig.Builder</code>
+      , and
+      <code translate="no" dir="ltr">ExtensionSessionConfig.Builder</code>
+      in Kotlin DSL to enforce write-only properties. (
+      <a href="https://android-review.googlesource.com/#/q/I2875bd26ff72f5832b67bc3678e7f6e247a46669">I2875b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/534570559">b/534570559</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where binding multiple
+      <code translate="no" dir="ltr">Preview</code>
+      use cases with an
+      <code translate="no" dir="ltr">OverlayEffect</code>
+      caused one Preview stream delivery failure. (
+      <a href="https://android-review.googlesource.com/#/q/I7a383e469a5f657b7af9524c4c87b9d093ec32ad">I7a383</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/532577546">b/532577546</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/532924417">b/532924417</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">Recording.pause()</code>
+      and
+      <code translate="no" dir="ltr">Recording.resume()</code>
+      failed when switching cameras during a persistent video recording. (
+      <a href="https://android-review.googlesource.com/#/q/I710042e26ed0b49bf485193c517d66adf1919223">I71004</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/532327691">b/532327691</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/367121726">b/367121726</a>
+      )
+    </li>
+    <li>
+      Fixed HAL crashes when using Zero-Shutter Lag (ZSL) while zooming across physical camera boundaries on multi-camera devices. (
+      <a href="https://android-review.googlesource.com/#/q/I1c3746c0abcfc151332777dbc1b74f2a1720be50">I1c374</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/527782712">b/527782712</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/514757157">b/514757157</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where HDR video recording could fail on Samsung Galaxy S25, S26, and Fold 7 devices. (
+      <a href="https://android-review.googlesource.com/#/q/Ic0827a330651fcf77177f269010dff1f52c54c37">Ic0827</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/529618629">b/529618629</a>
+      )
+    </li>
+  </ul>

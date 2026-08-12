@@ -1,0 +1,740 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.13.0-alpha01
+releaseDate: 2026-08-12
+#language=html
+changelogHtml: |
+  <h3 id="1.13.0-alpha01" data-text="Version 1.13.0-alpha01" tabindex="-1">Version 1.13.0-alpha01</h3>
+  <p>August 12, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.13.0-alpha01</code>
+    is released. Version 1.13.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/963bf914f78b389bdddef0da7f36bee19d897274..e9a673661e45bb2eaea8dd43632ce3e1ea6a2094/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Adds the
+      <code translate="no" dir="ltr">isVelocityTrackerMinSampleSizeFixEnabled</code>
+      feature flag (
+      <a href="https://android-review.googlesource.com/#/q/Ic9b51b17b70b7f1cf46546ce0676671a8e889e78">Ic9b51</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/533444810">b/533444810</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/533775739">b/533775739</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/523705159">b/523705159</a>
+      )
+    </li>
+    <li>
+      Removed obsolete
+      <code translate="no" dir="ltr">ExperimentalVelocityTrackerApi</code>
+      annotation class. (
+      <a href="https://android-review.googlesource.com/#/q/I6f9c6c85e7adffaca203806b0a202e0ef4ac6b60">I6f9c6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/483449576">b/483449576</a>
+      )
+    </li>
+    <li>
+      Remove isClearNestedScrollCoroutineScopeFixEnabled flag (
+      <a href="https://android-review.googlesource.com/#/q/Iedfd7dbc2135c79f85b42fab5196f8f2fdb8e986">Iedfd7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/506963276">b/506963276</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TextFieldState</code>
+      now saves and restores text style information.
+      <code translate="no" dir="ltr">AnnotatedString.Annotation.Saver</code>
+      is now public to allow saving and restoring of
+      <code translate="no" dir="ltr">AnnotatedString.Annotation</code>
+      objects. (
+      <a href="https://android-review.googlesource.com/#/q/I8b53310e091fb8dbf3b967a3d05160a7ee7bc161">I8b533</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/135556699">b/135556699</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">TestFailurePolicy</code>
+      and
+      <code translate="no" dir="ltr">TestFailureHandler</code>
+      in
+      <code translate="no" dir="ltr">ComposeTestConfig</code>
+      to support custom failure event handlers and failure artifact context in Compose UI tests. (
+      <a href="https://android-review.googlesource.com/#/q/Ib1a85f1a40aedd450a481d5da06403e568f20109">Ib1a85</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/414802953">b/414802953</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/291106656">b/291106656</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/430644575">b/430644575</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">SemanticsProperties</code>
+      .alpha to expose the resolved composite parent-child alpha values of layout nodes for testing. (
+      <a href="https://android-review.googlesource.com/#/q/Ifddb6fbc7390507bdb5a3e8e2e5c226bec8b4dc1">Ifddb6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/524035059">b/524035059</a>
+      )
+    </li>
+    <li>
+      Deprecated the
+      <code translate="no" dir="ltr">createComposeRule</code>
+      ,
+      <code translate="no" dir="ltr">createAndroidComposeRule</code>
+      , and
+      <code translate="no" dir="ltr">createEmptyComposeRule</code>
+      overloads in the
+      <code translate="no" dir="ltr">ui-test-junit4</code>
+      v2 package that take individual parameters. Use the overloads accepting
+      <code translate="no" dir="ltr">ComposeUiTestConfig</code>
+      or the parameterless overloads, which use a default
+      <code translate="no" dir="ltr">ComposeUiTestConfig</code>
+      . Note that a default
+      <code translate="no" dir="ltr">ComposeUiTestConfig</code>
+      sets the initial input mode to
+      <code translate="no" dir="ltr">InputMode.Touch</code>
+      at the start of each test. This might cause existing tests expecting keyboard mode (
+      <code translate="no" dir="ltr">InputMode.Keyboard</code>
+      ) to fail. To fix affected tests, pass
+      <code translate="no" dir="ltr">ComposeUiTestConfig(inputMode = InputMode.Keyboard)</code>
+      explicitly and remove any manual setup logic for input modes. Alternatively, you can set
+      <code translate="no" dir="ltr">AndroidComposeUiTestFlags.isInputModeSetForDeviceTests = false</code>
+      to temporarily disable setting the default input mode at the start of each test and retain legacy behavior while migrating your tests. This flag will be removed in the future, so if only a small number of tests fail, it is recommended to resolve the tests directly by changing their configuration instead. (
+      <a href="https://android-review.googlesource.com/#/q/Idfb86eba076ecc987afbe28d6e91627b292db871">Idfb86</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/504195741">b/504195741</a>
+      )
+    </li>
+    <li>
+      No-argument calls to
+      <code translate="no" dir="ltr">createComposeRule</code>
+      and
+      <code translate="no" dir="ltr">createAndroidComposeRule</code>
+      (e.g.,
+      <code translate="no" dir="ltr">createComposeRule()</code>
+      or
+      <code translate="no" dir="ltr">createAndroidComposeRule&lt;MyActivity&gt;()</code>
+      ) now use a default
+      <code translate="no" dir="ltr">ComposeUiTestConfig</code>
+      , which sets the initial input mode to
+      <code translate="no" dir="ltr">InputMode.Touch</code>
+      at the start of each test, ensuring the device is in a clean state and preventing previous input mode changes from leaking across tests. However, this new default touch mode might cause existing tests expecting keyboard mode (
+      <code translate="no" dir="ltr">InputMode.Keyboard</code>
+      ) to fail. To fix affected tests, pass
+      <code translate="no" dir="ltr">ComposeUiTestConfig(inputMode = InputMode.Keyboard)</code>
+      explicitly and remove any manual setup logic for input modes. Alternatively, you can set
+      <code translate="no" dir="ltr">AndroidComposeUiTestFlags.isInputModeSetForDeviceTests = false</code>
+      to temporarily disable setting the default input mode at the start of each test and retain legacy behavior while migrating your tests. This flag will be removed in the future, so if only a small number of tests fail, it is recommended to resolve the tests directly by changing their configuration instead. (
+      <a href="https://android-review.googlesource.com/#/q/Idc4ddba595fdc7cfc86e382bff45e20e812f6f0a">Idc4dd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/267253920">b/267253920</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/504195741">b/504195741</a>
+      )
+    </li>
+    <li>
+      Annotated overridable empty base methods across Compose with
+      <code translate="no" dir="ltr">@EmptySuper</code>
+      to denote that overriding implementations should not invoke super. (
+      <a href="https://android-review.googlesource.com/#/q/Id407ba2271cefe08c55717409ca22dbf23922c9e">Id407b</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ExposedDropdownMenu</code>
+      is now an extension function on
+      <code translate="no" dir="ltr">ExposedDropdownMenuBoxScope</code>
+      instead of a member. You may need to update your code with a new import. (
+      <a href="https://android-review.googlesource.com/#/q/Ie8a65e982bcc6ee222ce0a84ed63ad9445760f6d">Ie8a65</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/356452026">b/356452026</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">blurBehindRadius</code>
+      ,
+      <code translate="no" dir="ltr">backgroundBlurRadius</code>
+      ,
+      <code translate="no" dir="ltr">scrimAlpha</code>
+      , and
+      <code translate="no" dir="ltr">windowShape</code>
+      properties to
+      <code translate="no" dir="ltr">DialogProperties</code>
+      , as well as
+      <code translate="no" dir="ltr">blurBehindRadius</code>
+      and
+      <code translate="no" dir="ltr">scrimAlpha</code>
+      to
+      <code translate="no" dir="ltr">PopupProperties</code>
+      . Developers can now configure background blur, window blur, and scrim opacity directly on Dialogs and Popups. Setting
+      <code translate="no" dir="ltr">windowShape</code>
+      allows clipping dialog window background blurs to rounded corners. (
+      <a href="https://android-review.googlesource.com/#/q/I5d437de649109da7be323959113eefa5f1f4fb3b">I5d437</a>
+      )
+    </li>
+    <li>
+      Removed feature flag - Compose buttons now correctly retain accessibility focus and do not flicker when explore by touch is active, as hover events are correctly marked as handled. (
+      <a href="https://android-review.googlesource.com/#/q/Ib1c806c95d9248e1be830b8063d998fd3c56dbdb">Ib1c80</a>
+      )
+    </li>
+    <li>
+      Added merge overloads to
+      <code translate="no" dir="ltr">FontVariation.Settings</code>
+      for merging other settings collections or overriding settings inline. (
+      <a href="https://android-review.googlesource.com/#/q/I6340ccd6a8231ecf47cc0afab5edfe892212fe49">I6340c</a>
+      )
+    </li>
+    <li>
+      Exposed
+      <code translate="no" dir="ltr">variationSettings</code>
+      on the Font interface, defaulting to the new
+      <code translate="no" dir="ltr">FontVariation.Empty</code>
+      . Optimized the
+      <code translate="no" dir="ltr">FontVariation.Settings</code>
+      vararg constructor to use
+      <code translate="no" dir="ltr">asList()</code>
+      to avoid array copy allocations. (
+      <a href="https://android-review.googlesource.com/#/q/I9c22f780554fe88217cfd2c426ca63ff8b72556b">I9c22f</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">NestedScrollDispatcher.coroutineScope</code>
+      property to safely return a cancelled
+      <code translate="no" dir="ltr">CoroutineScope</code>
+      when unattached or detached. (
+      <a href="https://android-review.googlesource.com/#/q/I9b1120913c72b7e950bf0bc90107da4fd008f846">I9b112</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/535290281">b/535290281</a>
+      )
+    </li>
+    <li>
+      Deprecated the
+      <code translate="no" dir="ltr">runComposeUiTest</code>
+      ,
+      <code translate="no" dir="ltr">runAndroidComposeUiTest</code>
+      , and
+      <code translate="no" dir="ltr">AndroidComposeUiTestEnvironment</code>
+      overloads that take individual
+      <code translate="no" dir="ltr">effectContext</code>
+      ,
+      <code translate="no" dir="ltr">runTestContext</code>
+      , and
+      <code translate="no" dir="ltr">testTimeout</code>
+      parameters. Use the overloads accepting
+      <code translate="no" dir="ltr">ComposeUiTestConfig</code>
+      or the parameterless overloads, which use a default
+      <code translate="no" dir="ltr">ComposeUiTestConfig</code>
+      . Note that a default
+      <code translate="no" dir="ltr">ComposeUiTestConfig</code>
+      sets the initial input mode to
+      <code translate="no" dir="ltr">InputMode.Touch</code>
+      at the start of each test. This might cause existing tests expecting keyboard mode (
+      <code translate="no" dir="ltr">InputMode.Keyboard</code>
+      ) to fail. To fix affected tests, pass
+      <code translate="no" dir="ltr">ComposeUiTestConfig(inputMode = InputMode.Keyboard)</code>
+      explicitly and remove any manual setup logic for input modes. Alternatively, you can set
+      <code translate="no" dir="ltr">AndroidComposeUiTestFlags.isInputModeSetForDeviceTests = false</code>
+      to temporarily disable setting the default input mode at the start of each test and retain legacy behavior while migrating your tests. This flag will be removed in the future, so if only a small number of tests fail, it is recommended to resolve the tests directly by changing their configuration instead. (
+      <a href="https://android-review.googlesource.com/#/q/Ia6d55228f699fee4e278ce25372b711fba1a8c4f">Ia6d55</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/504195741">b/504195741</a>
+      )
+    </li>
+    <li>
+      Calls to
+      <code translate="no" dir="ltr">runComposeUiTest</code>
+      ,
+      <code translate="no" dir="ltr">runAndroidComposeUiTest</code>
+      , and
+      <code translate="no" dir="ltr">AndroidComposeUiTestEnvironment</code>
+      with only a trailing lambda now use a default
+      <code translate="no" dir="ltr">ComposeUiTestConfig</code>
+      , which sets the initial input mode to
+      <code translate="no" dir="ltr">InputMode.Touch</code>
+      at the start of each test, ensuring the device is in a clean state and preventing previous input mode changes from leaking across tests. However, this new default touch mode might cause existing tests expecting keyboard mode (
+      <code translate="no" dir="ltr">InputMode.Keyboard</code>
+      ) to fail. To fix affected tests, pass
+      <code translate="no" dir="ltr">ComposeUiTestConfig(inputMode = InputMode.Keyboard)</code>
+      explicitly and remove any manual setup logic for input modes. Alternatively, you can set
+      <code translate="no" dir="ltr">AndroidComposeUiTestFlags.isInputModeSetForDeviceTests = false</code>
+      to temporarily disable setting the default input mode at the start of each test and retain legacy behavior while migrating your tests. This flag will be removed in the future, so if only a small number of tests fail, it is recommended to resolve the tests directly by changing their configuration instead. (
+      <a href="https://android-review.googlesource.com/#/q/I8c85d4d1fcd75741bd6f26f14a6f1c6ce75075ce">I8c85d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/504195741">b/504195741</a>
+      )
+    </li>
+    <li>
+      Added @
+      <code translate="no" dir="ltr">CheckResult</code>
+      to
+      <code translate="no" dir="ltr">SemanticsNodeInteraction.isDisplayed</code>
+      () and
+      <code translate="no" dir="ltr">isNotDisplayed</code>
+      () to ensure their return values are asserted, preventing silent test failures when developers mistakenly use them instead of assertion APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I1b447087e19fde4f9a64dd462e68bb21d14d463a">I1b447</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/508178494">b/508178494</a>
+      )
+    </li>
+    <li>
+      The flag
+      <code translate="no" dir="ltr">AndroidComposeUiFlag.isDelayAndroidViewsHandlerCreationEnabled</code>
+      will cause the
+      <code translate="no" dir="ltr">ViewGroup</code>
+      that contains
+      <code translate="no" dir="ltr">AndroidView</code>
+      s to only be instantiated when an
+      <code translate="no" dir="ltr">AndroidView</code>
+      is added to improve performance of
+      <code translate="no" dir="ltr">ComposeView</code>
+      s that don't have
+      <code translate="no" dir="ltr">AndroidView</code>
+      s. When the flag is disabled, the containing
+      <code translate="no" dir="ltr">ViewGroup</code>
+      is instantiated and attached when the
+      <code translate="no" dir="ltr">ComposeView</code>
+      is attached to the window. (
+      <a href="https://android-review.googlesource.com/#/q/I306a380190e5f47c94a886d0911d7d3f5d30a6bf">I306a3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/524283041">b/524283041</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">coroutineScopeOrNull()</code>
+      in
+      <code translate="no" dir="ltr">NestedScrollDispatcher</code>
+      , an alternative API to access the dispatcher's parent coroutine scope. (
+      <a href="https://android-review.googlesource.com/#/q/I18c0f6c699f5ecdb9c59a2551a2c75d7efe3ae02">I18c0f</a>
+      )
+    </li>
+    <li>
+      Change
+      <code translate="no" dir="ltr">clearCallbacks</code>
+      to
+      <code translate="no" dir="ltr">runAndClearCallbacks</code>
+      to make sure that cleanup actions are always executed. (
+      <a href="https://android-review.googlesource.com/#/q/If4720427a3a2ed4e26dd6f7eb914202b8a3be1ef">If4720</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/526700075">b/526700075</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ComposeTestConfig</code>
+      has been renamed to
+      <code translate="no" dir="ltr">ComposeUiTestConfig</code>
+      and moved from the v2 package to the parent
+      <code translate="no" dir="ltr">androidx.compose.ui.test</code>
+      package. (
+      <a href="https://android-review.googlesource.com/#/q/I1d2a1c786ca9aff9c67cbe91dfbbba3afab24a74">I1d2a1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/504195741">b/504195741</a>
+      )
+    </li>
+    <li>
+      Added a
+      <code translate="no" dir="ltr">timeoutMillis</code>
+      parameter (defaulting to 2000 ms) to
+      <code translate="no" dir="ltr">SemanticsNodeInteraction.captureToImage</code>
+      () to allow configuring a custom timeout when waiting for redraw passes. (
+      <a href="https://android-review.googlesource.com/#/q/Ib7d628be4c9d7a697514c58e91b958099cd99494">Ib7d62</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/249501063">b/249501063</a>
+      )
+    </li>
+    <li>
+      Adds historical information to indirect pointer input changes (
+      <a href="https://android-review.googlesource.com/#/q/Ie62d2a9bc5fc23c69fd39a0b03a7731511218f15">Ie62d2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/526961645">b/526961645</a>
+      )
+    </li>
+    <li>
+      Added a new
+      <code translate="no" dir="ltr">hintText</code>
+      semantic property to represent hint text in text fields, improving accessibility support by mapping to
+      <code translate="no" dir="ltr">AccessibilityNodeInfo</code>
+      .
+      <code translate="no" dir="ltr">hintText</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib65da8c1f8179c1dfd5f2528b54209c155888ae3">Ib65da</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/448376876">b/448376876</a>
+      )
+    </li>
+    <li>
+      Optimized
+      <code translate="no" dir="ltr">CompositionLocal</code>
+      resolution by resolving them dynamically from
+      <code translate="no" dir="ltr">LocalOwner</code>
+      and
+      <code translate="no" dir="ltr">LocalAndroidComposeView</code>
+      on-demand, which can be toggled using
+      <code translate="no" dir="ltr">ComposeUiFlags.isMinimalistLocalsEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2bf6d14d06a9f539dbe87ee365e8eab12e634fe5">I2bf6d</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">androidx.benchmark</code>
+      now has a
+      <code translate="no" dir="ltr">minSdk</code>
+      of 24. (
+      <a href="https://android-review.googlesource.com/#/q/Ic2a8500af8a2bf092fcc1b27d9a599aa5f3b81d7">Ic2a85</a>
+      )
+    </li>
+    <li>
+      Added an experimental flag
+      <code translate="no" dir="ltr">isPropagateHideFromAccessibilityToMergingChildrenEnabled</code>
+      to
+      <code translate="no" dir="ltr">AndroidComposeUiFlags</code>
+      to control propagation of
+      <code translate="no" dir="ltr">hideFromAccessibility</code>
+      to merging children. (
+      <a href="https://android-review.googlesource.com/#/q/Ie41ffbb2b8effa431a286ae3a0e35cac94a50b3d">Ie41ff</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/483506400">b/483506400</a>
+      )
+    </li>
+    <li>
+      Promoted
+      <code translate="no" dir="ltr">ComposeUiTest</code>
+      and related testing APIs (including
+      <code translate="no" dir="ltr">ComposeTestRule</code>
+      and
+      <code translate="no" dir="ltr">waitUntil</code>
+      variants) from Experimental to stable. (
+      <a href="https://android-review.googlesource.com/#/q/Iaec777f6d138a876a9e94c96537081c52a10257d">Iaec77</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/471148519">b/471148519</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/485124363">b/485124363</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">TalkBack</code>
+      navigation order in merged traversal groups. If necessary, this change can be reverted by disabling
+      <code translate="no" dir="ltr">AndroidComposeUiFlags.isTraversalGroupSortingEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I5ae095f25b46bf51f8eee0bb6b431a59650b6229">I5ae09</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/285043826">b/285043826</a>
+      )
+    </li>
+    <li>
+      Removes experimental outdated
+      <code translate="no" dir="ltr">IndirectPointerEvent</code>
+      helper function. (
+      <a href="https://android-review.googlesource.com/#/q/I05deed7e712f7a964d434a92e5fdba45a143798c">I05dee</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/499336763">b/499336763</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/501098299">b/501098299</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/501098376">b/501098376</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/513249467">b/513249467</a>
+      )
+    </li>
+    <li>
+      Replace experimental @AnimationToolingApi with @RestrictTo API that has stricter tracking guarantees. (
+      <a href="https://android-review.googlesource.com/#/q/Ia4fd1311bd4c978d73c8af53208152879143b603">Ia4fd1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/524317805">b/524317805</a>
+      )
+    </li>
+    <li>
+      Added the
+      <code translate="no" dir="ltr">onDescendants()</code>
+      selector to find all semantics nodes within the subtree of a given node. (
+      <a href="https://android-review.googlesource.com/#/q/Id6b9bfe2370212edeab9ced9c2851765af643884">Id6b9b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/444588117">b/444588117</a>
+      )
+    </li>
+    <li>
+      Deprecated
+      <code translate="no" dir="ltr">waitUntilNodeCount</code>
+      ,
+      <code translate="no" dir="ltr">waitUntilAtLeastOneExists</code>
+      ,
+      <code translate="no" dir="ltr">waitUntilExactlyOneExists</code>
+      , and
+      <code translate="no" dir="ltr">waitUntilDoesNotExist</code>
+      helper APIs that do not accept
+      <code translate="no" dir="ltr">useUnmergedTree</code>
+      . Added new overloads that accept
+      <code translate="no" dir="ltr">useUnmergedTree</code>
+      to support waiting for nodes in the unmerged semantics tree. (
+      <a href="https://android-review.googlesource.com/#/q/If675f2e50e38a998214fcf62f8ba2870ecebfe61">If675f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/268432145">b/268432145</a>
+      )
+    </li>
+    <li>
+      Added a
+      <code translate="no" dir="ltr">tolerance</code>
+      parameter to
+      <code translate="no" dir="ltr">SemanticsNodeInteraction</code>
+      size and position assertions (
+      <code translate="no" dir="ltr">assertWidthIsEqualTo</code>
+      ,
+      <code translate="no" dir="ltr">assertHeightIsEqualTo</code>
+      ,
+      <code translate="no" dir="ltr">assertTouchWidthIsEqualTo</code>
+      ,
+      <code translate="no" dir="ltr">assertTouchHeightIsEqualTo</code>
+      ,
+      <code translate="no" dir="ltr">assertPositionInRootIsEqualTo</code>
+      ,
+      <code translate="no" dir="ltr">assertTopPositionInRootIsEqualTo</code>
+      ,
+      <code translate="no" dir="ltr">assertLeftPositionInRootIsEqualTo</code>
+      ) to allow developers to configure the comparison threshold, improving test robustness across different screen densities. (
+      <a href="https://android-review.googlesource.com/#/q/I3a477e0a563e098c1aa9dbb75fe5affca1b27055">I3a477</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/202752461">b/202752461</a>
+      )
+    </li>
+    <li>
+      Compose testing now supports main-thread synchronization. You can now safely invoke synchronization APIs (such as
+      <code translate="no" dir="ltr">waitForIdle</code>
+      () and
+      <code translate="no" dir="ltr">runOnIdle</code>
+      ()) and execute Compose assertions or actions directly within UI/main thread callbacks. (
+      <a href="https://android-review.googlesource.com/#/q/I0247ab70a12a59fb5a0f7108b6e1b3c9e246414f">I0247a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/498478569">b/498478569</a>
+      )
+    </li>
+    <li>
+      Introduced a new configuration model (
+      <code translate="no" dir="ltr">ComposeTestConfig</code>
+      ) for Compose test APIs to simplify parameter management and enhance scalability. Added support for configuring input mode (Touch/Keyboard) directly via
+      <code translate="no" dir="ltr">ComposeTestConfig</code>
+      , ensuring automatic setup and reset to prevent test flakiness due to state leakage. Added new overloads for
+      <code translate="no" dir="ltr">run*ComposeUiTest</code>
+      and
+      <code translate="no" dir="ltr">create*ComposeRule</code>
+      that accept the
+      <code translate="no" dir="ltr">ComposeTestConfig</code>
+      object. (
+      <a href="https://android-review.googlesource.com/#/q/Ia3da96e5a84078ddbd6a209941f9d44ff7757572">Ia3da9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/267253920">b/267253920</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/504195741">b/504195741</a>
+      )
+    </li>
+    <li>
+      Fixed a crash in Compose Preview when using
+      <code translate="no" dir="ltr">PreviewParameterProvider</code>
+      with Media Query properties (
+      <code translate="no" dir="ltr">Posture</code>
+      ,
+      <code translate="no" dir="ltr">PointerPrecision</code>
+      , etc.) by changing their underlying representation from
+      <code translate="no" dir="ltr">String</code>
+      to
+      <code translate="no" dir="ltr">Int</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic8f920992acb07e68bde7a4b7038850e73275cc9">Ic8f92</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/489939558">b/489939558</a>
+      )
+    </li>
+    <li>
+      Added an
+      <code translate="no" dir="ltr">includeInputText</code>
+      parameter to
+      <code translate="no" dir="ltr">hasTextExactly</code>
+      and
+      <code translate="no" dir="ltr">assertTextEquals</code>
+      to enable exact matching on raw input text alongside visual text. (
+      <a href="https://android-review.googlesource.com/#/q/Iee3294c1de1ae07a6e67f8f46c7a5ee875e6c128">Iee329</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/519026043">b/519026043</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Optimized
+      <code translate="no" dir="ltr">SaveableStateRegistry.performSave()</code>
+      to prevent
+      <code translate="no" dir="ltr">HashMap</code>
+      allocations. Uses
+      <code translate="no" dir="ltr">ScatterMap</code>
+      internally. (
+      <a href="https://android-review.googlesource.com/#/q/I7d510485f5cab4972f6510ae1b54e6ba26e7265e">I7d510</a>
+      )
+    </li>
+    <li>
+      Populated text colors in AccessibilityNodeInfo.ExtraRenderingInfo for Text Composables. (
+      <a href="https://android-review.googlesource.com/#/q/I11c9428b30d35780735514f15847a9aa33c92fad">I11c94</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/518049030">b/518049030</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where accessing
+      <code translate="no" dir="ltr">NestedScrollDispatcher.coroutineScopeOrNull</code>
+      during layout node detachment threw an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      instead of returning
+      <code translate="no" dir="ltr">null</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I55634aa105e0e2acde209ee126b844470c2ccb7e">I55634</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/533444810">b/533444810</a>
+      )
+    </li>
+    <li>
+      Optimized file-level initialization of
+      <code translate="no" dir="ltr">compose:ui</code>
+      top-level value class properties by using dynamic getters. (
+      <a href="https://android-review.googlesource.com/#/q/I341847ebbb5da100cea88fa79609c0e03a3cb4af">I34184</a>
+      )
+    </li>
+    <li>
+      Optimized companion object initialization of
+      <code translate="no" dir="ltr">ui-unit</code>
+      value classes (
+      <code translate="no" dir="ltr">TextUnit</code>
+      ) by using dynamic getters. (
+      <a href="https://android-review.googlesource.com/#/q/If4a99dcd48522ee0431d8985393a8ec8e4de42d0">If4a99</a>
+      )
+    </li>
+    <li>
+      Optimized companion object initialization of
+      <code translate="no" dir="ltr">ui-graphics</code>
+      value classes (
+      <code translate="no" dir="ltr">BlendMode</code>
+      ,
+      <code translate="no" dir="ltr">Color</code>
+      , etc.) by using dynamic getters. (
+      <a href="https://android-review.googlesource.com/#/q/Iaa86a09be4cc6bd14675835fd1406cc7feb027f7">Iaa86a</a>
+      )
+    </li>
+    <li>
+      Optimized companion object initialization of
+      <code translate="no" dir="ltr">compose:ui:ui</code>
+      value classes (
+      <code translate="no" dir="ltr">Key</code>
+      ,
+      <code translate="no" dir="ltr">CompositingStrategy</code>
+      , etc.) by using dynamic getters. (
+      <a href="https://android-review.googlesource.com/#/q/I1a34088c147f081f31de01acbdd461037c4d7515">I1a340</a>
+      )
+    </li>
+    <li>
+      Optimized companion object initialization of
+      <code translate="no" dir="ltr">compose:ui</code>
+      text value classes (
+      <code translate="no" dir="ltr">TextAlign</code>
+      ,
+      <code translate="no" dir="ltr">TextOverflow</code>
+      ,
+      <code translate="no" dir="ltr">ImeAction</code>
+      , etc.) by using dynamic getters. (
+      <a href="https://android-review.googlesource.com/#/q/I776e065bb94ad519ebf4e218d1b192c72633ac81">I776e0</a>
+      )
+    </li>
+    <li>
+      Optimized companion object initialization of
+      <code translate="no" dir="ltr">compose:ui</code>
+      tooling and test value classes (
+      <code translate="no" dir="ltr">AnimatedVisibilityState</code>
+      ,
+      <code translate="no" dir="ltr">MouseButton</code>
+      ,
+      <code translate="no" dir="ltr">ScrollWheel</code>
+      ) by using dynamic getters. (
+      <a href="https://android-review.googlesource.com/#/q/I23e1bbb7635b79ef740275e41cd727132e085839">I23e1b</a>
+      )
+    </li>
+    <li>
+      Optimized companion object initialization of
+      <code translate="no" dir="ltr">compose:ui</code>
+      unit value classes (
+      <code translate="no" dir="ltr">Dp</code>
+      ,
+      <code translate="no" dir="ltr">DpOffset</code>
+      ,
+      <code translate="no" dir="ltr">TextUnitType</code>
+      , etc.) by using dynamic getters. (
+      <a href="https://android-review.googlesource.com/#/q/If5eb5f879de621d4dd249ff981d918635b2ae97d">If5eb5</a>
+      )
+    </li>
+    <li>
+      Optimized companion object initialization of
+      <code translate="no" dir="ltr">compose:ui</code>
+      geometry value classes (
+      <code translate="no" dir="ltr">Offset</code>
+      ,
+      <code translate="no" dir="ltr">Size</code>
+      ,
+      <code translate="no" dir="ltr">CornerRadius</code>
+      ) by using dynamic getters. (
+      <a href="https://android-review.googlesource.com/#/q/I3b11023d9efa5c7bd4999126e6f01447f19ce946">I3b110</a>
+      )
+    </li>
+    <li>
+      Optimized companion object initialization of
+      <code translate="no" dir="ltr">compose:ui</code>
+      value classes (
+      <code translate="no" dir="ltr">Role</code>
+      ,
+      <code translate="no" dir="ltr">FocusDirection</code>
+      ,
+      <code translate="no" dir="ltr">PointerEventType</code>
+      , etc.) by using dynamic getters. (
+      <a href="https://android-review.googlesource.com/#/q/Ie35dd3a2d55fe2b1d3b342d6d3af14b1e2995816">Ie35dd</a>
+      )
+    </li>
+    <li>
+      Correctly handle
+      <code translate="no" dir="ltr">BaselineShift.None</code>
+      and
+      <code translate="no" dir="ltr">BaselineShift.Unspecified</code>
+      , and
+      <code translate="no" dir="ltr">BaselineShift(0f)</code>
+      to avoid unnecessary slow layout passes. (
+      <a href="https://android-review.googlesource.com/#/q/I4350c991f6600519147e60890371c20acff33b67">I4350c</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where Dp values containing negative zero (-0.0) behaves differently in comparisons or equality checks from floating point comparisons or equality checks. (
+      <a href="https://android-review.googlesource.com/#/q/I7dbcfdfc5aed8ce26536adbd990029c5f3e67b18">I7dbcf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/525506543">b/525506543</a>
+      )
+    </li>
+    <li>
+      Cleans up API information (
+      <a href="https://android-review.googlesource.com/#/q/Ia8066818f7e33220445aaeafa9ecc0668cc4818b">Ia8066</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">Alignment.topRatio</code>
+      ,
+      <code translate="no" dir="ltr">Trim.isTrimFirstLineTop()</code>
+      and
+      <code translate="no" dir="ltr">Trim.isTrimLastLineBottom()</code>
+      are public APIs now (
+      <a href="https://android-review.googlesource.com/#/q/I84f62b48e93f8ec56b7a070977ac8b5f4a342be3">I84f62</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_112_2" data-text="Version 1.12" tabindex="-1">Version 1.12</h2>

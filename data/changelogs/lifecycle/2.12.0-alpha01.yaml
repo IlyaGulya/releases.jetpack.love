@@ -1,0 +1,52 @@
+libraryId: lifecycle
+groupId: androidx.lifecycle
+version: 2.12.0-alpha01
+releaseDate: 2026-08-12
+#language=html
+changelogHtml: |
+  <h3 id="2.12.0-alpha01" data-text="Version 2.12.0-alpha01" tabindex="-1">Version 2.12.0-alpha01</h3>
+  <p>August 12, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-*:2.12.0-alpha01</code>
+    is released. Version 2.12.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a01f1a6c29523dd9b046b7f2a383d7d24559e316..384f3c27346bf5812f359330dc2310f0cbb66402/lifecycle">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Deprecate
+      <code translate="no" dir="ltr">lifecycle-compiler</code>
+      annotation processor artifact. Please migrate to
+      <code translate="no" dir="ltr">DefaultLifecycleObserver</code>
+      or
+      <code translate="no" dir="ltr">LifecycleEventObserver</code>
+      instead of using the annotation processor. (
+      <a href="https://android-review.googlesource.com/#/q/Ibf571850666e2850430ba0e21ef067924619446e">Ibf571</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/541926513">b/541926513</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SavedStateViewModelFactory</code>
+      and
+      <code translate="no" dir="ltr">AbstractSavedStateViewModelFactory</code>
+      now fail-fast immediately if the provided
+      <code translate="no" dir="ltr">SavedStateRegistryOwner</code>
+      does not implement
+      <code translate="no" dir="ltr">ViewModelStoreOwner</code>
+      , preventing delayed crashes during component recreation. (
+      <a href="https://android-review.googlesource.com/#/q/Icf31744863b188ad68aad7c253a8cdfc30f33ba1">Icf317</a>
+      )
+    </li>
+    <li>
+      Add system tracing to
+      <code translate="no" dir="ltr">LifecycleRegistry</code>
+      event dispatches. (
+      <a href="https://android-review.googlesource.com/#/q/Ie1f9268e65c36dae63145ac1dd82a4c115bb9389">Ie1f92</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/112161409">b/112161409</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_211_2" data-text="Version 2.11" tabindex="-1">Version 2.11</h2>
