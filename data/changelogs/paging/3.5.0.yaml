@@ -12,3 +12,39 @@ changelogHtml: |
     <a href="https://android.googlesource.com/platform/frameworks/support/+log/e1d643601cb239f3506da86f62e3b5619294e6e0..d0f5daa3f889fbbaad88763d8e0bc8dfbf90f03f/paging">these commits</a>
     .
   </p>
+  <p><strong>Important changes since 3.4.0:</strong></p>
+  <ul>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">Flow&lt;PagingData&gt;.asItemSnapshotListFlow</code>
+        operator to convert
+        <code translate="no" dir="ltr">Flow&lt;PagingData&gt;</code>
+        into a
+        <code translate="no" dir="ltr">Flow&lt;ItemSnapshotList&gt;</code>
+        . This means loaded data can now be accessed outside of the UI layer, allowing you to combine
+        <code translate="no" dir="ltr">Flow&lt;ItemSnapshotList&gt;</code>
+        with other data sources, cache and modify paged data locally, or expose paged data as part of a UI state and more.
+      </p>
+    </li>
+    <li>
+      <p>
+        Added extension functions
+        <code translate="no" dir="ltr">Pager.append</code>
+        and
+        <code translate="no" dir="ltr">Pager.prepend</code>
+        to manually load more data without scrolling.
+      </p>
+    </li>
+    <li>
+      <p>
+        Added extension functions
+        <code translate="no" dir="ltr">Pager.refresh</code>
+        and
+        <code translate="no" dir="ltr">Paging.retry</code>
+        to recover from load errors when using
+        <code translate="no" dir="ltr">asItemSnapshotListFlow</code>
+        API.
+      </p>
+    </li>
+  </ul>
