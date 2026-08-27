@@ -1,0 +1,37 @@
+libraryId: room3
+groupId: androidx.room3
+version: 3.0.2
+releaseDate: 2026-08-26
+#language=html
+changelogHtml: |
+  <h3 id="3.0.2" data-text="Version 3.0.2" tabindex="-1">Version 3.0.2</h3>
+  <p>August 26, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room3:room3-*:3.0.2</code>
+    is released. Version 3.0.2 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/4762f876f4d43c4c8853d8887f9b110fe25777e6..1ffbca32bd9efa4727ee1633c90a05f0bc7a6990/room3">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Room suspending queries and invalidation tracker operations will now throw an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      when called after the database has been closed. (
+      <a href="https://android-review.googlesource.com/#/q/I5755a9a565d0589a39c0b0c9137880730ce29fff">I5755a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/543076356">b/543076356</a>
+      )
+    </li>
+    <li>
+      Fix a deadlock that can occur on
+      <code translate="no" dir="ltr">@Transaction</code>
+      DAO wrapper suspend functions that would do a context switch and had the
+      <code translate="no" dir="ltr">AndroidSQLiteDriver</code>
+      configured. (
+      <a href="https://android-review.googlesource.com/#/q/886ac5a0761e7dfb83b79e3519a6408e11aaa9ca">886ac5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/543285472">b/543285472</a>
+      )
+    </li>
+  </ul>

@@ -195,6 +195,55 @@ changelogHtml: |
   </ul>
   <h2 id="core-pip_2" data-text="Core-pip" tabindex="-1">Core-pip</h2>
   <h3 id="version_10_23" data-text="Version 1.0" tabindex="-1">Version 1.0</h3>
+  <h4 id="core-pip-1.0.0-alpha04" data-text="Version 1.0.0-alpha04" tabindex="-1">Version 1.0.0-alpha04</h4>
+  <p>August 26, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core-pip:1.0.0-alpha04</code>
+    is released. Version 1.0.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ba3014c143b9c9782fe30bc766c5dced55e13453..0772d6d66c62698e7f7ef7c63313d8107364e7e8/core/core-pip">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">disablePipOnAppSwitch</code>
+      to
+      <code translate="no" dir="ltr">ContentPipExt</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ie5badea51bda65184ddd96d55986725f78fff275">Ie5bad</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/542307174">b/542307174</a>
+      )
+    </li>
+    <li>
+      Introduced a fallback
+      <code translate="no" dir="ltr">PiP</code>
+      solution in
+      <code translate="no" dir="ltr">androidx.core.pip</code>
+      to maintain Picture-in-Picture functionality during navigation gestures (like quick switch) where native
+      <code translate="no" dir="ltr">PiP</code>
+      may be suppressed. (
+      <a href="https://android-review.googlesource.com/#/q/If289a70b583cc87b323cf95e5cbc005dc3fb784a">If289a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/540480397">b/540480397</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Callback
+      <code translate="no" dir="ltr">onFinishContentPip</code>
+      if
+      <code translate="no" dir="ltr">enterPip</code>
+      fails (
+      <a href="https://android-review.googlesource.com/#/q/I04b7761fb0b5ad379d16b9207771abad0f76d9e1">I04b77</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/540480397">b/540480397</a>
+      )
+    </li>
+  </ul>
   <h4 id="core-pip-1.0.0-alpha03" data-text="Version 1.0.0-alpha03" tabindex="-1">Version 1.0.0-alpha03</h4>
   <p>July 01, 2026</p>
   <p>
@@ -451,3 +500,47 @@ changelogHtml: |
   </ul>
   <h2 id="core-telecom_2" data-text="Core-telecom" tabindex="-1">Core-telecom</h2>
   <h3 id="version_11_12" data-text="Version 1.1" tabindex="-1">Version 1.1</h3>
+  <h4 id="core-telecom-1.1.0-beta01" data-text="Version 1.1.0-beta01" tabindex="-1">Version 1.1.0-beta01</h4>
+  <p>August 26, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.core:core-telecom:1.1.0-beta01</code>
+    is released. Version 1.1.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/36e054a434241b1a13950458560fac44bac6ba35..8d3b23e12649b579ee037ebe0ea959237c39d198/core/core-telecom">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Bump core-telecom to 1.1.0-beta01. (
+      <a href="https://android-review.googlesource.com/#/q/I5b514adb8020ba8cf672a1cb46ef7bbac9ce68a0">I5b514</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/529775455">b/529775455</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">CallsManager#addCall</code>
+      could delay
+      <code translate="no" dir="ltr">CallControlScope</code>
+      entry by up to 2 seconds while waiting for starting audio endpoint resolution and Bluetooth stabilization. (
+      <a href="https://android-review.googlesource.com/#/q/Ia1e89af7a3e18a9feaefc3a79d5e9ceaefa2e952">Ia1e89</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/540450085">b/540450085</a>
+      )
+    </li>
+    <li>
+      Fixed a race condition where invoking
+      <code translate="no" dir="ltr">CallsManager#addCall</code>
+      or
+      <code translate="no" dir="ltr">CallsManager#addCallWithExtensions</code>
+      while another call setup is in progress could lead to deadlocks or silent failures in the OS
+      <code translate="no" dir="ltr">TransactionManager</code>
+      . Overlapping call setups are now immediately rejected with
+      <code translate="no" dir="ltr">CallException(ERROR_CALL_NOT_PERMITTED_AT_PRESENT_TIME)</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If0ac8aeefdff2ad4be661b6bff0df97b9c7a999e">If0ac8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/491156745">b/491156745</a>
+      )
+    </li>
+  </ul>

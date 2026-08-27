@@ -1,0 +1,88 @@
+libraryId: navigation3
+groupId: androidx.navigation3
+version: 1.2.0-beta01
+releaseDate: 2026-08-26
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0-beta01" data-text="Version 1.2.0-beta01" tabindex="-1">Version 1.2.0-beta01</h3>
+  <p>August 26, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation3:navigation3-*:1.2.0-beta01</code>
+    is released. Version 1.2.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/61ee8cd421d0c0252d8db0253b739de537999371..7747cbed26ca24ff0d275c4fd6cd35316de858ae/navigation3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Refactored
+      <code translate="no" dir="ltr">DeepLinkRequest.extras</code>
+      from
+      <code translate="no" dir="ltr">Map&lt;String, Any&gt;</code>
+      to a new type safe map-like class
+      <code translate="no" dir="ltr">RequestExtras</code>
+      which stores pairs of
+      <code translate="no" dir="ltr">RequestExtrasKey&lt;T&gt;</code>
+      to
+      <code translate="no" dir="ltr">T</code>
+      .
+      <code translate="no" dir="ltr">RequestExtras</code>
+      can be instantiated with the
+      <code translate="no" dir="ltr">requestExtras</code>
+      DSL. (
+      <a href="https://android-review.googlesource.com/#/q/Ic929ddc59d55173a6f35155a61ca336a1975658b">Ic929d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/543883369">b/543883369</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where predictive back gestures that are triggered during a forward transition does not animate in response to swipe progress. The predictive back will now animate and complete properly. (
+      <a href="https://android-review.googlesource.com/#/q/Icdcb0b769208613ffd299938a892dda8f33fcc6b">Icdcb0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/456218398">b/456218398</a>
+      )
+    </li>
+    <li>
+      Added a lint check for ensuring
+      <code translate="no" dir="ltr">Scene</code>
+      implementations are either data classes, or implement equals and hashcode to ensure that the same
+      <code translate="no" dir="ltr">Scene</code>
+      is used when appropriate. (
+      <a href="https://android-review.googlesource.com/#/q/Ibdf0d07a44751876faa5d65f9e44636d301a3a96">Ibdf0d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/542316099">b/542316099</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavEntry.contentKey</code>
+      now defaults to a composite of
+      <code translate="no" dir="ltr">key.toString()</code>
+      and
+      <code translate="no" dir="ltr">key::class.toString()</code>
+      . This ensures that data objects that share the same name but implement different interfaces will no longer have the same
+      <code translate="no" dir="ltr">contentKey</code>
+      . However, JS platform's
+      <code translate="no" dir="ltr">key::class</code>
+      only returns simple class name instead of fully qualified name, so JS platform should still implement custom
+      <code translate="no" dir="ltr">contentKey</code>
+      for data objects with duplicate names. (
+      <a href="https://android-review.googlesource.com/#/q/I1fbbb4eabf2e1ab60a7789d8a7abb66d29d7f286">I1fbbb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/512534342">b/512534342</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      thrown by
+      <code translate="no" dir="ltr">SaveableStateProvider</code>
+      for duplicate keys used during rapid back navigation when multiple pop transitions are in-flight. (
+      <a href="https://android-review.googlesource.com/#/q/I4d728a85e74fdc35e26ea621b809c03813f0806d">I4d728</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/516312097">b/516312097</a>
+      )
+    </li>
+  </ul>

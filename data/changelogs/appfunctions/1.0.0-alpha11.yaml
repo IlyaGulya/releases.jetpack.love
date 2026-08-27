@@ -1,0 +1,90 @@
+libraryId: appfunctions
+groupId: androidx.appfunctions
+version: 1.0.0-alpha11
+releaseDate: 2026-08-26
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha11" data-text="Version 1.0.0-alpha11" tabindex="-1">Version 1.0.0-alpha11</h3>
+  <p>August 26, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.appfunctions:appfunctions:1.0.0-alpha11</code>
+    ,
+    <code translate="no" dir="ltr">androidx.appfunctions:appfunctions-compiler:1.0.0-alpha11</code>
+    , and
+    <code translate="no" dir="ltr">androidx.appfunctions:appfunctions-testing:1.0.0-alpha11</code>
+    are released. Version 1.0.0-alpha11 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/673c70767fb204c629acc6d6e1b5e5e1ea80075e..212831d6b3196011d8f8b10e59ab6026371bc5d6/appfunctions">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Add
+      <code translate="no" dir="ltr">@AppFunctionSignature</code>
+      as experimental public API. The API supports dynamic AppFunction registration via Jetpack. (
+      <a href="https://android-review.googlesource.com/#/q/I72e23761b6f0c4e21d3ce11c75810f6cc7222e26">I72e23</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/501032667">b/501032667</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">AppFunctionState</code>
+      and
+      <code translate="no" dir="ltr">AppFunctionManager#getAppFunctionStates</code>
+      . This replaces
+      <code translate="no" dir="ltr">AppFunctionMetadata#isEnabled</code>
+      . The metadata is now completely separated from the state. (
+      <a href="https://android-review.googlesource.com/#/q/I8e4908eeac1d617a64cf809a47792b005aec1c6d">I8e490</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/494238383">b/494238383</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Add getAppFunctionActivityStates</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4109379174eff35b7b171883cc17de0f3ec14762">I41093</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/542075714">b/542075714</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">ExtensionsAppFunctionService</code>
+      to support apps working with sidecar. (
+      <a href="https://android-review.googlesource.com/#/q/I7cf10c88661d47ad1f3a1880f601eb81bb9c2d5a">I7cf10</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/524941402">b/524941402</a>
+      )
+    </li>
+    <li>
+      Update
+      <code translate="no" dir="ltr">observeAppFunctions</code>
+      API to match platform API. (
+      <a href="https://android-review.googlesource.com/#/q/Ifa6fbb753a36d7bb916bade1e5574fcb825a26c5">Ifa6fb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/494238381">b/494238381</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fix the issue that missing runtime metadata could cause app to crash when calling
+      <code translate="no" dir="ltr">setAppFunctionEnabled</code>
+      during OOBE. (
+      <a href="https://android-review.googlesource.com/#/q/Ibe229b8534c6b515d7f477ecf645796088904589">Ibe229</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/536750020">b/536750020</a>
+      )
+    </li>
+    <li>
+      Temporary disable data validation when using
+      <code translate="no" dir="ltr">AppFunctionData#serialize</code>
+      API until the metadata is coming from the same source of the truth. (
+      <a href="https://android-review.googlesource.com/#/q/I6c953455a0b2d11a4b3347b1343e87980b0c0f18">I6c95</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/545200019">b/545200019</a>
+      )
+    </li>
+  </ul>
