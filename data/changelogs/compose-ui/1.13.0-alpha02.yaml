@@ -1,0 +1,56 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.13.0-alpha02
+releaseDate: 2026-08-26
+#language=html
+changelogHtml: |
+  <h3 id="1.13.0-alpha02" data-text="Version 1.13.0-alpha02" tabindex="-1">Version 1.13.0-alpha02</h3>
+  <p>August 26, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.13.0-alpha02</code>
+    is released. Version 1.13.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e9a673661e45bb2eaea8dd43632ce3e1ea6a2094..cacfa1bb2b4c8b6d14a18888c64fe470c368f4f7/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added new semantics property
+      <code translate="no" dir="ltr">BackgroundColor</code>
+      for Modifier.background (
+      <a href="https://android-review.googlesource.com/#/q/I7eec3e7856bbe392416cb4dbe023a8f3622c1224">I7eec3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/518049030">b/518049030</a>
+      )
+    </li>
+    <li>
+      You can now create
+      <code translate="no" dir="ltr">Vertices</code>
+      from existing primitive arrays. (
+      <a href="https://android-review.googlesource.com/#/q/Ifaba874e35ec100a9db51e986d93a94af7224eb4">Ifaba8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/496412761">b/496412761</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">VectorPainter</code>
+      will now share internal graphics resources (
+      <code translate="no" dir="ltr">ImageBitmap</code>
+      ) when rendering the same
+      <code translate="no" dir="ltr">ImageVector</code>
+      across multiple composables. This reduces redundant texture uploads and memory usage, improving performance in scenarios like lists using repeated icons. This optimization can be disabled via
+      <code translate="no" dir="ltr">ComposeUiFlags.isVectorDrawCacheSharingEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3563956f7c9bd7322946b25ae165a66289abcaad">I35639</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/331283180">b/331283180</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">requestFocusForChildInLocalBounds</code>
+      helper (
+      <a href="https://android-review.googlesource.com/#/q/Ib1a485a91e8612ef1e2f70f67d9ea71a6a6a6964">Ib1a48</a>
+      )
+    </li>
+  </ul>

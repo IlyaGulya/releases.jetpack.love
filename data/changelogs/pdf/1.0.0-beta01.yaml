@@ -1,0 +1,108 @@
+libraryId: pdf
+groupId: androidx.pdf
+version: 1.0.0-beta01
+releaseDate: 2026-08-26
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta01" data-text="Version 1.0.0-beta01" tabindex="-1">Version 1.0.0-beta01</h3>
+  <p>August 26, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.pdf:pdf-*:1.0.0-beta01</code>
+    is released. Version 1.0.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/41275634d9349e095b3315e43a89c309144ec03f..f3ed195f0c9ef9eafe437351d974c9ec49ecc2ea/pdf">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <p>
+        Promoted public APIs across all PDF artifacts to Beta, except those annotated with
+        <code translate="no" dir="ltr">@ExperimentalPdfApi</code>
+        (
+        <a href="https://android-review.googlesource.com/#/q/Ia585f2739caaa8810a76b5beecad38a8f2c962c8">Ia585f</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">@ExperimentalPdfApi</code>
+        (a
+        <code translate="no" dir="ltr">@RequiresOptIn</code>
+        annotation) to new APIs:
+        <code translate="no" dir="ltr">PdfViewer</code>
+        ,
+        <code translate="no" dir="ltr">PdfViewerState</code>
+        ,
+        <code translate="no" dir="ltr">EditablePdfViewerFragment</code>
+        ,
+        <code translate="no" dir="ltr">AnnotationsView</code>
+        , and
+        <code translate="no" dir="ltr">OcrProvider</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/I83a93af8e61287e354271386c8778ba4e557e83e">I83a93</a>
+        ), (
+        <a href="https://android-review.googlesource.com/#/q/I34fe6cad9a4069d1067d44390a0b156fee812fda">I34fe6</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Renamed
+        <code translate="no" dir="ltr">onCreateOcrProvider</code>
+        to
+        <code translate="no" dir="ltr">onInitOcrProvider</code>
+        to ensure single-time initialization per fragment instance.(
+        <a href="https://android-review.googlesource.com/#/q/Ice5d456a17f362d03a66926045208eb8241f0bc4">Ice5d4</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Exposed
+        <code translate="no" dir="ltr">OcrProvider</code>
+        to enable searching and selecting text in images or scanned PDFs, and provided a default implementation (
+        <code translate="no" dir="ltr">MlKitOcrProvider</code>
+        ) in the
+        <code translate="no" dir="ltr">pdf-ocr-play-services</code>
+        artifact. (
+        <a href="https://android-review.googlesource.com/#/q/I6eaf40e7bc1a5ed689b348e37ce80bb40cb3bcbb">I6eaf4</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Updated
+        <code translate="no" dir="ltr">pdfPointToVisibleOffset</code>
+        to be non-nullable, returning an offset or
+        <code translate="no" dir="ltr">Offset.Unspecified</code>
+        if the PDF content has not yet been laid out. (
+        <a href="https://android-review.googlesource.com/#/q/If499a3932396aa3fb84010150014c79f382421e4">If499a</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <p><strong>Enhancement and Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <p>
+        Optimized document searching in
+        <code translate="no" dir="ltr">PdfViewerFragment</code>
+        by streaming page-by-page results and debouncing text input, creating a lag-free typing and navigation experience.
+      </p>
+    </li>
+    <li>
+      <p>
+        Fixed background crashes during large text selections in
+        <code translate="no" dir="ltr">PdfView</code>
+        , by serializing lightweight boundary anchors, creating a stable state restoration experience.
+      </p>
+    </li>
+    <li>
+      <p>
+        Remove Translation Key collision for action search (
+        <a href="https://android-review.googlesource.com/#/q/I0cc352553a9e537565f6f7edf8988dd0c878874b">I0cc35</a>
+        )
+      </p>
+    </li>
+  </ul>

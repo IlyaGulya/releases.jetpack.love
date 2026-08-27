@@ -1,0 +1,93 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.13.0-alpha02
+releaseDate: 2026-08-26
+#language=html
+changelogHtml: |
+  <h3 id="1.13.0-alpha02" data-text="Version 1.13.0-alpha02" tabindex="-1">Version 1.13.0-alpha02</h3>
+  <p>August 26, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.13.0-alpha02</code>
+    is released. Version 1.13.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e9a673661e45bb2eaea8dd43632ce3e1ea6a2094..c3e81656586bd411121465da4b871be2fa24e89c/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Promoted Grid layout APIs (
+      <code translate="no" dir="ltr">Grid</code>
+      ,
+      <code translate="no" dir="ltr">GridScope</code>
+      ,
+      <code translate="no" dir="ltr">GridConfigurationScope</code>
+      ,
+      <code translate="no" dir="ltr">GridFlow</code>
+      ,
+      <code translate="no" dir="ltr">Fr</code>
+      ,
+      <code translate="no" dir="ltr">GridTrackSize</code>
+      ,
+      <code translate="no" dir="ltr">GridTrackSpec</code>
+      ,
+      <code translate="no" dir="ltr">Modifier.gridItem</code>
+      ) to stable. (
+      <a href="https://android-review.googlesource.com/#/q/I43ac441e7b6f41d49099db58610657ecb12104ac">I43ac4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/462550392">b/462550392</a>
+      )
+    </li>
+    <li>
+      Added new semantics property
+      <code translate="no" dir="ltr">BackgroundColor</code>
+      for Modifier.background (
+      <a href="https://android-review.googlesource.com/#/q/I7eec3e7856bbe392416cb4dbe023a8f3622c1224">I7eec3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/518049030">b/518049030</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">ExperimentalFlexBoxApi</code>
+      annotation and renamed pixel-based properties in
+      <code translate="no" dir="ltr">FlexConfigScope</code>
+      with a
+      <code translate="no" dir="ltr">Px</code>
+      suffix for clarity. (
+      <a href="https://android-review.googlesource.com/#/q/I5b24e210dabf09326833dd1bbe96ca5ce18bdf20">I5b24e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/543092286">b/543092286</a>
+      )
+    </li>
+    <li>
+      Only keep around cached items when not in a lookahead pass. Introduced flag
+      <code translate="no" dir="ltr">isKeepAroundDuringLookaheadDisabled</code>
+      . To return to the old behaviour set the flag to
+      <code translate="no" dir="ltr">false</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I110e9ddcebde92b244ee11d7af426bd3c9165a31">I110e9</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">isLazyLayoutItemAnimatorVisibleBoundsFixEnabled</code>
+      compose flag. When enabled, visible item index bounds are calculated before placement animations run in
+      <code translate="no" dir="ltr">LazyList</code>
+      and
+      <code translate="no" dir="ltr">LazyGrid</code>
+      measure. (
+      <a href="https://android-review.googlesource.com/#/q/I5615036dfe93817912cdd87822973084dff37e99">I56150</a>
+      )
+    </li>
+    <li>
+      Fix consumption on initial pass in Draggable. This ensures that if a down event is consumed on initial pass, dragging starts immediately in the main pass. This behavior change is gated behind the feature flag
+      <code translate="no" dir="ltr">ComposeFoundationFlags</code>
+      .
+      <code translate="no" dir="ltr">isDraggableInitialPassConsumptionFixEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6a77fa35639d31a932f336f77306d67869d50864">I6a77f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/532946466">b/532946466</a>
+      )
+    </li>
+  </ul>

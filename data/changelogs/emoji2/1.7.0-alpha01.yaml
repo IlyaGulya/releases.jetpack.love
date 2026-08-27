@@ -1,0 +1,64 @@
+libraryId: emoji2
+groupId: androidx.emoji2
+version: 1.7.0-alpha01
+releaseDate: 2026-08-26
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha01" data-text="Version 1.7.0-alpha01" tabindex="-1">Version 1.7.0-alpha01</h3>
+  <p>August 26, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.emoji2:emoji2-*:1.7.0-alpha01</code>
+    is released. Version 1.7.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9ed4b1acacae02bd637e1932def67751b89244cb..f0365b8b5cca21e7455f5aa90a214d326b76c1e7/emoji2">these commits</a>
+    .
+  </p>
+  <p>** Performance Release **</p>
+  <p>This release is a major performance improvement over prior relases.</p>
+  <p>
+    •
+    <strong>Reduced memory footprint:</strong>
+    Metadata trie RAM usage is reduced from ~2.2 MB to ~80 KB.
+    <br />
+    •
+    <strong>Reduced startup overhead:</strong>
+    Startup object allocations are reduced from 24,178 to 82.
+    <br />
+    •
+    <strong>Allocation-free text scanning:</strong>
+    Scanning standard Latin text now performs zero allocations.
+    <br />
+    •
+    <strong>Reduced latency:</strong>
+    Median Latin text scan latency is reduced by up to 83% (from 16.43 µs to 2.66 µs).
+    <br />
+    •
+    <strong>Automatic bypass on API 35+:</strong>
+    EmojiCompat processing is automatically bypassed on devices with system-updatable fonts.
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">setUseAfterUpdatableSystemFonts</code>
+      to
+      <code translate="no" dir="ltr">EmojiCompat.Config</code>
+      to optionally continue using
+      <code translate="no" dir="ltr">EmojiCompat</code>
+      on Android 15 (API 35) and above even when updatable system fonts are available on all devices. The default value will disable EmojiCompat on API35+ saving memory and text processing latency. (
+      <a href="https://android-review.googlesource.com/#/q/I7235ede8e0d03de06c4f9b0860cf028947bd433e">I7235e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/541363642">b/541363642</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Emoji2 picker - Updated Compose compileSdk to API 37. This means that a minimum AGP version of 9.2.0 is required when using Compose. (
+      <a href="https://android-review.googlesource.com/#/q/Id45cdca34ef948e06259b2dd9adc901b7c930492">Id45cd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/413674743">b/413674743</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_16_2" data-text="Version 1.6" tabindex="-1">Version 1.6</h2>

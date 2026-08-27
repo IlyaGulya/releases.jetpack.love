@@ -1,0 +1,63 @@
+libraryId: navigation
+groupId: androidx.navigation
+version: 2.10.0
+releaseDate: 2026-08-26
+#language=html
+changelogHtml: |
+  <h3 id="2.10.0" data-text="Version 2.10.0" tabindex="-1">Version 2.10.0</h3>
+  <p>August 26, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation:navigation-*:2.10.0</code>
+    is released. Version 2.10.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/75fb15aa8f834f82fc4658d3f3c8b76f6a9e5b24..7f6e165ae798474547242c98f2b0a7be7e84b763/navigation">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 2.9.0:</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">NavHost</code>
+      now provides an overload that accepts
+      <code translate="no" dir="ltr">predictivePopEnterTransition</code>
+      and
+      <code translate="no" dir="ltr">predictivePopExitTransition</code>
+      parameters to allow for custom transition during the predictive back gesture.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">handleDeepLink</code>
+      was modified to ensure only recognized deep links are handled while all others will be ignored. If this causes an error in your app, consider the possibility of swapping over to navigating via deep links defined in your navigation graph. For Robolectric tests you may need to use the
+      <code translate="no" dir="ltr">setPackage</code>
+      method to a trusted packaged.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">NavBackStackEntryInfo</code>
+      was added to expose back stack snapshots during navigation events. This enables richer custom predictive back animations.
+    </li>
+  </ul>
+  <p><strong>Additional Platform Support</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">navigation-common</code>
+      ,
+      <code translate="no" dir="ltr">navigation-runtime</code>
+      , and
+      <code translate="no" dir="ltr">navigation-testing</code>
+      modules added support for
+      <code translate="no" dir="ltr">desktop</code>
+      ,
+      <code translate="no" dir="ltr">linux</code>
+      ,
+      <code translate="no" dir="ltr">macOS</code>
+      ,
+      <code translate="no" dir="ltr">iOS</code>
+      ,
+      <code translate="no" dir="ltr">javascript</code>
+      ,
+      <code translate="no" dir="ltr">WASM</code>
+      ,
+      <code translate="no" dir="ltr">watchos</code>
+      , and
+      <code translate="no" dir="ltr">tvos</code>
+      .
+    </li>
+  </ul>
