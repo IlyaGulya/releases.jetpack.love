@@ -1,0 +1,226 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.13.0-alpha03
+releaseDate: 2026-09-09
+#language=html
+changelogHtml: |
+  <h3 id="1.13.0-alpha03" data-text="Version 1.13.0-alpha03" tabindex="-1">Version 1.13.0-alpha03</h3>
+  <p>September 09, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.13.0-alpha03</code>
+    is released. Version 1.13.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f3ed195f0c9ef9eafe437351d974c9ec49ecc2ea..58589a3cd45bacbb3ad7bbdc52836f6e055340be/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Material 2 text field overloads that accept
+      <code translate="no" dir="ltr">value, onValueChange</code>
+      parameters are deprecated. Please migrate to the overload that uses
+      <code translate="no" dir="ltr">TextFieldState</code>
+      to hoist its state. (
+      <a href="https://android-review.googlesource.com/#/q/I6b841e6850afbc22bec2424c3762927ec4f65670">I6b841</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/556234973">b/556234973</a>
+      )
+    </li>
+    <li>
+      Add a common API to disable
+      <code translate="no" dir="ltr">WindowInsetsRulers</code>
+      globally before the first Compose root is created. Deprecate Android only
+      <code translate="no" dir="ltr">ComposeView.disableWindowInsetsRulers()</code>
+      in favor of the common
+      <code translate="no" dir="ltr">WindowInsetsRulers.disable()</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Iadc8ff09951c2be19c15f63654873b7365da7a1c">Iadc8f</a>
+      )
+    </li>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">PolygonShape.transformed</code>
+      and
+      <code translate="no" dir="ltr">PolygonShape.scaledToFit</code>
+      extension functions in Compose Foundation for transforming and fitting polygon shapes. (
+      <a href="https://android-review.googlesource.com/#/q/I3f32730534fa3739dc4e0c7eaac036284e98721b">I3f327</a>
+      )
+    </li>
+    <li>
+      Modifier renamed
+      <code translate="no" dir="ltr">LineHeight.Trim.isTrimLastLineBottom()</code>
+      function to
+      <code translate="no" dir="ltr">LineHeight.Trim.trimsLastLineBottom</code>
+      and
+      <code translate="no" dir="ltr">LineHeight.Trim.isTrimFirstLineTop</code>
+      to
+      <code translate="no" dir="ltr">LineHeight.Trim.trimsFirstLineTop</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I02211070a2b2019ba03165384deee14952318bc8">I02211</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">boundsAssertionTolerance</code>
+      to
+      <code translate="no" dir="ltr">PlatformTestConfig</code>
+      under
+      <code translate="no" dir="ltr">ComposeUiTestConfig.platform</code>
+      allowing tests to configure default bounds assertion tolerance at the environment/rule level. (
+      <a href="https://android-review.googlesource.com/#/q/I7819d6024f900472bbbc26efec7f9808ad89f51e">I7819d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/545673912">b/545673912</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BasicTextField</code>
+      overloads that accept
+      <code translate="no" dir="ltr">value, onValueChange</code>
+      parameters are deprecated. Please migrate to the
+      <code translate="no" dir="ltr">BasicTextField</code>
+      overload that uses
+      <code translate="no" dir="ltr">TextFieldState</code>
+      to hoist its state. (
+      <a href="https://android-review.googlesource.com/#/q/I636bf0af4334ce04a8eb9e80b8b2b0d1b6c905ae">I636bf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/552879150">b/552879150</a>
+      )
+    </li>
+    <li>
+      Inline with
+      <code translate="no" dir="ltr">BasicTextField(value, onValueChange)</code>
+      ,
+      <code translate="no" dir="ltr">VisualTransformation</code>
+      is also deprecated since it is only exposed through this
+      <code translate="no" dir="ltr">TextField</code>
+      flavor. Existing transformations should migrate to
+      <code translate="no" dir="ltr">OutputTransformation</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I636bf0af4334ce04a8eb9e80b8b2b0d1b6c905ae">I636bf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/552879150">b/552879150</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">LineHeightStyle.Mode.PerLine</code>
+      to calculate line height independently for each line, supporting varying font sizes in the same paragraph without overlap. (
+      <a href="https://android-review.googlesource.com/#/q/I41738e17a0ac0366035007e4596b636621318e6d">I41738</a>
+      )
+    </li>
+    <li>
+      Providing
+      <code translate="no" dir="ltr">LazyLayoutCacheWindow</code>
+      and
+      <code translate="no" dir="ltr">LazyListPrefetchStrategy</code>
+      via
+      <code translate="no" dir="ltr">LazyListState</code>
+      has been deprecated in favour of providing a
+      <code translate="no" dir="ltr">LazyLayoutCacheWindow</code>
+      to the composable function. (
+      <a href="https://android-review.googlesource.com/#/q/I71f1967bc357f972343311b02169831f747a0cee">I71f19</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Modifier.blur { ... }</code>
+      API to support progressive blurs (e.g., gradients and custom shaders) (
+      <a href="https://android-review.googlesource.com/#/q/Ie659593347c6d91866974b11f1979ebdb41efc62">Ie6595</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/481685669">b/481685669</a>
+      )
+    </li>
+    <li>
+      Added Modifier.
+      <code translate="no" dir="ltr">interactionBarrier</code>
+      () to block touch, focus, and accessibility interactions. (
+      <a href="https://android-review.googlesource.com/#/q/I7c1b7c7fffd15081685ceb4818f36912b41031a1">I7c1b7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/347038246">b/347038246</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">isCrossWindowBlurEnabled</code>
+      extension property on
+      <code translate="no" dir="ltr">WindowInfo</code>
+      to allow developers to query and observe system-wide cross-window blur state on Android. (
+      <a href="https://android-review.googlesource.com/#/q/If38e22002bc6df5c2d7a13b199cfaaab803ecf6c">If38e2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/538405295">b/538405295</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">LocalWindow CompositionLocal</code>
+      to allow retrieving the current
+      <code translate="no" dir="ltr">android.view.Window</code>
+      object, making it easier to control window-level APIs from within Composables. (
+      <a href="https://android-review.googlesource.com/#/q/I4d4ffd0c63a4ca65556714a21cef9ddeaaf5b9b8">I4d4ff</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/221889664">b/221889664</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Enabled
+      <code translate="no" dir="ltr">isMinimalistLocalsEnabled</code>
+      by default. (
+      <a href="https://android-review.googlesource.com/#/q/Ibb4eb927b0a7c4a369b4a5d390b77d9201068c49">Ibb4eb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/523295932">b/523295932</a>
+      )
+    </li>
+    <li>
+      Enabld single line height optimisation by default. It may cause a few pixel difference in some text metrics like height or selection path (
+      <a href="https://android-review.googlesource.com/#/q/I5575a418c6a476ffee4183ab62b8bf004577c1b5">I5575a</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">compileSdk</code>
+      for Compose libraries updated to 37.1. This will require transitively updating
+      <code translate="no" dir="ltr">compileSdk</code>
+      for all apps and libraries using Compose. (
+      <a href="https://android-review.googlesource.com/#/q/I05b0f9385d2b99ddcc4041b2ce2d96aea3bd391e">I05b0f</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">WindowInsetsRulers</code>
+      IME insets were not marked as animating during predictive back, and fixed
+      <code translate="no" dir="ltr">imePadding</code>
+      not updating when switching focus between text fields. (
+      <a href="https://android-review.googlesource.com/#/q/Id456204b4bd49644bcbc2304d8e910182b71979d">Id4562</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/537386261">b/537386261</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/539686000">b/539686000</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where trackpad pinch gestures were ignored when
+      <code translate="no" dir="ltr">ComposeView</code>
+      was hosted inside a standard Android
+      <code translate="no" dir="ltr">ViewGroup</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I80f7974d0f51ee9faf53607904286d2d85829628">I80f79</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Fixed an Activity leak when a
+      <code translate="no" dir="ltr">ComposeView</code>
+      was detached and re-attached within a single frame, for example when reordered with
+      <code translate="no" dir="ltr">removeView</code>
+      and
+      <code translate="no" dir="ltr">addView</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib512974cf3f8a689ca04b3b1886d6525dc9436e5">Ib5129</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547675867">b/547675867</a>
+      )
+    </li>
+  </ul>

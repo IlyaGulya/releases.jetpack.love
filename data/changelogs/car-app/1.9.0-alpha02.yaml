@@ -1,0 +1,180 @@
+libraryId: car-app
+groupId: androidx.car
+version: 1.9.0-alpha02
+releaseDate: 2026-09-09
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0-alpha02" data-text="Version 1.9.0-alpha02" tabindex="-1">Version 1.9.0-alpha02</h3>
+  <p>September 09, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.car.app:app-*:1.9.0-alpha02</code>
+    is released. Version 1.9.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b5d2acb5ad0a36c9d2aba8feb4c7951165f30fbe..6ff76682a45583f1f17c9e3c945d4fb6704bb9f8/car/app">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <strong>App Theming</strong>
+      : Added
+      <code translate="no" dir="ltr">CarAppThemeSource</code>
+      to allow apps to opt into brand theming and hosts to query preferred theme configurations.
+    </li>
+    <li>
+      <strong>Search Header</strong>
+      : Added
+      <code translate="no" dir="ltr">SearchHeader</code>
+      for
+      <code translate="no" dir="ltr">SectionedItemTemplate</code>
+      as a search header replacement in API 9.
+    </li>
+    <li>
+      <strong>Component Styling</strong>
+      : Added styling support for tabs (
+      <code translate="no" dir="ltr">TabStyle</code>
+      ), banners (
+      <code translate="no" dir="ltr">BannerStyle</code>
+      ), and media controls/progress indicators (
+      <code translate="no" dir="ltr">MediaPlaybackStyle</code>
+      ,
+      <code translate="no" dir="ltr">StrokeCap</code>
+      ).
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <strong>Media &amp; Progress Bar Styling</strong>
+      : Added
+      <code translate="no" dir="ltr">MediaPlaybackStyle</code>
+      ,
+      <code translate="no" dir="ltr">setMediaAccentColor</code>
+      , and standalone
+      <code translate="no" dir="ltr">StrokeCap</code>
+      to customize playback controls and progress indicators. Updated
+      <code translate="no" dir="ltr">CarProgressBarStyle</code>
+      to support nullable colors and removed deprecated color methods from
+      <code translate="no" dir="ltr">CarProgressBar</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib45c6ef9410ed4d5fbdf1c5c11136044c2f9da14">Ib45c6</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I17141d3ad7bfa9440b058ad7f2e7ea1fc0ff4500">I17141</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I270a412d7343ad8522785e12e3d2ed87ca4b2b6e">I270a4</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I10fe4e6025a18370a02359ed07bfab2c13c8abf4">I10fe4</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I80a17ddc39901e8ae2dfebe41bf57314f4141af5">I80a17</a>
+      )
+    </li>
+    <li>
+      <strong>App Theming</strong>
+      : Introduced
+      <code translate="no" dir="ltr">CarAppThemeSource</code>
+      for public app theme opt-in and added
+      <code translate="no" dir="ltr">onGetAppTheme</code>
+      to
+      <code translate="no" dir="ltr">CarAppService</code>
+      (with corresponding IPC) allowing hosts to query preferred theme configurations. (
+      <a href="https://android-review.googlesource.com/#/q/I108f8b38061c2ac92e1f4ea40fe752f76fecde6c">I108f8</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ifbd41e57a39587500eef32ba8e05ca4110e0257b">Ifbd41</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I97c7e4b122460e7cff04ad4b3186c4e29b400d5c">I97c7e</a>
+      )
+    </li>
+    <li>
+      <strong>Tabs Styling</strong>
+      : Added support for custom background colors, content/text colors, and custom corner radii via
+      <code translate="no" dir="ltr">TabStyle</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0733028c8fea2f63d6fb123f61f418844d11b50f">I07330</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Id09f637254401d9a620459c3284c0b272cb48b14">Id09f6</a>
+      )
+    </li>
+    <li>
+      <strong>Icons &amp; Image Sizing</strong>
+      : Deprecated
+      <code translate="no" dir="ltr">IMAGE_TYPE_ICON</code>
+      across
+      <code translate="no" dir="ltr">Row</code>
+      ,
+      <code translate="no" dir="ltr">GridItem</code>
+      ,
+      <code translate="no" dir="ltr">Banner</code>
+      , and
+      <code translate="no" dir="ltr">CondensedItem</code>
+      in favor of
+      <code translate="no" dir="ltr">IMAGE_TYPE_SMALL</code>
+      and
+      <code translate="no" dir="ltr">IMAGE_TYPE_MEDIUM</code>
+      size constants where icons render untinted by default. Reworked
+      <code translate="no" dir="ltr">CarIconStyle</code>
+      and added custom shape support to
+      <code translate="no" dir="ltr">CarIcon</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie57fabbbd57132931e12221b6761730819a97d35">Ie57fa</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I5cc2d90f6bf163eb89a15f3c41f8cc60430882c8">I5cc2d</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ic95843091e63be651a365377030fc024a14475bc">Ic9584</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Iaef57f39beeeccedfbe766611db01746516e343a">Iaef57</a>
+      )
+    </li>
+    <li>
+      <strong>Banners</strong>
+      : Added
+      <code translate="no" dir="ltr">BannerStyle</code>
+      for custom shapes and corner radii, added image variant options (
+      <code translate="no" dir="ltr">IMAGE_TYPE_SMALL</code>
+      ,
+      <code translate="no" dir="ltr">IMAGE_TYPE_LARGE</code>
+      ), and removed deprecated icon and background APIs in favor of
+      <code translate="no" dir="ltr">setLeadingImage</code>
+      and
+      <code translate="no" dir="ltr">addTrailingImage</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I265bb2ce14961ccb2436d47185e98c0ffb746a2a">I265bb</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I7d28af12725358e9f7df5eb5df5eee33f871c565">I7d28a</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I23f624b05d5edd780ebd9764ea904f2500d582d2">I23f62</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I2917eda105168ebf1629340421d896499a8437f5">I2917e</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I95b1c4fe6ee01b522174daf15b8ffc8e64297636">I95b1c</a>
+      )
+    </li>
+    <li>
+      <strong>Headers &amp; Layout</strong>
+      : Introduced
+      <code translate="no" dir="ltr">SearchHeader</code>
+      for
+      <code translate="no" dir="ltr">SectionedItemTemplate</code>
+      in API 9, added
+      <code translate="no" dir="ltr">startHeaderImage</code>
+      to
+      <code translate="no" dir="ltr">Header</code>
+      for custom start icons, and added
+      <code translate="no" dir="ltr">incompleteLastRowStrategy</code>
+      to control handling of partial rows/columns in grid, condensed, and spotlight sections. (
+      <a href="https://android-review.googlesource.com/#/q/I8663211cad8f02050dcf5e818f929309fab72bbb">I86632</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I249376c64a05fc714021221098664dfc5d161468">I24937</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/If64bedec227e4c3005c9982c305b3bb039247f23">If64be</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Clarified that
+      <code translate="no" dir="ltr">Action.TYPE_MEDIA_PLAYBACK</code>
+      is ignored as a template FAB on Car API 9+ hosts. (
+      <a href="https://android-review.googlesource.com/#/q/Ie8fd416677d2c86d59532b8c66db83f16ab674f4">Ie8fd4</a>
+      )
+    </li>
+  </ul>
