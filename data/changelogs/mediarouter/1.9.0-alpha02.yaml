@@ -1,0 +1,97 @@
+libraryId: mediarouter
+groupId: androidx.mediarouter
+version: 1.9.0-alpha02
+releaseDate: 2026-09-09
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0-alpha02" data-text="Version 1.9.0-alpha02" tabindex="-1">Version 1.9.0-alpha02</h3>
+  <p>September 09, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.mediarouter:mediarouter:1.9.0-alpha02</code>
+    and
+    <code translate="no" dir="ltr">androidx.mediarouter:mediarouter-testing:1.9.0-alpha02</code>
+    are released. Version 1.9.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cdf076c6abd0f3125cb0302756fcb77fe981ab7c..597b5e411760980220523761a0041ddedc6f307d/mediarouter">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Update
+      <code translate="no" dir="ltr">MediaRouter</code>
+      #
+      <code translate="no" dir="ltr">setDeviceSuggestions</code>
+      to take in
+      <code translate="no" dir="ltr">RouteInfo</code>
+      instead of
+      <code translate="no" dir="ltr">SuggestedDeviceInfo</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Id1d8cfceec0cdfde7463fa6c9553c3e3fc45d76e">Id1d8c</a>
+      )
+    </li>
+    <li>
+      Add API to determine the source of a route selection event. (
+      <a href="https://android-review.googlesource.com/#/q/I6ce8d3142cc2616fcbca3d915c19d9c5a8ef0afe">I6ce8d</a>
+      )
+    </li>
+    <li>
+      Introduce a new API
+      <code translate="no" dir="ltr">MediaRouter</code>
+      #
+      <code translate="no" dir="ltr">isMediaTransferEnabled</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I92f6f31097cdf0012754cae95c53cb421ee5d8ec">I92f6f</a>
+      )
+    </li>
+    <li>
+      Add new
+      <code translate="no" dir="ltr">MediaRouteDescriptor#getRoutingControllerId</code>
+      to expose the routing control id associated with selected routes from
+      <code translate="no" dir="ltr">MediaRouter2</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iadae84fb4b77a39ef10b52ef559ae512bfe0d03c">Iadae8</a>
+      )
+    </li>
+  </ul>
+  <h2 id="-_add_mediarouterparams_support_for_enabling_the_media_transfer_feature_without_the_need_for_a_manifest_tag_iec56b_2" data-text="- Add MediaRouterParams support for enabling the media transfer feature without the need for a manifest tag. (Iec56b) " tabindex="-1">
+    - Add MediaRouterParams support for enabling the media transfer feature without the need for a manifest tag. (
+    <a href="https://android-review.googlesource.com/#/q/Iec56b51f515792df6c37972dad84ffda2e84a313">Iec56b</a>
+    )
+  </h2>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a potential
+      <code translate="no" dir="ltr">ClassCastException</code>
+      in
+      <code translate="no" dir="ltr">MediaRouter2Utils</code>
+      when handling intent filters from external route providers. (
+      <a href="https://android-review.googlesource.com/#/q/Ifa88027ab35e1b5b2b62dbafad706ee48cd20f32">Ifa880</a>
+      )
+    </li>
+    <li>
+      This library now uses
+      <a href="https://jspecify.dev/">JSpecify nullness annotations</a>
+      , which are type-use. (
+      <a href="https://android-review.googlesource.com/#/q/I06c8c494abd93450f9327fcb5a9bca5f5bc02139">I06c8c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/326456246">b/326456246</a>
+      )
+    </li>
+    <li>
+      Fix bug causing crashes when specific colors aren't defined in the active theme. (
+      <a href="https://android-review.googlesource.com/#/q/cedecb539e584a956c3e164a2daa918555b58703">cedecb</a>
+    </li>
+    <li>
+      Fix crash caused by malicious apps passing malformed parcels (such as MediaRouteDescriptors) via binder (
+      <a href="https://android-review.googlesource.com/#/q/I47b8ead5995aa7435b6323b7fb479e1ce41dc18a">I47b8e</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ifa88027ab35e1b5b2b62dbafad706ee48cd20f32">Ifa880</a>
+      )
+    </li>
+    <li>
+      Improve logging around MediaRouteProvider misbehavior. (
+      <a href="https://android-review.googlesource.com/#/q/I65e3ded776428c568d9ab882e4ddf61b1885a688">I65e3d</a>
+      ).
+    </li>
+  </ul>

@@ -1,0 +1,150 @@
+libraryId: room3
+groupId: androidx.room3
+version: 3.1.0-alpha01
+releaseDate: 2026-09-09
+#language=html
+changelogHtml: |
+  <h3 id="3.1.0-alpha01" data-text="Version 3.1.0-alpha01" tabindex="-1">Version 3.1.0-alpha01</h3>
+  <p>September 09, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room3:room3-*:3.1.0-alpha01</code>
+    is released. Version 3.1.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/1ffbca32bd9efa4727ee1633c90a05f0bc7a6990..6df99b9068ac1d061afccde6e6045553b4752cdc/room3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">setConnectionPoolTimeout(timeout: Duration)</code>
+      to
+      <code translate="no" dir="ltr">RoomDatabase.Builder</code>
+      to allow configuring the connection pool timeout. (
+      <a href="https://android-review.googlesource.com/#/q/I24d073422ee59c2fb4759098eccbba61239a18f7">I24d07</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/404380974">b/404380974</a>
+      )
+    </li>
+    <li>
+      The following Room annotations now have
+      <code translate="no" dir="ltr">AnnotationTarget.PROPERTY</code>
+      :
+      <code translate="no" dir="ltr">@ColumnInfo</code>
+      ,
+      <code translate="no" dir="ltr">@PrimaryKey</code>
+      ,
+      <code translate="no" dir="ltr">@Relation</code>
+      ,
+      <code translate="no" dir="ltr">@Embedded</code>
+      ,
+      <code translate="no" dir="ltr">@Ignore</code>
+      and
+      <code translate="no" dir="ltr">@ColumnTypeConverters</code>
+      . This API changes make Room be 'property-centric' instead of the 'field-centric'. Meaning Room can now use properties without backing fields as representation of entity columns or query data class result columns. The properties must still have a usable getter and either a usable setter or be part of the primary constructor so that Room can use them for DAO functions. (
+      <a href="https://android-review.googlesource.com/#/q/I7205849c94e6ff910b4e4a7fb1656d199bc0b89d">I72058</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/438041176">b/438041176</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/521861812">b/521861812</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue on web and suspending drivers where cancelling a coroutine during a transaction could cause the database and connection to get into a bad state, preventing further usages. (
+      <a href="https://android-review.googlesource.com/#/q/If75c07cef62bd9b2c2f8bb56c95b6183b04fc9f2">If75c0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/549860940">b/549860940</a>
+      )
+    </li>
+    <li>
+      Support Kotlin
+      <code translate="no" dir="ltr">object</code>
+      implementing
+      <code translate="no" dir="ltr">AutoMigrationSpec</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id4077d3f7708ed1dfc4bad2fdc47ed78deac74af">Id4077</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/215012591">b/215012591</a>
+      )
+    </li>
+    <li>
+      Fix a regression that would cause Room to throw an
+      <code translate="no" dir="ltr">IllegalMonitorStateException</code>
+      when using
+      <code translate="no" dir="ltr">@Transaction</code>
+      wrapper DAO functions. (
+      <a href="https://android-review.googlesource.com/#/q/I996d95c6a7f9392b8d073027c8d970a607f78870">I996d9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/543285472">b/543285472</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/553140228">b/553140228</a>
+      )
+    </li>
+    <li>
+      Added built-in column type converter support for
+      <code translate="no" dir="ltr">kotlin.uuid.Uuid</code>
+      in
+      <code translate="no" dir="ltr">Room</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Icca77c14af461585c35862ef88374230f849be4b">Icca77</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/525093264">b/525093264</a>
+      )
+    </li>
+    <li>
+      Room's Kotlin code generator now suppresses
+      <code translate="no" dir="ltr">OPT_IN_USAGE_ERROR</code>
+      and
+      <code translate="no" dir="ltr">OPT_IN_USAGE</code>
+      on generated
+      <code translate="no" dir="ltr">_Impl</code>
+      classes, allowing DAOs and Entities to use
+      <code translate="no" dir="ltr">@RequiresOptIn</code>
+      -annotated types (such as
+      <code translate="no" dir="ltr">kotlin.uuid.Uuid</code>
+      ) without requiring
+      <code translate="no" dir="ltr">-opt-in</code>
+      in
+      <code translate="no" dir="ltr">freeCompilerArgs</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I013bf0d18dbf6b9ad65f1deca59a5ce0e9431a68">I013bf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/410607888">b/410607888</a>
+      )
+    </li>
+    <li>
+      Room suspending queries and invalidation tracker operations will now throw an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      when called after the database has been closed. (
+      <a href="https://android-review.googlesource.com/#/q/I5755a9a565d0589a39c0b0c9137880730ce29fff">I5755a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/543076356">b/543076356</a>
+      )
+    </li>
+    <li>
+      Fix a deadlock that can occur on
+      <code translate="no" dir="ltr">@Transaction</code>
+      DAO wrapper suspend functions that would do a context switch and had the
+      <code translate="no" dir="ltr">AndroidSQLiteDriver</code>
+      configured. (
+      <a href="https://android-review.googlesource.com/#/q/886ac5a0761e7dfb83b79e3519a6408e11aaa9ca">886ac5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/543285472">b/543285472</a>
+      )
+    </li>
+    <li>
+      Fix an unnecessary
+      <code translate="no" dir="ltr">println()</code>
+      during processing. Thanks to Simon Marquis! (
+      <a href="https://issuetracker.google.com/issues/532893031">b/532893031</a>
+      )
+    </li>
+    <li>
+      Fix an issue regarding other database usages within another database's transaction mixing in leading undefined behaviour. (
+      <a href="https://issuetracker.google.com/issues/437068912">b/437068912</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_30_2" data-text="Version 3.0" tabindex="-1">Version 3.0</h2>
