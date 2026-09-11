@@ -1,0 +1,109 @@
+libraryId: collection
+groupId: androidx.collection
+version: 1.7.0-alpha01
+releaseDate: 2026-09-09
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-alpha01" data-text="Version 1.7.0-alpha01" tabindex="-1">Version 1.7.0-alpha01</h3>
+  <p>September 09, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.collection:collection-*:1.7.0-alpha01</code>
+    is released. Version 1.7.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5e46f82d2e75f3f4e6a88da615d2a4aba4427d95..d89e253295f3ed4e745116313f7334f559734222/collection">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">sortWith</code>
+      ,
+      <code translate="no" dir="ltr">sortBy</code>
+      , and
+      <code translate="no" dir="ltr">sortByDescending</code>
+      functions to
+      <code translate="no" dir="ltr">MutableObjectList</code>
+      , alongside
+      <code translate="no" dir="ltr">binarySearch</code>
+      algorithms on
+      <code translate="no" dir="ltr">ObjectList</code>
+      and primitive list classes (
+      <code translate="no" dir="ltr">FloatList</code>
+      ,
+      <code translate="no" dir="ltr">IntList</code>
+      ,
+      <code translate="no" dir="ltr">LongList</code>
+      ,
+      <code translate="no" dir="ltr">DoubleList</code>
+      ). Added
+      <code translate="no" dir="ltr">binarySearch</code>
+      overloads using exact component types for
+      <code translate="no" dir="ltr">FloatList</code>
+      ,
+      <code translate="no" dir="ltr">LongList</code>
+      , and
+      <code translate="no" dir="ltr">DoubleList</code>
+      alongside existing
+      <code translate="no" dir="ltr">Int</code>
+      methods. (
+      <a href="https://android-review.googlesource.com/#/q/Ied6f7ba32c284ff232c47de7983d9b2213d4f937">Ied6f7</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">androidx.benchmark</code>
+      now has a
+      <code translate="no" dir="ltr">minSdk</code>
+      of 24. (
+      <a href="https://android-review.googlesource.com/#/q/Ic2a8500af8a2bf092fcc1b27d9a599aa5f3b81d7">Ic2a85</a>
+      )
+    </li>
+    <li>
+      Optimize
+      <code translate="no" dir="ltr">ScatterMap.getOrPut()</code>
+      performance (
+      <a href="https://android-review.googlesource.com/#/q/I6e46b8f902341bff6c2ec1c45f620a5b07bc8966">I6e46b</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">@JvmOverloads</code>
+      to trim functions of List classes (
+      <a href="https://android-review.googlesource.com/#/q/I2441053e2c4afc520a10d289f89cc9848bef4f5f">I24410</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/481371562">b/481371562</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">.toOrderedScatterSet()</code>
+      extension. This provides a read-only alternative to the mutable conversion function and returns an allocation-free singleton when the source collection is empty. (
+      <a href="https://android-review.googlesource.com/#/q/I1b767b23304ec2a89ee66a991415a4a0f9546048">I1b767</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Improved hashing in
+      <code translate="no" dir="ltr">ScatterMap</code>
+      and primitive collections to reduce collisions for
+      <code translate="no" dir="ltr">Float</code>
+      keys. (
+      <a href="https://android-review.googlesource.com/#/q/I7d2aca1996d627e0abc72a2ce7a4351cf74d3cd2">I7d2ac</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/528428583">b/528428583</a>
+      )
+    </li>
+    <li>
+      Implement
+      <code translate="no" dir="ltr">toString()</code>
+      for
+      <code translate="no" dir="ltr">ScatterMap.asMap</code>
+      key, value, and entry views. This provides better debug visibility for developers using the
+      <code translate="no" dir="ltr">asMap()</code>
+      wrapper. (
+      <a href="https://android-review.googlesource.com/#/q/I6479108ab48c10004e176f0482d0b9832ac1fc28">I64791</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_16_2" data-text="Version 1.6" tabindex="-1">Version 1.6</h2>
