@@ -19,165 +19,233 @@ changelogHtml: |
       <code translate="no" dir="ltr">TextField</code>
       or
       <code translate="no" dir="ltr">DatePicker</code>
-      ) directly in the style parameter of the composable.
+      ) directly in the style parameter of the composable. This enables, for example, creating a
+      <code translate="no" dir="ltr">TextField</code>
+      -like composable that allows customizing each of the decorator boxes using a style, enabling them to be overridden at a theme level or at the call site. (
+      <a href="https://android-review.googlesource.com/#/q/I43c0f1456cae4dd8ca8ca0212b5fe35e7813e617">I43c0f</a>
+      )
+    </li>
+    <li>
+      Material 2 text field overloads that accept
+      <code translate="no" dir="ltr">value, onValueChange</code>
+      parameters are deprecated. Please migrate to the overload that uses
+      <code translate="no" dir="ltr">TextFieldState</code>
+      to hoist its state. (
+      <a href="https://android-review.googlesource.com/#/q/I6b841e6850afbc22bec2424c3762927ec4f65670">I6b841</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/556234973">b/556234973</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">@ExperimentalFoundationApi</code>
+      annotation from
+      <code translate="no" dir="ltr">undoState</code>
+      in
+      <code translate="no" dir="ltr">TextFieldState</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I93a44b649ae73e456d904cda9c9b12007b8ff3a9">I93a44</a>
+      )
+    </li>
+    <li>
+      Add default configuration objects for each lazy layout containing the default values used in the corresponding
+      <code translate="no" dir="ltr">@Composeable</code>
+      functions. Currently only contains the default cache window for each layout. (
+      <a href="https://android-review.googlesource.com/#/q/I5863328b8091e28638d709c56d9b6caecf2abfca">I58633</a>
+      )
+    </li>
+    <li>
+      Flag
+      <code translate="no" dir="ltr">isUsingDynamicDefaultCacheWindowIn[List|Grid|StaggeredGrid]s</code>
+      when enabled will cause lazy layouts to use a cache window that uses the average size of visible items to prefetch ahead of the viewport with a minimum ahead window of 10% of the viewport and a maximum ahead window of 50% of the viewport. (
+      <a href="https://android-review.googlesource.com/#/q/I59212240a2719136277f635ea6c7ba59132fe188">I59212</a>
+      )
+    </li>
+    <li>
+      Deprecated
+      <code translate="no" dir="ltr">LazyListPrefetchStrategy</code>
+      ,
+      <code translate="no" dir="ltr">LazyListPrefetchScope</code>
+      , and
+      <code translate="no" dir="ltr">LazyListPrefetchResultScope</code>
+      . Prefetching behavior should be configured using
+      <code translate="no" dir="ltr">LazyLayoutCacheWindow</code>
+      on
+      <code translate="no" dir="ltr">LazyColumn</code>
+      or
+      <code translate="no" dir="ltr">LazyRow</code>
+      .
+      <code translate="no" dir="ltr">LazyLayoutCacheWindow</code>
+      provides a declarative, viewport-based caching mechanism that automatically prepares items ahead of and keeps items behind the visible window without requiring complex imperative scheduling callbacks. The new API is simpler and requires less configuration steps than
+      <code translate="no" dir="ltr">LazyListPrefetchStrategy</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1fa2d852d6579d1656e13242f9b00837b9b807b5">I1fa2d</a>
+      )
+    </li>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">PolygonShape.transformed</code>
+      and
+      <code translate="no" dir="ltr">PolygonShape.scaledToFit</code>
+      extension functions in Compose Foundation for transforming and fitting polygon shapes. (
+      <a href="https://android-review.googlesource.com/#/q/I3f32730534fa3739dc4e0c7eaac036284e98721b">I3f327</a>
+      )
+    </li>
+    <li>
+      This change refactors the Styles API into two independent pieces: the Styles DSL and the modifiers that are configured by the DSL. The previous
+      <code translate="no" dir="ltr">Style</code>
+      -based implementation is still present but will be deprecated and removed. Any uses of it should be replaced with the new
+      <code translate="no" dir="ltr">CommonStyle</code>
+      based API.
+    </li>
+    <li>
+      Key components introduced:
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">CustomStyle</code>
+          &amp;
+          <code translate="no" dir="ltr">CommonStyle</code>
+          : Base interfaces and merging helpers for declaring composable styles.
+        </li>
+        <li>
+          <code translate="no" dir="ltr">StyleResolver</code>
+          : Resolves style properties in composition and binds to layout nodes via
+          <code translate="no" dir="ltr">Modifier.styleResolver</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">Modifier scopes</code>
+          :
+          <code translate="no" dir="ltr">Modifier.appearance</code>
+          ,
+          <code translate="no" dir="ltr">Modifier.placement</code>
+          , and dynamic callback-based
+          <code translate="no" dir="ltr">Modifier.padding</code>
+          and
+          <code translate="no" dir="ltr">Modifier.graphicsLayer</code>
+          .
+        </li>
+        <li>
+          Property primitives:
+          <code translate="no" dir="ltr">stylePropertyOf</code>
+          ,
+          <code translate="no" dir="ltr">styleLocalOf</code>
+          .
+        </li>
+        <li>
+          Types useful for style properties:
+          <code translate="no" dir="ltr">Breadth</code>
+          ,
+          <code translate="no" dir="ltr">Fill</code>
+          , and
+          <code translate="no" dir="ltr">Shadows</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      The new modifiers are useful for implementing a design system using the Styles API but are not required. A design system may use these modifiers or provide its own. (
+      <a href="https://android-review.googlesource.com/#/q/Ieb8ccd0560bb32a179d64a53e028a0117d903db2">Ieb8cc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/549921960">b/549921960</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">ExperimentalFoundationApi</code>
+      annotation from
+      <code translate="no" dir="ltr">TextFieldBuffer</code>
+      APIs that track the changes (
+      <a href="https://android-review.googlesource.com/#/q/I546a75f19ca406cbb637fa48e325c2d5fad58a17">I546a7</a>
+      )
+    </li>
+    <li>
+      Introduces
+      <code translate="no" dir="ltr">MorphPolygonShape</code>
+      in Compose Foundation for morphing animations between polygon shapes, along with
+      <code translate="no" dir="ltr">toPolygonShape()</code>
+      converters for
+      <code translate="no" dir="ltr">RoundedCornerShape</code>
+      and
+      <code translate="no" dir="ltr">CutCornerShape</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic5a8981b6bf62a67e8b191bfb6c011b50b476464">Ic5a89</a>
+      )
+    </li>
+    <li>
+      Introduces
+      <code translate="no" dir="ltr">PolygonShape</code>
+      in Compose Foundation for rendering regular, star, and custom rounded polygons with corner smoothing. (
+      <a href="https://android-review.googlesource.com/#/q/I0b99d9ad53f21a71f283e830e63806add4b3b51b">I0b99d</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BasicTextField</code>
+      overloads that accept
+      <code translate="no" dir="ltr">value, onValueChange</code>
+      parameters are deprecated. Please migrate to the
+      <code translate="no" dir="ltr">BasicTextField</code>
+      overload that uses
+      <code translate="no" dir="ltr">TextFieldState</code>
+      to hoist its state. (
+      <a href="https://android-review.googlesource.com/#/q/I636bf0af4334ce04a8eb9e80b8b2b0d1b6c905ae">I636bf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/552879150">b/552879150</a>
+      )
+    </li>
+    <li>
+      Inline with
+      <code translate="no" dir="ltr">BasicTextField(value, onValueChange)</code>
+      ,
+      <code translate="no" dir="ltr">VisualTransformation</code>
+      is also deprecated since it is only exposed through this
+      <code translate="no" dir="ltr">TextField</code>
+      flavor. Existing transformations should migrate to
+      <code translate="no" dir="ltr">OutputTransformation</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I636bf0af4334ce04a8eb9e80b8b2b0d1b6c905ae">I636bf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/552879150">b/552879150</a>
+      )
+    </li>
+    <li>
+      Providing
+      <code translate="no" dir="ltr">LazyLayoutCacheWindow</code>
+      and
+      <code translate="no" dir="ltr">LazyListPrefetchStrategy</code>
+      via
+      <code translate="no" dir="ltr">LazyListState</code>
+      has been deprecated in favour of providing a
+      <code translate="no" dir="ltr">LazyLayoutCacheWindow</code>
+      to the composable function. (
+      <a href="https://android-review.googlesource.com/#/q/I71f1967bc357f972343311b02169831f747a0cee">I71f19</a>
+      )
+    </li>
+    <li>
+      Removed temporary feature flag
+      <code translate="no" dir="ltr">ComposeFoundationFlags.isPausableCompositionInPrefetchEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ifff7fc0a19fda40684f439b31db09cb0d2e05f34">Ifff7f</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">InputTransformation.maxLengthTrim</code>
+      to limit text length by truncating excess input characters, added
+      <code translate="no" dir="ltr">InputTransformation.maxLengthReject</code>
+      to reject input that exceeds
+      <code translate="no" dir="ltr">maxLength</code>
+      , and deprecated
+      <code translate="no" dir="ltr">InputTransformation.maxLength</code>
+      in favor of
+      <code translate="no" dir="ltr">maxLengthTrim</code>
+      and
+      <code translate="no" dir="ltr">maxLengthReject</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I8d4cd094b819526966d85a516fe2289f79b2fdbe">I8d4cd</a>
+      )
     </li>
   </ul>
-  <p>
-    This enables, for example, creating a
-    <code translate="no" dir="ltr">TextField</code>
-    -like composable that allows customizing each of the decorator boxes using a style, enabling them to be overridden at a theme level or at the call site. (
-    <a href="https://android-review.googlesource.com/#/q/I43c0f1456cae4dd8ca8ca0212b5fe35e7813e617">I43c0f</a>
-    ) - Material 2 text field overloads that accept
-    <code translate="no" dir="ltr">value, onValueChange</code>
-    parameters are deprecated. Please migrate to the overload that uses
-    <code translate="no" dir="ltr">TextFieldState</code>
-    to hoist its state. (
-    <a href="https://android-review.googlesource.com/#/q/I6b841e6850afbc22bec2424c3762927ec4f65670">I6b841</a>
-    ,
-    <a href="https://issuetracker.google.com/issues/556234973">b/556234973</a>
-    ) - Removed
-    <code translate="no" dir="ltr">@ExperimentalFoundationApi</code>
-    annotation from
-    <code translate="no" dir="ltr">undoState</code>
-    in
-    <code translate="no" dir="ltr">TextFieldState</code>
-    . (
-    <a href="https://android-review.googlesource.com/#/q/I93a44b649ae73e456d904cda9c9b12007b8ff3a9">I93a44</a>
-    ) - Add default configuration objects for each lazy layout containing the default values used in the corresponding
-    <code translate="no" dir="ltr">@Composeable</code>
-    functions. Currently only contains the default cache window for each layout. (
-    <a href="https://android-review.googlesource.com/#/q/I5863328b8091e28638d709c56d9b6caecf2abfca">I58633</a>
-    ) - Flag
-    <code translate="no" dir="ltr">isUsingDynamicDefaultCacheWindowIn[List|Grid|StaggeredGrid]s</code>
-    when enabled will cause lazy layouts to use a cache window that uses the average size of visible items to prefetch ahead of the viewport with a minimum ahead window of 10% of the viewport and a maximum ahead window of 50% of the viewport. (
-    <a href="https://android-review.googlesource.com/#/q/I59212240a2719136277f635ea6c7ba59132fe188">I59212</a>
-    ) - Deprecated
-    <code translate="no" dir="ltr">LazyListPrefetchStrategy</code>
-    ,
-    <code translate="no" dir="ltr">LazyListPrefetchScope</code>
-    , and
-    <code translate="no" dir="ltr">LazyListPrefetchResultScope</code>
-    . Prefetching behavior should be configured using
-    <code translate="no" dir="ltr">LazyLayoutCacheWindow</code>
-    on
-    <code translate="no" dir="ltr">LazyColumn</code>
-    or
-    <code translate="no" dir="ltr">LazyRow</code>
-    .
-    <code translate="no" dir="ltr">LazyLayoutCacheWindow</code>
-    provides a declarative, viewport-based caching mechanism that automatically prepares items ahead of and keeps items behind the visible window without requiring complex imperative scheduling callbacks. The new API is simpler and requires less configuration steps than
-    <code translate="no" dir="ltr">LazyListPrefetchStrategy</code>
-    . (
-    <a href="https://android-review.googlesource.com/#/q/I1fa2d852d6579d1656e13242f9b00837b9b807b5">I1fa2d</a>
-    ) - Adds
-    <code translate="no" dir="ltr">PolygonShape.transformed</code>
-    and
-    <code translate="no" dir="ltr">PolygonShape.scaledToFit</code>
-    extension functions in Compose Foundation for transforming and fitting polygon shapes. (
-    <a href="https://android-review.googlesource.com/#/q/I3f32730534fa3739dc4e0c7eaac036284e98721b">I3f327</a>
-    ) - This change refactors the Styles API into two independent pieces: the Styles DSL and the modifiers that are configured by the DSL.
-  </p>
-  <p>
-    The previous
-    <code translate="no" dir="ltr">Style</code>
-    -based implementation is still present but will be deprecated and removed. Any uses of it should be replaced with the new
-    <code translate="no" dir="ltr">CommonStyle</code>
-    based API.
-  </p>
-  <p>
-    Key components introduced: -
-    <code translate="no" dir="ltr">CustomStyle</code>
-    &amp;
-    <code translate="no" dir="ltr">CommonStyle</code>
-    : Base interfaces and merging helpers for declaring composable styles. -
-    <code translate="no" dir="ltr">StyleResolver</code>
-    : Resolves style properties in composition and binds to layout nodes via
-    <code translate="no" dir="ltr">Modifier.styleResolver</code>
-    . - Modifier scopes:
-    <code translate="no" dir="ltr">Modifier.appearance</code>
-    ,
-    <code translate="no" dir="ltr">Modifier.placement</code>
-    , and dynamic callback-based
-    <code translate="no" dir="ltr">Modifier.padding</code>
-    and
-    <code translate="no" dir="ltr">Modifier.graphicsLayer</code>
-    . - Property primitives:
-    <code translate="no" dir="ltr">stylePropertyOf</code>
-    ,
-    <code translate="no" dir="ltr">styleLocalOf</code>
-    . - Types useful for style properties:
-    <code translate="no" dir="ltr">Breadth</code>
-    ,
-    <code translate="no" dir="ltr">Fill</code>
-    , and
-    <code translate="no" dir="ltr">Shadows</code>
-    .
-  </p>
-  <p>
-    The new modifiers are useful for implementing a design system using the Styles API but are not required. A design system may use these modifiers or provide its own. (
-    <a href="https://android-review.googlesource.com/#/q/Ieb8ccd0560bb32a179d64a53e028a0117d903db2">Ieb8cc</a>
-    ,
-    <a href="https://issuetracker.google.com/issues/549921960">b/549921960</a>
-    ) - Removed
-    <code translate="no" dir="ltr">ExperimentalFoundationApi</code>
-    annotation from
-    <code translate="no" dir="ltr">TextFieldBuffer</code>
-    APIs that track the changes (
-    <a href="https://android-review.googlesource.com/#/q/I546a75f19ca406cbb637fa48e325c2d5fad58a17">I546a7</a>
-    ) - Introduces
-    <code translate="no" dir="ltr">MorphPolygonShape</code>
-    in Compose Foundation for morphing animations between polygon shapes, along with
-    <code translate="no" dir="ltr">toPolygonShape()</code>
-    converters for
-    <code translate="no" dir="ltr">RoundedCornerShape</code>
-    and
-    <code translate="no" dir="ltr">CutCornerShape</code>
-    . (
-    <a href="https://android-review.googlesource.com/#/q/Ic5a8981b6bf62a67e8b191bfb6c011b50b476464">Ic5a89</a>
-    ) - Introduces
-    <code translate="no" dir="ltr">PolygonShape</code>
-    in Compose Foundation for rendering regular, star, and custom rounded polygons with corner smoothing. (
-    <a href="https://android-review.googlesource.com/#/q/I0b99d9ad53f21a71f283e830e63806add4b3b51b">I0b99d</a>
-    ) -
-    <code translate="no" dir="ltr">BasicTextField</code>
-    overloads that accept
-    <code translate="no" dir="ltr">value, onValueChange</code>
-    parameters are deprecated. Please migrate to the
-    <code translate="no" dir="ltr">BasicTextField</code>
-    overload that uses
-    <code translate="no" dir="ltr">TextFieldState</code>
-    to hoist its state. (
-    <a href="https://android-review.googlesource.com/#/q/I636bf0af4334ce04a8eb9e80b8b2b0d1b6c905ae">I636bf</a>
-    ,
-    <a href="https://issuetracker.google.com/issues/552879150">b/552879150</a>
-    ) - Inline with
-    <code translate="no" dir="ltr">BasicTextField(value, onValueChange)</code>
-    ,
-    <code translate="no" dir="ltr">VisualTransformation</code>
-    is also deprecated since it is only exposed through this
-    <code translate="no" dir="ltr">TextField</code>
-    flavor. Existing transformations should migrate to
-    <code translate="no" dir="ltr">OutputTransformation</code>
-    . (
-    <a href="https://android-review.googlesource.com/#/q/I636bf0af4334ce04a8eb9e80b8b2b0d1b6c905ae">I636bf</a>
-    ,
-    <a href="https://issuetracker.google.com/issues/552879150">b/552879150</a>
-    ) - Providing
-    <code translate="no" dir="ltr">LazyLayoutCacheWindow</code>
-    and
-    <code translate="no" dir="ltr">LazyListPrefetchStrategy</code>
-    via
-    <code translate="no" dir="ltr">LazyListState</code>
-    has been deprecated in favour of providing a
-    <code translate="no" dir="ltr">LazyLayoutCacheWindow</code>
-    to the composable function. (
-    <a href="https://android-review.googlesource.com/#/q/I71f1967bc357f972343311b02169831f747a0cee">I71f19</a>
-    ) - Removed temporary feature flag ComposeFoundationFlags.isPausableCompositionInPrefetchEnabled. (
-    <a href="https://android-review.googlesource.com/#/q/Ifff7fc0a19fda40684f439b31db09cb0d2e05f34">Ifff7f</a>
-    ) - Added InputTransformation.maxLengthTrim to limit text length by truncating excess input characters, added InputTransformation.maxLengthReject to reject input that exceeds maxLength, and deprecated InputTransformation.maxLength in favor of maxLengthTrim and maxLengthReject. (
-    <a href="https://android-review.googlesource.com/#/q/I8d4cd094b819526966d85a516fe2289f79b2fdbe">I8d4cd</a>
-    )
-  </p>
   <p><strong>Bug Fixes</strong></p>
   <ul>
     <li>
