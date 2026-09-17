@@ -1,0 +1,156 @@
+libraryId: media3
+groupId: androidx.media3
+version: 1.11.1
+releaseDate: 2026-09-10
+#language=html
+changelogHtml: |
+  <h3 id="1.11.1" data-text="1.11.1" tabindex="-1">1.11.1</h3>
+  <p>September 10, 2026</p>
+  <ul>
+    <li>
+      ExoPlayer:
+      <ul>
+        <li>
+          Move the flag to enable/disable HAGC metadata for progressive media from
+          <code translate="no" dir="ltr">MediaSource.Factory</code>
+          to
+          <code translate="no" dir="ltr">ExtractorsFactory</code>
+          . The previous
+          <code translate="no" dir="ltr">setExperimentalEnableHagcPlayback</code>
+          method is removed and replaced by
+          <code translate="no" dir="ltr">ExtractorsFactory.setParseHagcMetadata</code>
+          . This also resolves an issue where disabling didn't work for Matroska/WebM containers.
+        </li>
+        <li>Fix a playback stall caused when prewarming a non-transitioning secondary renderer.</li>
+        <li>
+          Fix pre-warming issue where the
+          <code translate="no" dir="ltr">Surface</code>
+          should be returned to the primary renderer when a seek resets and disables both renderers.
+        </li>
+        <li>
+          Fix
+          <code translate="no" dir="ltr">ArrayIndexOutOfBoundsException</code>
+          when a live timeline refresh moves the default position past a server-side inserted ad that is currently being played (
+          <a href="https://github.com/androidx/media/issues/3348">#3348</a>
+          ).
+        </li>
+        <li>
+          Fix a scrubbing mode issue where stale video frames could be briefly displayed when seeking with
+          <code translate="no" dir="ltr">ScrubbingModeParameters.allowSkippingMediaCodecFlush</code>
+          enabled.
+        </li>
+      </ul>
+    </li>
+    <li>
+      Extractors:
+      <ul>
+        <li>
+          Matroska: Fix issue where Tracks placed after clusters wouldn't result in a seekable timeline (
+          <a href="https://github.com/androidx/media/issues/3377">#3377</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Audio:
+      <ul>
+        <li>
+          Fix buffer size calculation in
+          <code translate="no" dir="ltr">SilenceSkippingAudioProcessor</code>
+          so that the minimum silence duration is not incorrectly scaled down by the frame size (
+          <a href="https://github.com/androidx/media/pull/3271">#3271</a>
+          ).
+        </li>
+        <li>
+          Fix 8-bit PCM handling in
+          <code translate="no" dir="ltr">PcmAudioUtil</code>
+          to treat samples as unsigned as defined by Android (
+          <a href="https://github.com/androidx/media/pull/3271">#3271</a>
+          ).
+        </li>
+        <li>Fix offload issue in which playback could stall during pre-roll or gapless transitions due to limited hardware buffer sizes.</li>
+        <li>
+          Fix bug in
+          <code translate="no" dir="ltr">DefaultAudioSink</code>
+          where release count doesn't decrease when playback thread is no longer alive (
+          <a href="https://github.com/androidx/media/issues/3338">#3338</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Session:
+      <ul>
+        <li>
+          Fix
+          <code translate="no" dir="ltr">NullPointerException</code>
+          when an in-process
+          <code translate="no" dir="ltr">MediaController</code>
+          is released from a
+          <code translate="no" dir="ltr">Player.Listener</code>
+          callback (
+          <a href="https://github.com/androidx/media/issues/3375">#3375</a>
+          ).
+        </li>
+        <li>
+          Fix deadlock on the main thread when a legacy
+          <code translate="no" dir="ltr">MediaBrowser</code>
+          connects to a service returning an asynchronous result from
+          <code translate="no" dir="ltr">onGetLibraryRoot()</code>
+          or
+          <code translate="no" dir="ltr">onConnectAsync()</code>
+          (
+          <a href="https://github.com/androidx/media/issues/3393">#3393</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      HLS extension:
+      <ul>
+        <li>
+          Fix calculation of content resume offset when the target segment for snapping is not yet in the playlist (
+          <a href="https://github.com/androidx/media/issues/3322">#3322</a>
+          ).
+        </li>
+        <li>
+          Fix an issue where a fully consumed
+          <code translate="no" dir="ltr">HlsMediaChunk</code>
+          retries loading on receiving
+          <code translate="no" dir="ltr">EOFException</code>
+          from the extractor (
+          <a href="https://github.com/androidx/media/issues/3350">#3350</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      DASH extension:
+      <ul>
+        <li>
+          Fix incorrect sample timestamp calculation for image tracks with a
+          <code translate="no" dir="ltr">presentationTimeOffset</code>
+          (
+          <a href="https://github.com/androidx/media/issues/3334">#3334</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Decoder extensions (FFmpeg, VP9, AV1, etc.):
+      <ul>
+        <li>
+          Opus: Fix memory corruption when multiple
+          <code translate="no" dir="ltr">OpusDecoder</code>
+          instances are initialized concurrently.
+        </li>
+        <li>
+          MPEG-H: Fix memory leak, truncation of non-ASCII characters, and potential native crash under low-memory conditions when sending commands to the
+          <code translate="no" dir="ltr">MpeghUiManager</code>
+          (
+          <a href="https://github.com/androidx/media/issues/3365">#3365</a>
+          ).
+        </li>
+      </ul>
+    </li>
+  </ul>
