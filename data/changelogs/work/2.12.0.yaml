@@ -1,0 +1,44 @@
+libraryId: work
+groupId: androidx.work
+version: 2.12.0
+releaseDate: 2026-09-23
+#language=html
+changelogHtml: |
+  <h3 id="2.12.0" data-text="Version 2.12.0" tabindex="-1">Version 2.12.0</h3>
+  <p>September 23, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.work:work-*:2.12.0</code>
+    is released. Version 2.12.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/ca9838b48d87bc75d30b12a4b187c2f6da47308f..cbf5ea2a1e5a7e5999144c2cb7f170802046e1c9/work">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 2.11.0:</strong></p>
+  <ul>
+    <li>
+      The
+      <code translate="no" dir="ltr">minSdk</code>
+      has been updated from API 23 to API 24
+    </li>
+    <li>
+      A new artifact,
+      <code translate="no" dir="ltr">androidx.work:work-analytics</code>
+      , adds experimental Work Metrics APIs for inspecting the execution history of your work.
+      <code translate="no" dir="ltr">WorkMetricsInfoRepository</code>
+      records a
+      <code translate="no" dir="ltr">WorkMetricsInfo</code>
+      per work event timestamps, worker duration, total cumulative runtime, and run attempts breakdowns. Metrics can be read via configurable queries or observed as a
+      <code translate="no" dir="ltr">Flow</code>
+      of finished work. These APIs require opting in to
+      <code translate="no" dir="ltr">@ExperimentalWorkMetricsApi</code>
+      .
+    </li>
+    <li>
+      New experimental event listener APIs let you observe
+      <code translate="no" dir="ltr">WorkManager</code>
+      's execution and scheduling directly.
+      <code translate="no" dir="ltr">Configuration.Builder</code>
+      now accepts a listener for worker execution events (start, finish, stop, and uncaught exceptions) and a listener for scheduling events (enqueue, unblock, update, cancellation, and failed prerequisites). These are the building blocks that
+      <code translate="no" dir="ltr">work-analytics</code>
+      itself is built on.
+    </li>
+  </ul>

@@ -1,0 +1,110 @@
+libraryId: test-backup
+groupId: androidx.test
+version: 1.0.0-alpha01
+releaseDate: 2026-09-23
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha01" data-text="Version 1.0.0-alpha01" tabindex="-1">Version 1.0.0-alpha01</h3>
+  <p>September 23, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.test.backup:backup:1.0.0-alpha01</code>
+    and
+    <code translate="no" dir="ltr">androidx.test.backup:backup-host:1.0.0-alpha01</code>
+    are released. Version 1.0.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/7e42fbca3c858f229d1319744151dff704521b19/test/backup">these commits</a>
+    .
+  </p>
+  <p><strong>Features of Initial Release</strong></p>
+  <p>
+    Initial release of the Automated Backup and Restore Testing framework for Android. This library provides an automated, end-to-end way to test that user data and account credentials safely survive device upgrades and cloud restores. Instead of relying on manual testing, developers can automate the full lifecycle: seeding app state, backing it up according to your configured rules (
+    <code translate="no" dir="ltr">dataExtractionRules</code>
+    and
+    <code translate="no" dir="ltr">fullBackupContent</code>
+    ), wiping the app, and verifying post-restore data integrity. The framework provides two artifacts:
+    <code translate="no" dir="ltr">androidx.test.backup:backup-host</code>
+    (which runs on the host computer to orchestrate backup, wipe, and restore passes over ADB) and
+    <code translate="no" dir="ltr">androidx.test.backup:backup</code>
+    (which runs on the device to populate and verify app data).
+  </p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">BackupRestoreController</code>
+      : The primary host-side interface used to control backup, wipe, restore, and verification workflows for a test device. Provides convenience pipelines such as
+      <code translate="no" dir="ltr">runBackupRestoreFlow</code>
+      as well as fine-grained operations (
+      <code translate="no" dir="ltr">performBackup</code>
+      ,
+      <code translate="no" dir="ltr">performRestore</code>
+      ,
+      <code translate="no" dir="ltr">clearAppData</code>
+      ,
+      <code translate="no" dir="ltr">fetchDeviceLogs</code>
+      , and
+      <code translate="no" dir="ltr">runOnDevice</code>
+      ). Supports both Kotlin coroutines and Java
+      <code translate="no" dir="ltr">ListenableFuture</code>
+      asynchronous execution.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BackupRestoreExtension</code>
+      : A JUnit 5 Jupiter extension that resolves and injects
+      <code translate="no" dir="ltr">BackupRestoreController</code>
+      parameters into test methods. Manages standalone or shared ADB sessions, automatically installs tested and test APKs, dismisses device lockscreens and keyguards to unlock credential-protected storage, and enforces test sandbox isolation.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BackupRestoreTestRunner</code>
+      : An on-device
+      <code translate="no" dir="ltr">Instrumentation</code>
+      test runner executing inside the application sandbox. Dynamically resolves and executes requested
+      <code translate="no" dir="ltr">BackupDeviceAction</code>
+      implementations dispatched by host orchestrators and safely redirects large JSON result payloads to disk to prevent Binder transaction buffer limits.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BackupDeviceAction</code>
+      : The contract for custom device-side actions executing directly within the target application sandbox during data seeding (
+      <code translate="no" dir="ltr">PHASE_POPULATE</code>
+      ) or post-restore validation (
+      <code translate="no" dir="ltr">PHASE_VERIFY</code>
+      ).
+    </li>
+    <li>
+      <code translate="no" dir="ltr">StorageDomain</code>
+      : Strongly typed descriptors (
+      <code translate="no" dir="ltr">Preference</code>
+      ,
+      <code translate="no" dir="ltr">Database</code>
+      ,
+      <code translate="no" dir="ltr">TextFile</code>
+      , and
+      <code translate="no" dir="ltr">BinaryFile</code>
+      ) used alongside prebuilt action helpers (
+      <code translate="no" dir="ltr">PopulateStorageAction</code>
+      and
+      <code translate="no" dir="ltr">AssertStorageAction</code>
+      ) to automatically seed and assert
+      <code translate="no" dir="ltr">SharedPreferences</code>
+      , SQLite databases, and raw files across both Credential Protected (CE) and Device Protected (DE) storage contexts without boilerplate.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BackupTransportMode</code>
+      : Specifies the platform backup transport topology to simulate during test passes, including
+      <code translate="no" dir="ltr">DEVICE_TO_DEVICE</code>
+      (physical device migration via USB or Wi-Fi Direct),
+      <code translate="no" dir="ltr">CLOUD_ENCRYPTED</code>
+      (cloud backup with client-side end-to-end encryption),
+      <code translate="no" dir="ltr">CLOUD_UNENCRYPTED</code>
+      (standard cloud backup), and
+      <code translate="no" dir="ltr">LOCAL</code>
+      (offline local filesystem backup).
+    </li>
+    <li>
+      <code translate="no" dir="ltr">@Device</code>
+      and
+      <code translate="no" dir="ltr">@Isolation</code>
+      : Host annotations for selecting connected devices matching specific serials, API levels, or multi-device roles, and configuring sandbox isolation policies between test runs (
+      <code translate="no" dir="ltr">IsolationPolicy.AUTOMATIC</code>
+      vs.
+      <code translate="no" dir="ltr">IsolationPolicy.MANUAL</code>
+      ).
+    </li>
+  </ul>

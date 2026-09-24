@@ -1,0 +1,122 @@
+libraryId: emoji2
+groupId: androidx.emoji2
+version: 1.7.0
+releaseDate: 2026-09-23
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0" data-text="Version 1.7.0" tabindex="-1">Version 1.7.0</h3>
+  <p>September 23, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.emoji2:emoji2-*:1.7.0</code>
+    is released. Version 1.7.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9ed4b1acacae02bd637e1932def67751b89244cb..ff41cd57cc559059699d8e39a95b7224981f0be5/emoji2">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.6.0:</strong></p>
+  <ol>
+    <li>
+      <strong>
+        Disabled
+        <code translate="no" dir="ltr">EmojiCompat</code>
+        by default.
+      </strong>
+      On Android 15 and above,
+      <code translate="no" dir="ltr">EmojiCompat</code>
+      is disabled by default.
+    </li>
+    <li>
+      <strong>Performance improvements.</strong>
+      Text scanning is 4-6x faster and startup allocations are down 99.6%.
+    </li>
+    <li>
+      <strong>
+        <code translate="no" dir="ltr">minSdk</code>
+        is now 24.
+      </strong>
+    </li>
+  </ol>
+  <h4 id="emojicompat_is_off_by_default_on_android_15_2" data-text="EmojiCompat is off by default on Android 15+" tabindex="-1">
+    <code translate="no" dir="ltr">EmojiCompat</code>
+    is off by default on Android 15+
+  </h4>
+  <p>
+    On API 35 and above the system has universal coverage with Updatable System Fonts, so for most apps
+    <code translate="no" dir="ltr">EmojiCompat</code>
+    is not doing anything.
+  </p>
+  <p>
+    The new API is
+    <code translate="no" dir="ltr">EmojiCompat.Config.setUseAfterUpdatableSystemFonts(boolean)</code>
+    to configure this behavior, and it defaults to
+    <code translate="no" dir="ltr">false</code>
+    . When it's off,
+    <code translate="no" dir="ltr">EmojiCompat</code>
+    is disabled on Android 15+ and your app draws emoji with the system font installed via Updatable System Fonts.
+  </p>
+  <p>
+    There is no API to detect that
+    <code translate="no" dir="ltr">EmojiCompat</code>
+    is disabled, and to be clear even when
+    <code translate="no" dir="ltr">setUseAfterUpdatableSystemFonts</code>
+    is
+    <code translate="no" dir="ltr">false</code>
+    <code translate="no" dir="ltr">getLoadState()</code>
+    still returns
+    <code translate="no" dir="ltr">LOAD_STATE_SUCCEEDED</code>
+    .
+  </p>
+  <h5 id="re-enabling_on_android_15_with_new_flag_2" data-text="Re-enabling on Android 15+ with new flag" tabindex="-1">Re-enabling on Android 15+ with new flag</h5>
+  <devsite-code>
+    <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-n">EmojiCompat</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">init</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">FontRequestEmojiCompatConfig</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">context</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">fontRequest</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">setUseAfterUpdatableSystemFonts</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-kc">true</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-p">)</span>
+  </code></pre>
+  </devsite-code>
+  <h4 id="text_scanning_is_faster_2" data-text="Text scanning is faster" tabindex="-1">Text scanning is faster</h4>
+  <p>Text parsing and startup allocations:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>p50</th>
+        <th>1.6.0</th>
+        <th>1.7.0</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td><code translate="no" dir="ltr">pureLatin</code></td>
+        <td>16.43 µs</td>
+        <td>2.66 µs</td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">latinWithOneSimpleEmoji</code></td>
+        <td>12.13 µs</td>
+        <td>2.43 µs</td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">latinWithOneComplexEmoji</code></td>
+        <td>13.42 µs</td>
+        <td>3.11 µs</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>Startup allocations are down 99.6%. Total memory usage is also down.</p>
+  <p>
+    When
+    <code translate="no" dir="ltr">setUseAfterUpdatableSystemFonts</code>
+    is
+    <code translate="no" dir="ltr">false</code>
+    (the default) on Android 15+,
+    <code translate="no" dir="ltr">EmojiCompat</code>
+    costs empty method calls and holds no emoji metadata in memory.
+  </p>
+  <h4 id="minsdk_is_24_2" data-text="minSdk is 24" tabindex="-1">
+    <code translate="no" dir="ltr">minSdk</code>
+    is 24
+  </h4>
+  <p>
+    <code translate="no" dir="ltr">minSdk</code>
+    is now 24.
+  </p>
