@@ -1,0 +1,489 @@
+libraryId: a2ui-compose
+groupId: androidx.a2ui
+version: 1.0.0-alpha01
+releaseDate: 2026-09-23
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha01" data-text="Version 1.0.0-alpha01" tabindex="-1">Version 1.0.0-alpha01</h3>
+  <p>September 23, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.a2ui.compose:compose-runtime:1.0.0-alpha01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.a2ui.compose:compose-ui:1.0.0-alpha01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.a2ui.compose:compose-ui-testing:1.0.0-alpha01</code>
+    are released. Version 1.0.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b1263fbaa920727652ed50caea8ba2ebafa5fe02/a2ui/compose">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>
+    The Jetpack Compose Agent-to-UI (A2UI) renderer provides an implementation of the
+    <a href="https://a2ui.org/">A2UI protocol</a>
+    , enabling AI agents to generate rich, interactive user interfaces that render native Compose components—without executing arbitrary code. This library maps the A2UI protocol messages to Compose primitives while providing fine-grained reactivity based on the Compose Snapshot state system. The library also provides APIs for creating custom components and catalogs.
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1.CatalogId</code>
+      from
+      <code translate="no" dir="ltr">.../v0_9_1/...</code>
+      to
+      <code translate="no" dir="ltr">.../v0_9/...</code>
+      to align with the canonical A2UI protocol specification. (
+      <a href="https://android-review.googlesource.com/#/q/Idcc200a889013467320122c875f5fd5fd44de290">Idcc20</a>
+      )
+    </li>
+    <li>
+      Update the order of components in
+      <code translate="no" dir="ltr">A2uiBasicCatalogV</code>
+      to exactly match the basic catalog specification. (
+      <a href="https://android-review.googlesource.com/#/q/I230939bd796e442c60e4a9ca5b5965878916f802">I23093</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547851648">b/547851648</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ChecksProperty</code>
+      to all relevant component interfaces under
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1</code>
+      and made the property value available via a parameter passed to
+      <code translate="no" dir="ltr">TypedContent</code>
+      of each component. (
+      <a href="https://android-review.googlesource.com/#/q/I9f39367d32484b6a5b728562acd3dbe7edfb7ccd">I9f393</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547851648">b/547851648</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1.ChoicePicker</code>
+      and
+      <code translate="no" dir="ltr">MaterialA2uiBasicCatalogV1Defaults.choicePicker</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I875a6aea544fe4efd44cd8b8d010b081d72cc66d">I875a6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547851648">b/547851648</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1.Modal</code>
+      and
+      <code translate="no" dir="ltr">MaterialA2uiBasicCatalogV1Defaults.modal</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Icd553cf262a716b992a27c940d4bda2d8b4119d5">Icd553</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547851648">b/547851648</a>
+      )
+    </li>
+    <li>
+      Renamed properties in
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1</code>
+      to follow the pascal-case naming style. (
+      <a href="https://android-review.googlesource.com/#/q/I91512359e62c5276d3adf60e04cac95772d8a209">I91512</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547851648">b/547851648</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">AccessibilityProperty</code>
+      to all component interfaces under
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1</code>
+      and made the property value available via a parameter passed to
+      <code translate="no" dir="ltr">TypedContent</code>
+      of each component. (
+      <a href="https://android-review.googlesource.com/#/q/I76b8012d9e9efc3420e5345c3ea0f63019317395">I76b80</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547851648">b/547851648</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1.TextField</code>
+      and
+      <code translate="no" dir="ltr">MaterialA2uiBasicCatalogV1Defaults.textField</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ifdaec8d793a88cb2904a32415e8dace4c488b47c">Ifdaec</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547851648">b/547851648</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1.Video</code>
+      and
+      <code translate="no" dir="ltr">MaterialA2uiBasicCatalogV1Defaults.video</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I8595cade4cf6adf80020d3540588674a6a073f0e">I8595c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547851648">b/547851648</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1.AudioPlayer</code>
+      and
+      <code translate="no" dir="ltr">MaterialA2uiBasicCatalogV1Defaults.audioPlayer</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ida5091b519aa2d888cda0e49c7d46c26425cc4f3">Ida509</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547851648">b/547851648</a>
+      )
+    </li>
+    <li>
+      Added support for
+      <code translate="no" dir="ltr">format</code>
+      and conditional
+      <code translate="no" dir="ltr">if-then</code>
+      schema keywords in
+      <code translate="no" dir="ltr">a2ui-model</code>
+      and
+      <code translate="no" dir="ltr">a2ui-engine</code>
+      , and updated
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1.DateTimeInput</code>
+      min and max property schemas. (
+      <a href="https://android-review.googlesource.com/#/q/I556d546f03262b5f3a88771b827a11df59ba098f">I556d5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/553193771">b/553193771</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1.Slider</code>
+      and
+      <code translate="no" dir="ltr">MaterialA2uiBasicCatalogV1Defaults.slider</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ieb72dfb0fe03289d171f9257eb79de2f7ca996d8">Ieb72d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547851648">b/547851648</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1.CheckBox</code>
+      and
+      <code translate="no" dir="ltr">MaterialA2uiBasicCatalogV1Defaults.checkBox</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I84525d60795d5edd1e672c536e8ae593bf12b2cf">I84525</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547851648">b/547851648</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1.Divider</code>
+      and
+      <code translate="no" dir="ltr">MaterialA2uiBasicCatalogV1Defaults.divider</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I91208bc4ac1f919f99c6b1d2c5f1016914588f57">I91208</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547851648">b/547851648</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1.Tabs</code>
+      and
+      <code translate="no" dir="ltr">MaterialA2uiBasicCatalogV1Defaults.tabs</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic33d317a0f1756c62f4bcff9b56ba70f8e2ace0a">Ic33d3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547851648">b/547851648</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1.List</code>
+      and
+      <code translate="no" dir="ltr">MaterialA2uiBasicCatalogV1Defaults.list</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I89f736a2e2550dfb6070ebc051266f58f2fc3b55">I89f73</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547851648">b/547851648</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1.Icon</code>
+      and
+      <code translate="no" dir="ltr">MaterialA2uiBasicCatalogV1Defaults.icon</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I655240181d4f69497bdefc9ecd729d1ea74ad0f2">I65524</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547851648">b/547851648</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ProvideActionInterceptor</code>
+      for intercepting actions of child components. (
+      <a href="https://android-review.googlesource.com/#/q/I6ae694a331b2aa550fbadf7aeabddc981d4fa1fc">I6ae69</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/552486965">b/552486965</a>
+      )
+    </li>
+    <li>
+      Added support for advertising inline catalog schemas in
+      <code translate="no" dir="ltr">A2uiClientCapabilities</code>
+      and
+      <code translate="no" dir="ltr">A2uiCoreCatalog</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I973cf46461377312691d5549bced426a1725a1be">I973cf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/537714970">b/537714970</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1.Image</code>
+      and
+      <code translate="no" dir="ltr">MaterialA2uiBasicCatalogV1Defaults.image</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I673b3a7125fc503bed486e836283a7b49d3a376d">I673b3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547851648">b/547851648</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1.Button</code>
+      and
+      <code translate="no" dir="ltr">MaterialA2uiBasicCatalogV1Defaults.button</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I5215f800adf0c1fd42ec4f1b497fa2ab35ee764f">I5215f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547851648">b/547851648</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1.Row</code>
+      /
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1.Column</code>
+      and
+      <code translate="no" dir="ltr">MaterialA2uiBasicCatalogV1Defaults.row</code>
+      /
+      <code translate="no" dir="ltr">MaterialA2uiBasicCatalogV1Defaults.column</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ibcbe7f4266c2c9b2d101690942496c4140ca22c2">Ibcbe7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547851648">b/547851648</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">default</code>
+      parameters to the enum, number, and boolean
+      <code translate="no" dir="ltr">A2uiProperty</code>
+      types. (
+      <a href="https://android-review.googlesource.com/#/q/Id509ea0050b3e3a0e075057ea56683727fe72f3d">Id509e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547851648">b/547851648</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1.Card</code>
+      and
+      <code translate="no" dir="ltr">MaterialA2uiBasicCatalogV1Defaults.card</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Icf604e02bd57ac18730e2058dc2e77f038b6dc31">Icf604</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547851648">b/547851648</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">isAdditionalPropertiesAllowed</code>
+      and
+      <code translate="no" dir="ltr">additionalPropertiesSchema</code>
+      parameters to
+      <code translate="no" dir="ltr">A2uiProperty.nested</code>
+      and
+      <code translate="no" dir="ltr">A2uiProperty.nestedList</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7283655b702d654e9ee64a463e81939327cadf89">I72836</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547815898">b/547815898</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">minItems</code>
+      and
+      <code translate="no" dir="ltr">maxItems</code>
+      parameters to the list
+      <code translate="no" dir="ltr">A2uiProperty</code>
+      types. (
+      <a href="https://android-review.googlesource.com/#/q/I716d39da2dd792d8738e153fa733c70afae9ea6b">I716d3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547798330">b/547798330</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">A2uiProperty.enum</code>
+      ,
+      <code translate="no" dir="ltr">A2uiProperty.custom</code>
+      , and
+      <code translate="no" dir="ltr">A2uiProperty.dynamicCustom</code>
+      property types. (
+      <a href="https://android-review.googlesource.com/#/q/I0647d44fc52e7cb17830b44c597fa28e91ff277b">I0647d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/545522395">b/545522395</a>
+      )
+    </li>
+    <li>
+      Replace
+      <code translate="no" dir="ltr">A2uiCoreSurfaceModel</code>
+      with
+      <code translate="no" dir="ltr">A2uiSurfaceModel</code>
+      in
+      <code translate="no" dir="ltr">observeA2uiComponentState</code>
+      to ensure that the public APIs in
+      <code translate="no" dir="ltr">androidx.a2ui.compose.runtime</code>
+      don't expose types from
+      <code translate="no" dir="ltr">androidx.a2ui.engine</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ic45e2e91a3f29f727d7ee52e70afb3e17aff79cf">Ic45e2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/544705890">b/544705890</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">A2uiTestSurface</code>
+      composable to mount and test A2UI surfaces and components in isolation. (
+      <a href="https://android-review.googlesource.com/#/q/I03c8ab4aae08ead8a86ddc0504e90e83c43c532c">I03c8a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/527415570">b/527415570</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">A2uiSchema</code>
+      now support keywords within each subclass instead of dedicated subclasses for
+      <code translate="no" dir="ltr">oneOf</code>
+      ,
+      <code translate="no" dir="ltr">allOf</code>
+      ,
+      <code translate="no" dir="ltr">anyOf</code>
+      ,
+      <code translate="no" dir="ltr">not</code>
+      ,
+      <code translate="no" dir="ltr">const</code>
+      ,
+      <code translate="no" dir="ltr">default</code>
+      and
+      <code translate="no" dir="ltr">enum</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6a6f875b474a6dc8fd516c372fec70659311ca83">I6a6f8</a>
+      )
+    </li>
+    <li>
+      Added testing APIs for the Compose A2UI renderer. (
+      <a href="https://android-review.googlesource.com/#/q/I59c9f3756e488ee3ded63fd4bdccff9645b918ca">I59c9f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/527415570">b/527415570</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">A2uiReadinessEvaluator</code>
+      and related APIs. (
+      <a href="https://android-review.googlesource.com/#/q/Ib37d3e0e3f9097c3a7a2f4875ef90d7089578679">Ib37d3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/527415547">b/527415547</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/524122705">b/524122705</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">A2uiComponentCollection</code>
+      ,
+      <code translate="no" dir="ltr">A2uiFunctionCollection</code>
+      , and
+      <code translate="no" dir="ltr">A2uiCoreComponentDefinitionCollection</code>
+      , and updated the catalog APIs to use the new collections. (
+      <a href="https://android-review.googlesource.com/#/q/I96438fba8e64135f320bed958df812445ec01ea4">I96438</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/527415547">b/527415547</a>
+      )
+    </li>
+    <li>
+      Added an
+      <code translate="no" dir="ltr">A2uiMessageParser</code>
+      factory function. (
+      <a href="https://android-review.googlesource.com/#/q/I8596a193904d3b64666d23b5ee3974d7cf7be20d">I8596a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/524122705">b/524122705</a>
+      )
+    </li>
+    <li>
+      Added the
+      <code translate="no" dir="ltr">A2uiRuntimeCatalog</code>
+      marker interface, and APIs in
+      <code translate="no" dir="ltr">androidx.a2ui.compose.ui</code>
+      for defining components and catalogs. (
+      <a href="https://android-review.googlesource.com/#/q/Ibea7af8717ff058cbfce0dcb5d39acfb5ec6318f">Ibea7a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/527415547">b/527415547</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/524122705">b/524122705</a>
+      )
+    </li>
+    <li>
+      Moved
+      <code translate="no" dir="ltr">androidx.compose.runtime:runtime-a2ui</code>
+      to
+      <code translate="no" dir="ltr">androidx.a2ui.compose:compose-runtime</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ifc7cfd84f37b50ca0be52c5349125d787402c283">Ifc7cf</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/524122705">b/524122705</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-runtime</code>
+      dependency was updated to 2.10.0. This version is required for bundled lifecycle runtime lint checks to run with AGP version 9.5.0-alpha04 or later. (
+      <a href="https://android-review.googlesource.com/#/q/Id18ea0acdf0e152f649ce8e2435bf3d6e39d5947">Id18ea</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/556807521">b/556807521</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">compileSdk</code>
+      for Compose libraries updated to 37.1. This will require transitively updating
+      <code translate="no" dir="ltr">compileSdk</code>
+      for all apps and libraries using Compose. (
+      <a href="https://android-review.googlesource.com/#/q/I05b0f9385d2b99ddcc4041b2ce2d96aea3bd391e">I05b0f</a>
+      )
+    </li>
+    <li>
+      Updated default
+      <code translate="no" dir="ltr">Column</code>
+      horizontal alignment to
+      <code translate="no" dir="ltr">Alignment.Start</code>
+      in
+      <code translate="no" dir="ltr">A2UI Basic Catalog V1</code>
+      .
+      <a href="https://android-review.googlesource.com/q/Ia1c6db2a2902e951bee353981ad26db57c61e251">Ia1c6db</a>
+    </li>
+    <li>
+      Updated default
+      <code translate="no" dir="ltr">Row</code>
+      vertical alignment to
+      <code translate="no" dir="ltr">Alignment.Top</code>
+      in
+      <code translate="no" dir="ltr">A2UI Basic Catalog V1</code>
+      .
+      <a href="https://android-review.googlesource.com/q/If0bca47da9917016a075c2537e4f82c44ddbde4e">If0bca4</a>
+    </li>
+  </ul>

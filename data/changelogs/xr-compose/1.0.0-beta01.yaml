@@ -1,0 +1,133 @@
+libraryId: xr-compose
+groupId: androidx.xr
+version: 1.0.0-beta01
+releaseDate: 2026-09-23
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta01" data-text="Version 1.0.0-beta01" tabindex="-1">Version 1.0.0-beta01</h3>
+  <p>September 23, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.compose:compose:1.0.0-beta01</code>
+    and
+    <code translate="no" dir="ltr">androidx.xr.compose:compose-testing:1.0.0-beta01</code>
+    are released. Version 1.0.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/21d3a25e98cb0aafed30e30d4e1d89bba15ed1d7..bc67eb1589ba68a62d1d7b5fa7c920116520b682/xr/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removed deprecated
+      <code translate="no" dir="ltr">DragPolicy</code>
+      . Use
+      <code translate="no" dir="ltr">SubspaceModifier.movable()</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/I108d4df07a11b4020070c9218f7999a7171f7260">I108d4</a>
+      )
+    </li>
+    <li>
+      Removed the deprecated
+      <code translate="no" dir="ltr">ResizePolicy</code>
+      and its usages in
+      <code translate="no" dir="ltr">SpatialPanel</code>
+      and
+      <code translate="no" dir="ltr">SpatialExternalSurface</code>
+      . Remove a deprecated
+      <code translate="no" dir="ltr">SubspaceModifier.resizable</code>
+      function. Use the new
+      <code translate="no" dir="ltr">SubspaceModifier.resizable</code>
+      with a new
+      <code translate="no" dir="ltr">ResizePolicy</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/I59e6b80b3ee2cc7e50076e37c9a2e126fd4c0ed4">I59e6b</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">isPitchUpdateEnabled</code>
+      parameter to allow enabling or disabling pitch tracking independently. (
+      <a href="https://android-review.googlesource.com/#/q/Ie9e86bc714cc38b1998baafb421b4a55bbfe5e53">Ie9e86</a>
+      )
+    </li>
+    <li>
+      Removed nullability of
+      <code translate="no" dir="ltr">pitchLimits</code>
+      and renamed
+      <code translate="no" dir="ltr">PitchLimits.UNCONSTRAINED</code>
+      to
+      <code translate="no" dir="ltr">PitchLimits.FullRange</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I0154f92547a4af8218fc3a942370c8aa65c24076">I0154f</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ExposedDropdownMenu</code>
+      is now an extension function on
+      <code translate="no" dir="ltr">ExposedDropdownMenuBoxScope</code>
+      instead of a member. You may need to update your code with a new import. (
+      <a href="https://android-review.googlesource.com/#/q/Ie8a65e982bcc6ee222ce0a84ed63ad9445760f6d">Ie8a65</a>
+      )
+    </li>
+    <li>
+      Removed deprecated
+      <code translate="no" dir="ltr">SurfaceProtection</code>
+      class. Use
+      <code translate="no" dir="ltr">SpatialExternalSurfaceProtection</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/Iab2c6a066c4a807f909c59fa692bed9fb05676d7">Iab2c6</a>
+      )
+    </li>
+    <li>
+      The Orbiter function that takes an
+      <code translate="no" dir="ltr">OrbiterPoseProvider</code>
+      has been deprecated in favor of the one that uses
+      <code translate="no" dir="ltr">SpatialAlignment</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4d12b1e15213ec2b5ea91241ac0295dbacb0cb48">I4d12b</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SpatialActivityPanel</code>
+      now requires a
+      <code translate="no" dir="ltr">SpatialActivityPanelController</code>
+      (instantiated using
+      <code translate="no" dir="ltr">rememberSpatialActivityPanelController</code>
+      ) to launch and manage embedded activities. (
+      <a href="https://android-review.googlesource.com/#/q/Id25c6ca2933a01f1174f30ebd62c550680805bd7">Id25c6</a>
+      )
+    </li>
+    <li>
+      Removed the
+      <code translate="no" dir="ltr">upDirection</code>
+      parameter from
+      <code translate="no" dir="ltr">rotateToLookAtUser</code>
+      and added rotation constraints parameters (
+      <code translate="no" dir="ltr">isYawUpdateEnabled</code>
+      and
+      <code translate="no" dir="ltr">pitchLimits</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/I1370a2cf7213c6a510cc0a99f2a3ae9566dee1da">I1370a</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed various
+      <code translate="no" dir="ltr">InteractionPolicy</code>
+      issues. A crash occurred if an input event occurred right as the Composable or child (for instance an Orbiter) initiated a disposal sequence. Also fixes an issue where a child would receive hover events. (
+      <a href="https://android-review.googlesource.com/#/q/Ifc4776ee8d89072be3331d35e621740d8ea56f3b">Ifc477</a>
+      )
+    </li>
+    <li>
+      Reduced panel size in
+      <code translate="no" dir="ltr">RotateToLookAtUserActivity</code>
+      to prevent clipping on smaller FOV devices. (
+      <a href="https://android-review.googlesource.com/q/I8d6729960d2128d748d197cc65a231d81eb9f28f">I8d672</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>There is an issue with Compose XR panels where creating many panels in a single Activity may cause some corruption on what is being viewed even after the panels are destroyed.</li>
+  </ul>

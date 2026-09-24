@@ -1,0 +1,167 @@
+libraryId: a2ui
+groupId: androidx.a2ui
+version: 1.0.0-alpha01
+releaseDate: 2026-09-23
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha01" data-text="Version 1.0.0-alpha01" tabindex="-1">Version 1.0.0-alpha01</h3>
+  <p>September 23, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.a2ui:a2ui-engine:1.0.0-alpha01</code>
+    and
+    <code translate="no" dir="ltr">androidx.a2ui:a2ui-model:1.0.0-alpha01</code>
+    are released. Version 1.0.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/cfb70ae8ae08b31bdb9fceb2c501806b9a72b70a/a2ui">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>
+    The Jetpack Compose Agent-to-UI (A2UI) renderer provides an implementation of the
+    <a href="https://a2ui.org/">A2UI protocol</a>
+    , enabling AI agents to generate rich, interactive user interfaces that render native Compose components—without executing arbitrary code. This library performs protocol message parsing, schema validation, and provides foundational APIs for building UI renderers.
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">acceptsUnresolvedArguments</code>
+      to
+      <code translate="no" dir="ltr">A2uiFunctionDefinition</code>
+      and
+      <code translate="no" dir="ltr">getFunctionDefinition</code>
+      to
+      <code translate="no" dir="ltr">A2uiExecutionContext</code>
+      to allow functions like
+      <code translate="no" dir="ltr">required</code>
+      to execute when data bindings cannot be resolved. (
+      <a href="https://android-review.googlesource.com/#/q/I74d9ffd9f405f388a729f589e902ea56b81e9f96">I74d9f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547851648">b/547851648</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">A2uiFunctionArgParser</code>
+      .
+      <code translate="no" dir="ltr">getEpochMillisArg</code>
+      and updated
+      <code translate="no" dir="ltr">formatDate</code>
+      to support ISO 8601 date-time strings and epoch timestamps. (
+      <a href="https://android-review.googlesource.com/#/q/Id04ecaf76312d6cdad6d9f88e824b8269a5519ca">Id04ec</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">A2uiClientCapabilities</code>
+      and
+      <code translate="no" dir="ltr">clientCapabilities</code>
+      to
+      <code translate="no" dir="ltr">A2uiCoreMessageProcessor</code>
+      to support A2UI capabilities advertisement. (
+      <a href="https://android-review.googlesource.com/#/q/Ia3316e884420693ec519292333c739d1f19cf6d9">Ia3316</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/532000711">b/532000711</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">A2uiMessageParser</code>
+      ,
+      <code translate="no" dir="ltr">A2uiJsonMessageParser</code>
+      and
+      <code translate="no" dir="ltr">A2uiJsonReader</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I5276226b57385f6bf90892a3d5ded97679a85f4d">I52762</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/537133532">b/537133532</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">createBasicCatalogFunctions</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I1f0030c7fd3a5a8391678826cc81034dc1687f64">I1f003</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/527907617">b/527907617</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">A2uiFormatStringFunction</code>
+      . Add support for component-level caching for functions through
+      <code translate="no" dir="ltr">A2uiExecutionContext</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Id4da74ce5814dcbb8195f6416dc5699aae5e7067">Id4da7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/527907617">b/527907617</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">A2uiExecutionContext</code>
+      interface and its implementation
+      <code translate="no" dir="ltr">A2uiCoreExecutionContext</code>
+      . Added method for payload evaluation in
+      <code translate="no" dir="ltr">A2uiSurfaceModel</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7957cc3ad6466f3fa2686856b73f5b309d60b7c2">I7957c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/531999707">b/531999707</a>
+      )
+    </li>
+    <li>
+      Add
+      <code translate="no" dir="ltr">A2uiCoreDynamicResolver</code>
+      interface (
+      <a href="https://android-review.googlesource.com/#/q/Ic84f8cbed8dd4b5cb9f1b77277d50869a7c8454a">Ic84f8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/531999707">b/531999707</a>
+      )
+    </li>
+    <li>
+      Added A2UI's basic catalog functions except for
+      <code translate="no" dir="ltr">FormatString</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ied3526852d6a82159e8f993f79a43efb7a23d9c0">Ied352</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/527907617">b/527907617</a>
+      )
+    </li>
+    <li>
+      Created interfaces for
+      <code translate="no" dir="ltr">A2uiCoreCatalog</code>
+      ,
+      <code translate="no" dir="ltr">A2uiCoreComponentDefinition</code>
+      ,
+      <code translate="no" dir="ltr">A2uiFunctionDefinition</code>
+      and
+      <code translate="no" dir="ltr">A2uiFunction</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I9916d4554ab4cd429e9c0953fb8b46bc76e23968">I9916d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/527821290">b/527821290</a>
+      )
+    </li>
+    <li>
+      Initialize an artifact for the runtime layer of the Compose A2UI renderer. (
+      <a href="https://android-review.googlesource.com/#/q/I8be6808464b5d5602cfedcbf2f6e13431903fd03">I8be68</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/524122705">b/524122705</a>
+      )
+    </li>
+    <li>
+      rename a2ui module to a2ui-core (
+      <a href="https://android-review.googlesource.com/#/q/Ia286d26ad826cdc0777d3043710b1b09980129da">Ia286d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">A2uiMessageFormatter</code>
+      documentation to clarify argument mismatch behavior. (
+      <a href="https://android-review.googlesource.com/#/q/I2efad618153253f0e03f2c8993e12e12fb0170a7">I2efad</a>
+      )
+    </li>
+  </ul>

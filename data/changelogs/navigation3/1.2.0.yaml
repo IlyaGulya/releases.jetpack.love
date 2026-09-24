@@ -1,0 +1,154 @@
+libraryId: navigation3
+groupId: androidx.navigation3
+version: 1.2.0
+releaseDate: 2026-09-23
+#language=html
+changelogHtml: |
+  <h3 id="1.2.0" data-text="Version 1.2.0" tabindex="-1">Version 1.2.0</h3>
+  <p>September 23, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation3:navigation3-*:1.2.0</code>
+    is released. Version 1.2.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e4c75cb32a85803fd367372061035e6e358ad650..811e8c9c37f4955d520fe0cf7e39d96866066abc/navigation3">these commits</a>
+    .
+  </p>
+  <p><strong>1.2.0 is now stable!</strong></p>
+  <p><strong>Important changes since 1.1.0</strong></p>
+  <p><strong>Result API</strong></p>
+  <ul>
+    <li>
+      This new API allows passing results between
+      <code translate="no" dir="ltr">NavEntries</code>
+      using the
+      <code translate="no" dir="ltr">ResultEventBus</code>
+      provided by
+      <code translate="no" dir="ltr">LocalResultEventBus</code>
+      and
+      <code translate="no" dir="ltr">ResultEventBusNavEntryDecorator</code>
+      .
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">rememberResultEventBus</code>
+      to support hoisting a
+      <code translate="no" dir="ltr">ResultEventBus</code>
+      outside
+      <code translate="no" dir="ltr">ResultEventBusNavEntryDecorator</code>
+      and passing it to
+      <code translate="no" dir="ltr">rememberResultEventBusNavEntryDecorator</code>
+      .
+    </li>
+    <li>
+      Passed-in results can be accessed as state with
+      <code translate="no" dir="ltr">ResultEventBus#conflateAsState</code>
+      or collected as a flow of results with
+      <code translate="no" dir="ltr">ResultEffect</code>
+      .
+    </li>
+  </ul>
+  <p><strong>Deep Link API</strong></p>
+  <p>
+    <code translate="no" dir="ltr">Navigation3</code>
+    now supports Kotlin Multiplatform (KMP) deep links in
+    <code translate="no" dir="ltr">androidx.navigation3.runtime.deeplink</code>
+    via
+    <code translate="no" dir="ltr">DeepLinkRequest</code>
+    ,
+    <code translate="no" dir="ltr">DeepLinkUri</code>
+    , and
+    <code translate="no" dir="ltr">DeepLinkMatcher</code>
+    .
+  </p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">DeepLinkRequest</code>
+      and
+      <code translate="no" dir="ltr">RequestExtras</code>
+      : Represents a deep link request created from a
+      <code translate="no" dir="ltr">DeepLinkUri</code>
+      , a URI string, or an Android
+      <code translate="no" dir="ltr">Intent</code>
+      . Additional request metadata can be attached using the type-safe
+      <code translate="no" dir="ltr">RequestExtras</code>
+      container built with the
+      <code translate="no" dir="ltr">requestExtras</code>
+      DSL and
+      <code translate="no" dir="ltr">RequestExtrasKey&lt;T&gt;</code>
+      .
+    </li>
+    <li>
+      <code translate="no" dir="ltr">DeepLinkMatcher</code>
+      : Represents a deep link that can be matched with a
+      <code translate="no" dir="ltr">DeepLinkRequest</code>
+      . Each matcher instance is associated with the navigation key that supports this deep link. A navigation key can be associated with multiple matchers. Calling
+      <code translate="no" dir="ltr">DeepLinkMatcher.match</code>
+      will return a
+      <code translate="no" dir="ltr">MatchResult</code>
+      that contains the associated navigation key if match succeeds. There are two default
+      <code translate="no" dir="ltr">DeepLinkMatcher</code>
+      implementations:
+      <code translate="no" dir="ltr">UriDeepLinkMatcher</code>
+      for matching deep links based on
+      <code translate="no" dir="ltr">Uri</code>
+      , and
+      <code translate="no" dir="ltr">StaticKeyDeepLinkMatcher</code>
+      for matching deep links with only
+      <code translate="no" dir="ltr">DeepLinkMatcher.Filter</code>
+      that match by a Boolean.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BackStackMatcher</code>
+      : A
+      <code translate="no" dir="ltr">DeepLinkMatcher</code>
+      to construct a synthetic back stack upon a successful deep link match.
+      <code translate="no" dir="ltr">BackStackMatcher</code>
+      can be created via the
+      <code translate="no" dir="ltr">DeepLinkMatcher.withBackStack</code>
+      extension function.
+    </li>
+  </ul>
+  <p><strong>Predictive Back Handling</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">NavigationBackHandler</code>
+      and
+      <code translate="no" dir="ltr">rememberNavigationEventState</code>
+      to simplify connecting
+      <code translate="no" dir="ltr">SceneState</code>
+      with predictive back handling (
+      <code translate="no" dir="ltr">onBackCompleted</code>
+      and
+      <code translate="no" dir="ltr">onBackCancelled</code>
+      ). This allows custom UI components to support standard back navigation and predictive back gestures without manually calculating back stack deltas.
+    </li>
+    <li>Improved predictive back transitions, including support for predictive back gestures triggered mid-flight during forward animations.</li>
+  </ul>
+  <p><strong>Other Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">NavEntry.contentKey</code>
+      now defaults to a composite of
+      <code translate="no" dir="ltr">key.toString()</code>
+      and
+      <code translate="no" dir="ltr">key::class.toString()</code>
+      , preventing key collisions between
+      <code translate="no" dir="ltr">data object</code>
+      keys that share the same simple name across different interfaces.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">EntryProvider</code>
+      now prioritizes matching based on key instances over key types.
+    </li>
+    <li>
+      Added a lint check to ensure
+      <code translate="no" dir="ltr">Scene</code>
+      implementations are either
+      <code translate="no" dir="ltr">data class</code>
+      es or implement
+      <code translate="no" dir="ltr">equals</code>
+      and
+      <code translate="no" dir="ltr">hashCode</code>
+      .
+    </li>
+  </ul>

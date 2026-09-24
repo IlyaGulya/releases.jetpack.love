@@ -1,0 +1,59 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.7.0
+releaseDate: 2026-09-23
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0" data-text="Version 1.7.0" tabindex="-1">Version 1.7.0</h3>
+  <p>September 23, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.7.0</code>
+    is released. Version 1.7.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f65727cc5cc63d05724c0edb55900bc8790b14e8..974f75a2305793f54e6bb6e29da386db7b44b202/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.6.0:</strong></p>
+  <ul>
+    <li>Introduced new API for one-handed gestures, consisting of gesture handlers for primary action (double-pinch) and dismiss action (wrist-turn) as well as animated indicators for clicking/scrolling/paging that show when the gestures are available.</li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">PinnableContainer</code>
+      support to
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      , for holding an item in memory instead of disposing when the item is scrolled out of the viewport.
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      now has support for animating items as they move out of the viewport, allowing them to smoothly slide off-screen instead of fading out.
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">firstLayoutItemProvider</code>
+      to
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      as an optional customization for the first layout item. When specified, the provider defines the item and its edge used as the initial placement reference, which is useful for controlling the direction of content-shifting when items are dynamically updated.
+    </li>
+    <li>
+      Improvements to
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      to support nested scroll, fast flings, a second haptic at the partial reveal state and
+      <code translate="no" dir="ltr">actionContentSpacing</code>
+      for the distance between the main content and the action buttons.
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">@FrequentlyChangingValue</code>
+      and
+      <code translate="no" dir="ltr">@RememberInComposition</code>
+      annotations that provide lint warnings to prevent performance issues caused by reading high-frequency state updates or failing to remember objects during composition.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-runtime</code>
+      dependency was updated to 2.10.0. This version is required for bundled lifecycle runtime lint checks to run with AGP version 9.5.0-alpha04 or later. (
+      <a href="https://android-review.googlesource.com/#/q/If8e165062c3055b1dedd62de9c49de33e68a3c10">If8e16</a>
+      )
+    </li>
+  </ul>
