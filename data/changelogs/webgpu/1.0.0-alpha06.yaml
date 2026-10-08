@@ -1,0 +1,280 @@
+libraryId: webgpu
+groupId: androidx.webgpu
+version: 1.0.0-alpha06
+releaseDate: 2026-10-07
+#language=html
+changelogHtml: |
+  <h3 id="webgpu-1.0.0-alpha06" data-text="Version 1.0.0-alpha06" tabindex="-1">Version 1.0.0-alpha06</h3>
+  <p>October 07, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.webgpu:webgpu:1.0.0-alpha06</code>
+    is released. Version 1.0.0-alpha06 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/2467c116633e2840f7de4e33e000a6a28e0098b0..a4d2df01ba0ba977635de4b0f397fa1ce2288f95/webgpu/webgpu">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      <strong>Hardware Buffer Integration:</strong>
+      Added
+      <code translate="no" dir="ltr">GPUAndroidHardwareBufferUtil</code>
+      to zero-copy import
+      <code translate="no" dir="ltr">HardwareBuffer</code>
+      memory into Dawn. Includes
+      <code translate="no" dir="ltr">createTexture()</code>
+      for RGB buffers and
+      <code translate="no" dir="ltr">createExternalTexture()</code>
+      for multi-planar
+      <code translate="no" dir="ltr">YCbCr</code>
+      buffers (requires
+      <code translate="no" dir="ltr">SharedTextureMemoryAHardwareBuffer</code>
+      and
+      <code translate="no" dir="ltr">YCbCrVulkanSamplers</code>
+      features).
+    </li>
+    <li>
+      <strong>Fence Synchronization:</strong>
+      Added
+      <code translate="no" dir="ltr">GPUSyncFence</code>
+      as an
+      <code translate="no" dir="ltr">AutoCloseable</code>
+      wrapper around a
+      <code translate="no" dir="ltr">ParcelFileDescriptor</code>
+      holding a kernel sync file. Added
+      <code translate="no" dir="ltr">await(timeoutMillis)</code>
+      which blocks natively until fence signals. Added
+      <code translate="no" dir="ltr">fromSyncFence</code>
+      which adopts descriptors out of a platform
+      <code translate="no" dir="ltr">android.hardware.SyncFence</code>
+      on API 33+. Added
+      <code translate="no" dir="ltr">Extensions.toSyncFence</code>
+      to convert back to a platform
+      <code translate="no" dir="ltr">SyncFence</code>
+      .
+    </li>
+    <li>
+      <strong>Dawn Toggles Descriptor:</strong>
+      Added
+      <code translate="no" dir="ltr">GPUDawnTogglesDescriptor</code>
+      and its corresponding
+      <code translate="no" dir="ltr">Builder</code>
+      to pass Dawn implementation toggles as
+      <code translate="no" dir="ltr">enabledToggles</code>
+      and
+      <code translate="no" dir="ltr">disabledToggles</code>
+      string arrays. Toggles can be scoped to instances, adapter selections, or single devices because this object integrates as an optional
+      <code translate="no" dir="ltr">dawnTogglesDescriptor</code>
+      property within
+      <code translate="no" dir="ltr">GPUInstanceDescriptor</code>
+      ,
+      <code translate="no" dir="ltr">GPURequestAdapterOptions</code>
+      , and
+      <code translate="no" dir="ltr">GPUDeviceDescriptor</code>
+      .
+    </li>
+    <li>
+      <strong>Color Space and HDR Support:</strong>
+      Added
+      <code translate="no" dir="ltr">GPUColorSpaceDawn</code>
+      and its corresponding
+      <code translate="no" dir="ltr">Builder</code>
+      to specify color space parameters including primaries, transfer characteristics, matrix, full or narrow range, and HDR reference white luminance. Added supporting color space constants like
+      <code translate="no" dir="ltr">ColorSpacePrimariesDawn</code>
+      ,
+      <code translate="no" dir="ltr">ColorSpaceTransferDawn</code>
+      ,
+      <code translate="no" dir="ltr">ColorSpaceYCbCrMatrixDawn</code>
+      , and
+      <code translate="no" dir="ltr">ColorSpaceYCbCrRangeDawn</code>
+      .
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <strong>Minimum SDK Update:</strong>
+      Minimum supported SDK for
+      <code translate="no" dir="ltr">androidx.webgpu</code>
+      has been increased from API 24 to API 26.
+    </li>
+    <li>
+      <strong>Builder Pattern Migration:</strong>
+      Descriptors and configuration structures across libraries now provide a dedicated nested
+      <code translate="no" dir="ltr">Builder</code>
+      class. Java callers must use new builders because
+      <code translate="no" dir="ltr">@JvmOverloads</code>
+      annotations have been removed from Kotlin constructors to improve Java interoperability. Affected structures include
+      <code translate="no" dir="ltr">GPUBufferDescriptor</code>
+      ,
+      <code translate="no" dir="ltr">GPUTextureBindingLayout</code>
+      ,
+      <code translate="no" dir="ltr">GPUPipelineLayoutDescriptor</code>
+      ,
+      <code translate="no" dir="ltr">GPUComputePipelineDescriptor</code>
+      ,
+      <code translate="no" dir="ltr">GPUVertexState</code>
+      , and
+      <code translate="no" dir="ltr">GPUSurfaceDescriptor</code>
+      .
+    </li>
+    <li>
+      <strong>Thread Safety Enforcement:</strong>
+      Updated
+      <code translate="no" dir="ltr">WebGpu</code>
+      helper classes for strict single-threaded execution. Added
+      <code translate="no" dir="ltr">adapter</code>
+      ,
+      <code translate="no" dir="ltr">dispatcher</code>
+      , and
+      <code translate="no" dir="ltr">isClosed</code>
+      properties, alongside
+      <code translate="no" dir="ltr">execute()</code>
+      and
+      <code translate="no" dir="ltr">processEventsLoop()</code>
+      suspend functions.
+      <code translate="no" dir="ltr">createWebGpu()</code>
+      now accepts a custom
+      <code translate="no" dir="ltr">CoroutineDispatcher</code>
+      .
+    </li>
+    <li>
+      <strong>Experimental API Annotation:</strong>
+      Introduced
+      <code translate="no" dir="ltr">@ExperimentalWebGpuApi</code>
+      to mark incubating and Dawn specific experimental APIs across libraries. This includes
+      <code translate="no" dir="ltr">GPUSyncFence</code>
+      ,
+      <code translate="no" dir="ltr">GPUDawnTogglesDescriptor</code>
+      ,
+      <code translate="no" dir="ltr">GPUExternalTextureDescriptor</code>
+      , and
+      <code translate="no" dir="ltr">GPUHardwareBufferWrapper</code>
+      .
+    </li>
+    <li>
+      <strong>Hardware Buffer Extras:</strong>
+      Added
+      <code translate="no" dir="ltr">GPUHardwareBufferWrapper</code>
+      as a common base for hardware buffer imports. Added
+      <code translate="no" dir="ltr">GPUExternalTextureDescriptor</code>
+      and its corresponding
+      <code translate="no" dir="ltr">Builder</code>
+      ,
+      <code translate="no" dir="ltr">GPUExtent2D</code>
+      , and
+      <code translate="no" dir="ltr">GPUOrigin2D</code>
+      so crop rects, color spaces, and rotation can fold into sampling operations.
+    </li>
+    <li>
+      <strong>Color Conversion Extension:</strong>
+      Removed the
+      <code translate="no" dir="ltr">@RequiresApi(26)</code>
+      restriction on
+      <code translate="no" dir="ltr">Extensions.toGPUColor(long)</code>
+      as it is now redundant with the library's overall minimum SDK bump to API 26.
+    </li>
+    <li>
+      <strong>Immediate Executions:</strong>
+      Added
+      <code translate="no" dir="ltr">setImmediates</code>
+      method to
+      <code translate="no" dir="ltr">GPUComputePassEncoder</code>
+      ,
+      <code translate="no" dir="ltr">GPURenderBundleEncoder</code>
+      , and
+      <code translate="no" dir="ltr">GPURenderPassEncoder</code>
+      .
+    </li>
+    <li>
+      <strong>Device Methods:</strong>
+      Added
+      <code translate="no" dir="ltr">createErrorExternalTexture</code>
+      and
+      <code translate="no" dir="ltr">createExternalTexture</code>
+      methods to
+      <code translate="no" dir="ltr">GPUDevice</code>
+      .
+    </li>
+    <li>
+      <strong>Texture Methods:</strong>
+      Added
+      <code translate="no" dir="ltr">destroy</code>
+      method to
+      <code translate="no" dir="ltr">GPUExternalTexture</code>
+      .
+    </li>
+    <li>
+      <strong>New Constants and Supported Features:</strong>
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">VertexFormat</code>
+          : Added
+          <code translate="no" dir="ltr">Snorm10_10_10_2</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">SType</code>
+          : Added
+          <code translate="no" dir="ltr">DawnTogglesDescriptor</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">WGSLLanguageFeatureName</code>
+          : Added
+          <code translate="no" dir="ltr">BufferView</code>
+          ,
+          <code translate="no" dir="ltr">FragmentDepth</code>
+          ,
+          <code translate="no" dir="ltr">ImmediateAddressSpace</code>
+          ,
+          <code translate="no" dir="ltr">LinearIndexing</code>
+          , and
+          <code translate="no" dir="ltr">SwizzleAssignment</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">FeatureName</code>
+          : Added
+          <code translate="no" dir="ltr">SubgroupSizeControl</code>
+          .
+        </li>
+        <li>
+          Added experimental features like
+          <code translate="no" dir="ltr">OpaqueYCbCrAndroidForExternalTexture</code>
+          ,
+          <code translate="no" dir="ltr">SharedFenceSyncFD</code>
+          ,
+          <code translate="no" dir="ltr">SharedTextureMemoryAHardwareBuffer</code>
+          , and
+          <code translate="no" dir="ltr">YCbCrVulkanSamplers</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">PredefinedColorSpace</code>
+          : Added
+          <code translate="no" dir="ltr">DisplayP3Linear</code>
+          ,
+          <code translate="no" dir="ltr">Rec2020Linear</code>
+          , and
+          <code translate="no" dir="ltr">SRGBLinear</code>
+          .
+        </li>
+        <li>
+          <code translate="no" dir="ltr">ExternalTextureRotation</code>
+          : Added
+          <code translate="no" dir="ltr">Rotate0Degrees</code>
+          ,
+          <code translate="no" dir="ltr">Rotate90Degrees</code>
+          ,
+          <code translate="no" dir="ltr">Rotate180Degrees</code>
+          , and
+          <code translate="no" dir="ltr">Rotate270Degrees</code>
+          .
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p>
+    <strong>Important Note:</strong>
+    Documentation provided in this library release has been generated utilizing Google Gemini and may contain errors.
+  </p>

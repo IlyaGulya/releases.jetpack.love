@@ -1,0 +1,108 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.13.0-beta01
+releaseDate: 2026-10-07
+#language=html
+changelogHtml: |
+  <h3 id="1.13.0-beta01" data-text="Version 1.13.0-beta01" tabindex="-1">Version 1.13.0-beta01</h3>
+  <p>October 07, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.13.0-beta01</code>
+    is released. Version 1.13.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/58589a3cd45bacbb3ad7bbdc52836f6e055340be..07342b02e4b525e8a5ba23d690d6f615cb87e0a2/compose/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Libraries now target Kotlin 2.2 and require kotlinc 2.2 (
+      <a href="https://android-review.googlesource.com/#/q/I823967fe6b9524b448184ef366c562316bd6a323">I82396</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/498369605">b/498369605</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a bug where passing
+      <code translate="no" dir="ltr">Float.NaN</code>
+      or
+      <code translate="no" dir="ltr">Double.NaN</code>
+      into a
+      <code translate="no" dir="ltr">@Composable</code>
+      function would prevent that function from ever skipping recomposition, even when all arguments are unchanged. This bug affected functions that received
+      <code translate="no" dir="ltr">Dp.Unspecified</code>
+      because
+      <code translate="no" dir="ltr">Dp.Unspecified</code>
+      is backed by
+      <code translate="no" dir="ltr">Float.NaN</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7a6436fb35fd556746c2a5d8ca0c86db74762402">I7a643</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/564569402">b/564569402</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">CompositionObserver</code>
+      is now resolved once per composition pass. Setting or replacing it with
+      <code translate="no" dir="ltr">setObserver</code>
+      while a composition is in progress takes effect starting with the next pass. Movable content insertion now also reports
+      <code translate="no" dir="ltr">onBeginComposition</code>
+      and
+      <code translate="no" dir="ltr">onEndComposition</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iad28080d17ad95f27f995952c5f4b5f689a7ec5f">Iad280</a>
+      )
+    </li>
+    <li>
+      The calculation block of
+      <code translate="no" dir="ltr">computedStateOf</code>
+      is now enforced to be read-only. Writing to a state inside this block will throw an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id045fb9801e73714d93c6b25e5ab99893e092660">Id045f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/456249371">b/456249371</a>
+      )
+    </li>
+    <li>
+      Fixed a memory leak in
+      <code translate="no" dir="ltr">LinkComposer</code>
+      where moving
+      <code translate="no" dir="ltr">movableContent</code>
+      retained wrapper group slots across moves. (
+      <a href="https://android-review.googlesource.com/#/q/I17af2ac9604fcbe891c670260b4fb4816c6a524e">I17af2</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-runtime</code>
+      dependency was updated to 2.10.0. This version is required for bundled lifecycle runtime lint checks to run with AGP version 9.5.0-alpha04 or later. (
+      <a href="https://android-review.googlesource.com/#/q/I99bfdb355ffd7f1083dbdac4167b1f5577740116">I99bfd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/556807521">b/556807521</a>
+      )
+    </li>
+    <li>
+      Support off-main thread usage of
+      <code translate="no" dir="ltr">ComposeTracer</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I139e456f3aec9a72e93c64268752c1772dbcc604">I139e4</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Fixed an issue in
+      <code translate="no" dir="ltr">computedStateOf</code>
+      that could lead to unexpected invalidations when read with
+      <code translate="no" dir="ltr">SnapshotStateObserver</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie3f8bec7045e6bc9d8cb72bc577218c0052beeac">Ie3f8b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/561372470">b/561372470</a>
+      )
+    </li>
+  </ul>

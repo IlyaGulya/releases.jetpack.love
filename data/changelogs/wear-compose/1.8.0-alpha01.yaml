@@ -1,0 +1,232 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.8.0-alpha01
+releaseDate: 2026-10-07
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0-alpha01" data-text="Version 1.8.0-alpha01" tabindex="-1">Version 1.8.0-alpha01</h3>
+  <p>October 07, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.8.0-alpha01</code>
+    is released. Version 1.8.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/974f75a2305793f54e6bb6e29da386db7b44b202..988ac9734e8223273eb7f186ee1639ee68deb025/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added new
+      <code translate="no" dir="ltr">AppScaffold</code>
+      and
+      <code translate="no" dir="ltr">ScreenScaffold</code>
+      overloads without the
+      <code translate="no" dir="ltr">timeText</code>
+      parameter, establishing the recommended direction for Wear Compose 1.8 to migrate to the new System Status Bar. When running on older builds without System Status Bar, these new overloads fall back to default
+      <code translate="no" dir="ltr">TimeText</code>
+      . The existing overloads now migrate to the System Status Bar by default unless an explicit custom
+      <code translate="no" dir="ltr">timeText</code>
+      is provided. (
+      <a href="https://android-review.googlesource.com/#/q/I40a5e4c46bbd40df9a82b09ae7f2014c9eff1cc9">I40a5e</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">StatusBarSuppression</code>
+      helper composable to suppress the System Status Bar within full-screen and overlay components. (
+      <a href="https://android-review.googlesource.com/#/q/I387c3fe3d80e0f94214e678e302dd185b6f1af73">I387c3</a>
+      )
+    </li>
+    <li>
+      Introduced Modifier.
+      <code translate="no" dir="ltr">curveToEdge</code>
+      , which uses a shader to curve a component to the border of the parent container around the center, always treating the container as a circle. Known issues: clickable components will have incorrect clickable bounds and
+      <code translate="no" dir="ltr">TalkBack</code>
+      does not highlight components correctly. (
+      <a href="https://android-review.googlesource.com/#/q/I8bbaa6b3d06f9c202417d7855d492594c16d6665">I8bbaa</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">PullToRefreshBox</code>
+      and
+      <code translate="no" dir="ltr">PullToRefreshState</code>
+      to Wear Compose Material 3, with drag distances and refresh thresholds tailored for Wear OS devices.(
+      <a href="https://android-review.googlesource.com/#/q/Iee9a5004ec97f4e59a26daf3806222d94e7f19f2">Iee9a5</a>
+      )
+    </li>
+    <li>
+      Promoted
+      <code translate="no" dir="ltr">PullToRefreshBox</code>
+      ,
+      <code translate="no" dir="ltr">PullToRefreshDefaults</code>
+      , and
+      <code translate="no" dir="ltr">PullToRefreshState</code>
+      to stable public APIs in Wear Compose Material 3. (
+      <a href="https://android-review.googlesource.com/#/q/I079b6dee5afb83600e6d85b7e1a0522ecc900cf5">I079b6</a>
+      )
+    </li>
+    <li>
+      Adds an overload of
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      with a transformation parameter to support container transformations in
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I328ce29a8b4c353a3b98e580b1c8d4fa8ccfd024">I328ce</a>
+      )
+    </li>
+    <li>
+      Libraries now target Kotlin 2.2 and require kotlinc 2.2 (
+      <a href="https://android-review.googlesource.com/#/q/I823967fe6b9524b448184ef366c562316bd6a323">I82396</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/498369605">b/498369605</a>
+      )
+    </li>
+    <li>
+      Removed experimental feature flag
+      <code translate="no" dir="ltr">WearComposeFoundationFlags.isTransformingLazyColumnClickableThresholdEnabled</code>
+      . The clickable threshold in
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      is now always enabled. (
+      <a href="https://android-review.googlesource.com/#/q/Ib68c865a9e4885c2eb0ff2d81332f4db96ed5aac">Ib68c8</a>
+      )
+    </li>
+    <li>
+      Removed experimental flag
+      <code translate="no" dir="ltr">WearComposeFoundationFlags.isTransformingLazyColumnPinnableContainerEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ibad2e08448f6a121dc556f0a9ea0fa46762a9a6c">Ibad2e</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed bug in Wear Compose Foundation
+      <code translate="no" dir="ltr">HorizontalPager</code>
+      , where the gesture handling failed to prioritize correctly between paging and swiping to dismiss. (
+      <a href="https://android-review.googlesource.com/#/q/I54caf4725b90e6ec9023ddc43e8692d7d0162381">I54caf</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Modifier.testTag("time_text")</code>
+      to
+      <code translate="no" dir="ltr">TimeText</code>
+      so that it can be detected in test cases where System Status Bar falls back to a default
+      <code translate="no" dir="ltr">TimeText</code>
+      composable. (
+      <a href="https://android-review.googlesource.com/#/q/Iacb09641021e36cabeeeacf2f42e9d260642f679">Iacb09</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      in
+      <code translate="no" dir="ltr">OneHandedGestureModifier.updateCompositionLocals</code>
+      caused by accessing nodes before attachment. (
+      <a href="https://android-review.googlesource.com/q/I662271d7143a6dd05f6990993b1ecf53940c681f">I662271</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">AlertDialog</code>
+      gesture support, so that scrolling down and
+      <code translate="no" dir="ltr">Confirm</code>
+      button clicks are available by default. (
+      <a href="https://android-review.googlesource.com/q/I51f81cf6efd4683583f5cb7af25724c94063152a">I51f81</a>
+      )
+    </li>
+    <li>
+      Fixed in-app
+      <code translate="no" dir="ltr">TimeText</code>
+      flash when transitioning to inherited status bar by improving visibility suppression logic in
+      <code translate="no" dir="ltr">ScreenContent</code>
+      . (
+      <a href="https://android-review.googlesource.com/q/I12dd01e197e9c24efc3891de358d38adc39f75eb">I12dd01</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where components suppressing the System Status Bar (such as Stepper) fell back to rendering an in-app
+      <code translate="no" dir="ltr">TimeText</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I86830c64904d17e693e30c59d670010fbcedb583">I86830</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">StatusBarSuppression()</code>
+      to respect
+      <code translate="no" dir="ltr">LocalStatusBarEnabled</code>
+      when the global status bar is disabled, preventing unnecessary layout passes in dialogs. (
+      <a href="https://android-review.googlesource.com/q/I4f77f6ce80dec8c68d8a29d9fbdf95ccbd37c1cc">I4f77f6</a>
+      )
+    </li>
+    <li>
+      Fixed an issue in Wear Material3
+      <code translate="no" dir="ltr">Scaffold</code>
+      where
+      <code translate="no" dir="ltr">currentScrollInfoProvider</code>
+      did not inherit from underlying screens when the top screen provided null. (
+      <a href="https://android-review.googlesource.com/#/q/I97874ba53612174a22d6d078d70015e11b6d0244">I97874</a>
+      )
+    </li>
+    <li>
+      Added support for
+      <code translate="no" dir="ltr">Dialog</code>
+      status bar suppression and nested
+      <code translate="no" dir="ltr">ScreenScaffold</code>
+      s in Wear Material3 Scaffold. (
+      <a href="https://android-review.googlesource.com/#/q/I0177223cf42912eafe2b0070f990209fe2bbbf1b">I01772</a>
+      )
+    </li>
+    <li>
+      Fixed an issue in
+      <code translate="no" dir="ltr">AppScaffold</code>
+      where the status bar overlay reappeared while scrolling when the top anchor item. (
+      <a href="https://android-review.googlesource.com/#/q/I421b38d3310be91da5c23cdd2cc772391d9a972d">I421b3</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">ScreenScaffold</code>
+      top padding collapsed when opening screens with a disabled status bar mode. (
+      <a href="https://android-review.googlesource.com/#/q/I7cf4f3b14fbc86ed133e7117ccc60d756522bdc0">I7cf4f</a>
+      )
+    </li>
+    <li>
+      Added multi-window status bar orchestration support to Wear Compose Material3 scaffolds, allowing dialogs and separate windows to drive their own system status bar controllers. (
+      <a href="https://android-review.googlesource.com/#/q/Ibf82c9b9ee2688c4be81a3e7d90feff446ad7857">Ibf82c</a>
+      )
+    </li>
+    <li>
+      Made
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      robust to negative item spacings (
+      <a href="https://android-review.googlesource.com/#/q/I99ac721e342926b1010c09250e0547fd30586802">I99ac7</a>
+      )
+    </li>
+    <li>
+      Optimized gesture indicators by replacing indicator pointer background in the resources with canvas functions using paths. (
+      <a href="https://android-review.googlesource.com/#/q/Iee2b743f7bfa619343fddfd78bec8fd5a56a9d15">Iee2b7</a>
+      )
+    </li>
+    <li>
+      Optimized gesture indicators by replacing primary and dismiss AVDs in the resources with draw functions using paths. (
+      <a href="https://android-review.googlesource.com/#/q/Ib2d05567278d917ac406312e9af84843c5f96193">Ib2d05</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-runtime</code>
+      dependency was updated to 2.10.0. This version is required for bundled lifecycle runtime lint checks to run with AGP version 9.5.0-alpha04 or later. (
+      <a href="https://android-review.googlesource.com/#/q/I99bfdb355ffd7f1083dbdac4167b1f5577740116">I99bfd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/556807521">b/556807521</a>
+      )
+    </li>
+    <li>
+      Updated baseline profiles for Wear Compose Foundation, Material3, and Navigation3 libraries. (
+      <a href="https://android-review.googlesource.com/#/q/I9b0a3340a892d8adce9df11fcc35c4591670e702">I9b0a3</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_17_2" data-text="Version 1.7" tabindex="-1">Version 1.7</h2>

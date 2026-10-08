@@ -1,0 +1,129 @@
+libraryId: compose-remote
+groupId: androidx.compose
+version: 1.0.0-alpha21
+releaseDate: 2026-10-07
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha21" data-text="Version 1.0.0-alpha21" tabindex="-1">Version 1.0.0-alpha21</h3>
+  <p>October 07, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.remote:remote-*:1.0.0-alpha21</code>
+    is released. Version 1.0.0-alpha21 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b2b5ae7b0fe1bb4eece7018878fe5f18c5967a2f..07342b02e4b525e8a5ba23d690d6f615cb87e0a2/compose/remote">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">createThemedRemoteColor</code>
+      to
+      <code translate="no" dir="ltr">RemoteColor.Companion</code>
+      for light/dark theme-aware remote colors. (
+      <a href="https://android-review.googlesource.com/#/q/I0214babfc797a01ebcdd3e55c56ede52a5167e8e">I0214b</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">RemoteTextMeasurer</code>
+      and
+      <code translate="no" dir="ltr">rememberRemoteTextMeasurer</code>
+      to measure text dimensions in
+      <code translate="no" dir="ltr">RemoteCompose</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Icb4f154c1683daace9ee993541b3158857ca9193">Icb4f1</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Float.rsp</code>
+      and
+      <code translate="no" dir="ltr">RemoteFloat.rsp</code>
+      extension properties to create Sp
+      <code translate="no" dir="ltr">RemoteTextUnit</code>
+      instances from float literals and dynamic
+      <code translate="no" dir="ltr">RemoteFloat</code>
+      expressions. (
+      <a href="https://android-review.googlesource.com/#/q/I214039bbd320a16c01e2bce5f5625bc70ea8a106">I21403</a>
+      )
+    </li>
+    <li>
+      Exposed state creation constructors and factory functions annotated with @
+      <code translate="no" dir="ltr">RememberInComposition</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6db3d25a5b707159e4d624e2b1662f641dbff7c7">I6db3d</a>
+      )
+    </li>
+    <li>
+      Added an optional
+      <code translate="no" dir="ltr">profile</code>
+      parameter to
+      <code translate="no" dir="ltr">RemoteDocumentPreview</code>
+      to configure the document buffer before inflation. (
+      <a href="https://android-review.googlesource.com/#/q/I58900aaae2aedff3e490800bf6da9d3b85f260c4">I58900</a>
+      )
+    </li>
+    <li>
+      Added support for
+      <code translate="no" dir="ltr">DrawTextOnCircle</code>
+      in
+      <code translate="no" dir="ltr">RemoteCompose</code>
+      player and test profiles. (
+      <a href="https://android-review.googlesource.com/#/q/I859cbf001aa3c4347724af9a477b801bb84312c5">I859cb</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Remote Compose players now load DEFLATE-compressed documents (
+      <a href="https://android-review.googlesource.com/#/q/Icb094daf8f317f5f581756167f576d5f8fe10435">Icb094</a>
+      )
+    </li>
+    <li>
+      Hardened
+      <code translate="no" dir="ltr">captureSingleRemoteDocument</code>
+      and
+      <code translate="no" dir="ltr">captureRemoteDocument</code>
+      lifecycle and snapshot handling across background and main dispatchers, and fixed
+      <code translate="no" dir="ltr">captureRemoteDocument</code>
+      silently dropping updates when the collector could not keep up with recomposition. (
+      <a href="https://android-review.googlesource.com/#/q/I285655caddaaad3e9d323ddfdb0e3510b485fdb1">I28565</a>
+      )
+    </li>
+    <li>
+      Added support for custom enter/exit visibility animations. (
+      <a href="https://android-review.googlesource.com/#/q/I7857ad153caf8fea456ae9b3b67d7877e398c846">I7857a</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">RemoteTimeDefaults.defaultTimeString</code>
+      to format 12-hour time as
+      <code translate="no" dir="ltr">h:mm</code>
+      without AM/PM, matching Wear Compose Material 3
+      <code translate="no" dir="ltr">TimeTextDefaults</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6a05e64ba620172c19a655cf03404a583305323c">I6a05e</a>
+      )
+    </li>
+    <li>
+      Fix spring-backed float animations snapping to their target instead of animating after an idle period. (
+      <a href="https://android-review.googlesource.com/#/q/Id026a9ac227de0a3926012cffb7cf4bf38678d18">Id026a</a>
+      )
+    </li>
+    <li>
+      Fix spring animations producing out-of-range values on slow or dropped frames. (
+      <a href="https://android-review.googlesource.com/#/q/I9cf0984b32e4b70a0e5f4343edd74b3d9c74c17c">I9cf09</a>
+      )
+    </li>
+    <li>
+      Avoid emitting duplicate
+      <code translate="no" dir="ltr">WidthModifier</code>
+      /
+      <code translate="no" dir="ltr">HeightModifier</code>
+      operations when multiple dimension modifiers are chained on a component. (
+      <a href="https://android-review.googlesource.com/#/q/I32a6290caa9083f5e924482c47b982ec63721611">I32a62</a>
+      )
+    </li>
+  </ul>
