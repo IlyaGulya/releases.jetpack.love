@@ -1,0 +1,144 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.13.0-beta01
+releaseDate: 2026-10-07
+#language=html
+changelogHtml: |
+  <h3 id="1.13.0-beta01" data-text="Version 1.13.0-beta01" tabindex="-1">Version 1.13.0-beta01</h3>
+  <p>October 07, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.13.0-beta01</code>
+    is released. Version 1.13.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/58589a3cd45bacbb3ad7bbdc52836f6e055340be..4c2d8a03f5933cc395e104d9abe368fb4fe3c555/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">@FloatRange</code>
+      and
+      <code translate="no" dir="ltr">@IntRange</code>
+      annotations to
+      <code translate="no" dir="ltr">PolygonShape</code>
+      and
+      <code translate="no" dir="ltr">PolygonShapeScope</code>
+      factory parameters, and restricted
+      <code translate="no" dir="ltr">innerRadiusRatio</code>
+      in
+      <code translate="no" dir="ltr">PolygonShape.star</code>
+      and
+      <code translate="no" dir="ltr">PolygonShape.pillStar</code>
+      to
+      <code translate="no" dir="ltr">(0f, 1f)</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I47ea32a37c1a9652de48ed3a2e24e20b7d3c3cd0">I47ea3</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">PolygonShape</code>
+      APIs: moved
+      <code translate="no" dir="ltr">CornerRounding</code>
+      to top-level with
+      <code translate="no" dir="ltr">dp()</code>
+      and
+      <code translate="no" dir="ltr">fraction()</code>
+      factories, replaced
+      <code translate="no" dir="ltr">transformed()</code>
+      and
+      <code translate="no" dir="ltr">scaledToFit()</code>
+      extensions with in-place mutable
+      <code translate="no" dir="ltr">PolygonShape.transform(PolygonShapeTransformScope.() -&gt; Unit)</code>
+      and
+      <code translate="no" dir="ltr">PolygonShape.copy()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If5970afe91c37146e7de4521ca916e59d31b924e">If5970</a>
+      )
+    </li>
+    <li>
+      Fixed a bug where requesting focus on a
+      <code translate="no" dir="ltr">BasicTextField</code>
+      before the window was focused (e.g. in
+      <code translate="no" dir="ltr">onCreate</code>
+      ) caused the software keyboard to not appear.
+      <code translate="no" dir="ltr">BasicTextField</code>
+      now waits for the window to gain focus before starting the text input session. If this causes problems for developers, you can revert to the previous behavior by setting
+      <code translate="no" dir="ltr">ComposeFoundationFlags.isTextFieldWaitWindowFocusForInputSessionEnabled</code>
+      to false. (
+      <a href="https://android-review.googlesource.com/#/q/I4206b22840b21eb2ede6a31d627dec9cb7afb5ca">I4206b</a>
+      )
+    </li>
+    <li>
+      Libraries now target Kotlin 2.2 and require kotlinc 2.2 (
+      <a href="https://android-review.googlesource.com/#/q/I823967fe6b9524b448184ef366c562316bd6a323">I82396</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/498369605">b/498369605</a>
+      )
+    </li>
+    <li>
+      Added a
+      <code translate="no" dir="ltr">styleLayer()</code>
+      method to
+      <code translate="no" dir="ltr">CommonStyle</code>
+      that declares that all properties is in a layer will take precedence over properties set in a lower layer. The
+      <code translate="no" dir="ltr">state()</code>
+      method (and state helpers like
+      <code translate="no" dir="ltr">pressed()</code>
+      ) now implicitly create a layer. (
+      <a href="https://android-review.googlesource.com/#/q/I244739d8798965375829602cc6113d163d1d64fa">I24473</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue in
+      <code translate="no" dir="ltr">FlexBox</code>
+      where setting
+      <code translate="no" dir="ltr">alignContent</code>
+      (
+      <code translate="no" dir="ltr">FlexAlignContent.Stretch</code>
+      ) incorrectly forced child items to stretch with line. (
+      <a href="https://android-review.googlesource.com/#/q/Ida156115c8c86274da06d77bbc75d047a838f498">Ida156</a>
+      )
+    </li>
+    <li>
+      Fixed an issue in
+      <code translate="no" dir="ltr">FlexBox</code>
+      where a single wrapped line (
+      <code translate="no" dir="ltr">FlexWrap.Wrap</code>
+      or
+      <code translate="no" dir="ltr">FlexWrap.WrapReverse</code>
+      ) was forcibly expanded to the container's minimum cross-axis constraint, causing
+      <code translate="no" dir="ltr">alignContent</code>
+      and
+      <code translate="no" dir="ltr">alignItems</code>
+      to misalign items. (
+      <a href="https://android-review.googlesource.com/#/q/I038b142846f2ea0ea1be848488c4a5e9813e44e6">I038b1</a>
+      )
+    </li>
+    <li>
+      Fixed an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      crash when updating
+      <code translate="no" dir="ltr">consumeWindowInsets</code>
+      ,
+      <code translate="no" dir="ltr">windowInsetsPadding</code>
+      , or
+      <code translate="no" dir="ltr">onConsumedWindowInsetsChanged</code>
+      on detached modifier nodes, such as during
+      <code translate="no" dir="ltr">movableContent</code>
+      movement. (
+      <a href="https://android-review.googlesource.com/#/q/I80ae50e3ad4b40a1aefc46168f2de71ea7b492fc">I80ae5</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-runtime</code>
+      dependency was updated to 2.10.0. This version is required for bundled lifecycle runtime lint checks to run with AGP version 9.5.0-alpha04 or later. (
+      <a href="https://android-review.googlesource.com/#/q/I99bfdb355ffd7f1083dbdac4167b1f5577740116">I99bfd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/556807521">b/556807521</a>
+      )
+    </li>
+  </ul>
