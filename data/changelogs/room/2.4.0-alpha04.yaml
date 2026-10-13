@@ -34,15 +34,15 @@ changelogHtml: |
       <div></div>
       <devsite-code>
         <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@Query</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"SELECT * FROM Song JOIN Artist ON Song.artistId = Artist.artistId"</span><span class="devsite-syntax-p">)</span>
-  <span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">getSongAndArt&lt;ist</span><span class="devsite-syntax-p">():</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">MapSo&gt;n</span></code>g<span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Artist</span>
-  </pre>
+  <span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">getSongAndArtist</span><span class="devsite-syntax-p">():</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Map&lt;Song</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Artist</span>&gt;
+  </code></pre>
       </devsite-code>
       <p><em>One-to-Many Relation Map (Standard multimap)</em></p>
       <div></div>
       <devsite-code>
         <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@Query</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"SELECT * FROM Artist JOIN Album ON Artist.id = Album.artistId"</span><span class="devsite-syntax-p">)</span>
-  <span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">getArtistAndAlb&lt;ums</span><span class="devsite-syntax-p">():</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">MapAr&lt;tist</span><span class="devsite-syntax-p">,</span>&gt;&gt;<span class="devsite-syntax-w"> </span></code><span class="devsite-syntax-n">ListAlbum</span>
-  </pre>
+  <span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">getArtistAndAlbums</span><span class="devsite-syntax-p">():</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Map&lt;Artist</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">List&lt;Album&gt;</span>&gt;
+  </code></pre>
       </devsite-code>
       <p>
         The multimap result can also be wrapped in the supported async return types, such as
@@ -73,9 +73,9 @@ changelogHtml: |
         <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-nd">@Dao</span>
   <span class="devsite-syntax-kd">interface</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">UserDao</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
   <span class="devsite-syntax-w">  </span><span class="devsite-syntax-nd">@Query</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"SELECT * FROM users ORDER BY id ASC"</span><span class="devsite-syntax-p">)</span>
-  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">loadUsers</span><span class="devsite-syntax-p">():</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Pa&lt;gingSourc&gt;eIn</span></code>t<span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">User</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nf">loadUsers</span><span class="devsite-syntax-p">():</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">PagingSource&lt;Int</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">User</span>&gt;
   <span class="devsite-syntax-p">}</span>
-  </pre>
+  </code></pre>
       </devsite-code>
     </li>
     <li>
@@ -96,9 +96,9 @@ changelogHtml: |
       <div></div>
       <devsite-code>
         <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-n">dependency</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
-  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">implementation</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"androidx.room:room-paging:2.4.0-alpha04</span></code>"<span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">  </span><span class="devsite-syntax-n">implementation</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"androidx.room:room-paging:2.4.0-alpha04"</span><span class="devsite-syntax-p">)</span>
   <span class="devsite-syntax-p">}</span>
-  </pre>
+  </code></pre>
       </devsite-code>
     </li>
   </ul>
