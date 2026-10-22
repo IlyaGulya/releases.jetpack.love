@@ -1,0 +1,67 @@
+libraryId: room3
+groupId: androidx.room3
+version: 3.1.0-alpha03
+releaseDate: 2026-10-21
+#language=html
+changelogHtml: |
+  <h3 id="3.1.0-alpha03" data-text="Version 3.1.0-alpha03" tabindex="-1">Version 3.1.0-alpha03</h3>
+  <p>October 21, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room3:room3-*:3.1.0-alpha03</code>
+    is released. Version 3.1.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/e4bd62f853853bf3522ed15681c58ef28b09ed44..3566803898b060d7136357220affc9ece8236019/room3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">setPreparedStatementCacheSize(maxCacheSize: Int)</code>
+      to
+      <code translate="no" dir="ltr">RoomDatabase.Builder</code>
+      on Android to allow configuring or disabling the per-connection prepared statement cache. (
+      <a href="https://android-review.googlesource.com/#/q/I7b0cb0ec2ddc7857c5a208f30dccd45839a1ddc9">I7b0cb</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/560123297">b/560123297</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">allowDataLossOnRecovery()</code>
+      to
+      <code translate="no" dir="ltr">RoomDatabase.Builder</code>
+      to allow recovering from database opening and corruption failures. (
+      <a href="https://android-review.googlesource.com/#/q/Ie86ba344a19062b696d08afd72ad08ccd6ax6115e">Ie86ba</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/316945228">b/316945228</a>
+      )
+    </li>
+    <li>
+      Libraries now target Kotlin 2.2 and require kotlinc 2.2 (
+      <a href="https://android-review.googlesource.com/#/q/I823967fe6b9524b448184ef366c562316bd6a323">I82396</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/498369605">b/498369605</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where DAO queries with
+      <code translate="no" dir="ltr">@Relation</code>
+      and non-deterministic clauses (such as
+      <code translate="no" dir="ltr">ORDER BY RANDOM() LIMIT :count</code>
+      ) re-executed the query on statement reset, causing relationship mapping failures. (
+      <a href="https://android-review.googlesource.com/#/q/Id0992adc2a6224d81afa031c9700750439b215cc">Id0992</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/413924560">b/413924560</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed fully expanded transitive type aliases in KSP by recursively resolving type aliases and properly resetting type arguments. (
+      <a href="https://android-review.googlesource.com/q/I8228d08da4789d516715f6c7687f9b48595cb614">I8228d0</a>
+      ,
+      <a href="https://buganizer.corp.google.com/issues/561698196">b/561698196</a>
+      )
+    </li>
+  </ul>

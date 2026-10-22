@@ -1,0 +1,83 @@
+libraryId: xr-arcore
+groupId: androidx.xr
+version: 1.1.0-alpha01
+releaseDate: 2026-10-21
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha01" data-text="Version 1.1.0-alpha01" tabindex="-1">Version 1.1.0-alpha01</h3>
+  <p>October 21, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.arcore:arcore-*:1.1.0-alpha01</code>
+    is released. Version 1.1.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5836b45501e4170061dd2eeac772aa767031672f..332fec74f206525af66f5c8194ffe4324b2e841a/xr/arcore">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Introduced the
+      <code translate="no" dir="ltr">SpatialAnnotation</code>
+      API for tracking 3D physical geometries and objects. Added
+      <code translate="no" dir="ltr">SpatialAnnotationTrackingOptions</code>
+      and its corresponding builder pattern to configure spatial tracking via camera image buffers. (
+      <a href="https://android-review.googlesource.com/#/q/I918ce6aae1d433c9b55173bc320e924d4a332c8d">I918ce</a>
+      )
+    </li>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">SpatialAnnotation</code>
+      and
+      <code translate="no" dir="ltr">SpatialAnnotationTrackingMode</code>
+      to Jetpack XR ARCore, enabling developers to configure and track arbitrary bounded 3D quadrilateral geometries (
+      <code translate="no" dir="ltr">Quad</code>
+      ) targeted at physical real-world spatial environments. (
+      <a href="https://android-review.googlesource.com/#/q/I880e4a48db5dabf9c564e4ebc0873b7865957b4f">I880e4</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">TestSpatialAnnotation</code>
+      to allow programmatic simulation of spatial annotations in automated tests. (
+      <a href="https://android-review.googlesource.com/#/q/If233588d358900ddbbccd1e5120c340f1355144c">If2335</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">geospatialPose</code>
+      ,
+      <code translate="no" dir="ltr">horizontalAccuracy</code>
+      ,
+      <code translate="no" dir="ltr">verticalAccuracy</code>
+      , and
+      <code translate="no" dir="ltr">orientationYawAccuracy</code>
+      as new APIs to give more information in the Geospatial state. (
+      <a href="https://android-review.googlesource.com/#/q/If28f8b03596f01dbfc018b5a0aa2f57ba6476ea6">If28f8</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-runtime</code>
+      dependency was updated to 2.10.0. This version is required for bundled lifecycle runtime lint checks to run with AGP version 9.5.0-alpha04 or later. (
+      <a href="https://android-review.googlesource.com/#/q/I99bfdb355ffd7f1083dbdac4167b1f5577740116">I99bfd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/556807521">b/556807521</a>
+      )
+    </li>
+    <li>
+      Checked for max image count of 0 when configuring
+      <code translate="no" dir="ltr">AugmentedImage</code>
+      , throwing
+      <code translate="no" dir="ltr">UnsupportedOperationException</code>
+      instead of failing unexpectedly.
+      <a href="https://android-review.googlesource.com/q/I6ce439455fff3eb7039066a377d9844df1231b98">I6ce439</a>
+    </li>
+    <li>
+      Fix memory leaks and concurrency issues in
+      <code translate="no" dir="ltr">AugmentedImageRenderer</code>
+      by properly tracking and cancelling rendering jobs, disposing of entities, and safely modifying the images collection.
+      <a href="https://android-review.googlesource.com/q/Ie707601d4e7877bcca2eb4bf634f9d296d84eea0">Ie70760</a>
+    </li>
+  </ul>
+  <h2 id="version_10_2" data-text="Version 1.0" tabindex="-1">Version 1.0</h2>

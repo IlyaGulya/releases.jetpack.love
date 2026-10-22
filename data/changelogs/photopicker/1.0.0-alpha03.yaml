@@ -1,0 +1,146 @@
+libraryId: photopicker
+groupId: androidx.photopicker
+version: 1.0.0-alpha03
+releaseDate: 2026-10-21
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha03" data-text="Version 1.0.0-alpha03" tabindex="-1">Version 1.0.0-alpha03</h3>
+  <p>October 21, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.photopicker:photopicker-*:1.0.0-alpha03</code>
+    is released. Version 1.0.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/44ceb3b539fab42fa69f741b6eafc4f434fc4fad/photopicker">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added EXTRA_SYSTEM_FALLBACK_PICK_IMAGES_REQUEST_LOCATION_METADATA_ACCESS to
+      <code translate="no" dir="ltr">PickVisualMedia</code>
+      to allow requesting location metadata access in system fallback pickers. (
+      <a href="https://android-review.googlesource.com/#/q/Ie5917f0c8ba3bf941f2b34879328c3a9073fe61c">Ie5917</a>
+      )
+    </li>
+    <li>
+      Renamed artifact
+      <code translate="no" dir="ltr">androidx.photopicker:photopicker</code>
+      to
+      <code translate="no" dir="ltr">androidx.photopicker:photopicker-embedded</code>
+      (package
+      <code translate="no" dir="ltr">androidx.photopicker.embedded</code>
+      ),
+      <code translate="no" dir="ltr">androidx.photopicker:photopicker-compose</code>
+      to
+      <code translate="no" dir="ltr">androidx.photopicker:photopicker-embedded-compose</code>
+      (package
+      <code translate="no" dir="ltr">androidx.photopicker.embedded.compose</code>
+      ), and
+      <code translate="no" dir="ltr">androidx.photopicker:photopicker-testing</code>
+      to
+      <code translate="no" dir="ltr">androidx.photopicker:photopicker-embedded-testing</code>
+      (package
+      <code translate="no" dir="ltr">androidx.photopicker.embedded.testing</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/I48b9b45c38b7c5c2e10b95f8a1cd358f6eee1a9d">I48b9b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/537430760">b/537430760</a>
+      )
+    </li>
+    <li>
+      Refactored
+      <code translate="no" dir="ltr">EmbeddedPhotoPickerState</code>
+      to expose
+      <code translate="no" dir="ltr">surfacePackage</code>
+      and
+      <code translate="no" dir="ltr">notifyVisibilityChanged</code>
+      and added and
+      <code translate="no" dir="ltr">onError</code>
+      callback. (
+      <a href="https://android-review.googlesource.com/#/q/Ifa4b0db08ce8c9b0e257786e27aa5a57bfe80d61">Ifa4b0</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">setLocationMetadataAccessRequested</code>
+      to
+      <code translate="no" dir="ltr">PickVisualMediaRequest</code>
+      to allow requesting location metadata access in Photo Picker requests. (
+      <a href="https://android-review.googlesource.com/#/q/Idde80c378009581dc25d44e2600f9a5ee74abf9f">Idde80</a>
+      )
+    </li>
+    <li>
+      Migrated
+      <code translate="no" dir="ltr">PickVisualMedia</code>
+      and
+      <code translate="no" dir="ltr">PickMultipleVisualMedia</code>
+      contracts, and
+      <code translate="no" dir="ltr">PickVisualMediaRequest</code>
+      to the new
+      <code translate="no" dir="ltr">photopicker-activity</code>
+      artifact. Copied tests. (
+      <a href="https://android-review.googlesource.com/#/q/I2a201ac41fe675937d7d854d4306f26156fd9e29">I2a201</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/530216959">b/530216959</a>
+      )
+    </li>
+    <li>
+      Removed the
+      <code translate="no" dir="ltr">inputs</code>
+      parameter from
+      <code translate="no" dir="ltr">rememberEmbeddedPhotoPickerState</code>
+      . To reset the state when inputs change, wrap the call in a
+      <code translate="no" dir="ltr">key</code>
+      block instead. (
+      <a href="https://android-review.googlesource.com/#/q/I8a0c5b3f1c0cb989fc5a94fe1d90fe92343bad2d">I8a0c5</a>
+      )
+    </li>
+    <li>
+      Lowered the
+      <code translate="no" dir="ltr">minSdk</code>
+      of the androidx.photopicker:photopicker and androidx.photopicker:photopicker-compose libraries to 23. (
+      <a href="https://android-review.googlesource.com/#/q/I94e42624e79d97494629acedd891ad318e5733c7">I94e42</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/524083018">b/524083018</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Revising Embedded PhotoPicker Compose APIs</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ie32c9a86b3c826863b727fdc90d909a4c5dfd84e">Ie32c9</a>
+      )
+    </li>
+    <li>
+      New libraries for Photopicker (
+      <a href="https://android-review.googlesource.com/#/q/I0f52a993080d9b71e027358e0a171491a0ba8862">I0f52a</a>
+      )
+    </li>
+    <li>
+      New testing library for photopicker (
+      <a href="https://android-review.googlesource.com/#/q/I7c1ec1d1136a7f965c7880494e920770f00e1216">I7c1ec</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-runtime</code>
+      dependency was updated to 2.10.0. This version is required for bundled lifecycle runtime lint checks to run with AGP version 9.5.0-alpha04 or later. (
+      <a href="https://android-review.googlesource.com/#/q/I99bfdb355ffd7f1083dbdac4167b1f5577740116">I99bfd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/556807521">b/556807521</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">compileSdk</code>
+      for Compose libraries updated to 37.1. This will require transitively updating
+      <code translate="no" dir="ltr">compileSdk</code>
+      for all apps and libraries using Compose. (
+      <a href="https://android-review.googlesource.com/#/q/I05b0f9385d2b99ddcc4041b2ce2d96aea3bd391e">I05b0f</a>
+      )
+    </li>
+    <li>
+      Updated Compose compileSdk to API 37. This means that a minimum AGP version of 9.2.0 is required when using Compose. (
+      <a href="https://android-review.googlesource.com/#/q/Id45cdca34ef948e06259b2dd9adc901b7c930492">Id45cd</a>
+      )
+    </li>
+  </ul>

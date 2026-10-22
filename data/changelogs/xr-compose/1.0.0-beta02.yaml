@@ -1,0 +1,195 @@
+libraryId: xr-compose
+groupId: androidx.xr
+version: 1.0.0-beta02
+releaseDate: 2026-10-21
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta02" data-text="Version 1.0.0-beta02" tabindex="-1">Version 1.0.0-beta02</h3>
+  <p>October 21, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.compose:compose:1.0.0-beta02</code>
+    and
+    <code translate="no" dir="ltr">androidx.xr.compose:compose-testing:1.0.0-beta02</code>
+    are released. Version 1.0.0-beta02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/bc67eb1589ba68a62d1d7b5fa7c920116520b682..9668a8f57f561724817df1bc85bcc549ee10bd36/xr/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Libraries now target Kotlin 2.2 and require kotlinc 2.2 (
+      <a href="https://android-review.googlesource.com/#/q/I823967fe6b9524b448184ef366c562316bd6a323">I82396</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/498369605">b/498369605</a>
+      )
+    </li>
+    <li>
+      Renamed the
+      <code translate="no" dir="ltr">halfLifeMs</code>
+      parameter of
+      <code translate="no" dir="ltr">FollowMode.soft()</code>
+      to
+      <code translate="no" dir="ltr">halfLifeMillis</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I39187656bb926d92ab10526e33aa653dc600d323">I39187</a>
+      )
+    </li>
+    <li>
+      Converted
+      <code translate="no" dir="ltr">PitchLimits</code>
+      into an
+      <code translate="no" dir="ltr">@JvmInline value class</code>
+      packing two floats into a
+      <code translate="no" dir="ltr">Long</code>
+      to eliminate object allocations. (
+      <a href="https://android-review.googlesource.com/#/q/Id43c3976ce7fe562d5b9df95bc990c7e85bfd89f">Id43c3</a>
+      )
+    </li>
+    <li>
+      Added new parameter for
+      <code translate="no" dir="ltr">FollowMode.soft</code>
+      :
+      <code translate="no" dir="ltr">halfLifeMs</code>
+      ,
+      <code translate="no" dir="ltr">startDelay</code>
+      , and
+      <code translate="no" dir="ltr">startThresholds</code>
+      parameters. Removed parameter
+      <code translate="no" dir="ltr">durationMs</code>
+      as it no longer needed as we transition from a
+      <code translate="no" dir="ltr">smoothStep</code>
+      algorithm to an
+      <code translate="no" dir="ltr">exponentialDecay</code>
+      algorithm. (
+      <a href="https://android-review.googlesource.com/#/q/If0140f7abb840eccadde363252f818331252262f">If0140</a>
+      )
+    </li>
+    <li>
+      Remove the deprecated
+      <code translate="no" dir="ltr">SpatialActivityPanel</code>
+      overload. Use the overload of
+      <code translate="no" dir="ltr">SpatialActivityPanel</code>
+      that accepts a
+      <code translate="no" dir="ltr">SpatialActivityPanelController</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/I5abc348274f94cdd96785c32d0f3f1fea30b6085">I5abc3</a>
+      )
+    </li>
+    <li>
+      Enable transitions between 3D and 2D Composable content within one Activity in
+      <code translate="no" dir="ltr">FullSpaceMode</code>
+      . This change is gated by
+      <code translate="no" dir="ltr">SpatialComposeFlags.isMainPanelResetOnSubspaceDisposeEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4e23781c611d323cd39cc060519046f12c24695c">I4e237</a>
+      )
+    </li>
+    <li>
+      Exposed experimental
+      <code translate="no" dir="ltr">Subspace</code>
+      overload taking a
+      <code translate="no" dir="ltr">FollowTarget</code>
+      parameter to support following content. (
+      <a href="https://android-review.googlesource.com/#/q/Iec1a91ce1445cdcc16331dbf791333aa0c7fac60">Iec1a9</a>
+      )
+    </li>
+    <li>
+      Remove deprecated movable modifiers. Use the new movable modifier instead that accepts the new
+      <code translate="no" dir="ltr">MovePolicy</code>
+      as a parameter. (
+      <a href="https://android-review.googlesource.com/#/q/Ib135de1cfc7eae9978d799f9ab1a98c56debb0e5">Ib135d</a>
+      )
+    </li>
+    <li>
+      Remove deprecated
+      <code translate="no" dir="ltr">DragPolicy</code>
+      . Use
+      <code translate="no" dir="ltr">SubspaceModifier.movable()</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/I108d4df07a11b4020070c9218f7999a7171f7260">I108d4</a>
+      )
+    </li>
+    <li>
+      Deprecated stateless
+      <code translate="no" dir="ltr">Slider</code>
+      and
+      <code translate="no" dir="ltr">RangeSlider</code>
+      overloads in favor of their stateful versions. Renamed
+      <code translate="no" dir="ltr">activeRangeStart</code>
+      and
+      <code translate="no" dir="ltr">activeRangeEnd</code>
+      in
+      <code translate="no" dir="ltr">RangeSliderState</code>
+      to
+      <code translate="no" dir="ltr">startValue</code>
+      and
+      <code translate="no" dir="ltr">endValue</code>
+      , deprecating older unpromoted and experimental Slider APIs with
+      <code translate="no" dir="ltr">DeprecationLevel.HIDDEN</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If8995438653fe44d5d108787e920c7fe06f6ff69">If8995</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">RotateToLookAtUser</code>
+      by introducing
+      <code translate="no" dir="ltr">poseInActivitySpace</code>
+      to ensure correct pose calculation for all subspace types, including those attached to anchors or users.
+      <a href="https://android-review.googlesource.com/q/Ica367b7e18d29c24717ef0aea84307cad5fd90a8">Ica367b</a>
+    </li>
+    <li>
+      Fix Constraints crash when Orbiter is attached to large panels (
+      <a href="https://android-review.googlesource.com/#/q/I8c4bfed6b0126216bd7b6f2a08b3241e35b4c678">I8c4bf</a>
+      )
+    </li>
+    <li>
+      Fixed a bug in
+      <code translate="no" dir="ltr">SubspaceLayoutNode</code>
+      where
+      <code translate="no" dir="ltr">removeAll()</code>
+      caused unnecessary
+      <code translate="no" dir="ltr">ArrayList</code>
+      allocations. Also fixed depth calculation performance.
+      <a href="https://android-review.googlesource.com/q/I34a10aab23224f2bff08bdebdccdd9096b473269">I34a10a</a>
+    </li>
+    <li>
+      <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-runtime</code>
+      dependency was updated to 2.10.0. This version is required for bundled lifecycle runtime lint checks to run with AGP version 9.5.0-alpha04 or later. (
+      <a href="https://android-review.googlesource.com/#/q/I99bfdb355ffd7f1083dbdac4167b1f5577740116">I99bfd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/556807521">b/556807521</a>
+      )
+    </li>
+    <li>
+      Improve kdocs related to
+      <code translate="no" dir="ltr">AudioOutputProvider</code>
+      to highlight that it should not be re-used with multiple
+      <code translate="no" dir="ltr">ExoPlayer</code>
+      instances (
+      <a href="https://android-review.googlesource.com/#/q/I6b18e9f742d74a26cfbd6ce6acae3b9669113364">I6b18e</a>
+      )
+    </li>
+    <li>
+      Fix minor kdoc spelling and grammar issues (
+      <a href="https://android-review.googlesource.com/#/q/Id3ba685bb838f5f78e809a00a5bf95ff8e73a705">Id3ba6</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      This version of
+      <code translate="no" dir="ltr">androidx.xr.compose</code>
+      has a dependency on
+      <code translate="no" dir="ltr">androidx.xr.scenecore:1.0.0-rc01</code>
+      , which has a known memory leak. In your build configuration, you may explicitly override the
+      <code translate="no" dir="ltr">SceneCore</code>
+      dependency to version
+      <code translate="no" dir="ltr">1.0.0</code>
+      , which includes a fix for the memory leak.
+    </li>
+  </ul>
