@@ -1,0 +1,165 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.8.0-alpha02
+releaseDate: 2026-10-21
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0-alpha02" data-text="Version 1.8.0-alpha02" tabindex="-1">Version 1.8.0-alpha02</h3>
+  <p>October 21, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.8.0-alpha02</code>
+    is released. Version 1.8.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/988ac9734e8223273eb7f186ee1639ee68deb025..3566803898b060d7136357220affc9ece8236019/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">PullToRefreshDefaults.indicatorShape</code>
+      to
+      <code translate="no" dir="ltr">IndicatorShape</code>
+      and changed
+      <code translate="no" dir="ltr">PullToRefreshState</code>
+      to an interface. (
+      <a href="https://android-review.googlesource.com/#/q/I95b98232b9b07c7ae58c0708ffc5686512cbf7e3">I95b98</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">showIndicatorDelayMillis</code>
+      parameter to
+      <code translate="no" dir="ltr">Modifier.oneHandedGesture</code>
+      to customize the delay before
+      <code translate="no" dir="ltr">onGestureAvailable</code>
+      is invoked. Defaults to
+      <code translate="no" dir="ltr">OneHandedGestureDefaults.ShowIndicatorDelayMillis</code>
+      (1 second). (
+      <a href="https://android-review.googlesource.com/#/q/I38cc74260a9669bfedc56a0b4df7f213bd0d0514">I38cc7</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">StatusBarSuppression</code>
+      overload with a content lambda to allow wrapping
+      <code translate="no" dir="ltr">ScreenScaffold</code>
+      and suppressing the System Status Bar top-down while automatically resetting top content padding to 0.dp. (
+      <a href="https://android-review.googlesource.com/#/q/I18ff997808314a4d0096672ea0d4d98fd4791043">I18ff9</a>
+      )
+    </li>
+    <li>
+      Added a discrete integer steps overload and
+      <code translate="no" dir="ltr">showMinimumSegment</code>
+      parameter to Material 3
+      <code translate="no" dir="ltr">Slider</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Idce238de96dd1da2669e8c9b89c8e9aceea1cd15">Idce23</a>
+      )
+    </li>
+    <li>
+      Removed experimental feature flag
+      <code translate="no" dir="ltr">WearComposeFoundationFlags.isWarpingCurvedTextEnabled</code>
+      . Warped curved text is now always enabled by default. (
+      <a href="https://android-review.googlesource.com/#/q/Ifc5c2efcaa740cbd6ba74387a8c2ef9689035373">Ifc5c2</a>
+      )
+    </li>
+    <li>
+      Removed experimental feature flag
+      <code translate="no" dir="ltr">WearComposeMaterial3Flags.isSwipeToRevealDualFlingThresholdEnabled</code>
+      . The dual fling threshold behavior in
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      is now always enabled. (
+      <a href="https://android-review.googlesource.com/#/q/Ia8036186eac7b9e214328bd4293d288c5f956e60">Ia8036</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a 1-frame visual glitch where
+      <code translate="no" dir="ltr">TimeText</code>
+      would momentarily appear when entering composition on an already scrolled-down list. (
+      <a href="https://android-review.googlesource.com/#/q/Id13da49dfecdf7f136a9f7ca290852bc83c1bb29">Id13da</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">ScreenScaffold</code>
+      <code translate="no" dir="ltr">ScrollIndicator</code>
+      would not reappear on scroll after idling when used without an enclosing
+      <code translate="no" dir="ltr">AppScaffold</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I445e56da4e0ec45338e755f175db7374a51e08d6">I445e5</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">PullToRefreshBox</code>
+      indicator remained stuck on screen when
+      <code translate="no" dir="ltr">onRefresh</code>
+      did not transition
+      <code translate="no" dir="ltr">isRefreshing</code>
+      to
+      <code translate="no" dir="ltr">true</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I097e2ecbeecedb18edf10f8d7e46535fc3ca0852">I097e2</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">PullToRefresh</code>
+      to Wear Compose Material 3 baseline profile. (
+      <a href="https://android-review.googlesource.com/#/q/Ib8e13043d6a78c923215184dbaa700d033c779f8">Ib8e13</a>
+      )
+    </li>
+    <li>
+      Update
+      <code translate="no" dir="ltr">PredictiveBackScene</code>
+      to switch
+      <code translate="no" dir="ltr">LocalScreenIsActive.current</code>
+      to the target screen on navigation instantly. (
+      <a href="https://android-review.googlesource.com/#/q/I3904bfe100994b485a4f94fd3f07679c11b02860">I3904b</a>
+      )
+    </li>
+    <li>
+      Fixed an issue in
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      <code translate="no" dir="ltr">ScrollInfoProvider</code>
+      where
+      <code translate="no" dir="ltr">anchorItemOffset</code>
+      failed to reset to zero when content padding shrank while scrolled. (
+      <a href="https://android-review.googlesource.com/#/q/I779a0ad12d3c08e87a1d62e930e395558556b475">I779a0</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">TransformingLazyColumnState.animateScrollToItem</code>
+      to smoothly center the target item without a final jump when items use
+      <code translate="no" dir="ltr">transformedHeight</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I429c8fac5a92675f401e6cd36ec1650792948c74">I429c8</a>
+      )
+    </li>
+    <li>
+      Fixed an issue in
+      <code translate="no" dir="ltr">ScalingLazyColumn</code>
+      <code translate="no" dir="ltr">ScrollInfoProvider</code>
+      where
+      <code translate="no" dir="ltr">anchorItemOffset</code>
+      failed to reset to zero when content padding shrank while scrolled. (
+      <a href="https://android-review.googlesource.com/#/q/Ie8b06f9c8a4ad54d4454033bd2ab6428bcebdc7d">Ie8b06</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      animation issues by disabling animations during raw scroll passes. (
+      <a href="https://android-review.googlesource.com/q/Iacfb469970fd282ab1bb99b4a242ddf2859377d7">Iacfb4</a>
+      )
+    </li>
+    <li>
+      Added AndroidManifest.xml file for Wear Compose Material3, which configures the com.google.wear.ENABLE_GLOBAL_STATUS_BAR meta-data tag(
+      <a href="https://android-review.googlesource.com/q/Ic88042646c8ca8f07e23d1df0c0929bd4335a228">Ic8804</a>
+      )
+    </li>
+  </ul>

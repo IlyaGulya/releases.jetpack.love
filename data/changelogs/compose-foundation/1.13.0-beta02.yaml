@@ -1,0 +1,44 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.13.0-beta02
+releaseDate: 2026-10-21
+#language=html
+changelogHtml: |
+  <h3 id="1.13.0-beta02" data-text="Version 1.13.0-beta02" tabindex="-1">Version 1.13.0-beta02</h3>
+  <p>October 21, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.13.0-beta02</code>
+    is released. Version 1.13.0-beta02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/55d45bc889e6e54d26f897e1299b3f5d6ca78acb..8c4a5fab030e62e6dac58c45f5fff974facf903f/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">Modifier.border</code>
+      now uses a new more performant implementation. You can disable this using
+      <code translate="no" dir="ltr">ComposeFoundationFlags.isNewBorderImplementationEnabled</code>
+      . If you run into issues and need to disable this flag, please file a bug. (
+      <a href="https://android-review.googlesource.com/#/q/I4c3b326711b5af04e94222d9564491b6d48b71f0">I4c3b3</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Modifier.border</code>
+      now supports rendering generic / polygon shapes with a runtime shader, when using the new border implementation. (
+      <a href="https://android-review.googlesource.com/#/q/I128cacfaad9825dcef47d479d71291357fe48463">I128ca</a>
+      )
+    </li>
+    <li>
+      Fixes an edge case bug with rendering certain rounded rectangle outlines in
+      <code translate="no" dir="ltr">Modifier.border</code>
+      .
+      <code translate="no" dir="ltr">ComposeFoundationFlags.isRoundedRectangleBorderRenderingFixEnabled</code>
+      can be used to disable this change if it causes issues. (
+      <a href="https://android-review.googlesource.com/#/q/I191415aaa3e9b2a7816c14b7ebd0fc1ed0a90931">I19141</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where the cache window incorrectly re-prefetched items when a previously prefetched item became visible.
+      <a href="https://android-review.googlesource.com/q/I43ca7b4d393fffa15be219144c1312c710a6021a">I43ca7b4</a>
+    </li>
+  </ul>

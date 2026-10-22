@@ -1,0 +1,55 @@
+libraryId: webkit
+groupId: androidx.webkit
+version: 1.18.0
+releaseDate: 2026-10-21
+#language=html
+changelogHtml: |
+  <h3 id="1.18.0" data-text="Version 1.18.0" tabindex="-1">Version 1.18.0</h3>
+  <p>October 21, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.webkit:webkit:1.18.0</code>
+    is released. Version 1.18.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/013da5fafa75f04bd7850047ad492700d7a10335..fb536a9a01ea26779570787c8a6af74256f17cb0/webkit/webkit">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.17.0:</strong></p>
+  <ul>
+    <li>
+      <strong>Cross-Origin Isolation Management:</strong>
+      Introduces new profile-level APIs (
+      <code translate="no" dir="ltr">Profile#setCrossOriginIsolatedAllowlist</code>
+      and
+      <code translate="no" dir="ltr">getCrossOriginIsolatedAllowlist</code>
+      ) to allow the use of
+      <code translate="no" dir="ltr">SharedArrayBuffer</code>
+      and other APIs that require
+      <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/crossOriginIsolated">cross-origin isolation</a>
+      . Web pages must also opt in by setting the
+      <a href="https://developer.chrome.com/blog/document-isolation-policy"><code translate="no" dir="ltr">Document-Isolation-Policy</code></a>
+      header as appropriate. When this feature is used, origins on the allowlist will be permitted to use these APIs despite not being fully cross-origin isolated. Care must be taken to only allowlist trusted origins.
+    </li>
+    <li>
+      <strong>Prefetch Queue Draining Control:</strong>
+      Adds a new
+      <code translate="no" dir="ltr">WEBVIEW_NAVIGATE_DRAIN_PREFETCH</code>
+      constant to
+      <code translate="no" dir="ltr">WebViewFeature</code>
+      which can be used to determine whether
+      <code translate="no" dir="ltr">Navigation#navigate</code>
+      will drain the prefetch queue before navigating to the new URL.
+    </li>
+    <li>
+      <strong>API Modernization &amp; Cleanups:</strong>
+      Includes several method renames for clarity.
+      <code translate="no" dir="ltr">PrefetchParameters#isJavaScriptEnabled</code>
+      has been renamed to
+      <code translate="no" dir="ltr">includeClientHints</code>
+      , with the older method now marked as deprecated, and
+      <code translate="no" dir="ltr">isJavaScriptEnabled</code>
+      marked as deprecated. Additionally,
+      <code translate="no" dir="ltr">Profile#addQuicHints</code>
+      has been renamed to
+      <code translate="no" dir="ltr">preferQuicFor</code>
+      .
+    </li>
+  </ul>

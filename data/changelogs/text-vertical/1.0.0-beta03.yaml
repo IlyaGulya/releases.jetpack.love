@@ -1,0 +1,430 @@
+libraryId: text-vertical
+groupId: androidx.text-vertical
+version: 1.0.0-beta03
+releaseDate: 2026-10-21
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta03" data-text="Version 1.0.0-beta03" tabindex="-1">Version 1.0.0-beta03</h3>
+  <p>October 21, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.text:text-vertical:1.0.0-beta03</code>
+    and
+    <code translate="no" dir="ltr">androidx.text:text-vertical-compose:1.0.0-beta03</code>
+    are released. Version 1.0.0-beta03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b2b5ae7b0fe1bb4eece7018878fe5f18c5967a2f..5a2352ffc8afa3fb5a17bd7eb0c70ee5638bad18/text">these commits</a>
+    .
+  </p>
+  <p>
+    <strong>Note:</strong>
+    This is intended to be the last beta release.
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added a "Subtitle Cue" tab to
+      <code translate="no" dir="ltr">VerticalTextSampleActivity</code>
+      to demonstrate
+      <code translate="no" dir="ltr">VerticalText</code>
+      capabilities, including rendering with wrapped height,
+      <code translate="no" dir="ltr">toVerticalTextStyle()</code>
+      ,
+      <code translate="no" dir="ltr">RubySpan</code>
+      ,
+      <code translate="no" dir="ltr">EmphasisSpan</code>
+      , Tate-chu-yoko,
+      <code translate="no" dir="ltr">FontShearSpan</code>
+      ,
+      <code translate="no" dir="ltr">UnderlineSpan</code>
+      , and
+      <code translate="no" dir="ltr">StrikethroughSpan</code>
+      .
+      <a href="https://android-review.googlesource.com/q/I4799d1fec43f8be481c55c263599c3ed5def5f72">I4799d1</a>
+      <a href="https://buganizer.corp.google.com/issues/571750156">b/571750156</a>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed horizontal
+      <code translate="no" dir="ltr">RubySpan</code>
+      and
+      <code translate="no" dir="ltr">EmphasisSpan</code>
+      line height when using fonts with large top and bottom padding such as Noto Sans JP. (
+      <a href="https://android-review.googlesource.com/#/q/Ib050716b4c36d500af06c51c094886db1209b6fa">Ib0507</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/557316470">b/557316470</a>
+      ) -
+      <em>Thanks for the report, Numero-san!</em>
+    </li>
+    <li>
+      Updated Compose dependencies to
+      <code translate="no" dir="ltr">1.12.1</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I9ee7fd42956442635d8ca52c9fde4573a701e65e">I9ee7f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/569780191">b/569780191</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">VerticalText</code>
+      now applies
+      <code translate="no" dir="ltr">AnnotatedString</code>
+      span styles and preserves
+      <code translate="no" dir="ltr">AnnotatedString</code>
+      spans and annotations in semantics. (
+      <a href="https://android-review.googlesource.com/#/q/Ib077f6a7ea19193cebc8ee4c9ca6a65ddb300b91">Ib077f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/502088091">b/502088091</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">RubySpan</code>
+      and
+      <code translate="no" dir="ltr">EmphasisSpan</code>
+      not filling the background color of
+      <code translate="no" dir="ltr">TextPaint.bgColor</code>
+      or
+      <code translate="no" dir="ltr">BackgroundColorSpan</code>
+      in horizontal layout. (
+      <a href="https://android-review.googlesource.com/#/q/I66ba8e34efdf50d2c5242dc1f7c51a05e042200a">I66ba8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/561269843">b/561269843</a>
+      )
+    </li>
+    <li>
+      Fixed background colors in vertical text that were drawn as outlines after a span set
+      <code translate="no" dir="ltr">Paint.Style.STROKE</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I692edf199eb8203fc2a0b54cbd1a7148a16c21f1">I692ed</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/566429122">b/566429122</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">CharacterStyle</code>
+      spans that cover a full
+      <code translate="no" dir="ltr">RubySpan</code>
+      range in
+      <code translate="no" dir="ltr">VerticalTextLayout</code>
+      now also apply to the ruby text, and
+      <code translate="no" dir="ltr">RubySpan.textScale</code>
+      scales the font sizes that they set. Background colors now also fill the empty space above and below the shorter of the ruby text and the base text. (
+      <a href="https://android-review.googlesource.com/#/q/I0dadc5a595659c9c6cddde5851b0751cf7ada4d1">I0dadc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/564268825">b/564268825</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">VerticalTextLayout</code>
+      background height when upright text has multiple style runs. (
+      <a href="https://android-review.googlesource.com/#/q/I7e31a64437ea4e306ca197bc65f6358c8eb87495">I7e31a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/565211671">b/565211671</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">VerticalText</code>
+      retaining a stale background color when
+      <code translate="no" dir="ltr">VerticalTextStyle.background</code>
+      changes to
+      <code translate="no" dir="ltr">Color.Unspecified</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia0861af33b5110db66c0e2f8a81b4b17087376f5">Ia0861</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/565211671">b/565211671</a>
+      )
+    </li>
+    <li>
+      Fixed horizontal ruby and emphasis layouts skipping
+      <code translate="no" dir="ltr">TextPaint</code>
+      fields when copying the caller paint. (
+      <a href="https://android-review.googlesource.com/#/q/Ia3043b72aa8155437aed08a17fddf19a197c0eac">Ia3043</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/561269843">b/561269843</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">VerticalText</code>
+      now draws the background color from
+      <code translate="no" dir="ltr">VerticalTextStyle.background</code>
+      behind plain
+      <code translate="no" dir="ltr">String</code>
+      text and behind plain
+      <code translate="no" dir="ltr">String</code>
+      ruby annotations in
+      <code translate="no" dir="ltr">RubySpan</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If04930c29fdac4297afa9593176349cf45f80905">If0493</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/564268825">b/564268825</a>
+      )
+    </li>
+    <li>
+      Fixed horizontal ruby layout leaving the shared working paint scaled after initialization. (
+      <a href="https://android-review.googlesource.com/#/q/I3376022398a402d632d9d55ec310154607802fcb">I33760</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/561269843">b/561269843</a>
+      )
+    </li>
+    <li>
+      Fixed the vertical text sample app so that a pan gesture cannot move the text out of view. (
+      <a href="https://android-review.googlesource.com/#/q/If01084db6c6a72bcb665f803788860b1202aad70">If0108</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/563461635">b/563461635</a>
+      )
+    </li>
+    <li>
+      Fixed the test app to demo emphasis mark position (
+      <a href="https://android-review.googlesource.com/#/q/I3ffa3802cea6a2301afd8827d0c32db91261a9f5">I3ffa3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/559972132">b/559972132</a>
+      )
+    </li>
+    <li>
+      Added Kex symbolic execution branch tests for
+      <code translate="no" dir="ltr">LineLayout</code>
+      ,
+      <code translate="no" dir="ltr">TextUtils</code>
+      ,
+      <code translate="no" dir="ltr">CanvasCompat</code>
+      , and
+      <code translate="no" dir="ltr">PaintCompat</code>
+      .
+      <a href="https://android-review.googlesource.com/q/I47edfe364a9eea5ee7c7be9bfbd01115827808b1">I47edf</a>
+      <a href="https://buganizer.corp.google.com/issues/569212211">b/569212211</a>
+    </li>
+  </ul>
+  <h4 id="1.0.0-beta02" data-text="Version 1.0.0-beta02" tabindex="-1">Version 1.0.0-beta02</h4>
+  <p>September 23, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.text:text-vertical:1.0.0-beta02</code>
+    and
+    <code translate="no" dir="ltr">androidx.text:text-vertical-compose:1.0.0-beta02</code>
+    are released. Version 1.0.0-beta02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f3ed195f0c9ef9eafe437351d974c9ec49ecc2ea..b2b5ae7b0fe1bb4eece7018878fe5f18c5967a2f/text">these commits</a>
+    .
+  </p>
+  <p><strong>Important Changes</strong></p>
+  <ul>
+    <li>
+      We have added test cases to ensure backward compatibility down to
+      <strong>API 24 (Android 7.0)</strong>
+      , and the results have been highly positive!
+    </li>
+    <li>
+      The libraries now target Kotlin 2.2 and require kotlinc 2.2 (
+      <a href="https://android-review.googlesource.com/#/q/I823967fe6b9524b448184ef366c562316bd6a323">I82396</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/498369605">b/498369605</a>
+      )
+    </li>
+    <li>
+      The vertical text libraries now compile against SDK 37. Apps that use them must compile against SDK 37 and use AGP 9.1.0 or later. (
+      <a href="https://android-review.googlesource.com/#/q/I0f757083a8068bdc06d31b94842e5a5471d699b5">I0f757</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/562182206">b/562182206</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">EmphasisSpan.position</code>
+      now moves the emphasis mark.
+      <code translate="no" dir="ltr">AnnotationPosition.Before</code>
+      puts the mark above horizontal text and right of vertical text.
+      <code translate="no" dir="ltr">AnnotationPosition.After</code>
+      puts it on the opposite side. (
+      <a href="https://android-review.googlesource.com/#/q/Ic9bfdc67d49dcc3b3329fc1b8be9ad7bbc0be1d6">Ic9bfd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/559972132">b/559972132</a>
+      )
+    </li>
+    <li>
+      Fixed the emphasis mark scale in horizontal text layout. The reserved line height no longer assumes an unscaled mark. (
+      <a href="https://android-review.googlesource.com/#/q/I6d7feec59f8090ac78bb145e58d75c277c25895b">I6d7fe</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/562254557">b/562254557</a>
+      )
+    </li>
+    <li>
+      Fixed the backport for vertical text advances. The backport ignored the requested offset on API levels less than 34. (
+      <a href="https://android-review.googlesource.com/#/q/I8877a21180e95f54d2901e5ee97f213803ea92c4">I8877a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/495457561">b/495457561</a>
+      )
+    </li>
+    <li>
+      Fixed horizontal ruby text reserving too much vertical space on API levels below 28, which could leave a line taller than necessary. (
+      <a href="https://android-review.googlesource.com/#/q/Iceb605ffba433f0866e2435e0374bd52dcdd24bb">Iceb60</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/561323466">b/561323466</a>
+      )
+    </li>
+    <li>
+      The tests for vertical ruby and text orientation now run on all supported API levels. (
+      <a href="https://android-review.googlesource.com/#/q/If07d41a7fbea93d0cea77fda3d948eeaa838da7e">If07d4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/495457561">b/495457561</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-runtime</code>
+      dependency was updated to 2.10.0. This version is required for bundled lifecycle runtime lint checks to run with AGP version 9.5.0-alpha04 or later. (
+      <a href="https://android-review.googlesource.com/#/q/I7264b7e87c38200b34c13e382a16a86fa0a7d2e6">I7264b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/556807521">b/556807521</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">RubySpan.position</code>
+      being ignored in horizontal text layout.
+      <code translate="no" dir="ltr">AnnotationPosition.After</code>
+      now correctly renders ruby text below the base text. (
+      <a href="https://android-review.googlesource.com/#/q/Iaffa1b09f0eaffb80cbdb41929530ed39e9d6253">Iaffa1</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/559972124">b/559972124</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/561323466">b/561323466</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">RubySpan.position</code>
+      being ignored in vertical text layout.
+      <code translate="no" dir="ltr">AnnotationPosition.After</code>
+      now correctly renders ruby text on the left side of the base text. (
+      <a href="https://android-review.googlesource.com/#/q/I0be1c5e85092cf7859d6505d5381bc668ef50959">I0be1c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/495457561">b/495457561</a>
+      )
+    </li>
+    <li>
+      Upgrade Compose dependencies to 1.11.4 (
+      <a href="https://android-review.googlesource.com/#/q/I9ef070aeb2f36731da25ecf5ef5220ec34616f2d">I9ef07</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/536925341">b/536925341</a>
+      )
+    </li>
+  </ul>
+  <h4 id="1.0.0-beta01" data-text="Version 1.0.0-beta01" tabindex="-1">Version 1.0.0-beta01</h4>
+  <p>August 26, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.text:text-vertical:1.0.0-beta01</code>
+    and
+    <code translate="no" dir="ltr">androidx.text:text-vertical-compose:1.0.0-beta01</code>
+    are released. Version 1.0.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/61ee8cd421d0c0252d8db0253b739de537999371..f3ed195f0c9ef9eafe437351d974c9ec49ecc2ea/text">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">VerticalTextScope</code>
+      from an interface to a concrete class. (
+      <a href="https://android-review.googlesource.com/#/q/I44e71a46358c3633ef255d86e7a8d197c94268a3">I44e71</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/549288808">b/549288808</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Updated documentation for
+      <code translate="no" dir="ltr">combineUpright</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib534bdb45f74a9174f9a543bee1d687209cd46ea">Ib534b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/548992014">b/548992014</a>
+      )
+    </li>
+    <li>
+      Removed incorrect API 36 minimum requirement documentation from
+      <code translate="no" dir="ltr">VerticalText</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4f8e9874ad7975354776c09609709d2f9c700f34">I4f8e9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/549288799">b/549288799</a>
+      )
+    </li>
+    <li>
+      Used calculated ascent ratio for vertical baseline offset in backport mode (
+      <a href="https://android.googlesource.com/platform/frameworks/support/+/07339d708aa73fb814e9547ffa54d308071bd724">07339d7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/502088091">b/502088091</a>
+      )
+    </li>
+  </ul>
+  <h4 id="1.0.0-alpha06" data-text="Version 1.0.0-alpha06" tabindex="-1">Version 1.0.0-alpha06</h4>
+  <p>July 29, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.text:text-vertical:1.0.0-alpha06</code>
+    and
+    <code translate="no" dir="ltr">androidx.text:text-vertical-compose:1.0.0-alpha06</code>
+    are released. Version 1.0.0-alpha06 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/df4b49eda6f6834b6bc4c8aa30a581fa577a511e..61ee8cd421d0c0252d8db0253b739de537999371/text">these commits</a>
+    .
+  </p>
+  <p><strong>Important Changes</strong></p>
+  <ul>
+    <li>This release marks the final planned alpha version of the library.</li>
+    <li>
+      Finalized and refined the parameters in the
+      <code translate="no" dir="ltr">VerticalText</code>
+      composable
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Introduced
+      <code translate="no" dir="ltr">VerticalTextStyle</code>
+      for vertical text layout. (
+      <a href="https://android-review.googlesource.com/#/q/I647a8f1f681b019f2a306575f9a83a73fd4602e3">I647a8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/512424512">b/512424512</a>
+      )
+    </li>
+    <li>
+      Introduced a new public DSL (
+      <code translate="no" dir="ltr">VerticalTextScope</code>
+      and
+      <code translate="no" dir="ltr">buildVerticalText</code>
+      ) in the
+      <code translate="no" dir="ltr">text-vertical-compose</code>
+      library (
+      <a href="https://android-review.googlesource.com/#/q/I6faa75247b091a6bbc6e7f209e0c467e7a39b073">I6faa7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/502088091">b/502088091</a>
+      )
+    </li>
+    <li>
+      Introduce
+      <code translate="no" dir="ltr">VerticalText</code>
+      composable (
+      <a href="https://android-review.googlesource.com/#/q/I96509c991366dfbd411b8125ba550753abda83fe">I96509</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/502088091">b/502088091</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Clarified documentation for
+      <code translate="no" dir="ltr">VerticalTextLayout</code>
+      fallback behavior on older API levels. (
+      <a href="https://android-review.googlesource.com/#/q/Ia7ccc156c5c1d1a8b69c106b331b8f1f7a89a304">Ia7ccc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/449184326">b/449184326</a>
+      )
+    </li>
+  </ul>
+  <p>There are no release notes for this artifact.</p>
+  <h2 id="text_vertical_version_10_2" data-text="Text Vertical Version 1.0" tabindex="-1">Text Vertical Version 1.0</h2>

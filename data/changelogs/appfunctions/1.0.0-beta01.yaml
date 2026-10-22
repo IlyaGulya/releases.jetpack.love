@@ -1,0 +1,98 @@
+libraryId: appfunctions
+groupId: androidx.appfunctions
+version: 1.0.0-beta01
+releaseDate: 2026-10-21
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-beta01" data-text="Version 1.0.0-beta01" tabindex="-1">Version 1.0.0-beta01</h3>
+  <p>October 21, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.appfunctions:appfunctions:1.0.0-beta01</code>
+    ,
+    <code translate="no" dir="ltr">androidx.appfunctions:appfunctions-compiler:1.0.0-beta01</code>
+    , and
+    <code translate="no" dir="ltr">androidx.appfunctions:appfunctions-testing:1.0.0-beta01</code>
+    are released. Version 1.0.0-beta01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f00b1745e804a33584208947a6cdbb3915f9b8cb..b463fe32f4f38cfc70d99bf57a4587ff83459dcc/appfunctions">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">AppFunctionName</code>
+      has been moved from the
+      <code translate="no" dir="ltr">androidx.appfunctions.metadata</code>
+      package to
+      <code translate="no" dir="ltr">androidx.appfunctions</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iec624d1e6b3ca8a9d9fb28ce4615572801087736">Iec624</a>
+      )
+    </li>
+    <li>
+      Removed the default value of
+      <code translate="no" dir="ltr">isDescribedByKDoc</code>
+      from
+      <code translate="no" dir="ltr">AppFunctionDeclaration</code>
+      ,
+      <code translate="no" dir="ltr">AppFunctionSerializable</code>
+      and
+      <code translate="no" dir="ltr">AppFunctionSignature</code>
+      ; it must now be set explicitly. (
+      <a href="https://android-review.googlesource.com/#/q/Idcfd2babf997325625fad74f3e65e7a03f24fd6a">Idcfd2</a>
+      )
+    </li>
+    <li>
+      Support
+      <code translate="no" dir="ltr">AppFunctionServiceEntryPoint</code>
+      in
+      <code translate="no" dir="ltr">AppFunctionTestRule</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I12e018f778635aa2275a663bdf79aae56b49dbc5">I12e01</a>
+      )
+    </li>
+    <li>
+      AppFunctionResourceContainer and AppFunctionTextResource are now marked as @ExperimentalAppFunctionsApi. (
+      <a href="https://android-review.googlesource.com/#/q/If9469259dd0e0666bc87785feca4b62c09e8db9d">If9469</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">AppFunctionAppMetadata.description</code>
+      to
+      <code translate="no" dir="ltr">instructions</code>
+      , and the
+      <code translate="no" dir="ltr">description</code>
+      XML attribute of
+      <code translate="no" dir="ltr">AppFunctionAppMetadata</code>
+      to
+      <code translate="no" dir="ltr">instructions</code>
+      , to align with MCP naming conventions. (
+      <a href="https://android-review.googlesource.com/#/q/I04d0856646dee1cb6315e08f8c7b4288a5345cf3">I04d08</a>
+      )
+    </li>
+    <li>
+      Replaced regex pattern in @AppFunctionStringValueConstraint with patternMatchers backed by android.os.PatternMatcher. (
+      <a href="https://android-review.googlesource.com/#/q/I7c7cc52fa221d0eea5533b43ae976b057c6bf406">I7c7cc</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">java.time</code>
+      parameter types failing to deserialize in apps with Java library desugaring enabled. (
+      <a href="https://android-review.googlesource.com/#/q/I211ce88646c06747d1e36429877c1bea5f6965e5">I211ce</a>
+      )
+    </li>
+    <li>
+      Fixed the issue that the generated file name could contain invalid symbol for some operating systems. (
+      <a href="https://android-review.googlesource.com/q/Idced400abced6ec83206ad07c12ce91d736559a8">Idced4</a>
+      )
+    </li>
+    <li>
+      Fixed the issue that on SDK37+, the URI permissions are granted twice. (
+      <a href="https://android-review.googlesource.com/#/q/I3c84590d07b5f6a7a3769658a8764c2e683868a4">I3c845</a>
+      )
+    </li>
+  </ul>

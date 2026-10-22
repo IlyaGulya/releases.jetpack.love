@@ -1,0 +1,175 @@
+libraryId: test-backup
+groupId: androidx.test
+version: 1.0.0-alpha03
+releaseDate: 2026-10-21
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha03" data-text="Version 1.0.0-alpha03" tabindex="-1">Version 1.0.0-alpha03</h3>
+  <p>October 21, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.test.backup:backup:1.0.0-alpha03</code>
+    and
+    <code translate="no" dir="ltr">androidx.test.backup:backup-host:1.0.0-alpha03</code>
+    are released. Version 1.0.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/988ac9734e8223273eb7f186ee1639ee68deb025..b4c15a8e351e6cfa93e90cce2cfbd0dbbe4805a7/test/backup">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Simplified test setup in Android Gradle Plugin backup test suites by automatically targeting the tested app when
+      <code translate="no" dir="ltr">@BackupRestoreConfig</code>
+      is omitted. (
+      <a href="https://android-review.googlesource.com/#/q/I1452bba1b2e53201759bede479f36b565c72ac72">I1452b</a>
+      )
+    </li>
+    <li>
+      Added support for inheriting
+      <code translate="no" dir="ltr">@BackupRestoreConfig</code>
+      and
+      <code translate="no" dir="ltr">@Isolation</code>
+      settings from an outer test class in
+      <code translate="no" dir="ltr">@Nested</code>
+      test classes. (
+      <a href="https://android-review.googlesource.com/#/q/Ia45a8d0a216d27f4ebd1030f2f75c72e2466e9f8">Ia45a8</a>
+      )
+    </li>
+    <li>
+      Added support for injecting
+      <code translate="no" dir="ltr">BackupRestoreController</code>
+      directly into test class constructors and
+      <code translate="no" dir="ltr">@BeforeAll</code>
+      setup methods. (
+      <a href="https://android-review.googlesource.com/#/q/I6e8226eb8e2ff548e0e227abcf39c3ffd82cb400">I6e822</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ia2ebd2a66c49b105e0e4dcb3a47a5856d654e216">Ia2ebd</a>
+      )
+    </li>
+    <li>
+      Added support for pinning a specific device to a
+      <code translate="no" dir="ltr">@Device</code>
+      role in multi-device tests using the
+      <code translate="no" dir="ltr">androidx.test.backup.device.serial.{role}</code>
+      property. (
+      <a href="https://android-review.googlesource.com/#/q/I484be83239feb2511051d0cd83f58fcd405c1d05">I484be</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">performBackup</code>
+      and
+      <code translate="no" dir="ltr">performRestore</code>
+      so tests fail immediately instead of passing silently when a backup is skipped or empty, when the backup service errors out, or when a local backup archive belongs to a different app or device. (
+      <a href="https://android-review.googlesource.com/#/q/I7673ddf7d8a255184ebc9162dcc77129a44fffdb">I7673d</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I478ad5b3f45cfae35d59e3a652a9535e3a51d26b">I478ad</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I0b989f9af98f585c3fccdaeb4fde795aa1bf1f73">I0b989</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I9a0ea44887908ffaf596a0652fb38cf2499837f7">I9a0ea</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I7956782d099ffcff4ffae3133299a19ad2214c8f">I79567</a>
+      )
+    </li>
+    <li>
+      Fixed tests hanging indefinitely on unresponsive devices by enforcing timeouts across backup, restore, device actions, and cleanup steps. (
+      <a href="https://android-review.googlesource.com/#/q/I1066158011a9c52086d40e4769ad2f3602ce38ff">I10661</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I9cdeee7855f2eaf50bdab809a0fb9d9720c30bf2">I9cdee</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/If5f92025f93827ac7890d08f9bbac4486ba43125">If5f92</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">performBackup</code>
+      deleting generated backup files when the test run finished, so backup archives are now kept on disk after tests exit. (
+      <a href="https://android-review.googlesource.com/#/q/I8c13f9973086b7ff45cb52e2e8f759dcf3a766b5">I8c13f</a>
+      )
+    </li>
+    <li>
+      Fixed database test helpers (
+      <code translate="no" dir="ltr">StorageDomain.Database</code>
+      ) to properly store and check
+      <code translate="no" dir="ltr">null</code>
+      values, overwrite existing rows when seeding test data, catch invalid table configurations early, and fail when an expected database file is missing. (
+      <a href="https://android-review.googlesource.com/#/q/Ib47677fff9977a08e54a2f143de58fc0841e5987">Ib4767</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Iddf87bf275e934bf00781b482b5759f75daba9e3">Iddf87</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I19c4353550902839c053398e2aba3ace1fdc160b">I19c43</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ie8d78a64ba6c660e63072af7b9d08f6d8ff94ade">Ie8d78</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I8bc1866b00b4c6b8ec87aa7f21010d8084db7e3b">I8bc18</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">SharedPreferences</code>
+      test helpers to preserve data types accurately and support checking for
+      <code translate="no" dir="ltr">null</code>
+      or removed preferences. (
+      <a href="https://android-review.googlesource.com/#/q/I8456d9a242cc804897edce9b959c642d3c0514bd">I8456d9</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I1d0fc22ee6640d6827847c270b365c9d0a00a3c7">I1d0fc2</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">runOnDevice</code>
+      to handle large test payloads without crashing, pause for the debugger when
+      <code translate="no" dir="ltr">waitForDebugger</code>
+      is enabled, find the test runner in custom test APK package names, and block internal runner flags from leaking into device actions. (
+      <a href="https://android-review.googlesource.com/#/q/Ic73bdc7275d9b8e61a8e821e1a996cfe258e2874">Ic73bd</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Iede174c930233de86fe463b57abf3e0c20ef5372">Iede17</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I1d172015314fadac542bfe9b25bc567f1314bad6">I1d172</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I84c15c3232235168631332b5781b6dd99a6931c2">I84c15</a>
+      )
+    </li>
+    <li>
+      Improved test stability and speed by sharing a single ADB connection across the test run, installing APKs only once per device, and failing clearly when an APK fails to install or launch. (
+      <a href="https://android-review.googlesource.com/#/q/I62717c5b6f8f22d864d4eeb58539931d7340c197">I62717</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Iabf75f0751aa6164936d87080ef37af417fe1062">Iabf75</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I14e6fda3a4325cf38a60db39a41bf040226bc518">I14e6f</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I4c3da50913a726c754deed726ad0f87c01f965ae">I4c3da5</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I540777aa6d63f76501993c1f290ed2014e81ff85">I54077</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Iee84e35c6d504f902f73bf1b0a262f109449ffd1">Iee84e</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">fetchDeviceLogs</code>
+      writing empty log files, and stopped cancelled test runs from generating false failure reports. (
+      <a href="https://android-review.googlesource.com/#/q/I736c40fb4a858b8536cee9c8b7dbd11bb3692939">I736c4</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I7b1990f00eeb871e7d34fb33730faf67e7dc0f11">I7b199</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ia847e2fc30ee78174c7d258599ef6b32e2c3a914">Ia847e</a>
+      )
+    </li>
+    <li>
+      Cleaned up
+      <code translate="no" dir="ltr">backup-host</code>
+      dependencies so
+      <code translate="no" dir="ltr">adblib</code>
+      is available directly to callers and internal logging or test libraries no longer clash with your project's classpath. (
+      <a href="https://android-review.googlesource.com/#/q/I6e8226eb8e2ff548e0e227abcf39c3ffd82cb400">I6e822</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Iba9a4b46c39bf491d2bb7f4dadc9a83427730791">Iba9a4</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ib4ec9530e581ba390b61dfabe16cc46e6e6b0cca">Ib4ec9</a>
+      )
+    </li>
+  </ul>

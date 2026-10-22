@@ -1,0 +1,84 @@
+libraryId: a2ui-compose
+groupId: androidx.a2ui
+version: 1.0.0-alpha02
+releaseDate: 2026-10-21
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha02" data-text="Version 1.0.0-alpha02" tabindex="-1">Version 1.0.0-alpha02</h3>
+  <p>October 21, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.a2ui.compose:compose-runtime:1.0.0-alpha02</code>
+    ,
+    <code translate="no" dir="ltr">androidx.a2ui.compose:compose-ui:1.0.0-alpha02</code>
+    , and
+    <code translate="no" dir="ltr">androidx.a2ui.compose:compose-ui-testing:1.0.0-alpha02</code>
+    are released. Version 1.0.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b2b5ae7b0fe1bb4eece7018878fe5f18c5967a2f..e0a272dcae2b353b23a075af10baeda8f3021bcd/a2ui/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Replaced the list of functions of
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1</code>
+      with the
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1.Functions</code>
+      interface, which has a method for each basic catalog function except the logical functions
+      <code translate="no" dir="ltr">and</code>
+      ,
+      <code translate="no" dir="ltr">or</code>
+      , and
+      <code translate="no" dir="ltr">not</code>
+      , which the catalog implements. Implementations only need to implement
+      <code translate="no" dir="ltr">openUrl</code>
+      and can override other methods to customize individual functions.
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1.Functions(context)</code>
+      creates default implementations of all methods.
+      <code translate="no" dir="ltr">materialA2uiBasicCatalogV1</code>
+      now takes
+      <code translate="no" dir="ltr">functions</code>
+      instead of
+      <code translate="no" dir="ltr">urlOpener</code>
+      ,
+      <code translate="no" dir="ltr">messageFormatter</code>
+      , and
+      <code translate="no" dir="ltr">localeProvider</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I647b252e90a4f76bc1ac4dc0feb40acb7cd1becf">I647b2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/568735972">b/568735972</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">const</code>
+      from
+      <code translate="no" dir="ltr">CatalogId</code>
+      in the companion object of
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1</code>
+      , so that the string value is not part of the public API. (
+      <a href="https://android-review.googlesource.com/#/q/I308d6ca839dfbbd770fbc6ab1745e8a88db1ddd8">I308d6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/547851648">b/547851648</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">A2uiProperty</code>
+      list factories now throw
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      if
+      <code translate="no" dir="ltr">minItems</code>
+      or
+      <code translate="no" dir="ltr">maxItems</code>
+      is negative, or if
+      <code translate="no" dir="ltr">minItems</code>
+      is greater than
+      <code translate="no" dir="ltr">maxItems</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ia8a375c4aa59d9688340e574a4d47cf1b9970bec">Ia8a37</a>
+      )
+    </li>
+  </ul>

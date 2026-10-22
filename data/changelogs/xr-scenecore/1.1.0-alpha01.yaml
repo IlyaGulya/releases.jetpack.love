@@ -1,0 +1,129 @@
+libraryId: xr-scenecore
+groupId: androidx.xr
+version: 1.1.0-alpha01
+releaseDate: 2026-10-21
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha01" data-text="Version 1.1.0-alpha01" tabindex="-1">Version 1.1.0-alpha01</h3>
+  <p>October 21, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.scenecore:scenecore-*:1.1.0-alpha01</code>
+    is released. Version 1.1.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/2e3660870c84fabc0f4ecdc2f7b87a6f853d7bf1..ce49d38c7de14d2f1413048a53d7e4444827a50b/xr/scenecore">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added dynamic mesh update APIs (
+      <code translate="no" dir="ltr">MeshBuffer.createDynamic</code>
+      ,
+      <code translate="no" dir="ltr">MeshBuffer.updateVertexData</code>
+      ,
+      <code translate="no" dir="ltr">MeshBuffer.updateIndexData</code>
+      , and a dynamic
+      <code translate="no" dir="ltr">CustomMesh.BuilderFromMeshData</code>
+      constructor) to support updating vertex and index data at runtime. (
+      <a href="https://android-review.googlesource.com/#/q/Ia1ecb1249f027027e0b368d7dfae5e766efa1ab2">Ia1ecb</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">VertexLayout.getBufferIndex</code>
+      helper methods to easily retrieve the buffer index for a given
+      <code translate="no" dir="ltr">VertexAttribute</code>
+      or
+      <code translate="no" dir="ltr">VertexBufferLayout</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1a9e3469c962c312cf3fd76d08cea4fb5649080c">I1a9e3</a>
+      )
+    </li>
+    <li>
+      Made
+      <code translate="no" dir="ltr">CustomMesh.bounds</code>
+      a var so the bounding box can be updated dynamically at runtime. (
+      <a href="https://android-review.googlesource.com/#/q/Ib039756f5a72755e0666b6d0b3ba214789bb6d41">Ib0397</a>
+      )
+    </li>
+    <li>
+      Promoted
+      <code translate="no" dir="ltr">glTF</code>
+      animation APIs (
+      <code translate="no" dir="ltr">GltfAnimation</code>
+      ,
+      <code translate="no" dir="ltr">GltfModelEntity</code>
+      .
+      <code translate="no" dir="ltr">getAnimations</code>
+      , and
+      <code translate="no" dir="ltr">GltfModelEntity</code>
+      .
+      <code translate="no" dir="ltr">stopAllAnimations</code>
+      ) to public/stable while keeping
+      <code translate="no" dir="ltr">GltfAnimation</code>
+      .loop setter as experimental, and
+      <code translate="no" dir="ltr">GltfAnimationStartOptions</code>
+      and start(options) as experimental and deprecated. (
+      <a href="https://android-review.googlesource.com/#/q/Iacdae16c189a40bff1847267e890843e525763b7">Iacdae</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">stopAllAnimations()</code>
+      to
+      <code translate="no" dir="ltr">GltfModelEntity</code>
+      , made
+      <code translate="no" dir="ltr">GltfAnimation.start()</code>
+      parameterless, added
+      <code translate="no" dir="ltr">loop</code>
+      and
+      <code translate="no" dir="ltr">speed</code>
+      properties to
+      <code translate="no" dir="ltr">GltfAnimation</code>
+      , and deprecated
+      <code translate="no" dir="ltr">GltfAnimationStartOptions</code>
+      ,
+      <code translate="no" dir="ltr">start(options)</code>
+      , and
+      <code translate="no" dir="ltr">seekTo(Duration)</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I53105f2964347537cf92af8af6801b2e76d5b932">I53105</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">GltfModelEntity</code>
+      APIs to document
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      (specifically
+      <code translate="no" dir="ltr">Entity.DisposedException</code>
+      ) when called on disposed entities.
+      <a href="https://android-review.googlesource.com/q/I65a76f656486607d5761013903b7e1be867c7ecb">I65a76f</a>
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-runtime</code>
+      dependency was updated to 2.10.0. This version is required for bundled lifecycle runtime lint checks to run with AGP version 9.5.0-alpha04 or later. (
+      <a href="https://android-review.googlesource.com/#/q/I99bfdb355ffd7f1083dbdac4167b1f5577740116">I99bfd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/556807521">b/556807521</a>
+      )
+    </li>
+    <li>
+      Improve kdocs related to
+      <code translate="no" dir="ltr">AudioOutputProvider</code>
+      to highlight that it should not be re-used with multiple
+      <code translate="no" dir="ltr">ExoPlayer</code>
+      instances (
+      <a href="https://android-review.googlesource.com/#/q/I6b18e9f742d74a26cfbd6ce6acae3b9669113364">I6b18e</a>
+      )
+    </li>
+    <li>
+      Removed unnecessary dependencies on
+      <code translate="no" dir="ltr">impress</code>
+      from various XR modules.
+      <a href="https://android-review.googlesource.com/q/I84636c1f5643a4e1aca2367943e74515bfaf46bd">I84636c</a>
+    </li>
+  </ul>
+  <h2 id="version_10_2" data-text="Version 1.0" tabindex="-1">Version 1.0</h2>

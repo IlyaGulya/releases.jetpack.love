@@ -1,0 +1,149 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.7.0-rc01
+releaseDate: 2026-10-21
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0-rc01" data-text="Version 1.7.0-rc01" tabindex="-1">Version 1.7.0-rc01</h3>
+  <p>October 21, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.7.0-rc01</code>
+    is released. Version 1.7.0-rc01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/bb117e26ce89b888d6f928ff7b604913a1da43f2..678ffa9bb7ff9b6d63e55a32c452a45716cfdd71/camera">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Converted
+      <code translate="no" dir="ltr">UseCaseCamera2Interop</code>
+      ,
+      <code translate="no" dir="ltr">ImageCaptureCamera2Interop</code>
+      ,
+      <code translate="no" dir="ltr">SessionConfigCamera2Interop</code>
+      , and
+      <code translate="no" dir="ltr">CameraControlCamera2Interop</code>
+      from interfaces into abstract classes. (
+      <a href="https://android-review.googlesource.com/#/q/If654efdbe92e2b74eb73cfa36fcc7995d702ac1b">If654e</a>
+      )
+    </li>
+    <li>
+      Fixed the Camera2Interop V2 ambiguity issue (
+      <a href="https://android-review.googlesource.com/#/q/I1bbe51da61b6e4c3a77bcca6d9a6cfd83ddd24eb">I1bbe5</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed a native
+      <code translate="no" dir="ltr">SIGSEGV</code>
+      crash on the
+      <code translate="no" dir="ltr">CameraX</code>
+      <code translate="no" dir="ltr">OpenGL</code>
+      thread when a
+      <code translate="no" dir="ltr">SurfaceProcessor</code>
+      released an input
+      <code translate="no" dir="ltr">SurfaceTexture</code>
+      whose
+      <code translate="no" dir="ltr">SurfaceRequest</code>
+      was garbage-collected before completion. (
+      <a href="https://android-review.googlesource.com/#/q/I76f737bbbfe8677427aad7cc56f815e823c6a249">I76f73</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/563673593">b/563673593</a>
+      )
+    </li>
+    <li>
+      Fixed a Surface leak and native
+      <code translate="no" dir="ltr">OpenGL</code>
+      crash that could occur during garbage collection when a
+      <code translate="no" dir="ltr">CameraEffect</code>
+      's executor or
+      <code translate="no" dir="ltr">HandlerThread</code>
+      was shut down before the effect's
+      <code translate="no" dir="ltr">SurfaceOutput</code>
+      was closed. (
+      <a href="https://android-review.googlesource.com/#/q/Ifcc19e76862bd9eccd440c00a31b0c6331776a93">Ifcc19</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/558819242">b/558819242</a>
+      )
+    </li>
+    <li>
+      Low Light Boost behavior improvement: Low Light Boost and Torch now follow a 'last setting wins' policy where enabling one automatically disables the other instead of rejecting the request. In addition, flash can now fire during image capture while Low Light Boost is active. (
+      <a href="https://android-review.googlesource.com/#/q/Ie583f2e8461ca527af061557efa4302a019f74b8">Ie583f</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">androidx.lifecycle:lifecycle-runtime</code>
+      dependency was updated to 2.10.0. This version is required for bundled lifecycle runtime lint checks to run with AGP version 9.5.0-alpha04 or later. (
+      <a href="https://android-review.googlesource.com/#/q/I99bfdb355ffd7f1083dbdac4167b1f5577740116">I99bfd</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/556807521">b/556807521</a>
+      )
+    </li>
+    <li>
+      Support obtaining
+      <code translate="no" dir="ltr">CameraSelector</code>
+      on physical cameras from
+      <code translate="no" dir="ltr">CameraInfo.getPhysicalCameraInfos()</code>
+      and binding
+      <code translate="no" dir="ltr">UseCases</code>
+      to physical cameras. Querying
+      <code translate="no" dir="ltr">CameraInfo</code>
+      with a physical
+      <code translate="no" dir="ltr">CameraSelector</code>
+      now returns the physical
+      <code translate="no" dir="ltr">CameraInfo</code>
+      instead of the logical
+      <code translate="no" dir="ltr">CameraInfo</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ibe7f2eccfd7ebf9060718d51f727659e3e6d4906">Ibe7f2</a>
+      )
+    </li>
+    <li>
+      Clarified
+      <code translate="no" dir="ltr">OutputOptions.Builder.setLocation</code>
+      Javadoc that only latitude and longitude are stored in video metadata. (
+      <a href="https://android-review.googlesource.com/#/q/I77d3b0ba136a74e609a48509fb544a81c5b23bf9">I77d3b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/551348846">b/551348846</a>
+      )
+    </li>
+    <li>
+      Fixed a bug in
+      <code translate="no" dir="ltr">ImageAnalysis</code>
+      where changing output rotation dynamically or unbinding the use case could cause a Surface/
+      <code translate="no" dir="ltr">ImageReader</code>
+      resource leak. (
+      <a href="https://android-review.googlesource.com/#/q/I25cefdc0c8f28e7516755be0ec27ba8b887888a6">I25cef</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">CameraInfo.getIntrinsicZoomRatio()</code>
+      now rounds the returned ratio to two decimal places. (
+      <a href="https://android-review.googlesource.com/#/q/Ibe9a8232579a417701f9b19f8a57a83ce32c7a54">Ibe9a8</a>
+      )
+    </li>
+    <li>
+      Relaxed
+      <code translate="no" dir="ltr">HardwareBuffer.isSupported</code>
+      check for
+      <code translate="no" dir="ltr">PRIVATE</code>
+      format in
+      <code translate="no" dir="ltr">ImageAnalysis</code>
+      to prevent false negative failures on some devices. (
+      <a href="https://android-review.googlesource.com/#/q/I347a4636cac26270c5b4424262add8705b401f55">I347a4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/545866947">b/545866947</a>
+      )
+    </li>
+    <li>
+      Fixed a compilation crash on newer JDK versions when resolving transitively imported JSpecify type annotations on
+      <code translate="no" dir="ltr">CameraX</code>
+      internal fields. (
+      <a href="https://android-review.googlesource.com/#/q/I00bb407877f4e608a23754eaff9a8f9cf572e6d1">I00bb4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/543937345">b/543937345</a>
+      )
+    </li>
+  </ul>
