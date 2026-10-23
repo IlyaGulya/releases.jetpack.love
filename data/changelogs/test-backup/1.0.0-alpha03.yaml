@@ -173,3 +173,73 @@ changelogHtml: |
       )
     </li>
   </ul>
+  <h4 id="1.0.0-alpha02" data-text="Version 1.0.0-alpha02" tabindex="-1">Version 1.0.0-alpha02</h4>
+  <p>October 07, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.test.backup:backup:1.0.0-alpha02</code>
+    and
+    <code translate="no" dir="ltr">androidx.test.backup:backup-host:1.0.0-alpha02</code>
+    are released. Version 1.0.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b2b5ae7b0fe1bb4eece7018878fe5f18c5967a2f..83c1be95c76b4ae3480add6acbbe7e318857f969/test/backup">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Payload keys are now documented as
+      <code translate="no" dir="ltr">BackupActionInputKeys</code>
+      ,
+      <code translate="no" dir="ltr">BackupActionOutputKeys</code>
+      , and
+      <code translate="no" dir="ltr">BackupActionValues</code>
+      , replacing the constants on
+      <code translate="no" dir="ltr">BackupDeviceAction</code>
+      . Added
+      <code translate="no" dir="ltr">BackupDeviceActionResult.success()</code>
+      and
+      <code translate="no" dir="ltr">failure()</code>
+      factories, along with
+      <code translate="no" dir="ltr">isSuccess</code>
+      and
+      <code translate="no" dir="ltr">errorMessage</code>
+      accessors. (
+      <a href="https://android-review.googlesource.com/#/q/Ibd4939a7e2f5b8b9959fb4e885b3ab8788ff58ab">Ibd493</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">BackupRestoreController.clearAppData</code>
+      now throws
+      <code translate="no" dir="ltr">IOException</code>
+      when
+      <code translate="no" dir="ltr">pm clear</code>
+      does not report success, instead of continuing silently. (
+      <a href="https://android-review.googlesource.com/#/q/I615561663d7e1d834c812fc5c39a16ba5f4895b0">I61556</a>
+      )
+    </li>
+    <li>
+      Shell arguments passed to
+      <code translate="no" dir="ltr">BackupRestoreController</code>
+      for device execution are now correctly escaped to prevent command injection and ensure file paths with spaces are handled securely.
+    </li>
+    <li>
+      Hardened the bundled storage actions (
+      <code translate="no" dir="ltr">PopulateStorageAction</code>
+      and
+      <code translate="no" dir="ltr">AssertStorageAction</code>
+      ) against silent verification passes to ensure tests strictly fail when expected data is missing.
+    </li>
+    <li>Host-side test orchestrators now correctly honor in-band action failures reported by the device instead of ignoring them.</li>
+    <li>
+      Fixed an issue with database row population by percent-encoding the database
+      <code translate="no" dir="ltr">'values'</code>
+      wire format, preventing data corruption during payload transport.
+    </li>
+    <li>
+      Addressed security vulnerabilities in
+      <code translate="no" dir="ltr">androidx.test.backup:backup-host</code>
+      by upgrading dependencies.
+    </li>
+  </ul>
