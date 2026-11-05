@@ -1,0 +1,71 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.8.0-alpha03
+releaseDate: 2026-11-04
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0-alpha03" data-text="Version 1.8.0-alpha03" tabindex="-1">Version 1.8.0-alpha03</h3>
+  <p>November 04, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.8.0-alpha03</code>
+    is released. Version 1.8.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3566803898b060d7136357220affc9ece8236019..8c25756316d2436d4c1064969926f34c67bf2bc4/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Integrate material3-ripple in Wear material3 and add support for inset focus rings, introduce
+      <code translate="no" dir="ltr">LocalRippleThemeConfiguration</code>
+      and
+      <code translate="no" dir="ltr">RippleThemeConfiguration</code>
+      to support configuring focus indication, and deprecate
+      <code translate="no" dir="ltr">RippleConfiguration.rippleAlpha</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ifb63a3c6f150219c262b10f4d40364deaaa2229b">Ifb63a</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">LocalTimeSource</code>
+      to allow overriding
+      <code translate="no" dir="ltr">TimeText</code>
+      's time source via
+      <code translate="no" dir="ltr">CompositionLocal</code>
+      in tests and previews. (
+      <a href="https://android-review.googlesource.com/#/q/Ic981ae4793be554abb90d953054af83cd84963bc">Ic981a</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Modifier.suppressStatusBar()</code>
+      to allow screens and components to suppress the status bar and automatically collapse top status bar insets. Removed the unreleased
+      <code translate="no" dir="ltr">StatusBarSuppression()</code>
+      composables; use
+      <code translate="no" dir="ltr">Modifier.suppressStatusBar()</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/I0a0d6d102adc6271ada948007e8da1b62599f5c2">I0a0d6</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">Dialog</code>
+      now only uses a full-screen offscreen layer while it is animating or being swiped, reducing GPU memory usage while it is shown and idle. (
+      <a href="https://android-review.googlesource.com/#/q/I65bafbca490ba2f454f8ac4bb5e92892d71917a0">I65baf</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where state written from a background thread while
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      was measuring could be lost. (
+      <a href="https://android-review.googlesource.com/#/q/I3ed10502ea07fe102166dcc1296099aee91a29a8">I3ed10</a>
+      )
+    </li>
+    <li>
+      Fixed a bug in
+      <code translate="no" dir="ltr">OneHandedGestureDefaults.scrollDownToNextItem</code>
+      so that the first double pinch gesture always scrolls down, even when the list is at the top and the first item sits below the anchor point.
+    </li>
+  </ul>

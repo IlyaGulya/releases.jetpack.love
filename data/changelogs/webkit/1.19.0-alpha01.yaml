@@ -1,0 +1,125 @@
+libraryId: webkit
+groupId: androidx.webkit
+version: 1.19.0-alpha01
+releaseDate: 2026-11-04
+#language=html
+changelogHtml: |
+  <h3 id="1.19.0-alpha01" data-text="Version 1.19.0-alpha01" tabindex="-1">Version 1.19.0-alpha01</h3>
+  <p>November 04, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.webkit:webkit:1.19.0-alpha01</code>
+    is released. Version 1.19.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/fb536a9a01ea26779570787c8a6af74256f17cb0..21b800145da7b651ce947785e2e20815a3132c9d/webkit/webkit">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Fix accidental hidden callback on
+      <code translate="no" dir="ltr">NavigationListener</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I1cd2e8bbaa6c3b827f44d8223ad68af2525b02df">I1cd2e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/576625538">b/576625538</a>
+      )
+    </li>
+    <li>
+      Added an overload of
+      <code translate="no" dir="ltr">WebViewCompat#startUpWebView</code>
+      that accepts an
+      <code translate="no" dir="ltr">Executor</code>
+      on which to invoke the
+      <code translate="no" dir="ltr">WebViewOutcomeReceiver</code>
+      callback, allowing applications to handle startup completion on a background thread rather than the main looper. (
+      <a href="https://android-review.googlesource.com/#/q/I517483734a80c8d8662e454a9b8ce955be526593">I51748</a>
+      )
+    </li>
+    <li>
+      Changed
+      <code translate="no" dir="ltr">Navigation/Page#snapshotState</code>
+      to
+      <code translate="no" dir="ltr">#captureState</code>
+      and edited
+      <code translate="no" dir="ltr">NavigationState#didCommitErrorPage</code>
+      javadoc (
+      <a href="https://android-review.googlesource.com/#/q/I0405a2d341e77bae624e70e05148ed658c9e291a">I0405a</a>
+      )
+    </li>
+    <li>
+      <p>
+        Adds
+        <code translate="no" dir="ltr">NavigationState</code>
+        and
+        <code translate="no" dir="ltr">PageState</code>
+        which are immutable copies of
+        <code translate="no" dir="ltr">Navigation</code>
+        and
+        <code translate="no" dir="ltr">Page</code>
+        at a certain point in time. They are supplied via new callbacks within
+        <code translate="no" dir="ltr">NavigationListener</code>
+        , which have
+        <code translate="no" dir="ltr">NavigationState</code>
+        and
+        <code translate="no" dir="ltr">PageState</code>
+        as parameters instead of
+        <code translate="no" dir="ltr">Navigation</code>
+        and
+        <code translate="no" dir="ltr">Page</code>
+        . The state objects can also be supplied by
+        <code translate="no" dir="ltr">Navigation#snapshotState</code>
+        and
+        <code translate="no" dir="ltr">Page#snapshotState</code>
+        .
+      </p>
+    </li>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">NavigationState#getNavigationStartUptimeMillis</code>
+        which returns the navigation's start up time in milliseconds.
+      </p>
+    </li>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">NavigationState#getResponseHeaders</code>
+        and
+        <code translate="no" dir="ltr">NavigationRedirectParameters</code>
+        which is supplied via
+        <code translate="no" dir="ltr">onNavigationRedirect(NavigationState,NavigationRedirectParameters)</code>
+        which exposes the HTTP response headers for the Navigation. (
+        <a href="https://android-review.googlesource.com/#/q/I9886a73001f22295762a7cc268812454c86347f1">I9886a</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added support for
+        <code translate="no" dir="ltr">Profile#addQuicHints</code>
+        to take wildcards as URLs (such as
+        <code translate="no" dir="ltr">https://*.example.com</code>
+        or `https://*) (
+        <a href="https://android-review.googlesource.com/#/q/Ic6d67d674316386681dbabb4c28d22c2a0297051">Ic6d67</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/442161273">b/442161273</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Deprecated
+        <code translate="no" dir="ltr">WebSettingsCompat.getAttributionRegistrationBehavior</code>
+        ,
+        <code translate="no" dir="ltr">WebSettingsCompat.setAttributionRegistrationBehavior</code>
+        , and related constants as
+        <code translate="no" dir="ltr">WebView</code>
+        no longer supports Attribution Reporting in version 152 and later. (
+        <a href="https://android-review.googlesource.com/#/q/I3453a4cf11826a8d6fd3bcd4ce9fef83f4a73e09">I3453a</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/528282384">b/528282384</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <h2 id="webkit_3" data-text="Webkit" tabindex="-1">Webkit</h2>
+  <h3 id="version_118_3" data-text="Version 1.18" tabindex="-1">Version 1.18</h3>
