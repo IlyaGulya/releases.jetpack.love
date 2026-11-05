@@ -1,0 +1,130 @@
+libraryId: test-backup
+groupId: androidx.test
+version: 1.0.0-alpha04
+releaseDate: 2026-11-04
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha04" data-text="Version 1.0.0-alpha04" tabindex="-1">Version 1.0.0-alpha04</h3>
+  <p>November 04, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.test.backup:backup:1.0.0-alpha04</code>
+    and
+    <code translate="no" dir="ltr">androidx.test.backup:backup-host:1.0.0-alpha04</code>
+    are released. Version 1.0.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3566803898b060d7136357220affc9ece8236019..a021adf44194ae86e596ae25ca43d5e4e18f6926/test/backup">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">StorageDomain.DataStorePreference</code>
+      to seed and verify Preferences
+      <code translate="no" dir="ltr">DataStore</code>
+      entries,
+      <code translate="no" dir="ltr">StorageDomain.CustomData</code>
+      to run custom device actions, and
+      <code translate="no" dir="ltr">StorageDomain.ExcludedData</code>
+      to verify that excluded data is not restored. (
+      <a href="https://android-review.googlesource.com/#/q/If127d4dbf62c38ef67fc5e222b6a003a1fb8dde8">If127d</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I6190e2e2f9a72b43d8bff509fd8e3731636d7805">I6190e</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">isDeviceProtectedStorage</code>
+      across
+      <code translate="no" dir="ltr">StorageDomain</code>
+      types to test Device Protected (DE) storage, and added support for
+      <code translate="no" dir="ltr">String</code>
+      <code translate="no" dir="ltr">Set</code>
+      values in
+      <code translate="no" dir="ltr">StorageDomain.Preference</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie96beb1bdf8a39d339316b10a7b9ec8f1bac8142">Ie96be</a>
+      )
+    </li>
+    <li>
+      Added a
+      <code translate="no" dir="ltr">restoreOn</code>
+      parameter to
+      <code translate="no" dir="ltr">runBackupRestoreFlow</code>
+      for cross-device restore flows,
+      <code translate="no" dir="ltr">BackupRestoreController.uninstallApp()</code>
+      , and
+      <code translate="no" dir="ltr">minApi</code>
+      and
+      <code translate="no" dir="ltr">maxApi</code>
+      bounds on
+      <code translate="no" dir="ltr">@Device</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ifa0e33017a012e3742ab40f6a5f443f91abb2355">Ifa0e3</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">testApplicationId</code>
+      and a default
+      <code translate="no" dir="ltr">applicationId</code>
+      to
+      <code translate="no" dir="ltr">@BackupRestoreConfig</code>
+      , and registered
+      <code translate="no" dir="ltr">BackupRestoreTestRunner</code>
+      with
+      <code translate="no" dir="ltr">InstrumentationRegistry</code>
+      for device actions. (
+      <a href="https://android-review.googlesource.com/#/q/Ie96beb1bdf8a39d339316b10a7b9ec8f1bac8142">Ie96be</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ifa0e33017a012e3742ab40f6a5f443f91abb2355">Ifa0e3</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">BackupRestoreExtension</code>
+      to automatically save device logs when a test fails and report the saved file paths in the failure message (disable via
+      <code translate="no" dir="ltr">androidx.test.backup.device.logs.enabled=false</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/I7f6053dd3a1a8e529b248b046920b385cf82c59f">I7f605</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">BackupActionResult.data</code>
+      and
+      <code translate="no" dir="ltr">BackupActionResult.getOrThrow()</code>
+      to read output payloads from device actions, along with
+      <code translate="no" dir="ltr">STORAGE_TYPE_DATASTORE_PREFS</code>
+      ,
+      <code translate="no" dir="ltr">VALUE_TYPE_DOUBLE</code>
+      , and
+      <code translate="no" dir="ltr">VALUE_TYPE_BYTES</code>
+      on
+      <code translate="no" dir="ltr">BackupActionValues</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6190e2e2f9a72b43d8bff509fd8e3731636d7805">I6190e</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/If127d4dbf62c38ef67fc5e222b6a003a1fb8dde8">If127d</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">BackupDeviceAction.phase</code>
+      ,
+      <code translate="no" dir="ltr">PHASE_POPULATE</code>
+      , and
+      <code translate="no" dir="ltr">PHASE_VERIFY</code>
+      (remove the
+      <code translate="no" dir="ltr">phase</code>
+      override from custom actions), as well as the
+      <code translate="no" dir="ltr">BackupRestoreExtension(AdbSession)</code>
+      constructor. (
+      <a href="https://android-review.googlesource.com/#/q/Ie96beb1bdf8a39d339316b10a7b9ec8f1bac8142">Ie96be</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I1a34914a131160f2aaa109cee01277cd7dbddd52">I1a349</a>
+      )
+    </li>
+  </ul>

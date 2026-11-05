@@ -1,0 +1,136 @@
+libraryId: compose-remote
+groupId: androidx.compose
+version: 1.0.0-alpha23
+releaseDate: 2026-11-04
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha23" data-text="Version 1.0.0-alpha23" tabindex="-1">Version 1.0.0-alpha23</h3>
+  <p>November 04, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.remote:remote-*:1.0.0-alpha23</code>
+    is released. Version 1.0.0-alpha23 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3566803898b060d7136357220affc9ece8236019..9b2acdf2ecd36aa5ddf9c43ebfc288ed11d2c49e/compose/remote">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">Action</code>
+      to
+      <code translate="no" dir="ltr">RemoteAction</code>
+      in
+      <code translate="no" dir="ltr">remote-creation-compose</code>
+      and updated action factories and touch/click modifiers (
+      <code translate="no" dir="ltr">clickable</code>
+      ,
+      <code translate="no" dir="ltr">onTouchDown</code>
+      ,
+      <code translate="no" dir="ltr">onTouchUp</code>
+      ,
+      <code translate="no" dir="ltr">onTouchCancel</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/I19913e9857793b177ddbc440342bb3e28db42826">I19913</a>
+      )
+    </li>
+    <li>
+      Reordered
+      <code translate="no" dir="ltr">RemoteShape.createOutline</code>
+      and
+      <code translate="no" dir="ltr">RemoteCornerBasedShape.createOutline</code>
+      parameters to
+      <code translate="no" dir="ltr">(size, layoutDirection, density)</code>
+      to match Compose
+      <code translate="no" dir="ltr">Shape.createOutline</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ifb87adb4b42eaee3874312f61aa5cca5571daa12">Ifb87a</a>
+      )
+    </li>
+    <li>
+      Decoupled
+      <code translate="no" dir="ltr">RemoteColor</code>
+      from Compose UI
+      <code translate="no" dir="ltr">Color</code>
+      :
+      <code translate="no" dir="ltr">RemoteColor</code>
+      now extends
+      <code translate="no" dir="ltr">BaseRemoteState&lt;Int&gt;</code>
+      (ARGB
+      <code translate="no" dir="ltr">@ColorInt</code>
+      ) with
+      <code translate="no" dir="ltr">Int.rc</code>
+      and
+      <code translate="no" dir="ltr">@ColorInt</code>
+      factory overloads; Compose
+      <code translate="no" dir="ltr">Color</code>
+      conversions (
+      <code translate="no" dir="ltr">Color.rc</code>
+      ,
+      <code translate="no" dir="ltr">Color.asRemoteColor()</code>
+      ,
+      <code translate="no" dir="ltr">RemoteColor.asConstantColor()</code>
+      ) remain available as extensions. (
+      <a href="https://android-review.googlesource.com/#/q/Ib31ea808beeb923bd9c764a65a002dc714eef366">Ib31ea</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">currentProfileSupportsPathClip()</code>
+      to check whether the current Remote Compose creation profile supports clipping to a path. (
+      <a href="https://android-review.googlesource.com/#/q/I3b0ab8eb261e1e363e1695b12d0899571f9fe568">I3b0ab</a>
+      )
+    </li>
+    <li>
+      Deprecated
+      <code translate="no" dir="ltr">rememberMutableRemote*</code>
+      factory functions (
+      <code translate="no" dir="ltr">rememberMutableRemoteBoolean</code>
+      ,
+      <code translate="no" dir="ltr">rememberMutableRemoteEnum</code>
+      ,
+      <code translate="no" dir="ltr">rememberMutableRemoteFloat</code>
+      ,
+      <code translate="no" dir="ltr">rememberMutableRemoteImageBitmap</code>
+      ,
+      <code translate="no" dir="ltr">rememberMutableRemoteInt</code>
+      , and
+      <code translate="no" dir="ltr">rememberMutableRemoteString</code>
+      ) in
+      <code translate="no" dir="ltr">remote-creation-compose</code>
+      in favor of
+      <code translate="no" dir="ltr">remember { MutableRemote*(initialValue) }</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ifb1f86ebaf91017f1f8f4bdf0bfe5d9a933e1378">Ifb1f8</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">RemoteTypeface.toAndroidTypeface()</code>
+      and
+      <code translate="no" dir="ltr">RemoteTypeface.Companion.fromAndroidTypeface()</code>
+      from
+      <code translate="no" dir="ltr">remote-creation-compose</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I8867ef49d6557dd83723040c744a24e45e10e42d">I8867e</a>
+      )
+    </li>
+    <li>
+      Removed the previously deprecated
+      <code translate="no" dir="ltr">RemoteModifier.animationSpec</code>
+      modifier. (
+      <a href="https://android-review.googlesource.com/#/q/I1aea8966a25a7832124db35a99f1292d537c375a">I1aea8</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed chained
+      <code translate="no" dir="ltr">RemoteModifier.drawWithContent</code>
+      modifiers dropping inner draw blocks (such as component container backgrounds when callers attach
+      <code translate="no" dir="ltr">drawWithContent</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/If7e7512f84a6ca6907638fbade4170bf25a3d7ee">If7e75</a>
+      )
+    </li>
+  </ul>

@@ -1,0 +1,99 @@
+libraryId: glance-wear
+groupId: androidx.glance
+version: 1.0.0-alpha22
+releaseDate: 2026-11-04
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha22" data-text="Version 1.0.0-alpha22" tabindex="-1">Version 1.0.0-alpha22</h3>
+  <p>November 04, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.glance.wear:wear:1.0.0-alpha22</code>
+    ,
+    <code translate="no" dir="ltr">androidx.glance.wear:wear-core:1.0.0-alpha22</code>
+    , and
+    <code translate="no" dir="ltr">androidx.glance.wear:wear-tooling-preview:1.0.0-alpha22</code>
+    are released. Version 1.0.0-alpha22 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3566803898b060d7136357220affc9ece8236019..a021adf44194ae86e596ae25ca43d5e4e18f6926/glance/wear">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Glance Wear now throws
+      <code translate="no" dir="ltr">WearWidgetContentTooLargeException</code>
+      with actionable guidance when a widget's content is too large to be sent to the host (for example due to large bitmaps in
+      <code translate="no" dir="ltr">RemoteImage</code>
+      ), instead of failing with an obscure Binder error. (
+      <a href="https://android-review.googlesource.com/#/q/I9eb1cf1f99f4e4162ac5125d1827f66f40bf04e5">I9eb1c</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">WearWidgetConfigExtras</code>
+      with helper to extract widget configuration parameters and moved constants from
+      <code translate="no" dir="ltr">GlanceWearWidget</code>
+      to
+      <code translate="no" dir="ltr">WearWidgetConfigExtras</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7056161b8fabeb8cb173e9ed03034e5165ecaa97">I70561</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">GlanceWearProfiles.createWearWidgetsProfile(WearWidgetParams)</code>
+      to create a profile configured with the host-supported operations. (
+      <a href="https://android-review.googlesource.com/#/q/I51f284bc74acdcb5a5cac7eb54f0004562b38598">I51f28</a>
+      )
+    </li>
+    <li>
+      Exposed
+      <code translate="no" dir="ltr">horizontalPaddingDp</code>
+      ,
+      <code translate="no" dir="ltr">verticalPaddingDp</code>
+      , and
+      <code translate="no" dir="ltr">cornerRadiusDp</code>
+      in
+      <code translate="no" dir="ltr">WearWidgetParams</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I19925bc109768e7b075279fade17e4d9651e5ced">I19925</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Additional changes</strong></p>
+  <ul>
+    <li>
+      Changes to use newly aligned parameter names and order across Remote Compose library.(
+      <a href="https://android-review.googlesource.com/#/q/I2e16470215ea1568e5667056d44f6e17db4310f1">I2e164</a>
+      )
+    </li>
+    <li>
+      Wear Widgets can now use the
+      <code translate="no" dir="ltr">onTouchDown</code>
+      ,
+      <code translate="no" dir="ltr">onTouchUp</code>
+      and
+      <code translate="no" dir="ltr">onTouchCancel</code>
+      modifiers on all Wear OS devices that support widgets, not only on devices with the latest widget renderer. Use them to show press feedback, such as a pressed state on a button. (
+      <a href="https://android-review.googlesource.com/#/q/I6dce7d3fa15ef09258f4411406270e2cb6646911">I6dce7</a>
+      )
+    </li>
+    <li>
+      Added the
+      <code translate="no" dir="ltr">MODIFIER_TOUCH_DOWN</code>
+      ,
+      <code translate="no" dir="ltr">MODIFIER_TOUCH_UP</code>
+      and
+      <code translate="no" dir="ltr">MODIFIER_TOUCH_CANCEL</code>
+      operations to the Wear Widgets profile (
+      <code translate="no" dir="ltr">GlanceWearProfiles</code>
+      ), so widgets can use
+      <code translate="no" dir="ltr">onTouchDown</code>
+      ,
+      <code translate="no" dir="ltr">onTouchUp</code>
+      and
+      <code translate="no" dir="ltr">onTouchCancel</code>
+      on hosts that support them. (
+      <a href="https://android-review.googlesource.com/#/q/Id4a9a4520d6f123af811dc4b715e4d3fa409ab98">Id4a9a</a>
+      )
+    </li>
+  </ul>
