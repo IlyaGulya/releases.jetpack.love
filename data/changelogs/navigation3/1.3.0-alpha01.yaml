@@ -12,7 +12,7 @@ changelogHtml: |
     <a href="https://android.googlesource.com/platform/frameworks/support/+log/811e8c9c37f4955d520fe0cf7e39d96866066abc..b2b5ae7b0fe1bb4eece7018878fe5f18c5967a2f/navigation3">these commits</a>
     .
   </p>
-  <p>** Bug Fixes **</p>
+  <p><strong>Bug Fixes</strong></p>
   <ul>
     <li>
       Fixed predictive back animation handoff in
@@ -22,7 +22,27 @@ changelogHtml: |
       and resolving transition handoff issues.
       <a href="https://android-review.googlesource.com/q/I145eaedd3e2074826b14164f19369002f1cde37a">I145eaedd</a>
       <a href="https://issuetracker.google.com/issues/430807423">b/430807423</a>
+      <ul>
+        <li>
+          <code translate="no" dir="ltr">DeferredAnimatedContent</code>
+          uses
+          <code translate="no" dir="ltr">DeferredTransition</code>
+          to separate transitions into a deferred phase (via
+          <code translate="no" dir="ltr">defer</code>
+          ), which applies manual transformations during a swipe gesture, and an automatic phase (via
+          <code translate="no" dir="ltr">animateTo</code>
+          ), which runs the transition when the swipe is committed.
+        </li>
+      </ul>
     </li>
   </ul>
-  <p>There are no release notes for this artifact.</p>
+  <p><strong>Known Issues</strong></p>
+  <ul>
+    <li>
+      Shared elements are rendered in the outgoing scene during transitions instead of the incoming scene. (
+      <a href="https://issuetracker.google.com/issues/582354988">b/582354988</a>
+      )
+    </li>
+    <li>Shared elements don't seek during the deferred (gesture) phase.</li>
+  </ul>
   <h2 id="navigation3_version_12_2" data-text="Navigation3 Version 1.2" tabindex="-1">Navigation3 Version 1.2</h2>
