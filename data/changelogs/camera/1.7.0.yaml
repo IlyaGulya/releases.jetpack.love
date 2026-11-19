@@ -1,0 +1,494 @@
+libraryId: camera
+groupId: androidx.camera
+version: 1.7.0
+releaseDate: 2026-11-18
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0" data-text="Version 1.7.0" tabindex="-1">Version 1.7.0</h3>
+  <p>November 18, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera:camera-*:1.7.0</code>
+    is released. Version 1.7.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9046f07948c1e7a89aaec581463730f4d666611b..f10325d8016188131590e7b71ef776064836791f/camera">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.6.0:</strong></p>
+  <p><strong>1. Stabilized Camera2Interop (V2) &amp; Kotlin DSL Builders</strong></p>
+  <ul>
+    <li>
+      <strong>Camera2Interop V2 (Stable, No Opt-In Required)</strong>
+      : Redesigned
+      <a href="https://developer.android.com/reference/androidx/camera/camera2/interop/Camera2Interop"><code translate="no" dir="ltr">Camera2Interop</code></a>
+      and removed the
+      <code translate="no" dir="ltr">@ExperimentalCamera2Interop</code>
+      requirement on the new V2 APIs, providing type-safe, scope-specific configurator factory methods (
+      <code translate="no" dir="ltr">Camera2Interop.forUseCase()</code>
+      ,
+      <code translate="no" dir="ltr">forImageCapture()</code>
+      ,
+      <code translate="no" dir="ltr">forSessionConfig()</code>
+      , and
+      <code translate="no" dir="ltr">forCameraControl()</code>
+      ) paired with
+      <code translate="no" dir="ltr">setInterop()</code>
+      on
+      <code translate="no" dir="ltr">Preview.Builder</code>
+      ,
+      <code translate="no" dir="ltr">ImageCapture.Builder</code>
+      ,
+      <code translate="no" dir="ltr">ImageAnalysis.Builder</code>
+      ,
+      <code translate="no" dir="ltr">VideoCapture.Builder</code>
+      , and
+      <code translate="no" dir="ltr">SessionConfig.Builder</code>
+      , plus
+      <code translate="no" dir="ltr">CameraControl.applyInteropAsync()</code>
+      .
+      <ul>
+        <li>
+          Added Kotlin DSL
+          <code translate="no" dir="ltr">camera2Interop { ... }</code>
+          extension blocks for
+          <code translate="no" dir="ltr">preview</code>
+          ,
+          <code translate="no" dir="ltr">imageCapture</code>
+          ,
+          <code translate="no" dir="ltr">imageAnalysis</code>
+          ,
+          <code translate="no" dir="ltr">videoCapture</code>
+          , and
+          <code translate="no" dir="ltr">SessionConfig.Builder</code>
+          /
+          <code translate="no" dir="ltr">sessionConfig</code>
+          , as well as
+          <code translate="no" dir="ltr">CameraControl.applyCamera2Interop()</code>
+          (suspend) and
+          <code translate="no" dir="ltr">CameraControl.applyCamera2InteropAsync()</code>
+          .
+        </li>
+        <li>
+          Exposed granular interop scopes (
+          <code translate="no" dir="ltr">UseCaseCamera2Interop</code>
+          ,
+          <code translate="no" dir="ltr">ImageCaptureCamera2Interop</code>
+          ,
+          <code translate="no" dir="ltr">SessionConfigCamera2Interop</code>
+          , and
+          <code translate="no" dir="ltr">CameraControlCamera2Interop</code>
+          ) providing structured access to
+          <code translate="no" dir="ltr">OutputConfiguration</code>
+          settings (
+          <code translate="no" dir="ltr">streamUseCase</code>
+          ,
+          <code translate="no" dir="ltr">mirrorMode</code>
+          ,
+          <code translate="no" dir="ltr">dynamicRangeProfile</code>
+          ,
+          <code translate="no" dir="ltr">physicalCameraId</code>
+          ,
+          <code translate="no" dir="ltr">sensorPixelModesUsed</code>
+          ,
+          <code translate="no" dir="ltr">surfaceGroupId</code>
+          ,
+          <code translate="no" dir="ltr">timestampBase</code>
+          ),
+          <code translate="no" dir="ltr">SessionConfiguration</code>
+          settings (
+          <code translate="no" dir="ltr">sessionType</code>
+          ,
+          <code translate="no" dir="ltr">colorSpace</code>
+          ,
+          <code translate="no" dir="ltr">sessionParameter</code>
+          ,
+          <code translate="no" dir="ltr">sessionStateCallback</code>
+          ), still capture options, and
+          <code translate="no" dir="ltr">CameraCaptureSession</code>
+          /
+          <code translate="no" dir="ltr">CameraDevice</code>
+          state callbacks.
+        </li>
+        <li>
+          Added helper methods and Kotlin extensions to retrieve Camera2 metadata and selectors directly:
+          <code translate="no" dir="ltr">Camera2Interop.getCameraId(CameraInfo)</code>
+          (
+          <code translate="no" dir="ltr">CameraInfo.cameraId</code>
+          ),
+          <code translate="no" dir="ltr">Camera2Interop.getCameraCharacteristics(CameraInfo)</code>
+          (
+          <code translate="no" dir="ltr">CameraInfo.cameraCharacteristics</code>
+          ),
+          <code translate="no" dir="ltr">Camera2Interop.getCameraSelectorFromCameraId(String)</code>
+          (
+          <code translate="no" dir="ltr">String.toCameraSelector()</code>
+          ), and
+          <code translate="no" dir="ltr">Camera2Interop.getCameraFilterFromCameraId(String)</code>
+          .
+        </li>
+        <li>
+          Deprecated legacy Camera2Interop V1 classes (
+          <code translate="no" dir="ltr">Camera2Interop.Extender</code>
+          ,
+          <code translate="no" dir="ltr">Camera2CameraControl</code>
+          ,
+          <code translate="no" dir="ltr">Camera2CameraInfo</code>
+          , and
+          <code translate="no" dir="ltr">CaptureRequestOptions</code>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>CameraX Kotlin DSL Builders</strong>
+      : Added top-level Kotlin DSL factory functions for creating use cases and session configurations:
+      <code translate="no" dir="ltr">preview { ... }</code>
+      ,
+      <code translate="no" dir="ltr">imageCapture { ... }</code>
+      ,
+      <code translate="no" dir="ltr">imageAnalysis { ... }</code>
+      ,
+      <code translate="no" dir="ltr">videoCapture(videoOutput) { ... }</code>
+      ,
+      <code translate="no" dir="ltr">sessionConfig(useCases) { ... }</code>
+      ,
+      <code translate="no" dir="ltr">highSpeedVideoSessionConfig(videoCapture) { ... }</code>
+      , and
+      <code translate="no" dir="ltr">extensionSessionConfig(mode, extensionsManager) { ... }</code>
+      .
+    </li>
+  </ul>
+  <p><strong>2. Compose Viewfinder Gesture, Screen Flash &amp; Transformation Enhancements</strong></p>
+  <ul>
+    <li>
+      <strong>
+        Built-in Gestures, Screen Flash &amp; Stream State in
+        <code translate="no" dir="ltr">CameraXViewfinder</code>
+      </strong>
+      :
+      <a href="https://developer.android.com/reference/kotlin/androidx/camera/compose/package-summary#CameraXViewfinder(androidx.camera.core.SurfaceRequest,androidx.compose.ui.Modifier,androidx.camera.viewfinder.core.ImplementationMode,androidx.camera.viewfinder.compose.MutableCoordinateTransformer,androidx.compose.ui.Alignment,androidx.compose.ui.layout.ContentScale,kotlin.Function1,kotlin.Boolean,kotlin.Function2,kotlin.Long,kotlin.Boolean,kotlin.Function1,kotlin.Function1,kotlin.Function0)"><code translate="no" dir="ltr">CameraXViewfinder</code></a>
+      in
+      <code translate="no" dir="ltr">camera-compose</code>
+      now provides out-of-the-box support for pinch-to-zoom (
+      <code translate="no" dir="ltr">isPinchToZoomEnabled</code>
+      ,
+      <code translate="no" dir="ltr">onZoomRatioChanged</code>
+      ), tap-to-focus (
+      <code translate="no" dir="ltr">isTapToFocusEnabled</code>
+      ,
+      <code translate="no" dir="ltr">onTapToFocus</code>
+      ,
+      <code translate="no" dir="ltr">autoCancelDurationMillis</code>
+      ), screen flash (
+      <code translate="no" dir="ltr">onScreenFlashReady</code>
+      ), stream state monitoring (
+      <code translate="no" dir="ltr">onStreamStateChanged</code>
+      with newly public
+      <code translate="no" dir="ltr">Preview.STREAM_STATE_IDLE</code>
+      and
+      <code translate="no" dir="ltr">Preview.STREAM_STATE_STREAMING</code>
+      ), and surface release callbacks (
+      <code translate="no" dir="ltr">onRelease</code>
+      ).
+    </li>
+    <li>
+      <strong>
+        <code translate="no" dir="ltr">FocusState</code>
+        &amp;
+        <code translate="no" dir="ltr">TransformationMode</code>
+      </strong>
+      : Exposed
+      <a href="https://developer.android.com/reference/kotlin/androidx/camera/viewfinder/core/FocusState"><code translate="no" dir="ltr">FocusState</code></a>
+      (
+      <code translate="no" dir="ltr">INACTIVE</code>
+      ,
+      <code translate="no" dir="ltr">STARTED</code>
+      ,
+      <code translate="no" dir="ltr">FOCUSED</code>
+      ,
+      <code translate="no" dir="ltr">NOT_FOCUSED</code>
+      ,
+      <code translate="no" dir="ltr">FAILED</code>
+      ) in
+      <code translate="no" dir="ltr">viewfinder-core</code>
+      to monitor tap-to-focus results, and added
+      <code translate="no" dir="ltr">TransformationMode</code>
+      (
+      <code translate="no" dir="ltr">DEFERRED</code>
+      ,
+      <code translate="no" dir="ltr">PRE_APPLIED</code>
+      ) to
+      <code translate="no" dir="ltr">TransformationInfo</code>
+      to ensure accurate viewfinder transformations in
+      <code translate="no" dir="ltr">EMBEDDED</code>
+      mode when CameraX's OpenGL pipeline is active.
+    </li>
+  </ul>
+  <p><strong>3. Video Capture &amp; Audio Recording Enhancements</strong></p>
+  <ul>
+    <li>
+      <strong>QHD (2K) Video Recording</strong>
+      : Added
+      <a href="https://developer.android.com/reference/androidx/camera/video/Quality#QHD"><code translate="no" dir="ltr">Quality.QHD</code></a>
+      (2560×1440) and
+      <a href="https://developer.android.com/reference/kotlin/androidx/camera/video/GroupableFeatures#QHD_RECORDING()"><code translate="no" dir="ltr">GroupableFeatures.QHD_RECORDING</code></a>
+      for 2K video capture and Feature Group queries.
+    </li>
+    <li>
+      <strong>Video &amp; Audio Codec (MIME Type) Control</strong>
+      : Introduced APIs for granular control over encoding formats:
+      <ul>
+        <li>
+          Discover device-supported formats via experimental (
+          <code translate="no" dir="ltr">@ExperimentalMimeTypeApi</code>
+          )
+          <code translate="no" dir="ltr">Recorder.getSupportedVideoMimeTypes()</code>
+          and
+          <code translate="no" dir="ltr">Recorder.getSupportedAudioMimeTypes()</code>
+          .
+        </li>
+        <li>
+          Configure and inspect preferred formats via stable
+          <code translate="no" dir="ltr">Recorder.Builder.setVideoMimeType(String)</code>
+          ,
+          <code translate="no" dir="ltr">Recorder.Builder.setAudioMimeType(String)</code>
+          ,
+          <code translate="no" dir="ltr">Recorder.getVideoMimeType()</code>
+          , and
+          <code translate="no" dir="ltr">Recorder.getAudioMimeType()</code>
+          .
+        </li>
+        <li>
+          Query codec-specific camera capabilities (such as supported qualities and dynamic ranges) via stable
+          <code translate="no" dir="ltr">Recorder.getVideoCapabilities(CameraInfo, String)</code>
+          .
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Audio Channel Count &amp; Bitrate Configuration</strong>
+      : Added
+      <code translate="no" dir="ltr">Recorder.Builder.setTargetAudioChannelCount(int)</code>
+      and
+      <code translate="no" dir="ltr">Recorder.Builder.setTargetAudioEncodingBitRate(int)</code>
+      (along with
+      <code translate="no" dir="ltr">Recorder.getTargetAudioChannelCount()</code>
+      and
+      <code translate="no" dir="ltr">Recorder.getTargetAudioEncodingBitRate()</code>
+      ) for explicit control over audio recording channels and bitrate.
+    </li>
+    <li>
+      <strong>Stabilized &amp; Dynamic Mirror Mode</strong>
+      : Stabilized
+      <code translate="no" dir="ltr">Preview.Builder.setMirrorMode(int)</code>
+      (removing
+      <code translate="no" dir="ltr">@ExperimentalMirrorMode</code>
+      ) and added
+      <code translate="no" dir="ltr">Preview.setMirrorMode(int)</code>
+      ,
+      <code translate="no" dir="ltr">Preview.getMirrorMode()</code>
+      , and
+      <code translate="no" dir="ltr">VideoCapture.setMirrorMode(int)</code>
+      to allow updating mirror mode dynamically.
+    </li>
+  </ul>
+  <p><strong>4. Dynamic Concurrent Camera Composition &amp; Visual Styling</strong></p>
+  <ul>
+    <li>
+      <strong>Dynamic Composition Updates &amp; Z-Order</strong>
+      : Added
+      <a href="https://developer.android.com/reference/androidx/camera/core/ConcurrentCamera#setCompositionSettings(java.util.List)"><code translate="no" dir="ltr">ConcurrentCamera.setCompositionSettings(List&lt;CompositionSettings&gt;)</code></a>
+      to dynamically update Picture-in-Picture or split-screen layouts after binding to a lifecycle, and added
+      <code translate="no" dir="ltr">CompositionSettings.Builder.setZOrder(int)</code>
+      and
+      <code translate="no" dir="ltr">CompositionSettings.getZOrder()</code>
+      to control the rendering layer order of overlapping camera streams.
+    </li>
+    <li>
+      <strong>Frame Borders &amp; Rounded Corners</strong>
+      : Added
+      <code translate="no" dir="ltr">setRoundedCornerRatio(float)</code>
+      ,
+      <code translate="no" dir="ltr">setBorderWidthRatio(float)</code>
+      , and
+      <code translate="no" dir="ltr">setBorderColor(int)</code>
+      on
+      <a href="https://developer.android.com/reference/androidx/camera/core/CompositionSettings.Builder"><code translate="no" dir="ltr">CompositionSettings.Builder</code></a>
+      (along with
+      <code translate="no" dir="ltr">getRoundedCornerRatio()</code>
+      ,
+      <code translate="no" dir="ltr">getBorderWidthRatio()</code>
+      , and
+      <code translate="no" dir="ltr">getBorderColor()</code>
+      on
+      <code translate="no" dir="ltr">CompositionSettings</code>
+      ) to style concurrent camera frames with normalized rounded corners and colored borders.
+    </li>
+  </ul>
+  <p>
+    <strong>
+      5. GPU-Accelerated
+      <code translate="no" dir="ltr">ImageAnalysis</code>
+      &amp; Common Image Abstractions
+    </strong>
+  </p>
+  <ul>
+    <li>
+      <strong>
+        <code translate="no" dir="ltr">PRIVATE</code>
+        Format &amp;
+        <code translate="no" dir="ltr">HardwareBuffer</code>
+        Access
+      </strong>
+      : Exposed
+      <a href="https://developer.android.com/reference/androidx/camera/core/ImageAnalysis#OUTPUT_IMAGE_FORMAT_PRIVATE"><code translate="no" dir="ltr">ImageAnalysis.OUTPUT_IMAGE_FORMAT_PRIVATE</code></a>
+      ,
+      <code translate="no" dir="ltr">ImageAnalysis.getImageAnalysisCapabilities(CameraInfo).isOutputFormatSupported(int)</code>
+      , and
+      <a href="https://developer.android.com/reference/androidx/camera/core/ImageProxy#getHardwareBuffer()"><code translate="no" dir="ltr">ImageProxy.getHardwareBuffer()</code></a>
+      as public APIs, enabling zero-copy GPU-based
+      <code translate="no" dir="ltr">ImageAnalysis</code>
+      pipelines.
+    </li>
+    <li>
+      <strong>
+        <code translate="no" dir="ltr">ImageWrapper</code>
+        &amp;
+        <code translate="no" dir="ltr">camera-common</code>
+        Abstractions
+      </strong>
+      : Introduced
+      <code translate="no" dir="ltr">androidx.camera:camera-common</code>
+      and
+      <code translate="no" dir="ltr">androidx.camera:camera-common-testing</code>
+      , providing common wrappers (
+      <code translate="no" dir="ltr">ImageWrapper</code>
+      ,
+      <code translate="no" dir="ltr">ImagePlane</code>
+      with non-nullable
+      <code translate="no" dir="ltr">ByteBuffer</code>
+      <code translate="no" dir="ltr">buffer</code>
+      ,
+      <code translate="no" dir="ltr">CameraCharacteristicsWrapper</code>
+      ,
+      <code translate="no" dir="ltr">CaptureRequestWrapper</code>
+      ,
+      <code translate="no" dir="ltr">CaptureResultWrapper</code>
+      ) and test fakes (
+      <code translate="no" dir="ltr">FakeImage</code>
+      ,
+      <code translate="no" dir="ltr">FakeCameraCharacteristics</code>
+      , etc.).
+      <code translate="no" dir="ltr">ImageProxy</code>
+      and
+      <code translate="no" dir="ltr">ImageProxy.PlaneProxy</code>
+      now implement
+      <code translate="no" dir="ltr">ImageWrapper</code>
+      and
+      <code translate="no" dir="ltr">ImagePlane</code>
+      .
+    </li>
+  </ul>
+  <p><strong>6. Scene Detection, 3A Control, Physical Camera Binding &amp; Auto-Rotation</strong></p>
+  <ul>
+    <li>
+      <strong>Night Mode Indicator</strong>
+      : Added
+      <code translate="no" dir="ltr">CameraInfo.isNightModeIndicatorSupported()</code>
+      ,
+      <code translate="no" dir="ltr">CameraInfo.getNightModeIndicator()</code>
+      , and
+      <a href="https://developer.android.com/reference/androidx/camera/core/NightModeIndicator"><code translate="no" dir="ltr">NightModeIndicator</code></a>
+      (
+      <code translate="no" dir="ltr">UNKNOWN</code>
+      ,
+      <code translate="no" dir="ltr">NOT_RECOMMENDED</code>
+      ,
+      <code translate="no" dir="ltr">RECOMMENDED</code>
+      ) to detect low-light scene conditions during standard capture sessions.
+    </li>
+    <li>
+      <strong>
+        3A Locking Mode in
+        <code translate="no" dir="ltr">FocusMeteringAction</code>
+      </strong>
+      : Added
+      <code translate="no" dir="ltr">FocusMeteringAction.Builder.setLockingMode(int)</code>
+      and
+      <code translate="no" dir="ltr">FocusMeteringAction.getLockingMode()</code>
+      to support locking AE/AWB (
+      <code translate="no" dir="ltr">FLAG_AE</code>
+      ,
+      <code translate="no" dir="ltr">FLAG_AWB</code>
+      ) or updating 3A metering regions without locking focus (
+      <code translate="no" dir="ltr">FLAG_AF</code>
+      ), allowing the camera to remain in continuous autofocus (
+      <code translate="no" dir="ltr">CAF</code>
+      ) mode while updating the focus area.
+    </li>
+    <li>
+      <strong>Physical Camera Selection &amp; Binding</strong>
+      : Added support for obtaining a
+      <code translate="no" dir="ltr">CameraSelector</code>
+      for physical cameras from
+      <code translate="no" dir="ltr">CameraInfo.getPhysicalCameraInfos()</code>
+      and binding
+      <code translate="no" dir="ltr">UseCases</code>
+      directly to physical cameras. Querying
+      <code translate="no" dir="ltr">CameraProvider.getCameraInfo()</code>
+      with a physical
+      <code translate="no" dir="ltr">CameraSelector</code>
+      now returns the physical
+      <code translate="no" dir="ltr">CameraInfo</code>
+      rather than the logical
+      <code translate="no" dir="ltr">CameraInfo</code>
+      .
+    </li>
+    <li>
+      <strong>
+        Automatic Sensor-Based Rotation (
+        <code translate="no" dir="ltr">isAutoRotationEnabled</code>
+        )
+      </strong>
+      : Added
+      <code translate="no" dir="ltr">setAutoRotationEnabled(boolean)</code>
+      /
+      <code translate="no" dir="ltr">isAutoRotationEnabled</code>
+      to
+      <code translate="no" dir="ltr">SessionConfig.Builder</code>
+      ,
+      <code translate="no" dir="ltr">HighSpeedVideoSessionConfig.Builder</code>
+      ,
+      <code translate="no" dir="ltr">ExtensionSessionConfig.Builder</code>
+      , and
+      <code translate="no" dir="ltr">CameraController</code>
+      to automatically update target output rotation from device sensors or disable the built-in rotation listener when needed.
+    </li>
+    <li>
+      <strong>Low Light Boost &amp; Torch/Flash Interoperability</strong>
+      : Low Light Boost and Torch now follow a "last setting wins" policy where enabling one automatically disables the other instead of rejecting the request. In addition, flash can now fire during
+      <code translate="no" dir="ltr">ImageCapture</code>
+      while Low Light Boost is active.
+    </li>
+    <li>
+      <strong>
+        Custom
+        <code translate="no" dir="ltr">SessionConfig</code>
+        in
+        <code translate="no" dir="ltr">CameraController</code>
+      </strong>
+      : Exposed
+      <code translate="no" dir="ltr">CameraController.setSessionConfig(SessionConfig, CameraSelector)</code>
+      to support binding custom
+      <code translate="no" dir="ltr">SessionConfig</code>
+      instances with
+      <code translate="no" dir="ltr">CameraController</code>
+      .
+    </li>
+    <li>
+      <strong>Extensions API Deprecation</strong>
+      : Deprecated
+      <code translate="no" dir="ltr">ExtensionsManager.getExtensionEnabledCameraSelector()</code>
+      in favor of
+      <a href="https://developer.android.com/reference/androidx/camera/extensions/ExtensionSessionConfig"><code translate="no" dir="ltr">ExtensionSessionConfig</code></a>
+      .
+    </li>
+  </ul>

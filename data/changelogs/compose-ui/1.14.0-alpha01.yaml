@@ -1,0 +1,392 @@
+libraryId: compose-ui
+groupId: androidx.compose
+version: 1.14.0-alpha01
+releaseDate: 2026-11-18
+#language=html
+changelogHtml: |
+  <h3 id="1.14.0-alpha01" data-text="Version 1.14.0-alpha01" tabindex="-1">Version 1.14.0-alpha01</h3>
+  <p>November 18, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.ui:ui-*:1.14.0-alpha01</code>
+    is released. Version 1.14.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/57354ca42849ed417dfe0f797132477674d917e0..e52b0d690e9eccefeca97fff5b1300a000aced46/compose/ui">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">AndroidView</code>
+      (and
+      <code translate="no" dir="ltr">AndroidFragment</code>
+      ) jittered and oscillated during nested scrolling when a parent Compose container (such as
+      <code translate="no" dir="ltr">Scaffold</code>
+      with a collapsing
+      <code translate="no" dir="ltr">TopAppBar</code>
+      ,
+      <code translate="no" dir="ltr">ModalBottomSheet</code>
+      , or dynamic padding/offset) moved or resized the hosted
+      <code translate="no" dir="ltr">View</code>
+      . This fix is gated by
+      <code translate="no" dir="ltr">AndroidComposeUiFlags.isNestedScrollInteropMeasureAndLayoutEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I57434a9ab78439189aee1d52ea75201ef4121201">I57434</a>
+      )
+    </li>
+    <li>
+      Added new overloads of
+      <code translate="no" dir="ltr">BasicText</code>
+      that accept a
+      <code translate="no" dir="ltr">styleProvider</code>
+      (
+      <code translate="no" dir="ltr">TextStyleScope.() -&gt; Unit</code>
+      ) lambda for dynamic styling, allowing dynamic style attributes to skip recomposition. (
+      <a href="https://android-review.googlesource.com/#/q/I88e20b4fcd2e7ac9b12dc9d1c0dc57da41a270c7">I88e20</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">Modifier.illuminate</code>
+      ,
+      <code translate="no" dir="ltr">IlluminationScope</code>
+      , and
+      <code translate="no" dir="ltr">Modifier.lightAnchor</code>
+      to apply lighting effects to composables and anchor light positions to layout coordinates. (
+      <a href="https://android-review.googlesource.com/#/q/If829a1cfb381d6ec645c92539bee41610fe925af">If829a</a>
+      )
+    </li>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">Light</code>
+      (
+      <code translate="no" dir="ltr">DirectionalLight</code>
+      ,
+      <code translate="no" dir="ltr">SpotLight</code>
+      and
+      <code translate="no" dir="ltr">PointLight</code>
+      ),
+      <code translate="no" dir="ltr">SurfaceMaterial</code>
+      ,
+      <code translate="no" dir="ltr">SurfaceGeometrySpec</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I8fd4172b0b262751dc4c9e191eab439a404a37b7">I8fd41</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">DrawAnnotation</code>
+      for custom drawing behind and over
+      <code translate="no" dir="ltr">AnnotatedString</code>
+      text ranges. (
+      <a href="https://android-review.googlesource.com/#/q/I928bf58ab12f97733047a645a37dca49a6d8406a">I928bf</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">computedMediaQuery</code>
+      API, which offers better performance over
+      <code translate="no" dir="ltr">derivedMediaQuery</code>
+      for calculations that don't benefit from caching.
+      <code translate="no" dir="ltr">derivedMediaQuery</code>
+      is now deprecated. (
+      <a href="https://android-review.googlesource.com/#/q/Idacbff5a887b03ccba8a713ee1652a8867b1ab97">Idacbf</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">LayoutModifierNode.invalidateRulers()</code>
+      to force
+      <code translate="no" dir="ltr">Ruler</code>
+      values provided by a node to be recalculated when they depend on non-snapshot state. (
+      <a href="https://android-review.googlesource.com/#/q/Ia02a813d63675fc56dcdea9e3fc86d4f8e1ec740">Ia02a8</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/422509162">b/422509162</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">styleable()</code>
+      modifier API has been replaced by the
+      <code translate="no" dir="ltr">styleResolver</code>
+      modifier based API. All
+      <code translate="no" dir="ltr">styleable()</code>
+      modifiers and associated types (such as
+      <code translate="no" dir="ltr">Style</code>
+      and
+      <code translate="no" dir="ltr">StyleScope</code>
+      ) have been deprecated. (
+      <a href="https://android-review.googlesource.com/#/q/I546777a2b5e5422a9a09309d6f3abb2834b1c83a">I54677</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">MutableVector</code>
+      and
+      <code translate="no" dir="ltr">mutableVectorOf</code>
+      are deprecated. Use
+      <code translate="no" dir="ltr">androidx.collection.MutableObjectList</code>
+      and
+      <code translate="no" dir="ltr">mutableObjectListOf</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/If0dd84fb93c0890a069637cfc7963d0e06695a4a">If0dd8</a>
+      )
+    </li>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">TextLayoutResult.getBoundingBoxesForRange</code>
+        and
+        <code translate="no" dir="ltr">TextLayoutResult.fillPathForRange</code>
+        to query coalesced per-line bounding boxes and merged rounded highlight paths for a character range. (
+        <a href="https://android-review.googlesource.com/#/q/Ic134aa26e3f8b2cc243999f5b636dd3749a91444">Ic134a</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/329052205">b/329052205</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Fixed an issue where
+        <code translate="no" dir="ltr">AndroidView</code>
+        (and
+        <code translate="no" dir="ltr">AndroidFragment</code>
+        ) dropped nested scroll and fling deltas when the root hosted
+        <code translate="no" dir="ltr">View</code>
+        was a container
+        <code translate="no" dir="ltr">ViewGroup</code>
+        (such as
+        <code translate="no" dir="ltr">FrameLayout</code>
+        ,
+        <code translate="no" dir="ltr">FragmentContainerView</code>
+        , or
+        <code translate="no" dir="ltr">CoordinatorLayout</code>
+        ) with
+        <code translate="no" dir="ltr">isNestedScrollingEnabled == false</code>
+        wrapping a nested scrolling child (such as
+        <code translate="no" dir="ltr">RecyclerView</code>
+        ). To disable View-to-Compose nested scrolling, call
+        <code translate="no" dir="ltr">ViewCompat.setNestedScrollingEnabled(view, false)</code>
+        on the nested scrolling child
+        <code translate="no" dir="ltr">View</code>
+        itself. This fix is gated by
+        <code translate="no" dir="ltr">AndroidComposeUiFlags.isNestedScrollInteropViewHolderFixEnabled</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/I747824fbab3e12d11f13811f2e11b3ae89716179">I74782</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Add missing pixel 10, 9a and 11 pro fold devices (
+        <a href="https://android-review.googlesource.com/#/q/If7aa57208a6591f868a0dd0172f813afbfd4d4ed">If7aa5</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Added
+        <code translate="no" dir="ltr">multiTouchSwipeWithVelocity</code>
+        to
+        <code translate="no" dir="ltr">TouchInjectionScope</code>
+        to allow testing multi-touch gestures with a specific end velocity. (
+        <a href="https://android-review.googlesource.com/#/q/If096688b6c40a84ea203dff6e0ef94dca951f2a4">If0966</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Material 3
+        <code translate="no" dir="ltr">TextField</code>
+        and
+        <code translate="no" dir="ltr">OutlinedTextField</code>
+        overloads that accept
+        <code translate="no" dir="ltr">value, onValueChange</code>
+        parameters, along with
+        <code translate="no" dir="ltr">TextFieldDefaults.DecorationBox</code>
+        and
+        <code translate="no" dir="ltr">OutlinedTextFieldDefaults.DecorationBox</code>
+        , are deprecated in favor of the
+        <code translate="no" dir="ltr">TextFieldState</code>
+        overloads and
+        <code translate="no" dir="ltr">decorator</code>
+        APIs. (
+        <a href="https://android-review.googlesource.com/#/q/Idb68b288609594820c032a533458693d3f477ba8">Idb68b</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/554049628">b/554049628</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <h5 id="feature_flag_removals_2" data-text="Feature Flag removals" tabindex="-1">Feature Flag removals</h5>
+  <ul>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">AndroidComposeUiFlags.isAccessibilityPerformanceEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2a70e3cee1e7bab9eae222589108547967b9cb9d">I2a70e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/529420099">b/529420099</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">ComposeUiFlags.isMinimalistLocalsEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ibc870b4bfd0f7eff0340648b8b76b2c296a3ec4d">Ibc870</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/523295932">b/523295932</a>
+      )
+    </li>
+    <li>
+      Removed the feature flag
+      <code translate="no" dir="ltr">ComposeUiFlags.isClippedTouchBoundsOcclusionFixEnabled</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Id9e0a03c6e1678a34aca6d498256c969bdf2b6c6">Id9e0a</a>
+      )
+    </li>
+    <li>
+      Removed the temporary feature flag
+      <code translate="no" dir="ltr">AndroidComposeUiFlags.isDelayedWindowInsetsRulersEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I722b745724326778e8ea3a428619a46883c28349">I722b7</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">ComposeUiFlags.isTrackpadPinchReinterpretationEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I39fef0c4380d8212479da0f9ad0e3b3d9e9dd7cc">I39fef</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">ComposeUiTestFlags</code>
+      and the temporary
+      <code translate="no" dir="ltr">ComposeUiTestFlags.isMainThreadTestSynchronizationEnabledForDeviceTests</code>
+      flag. Main-thread synchronization in Compose device tests is now permanently enabled. (
+      <a href="https://android-review.googlesource.com/#/q/I765e901e64b1295689896f53909b8718c4771c85">I765e9</a>
+      )
+    </li>
+    <li>
+      Removed the feature flag
+      <code translate="no" dir="ltr">AndroidComposeUiFlags.isPropagateHideFromAccessibilityToMergingChildrenEnabled</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ief6fab7593779ad033820b631ac057ee2f812a07">Ief6fa</a>
+      )
+    </li>
+    <li>
+      Removes experimental feature flag
+      <code translate="no" dir="ltr">ComposeUiFlags.isTrackpadPanHoverFixEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3aa5bdbf6f905a25c74a4de9ba781d4291f063ce">I3aa5b</a>
+      )
+    </li>
+    <li>
+      Removed the feature flag
+      <code translate="no" dir="ltr">AndroidComposeUiFlags.isTraversalGroupSortingEnabled</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I18b92f3e791f1f48b09cceb6a6e4a680b35db677">I18b92</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Map
+      <code translate="no" dir="ltr">HintText</code>
+      semantics to
+      <code translate="no" dir="ltr">ViewStructure.setHint</code>
+      in Autofill. (
+      <a href="https://android-review.googlesource.com/#/q/If6bcccd4e38b398837742f30fb718b542bfbb007">If6bcc</a>
+      )
+    </li>
+    <li>
+      Fixed a crash in Robolectric tests when a text field shows its magnifier, e.g. after two quick clicks on it. (
+      <a href="https://android-review.googlesource.com/#/q/I650957b2bd563d5212591633464224b2891c3e1f">I65095</a>
+      )
+    </li>
+    <li>
+      Fixed an unnecessary remeasurement when reading an alignment line during measurement and placing the child with a non-zero offset. (
+      <a href="https://android-review.googlesource.com/#/q/I363ab938335d65f5a1b09bd412255342c103b091">I363ab</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/435377724">b/435377724</a>
+      )
+    </li>
+    <li>
+      Updated accessibility node text and text layout results to reflect active text translations (
+      <code translate="no" dir="ltr">SemanticsProperties.TextSubstitution</code>
+      ) when
+      <code translate="no" dir="ltr">SemanticsProperties.IsShowingTextSubstitution</code>
+      is true. (
+      <a href="https://android-review.googlesource.com/#/q/I006ef0649292690cf122122966b33dce862e6895">I006ef</a>
+      )
+    </li>
+    <li>
+      Fixed screen reader focus resets in
+      <code translate="no" dir="ltr">LazyRow</code>
+      ,
+      <code translate="no" dir="ltr">LazyColumn</code>
+      , and
+      <code translate="no" dir="ltr">LazyGrid</code>
+      by setting pixel
+      <code translate="no" dir="ltr">scrollDeltaX</code>
+      and
+      <code translate="no" dir="ltr">scrollDeltaY</code>
+      on
+      <code translate="no" dir="ltr">TYPE_VIEW_SCROLLED</code>
+      events. (
+      <a href="https://android-review.googlesource.com/#/q/I463bc7ab812417d93980976eee2bd0e993a829c1">I463bc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/330744631">b/330744631</a>
+      )
+    </li>
+    <li>
+      Fixed a long screenshot crash on Android 12 when a captured frame is read before it presents. (
+      <a href="https://android-review.googlesource.com/#/q/I0f9ec8758d89a90bdce4a33d0e54e0bdae52a40e">I0f9ec</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where indirect pointer events and cancellations were not dispatched to multiple delegated
+      <code translate="no" dir="ltr">IndirectPointerInputModifierNode</code>
+      s or to
+      <code translate="no" dir="ltr">IndirectPointerInputModifierNode</code>
+      s chained after a focus target in the same modifier chain. (
+      <a href="https://android-review.googlesource.com/#/q/I0f15a24ae28d75e944f2d03ff78d15f0ccd4b3a5">I0f15a</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">SemanticsProperties.PaneTitle</code>
+      exception message and
+      <code translate="no" dir="ltr">paneTitle</code>
+      KDoc to clarify that a pane cannot be a descendant of a clickable or semantics-merging node. (
+      <a href="https://android-review.googlesource.com/#/q/I250f299c00297542758e6ef6c2182d7f63bc0611">I250f2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/575553356">b/575553356</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">onVisibilityChanged</code>
+      and
+      <code translate="no" dir="ltr">onFirstVisible</code>
+      no longer report content as visible while it is outside of the window, when its
+      <code translate="no" dir="ltr">ComposeView</code>
+      isn't at the window's origin, such as in a
+      <code translate="no" dir="ltr">RecyclerView</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ibb2b67beaa6a87041ee9443381661a08c1571396">Ibb2b6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/577830524">b/577830524</a>
+      )
+    </li>
+    <li>
+      Allow reversed (end &lt; start) selection when made via a mouse gesture in a
+      <code translate="no" dir="ltr">TextField(TextFieldState)</code>
+      . Previously it would be automatically made "normal" (start &lt; end). (
+      <a href="https://android-review.googlesource.com/#/q/I4255958976f8dd18efc58792878e83394703de11">I42559</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_113_2" data-text="Version 1.13" tabindex="-1">Version 1.13</h2>

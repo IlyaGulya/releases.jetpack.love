@@ -1,0 +1,210 @@
+libraryId: navigation3
+groupId: androidx.navigation3
+version: 1.3.0-alpha05
+releaseDate: 2026-11-18
+#language=html
+changelogHtml: |
+  <h3 id="1.3.0-alpha05" data-text="Version 1.3.0-alpha05" tabindex="-1">Version 1.3.0-alpha05</h3>
+  <p>November 18, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.navigation3:navigation3-*:1.3.0-alpha05</code>
+    is released. Version 1.3.0-alpha05 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a021adf44194ae86e596ae25ca43d5e4e18f6926..190bd13667280b0d323bc365195427fee2220583/navigation3">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <p>
+    Dynamic feature modules, a.k.a.
+    <a href="https://developer.android.com/guide/playcore/feature-delivery">Play Feature Delivery</a>
+    , is now integrated to Navigation 3 via
+    <code translate="no" dir="ltr">androidx.navigation3:navigation3-dynamic-features</code>
+    library.
+  </p>
+  <ul>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">DynamicFeatureNavEntryDecorator</code>
+        takes in a
+        <code translate="no" dir="ltr">SplitInstallManager</code>
+        to install a dynamic feature module upon first navigation to the module. To use, call
+        <code translate="no" dir="ltr">rememberDynamicFeatureNavEntryDecorator</code>
+        and pass into the
+        <code translate="no" dir="ltr">NavDisplay</code>
+        . Then pass in
+        <code translate="no" dir="ltr">DynamicFeatureNavEntryDecorator.entryProvider</code>
+        as the
+        <code translate="no" dir="ltr">entryProvider</code>
+        , and invoke
+        <code translate="no" dir="ltr">dynamicFeatureModule()</code>
+        inside the provider to register the module.(
+        <a href="https://android-review.googlesource.com/#/q/Idfc152b732ab1f59a76ccf3bfdbcc0ecb82c758e">Idfc15</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/520494172">b/520494172</a>
+        )
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">dynamicFeatureDecorator</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">rememberDynamicFeatureNavEntryDecorator&lt;NavKey&gt;</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">splitInstallManager</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">rememberSplitInstallManager</span><span class="devsite-syntax-p">(),</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">defaultLoadingContent</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">LoadingIndicator</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">)</span>
+
+  <span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">NavDisplay</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">...</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">entryDecorators</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">listOf</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">rememberSaveableStateHolderNavEntryDecorator</span><span class="devsite-syntax-p">(),</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">dynamicFeatureDecorator</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">),</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-n">entryProvider</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">dynamicFeatureDecorator</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">entryProvider</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">entry&lt;HomeKey&gt;</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-p">...</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">dynamicFeatureModule</span><span class="devsite-syntax-p">(</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-n">initialKey</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">PremiumKey</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-n">moduleName</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"premium"</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-n">entryProviderClassName</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"com.example.premium.PremiumModuleEntryProvider"</span><span class="devsite-syntax-p">,</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-n">loadingContent</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">state</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;
+  <span class="devsite-syntax-w">                    </span><span class="devsite-syntax-k">when</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">state</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">status</span><span class="devsite-syntax-p">())</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">                        </span><span class="devsite-syntax-n">SplitInstallSessionStatus</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">FAILED</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;<span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Text</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"Failure"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">                        </span><span class="devsite-syntax-n">SplitInstallSessionStatus</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-na">REQUIRES_USER_CONFIRMATION</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;<span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">                            </span><span class="devsite-syntax-c1">// Call SplitInstallManager::startConfirmationDialogForResult</span>
+  <span class="devsite-syntax-w">                        </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">                        </span><span class="devsite-syntax-k">else</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">-</span>&gt;<span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">Text</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"Loading premium feature..."</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span>
+  <span class="devsite-syntax-w">                    </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">                </span><span class="devsite-syntax-p">},</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">},</span>
+  <span class="devsite-syntax-p">)</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">DynamicFeatureModuleEntryProvider</code>
+        provides
+        <code translate="no" dir="ltr">NavEntries</code>
+        of the dynamic feature module after the module has been installed. In the module, extend the
+        <code translate="no" dir="ltr">DynamicFeatureModuleEntryProvider</code>
+        class to create an
+        <code translate="no" dir="ltr">EntryProvider</code>
+        that will be resolved at runtime via Java reflect. The provider can be registered with
+        <code translate="no" dir="ltr">NavDisplay</code>
+        by passing its fully qualified name into the
+        <code translate="no" dir="ltr">dynamicFeatureModule</code>
+        invocation.(
+        <a href="https://android-review.googlesource.com/#/q/Idfc152b732ab1f59a76ccf3bfdbcc0ecb82c758e">Idfc15</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/520494172">b/520494172</a>
+        )
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-c1">// Defined in the `:premium` dynamic feature module. </span>
+  <span class="devsite-syntax-c1">// Resolved in the `:main` app module by reflection in runtime when</span>
+  <span class="devsite-syntax-c1">// the installation of the dynamic feature module is completed.</span>
+  <span class="devsite-syntax-kd">class</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">PremiumModuleEntryProvider</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">DynamicFeatureModuleEntryProvider&lt;NavKey&gt;</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-kd">override</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">fun</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">EntryProviderScope&lt;NavKey&gt;</span><span class="devsite-syntax-p">.</span><span class="devsite-syntax-nf">buildEntries</span><span class="devsite-syntax-p">()</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">entry&lt;PremiumKey&gt;</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">Text</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"PremiumScreen"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-n">entry&lt;PremiumSubKey&gt;</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+  <span class="devsite-syntax-w">            </span><span class="devsite-syntax-n">Text</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-s">"SubScreen"</span><span class="devsite-syntax-p">)</span>
+  <span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-p">}</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        The initial
+        <code translate="no" dir="ltr">NavKey</code>
+        that is used for navigating to the module can be defined in the main module or a common module.
+        <code translate="no" dir="ltr">NavKeys</code>
+        for additional sub-screens inside the dynamic feature module can be defined within the module. (
+        <a href="https://android-review.googlesource.com/#/q/Idfc152b732ab1f59a76ccf3bfdbcc0ecb82c758e">Idfc15</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/520494172">b/520494172</a>
+        )
+      </p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-c1">// Initial nav key for the `:premium` dynamic feature module. </span>
+  <span class="devsite-syntax-c1">// Defined in the `:main` app module, but can also be accessed from </span>
+  <span class="devsite-syntax-c1">// the dynamic feature module.</span>
+  <span class="devsite-syntax-nd">@Serializable</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">data</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">object</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">PremiumKey</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">NavKey</span>
+
+  <span class="devsite-syntax-c1">// An internal sub nav key for the `:premium` dynamic feature module. </span>
+  <span class="devsite-syntax-c1">// Defined in the `:premium` app module, cannot be accessed by other modules.</span>
+  <span class="devsite-syntax-nd">@Serializable</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">internal</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">data</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kd">object</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nc">PremiumSubKey</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">NavKey</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Made
+      <code translate="no" dir="ltr">EntryProviderScope</code>
+      open and
+      <code translate="no" dir="ltr">EntryProviderScope.build()</code>
+      public to allow extending the entry provider DSL scope. (
+      <a href="https://android-review.googlesource.com/#/q/I6a66d7ca84f82e7363f163fc604f7701c85026bb">I6a66d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/520494172">b/520494172</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">SharedTransitionScope.DeferredTransitionBehavior</code>
+      (
+      <code translate="no" dir="ltr">FollowContainer</code>
+      ,
+      <code translate="no" dir="ltr">Static</code>
+      ,
+      <code translate="no" dir="ltr">SeekToTarget</code>
+      ),
+      <code translate="no" dir="ltr">SharedContentConfig.deferredTransitionBehavior</code>
+      , and
+      <code translate="no" dir="ltr">MutableContentTransform.sharedElementProgress</code>
+      to support seeking shared elements toward their target bounds during the deferred phase of a
+      <code translate="no" dir="ltr">DeferredTransition</code>
+      . Deprecated
+      <code translate="no" dir="ltr">permitTransformDuringDeferredTransition</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2fac2ac003bdf0d1157b92a4263136a0f4c638ca">I2fac2</a>
+      )
+    </li>
+    <li>
+      Removed the
+      <code translate="no" dir="ltr">watchosArm32</code>
+      target, which Kotlin 2.5 no longer supports. (
+      <a href="https://android-review.googlesource.com/#/q/Ic048d3ac5dc60b7e62f0d1d7f683431f67f6209f">Ic048d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">ConcurrentModificationException</code>
+      from calling
+      <code translate="no" dir="ltr">NavBackStack.toList()</code>
+      on a background thread while mutating the back stack on the Main thread.
+      <code translate="no" dir="ltr">NavBackStack</code>
+      now has a custom
+      <code translate="no" dir="ltr">toList()</code>
+      that delegates to the internal
+      <code translate="no" dir="ltr">SnapshotStateList's</code>
+      thread-safe
+      <code translate="no" dir="ltr">toList()</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id9bb7c7ac9b3a9217d49914a2e169a7034fb5548">Id9bb7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/576097101">b/576097101</a>
+      )
+    </li>
+  </ul>

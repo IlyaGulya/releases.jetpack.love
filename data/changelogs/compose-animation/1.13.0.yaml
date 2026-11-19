@@ -1,0 +1,109 @@
+libraryId: compose-animation
+groupId: androidx.compose
+version: 1.13.0
+releaseDate: 2026-11-18
+#language=html
+changelogHtml: |
+  <h3 id="1.13.0" data-text="Version 1.13.0" tabindex="-1">Version 1.13.0</h3>
+  <p>November 18, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.animation:animation-*:1.13.0</code>
+    is released. Version 1.13.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5e0747401bf56b243e3b5141ae080dc9bc61d29c..ac6d2ce3d991b07d9b981d616bddc6d3ab461eab/compose/animation">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.12.0:</strong></p>
+  <ul>
+    <li>
+      <strong>Deferred Transitions Stable</strong>
+      : Promoted deferred transition APIs out of experimental. This includes
+      <code translate="no" dir="ltr">DeferredTransitionState</code>
+      ,
+      <code translate="no" dir="ltr">rememberDeferredTransition</code>
+      ,
+      <code translate="no" dir="ltr">DeferredAnimatedContent</code>
+      ,
+      <code translate="no" dir="ltr">DeferredAnimatedVisibility</code>
+      , and
+      <code translate="no" dir="ltr">TransformScope</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib64300bf3bce149fe8119343be539859c4ae084b">Ib6430</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I7bb7e398e092853a33ce0fc5bc79529b70e3d1d4">I7bb7e</a>
+      )
+    </li>
+    <li>
+      <strong><code translate="no" dir="ltr">CapturedAnimatedVisibility</code></strong>
+      : Introduced
+      <code translate="no" dir="ltr">CapturedAnimatedVisibility</code>
+      . Disposes child composition immediately when hidden, and animates exit transitions by rendering the last captured frame on a
+      <code translate="no" dir="ltr">GraphicsLayer</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6c5b336a2dd8303e5e4fa78b927ce4491ec13410">I6c5b3</a>
+      )
+    </li>
+    <li>
+      <strong>Graduated Stable APIs</strong>
+      : Promoted
+      <code translate="no" dir="ltr">createChildTransition</code>
+      ,
+      <code translate="no" dir="ltr">Transition.Crossfade</code>
+      ,
+      <code translate="no" dir="ltr">veilOut</code>
+      , and
+      <code translate="no" dir="ltr">unveilIn</code>
+      to stable APIs.
+      <code translate="no" dir="ltr">EnterTransition.with</code>
+      has been removed; use
+      <code translate="no" dir="ltr">togetherWith</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/I38f6697b35453a94229dca76718c25bfc1792638">I38f66</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ied832a863cfd89eed556e03fda451d8373cd5cda">Ied832</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I9e3a3441119894f6c82c1be32c43890991b42490">I9e3a3</a>
+      )
+    </li>
+    <li>
+      <strong>Transition Configurations</strong>
+      : Made
+      <code translate="no" dir="ltr">EnterExitTransitionConfig</code>
+      public on
+      <code translate="no" dir="ltr">EnterTransition</code>
+      and
+      <code translate="no" dir="ltr">ExitTransition</code>
+      . External libraries can now inspect
+      <code translate="no" dir="ltr">EnterTransition</code>
+      and
+      <code translate="no" dir="ltr">ExitTransition</code>
+      configurations to build custom transition support. (
+      <a href="https://android-review.googlesource.com/#/q/Idd5a4854816746d1ac74f7b75d6292d145d79002">Idd5a4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/330152398">b/330152398</a>
+      )
+    </li>
+    <li>
+      <strong><code translate="no" dir="ltr">DeferredTargetAnimation.value</code></strong>
+      : Exposed the current animated value as a public property on
+      <code translate="no" dir="ltr">DeferredTargetAnimation</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ie4f6e751a0a5d118111b1c04d9b0a5ee7217d220">Ie4f6e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/434659224">b/434659224</a>
+      )
+    </li>
+    <li>
+      <strong>Seekable Transition Crash Fix</strong>
+      : Fixed an issue in
+      <code translate="no" dir="ltr">SeekableTransitionState</code>
+      where zero-duration or interrupted transitions could calculate
+      <code translate="no" dir="ltr">NaN</code>
+      fractions and throw an
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I8f3a9d2e1b4c5a6f7e8d9c0b1a2f3e4d5c6b7a89">I8f3a9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/555294641">b/555294641</a>
+      )
+    </li>
+  </ul>

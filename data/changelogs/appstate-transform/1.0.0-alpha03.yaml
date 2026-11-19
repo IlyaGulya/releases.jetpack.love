@@ -1,0 +1,43 @@
+libraryId: appstate-transform
+groupId: androidx.appstate
+version: 1.0.0-alpha03
+releaseDate: 2026-11-18
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha03" data-text="Version 1.0.0-alpha03" tabindex="-1">Version 1.0.0-alpha03</h3>
+  <p>November 18, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.appstate.transform:transform-*:1.0.0-alpha03</code>
+    is released. Version 1.0.0-alpha03 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a021adf44194ae86e596ae25ca43d5e4e18f6926..3e55c1ad889c6c0087b0bf6720b1a970b6e8ea3b/appstate/transform">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">AppState Transform</code>
+      has added support for
+      <code translate="no" dir="ltr">SavedStateContainer</code>
+      that enables the use of
+      <code translate="no" dir="ltr">rememberSaveable</code>
+      inside of the
+      <code translate="no" dir="ltr">@Composable</code>
+      lambda. The ensures that all of the state inside the transform is not saved across configuration changes and process death. (
+      <a href="https://android-review.googlesource.com/#/q/Ia66eaca2bb23885fd8f7968275a54b9df8e76990">Ia66ea</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AppState Transform</code>
+      now provides a
+      <code translate="no" dir="ltr">RunnableTransformScope</code>
+      that provides a public
+      <code translate="no" dir="ltr">run</code>
+      function to kick off the scope while the default
+      <code translate="no" dir="ltr">TransformScope</code>
+      interface can continue to be used for
+      <code translate="no" dir="ltr">launchTransform</code>
+      with the assumption that the scope is already running. (
+      <a href="https://android-review.googlesource.com/#/q/Ia1f0d4eff859ffa37b25d4fccf60d5f89b8214b9">Ia1f0d</a>
+      )
+    </li>
+  </ul>

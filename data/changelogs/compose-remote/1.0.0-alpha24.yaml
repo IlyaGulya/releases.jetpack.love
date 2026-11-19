@@ -1,0 +1,414 @@
+libraryId: compose-remote
+groupId: androidx.compose
+version: 1.0.0-alpha24
+releaseDate: 2026-11-18
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha24" data-text="Version 1.0.0-alpha24" tabindex="-1">Version 1.0.0-alpha24</h3>
+  <p>November 18, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.remote:remote-*:1.0.0-alpha24</code>
+    is released. Version 1.0.0-alpha24 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a021adf44194ae86e596ae25ca43d5e4e18f6926..cb8e6388acf70f4bc3af425c928a3f0761fb6478/compose/remote">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Enabled Kotlin Multiplatform (
+      <code translate="no" dir="ltr">jvmAndAndroidMain</code>
+      ) support in
+      <code translate="no" dir="ltr">:compose:remote:remote-creation-compose</code>
+      , decoupling core creation APIs from Android and Compose UI types so remote documents can be authored and tested on JVM targets as well as Android.
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Promoted
+      <code translate="no" dir="ltr">RemoteContentScale</code>
+      ,
+      <code translate="no" dir="ltr">RemoteTextOverflow</code>
+      ,
+      <code translate="no" dir="ltr">RemoteCompositingStrategy</code>
+      ,
+      <code translate="no" dir="ltr">RemotePathFillType</code>
+      ,
+      <code translate="no" dir="ltr">RemotePaintingStyle</code>
+      ,
+      <code translate="no" dir="ltr">RemoteStrokeCap</code>
+      ,
+      <code translate="no" dir="ltr">RemoteStrokeJoin</code>
+      ,
+      <code translate="no" dir="ltr">RemoteBlendMode</code>
+      ,
+      <code translate="no" dir="ltr">RemoteLayoutDirection</code>
+      ,
+      <code translate="no" dir="ltr">RemoteFontVariation.Settings</code>
+      , and Remote text styling types to public API, and decoupled
+      <code translate="no" dir="ltr">RemotePaint</code>
+      ,
+      <code translate="no" dir="ltr">RemoteShape</code>
+      ,
+      <code translate="no" dir="ltr">RemoteStateScope</code>
+      ,
+      <code translate="no" dir="ltr">RemoteTextStyle</code>
+      ,
+      <code translate="no" dir="ltr">RemoteCreationDisplayInfo</code>
+      ,
+      <code translate="no" dir="ltr">RemoteImageVector.Builder</code>
+      ,
+      <code translate="no" dir="ltr">RemotePainter</code>
+      ,
+      <code translate="no" dir="ltr">RemoteRenderEffect</code>
+      ,
+      <code translate="no" dir="ltr">RemoteBlurEffect</code>
+      , and
+      <code translate="no" dir="ltr">RemoteFontFamily</code>
+      from Compose UI and Android types.
+    </li>
+    <li>
+      Decoupled
+      <code translate="no" dir="ltr">RemoteImageBitmap</code>
+      from Compose UI
+      <code translate="no" dir="ltr">ImageBitmap</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1dfb92cc39c3b112df283e22a14672419c8841cd">I1dfb9</a>
+      )
+    </li>
+    <li>
+      Decoupled
+      <code translate="no" dir="ltr">RemoteTextUnit</code>
+      from Compose UI
+      <code translate="no" dir="ltr">TextUnit</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id9ba1e3bc12f02c64e2a09c028dfb506733f8fa4">Id9ba1</a>
+      )
+    </li>
+    <li>
+      Extracted core remote state AST expressions into
+      <code translate="no" dir="ltr">:compose:remote:remote-creation-expression</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I41115157d3e203c89fecc4dcc84659f906217c45">I41115</a>
+      )
+    </li>
+    <li>
+      Extracted Compose Runtime composables and Android formatters from
+      <code translate="no" dir="ltr">RemoteState</code>
+      , removed deprecated
+      <code translate="no" dir="ltr">rememberMutableRemote*</code>
+      composables, and exposed
+      <code translate="no" dir="ltr">RemoteEnum.enumEntries</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I764179d07a537c2e04f436b7b695da60a0e8d682">I76417</a>
+      )
+    </li>
+    <li>
+      Exposed
+      <code translate="no" dir="ltr">RemoteDrawScope</code>
+      drawing (
+      <code translate="no" dir="ltr">drawImage</code>
+      ,
+      <code translate="no" dir="ltr">drawText</code>
+      ), transformation (
+      <code translate="no" dir="ltr">rotate</code>
+      ,
+      <code translate="no" dir="ltr">translate</code>
+      ,
+      <code translate="no" dir="ltr">scale</code>
+      ,
+      <code translate="no" dir="ltr">withTransform</code>
+      ,
+      <code translate="no" dir="ltr">RemoteDrawTransform</code>
+      ), and clipping (
+      <code translate="no" dir="ltr">clipRect</code>
+      ,
+      <code translate="no" dir="ltr">clipOutline</code>
+      ,
+      <code translate="no" dir="ltr">RemoteDrawTransform.clipOutline</code>
+      ) APIs. (
+      <a href="https://android-review.googlesource.com/#/q/I2c823e28095de0bf4c2bdc767ac9931cbf727744">I2c823</a>
+      )
+    </li>
+    <li>
+      Replaced
+      <code translate="no" dir="ltr">RemoteTextMeasurer.measure</code>
+      and
+      <code translate="no" dir="ltr">RemoteTextLayoutResult</code>
+      with
+      <code translate="no" dir="ltr">measureSingleLine</code>
+      (
+      <code translate="no" dir="ltr">RemoteSingleLineTextBounds</code>
+      ),
+      <code translate="no" dir="ltr">measureFontMetrics</code>
+      (
+      <code translate="no" dir="ltr">RemoteFontMetrics</code>
+      ),
+      <code translate="no" dir="ltr">measurePaintBounds</code>
+      (
+      <code translate="no" dir="ltr">RemotePaintBounds</code>
+      ), and
+      <code translate="no" dir="ltr">measureMonospaceWidth</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I9022f559f5ce86554a8a163d192390a9aabe074c">I9022f</a>
+      )
+    </li>
+    <li>
+      Replaced public
+      <code translate="no" dir="ltr">RemoteState</code>
+      and
+      <code translate="no" dir="ltr">MutableRemoteState</code>
+      constructors and
+      <code translate="no" dir="ltr">Companion.invoke</code>
+      factories with top-level factory functions (
+      <code translate="no" dir="ltr">RemoteFloat</code>
+      ,
+      <code translate="no" dir="ltr">MutableRemoteFloat</code>
+      ,
+      <code translate="no" dir="ltr">RemoteInt</code>
+      ,
+      <code translate="no" dir="ltr">MutableRemoteInt</code>
+      ,
+      <code translate="no" dir="ltr">RemoteLong</code>
+      ,
+      <code translate="no" dir="ltr">MutableRemoteLong</code>
+      ,
+      <code translate="no" dir="ltr">RemoteBoolean</code>
+      ,
+      <code translate="no" dir="ltr">MutableRemoteBoolean</code>
+      ,
+      <code translate="no" dir="ltr">RemoteString</code>
+      ,
+      <code translate="no" dir="ltr">MutableRemoteString</code>
+      ,
+      <code translate="no" dir="ltr">RemoteColor</code>
+      ,
+      <code translate="no" dir="ltr">RemoteDp</code>
+      ,
+      <code translate="no" dir="ltr">RemoteTextUnit</code>
+      ,
+      <code translate="no" dir="ltr">RemoteEnum</code>
+      ,
+      <code translate="no" dir="ltr">MutableRemoteEnum</code>
+      , and
+      <code translate="no" dir="ltr">RemoteImageBitmap</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/Iff2f6bb000e9fc37e58a9a6c6785ef44551e03bf">Iff2f6</a>
+      )
+    </li>
+    <li>
+      Added public
+      <code translate="no" dir="ltr">RemoteState.Domain(namespace: String?)</code>
+      constructor,
+      <code translate="no" dir="ltr">RemoteState.Domain.None</code>
+      , and
+      <code translate="no" dir="ltr">Domain.prefixed(name: String)</code>
+      to support custom and unprefixed named-state namespaces alongside
+      <code translate="no" dir="ltr">RemoteState.Domain.User</code>
+      and
+      <code translate="no" dir="ltr">RemoteState.Domain.System</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ibef7777b8626c8b50b5834015768c911cf9b4cfa">Ibef77</a>
+      )
+    </li>
+    <li>
+      Exposed
+      <code translate="no" dir="ltr">positionInParent</code>
+      and
+      <code translate="no" dir="ltr">positionInRoot</code>
+      (
+      <code translate="no" dir="ltr">RemoteOffset</code>
+      ) on
+      <code translate="no" dir="ltr">RemoteComponent</code>
+      , and moved
+      <code translate="no" dir="ltr">RemoteOffset</code>
+      to
+      <code translate="no" dir="ltr">:compose:remote:remote-creation-expression</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I6799839f82a4cef11822e38c29f6c6cdab520d53">I67998</a>
+      )
+    </li>
+    <li>
+      Promoted
+      <code translate="no" dir="ltr">RemoteTileMode</code>
+      and linear gradient shaders to public API. (
+      <a href="https://android-review.googlesource.com/#/q/I1464bfad7c5347444221b3c96fee6781cd093dde">I1464b</a>
+      )
+    </li>
+    <li>
+      Promoted
+      <code translate="no" dir="ltr">RemoteRole</code>
+      to public API and updated
+      <code translate="no" dir="ltr">RemoteModifier.clickable</code>
+      and
+      <code translate="no" dir="ltr">RemoteSemanticsPropertyReceiver.role</code>
+      to use
+      <code translate="no" dir="ltr">RemoteRole</code>
+      instead of
+      <code translate="no" dir="ltr">androidx.compose.ui.semantics.Role</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Iace421c125d8c36d4a3e98c876103fd8733afd3b">Iace42</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">RemoteFontVariation.weight</code>
+      ,
+      <code translate="no" dir="ltr">width</code>
+      ,
+      <code translate="no" dir="ltr">slant</code>
+      ,
+      <code translate="no" dir="ltr">opticalSizing</code>
+      , and
+      <code translate="no" dir="ltr">grade</code>
+      factory functions. (
+      <a href="https://android-review.googlesource.com/#/q/Ib8198ccad7ed49725513e9817068fe8373e36961">Ib8198</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">RemoteAction.None</code>
+      for representing a no-op
+      <code translate="no" dir="ltr">RemoteAction</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I18ce658478419fee307c82eed5647d8edba70429">I18ce6</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">RemoteComponent</code>
+      in
+      <code translate="no" dir="ltr">:compose:remote:remote-creation-expression</code>
+      along with
+      <code translate="no" dir="ltr">@Composable remoteComponent()</code>
+      and
+      <code translate="no" dir="ltr">RemoteStateScope.remoteComponent()</code>
+      in
+      <code translate="no" dir="ltr">:compose:remote:remote-creation-compose</code>
+      for dynamic component measurements, and replaced
+      <code translate="no" dir="ltr">RemoteFloatContext</code>
+      lambda overloads (
+      <code translate="no" dir="ltr">createNamedRemoteFloatExpression</code>
+      ,
+      <code translate="no" dir="ltr">MutableRemoteFloat</code>
+      , and
+      <code translate="no" dir="ltr">rememberNamedRemoteFloat</code>
+      ) with
+      <code translate="no" dir="ltr">RemoteFloat</code>
+      -accepting overloads. (
+      <a href="https://android-review.googlesource.com/#/q/Icb1c57b3b87702f5d9fcc57efbbf31c9e87b2655">Icb1c5</a>
+      )
+    </li>
+    <li>
+      Marked
+      <code translate="no" dir="ltr">remote-creation-compose</code>
+      composables and remote slot lambdas with
+      <code translate="no" dir="ltr">@RemoteComposable</code>
+      , added
+      <code translate="no" dir="ltr">@Immutable</code>
+      and
+      <code translate="no" dir="ltr">@Stable</code>
+      annotations to remote value, shape, alignment, arrangement, and style types, and added
+      <code translate="no" dir="ltr">@RemoteLayoutScopeMarker</code>
+      to
+      <code translate="no" dir="ltr">RemoteRowScope</code>
+      and
+      <code translate="no" dir="ltr">RemoteColumnScope</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2d4f01ee6c1130838a132f30d4afb63d13d7f23f">I2d4f0</a>
+      )
+    </li>
+    <li>
+      Restricted internal writer and core declarations (
+      <code translate="no" dir="ltr">RemotePath</code>
+      ,
+      <code translate="no" dir="ltr">RemoteDocument</code>
+      ,
+      <code translate="no" dir="ltr">RemoteWriterEvents.storePendingIntent</code>
+      ) from the public Remote Compose API surface and exposed
+      <code translate="no" dir="ltr">ExperimentalRemoteCreationComposeApi</code>
+      publicly. (
+      <a href="https://android-review.googlesource.com/#/q/I459cb6374a58b8f2a3d502782dd6925ee2fd899d">I459cb</a>
+      )
+    </li>
+    <li>
+      Renamed public types in
+      <code translate="no" dir="ltr">remote-creation-compose</code>
+      (
+      <code translate="no" dir="ltr">RemoteCapturedDocument</code>
+      ,
+      <code translate="no" dir="ltr">RemoteWriterEvents</code>
+      ,
+      <code translate="no" dir="ltr">RemoteGraphicsLayerScope</code>
+      ,
+      <code translate="no" dir="ltr">RemoteRenderEffect</code>
+      ,
+      <code translate="no" dir="ltr">RemoteBlurEffect</code>
+      ,
+      <code translate="no" dir="ltr">RemoteSemanticsProperties</code>
+      ,
+      <code translate="no" dir="ltr">RemoteSemanticsPropertyKey</code>
+      ,
+      <code translate="no" dir="ltr">RemoteSemanticsPropertyReceiver</code>
+      ) to include the
+      <code translate="no" dir="ltr">Remote</code>
+      prefix. (
+      <a href="https://android-review.googlesource.com/#/q/Ia257300b252b4bdd7f5558338f7bcd6af93bd01d">Ia2573</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">pendingIntentAction</code>
+      to
+      <code translate="no" dir="ltr">rememberPendingIntentAction</code>
+      (with dynamic String extras), the
+      <code translate="no" dir="ltr">@Composable</code>
+      <code translate="no" dir="ltr">createCreationDisplayInfo</code>
+      overload to
+      <code translate="no" dir="ltr">rememberRemoteCreationDisplayInfo</code>
+      ,
+      <code translate="no" dir="ltr">RemoteEasing.Cubic</code>
+      /
+      <code translate="no" dir="ltr">Spline</code>
+      to
+      <code translate="no" dir="ltr">cubic</code>
+      /
+      <code translate="no" dir="ltr">spline</code>
+      ,
+      <code translate="no" dir="ltr">valueChange</code>
+      to
+      <code translate="no" dir="ltr">valueChangeAction</code>
+      ,
+      <code translate="no" dir="ltr">createProfile</code>
+      to
+      <code translate="no" dir="ltr">Profile</code>
+      ,
+      <code translate="no" dir="ltr">RemoteColor</code>
+      <code translate="no" dir="ltr">tween</code>
+      to
+      <code translate="no" dir="ltr">lerp</code>
+      , and the
+      <code translate="no" dir="ltr">action</code>
+      parameter of
+      <code translate="no" dir="ltr">RemoteModifier.clickable</code>
+      to
+      <code translate="no" dir="ltr">onClick</code>
+      ; added
+      <code translate="no" dir="ltr">hostAction(id, metadata)</code>
+      and the
+      <code translate="no" dir="ltr">RemoteBoolean</code>
+      overload of
+      <code translate="no" dir="ltr">hostAction</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I16acd29b24229e42436dc8c3cb077bc6fedbcea4">I16acd</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Long press, double click and touch cancel handlers now receive coordinates adjusted for preceding padding modifiers, matching click and touch down/up/drag. (
+      <a href="https://android-review.googlesource.com/#/q/I1fe01a700af5c124c7d506035c096079980dea8b">I1fe01</a>
+      )
+    </li>
+  </ul>

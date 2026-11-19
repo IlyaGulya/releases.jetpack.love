@@ -1,0 +1,458 @@
+libraryId: compose-foundation
+groupId: androidx.compose
+version: 1.14.0-alpha01
+releaseDate: 2026-11-18
+#language=html
+changelogHtml: |
+  <h3 id="1.14.0-alpha01" data-text="Version 1.14.0-alpha01" tabindex="-1">Version 1.14.0-alpha01</h3>
+  <p>November 18, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.foundation:foundation-*:1.14.0-alpha01</code>
+    is released. Version 1.14.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/57354ca42849ed417dfe0f797132477674d917e0..e52b0d690e9eccefeca97fff5b1300a000aced46/compose/foundation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">ComposeFoundationFlags</code>
+      .
+      <code translate="no" dir="ltr">isLinkMinimumTouchTargetSizeZeroEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib9226fe57d9227eae9742443a0236792bce625ab">Ib9226</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/572883859">b/572883859</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ComposeFoundationFlags</code>
+      .
+      <code translate="no" dir="ltr">isLinkPerformanceOptimizationEnabled</code>
+      to control performance optimizations for
+      <code translate="no" dir="ltr">LinkAnnotation</code>
+      in
+      <code translate="no" dir="ltr">BasicText</code>
+      . The flag is off by default. (
+      <a href="https://android-review.googlesource.com/#/q/I8ac26ae4cb5e2922ade25b6d1e83cc7d5fd54400">I8ac26</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/572883859">b/572883859</a>
+      )
+    </li>
+    <li>
+      Added new overloads of
+      <code translate="no" dir="ltr">BasicText</code>
+      that accept a
+      <code translate="no" dir="ltr">styleProvider</code>
+      (
+      <code translate="no" dir="ltr">TextStyleScope.() -&gt; Unit</code>
+      ) lambda for dynamic styling, allowing dynamic style attributes to skip recomposition. (
+      <a href="https://android-review.googlesource.com/#/q/I88e20b4fcd2e7ac9b12dc9d1c0dc57da41a270c7">I88e20</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">ComposeFoundationFlags</code>
+      .
+      <code translate="no" dir="ltr">isLinkMinimumTouchTargetSizeZeroEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I046d5ba2cce23bc494c3dc834864dd7848d69ee5">I046d5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/572883859">b/572883859</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ComposeFoundationFlags</code>
+      .
+      <code translate="no" dir="ltr">isLinkPerformanceOptimizationEnabled</code>
+      to control performance optimizations for
+      <code translate="no" dir="ltr">LinkAnnotation</code>
+      in
+      <code translate="no" dir="ltr">BasicText</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I64a0fb97dc9cfe6eb5f064b1e02f817bc0cf54d9">I64a0f</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/572883859">b/572883859</a>
+      )
+    </li>
+    <li>
+      Added an
+      <code translate="no" dir="ltr">onTextChanged</code>
+      callback to
+      <code translate="no" dir="ltr">TextFieldState</code>
+      and
+      <code translate="no" dir="ltr">rememberTextFieldState</code>
+      . It is called with the new text after each change to the text. (
+      <a href="https://android-review.googlesource.com/#/q/Iaabf5e289f2285579ed99518cfae0cb33fd38052">Iaabf5</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/552879150">b/552879150</a>
+      )
+    </li>
+    <li>
+      Removed the feature flag ComposeFoundationFlags.isAbsorbNonGestureNestedScrollInPagerFixEnabled (
+      <a href="https://android-review.googlesource.com/#/q/I0a387c8fac3d23e31b1e4b1a896f121404fa3560">I0a387</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Modifier.border</code>
+      uses a more efficient implementation for rendering generic shapes (such as polygon shapes) on API 28 and above. This causes minor antialiasing differences that may require updating screenshot tests. To temporarily disable this, use
+      <code translate="no" dir="ltr">ComposeFoundationFlags.isBorderUsesGraphicsLayerForGenericShapesEnabled</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I3b917106c9b3c22ba301d424f5ae52100b2c0b37">I3b917</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">rememberStyleResolver()</code>
+      that should be used instead of remembering a
+      <code translate="no" dir="ltr">StyleResolver()</code>
+      instance directy to ensure that the same style resolver is used even if the
+      <code translate="no" dir="ltr">style</code>
+      and
+      <code translate="no" dir="ltr">styleState</code>
+      used are modified. This prevents animations from being cancel because style style lambda instance was replaced. (
+      <a href="https://android-review.googlesource.com/#/q/I946b0cc9808f6b856205bef4d49dc5413f19c243">I946b0</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">TextContextMenuKeys.LookUpKey</code>
+      to support the new 'Look Up' context menu item. (
+      <a href="https://android-review.googlesource.com/#/q/I088cab796806c6111947640f4a6aa04c544d5d50">I088ca</a>
+      )
+    </li>
+    <li>
+      Added DrawAnnotation for custom drawing behind and over AnnotatedString text ranges. (
+      <a href="https://android-review.googlesource.com/#/q/I928bf58ab12f97733047a645a37dca49a6d8406a">I928bf</a>
+      )
+    </li>
+    <li>
+      Exposed
+      <code translate="no" dir="ltr">crossAxisCellCount</code>
+      on
+      <code translate="no" dir="ltr">LazyGridItemScope</code>
+      to provide the number of cross-axis cells (columns in vertical grids or rows in horizontal grids) to item content. (
+      <a href="https://android-review.googlesource.com/#/q/I89f78f74449899e1c0554b9a4da1ef52288a95a3">I89f78</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/183187002">b/183187002</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">styleable()</code>
+      modifier API has been replaced by the
+      <code translate="no" dir="ltr">styleResolver</code>
+      modifier based API. All
+      <code translate="no" dir="ltr">styleable()</code>
+      modifiers and associated types (such as
+      <code translate="no" dir="ltr">Style</code>
+      and
+      <code translate="no" dir="ltr">StyleScope</code>
+      ) have been deprecated. (
+      <a href="https://android-review.googlesource.com/#/q/I546777a2b5e5422a9a09309d6f3abb2834b1c83a">I54677</a>
+      )
+    </li>
+    <li>
+      Fixed an issue in BasicSecureTextField where multi-codepoint emojis in the input text were obfuscated or revealed as multiple characters instead of a single glyph. (
+      <a href="https://android-review.googlesource.com/#/q/I91e446dbe9823aa9ee2860a95826b5fa666447b0">I91e44</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">multiTouchSwipeWithVelocity</code>
+      to
+      <code translate="no" dir="ltr">TouchInjectionScope</code>
+      to allow testing multi-touch gestures with a specific end velocity. (
+      <a href="https://android-review.googlesource.com/#/q/If096688b6c40a84ea203dff6e0ef94dca951f2a4">If0966</a>
+      )
+    </li>
+    <li>
+      Adds
+      <code translate="no" dir="ltr">BorderRenderer</code>
+      , an API that enables drawing borders identical to Modifier.border within any draw scope, such as within a
+      <code translate="no" dir="ltr">DrawModifierNode</code>
+      . This enables advanced border rendering and efficient animations alongside other drawing operations / transformations. See the samples for more information. (
+      <a href="https://android-review.googlesource.com/#/q/I2d2591d1d65b0d55a139bd7dfc681a6f73059d8b">I2d259</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/548628030">b/548628030</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Modifier.border</code>
+      now consistently uses the outline size when rendering borders. Use
+      <code translate="no" dir="ltr">ComposeFoundationFlags.isBorderMatchesOutlineBoundsFixEnabled</code>
+      to temporarily disable this if it causes issues. (
+      <a href="https://android-review.googlesource.com/#/q/I3e171be3f77c0b9794ad70de9d7be36a2adcf20c">I3e171</a>
+      )
+    </li>
+    <li>
+      Removes experimental feature flag
+      <code translate="no" dir="ltr">ComposeUiFlags.isTrackpadPanHoverFixEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3aa5bdbf6f905a25c74a4de9ba781d4291f063ce">I3aa5b</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ComposeFoundationFlags.isNewBorderImplementationEnabled</code>
+      - this flag will be used to disable the new border rendering implementation inside
+      <code translate="no" dir="ltr">Modifier.border</code>
+      . If you run into issues and need to disable this flag, please file a bug. (
+      <a href="https://android-review.googlesource.com/#/q/I98e902ad4102268ec400f3b7ff0dcc0e07c8cce5">I98e90</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">isLazyLayoutItemAnimationEnterExitTransitionsEnabled</code>
+      compose flag. When enabled, lazy layout item animations use a state-based enter and exit transition model instead of boolean-based fade tracking. (
+      <a href="https://android-review.googlesource.com/#/q/Ibde5d4c76a02189af19ec4816b356793d492d151">Ibde5d</a>
+      )
+    </li>
+    <li>
+      Removed
+      <code translate="no" dir="ltr">AndroidComposeFoundationFlags.isOverscrollPixelRoundingEnabled</code>
+      flag (
+      <a href="https://android-review.googlesource.com/#/q/I0e3e060b58a1aab5addb51b8ebbd361022d1ee62">I0e3e0</a>
+      )
+    </li>
+    <li>
+      Fixes an edge case bug with rendering certain rounded rectangle outlines in
+      <code translate="no" dir="ltr">Modifier.border</code>
+      .
+      <code translate="no" dir="ltr">ComposeFoundationFlags.isRoundedRectangleBorderRenderingFixEnabled</code>
+      can be used to disable this change if it causes issues. (
+      <a href="https://android-review.googlesource.com/#/q/I191415aaa3e9b2a7816c14b7ebd0fc1ed0a90931">I19141</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Improved composition and node overhead of
+      <code translate="no" dir="ltr">LinkAnnotation</code>
+      in
+      <code translate="no" dir="ltr">BasicText</code>
+      by consolidating per-link modifiers into a single
+      <code translate="no" dir="ltr">TextLinkNode</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I1e93b823f031835b7d7416de6d8ef9277758b0d4">I1e93b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/572883859">b/572883859</a>
+      )
+    </li>
+    <li>
+      Improved composition performance of
+      <code translate="no" dir="ltr">LinkAnnotation</code>
+      in
+      <code translate="no" dir="ltr">BasicText</code>
+      by avoiding unnecessary coroutine and
+      <code translate="no" dir="ltr">MutableInteractionSource</code>
+      allocations when stateful link styles are not used. (
+      <a href="https://android-review.googlesource.com/#/q/Ib036de61f9fd0ea568d988c439958363cc3fb8cb">Ib036d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/572883859">b/572883859</a>
+      )
+    </li>
+    <li>
+      Fixed a bug where simultaneous stateful styles on multiple
+      <code translate="no" dir="ltr">LinkAnnotations</code>
+      in
+      <code translate="no" dir="ltr">BasicText</code>
+      overwrote each other, and improved styling performance from O(N^2) to O(N). (
+      <a href="https://android-review.googlesource.com/#/q/I07a27f69d8a83f9553bebadd24f436d0554ac28d">I07a27</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/572883859">b/572883859</a>
+      )
+    </li>
+    <li>
+      Improved drawing and hit-testing performance of single-line
+      <code translate="no" dir="ltr">LinkAnnotations</code>
+      in
+      <code translate="no" dir="ltr">BasicText</code>
+      by bypassing unnecessary path clipping. (
+      <a href="https://android-review.googlesource.com/#/q/I70379c8cee9631d85958c446dd484d6bab607900">I70379</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/572883859">b/572883859</a>
+      )
+    </li>
+    <li>
+      Improved measurement performance of single-line
+      <code translate="no" dir="ltr">LinkAnnotations</code>
+      in
+      <code translate="no" dir="ltr">BasicText</code>
+      by avoiding
+      <code translate="no" dir="ltr">Path</code>
+      allocations. (
+      <a href="https://android-review.googlesource.com/#/q/I9ec65f56099959325769604ce2f882792f06552f">I9ec65</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/572883859">b/572883859</a>
+      )
+    </li>
+    <li>
+      Fixed a crash in Robolectric tests when a text field shows its magnifier, e.g. after two quick clicks on it. (
+      <a href="https://android-review.googlesource.com/#/q/I650957b2bd563d5212591633464224b2891c3e1f">I65095</a>
+      )
+    </li>
+    <li>
+      Improved composition performance of
+      <code translate="no" dir="ltr">LinkAnnotation</code>
+      in
+      <code translate="no" dir="ltr">BasicText</code>
+      by avoiding unnecessary coroutine and
+      <code translate="no" dir="ltr">MutableInteractionSource</code>
+      allocations when stateful link styles are not used. (
+      <a href="https://android-review.googlesource.com/#/q/Ia784dbe8324f8e31442116ebfa4c46bdc455924b">Ia784d</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/572883859">b/572883859</a>
+      )
+    </li>
+    <li>
+      Fixed a bug where simultaneous stateful styles on multiple
+      <code translate="no" dir="ltr">LinkAnnotations</code>
+      in
+      <code translate="no" dir="ltr">BasicText</code>
+      overwrote each other, and improved styling performance from O(N^2) to O(N). (
+      <a href="https://android-review.googlesource.com/#/q/I4f28efc4b47833fc21325618948d2cfc07aa179d">I4f28e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/572883859">b/572883859</a>
+      )
+    </li>
+    <li>
+      Improved drawing and hit-testing performance of single-line
+      <code translate="no" dir="ltr">LinkAnnotations</code>
+      in
+      <code translate="no" dir="ltr">BasicText</code>
+      by bypassing unnecessary path clipping. (
+      <a href="https://android-review.googlesource.com/#/q/Ib7f636fab1fb63c3e508005d44252cb30115f217">Ib7f63</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/572883859">b/572883859</a>
+      )
+    </li>
+    <li>
+      Improved measurement performance of single-line
+      <code translate="no" dir="ltr">LinkAnnotations</code>
+      in
+      <code translate="no" dir="ltr">BasicText</code>
+      by avoiding
+      <code translate="no" dir="ltr">Path</code>
+      allocations. (
+      <a href="https://android-review.googlesource.com/#/q/I4312cebc6be6df4b0bac31b2ec52b672b3108ea5">I4312c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/572883859">b/572883859</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where active but stationary trackpad gestures could cause unnecessary frame requests (high CPU usage). (
+      <a href="https://android-review.googlesource.com/#/q/I1e879638c1f5e4ef6f03b50d3109eb3b31fb5da3">I1e879</a>
+      )
+    </li>
+    <li>
+      Updated accessibility node text and text layout results to reflect active text translations (
+      <code translate="no" dir="ltr">SemanticsProperties.TextSubstitution</code>
+      ) when
+      <code translate="no" dir="ltr">SemanticsProperties.IsShowingTextSubstitution</code>
+      is true. (
+      <a href="https://android-review.googlesource.com/#/q/I006ef0649292690cf122122966b33dce862e6895">I006ef</a>
+      )
+    </li>
+    <li>
+      Fixed an issue in
+      <code translate="no" dir="ltr">LazyGrid</code>
+      where changing item spans dynamically via state could cause an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      or item placement errors. (
+      <a href="https://android-review.googlesource.com/#/q/I680b95a22b76a79afd174b90f1d439187a062f96">I680b9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/398125797">b/398125797</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where changing only
+      <code translate="no" dir="ltr">isNonScrollCachingEnabled</code>
+      on a
+      <code translate="no" dir="ltr">LazyLayoutCacheWindow</code>
+      had no effect because the windows were considered equal. (
+      <a href="https://android-review.googlesource.com/#/q/I16d5710dc73edb5ac6490fda9774c86c65a73b96">I16d57</a>
+      )
+    </li>
+    <li>
+      Fixed long screenshots that show content twice when a scrolling node sits inside
+      <code translate="no" dir="ltr">pullRefresh</code>
+      or a nested scroll parent. (
+      <a href="https://android-review.googlesource.com/#/q/I2500f41f08a499080c3de037de177f80a15ef398">I2500f</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">Modifier.animateItem()</code>
+      animating items off screen when a lazy layout with
+      <code translate="no" dir="ltr">reverseLayout = true</code>
+      is resized. (
+      <a href="https://android-review.googlesource.com/#/q/I68af6a7ee4804ed8f595ee45b7352c2a5318828a">I68af6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/548989579">b/548989579</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">GridTrackSize.Flex</code>
+      and
+      <code translate="no" dir="ltr">GridTrackSize.MinMax</code>
+      now throw
+      <code translate="no" dir="ltr">IllegalArgumentException</code>
+      when given a non-finite
+      <code translate="no" dir="ltr">Fr</code>
+      weight. (
+      <a href="https://android-review.googlesource.com/#/q/I70728a3fb646a67b08d349ce9dcd98f6f0e71b76">I70728</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Modifier.border</code>
+      now supports rendering generic / polygon shapes with a runtime shader, when using the new border implementation. (
+      <a href="https://android-review.googlesource.com/#/q/I128cacfaad9825dcef47d479d71291357fe48463">I128ca</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Modifier.border</code>
+      now uses a new more performant implementation. You can disable this using
+      <code translate="no" dir="ltr">ComposeFoundationFlags.isNewBorderImplementationEnabled</code>
+      . If you run into issues and need to disable this flag, please file a bug. (
+      <a href="https://android-review.googlesource.com/#/q/I4c3b326711b5af04e94222d9564491b6d48b71f0">I4c3b3</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Fixed bring-into-view scroll animations that never finished when the
+      <code translate="no" dir="ltr">BringIntoViewSpec</code>
+      target fell between pixels, such as when focusing a text field in a scrollable container on Android TV. (
+      <a href="https://android-review.googlesource.com/#/q/Ida7b908c4087b6a0e8fa1c061ae5f6418ae16e50">Ida7b9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/568935367">b/568935367</a>
+      )
+    </li>
+    <li>
+      Fixed the text selection toolbar remaining visible when the selection no longer has a valid content area. (
+      <a href="https://android-review.googlesource.com/#/q/I9256310717f43b25404542d27ec53051f3a2e238">I92563</a>
+      )
+    </li>
+    <li>
+      Allow reversed (end &lt; start) selection when made via a mouse gesture in a
+      <code translate="no" dir="ltr">TextField(TextFieldState)</code>
+      . Previously it would be automatically made "normal" (start &lt; end). (
+      <a href="https://android-review.googlesource.com/#/q/I4255958976f8dd18efc58792878e83394703de11">I42559</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">AndroidExternalSurface</code>
+      callbacks after reuse in reusable content. (
+      <a href="https://android-review.googlesource.com/#/q/I8b56cd99738598d74b6b4252321bf5bb52857334">I8b56c</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/554586999">b/554586999</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_113_2" data-text="Version 1.13" tabindex="-1">Version 1.13</h2>
