@@ -1,0 +1,169 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.14.0-alpha01
+releaseDate: 2026-11-18
+#language=html
+changelogHtml: |
+  <h3 id="1.14.0-alpha01" data-text="Version 1.14.0-alpha01" tabindex="-1">Version 1.14.0-alpha01</h3>
+  <p>November 18, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.14.0-alpha01</code>
+    is released. Version 1.14.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/57354ca42849ed417dfe0f797132477674d917e0..f8bc04d89fbf9be20610063e98600e551a335460/compose/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Parent snapshots are now advanced when a nested snapshot is taken. When snapshot writes are made to the same state object in both snapshots, the parent snapshot's writes will now appear to be after writes in the child, and will appear in the final snapshot when applied. This behavior can be disabled via the flag
+      <code translate="no" dir="ltr">ComposeRuntimeFlags.advanceParentSnapshotsWhenTakingNestedSnapshot</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3026357be45a534eece7f127f27e5bb40791ba11">I30263</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/573222121">b/573222121</a>
+      )
+    </li>
+    <li>
+      Added the
+      <code translate="no" dir="ltr">Snapshot.readOnly { }</code>
+      API (
+      <a href="https://android-review.googlesource.com/#/q/I5feef4a15860aa3ae64cbab5bb86459f136c7244">I5feef</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">MutableVector</code>
+      and
+      <code translate="no" dir="ltr">mutableVectorOf</code>
+      are deprecated. Use
+      <code translate="no" dir="ltr">androidx.collection.MutableObjectList</code>
+      and
+      <code translate="no" dir="ltr">mutableObjectListOf</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/If0dd84fb93c0890a069637cfc7963d0e06695a4a">If0dd8</a>
+      )
+    </li>
+    <li>
+      Removed the
+      <code translate="no" dir="ltr">watchosArm32</code>
+      target, which Kotlin 2.5 no longer supports. (
+      <a href="https://android-review.googlesource.com/#/q/Ic048d3ac5dc60b7e62f0d1d7f683431f67f6209f">Ic048d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">SnapshotStateObserver</code>
+      still notifying a cleared scope when its first observation nested an observation of the same scope. (
+      <a href="https://android-review.googlesource.com/#/q/Ie778952c4df403e02aaa35a21d6af88b404df5ea">Ie7789</a>
+      )
+    </li>
+    <li>
+      Fixed an issue in the
+      <code translate="no" dir="ltr">GapComposer</code>
+      and
+      <code translate="no" dir="ltr">LinkComposer</code>
+      that could cause a crash when nodes are modified around the end of an inlined node's group boundary (
+      <a href="https://android-review.googlesource.com/#/q/I173fe4b981d5b9a863e61b6b7cdb433ddfe41ece">I173fe</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/569219194">b/569219194</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where a
+      <code translate="no" dir="ltr">CompositionLocal</code>
+      could be read incorrectly if placed after a
+      <code translate="no" dir="ltr">MovableContent</code>
+      instance that is removed from composition. (
+      <a href="https://android-review.googlesource.com/#/q/I8100a4f2d0c316865416b3d7b08284483e8eea3b">I8100a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/574059467">b/574059467</a>
+      )
+    </li>
+    <li>
+      Fixed an issue in the
+      <code translate="no" dir="ltr">LinkTable</code>
+      that could recompose content out of order when keyed items are inserted and removed in the same frame (
+      <a href="https://android-review.googlesource.com/#/q/I4acc75eea51822e0cf09e3cf4b26a89ae7c6957e">I4acc7</a>
+      )
+    </li>
+    <li>
+      Updated androidx.tracing:tracing-wire dependency to 2.0.5. (
+      <a href="https://android-review.googlesource.com/#/q/I70e9fe15d6f913d55b01a81391f9afeb83cd19e8">I70e9f</a>
+      )
+    </li>
+    <li>
+      Documented that
+      <code translate="no" dir="ltr">scheduleFrameEndCallback</code>
+      throws
+      <code translate="no" dir="ltr">CancellationException</code>
+      when the
+      <code translate="no" dir="ltr">Recomposer</code>
+      shuts down. (
+      <a href="https://android-review.googlesource.com/#/q/Iae38af74e4491bbc272cbac1b9c058975c7d39a9">Iae38a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/568852322">b/568852322</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where disposing a parent
+      <code translate="no" dir="ltr">MutableSnapshot</code>
+      while a nested snapshot remained active could prematurely unpin state records and cause subsequent reads of modified states to throw an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/If28878cf5b0fb58c8682269440c21741233434c6">If2887</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/573733481">b/573733481</a>
+      )
+    </li>
+    <li>
+      Fixed a race condition in
+      <code translate="no" dir="ltr">derivedStateOf</code>
+      where concurrent state updates could cause reading a derived state to throw a spurious
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I3861b7bd554c2f41e3c34f93636adbc15db19691">I3861b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/574107950">b/574107950</a>
+      )
+    </li>
+    <li>
+      Fixed a memory leak in
+      <code translate="no" dir="ltr">LinkComposer</code>
+      where skipped conditional invalidations and invalidated scopes removed by ancestor recomposition were retained in the composer's invalidations map. (
+      <a href="https://android-review.googlesource.com/#/q/Idffd047b535a1db8a97d369729f1462f6c16391c">Idffd0</a>
+      )
+    </li>
+    <li>
+      Fixed a bug where applying a
+      <code translate="no" dir="ltr">NestedMutableSnapshot</code>
+      with merged state records could leak an open snapshot ID and read unmerged state in the parent snapshot. (
+      <a href="https://android-review.googlesource.com/#/q/I544a701880dd1a935ee26d5cdc9aeb005c0b5026">I544a7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/570652672">b/570652672</a>
+      )
+    </li>
+    <li>
+      Fixed a bug in
+      <code translate="no" dir="ltr">SnapshotIdSet.andNot</code>
+      where sets sharing a
+      <code translate="no" dir="ltr">belowBound</code>
+      array retained cleared snapshot IDs. (
+      <a href="https://android-review.googlesource.com/#/q/Ie881ec3bf37861980bf8a2a38afdc91a5fe374e5">Ie881e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/570534659">b/570534659</a>
+      )
+    </li>
+  </ul>
+  <p><strong>External Contribution</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where a state change applied while a
+      <code translate="no" dir="ltr">PausedComposition</code>
+      was composing its initial content on another thread was not reflected when the composition was applied. (
+      <a href="https://android-review.googlesource.com/#/q/I5261825045021dda3ae75956d6acedafa859da48">I52618</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_113_2" data-text="Version 1.13" tabindex="-1">Version 1.13</h2>

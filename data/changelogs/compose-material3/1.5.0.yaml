@@ -1,0 +1,792 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.5.0
+releaseDate: 2026-11-18
+#language=html
+changelogHtml: |
+  <h3 id="1.5.0" data-text="Version 1.5.0" tabindex="-1">Version 1.5.0</h3>
+  <p>Nov 18 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.5.0</code>
+    is released. Version 1.5.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5113b82a4ed6416d6344efa50e41db8cb65928ff..919e948eaa351c590e7e6fc89d4014fad7a6e78c/compose/material3">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.4.0:</strong></p>
+  <p><strong>Library change announcements</strong></p>
+  <ul>
+    <li>
+      <strong>
+        New
+        <code translate="no" dir="ltr">material3-ripple</code>
+        artifact and Inset Focus Rings
+      </strong>
+      : Added the dedicated
+      <code translate="no" dir="ltr">androidx.compose.material3:material3-ripple</code>
+      artifact as a modern replacement for
+      <code translate="no" dir="ltr">material-ripple</code>
+      (
+      <a href="https://android-review.googlesource.com/q/I1b3a3e310538661ae4f1bc36bcbd6dd88f044f28">I1b3a3</a>
+      ).
+    </li>
+  </ul>
+  <p>
+    This library adds support for rendering focus states using visual inset focus rings instead of opacity layers. Within
+    <code translate="no" dir="ltr">material3</code>
+    , this integrates seamlessly via
+    <code translate="no" dir="ltr">LocalRippleThemeConfiguration</code>
+    (
+    <a href="https://android-review.googlesource.com/#/q/I0551ae78abc7faae4afcf3e9ccfbff622b015bd9">I0551a</a>
+    ). Standalone design systems can also depend directly on
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-ripple</code>
+    .
+  </p>
+  <p><strong>Behavior Changes</strong></p>
+  <ul>
+    <li>
+      <p>
+        <strong>
+          <code translate="no" dir="ltr">Slider</code>
+          and
+          <code translate="no" dir="ltr">RangeSlider</code>
+          stateful migration &amp; source-breaking parameter change
+        </strong>
+        :
+      </p>
+
+      <ul>
+        <li>
+          Stateless overloads of
+          <code translate="no" dir="ltr">Slider</code>
+          and
+          <code translate="no" dir="ltr">RangeSlider</code>
+          are deprecated in favor of stateful overloads taking
+          <code translate="no" dir="ltr">SliderState</code>
+          and
+          <code translate="no" dir="ltr">RangeSliderState</code>
+          (
+          <a href="https://android-review.googlesource.com/#/q/If8995438653fe44d5d108787e920c7fe06f6ff69">If8995</a>
+          ).
+        </li>
+        <li>
+          <strong>Source breaking change</strong>
+          :
+          <code translate="no" dir="ltr">onValueChange</code>
+          is now a required parameter, and its position in the parameter list has changed.
+          <code translate="no" dir="ltr">Slider</code>
+          and
+          <code translate="no" dir="ltr">RangeSlider</code>
+          now handle
+          <code translate="no" dir="ltr">onValueChange</code>
+          and
+          <code translate="no" dir="ltr">onValueChangeFinished</code>
+          directly in the composable layer rather than passing them through
+          <code translate="no" dir="ltr">SliderState</code>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I959ac9a6e2adbf55969b16c9dbe75e92faa1c7ad">I959ac</a>
+          ).
+        </li>
+        <li>
+          In
+          <code translate="no" dir="ltr">RangeSliderState</code>
+          ,
+          <code translate="no" dir="ltr">activeRangeStart</code>
+          and
+          <code translate="no" dir="ltr">activeRangeEnd</code>
+          have been renamed to
+          <code translate="no" dir="ltr">startValue</code>
+          and
+          <code translate="no" dir="ltr">endValue</code>
+          (
+          <a href="https://android-review.googlesource.com/#/q/If8995438653fe44d5d108787e920c7fe06f6ff69">If8995</a>
+          ).
+        </li>
+      </ul>
+
+      <p><em>Migration Example:</em></p>
+      <div></div>
+      <devsite-code>
+        <pre class="devsite-click-to-copy" translate="no" dir="ltr" is-upgraded="" syntax="Kotlin"><code translate="no" dir="ltr"><span class="devsite-syntax-c1">// Before (Stateless)</span>
+  <span class="devsite-syntax-kd">var</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">value</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">by</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">remember</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">mutableFloatStateOf</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-m">0.5f</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-n">Slider</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">value</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">value</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">onValueChange</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">value</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nb">it</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">})</span>
+
+  <span class="devsite-syntax-c1">// After (Stateful)</span>
+  <span class="devsite-syntax-kd">val</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-nv">state</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">remember</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">SliderState</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">value</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-m">0.5f</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+  <span class="devsite-syntax-n">Slider</span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">state</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">state</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">onValueChange</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">=</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-cm">/* optional side effects */</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">})</span>
+  </code></pre>
+      </devsite-code>
+    </li>
+    <li>
+      <p>
+        <strong>
+          <code translate="no" dir="ltr">SecureTextField</code>
+          Default Obfuscation Mode
+        </strong>
+        : Updated
+        <code translate="no" dir="ltr">SecureTextField</code>
+        and
+        <code translate="no" dir="ltr">OutlinedSecureTextField</code>
+        to default to
+        <code translate="no" dir="ltr">TextObfuscationMode.System</code>
+        rather than
+        <code translate="no" dir="ltr">TextObfuscationMode.RevealLastTyped</code>
+        (
+        <a href="https://android-review.googlesource.com/#/q/I76c7ee604ecea755df3c91dfa281778532338f4d">I76c7e</a>
+        ).
+      </p>
+    </li>
+    <li>
+      <p>
+        <strong>
+          <code translate="no" dir="ltr">BottomSheet</code>
+          Deterministic Anchor Resolution
+        </strong>
+        :
+        <code translate="no" dir="ltr">ModalBottomSheet</code>
+        and
+        <code translate="no" dir="ltr">BottomSheetScaffold</code>
+        no longer automatically remove the
+        <code translate="no" dir="ltr">PartiallyExpanded</code>
+        anchor based on layout height heuristics (
+        <a href="https://android-review.googlesource.com/#/q/Ia416719592d05f705e67eb7351a70d1aaf335363">Ia4167</a>
+        . Developers explicitly control anchors via
+        <code translate="no" dir="ltr">rememberBottomSheetState</code>
+        . Sheets also now respect
+        <code translate="no" dir="ltr">MaterialTheme.motionScheme</code>
+        during nested scrolling and dragging (
+        <a href="https://android-review.googlesource.com/#/q/I5fe22dfd62c7fe144d0f68b3d528facdddc72d6c">I5fe22</a>
+        ).
+      </p>
+    </li>
+    <li>
+      <p>
+        <strong>Navigation Item High-Contrast Label Color</strong>
+        : Horizontal
+        <code translate="no" dir="ltr">NavigationItem</code>
+        labels (e.g. in
+        <code translate="no" dir="ltr">WideNavigationRail</code>
+        ) now calculate color via
+        <code translate="no" dir="ltr">selectedTextColorStartIconPosition</code>
+        to match
+        <code translate="no" dir="ltr">selectedIconColor</code>
+        under high-contrast themes (
+        <a href="https://android-review.googlesource.com/#/q/I858557f11ab08313701b24d3eb36ad4e82aa9d6d">I85855</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/490910896">b/490910896</a>
+        ). To revert, set
+        <code translate="no" dir="ltr">selectedTextColorStartIconPosition = MaterialTheme.colorScheme.secondary</code>
+        .
+      </p>
+    </li>
+    <li>
+      <p>
+        <strong>Checkbox Sizing &amp; Alignment</strong>
+        : Checkbox box size and indicator marks have been recalibrated to strictly align with the Material 3 specification (
+        <a href="https://android-review.googlesource.com/#/q/I97baff4d10013601d267c97104516b2c347be1e7">I97baf</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/457504316">b/457504316</a>
+        ). Flag
+        <code translate="no" dir="ltr">ComposeMaterial3Flags.isCheckboxStylingFixEnabled</code>
+        is provided to assist testing and rollout.
+      </p>
+    </li>
+    <li>
+      <p>
+        <strong>
+          <code translate="no" dir="ltr">TopAppBarDefaults</code>
+          Scroll Behaviors
+        </strong>
+        :
+        <code translate="no" dir="ltr">pinnedScrollBehavior</code>
+        and
+        <code translate="no" dir="ltr">enterAlwaysScrollBehavior</code>
+        overloads now take
+        <code translate="no" dir="ltr">ScrollableState</code>
+        (
+        <code translate="no" dir="ltr">LazyListState</code>
+        ,
+        <code translate="no" dir="ltr">ScrollState</code>
+        ) to resolve reversed layout directions and initially scrolled offsets (
+        <a href="https://android-review.googlesource.com/#/q/Idef9d20d5c9fd92e61d6d4bd27b717ea601ea93a">Idef9d</a>
+        ,
+        <a href="https://android-review.googlesource.com/#/q/I9d5c2261d6b2881eb2c897751a1f608816ba5bcc">I9d5c2</a>
+        ). Parameter
+        <code translate="no" dir="ltr">isAtTop</code>
+        is renamed to
+        <code translate="no" dir="ltr">isAtStart</code>
+        (
+        <a href="https://android-review.googlesource.com/#/q/If7323dd80acd06912f56bef5c4e69e7f690be342">If7323</a>
+        ).
+      </p>
+    </li>
+    <li>
+      <p>
+        <strong>Single Theme Composition Local</strong>
+        :
+        <code translate="no" dir="ltr">MaterialTheme</code>
+        was refactored internally to consolidate theme values into a single composition local (
+        <code translate="no" dir="ltr">MaterialTheme.LocalMaterialTheme.current</code>
+        ) (
+        <a href="https://android-review.googlesource.com/#/q/Idee2e8c3dcc0db95341a59c50a58b6718a4d5b93">Idee2e</a>
+        ). Deprecated
+        <code translate="no" dir="ltr">LocalMotionScheme</code>
+        in favor of
+        <code translate="no" dir="ltr">MaterialTheme.motionScheme</code>
+        (
+        <a href="https://android-review.googlesource.com/#/q/I4b61dd15fae45469a3cb9b0ee25b1448d66dd525">I4b61d</a>
+        ).
+      </p>
+    </li>
+  </ul>
+  <p><strong>New Material Design 3 Components</strong></p>
+  <ul>
+    <li>
+      <strong>Expressive Buttons &amp; Button Groups</strong>
+      :
+      <ul>
+        <li>
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ToggleButton.composable"><code translate="no" dir="ltr">ToggleButton</code></a>
+          ,
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ElevatedToggleButton.composable"><code translate="no" dir="ltr">ElevatedToggleButton</code></a>
+          ,
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/FilledTonalToggleButton.composable"><code translate="no" dir="ltr">FilledTonalToggleButton</code></a>
+          , and
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/OutlinedToggleButton.composable"><code translate="no" dir="ltr">OutlinedToggleButton</code></a>
+          : Toggle buttons featuring expressive shape morphing,
+          <code translate="no" dir="ltr">ButtonSize</code>
+          , and icon slots (
+          <a href="https://android-review.googlesource.com/#/q/Iab484ab734ad5fedd308c54fcfbe9ddf37d0b391">Iab484</a>
+          ).
+        </li>
+        <li>
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/SplitButton.composable"><code translate="no" dir="ltr">SplitButton</code></a>
+          : Expressive split button combining a primary action button and a trailing menu/dropdown trigger, replacing
+          <code translate="no" dir="ltr">SplitButtonLayout</code>
+          (
+          <a href="https://android-review.googlesource.com/#/q/Ic984059c127afda448f3981ebb56471f409456f8">Ic9840</a>
+          ).
+        </li>
+        <li>
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ButtonGroup.composable"><code translate="no" dir="ltr">ButtonGroup</code></a>
+          : Container for grouped buttons supporting adaptive width squishing via
+          <code translate="no" dir="ltr">Modifier.animateWidth(compressionLimit = ...)</code>
+          and overflow indicators (
+          <a href="https://android-review.googlesource.com/#/q/I8ef3946c7a7e41b6bb6540290c8475720fcbb665">I8ef39</a>
+          ,
+          <a href="https://android-review.googlesource.com/#/q/I6e67c1d0238c065a62bb8be6d2c82f4618832a5a">I6e67c</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Expressive Text Fields</strong>
+      :
+      <ul>
+        <li>
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/TextField.composable"><code translate="no" dir="ltr">TextField</code></a>
+          and
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/OutlinedTextField.composable"><code translate="no" dir="ltr">OutlinedTextField</code></a>
+          expressive styling options featuring
+          <code translate="no" dir="ltr">TextFieldDefaults.roundedShape</code>
+          ,
+          <code translate="no" dir="ltr">tonalColors()</code>
+          , and
+          <code translate="no" dir="ltr">TextFieldLabelPosition.Inside</code>
+          /
+          <code translate="no" dir="ltr">Cutout</code>
+          label placement (
+          <a href="https://android-review.googlesource.com/#/q/Id9185e6356df12f82e08953120846a6a1a34515a">Id9185</a>
+          ,
+          <a href="https://android-review.googlesource.com/#/q/I40f625168c7da2ffb815a8ba8c79cac00567ad8b">I40f62</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Expressive Chips</strong>
+      :
+      <ul>
+        <li>
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/FilterChip.composable"><code translate="no" dir="ltr">FilterChip</code></a>
+          ,
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ElevatedFilterChip.composable"><code translate="no" dir="ltr">ElevatedFilterChip</code></a>
+          , and
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/InputChip.composable"><code translate="no" dir="ltr">InputChip</code></a>
+          with shape-morphing selection animations, custom content padding, and
+          <code translate="no" dir="ltr">horizontalArrangement</code>
+          support (
+          <a href="https://android-review.googlesource.com/#/q/I847178aa1f2dbda2e4971832085251ccfefa43ac">I84717</a>
+          ,
+          <a href="https://android-review.googlesource.com/#/q/Ida8740cbd48eab366fa86fbdcea966c594215499">Ida874</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Expressive Menus &amp; Submenus</strong>
+      :
+      <ul>
+        <li>
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/SelectableDropdownMenuItem.composable"><code translate="no" dir="ltr">SelectableDropdownMenuItem</code></a>
+          and
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/CheckableDropdownMenuItem.composable"><code translate="no" dir="ltr">CheckableDropdownMenuItem</code></a>
+          : Expressive menu items supporting radio and checkbox selection semantics, supporting text, and vibrant colors (
+          <a href="https://android-review.googlesource.com/#/q/I160ca23104cb58328af2c05ff946c5166a8fc91a">I160ca</a>
+          ,
+          <a href="https://android-review.googlesource.com/#/q/I89e4b9622847ac95f54a10118feb434b407a8762">I89e4b</a>
+          ).
+        </li>
+        <li>
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/DropdownMenuPopupPositionProvider"><code translate="no" dir="ltr">DropdownMenuPopupPositionProvider</code></a>
+          : Enables anchor-relative popup positioning for nested cascading submenus (
+          <a href="https://android-review.googlesource.com/#/q/Ic1ace6a9d9e84b2eeb7bc737b046003224c0eb6d">Ic1ace</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Expressive Time Pickers &amp; Pickers</strong>
+      :
+      <ul>
+        <li>
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/VibrantTimePickerDialog.composable"><code translate="no" dir="ltr">VibrantTimePickerDialog</code></a>
+          : Expressive time picker dialog supporting both dial and uncontained scroll/input modes (
+          <a href="https://android-review.googlesource.com/#/q/Iea5aa467256e7e84889eaa46325ed79445ffdf5d">Iea5aa</a>
+          ,
+          <a href="https://android-review.googlesource.com/#/q/I2b3b625f1fd185d19d26dede024f261ddfa4af8f">I2b3b6</a>
+          ).
+        </li>
+        <li>
+          Scrollable
+          <code translate="no" dir="ltr">TimePicker</code>
+          variant and
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ScrollField.composable"><code translate="no" dir="ltr">ScrollField</code></a>
+          : Wheel/scroll picker variant for rapid numeric selection with full keyboard and screen reader accessibility (
+          <a href="https://android-review.googlesource.com/#/q/I46f6b6acc6888933b7561e5f52d31e2714f5b83f">I46f6b</a>
+          ,
+          <a href="https://android-review.googlesource.com/#/q/Iab61234eee7cb08a56fceec0662031c8fb6662e6">Iab612</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Sheets and Scrims</strong>
+      :
+      <ul>
+        <li>
+          Standalone static
+          <code translate="no" dir="ltr">Sheet</code>
+          component (Experimental): Non-modal static surface for anchored bottom and side sheets (
+          <a href="https://android-review.googlesource.com/#/q/I0ef95ed8717bb1cb4ece596b8e6730026e082a95">I0ef95</a>
+          ).
+        </li>
+        <li>
+          Standalone
+          <code translate="no" dir="ltr">Scrim</code>
+          : Decoupled scrim composable for use across modal sheets, dialogs, and custom containers (
+          <a href="https://android-review.googlesource.com/#/q/I2955549d37aa4a851db38265c562b8f7975c7541">I29555</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Wavy Progress Indicators</strong>
+      :
+      <ul>
+        <li>
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/WavyLinearProgressIndicator.composable"><code translate="no" dir="ltr">WavyLinearProgressIndicator</code></a>
+          and
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/WavyCircularProgressIndicator.composable"><code translate="no" dir="ltr">WavyCircularProgressIndicator</code></a>
+          : Expressive wavy paths for determinate and indeterminate loading indications (
+          <a href="https://android-review.googlesource.com/#/q/Id72a36a60fa393b26f9e91239b70b9d369928db7">Id72a3</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Loading Indicators</strong>
+      (Experimental):
+      <ul>
+        <li>
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/LoadingIndicator.composable"><code translate="no" dir="ltr">LoadingIndicator</code></a>
+          and
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ContainedLoadingIndicator.composable"><code translate="no" dir="ltr">ContainedLoadingIndicator</code></a>
+          : Expressive loading indicators that morph smoothly across a sequence of
+          <code translate="no" dir="ltr">RoundedPolygon</code>
+          shapes in both determinate (
+          <code translate="no" dir="ltr">progress</code>
+          ) and indeterminate modes, customizable via
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/LoadingIndicatorDefaults"><code translate="no" dir="ltr">LoadingIndicatorDefaults</code></a>
+          (and supported as a pull-to-refresh indicator via
+          <code translate="no" dir="ltr">PullToRefreshDefaults.LoadingIndicator</code>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Material Shapes</strong>
+      (Experimental):
+      <ul>
+        <li>
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/MaterialShapes"><code translate="no" dir="ltr">MaterialShapes</code></a>
+          : Provides 35 predefined, normalized Material Design 3 shapes as
+          <code translate="no" dir="ltr">RoundedPolygon</code>
+          s (including
+          <code translate="no" dir="ltr">Circle</code>
+          ,
+          <code translate="no" dir="ltr">Square</code>
+          ,
+          <code translate="no" dir="ltr">Slanted</code>
+          ,
+          <code translate="no" dir="ltr">Arch</code>
+          ,
+          <code translate="no" dir="ltr">Oval</code>
+          ,
+          <code translate="no" dir="ltr">Pill</code>
+          ,
+          <code translate="no" dir="ltr">Sunny</code>
+          ,
+          <code translate="no" dir="ltr">Cookie4Sided</code>
+          –
+          <code translate="no" dir="ltr">Cookie12Sided</code>
+          ,
+          <code translate="no" dir="ltr">Clover4Leaf</code>
+          ,
+          <code translate="no" dir="ltr">Clover8Leaf</code>
+          ,
+          <code translate="no" dir="ltr">Burst</code>
+          ,
+          <code translate="no" dir="ltr">SoftBurst</code>
+          ,
+          <code translate="no" dir="ltr">Flower</code>
+          ,
+          <code translate="no" dir="ltr">Puffy</code>
+          , and
+          <code translate="no" dir="ltr">Heart</code>
+          ), along with
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/toShape.composable"><code translate="no" dir="ltr">toShape</code></a>
+          and
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/toPath.composable"><code translate="no" dir="ltr">toPath</code></a>
+          extensions to convert
+          <code translate="no" dir="ltr">RoundedPolygon</code>
+          and
+          <code translate="no" dir="ltr">Morph</code>
+          instances into Compose
+          <code translate="no" dir="ltr">Shape</code>
+          and
+          <code translate="no" dir="ltr">Path</code>
+          objects.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Toolbars &amp; List Items</strong>
+      :
+      <ul>
+        <li>
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/FloatingToolbar.composable"><code translate="no" dir="ltr">FloatingToolbar</code></a>
+          and
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/HorizontalFloatingToolbar.composable"><code translate="no" dir="ltr">HorizontalFloatingToolbar</code></a>
+          : Expressive floating toolbars with built-in overflow handling (
+          <a href="https://android-review.googlesource.com/#/q/I5a4d868d9a027f3244b">I5a4d8</a>
+          ,
+          <a href="https://android-review.googlesource.com/#/q/I6a6f8d4e77581863516de42b87581f3c01e0381c">I6a6f8</a>
+          ).
+        </li>
+        <li>
+          Expressive and Segmented
+          <code translate="no" dir="ltr">ListItem</code>
+          : Interactive and non-interactive list item variants with rounded container segmenting (
+          <a href="https://android-review.googlesource.com/#/q/I5405718266bfcc508787e22939040977a0c11d28">I54057</a>
+          ,
+          <a href="https://android-review.googlesource.com/#/q/I2836a6d2eebbdb98e97eb4038b3b2">I2836a</a>
+          ).
+        </li>
+        <li>
+          Added support for
+          <code translate="no" dir="ltr">verticalAlignment</code>
+          in interactive
+          <code translate="no" dir="ltr">ListItem</code>
+          , allowing custom alignment of content (
+          <a href="https://android-review.googlesource.com/q/Id69ec64f0688f159339aa0b30ad14189e477e939">Id69ec6</a>
+          ).
+        </li>
+        <li>
+          Added
+          <code translate="no" dir="ltr">InteractiveListItem</code>
+          documentation and performed renames of internal components to
+          <code translate="no" dir="ltr">ListItem</code>
+          for improved developer ergonomics (
+          <a href="https://android-review.googlesource.com/q/Ib709234a53a5ab1c05bc631fd8b25b6d4a2364f8">Ib70923</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      Enabled customizing list items vertical alignment via
+      <code translate="no" dir="ltr">InteractiveListItemDefaults.verticalAlignment()</code>
+      (
+      <a href="https://android-review.googlesource.com/q/Id69ec64f0688f159339aa0b30ad14189e477e939">Id69ec6</a>
+      ).
+    </li>
+    <li>
+      <strong>Search Variants</strong>
+      :
+      <ul>
+        <li>
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/AppBarWithSearch.composable"><code translate="no" dir="ltr">AppBarWithSearch</code></a>
+          (Experimental): Seamless integration of top app bar navigation with a search field (
+          <a href="https://android-review.googlesource.com/#/q/I213a50fcc776f6dde4726ac0dc4b15507d7a581c">I213a5</a>
+          ).
+        </li>
+        <li>
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ExpandedDockedSearchBarWithGap.composable"><code translate="no" dir="ltr">ExpandedDockedSearchBarWithGap</code></a>
+          and
+          <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ExpandedFullScreenContainedSearchBar.composable"><code translate="no" dir="ltr">ExpandedFullScreenContainedSearchBar</code></a>
+          : Expansion variants for tablet and large-screen search experiences (
+          <a href="https://android-review.googlesource.com/#/q/Idb7f84f427518f29f7098981453059c1e2d125cf">Idb7f8</a>
+          ,
+          <a href="https://android-review.googlesource.com/#/q/Ie472da54accba9823347f4cb9507fbc103fa39d9">Ie472d</a>
+          ).
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Enhancements to existing Material Design 3 components</strong></p>
+  <ul>
+    <li>
+      <strong>Accessibility &amp; Keyboard Navigation</strong>
+      : Overhauled keyboard navigation and focus traversal across
+      <code translate="no" dir="ltr">DatePicker</code>
+      s (grid, year selector),
+      <code translate="no" dir="ltr">TimePicker</code>
+      s (dial numbers, AM/PM buttons),
+      <code translate="no" dir="ltr">Slider</code>
+      s,
+      <code translate="no" dir="ltr">Scaffold</code>
+      s, and
+      <code translate="no" dir="ltr">NavigationDrawer</code>
+      s (
+      <a href="https://android-review.googlesource.com/#/q/Ibba27b91409ec477b11d9b7a887697585b99f48b">Ibba27</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I77194c764667a8299eb6348c62aea118295ecb3">I77194</a>
+      ).
+    </li>
+    <li>
+      <strong>Theming &amp; Styling</strong>
+      : Graduated the Expressive theming (
+      <code translate="no" dir="ltr">MaterialTheme.expressiveLightColorScheme</code>
+      ,
+      <code translate="no" dir="ltr">MaterialTheme.materialExpressTheme</code>
+      ) (
+      <a href="https://android-review.googlesource.com/#/q/I40eab704c0bb7c7a4fd015ed0e57650fa7f6acef">I40eab</a>
+      , bringing expressive design tokens, shapes, and color configurations across components.
+    </li>
+    <li>
+      <strong>Typography</strong>
+      : Added constructor overloads to
+      <code translate="no" dir="ltr">Typography</code>
+      that accept a
+      <code translate="no" dir="ltr">defaultFontFamily</code>
+      , propagating the font family to all unset styles in the type scale (
+      <a href="https://android-review.googlesource.com/#/q/I2e3058a9437d30958da3f1f4e593deea0a28a34d">I2e305</a>
+      ,
+    </li>
+    <li>
+      <strong>Text</strong>
+      : Added
+      <code translate="no" dir="ltr">Text</code>
+      composable overloads taking a
+      <code translate="no" dir="ltr">ColorProducer</code>
+      lambda to animate or update text color during the draw phase without triggering recomposition (
+      <a href="https://android-review.googlesource.com/#/q/I9ff250bbfbb5a6012ce3d9c80572fc8c96a7747e">I9ff25</a>
+      ,
+    </li>
+    <li>
+      <strong>Carousels</strong>
+      :
+      <ul>
+        <li>
+          Added multi-aspect carousel support via the
+          <code translate="no" dir="ltr">Modifier.carouselParallaxScrollEffect</code>
+          and
+          <code translate="no" dir="ltr">LazyGrid</code>
+          integration (
+          <a href="https://android-review.googlesource.com/#/q/I46b17fbc7eb3b0d061ce059234976a7d5a9912b5">I46b17</a>
+          ,
+          <a href="https://android-review.googlesource.com/#/q/I2b1093fea1767575e0f09669b7d4d5d5171d0661">I2b109</a>
+          ).
+        </li>
+        <li>
+          Renamed
+          <code translate="no" dir="ltr">maxItemWidth</code>
+          to
+          <code translate="no" dir="ltr">preferredItemWidth</code>
+          in
+          <code translate="no" dir="ltr">HorizontalCenteredHeroCarousel</code>
+          (
+          <a href="https://android-review.googlesource.com/#/q/Ie7883232c6428c649335c1bcbdd6d51057dc0304">Ie7883</a>
+          ).
+        </li>
+        <li>
+          Added
+          <code translate="no" dir="ltr">CarouselDefaults.ItemSpacing</code>
+          and
+          <code translate="no" dir="ltr">CarouselDefaults.ContentPadding</code>
+          (
+          <a href="https://android-review.googlesource.com/#/q/I2f36abfea23f415297488cbcbfa3cc69a186ebe8">I2f36a</a>
+          ).
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Tooltips</strong>
+      :
+      <ul>
+        <li>
+          Added custom caret shape configuration and expanded
+          <code translate="no" dir="ltr">TooltipPositionProvider</code>
+          to anchor tooltips above, below, left, or right (
+          <a href="https://android-review.googlesource.com/#/q/Ie513c947d881a2afc8dea1f09929dc58bacf29d5">Ie513c</a>
+          ).
+        </li>
+        <li>
+          Tooltips are now clamped to window boundaries to prevent viewport clipping (
+          <a href="https://android-review.googlesource.com/#/q/I874b60d7587cfc8d44e44912b1966329656c4f09">I874b6</a>
+          ).
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p><strong>Stable APIs</strong></p>
+  <p>
+    All components and APIs listed under
+    <strong>New Material Design 3 Components</strong>
+    are stable in 1.5.0, except those listed under
+    <em>Remaining experimental APIs</em>
+    below.
+  </p>
+  <p>The following previously experimental APIs are also now stable:</p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">BottomAppBar</code>
+      and associated methods (
+      <a href="https://android-review.googlesource.com/#/q/I42c61cd5206432c0cc61f3effbbf96566d4ad271">I42c61</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">TopAppBarScrollBehavior</code>
+      and top app bar variants (
+      <code translate="no" dir="ltr">TopAppBar</code>
+      ,
+      <code translate="no" dir="ltr">MediumFlexibleTopAppBar</code>
+      ,
+      <code translate="no" dir="ltr">LargeTopAppBar</code>
+      ,
+      <code translate="no" dir="ltr">TwoRowsTopAppBar</code>
+      ) (
+      <a href="https://android-review.googlesource.com/#/q/Ieb2d11f5cfaf333eb89966f7af5672fe79ebb7d3">Ieb2d1</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Iea5aa467256e7e84889eaa46325ed79445ffdf5d">Iea5aa</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">SearchBarState</code>
+      and slot-based
+      <code translate="no" dir="ltr">SearchBar</code>
+      composables (
+      <a href="https://android-review.googlesource.com/#/q/Ia3793ca2a54aba1de5897d33518875e457466e8e">Ia3793</a>
+      )
+    </li>
+    <li>
+      Core
+      <code translate="no" dir="ltr">Slider</code>
+      and
+      <code translate="no" dir="ltr">RangeSlider</code>
+      APIs (
+      <a href="https://android-review.googlesource.com/#/q/I5efb3368a55e4ce1be530bbd64e8a0fe99d0f859">I5efb3</a>
+      )
+    </li>
+    <li>
+      Multi-browse and uncontained
+      <code translate="no" dir="ltr">Carousel</code>
+      APIs (
+      <a href="https://android-review.googlesource.com/#/q/I7a558f8f00f0a70e3473f9953baff8fe043cd7d4">I7a558</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LocalRippleThemeConfiguration</code>
+      and
+      <code translate="no" dir="ltr">RippleThemeConfiguration</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ide5d0bbd2c05620b30fb1e9d0f74c5f4acc3c10f">Ide5d0</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">BasicAlertDialog</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/If157c5fd4972a9e9cfdd95bda85389f100b2816c">If157c</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Remaining experimental APIs</strong></p>
+  <p>These APIs are new in 1.5.0 but remain experimental and may change in future releases:</p>
+  <ul>
+    <li>
+      Loading indicators:
+      <code translate="no" dir="ltr">LoadingIndicator</code>
+      ,
+      <code translate="no" dir="ltr">ContainedLoadingIndicator</code>
+      ,
+      <code translate="no" dir="ltr">LoadingIndicatorDefaults</code>
+      , and
+      <code translate="no" dir="ltr">PullToRefreshDefaults.LoadingIndicator</code>
+    </li>
+    <li>
+      Material shapes:
+      <code translate="no" dir="ltr">MaterialShapes</code>
+      and the
+      <code translate="no" dir="ltr">toShape</code>
+      /
+      <code translate="no" dir="ltr">toPath</code>
+      extensions
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AppBarWithSearch</code>
+      and
+      <code translate="no" dir="ltr">AppBarWithSearchColors</code>
+    </li>
+    <li>
+      Carousel parallax / multi-aspect support:
+      <code translate="no" dir="ltr">Modifier.carouselParallaxScrollEffect</code>
+    </li>
+    <li>
+      Standalone static
+      <code translate="no" dir="ltr">BottomSheet</code>
+    </li>
+  </ul>
+  <p><strong>Performance improvements</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">DatePicker</code>
+      month navigation now resolves in a single frame by evaluating navigation availability directly from the displayed month index (
+      <a href="https://android-review.googlesource.com/#/q/I08db7973b21ec076f76456926a35d6f15ffdb401">I08db7</a>
+      ).
+    </li>
+    <li>
+      Reduced recompositions when updating text colors using the new
+      <code translate="no" dir="ltr">ColorProducer</code>
+      overload on
+      <code translate="no" dir="ltr">Text</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I9ff250bbfbb5a6012ce3d9c80572fc8c96a7747e">I9ff25</a>
+      ).
+    </li>
+    <li>
+      Optimized
+      <code translate="no" dir="ltr">BasicTextField</code>
+      minimum dimension layout calculations (
+      <a href="https://android-review.googlesource.com/#/q/I70ade2488b5f1add0d22fa359ab5b850a7bfa16f">I70ade</a>
+      ).
+    </li>
+  </ul>

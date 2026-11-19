@@ -1,0 +1,52 @@
+libraryId: camera-viewfinder
+groupId: androidx.camera
+version: 1.7.0
+releaseDate: 2026-11-18
+#language=html
+changelogHtml: |
+  <h3 id="1.7.0" data-text="Version 1.7.0" tabindex="-1">Version 1.7.0</h3>
+  <p>November 18, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.camera.viewfinder:viewfinder-compose:1.7.0</code>
+    ,
+    <code translate="no" dir="ltr">androidx.camera.viewfinder:viewfinder-core:1.7.0</code>
+    , and
+    <code translate="no" dir="ltr">androidx.camera.viewfinder:viewfinder-view:1.7.0</code>
+    are released. Version 1.7.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/9046f07948c1e7a89aaec581463730f4d666611b..f10325d8016188131590e7b71ef776064836791f/camera/viewfinder">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.6.0:</strong></p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      <strong>Transformation Mode Support</strong>
+      : Added the
+      <code translate="no" dir="ltr">TransformationMode</code>
+      property to
+      <code translate="no" dir="ltr">TransformationInfo</code>
+      to support apps using the
+      <code translate="no" dir="ltr">OpenGL</code>
+      pipeline in
+      <code translate="no" dir="ltr">EMBEDDED</code>
+      mode.
+    </li>
+    <li>
+      <strong>Focus State Tracking</strong>
+      : Added
+      <code translate="no" dir="ltr">FocusState</code>
+      and
+      <code translate="no" dir="ltr">FocusMeteringState</code>
+      constants to the generic viewfinder core.
+      <strong>Note</strong>
+      : These constants were primarily introduced to support the new tap-to-focus and gesture capabilities in the higher-level
+      <code translate="no" dir="ltr">CameraXViewfinder</code>
+      API, but they are exposed in the core modules for developers building custom viewfinder integrations who wish to model camera focus states.
+    </li>
+  </ul>
+  <p>
+    <strong>Bug Fixes</strong>
+    -
+    <strong>Transformations Mirroring</strong>
+    : Fixed a critical bug in the mirroring logic within Transformations. This ensures that surface-to-viewfinder matrix calculations correctly mirror the preview when using front-facing cameras or inverted setups.
+  </p>

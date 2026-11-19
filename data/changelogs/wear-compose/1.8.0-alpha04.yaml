@@ -1,0 +1,212 @@
+libraryId: wear-compose
+groupId: androidx.wear
+version: 1.8.0-alpha04
+releaseDate: 2026-11-18
+#language=html
+changelogHtml: |
+  <h3 id="1.8.0-alpha04" data-text="Version 1.8.0-alpha04" tabindex="-1">Version 1.8.0-alpha04</h3>
+  <p>November 18, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose:compose-*:1.8.0-alpha04</code>
+    is released. Version 1.8.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a021adf44194ae86e596ae25ca43d5e4e18f6926..d15f2dcffd365812a213c8b60c2dc01fbbbcc1f1/wear/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">DurationPicker</code>
+      , a new component for Wear Compose Material 3 which allows users to select a duration (as opposed to the existing
+      <code translate="no" dir="ltr">TimePicker</code>
+      which should be used only to select a time). Also added a
+      <code translate="no" dir="ltr">PickerGroupScope.PickerGroupItem</code>
+      overload with a
+      <code translate="no" dir="ltr">gradientColor</code>
+      parameter.
+      <code translate="no" dir="ltr">TimePickerType.MinutesSeconds</code>
+      has been deprecated, and
+      <code translate="no" dir="ltr">DurationPicker</code>
+      should be used with
+      <code translate="no" dir="ltr">DurationPickerType.MinutesSeconds</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/I4bc8c2bafdf6d4db4e3f8535c9202ed210b2f25a">I4bc8c</a>
+      )
+    </li>
+    <li>
+      Renamed
+      <code translate="no" dir="ltr">Modifier.curveToEdge</code>
+      to
+      <code translate="no" dir="ltr">Modifier.drawCurvedToEdge</code>
+      and added
+      <code translate="no" dir="ltr">DrawCurvedToEdgeDefaults</code>
+      for recommended sweep angles. (
+      <a href="https://android-review.googlesource.com/#/q/Ic2e07517eec7db5763cf244daffc1a3b6a6a6964">Ic2e07</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">AlertDialogDefaults.EdgeButton</code>
+      and
+      <code translate="no" dir="ltr">AlertDialogDefaults.ConfirmButton</code>
+      overloads with a new
+      <code translate="no" dir="ltr">gestureVisibilityThreshold</code>
+      parameter, used to configure how much of the button must be visible before the associated one-handed gesture is enabled. Setting
+      <code translate="no" dir="ltr">gestureVisibilityThreshold</code>
+      to zero turns the gesture off on that button. (
+      <a href="https://android-review.googlesource.com/#/q/I39d8707fdc3bb93e97374fded7e164849fb72d67">I39d87</a>
+      )
+    </li>
+    <li>
+      Rotary and fling snapping of
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      now step through tall items in several snaps instead of skipping to their center in a single snap. By default, an item taller than the band around the center of a round screen in which it is fully visible is split into equal segments, each with its own snap point. The new
+      <code translate="no" dir="ltr">Modifier.snapSegmentThreshold</code>
+      in
+      <code translate="no" dir="ltr">TransformingLazyColumnItemScope</code>
+      customizes how an item is split, or keeps it whole if the threshold &gt;=
+      <code translate="no" dir="ltr">measuredHeight</code>
+      . With a snap offset, a slow release now snaps the item nearest to the snap line rather than to the center, and a fling faster than 400dp/s always moves on to the next snap point in its direction. Rotary input before a snap scrolls the list linearly, and turning against a running snap cancels it. (
+      <a href="https://android-review.googlesource.com/#/q/Ic5e66ee82f8694470f90bc47751dbbcb77c9ff01">Ic5e66</a>
+      )
+    </li>
+    <li>
+      Added a
+      <code translate="no" dir="ltr">scrollFraction</code>
+      parameter to
+      <code translate="no" dir="ltr">OneHandedGestureDefaults.scrollDown()</code>
+      to configure how far each gesture scrolls as a fraction of the viewport height. (
+      <a href="https://android-review.googlesource.com/#/q/I2973d2c2669c62d341ea12c9461b021b9074312b">I2973d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">compileSdk</code>
+      for Compose UI and all Compose libraries that build against it (including Wear Compose libraries) have been updated to 37.2. This will require transitively updating
+      <code translate="no" dir="ltr">compileSdk</code>
+      for all apps and libraries using them. (
+      <a href="https://android-review.googlesource.com/#/q/I2859d6c2a90dea97c73f0c19bb1558ee6d076166">I2859d</a>
+      )
+    </li>
+    <li>
+      Custom accessibility actions added via
+      <code translate="no" dir="ltr">Modifier.semantics</code>
+      on
+      <code translate="no" dir="ltr">SplitCheckboxButton</code>
+      ,
+      <code translate="no" dir="ltr">SplitSwitchButton</code>
+      , and
+      <code translate="no" dir="ltr">SplitRadioButton</code>
+      (for example when used with
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      ) are now propagated to the focusable primary clickable container Row, so that
+      <code translate="no" dir="ltr">TalkBack</code>
+      announces available actions. (
+      <a href="https://android-review.googlesource.com/#/q/Ibfebe0a9ab7c547fab19db05ce9c6fa0a48ec38d">Ibfebe</a>
+      )
+    </li>
+    <li>
+      Fixed a crash in
+      <code translate="no" dir="ltr">ButtonGroup</code>
+      when
+      <code translate="no" dir="ltr">expansionWidth</code>
+      exceeds a neighbor's width, or when either spacing or content padding exceeds the group's available width. (
+      <a href="https://android-review.googlesource.com/#/q/Id3bdf9053a18ce048ced3cd6aab34ac5a5cdd876">Id3bdf</a>
+      )
+    </li>
+    <li>
+      Wear Compose Material 3 Dialog now supports predictive back gestures from API 36 onwards, providing haptic feedback at the dismiss threshold and matching Navigation 3 exit transitions. (
+      <a href="https://android-review.googlesource.com/#/q/Id4c7cea3e77872aa076e49ac6f56856ba66aad71">Id4c7c</a>
+      )
+    </li>
+    <li>
+      Fixed a memory leak where the last revealed
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      item kept its removed screen in memory. (
+      <a href="https://android-review.googlesource.com/#/q/Ied8b58530598b80203fb52093f4369a980fe65ce">Ied8b5</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">ButtonGroupScope</code>
+      modifiers (
+      <code translate="no" dir="ltr">weight</code>
+      ,
+      <code translate="no" dir="ltr">minWidth</code>
+      ,
+      <code translate="no" dir="ltr">animateWidth</code>
+      ) never compared equal, causing unnecessary node updates and remeasurement on recomposition. (
+      <a href="https://android-review.googlesource.com/#/q/I5e95d32aefc149310849926ec3852661d9c54a37">I5e95d</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">Modifier.oneHandedGesture</code>
+      called
+      <code translate="no" dir="ltr">onGestureAvailable</code>
+      again whenever the caller recomposed, resulting in repeated gesture indicator hints. The indicator hint is now only shown on the initial composition. (
+      <a href="https://android-review.googlesource.com/#/q/I0b514bceab74bfb9c47a7d21d5ea36b110e1a7e3">I0b514</a>
+      )
+    </li>
+    <li>
+      Ensure
+      <code translate="no" dir="ltr">onSwipePrimaryAction</code>
+      is triggered on full swipe in
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/Ia01babf8b770489437c03778bff305300e7d5eca">Ia01ba</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where circular screen paddings, transformation specs, and component dimensions in Wear Compose Material 3 shrunk when the Wear OS Global Status Bar reduced
+      <code translate="no" dir="ltr">Configuration.screenHeightDp</code>
+      . Wear Compose Material3 now uses the
+      <code translate="no" dir="ltr">screenWidthDp</code>
+      (rather than
+      <code translate="no" dir="ltr">screenHeightDp</code>
+      ) as the screen size, which does not shrink. (
+      <a href="https://android-review.googlesource.com/#/q/I34567844de818f00f8b50c7ac4711a51bbe73de9">I34567</a>
+      )
+    </li>
+    <li>
+      Improved
+      <code translate="no" dir="ltr">AlertDialog</code>
+      performance by avoiding double composition when content fits on the screen. Note that
+      <code translate="no" dir="ltr">AlertDialog</code>
+      slots (
+      <code translate="no" dir="ltr">icon</code>
+      ,
+      <code translate="no" dir="ltr">title</code>
+      , and
+      <code translate="no" dir="ltr">text</code>
+      ) are now measured with unbounded maximum height when content fits on the screen (matching the scrollable case), so
+      <code translate="no" dir="ltr">Modifier.fillMaxSize()</code>
+      and
+      <code translate="no" dir="ltr">Modifier.fillMaxHeight()</code>
+      applied inside those slots will no longer expand vertically. (
+      <a href="https://android-review.googlesource.com/#/q/I8963da4a683d03a30630fe5ec9f0ca1d45a2533b">I8963d</a>
+      )
+    </li>
+    <li>
+      Fixed a one-frame flash of the system status bar when
+      <code translate="no" dir="ltr">AppScaffold</code>
+      enters composition. (
+      <a href="https://android-review.googlesource.com/#/q/Ic0e836f6cd286d8c243719c158e6a49135a956ed">Ic0e83</a>
+      )
+    </li>
+    <li>
+      Fixed an
+      <code translate="no" dir="ltr">IllegalStateException</code>
+      crash in
+      <code translate="no" dir="ltr">SwipeToReveal</code>
+      when subcomposed inside a
+      <code translate="no" dir="ltr">LookaheadScope</code>
+      (such as inside a
+      <code translate="no" dir="ltr">TransformingLazyColumn</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/I12b5bc29f95be74f85fda25319020c72506333db">I12b5b</a>
+      )
+    </li>
+  </ul>

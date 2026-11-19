@@ -1,0 +1,92 @@
+libraryId: room3
+groupId: androidx.room3
+version: 3.1.0-alpha04
+releaseDate: 2026-11-18
+#language=html
+changelogHtml: |
+  <h3 id="3.1.0-alpha04" data-text="Version 3.1.0-alpha04" tabindex="-1">Version 3.1.0-alpha04</h3>
+  <p>November 18, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.room3:room3-*:3.1.0-alpha04</code>
+    is released. Version 3.1.0-alpha04 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/3566803898b060d7136357220affc9ece8236019..3e55c1ad889c6c0087b0bf6720b1a970b6e8ea3b/room3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Support
+      <code translate="no" dir="ltr">@DaoReturnTypeConverters</code>
+      on individual DAO functions and
+      <code translate="no" dir="ltr">@Query</code>
+      getter properties. (
+      <a href="https://android-review.googlesource.com/#/q/Ieff227e3a2910038892a918a30c9d8f5c230353b">Ieff22</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/578894940">b/578894940</a>
+      )
+    </li>
+    <li>
+      Removed the
+      <code translate="no" dir="ltr">watchosArm32</code>
+      target, which Kotlin 2.5 no longer supports. (
+      <a href="https://android-review.googlesource.com/#/q/Ic048d3ac5dc60b7e62f0d1d7f683431f67f6209f">Ic048d</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where collection query parameters with a custom
+      <code translate="no" dir="ltr">@ColumnTypeConverter</code>
+      were expanded into multiple parameters instead of converted as a single value inside
+      <code translate="no" dir="ltr">COALESCE</code>
+      expressions. (
+      <a href="https://android-review.googlesource.com/#/q/I589685fc951b302eb410e42fcef6bc18da540a01">I58968</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">@Dao</code>
+      -scoped
+      <code translate="no" dir="ltr">@DaoReturnTypeConverters</code>
+      now take priority over
+      <code translate="no" dir="ltr">@Database</code>
+      -scoped converters. (
+      <a href="https://android-review.googlesource.com/#/q/I30cb9eab9b19e554fbd49e864f9a7b7028824449">I30cb9</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/578894940">b/578894940</a>
+      )
+    </li>
+    <li>
+      Fixed an issue in KSP where non-constant annotation arguments (such as
+      <code translate="no" dir="ltr">@ColumnInfo.defaultValue</code>
+      ) were silently ignored, which exported incomplete schemas and caused misleading auto-migration errors. (
+      <a href="https://android-review.googlesource.com/#/q/I507461b5b47192ab8bf207d211e3e681b8a745a0">I50746</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/558464759">b/558464759</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where using Kotlin value classes with
+      <code translate="no" dir="ltr">@MapColumn</code>
+      in multimap queries could emit false
+      <code translate="no" dir="ltr">equals()</code>
+      /
+      <code translate="no" dir="ltr">hashCode()</code>
+      warnings or fail to map the specified column. (
+      <a href="https://android-review.googlesource.com/#/q/I91d6b0b4e020b3933cca789d2a9e19084e2cfda5">I91d6b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/535696696">b/535696696</a>
+      )
+    </li>
+    <li>
+      Support an optional
+      <code translate="no" dir="ltr">Map&lt;String, Any?&gt;</code>
+      parameter in read
+      <code translate="no" dir="ltr">@DaoReturnTypeConverter</code>
+      functions to access DAO query arguments. (
+      <a href="https://android-review.googlesource.com/#/q/I0558603b445c5c83c97b6c310bcc7bb97b96674c">I05586</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/492164283">b/492164283</a>
+      )
+    </li>
+  </ul>

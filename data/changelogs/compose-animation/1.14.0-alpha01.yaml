@@ -1,0 +1,173 @@
+libraryId: compose-animation
+groupId: androidx.compose
+version: 1.14.0-alpha01
+releaseDate: 2026-11-18
+#language=html
+changelogHtml: |
+  <h3 id="1.14.0-alpha01" data-text="Version 1.14.0-alpha01" tabindex="-1">Version 1.14.0-alpha01</h3>
+  <p>November 18, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.animation:animation-*:1.14.0-alpha01</code>
+    is released. Version 1.14.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/57354ca42849ed417dfe0f797132477674d917e0..3e55c1ad889c6c0087b0bf6720b1a970b6e8ea3b/compose/animation">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">ExperimentalAnimationCoreApi</code>
+      and
+      <code translate="no" dir="ltr">ComposeAnimationCoreFlags.isSeekableTransitionStateStartAfterLayoutEnabled</code>
+      to guard starting
+      <code translate="no" dir="ltr">SeekableTransitionState.animateTo</code>
+      after the target state has composed and completed layout. (
+      <a href="https://android-review.googlesource.com/#/q/I034e38d545cf412d49b83cd5394afbc12aa2986b">I034e3</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/553804644">b/553804644</a>
+      )
+    </li>
+    <li>
+      Migrate Compose animation specs (
+      <code translate="no" dir="ltr">FloatSpringSpec</code>
+      ,
+      <code translate="no" dir="ltr">FloatExponentialDecaySpec</code>
+      ,
+      <code translate="no" dir="ltr">KeyframesSpec</code>
+      ,
+      <code translate="no" dir="ltr">KeyframesWithSplineSpec</code>
+      , and
+      <code translate="no" dir="ltr">SplineBasedFloatDecayAnimationSpec</code>
+      ) to nanosecond precision, guarded by
+      <code translate="no" dir="ltr">ComposeAnimationCoreFlags.isNanosecondAnimationSpecEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Ib95455d5a9908b2230eccb60de6d88a088e156aa">Ib9545</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">SharedTransitionScope.DeferredTransitionBehavior</code>
+      (
+      <code translate="no" dir="ltr">FollowContainer</code>
+      ,
+      <code translate="no" dir="ltr">Static</code>
+      ,
+      <code translate="no" dir="ltr">SeekToTarget</code>
+      ),
+      <code translate="no" dir="ltr">SharedContentConfig.deferredTransitionBehavior</code>
+      , and
+      <code translate="no" dir="ltr">MutableContentTransform.sharedElementProgress</code>
+      to support seeking shared elements toward their target bounds during the deferred phase of a
+      <code translate="no" dir="ltr">DeferredTransition</code>
+      . Deprecated
+      <code translate="no" dir="ltr">permitTransformDuringDeferredTransition</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2fac2ac003bdf0d1157b92a4263136a0f4c638ca">I2fac2</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">InterruptionAwareAnimationSpec</code>
+      to allow pairing a
+      <code translate="no" dir="ltr">FiniteAnimationSpec</code>
+      with a custom
+      <code translate="no" dir="ltr">interruptionSpec</code>
+      (or itself) when a
+      <code translate="no" dir="ltr">Transition</code>
+      ,
+      <code translate="no" dir="ltr">animate*AsState</code>
+      , or
+      <code translate="no" dir="ltr">Animatable.animateTo</code>
+      animation is interrupted mid-flight. (
+      <a href="https://android-review.googlesource.com/#/q/If85e82744079499aab7f971359305481e9fe72fd">If85e8</a>
+      )
+    </li>
+    <li>
+      Allow constructing
+      <code translate="no" dir="ltr">MutableContentTransform</code>
+      from two
+      <code translate="no" dir="ltr">MutableTransform</code>
+      instances via constructor. (
+      <a href="https://android-review.googlesource.com/#/q/I4054efbeb63487b07858daddf3fc4f29a7f96c27">I4054e</a>
+      )
+    </li>
+    <li>
+      Made
+      <code translate="no" dir="ltr">SharedTransitionDefaults.EnterTransition</code>
+      ,
+      <code translate="no" dir="ltr">ExitTransition</code>
+      , and
+      <code translate="no" dir="ltr">ResizeMode</code>
+      public. Added
+      <code translate="no" dir="ltr">AnimatedContentDefaults</code>
+      with
+      <code translate="no" dir="ltr">ContentTransform</code>
+      ,
+      <code translate="no" dir="ltr">SizeTransform</code>
+      , and
+      <code translate="no" dir="ltr">SizeAnimationSpec</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/Id912eb6a02e72f723723f722baaaf10bfe58e6ac">Id912e</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">SeekableTransitionState.animateTo</code>
+      skipped initial animation frames when the target content had an expensive first composition or layout pass. (
+      <a href="https://android-review.googlesource.com/#/q/I383c636812ef685110e6d6c9dee2c3fa3128cf95">I383c6</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/553804644">b/553804644</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">compileSdk</code>
+      for Compose UI and the Compose libraries that build against it (Animation, Foundation, Material 3, UI Test, UI Tooling, UI
+      <code translate="no" dir="ltr">ViewBinding</code>
+      and Navigation3 UI) updated to 37.2. This will require transitively updating
+      <code translate="no" dir="ltr">compileSdk</code>
+      for all apps and libraries using them. (
+      <a href="https://android-review.googlesource.com/#/q/I2859d6c2a90dea97c73f0c19bb1558ee6d076166">I2859d</a>
+      )
+    </li>
+    <li>
+      When a
+      <code translate="no" dir="ltr">MutableContentTransform</code>
+      or
+      <code translate="no" dir="ltr">MutableTransform</code>
+      is provided during a deferred transition phase, transform properties that are not manually set now default to their resting values instead of the transition's initial values. (
+      <a href="https://android-review.googlesource.com/#/q/Ia79c40bc4937c5bf613404bc652d49c5323a08bb">Ia79c4</a>
+      )
+    </li>
+    <li>
+      Shared elements sought via
+      <code translate="no" dir="ltr">MutableContentTransform.sharedElementProgress</code>
+      now transfer their progress velocity to the bounds animation upon handoff. (
+      <a href="https://android-review.googlesource.com/#/q/I462c0b354ae17c2b73c9ea6b7dbda3076e31cdfa">I462c0</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">Modifier.sharedElement</code>
+      now renders the incoming target element (
+      <code translate="no" dir="ltr">pendingTargetState</code>
+      ) during the deferred phase of a
+      <code translate="no" dir="ltr">DeferredTransition</code>
+      while keeping its bounds anchored to the outgoing state until the transition commits. (
+      <a href="https://android-review.googlesource.com/#/q/If60c72285e5a99216d8eda27a5591def26cf8c4c">If60c7</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where shared elements nested under
+      <code translate="no" dir="ltr">Modifier.animateEnterExit</code>
+      lost
+      <code translate="no" dir="ltr">MutableContentTransform</code>
+      placement transformations on handoff from a deferred transition phase. (
+      <a href="https://android-review.googlesource.com/#/q/Icdcd7f3d1806550441638ed80d30e122c6d7de1f">Icdcd7</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/572520922">b/572520922</a>
+      )
+    </li>
+  </ul>
+  <h2 id="version_113_2" data-text="Version 1.13" tabindex="-1">Version 1.13</h2>

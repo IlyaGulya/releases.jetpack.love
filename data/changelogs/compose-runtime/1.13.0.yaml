@@ -1,0 +1,79 @@
+libraryId: compose-runtime
+groupId: androidx.compose
+version: 1.13.0
+releaseDate: 2026-11-18
+#language=html
+changelogHtml: |
+  <h3 id="1.13.0" data-text="Version 1.13.0" tabindex="-1">Version 1.13.0</h3>
+  <p>November 18, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.runtime:runtime-*:1.13.0</code>
+    is released. Version 1.13.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/5e0747401bf56b243e3b5141ae080dc9bc61d29c..ac6d2ce3d991b07d9b981d616bddc6d3ab461eab/compose/runtime">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.12.0:</strong></p>
+  <p>
+    <strong>
+      <code translate="no" dir="ltr">ComputedState</code>
+      API
+    </strong>
+  </p>
+  <p>
+    We've introduced a new
+    <code translate="no" dir="ltr">computedStateOf { }</code>
+    API that can be used as an alternative to
+    <code translate="no" dir="ltr">derivedStateOf</code>
+    .
+  </p>
+  <p>
+    Like
+    <code translate="no" dir="ltr">DerivedState</code>
+    ,
+    <code translate="no" dir="ltr">ComputedState</code>
+    is an implementation of
+    <code translate="no" dir="ltr">State</code>
+    whose value is backed by a calculation that may read other states. The value will invalidate when the result of the calculation changes, not when one of the referenced states changes.
+  </p>
+  <p>
+    The primary difference between
+    <code translate="no" dir="ltr">ComputedState</code>
+    and
+    <code translate="no" dir="ltr">DerivedState</code>
+    is that
+    <code translate="no" dir="ltr">DerivedState</code>
+    caches the result of its calculation and
+    <code translate="no" dir="ltr">ComputedState</code>
+    executes the calculation on-demand each time the
+    <code translate="no" dir="ltr">value</code>
+    is read. For many calculations, this caching is more expensive than computing the value on-demand. Therefore, we recommend using
+    <code translate="no" dir="ltr">ComputedState</code>
+    instead of
+    <code translate="no" dir="ltr">DerivedState</code>
+    when your calculation doesn't benefit from caching. Good candidates for calculations that don't benefit from caching are ones that don't rely on object identity of its result, don't allocate large objects, don't read many states, aren't read many times in a single frame, and don't perform a complex algorithm.
+  </p>
+  <p>
+    As a general rule of thumb, we recommend using
+    <code translate="no" dir="ltr">ComputedState</code>
+    instead of
+    <code translate="no" dir="ltr">DerivedState</code>
+    for most usages and if it's unclear whether caching would be beneficial.
+  </p>
+  <p>
+    <strong>
+      Updates to the Experimental
+      <code translate="no" dir="ltr">SlotTable</code>
+    </strong>
+  </p>
+  <p>
+    The
+    <code translate="no" dir="ltr">LinkComposer</code>
+    remains opt-in as of Compose 1.13, and includes fixes for several issues reported since Compose 1.12. We continue to recommend testing your app against the new implementation of the
+    <code translate="no" dir="ltr">SlotTable</code>
+    and reporting any issues you run into.
+  </p>
+  <p>
+    Note that in runtime version 1.13.0-alpha01, the proguard syntax for enabling the
+    <code translate="no" dir="ltr">LinkComposer</code>
+    in minified builds has changed. See the feature flag documentation and previous release notes for more information.
+  </p>

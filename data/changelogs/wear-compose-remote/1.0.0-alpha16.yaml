@@ -1,0 +1,144 @@
+libraryId: wear-compose-remote
+groupId: androidx.wear
+version: 1.0.0-alpha16
+releaseDate: 2026-11-18
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-alpha16" data-text="Version 1.0.0-alpha16" tabindex="-1">Version 1.0.0-alpha16</h3>
+  <p>November 18, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.wear.compose.remote:remote-material3:1.0.0-alpha16</code>
+    is released. Version 1.0.0-alpha16 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a021adf44194ae86e596ae25ca43d5e4e18f6926..58a4d1aa19df3743190e13146470e58c1c1aab8e/wear/compose/remote/remote-material3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Exposed
+      <code translate="no" dir="ltr">RemoteIconToggleButton</code>
+      ,
+      <code translate="no" dir="ltr">RemoteIconToggleButtonDefaults</code>
+      ,
+      <code translate="no" dir="ltr">RemoteIconToggleButtonColors</code>
+      ,
+      <code translate="no" dir="ltr">RemoteIconToggleButtonShapes</code>
+      ,
+      <code translate="no" dir="ltr">RemoteTextToggleButton</code>
+      ,
+      <code translate="no" dir="ltr">RemoteTextToggleButtonDefaults</code>
+      ,
+      <code translate="no" dir="ltr">RemoteTextToggleButtonColors</code>
+      , and
+      <code translate="no" dir="ltr">RemoteTextToggleButtonShapes</code>
+      as public APIs in Wear Material 3 Remote Compose. (
+      <a href="https://android-review.googlesource.com/#/q/Ib93ab7a120e6abaf336665239aeae9a22760389e">Ib93ab</a>
+      )
+    </li>
+    <li>
+      Replaced the
+      <code translate="no" dir="ltr">shape</code>
+      parameter on
+      <code translate="no" dir="ltr">RemoteIconButton</code>
+      and
+      <code translate="no" dir="ltr">RemoteTextButton</code>
+      with
+      <code translate="no" dir="ltr">shapes</code>
+      (
+      <code translate="no" dir="ltr">RemoteIconButtonShapes</code>
+      and
+      <code translate="no" dir="ltr">RemoteTextButtonShapes</code>
+      ) and added
+      <code translate="no" dir="ltr">animatedShapes()</code>
+      defaults to animate button corners on press, matching Wear Compose Material3. (
+      <a href="https://android-review.googlesource.com/#/q/I6fa6b3ab69ba46ed7ce0c48556d95dfa71606540">I6fa6b</a>
+      )
+    </li>
+    <li>
+      Added a
+      <code translate="no" dir="ltr">backgroundColor</code>
+      parameter to
+      <code translate="no" dir="ltr">RemoteTimeText</code>
+      , defaulting to
+      <code translate="no" dir="ltr">RemoteTimeTextDefaults.backgroundColor</code>
+      , which draws an arc behind the text like Wear Compose Material 3
+      <code translate="no" dir="ltr">TimeText</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I165f146355082fbdce43b92875eb0889189af3f2">I165f1</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">@IntRange(from = 0)</code>
+      to
+      <code translate="no" dir="ltr">RemotePageIndicatorState.pageCount</code>
+      and
+      <code translate="no" dir="ltr">rememberRemotePageIndicatorState</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I420f21f2711ab107e459022fea3e1b074d909208">I420f2</a>
+      )
+    </li>
+    <li>
+      Added
+      <code translate="no" dir="ltr">RemoteTextButtonDefaults.filledTonalTextButtonColors()</code>
+      for filled tonal text buttons. (
+      <a href="https://android-review.googlesource.com/#/q/Ie43cd187ef73536e06f3ce5e9a0f0781b470aa65">Ie43cd</a>
+      )
+    </li>
+    <li>
+      Add press width animation support (
+      <code translate="no" dir="ltr">expansionWidth</code>
+      and
+      <code translate="no" dir="ltr">RemoteButtonGroupScope.animateWidth()</code>
+      ) to
+      <code translate="no" dir="ltr">RemoteButtonGroup</code>
+      in Wear Remote Compose Material 3. (
+      <a href="https://android-review.googlesource.com/#/q/Ie290935374e8bdf8ce6350fea5ac158f53b5f75b">Ie2909</a>
+      )
+    </li>
+    <li>
+      Updated
+      <code translate="no" dir="ltr">RemoteShape</code>
+      overrides to use
+      <code translate="no" dir="ltr">RemoteLayoutDirection</code>
+      .
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">RemoteCircularProgressIndicator</code>
+      so full-circle indicators (
+      <code translate="no" dir="ltr">startAngle == endAngle</code>
+      ) close the gap seamlessly at
+      <code translate="no" dir="ltr">progress = 1f</code>
+      , and sub-gap indicator and track sweeps scale smoothly down to
+      <code translate="no" dir="ltr">0</code>
+      without leaving stray round endcap dots at
+      <code translate="no" dir="ltr">progress = 0f</code>
+      or
+      <code translate="no" dir="ltr">1f</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I8158e4605c1ad9d4c0356b91f58625168c11a1d3">I8158e</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">RemoteIconButton</code>
+      overriding custom size modifiers. (
+      <a href="https://android-review.googlesource.com/#/q/Ibf9406320d177ea9aa7f0b1f72b79999b597b343">Ibf940</a>
+      )
+    </li>
+    <li>
+      Coerce negative
+      <code translate="no" dir="ltr">sweepAngle</code>
+      and
+      <code translate="no" dir="ltr">strokeWidth</code>
+      values to
+      <code translate="no" dir="ltr">0</code>
+      in Remote Compose progress indicators and document clockwise arc direction. (
+      <a href="https://android-review.googlesource.com/#/q/I1243b03184111fb7c0f50bc0b85c63aeabfd96f2">I1243b</a>
+      )
+    </li>
+  </ul>

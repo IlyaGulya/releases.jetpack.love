@@ -1,0 +1,87 @@
+libraryId: xr-scenecore
+groupId: androidx.xr
+version: 1.1.0-alpha02
+releaseDate: 2026-11-18
+#language=html
+changelogHtml: |
+  <h3 id="1.1.0-alpha02" data-text="Version 1.1.0-alpha02" tabindex="-1">Version 1.1.0-alpha02</h3>
+  <p>November 18, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.scenecore:scenecore-*:1.1.0-alpha02</code>
+    is released. Version 1.1.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/d0c6d95953dce7229144a5c588b1b3ef040131b4..583ca0f7692aeccecd394e97332244a2ea533c57/xr/scenecore">these commits</a>
+    .
+  </p>
+  <p><strong>New Features</strong></p>
+  <ul>
+    <li>
+      Added support for resizable geometry interactions to
+      <code translate="no" dir="ltr">GltfEntity</code>
+      and
+      <code translate="no" dir="ltr">MeshEntity</code>
+      components. (
+      <a href="https://android-review.googlesource.com/q/Id57faecf0969675e32a773e7bfc60277494f0ba5">Id57fa</a>
+      )
+    </li>
+    <li>
+      Added support for dynamically updating the looping state of
+      <code translate="no" dir="ltr">GltfAnimation</code>
+      during playback. (
+      <a href="https://android-review.googlesource.com/q/Ib0dd773d7163a0ccfbbc9d7a5f7e477d404661da">Ib0dd7</a>
+      )
+    </li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">PointSourceParams.Builder</code>
+      with directivity, spread angle, and
+      <code translate="no" dir="ltr">DistanceAttenuation</code>
+      models for 3D spatial audio point sources. (
+      <a href="https://android-review.googlesource.com/#/q/Ib37371047e787900f20329a6726f3db421ff239a">Ib3737</a>
+      )
+    </li>
+    <li>
+      The
+      <code translate="no" dir="ltr">GltfAnimation.setLoop()</code>
+      API is no longer marked as experimental as it can now toggle the looping behavior while the animation is playing. (
+      <a href="https://android-review.googlesource.com/q/I6da98c92440fd4778b26637ebddc32b6b54c9c75">I6da98</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I67be6d89787dfb6e6985c19c2c233a9f433dfc66">I67be6</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">ResizableComponent</code>
+      can now be attached to a
+      <code translate="no" dir="ltr">GltfModelEntity</code>
+      to let the user scale the model. (
+      <a href="https://android-review.googlesource.com/#/q/I5c3e4ab32877a13f1796fb1adf92986c05ac43ec">I5c3e4</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">AnchorSpace</code>
+      now transitions to
+      <code translate="no" dir="ltr">AnchorSpace.State.ERROR</code>
+      when anchor token export or binding fails. (
+      <a href="https://android-review.googlesource.com/#/q/I9116932859063730186eff12b6d72c34554b20d5">I91169</a>
+      )
+    </li>
+    <li>
+      Synchronized
+      <code translate="no" dir="ltr">PanelEntity</code>
+      resizing by using transaction callbacks to eliminate visual flickering during scaling. (
+      <a href="https://android-review.googlesource.com/q/I8f80325f4cdd22b1c8372857f13319cf807ec22d">I8f803</a>
+      )
+    </li>
+    <li>
+      Fixed corner radius clamping issue when resizing quad
+      <code translate="no" dir="ltr">SurfaceEntity</code>
+      shapes by ensuring values remain within bounds. (
+      <a href="https://android-review.googlesource.com/q/I7428311376f550dd927045fc75b2980c88276a86">I74283</a>
+      )
+    </li>
+  </ul>

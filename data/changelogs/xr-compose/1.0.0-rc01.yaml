@@ -1,0 +1,108 @@
+libraryId: xr-compose
+groupId: androidx.xr
+version: 1.0.0-rc01
+releaseDate: 2026-11-18
+#language=html
+changelogHtml: |
+  <h3 id="1.0.0-rc01" data-text="Version 1.0.0-rc01" tabindex="-1">Version 1.0.0-rc01</h3>
+  <p>November 18, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.xr.compose:compose:1.0.0-rc01</code>
+    and
+    <code translate="no" dir="ltr">androidx.xr.compose:compose-testing:1.0.0-rc01</code>
+    are released. Version 1.0.0-rc01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f3bf7f734b4bf81dd1c118beb6b7fff8c7675ecb..cf06e612b15d86e7be32990aecfc6a110c6e6b1d/xr/compose">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Remove deprecated Orbiter APIs, use the Orbiter API accepting an
+      <code translate="no" dir="ltr">OrbiterPosition</code>
+      instead. (
+      <a href="https://android-review.googlesource.com/#/q/Ib5043c4bb20d5d597b78e93698b40096dc17bb22">Ib5043</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Restore original scale when
+      <code translate="no" dir="ltr">SubspaceModifier.scale</code>
+      is removed (
+      <a href="https://android-review.googlesource.com/#/q/I55b7411c387339a91d76b495d032f81095f6eb3d">I55b74</a>
+      )
+    </li>
+    <li>
+      Reset a composable with the movable and anchorable modifiers when updating or removing the modifier (
+      <a href="https://android-review.googlesource.com/#/q/Iaee5b920a5fd1db22c91986ab96b1b3d2fa3ff63">Iaee5b</a>
+      )
+    </li>
+    <li>
+      Fixed a bug where scale modifier was not being applied properly to a
+      <code translate="no" dir="ltr">SpatialModel</code>
+      (
+      <a href="https://android-review.googlesource.com/#/q/I130b2a3b783c2c39b22b72fa6a0db82830084800">I130b2</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where the system movable was not being reset when updated or removed. (
+      <a href="https://android-review.googlesource.com/#/q/I2cb89d395bb15e20f70df2d806c72d2273071790">I2cb89</a>
+      )
+    </li>
+    <li>
+      Restore original alpha when
+      <code translate="no" dir="ltr">SubspaceModifier.alpha</code>
+      is removed (
+      <a href="https://android-review.googlesource.com/#/q/Id49020878934b3873b5a43d0e92121244e548185">Id4902</a>
+      )
+    </li>
+    <li>
+      Update resizable
+      <code translate="no" dir="ltr">minimumSize</code>
+      default to a 150.dp width/height, as it could be difficult to re-enlarge panels if they apparoach a zero size (old default). (
+      <a href="https://android-review.googlesource.com/#/q/I183a649d4482eae8b8320f65bdf43859c1e30be3">I183a6</a>
+      )
+    </li>
+    <li>
+      Fixes resizable behavior when
+      <code translate="no" dir="ltr">maintainAspectRatio = true</code>
+      , and a
+      <code translate="no" dir="ltr">minimumSize</code>
+      and/or
+      <code translate="no" dir="ltr">maximumSize</code>
+      are set. The resizable will now hit its size cap once a min/max on either axis has been hit, rather than breaking aspect ratio to hit the min/max of both axis. (
+      <a href="https://android-review.googlesource.com/#/q/I89793ba44c940fc013a2ef92f09012d2835979ff">I89793</a>
+      )
+    </li>
+    <li>
+      Add constraints to clamp
+      <code translate="no" dir="ltr">SpatialPanel</code>
+      and other panel-like Composables to a safe rendering size. The default max size for the resizable modifier is updated to this size. This max is dynamically calculated, but is substantially larger than the recommended content box size. Larger resizable sizes can still be explicitly specified for layout groups and
+      <code translate="no" dir="ltr">SpatialExternalSurface</code>
+      but clamping will still apply for any
+      <code translate="no" dir="ltr">SpatialPanel</code>
+      children they may have. (
+      <a href="https://android-review.googlesource.com/#/q/If408ae7b75f0cd0bef96ed719f6e100fe4fded3f">If408a</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where
+      <code translate="no" dir="ltr">isSystemMoveOngoing</code>
+      remained
+      <code translate="no" dir="ltr">true</code>
+      when a
+      <code translate="no" dir="ltr">MovableComponent</code>
+      was disabled mid-drag, preventing subsequent layout pose updates. Reset
+      <code translate="no" dir="ltr">isSystemMoveOngoing</code>
+      ,
+      <code translate="no" dir="ltr">previousPose</code>
+      , and
+      <code translate="no" dir="ltr">previousScale</code>
+      in
+      <code translate="no" dir="ltr">disableComponent()</code>
+      . (
+      <a href="https://android-review.googlesource.com/q/I090f259968b9b45ef2144b9be2401b24a7ea7aa3">I090f25</a>
+      )
+    </li>
+  </ul>

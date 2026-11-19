@@ -1,0 +1,93 @@
+libraryId: benchmark
+groupId: androidx.benchmark
+version: 1.6.0-alpha02
+releaseDate: 2026-11-18
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-alpha02" data-text="Version 1.6.0-alpha02" tabindex="-1">Version 1.6.0-alpha02</h3>
+  <p>November 18, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.benchmark:benchmark-*:1.6.0-alpha02</code>
+    is released. Version 1.6.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/988ac9734e8223273eb7f186ee1639ee68deb025..2ecbd43c9652f042f7c7af3b050780d625f00f0e/benchmark">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      <p>
+        Add support for toggling categories when enabling in-process tracing from benchmarks for a target process.
+        <code translate="no" dir="ltr">PerfettoTraceRule</code>
+        now supports enabling optional categories for in-process tracing. These categories are used by the
+        <code translate="no" dir="ltr">TraceDriver</code>
+        instance in the target process. (
+        <a href="https://android-review.googlesource.com/#/q/I663edf8ed922e0dda639777a29095d73a2ef77bf">I663ed</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/565040771">b/565040771</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Fixed thermal throttle logic to reset main thread deadlines after the cooldown sleep completes to avoid premature time limit errors. (
+        <a href="https://android-review.googlesource.com/q/Ibb2f0275c474dc019401af0d3c63ff0f87e5fd4d">Ibb2f02</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Swapped restricted API surface labels in metalava configuration to correctly align with atomic and non-atomic group definitions. (
+        <a href="https://android-review.googlesource.com/q/I0c563cb05d776a3e6408ad28ab489aaf93711016">I0c563c</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/582384448">b/582384448</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Updated
+        <code translate="no" dir="ltr">PerfettoCapture</code>
+        to wait for target process exit using
+        <code translate="no" dir="ltr">am force-stop</code>
+        to ensure process stability during benchmarks. (
+        <a href="https://android-review.googlesource.com/q/If8a631f76abd293fe850c91c27091620b09462e3">If8a631</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Buffered file streams in
+        <code translate="no" dir="ltr">PerfettoOutput</code>
+        to reduce total write counts and prevent file system exhaustion and timeouts. (
+        <a href="https://android-review.googlesource.com/q/I1c828c54e47d1a01b3e804a373aa2002e6d3db03">I1c828c</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Updated AndroidX test library dependencies and fixed javadoc warning configurations to maintain build stability. (
+        <a href="https://android-review.googlesource.com/q/Ia7e3fff8d5728f997f0a54f7ada1c2b0c68eb650">Ia7e3ff</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Transitioned build environment to JDK 25 and added necessary workarounds for compatibility, including JSpecify annotation removals and native access flags. (
+        <a href="https://android-review.googlesource.com/q/I88704cffb26e131b56672dfd90d44ecb1e159597">I88704c</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/559834169">b/559834169</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/445484245">b/445484245</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        Ensured target packages are killed after in-process tracing is enabled when the process was not previously alive to maintain consistent cold-start tracing states. (
+        <a href="https://android-review.googlesource.com/q/Icef99b00939f2bcd42d7ae16e22f04f30eeda486">Icef99b</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/568496084">b/568496084</a>
+        )
+      </p>
+    </li>
+  </ul>

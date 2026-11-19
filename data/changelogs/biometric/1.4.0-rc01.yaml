@@ -1,0 +1,41 @@
+libraryId: biometric
+groupId: androidx.biometric
+version: 1.4.0-rc01
+releaseDate: 2026-11-18
+#language=html
+changelogHtml: |
+  <h3 id="1.4.0-rc01" data-text="Version 1.4.0-rc01" tabindex="-1">Version 1.4.0-rc01</h3>
+  <p>November 18, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.biometric:biometric:1.4.0-rc01</code>
+    is released. Version 1.4.0-rc01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/a021adf44194ae86e596ae25ca43d5e4e18f6926..48b8e5b3109d82ad02584296c3c634d8f9b8ed3b/biometric/biometric">these commits</a>
+    .
+  </p>
+  <p><strong>Bug Fixes</strong></p>
+  <ul>
+    <li>
+      Fixed an issue where a completed or disposed
+      <code translate="no" dir="ltr">rememberAuthenticationLauncher</code>
+      or
+      <code translate="no" dir="ltr">AuthenticationResultLauncher</code>
+      re-subscribed on
+      <code translate="no" dir="ltr">ON_START</code>
+      and intercepted results from subsequent authentication requests. (
+      <a href="https://android-review.googlesource.com/#/q/I494202ddcf765fb647e68febfe7137487dcdcde0">I49420</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/555875039">b/555875039</a>
+      )
+    </li>
+    <li>
+      Fixed an issue where R8 stripped
+      <code translate="no" dir="ltr">FingerprintManager.AuthenticationCallback</code>
+      methods on API &lt; 28 when apps compiled with
+      <code translate="no" dir="ltr">compileSdk = 37</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I2c7e005315f384df4b8f19bf71a307120c755eb4">I2c7e0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/516212633">b/516212633</a>
+      )
+    </li>
+  </ul>

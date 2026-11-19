@@ -1,0 +1,89 @@
+libraryId: mediarouter
+groupId: androidx.mediarouter
+version: 1.9.0
+releaseDate: 2026-11-18
+#language=html
+changelogHtml: |
+  <h3 id="1.9.0" data-text="Version 1.9.0" tabindex="-1">Version 1.9.0</h3>
+  <p>November 18, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.mediarouter:mediarouter:1.9.0</code>
+    and
+    <code translate="no" dir="ltr">androidx.mediarouter:mediarouter-testing:1.9.0</code>
+    are released. Version 1.9.0 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/0cab07c4babbff31087ac2ab8da21290b7923a35..89cb022d69fdba98938d496c46c19b6c238df3b9/mediarouter">these commits</a>
+    .
+  </p>
+  <p><strong>Important changes since 1.8.0:</strong></p>
+  <p><strong>New Features and API Changes</strong></p>
+  <ul>
+    <li>
+      <strong>Minimum SDK Bump</strong>
+      : The default minimum SDK requirement is now 24.
+    </li>
+    <li>
+      <strong>Device Suggestions</strong>
+      : Introduced the
+      <code translate="no" dir="ltr">setDeviceSuggestions</code>
+      API, allowing you to provide device suggestions for dynamic routes.
+    </li>
+    <li>
+      <strong>Media Transfer Status</strong>
+      : Introduced the
+      <code translate="no" dir="ltr">isMediaTransferEnabled</code>
+      method in
+      <code translate="no" dir="ltr">MediaRouter</code>
+      to allow checking the media transfer status programmatically.
+    </li>
+    <li>
+      <strong>Routing Controller API</strong>
+      : Added an API to fetch the routing controller ID directly from a selected route.
+    </li>
+    <li>
+      <strong>Selection Triggers</strong>
+      : Added an
+      <code translate="no" dir="ltr">onSelectedRoute</code>
+      overload that explicitly indicates the selection trigger.
+    </li>
+    <li>
+      <strong>Simplified Media Transfer</strong>
+      : Enabling media transfer no longer requires a dedicated manifest tag.
+    </li>
+  </ul>
+  <p><strong>Bug Fixes and Improvements</strong></p>
+  <ul>
+    <li>
+      <strong>UI Polish</strong>
+      : Converted
+      <code translate="no" dir="ltr">MediaRouteExpandCollapseButton</code>
+      and various other UI assets to use vector drawables instead of PNGs for better scaling and performance.
+    </li>
+    <li>
+      <strong>Accessibility</strong>
+      : Added the
+      <code translate="no" dir="ltr">button</code>
+      accessibility role to items in
+      <code translate="no" dir="ltr">MediaRouteChooserDialog</code>
+      so screen readers properly announce route entries as buttons.
+    </li>
+    <li>
+      <strong>Security &amp; Crash Prevention</strong>
+      : Fixed a potential crash (
+      <code translate="no" dir="ltr">NullPointerException</code>
+      and
+      <code translate="no" dir="ltr">ClassCastException</code>
+      ) caused by receiving malformed parcels in
+      <code translate="no" dir="ltr">MediaRouteDescriptor</code>
+      .
+    </li>
+    <li>
+      <strong>Screen-off Scanning</strong>
+      : Prevented third-party apps from inappropriately requesting screen-off scanning via
+      <code translate="no" dir="ltr">MediaRouteDiscoveryRequest</code>
+      .
+    </li>
+    <li>
+      <strong>Routing Reliability</strong>
+      : Fixed several bugs that could cause incorrect route selection or inconsistent default route states when providers change or media transfer is toggled.
+    </li>
+  </ul>

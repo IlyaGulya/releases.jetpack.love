@@ -1,0 +1,366 @@
+libraryId: compose-material3
+groupId: androidx.compose
+version: 1.6.0-alpha01
+releaseDate: 2026-11-18
+#language=html
+changelogHtml: |
+  <h3 id="1.6.0-alpha01" data-text="Version 1.6.0-alpha01" tabindex="-1">Version 1.6.0-alpha01</h3>
+  <p>November 18, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-*:1.6.0-alpha01</code>
+    is released. Version 1.6.0-alpha01 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/f21fda9b646704378b1cf5458d39ba47bc69676a..7d68a49549322900fdd694b32f5eed2c74fc17fe/compose/material3">these commits</a>
+    .
+  </p>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Added
+      <code translate="no" dir="ltr">HorizontalSharedAxisNavigationTransitions</code>
+      and
+      <code translate="no" dir="ltr">FadeThroughNavigationTransitions</code>
+      for Material 3 shared axis and fade through transitions, including predictive back. (
+      <a href="https://android-review.googlesource.com/#/q/I0a37a9651c79544f1bde4ed6aefc3170d4e2b9ea">I0a37a</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I36fb941ba16ac0d3cc8ce27b4c728bdda22b6190">I36fb9</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I4b9e6d09c3862a0a73516e8e411d1fd88c9e7549">I4b9e6</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/I62437f3828162778ea490f80705afb74d9b0be1a">I62437</a>
+      )
+    </li>
+    <li>
+      Marked
+      <code translate="no" dir="ltr">SliderState</code>
+      and
+      <code translate="no" dir="ltr">RangeSliderState</code>
+      as
+      <code translate="no" dir="ltr">@Stable</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I8fda749b56edf7a886e560094ef0582de75ef122">I8fda7</a>
+      )
+    </li>
+    <li>
+      Deprecated the
+      <code translate="no" dir="ltr">TextField</code>
+      and
+      <code translate="no" dir="ltr">OutlinedTextField</code>
+      overloads that take
+      <code translate="no" dir="ltr">value</code>
+      /
+      <code translate="no" dir="ltr">onValueChange</code>
+      , plus
+      <code translate="no" dir="ltr">TextFieldDefaults.DecorationBox</code>
+      and
+      <code translate="no" dir="ltr">OutlinedTextFieldDefaults.DecorationBox</code>
+      . Use the
+      <code translate="no" dir="ltr">TextFieldState</code>
+      overloads and
+      <code translate="no" dir="ltr">decorator</code>
+      APIs instead. (
+      <a href="https://android-review.googlesource.com/#/q/Idb68b288609594820c032a533458693d3f477ba8">Idb68b</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/554049628">b/554049628</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Bug Fixes</strong></p>
+  <p>
+    <em>
+      <code translate="no" dir="ltr">Slider</code>
+      and
+      <code translate="no" dir="ltr">RangeSlider</code>
+    </em>
+  </p>
+  <ul>
+    <li>
+      Fixed a
+      <code translate="no" dir="ltr">TalkBack</code>
+      freeze when a
+      <code translate="no" dir="ltr">Slider</code>
+      updates automatically (for example, during video playback). (
+      <a href="https://android-review.googlesource.com/#/q/I8fda749b56edf7a886e560094ef0582de75ef122">I8fda7</a>
+      )
+    </li>
+    <li>
+      Fixed precision loss when a discrete
+      <code translate="no" dir="ltr">Slider</code>
+      or
+      <code translate="no" dir="ltr">RangeSlider</code>
+      snaps to integer ticks. (
+      <a href="https://android-review.googlesource.com/#/q/I0f2ac55454b1cc3a28f417af7a637fadea01847e">I0f2ac</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/237634010">b/237634010</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">RangeSlider</code>
+      not updating on tap when its thumbs overlap. (
+      <a href="https://android-review.googlesource.com/#/q/I8287ea1cb2ddba577e03261c95d4228042f7f5a9">I8287e</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/352467346">b/352467346</a>
+      )
+    </li>
+    <li>
+      Fixed dragging a
+      <code translate="no" dir="ltr">RangeSlider</code>
+      thumb scrolling the parent when the slider is inside a horizontally scrollable container. (
+      <a href="https://android-review.googlesource.com/#/q/I855c0b5c489536f4cc91f6cf38977ca6940d6866">I855c0</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/415838608">b/415838608</a>
+      )
+    </li>
+  </ul>
+  <p><em>Text fields</em></p>
+  <ul>
+    <li>
+      Focusing a
+      <code translate="no" dir="ltr">TextField</code>
+      or
+      <code translate="no" dir="ltr">OutlinedTextField</code>
+      no longer recomposes its container, and the outlined border no longer recomposes on every frame while it animates. (
+      <a href="https://android-review.googlesource.com/#/q/Id915b7fae9876844b7649781ee4798f2a76f2b31">Id915b</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">OutlinedTextFieldDefaults.tonalColors</code>
+      now uses a transparent container color. (
+      <a href="https://android-review.googlesource.com/#/q/I79be4df88e3a4cda597eb940b954ad779d6ccc9b">I79be4</a>
+      )
+    </li>
+  </ul>
+  <p><em>Pickers</em></p>
+  <ul>
+    <li>
+      Fixed the
+      <code translate="no" dir="ltr">TimePicker</code>
+      clock face selector not updating after you toggle AM/PM or the state changes. (
+      <a href="https://android-review.googlesource.com/#/q/I999557b1ad9f6a658bf0801b3654ef768fbe441f">I99955</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/513496734">b/513496734</a>
+      )
+    </li>
+    <li>
+      Fixed AM/PM text clipping at large font scales in
+      <code translate="no" dir="ltr">TimePicker</code>
+      and
+      <code translate="no" dir="ltr">TimeInput</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I73bda4164652e26480fd96410220e7fc2955da31">I73bda</a>
+      )
+    </li>
+    <li>
+      Fixed the
+      <code translate="no" dir="ltr">DatePicker</code>
+      year dropdown icon ignoring
+      <code translate="no" dir="ltr">navigationContentColor</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I4eb6a4b624798581143d63a5a67165b6d9acc93c">I4eb6a</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/489897727">b/489897727</a>
+      )
+    </li>
+  </ul>
+  <p><em>Progress and loading indicators</em></p>
+  <ul>
+    <li>
+      <code translate="no" dir="ltr">LinearWavyProgressIndicator</code>
+      and
+      <code translate="no" dir="ltr">CircularWavyProgressIndicator</code>
+      now show an indeterminate indicator while progress isn't a finite number (such as
+      <code translate="no" dir="ltr">Float.NaN</code>
+      ), then animate to determinate progress once it is. (
+      <a href="https://android-review.googlesource.com/#/q/I4c631dc00efea8707403194e7850838b58c5acbb">I4c631</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">LoadingIndicator</code>
+      now shares its shape morphs across instances, which speeds up composition.
+      <code translate="no" dir="ltr">PullToRefreshDefaults.LoadingIndicator</code>
+      no longer composes when it's hidden at rest. (
+      <a href="https://android-review.googlesource.com/#/q/Ic81df4c9505f06e798092c4ad5f9b9d9afd4e2a2">Ic81df</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/574346694">b/574346694</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">PullToRefreshDefaults.LoadingIndicator</code>
+      drawing an empty container on the first frame of a pull. (
+      <a href="https://android-review.googlesource.com/#/q/Ia87cf39ceb589253063774a247be4d1f5a7fce10">Ia87cf</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">PullToRefreshBox</code>
+      hiding its indicator after
+      <code translate="no" dir="ltr">onRefresh</code>
+      starts a refresh when you use a custom
+      <code translate="no" dir="ltr">PullToRefreshState</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I7537de94eda2feb9f9c2181e1abedead7b277fa9">I7537d</a>
+      )
+    </li>
+  </ul>
+  <p>
+    <em><code translate="no" dir="ltr">ScrollField</code></em>
+  </p>
+  <ul>
+    <li>
+      Reduced the gap between items to 16dp and lowered
+      <code translate="no" dir="ltr">ScrollFieldDefaults.ScrollFieldHeight</code>
+      from 200dp to 120dp. (
+      <a href="https://android-review.googlesource.com/#/q/I80382d8d10cfd6eb4a12a653f614a16cdfdb8b52">I80382</a>
+      )
+    </li>
+    <li>
+      Items no longer show a ripple or hover background, and the focus indicator no longer draws outside the rounded shape. (
+      <a href="https://android-review.googlesource.com/#/q/I08e48e2493acfc0c68230097c7fcd9bcb48c8dd2">I08e48</a>
+      ,
+      <a href="https://android-review.googlesource.com/#/q/Ief60e5d1c6dda12648ae32d379e966c7ffb6349e">Ief60e</a>
+      )
+    </li>
+  </ul>
+  <p><em>Other components</em></p>
+  <ul>
+    <li>
+      Fixed short
+      <code translate="no" dir="ltr">ModalBottomSheet</code>
+      s needing two back presses to close. With
+      <code translate="no" dir="ltr">PartiallyExpanded</code>
+      enabled, the sheet now rests at half its content height (no more than half the screen). To remove that anchor in code, use
+      <code translate="no" dir="ltr">enabledValues</code>
+      . This change is behind
+      <code translate="no" dir="ltr">ComposeMaterial3Flags.isBottomSheetPartiallyExpandedDeterministicEnabled</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I395d427a1687ff21797559b69b28d0ad6c30a340">I395d4</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/521534697">b/521534697</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">FloatingActionButtonMenu</code>
+      now composes its items the first time it expands, and expanding or collapsing does less layout work. (
+      <a href="https://android-review.googlesource.com/#/q/I1613193db0df83c25c6e8dd37cc9167706ffa585">I16131</a>
+      )
+    </li>
+    <li>
+      Fixed a crash in
+      <code translate="no" dir="ltr">ButtonGroup</code>
+      when it overflows at a fixed width (for example,
+      <code translate="no" dir="ltr">Modifier.fillMaxWidth()</code>
+      ). (
+      <a href="https://android-review.googlesource.com/#/q/I5a448d5f97b15db55677227c3a46f3d375bcab18">I5a448</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/572113567">b/572113567</a>
+      )
+    </li>
+    <li>
+      <code translate="no" dir="ltr">ToggleButton</code>
+      now gets its pressed shape from
+      <code translate="no" dir="ltr">ButtonSmallTokens.PressedContainerShape</code>
+      instead of a hardcoded value. (
+      <a href="https://android-review.googlesource.com/#/q/Ia60dc38f5dc5174eb7028ee81945a37b9521471b">Ia60dc</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/531792521">b/531792521</a>
+      )
+    </li>
+    <li>
+      Fixed
+      <code translate="no" dir="ltr">DropdownMenuItem</code>
+      cutting off
+      <code translate="no" dir="ltr">trailingContent</code>
+      when the text is long or the font is scaled up. (
+      <a href="https://android-review.googlesource.com/#/q/Iae4c8536ac8312ecea13f4f06b19871535f5b62f">Iae4c8</a>
+      )
+    </li>
+    <li>
+      Fixed an extra recomposition the first time
+      <code translate="no" dir="ltr">BottomAppBar</code>
+      ,
+      <code translate="no" dir="ltr">FloatingToolbar</code>
+      and other components compose while an accessibility service is on. (
+      <a href="https://android-review.googlesource.com/#/q/Ic461a85121cc482a74b762d6ec766227d602e893">Ic461a</a>
+      )
+    </li>
+    <li>
+      Fixed inset focus rings not drawing the inner stroke on generic or path-based shapes. (
+      <a href="https://android-review.googlesource.com/#/q/I6a430712a4605e3d312a38c07209400ee98f81f0">I6a430</a>
+      )
+    </li>
+  </ul>
+  <p><strong>Dependency Updates</strong></p>
+  <ul>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">material3</code>
+        now depends on
+        <code translate="no" dir="ltr">androidx.graphics:graphics-shapes:1.1.0</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/I52c5c85beb48560111b21038c48ec956a79a525c">I52c5c</a>
+        ,
+        <a href="https://issuetracker.google.com/issues/574346694">b/574346694</a>
+        )
+      </p>
+    </li>
+    <li>
+      <p>
+        <code translate="no" dir="ltr">material3</code>
+        now depends on
+        <code translate="no" dir="ltr">androidx.compose.foundation:foundation:1.14.0-alpha01</code>
+        . (
+        <a href="https://android-review.googlesource.com/#/q/Id915b7fae9876844b7649781ee4798f2a76f2b31">Id915b</a>
+        )
+      </p>
+    </li>
+  </ul>
+  <h2 id="material3-a2ui_2" data-text="Material3-A2ui" tabindex="-1">Material3-A2ui</h2>
+  <h3 id="version_10_3" data-text="Version 1.0" tabindex="-1">Version 1.0</h3>
+  <h4 id="material3-a2ui-1.0.0-alpha02" data-text="Version 1.0.0-alpha02" tabindex="-1">Version 1.0.0-alpha02</h4>
+  <p>October 21, 2026</p>
+  <p>
+    <code translate="no" dir="ltr">androidx.compose.material3:material3-a2ui:1.0.0-alpha02</code>
+    is released. Version 1.0.0-alpha02 contains
+    <a href="https://android.googlesource.com/platform/frameworks/support/+log/b2b5ae7b0fe1bb4eece7018878fe5f18c5967a2f..51b1c49d773c47aab307ccfe10c460650cdb8708/compose/material3/material3-a2ui">these commits</a>
+    .
+  </p>
+  <p><strong>New features</strong></p>
+  <ul>
+    <li>Added an animated shimmer effect for the component loading states.</li>
+  </ul>
+  <p><strong>API Changes</strong></p>
+  <ul>
+    <li>
+      Replaced the list of functions of
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1</code>
+      with the
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1.Functions</code>
+      interface, which has a method for each basic catalog function except the logical functions
+      <code translate="no" dir="ltr">and</code>
+      ,
+      <code translate="no" dir="ltr">or</code>
+      , and
+      <code translate="no" dir="ltr">not</code>
+      , which the catalog implements. Implementations only need to implement
+      <code translate="no" dir="ltr">openUrl</code>
+      and can override other methods to customize individual functions.
+      <code translate="no" dir="ltr">A2uiBasicCatalogV1.Functions(context)</code>
+      creates default implementations of all methods.
+      <code translate="no" dir="ltr">materialA2uiBasicCatalogV1</code>
+      now takes
+      <code translate="no" dir="ltr">functions</code>
+      instead of
+      <code translate="no" dir="ltr">urlOpener</code>
+      ,
+      <code translate="no" dir="ltr">messageFormatter</code>
+      , and
+      <code translate="no" dir="ltr">localeProvider</code>
+      . (
+      <a href="https://android-review.googlesource.com/#/q/I647b252e90a4f76bc1ac4dc0feb40acb7cd1becf">I647b2</a>
+      ,
+      <a href="https://issuetracker.google.com/issues/568735972">b/568735972</a>
+      )
+    </li>
+  </ul>
+  <h2 id="compose_material3_a2ui_version_10_2" data-text="Compose Material3 A2UI Version 1.0" tabindex="-1">Compose Material3 A2UI Version 1.0</h2>
